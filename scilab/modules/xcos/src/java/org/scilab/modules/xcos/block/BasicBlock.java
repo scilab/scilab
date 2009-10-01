@@ -51,11 +51,6 @@ public class BasicBlock extends mxCell {
 
     private String blockType = "c";
 
-    private List<InputPort> inputPorts = new ArrayList<InputPort>();
-    private List<OutputPort> outputPorts = new ArrayList<OutputPort>();
-    private List<CommandPort> commandPorts = new ArrayList<CommandPort>();
-    private List<ControlPort> controlPorts = new ArrayList<ControlPort>();
-
     private int ordering = 0;
 
     public enum SimulationFunctionType {
@@ -200,56 +195,108 @@ public class BasicBlock extends mxCell {
 	return exprs;
     }
 
+    protected List<InputPort> getAllInputPorts() {
+	List<InputPort> data = new ArrayList<InputPort>();
+	int childrenCount = getChildCount();
+	
+	for (int i = 0 ; i < childrenCount ; ++i) {
+	    if(getChildAt(i) instanceof InputPort) {
+		data.add((InputPort) getChildAt(i));
+	    }
+	}
+	
+	return data;
+    }
+    
+    protected List<OutputPort> getAllOutputPorts() {
+	List<OutputPort> data = new ArrayList<OutputPort>();
+	int childrenCount = getChildCount();
+	
+	for (int i = 0 ; i < childrenCount ; ++i) {
+	    if(getChildAt(i) instanceof OutputPort) {
+		data.add((OutputPort) getChildAt(i));
+	    }
+	}
+	
+	return data;
+    }
+
+    protected List<CommandPort> getAllCommandPorts() {
+	List<CommandPort> data = new ArrayList<CommandPort>();
+	int childrenCount = getChildCount();
+	
+	for (int i = 0 ; i < childrenCount ; ++i) {
+	    if(getChildAt(i) instanceof CommandPort) {
+		data.add((CommandPort) getChildAt(i));
+	    }
+	}
+	
+	return data;
+    }
+
+    protected List<ControlPort> getAllControlPorts() {
+	List<ControlPort> data = new ArrayList<ControlPort>();
+	int childrenCount = getChildCount();
+	
+	for (int i = 0 ; i < childrenCount ; ++i) {
+	    if(getChildAt(i) instanceof ControlPort) {
+		data.add((ControlPort) getChildAt(i));
+	    }
+	}
+	
+	return data;
+    }
+    
+    
     protected void addPort(InputPort port) {
-	inputPorts.add(port);
-	for (int i = 0 ; i < inputPorts.size() ; ++i) {
-	    mxGeometry portGeometry = inputPorts.get(i).getGeometry();
-	    inputPorts.get(i).setGeometry(new mxGeometry(-portGeometry.getWidth(), 
-		    (i + 1.0) / (inputPorts.size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
+	insert(port);
+	List<InputPort> allInputPorts = getAllInputPorts();
+	for (int i = 0 ; i < allInputPorts.size() ; ++i) {
+	    mxGeometry portGeometry = allInputPorts.get(i).getGeometry();
+	    allInputPorts.get(i).setGeometry(new mxGeometry(-portGeometry.getWidth(), 
+		    (i + 1.0) / (getAllInputPorts().size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	insert(port);
-	port.setOrdering(inputPorts.size());
     }
 
     protected void addPort(OutputPort port) {
-	outputPorts.add(port);
-	for (int i = 0 ; i < outputPorts.size() ; ++i) {
-	    mxGeometry portGeometry = outputPorts.get(i).getGeometry();
-	    outputPorts.get(i).setGeometry(new mxGeometry(getGeometry().getWidth(), 
-		    (i + 1.0) / (outputPorts.size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
+	insert(port);
+	List<OutputPort> allOutputPorts = getAllOutputPorts();
+	for (int i = 0 ; i < allOutputPorts.size() ; ++i) {
+	    mxGeometry portGeometry = allOutputPorts.get(i).getGeometry();
+	    allOutputPorts.get(i).setGeometry(new mxGeometry(getGeometry().getWidth(), 
+		    (i + 1.0) / (getAllOutputPorts().size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	insert(port);
-	port.setOrdering(outputPorts.size());
+	port.setOrdering(getAllOutputPorts().size());
     }
 
     protected void addPort(CommandPort port) {
-	commandPorts.add(port);
-	for (int i = 0 ; i < commandPorts.size() ; ++i) {
-	    mxGeometry portGeometry = commandPorts.get(i).getGeometry();
-	    commandPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (commandPorts.size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
+	insert(port);
+	List<CommandPort> allCommandPorts = getAllCommandPorts();
+	for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
+	    mxGeometry portGeometry = allCommandPorts.get(i).getGeometry();
+	    allCommandPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (getAllCommandPorts().size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
 		    getGeometry().getHeight(),
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	insert(port);
-	port.setOrdering(commandPorts.size());
+	port.setOrdering(getAllCommandPorts().size());
     }
 
     protected void addPort(ControlPort port) {
-	controlPorts.add(port);
-	for (int i = 0 ; i < controlPorts.size() ; ++i) {
-	    mxGeometry portGeometry = controlPorts.get(i).getGeometry();
-	    controlPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (controlPorts.size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
+	insert(port);
+	List<ControlPort> allControlPorts = getAllControlPorts();
+	for (int i = 0 ; i < allControlPorts.size() ; ++i) {
+	    mxGeometry portGeometry = allControlPorts.get(i).getGeometry();
+	    allControlPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (getAllControlPorts().size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
 		    - portGeometry.getHeight(),
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	insert(port);
-	port.setOrdering(controlPorts.size());
+	port.setOrdering(getAllControlPorts().size());
     }
 
     public ScilabMList getAsScilabObj() {
@@ -281,13 +328,13 @@ public class BasicBlock extends mxCell {
 
 	graphics.add(getAllExprs()); // exprs
 
-	graphics.add(getAllLinkId(inputPorts)); // pin
+	graphics.add(getAllLinkId(getAllInputPorts())); // pin
 
-	graphics.add(getAllLinkId(outputPorts)); // pout
+	graphics.add(getAllLinkId(getAllOutputPorts())); // pout
 
-	graphics.add(getAllLinkId(controlPorts)); // pein
+	graphics.add(getAllLinkId(getAllControlPorts())); // pein
 
-	graphics.add(getAllLinkId(commandPorts)); // peout
+	graphics.add(getAllLinkId(getAllCommandPorts())); // peout
 
 	ScilabList gr_i = new ScilabList();
 	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getValue()+"\",sz(1),sz(2));");
@@ -297,9 +344,9 @@ public class BasicBlock extends mxCell {
 
 	graphics.add(new ScilabString("")); // id
 
-	graphics.add(getAllPortsType(inputPorts)); // in_implicit
+	graphics.add(getAllPortsType(getAllInputPorts())); // in_implicit
 
-	graphics.add(getAllPortsType(outputPorts)); // out_implicit
+	graphics.add(getAllPortsType(getAllOutputPorts())); // out_implicit
 
 	return graphics;
     }
@@ -325,21 +372,21 @@ public class BasicBlock extends mxCell {
 
 	model.add(getSimulationFunctionNameAndType()); // sim
 
-	model.add(getAllPortsDataLines(inputPorts)); // in
+	model.add(getAllPortsDataLines(getAllInputPorts())); // in
 
-	model.add(getAllPortsDataColumns(inputPorts)); // in2
+	model.add(getAllPortsDataColumns(getAllInputPorts())); // in2
 
-	model.add(getAllPortsDataType(inputPorts)); // intyp
+	model.add(getAllPortsDataType(getAllInputPorts())); // intyp
 
-	model.add(getAllPortsDataLines(outputPorts)); // out
+	model.add(getAllPortsDataLines(getAllOutputPorts())); // out
 
-	model.add(getAllPortsDataColumns(outputPorts)); // out2
+	model.add(getAllPortsDataColumns(getAllOutputPorts())); // out2
 
-	model.add(getAllPortsDataType(outputPorts)); // outtyp
+	model.add(getAllPortsDataType(getAllOutputPorts())); // outtyp
 
-	model.add(getAllPortsDataLines(controlPorts)); // evtin
+	model.add(getAllPortsDataLines(getAllControlPorts())); // evtin
 
-	model.add(getAllPortsDataLines(commandPorts)); // evtout
+	model.add(getAllPortsDataLines(getAllCommandPorts())); // evtout
 
 	model.add(new ScilabDouble()); // state
 
@@ -372,13 +419,13 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabDouble getAllCommandPortsInitialStates() {
-	if (commandPorts.isEmpty()) {
+	if (getAllCommandPorts().isEmpty()) {
 	    return new ScilabDouble();
 	}
 
-	double[][] data = new double[commandPorts.size()][1];
-	for (int i = 0 ; i < commandPorts.size() ; ++i) {
-	    data[i][0] = commandPorts.get(i).getInitialState();
+	double[][] data = new double[getAllCommandPorts().size()][1];
+	for (int i = 0 ; i < getAllCommandPorts().size() ; ++i) {
+	    data[i][0] = getAllCommandPorts().get(i).getInitialState();
 	}
 
 	return new ScilabDouble(data);
@@ -431,9 +478,9 @@ public class BasicBlock extends mxCell {
 	    return new ScilabDouble();
 	}
 
-	double[][] data = new double[1][ports.size()];
+	double[][] data = new double[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getOrdering();
+	    data[i][0] = ((BasicPort) ports.get(i)).getConnectedLinkId();
 	}
 
 	return new ScilabDouble(data);
@@ -500,9 +547,12 @@ public class BasicBlock extends mxCell {
 	this.setDependsOnT(modifiedBlock.dependsOnT());
 	this.setDependsOnU(modifiedBlock.dependsOnU());
 	this.setExprs(modifiedBlock.getExprs());
+
 	this.setRealParameters(modifiedBlock.getRealParameters());
 	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
 	this.setObjectsParameters(modifiedBlock.getObjectsParameters());
+
+	System.out.println("pin = "+modifiedBlock.getAllInputPorts().size());
     }
 
     public void openBlockSettings() {
