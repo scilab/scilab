@@ -65,8 +65,9 @@ function scicos_menubar(gh_current_window,scicos_menus,isMainDiagram)
   
   if isMainDiagram then
     //haltscicos is a Scilab function which set a C flag to make the
-    //simulation stop.
-    callback=sci2exp(curwin,'win')+';'+sci2exp('haltscicos','Cmenu')
+    //simulation stop. Take care that this menu is for immediate action
+    //so it does not modify the Cmenu variable as the others
+    callback='haltscicos'
     mainmenu=uimenu(gh_current_window,'label',_("Stop"),'Callback',list(4,callback),'Tag','XcosMenuStop')
     mainmenu.Enable='off';
   end
