@@ -22,6 +22,7 @@
 function haltscicos(menus, win_id)
 //** This is just a *CLEVER* function used for the "halt" button that
 //** stop the Scicos simulation
+  mprintf('haltscicos\n')
   sleep(1); //** DO NOT REMOVE IT
   sci_haltscicos();
 endfunction

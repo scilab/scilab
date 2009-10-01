@@ -237,7 +237,10 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   //** scicos simulation
   //needreplay=%t
   tf=scs_m.props.tf;
-  setmenu(curwin,'Stop')
+  //retrieve the Stop menu handle throught its TAG
+  stopmenu=findobj('Tag','XcosMenuStop')
+  stopmenu.Enable='on';
+  //setmenu(curwin,_("Stop"))
   needreplay=%t
 
   //** run scicosim via 'start' flag
@@ -307,10 +310,8 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     end
     ok=%f
   end
-  //xset('window',curwin)
-  //disp(timer())
-  unsetmenu(curwin,'Stop')
-
+  //unsetmenu(curwin,_("Stop"))
+  stopmenu.Enable='off';
   needreplay=resume(needreplay)
 endfunction
 
