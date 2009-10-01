@@ -172,6 +172,12 @@ public class Xcos extends SwingScilabTab implements Tab {
     			"DLATCH", "DFLIPFLOP", "JKFLIPFLOP", "SRFLIPFLOP"};
     	palette.addTab(createPalette("Integer", integerBlocksNames));
     	
+    	/** Create MATRIX palette */
+    	String[] matrixBlocksNames = {"CUMSUM", "SQRT", "MATZREIM", "SUBMAT", "MATBKSL", "MATINV", "MATCATV", "MATSUM", 
+    			"RICC", "ROOTCOEF", "MATCATH", "MATLU", "MATDIV", "MATZCONJ", "MATMAGPHI", "EXTRACT", "MATEXPM", 
+    			"MATDET", "MATPINV", "EXTTRI", "MATMUL", "MATTRAN", "MATSING", "MATRESH", "MATDIAG", "MATEIG"};
+    	palette.addTab(createPalette("Matrix", matrixBlocksNames));
+    	
     	/** Create SINKS palette */
     	String[] sinksBlocksNames = {"CFSCOPE", "CANIMXY", "CSCOPE", "CSCOPXY", "TOWS_c", "CMAT3D", "CSCOPXY3D", "CANIMXY3D",
     			"CMATVIEW", "CMSCOPE", "AFFICH_m", "TRASH_f"};
