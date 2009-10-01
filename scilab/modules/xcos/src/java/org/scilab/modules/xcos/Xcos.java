@@ -14,6 +14,8 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -82,6 +84,7 @@ import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
+import com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
@@ -98,7 +101,22 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public static void xcos() {
-	CreateAndShowGui();
+    	CreateAndShowGui();
+    }
+    
+    public static void xcos(String fileName) {
+    	XcosDiagram diagram = CreateAndShowGui();
+	    System.out.println("Openning to file : {"+fileName+"}");
+	    
+	    HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(fileName);
+	    
+	    if (allObjects != null) { // If the file exists...
+	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
+	    
+	    	for (int i = 0 ; i < allBlocks.size() ; ++i) {
+	    		diagram.addCell(allBlocks.get(i));
+	    	}
+	    }
     }
 
     public static void createViewPort(ScilabGraph xcosDiagramm) {
@@ -393,7 +411,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
     }
     
-    public static void CreateAndShowGui() {
+    public static XcosDiagram CreateAndShowGui() {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
@@ -423,6 +441,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * PALETTES
 	 */
 	createPalette();
+	
+	return xcosDiagramm;
 
     }
 
