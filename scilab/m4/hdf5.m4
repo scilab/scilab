@@ -23,7 +23,7 @@ AC_ARG_WITH(hdf5_include,
 		[with_hdf5_include='yes']
 		)
 
-AC_ARG_WITH(hdf5_include,
+AC_ARG_WITH(hdf5_library,
 		AC_HELP_STRING([--with-hdf5-library=DIR],[Set the path to the HDF5 libraries]),
 		[with_hdf5_library=$withval],
 		[with_hdf5_library='yes']
