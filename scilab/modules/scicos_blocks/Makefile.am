@@ -466,15 +466,7 @@ libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 libsciscicos_blocks_la_includedir=$(pkgincludedir)
 libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
-includes/scoBase.h \
-includes/scoGetProperty.h \
-includes/scoMemoryScope.h \
-includes/scoMisc.h \
-includes/scoSetProperty.h \
-includes/scoWindowScope.h \
-includes/blocks.h \
-includes/affich.h
-
+includes/blocks.h
 
 #### scicos_blocks : MACROS ####
 MACROSDIRSEXT= macros/Branching \

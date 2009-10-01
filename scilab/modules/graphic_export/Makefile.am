@@ -111,9 +111,4 @@ libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
 
-#### graphic_export : include files ####
-libscigraphic_export_la_includedir=$(pkgincludedir)
-libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
-includes/dynlib_graphic_export.h
-
 include $(top_srcdir)/Makefile.incl.am

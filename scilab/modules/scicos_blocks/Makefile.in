@@ -609,10 +609,7 @@ DATA = $(libsciscicos_blocks_la_etc_DATA) \
 	$(libsciscicos_blocks_la_root_DATA)
 am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scicos_block.h includes/scicos_block4.h \
-	includes/scoBase.h includes/scoGetProperty.h \
-	includes/scoMemoryScope.h includes/scoMisc.h \
-	includes/scoSetProperty.h includes/scoWindowScope.h \
-	includes/blocks.h includes/affich.h
+	includes/blocks.h
 HEADERS = $(libsciscicos_blocks_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -1337,14 +1334,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_blocks_la_includedir = $(pkgincludedir)
 @SCICOS_TRUE@libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 @SCICOS_TRUE@includes/scicos_block4.h \
-@SCICOS_TRUE@includes/scoBase.h \
-@SCICOS_TRUE@includes/scoGetProperty.h \
-@SCICOS_TRUE@includes/scoMemoryScope.h \
-@SCICOS_TRUE@includes/scoMisc.h \
-@SCICOS_TRUE@includes/scoSetProperty.h \
-@SCICOS_TRUE@includes/scoWindowScope.h \
-@SCICOS_TRUE@includes/blocks.h \
-@SCICOS_TRUE@includes/affich.h
+@SCICOS_TRUE@includes/blocks.h
 
 
 #### scicos_blocks : MACROS ####

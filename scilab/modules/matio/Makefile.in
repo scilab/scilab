@@ -38,7 +38,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -58,8 +57,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscimatio_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/matio
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -106,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimatio_la_etcdir)" \
 	"$(DESTDIR)$(libscimatio_la_rootdir)" \
-	"$(DESTDIR)$(libscimatio_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscimatio_la_includedir)"
+	"$(DESTDIR)$(libscimatio_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimatio_la_LIBADD =
 am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
@@ -171,7 +169,6 @@ SOURCES = $(libscimatio_la_SOURCES)
 DIST_SOURCES = $(am__libscimatio_la_SOURCES_DIST)
 DATA = $(libscimatio_la_etc_DATA) $(libscimatio_la_root_DATA) \
 	$(libscimatio_la_sci_gateway_DATA)
-HEADERS = $(libscimatio_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -528,12 +525,6 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
-
-#### matio : include files ####
-libscimatio_la_includedir = $(pkgincludedir)
-libscimatio_la_include_HEADERS = includes/gw_matio.h \
-	includes/dynlib_matio.h
-
 all: all-am
 
 .SUFFIXES:
@@ -887,26 +878,6 @@ uninstall-libscimatio_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscimatio_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscimatio_la_sci_gatewaydir)" && rm -f $$files
-install-libscimatio_la_includeHEADERS: $(libscimatio_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscimatio_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscimatio_la_includedir)"
-	@list='$(libscimatio_la_include_HEADERS)'; test -n "$(libscimatio_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscimatio_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscimatio_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscimatio_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscimatio_la_include_HEADERS)'; test -n "$(libscimatio_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscimatio_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscimatio_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -993,9 +964,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscimatio_la_etcdir)" "$(DESTDIR)$(libscimatio_la_rootdir)" "$(DESTDIR)$(libscimatio_la_sci_gatewaydir)" "$(DESTDIR)$(libscimatio_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscimatio_la_etcdir)" "$(DESTDIR)$(libscimatio_la_rootdir)" "$(DESTDIR)$(libscimatio_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1047,7 +1018,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscimatio_la_etcDATA \
-	install-libscimatio_la_includeHEADERS \
 	install-libscimatio_la_rootDATA \
 	install-libscimatio_la_sci_gatewayDATA
 
@@ -1096,7 +1066,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscimatio_la_etcDATA \
-	uninstall-libscimatio_la_includeHEADERS \
 	uninstall-libscimatio_la_rootDATA \
 	uninstall-libscimatio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1112,9 +1081,7 @@ uninstall-am: uninstall-libscimatio_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscimatio_la_etcDATA \
-	install-libscimatio_la_includeHEADERS \
-	install-libscimatio_la_rootDATA \
+	install-libscimatio_la_etcDATA install-libscimatio_la_rootDATA \
 	install-libscimatio_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1122,7 +1089,6 @@ uninstall-am: uninstall-libscimatio_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscimatio_la_etcDATA \
-	uninstall-libscimatio_la_includeHEADERS \
 	uninstall-libscimatio_la_rootDATA \
 	uninstall-libscimatio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

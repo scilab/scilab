@@ -25,7 +25,10 @@ Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Component
 ;
 Source: modules\{#SHELL}\sci_gateway\shell_gateway.xml; DestDir: {app}\modules\{#SHELL}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SHELL}\includes\*.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\includes\*.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\includes\prompt.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\includes\scilines.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\includes\dynlib_shell.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\help\addchapter.sce; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;

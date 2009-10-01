@@ -151,11 +151,6 @@ libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 libscimetanet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
-#### metanet : include files ####
-libscimetanet_la_includedir=$(pkgincludedir)
-libscimetanet_la_include_HEADERS = includes/gw_metanet.h \
-includes/dynlib_metanet.h
-
 #### metanet : Macros ####
 MACROSDIRSEXT =  macros/editor macros/graph_tools
 

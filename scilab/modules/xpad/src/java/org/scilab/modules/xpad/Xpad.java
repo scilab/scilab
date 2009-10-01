@@ -340,7 +340,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		JTextPane textPane = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0) ;
 
 		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
-			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.FILE_MODIFIED);
+			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.MODIFIED);
 
 			if (choice == 0){
 				save (textPane);
