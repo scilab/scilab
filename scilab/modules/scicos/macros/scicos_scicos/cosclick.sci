@@ -89,7 +89,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       //cmd = 'Cmenu='+sci2exp(str);
       cmd=str
     elseif (btn==0) then
-      cmd = 'Cmenu = '"XcosMenuMoveLink'"'
+      if SL_mode then
+	cmd = 'Cmenu = '"XcosMenuSmartMove'"'
+      else
+	cmd = 'Cmenu = '"XcosMenuMoveLink'"'
+      end
     elseif (btn==3) then
       cmd='Cmenu=''XcosMenuSelectLink''' //** indirect call via commands 
     elseif (btn==10) then 
@@ -128,8 +132,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     
   //** -----------------------------------------------------------
   elseif (btn==0) then //** Press button : Left Mouse Button : no window check 
-    Cmenu = "XcosMenuMoveLink"   ; //** Normal Move
-
+    if SL_mode then
+      Cmenu = "XcosMenuSmartMove"
+    else
+      Cmenu = "XcosMenuMoveLink"
+    end
   elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress] 
     Cmenu = "XcosMenuSmartMove"   ; //** Smart Move
   
@@ -167,24 +174,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     execstr(str); //set win and Cmenu variables (see scicos_menubar)
     %pt=[]
     return
-    //verifier si ce qui suit est utile (selection d'un menu dans une
-    //autre fenetre que la fenetre courante. Si necessaire remplacer le
-    //callback dans scicos_menubar par "win=xxx;Cmenu=''yyy''"
-    
-//     if strindex(str,'_'+string(curwin)+'(')<>[] then // str contains the information of the Scicos dynamic menu selection
-//       %pt=[] ; //** empty variable: no information about mouse position inside a dynamic menu  
-//       //** Cmenu is empty ( [] )
-//       //**      execstr( <Diagram_1000(1)>  )
-//       execstr('Cmenu='+part(str,9:length(str)-1));   //**
-//       //**  Cmenu = menus('Diagram')(1)      ; //** needs explanation  
-//       //**  disp (Cmenu);
-//       execstr('Cmenu='+Cmenu) ;
-//       //**  At the end 'Cmenu' contains the string show in the dynamic selection menu (e.g. "Replot")   
-//       return ; //** ---> EXIT POINT  
-//     else // click in an other dynamic menu
-//       execstr(str,'errcatch'); //** error handling 
-//       return ; //** ---> EXIT POINT     
-//     end
+
     
     //**-------------------------------------------------------------    
    

@@ -29,12 +29,10 @@ function XcosMenuLink()
 
   //** use a global variable in oder to switch 
   //** from/to the two operating modes 
-  if SL_mode==0 then 
-    //** This is the original Scicos routine
-    [scs_m, needcompile] = getlink(%pt, scs_m, needcompile); 
-  else
-  //** This is the new mode "getlink_qd"
+  if SL_mode then //avoid oblic links
     [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile);
+  else
+    [scs_m, needcompile] = getlink(%pt, scs_m, needcompile); 
   end 
 
   Cmenu = []; 

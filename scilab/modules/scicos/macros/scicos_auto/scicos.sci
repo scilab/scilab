@@ -43,7 +43,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
   global %tableau          //shortcuts
   global next_scicos_call
   //** "0" standard scicos oblique link ; "1" SL orthogonanal links
-  global SL_mode ; SL_mode = 0 ;
+  global SL_mode ; SL_mode = %t ;
   global XcosClipboard  
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -96,14 +96,13 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 	      'XcosMenuRun',                  _("Run")];
 
   Format   = ['XcosMenuFormat',               _("Format");
-              'XcosMenuSetLinkMode',          _("Set link edition mode");
               'XcosMenuSetGrid',              _("Set grid");
    	      'XcosMenuAddColor',             _("Add color");
 	      'XcosMenuDefaultLinkColor',     _("Default link colors");
 	      'XcosMenuColor',                _("Color");
 	      'XcosMenuBackgroundColor',      _("Background color");
 	      'XcosMenuShowBlockShadow',      _("Show Block Shadow");
-	      'XcosMenuOrtLink',              _("Ort Link");
+	      'XcosMenuSetLinkMode',         _("Set link edition mode");
 	      'XcosMenuResize',               _("Resize");
 	      'XcosMenuIdentification',       _("Identification");
 	      'XcosMenuSetIDFonts',           _("ID fonts");
