@@ -850,16 +850,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 						//contents.append(System.getProperty("line.separator"));
 						try {
 							if (styleDocument.getAutoIndent()) {
-								styleDocument.insertString( startPosition, lineIdented, null);
+								styleDocument.insertString( styleDocument.getLength(), lineIdented, null);
 							}
 							if (styleDocument.getColorize()) {
-								styleDocument.colorize(startPosition,startPosition+lineIdented.length());
+								styleDocument.colorize(styleDocument.getLength()- lineIdented.length(),styleDocument.getLength());
 							}
 						} catch (BadLocationException e) {
-							// TODO Auto-generated catch block
+							System.err.println("");
 							e.printStackTrace();
 						}
-						startPosition += lineIdented.length();
+						
 					}
 				}
 				styleDocument.enableUpdaters();
