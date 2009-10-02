@@ -42,10 +42,10 @@ function newobj = optimbase_new ()
   newobj.maxfunevals = 100;
   // The maximum number of iterations
   newobj.maxiter = 100;
-  // Possible values : "enabled", "disabled"
+  // Possible values : %f, %t
   // This criteria is suitable for functions which minimum is 
   // associated with a function value equal to 0.
-  newobj.tolfunmethod = "disabled";
+  newobj.tolfunmethod = %f;
   // The absolute tolerance on function value
   newobj.tolfunabsolute = 0.0;
   // The relative tolerance on function value
@@ -62,8 +62,8 @@ function newobj = optimbase_new ()
   newobj.xopt = 0;
   // The optimum function value
   newobj.fopt = 0;
-  // Possible values : "enabled", "disabled"
-  newobj.tolxmethod = "enabled";
+  // Possible values : %f, %t
+  newobj.tolxmethod = %t;
   // The status of the optimization
   newobj.status = "";
   // The command called back for output
@@ -83,7 +83,7 @@ function newobj = optimbase_new ()
   // function.
   newobj.costfargument = "";
   // The flag which enables/disables the storing of the history
-  newobj.storehistory = 0;
+  newobj.storehistory = %f;
   // The array to store the history for xopt
   newobj.historyxopt = list();
   // The array to store the history for fopt
