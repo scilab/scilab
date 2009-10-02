@@ -1,12 +1,12 @@
 \chapter{Spendley's et al. method}
 
-In this section, we present Spendley's et al. algorithm \cite{Spendley1962} for 
+In this chapter, we present Spendley's et al. algorithm \cite{Spendley1962} for 
 unconstrained optimization.
 
 We begin by presenting a global overview of the algorithm. 
 Then we present various geometric situations which might occur
 during the algorithm. In the second section, we present several 
-numerical experiments which allow to get some insight of the behaviour 
+numerical experiments which allow to get some insight in the behaviour 
 of the algorithm on some simple situations. The two first cases 
 are involving only 2 variables and are based on a quadratic function.
 The last numerical experiment explores the behaviour of the algorith
@@ -22,93 +22,88 @@ Then we present various geometric situations which might occur
 during the algorithm. This allows to understand when exactly a reflection 
 or a shrink is performed in practice.
 
-\subsection{Algorithm}
+\subsection{Overview}
 
 The goal of Spendley's et al. algorithm is to solve the 
 following unconstrained optimization problem
 \begin{eqnarray}
-\min f(x)
+\min f(\bx)
 \end{eqnarray}
-where $x\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
 function $f:\RR^n\rightarrow \RR$.
 
 The simplex algorithms are based on the iterative update of 
-a \emph{simplex} made of $n+1$ points $S=\{x_i\}_{i=1,n+1}$. Each point 
+a \emph{simplex} made of $n+1$ points $S=\{\bx_i\}_{i=1,n+1}$. Each point 
 in the simplex is called a \emph{vertex} and is associated with 
-a function value $f_i=f(x_i), i=1,n+1$.
+a function value $f_i=f(x_i)$ for $i=1,n+1$.
 
 The vertices are sorted by increasing function values so that the 
 \emph{best} vertex has index 1 and the \emph{worst} vertex 
 has index $n+1$
-
 \begin{eqnarray}
 \label{sorted-vertices-fv}
 f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
-The \emph{next-to-worst} vertex with index $n$ has a 
-special role in simplex algorithms.
+The $\bx_1$ vertex (resp. the $\bx_{n+1}$ vertex) is called the \emph{best} 
+vertex (resp. \emph{worst}), because it is associated with the lowest (resp. highest)
+function value. As we are going to see, the \emph{next-to-worst} vertex $\bx_n$ has a 
+special role in this algorithm.
 
-The centroid of the simplex is the center of the vertices
-where the vertex with index $j=1,n+1$ has been 
-excluded 
-
+The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
+where the vertex $\bx_j$ has been 
+excluded. This centroid is 
 \begin{eqnarray}
 \label{centroid-generalized}
-\overline{x} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j}x_i
+\overline{\bx} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bx_i.
 \end{eqnarray}
-
-The first move of the algorithm is based on the centroid 
-where the worst vertex with index $j=n+1$ has been excluded 
-
-\begin{eqnarray}
-\label{centroid-worst}
-\overline{x} (n+1) = \frac{1}{n} \sum_{i=1,n}x_i
-\end{eqnarray}
-
-The algorithm attemps to replace one vertex 
-$x_j$ by a new point $x(\mu,j)$ between the centroid 
-$\overline{x}$ and the vertex $x_j$ and defined by 
+The algorithm makes use
+of one coefficient $\rho>0$, called the reflection factor. The standard
+value of this coefficient is $\rho=1$.
+The algorithm attemps to replace some vertex 
+$\bx_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bx_j$
+to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
 \begin{eqnarray}
 \label{interpolate-generalized}
-x(\mu,j) = (1+\mu)\overline{x}(j) - \mu x_j
+\bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bx_j.
 \end{eqnarray}
 
-The Spendley et al. \cite{Spendley1962} algorithm makes use
-of one coefficient, the reflection $\rho>0$. The standard
-value of this coefficient is $\rho=1$.
+\subsection{Algorithm}
 
-The first move of the algorithm is based on the reflection
-with respect to the worst point $x_{n+1}$ so that the reflection point is 
-computed by 
-
+The first step of the algorithm is based on the centroid 
+where the worst vertex $\bx_{n+1}$ has been excluded. This centroid 
+$\overline{\bx} (n+1)$ is 
+\begin{eqnarray}
+\label{centroid-worst}
+\overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bx_i.
+\end{eqnarray}
+This step is a reflection with respect to the worst vertex $\bx_{n+1}$ so that the 
+reflected point $\bx_r$ is defined by 
 \begin{eqnarray}
 \label{interpolate-worst}
-x(\rho,n+1) = (1+\rho)\overline{x}(n+1) - \rho x_{n+1}
+\bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bx_{n+1}
 \end{eqnarray}
 
-The algorithm first computes the reflection point 
-with respect to the worst point excluded with $x_r=x(\rho,n+1)$
-and evaluates the function value of the reflection
-point $f_r=f(x_r)$. If that value $f_r$ is better than the worst function
-value $f_{n+1}$, the worst point $x_{n+1}$ is rejected from the 
-simplex and the reflection point $x_r$ is accepted. If the reflection point 
-does not improves, the next-to-worst point $x_n$ is reflected and the 
-function is evaluated at the new reflected point. If the function
-value improves over the worst function value $f_{n+1}$, the new reflection point is 
-accepted.
+We then compute the function value of the reflected
+point $f_r=f(\bx_r)$. If the function value $f_r$ is better than the worst function
+value $f_{n+1}$, i.e. if $f_r < f_{n+1}$, then the worst point $\bx_{n+1}$ is rejected from the 
+simplex and the reflected point $\bx_r$ is accepted. If the reflection point 
+does not improve the function value $f_{n+1}$, we consider the centroid 
+$\overline{\bx} (n)$, i.e. the centroid where the vertex $\bx_n$ has been excluded.
+We then consider the reflected vertex $\bx_r^\prime$, computed from the 
+next-to-worst vertex $\bx_n$ and the centroid $\overline{\bx} (n)$. 
+We compute the function value $f_r^\prime = f(\bx_r^\prime)$. If the function
+value $f_r^\prime$ improves over the worst function value $f_{n+1}$, the new reflection vertex 
+$\bx_r^\prime$ is accepted.
 
 At that point of the algorithm, neither the reflection with respect to 
-$x_{n+1}$ nor the reflection with respect to $x_n$ has improved.
-The algorithm therefore shrinks the simplex toward the best point.
+$\bx_{n+1}$ nor the reflection with respect to $\bx_n$ were able to improve over 
+the worst function value $f_{n+1}$.
+Therefore, the algorithm shrinks the simplex toward the best vertex $\bx_1$.
 That last step uses the shrink coefficient $0<\sigma<1$. The standard
 value for this coefficient is $\sigma=\frac{1}{2}$.
 
 Spendley's et al. algorithm is presented in figure \ref{algo-spendley}.
-The figure \ref{fig-spendley-moves} presents the various 
-moves of the Spendley et al. algorithm. It is obvious from the 
-picture that the algorithm explores a pattern which is 
-entirely determined from the initial simplex.
 
 \begin{figure}[htbp]
 \begin{algorithmic}
@@ -139,8 +134,10 @@ entirely determined from the initial simplex.
 
 \subsection{Geometric analysis}
 
-The figure \ref{fig-spendley-moves} presents the various moves of the 
-simplex in the Spendley et al. algorithm.
+The figure \ref{fig-spendley-moves} presents the various 
+moves of the Spendley et al. algorithm. It is obvious from the 
+picture that the algorithm explores a pattern which is 
+entirely determined from the initial simplex.
 
 \begin{figure}
 \begin{center}
@@ -198,6 +195,11 @@ optimum is searched.
 %% \subsection{Termination criteria}
 
 %% TODO...
+
+%% \subsection{General features of the algorithm}
+
+%% TODO...
+
 
 \section{Numerical experiments}
 
