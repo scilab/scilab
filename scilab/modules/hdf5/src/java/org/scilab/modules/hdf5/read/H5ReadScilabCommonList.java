@@ -29,12 +29,13 @@ public class H5ReadScilabCommonList {
 	}
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_STD_REF_OBJ,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, data);
-	H5.H5Dclose(dataSetId);
+	
 	
 	for( int i = 0 ; i < (int) nbElems[0] ; ++i) {
 	    int objectId = H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, data[i]);
 	    Object localData = H5Read.getData(objectId);
 	    scilabList.add(localData);
 	}
+	H5.H5Dclose(dataSetId);
     }
 }

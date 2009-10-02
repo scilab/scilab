@@ -138,9 +138,10 @@ public class H5Read {
 	H5.H5Tset_size(tid, stringLength);
 	byte[] data = new byte[stringLength];
 	H5.H5Aread(attributeId, tid, data);
+	String result = new String(data, 0, stringLength).trim();
 	H5.H5Aclose(attributeId);
 
-	return new String(data, 0, stringLength).trim();
+	return result;
     }
 
     /**
@@ -198,23 +199,6 @@ public class H5Read {
     public static boolean isList(int dataSetId) throws HDF5LibraryException {
 	return (H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_REFERENCE);
     } 
-
-
-    public static int[] getInt(int dataSetId) throws NullPointerException, HDF5Exception {
-	long[] nbElems = getAllDims(dataSetId); 
-	int[] data = new int[(int) nbElems[0]];
-	H5.H5Dread(dataSetId, HDF5Constants.H5T_NATIVE_INT,
-		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, data);
-	return data;
-    }
-
-    public static int[][] getIntMatrix(int dataSetId) throws NullPointerException, HDF5Exception {
-	long[] nbElems = getAllDims(dataSetId); 
-	int[][] data = new int[(int) nbElems[0]][(int) nbElems[1]];
-	H5.H5Dread(dataSetId, H5.H5Dget_type(dataSetId),
-		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, data);
-	return data;
-    }
 
     public static void readDataFromFile(int fileId, ScilabDouble data) throws NullPointerException, HDF5Exception {
 	H5ReadScilabDouble.readData(H5Read.getRootId(fileId), data);

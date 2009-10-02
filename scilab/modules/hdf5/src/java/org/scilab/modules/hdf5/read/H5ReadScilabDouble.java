@@ -34,7 +34,6 @@ public class H5ReadScilabDouble {
 
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_STD_REF_OBJ,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataRefs);
-	H5.H5Dclose(dataSetId);
 	
 	data.setRealPart(getDoubleMatrix(H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, dataRefs[0])));
 	if (H5Read.isComplex(dataSetId)) {
@@ -43,6 +42,7 @@ public class H5ReadScilabDouble {
 	else {
 	    data.setImaginaryPart(null);
 	}
+	H5.H5Dclose(dataSetId);
     }
 
     private static double[][] getDoubleMatrix(int dataSetId) throws NullPointerException, HDF5Exception {
@@ -50,6 +50,7 @@ public class H5ReadScilabDouble {
 	double[][] data = new double[(int) nbElems[0]][(int) nbElems[1]];
 	H5.H5Dread(dataSetId, H5.H5Dget_type(dataSetId),
 		H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
+	H5.H5Dclose(dataSetId);
 	return data;
     }
 }
