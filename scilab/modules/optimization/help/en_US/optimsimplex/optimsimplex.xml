@@ -51,8 +51,9 @@ optimsimplex_check ( this )
 df = optimsimplex_deltafv ( this )
 dfm = optimsimplex_deltafvmax ( this )
 m = optimsimplex_dirmat ( this )
-sd = optimsimplex_fvmean ( this )
+m = optimsimplex_fvmean ( this )
 sd = optimsimplex_fvstdev ( this )
+v = optimsimplex_fvvariance ( this )
 [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
 g = optimsimplex_gradforward ( this )
 [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
@@ -1388,7 +1389,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>sd = optimsimplex_fvmean ( this )</term>
+        <term>m = optimsimplex_fvmean ( this )</term>
 
         <listitem>
           <para>Returns the mean of the function value on the simplex.</para>
@@ -1410,6 +1411,25 @@ function [ y , data ] = myfunction ( x , data )
 
         <listitem>
           <para>Returns the standard deviation of the function value on the
+          simplex.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current simplex object.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v = optimsimplex_fvvariance ( this )</term>
+
+        <listitem>
+          <para>Returns the variance of the function value on the
           simplex.</para>
 
           <variablelist>
@@ -1836,8 +1856,8 @@ s1 = optimsimplex_destroy ( s1 );
       </listitem>
 
       <listitem>
-        <para>move optimsimplex_reflect into a proper method, not a weird
-        constructor</para>
+        <para>fix automatic restart so that it takes into account for the
+        current size of the simplex, instead of the initial size</para>
       </listitem>
     </itemizedlist>
   </refsection>

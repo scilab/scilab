@@ -12,24 +12,60 @@
 //   Creates a new Nelder-Mead object.
 //
 function newobj = neldermead_new ()
-  newobj = tlist(["T_NELDERMEAD",...
-    "optbase","method",...
-    "simplex0","simplex0method","simplex0length",...
-    "rho","chi","gamma","sigma",...
-    "tolfstdeviation","tolfstdeviationmethod",...
-    "tolsimplexizeabsolute","tolsimplexizerelative","tolsimplexizemethod", "simplexsize0", ...
-    "toldeltafv","tolssizedeltafvmethod",...
-    "historysimplex", ...
-    "coords0",...
-    "simplex0deltausual","simplex0deltazero", ...
-    "restartsimplexmethod",...
-    "simplexopt","restartmax" , "restarteps", ...
-    "restartstep","kelleystagnationflag",...
-    "kelleynormalizationflag","kelleystagnationalpha0", ...
-    "kelleyalpha","restartnb","restartflag","restartdetection" , ...
-    "startupflag" , ...
-    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" , ...
-    "checkcostfunction" , "scalingmethod" ]);
+  newobj = tlist(["T_NELDERMEAD" 
+    "optbase" 
+    "method"
+    "simplex0"
+    "simplex0method"
+    "simplex0length"
+    "rho"
+    "chi"
+    "gamma"
+    "sigma"
+    "tolfstdeviation"
+    "tolfstdeviationmethod"
+    "tolsimplexizeabsolute"
+    "tolsimplexizerelative"
+    "tolsimplexizemethod"
+    "simplexsize0"
+    "toldeltafv"
+    "tolssizedeltafvmethod"
+    "historysimplex"
+    "coords0"
+    "simplex0deltausual"
+    "simplex0deltazero"
+    "restartsimplexmethod"
+    "simplexopt"
+    "restartmax"
+    "restarteps"
+    "restartstep"
+    "kelleystagnationflag"
+    "kelleynormalizationflag"
+    "kelleystagnationalpha0"
+    "kelleyalpha"
+    "restartnb"
+    "restartflag"
+    "restartdetection"
+    "startupflag"
+    "boxnbpoints"
+    "boxnbpointseff"
+    "nbineqloops"
+    "ineqscaling"
+    "checkcostfunction"
+    "scalingmethod"
+    "guinalphamin"
+    "boxboundsalpha"
+    "boxtermination"
+    "boxtolf"
+    "boxnbmatch"
+    "boxkount"
+    "boxreflect"
+    "tolvarianceflag"
+    "tolabsolutevariance"
+    "tolrelativevariance"
+    "variancesimplex0"
+    ]);
+
   newobj.optbase = optimbase_new();
   // Possible values "variable", "fixed".
   newobj.method = "variable";
@@ -107,9 +143,6 @@ function newobj = neldermead_new ()
   newobj.boxnbpoints = "2n"
   // Effective number of points required in the simplex (for Box method)
   newobj.boxnbpointseff = 0
-  // Number of loops performed to satisfy nonlinear
-  // inequality constraints (for Box method)
-  newobj.nbineqloops = 10
   // The scaling coefficient in nonlinear inequality constraints
   // in Box method, in (0,1) range
   newobj.ineqscaling = 0.5
@@ -117,4 +150,32 @@ function newobj = neldermead_new ()
   newobj.checkcostfunction = %t;
   // The scaling algorithm : "tox0", "tocentroid"
   newobj.scalingmethod = "tox0";
+  // Minimum alpha for constraints scaling
+  newobj.guinalphamin = 1.e-5;
+  // Box's alpha coefficient for bounds constraints.
+  // The value used in Box's paper was 0.000001 (delta in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxboundsalpha = 0.000001
+  // Set to 1 to enable Box termination criteria
+  newobj.boxtermination = 0
+  // The absolute tolerance on function value in Box termination criteria (beta in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxtolf = 1.e-5
+  // The number of consecutive match in Box termination criteria (gamma in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxnbmatch = 5
+  // Current number of consecutive match
+  newobj.boxkount = 0
+  // Box reflection/expansion factor
+  newobj.boxreflect = 1.3
+  // Set to %t to enable tolerance on variance
+  newobj.tolvarianceflag = %f;
+  // Absolute tolerance on variance
+  newobj.tolabsolutevariance = 0.0;
+  // Relative tolerance on variance
+  newobj.tolrelativevariance = %eps;
+  // The variance of the initial simplex
+  newobj.variancesimplex0 = 0.0;
 endfunction
+
+

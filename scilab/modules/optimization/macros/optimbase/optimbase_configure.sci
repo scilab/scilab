@@ -78,6 +78,8 @@ function this = optimbase_configure (this,key,value)
     this.boundsmax = value;
   case "-nbineqconst" then
     this.nbineqconst = value;
+  case "-logfile" then
+    this.logfile = value;
   else
     errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_configure",key)
     error(errmsg)

@@ -23,6 +23,7 @@
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "sciprint.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

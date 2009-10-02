@@ -106,7 +106,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -156,4 +156,22 @@ assert_equal ( computed , expected );
 // Clean-up
 //
 nm = neldermead_destroy(nm);
+
+
+//
+// Test search with verbose to log file
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",4);
+nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
+nm = neldermead_configure(nm,"-maxiter",10);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-logfile" , "search.txt" );
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_search(nm);
+nm = neldermead_destroy(nm);
+computed = deletefile("search.txt");
+assert_equal ( computed , %t );
+
 

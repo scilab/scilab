@@ -18,7 +18,7 @@ function this = neldermead_updatesimp ( this )
   xopt = optimbase_get ( this.optbase , "-xopt" );
   select this.restartsimplexmethod
   case "oriented" then
-    [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , neldermead_costf , this )
+    [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , neldermead_costf , this );
   case "axes" then
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "axes" , ...
@@ -65,12 +65,11 @@ function this = neldermead_updatesimp ( this )
     nbve = optimsimplex_getnbve ( simplex0 )
     for ive = 1 : nbve
       // x is a row vector
-      x = optimsimplex_getx ( simplex0 , ive )
-      this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at ["+...
-        strcat(string(x)," ")+"]... " , ...
-        ive , nbve ));
+      x = optimsimplex_getx ( simplex0 , ive );
+      this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at [%s]... " , ...
+        ive , nbve , _strvec(x)));
       // Transpose x because xopt is a column vector : xp is now a column vector
-      [ this , status , xp ] = _scaleinconstraints ( this , x.' , xopt )
+      [ this , status , xp ] = _scaleinconstraints ( this , x.' , xopt );
       if ( ~status ) then
         errmsg = msprintf(gettext("Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), "neldermead_updatesimp", ...
           ive , nbve , strcat(string(x)," "));
