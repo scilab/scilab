@@ -32,7 +32,7 @@ function [p,err]=datafit(imp,G,varargin)
 //deff('e=G(p,z)','a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)')
 //[p,err]=datafit(G,Z,[3;5;10])
 //xset('window',0)
-//xbasc();
+//clf();
 //plot2d(X',Y',-1) 
 //plot2d(X',FF(X)',5,'002')
 //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
@@ -41,7 +41,7 @@ function [p,err]=datafit(imp,G,varargin)
 //deff('s=DG(p,z)','y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]')
 //[p,err]=datafit(G,DG,Z,[3;5;10])
 //xset('window',1)
-//xbasc(); 
+//clf(); 
 //plot2d(X',Y',-1) 
 //plot2d(X',FF(X)',5,'002')
 //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')

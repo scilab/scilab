@@ -42,13 +42,13 @@ function [earn,ind]=knapsack(profit,weight,capa,bck)
   weight = matrix(weight,1,-1)
   capa   = matrix(capa,1,-1)
   //preprocess the data
-  [s,k]=sort(profit./weight);
-  [ss,kk]=sort(-k);
+  [s,k]=gsort(profit./weight);
+  [ss,kk]=gsort(-k);
   p=profit(k);w=weight(k);
   np1=n+1;
   m=size(capa,2);
-  [s1,k1]=sort(capa);
-  [s2,k2]=sort(k1);
+  [s1,k1]=gsort(capa);
+  [s2,k2]=gsort(k1);
   kap=s1($:-1:1);
   mn=m*n;mnp1=m*np1;
   [xstar,vstar]=m6knapsk(n,m,np1,mn,mnp1,p,w,kap,bck);

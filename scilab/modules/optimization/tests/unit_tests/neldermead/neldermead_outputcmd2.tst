@@ -80,8 +80,8 @@ function myoutputcmd ( state , data , myobj )
   _OUTPUCMDFLAG_ = myobj.myarg
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 myobj = tlist(["T_MYSTUFF","myarg"]);
 myobj.myarg = 12;

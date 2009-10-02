@@ -14,7 +14,14 @@
 //
 function this = optimbase_log (this,msg)
   if this.verbose == 1 then
-     mprintf("%s\n",msg);
+    if ( ~this.logstartup ) then
+      this = optimbase_logstartup ( this )
+    end
+    if ( this.logfile <> "" ) then
+      mfprintf ( this.logfilehandle , "%s\n" , msg );
+    else
+      mprintf("%s\n",msg);
+    end
   end
 endfunction
 

@@ -17,8 +17,7 @@ extern "C"
 #include "callxpad.h"
 #include "gw_xpad.h"
 #include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -28,6 +27,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int sci_xpad(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 
@@ -39,20 +39,39 @@ int sci_xpad(char *fname,unsigned long fname_len)
 	{
 		int m1 = 0, n1 = 0;
 		int *piAddressVarOne = NULL;
+		int iType1 = 0;
 		wchar_t **pStVarOne = NULL;
 		int *lenStVarOne = NULL;
 		int i = 0;
 
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
-		if ( getVarType(piAddressVarOne) != sci_strings )
+		strErr = getVarType(piAddressVarOne, &iType1);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
+		if (iType1  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 
 		/* get dimensions */
-		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 
 		lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
 		if (lenStVarOne == NULL)
@@ -62,7 +81,12 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
 
 		/* get lengths */
-		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
 		pStVarOne = (wchar_t  **)MALLOC(sizeof(wchar_t *)*(m1*n1));
 		if (pStVarOne == NULL)
@@ -77,7 +101,12 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
   
 		/* get strings */
-		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
 		callXpadW(pStVarOne,m1 * n1);
 		freeArrayOfWideString(pStVarOne,m1 * n1);

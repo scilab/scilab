@@ -15,7 +15,7 @@
 #define __GW_DATA_STRUCTURES1__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 /* it can be called by fortran mklist.f & mkindx.f */
 int C2F(gwdatastructures1)(void); 

@@ -30,13 +30,13 @@ function [ this , isfeasible ] = optimbase_isfeasible ( this , x )
           xix = x ( ix )
           if ( xix < xmin ) then
             isfeasible = 0
-            optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %e", ...
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %e", ...
               ix , this.numberofvariables , xmin ) )
             break
           end
           if (xix > xmax) then
             isfeasible = 0
-            optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %e", ...
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %e", ...
               ix , this.numberofvariables , xmax ) )
             break
           end
@@ -52,7 +52,7 @@ function [ this , isfeasible ] = optimbase_isfeasible ( this , x )
         index = 0
         for ic = 1 : this.nbineqconst
           if ( const ( ic ) < 0.0 ) then
-            optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
+            this = optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
               ic , this.nbineqconst ) )
             isfeasible = -1
             break

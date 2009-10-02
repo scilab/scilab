@@ -16,8 +16,8 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"
-#include "api_string.h"
-#include "api_common.h"
+#include "api_scilab.h"
+#include "getlongpathname.h"
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
@@ -25,10 +25,11 @@ struct VARIABLEALIAS
 	wchar_t *VariableName;
 };
 /*--------------------------------------------------------------------------*/
-#define NB_ALIAS 6
+#define NB_ALIAS 7
 static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
 	{L"SCIHOME", L"SCIHOME"},
+	{L"WSCI", L"WSCI"},
 	{L"SCI", L"SCI"},
 	{L"~", L"home"},
 	{L"HOME", L"home"},
@@ -130,26 +131,46 @@ char *expandPathVariable(char* str)
 /*--------------------------------------------------------------------------*/
 wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
+	StrErr strErr;
 	wchar_t *VARVALUE = NULL;
 	char *varname = NULL;
+	int iType	= 0;
 
 	if (wcVarName)
 	{
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			if (getNamedVarType(varname) == sci_strings)
+			strErr = getNamedVarType(varname, &iType);
+			if(strErr.iErr)
+			{
+				return 0;
+			}
+
+			if (iType == sci_strings)
 			{
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
-				if (readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE) == 0)
+
+				strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+				if(strErr.iErr)
 				{
-					if ( (m == 1) && (n == 1) )
+					return 0;
+				}
+
+				if ( (m == 1) && (n == 1) )
+				{
+					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+					if (VARVALUE)
 					{
-						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
-						if (VARVALUE)
+						BOOL bConvLong = FALSE;
+						wchar_t *LongName = NULL;
+						readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						LongName = getlongpathnameW(VARVALUE, &bConvLong);
+						if (LongName)
 						{
-							readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+							FREE(VARVALUE);
+							VARVALUE = LongName;
 						}
 					}
 				}

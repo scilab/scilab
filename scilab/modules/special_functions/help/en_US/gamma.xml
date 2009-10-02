@@ -86,7 +86,7 @@ gamma(6)-prod(1:5)
 a = -3; b = 5;
 x = linspace(a,b,40000)';
 y = gamma(x);
-xbasc()
+clf()
 c=xget("color")
 xset("color",2)
 plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])

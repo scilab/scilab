@@ -16,9 +16,7 @@
 #include "gw_string.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "localization.h"
@@ -32,47 +30,80 @@
 /*-------------------------------------------------------------------------------------*/
 int sci_strsubst(char *fname,unsigned long fname_len)
 {
-	int *piAddressVarOne = NULL;
-	int mOne = 0, nOne = 0;
+	StrErr strErr;
+	int *piAddressVarOne	= NULL;
+	int iType							= 0;
+	int mOne	= 0, nOne		= 0;
 
 	CheckRhs(3,4);
 	CheckLhs(1,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-
-	if (getVarType(piAddressVarOne) == sci_strings)
+	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	if(strErr.iErr)
 	{
-		char **pStVarOne = NULL;
-		int *lenStVarOne = NULL;
+		printError(strErr, 0);
+		return 0;
+	}
+	strErr = getVarType(piAddressVarOne, &iType);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
 
-		int *piAddressVarTwo = NULL;
-		int mTwo = 0, nTwo = 0;
-		char *pStVarTwo = NULL;
-		int lenStVarTwo = 0;
+	if (iType == sci_strings)
+	{
+		char **pStVarOne			= NULL;
+		int *lenStVarOne			= NULL;
+
+		int *piAddressVarTwo	= NULL;
+		int iType2						= 0;
+		int mTwo = 0, nTwo		= 0;
+		char *pStVarTwo				= NULL;
+		int lenStVarTwo				= 0;
 
 		int *piAddressVarThree = NULL;
 		int mThree = 0, nThree = 0;
-		char *pStVarThree = NULL;
-		int lenStVarThree = 0;
+		char *pStVarThree				= NULL;
+		int lenStVarThree				= 0;
+		int iType3							= 0;
 
 		BOOL isRegExp = FALSE;
 
 		if (Rhs == 4)
 		{
 			int *piAddressVarFour = NULL;
-			int mFour = 0, nFour = 0;
-			char *pStVarFour = NULL;
-			int lenStVarFour = 0;
+			int iType4						= 0;
+			int mFour = 0, nFour	= 0;
+			char *pStVarFour			= NULL;
+			int lenStVarFour			= 0;
 
-			getVarAddressFromPosition(4, &piAddressVarFour);
+			strErr = getVarAddressFromPosition(4, &piAddressVarFour);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
+			strErr = getVarType(piAddressVarFour, &iType4);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
 
-			if ( getVarType(piAddressVarFour) != sci_strings )
+			if (iType4  != sci_strings )
 			{
 				Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,4);
 				return 0;
 			}
 
-			getMatrixOfString(piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
+			strErr = getMatrixOfString(piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
+
 			if ( (mFour != nFour) && (nFour != 1) ) 
 			{
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,4);
@@ -82,7 +113,13 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			pStVarFour = (char*)MALLOC(sizeof(char)*(lenStVarFour + 1));
 			if (pStVarFour)
 			{
-				getMatrixOfString(piAddressVarFour, &mFour, &nFour, &lenStVarFour, &pStVarFour);
+				strErr = getMatrixOfString(piAddressVarFour, &mFour, &nFour, &lenStVarFour, &pStVarFour);
+				if(strErr.iErr)
+				{
+					printError(strErr, 0);
+					return 0;
+				}
+
 				if ( (strcmp(pStVarFour,CHAR_R) == 0) || (strcmp(pStVarFour,CHAR_S) == 0) )
 				{
 					if (strcmp(pStVarFour,CHAR_R) == 0)
@@ -108,71 +145,146 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			}
 		}
 
-		getVarAddressFromPosition(3, &piAddressVarThree);
+		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
 		// checks type 3th input argument
-		if ( getVarType(piAddressVarThree) != sci_strings )
+		strErr = getVarType(piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
+		if (iType3  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,3);
 			return 0;
 		}
 
 		// checks dimension 3th input argument
-		getMatrixOfString(piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
+		strErr = getMatrixOfString(piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		if ( (mThree != nThree) && (nThree != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,3);
 			return 0;
 		}
 
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 
 		// checks type 2nd input argument
-		if ( getVarType(piAddressVarTwo) != sci_strings )
+		strErr = getVarType(piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 
 		// checks dimension 2nd input argument
-		getMatrixOfString(piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
+		strErr = getMatrixOfString(piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		if ( (mTwo != nTwo) && (nTwo != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
 		// checks type 1st input argument
-		if ( getVarType(piAddressVarOne) != sci_strings )
+		strErr = getVarType(piAddressVarOne, &iType);
+		if (iType  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 
 		// get length 3th input argument
-		getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+		strErr = getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
 		if (pStVarThree)
 		{
 			// get value 3th input argument
-			getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+			strErr = getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
 
 			// get length 2nd input argument
-			getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+			strErr = getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
+
 			pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 			if (pStVarTwo)
 			{
 				// get value 2nd input argument
-				getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+				strErr = getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+				if(strErr.iErr)
+				{
+					printError(strErr, 0);
+					return 0;
+				}
 
-				getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+				strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+				if(strErr.iErr)
+				{
+					printError(strErr, 0);
+					return 0;
+				}
 
 				lenStVarOne = (int *)MALLOC(sizeof(int) * (mOne * nOne));
 				if (lenStVarOne)
 				{
-					getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+					strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+					if(strErr.iErr)
+					{
+						printError(strErr, 0);
+						return 0;
+					}
 
 					pStVarOne = (char **)MALLOC(sizeof(char *) * (mOne * nOne));
 					if (pStVarOne)
@@ -194,7 +306,13 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 							}
 						}
 
-						getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+						strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+						if(strErr.iErr)
+						{
+							printError(strErr, 0);
+							return 0;
+						}
+
 
 						FREE(lenStVarOne); lenStVarOne = NULL;
 
@@ -218,7 +336,13 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 						FREE(pStVarThree); pStVarThree = NULL;
 						FREE(pStVarTwo); pStVarTwo = NULL;
 
-						createMatrixOfString(Rhs + 1, mOne, nOne, Output_StringMatrix);
+						strErr = createMatrixOfString(Rhs + 1, mOne, nOne, Output_StringMatrix);
+						if(strErr.iErr)
+						{
+							printError(strErr, 0);
+							return 0;
+						}
+
 						LhsVar(1) = Rhs + 1 ;
 						C2F(putlhsvar)();
 						return 0;
@@ -253,12 +377,24 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			return 0;
 		}
 	}
-	else if (getVarType(piAddressVarOne) == sci_matrix)
+	else if (iType == sci_matrix)
 	{
-		getVarDimension(piAddressVarOne, &mOne, &nOne);
+		strErr = getVarDimension(piAddressVarOne, &mOne, &nOne);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		if ( (mOne == 0) && (nOne == 0) ) /* strsubst([],...) returns [] */
 		{
-			createMatrixOfDouble(Rhs + 1, mOne, nOne, NULL);
+			strErr = createMatrixOfDouble(Rhs + 1, mOne, nOne, NULL);
+			if(strErr.iErr)
+			{
+				printError(strErr, 0);
+				return 0;
+			}
+
 			LhsVar(1) = Rhs + 1 ;
 			C2F(putlhsvar)();
 			return 0;

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+mprintf("Illustrates the 1st counter example given by Han et al.\n");
 
 //
 // han1 --
@@ -18,18 +19,23 @@
 //   2000
 //   Ph.D., The University of Connecticut
 //
+mprintf("Defining Han function...\n");
 function f = han1 ( x )
   f = x(1)^2 + x(2) * (x(2) + 2.0) * (x(2) - 0.5) * (x(2) - 2.0);
 endfunction
 
 
+mprintf("Defining initial simplex coordinates...\n");
 coords0 = [
-0.0 0.0 1.0
--1.0 1.0 0.0
+    0.  -1.  
+    0.   1.  
+    1.   0.  
 ]
 
 
+mprintf("Creating nmplot object...\n");
 nm = nmplot_new ();
+mprintf("Configuring nmplot object...\n");
 nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",han1);
 nm = nmplot_configure(nm,"-x0",[1.0 1.0]');
@@ -46,6 +52,7 @@ nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
+mprintf("Setup output files...\n");
 nm = nmplot_configure(nm,"-simplexfn","han1-history-simplex.txt");
 nm = nmplot_configure(nm,"-fbarfn","han1-history-fbar.txt");
 nm = nmplot_configure(nm,"-foptfn","han1-history-fopt.txt");
@@ -53,17 +60,22 @@ nm = nmplot_configure(nm,"-sigmafn","han1-history-sigma.txt");
 //
 // Perform optimization
 //
+mprintf("Searching for minimum...\n");
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
-// Plot
+// Plot the history of the simplex
 //
+mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 //[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.2 , ymax = 1.2 , nx = 50 , ny = 50 );
-f = scf();
+f = scf(100001);
 xset("fpf"," ")
-contour ( xdata , ydata , zdata , 40 )
+contour ( xdata , ydata , zdata , [-5 -4 -2 -1 0 1 1.5] )
 nmplot_simplexhistory ( nm );
-xs2png(0,"han1-history-simplex.png");
+//
+// Clean-up
+//
 deletefile("han1-history-simplex.txt");
 deletefile("han1-history-fbar.txt");
 deletefile("han1-history-fopt.txt");

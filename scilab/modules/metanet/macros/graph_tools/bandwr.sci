@@ -83,7 +83,7 @@ function [iperm,mrepi,profil,ierr]=bandwr(a,b,c,d)
 	ii=int((rand()+1./k)*k);
 	b=[b a(ii)];a(ii)=[];
       end;
-      [ss,sk]=sort(b);
+      [ss,sk]=gsort(b);
       back=sk($:-1:1);
       a=amem+amem';
       a=a(b,b);a=triu(a);

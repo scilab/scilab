@@ -70,7 +70,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -154,7 +154,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -240,7 +240,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -330,7 +330,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -519,6 +519,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\do_error_number.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\dynlib_output_stream.h"
 				>
 			</File>
@@ -631,6 +635,14 @@
 				</File>
 				<File
 					RelativePath=".\String_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\output_stream_export.def"
 					>
 				</File>
 			</Filter>

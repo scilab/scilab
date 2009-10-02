@@ -47,6 +47,20 @@ function flag = assert_equal ( computed , expected )
 endfunction
 
 //
+//  Reference:
+//
+//    An extension of the simplex method to constrained
+//    nonlinear optimization
+//    M.B. Subrahmanyam
+//    Journal of optimization theory and applications
+//    Vol. 62, August 1989
+//
+//    Gould F.J.
+//    Nonlinear Tolerance Programming
+//    Numerical methods for Nonlinear optimization
+//    Edited by F.A. Lootsma, pp 349-366, 1972
+
+//
 // optimtestcase --
 //   Non linear inequality constraints are positive.
 //    
@@ -95,7 +109,7 @@ function result = optimtestcase ( x , index )
 endfunction
 
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -105,7 +119,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -122,7 +136,7 @@ assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 
 //
-// Test with Box algorithm and restart
+// Test with NM-constrained algorithm and restart
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -132,7 +146,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-1);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -150,7 +164,7 @@ assert_equal ( status , "maxfuneval" );
 nm = neldermead_destroy(nm);
 
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 //
@@ -162,7 +176,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -181,7 +195,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -190,6 +204,11 @@ nm = neldermead_destroy(nm);
 // The convergence is not accurate in this case, whatever the 
 // value of the relative tolerance on simplex size.
 //
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -198,7 +217,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -224,12 +243,17 @@ nm = neldermead_destroy(nm);
 
 
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
 // and user-defined number of points in the simplex, i.e. 6
 //
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -238,7 +262,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -263,7 +287,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 6 );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is user-defined.
@@ -278,14 +302,14 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","given");
-nm = neldermead_configure(nm,"-coords0",[
+coords = [
 0.0 0.0 0.0 0.0
 1.0 0.0 0.0 0.0
 0.0 1.0 0.0 0.0
@@ -293,7 +317,8 @@ nm = neldermead_configure(nm,"-coords0",[
 0.0 0.0 0.0 1.0
 1.0 1.0 1.0 1.0
 0.0 1.0 2.0 -1.0
-]');
+];
+nm = neldermead_configure(nm,"-coords0",coords);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -308,5 +333,28 @@ assert_equal ( status , "tolsize" );
 simplexopt = neldermead_get ( nm , "-simplexopt" );
 nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 7 );
+nm = neldermead_destroy(nm);
+
+//
+// Test with NM-constrained algorithm and default axes initial simplex
+// Test that verbose mode works fine.
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",4);
+nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
+nm = neldermead_configure(nm,"-maxiter",5);
+nm = neldermead_configure(nm,"-maxfunevals",1000);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
+nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
+nm = neldermead_configure(nm,"-simplex0method","randbounds");
+nm = neldermead_configure(nm,"-coords0",coords);
+nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
 

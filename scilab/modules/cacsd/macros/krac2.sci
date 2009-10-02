@@ -34,5 +34,5 @@ function kp=krac2(n)
   end
   //x(x==0)=[]
   if x==[] then;return,end
-  kp=sort(-real(freq(d,n,real(x))))
+  kp=gsort(-real(freq(d,n,real(x))))
 endfunction

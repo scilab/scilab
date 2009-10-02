@@ -21,8 +21,10 @@ function this = neldermead_configure (this,key,value)
       this.method = "variable";
     case "box" then
       this.method = "box";
+    case "nmconstraints" then
+      this.method = "nmconstraints";
     else
-      errmsg = msprintf(gettext("%s: Unknown method %s"),"neldermead_configure",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
       error(errmsg);
     end
   case "-coords0" then
@@ -40,7 +42,7 @@ function this = neldermead_configure (this,key,value)
     case "randbounds" then
       this.simplex0method = "randbounds";
     else
-      errmsg = msprintf(gettext("%s: Unknown -simplex0method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-simplex0length" then
@@ -61,12 +63,12 @@ function this = neldermead_configure (this,key,value)
     this.tolfstdeviation = value;
   case "-tolfstdeviationmethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolfstdeviationmethod = value;
-    case "disabled" then
+    case %f then
       this.tolfstdeviationmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on function standard deviation method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfstdeviationmethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-tolsimplexizeabsolute" then
@@ -75,24 +77,24 @@ function this = neldermead_configure (this,key,value)
     this.tolsimplexizerelative = value;
   case "-tolsimplexizemethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolsimplexizemethod = value;
-    case "disabled" then
+    case %f then
       this.tolsimplexizemethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-toldeltafv" then
     this.toldeltafv = value;
   case "-tolssizedeltafvmethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolssizedeltafvmethod = value;
-    case "disabled" then
+    case %f then
       this.tolssizedeltafvmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size and delta function value method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-restartmax" then
@@ -115,10 +117,36 @@ function this = neldermead_configure (this,key,value)
     this.restartsimplexmethod = value;
   case "-boxnbpoints" then
     this.boxnbpoints = value;
-  case "-nbineqloops" then
-    this.nbineqloops = value;
   case "-ineqscaling" then
     this.ineqscaling = value;
+  case "-checkcostfunction" then
+    select value
+    case %f then
+      this.checkcostfunction = value;
+    case %t then
+      this.checkcostfunction = value;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
+      error(errmsg);
+    end
+  case "-scalingmethod" then
+    this.scalingmethod = value;
+  case "-guinalphamin" then
+    if ( value <=0.0 ) then 
+      errmsg = msprintf(gettext("%s: Unexpected negative value %s for -guinalphamin option"),"neldermead_configure", value);
+      error(errmsg);
+    end
+    this.guinalphamin = value;
+  case "-boxboundsalpha" then
+    this.boxboundsalpha = value
+  case "-boxtermination" then
+    this.boxtermination = value
+  case "-boxtolf" then
+    this.boxtolf = value
+  case "-boxnbmatch" then
+    this.boxnbmatch = value
+  case "-boxreflect" then
+    this.boxreflect = value
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );

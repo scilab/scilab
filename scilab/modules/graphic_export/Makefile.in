@@ -44,7 +44,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -65,8 +64,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = libscigraphic_export.la 
-DIST_COMMON = $(libscigraphic_export_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/graphic_export
@@ -114,8 +112,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphic_export_la_etcdir)" \
 	"$(DESTDIR)$(libscigraphic_export_la_rootdir)" \
-	"$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscigraphic_export_la_includedir)"
+	"$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphic_export_disable_la_LIBADD =
 am_libscigraphic_export_disable_la_OBJECTS =  \
@@ -185,7 +182,6 @@ DIST_SOURCES = $(libscigraphic_export_disable_la_SOURCES) \
 DATA = $(libscigraphic_export_la_etc_DATA) \
 	$(libscigraphic_export_la_root_DATA) \
 	$(libscigraphic_export_la_sci_gateway_DATA)
-HEADERS = $(libscigraphic_export_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -508,12 +504,6 @@ libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
-
-#### graphic_export : include files ####
-libscigraphic_export_la_includedir = $(pkgincludedir)
-libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
-includes/dynlib_graphic_export.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -946,26 +936,6 @@ uninstall-libscigraphic_export_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)" && rm -f $$files
-install-libscigraphic_export_la_includeHEADERS: $(libscigraphic_export_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphic_export_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphic_export_la_includedir)"
-	@list='$(libscigraphic_export_la_include_HEADERS)'; test -n "$(libscigraphic_export_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscigraphic_export_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscigraphic_export_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscigraphic_export_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraphic_export_la_include_HEADERS)'; test -n "$(libscigraphic_export_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigraphic_export_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigraphic_export_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1053,9 +1023,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphic_export_la_etcdir)" "$(DESTDIR)$(libscigraphic_export_la_rootdir)" "$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphic_export_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphic_export_la_etcdir)" "$(DESTDIR)$(libscigraphic_export_la_rootdir)" "$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1110,7 +1080,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscigraphic_export_la_etcDATA \
-	install-libscigraphic_export_la_includeHEADERS \
 	install-libscigraphic_export_la_rootDATA \
 	install-libscigraphic_export_la_sci_gatewayDATA
 
@@ -1159,7 +1128,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigraphic_export_la_etcDATA \
-	uninstall-libscigraphic_export_la_includeHEADERS \
 	uninstall-libscigraphic_export_la_rootDATA \
 	uninstall-libscigraphic_export_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1176,7 +1144,6 @@ uninstall-am: uninstall-libscigraphic_export_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscigraphic_export_la_etcDATA \
-	install-libscigraphic_export_la_includeHEADERS \
 	install-libscigraphic_export_la_rootDATA \
 	install-libscigraphic_export_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1186,7 +1153,6 @@ uninstall-am: uninstall-libscigraphic_export_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscigraphic_export_la_etcDATA \
-	uninstall-libscigraphic_export_la_includeHEADERS \
 	uninstall-libscigraphic_export_la_rootDATA \
 	uninstall-libscigraphic_export_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

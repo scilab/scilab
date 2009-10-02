@@ -192,17 +192,33 @@ int getDatasetPrecision(int _iDatasetId, int* _piPrec)
 	{
 		*_piPrec	= SCI_INT8;
 	}
+	else if(strcmp(pstScilabClass, "u8") == 0)
+	{
+		*_piPrec	= SCI_UINT8;
+	}
 	else if(strcmp(pstScilabClass, "16") == 0)
 	{
 		*_piPrec = SCI_INT16;
+	}
+	else if(strcmp(pstScilabClass, "u16") == 0)
+	{
+		*_piPrec = SCI_UINT16;
 	}
 	else if(strcmp(pstScilabClass, "32") == 0)
 	{
 		*_piPrec = SCI_INT32;
 	}
+	else if(strcmp(pstScilabClass, "u32") == 0)
+	{
+		*_piPrec = SCI_UINT32;
+	}
 	else if(strcmp(pstScilabClass, "64") == 0)
 	{
 		*_piPrec = SCI_INT64;
+	}
+	else if(strcmp(pstScilabClass, "u64") == 0)
+	{
+		*_piPrec = SCI_UINT64;
 	}
 	else
 	{
@@ -697,6 +713,126 @@ int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pl
 	status = H5Dclose(_iDatasetId);
 
 	FREE(pllLocalData);
+
+	return status;
+}
+
+int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData)
+{
+	herr_t status								= 0;
+	unsigned char* pucLocalData	= NULL;
+	int i												= 0;
+	int j												= 0;
+	char* pstMajor							= NULL;
+	char* pstMinor							= NULL;
+
+	pucLocalData = (char*)MALLOC(sizeof(unsigned char) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pucLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_pucData[i + _iRows * j] = pucLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	FREE(pucLocalData);
+
+	return status;
+}
+
+int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData)
+{
+	herr_t status									= 0;
+	unsigned short* pusLocalData	= NULL;
+	int i													= 0;
+	int j													= 0;
+	char* pstMajor								= NULL;
+	char* pstMinor								= NULL;
+
+	pusLocalData = (short*)MALLOC(sizeof(unsigned short) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pusLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_pusData[i + _iRows * j] = pusLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	FREE(pusLocalData);
+
+	return status;
+}
+
+int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData)
+{
+	herr_t status								= 0;
+	unsigned int* puiLocalData	= NULL;
+	int i												= 0;
+	int j												= 0;
+	char* pstMajor							= NULL;
+	char* pstMinor							= NULL;
+
+	puiLocalData = (int*)MALLOC(sizeof(unsigned int) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		puiLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_puiData[i + _iRows * j] = puiLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	FREE(puiLocalData);
+
+	return status;
+}
+
+int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData)
+{
+	herr_t status												= 0;
+	unsigned long long* pullLocalData		= NULL;
+	int i																= 0;
+	int j																= 0;
+	char* pstMajor											= NULL;
+	char* pstMinor											= NULL;
+
+	pullLocalData = (long long*)MALLOC(sizeof(unsigned long long) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pullLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_pullData[i + _iRows * j] = pullLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	FREE(pullLocalData);
 
 	return status;
 }

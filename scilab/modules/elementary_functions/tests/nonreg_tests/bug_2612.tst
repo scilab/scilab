@@ -8,5 +8,5 @@
 // <-- JVM NOT MANDATORY -->
 
 ref = ["abc","abd";"aa","bxe"];
-A=sort(['abc','abd';'aa','bxe'],'c');
+A=gsort(['abc','abd';'aa','bxe'],'rc');
 if ref <> A then pause,end

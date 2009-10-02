@@ -47,7 +47,7 @@ function F=randpencil(eps,infi,fin,eta)
 
   flageps=%f;
   Eps=[];
-  seps=sort(eps);
+  seps=gsort(eps);
   if seps(1)==0 then flageps=%t;end
   if ~flageps then
     for k=seps;
@@ -58,7 +58,7 @@ function F=randpencil(eps,infi,fin,eta)
 
   flageta=%f;
   Eta=[];
-  seta=sort(eta);
+  seta=gsort(eta);
   if seta(1)==0 then flageta=%t;end
   if ~flageta then
     for k=seta;

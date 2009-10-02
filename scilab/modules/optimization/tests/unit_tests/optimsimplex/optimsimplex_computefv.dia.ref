@@ -88,9 +88,9 @@ s1 = optimsimplex_setall ( s1 , simplex );
 computed = optimsimplex_getall ( s1 );
 // The function value at vertex #1 is re-computed, as expected.
 expected = [
-    1.      0.    0.
-    100.    1.    0.
-    101.    0.    1.
+    1.      0.    0.  
+    100.    1.    0.  
+    101.    0.    1.  
 ];
 assert_equal ( computed , expected );
 assert_equal ( myobj.nb , 3 );

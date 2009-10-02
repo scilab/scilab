@@ -23,7 +23,7 @@ function r=Checktestmat1(a,n)
    SR=real(S);SI=imag(S);
    dt=2*%i*%pi/n;Z=exp(dt*(1:n)');ZR=real(Z*((1+a*a')/a));
    ZI=-imag(Z*((a*a'-1)/a));
-   r=max(norm(sort(SR)-sort(ZR)),norm(sort(SI)-sort(ZI)))
+   r=max(norm(gsort(SR)-gsort(ZR)),norm(gsort(SI)-gsort(ZI)))
 endfunction
 function A=testmat2(a,n)
 	//eigen values are given by a dilation of nth roots of 1
@@ -34,7 +34,7 @@ function r=Checktestmat2(a,n)
    SR=real(S);SI=imag(S);
    dt=2*%i*%pi/n;Z=exp(dt*(1:n)');
    ZR=2*real(Z*((1+a*a')/a));ZI=0*ZR;
-   r=max(norm(sort(SR)-sort(ZR)),norm(sort(SI)-sort(ZI)))
+   r=max(norm(gsort(SR)-gsort(ZR)),norm(gsort(SI)-gsort(ZI)))
 endfunction
 // Empty matrix
 A=[];

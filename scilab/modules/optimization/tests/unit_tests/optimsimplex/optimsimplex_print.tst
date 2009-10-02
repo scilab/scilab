@@ -52,8 +52,9 @@ endfunction
 // Test print with all data here.
 //
 simplex = [...
-0.0 1.0 0.0
-0.0 0.0 2.0
+    0.    0.  
+    1.    0.  
+    0.    2.  
 ];
 s1 = optimsimplex_new ();
 s1 = optimsimplex_setn ( s1 , 2 );

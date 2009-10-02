@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+mprintf("Illustrates the 2nd counter example given by Han et al.\n");
 
 //
 // han2 --
@@ -31,11 +32,13 @@ endfunction
 
 
 coords0 = [
-0.0 0.0 1.0
-0.5 -0.5 0.0
+    0.    0.5  
+    0.   -0.5  
+    1.    0.   
 ]
 
 
+mprintf("Creating nmplot object...\n");
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",han2);
@@ -57,16 +60,17 @@ nm = nmplot_configure(nm,"-simplexfn","han2-history-simplex.txt");
 //
 // Perform optimization
 //
+mprintf("Searching for minimum...\n");
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
 // Plot
 //
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.5 , ymax = 1.5 , nx = 50 , ny = 50 );
-f = scf();
+f = scf(100001);
 xset("fpf"," ")
-contour ( xdata , ydata , zdata , 40 )
+contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
 nmplot_simplexhistory ( nm );
-xs2png(0,"han2-history-simplex.png");
 deletefile("han2-history-simplex.txt");
 nm = nmplot_destroy(nm);
 

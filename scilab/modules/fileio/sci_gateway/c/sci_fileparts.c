@@ -14,8 +14,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 #include "splitpath.h"
@@ -26,13 +25,16 @@
 /*--------------------------------------------------------------------------*/
 int sci_fileparts(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
+	int iType1	= 0;
 	wchar_t *pStVarOne = NULL;
 	int lenStVarOne = 0;
 
 	int m2 = 0, n2 = 0;
 	int *piAddressVarTwo = NULL;
+	int iType2	= 0;
 	wchar_t *pStVarTwo = NULL;
 	int lenStVarTwo = 0;
 
@@ -51,15 +53,33 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
 
-	if ( getVarType(piAddressVarOne) != sci_strings )
+	strErr = getVarType(piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
+
+	if (iType1  != sci_strings )
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
-	getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
+
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
@@ -73,19 +93,42 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
 
 	if (Rhs == 2)
 	{
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 
-		if ( getVarType(piAddressVarTwo) != sci_strings )
+		strErr = getVarType(piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
@@ -98,7 +141,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
-		getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		
+		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
 	}
 
 	drv = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
@@ -121,7 +170,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	splitpathW(pStVarOne, drv, dir, name, ext);
+	splitpathW(pStVarOne, FALSE, drv, dir, name, ext);
 
 	if (pStVarTwo) /* Rhs == 2 */
 	{
@@ -157,7 +206,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		}
 
 		m_out = 1; n_out = 1;
-		createMatrixOfWideString(Rhs + 1, m_out, n_out, &output_value);
+		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &output_value);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		LhsVar(1) = Rhs + 1;
 		C2F(putlhsvar)();
 	}
@@ -168,13 +223,31 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		wcscpy(path_out, drv);
 		wcscat(path_out, dir);
 
-		createMatrixOfWideString(Rhs + 1, m_out, n_out, &path_out);
+		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &path_out);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		LhsVar(1) = Rhs + 1;
 
-		createMatrixOfWideString(Rhs + 2, m_out, n_out, &name);
+		strErr = createMatrixOfWideString(Rhs + 2, m_out, n_out, &name);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		LhsVar(2) = Rhs + 2;
 
-		createMatrixOfWideString(Rhs + 3, m_out, n_out, &ext);
+		strErr = createMatrixOfWideString(Rhs + 3, m_out, n_out, &ext);
+		if(strErr.iErr)
+		{
+			printError(strErr, 0);
+			return 0;
+		}
+
 		LhsVar(3) = Rhs + 3;
 
 		C2F(putlhsvar)();

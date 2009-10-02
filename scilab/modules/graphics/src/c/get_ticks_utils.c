@@ -25,7 +25,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "Format.h"
-
+#include "SetProperty.h"
 /*--------------------------------------------------------------------------------*/
 static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
 /*--------------------------------------------------------------------------------*/

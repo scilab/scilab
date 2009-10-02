@@ -20,8 +20,8 @@ function this = optimbase_configure (this,key,value)
   case "-x0" then
     [n,m] = size(value);
     if m<>1 then
-      msg = sprintf("The x0 vector is expected to be a column matrix, but current shape is %d x %d",n,m);
-      error(msg);
+      errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
+      error(errmsg);
     end
     this.x0 = value;
   case "-maxfunevals" then
@@ -38,22 +38,22 @@ function this = optimbase_configure (this,key,value)
     this.tolxrelative = value;
   case "-tolxmethod" then
     select value
-    case "enabled" then
-      this.tolxmethod = "enabled";
-    case "disabled" then
-      this.tolxmethod = "disabled";
+    case %t then
+      this.tolxmethod = %t;
+    case %f then
+      this.tolxmethod = %f;
     else
-      errmsg = sprintf("Unknown tolx method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolxmethod option"),"optimbase_configure",value);
       error(errmsg);
     end
   case "-tolfunmethod" then
     select value
-    case "enabled" then
-      this.tolfunmethod = "enabled";
-    case "disabled" then
-      this.tolfunmethod = "disabled";
+    case %t then
+      this.tolfunmethod = %t;
+    case %f then
+      this.tolfunmethod = %f;
     else
-      errmsg = sprintf("Unknown tolfun method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfunmethod"),"optimbase_configure",value);
       error(errmsg);
     end
   case "-function" then
@@ -65,7 +65,11 @@ function this = optimbase_configure (this,key,value)
   case "-numberofvariables" then
     this.numberofvariables = value;
   case "-storehistory" then
-    this.storehistory = value;
+    if ( value ) then
+      this.storehistory = %t;
+    else
+      this.storehistory = %f;
+    end
   case "-costfargument" then
     this.costfargument = value;
   case "-boundsmin" then
@@ -74,9 +78,10 @@ function this = optimbase_configure (this,key,value)
     this.boundsmax = value;
   case "-nbineqconst" then
     this.nbineqconst = value;
+  case "-logfile" then
+    this.logfile = value;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_configure",key)
     error(errmsg)
   end
 endfunction
-

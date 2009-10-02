@@ -832,7 +832,7 @@ function lst=mmodlst(lst)
     end
   end
   // purge list of suppressed concatenations
-  to_kill=sort(to_kill)
+  to_kill=gsort(to_kill)
   for k=1:prod(size(to_kill))
     lst(to_kill(k))=null();
   end

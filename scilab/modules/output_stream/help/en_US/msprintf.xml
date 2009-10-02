@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="msprintf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv xml:id="msprintf">
+    <refname>msprintf</refname>
+
+    <refpurpose>converts, formats, and writes data in a string</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>str=msprintf(format,a1,...,an);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>a Scilab string describing the format to use to write the
+          remaining operands.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>a character string.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a1,...,an</term>
+
+        <listitem>
+          <para>Specifies the data to be converted and printed according to
+          the format parameter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>The <literal>msprintf</literal> writes formatted operands in its
+    returned value (a Scilab string). The argument operands are formatted
+    under control of the format operand.</para>
+    <para>Note that, in this case, the escape sequences (<literal>"\n"</literal>) 
+    split string to a matrix of string (see example)</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+msprintf('%5.3f %5.3f',123,0.732)
+msprintf('%5.3f\n%5.3f',123,0.732)
+msprintf('--%s-\n-%d--',"hello",3)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mprintf">mprintf</link></member>
+      <member><link linkend="printf_conversion">printf_conversion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

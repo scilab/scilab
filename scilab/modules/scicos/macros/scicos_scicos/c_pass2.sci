@@ -567,7 +567,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
             end  
 	    
             pvec=vec(primary)+.5*typ_l(primary) // same order typ_l to the right
-            [mi,In]=sort(-pvec)
+            [mi,In]=gsort(-pvec)
 	    primary=primary(In)
             lp=find(typ_l(primary))
 	    lprimary=primary(lp)
@@ -669,7 +669,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      primary0=primary0(k);
 	      prt0=prt0(k)
               [primary0,prt0]=aggregate(primary0,prt0)
-	      [mi,In]=sort(-Vec(primary0))
+	      [mi,In]=gsort(-Vec(primary0))
 	      if blk<>0 then
         	lordclk(clkptr(blk)+port-1)=[primary0(In),prt0(In)]
 
@@ -940,7 +940,7 @@ function primary=discardprimary(primary)
 // discard
   mma=maxi(primary(:,2))+1
   con=mma*primary(:,1)+primary(:,2)
-  [junk,ind]=sort(-con);con=-junk
+  [junk,ind]=gsort(-con);con=-junk
   primary=primary(ind,:)
   // discard duplicate calls to the same block port
   if size(con,'*')>=2 then
@@ -1011,7 +1011,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   // code to replace faulty unique which reorders
   yy=ext_cord1(:,1)'
   [xx,kkn]=unique(yy);
-  ext_cord=yy(-sort(-kkn))
+  ext_cord=yy(-gsort(-kkn))
   //ext_cord=unique(ext_cord1(:,1)');
   //for i=ext_cord
   //  if typ_l(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
@@ -1021,7 +1021,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
 
   [ext_cord_old,ok]=newc_tree3(vec,dep_u,dep_uptr,typp);
  
-  if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
+  if or(gsort(ext_cord_old)<>gsort(ext_cord)) then pause,end
   //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
@@ -1108,7 +1108,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
     end
     if fini then break;end
   end
-  [k,ord]=sort(-vec);
+  [k,ord]=gsort(-vec);
   ord(find(k==1))=[];
 endfunction
 
@@ -1118,7 +1118,7 @@ function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
     clkconnectj=exe_cons
     mma=maxi(clkconnectj(:,2))+1
     con=mma*(clkconnectj(:,1))+clkconnectj(:,2)
-    [junk,ind]=sort(-con);con=-junk
+    [junk,ind]=gsort(-con);con=-junk
     clkconnectj=clkconnectj(ind,:)
     // discard duplicate calls to the same block port
     if size(con,'*')>=2 then
@@ -1333,7 +1333,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
   clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
   con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
-  [junk,ind]=sort(-con);con=-junk;
+  [junk,ind]=gsort(-con);con=-junk;
   clkconnect=clkconnect(ind,:);
   //
   bclkconnect=clkconnect(:,[1 3]);
@@ -1483,7 +1483,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
     if fini then break;end
   end
 
-  [k,ord]=sort(-vec);
+  [k,ord]=gsort(-vec);
   ord(find(k==1))=[];
   ord=ord(:)
 endfunction
@@ -2202,7 +2202,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   [clkr,clkc]=size(clkconnect);
   mm=max(clkconnect(:,2))+1;
   cll=clkconnect(:,1)*mm+clkconnect(:,2);
-  [cll,ind]=sort(-cll);
+  [cll,ind]=gsort(-cll);
   clkconnect=clkconnect(ind,:);
   if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
   cll=[-1;-cll;mcll];
@@ -2388,7 +2388,7 @@ function   clkconnect=cleanup(clkconnect)
   mm=maxi(clkconnect)+1
   cc=clkconnect(:,4)+mm*clkconnect(:,3)+clkconnect(:,2)*mm^2+..
      clkconnect(:,1)*mm^3
-  [cc1,ind]=sort(-cc)
+  [cc1,ind]=gsort(-cc)
   clkconnect=clkconnect(ind,:)
   ind=find(cc1(2:$)-cc1(1:$-1)==0)
   clkconnect(ind,:)=[]
@@ -2397,7 +2397,7 @@ endfunction
 //function mat=cleanup1(mat)
 //  mm=maxi(mat)+1
 //  cc=mat(:,1)*mm
-//  [cc1,ind]=sort(-cc)
+//  [cc1,ind]=gsort(-cc)
 //  mat=mat(ind,:)
 //  ind=find(cc1(2:$)-cc1(1:$-1)==0)
 //  mat(ind,:)=[]
@@ -2467,7 +2467,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     mm=maxi(clkconnect)+1;
 
     cll=clkconnect(:,1)*mm+clkconnect(:,2);
-    [cll,ind]=sort(-cll);
+    [cll,ind]=gsort(-cll);
     clkconnect=clkconnect(ind,:);
     cll=[-1;-cll;mm];
     ii=find(cll(2:$)-cll(1:$-1)<>0)

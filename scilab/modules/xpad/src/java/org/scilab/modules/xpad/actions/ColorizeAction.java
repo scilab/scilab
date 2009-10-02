@@ -32,7 +32,7 @@ public class ColorizeAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).colorize();
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).colorize(0, getEditor().getTextPane().getDocument().getLength());
 	}
 
 	public static MenuItem createMenu(Xpad editor) {

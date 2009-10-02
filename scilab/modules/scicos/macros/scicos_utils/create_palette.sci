@@ -50,7 +50,7 @@ function [routines,IntFunc] = create_palette(Path)
     lisf = listfiles(Path+'*.sci')
     for i=1:size(lisf,'*')
       fil=lisf(i)
-      ierror=execstr('getf(fil)','errcatch')
+      ierror=execstr('exec(fil)','errcatch')
       if ierror <>0 then
 	to_del=[to_del i];
       end

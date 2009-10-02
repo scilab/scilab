@@ -20,11 +20,12 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class CommentAction extends DefaultAction {
 
 	private CommentAction(Xpad editor) {
-		super("Comment Selection", editor);
+		super(XpadMessages.COMMENT_SELECTION, editor);
 	}
 	
 	public void doAction() {
@@ -35,6 +36,6 @@ public class CommentAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Comment Selection", null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.COMMENT_SELECTION , null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 	 }
 }
