@@ -531,33 +531,32 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   // From Algorithm 454, the tolerance is the difference between the
   // max and the min function values in the simplex.
   //
-  if {$terminate == 0} then {
+  if ( ~terminate ) then
     if ( this.boxtermination ) then
       shiftfv = abs(optimsimplex_deltafvmax( simplex ))
       if ( shiftfv < this.boxtolf ) then
-        incr boxkount
-        set boxnbmatch [$self cget -boxnbmatch]
-        if {$boxkount == $boxnbmatch} then {
-          set terminate 1
-          set status "boxtolf"
-        }
+        this.boxkount = this.boxkount + 1
+        if ( this.boxkount == this.boxnbmatch ) then
+          terminate = %t
+          status = "boxtolf"
+        end
       else
-        set boxkount 0
+        this.boxkount = 0
       end
     end
   end
   //
   // Criteria #10 : variance of function values
   //
-  if {$terminate == 0} then {
+  if ( ~terminate ) then
     if ( this.tolvarianceflag ) then
-      set tav [$self cget -tolabsolutevariance]
-      set var [optimsimplex::variance $simplex]
-      $optimpb stoplog "Test tolvariance : $var < $tav"
-      if {$var < $tav} then {
-        set terminate 1
-        set status "tolvariance"
-      }
+      var = optimsimplex_variance ( simplex )
+      this.optbase = optimbase_stoplog ( this.optbase , ...
+        sprintf ( "Test tolvariance : %e < %e" , var , this.tolabsolutevariance ) );
+      if ( var < this.tolabsolutevariance ) then
+        terminate = %t
+        status = "tolvariance"
+      end
     end
   end
 endfunction
