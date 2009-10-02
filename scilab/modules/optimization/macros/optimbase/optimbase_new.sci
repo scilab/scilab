@@ -12,22 +12,39 @@
 //   Creates a new Optimization object.
 //
 function newobj = optimbase_new ()
-  newobj = tlist(["T_OPTIMIZATION",...
-    "verbose",...
-    "x0","fx0",...
-    "xopt","fopt",...
-    "tolfunabsolute","tolfunrelative","tolfunmethod",...
-    "tolxabsolute","tolxrelative","tolxmethod" ,...
-    "funevals","maxfunevals",...
-    "iterations","maxiter",...
-    "fun","status", ...
-    "historyfopt","historyxopt",...
-    "verbosetermination",...
-    "outputcommand",...
-    "outputcommandarg","numberofvariables",...
-    "storehistory","costfargument",...
-    "boundsmin","boundsmax",...
-    "nbineqconst"]);
+  newobj = tlist(["T_OPTIMIZATION"
+    "verbose"
+    "x0"
+    "fx0"
+    "xopt"
+    "fopt"
+    "tolfunabsolute"
+    "tolfunrelative"
+    "tolfunmethod"
+    "tolxabsolute"
+    "tolxrelative"
+    "tolxmethod"
+    "funevals"
+    "maxfunevals"
+    "iterations"
+    "maxiter"
+    "fun"
+    "status"
+    "historyfopt"
+    "historyxopt"
+    "verbosetermination"
+    "outputcommand"
+    "outputcommandarg"
+    "numberofvariables"
+    "storehistory"
+    "costfargument"
+    "boundsmin"
+    "boundsmax"
+    "nbineqconst"
+    "logfile"
+    "logfilehandle"
+    "logstartup"
+    ]);
   // The number of variables to optimize
   newobj.numberofvariables = 0
   // The verbose option, controlling the amount of messages
@@ -94,4 +111,11 @@ function newobj = optimbase_new ()
   newobj.boundsmin = [];
   // The number of nonlinear inequality constraints
   newobj.nbineqconst = 0;
+  // The name of the log file
+  newobj.logfile = "";
+  // The handle for the log file
+  newobj.logfilehandle = 0;
+  // Set to %t when the logging is started up
+  newobj.logstartup = %f;
 endfunction
+

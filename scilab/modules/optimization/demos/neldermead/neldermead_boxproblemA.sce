@@ -13,8 +13,22 @@
 //   numerical experiment presented in Box's paper.
 //
 
-mprintf("Illustrates Box''' algorithm on Box problem A.\n");
+mprintf("Illustrates Box'' algorithm on Box problem A.\n");
 mprintf("Defining Box Problem A function...\n");
+
+//
+//  Reference:
+//
+//   M.J.Box, 
+//   "A new method of constrained optimization 
+//   and a comparison with other methods".
+//   The Computer Journal, Volume 8, Number 1, 1965, 42--52
+//   Problem A
+//
+//   Algorithm 454: the complex method for constrained optimization [E4]
+//   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
+//   Pages: 487 - 489   
+//
 
 //
 // boxproblemA --
@@ -37,7 +51,7 @@ mprintf("Defining Box Problem A function...\n");
 //    constraints
 //  The inequality constraints are expected to be positive.
 //
-function result = boxproblemA ( x , index , data )
+function [ result , data ] = boxproblemA ( x , index , data )
   if (~isdef('index','local')) then
     index = 1
   end
@@ -130,18 +144,21 @@ boxparams.k33 = 23.3088196;
 boxparams.k34 = -27097.648;
 boxparams.k35 = -50843.766;
 
-    //
-    // Initialize the random number generator, so that the results are always the
-    // same.
-    //
-    rand("seed" , 0)
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 
 x0 = [2.52 2.0 37.5 9.25 6.8].';
 // Compute f(x0) : should be close to -2351244.0
 fx0 = boxproblemA ( x0 , data = boxparams );
+mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -2351244. );
+
 xopt = [4.53743 2.4 60.0 9.3 7.0].';
 // Compute f(xopt) : should be -5280334.0
 fopt = boxproblemA ( xopt , data = boxparams );
+mprintf("Computed fopt = %e (expected = %e)\n", fopt , -5280334.0 );
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",5);
@@ -152,7 +169,8 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-method","box");
-//nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-logfile" , "boxproblemA.txt" );
 nm = neldermead_configure(nm,"-verbosetermination",1);
 // Configure like Box
 nm = neldermead_configure(nm,"-boundsmin",[0.0 1.2 20.0 9.0 6.0]);
@@ -181,5 +199,5 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-
+deletefile ( "boxproblemA.txt" )
 

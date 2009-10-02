@@ -10,8 +10,8 @@
 
 //
 // optimbase_terminate --
-//   Returns 1 if the algorithm terminates.
-//   Returns 0 if the algorithm must continue.
+//   Returns %t if the algorithm terminates.
+//   Returns %f if the algorithm must continue.
 // Arguments, input
 //   this : the current object
 //   previousfopt : the previous value of the objective function
@@ -29,26 +29,26 @@
 //
 function [this , terminate , status] = optimbase_terminate (this , ...
   previousfopt , currentfopt , previousxopt , currentxopt )
-  terminate = 0;
+  terminate = %f;
   status = "continue";
   this = optimbase_stoplog (this,sprintf("  > Termination ?"));
   //
   // Criteria #1 : maximum number of iterations
   //
-  if (terminate == 0) then 
+  if ( ~terminate ) then 
     this = optimbase_stoplog (this,sprintf("  > iterations=%d >= maxiter=%d",this.iterations, this.maxiter));
     if this.iterations >= this.maxiter then
-      terminate = 1;
+      terminate = %t;
       status = "maxiter";
     end
   end
   //
   // Criteria #2 : maximum number of call to function
   //
-  if (terminate == 0) then 
+  if ( ~terminate ) then 
     this = optimbase_stoplog (this,sprintf("  > funevals=%d >= maxfunevals=%d",this.funevals, this.maxfunevals));
     if this.funevals >= this.maxfunevals then
-      terminate = 1;
+      terminate = %t;
       status = "maxfuneval";
     end
   end
@@ -64,13 +64,13 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //   and the optimum function value is strictly negative (e.g. f(x*)=-10),
   //   that criteria fails miserably.
   //
-  if (terminate == 0) then
+  if ( ~terminate ) then
     select this.tolfunmethod
     case "enabled" then
       this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
         abs(currentfopt), this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute));
       if abs(currentfopt) < this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute then
-        terminate = 1;
+        terminate = %t;
         status = "tolf";
       end
     case "disabled" then
@@ -83,7 +83,7 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //
   // Criteria #4 : tolerance on x
   //
-  if (terminate == 0) then
+  if ( ~terminate ) then
     //
     // Note
     // What means a relative error on x ?
@@ -97,7 +97,7 @@ function [this , terminate , status] = optimbase_terminate (this , ...
       this = optimbase_stoplog (this,sprintf("  > e(x)=%e < tolxrelative = %e * %e + %e",...
         norm(currentxopt - previousxopt), this.tolxrelative , norm(currentxopt) , this.tolxabsolute ));
       if norm(currentxopt - previousxopt) < this.tolxrelative * norm(currentxopt) + this.tolxabsolute then
-        terminate = 1;
+        terminate = %t;
         status = "tolx";
       end
    case "disabled" then
