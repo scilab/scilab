@@ -34,6 +34,7 @@ import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.text.BadLocationException;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -380,18 +381,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 				save(textPaneAt);
 			} else if (choice == 1) {
 				String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-				String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-				tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-				closedTabList.add(Integer.parseInt(closedTabNameIndex));
+				if(getTextPane().getName() == null ){
+					String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+					tabList.removeElement(Integer.parseInt(closedTabNameIndex));
+					closedTabList.add(Integer.parseInt(closedTabNameIndex));
+				}
 				tabPane.remove(tabPane.getSelectedComponent());
 			} else if (choice == 2) {
 				return;
 			}
 		} else {
 			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-			closedTabList.add(Integer.parseInt(closedTabNameIndex));
+			if(getTextPane().getName() == null ){
+				String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+				tabList.removeElement(Integer.parseInt(closedTabNameIndex));
+				closedTabList.add(Integer.parseInt(closedTabNameIndex));
+			}
 			tabPane.remove(tabPane.getSelectedComponent());
 		}
 	}
@@ -625,51 +630,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param f the file to open
 	 */
 	public void readFile(File f) {
-		/* First try to open file before creating tab */
-		try {
-			StringBuilder contents = new StringBuilder();
-			Scanner scanner = new Scanner(f);
-			while (scanner.hasNextLine()) {
-				contents.append(scanner.nextLine());
-				contents.append(System.getProperty("line.separator"));
-			}
-			JTextPane theTextPane = addTab(f.getName()); 
-			System.out.println("File = " + f.getAbsolutePath());
-			theTextPane.setName(f.getAbsolutePath());
-
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-
-			styleDocument.disableUpdaters(); 
-			theTextPane.setText(contents.toString());
-
-			// If Autoindent is activated, it will automatically call colorize
-			if (styleDocument.getAutoIndent()) {
-				styleDocument.indent(0, styleDocument.getLength());
-			} else if (styleDocument.getColorize()) {
-				styleDocument.colorize(0, styleDocument.getLength());
-			}
-
-			styleDocument.enableUpdaters();
-
-			getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-			styleDocument.setContentModified(false);
-
-		} catch (IOException ioex) {
-
-			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.FILE_DOESNT_EXIST);
-			if (choice  == 0) {
-				try {
-					FileWriter writer = new FileWriter(f);
-					writer.write("");
-					writer.flush();
-					writer.close();
-
-					readFile(f);
-				} catch (IOException ioexc) {
-					JOptionPane.showMessageDialog(this , ioexc);
-				}
-			}	
-		}
+		ReadFileThread myReadThread = new ReadFileThread(f);
+		myReadThread.start();
 	}
 
 	/**
@@ -850,4 +812,85 @@ public class Xpad extends SwingScilabTab implements Tab {
 			//we don't want to update UI for this button
 		}
 	}
+	
+	private class ReadFileThread extends Thread{
+  		
+		File fileToRead ;
+		
+		public ReadFileThread(File f){
+			this.fileToRead = f ;
+		}
+
+		public void run() {
+			readFile(fileToRead );
+			this.stop() ;
+			System.err.println("I'm still alive baaaaahhhh");
+		}
+	   
+		public void readFile(File f) {
+			/* First try to open file before creating tab */
+			try {
+				getInfoBar().setText("Loading...");
+				StringBuilder contents = new StringBuilder();
+				JTextPane theTextPane = addTab(f.getName()); 
+				ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+				Scanner scanner = new Scanner(f);
+				
+				int startPosition = 0 ;
+				
+				styleDocument.disableUpdaters(); 
+				while (scanner.hasNextLine()) {
+					
+					synchronized ( styleDocument) {
+						
+					
+					
+						String lineIdented = styleDocument.indentLine(scanner.nextLine(),"")+ System.getProperty("line.separator");
+						//contents.append();
+						//contents.append(System.getProperty("line.separator"));
+						try {
+							if (styleDocument.getAutoIndent()) {
+								styleDocument.insertString( startPosition, lineIdented, null);
+							}
+							if (styleDocument.getColorize()) {
+								styleDocument.colorize(startPosition,startPosition+lineIdented.length());
+							}
+						} catch (BadLocationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						startPosition += lineIdented.length();
+					}
+				}
+				styleDocument.enableUpdaters();
+				System.out.println("File = " + f.getAbsolutePath());
+				theTextPane.setName(f.getAbsolutePath());
+
+
+
+
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				styleDocument.setContentModified(false);
+				getInfoBar().setText("");
+			} catch (IOException ioex) {
+
+				int choice = JOptionPane.showConfirmDialog(editor, XpadMessages.FILE_DOESNT_EXIST);
+				if (choice  == 0) {
+					try {
+						FileWriter writer = new FileWriter(f);
+						writer.write("");
+						writer.flush();
+						writer.close();
+
+						readFile(f);
+					} catch (IOException ioexc) {
+						JOptionPane.showMessageDialog(editor , ioexc);
+					}
+				}	
+			}
+			
+		}
+
+	}
+	
 }

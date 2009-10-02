@@ -24,6 +24,7 @@ import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -36,23 +37,40 @@ public class OpenAction extends DefaultAction {
 
     public void doAction() {
     	
+    	String initialDirectoryPath = getEditor().getTextPane().getName();
+    	if (initialDirectoryPath == null ){
+    		initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
+    	}
+    	
 		String[] mask = new String[]{ "*.sce",  "*.sc*", "*.cos*", "*.sci",}; 
 		
 		SwingScilabFileChooser _fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 		 
 		 _fileChooser .setAcceptAllFileFilterUsed(true);
-		 _fileChooser .addMask(mask , new String[0]);		
-		 _fileChooser .setInitialDirectory( System.getProperty("user.dir"));		
+		 _fileChooser .addMask(mask , new String[0]);
+		 _fileChooser .setInitialDirectory( initialDirectoryPath );
+		 
+		 //_fileChooser .setInitialDirectory( System.getProperty("user.dir"));		
 		 _fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);	 	
     
 		int retval = _fileChooser.showOpenDialog(getEditor());
 		if (retval == JFileChooser.APPROVE_OPTION) {
 		    File f = _fileChooser.getSelectedFile();
-		    getEditor().readFile(f);
+		    System.out.println(f.getParent());
 
-		getEditor().setTitle(f.getPath() + " - Xpad");
-	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-	    getEditor().updateRecentOpenedFilesMenu();
+			synchronized (getEditor()) {
+				ConfigManager.saveLastOpenedDirectory(f.getParent());
+				getEditor().setTitle(f.getPath() + " - Xpad");
+			    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+			    getEditor().updateRecentOpenedFilesMenu();
+				
+			}
+		    
+		    getEditor().readFile(f);
+		    
+
+
+
 	    
 	    
 	}

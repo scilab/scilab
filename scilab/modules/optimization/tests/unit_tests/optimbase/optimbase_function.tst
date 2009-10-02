@@ -81,7 +81,7 @@ opt = optimbase_destroy(opt);
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock2 ( x , mydata )
+function [ y , mydata ] = rosenbrock2 ( x , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -182,7 +182,7 @@ opt = optimbase_destroy(opt);
 //    constraints
 //  The inequality constraints are expected to be positive.
 //
-function result = boxproblemA ( x , index , data )
+function [ result , data ] = boxproblemA ( x , index , data )
   b = x(2) + 0.01 * x(3)
   x6 = (data.k1 + data.k2 * x(2) ...
             + data.k3 * x(3) + data.k4 * x(4) + data.k5 * x(5)) * x(1)

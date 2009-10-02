@@ -18,7 +18,9 @@
 #include "api_boolean.h"
 #include "api_internal_common.h"
 #include "api_internal_boolean.h"
+#include "localization.h"
 
+#include "Scierror.h"
 #include "call_scilab.h"
 #include "stack-c.h"
 
@@ -26,82 +28,122 @@
 /********************************/
 /*   boolean matrix functions   */
 /********************************/
-
-int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool)
+StrErr getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool)
 {
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_boolean)
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iType = 0;
+
+	if(	_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		return strErr;
 	}
 	
-	getVarDimension(_piAddress, _piRows, _piCols);
+	strErr = getVarType(_piAddress, &iType);
+	if(strErr.iErr || iType != sci_boolean)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		return strErr;
+	}
+
+	strErr = getVarDimension(_piAddress, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		return strErr;
+	}
 
 	if(_piBool)
 	{
 		*_piBool = _piAddress + 3;
 	}
-	return 0;
+	return strErr;
 }
 
-int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool)
+StrErr allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piAddr	= NULL;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet != 0)
+	int iSize = _iRows * _iCols;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr) + 3);
+	if (iSize > iFreeSpace)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		return strErr;
 	}
 
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
 	fillMatrixOfBoolean(piAddr, _iRows, _iCols, _piBool);
 
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 3));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
 
-	return 0;
+	return strErr;
 }
 
-int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
+StrErr fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	_piAddress[0]	= sci_boolean;
 	_piAddress[1] = Min(_iRows, _iRows * _iCols);
 	_piAddress[2] = Min(_iCols, _iRows * _iCols);
 
 	*_piBool		= _piAddress + 3;
-	return 0;
+	return strErr;
 }
 
-int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
+StrErr createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piBool		= NULL;
-	int iRet = allocMatrixOfBoolean(_iVar, _iRows, _iCols, &piBool);
-	if(iRet)
+
+	strErr = allocMatrixOfBoolean(_iVar, _iRows, _iCols, &piBool);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN, _("API_ERROR_CREATE_BOOLEAN"));
+		return strErr;
 	}
 
 	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
-	return 0;
+	return strErr;
 }
 
-int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool)
+StrErr createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iRet					= 0;
 	int* piBool				= NULL;
 	int *piAddr				= NULL;
 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	int iSize = _iRows * _iCols;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)) + 3);
+	if (iSize > iFreeSpace)
+	{
+		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("API_ERROR_CREATE_NAMED_BOOLEAN"));
+		return strErr;
+	}
+
+	getNewVarAddressFromPosition(Top, &piAddr);
 
 	//write matrix information
-	fillMatrixOfBoolean(piAddr, _iRows, _iCols, &piBool);
+	strErr = fillMatrixOfBoolean(piAddr, _iRows, _iCols, &piBool);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("API_ERROR_CREATE_NAMED_BOOLEAN"));
+		return strErr;
+	}
+
 	//copy data in stack
 	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
 
@@ -113,27 +155,27 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piB
 
 	Top = iSaveTop;
   Rhs = iSaveRhs;
-
-
-	return 0;
+	return strErr;
 }
 
-int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool)
+StrErr readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool)
 {
-	int* piAddr	= NULL;
-	int* piBool	= NULL;
-	int iRet		= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int* piAddr				= NULL;
+	int* piBool				= NULL;
 
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("API_ERROR_READ_BOOLEAN"));
+		return strErr;
 	}
 
-	iRet = getMatrixOfBoolean(piAddr, _piRows, _piCols, &piBool);
-	if(iRet)
+	strErr = getMatrixOfBoolean(piAddr, _piRows, _piCols, &piBool);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("API_ERROR_READ_BOOLEAN"));
+		return strErr;
 	}
 	
 	if(_piBool)
@@ -141,7 +183,7 @@ int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _p
 		memcpy(_piBool, piBool, sizeof(int) * *_piRows * *_piCols);
 	}
 
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
 

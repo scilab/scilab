@@ -75,7 +75,7 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_configure(nm,"-costfargument",mystuff);
 nm = neldermead_search(nm);
 // Check optimum point
