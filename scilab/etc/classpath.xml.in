@@ -37,6 +37,11 @@ The option is "disableUnderMode" and can be:
 <path value="@JHALL@"/>
 
 <!-- Load when needed -->
+<path value="@JLATEXMATH@" load="onUse">
+        <load on="graphics"/>
+        <load on="graphic_export"/>
+</path>
+
 <path value="@JOGL@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
