@@ -25,20 +25,22 @@ typedef enum {
 /* by default mode is API */
 
 /**
-* Set scilab mode 
-* @param new scilab mode
-* @return TRUE is newmode is OK
+ * Set Scilab execution mode. 
+ * Note that this should be done at Scilab startup only. 
+ *
+ * @param new scilab mode
+ * @return TRUE is newmode is OK
 */
 BOOL setScilabMode(scilabMode newmode);
 
 /**
-* Get scilab mode
+* Get Scilab execution mode
 * @return current scilab mode
 */
 scilabMode getScilabMode(void);
 
 /**
-* Get scilab mode as a string
+* Get Scilab execution mode as a string
 * @return current scilab mode
 */
 char * getScilabModeString(void);
@@ -47,7 +49,7 @@ char * getScilabModeString(void);
 /**
  * Gives the mode of scilab
  * @param[out] the mode of scilab
- * @return 1
+ * @return always 1
  */
 int C2F(getscilabmode)(scilabMode *mode);
 
