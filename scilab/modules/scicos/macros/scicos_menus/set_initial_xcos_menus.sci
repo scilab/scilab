@@ -98,7 +98,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
   Format   = ['XcosMenuFormat',               _("Format");
               'XcosMenuSetGrid',              _("Set grid");
    	      'XcosMenuAddColor',             _("Add color");
-	      'XcosMenuDefaultLinkColor',     _("Default link colors");
+	      'XcosMenuDefaultLinkCols',      _("Default link colors");
 	      'XcosMenuColor',                _("Color");
 	      'XcosMenuBackgroundColor',      _("Background color");
 	      'XcosMenuShowBlockShadow',      _("Show Block Shadow");
