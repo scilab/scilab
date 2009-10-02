@@ -19,6 +19,14 @@ extern "C" {
 
 #include "dynlib_api_scilab.h"
 
+typedef struct api_Err
+{
+	int iErr;
+	int iMsgCount;
+	char* pstMsg[1024];
+} StrErr;
+
+#include "api_error.h"
 /* generics functions */
 
 /**
@@ -27,7 +35,7 @@ extern "C" {
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getVarAddressFromPosition(int _iVar, int** _piAddress);
+API_SCILAB_IMPEXP StrErr getVarAddressFromPosition(int _iVar, int** _piAddress);
 
 /**
  * Get memory address of a variable from the variable position
@@ -35,28 +43,29 @@ API_SCILAB_IMPEXP int getVarAddressFromPosition(int _iVar, int** _piAddress);
  * @param[out] _pstName variable name
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getVarNameFromPosition(int _iVar, char* _pstName);
+API_SCILAB_IMPEXP StrErr getVarNameFromPosition(int _iVar, char* _pstName);
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getVarAddressFromName(char* _pstName, int** _piAddress);
+API_SCILAB_IMPEXP StrErr getVarAddressFromName(char* _pstName, int** _piAddress);
 
 /**
  * Get variable type
  * @param[in] _piAddress variable address
+ * @param[out] returns _piType variable type
  * @return scilab variable type ( sci_matrix, sci_strings, ... )
  */
-API_SCILAB_IMPEXP int getVarType(int* _piAddress);
+API_SCILAB_IMPEXP StrErr getVarType(int* _piAddress, int* _piType);
 
 /**
 * Get variable type  from the variable name
 * @param[in] _piAddress variable address
 * @return scilab variable type ( sci_matrix, sci_strings, ... )
 */
-API_SCILAB_IMPEXP int getNamedVarType(char* _pstName);
+API_SCILAB_IMPEXP StrErr getNamedVarType(char* _pstName, int* _piType);
 
 /**
  * Get complex information
@@ -79,7 +88,7 @@ API_SCILAB_IMPEXP int isNamedVarComplex(char *_pstName);
  * @param[out] _piCols Number of cols
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
+API_SCILAB_IMPEXP StrErr getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
 
 /**
 * Get named variable dimension
@@ -88,7 +97,7 @@ API_SCILAB_IMPEXP int getVarDimension(int* _piAddress, int* _piRows, int* _piCol
 * @param[out] _piCols Number of cols
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
+API_SCILAB_IMPEXP StrErr getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
 
 /**
  * check if a variable is a matrix form ( row x col )
@@ -111,7 +120,7 @@ API_SCILAB_IMPEXP int isNamedVarMatrixType(char *_pstName);
  * @param[out] _piMode return process mode ( 0 -> All, 1 -> Row, 2 -> Col )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
+API_SCILAB_IMPEXP StrErr getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
 
 /**
  * get dimension for variable, extract value from a single value
@@ -119,7 +128,7 @@ API_SCILAB_IMPEXP int getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
  * @param[out] _piVal return value
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getDimFromVar(int* _piAddress, int* _piVal);
+API_SCILAB_IMPEXP StrErr getDimFromVar(int* _piAddress, int* _piVal);
 
 /**
 * get dimension for a named variable, extract value from a single value
@@ -127,7 +136,14 @@ API_SCILAB_IMPEXP int getDimFromVar(int* _piAddress, int* _piVal);
 * @param[out] _piVal return value
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP int getDimFromNamedVar(char* _pstName, int* _piVal);
+API_SCILAB_IMPEXP StrErr getDimFromNamedVar(char* _pstName, int* _piVal);
+
+/**
+* Get Rhs value from variable Address
+* @param[in] _piAddress varaible address
+* @return rhs value of the variable, if failed returns 0
+*/
+API_SCILAB_IMPEXP int getRhsFromAddress(int* _piAddress);
 
 #ifdef __cplusplus
 }

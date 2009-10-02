@@ -15,7 +15,7 @@
 #define __GW_HISTORY_MANAGER_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_history_manager.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 HISTORY_MANAGER_IMPEXP int gw_history_manager(void);
 /*--------------------------------------------------------------------------*/

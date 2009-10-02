@@ -10,4 +10,5 @@ EXPORTS
 	createMatrixOfWideString
 	createMatrixOfBoolean
 	getVarDimension
+	printError
 	

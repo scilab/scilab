@@ -24,7 +24,7 @@ extern "C" {
  * @param[out] _pvPtr return pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getPointer(int* _piAddress, void** _pvPtr);
+API_SCILAB_IMPEXP StrErr getPointer(int* _piAddress, void** _pvPtr);
 
 
 /**
@@ -33,15 +33,7 @@ API_SCILAB_IMPEXP int getPointer(int* _piAddress, void** _pvPtr);
  * @param[out] _pvPtr return pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocPointer(int _iVar, void** _pvPtr);
-
-/**
- * @todo
- * @param[in] _piAddress variable address
- * @param[out] _pvPtr return pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
- */
-API_SCILAB_IMPEXP int fillPointer(int *_piAddress, void** _pvPtr);
+API_SCILAB_IMPEXP StrErr allocPointer(int _iVar, void** _pvPtr);
 
 /**
  * Create pointer variable
@@ -49,7 +41,7 @@ API_SCILAB_IMPEXP int fillPointer(int *_piAddress, void** _pvPtr);
  * @param[in] _pvPtr pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createPointer(int _iVar, void* _pvPtr);
+API_SCILAB_IMPEXP StrErr createPointer(int _iVar, void* _pvPtr);
 
 #ifdef __cplusplus
 }

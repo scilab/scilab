@@ -30,7 +30,7 @@ extern "C" {
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
+API_SCILAB_IMPEXP StrErr getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -41,7 +41,7 @@ API_SCILAB_IMPEXP int getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piC
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP StrErr getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get double variable data
@@ -51,7 +51,7 @@ API_SCILAB_IMPEXP int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, in
  * @param[out] _pdblZ return pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
+API_SCILAB_IMPEXP StrErr getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
 
 /**
  * Get double variable data
@@ -61,7 +61,7 @@ API_SCILAB_IMPEXP int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, i
  * @param[out] _pdblReal return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal);
+API_SCILAB_IMPEXP StrErr allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -72,7 +72,7 @@ API_SCILAB_IMPEXP int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, dou
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP StrErr allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create double variable data
@@ -82,7 +82,7 @@ API_SCILAB_IMPEXP int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCo
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal);
+API_SCILAB_IMPEXP StrErr createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -93,7 +93,7 @@ API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, do
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP StrErr createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double variable data
@@ -105,7 +105,7 @@ API_SCILAB_IMPEXP int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iC
  * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
+API_SCILAB_IMPEXP StrErr createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double variable data
@@ -115,7 +115,7 @@ API_SCILAB_IMPEXP int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _i
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal);
+API_SCILAB_IMPEXP StrErr createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -126,7 +126,7 @@ API_SCILAB_IMPEXP int createNamedMatrixOfDouble(char* _pstName, int _iRows, int 
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP StrErr createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double variable data
@@ -136,7 +136,7 @@ API_SCILAB_IMPEXP int createNamedComplexMatrixOfDouble(char* _pstName, int _iRow
  * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
+API_SCILAB_IMPEXP StrErr createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double named variable data
@@ -146,7 +146,7 @@ API_SCILAB_IMPEXP int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRo
  * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
+API_SCILAB_IMPEXP StrErr readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * Get double named variable data
@@ -157,7 +157,7 @@ API_SCILAB_IMPEXP int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int*
  * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP StrErr readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 
 #ifdef __cplusplus

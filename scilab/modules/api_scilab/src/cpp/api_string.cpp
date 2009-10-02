@@ -25,6 +25,8 @@
 #include "api_internal_string.h"
 #include "call_scilab.h"
 #include "stack-c.h"
+#include "localization.h"
+
 extern "C"
 {
 #include "code2str.h"
@@ -36,75 +38,102 @@ extern "C"
 /*   string matrix functions   */
 /*******************************/
 
-int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	int i = 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piOffset = NULL;
 	int *piData		= NULL;
+	int iType			= 0;
 
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_strings)
+	if(	_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_STRING, _("API_ERROR_GET_STRING"));
+		return strErr;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
+	strErr = getVarType(_piAddress, &iType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_STRING, _("API_ERROR_GET_STRING"));
+		return strErr;
+	}
+
+	if(iType != sci_strings)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_GET_STRING, _("API_ERROR_GET_STRING"));
+		return strErr;
+	}
+
+	strErr = getVarDimension(_piAddress, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_STRING, _("API_ERROR_GET_STRING"));
+		return strErr;
+	}
 
 	if(_piLength == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	piOffset = _piAddress + 4;
 
 	//non cummulative length
-	for(i = 0 ; i < *_piRows * *_piCols ; i++)
+	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
 		_piLength[i] = piOffset[i + 1] - piOffset[i];
 	}
 
-	if(_pstStrings == NULL)
+	if(_pstStrings == NULL || *_pstStrings == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	piData = piOffset + *_piRows * *_piCols + 1;
 
-	for(i = 0 ; i < *_piRows * *_piCols ; i++)
+	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
 		if(_pstStrings[i] == NULL)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("API_ERROR_INVALID_SUBSTRING_POINTER"));
+			addErrorMessage(&strErr, API_ERROR_GET_STRING, _("API_ERROR_GET_STRING"));
+			return strErr;
 		}
 		code2str(&_pstStrings[i], piData + iArraySum(_piLength, 0, i), _piLength[i]);
 		_pstStrings[i][_piLength[i]] = 0;
 	}
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
+StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet != 0)
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
+
+	strErr = fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING, _("API_ERROR_CREATE_STRING"));
+		return strErr;
 	}
 
-	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2)), (iTotalLen + 1) / (sizeof(double) / sizeof(int)));
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
+StrErr fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piOffset = NULL;
 	int* piData		= NULL;
-	int i					= 0;
 	int iOffset		= 0;
 
 	_piAddress[0]	= sci_strings;
@@ -115,9 +144,23 @@ int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrin
 	piOffset	= _piAddress + 4;
 	piOffset[0] = 1; //Always 1
 	piData		= piOffset + _iRows * _iCols + 1;
-
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+	
+	if(_pstStrings == NULL)
 	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_FILL_STRING, _("API_ERROR_FILL_STRING"));
+		return strErr;
+	}
+
+	for(int i = 0 ; i < _iRows * _iCols ; i++)
+	{
+		if(_pstStrings[i] == NULL)
+		{
+			addErrorMessage(&strErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("API_ERROR_INVALID_SUBSTRING_POINTER"));
+			addErrorMessage(&strErr, API_ERROR_FILL_STRING, _("API_ERROR_FILL_STRING"));
+			return strErr;
+		}
+
 		int iLen = (int)strlen(_pstStrings[i]);
 		str2code(piData + iOffset, &_pstStrings[i]);
 		iOffset += iLen;
@@ -126,15 +169,15 @@ int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrin
 	}
 
 	*_piTotalLen	= piOffset[_iRows * _iCols] - 1;
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings)
+StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
 	int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iRet					= 0;
 	int *piAddr				= NULL;
 
 	int iTotalLen	= 0;
@@ -142,11 +185,15 @@ int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _ps
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromPosition(Top, &piAddr);
-
+	getNewVarAddressFromPosition(Top, &piAddr);
 
 	//write matrix information
-	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
+	strErr = fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_STRING, _("API_ERROR_CREATE_NAMED_STRING"));
+		return strErr;
+	}
 
 	//update "variable index"
 
@@ -158,169 +205,196 @@ int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _ps
 
 	Top = iSaveTop;
 	Rhs = iSaveRhs;
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	int iRet					= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_STRING, _("API_ERROR_READ_NAMED_STRING"));
+		return strErr;
 	}
-	return getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
+
+	strErr = getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_STRING, _("API_ERROR_READ_NAMED_STRING"));
+		return strErr;
+	}
+
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
+StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iType					= 0;
 	char **pstStrings = NULL;
 	int *piLenStrings = NULL;
-	int i = 0;
-	int ierr = 0;
 
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_strings)
+	if(	_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
+	strErr = getVarType(_piAddress, &iType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
+	}
+
+	if(iType != sci_strings)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
+	}
+
+	strErr = getVarDimension(_piAddress, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
+	}
 
 	if (_piwLength == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	piLenStrings	= (int*)MALLOC(sizeof(int*) * (*_piRows * *_piCols));
-	if (piLenStrings == NULL)
-	{
-		return 1;
-	}
 
 	// get length UTF size
-	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
-	if (ierr)
+	strErr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
+	if(strErr.iErr)
 	{
-		if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
-		return ierr;
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
 	}
 
 	pstStrings = (char**)MALLOC(sizeof(char*) * (*_piRows * *_piCols));
-	if (pstStrings == NULL)
-	{
-		if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
-		return 1;
-	}
 
-	for(i = 0; i < (*_piRows * *_piCols); i++)
+	for(int i = 0; i < (*_piRows * *_piCols); i++)
 	{
 		pstStrings[i] = (char*)MALLOC(sizeof(char)*(piLenStrings[i] + 1));
-		if (pstStrings[i] == NULL)
-		{
-			if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
-			freeArrayOfString(pstStrings, i);
-			return 1;
-		}
 	}
 
 	// get strings UTF format
-	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
-
-	if (ierr == 0)
+	strErr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
+	if(strErr.iErr)
 	{
-		if (_pwstStrings == NULL)
+		addErrorMessage(&strErr, API_ERROR_GET_WIDE_STRING, _("API_ERROR_GET_WIDE_STRING"));
+		return strErr;
+	}
+
+	for(int i = 0; i < (*_piRows * *_piCols); i++)
+	{
+		wchar_t* wString = to_wide_string(pstStrings[i]);
+		if (wString)
 		{
-			for(i = 0; i < (*_piRows * *_piCols); i++)
-			{
-				wchar_t* wString = to_wide_string(pstStrings[i]);
-				if (wString)
-				{
-					_piwLength[i] = (int)wcslen(wString);
-					FREE(wString);
-					wString = NULL;
-				}
-				else
-				{
-					// it should not be here
-					_piwLength[i] = 0;
-				}
-			}
+			_piwLength[i] = (int)wcslen(wString);
+			FREE(wString);
+			wString = NULL;
 		}
 		else
 		{
-			for(i = 0; i < (*_piRows * *_piCols); i++)
-			{
-				_pwstStrings[i] = to_wide_string(pstStrings[i]);
-				_piwLength[i] = (int)wcslen(_pwstStrings[i]);
-			}
+			// it should not be here
+			_piwLength[i] = 0;
 		}
+	}
+
+	if(_pwstStrings == NULL)
+	{
+		return strErr;
+	}
+	
+	for(int i = 0; i < (*_piRows * *_piCols); i++)
+	{
+		_pwstStrings[i] = to_wide_string(pstStrings[i]);
+		_piwLength[i] = (int)wcslen(_pwstStrings[i]);
 	}
 
 	freeArrayOfString(pstStrings, (*_piRows * *_piCols));
 	FREE(piLenStrings); piLenStrings = NULL;
 
-	return ierr;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings)
+StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	char **pStrings = NULL;
-	int i = 0;
-	int ierr = 0;
 
 	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
-	if(pStrings == NULL)
-	{
-		return 1;
-	}
 
-	for (i = 0; i < (_iRows * _iCols) ; i++)
+	for (int i = 0; i < (_iRows * _iCols) ; i++)
 	{
 		pStrings[i] = wide_string_to_UTF8(_pstwStrings[i]);
 	}
 
-	ierr = createMatrixOfString(_iVar, _iRows, _iCols, pStrings);
-	freeArrayOfString(pStrings, _iRows * _iCols);
-
-	return ierr;
-}
-/*--------------------------------------------------------------------------*/
-int createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)
-{
-	char **pStrings = NULL;
-	int i = 0;
-	int ierr = 0;
-
-	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
-	if(pStrings == NULL)
+	strErr = createMatrixOfString(_iVar, _iRows, _iCols, pStrings);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_WIDE_STRING, _("API_ERROR_CREATE_WIDE_STRING"));
+		return strErr;
 	}
 
-	for (i = 0; i < (_iRows * _iCols) ; i++)
+	freeArrayOfString(pStrings, _iRows * _iCols);
+
+	return strErr;
+}
+/*--------------------------------------------------------------------------*/
+StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)
+{
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	char **pStrings = NULL;
+
+	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
+
+	for (int i = 0; i < (_iRows * _iCols) ; i++)
 	{
 		pStrings[i] = wide_string_to_UTF8(_pwstStrings[i]);
 	}
 
-	ierr = createNamedMatrixOfString(_pstName, _iRows, _iCols, pStrings);
-	freeArrayOfString(pStrings, _iRows * _iCols);
-
-	return ierr;
-}
-/*--------------------------------------------------------------------------*/
-int readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
-{
-	int iRet				= 0;
-	int* piAddr				= NULL;
-
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+	strErr = createNamedMatrixOfString(_pstName, _iRows, _iCols, pStrings);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_WIDE_STRING, _("API_ERROR_CREATE_NAMED_WIDE_STRING"));
+		return strErr;
 	}
 
-	return getMatrixOfWideString(piAddr, _piRows, _piCols, _piwLength, _pwstStrings);
+	freeArrayOfString(pStrings, _iRows * _iCols);
+
+	return strErr;
+}
+/*--------------------------------------------------------------------------*/
+StrErr readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
+{
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int* piAddr				= NULL;
+
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_WIDE_STRING, _("API_ERROR_READ_NAMED_WIDE_STRING"));
+		return strErr;
+	}
+
+	strErr = getMatrixOfWideString(piAddr, _piRows, _piCols, _piwLength, _pwstStrings);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_WIDE_STRING, _("API_ERROR_READ_NAMED_WIDE_STRING"));
+		return strErr;
+	}
+
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
