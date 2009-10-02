@@ -42,24 +42,27 @@ else
 		[AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
 fi
 
+save_LIBS="$LIBS"
 
 # --with-hdf5-library set then check in this dir
 if test "x$with_hdf5_library" != "xyes"; then
-	save_LIBS="$LIBS"
-	LIBS="-L$with_hdf5_library -lhdf5"
+    HDF5_LIBS="-L$with_hdf5_library -lhdf5"
+    LIBS="$LIBS $HDF5_LIBS"
 	AC_CHECK_LIB([hdf5], [H5Fopen],
-			[HDF5_LIB="-L$with_hdf5_library -lhdf5"],
+			[],
             [AC_MSG_ERROR([libhdf5 : library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])]
 			)
-	LIBS="$save_LIBS"
+	
 else
-	save_LIBS="$LIBS"
-	AC_CHECK_LIB([hdf5], [H5Fopen],
-			[HDF5_LIB="-lhdf5"],
+    HDF5_LIBS="-lhdf5"
+    LIBS="$LIBS $HDF5_LIBS"
+    AC_CHECK_LIB([hdf5], [H5Fopen],
+			[],
             [AC_MSG_ERROR([libhdf5 : library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
 			)
-	LIBS="$save_LIBS"
 fi
+
+LIBS="$save_LIBS"
 
 AC_SUBST(HDF5_CFLAGS)
 AC_SUBST(HDF5_LIBS)
@@ -71,3 +74,4 @@ AC_DEFINE([WITH_HDF5], [], [With the HDF5 library])
 
 # Gets compilation and library flags
 ])
+
