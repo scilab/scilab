@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
@@ -34,6 +35,7 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.BlockWriter;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -47,6 +49,8 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
+
+import sun.rmi.runtime.NewThreadAction;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxEvent;
@@ -131,9 +135,6 @@ public class XcosDiagram extends ScilabGraph {
 	Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 	codec.decode(doc.getDocumentElement(), getStylesheet());
 	
-	// This enable stop editing cells when pressing Enter.
-	getAsComponent().setEnterStopsCellEditing(true);
-
 	// Forbid disconnecting cells once it is connected.
 	//setCellsDisconnectable(false);
 
@@ -143,13 +144,16 @@ public class XcosDiagram extends ScilabGraph {
 	// Cannot connect port to itself.
 	setAllowLoops(false);
 
+	// Override isCellResizable to filter what the user can resize
 	setCellsResizable(true);
 
-	setCellsEditable(false);
+	// Override isCellEditable to filter what the user can edit
+	setCellsEditable(true);
+	// This enable stop editing cells when pressing Enter.
+	getAsComponent().setEnterStopsCellEditing(false);
 
 	setConnectableEdges(false);
-
-
+	
 	mxMultiplicity[] multiplicities = new mxMultiplicity[1];
 
 	// Command Port as source can only go to Control Port
@@ -203,9 +207,17 @@ public class XcosDiagram extends ScilabGraph {
 	    public void mouseClicked(MouseEvent arg0) {
 		Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
 
-		if (arg0.getClickCount() >= 2 && cell != null)
+		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell == null) {
+		    TextBlock textBlock = new TextBlock("Edit me !!!");
+		    textBlock.getGeometry().setX(arg0.getX() - textBlock.getGeometry().getWidth() / 2.0);
+		    textBlock.getGeometry().setY(arg0.getY() - textBlock.getGeometry().getWidth() / 2.0);
+		    addCell(textBlock);
+		    return;
+		}
+		
+		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell != null)
 		{
-		    if (cell instanceof BasicBlock) {
+		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openBlockSettings();
 		    }
@@ -262,6 +274,11 @@ public class XcosDiagram extends ScilabGraph {
     public boolean isCellDeletable(Object cell) {
 	return !(cell instanceof BasicPort) && super.isCellDeletable(cell);
     }
+    
+    public boolean isCellEditable(Object cell) {
+	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
+    }
+    
     
     //    public boolean isCellConnectable(Object cell)
     //    {

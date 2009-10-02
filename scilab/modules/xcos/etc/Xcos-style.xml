@@ -7,7 +7,8 @@
 		<add as="strokeColor" value="black"/>
 		<add as="fillColor" value="white"/>
 	</add>
-	<add as="Clock" extend="block">
+	<add as="Label" extend="block">
+		<add as="strokeColor" value="white"/>
 	</add>
 	<add as="Sinusoid" extend="block">
 	</add>
