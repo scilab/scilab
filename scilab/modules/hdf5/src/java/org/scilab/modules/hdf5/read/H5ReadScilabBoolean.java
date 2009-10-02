@@ -31,6 +31,7 @@ public class H5ReadScilabBoolean {
 	
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_NATIVE_INT,
 		H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
+	H5.H5Dclose(dataSetId);
 	
 	for(int i = 0 ; i < nbElems[0] ; ++i) {
 	    for (int j = 0 ; j < nbElems[1] ; ++j) {

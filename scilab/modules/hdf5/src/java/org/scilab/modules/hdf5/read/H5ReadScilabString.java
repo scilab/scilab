@@ -31,6 +31,8 @@ public class H5ReadScilabString {
 	
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_STD_REF_OBJ,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataRefs);
+	H5.H5Dclose(dataSetId);
+	
 	for( int i = 0 ; i < rows ; ++i) {
 	    for( int j = 0 ; j < cols ; ++j) {
 		data.getData()[i][j] = getString(H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, dataRefs[i * cols +j]));

@@ -35,6 +35,7 @@ public class H5ReadScilabDouble {
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_STD_REF_OBJ,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataRefs);
 	H5.H5Dclose(dataSetId);
+	
 	data.setRealPart(getDoubleMatrix(H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, dataRefs[0])));
 	if (H5Read.isComplex(dataSetId)) {
 	    data.setImaginaryPart(getDoubleMatrix(H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, dataRefs[1])));
