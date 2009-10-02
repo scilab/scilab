@@ -21,6 +21,7 @@ import javax.media.opengl.GL;
 import java.lang.reflect.Field;
 import com.sun.opengl.util.j2d.TextRenderer;
 
+
 /**
  * Scilab adapted JOGL TextRenderer. Provides text rendering without aliasing.
  * @author Jean-Baptiste Silvy
@@ -36,8 +37,13 @@ public class SciTextRenderer {
 	
 	/** Actual object used for text rendering */
 	private TextRenderer renderer;
+    
+        /* Added by Calixte :
+	   Object for MathML rendering */
+        private SpecialTextRenderer speRenderer;
+        /* End */
 	
-	/** font size of the renderer object */
+        /** font size of the renderer object */
 	private float scaleFactor;
 	
 	private boolean useFractionalMetrics;
@@ -48,8 +54,13 @@ public class SciTextRenderer {
 	 * @param renderer mapped text renderer
 	 */
 	public SciTextRenderer(TextRenderer renderer, float fontSize) {
-		this.fontSize = fontSize;
+	        this.fontSize = fontSize;
 		this.renderer = renderer;
+
+		/* Add by Calixte */
+		this.speRenderer = new SpecialTextRenderer(renderer, fontSize);
+		/* End */
+
 		setUseFractionalMetrics(true);
 		updateScaleFactor();
 	}
@@ -74,8 +85,15 @@ public class SciTextRenderer {
 	 * @param angle angle of the text to draw
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
+	        /* Added by Calixte */
+	    if (str.charAt(0) == '<' || str.charAt(0) == '$') {
+		    speRenderer.draw3D(str, (float) x, (float) y, (float) z, useFractionalMetrics ? scaleFactor : 1.0f);
+		    return;
+		}
+		/* End */
+
 		// with OpenGL strings, angle is already set
-		if (useFractionalMetrics) {
+	        if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
 		} else {
 			// we need to add a little offset othrwise texture interpolation
@@ -105,7 +123,7 @@ public class SciTextRenderer {
 	 */
 	public void begin3DRendering(GL gl) {
 		
-		renderer.begin3DRendering();
+	    renderer.begin3DRendering();
 		
 		// HACK HACK HACK for Intel drivers
 		// When text is rendered using normal texture mapping (no mipmap)
@@ -121,7 +139,7 @@ public class SciTextRenderer {
 	 * @param gl OpenGL pipeline
 	 */
 	public void end3DRendering(GL gl) {
-		renderer.end3DRendering();
+	    renderer.end3DRendering();
 	}
 	
 	/**
@@ -150,6 +168,11 @@ public class SciTextRenderer {
 	 */
 	public void setFontSize(float newFontSize) {
 		this.fontSize = newFontSize;
+		
+		/* Added by Calixte */
+		speRenderer.setFontSize(newFontSize);
+		/* End */
+
 		updateScaleFactor();
 	}
 	
@@ -160,6 +183,10 @@ public class SciTextRenderer {
 	 * @param blue blue channel
 	 */
 	public void setColor(double red, double green, double blue) {
+	        /* Added by Calixte */
+	        speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
+		/* End */
+
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
 	
@@ -168,6 +195,10 @@ public class SciTextRenderer {
 	 * @param color array of size 3 containing the channels
 	 */
 	public void setColor(double[] color) {
+	        /* Added by Calixte */
+	        speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
+		/* End */
+
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
 	
@@ -177,7 +208,14 @@ public class SciTextRenderer {
 	 * @return rectangle with the position, width and height.
 	 */
 	public Rectangle2D getBounds(String str) {
-		Rectangle2D res = renderer.getBounds(str);
+	        Rectangle2D res; 
+		
+		/* Added by Calixte */
+		if (str.charAt(0) == '<' || str.charAt(0) == '$')
+		    res = speRenderer.getBounds(str);
+		else 
+		    res = renderer.getBounds(str);
+		/* End */
 		
 		// apply scale factor to the bounds
 		res.setRect(res.getX(), res.getY(),
