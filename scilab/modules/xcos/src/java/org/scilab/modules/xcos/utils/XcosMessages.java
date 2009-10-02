@@ -91,4 +91,6 @@ public class XcosMessages {
     public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     
+    public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save\nsave it?");
+    
 }

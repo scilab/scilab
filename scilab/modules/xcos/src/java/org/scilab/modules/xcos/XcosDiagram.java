@@ -14,23 +14,21 @@ package org.scilab.modules.xcos;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
-import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.block.BlockWriter;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -42,6 +40,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
@@ -65,7 +64,11 @@ public class XcosDiagram extends ScilabGraph {
     private double maximumStepSize = 0;
     private String context = "";
     private List doc = null;
+    private String version = "scicos4.2";
 
+    private Tab parentTab;
+    private Window palette;
+    private Window viewPort;
 
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
@@ -266,123 +269,16 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
-	    if (fc.getSelection() == null || 
-		    fc.getSelection().length == 0 ||
-		    fc.getSelection()[0].isEmpty()) {
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
 		return;
 	    }
 	    fileName = fc.getSelection()[0];
 	    System.out.println("Saving to file : {"+fileName+"}");
 	}
 
-	int file_id = H5Write.createFile(fileName);
-	String[] diagramFields = {"diagram", "props", "objs", "version"};
-
-	ScilabMList data = new ScilabMList(diagramFields);
-	data.add(getDiagramProps());
-	data.add(getDiagramObjs());
-	data.add(getDiagramVersion());
-
-	H5Write.writeInDataSet(file_id, "scs_m", data);
-	H5Write.closeFile(file_id);
+	BlockWriter.writeDiagramToFile(fileName, this);
     }
-
-    private ScilabTList getDiagramProps() {
-	String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
-	ScilabTList data = new ScilabTList(propsFields);
-	data.add(new ScilabDouble(wpar)); // wpar
-	data.add(new ScilabString(title)); // title
-	data.add(new ScilabDouble(createTol())); // tol
-	data.add(new ScilabDouble(finalIntegrationTime)); // tf
-	data.add(new ScilabString(context)); // context
-	data.add(new ScilabDouble()); // void1
-	data.add(getDiagramOptions()); // options
-	data.add(new ScilabDouble()); // void2
-	data.add(new ScilabDouble()); // void3
-	data.add(new ScilabList()); // doc
-
-	return data;
-    }
-
-    private double[][] createTol() {
-	double[][] tol = {{integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, maxIntegrationTimeinterval, realTimeScaling, solver, maximumStepSize}};
-	return tol;
-    }
-
-    private ScilabTList getDiagramOptions() {
-	String[] optionsFields = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
-
-	ScilabTList data = new ScilabTList(optionsFields);
-	ScilabList _3D = new ScilabList();
-	_3D.add(new ScilabBoolean(true));
-	_3D.add(new ScilabDouble(33));
-
-	double[][] background = {{8, 1}};
-	double[][] link = {{1,5}};
-
-	ScilabList ID = new ScilabList();
-	double[][] ID_1 = {{5,1}};
-	double[][] ID_2 = {{4,1}};
-	ID.add(new ScilabDouble(ID_1));
-	ID.add(new ScilabDouble(ID_2));
-	double[][] Cmap = {{0.8, 0.8, 0.8}};
-
-	data.add(_3D); // 3D
-	data.add(new ScilabDouble(background)); // Background
-	data.add(new ScilabDouble(link)); // Link
-	data.add(ID); // ID
-	data.add(new ScilabDouble(Cmap)); // Cmap
-	return data;
-    }
-
-    private ScilabList getDiagramObjs() {
-	ScilabList data = new ScilabList();
-	
-	int nbObjs = getModel().getChildCount(getDefaultParent());
-	
-	
-	List<BasicBlock> blockList = new ArrayList<BasicBlock>();
-	List<BasicLink> linkList = new ArrayList<BasicLink>();
-	for (int i = 0 ; i < nbObjs ; ++i)
-	{
-	    Object currentObject = getModel().getChildAt(getDefaultParent(), i);
-	    if (currentObject instanceof BasicBlock) {
-		blockList.add((BasicBlock) currentObject);
-	    }
-	    else if (currentObject instanceof BasicLink) {
-		linkList.add((BasicLink) currentObject);
-	    }
-	    else {
-		System.out.println("Not a BasicBlock nor BasicLink");
-	    }
-	}
-
-	
-	
-	// Go over all list to set ID
-	for (int i = 0 ; i < linkList.size() ; ++i) {
-	    linkList.get(i).setOrdering(i + blockList.size() + 1);
-	}
-
-	// Go over all blocks to dump it inside Scilab Structure
-	for (int i = 0 ; i < blockList.size() ; ++i) {
-	    blockList.get(i).setOrdering(i + 1);
-	    data.add(blockList.get(i).getAsScilabObj());
-	}
-
-	// Go over all link to dump it inside Scilab Structure
-	for (int i = 0 ; i < linkList.size() ; ++i) {
-	    data.add(linkList.get(i).getAsScilabObj());
-	}
-
-
-	return data;
-    }
-
-    private ScilabString getDiagramVersion() {
-	return new ScilabString("scicos4.2");
-    }
-
+ 
     public double getFinalIntegrationTime() {
 	return finalIntegrationTime;
     }
@@ -446,6 +342,102 @@ public class XcosDiagram extends ScilabGraph {
     public void setToleranceOnTime(double toleranceOnTime) {
 	this.toleranceOnTime = toleranceOnTime;
     }
+    
+    public Tab getParentTab() {
+    	return parentTab;
+    }
+
+    public void setParentTab(Tab parentTab) {
+    	this.parentTab = parentTab;
+    }
+    
+    public void setViewPort(Window viewPort) {
+    	this.viewPort = viewPort;
+    }
+	
+    public void setPalette(Window palette) {
+    	this.palette = palette;
+    }
+	
+	/**
+	 * Close Xcos instance including all tabs
+	 */
+	public void closeDiagram() {
+		
+		boolean wantToClose = true;
+		
+		if (this.undoManager.canUndo()) {
+			// The diagram has been modified
+			// Ask the user want he want to do !
+			int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);
+			if (choice == 0) {
+				// Save the diagram
+				saveDiagram();
+			} else if (choice == 1) {
+				// The user selects no !
+			} else if (choice == 2) {
+				// The user cancels
+				wantToClose = false;
+			}
+		}
+		
+		if (wantToClose) {
+			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
+			xcosWindow.removeTab(parentTab);
+			palette.getAsSimpleWindow().close();
+			viewPort.getAsSimpleWindow().close();
+		}
+	}
+
+	public boolean saveDiagram() {
+		
+		if (title == "Untitled") {
+			return saveDiagramAs();
+		} else {
+			return BlockWriter.writeDiagramToFile(title, this);
+		}
+	}
+	
+	public boolean saveDiagramAs() {
+
+		boolean isSuccess = false;
+		String fileName;
+		
+		// Choose a filename
+	    FileChooser fc = ScilabFileChooser.createFileChooser();
+	    fc.setMultipleSelection(false);
+	    fc.displayAndWait();
+
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
+	    	return isSuccess;
+	    }
+	    fileName = fc.getSelection()[0];
+	    System.out.println("Saving to file : {"+fileName+"}");
+
+	    isSuccess = BlockWriter.writeDiagramToFile(fileName, this);
+		
+		return isSuccess;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public double[][] getWpar() {
+		return wpar;
+	}
+	
+	public String getContext() {
+		return context;
+	}
+
+	public String getVersion() {
+		return version;
+	}
 
 }
 

@@ -84,11 +84,11 @@ import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
-import com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
-    private XcosDiagram diagram = null;
+    private XcosDiagram diagram;
+    
     /**
      * @param args
      */
@@ -124,6 +124,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
 	outlineTab.setCallback(null);
 	
+	((XcosDiagram) xcosDiagramm).setViewPort(outline);
+	
 	// Creates the graph outline component
 	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
 	
@@ -134,10 +136,11 @@ public class Xcos extends SwingScilabTab implements Tab {
 	outline.setVisible(true);
     }
 
-    public static void createPalette() {
+    public static void createPalette(ScilabGraph xcosDiagramm) {
 
     	Window palette = ScilabWindow.createWindow();
-
+    	((XcosDiagram) xcosDiagramm).setPalette(palette);
+    	
     	/** Create SOURCES palette */
     	String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
     			"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
@@ -418,6 +421,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	Tab tab = new Xcos(xcosDiagramm);
+	tab.setName("Untitled");
+	xcosDiagramm.setParentTab(tab);
 	main.setVisible(true);
 	main.addTab(tab);
 	/*
@@ -440,7 +445,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	/*
 	 * PALETTES
 	 */
-	createPalette();
+	createPalette(xcosDiagramm);
 	
 	return xcosDiagramm;
 
