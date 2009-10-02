@@ -18,7 +18,9 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "stack-c.h"
+#ifdef _MSC_VER
 #include "strdup_windows.h"
+#endif
 #include "localization.h"
 
 extern "C"
@@ -34,7 +36,7 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 
 	va_start(ap,_pstMsg);
 #if defined (vsnprintf) || defined (linux)
-	iRet = vsnprintf(s_buf,bsiz-1, fmt, ap );
+	iRet = vsnprintf(pstMsg, bsiz-1, _pstMsg, ap );
 #else
 	iRet = vsprintf(pstMsg, _pstMsg, ap );
 #endif
