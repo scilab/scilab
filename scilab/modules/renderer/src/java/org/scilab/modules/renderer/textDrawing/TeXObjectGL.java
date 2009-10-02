@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Calixte Denizet
- * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,9 +35,9 @@ import org.scilab.forge.jlatexmath.ParseException;
  */
 public class TeXObjectGL extends SpecialTextObjectGL {
         
+    private final static Component COMPONENT = (Component) new Canvas();
     private TeXIcon texi;
     private TeXFormula formula;
-    private final static Component c = (Component)new Canvas();
 
     /** 
      * Default constructor.
@@ -69,7 +68,7 @@ public class TeXObjectGL extends SpecialTextObjectGL {
      * @param color the color of the content
      */
     public void setColor(Color color) {
-	c.setForeground(color);
+	COMPONENT.setForeground(color);
     }
     
     /**
@@ -81,7 +80,12 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 	makeImage();
     }
         
-    private void makeImage () {
+/**
+ * @TODO add comment
+ *
+ * @param   
+ */
+    private void makeImage() {
 	texi.setInsets(new Insets(1, 1, 1, 1));
 	width = texi.getIconWidth();
 	height = texi.getIconHeight();
@@ -94,18 +98,18 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 	    height = texi.getIconHeight();
 	}   
 
-	BufferedImage bimg = new BufferedImage((int)width, (int)height, BufferedImage.TYPE_INT_ARGB);
+	BufferedImage bimg = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_INT_ARGB);
 	
 	Graphics2D g2d = bimg.createGraphics();
 	
 	AffineTransform gt = new AffineTransform();
-	gt.translate (0, height);
-	gt.scale (1, -1d);
+	gt.translate(0, height);
+	gt.scale(1, -1d);
 	g2d.transform (gt);
 	
-	texi.paintIcon(c, (Graphics)g2d, 0, 0);
+	texi.paintIcon(COMPONENT, (Graphics) g2d, 0, 0);
 	
-	int[] intData = ((DataBufferInt)bimg.getRaster().getDataBuffer()).getData();
+	int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
 	buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
     }
 }

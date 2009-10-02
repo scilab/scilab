@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Calixte Denizet
  * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
@@ -38,8 +39,7 @@ public class SciTextRenderer {
 	/** Actual object used for text rendering */
 	private TextRenderer renderer;
     
-        /* Added by Calixte :
-	   Object for MathML rendering */
+	/**  Object for MathML/LaTex rendering */
         private SpecialTextRenderer speRenderer;
         /* End */
 	
@@ -56,10 +56,7 @@ public class SciTextRenderer {
 	public SciTextRenderer(TextRenderer renderer, float fontSize) {
 	        this.fontSize = fontSize;
 		this.renderer = renderer;
-
-		/* Add by Calixte */
 		this.speRenderer = new SpecialTextRenderer(renderer, fontSize);
-		/* End */
 
 		setUseFractionalMetrics(true);
 		updateScaleFactor();
@@ -85,12 +82,11 @@ public class SciTextRenderer {
 	 * @param angle angle of the text to draw
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
-	        /* Added by Calixte */
-	    if (str.charAt(0) == '<' || str.charAt(0) == '$') {
+
+	    if (str.charAt(0) == '<' || str.charAt(0) == '$') { /* MathML / LaTeX management */
 		    speRenderer.draw3D(str, (float) x, (float) y, (float) z, useFractionalMetrics ? scaleFactor : 1.0f);
 		    return;
 		}
-		/* End */
 
 		// with OpenGL strings, angle is already set
 	        if (useFractionalMetrics) {
@@ -169,9 +165,8 @@ public class SciTextRenderer {
 	public void setFontSize(float newFontSize) {
 		this.fontSize = newFontSize;
 		
-		/* Added by Calixte */
+		/* Set also for the MathML / LaTeX rendering */
 		speRenderer.setFontSize(newFontSize);
-		/* End */
 
 		updateScaleFactor();
 	}
@@ -183,9 +178,8 @@ public class SciTextRenderer {
 	 * @param blue blue channel
 	 */
 	public void setColor(double red, double green, double blue) {
-	        /* Added by Calixte */
+		/* Set also for the MathML / LaTeX rendering */
 	        speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
-		/* End */
 
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
@@ -195,9 +189,8 @@ public class SciTextRenderer {
 	 * @param color array of size 3 containing the channels
 	 */
 	public void setColor(double[] color) {
-	        /* Added by Calixte */
+		/* Set also for the MathML / LaTeX rendering */
 	        speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
-		/* End */
 
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
@@ -210,12 +203,12 @@ public class SciTextRenderer {
 	public Rectangle2D getBounds(String str) {
 	        Rectangle2D res; 
 		
-		/* Added by Calixte */
-		if (str.charAt(0) == '<' || str.charAt(0) == '$')
+		/* Set also for the MathML / LaTeX rendering */
+	        if (str.charAt(0) == '<' || str.charAt(0) == '$') {
 		    res = speRenderer.getBounds(str);
-		else 
+		} else {
 		    res = renderer.getBounds(str);
-		/* End */
+		}
 		
 		// apply scale factor to the bounds
 		res.setRect(res.getX(), res.getY(),

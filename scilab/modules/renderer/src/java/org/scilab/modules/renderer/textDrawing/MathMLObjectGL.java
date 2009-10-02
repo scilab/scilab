@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Calixte Denizet
- * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,14 +38,15 @@ import org.xml.sax.SAXException;
  * @author Calixte Denizet
  */
 public class MathMLObjectGL extends SpecialTextObjectGL {
+
+    private final static Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
+
+    private final static String MMLBEGIN = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\"><math mode=\"display\" xmlns=\"http://www.w3.org/1998/Math/MathML\">";
+    private final static String MMLEND = "</math>";
     
     private Document doc;
     private JEuclidView jev;
     private MutableLayoutContext parameters;
-    private final static Graphics2D tmpgrph = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
-
-    private final static String mmlBeg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\"><math mode=\"display\" xmlns=\"http://www.w3.org/1998/Math/MathML\">";
-    private final static String mmlEnd = "</math>";
 
     /** 
      * Default constructor.
@@ -58,7 +58,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 	this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
 	this.parameters.setParameter(Parameter.MATHCOLOR, color);
 	this.parameters.setParameter(Parameter.MATHSIZE, fontSize);
-	this.jev = new JEuclidView((Node)contentToDocument(mmlBeg + content + mmlEnd), parameters, tmpgrph); 
+	this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
 	makeImage();
     }
         
@@ -84,11 +84,21 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 	}
     }
     
+/**
+ * Update the current graphic
+ */
     private void update() {
-	this.jev = new JEuclidView((Node)doc, parameters, tmpgrph);
+	this.jev = new JEuclidView((Node) doc, parameters, TEMPGRAPHIC);
 	makeImage();
     }
     
+
+/**
+ * Convert the content to a document
+ *
+ * @param content The content when want to transform
+ * @return the document
+ */
     private Document contentToDocument(final String content) {
 	try {
 	    doc = MathMLParserSupport.parseString(content);
@@ -102,28 +112,30 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 	return doc;
     }
 
-    private void makeImage () {
-	width = (int)Math.ceil(jev.getWidth()) + 2;
-	int W = (int)width;
-        final int ascent = (int)Math.ceil(jev.getAscentHeight());
-        height = (int)Math.ceil(jev.getDescentHeight()) + ascent;
-	int H = (int)height;
+
+/**
+ * Render the image
+ */
+    private void makeImage() {
+	this.width = (int) Math.ceil(jev.getWidth()) + 2;
+        final int ascent = (int) Math.ceil(jev.getAscentHeight());
+        this.height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
 	
-	BufferedImage bimg = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
+	BufferedImage bimg = new BufferedImage((int) this.width, (int) this.height, BufferedImage.TYPE_INT_ARGB);
 	
 	Graphics2D g2d = bimg.createGraphics();
 	
 	AffineTransform gt = new AffineTransform();
-	gt.translate (0, H);
-	gt.scale (1, -1d);
-	g2d.transform (gt);
+	gt.translate(0, this.height);
+	gt.scale(1, -1d);
+	g2d.transform(gt);
 	
 	g2d.setColor(new Color(255, 255, 255, 0));
-	g2d.fillRect(0, 0, W, H);
+	g2d.fillRect(0, 0, (int) this.width, (int) this.height);
 	
 	jev.draw(g2d, 0, ascent);
 	
-	int[] intData = ((DataBufferInt)bimg.getRaster().getDataBuffer()).getData();
+	int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
 	buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
     }
 }

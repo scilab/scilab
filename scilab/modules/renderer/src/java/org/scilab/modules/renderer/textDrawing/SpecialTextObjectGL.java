@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Calixte Denizet
- * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -60,7 +59,11 @@ public abstract class SpecialTextObjectGL {
 
     protected static byte[] ARGBtoRGBA(int[] pix) {
         byte[] bytes = new byte[pix.length * 4];
-        int p, r, g, b, a;
+        int p;
+		int r;
+		int g;
+		int b;
+		int a;
         int j = 0;
         for (int i = 0; i < pix.length; i++) {
             p = pix[i];
@@ -68,10 +71,10 @@ public abstract class SpecialTextObjectGL {
             r = (p >> 16) & 0xFF;
             g = (p >> 8) & 0xFF;
             b = (p >> 0) & 0xFF;
-            bytes[j] = (byte)r;
-            bytes[j+1] = (byte)g;
-            bytes[j+2] = (byte)b;
-            bytes[j+3] = (byte)a;
+            bytes[j] = (byte) r;
+            bytes[j + 1] = (byte) g;
+            bytes[j + 2] = (byte) b;
+            bytes[j + 3] = (byte) a;
             j += 4;
         }
         return bytes;

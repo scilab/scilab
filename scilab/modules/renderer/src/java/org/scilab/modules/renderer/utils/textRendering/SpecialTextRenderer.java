@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Calixte Denizet
- * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,7 +29,9 @@ import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
  * @author Calixte Denizet
  */
 public class SpecialTextRenderer {
-    
+
+    private static HashMap<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
+        
     /* I use the TextRenderer to render a string which isn't in mathml format
        although it starts with a '<' or '$'*/
     private TextRenderer textrenderer;
@@ -38,31 +39,30 @@ public class SpecialTextRenderer {
     private Color color = Color.black;
     private float fontSize;
 
-    private static HashMap<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
-    
     /**
      * Default constructor.
      * @param textrenderer a TextRenderer to display bad MathML code
+     * @param fontSize The size of the font
      */
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
 	this.textrenderer = textrenderer;
-	this.fontSize = fontSize + 4;
+	this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
-     * Construct a MathML object.
+     * Construct and return a MathML object.
      * @param content the MathML code
+	 * @return Returns the MathML object
      */
     public SpecialTextObjectGL getContent(final String content) {
 	SpecialTextObjectGL spe;
 	if (!table.containsKey(content)) {
 	    try {
-		spe = getSpecialTextObjectGL(content);
+			spe = getSpecialTextObjectGL(content);
 
-		table.put(content, spe);
-		return spe;
-	    }
-	    catch (RuntimeException e) {
+			table.put(content, spe);
+			return spe;
+	    } catch (RuntimeException e) { /* @TODO: Catcher l'exception 'RuntimeException' est prohibe. */
 		table.put(content, null);
 		return null;
 	    }
@@ -79,13 +79,15 @@ public class SpecialTextRenderer {
     /**
      * Get the boundaries.
      * @param content the special code
+	 * @return Returns the boundaries
      */
     public Rectangle2D getBounds(String content) {
 	SpecialTextObjectGL spe = getContent(content);
-	if (spe != null)
+	if (spe != null) {	
 	    return new Rectangle2D.Float(0, 0, spe.getWidth(), spe.getHeight());
-	else
+	} else {
 	    return textrenderer.getBounds(content);
+	}
     }
     
     /**
@@ -104,7 +106,7 @@ public class SpecialTextRenderer {
      * @param fontSize font size to use
      */
     public void setFontSize(float fontSize) {
-	this.fontSize = fontSize + 4;
+	this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
@@ -117,8 +119,7 @@ public class SpecialTextRenderer {
      */
     public void draw3D(String content, float x, float y, float z, float scaleFactor) {
 	SpecialTextObjectGL spe = getContent(content);
-	if (spe == null)
-	    {
+	if (spe == null) {
 		textrenderer.draw3D(content, x, y, z, scaleFactor);
 		return;
 	    }
@@ -136,14 +137,20 @@ public class SpecialTextRenderer {
 	gl.glEnable(GL.GL_TEXTURE_2D);
     }
 
+/**
+ * Return the specialTextObjectGL
+ *
+ * @param content the message itself
+ * @return The specialTextObjectGL
+ */
     private SpecialTextObjectGL getSpecialTextObjectGL(String content) {
 	switch (content.charAt(0)) {
-	case '<' : 
+	case '<': 
 	    return new MathMLObjectGL(content, color, fontSize);
-	case '$' :
+	case '$':
 	    return new TeXObjectGL(content, color, fontSize);
+		default:
+			return null;
 	}
-	
-	return null;
     }
 }
