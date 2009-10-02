@@ -43,13 +43,13 @@ TT=TT(1:size(XX,2));
 
 K=XX($,:)+XX(2,:).*(XX(3,:)-XX(4,:)).^2;
 xset('window',0);
-xbasc();
+clf();
 plot2d(TT',K');
 xset('window',1);
-xbasc();
+clf();
 plot2d(TT',XX(2,:)');
 xset('window',2);
-xbasc();
+clf();
 plot2d(TT',XX(1,:)');
 
 // Test #2

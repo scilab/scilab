@@ -36,7 +36,7 @@
 #define FORMAT_BIN_SCE_EXTENSION_FILES "load('%s');"
 #define FORMAT_GRAPH_GRAPHB_EXTENSION_FILES "edit_graph('%s');"
 #define FORMAT_COS_COSF_EXTENSION_FILES "scicos('%s');"
-#define FORMAT_SCI_EXTENSION_FILES "exec('%s');" /* "getf('%s');" */
+#define FORMAT_SCI_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
 #define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s\n'));"

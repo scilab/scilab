@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscipolynomials_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/polynomials
@@ -106,8 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_etcdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_rootdir)" \
-	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscipolynomials_la_includedir)"
+	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscipolynomials_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -180,7 +177,6 @@ DIST_SOURCES = $(libscipolynomials_la_SOURCES)
 DATA = $(libscipolynomials_la_etc_DATA) \
 	$(libscipolynomials_la_root_DATA) \
 	$(libscipolynomials_la_sci_gateway_DATA)
-HEADERS = $(libscipolynomials_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -539,12 +535,6 @@ libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 #### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
-
-#### polynomials : include files ####
-libscipolynomials_la_includedir = $(pkgincludedir)
-libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h \
-includes/dynlib_polynomials.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1145,26 +1135,6 @@ uninstall-libscipolynomials_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" && rm -f $$files
-install-libscipolynomials_la_includeHEADERS: $(libscipolynomials_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipolynomials_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipolynomials_la_includedir)"
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscipolynomials_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscipolynomials_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscipolynomials_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscipolynomials_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1251,9 +1221,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libscipolynomials_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1306,7 +1276,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscipolynomials_la_etcDATA \
-	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA
 
@@ -1355,7 +1324,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscipolynomials_la_etcDATA \
-	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1372,7 +1340,6 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscipolynomials_la_etcDATA \
-	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1382,7 +1349,6 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscipolynomials_la_etcDATA \
-	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

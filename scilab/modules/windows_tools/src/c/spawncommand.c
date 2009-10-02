@@ -205,8 +205,9 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 	{
 		if (pipe->OutputBuffer)
 		{
-			char *buffer = MALLOC(sizeof(char)*(strlen(pipe->OutputBuffer)*2));
-			strcpy(buffer,pipe->OutputBuffer);
+			int lenbuf = ((int)strlen(pipe->OutputBuffer) + 1) * 2;
+			char *buffer = MALLOC(sizeof(char)*lenbuf);
+			strcpy(buffer, pipe->OutputBuffer);
 
 			if (getScilabMode() == SCILAB_STD)
 			{

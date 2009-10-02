@@ -415,7 +415,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\connex.h"
+				>
+			</File>
+			<File
 				RelativePath=".\defs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dmtree.h"
 				>
 			</File>
 			<File
@@ -435,7 +443,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\loadg.h"
+				>
+			</File>
+			<File
 				RelativePath=".\paths.h"
+				>
+			</File>
+			<File
+				RelativePath=".\saveg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\transc.h"
 				>
 			</File>
 		</Filter>

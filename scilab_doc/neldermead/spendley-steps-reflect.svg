@@ -15,7 +15,7 @@
    inkscape:version="0.46"
    sodipodi:docname="spendley-steps-reflect.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="K:\ProjetTclrep\doc\neldermead\spendley-steps-reflect.png"
+   inkscape:export-filename="D:\Baudin\ProjetScilab\git\scilab\scilab_doc\neldermead\spendley-steps-reflect.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -48,16 +48,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="290.81781"
-     inkscape:cy="743.75079"
+     inkscape:zoom="1.4"
+     inkscape:cx="380.55244"
+     inkscape:cy="722.21344"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="975"
-     inkscape:window-x="0"
-     inkscape:window-y="22" />
+     inkscape:window-x="336"
+     inkscape:window-y="12" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -162,53 +162,43 @@
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.85944"
+       x="494.57373"
        y="257.93591"
        id="text3238"><tspan
          sodipodi:role="line"
          id="tspan3240"
-         x="453.85944"
+         x="494.57373"
          y="257.93591">R = Reflection #1</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.82852"
+       x="494.54282"
        y="170.49002"
        id="text3242"><tspan
          sodipodi:role="line"
          id="tspan3244"
-         x="453.82852"
+         x="494.54282"
          y="170.49002">H = Highest</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.97278"
+       x="494.68707"
        y="229.40387"
        id="text3246"><tspan
          sodipodi:role="line"
          id="tspan3248"
-         x="453.97278"
+         x="494.68707"
          y="229.40387">L = Lowest</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.91095"
+       x="494.62524"
        y="198.89841"
        id="text3250"><tspan
          sodipodi:role="line"
          id="tspan3252"
-         x="453.91095"
+         x="494.62524"
          y="198.89841">N = Next to highest</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.85944"
-       y="286.34427"
-       id="text2431"><tspan
-         sodipodi:role="line"
-         id="tspan2433"
-         x="453.85944"
-         y="286.34427">R2 = Reflection #2</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:3,1;stroke-dashoffset:0"
        d="M 86.785713,255.93362 C 105,241.6479 179.84812,203.11641 230.71429,197.00504 C 281.22842,190.93596 395.71429,201.29075 430.71429,215.93361"

@@ -19,19 +19,27 @@ namespace DotNetScilab
     class Scilab_cs_wrapper
     {
         //=============================================================================
+        [StructLayout(LayoutKind.Sequential)]
+        public struct api_Err
+        {
+            int iErr;
+            int iMsgCount;
+            String pstMsg;
+        }
+        //=============================================================================
         private const string CALL_SCILAB_DLL = "call_scilab.dll";
         private const string API_SCILAB_DLL = "api_scilab.dll";
         private const string GRAPHICS_DLL = "graphics.dll";
         private const string OUTPUT_STREAM_DLL = "scioutput_stream.dll";
         //=============================================================================
         /// <summary>
-        /// import SendScilabJob from C (see CallScilab.h)
+        /// import SendScilabJob from C (see call_scilab.h)
         /// </summary>
         [DllImport(CALL_SCILAB_DLL, CharSet = CharSet.Ansi)]
         public static extern int SendScilabJob([In]String job);
         //=============================================================================
         /// <summary>
-        /// import StartScilab from C (see CallScilab.h)
+        /// import StartScilab from C (see call_scilab.h)
         /// </summary>
         [DllImport(CALL_SCILAB_DLL, CharSet = CharSet.Ansi)]
         public static extern int StartScilab([In] String SCIpath,
@@ -39,13 +47,13 @@ namespace DotNetScilab
                                               [In] Int32[] Stacksize);
         //=============================================================================
         /// <summary>
-        /// import TerminateScilab from C (see CallScilab.h)
+        /// import TerminateScilab from C (see call_scilab.h)
         /// </summary>
         [DllImport(CALL_SCILAB_DLL, CharSet = CharSet.Ansi)]
         public static extern int TerminateScilab([In] String ScilabQuit);
         //=============================================================================
         /// <summary>
-        /// import DisableInteractiveMode from C (see CallScilab.h)
+        /// import DisableInteractiveMode from C (see call_scilab.h)
         /// </summary>
         [DllImport(CALL_SCILAB_DLL, CharSet = CharSet.Ansi)]
         public static extern void DisableInteractiveMode();

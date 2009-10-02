@@ -30,9 +30,9 @@ this = neldermead_configure (this,key,value)
 value = neldermead_cget (this,key)
 this = neldermead_display ( this )
 value = neldermead_get ( this , key )
-this = neldermead_restart ( this )
 this = neldermead_search ( this )
-[ this , xdata , ydata , zdata ] = neldermead_contour ( this , xmin , xmax , ymin , ymax , nx , ny )
+this = neldermead_restart ( this )
+[ this , result ] = neldermead_function ( this , x , index )
 </synopsis>
   </refsynopsisdiv>
 
@@ -45,11 +45,11 @@ this = neldermead_search ( this )
     <para>The optimization problem to solve is the minimization of a cost
     function, with bounds and nonlinear constraints</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 min f(x)
-l_i <= x_i <= h_i, i = 1,n
-g_i(x) <= 0, i = 1,nbineq
- ]]></programlisting>
+l_i &lt;= x_i &lt;= h_i, i = 1,n
+g_i(x) &lt;= 0, i = 1,nbineq
+ </programlisting>
 
     <para>where</para>
 
@@ -107,17 +107,15 @@ g_i(x) <= 0, i = 1,nbineq
           (k=2n is recommended by Box).</para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Design</title>
 
-    <para>
-      The neldermead component is built on top of the <link linkend="optimbase">optimbase</link>
-      and <link linkend="optimsimplex">optimsimplex</link> components.
-    </para>
+    <para>The neldermead component is built on top of the <link
+    linkend="optimbase">optimbase</link> and <link
+    linkend="optimsimplex">optimsimplex</link> components.</para>
   </refsection>
 
   <refsection>
@@ -208,7 +206,8 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-x0</term>
 
                     <listitem>
-                      <para>the initial guess.</para>
+                      <para>the initial guess, as a n x 1 column vector, where
+                      n is the number of variables.</para>
                     </listitem>
                   </varlistentry>
 
@@ -519,7 +518,9 @@ g_i(x) <= 0, i = 1,nbineq
                       <para>the coordinates of the vertices of the initial
                       simplex. If the -simplex0method option is set to
                       "given", these coordinates are used to compute the
-                      initial simplex.</para>
+                      initial simplex. This matrix is expected to have shape
+                      nbve x n where nbve is the number of vertices and n is
+                      the number of variables.</para>
                     </listitem>
                   </varlistentry>
 
@@ -599,9 +600,9 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-tolfstdeviationmethod</term>
 
                     <listitem>
-                      <para>set to "enabled" to enable the termination
+                      <para>set to %t to enable the termination
                       criteria based on the standard deviation of the function
-                      values in the simplex. The default value is "disabled".
+                      values in the simplex. The default value is %f.
                       If this criteria is triggered, the status of the
                       optimization is set to "tolfstdev".</para>
 
@@ -623,8 +624,8 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-tolsimplexizemethod</term>
 
                     <listitem>
-                      <para>set to "disabled" to disable the tolerance on the
-                      simplex size. The default value is "enabled". If this
+                      <para>set to %f to disable the tolerance on the
+                      simplex size. The default value is %t. If this
                       criteria is triggered, the status of the optimization is
                       set to "tolsize".</para>
 
@@ -658,10 +659,10 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-tolssizedeltafvmethod</term>
 
                     <listitem>
-                      <para>set to "enabled" to enable the termination
+                      <para>set to %t to enable the termination
                       criteria based on the size of the simplex and the
                       difference of function value in the simplex. The default
-                      value is "disabled". If this criteria is triggered, the
+                      value is %f. If this criteria is triggered, the
                       status of the optimization is set to
                       "tolsizedeltafv".</para>
 
@@ -684,9 +685,9 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-kelleystagnationflag</term>
 
                     <listitem>
-                      <para>set to 1 to enable the termination criteria using
+                      <para>set to %t to enable the termination criteria using
                       Kelley's stagnation detection, based on sufficient
-                      decrease condition. The default value is 0. If this
+                      decrease condition. The default value is %f. If this
                       criteria is triggered, the status of the optimization is
                       set to "kelleystagnation".</para>
                     </listitem>
@@ -696,10 +697,10 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-kelleynormalizationflag</term>
 
                     <listitem>
-                      <para>set to 0 to disable the normalization of the alpha
+                      <para>set to %f to disable the normalization of the alpha
                       coefficient in Kelley's stagnation detection, i.e. use
                       the value of the option -kelleystagnationalpha0 as is.
-                      Default value is 1, i.e. the simplex gradient of the
+                      Default value is %t, i.e. the simplex gradient of the
                       initial simplex is taken into account in the stagnation
                       detection.</para>
                     </listitem>
@@ -718,8 +719,8 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-restartflag</term>
 
                     <listitem>
-                      <para>set to 1 to enable the automatic restart of the
-                      algorithm. Default value is 0.</para>
+                      <para>set to %t to enable the automatic restart of the
+                      algorithm. Default value is %f.</para>
                     </listitem>
                   </varlistentry>
 
@@ -751,7 +752,7 @@ g_i(x) <= 0, i = 1,nbineq
                             is used. If the test finds that the status of the
                             optimization is "kelleystagnation", a restart is
                             performed. This status may be generated if the
-                            -kelleystagnationflag option is set to 1.</para>
+                            -kelleystagnationflag option is set to %t.</para>
                           </listitem>
                         </varlistentry>
                       </variablelist>
@@ -1000,7 +1001,8 @@ g_i(x) <= 0, i = 1,nbineq
                     <term>-xopt</term>
 
                     <listitem>
-                      <para>the x optimum</para>
+                      <para>the x optimum, as a n x 1 column vector, where n
+                      is the number of variables.</para>
                     </listitem>
                   </varlistentry>
 
@@ -1062,10 +1064,20 @@ g_i(x) <= 0, i = 1,nbineq
 
                     <listitem>
                       <para>a matrix containing the history of the simplex
-                      during the iterations. This matrix has rank nbiter x k x
-                      n, where nbiter is the number of iterations, k is the
-                      number of vertices in the simplex and n is the number of
-                      variables.</para>
+                      during the iterations. This matrix has rank nbiter x
+                      nbve x n, where nbiter is the number of iterations, nbve
+                      is the number of vertices in the simplex and n is the
+                      number of variables.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>-simplex0</term>
+
+                    <listitem>
+                      <para>the initial simplex. This is a simplex object,
+                      which is suitable for processing with the optimsimplex
+                      component.</para>
                     </listitem>
                   </varlistentry>
 
@@ -1074,8 +1086,8 @@ g_i(x) <= 0, i = 1,nbineq
 
                     <listitem>
                       <para>the optimum simplex. This is a simplex object,
-                      which is suitable for processing with the simplex
-                      interface.</para>
+                      which is suitable for processing with the optimsimplex
+                      component.</para>
                     </listitem>
                   </varlistentry>
 
@@ -1155,6 +1167,43 @@ g_i(x) <= 0, i = 1,nbineq
           </variablelist>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>[ this , result ] = neldermead_function ( this , x , index
+        )</term>
+
+        <listitem>
+          <para>Call the cost function and return the value.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>the point where the function is to be evaluated</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>index</term>
+
+              <listitem>
+                <para>optionnal, a flag to pass to the cost function (default
+                = 1). See the section "The cost function" for available values
+                of index.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
@@ -1168,9 +1217,9 @@ g_i(x) <= 0, i = 1,nbineq
     <para>In the more general case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = myfunction(x, index, data)
- ]]></programlisting>
+ </programlisting>
 
     <para>where</para>
 
@@ -1245,9 +1294,9 @@ function y = myfunction(x, index, data)
     <para>In the most simple case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = myfunction(x)
- ]]></programlisting>
+ </programlisting>
 
     <para>where x is the current point and y is the value of the cost. This
     case is associated with an unconstrained problem without any additionnal
@@ -1263,9 +1312,9 @@ function y = myfunction(x)
 
     <para>The output function must have the following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function outputcmd(state, data, myobj)
- ]]></programlisting>
+ </programlisting>
 
     <para>where</para>
 
@@ -1317,6 +1366,25 @@ function outputcmd(state, data, myobj)
                 <para>the number of function evaluations</para>
               </listitem>
             </varlistentry>
+
+            <varlistentry>
+              <term>simplex</term>
+
+              <listitem>
+                <para>the current simplex</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>step</term>
+
+              <listitem>
+                <para>the previous step in the algorithm. The following values
+                are available : "init", "done", "reflection", "expansion",
+                "insidecontraction", "outsidecontraction", "reflectionnext",
+                "shrink".</para>
+              </listitem>
+            </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
@@ -1364,31 +1432,31 @@ function outputcmd(state, data, myobj)
     <itemizedlist>
       <listitem>
         <para>By default, the status is "continue" and the terminate flag is
-        0.</para>
+        %f.</para>
       </listitem>
 
       <listitem>
         <para>The number of iterations is examined and compared to the
         -maxiter option : if the following condition</para>
 
-        <programlisting role="example"><![CDATA[ 
-iterations >= maxiter
- ]]></programlisting>
+        <programlisting role="example"> 
+iterations &gt;= maxiter
+ </programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
         <para>The number of function evaluations and compared to the
         -maxfunevals option is examined : if the following condition</para>
 
-        <programlisting role="example"><![CDATA[ 
-funevals >= maxfunevals
- ]]></programlisting>
+        <programlisting role="example"> 
+funevals &gt;= maxfunevals
+ </programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1397,7 +1465,7 @@ funevals >= maxfunevals
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1405,17 +1473,17 @@ funevals >= maxfunevals
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
- ]]></programlisting>
+              <programlisting role="example"> 
+abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
+ </programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1435,7 +1503,7 @@ abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1443,26 +1511,26 @@ abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolute
- ]]></programlisting>
+              <programlisting role="example"> 
+norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
+ </programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>The relative termination criteria on x works
         well if x at optimum is different from zero. In that case, the
         condition measures the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on the function value works if
+        <para>The absolute termination criteria on x works if
         the user has an accurate idea of the scale of the optimum x. If the
         optimum x is near 0, the relative tolerance will not work and the
         absolute tolerance is more appropriate.</para>
@@ -1475,7 +1543,7 @@ norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolu
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1483,18 +1551,18 @@ norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolu
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-st_deviation(fv) < tolfstdeviation
- ]]></programlisting>
+              <programlisting role="example"> 
+st_deviation(fv) &lt; tolfstdeviation
+ </programlisting>
 
               <para>is true where fv is an array containing the function
               values in the simplex, then the status is set to "tolfstdev" and
-              terminate is set to 1.</para>
+              terminate is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1506,7 +1574,7 @@ st_deviation(fv) < tolfstdeviation
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1514,18 +1582,18 @@ st_deviation(fv) < tolfstdeviation
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-ssize < tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
- ]]></programlisting>
+              <programlisting role="example"> 
+ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
+ </programlisting>
 
               <para>is true where simplexsize0 is the size of the simplex at
               iteration 0, then the status is set to "tolsize" and terminate
-              is set to 1.</para>
+              is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1538,7 +1606,7 @@ ssize < tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1546,23 +1614,23 @@ ssize < tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if both the following conditions</para>
 
-              <programlisting role="example"><![CDATA[ 
-ssize < tolsimplexizeabsolute 
- ]]></programlisting>
+              <programlisting role="example"> 
+ssize &lt; tolsimplexizeabsolute 
+ </programlisting>
 
-              <programlisting role="example"><![CDATA[ 
-shiftfv < toldeltafv
- ]]></programlisting>
+              <programlisting role="example"> 
+shiftfv &lt; toldeltafv
+ </programlisting>
 
               <para>is true where ssize is the current simplex size and
               shiftfv is the absolute value of the difference of function
               value between the highest and lowest vertices, then the status
-              is set to "tolsizedeltafv" and terminate is set to 1.</para>
+              is set to "tolsizedeltafv" and terminate is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1575,7 +1643,7 @@ shiftfv < toldeltafv
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1583,19 +1651,19 @@ shiftfv < toldeltafv
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-newfvmean <= oldfvmean - alpha * sg' * sg
- ]]></programlisting>
+              <programlisting role="example"> 
+newfvmean &lt;= oldfvmean - alpha * sg' * sg
+ </programlisting>
 
               <para>is true where newfvmean (resp. oldfvmean) is the function
               value average in the current iteration (resp. in the previous
               iteration), then the status is set to "kelleystagnation" and
-              terminate is set to 1. Here, alpha is a non-dimensional
+              terminate is set to %t. Here, alpha is a non-dimensional
               coefficient and sg is the simplex gradient.</para>
             </listitem>
           </varlistentry>
@@ -1632,9 +1700,9 @@ newfvmean <= oldfvmean - alpha * sg' * sg
           <para>in "Iterative Methods for Optimization", Kelley uses a
           normalized alpha, computed from the following formula</para>
 
-          <programlisting role="example"><![CDATA[ 
+          <programlisting role="example"> 
 alpha = alpha0 * sigma0 / nsg
- ]]></programlisting>
+ </programlisting>
 
           <para>where sigma0 is the size of the initial simplex and nsg is the
           norm of the simplex gradient for the initial guess point.</para>
@@ -1654,31 +1722,300 @@ alpha = alpha0 * sigma0 / nsg
   </refsection>
 
   <refsection>
+    <title>Spendley et al. implementation notes</title>
+
+    <para>The original paper may be implemented with several variations, which
+    might lead to different results. This section defines what algorithmic
+    choices have been used.</para>
+
+    <para>The paper states the following rules.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>"Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
+        a new simplex Sp by excluding the point Vp corresponding to y, and
+        replacing it by V* defined as above."</para>
+      </listitem>
+
+      <listitem>
+        <para>"Rule 2. If a result has occurred in (k + 1) successive
+        simplexes, and is not then eliminated by application of Rule 1, do not
+        move in the direction indicated by Rule 1, or at all, but discard the
+        result and replace it by a new observation at the same point."</para>
+      </listitem>
+
+      <listitem>
+        <para>"Rule 3. If y is the lowest reading in So , and if the next
+        observation made, y* , is the lowest reading in the new simplex S , do
+        not apply Rule 1 and return to So from Sp . Move out of S, by
+        rejecting the second lowest reading (which is also the second lowest
+        reading in So)."</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>We implement the following "rules" of the Spendley et al.
+    method.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Rule 1 is strictly applied, but the reflection is done by
+        reflection the high point, since we minimize a function instead of
+        maximizing it, like Spendley.</para>
+      </listitem>
+
+      <listitem>
+        <para>Rule 2 is NOT implemented, as we expect that the function
+        evaluation is not subject to errors.</para>
+      </listitem>
+
+      <listitem>
+        <para>Rule 3 is applied, ie reflection with respect to next to high
+        point.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The original paper does not mention any shrink step. When the
+    original algorithm cannot improve the function value with reflection
+    steps, the basic algorithm stops. In order to make the current
+    implementation of practical value, a shrink step is included, with
+    shrinkage factor sigma. This perfectly fits into to the spirit of the
+    original paper. Notice that the shrink step make the rule #3 (reflection
+    with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
+    required steps are the reflection and shrinkage. Never the less, the rule
+    #3 has been kept in order to make the algorithm as close as it can be to
+    the original.</para>
+  </refsection>
+
+  <refsection>
+    <title>Example #1</title>
+
+    <para>In the following example, we solve the Rosenbrock test case. We
+    begin by defining the Rosenbrock function, which takes 2 input arguments
+    and returns the objective. The classical starting point [-1.2 1.0] is
+    used. The neldermead_new creates a new neldermead object. Then we use the
+    neldermead_configure method to configure the parameters of the problem.
+    The initial simplex is computed from the axes and the single length 1.0
+    (this is the default, but is explicitely written here as an example). The
+    variable simplex algorithm by Nelder and Mead is used, which corresponds
+    to the -method "variable" option. The neldermead_search function performs
+    the search for the minimum. Once the minimum is found, the
+    neldermead_contour allows to compute the data required by the contour
+    function. This is possible since our problem involves only 2 parameters.
+    This function uses the cost function previously configured to compute the
+    required data. The contour plot is directly drawn from the data provided
+    by neldermead_contour. Then we plot the initial guess on the contour plot
+    as a blue dot. The neldermead_get function is used to get the optimum,
+    which is associated with the -xopt option. The optimum is plot on the
+    contour plot as a red dot.</para>
+
+    <programlisting role="example">
+mprintf("Defining Rosenbrock function...\n");
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
+endfunction
+x0 = [-1.2 1.0]';
+mprintf("x0=%s\n",strcat(string(x0)," "));
+mprintf("Creating object...\n");
+nm = neldermead_new ();
+mprintf("Configuring object...\n");
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",0);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+mprintf("Searching for minimum...\n");
+nm = neldermead_search(nm);
+mprintf("Plot contour...\n");
+xmin = -2.0 ; xmax = 2.0 ; ymin = -2.0 ; ymax = 2.0 ; nx = 100 ; ny = 100;
+stepx = (xmax - xmin)/nx
+xdata = xmin:stepx:xmax;
+stepy = (ymax - ymin)/ny
+ydata = ymin:stepy:ymax;
+for ix = 1:length(xdata)
+  for iy = 1:length(ydata)
+    experiment = [xdata(ix) ydata(iy)];
+    [ nm , fiexp ] = neldermead_function ( nm , experiment );
+    zdata ( ix , iy ) = fiexp;
+  end
+end
+wnum = 100001;
+my_handle             = scf(wnum);
+contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
+// Plot starting point
+mprintf("x0 : blue dot\n");
+plot(x0(1),x0(2));
+my_handle.children.children(1).children.mark_mode="on";
+my_handle.children.children(1).children.mark_size = 5;
+my_handle.children.children(1).children.mark_foreground = 2;
+mprintf("xopt : red dot\n");
+xopt = neldermead_get(nm,"-xopt");
+plot(xopt(1),xopt(2));
+my_handle.children.children(1).children.mark_mode="on";
+my_handle.children.children(1).children.mark_size = 5;
+my_handle.children.children(1).children.mark_foreground = 5;
+
+nm = neldermead_destroy(nm);
+</programlisting>
+
+    <para>The -verbose option allows to get detailed informations about the
+    current optimization process. The following is a sample output for an
+    optimization based on the Nelder and Mead variable-shape simplex
+    algorithm. Only the output corresponding to the iteration #156 is
+    displayed. In order to display specific outputs (or to create specific
+    output files and graphics), the -outputcommand option should be
+    used.</para>
+
+    <programlisting role="example">
+=================================================================
+Iteration #156 (total = 156)
+Function Eval #297
+Xopt : 1 1
+Fopt : 6.871176e-027
+DeltaFv : 2.880999e-026
+Center : 1 1
+Size : 2.548515e-013
+Vertex #1/3 : fv=0.000000, x=1.000000 1.000000
+Vertex #2/3 : fv=0.000000, x=1.000000 1.000000
+Vertex #3/3 : fv=0.000000, x=1.000000 1.000000
+nmplot_outputcmd (1)
+Reflect
+xbar=1 1
+Function Evaluation #298 is [1.155D-25] at [1 1]
+xr=[1 1], f(xr)=0.000000
+Contract - inside
+Function Evaluation #299 is [6.023D-27] at [1 1]
+xc=1 1, f(xc)=0.000000
+  &gt; Perform Inside Contraction
+Sort
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #2</title>
+
+    <para>In the following example, we show how to use the output command to
+    create specialized outputs. These outputs may be used to create specific
+    data files or make interactive graphic outputs.</para>
+
+    <para>We define the function "myoutputcmd", which takes the current state
+    as its first argument. The state is a string which can contain "init",
+    "iter" or "done", depending on the status of the optimization. The data
+    input argument is a tlist, which contains the data associated with the
+    current iteration. In this case, we use the fields to print a message in
+    the console. As another example of use, we could format the message so
+    that it uses LaTeX formatting rules, which may allow the user to directly
+    copy and paste the output into a LaTeX report.</para>
+
+    <programlisting role="example">
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+
+
+//
+// myoutputcmd --
+//  This command is called back by the Nelder-Mead
+//  algorithm.
+// Arguments
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//  data : the data at the current state
+//
+function myoutputcmd ( state , data )
+  iter = data.iteration
+  if ( state == "init" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "Initialization\n");
+  elseif ( state == "done" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "End of Optimization\n");
+  end
+  fc = data.funccount
+  fval = data.fval
+  x = data.x
+  simplex = data.simplex
+  // Simplex is a data structure, which can be managed
+  // by the optimsimplex class.
+  ssize = optimsimplex_size ( simplex )
+  mprintf ( "Iteration #%d, Feval #%d, Fval = %e, x = %s, Size = %e\n", iter, fc, fval, strcat(string(x)," "), ssize);
+endfunction
+
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",0);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_search(nm);
+nm = neldermead_destroy(nm);
+</programlisting>
+
+    <para>The previous script produces the following output.</para>
+
+    <programlisting role="example">
+=================================
+Initialization
+Iteration #0, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #1, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #2, Feval #6, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #3, Feval #8, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #4, Feval #10, Fval = 9.999182e+000, x = -1.0125 0.78125, Size = 5.970304e-001
+...
+Iteration #155, Feval #296, Fval = 2.024754e-026, x = 1 1, Size = 4.601219e-013
+Iteration #156, Feval #298, Fval = 6.871176e-027, x = 1 1, Size = 2.548515e-013
+Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
+=================================
+End of Optimization
+Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
+</programlisting>
+  </refsection>
+
+  <refsection>
     <title>TODO</title>
 
-    <variablelist>
-      <varlistentry>
-        <term>Box-Guin algorithm</term>
+    <itemizedlist>
+      <listitem>
+        <para>Add the Box-Guin algoritm as a 4th method.</para>
 
-        <listitem>
-          <para>add the Box-Guin algoritm as a 4th method</para>
+        <para>This algorithm solves an constrained optimization problem with a
+        variable sized simplex made of an arbitrary k number of vertices. This
+        is an update of Box's algorithm.</para>
+      </listitem>
 
-              <para>
-                This algorithm solves an constrained optimization problem with
-                a variable sized simplex made of an arbitrary k number of vertices.
-                This is an update of Box's algorithm.
-              </para>
-        </listitem>
-      </varlistentry>
+      <listitem>
+        <para>Add the optimization of the Rosenbrock test case, with the
+        interactive plot thanks to the -outputcommand option.</para>
+      </listitem>
 
-      <varlistentry>
-        <term>add examples</term>
+      <listitem>
+        <para>Add an option to let the user setup his own termination
+        criteria.</para>
 
-        <listitem>
-          <para>add the optimization of the Rosenbrock test case</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+        <para>This might be handy in case where the user try to reproduce the
+        behaviour of another algorithm (be it a software or a paper), where
+        none of the provided termination criteria match the required one. This
+        feature would allow to use our own termination criteria, without
+        modifying the internal source code of the component. This might be
+        dangerous if the user does not clearly understand what is going on.
+        But that might be very handy as well.</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
@@ -1714,18 +2051,20 @@ alpha = alpha0 * sigma0 / nsg
   <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2009</para>
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
+
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member>
-        <link linkend="optimbase">optimbase</link>
-      </member>
-      <member>
-        <link linkend="optimsimplex">optimsimplex</link>
-      </member>
+      <member><link linkend="optimbase">optimbase</link></member>
+
+      <member><link linkend="optimsimplex">optimsimplex</link></member>
+
+      <member><link linkend="optimsimplex">nmplot</link></member>
     </simplelist>
   </refsection>
 </refentry>

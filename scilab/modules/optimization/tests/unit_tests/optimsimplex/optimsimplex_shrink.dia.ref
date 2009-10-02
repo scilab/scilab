@@ -55,8 +55,9 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setn(s1,2);
 s1 = optimsimplex_setnbve(s1,3);
 newsimplex = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 s1 = optimsimplex_setallx ( s1 , newsimplex );
 s1 = optimsimplex_setallfv ( s1 , [-12.0 0.0 0.0]' );
@@ -64,9 +65,9 @@ s1 = optimsimplex_shrink ( s1 , rosenbrock );
 computed = optimsimplex_getall ( s1 );
 // The function value at vertex #1 is not re-computed, as expected.
 expected = [
-  -12.    0.     0.
-    6.5    0.5    0.
-    26.    0.     0.5
+  -12.    0.     0.   
+    6.5    0.5    0.   
+    26.    0.     0.5  
 ];
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy ( s1 );
@@ -90,9 +91,9 @@ s1 = optimsimplex_setall ( s1 , newsimplex );
 computed = optimsimplex_getall ( s1 );
 // The function value at vertex #1 is not re-computed, as expected.
 expected = [
-   -12.    0.     0.
-    6.5    0.5    0.
-    26.    0.     0.5
+   -12.    0.     0.   
+    6.5    0.5    0.   
+    26.    0.     0.5  
 ];
 assert_equal ( computed , expected );
 assert_equal ( myobj.nb , 2 );
@@ -113,11 +114,11 @@ s1 = optimsimplex_shrink ( s1 , rosenbrock );
 computed = optimsimplex_getall ( s1 );
 // The function value at vertex #1 is not re-computed, as expected.
 expected = [
-    12.    0.     0.
-    6.5    0.5    0.
-    26.    0.     0.5
-    6.5    0.5    0.5
-    0.     1.     1.
+    12.    0.     0.   
+    6.5    0.5    0.   
+    26.    0.     0.5  
+    6.5    0.5    0.5  
+    0.     1.     1.   
 ];
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy ( s1 );

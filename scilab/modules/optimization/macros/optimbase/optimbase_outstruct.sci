@@ -16,7 +16,7 @@
 //
 function  data = optimbase_outstruct ( this )
   if this.outputcommand == "" then
-    errmsg = sprintf("No output command is defined.")
+    errmsg = msprintf( gettext ( "%s: No output command is defined.") , "optimbase_outstruct" )
     error(errmsg)
   else
     data = tlist(["T_OPTDATA",...

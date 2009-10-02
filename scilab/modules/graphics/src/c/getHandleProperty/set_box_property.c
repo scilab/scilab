@@ -26,6 +26,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
 int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )

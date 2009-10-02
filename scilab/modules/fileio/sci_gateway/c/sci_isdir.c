@@ -20,9 +20,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "isdir.h"
@@ -31,8 +29,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_isdir(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t **pStVarOne = NULL;
+	int iType = 0;
 	int *lenStVarOne = NULL;
 	int m1 = 0, n1 = 0;
 
@@ -44,15 +44,33 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
 
-	if (getVarType(piAddressVarOne) != sci_strings)
+	strErr = getVarType(piAddressVarOne, &iType);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
+
+	if (iType != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
-	getVarDimension(piAddressVarOne, &m1, &n1);
+	strErr = getVarDimension(piAddressVarOne, &m1, &n1);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
+
 
 	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 	if (lenStVarOne == NULL)
@@ -78,7 +96,12 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
 
 	for (i = 0; i< m1 * n1; i++)
 	{
@@ -98,7 +121,13 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 	freeArrayOfWideString(pStVarOne, m1 * n1);
 
-	createMatrixOfBoolean(Rhs + 1, m1, n1, results);
+	strErr = createMatrixOfBoolean(Rhs + 1, m1, n1, results);
+	if(strErr.iErr)
+	{
+		printError(strErr, 0);
+		return 0;
+	}
+
 	LhsVar(1) = Rhs + 1;
 
 	if (results) {FREE(lenStVarOne); lenStVarOne = NULL;}

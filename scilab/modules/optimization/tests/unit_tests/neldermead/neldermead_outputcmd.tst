@@ -79,8 +79,8 @@ function myoutputcmd ( state , data )
   _OUTPUCMDFLAG_ = 1
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);

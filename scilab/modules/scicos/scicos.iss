@@ -49,7 +49,12 @@ Source: modules\{#SCICOS}\jar\*.jar; DestDir: {app}\modules\{#SCICOS}\jar; Flags
 Source: modules\{#SCICOS}\chm\*.chm; DestDir: {app}\modules\{#SCICOS}\chm; Components: {#COMPN_SCICOS}
 #endif
 ;
-Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\includes\scicos.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\includes\scicos_free.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\includes\scicos_malloc.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\includes\scicos-def.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
+
 ;
 Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;

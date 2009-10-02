@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) ENPC
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,89 +27,129 @@
 #include "charEncoding.h"
 #include "warningmode.h"
 #include "PATH_MAX.h"
-static char cur_dir[PATH_MAX];
 /*--------------------------------------------------------------------------*/
-int scichdir(char *path,int *err)
+int scichdirW(wchar_t *wcpath)
 {
-	*err=0;
-	if (path == (char*) NULL)
+#ifndef _MSC_VER
+	char *path = NULL;
+	if (wcpath == NULL)
 	{
-		*cur_dir = '\0';
-		return (0);
+		return 1;
 	}
 
-#ifndef _MSC_VER
+	path = wide_string_to_UTF8(wcpath);
+	if (path == NULL)
+	{
+		return 1;
+	}
+
 	if (chdir(path) == -1)
 	{
 		if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path);
-		*err=1;
+		if (path) {FREE(path); path = NULL;}
+		return 1;
 	}
-#else
-	/**/
-	{
-		wchar_t *pwTemp = to_wide_string(path);
 
-		if ( _wchdir(pwTemp) )
+	if (path) {FREE(path); path = NULL;}
+
+#else
+	if (wcpath == NULL)
+	{
+		return 1;
+	}
+
+	if ( _wchdir(wcpath) )
+	{
+		switch (errno)
 		{
-			switch (errno)
+		case ENOENT:
 			{
-			case ENOENT:
-				if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path);
-				break;
-			case EINVAL:
+				if ( getWarningMode() ) 
+				{
+					char *path = wide_string_to_UTF8(wcpath);
+					if (path)
+					{
+						sciprint(_("Can't go to directory %s.\n"), path);
+						FREE(path);
+						path = NULL;
+					}
+				}
+			}
+			break;
+		case EINVAL:
+			{
 				if ( getWarningMode() ) sciprint(_("Invalid buffer.\n"));
-				break;
-			default:
+			}
+			break;
+		default:
+			{
 				if ( getWarningMode() ) sciprint(_("Unknown error.\n"));
 			}
-			*err = 1;
 		}
-		FREE(pwTemp);
+		return 1;
 	}
 #endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int scigetcwd(char **path,int *lpath,int *err)
+int scichdir(char *path)
 {
+	int ierr = 1;
+	wchar_t *wcpath = NULL;
+	if (path == NULL) return ierr;
+	wcpath = to_wide_string(path);
+	if (wcpath == NULL) return ierr;
+	ierr = scichdirW(wcpath);
+	FREE(wcpath);
+	wcpath = NULL;
+	return ierr;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t * scigetcwdW(int *err)
+{
+	wchar_t *wcCurrentDir = NULL;
+	
 #ifndef _MSC_VER
-	if (GETCWD(cur_dir, PATH_MAX) == (char*) 0)
-#else
-	wchar_t wcdir[PATH_MAX];
-	if ( _wgetcwd(wcdir, PATH_MAX) == (wchar_t*) 0 )
-#endif
+	char currentDir[PATH_MAX + 1];
+	if (GETCWD(currentDir, PATH_MAX) == NULL)
 	{
-		/* get current working dir */
 		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
-		*cur_dir = '\0';
-		*lpath = 0;
 		*err = 1;
 	}
-  else
+	else
 	{
-#ifdef _MSC_VER
-		char *tmpcdir = wide_string_to_UTF8(wcdir);
-		if (tmpcdir)
-		{
-			strcpy(cur_dir,tmpcdir);
-			FREE(tmpcdir);
-			tmpcdir = NULL;
-			*path = cur_dir;
-			*lpath =(int)strlen(cur_dir);
-			*err = 0;
-		}
-		else
-		{
-			*cur_dir = '\0';
-			*lpath=0;
-			*err = 1;
-		}
-#else
-	*path = cur_dir;
-	*lpath =(int)strlen(cur_dir);
-	*err = 0;
-#endif
+		wcCurrentDir = to_wide_string(currentDir);
+		*err = 0;
 	}
-	return 0;
+#else
+	wchar_t wcdir[PATH_MAX + 1];
+	if ( _wgetcwd(wcdir, PATH_MAX) == NULL )
+	{
+		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
+		*err = 1;
+	}
+	else
+	{
+		wcCurrentDir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcdir) + 1));
+		if (wcCurrentDir)
+		{
+			wcscpy(wcCurrentDir, wcdir);
+		}
+	}
+#endif
+	return wcCurrentDir;
+}
+/*--------------------------------------------------------------------------*/
+char * scigetcwd(int *err)
+{
+	char *currentDir = NULL;
+	wchar_t *wcCurrentDir = scigetcwdW(err);
+	if (wcCurrentDir)
+	{
+		currentDir = wide_string_to_UTF8(wcCurrentDir);
+		FREE(wcCurrentDir);
+		wcCurrentDir = NULL;
+	}
+	return currentDir;
 }
 /*--------------------------------------------------------------------------*/

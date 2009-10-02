@@ -35,24 +35,41 @@
 //
 function [ this , result ] = optimbase_function ( this , x , index )
   if this.fun == "" then
-    errmsg = sprintf("Empty function (use -fun option).")
+    errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
     error(errmsg)
   end
   if typeof(this.costfargument)=="string" then
+    // There is no additionnal argument for the cost function
     if (~isdef('index','local')) then
       result = this.fun ( x );
     else
       result = this.fun ( x , index );
     end
   else
+    // There IS one additionnal argument for the cost function
     if (~isdef('index','local')) then
-      result = this.fun ( x , this.costfargument );
+      // The caller did not provide the value of index
+      if ( this.nbineqconst == 0 ) then
+        // There is one additionnal argument, but no nonlinear constraints,
+        // therefore, there is no need for a index value.
+        [ result , this.costfargument ] = this.fun ( x , this.costfargument );
+      else
+        // Set the index, so that, if an additionnal cost function argument is provided,
+        // it can be appended at the end.
+        index = 1;
+        [ result , this.costfargument ] = this.fun ( x , index , this.costfargument );
+      end
     else
-      result = this.fun ( x , index , this.costfargument );
+      // There is one additionnal argument, and the caller provided the value of index.
+      [ result , this.costfargument ] = this.fun ( x , index , this.costfargument );
     end
   end
   this.funevals = this.funevals + 1;
-  optimbase_log ( this , sprintf ( "Function Evaluation #%d is [%s] at [%s]" , ...
-    this.funevals , strcat(string(result)," ") , strcat(string(x)," ") ))
+  if this.verbose == 1 then
+    msg = sprintf ( "Function Evaluation #%d is [%s] at [%s]" , ...
+      this.funevals , strcat(string(result)," ") , strcat(string(x)," ") )
+    this = optimbase_log ( this , msg )
+  end
 endfunction
+
 

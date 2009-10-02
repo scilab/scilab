@@ -14,16 +14,18 @@
 #define __FINDFILES_H__
 
 #include "dynlib_fileio.h"
+#include "BOOL.h"
 
 /** 
 * Finding all files in a directory with a given filespec
 * @param path example : "c:\"
 * @param filespec example : "*.sce"
 * @param[out] sizeListReturned the size of the files list
+* @param[in] if TRUE display a warning if path does not exist
 * @return all the files except '.' & '..'
 */
 
-FILEIO_IMPEXP char **findfiles(char *path,char *filespec,int *sizeListReturned);
+FILEIO_IMPEXP char **findfiles(char *path,char *filespec,int *sizeListReturned,  BOOL warning);
 
 #endif /* __FINDFILES_H__ */
 /*--------------------------------------------------------------------------*/ 

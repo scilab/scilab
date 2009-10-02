@@ -16,7 +16,7 @@
 #define __GW_INTERPOLATION_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_interpolation.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 INTERPOLATION_IMPEXP int gw_interpolation(void);
 /*--------------------------------------------------------------------------*/

@@ -18,6 +18,6 @@
 //   the requirements of simplex methods.
 //
 function [ f , this ] = neldermead_costf ( x , this )
-  [this.optbase , f] = optimbase_function ( this.optbase , x );
+  [ this.optbase , f ] = optimbase_function ( this.optbase , x );
 endfunction
 

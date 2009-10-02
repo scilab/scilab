@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="interp2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interp2d</refname>
+
+    <refpurpose>bicubic spline (2d) evaluation function</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp</term>
+
+        <listitem>
+          <para>real vectors or matrices of same size</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y,C</term>
+
+        <listitem>
+          <para>real vectors defining a bicubic spline or sub-spline function
+          (called <literal>s</literal> in the following)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>(optional) string defining the evaluation of
+          <literal>s</literal> outside [x(1),x(nx)]x[y(1),y(ny)]</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zp</term>
+
+        <listitem>
+          <para>vector or matrix of same format than <literal>xp</literal> and
+          <literal>yp</literal>, elementwise evaluation of
+          <literal>s</literal> on these points.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dzpdx, dzpdy</term>
+
+        <listitem>
+          <para>vectors (or matrices) of same format than
+          <literal>xp</literal> and <literal>yp</literal>, elementwise
+          evaluation of the first derivatives of <literal>s</literal> on these
+          points.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d2zpdxx, d2zpdxy, d2zpdyy</term>
+
+        <listitem>
+          <para>vectors (or matrices) of same format than
+          <literal>xp</literal> and <literal>yp</literal>, elementwise
+          evaluation of the second derivatives of <literal>s</literal> on
+          these points.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Given three vectors <literal>(x,y,C)</literal> defining a bicubic
+    spline or sub-spline function (see <link linkend="splin2d">splin2d</link>)
+    this function evaluates <emphasis>s</emphasis> (and <emphasis>ds/dx,
+    ds/dy, d2s/dxx, d2s/dxy, d2s/dyy</emphasis> if needed) at
+    <emphasis>(xp(i),yp(i))</emphasis> :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../mml/interp2_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>The <literal>out_mode</literal> parameter defines the evaluation
+    rule for extrapolation, i.e. for <emphasis>(xp(i),yp(i)) not in
+    [x(1),x(nx)]x[y(1),y(ny)]</emphasis>:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>an extrapolation by zero is done</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>extrapolation by Nan</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>the extrapolation is defined as follows :</para>
+
+          <programlisting role = ""><![CDATA[ 
+s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                      of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
+ ]]></programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"natural"</term>
+
+        <listitem>
+          <para>the extrapolation is done by using the nearest bicubic-patch
+          from (x,y).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>: <literal>s</literal> is extended by periodicity.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+// see the examples of splin2d
+
+// this example shows some different extrapolation features
+// interpolation of cos(x)cos(y)
+n = 7;  // a n x n interpolation grid
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+m = 80; // discretisation parameter of the evaluation grid
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz1 = interp2d(XX,YY, x, y, C, "C0");
+zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+zz3 = interp2d(XX,YY, x, y, C, "periodic");
+zz4 = interp2d(XX,YY, x, y, C, "natural");
+clf()
+subplot(2,2,1)
+plot3d(xx, yy, zz1, flag=[2 6 4])
+xtitle("extrapolation with the C0 outmode")
+subplot(2,2,2)
+plot3d(xx, yy, zz2, flag=[2 6 4])
+xtitle("extrapolation with the by_zero outmode")
+subplot(2,2,3)
+plot3d(xx, yy, zz3, flag=[2 6 4])
+xtitle("extrapolation with the periodic outmode")
+subplot(2,2,4)
+plot3d(xx, yy, zz4, flag=[2 6 4])
+xtitle("extrapolation with the natural outmode")
+xselect()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin2d">splin2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

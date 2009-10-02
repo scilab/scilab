@@ -11,6 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3159
 //
 // <-- Short Description -->
+warning('off')
 x = [1 2 3 2 2 3 5 4];
 refsx_sort =  [  5.    4.    3.    3.    2.    2.    2.    1. ];
 refsi_sort =  [  7.    8.    3.    6.    2.    4.    5.    1. ];
@@ -22,3 +23,4 @@ if or(refsx_sort<>sx_sort) then bugmes();quit;end
 if or(refsi_sort<>si_sort) then bugmes();quit;end
 if or(refsx_gsort<>sx_gsort) then bugmes();quit;end
 if or(refsi_gsort<>si_gsort) then bugmes();quit;end
+warning('on')

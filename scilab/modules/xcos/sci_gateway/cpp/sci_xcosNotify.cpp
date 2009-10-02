@@ -37,10 +37,19 @@ int sci_xcosNotify(char *fname,unsigned long fname_len)
         int *piAddressVarOne = NULL;
         char **pStVarOne = NULL;
         int *lenStVarOne = NULL;
+        int iType = 0;
+        StrErr strErr;
 
         getVarAddressFromPosition(1, &piAddressVarOne);
 
-        if ( getVarType(piAddressVarOne) != sci_strings )
+        strErr = getVarType(piAddressVarOne, &iType);
+        if(strErr.iErr)
+          {
+            printError(strErr, 0);
+            return false;
+          }
+        
+        if ( iType != sci_strings )
           {
             Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
             return 0;

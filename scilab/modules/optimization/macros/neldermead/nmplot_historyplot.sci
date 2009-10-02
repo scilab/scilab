@@ -16,6 +16,9 @@
 //  mytitle , myxlabel , myylabel : the parameters of the plot
 //
 function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
+  if (~isdef('datafile','local')) then
+    datafile = this.foptfn;
+  end
   if (~isdef('mytitle','local')) then
     mytitle = "";
   end

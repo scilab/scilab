@@ -187,25 +187,27 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		Rectangle clip = g.getClipBounds();
 		int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
 		int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
-
-		while (rowStartOffset <= endOffset) {
-			try {
-				if (isCurrentLine(rowStartOffset))
-					g.setColor(getCurrentLineForeground());
-				else
-					g.setColor(getForeground());
-
-				String lineNumber = getTextLineNumber(rowStartOffset);
-				int stringWidth = fontMetrics.stringWidth(lineNumber);
-				int x = getOffsetX(availableWidth, stringWidth) + insets.left;
-				int y = getOffsetY(rowStartOffset, fontMetrics);
-				g.drawString(lineNumber, x, y);
-
-				rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
+		try {
+			while (rowStartOffset <= endOffset) {
+			
+					if (isCurrentLine(rowStartOffset))
+						g.setColor(getCurrentLineForeground());
+					else
+						g.setColor(getForeground());
+					
+					String lineNumber = getTextLineNumber(rowStartOffset);
+					int stringWidth = fontMetrics.stringWidth(lineNumber);
+					int x = getOffsetX(availableWidth, stringWidth) + insets.left;
+					int y = getOffsetY(rowStartOffset, fontMetrics);
+					g.drawString(lineNumber, x, y);
+	
+					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
+	
+	
 			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-			}
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 

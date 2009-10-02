@@ -97,7 +97,7 @@ m = tabul(X,"i")
 n = 50000;
 X = grand(n,1,"bin",70,0.5);
 m = tabul(X,"i");
-xbasc()
+clf()
 plot2d3(m(:,1), m(:,2)/n)
 xtitle("empirical probabilities of B(70,0.5)")
 
@@ -107,7 +107,7 @@ bigstr = strcat(text," ");                  // put all the lines in a big string
 sep =  [" " "," "." ";" "*" ":" "-" """"];  // words separators 
 words = tokens(bigstr, sep);                // cut the big string into words
 m = tabul(words);                           // computes occurrences of each word
-[occ , p] = sort(m(2));                     // sort by decreasing frequencies
+[occ , p] = gsort(m(2));                     // sort by decreasing frequencies
 results = [m(1)(p) string(occ)]             // display result
  ]]></programlisting>
   </refsection>

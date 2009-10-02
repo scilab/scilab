@@ -109,7 +109,7 @@ deff('[in]=u(t)','if t<3 then in=0;else in=1;end');
 y1=csim(u,instants,sl);plot2d(instants',y1');
 clear u;
 //             Impulse response;
-yi=csim('imp',instants,sl);xbasc();plot2d(instants',yi');
+yi=csim('imp',instants,sl);clf();plot2d(instants',yi');
 yi1=csim('step',instants,s*sl);plot2d(instants',yi1');
 
 //              Discretization

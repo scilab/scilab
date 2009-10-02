@@ -36,7 +36,7 @@ end
 if rhs<43 then flag='no';end
 realtimeinit(0.1);
  
-xbasc();
+clf();
 fig=gcf();
 a=gca();
 a.data_bounds=matrix(rect,2,2);

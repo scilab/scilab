@@ -45,45 +45,48 @@ data = optimbase_outstruct ( this )
 [ this , p ] = optimbase_proj2bnds ( this ,  x )
 this = optimbase_stoplog ( this , msg )
 [this , terminate , status] = optimbase_terminate (this , previousfopt , currentfopt , previousxopt , currentxopt )
+this = optimbase_checkcostfun ( this )
+[ this , isfeasible ] = optimbase_isinbounds ( this , x )
+[ this , isfeasible ] = optimbase_isinnonlinconst ( this , x )
 </synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Purpose</title>
 
-    <para>
-      The goal of this component is to provide a building block for
-      optimization methods. The goal is to provide a building block for a large
-      class of specialized optimization methods. This component manages</para>
-      <itemizedlist>
-        <listitem>
-          <para>the number of variables,</para>
-        </listitem>
+    <para>The goal of this component is to provide a building block for
+    optimization methods. The goal is to provide a building block for a large
+    class of specialized optimization methods. This component manages</para>
 
-        <listitem>
-          <para>the minimum and maximum bounds,</para>
-        </listitem>
+    <itemizedlist>
+      <listitem>
+        <para>the number of variables,</para>
+      </listitem>
 
-        <listitem>
-          <para>the number of non linear inequality constraints,</para>
-        </listitem>
+      <listitem>
+        <para>the minimum and maximum bounds,</para>
+      </listitem>
 
-        <listitem>
-          <para>the cost function,</para>
-        </listitem>
+      <listitem>
+        <para>the number of non linear inequality constraints,</para>
+      </listitem>
 
-        <listitem>
-          <para>the logging system,</para>
-        </listitem>
+      <listitem>
+        <para>the cost function,</para>
+      </listitem>
 
-        <listitem>
-          <para>various termination criteria,</para>
-        </listitem>
+      <listitem>
+        <para>the logging system,</para>
+      </listitem>
 
-        <listitem>
-          <para>etc...</para>
-        </listitem>
-      </itemizedlist>
+      <listitem>
+        <para>various termination criteria,</para>
+      </listitem>
+
+      <listitem>
+        <para>etc...</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
@@ -115,23 +118,24 @@ this = optimbase_stoplog ( this , msg )
       </listitem>
 
       <listitem>
-        <para>Manage various termination criteria, including </para>
-	<itemizedlist>
-            <listitem>
-              <para>maximum number of iterations,</para>
-            </listitem>
+        <para>Manage various termination criteria, including</para>
 
-            <listitem>
-              <para>tolerance on function value (relative or absolute),</para>
-            </listitem>
+        <itemizedlist>
+          <listitem>
+            <para>maximum number of iterations,</para>
+          </listitem>
 
-            <listitem>
-              <para>tolerance on x (relative or absolute),</para>
-            </listitem>
+          <listitem>
+            <para>tolerance on function value (relative or absolute),</para>
+          </listitem>
 
-            <listitem>
-              <para>maximum number of evaluations of cost function,</para>
-            </listitem>
+          <listitem>
+            <para>tolerance on x (relative or absolute),</para>
+          </listitem>
+
+          <listitem>
+            <para>maximum number of evaluations of cost function,</para>
+          </listitem>
         </itemizedlist>
       </listitem>
 
@@ -197,11 +201,11 @@ this = optimbase_stoplog ( this , msg )
 
     <para>The optimization problem to solve is the following</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 min f(x)
-l_i <= x_i <= h_i, i = 1,n
-g_i(x) <= 0, i = 1,nbineq
- ]]></programlisting>
+l_i &lt;= x_i &lt;= h_i, i = 1,n
+g_i(x) &lt;= 0, i = 1,nbineq
+ </programlisting>
 
     <para>where</para>
 
@@ -362,8 +366,8 @@ g_i(x) <= 0, i = 1,nbineq
                       <para>the method used for the tolerance on function
                       value in the termination criteria.</para>
 
-                      <para>The following values are available : "enabled",
-                      "disabled" (default is "disabled"). If this criteria is
+                      <para>The following values are available : %t,
+                      %f (default is %f). If this criteria is
                       triggered, the status of the optimization is set to
                       "tolf".</para>
                     </listitem>
@@ -394,8 +398,8 @@ g_i(x) <= 0, i = 1,nbineq
                       <para>the method used for the tolerance on x in the
                       termination criteria.</para>
 
-                      <para>The following values are available : "enabled",
-                      "disabled" (default is "enabled"). If this criteria is
+                      <para>The following values are available : %t,
+                      %f (default is %t). If this criteria is
                       triggered, the status of the optimization is set to
                       "tolx".</para>
                     </listitem>
@@ -1108,7 +1112,7 @@ g_i(x) <= 0, i = 1,nbineq
               <term>terminate</term>
 
               <listitem>
-                <para>1 if the algorithm must terminate, 0 if the algorithm
+                <para>%t if the algorithm must terminate, %f if the algorithm
                 must continue</para>
               </listitem>
             </varlistentry>
@@ -1117,8 +1121,8 @@ g_i(x) <= 0, i = 1,nbineq
               <term>status</term>
 
               <listitem>
-                <para>if terminate = 1, the detailed status of the
-                termination, as a string. If terminate = 0, the status is
+                <para>if terminate = %t, the detailed status of the
+                termination, as a string. If terminate = %f, the status is
                 "continue".</para>
 
                 <para>The following status are available :</para>
@@ -1167,6 +1171,88 @@ g_i(x) <= 0, i = 1,nbineq
           </variablelist>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>this = optimbase_checkcostfun ( this )</term>
+
+        <listitem>
+          <para>Check that the cost function is correctly connected. Generate
+          an error if there is one. Takes into account for the cost function
+          at the initial guess x0 only. If there are nonlinear constraints,
+          check that the index flag is correctly used for index=1,2 or
+          3.</para>
+
+          <para>This function requires at least one call to the cost function
+          to make the necessary checks.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[ this , isfeasible ] = optimbase_isinbounds ( this , x )</term>
+
+        <listitem>
+          <para>Returns isfeasible = %t if the given point satisfies bounds
+          constraints. Returns isfeasible = %f if the given point is not in
+          the bounds.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>isfeasible</term>
+
+              <listitem>
+                <para>a boolean</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[ this , isfeasible ] = optimbase_isinnonlinconst ( this , x
+        )</term>
+
+        <listitem>
+          <para>Returns isfeasible = %t if the given point satisfies the
+          nonlinear constraints. Returns isfeasible = %f if the given point
+          does not satisfy the nonlinear constraints.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>isfeasible</term>
+
+              <listitem>
+                <para>a boolean</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
@@ -1180,9 +1266,9 @@ g_i(x) <= 0, i = 1,nbineq
     <para>In the more general case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = myfunction(x, index, data)
- ]]></programlisting>
+ </programlisting>
 
     <para>where</para>
 
@@ -1257,9 +1343,9 @@ function y = myfunction(x, index, data)
     <para>In the most simple case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = myfunction(x)
- ]]></programlisting>
+ </programlisting>
 
     <para>where x is the current point and y is the value of the cost. This
     case is associated with an unconstrained problem without any additionnal
@@ -1275,9 +1361,9 @@ function y = myfunction(x)
 
     <para>The output function must have the following header</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function outputcmd(state, data, myobj)
- ]]></programlisting>
+ </programlisting>
 
     <para>where</para>
 
@@ -1382,24 +1468,24 @@ function outputcmd(state, data, myobj)
         <para>The number of iterations is examined and compared to the
         -maxiter option : if the following condition</para>
 
-        <programlisting role="example"><![CDATA[ 
-iterations >= maxiter
- ]]></programlisting>
+        <programlisting role="example"> 
+iterations &gt;= maxiter
+ </programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
         <para>The number of function evaluations and compared to the
         -maxfunevals option is examined : if the following condition</para>
 
-        <programlisting role="example"><![CDATA[ 
-funevals >= maxfunevals
- ]]></programlisting>
+        <programlisting role="example"> 
+funevals &gt;= maxfunevals
+ </programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1421,12 +1507,12 @@ funevals >= maxfunevals
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
- ]]></programlisting>
+              <programlisting role="example"> 
+abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
+ </programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1446,7 +1532,7 @@ abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the tolerance on x is just skipped.</para>
@@ -1454,26 +1540,26 @@ abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"><![CDATA[ 
-norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolute
- ]]></programlisting>
+              <programlisting role="example"> 
+norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
+ </programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>The relative termination criteria on x works
         well if x at optimum is different from zero. In that case, the
         condition measures the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on the function value works if
+        <para>The absolute termination criteria on x works if
         the user has an accurate idea of the scale of the optimum x. If the
         optimum x is near 0, the relative tolerance will not work and the
         absolute tolerance is more appropriate.</para>
@@ -1493,7 +1579,7 @@ norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolu
     the algorithm. After the optimization is performed, the optimum is
     retrieved with quiery features.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -1506,7 +1592,7 @@ nbvar = optimbase_cget(opt,"-numberofvariables");
 opt = optimbase_configure(opt,"-function",rosenbrock);
 [this,f] = optimbase_function(opt, [0.0 0.0]);
 opt = optimbase_destroy(opt);
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -1519,26 +1605,26 @@ opt = optimbase_destroy(opt);
     <title>TODO</title>
 
     <itemizedlist>
-        <listitem>
-          <para>manage equality constraints</para>
-        </listitem>
+      <listitem>
+        <para>manage equality constraints</para>
+      </listitem>
 
-        <listitem>
-          <para>manage linear constraints</para>
-        </listitem>
+      <listitem>
+        <para>manage linear constraints</para>
+      </listitem>
 
-        <listitem>
-          <para>manage quadratic objective</para>
-        </listitem>
+      <listitem>
+        <para>manage quadratic objective</para>
+      </listitem>
 
-        <listitem>
-          <para>manage linear objective</para>
-        </listitem>
+      <listitem>
+        <para>manage linear objective</para>
+      </listitem>
 
-        <listitem>
-          <para>methods with derivatives : add a flag to manage for the
-          derivatives of the cost function</para>
-        </listitem>
+      <listitem>
+        <para>methods with derivatives : add a flag to manage for the
+        derivatives of the cost function</para>
+      </listitem>
     </itemizedlist>
   </refsection>
 </refentry>

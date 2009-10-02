@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libsciboolean_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/boolean
@@ -106,8 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciboolean_la_etcdir)" \
 	"$(DESTDIR)$(libsciboolean_la_rootdir)" \
-	"$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libsciboolean_la_includedir)"
+	"$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciboolean_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -149,7 +146,6 @@ SOURCES = $(libsciboolean_la_SOURCES)
 DIST_SOURCES = $(libsciboolean_la_SOURCES)
 DATA = $(libsciboolean_la_etc_DATA) $(libsciboolean_la_root_DATA) \
 	$(libsciboolean_la_sci_gateway_DATA)
-HEADERS = $(libsciboolean_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -429,12 +425,6 @@ libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 ####�boolean : gateway declaration ####
 libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
-
-####�boolean : include files ####
-libsciboolean_la_includedir = $(pkgincludedir)
-libsciboolean_la_include_HEADERS = includes/gw_boolean.h \
-includes/matboolean.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -744,26 +734,6 @@ uninstall-libsciboolean_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)" && rm -f $$files
-install-libsciboolean_la_includeHEADERS: $(libsciboolean_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciboolean_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_includedir)"
-	@list='$(libsciboolean_la_include_HEADERS)'; test -n "$(libsciboolean_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciboolean_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciboolean_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libsciboolean_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciboolean_la_include_HEADERS)'; test -n "$(libsciboolean_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciboolean_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciboolean_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -850,9 +820,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)" "$(DESTDIR)$(libsciboolean_la_rootdir)" "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)" "$(DESTDIR)$(libsciboolean_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)" "$(DESTDIR)$(libsciboolean_la_rootdir)" "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -904,7 +874,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciboolean_la_etcDATA \
-	install-libsciboolean_la_includeHEADERS \
 	install-libsciboolean_la_rootDATA \
 	install-libsciboolean_la_sci_gatewayDATA
 
@@ -953,7 +922,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciboolean_la_etcDATA \
-	uninstall-libsciboolean_la_includeHEADERS \
 	uninstall-libsciboolean_la_rootDATA \
 	uninstall-libsciboolean_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -970,7 +938,6 @@ uninstall-am: uninstall-libsciboolean_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libsciboolean_la_etcDATA \
-	install-libsciboolean_la_includeHEADERS \
 	install-libsciboolean_la_rootDATA \
 	install-libsciboolean_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -979,7 +946,6 @@ uninstall-am: uninstall-libsciboolean_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libsciboolean_la_etcDATA \
-	uninstall-libsciboolean_la_includeHEADERS \
 	uninstall-libsciboolean_la_rootDATA \
 	uninstall-libsciboolean_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

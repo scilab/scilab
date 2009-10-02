@@ -71,7 +71,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -155,7 +155,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -241,7 +241,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -332,7 +332,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -609,6 +609,14 @@
 				</File>
 				<File
 					RelativePath=".\string_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\libjvm_export.def"
 					>
 				</File>
 			</Filter>

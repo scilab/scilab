@@ -15,7 +15,6 @@
 #include <wchar.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "dynlib_localization.h"
 #include "MALLOC.h"
 
 #ifdef __cplusplus
@@ -53,18 +52,18 @@ extern "C" {
 * @param[in] UTF string
 * @return wide char string converted
 */
-LOCALIZATION_IMPEXP wchar_t *to_wide_string(char *_UTFStr);
+wchar_t *to_wide_string(char *_UTFStr);
 
 /**
 * convert a wide char string to UTF-8
 * @param[in] wide char string
 * @return UTF string converted
 */
-LOCALIZATION_IMPEXP char *wide_string_to_UTF8(wchar_t *_wide);
+char *wide_string_to_UTF8(wchar_t *_wide);
 
 /*file management with UTF filename*/
 #ifdef _MSC_VER
-LOCALIZATION_IMPEXP int wcstat(char* filename, struct _stat *st);
+int wcstat(char* filename, struct _stat *st);
 #endif
 
 #ifdef _MSC_VER

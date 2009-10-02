@@ -8,7 +8,7 @@
 // demo of macros portrait & fchamp
 //  limit circle
 
-xbasc();
+clf();
 part1()
 // phase portrait : dimension 2
 portrait(cycllim,'default',[-2,-2,2,2],[500,0.1],'f',[0,1;0.5,2]);

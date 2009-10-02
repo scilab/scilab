@@ -19,7 +19,7 @@ function g1=graph_simp(g)
   [ir ic]=find(ta==he);
   ta(ic)=[];he(ic)=[];
   p=round(log(n)/log(10));q=10^(p+4);
-  w=ta'*q+he';[w1 iw]=sort(w);
+  w=ta'*q+he';[w1 iw]=gsort(w);
   ww=w1(2:$)-w1(1:($-1));
   [ir ic]=find(ww==0);
   index=iw(ir);

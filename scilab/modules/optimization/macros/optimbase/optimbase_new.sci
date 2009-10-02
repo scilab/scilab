@@ -12,22 +12,39 @@
 //   Creates a new Optimization object.
 //
 function newobj = optimbase_new ()
-  newobj = tlist(["T_OPTIMIZATION",...
-    "verbose",...
-    "x0","fx0",...
-    "xopt","fopt",...
-    "tolfunabsolute","tolfunrelative","tolfunmethod",...
-    "tolxabsolute","tolxrelative","tolxmethod" ,...
-    "funevals","maxfunevals",...
-    "iterations","maxiter",...
-    "fun","status", ...
-    "historyfopt","historyxopt",...
-    "verbosetermination",...
-    "outputcommand",...
-    "outputcommandarg","numberofvariables",...
-    "storehistory","costfargument",...
-    "boundsmin","boundsmax",...
-    "nbineqconst"]);
+  newobj = tlist(["T_OPTIMIZATION"
+    "verbose"
+    "x0"
+    "fx0"
+    "xopt"
+    "fopt"
+    "tolfunabsolute"
+    "tolfunrelative"
+    "tolfunmethod"
+    "tolxabsolute"
+    "tolxrelative"
+    "tolxmethod"
+    "funevals"
+    "maxfunevals"
+    "iterations"
+    "maxiter"
+    "fun"
+    "status"
+    "historyfopt"
+    "historyxopt"
+    "verbosetermination"
+    "outputcommand"
+    "outputcommandarg"
+    "numberofvariables"
+    "storehistory"
+    "costfargument"
+    "boundsmin"
+    "boundsmax"
+    "nbineqconst"
+    "logfile"
+    "logfilehandle"
+    "logstartup"
+    ]);
   // The number of variables to optimize
   newobj.numberofvariables = 0
   // The verbose option, controlling the amount of messages
@@ -42,10 +59,10 @@ function newobj = optimbase_new ()
   newobj.maxfunevals = 100;
   // The maximum number of iterations
   newobj.maxiter = 100;
-  // Possible values : "enabled", "disabled"
+  // Possible values : %f, %t
   // This criteria is suitable for functions which minimum is 
   // associated with a function value equal to 0.
-  newobj.tolfunmethod = "disabled";
+  newobj.tolfunmethod = %f;
   // The absolute tolerance on function value
   newobj.tolfunabsolute = 0.0;
   // The relative tolerance on function value
@@ -62,8 +79,8 @@ function newobj = optimbase_new ()
   newobj.xopt = 0;
   // The optimum function value
   newobj.fopt = 0;
-  // Possible values : "enabled", "disabled"
-  newobj.tolxmethod = "enabled";
+  // Possible values : %f, %t
+  newobj.tolxmethod = %t;
   // The status of the optimization
   newobj.status = "";
   // The command called back for output
@@ -83,7 +100,7 @@ function newobj = optimbase_new ()
   // function.
   newobj.costfargument = "";
   // The flag which enables/disables the storing of the history
-  newobj.storehistory = 0;
+  newobj.storehistory = %f;
   // The array to store the history for xopt
   newobj.historyxopt = list();
   // The array to store the history for fopt
@@ -94,4 +111,12 @@ function newobj = optimbase_new ()
   newobj.boundsmin = [];
   // The number of nonlinear inequality constraints
   newobj.nbineqconst = 0;
+  // The name of the log file
+  newobj.logfile = "";
+  // The handle for the log file
+  newobj.logfilehandle = 0;
+  // Set to %t when the logging is started up
+  newobj.logstartup = %f;
 endfunction
+
+

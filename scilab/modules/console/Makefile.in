@@ -46,7 +46,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -69,8 +68,7 @@ host_triplet = @host@
 @GIWS_TRUE@am__append_1 = giws
 @SWIG_TRUE@am__append_2 = swig
 @GUI_TRUE@am__append_3 = libsciconsole.la 
-DIST_COMMON = $(libsciconsole_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/console
@@ -117,8 +115,7 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciconsole_la_etcdir)" \
-	"$(DESTDIR)$(libsciconsole_la_rootdir)" \
-	"$(DESTDIR)$(libsciconsole_la_includedir)"
+	"$(DESTDIR)$(libsciconsole_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciconsole_disable_la_LIBADD =
 am_libsciconsole_disable_la_OBJECTS =  \
@@ -183,7 +180,6 @@ SOURCES = $(libsciconsole_disable_la_SOURCES) \
 DIST_SOURCES = $(libsciconsole_disable_la_SOURCES) \
 	$(libsciconsole_la_SOURCES)
 DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA)
-HEADERS = $(libsciconsole_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -486,21 +482,6 @@ libsciconsole_la_LIBADD = $(top_builddir)/modules/action_binding/libsciaction_bi
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i
-
-#### console : include files ####
-libsciconsole_la_includedir = $(pkgincludedir)
-libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
-includes/dynlib_console.h \
-includes/ClearConsolePart.h \
-includes/ConsolePrintf.h \
-includes/ConsoleRead.h \
-includes/GetCharWithoutOutput.h \
-includes/InitializeConsole.h \
-includes/PromptToHome.h \
-includes/ScilabLinesUpdate.h \
-includes/SetConsolePrompt.h \
-includes/ConsoleIsWaitingForInput.h
-
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1
@@ -869,26 +850,6 @@ uninstall-libsciconsole_la_rootDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciconsole_la_rootdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciconsole_la_rootdir)" && rm -f $$files
-install-libsciconsole_la_includeHEADERS: $(libsciconsole_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciconsole_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_includedir)"
-	@list='$(libsciconsole_la_include_HEADERS)'; test -n "$(libsciconsole_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciconsole_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciconsole_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libsciconsole_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciconsole_la_include_HEADERS)'; test -n "$(libsciconsole_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciconsole_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciconsole_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -976,9 +937,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libsciconsole_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1032,7 +993,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciconsole_la_etcDATA \
-	install-libsciconsole_la_includeHEADERS \
 	install-libsciconsole_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -1080,7 +1040,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciconsole_la_etcDATA \
-	uninstall-libsciconsole_la_includeHEADERS \
 	uninstall-libsciconsole_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1096,7 +1055,6 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libsciconsole_la_etcDATA \
-	install-libsciconsole_la_includeHEADERS \
 	install-libsciconsole_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1104,7 +1062,6 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libsciconsole_la_etcDATA \
-	uninstall-libsciconsole_la_includeHEADERS \
 	uninstall-libsciconsole_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 

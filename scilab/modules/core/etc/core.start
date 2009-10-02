@@ -11,9 +11,6 @@
 
 // load temporary functions needed by all others
 // =============================================================================
-
-load("SCI/modules/fileio/macros/pathconvert.bin");
-
 if WITH_HELPTOOLS then
 	load(SCI+"/modules/helptools/macros/add_module_help_chapter.bin");
 	load(SCI+"/modules/helptools/macros/add_help_chapter.bin");

@@ -15,7 +15,8 @@ src/cpp/api_list.cpp \
 src/cpp/api_poly.cpp \
 src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
-src/cpp/api_pointer.cpp
+src/cpp/api_pointer.cpp \
+src/cpp/api_error.cpp
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -76,7 +77,6 @@ includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
-includes/api_scilab.h \
-includes/dynlib_api_scilab.h
+includes/api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

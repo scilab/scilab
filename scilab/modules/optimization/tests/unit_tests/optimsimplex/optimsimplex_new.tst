@@ -52,14 +52,16 @@ endfunction
 // Test optimsimplex_new with a matrix of coordinates
 //
 coords = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 s1 = optimsimplex_new ( coords );
 computed = optimsimplex_getallx ( s1 );
 expected = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 assert_equal ( computed , expected );
 computed = optimsimplex_getn(s1);
@@ -73,8 +75,9 @@ s1 = optimsimplex_destroy(s1);
 // a function
 //
 coords = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 s1 = optimsimplex_new ( coords , rosenbrock );
 computed = optimsimplex_getall ( s1 );
@@ -100,8 +103,9 @@ function [ y , myobj ] = mycostf ( x , myobj )
   myobj.nb = myobj.nb + 1
 endfunction
 coords = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 [ s1 , myobj ] = optimsimplex_new ( coords , mycostf , myobj );
 computed = optimsimplex_getall ( s1 );
@@ -121,8 +125,11 @@ s1 = optimsimplex_destroy ( s1 );
 // Test optimsimplex_new with a matrix of coordinates made of k=5 vertices
 //
 coords = [
-0.0 1.0 0.0 1.0 2.0
-0.0 0.0 1.0 1.0 2.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
 ];
 s1 = optimsimplex_new ( coords , rosenbrock );
 computed = optimsimplex_getall ( s1 );
@@ -130,7 +137,7 @@ expected = [
     1.      0.    0.  
     100.    1.    0.  
     101.    0.    1.  
-    0.    1.    1.  
+    0.      1.    1.  
     401.    2.    2.  
 ];
 assert_equal ( computed , expected );

@@ -34,6 +34,11 @@ HDF5_SCILAB_IMPEXP int writeInterger16Matrix(int _iFile, char* _pstDatasetName, 
 HDF5_SCILAB_IMPEXP int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData32);
 HDF5_SCILAB_IMPEXP int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _piData64);
 
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned char* _piData8);
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned short* _piData16);
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned int* _piData32);
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned long long* _piData64);
+
 HDF5_SCILAB_IMPEXP int writeSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 HDF5_SCILAB_IMPEXP int writeSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 

@@ -7,6 +7,43 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then pause,end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then pause,end
+endfunction
+
 // 
 // Test #1 : Without parameters 
 //
@@ -67,4 +104,30 @@ if op.Display <> "notify" then pause,end
 if op.MaxFunEvals <> "200*numberofvariables" then pause,end
 if op.MaxIter <> "200*numberofvariables" then pause,end
 clear op
+
+//
+// Test where the first input argument is not a struct
+//
+cmd = "optimset (''foo'',''MaxFunEvals'',100)";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimset: Odd number of arguments : the first argument is expected to be a struct, but is a string";
+assert_equal ( computed , expected );
+//
+// Test where the key is unknown
+//
+cmd = "optimset (''foo'',100)";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimset: Unrecognized parameter name ''foo''.";
+assert_equal ( computed , expected );
+
+//
+// Test where the algorithm is unknown
+//
+cmd = "optimset (''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimset: No default options available: the function ''foo'' does not exist on the path.";
+assert_equal ( computed , expected );
 
