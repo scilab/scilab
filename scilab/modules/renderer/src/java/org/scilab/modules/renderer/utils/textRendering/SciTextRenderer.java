@@ -40,10 +40,10 @@ public class SciTextRenderer {
 	private TextRenderer renderer;
     
 	/**  Object for MathML/LaTex rendering */
-        private SpecialTextRenderer speRenderer;
-        /* End */
+	private SpecialTextRenderer speRenderer;
+	/* End */
 	
-        /** font size of the renderer object */
+	/** font size of the renderer object */
 	private float scaleFactor;
 	
 	private boolean useFractionalMetrics;
@@ -54,7 +54,7 @@ public class SciTextRenderer {
 	 * @param renderer mapped text renderer
 	 */
 	public SciTextRenderer(TextRenderer renderer, float fontSize) {
-	        this.fontSize = fontSize;
+		this.fontSize = fontSize;
 		this.renderer = renderer;
 		this.speRenderer = new SpecialTextRenderer(renderer, fontSize);
 
@@ -89,7 +89,7 @@ public class SciTextRenderer {
 		}
 
 		// with OpenGL strings, angle is already set
-	        if (useFractionalMetrics) {
+		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
 		} else {
 			// we need to add a little offset othrwise texture interpolation
@@ -179,7 +179,7 @@ public class SciTextRenderer {
 	 */
 	public void setColor(double red, double green, double blue) {
 		/* Set also for the MathML / LaTeX rendering */
-	        speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
+		speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
@@ -190,7 +190,7 @@ public class SciTextRenderer {
 	 */
 	public void setColor(double[] color) {
 		/* Set also for the MathML / LaTeX rendering */
-	        speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
+		speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
@@ -201,10 +201,10 @@ public class SciTextRenderer {
 	 * @return rectangle with the position, width and height.
 	 */
 	public Rectangle2D getBounds(String str) {
-	        Rectangle2D res; 
+		Rectangle2D res; 
 		
 		/* Set also for the MathML / LaTeX rendering */
-	        if (str.charAt(0) == '<' || str.charAt(0) == '$') {
+		if (str.charAt(0) == '<' || str.charAt(0) == '$') {
 		    res = speRenderer.getBounds(str);
 		} else {
 		    res = renderer.getBounds(str);

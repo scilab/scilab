@@ -45,8 +45,8 @@ public class SpecialTextRenderer {
      * @param fontSize The size of the font
      */
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
-	this.textrenderer = textrenderer;
-	this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
+		this.textrenderer = textrenderer;
+		this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
@@ -55,25 +55,25 @@ public class SpecialTextRenderer {
 	 * @return Returns the MathML object
      */
     public SpecialTextObjectGL getContent(final String content) {
-	SpecialTextObjectGL spe;
-	if (!table.containsKey(content)) {
-	    try {
-			spe = getSpecialTextObjectGL(content);
+		SpecialTextObjectGL spe;
+		if (!table.containsKey(content)) {
+			try {
+				spe = getSpecialTextObjectGL(content);
 
-			table.put(content, spe);
-			return spe;
-	    } catch (RuntimeException e) { /* @TODO: Catcher l'exception 'RuntimeException' est prohibe. */
-		table.put(content, null);
-		return null;
-	    }
-	}
+				table.put(content, spe);
+				return spe;
+			} catch (RuntimeException e) { /* @TODO: Catcher l'exception 'RuntimeException' est prohibe. */
+				table.put(content, null);
+				return null;
+			}
+		}
     
-	spe = table.get(content);
-	if (spe != null) {
-	    spe.setColor(color);
-	    spe.setFontSize(fontSize);
-	}
-	return spe;
+		spe = table.get(content);
+		if (spe != null) {
+			spe.setColor(color);
+			spe.setFontSize(fontSize);
+		}
+		return spe;
     }
     
     /**
@@ -82,12 +82,12 @@ public class SpecialTextRenderer {
 	 * @return Returns the boundaries
      */
     public Rectangle2D getBounds(String content) {
-	SpecialTextObjectGL spe = getContent(content);
-	if (spe != null) {	
-	    return new Rectangle2D.Float(0, 0, spe.getWidth(), spe.getHeight());
-	} else {
-	    return textrenderer.getBounds(content);
-	}
+		SpecialTextObjectGL spe = getContent(content);
+		if (spe != null) {	
+			return new Rectangle2D.Float(0, 0, spe.getWidth(), spe.getHeight());
+		} else {
+			return textrenderer.getBounds(content);
+		}
     }
     
     /**
@@ -98,7 +98,7 @@ public class SpecialTextRenderer {
      * @param a alpha channel
      */
     public void setColor(float r, float g, float b, float a) {
-	this.color = new Color(r, g, b, a);
+		this.color = new Color(r, g, b, a);
     }
     
     /**
@@ -106,7 +106,7 @@ public class SpecialTextRenderer {
      * @param fontSize font size to use
      */
     public void setFontSize(float fontSize) {
-	this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
+		this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
@@ -118,23 +118,23 @@ public class SpecialTextRenderer {
      * @param scaleFactor the scale factor used in the TextRenderer
      */
     public void draw3D(String content, float x, float y, float z, float scaleFactor) {
-	SpecialTextObjectGL spe = getContent(content);
-	if (spe == null) {
-		textrenderer.draw3D(content, x, y, z, scaleFactor);
-		return;
+		SpecialTextObjectGL spe = getContent(content);
+		if (spe == null) {
+			textrenderer.draw3D(content, x, y, z, scaleFactor);
+			return;
 	    }
 	
-	GL gl = GLU.getCurrentGL();
+		GL gl = GLU.getCurrentGL();
 	
-	/* The method begin3DRendering of the object TextRenderer calls 
-	   the method of the same name in object Texture and it enables 
-	   texturing. When TEXTURE_2D is enabled, commands for drawing
-	   don't work, so I disable it.
-	 */
-	gl.glDisable(GL.GL_TEXTURE_2D);
-	gl.glRasterPos2f(x, y);
-	gl.glDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, spe.getBuffer());
-	gl.glEnable(GL.GL_TEXTURE_2D);
+		/* The method begin3DRendering of the object TextRenderer calls 
+		   the method of the same name in object Texture and it enables 
+		   texturing. When TEXTURE_2D is enabled, commands for drawing
+		   don't work, so I disable it.
+		*/
+		gl.glDisable(GL.GL_TEXTURE_2D);
+		gl.glRasterPos2f(x, y);
+		gl.glDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, spe.getBuffer());
+		gl.glEnable(GL.GL_TEXTURE_2D);
     }
 
 /**
@@ -144,13 +144,13 @@ public class SpecialTextRenderer {
  * @return The specialTextObjectGL
  */
     private SpecialTextObjectGL getSpecialTextObjectGL(String content) {
-	switch (content.charAt(0)) {
-	case '<': 
-	    return new MathMLObjectGL(content, color, fontSize);
-	case '$':
-	    return new TeXObjectGL(content, color, fontSize);
-		default:
-			return null;
-	}
+		switch (content.charAt(0)) {
+			case '<': 
+				return new MathMLObjectGL(content, color, fontSize);
+			case '$':
+				return new TeXObjectGL(content, color, fontSize);
+			default:
+				return null;
+		}
     }
 }

@@ -27,21 +27,21 @@ public abstract class SpecialTextObjectGL {
      * Return a byte-buffer used to draw content
      */
     public Buffer getBuffer() {
-	return this.buffer;
+		return this.buffer;
     }
     
     /**
      * Return the height of the content
      */
     public float getHeight() {
-	return this.height;
+		return this.height;
     }
     
     /**
      * Return the width of the content
      */
     public float getWidth() {
-	return this.width;
+		return this.width;
     }
     
     /**
