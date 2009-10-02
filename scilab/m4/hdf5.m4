@@ -30,11 +30,14 @@ AC_ARG_WITH(hdf5_library,
 		)
 		
 if test "x$with_hdf5_include" != "xyes"; then
+	save_CFLAGS="$CFLAGS"
+	CFLAGS="-I$with_fftw_include"
 	HDF5_CFLAGS="-I$with_hdf5_include"
     AC_CHECK_HEADER([hdf5.h],
 		["$HDF5_CFLAGS"],
 		[AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5 in $with_hdf5_include. Please install the dev package])]
 	)
+	CFLAGS="$save_CFLAGS"
 else
 	HDF5_CFLAGS=""
     AC_CHECK_HEADER([hdf5.h],
