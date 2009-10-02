@@ -32,6 +32,10 @@ public class H5Read {
 	return H5.H5Fopen(fileName, HDF5Constants.H5F_ACC_RDONLY, HDF5Constants.H5P_DEFAULT);
     }
 
+    public static void closeFile(int fileID) throws HDF5LibraryException {
+    	H5.H5Fclose(fileID);
+    }
+
     public static String getRootType(int fileId) throws NullPointerException, HDF5LibraryException, HDF5Exception {
 	return readAttribute(getRootId(fileId), H5ScilabConstant.SCILAB_CLASS);
     }
