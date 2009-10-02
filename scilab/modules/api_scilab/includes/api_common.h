@@ -18,6 +18,14 @@ extern "C" {
 #endif
 
 
+typedef struct api_Err
+{
+	int iErr;
+	int iMsgCount;
+	char* pstMsg[1024];
+} StrErr;
+
+#include "api_error.h"
 /* generics functions */
 
 /**
@@ -26,7 +34,7 @@ extern "C" {
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
- int getVarAddressFromPosition(int _iVar, int** _piAddress);
+StrErr getVarAddressFromPosition(int _iVar, int** _piAddress);
 
 /**
  * Get memory address of a variable from the variable position
@@ -34,28 +42,30 @@ extern "C" {
  * @param[out] _pstName variable name
  * @return if the operation successed (0) or not ( !0 )
  */
- int getVarNameFromPosition(int _iVar, char* _pstName);
+StrErr getVarNameFromPosition(int _iVar, char* _pstName);
+
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
- int getVarAddressFromName(char* _pstName, int** _piAddress);
+StrErr getVarAddressFromName(char* _pstName, int** _piAddress);
 
 /**
  * Get variable type
  * @param[in] _piAddress variable address
+ * @param[out] returns _piType variable type
  * @return scilab variable type ( sci_matrix, sci_strings, ... )
  */
- int getVarType(int* _piAddress);
+StrErr getVarType(int* _piAddress, int* _piType);
 
 /**
 * Get variable type  from the variable name
 * @param[in] _piAddress variable address
 * @return scilab variable type ( sci_matrix, sci_strings, ... )
 */
- int getNamedVarType(char* _pstName);
+StrErr getNamedVarType(char* _pstName, int* _piType);
 
 /**
  * Get complex information
@@ -78,7 +88,7 @@ extern "C" {
  * @param[out] _piCols Number of cols
  * @return if the operation successed (0) or not ( !0 )
  */
- int getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
+StrErr getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
 
 /**
 * Get named variable dimension
@@ -87,7 +97,7 @@ extern "C" {
 * @param[out] _piCols Number of cols
 * @return if the operation successed (0) or not ( !0 )
 */
- int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
+StrErr getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
 
 /**
  * check if a variable is a matrix form ( row x col )
@@ -110,7 +120,7 @@ extern "C" {
  * @param[out] _piMode return process mode ( 0 -> All, 1 -> Row, 2 -> Col )
  * @return if the operation successed (0) or not ( !0 )
  */
- int getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
+StrErr getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
 
 /**
  * get dimension for variable, extract value from a single value
@@ -118,7 +128,7 @@ extern "C" {
  * @param[out] _piVal return value
  * @return if the operation successed (0) or not ( !0 )
  */
- int getDimFromVar(int* _piAddress, int* _piVal);
+StrErr getDimFromVar(int* _piAddress, int* _piVal);
 
 /**
 * get dimension for a named variable, extract value from a single value
@@ -126,7 +136,14 @@ extern "C" {
 * @param[out] _piVal return value
 * @return if the operation successed (0) or not ( !0 )
 */
- int getDimFromNamedVar(char* _pstName, int* _piVal);
+StrErr getDimFromNamedVar(char* _pstName, int* _piVal);
+
+/**
+* Get Rhs value from variable Address
+* @param[in] _piAddress varaible address
+* @return rhs value of the variable, if failed returns 0
+*/
+int getRhsFromAddress(int* _piAddress);
 
 #ifdef __cplusplus
 }

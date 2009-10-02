@@ -24,7 +24,7 @@ extern "C" {
  * @param[out] _piBool return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
+StrErr getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -35,7 +35,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
+StrErr allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -46,7 +46,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
+StrErr createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Create boolean named variable
@@ -56,7 +56,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
+StrErr createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read boolean named variable
@@ -66,7 +66,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[out] _piBool return data
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
+StrErr readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
 #ifdef __cplusplus
 }

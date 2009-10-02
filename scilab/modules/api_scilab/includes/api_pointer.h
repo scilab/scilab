@@ -23,8 +23,7 @@ extern "C" {
  * @param[out] _pvPtr return pointer
  * @return if the operation successed (0) or not ( !0 )
  */
- int getPointer(int* _piAddress, void** _pvPtr);
-
+StrErr getPointer(int* _piAddress, void** _pvPtr);
 
 /**
  * Alloc pointer variable
@@ -32,15 +31,7 @@ extern "C" {
  * @param[out] _pvPtr return pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocPointer(int _iVar, void** _pvPtr);
-
-/**
- * @todo
- * @param[in] _piAddress variable address
- * @param[out] _pvPtr return pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
- */
- int fillPointer(int *_piAddress, void** _pvPtr);
+StrErr allocPointer(int _iVar, void** _pvPtr);
 
 /**
  * Create pointer variable
@@ -48,7 +39,7 @@ extern "C" {
  * @param[in] _pvPtr pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
- int createPointer(int _iVar, void* _pvPtr);
+StrErr createPointer(int _iVar, void* _pvPtr);
 
 #ifdef __cplusplus
 }
