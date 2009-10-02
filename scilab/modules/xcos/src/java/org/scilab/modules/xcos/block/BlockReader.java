@@ -24,6 +24,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -33,26 +34,32 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
+import com.mxgraph.model.mxGeometry;
+
 public class BlockReader {
 
 
     private static void INFO(String msg) {
-	//System.err.println("[INFO] BlockReader : "+msg);
+	System.err.println("[INFO] BlockReader : "+msg);
     }
-    
+
     private static void WARNING(String msg) {
 	System.err.println("[WARNING] BlockReader : "+msg);
     }
-    
+
 
     private static void DEBUG(String msg) {
-	//System.err.println("[DEBUG] BlockReader : "+msg);
+	System.err.println("[DEBUG] BlockReader : "+msg);
     }
 
     public static HashMap<String, List> readDiagramFromFile(String hdf5File) {
 	ScilabMList data = new ScilabMList();
+
 	HashMap<String, List> result = new HashMap<String, List>();
+	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
+
 	List<BasicBlock> blocks = new ArrayList<BasicBlock>();
+	List<BasicPort[]> links = new ArrayList<BasicPort[]>();
 	double minX = Double.MAX_VALUE;
 	double minY = Double.MAX_VALUE;
 
@@ -60,33 +67,94 @@ public class BlockReader {
 	    int fileId = H5Read.openFile(hdf5File);
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
-	    if(isAValidScs_mStructure(data)) {
-		int nbBlocks = getNbBlocks(data);
+	    if(!isAValidScs_mStructure(data)) { throw new WrongStructureException(); }
+	    int nbObjs = getNbObjs(data);
 
-		for (int i = 0 ; i < nbBlocks ; ++i) {
-		    BasicBlock currentBlock = new BasicBlock("temp");
-		    INFO("Reading Block "+ i);
-		    try {
+	    // First read all Block
+	    for (int i = 0 ; i < nbObjs ; ++i) {
+		try {
+		    if(isBlock(data, i)) {
+			BasicBlock currentBlock = new BasicBlock("temp");
+			INFO("Reading Block "+ i);
 			fillBlockStructure(getBlockAt(data, i), currentBlock);
+			currentBlock.setOrdering(i);
+			indexedBlock.put(i + 1, currentBlock);
+			blocks.add(currentBlock);
+			INFO("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
+			minX = Math.min(minX, currentBlock.getGeometry().getX());
+			minY = Math.min(minY, currentBlock.getGeometry().getY());
 		    }
-		    catch (WrongStructureException e) {
-			INFO("We had a Link there ...");
-			currentBlock.setValue("LINK");
-		    }
-		    blocks.add(currentBlock);
-		    INFO("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
-		    minX = Math.min(minX, currentBlock.getGeometry().getX());
-		    minY = Math.min(minY, currentBlock.getGeometry().getY());
 		}
-
-		for (int i = 0 ; i < blocks.size() ; ++i) {
-		    blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX));
-		    blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY));
+		catch (BlockReaderException e) {
+		    WARNING(" Fail reading Block " + (i + 1));
+		    DEBUG(e.getStackTrace().toString());
 		}
-		result.put("Blocks", blocks);
-
-		return result;
 	    }
+	    for (int i = 0 ; i < blocks.size() ; ++i) {
+		blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX));
+		blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY));
+	    }
+	    result.put("Blocks", blocks);
+
+	    // Then read all Link
+	    for (int i = 0 ; i < nbObjs ; ++i) {
+		if(isLink(data, i)) {
+		    try {
+			INFO("Reading Link " + (i + 1));
+			ScilabMList link = getLinkAt(data, i);
+			BasicPort startingPort = null;
+			BasicPort endingPort = null;
+			
+			int startBlockIndex = getStartBlockIndex(link);
+			int startPortIndex = getStartPortIndex(link);
+			PortType startPortType = getStartPortType(link);
+			int endBlockIndex = getEndBlockIndex(link);
+			int endPortIndex = getEndPortIndex(link);
+			PortType endPortType = getEndPortType(link);
+
+			DEBUG("Start : ["+startBlockIndex+", "+startPortIndex+", "+startPortType+"]");
+			DEBUG("End : ["+endBlockIndex+", "+endPortIndex+", "+endPortType+"]");
+			switch (startPortType) {
+			case INPUT:
+			    startingPort = indexedBlock.get(startBlockIndex).getAllInputPorts().get(startPortIndex - 1);
+			    break;
+			case OUTPUT:
+			    startingPort = indexedBlock.get(startBlockIndex).getAllOutputPorts().get(startPortIndex - 1);
+			    break;
+			case COMMAND:
+			    startingPort = indexedBlock.get(startBlockIndex).getAllCommandPorts().get(startPortIndex - 1);
+			    break;
+			case CONTROL:
+			    startingPort = indexedBlock.get(startBlockIndex).getAllControlPorts().get(startPortIndex - 1);
+			    break;
+			}
+			
+			switch (endPortType) {
+			case INPUT:
+			    endingPort = indexedBlock.get(endBlockIndex).getAllInputPorts().get(endPortIndex - 1);
+			    break;
+			case OUTPUT:
+			    endingPort = indexedBlock.get(endBlockIndex).getAllOutputPorts().get(endPortIndex - 1);
+			    break;
+			case COMMAND:
+			    endingPort = indexedBlock.get(endBlockIndex).getAllCommandPorts().get(endPortIndex - 1);
+			    break;
+			case CONTROL:
+			    endingPort = indexedBlock.get(endBlockIndex).getAllControlPorts().get(endPortIndex - 1);
+			    break;
+			}
+			BasicPort[] startAndEnd = {startingPort, endingPort};
+			links.add(startAndEnd);
+		    }
+		    catch (BlockReaderException e) {
+			WARNING(" Fail reading Link "+(i+1));
+			DEBUG(e.getStackTrace().toString());
+		    }
+		}
+	    }
+	    result.put("Links", links);
+
+	    return result;
 	}
 	catch (Exception e) {
 	    e.printStackTrace();
@@ -96,6 +164,63 @@ public class BlockReader {
 
 	    return result;
 	}
+    }
+
+    private static int getStartBlockIndex(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(6) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	return (int) ((ScilabDouble) link.get(6)).getRealPart()[0][0];
+    }
+
+    private static int getStartPortIndex(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(6) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	return (int) ((ScilabDouble) link.get(6)).getRealPart()[0][1];
+    }
+
+    private static PortType getStartPortType(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(5) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	if (!(link.get(6) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	// ct  = [color, type] 1 : data , -1 event
+	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
+	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
+	int io = (int) ((ScilabDouble) link.get(6)).getRealPart()[0][2];
+
+	return getPortType(type, io);
+    }
+
+    private static int getEndBlockIndex(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(7) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	return (int) ((ScilabDouble) link.get(7)).getRealPart()[0][0];
+    }
+
+    private static int getEndPortIndex(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(7) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	return (int) ((ScilabDouble) link.get(7)).getRealPart()[0][1];
+    }
+
+    private static PortType getEndPortType(ScilabMList link) throws WrongTypeException {
+	if (!(link.get(5) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	if (!(link.get(7) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+	// ct  = [color, type] 1 : data , -1 event
+	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
+	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
+	int io = (int) ((ScilabDouble) link.get(7)).getRealPart()[0][2];
+
+	return getPortType(type, io);
+    }
+
+    private static PortType getPortType(int type, int io) throws WrongTypeException {
+	if (type == 1 && io == 0) { return PortType.OUTPUT; }
+	if (type == 1 && io == 1) { return PortType.INPUT; }
+	if (type == -1 && io == 0) { return PortType.COMMAND; }
+	if (type == -1 && io == 1) { return PortType.CONTROL; }
+
+	throw new WrongTypeException();
     }
 
 
@@ -108,8 +233,10 @@ public class BlockReader {
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
 	    fillBlockStructure(data , newBlock);
-	    newBlock.getGeometry().setWidth(newBlock.getGeometry().getWidth() * 2);
-	    newBlock.getGeometry().setHeight(newBlock.getGeometry().getHeight() * 2);
+	    newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
+		    newBlock.getGeometry().getY(),
+		    newBlock.getGeometry().getWidth() * 2,
+		    newBlock.getGeometry().getHeight() * 2));
 	}
 	catch (Exception e) {
 	    // TODO Auto-generated catch block
@@ -121,25 +248,35 @@ public class BlockReader {
 	}
     }
 
-    public static int getNbBlocks(ScilabMList data) {
-	ScilabList allBlockAndLink = getListOfBlockAndLink(data);
-	//		int j = 0;
-	//		while (j < allBlockAndLink.size()) {
-	//			if (((ScilabString) ((ScilabMList) allBlockAndLink.get(j)).get(0)).getData()[0][0].equals("Block")) {
-	//				++j;
-	//			}
-	//			else {
-	//				break;
-	//			}
-	//		}
-	return allBlockAndLink.size();
+    public static int getNbObjs(ScilabMList data) {
+	return ((ScilabList) data.get(2)).size();
     }
 
-    public static ScilabList getListOfBlockAndLink (ScilabMList data){
-	return (ScilabList)data.get(2);		
+    private static boolean isBlock(ScilabMList data , int index) {
+	ScilabMList object = (ScilabMList) ((ScilabList) data.get(2)).get(index);
+
+	if(object.get(0) instanceof ScilabString && 
+		((ScilabString) object.get(0)).getData()[0][0].equals("Block")) {
+	    return true;
+	}
+	return false;
+    }
+
+    private static boolean isLink(ScilabMList data , int index) {
+	ScilabMList object = (ScilabMList) ((ScilabList) data.get(2)).get(index);
+
+	if(object.get(0) instanceof ScilabString && 
+		((ScilabString) object.get(0)).getData()[0][0].equals("Link")) {
+	    return true;
+	}
+	return false;
     }
 
     public static ScilabMList getBlockAt (ScilabMList data , int index ){
+	return (ScilabMList)((ScilabList)data.get(2)).get(index);
+    }
+
+    public static ScilabMList getLinkAt (ScilabMList data , int index ){
 	return (ScilabMList)((ScilabList)data.get(2)).get(index);
     }
 
@@ -604,15 +741,16 @@ public class BlockReader {
 	}
     }
 
-    private static class WrongTypeException extends Exception {
+    private static class BlockReaderException extends Exception { };
+    private static class WrongTypeException extends BlockReaderException { };
+    private static class WrongStructureException extends BlockReaderException { };
 
-    };
-
-    private static class WrongStructureException extends Exception {
-
-    };
-
-
+    private static enum PortType {
+	INPUT,
+	OUTPUT,
+	CONTROL,
+	COMMAND
+    }
 
 }
 

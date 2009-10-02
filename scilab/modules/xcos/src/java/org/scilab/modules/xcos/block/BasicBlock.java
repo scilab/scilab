@@ -616,4 +616,27 @@ public class BasicBlock extends mxCell {
 	    e.printStackTrace();
 	}
     }
+    
+    public String toString() {
+	String result = super.toString();
+	result += "\n";
+	result += "Input ports :\n";
+	for (int i = 0 ; i < getAllInputPorts().size() ; ++i) {
+	    result += "   " + getAllInputPorts().get(i).toString() + "\n";
+	}
+	result += "Output ports :\n";
+	for (int i = 0 ; i < getAllOutputPorts().size() ; ++i) {
+	    result += "   " + getAllOutputPorts().get(i).toString() + "\n";
+	}
+	result += "Control ports :\n";
+	for (int i = 0 ; i < getAllControlPorts().size() ; ++i) {
+	    result += "   " + getAllControlPorts().get(i).toString() + "\n";
+	}
+	result += "Command ports :\n";
+	for (int i = 0 ; i < getAllCommandPorts().size() ; ++i) {
+	    result += "   " + getAllCommandPorts().get(i).toString() + "\n";
+	}
+	return result;
+    }
+    
 }
