@@ -39,53 +39,53 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		char **pStVarOne = NULL;
 		int *lenStVarOne = NULL;
 		int i = 0;
-                int lw = 1;
+		int lw = 1;
 
 		getVarAddressFromPosition(1, &piAddressVarOne);
 
 		if ( getVarType(piAddressVarOne) == sci_strings )
-                  {
-                    /* get dimensions */
-                    getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-                    
-                    lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
-                    if (lenStVarOne == NULL)
-                      {
-                        Scierror(999,_("%s: No more memory.\n"), fname);
-                        return 0;
-                      }
-                    
-                    /* get lengths */
-                    getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-                    
-                    pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
-                    if (pStVarOne == NULL)
-                      {
-                        Scierror(999,_("%s: No more memory.\n"), fname);
-                        return 0;
-                      }
-                    
-                    for(i = 0; i < m1 * n1; i++)
-                      {
-                        pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
-                      }
-                    
-                    /* get strings */
-                    getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-                    
-                    callXcos(pStVarOne,m1 * n1);
-                    freeArrayOfString(pStVarOne,m1 * n1);
-                  }
-                else if (getVarType(piAddressVarOne) == sci_mlist)
-                  {
-                    C2F(overload)(&lw, fname, fname_len);
-                    return 0;
-                  }
-                else
-                  {
-                    Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
-                    return 0;
-                  }
+		{
+			/* get dimensions */
+			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+
+			lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
+			if (lenStVarOne == NULL)
+			{
+				Scierror(999,_("%s: No more memory.\n"), fname);
+				return 0;
+			}
+
+			/* get lengths */
+			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+
+			pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
+			if (pStVarOne == NULL)
+			{
+				Scierror(999,_("%s: No more memory.\n"), fname);
+				return 0;
+			}
+
+			for(i = 0; i < m1 * n1; i++)
+			{
+				pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
+			}
+
+			/* get strings */
+			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+
+			callXcos(pStVarOne,m1 * n1);
+			freeArrayOfString(pStVarOne,m1 * n1);
+		}
+		else if (getVarType(piAddressVarOne) == sci_mlist)
+		{
+			C2F(overload)(&lw, fname, fname_len);
+			return 0;
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
 	}
 
 	LhsVar(1) = 0;
