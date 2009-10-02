@@ -23,6 +23,11 @@
 #endif
 #include "localization.h"
 
+extern "C"
+{
+	#include "mode_exec.h"
+}
+
 int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 {
 	int iRet = 0;
@@ -43,27 +48,29 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 
 int printError(StrErr _strErr, int _iLastMsg)
 {
+	int iMode = getExecMode();
+
 	if(_strErr.iErr == 0)
+	{
+		return 0;
+	}
+
+	Err = _strErr.iErr;
+
+	if(iMode == SILENT_EXEC_MODE)
 	{
 		return 0;
 	}
 
 	if(_iLastMsg)
 	{
-		Scierror(_strErr.iErr, _strErr.pstMsg[0]);
+		sciprint(_("API error: %s"), _strErr.pstMsg[0]);
 	}
 	else
 	{
 		for(int i = _strErr.iMsgCount - 1;  i >= 0 ;i--)
 		{
-			//if(i == _strErr.iMsgCount - 1)
-			//{
-			//	Scierror(_strErr.iErr, "%s", _strErr.pstMsg[i]);
-			//}
-			//else
-			{
-				sciprint(_("API error: %s"), _strErr.pstMsg[i]);
-			}
+			sciprint(_("API error: %s"), _strErr.pstMsg[i]);
 		}
 		sciprint("\n");
 	}
