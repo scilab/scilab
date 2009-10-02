@@ -18,7 +18,9 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "stack-c.h"
+#ifdef _MSC_VER
 #include "strdup_windows.h"
+#endif
 #include "localization.h"
 
 int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
