@@ -33,7 +33,6 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class GotoLineAction extends DefaultAction {
 	
@@ -45,12 +44,12 @@ public class GotoLineAction extends DefaultAction {
 	
 	private GotoLineAction(Xpad editor) {
 
-    		super(XpadMessages.GOTO_LINE, editor);
+    		super("Goto Line...", editor);
 
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+		return createMenu("Goto Line...", null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 	 }
 
 	 @Override
@@ -71,12 +70,12 @@ public class GotoLineAction extends DefaultAction {
 
 
 
-	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
+	        JLabel label = new JLabel("Enter line number");
 
 	         enterLineNumberField = new JTextField( );
 	        
-	        JButton cancelButton = new JButton(XpadMessages.CANCEL);
-	         okButton = new JButton(XpadMessages.OK);
+	        JButton cancelButton = new JButton("Cancel");
+	         okButton = new JButton("Ok");
 	        okButton.setPreferredSize(cancelButton.getPreferredSize());
 
 	        GridBagConstraints gbc = new GridBagConstraints();
@@ -190,7 +189,7 @@ public class GotoLineAction extends DefaultAction {
 			
 			
 	        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	        mainFrame.setTitle(XpadMessages.GOTO_LINE);
+	        mainFrame.setTitle("Go to line ...");
 	        mainFrame.pack();
 	        mainFrame.setLocationRelativeTo(null);
 	        mainFrame.setVisible(true);	

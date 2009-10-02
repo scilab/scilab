@@ -19,7 +19,6 @@
 		<!-- GUI Part -->
 		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
 		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
-		<LastOpenedDirectory useCache="true" value="" >
 		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
 		<BackgroundColor useCache="true" value="#FFFFFF"/>
 		<ForegroundColor useCache="true" value="#000000"/>
