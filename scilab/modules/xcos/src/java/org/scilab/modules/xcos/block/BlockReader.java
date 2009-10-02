@@ -59,7 +59,7 @@ public class BlockReader {
 	try {
 	    int fileId = H5Read.openFile(hdf5File);
 	    H5Read.readDataFromFile(fileId, data);
-
+	    H5Read.closeFile(fileId);
 	    if(isAValidScs_mStructure(data)) {
 		int nbBlocks = getNbBlocks(data);
 
@@ -106,6 +106,7 @@ public class BlockReader {
 	try {
 	    int fileId = H5Read.openFile(hdf5file);
 	    H5Read.readDataFromFile(fileId, data);
+	    H5Read.closeFile(fileId);
 	    fillBlockStructure(data , newBlock);
 	    newBlock.getGeometry().setWidth(newBlock.getGeometry().getWidth() * 2);
 	    newBlock.getGeometry().setHeight(newBlock.getGeometry().getHeight() * 2);
