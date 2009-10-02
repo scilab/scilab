@@ -440,7 +440,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	/*
 	 * PALETTES
 	 */
-	createPalette(xcosDiagramm);
+	//createPalette(xcosDiagramm);
 	
 	return xcosDiagramm;
 

@@ -17,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.BlockWriter;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -50,8 +52,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -79,6 +83,10 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
     {	
+	Thread.dumpStack();
+	System.err.println("[DEBUG] AddEdge :");
+	System.err.println("[DEBUG] AddEdge : source "+source.toString());
+	System.err.println("[DEBUG] AddEdge : target "+target.toString());
 	// Command -> Control
 	if(source instanceof CommandPort) {
 	    if (target instanceof ControlPort) {
@@ -204,6 +212,7 @@ public class XcosDiagram extends ScilabGraph {
 	    public void mouseClicked(MouseEvent arg0) {
 		Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
 
+		// Double Click within empty diagram Area
 		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell == null) {
 		    TextBlock textBlock = new TextBlock("Edit me !!!");
 		    textBlock.getGeometry().setX(arg0.getX() - textBlock.getGeometry().getWidth() / 2.0);
@@ -212,17 +221,37 @@ public class XcosDiagram extends ScilabGraph {
 		    return;
 		}
 		
+		// Double Click within some component
 		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell != null)
 		{
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openBlockSettings();
 		    }
+		    if (cell instanceof BasicLink) {
+			System.err.println("[DEBUG] insert Point on a Link");
+			getModel().beginUpdate();
+			BasicLink link = (BasicLink) cell;
+			mxPoint point = new mxPoint(arg0.getX(), arg0.getY());
+			if (link.getGeometry().getPoints() == null) {
+			    link.getGeometry().setPoints(new ArrayList());
+			}
+			link.getGeometry().getPoints().add(new mxPoint(arg0.getX(), arg0.getY()));
+			getModel().endUpdate();
+		    }
 		}
-		else {
-		    System.out.println("ClickCount="+arg0.getClickCount());
+		
+		// Ctrl + Shift + Right Double Click : for debug !!
+		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON3
+			&& arg0.isShiftDown() && arg0.isControlDown())
+		{
+		    System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
+		    System.err.println("[DEBUG] Click on : "+cell);
+		    if(cell != null) {
+			System.err.println("[DEBUG] NbEdges : "+((mxCell) cell).getEdgeCount());
+			System.err.println("[DEBUG] NbChildren : "+((mxCell) cell).getChildCount());
+		    }
 		}
-
 	    }
 
 	    public void mouseEntered(MouseEvent arg0) {
@@ -269,7 +298,9 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     public boolean isCellDeletable(Object cell) {
-	return !(cell instanceof BasicPort) && super.isCellDeletable(cell);
+	return !(cell instanceof BasicPort) 
+		&& !(cell instanceof BasicLink)
+		&& super.isCellDeletable(cell);
     }
     
     public boolean isCellEditable(Object cell) {
@@ -478,10 +509,28 @@ public class XcosDiagram extends ScilabGraph {
 	    	HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(diagramFileName);
 		    
 	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
-	    
+	    	List<BasicPort[]> allLinks = allObjects.get("Links");
+	    	getModel().beginUpdate();
 	    	for (int i = 0; i < allBlocks.size(); ++i) {
-	    		this.addCell(allBlocks.get(i));
+	    		System.err.println("Adding Block : "+allBlocks.get(i).toString());
+	    		Object obj = this.addCell(allBlocks.get(i));
 	    	}
+	    	
+	    	for (int i = 0; i < allLinks.size(); ++i) {
+	    	    System.err.println("Wanna link : "+allLinks.get(i)[0].toString());
+	    	    System.err.println("        to : "+allLinks.get(i)[1].toString());	
+	    	    TextBlock link = new TextBlock("*<:-)");
+	    	    link.setStyle("CommanControlLink");
+	    	    link.setVertex(false);
+	    	    link.setEdge(true);    	    
+	    	    link.setSource(allLinks.get(i)[0]);
+	    	    link.setTarget(allLinks.get(i)[1]);
+	    	    //this.addCell(link);
+	    	    //this.addEdge(block, getDefaultParent(), allLinks.get(i)[0], allLinks.get(i)[1], null);
+	    	    //insertEdge(getDefaultParent(), "plop", "plop", allLinks.get(i)[0], allLinks.get(i)[1]);
+	    	}
+	    	
+	    	getModel().endUpdate();
 	    	
 	    	this.setTitle(diagramFileName);
 	    	this.getParentTab().setName(diagramFileName);
