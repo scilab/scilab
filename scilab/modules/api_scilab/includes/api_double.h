@@ -96,13 +96,11 @@ API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, do
 API_SCILAB_IMPEXP int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
- * Get double variable data
+ * Get complex double variable data
  * @param[in] _iVar variable number
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal pointer on real data
- * @param[in] _pdblImg pointer on img data
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[ ] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
 API_SCILAB_IMPEXP int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
@@ -133,7 +131,7 @@ API_SCILAB_IMPEXP int createNamedComplexMatrixOfDouble(char* _pstName, int _iRow
  * @param[in] _pstName variable name
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[in] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
 API_SCILAB_IMPEXP int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
