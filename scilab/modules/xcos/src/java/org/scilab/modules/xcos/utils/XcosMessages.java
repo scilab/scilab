@@ -76,6 +76,7 @@ public class XcosMessages {
     public static final String SOURCES_PAL = Messages.gettext("Sources");
     public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
     public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuous");
+    public static final String LOOKUPTABLES_PAL = Messages.gettext("Lookup Tables");
     public static final String SIGNALPROCESSING_PAL = Messages.gettext("Signal Processing");
     public static final String THRESHOLD_PAL = Messages.gettext("Threshold");
     public static final String MATHSOPS_PAL = Messages.gettext("Math Operations");
@@ -92,5 +93,5 @@ public class XcosMessages {
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save\nsave it?");
-    
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("This file doesn't exist\n Do you want to create it?");    
 }

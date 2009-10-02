@@ -25,6 +25,7 @@ import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -42,27 +43,16 @@ public class OpenAction extends DefaultAction {
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.OPEN, "document-open.png", new OpenAction(scilabGraph));
 	}
-	
+
 	public void doAction() {
-	    FileChooser fc = ScilabFileChooser.createFileChooser();
-	    fc.setMultipleSelection(false);
-	    fc.displayAndWait();
+		FileChooser fc = ScilabFileChooser.createFileChooser();
+		fc.setMultipleSelection(false);
+		fc.displayAndWait();
 
-	    if (fc.getSelection() == null || 
-		    fc.getSelection().length == 0 ||
-		    fc.getSelection()[0].isEmpty()) {
-		return;
-	    }
-	    String fileName = fc.getSelection()[0];
-	    System.out.println("Openning to file : {"+fileName+"}");
-	    
-	    HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(fileName);
-	    
-	    List<BasicBlock> allBlocks = allObjects.get("Blocks");
-	    
-	    for (int i = 0 ; i < allBlocks.size() ; ++i) {
-	    	getGraph(null).addCell(allBlocks.get(i));
-	    }
+		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
+			return;
+		}
+
+		((XcosDiagram) getGraph(null)).readDiagram(fc.getSelection()[0]);
 	}
-
 }

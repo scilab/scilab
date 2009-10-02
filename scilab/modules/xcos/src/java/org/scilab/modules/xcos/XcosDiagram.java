@@ -14,7 +14,11 @@ package org.scilab.modules.xcos;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -28,6 +32,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.BlockWriter;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -412,15 +417,20 @@ public class XcosDiagram extends ScilabGraph {
 	    	return isSuccess;
 	    }
 	    fileName = fc.getSelection()[0];
-	    System.out.println("Saving to file : {"+fileName+"}");
+	    System.out.println("Saving to file : {" + fileName + "}");
 
 	    isSuccess = BlockWriter.writeDiagramToFile(fileName, this);
 		
+	    if (isSuccess) {
+	    	this.setTitle(fileName);
+	    	this.getParentTab().setName(fileName);
+	    }
+    	
 		return isSuccess;
 	}
 	
 	public void setTitle(String title) {
-		this.title = title;;
+		this.title = title;
 	}
 	
 	public String getTitle() {
@@ -438,6 +448,48 @@ public class XcosDiagram extends ScilabGraph {
 	public String getVersion() {
 		return version;
 	}
+	
+    /**
+     * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
+     * @param diagramFileName file to open
+     */
+    public void readDiagram(String diagramFileName) {
+    	
+	    System.out.println("Openning to file : {" + diagramFileName + "}");
+	    
+    	File theFile = new File(diagramFileName);
+    	
+	    if (theFile.exists()) {
+
+	    	HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(diagramFileName);
+		    
+	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
+	    
+	    	for (int i = 0; i < allBlocks.size(); ++i) {
+	    		this.addCell(allBlocks.get(i));
+	    	}
+	    	
+	    	this.setTitle(diagramFileName);
+	    	this.getParentTab().setName(diagramFileName);
+	    	
+	    } else {
+			int choice = JOptionPane.showConfirmDialog(this.getAsComponent(), XcosMessages.FILE_DOESNT_EXIST);
+			if (choice  == 0) {
+				try {
+					FileWriter writer = new FileWriter(diagramFileName);
+					writer.write("");
+					writer.flush();
+					writer.close();
+
+					readDiagram(diagramFileName);
+				} catch (IOException ioexc) {
+					JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
+				}
+			}	
+
+	    }
+   	
+    }
 
 }
 

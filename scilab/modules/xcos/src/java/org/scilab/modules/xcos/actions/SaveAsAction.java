@@ -16,20 +16,48 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class SaveAsAction extends DefaultAction {
+/**
+ * Management of "Diagram Saving"
+ * @author Vincent COUVERT
+ */
+public final class SaveAsAction extends DefaultAction {
 
+	private static final long serialVersionUID = -4514688723281001116L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Xcos diagram
+	 */
 	private SaveAsAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.SAVE_AS, scilabGraph);
 	}
 
+	/**
+	 * Create menu for saving
+	 * @param scilabGraph associated Xcos diagram
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SAVE_AS, null, new SaveAsAction(scilabGraph), null);
 	}
 
+	/**
+	 * Create toolbar button for saving
+	 * @param scilabGraph associated Xcos diagram
+	 * @return the button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(scilabGraph));
 	}
 
+	/**
+	 * Associated action
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		((XcosDiagram) getGraph(null)).saveDiagramAs();
+	}
 }

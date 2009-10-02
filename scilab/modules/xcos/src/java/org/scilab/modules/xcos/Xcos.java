@@ -14,8 +14,6 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -106,18 +104,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static void xcos(String fileName) {
     	XcosDiagram diagram = CreateAndShowGui();
-	    System.out.println("Openning to file : {"+fileName+"}");
-	    
-	    HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(fileName);
-	    
-	    if (allObjects != null) { // If the file exists...
-	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
-	    
-	    	for (int i = 0 ; i < allBlocks.size() ; ++i) {
-	    		diagram.addCell(allBlocks.get(i));
-	    	}
-	    }
+    	
+	    diagram.readDiagram(fileName);
     }
+    
 
     public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
@@ -161,7 +151,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     	/** Create LOOKUP TABLES palette */
     	String[] lookupBlocksNames = {"LOOKUP_f", "INTRP2BLK_f", "INTRPLBLK_f"};
-    	palette.addTab(createPalette("Lookup Tables", lookupBlocksNames));
+    	palette.addTab(createPalette(XcosMessages.LOOKUPTABLES_PAL, lookupBlocksNames));
 
     	/** Create SIGNAL PROCESSING palette */
     	String[] signalBlocksNames = {"MCLOCK_f", "QUANT_f", "MFCLCK_f", "SAMPHOLD_m"};
