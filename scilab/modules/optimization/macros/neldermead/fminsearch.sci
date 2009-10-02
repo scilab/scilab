@@ -19,6 +19,7 @@
 //        Initial guess for optimization algorithm.
 //  options : an optional struct, as provided by optimset
 //
+// TODO : implement Implement the following fminsearch features : Display, OutputFcn, PlotFcns
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then
@@ -71,6 +72,8 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-toldeltafv",TolFun);
   nm = neldermead_configure(nm,"-tolsimplexizeabsolute",TolX);
   nm = neldermead_configure(nm,"-checkcostfunction",%f);
+//nm = neldermead_configure(nm,"-verbose",1);
+//nm = neldermead_configure(nm,"-verbosetermination",1);
   nm = neldermead_search(nm);
   x = neldermead_get(nm,"-xopt").';
   fval = neldermead_get(nm,"-fopt");
@@ -102,3 +105,4 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_destroy(nm);
   clear nm;
 endfunction
+

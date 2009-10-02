@@ -165,7 +165,7 @@ Checking initial guess...
 
 Computed constraints = 1.095001e+000 7.719049e+000 -7.719046e+000 0.000000e+000
 
-Function Evaluation #1 is [1.0950013 7.7190486 -7.719046 0] at [14.095001 0]
+Function Evaluation #2 is [1.0950013 7.7190486 -7.719046 0] at [14.095001 0]
 
 Inequality constraint #3/4 is not satisfied for x
 

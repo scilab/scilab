@@ -17,7 +17,7 @@ function value = neldermead_get ( this , key )
   select key
   case "-historysimplex" then
     storehistory = optimbase_cget ( this.optbase , "-storehistory" );
-    if storehistory == 0 then
+    if ( ~storehistory ) then
       errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option."), "neldermead_get")
       error(errmsg)
     else
