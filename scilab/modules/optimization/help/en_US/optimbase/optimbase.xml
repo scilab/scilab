@@ -366,8 +366,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on function
                       value in the termination criteria.</para>
 
-                      <para>The following values are available : "enabled",
-                      "disabled" (default is "disabled"). If this criteria is
+                      <para>The following values are available : %t,
+                      %f (default is %f). If this criteria is
                       triggered, the status of the optimization is set to
                       "tolf".</para>
                     </listitem>
@@ -398,8 +398,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on x in the
                       termination criteria.</para>
 
-                      <para>The following values are available : "enabled",
-                      "disabled" (default is "enabled"). If this criteria is
+                      <para>The following values are available : %t,
+                      %f (default is %t). If this criteria is
                       triggered, the status of the optimization is set to
                       "tolx".</para>
                     </listitem>
@@ -1473,7 +1473,7 @@ iterations &gt;= maxiter
  </programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1485,7 +1485,7 @@ funevals &gt;= maxfunevals
  </programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1512,7 +1512,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
  </programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1532,7 +1532,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the tolerance on x is just skipped.</para>
@@ -1540,7 +1540,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1550,16 +1550,16 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
  </programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>The relative termination criteria on x works
         well if x at optimum is different from zero. In that case, the
         condition measures the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on the function value works if
+        <para>The absolute termination criteria on x works if
         the user has an accurate idea of the scale of the optimum x. If the
         optimum x is near 0, the relative tolerance will not work and the
         absolute tolerance is more appropriate.</para>

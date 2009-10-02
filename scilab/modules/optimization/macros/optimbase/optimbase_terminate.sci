@@ -65,19 +65,13 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //   that criteria fails miserably.
   //
   if (terminate == 0) then
-    select this.tolfunmethod
-    case "enabled" then
+    if ( this.tolfunmethod )
       this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
         abs(currentfopt), this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute));
       if abs(currentfopt) < this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute then
         terminate = 1;
         status = "tolf";
       end
-    case "disabled" then
-      // Nothing to do.
-    else
-      errmsg = msprintf(gettext ( "%s: Unknown tolf method %s") , "optimbase_terminate" ,this.tolfunmethod);
-      error(errmsg);
     end
   end
   //
@@ -92,21 +86,14 @@ function [this , terminate , status] = optimbase_terminate (this , ...
     // But if xopt, xn and xn+1 are close to 0, the relative error may be a
     // completely wrong criteria. The absolute tolerance should be used in this case.
     //
-    select this.tolxmethod
-    case "enabled" then
+    if ( this.tolxmethod ) then
       this = optimbase_stoplog (this,sprintf("  > e(x)=%e < tolxrelative = %e * %e + %e",...
         norm(currentxopt - previousxopt), this.tolxrelative , norm(currentxopt) , this.tolxabsolute ));
       if norm(currentxopt - previousxopt) < this.tolxrelative * norm(currentxopt) + this.tolxabsolute then
         terminate = 1;
         status = "tolx";
       end
-   case "disabled" then
-      // Nothing to do.
-    else
-      errmsg = msprintf(gettext ( "%s: Unknown tolx method %s") , "optimbase_terminate" , this.tolxmethod );
-      error(errmsg);
     end
   end
 endfunction
   
-
