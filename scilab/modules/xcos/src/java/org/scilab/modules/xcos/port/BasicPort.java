@@ -66,7 +66,7 @@ public abstract class BasicPort extends mxCell {
 	super();
 	setVertex(true);
 	setStyle(style);
-	setGeometry(new mxGeometry(0, 0, 10, 10));
+	setGeometry(new mxGeometry(0, 0, 8, 8));
     }
 
     public int getDataLines() {

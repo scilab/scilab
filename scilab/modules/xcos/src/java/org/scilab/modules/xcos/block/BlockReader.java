@@ -107,6 +107,8 @@ public class BlockReader {
 	    int fileId = H5Read.openFile(hdf5file);
 	    H5Read.readDataFromFile(fileId, data);
 	    fillBlockStructure(data , newBlock);
+	    newBlock.getGeometry().setWidth(newBlock.getGeometry().getWidth() * 2);
+	    newBlock.getGeometry().setHeight(newBlock.getGeometry().getHeight() * 2);
 	}
 	catch (Exception e) {
 	    // TODO Auto-generated catch block
@@ -298,7 +300,7 @@ public class BlockReader {
 	    }
 	}
 	// Multiply size by 40 for better visualisation
-	int sizeFactor = 40;
+	int sizeFactor = 1;
 	newBlock.getGeometry().setX(sizeFactor * x);
 	newBlock.getGeometry().setY(-sizeFactor * y);
 
