@@ -14,6 +14,7 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -87,6 +88,7 @@ import com.mxgraph.swing.mxGraphOutline;
 public class Xcos extends SwingScilabTab implements Tab {
 
     private XcosDiagram diagram;
+    private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
     
     /**
      * @param args
@@ -234,17 +236,19 @@ public class Xcos extends SwingScilabTab implements Tab {
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-    		if (blocksNames[kBlock].equals("TEXT_f")) {
-    			theBloc = new TextBlock(blocksNames[kBlock]);
+    		
+    		// Search the bloc in global hashmap
+    		theBloc = allBlocks.get(blocksNames[kBlock]);
+    		
+    		// If not found then create it
+    		if (theBloc == null) {
+    			theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
+    			allBlocks.put(blocksNames[kBlock], theBloc);
     		} else {
-    			String dataFilename = blocksPath + blocksNames[kBlock] + ".h5";
-    			File hdf5 = new File(dataFilename);
-    			if (!hdf5.exists()) {
-    				System.err.println(dataFilename + " does not exists !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    			}
-    			theBloc = BlockReader.readBlockFromFile(dataFilename);
+    			System.out.println("Multiple uses of " + blocksNames[kBlock]);
     		}
-			palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
+
+    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
     	}
 
     	return palette;
@@ -407,6 +411,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 	// TODO : Must check if Diagramm has been modified etc etc etc ...
 	this.setCallback(null);
 	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
+	
+	// Add a default Java bloc in HashMap
+	allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
+
     }
     
     public static XcosDiagram CreateAndShowGui() {
@@ -474,5 +482,4 @@ public class Xcos extends SwingScilabTab implements Tab {
 	public void setDiagram(XcosDiagram diagram) {
 		this.diagram = diagram;
 	}
-
 }
