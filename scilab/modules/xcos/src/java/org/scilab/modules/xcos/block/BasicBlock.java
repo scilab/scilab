@@ -54,7 +54,8 @@ public class BasicBlock extends mxCell {
     private int ordering = 0;
 
     public enum SimulationFunctionType {
-	DEFAULT, 
+	DEFAULT,
+	TYPE_2,
 	C_OR_FORTRAN,
 	SCILAB;
 
@@ -62,6 +63,8 @@ public class BasicBlock extends mxCell {
 	    switch (scilabValue) {
 	    case 0:
 		return DEFAULT;
+	    case 2:
+		return TYPE_2;
 	    case 4:
 		return C_OR_FORTRAN;
 	    case 5:
@@ -75,6 +78,8 @@ public class BasicBlock extends mxCell {
 	    switch (this) {
 	    case DEFAULT:
 		return 0.0;
+	    case TYPE_2 :
+		return 2.0;
 	    case C_OR_FORTRAN:
 		return 4.0;
 	    case SCILAB:
