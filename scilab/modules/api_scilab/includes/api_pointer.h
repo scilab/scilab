@@ -16,7 +16,6 @@
 extern "C" {
 #endif
 
-#include "dynlib_api_scilab.h"
 
 /**
  * Get pointer variable
@@ -24,8 +23,7 @@ extern "C" {
  * @param[out] _pvPtr return pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr getPointer(int* _piAddress, void** _pvPtr);
-
+StrErr getPointer(int* _piAddress, void** _pvPtr);
 
 /**
  * Alloc pointer variable
@@ -33,7 +31,7 @@ API_SCILAB_IMPEXP StrErr getPointer(int* _piAddress, void** _pvPtr);
  * @param[out] _pvPtr return pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr allocPointer(int _iVar, void** _pvPtr);
+StrErr allocPointer(int _iVar, void** _pvPtr);
 
 /**
  * Create pointer variable
@@ -41,7 +39,7 @@ API_SCILAB_IMPEXP StrErr allocPointer(int _iVar, void** _pvPtr);
  * @param[in] _pvPtr pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr createPointer(int _iVar, void* _pvPtr);
+StrErr createPointer(int _iVar, void* _pvPtr);
 
 #ifdef __cplusplus
 }

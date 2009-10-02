@@ -92,34 +92,61 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	if (filename)
 	{
 		C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
-		FREE(filename);
-		filename = NULL;
 	}
 
-	if (err >  0)
+	if (err > (int)MOPEN_NO_ERROR)
 	{
 		if ( Lhs == 1)
 		{
-			if ( err == 1) 
+			switch (err)
 			{
-				Error(66);/* no more logical units */
-				return 0;
-			}
-			else if ( err == 2)
-			{
-				Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
-				return 0;
-			}
-			else
-			{
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return 0;
+				case (int)MOPEN_NO_MORE_LOGICAL_UNIT : 
+				{
+					Error(66);/* no more logical units */
+					FREE(filename);
+					filename = NULL;
+					return 0;
+				}
+				case (int)MOPEN_CAN_NOT_OPEN_FILE:
+				{
+					Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
+					FREE(filename);
+					filename = NULL;
+					return 0;
+				}
+				case (int)MOPEN_NO_MORE_MEMORY:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
+				case (int)MOPEN_INVALID_FILENAME:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: invalid filename.\n"),fname);
+					return 0;
+				}
+				case (int)MOPEN_INVALID_STATUS:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: invalid status.\n"),fname);
+					return 0;
+				}
 			}
 		}
 		else
 		{
 			*stk(l5) = - err;
 		}
+	}
+
+	if (filename)
+	{
+		FREE(filename);
+		filename = NULL;
 	}
 
 	LhsVar(1) = Rhs + 1;

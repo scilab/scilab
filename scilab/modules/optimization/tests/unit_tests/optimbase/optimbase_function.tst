@@ -288,3 +288,25 @@ assert_close ( f , [32745.827    261254.17    96991.969    197008.03    130368.4
 assert_close ( f , [-2351243.5    32745.827    261254.17    96991.969    197008.03    130368.43    146831.57] , 1.e-7 );
 opt = optimbase_destroy(opt);
 
+//
+// Test with an additional argument
+// which is modified by the call.
+//
+function [ y , mydata ] = rosenbrock3 ( x , mydata )
+  mydata.n = mydata.n + 1
+  y = 100*(x(2)-x(1)^2)^2 + ( 1.0 - x(1))^2;
+endfunction
+
+mystuff = tlist(["T_MYSTUFF","n"]);
+mystuff.n = 0;
+
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-function",rosenbrock3);
+opt = optimbase_configure(opt,"-costfargument",mystuff);
+[ opt , f ] = optimbase_function ( opt , [0.0 0.0] );
+assert_close ( f , 1.0 , %eps );
+mystuff = optimbase_cget ( opt , "-costfargument" );
+assert_equal ( mystuff.n , 1 );
+opt = optimbase_destroy(opt);
+

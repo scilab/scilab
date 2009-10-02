@@ -16,8 +16,6 @@
 extern "C" {
 #endif
 
-#include "dynlib_api_scilab.h"
-
 	/*api list error*/
 
 	/*common error						1 - 99*/
@@ -186,9 +184,9 @@ extern "C" {
 #define API_ERROR_CREATE_POINTER													12804
 
 /* error functions*/
-API_SCILAB_IMPEXP int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...);
-API_SCILAB_IMPEXP int printError(StrErr _strErr, int _iLastMsg);
-API_SCILAB_IMPEXP char* getErrorMessage(StrErr _strErr);
+int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...);
+int printError(StrErr _strErr, int _iLastMsg);
+char* getErrorMessage(StrErr _strErr);
 
 #ifdef __cplusplus
 }

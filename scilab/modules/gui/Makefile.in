@@ -46,7 +46,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -66,8 +65,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GUI_TRUE@am__append_2 = libscigui.la 
 subdir = modules/gui
@@ -116,8 +115,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigui_la_etcdir)" \
 	"$(DESTDIR)$(libscigui_la_rootdir)" \
 	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscigui_la_iconsdir)" \
-	"$(DESTDIR)$(libscigui_la_includedir)"
+	"$(DESTDIR)$(libscigui_la_iconsdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_disable_la_LIBADD =
 am__objects_1 = libscigui_disable_la-nogui.lo
@@ -271,7 +269,6 @@ DIST_SOURCES = $(libscigui_disable_la_SOURCES) $(libscigui_la_SOURCES)
 DATA = $(libscigui_la_etc_DATA) $(libscigui_la_root_DATA) \
 	$(libscigui_la_sci_gateway_DATA) \
 	$(nobase_libscigui_la_icons_DATA)
-HEADERS = $(libscigui_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -806,96 +803,6 @@ libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_b
 #### gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
-
-#### gui : include files ####
-libscigui_la_includedir = $(pkgincludedir)
-libscigui_la_include_HEADERS = includes/gw_gui.h \
-includes/GraphicWindow.h \
-includes/InitializeGUI.h \
-includes/CallColorChooser.h \
-includes/CallFontChooser.h \
-includes/CallFigure.h \
-includes/CallJxclick.h \
-includes/CallJxgetmouse.h \
-includes/CallMessageBox.h \
-includes/CallHelpBrowser.h \
-includes/CallMainWindow.h \
-includes/CallWaitBar.h \
-includes/CheckBox.h \
-includes/ContextMenu.h \
-includes/DestroyJavaUiobject.h \
-includes/DestroyWaitBar.h \
-includes/EditBox.h \
-includes/Frame.h \
-includes/GetScreenProperty.h \
-includes/GetUicontrolBackgroundColor.h \
-includes/GetUicontrolFontAngle.h \
-includes/GetUicontrolFontName.h \
-includes/GetUicontrolFontSize.h \
-includes/GetUicontrolFontUnits.h \
-includes/GetUicontrolFontWeight.h \
-includes/GetUicontrolHorizontalAlignment.h \
-includes/GetUicontrolListboxTop.h \
-includes/GetUicontrolMax.h \
-includes/GetUicontrolMin.h \
-includes/GetUicontrolPosition.h \
-includes/GetUicontrolRelief.h \
-includes/GetUicontrolSliderStep.h \
-includes/GetUicontrolString.h \
-includes/GetUicontrolStyle.h \
-includes/GetUicontrolUnits.h \
-includes/GetUicontrolValue.h \
-includes/GetUicontrolVerticalAlignment.h \
-includes/GetUimenuLabel.h \
-includes/GetUiobjectCallback.h \
-includes/GetUiobjectForegroundColor.h \
-includes/GetUiobjectTag.h \
-includes/GetUiobjectVisible.h \
-includes/GetUiobjectEnable.h \
-includes/GetUimenuChecked.h \
-includes/InitUIMenu.h \
-includes/Label.h \
-includes/ListBox.h \
-includes/PopupMenu.h \
-includes/PushButton.h \
-includes/RadioButton.h \
-includes/SetUicontrolBackgroundColor.h \
-includes/SetUicontrolFontAngle.h \
-includes/SetUicontrolFontName.h \
-includes/SetUicontrolFontSize.h \
-includes/SetUicontrolFontUnits.h \
-includes/SetUicontrolFontWeight.h \
-includes/SetUicontrolHorizontalAlignment.h \
-includes/SetUicontrolListboxTop.h \
-includes/SetUicontrolMax.h \
-includes/SetUicontrolMin.h \
-includes/SetUicontrolParent.h \
-includes/SetUicontrolPosition.h \
-includes/SetUicontrolRelief.h \
-includes/SetUicontrolSliderStep.h \
-includes/SetUicontrolString.h \
-includes/SetUicontrolUnits.h \
-includes/SetUicontrolValue.h \
-includes/SetUicontrolVerticalAlignment.h \
-includes/SetUimenuLabel.h \
-includes/SetUiobjectCallback.h \
-includes/SetUiobjectForegroundColor.h \
-includes/SetUiobjectTag.h \
-includes/SetUiobjectVisible.h \
-includes/SetUiobjectEnable.h \
-includes/SetUimenuChecked.h \
-includes/Slider.h \
-includes/TerminateGui.h \
-includes/Toolbar.h \
-includes/DestroyUicontrol.h \
-includes/DestroyUimenu.h \
-includes/CallClipboard.h \
-includes/Widget.h \
-includes/exportUserInterface.hxx \
-includes/CallJuigetfile.hxx \
-includes/dynlib_gui.h \
-includes/CallJuigetfile.h
-
 
 #### gui : icons files ####
 libscigui_la_iconsdir = $(mydatadir)/
@@ -2252,26 +2159,6 @@ uninstall-nobase_libscigui_la_iconsDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscigui_la_iconsdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscigui_la_iconsdir)" && rm -f $$files
-install-libscigui_la_includeHEADERS: $(libscigui_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_includedir)"
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscigui_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscigui_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscigui_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigui_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigui_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -2359,9 +2246,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -2415,7 +2302,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscigui_la_etcDATA \
-	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA \
 	install-nobase_libscigui_la_iconsDATA
@@ -2465,7 +2351,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigui_la_etcDATA \
-	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
 	uninstall-nobase_libscigui_la_iconsDATA \
@@ -2482,9 +2367,7 @@ uninstall-am: uninstall-libscigui_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscigui_la_etcDATA \
-	install-libscigui_la_includeHEADERS \
-	install-libscigui_la_rootDATA \
+	install-libscigui_la_etcDATA install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA install-man \
 	install-nobase_libscigui_la_iconsDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -2493,7 +2376,6 @@ uninstall-am: uninstall-libscigui_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscigui_la_etcDATA \
-	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
 	uninstall-nobase_libscigui_la_iconsDATA \

@@ -43,7 +43,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -63,8 +62,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscixpad_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GUI_TRUE@am__append_2 = libscixpad.la 
 subdir = modules/xpad
@@ -112,8 +111,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixpad_la_etcdir)" \
 	"$(DESTDIR)$(libscixpad_la_rootdir)" \
-	"$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscixpad_la_includedir)"
+	"$(DESTDIR)$(libscixpad_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscixpad_disable_la_LIBADD =
 am__objects_1 = libscixpad_disable_la-noxpad.lo
@@ -166,7 +164,6 @@ DIST_SOURCES = $(libscixpad_disable_la_SOURCES) \
 	$(libscixpad_la_SOURCES)
 DATA = $(libscixpad_la_etc_DATA) $(libscixpad_la_root_DATA) \
 	$(libscixpad_la_sci_gateway_DATA)
-HEADERS = $(libscixpad_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -532,13 +529,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### xpad : gateway declaration ####
 libscixpad_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
-
-#### xpad : include files ####
-libscixpad_la_includedir = $(pkgincludedir)
-libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h \
-includes/callxpad.h
-
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -781,26 +771,6 @@ uninstall-libscixpad_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscixpad_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" && rm -f $$files
-install-libscixpad_la_includeHEADERS: $(libscixpad_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscixpad_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscixpad_la_includedir)"
-	@list='$(libscixpad_la_include_HEADERS)'; test -n "$(libscixpad_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscixpad_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscixpad_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscixpad_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscixpad_la_include_HEADERS)'; test -n "$(libscixpad_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscixpad_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscixpad_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -888,9 +858,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixpad_la_etcdir)" "$(DESTDIR)$(libscixpad_la_rootdir)" "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" "$(DESTDIR)$(libscixpad_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixpad_la_etcdir)" "$(DESTDIR)$(libscixpad_la_rootdir)" "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -944,7 +914,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscixpad_la_etcDATA \
-	install-libscixpad_la_includeHEADERS \
 	install-libscixpad_la_rootDATA \
 	install-libscixpad_la_sci_gatewayDATA
 
@@ -993,7 +962,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscixpad_la_etcDATA \
-	uninstall-libscixpad_la_includeHEADERS \
 	uninstall-libscixpad_la_rootDATA \
 	uninstall-libscixpad_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1009,9 +977,7 @@ uninstall-am: uninstall-libscixpad_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscixpad_la_etcDATA \
-	install-libscixpad_la_includeHEADERS \
-	install-libscixpad_la_rootDATA \
+	install-libscixpad_la_etcDATA install-libscixpad_la_rootDATA \
 	install-libscixpad_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1019,7 +985,6 @@ uninstall-am: uninstall-libscixpad_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscixpad_la_etcDATA \
-	uninstall-libscixpad_la_includeHEADERS \
 	uninstall-libscixpad_la_rootDATA \
 	uninstall-libscixpad_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

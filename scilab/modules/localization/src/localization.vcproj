@@ -79,7 +79,7 @@
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization_export.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				RandomizedBaseAddress="1"
@@ -171,7 +171,7 @@
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization_export.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				RandomizedBaseAddress="1"
@@ -264,7 +264,7 @@
 				AdditionalDependencies="Libscilab.lib io.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization_export.def"
 				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -357,7 +357,7 @@
 				AdditionalDependencies="Libscilab.lib io.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization_export.def"
 				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -453,6 +453,14 @@
 				</File>
 				<File
 					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\localization_export.def"
 					>
 				</File>
 			</Filter>

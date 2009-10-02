@@ -583,7 +583,7 @@ char *TermReadAndProcess(void)
 	    }
 	  else
 	    {
-	      if(keystroke == EOF) character_count = 0;
+	      if(keystroke == EOF) ExitWithCodeFromScilab(0);
 	      else character_count = 1;
 	    }
 
@@ -1045,9 +1045,6 @@ static int gchar_no_echo(void)
 {
   int i;
   /* get next character, gotten in cbreak mode so no wait for <cr> */
-  //i = GetCharWithEventsLoop(interrupt);/* i=-1 if return on an event */
-
-  //** Blouno : disable Event Loop
   i = getchar();
 
   /* if more than one character */
@@ -1086,8 +1083,6 @@ static int translate(int ichar)
     }
     /* if any sequence not finished yet */
     if(not_done) {
-      //ichar = GetCharWithEventsLoop(0);
-      //** Blouno : disable Event Loop
       ichar = getchar();
     }
     else {

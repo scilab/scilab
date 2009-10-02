@@ -19,7 +19,6 @@
 extern "C" {
 #endif
 
-#include "dynlib_api_scilab.h"
 /*****************************/
 /*   string matrix functions   */
 /*****************************/
@@ -33,7 +32,8 @@ extern "C" {
  * @param[out] _pstStrings return array of char
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
  * Get strings variable data
@@ -44,7 +44,8 @@ API_SCILAB_IMPEXP StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _
  * @param[out] _pstStrings return array of wide char
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
+
+StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -55,7 +56,8 @@ API_SCILAB_IMPEXP StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, in
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
+
+StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -66,7 +68,8 @@ API_SCILAB_IMPEXP StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols,
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
+
+StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Create strings variable data
@@ -77,7 +80,8 @@ API_SCILAB_IMPEXP StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iC
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
+
+StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -88,7 +92,8 @@ API_SCILAB_IMPEXP StrErr createNamedMatrixOfString(char* _pstName, int _iRows, i
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
+
+StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -99,7 +104,8 @@ API_SCILAB_IMPEXP StrErr createNamedMatrixOfWideString(char* _pstName, int _iRow
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
 * Get wide strings variable data
@@ -110,7 +116,8 @@ API_SCILAB_IMPEXP StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, i
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP StrErr readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
+
+StrErr readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
 
 #ifdef __cplusplus
 }
