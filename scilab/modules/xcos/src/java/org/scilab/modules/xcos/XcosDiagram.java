@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
@@ -49,8 +48,6 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
-
-import sun.rmi.runtime.NewThreadAction;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxEvent;
