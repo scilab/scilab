@@ -332,6 +332,13 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
 	hobj_ref_t pRef[1] = {0};
 	pRef[0] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _pdblData);
+
+	//don't create reference for empty matrix
+	if(_iRows * _iCols == 0)
+	{
+		return 0;
+	}
+		
 	if(pRef[0] == 0)
 	{
 		return 1;
