@@ -32,7 +32,8 @@ extern "C" {
  * @param[out] _pstStrings return array of char
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
  * Get strings variable data
@@ -43,7 +44,8 @@ extern "C" {
  * @param[out] _pstStrings return array of wide char
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
+
+StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -54,7 +56,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
+
+StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -65,7 +68,8 @@ extern "C" {
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
- int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
+
+StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Create strings variable data
@@ -76,7 +80,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
+
+StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -87,7 +92,8 @@ extern "C" {
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
- int createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
+
+StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -98,7 +104,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
 * Get wide strings variable data
@@ -109,7 +116,8 @@ extern "C" {
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
- int readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
+
+StrErr readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
 
 #ifdef __cplusplus
 }

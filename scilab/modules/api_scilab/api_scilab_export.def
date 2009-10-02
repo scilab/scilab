@@ -29,6 +29,7 @@ EXPORTS
 	getProcessMode
 	getDimFromVar
 	getDimFromNamedVar
+	getRhsFromAddress
 	getMatrixOfDouble
 	getComplexMatrixOfDouble
 	getComplexZMatrixOfDouble
@@ -42,6 +43,9 @@ EXPORTS
 	createNamedComplexZMatrixOfDouble
 	readNamedMatrixOfDouble
 	readNamedComplexMatrixOfDouble
+	addErrorMessage
+	printError
+	getErrorMessage
 	getMatrixOfIntegerPrecision
 	getMatrixOfUnsignedInteger8
 	getMatrixOfUnsignedInteger16
@@ -91,6 +95,12 @@ EXPORTS
 	getListInNamedList
 	getTListInNamedList
 	getMListInNamedList
+	createListInList
+	createTListInList
+	createMListInList
+	createListInNamedList
+	createTListInNamedList
+	createMListInNamedList
 	getMatrixOfDoubleInList
 	getComplexMatrixOfDoubleInList
 	allocMatrixOfDoubleInList
@@ -101,12 +111,6 @@ EXPORTS
 	createMatrixOfDoubleInNamedList
 	createComplexMatrixOfDoubleInNamedList
 	createComplexZMatrixOfDoubleInNamedList
-	createListInList
-	createTListInList
-	createMListInList
-	createListInNamedList
-	createTListInNamedList
-	createMListInNamedList
 	readMatrixOfDoubleInNamedList
 	readComplexMatrixOfDoubleInNamedList
 	getMatrixOfStringInList
@@ -124,7 +128,6 @@ EXPORTS
 	createComplexMatrixOfPolyInList
 	createMatrixOfPolyInNamedList
 	createComplexMatrixOfPolyInNamedList
-	readMatrixOfPolyInNamedList
 	readComplexMatrixOfPolyInNamedList
 	allocMatrixOfUnsignedInteger8InList
 	allocMatrixOfUnsignedInteger16InList
@@ -173,7 +176,6 @@ EXPORTS
 	readPointerInNamedList
 	createPointerInNamedList
 	getPointer
-	fillPointer
 	allocPointer
 	createPointer
 	getPolyVariableName

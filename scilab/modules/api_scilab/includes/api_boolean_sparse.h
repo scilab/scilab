@@ -16,7 +16,6 @@
 extern "C" {
 #endif
 
-
 /*******************************/
 /*   boolean sparse functions   */
 /*******************************/
@@ -30,7 +29,7 @@ extern "C" {
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
- int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+StrErr getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Alloc boolean sparse variable data
@@ -42,7 +41,7 @@ extern "C" {
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+StrErr allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Create boolean sparse variable
@@ -54,7 +53,7 @@ extern "C" {
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
- int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create named boolean sparse variable
@@ -67,7 +66,7 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Read named boolean sparse variable
@@ -80,7 +79,7 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 #ifdef __cplusplus
 }

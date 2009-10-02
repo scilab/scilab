@@ -36,7 +36,7 @@ extern "C" {
  * @param[in] _piAddress variable address
  * @param[out] _piPrecison return integer precision ( SCI_xINTx )
  */
- int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
+StrErr getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
 
 /**
  * Get integer 8 bit variable data
@@ -46,8 +46,8 @@ extern "C" {
  * @param[out] _piData8 return pointer on 8 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8);
- int getMatrixOfUnsignedInteger8(int* _piAddress, int* _piRows, int* _piCols, unsigned char** _pucData8);
+StrErr getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8);
+StrErr getMatrixOfUnsignedInteger8(int* _piAddress, int* _piRows, int* _piCols, unsigned char** _pucData8);
 
 /**
  * Get integer 16 bit variable data
@@ -57,8 +57,8 @@ extern "C" {
  * @param[out] _piData16 return pointer on 16 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16);
- int getMatrixOfUnsignedInteger16(int* _piAddress, int* _piRows, int* _piCols, unsigned short** _pusData16);
+StrErr getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16);
+StrErr getMatrixOfUnsignedInteger16(int* _piAddress, int* _piRows, int* _piCols, unsigned short** _pusData16);
 
 /**
  * Get integer 32 bit variable data
@@ -68,8 +68,8 @@ extern "C" {
  * @param[out] _piData32 return pointer on 32 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32);
- int getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, unsigned int** _puiData32);
+StrErr getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32);
+StrErr getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, unsigned int** _puiData32);
 
 /**
  * Get integer 64 bit variable data
@@ -80,8 +80,8 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
- int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _pllData64);
- int getMatrixOfUnsignedInteger64(int* _piAddress, int* _piRows, int* _piCols, unsigned long long** _pullData64);
+StrErr getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _pllData64);
+StrErr getMatrixOfUnsignedInteger64(int* _piAddress, int* _piRows, int* _piCols, unsigned long long** _pullData64);
 #endif
 
 /**
@@ -92,8 +92,8 @@ extern "C" {
  * @param[in] _piData8 array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8);
- int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8);
+StrErr createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8);
+StrErr createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8);
 
 /**
  * Get integer variable data
@@ -103,8 +103,8 @@ extern "C" {
  * @param[in] _piData16 array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16);
- int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16);
+StrErr createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16);
+StrErr createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16);
 
 /**
  * Get integer variable data
@@ -114,8 +114,8 @@ extern "C" {
  * @param[in] _piData32 array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32);
- int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32);
+StrErr createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32);
+StrErr createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32);
 
 /**
  * Get integer variable data
@@ -127,8 +127,8 @@ extern "C" {
  */
 
 #ifdef __SCILAB_INT64__
- int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64);
- int createMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long* _pullData64);
+StrErr createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64);
+StrErr createMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long* _pullData64);
 #endif
 
 /**
@@ -139,8 +139,8 @@ extern "C" {
  * @param[out] _piData8 return array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8);
- int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8);
+StrErr allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8);
+StrErr allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8);
 
 /**
  * Get integer variable data
@@ -150,8 +150,8 @@ extern "C" {
  * @param[out] _piData16 return array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16);
- int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16);
+StrErr allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16);
+StrErr allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16);
 
 /**
  * Get integer variable data
@@ -161,8 +161,8 @@ extern "C" {
  * @param[out] _piData32 return array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32);
- int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32);
+StrErr allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32);
+StrErr allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32);
 
 /**
  * Get integer variable data
@@ -173,8 +173,8 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
- int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllData64);
- int allocMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long** _pullData64);
+StrErr allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllData64);
+StrErr allocMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long** _pullData64);
 #endif
 
 /**
@@ -186,8 +186,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _pcData8);
- int createNamedMatrixOfUnsignedInteger8(char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8);
+StrErr createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _pcData8);
+StrErr createNamedMatrixOfUnsignedInteger8(char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8);
 
 /**
  * Get integer variable data
@@ -198,8 +198,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _psData16);
- int createNamedMatrixOfUnsignedInteger16(char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16);
+StrErr createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _psData16);
+StrErr createNamedMatrixOfUnsignedInteger16(char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16);
 
 /**
  * Get integer variable data
@@ -210,8 +210,8 @@ extern "C" {
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32);
- int createNamedMatrixOfUnsignedInteger32(char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32);
+StrErr createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32);
+StrErr createNamedMatrixOfUnsignedInteger32(char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32);
 
 /**
  * Get integer variable data
@@ -223,8 +223,8 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
- int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _pllData64);
- int createNamedMatrixOfUnsignedInteger64(char* _pstName, int _iRows, int _iCols, unsigned long long* _pullData64);
+StrErr createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _pllData64);
+StrErr createNamedMatrixOfUnsignedInteger64(char* _pstName, int _iRows, int _iCols, unsigned long long* _pullData64);
 #endif
 
 /**
@@ -232,7 +232,7 @@ extern "C" {
  * @param[in] _pstName variable name
  * @param[out] _piPrecison return integer precision ( SCI_xINTx )
  */
- int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
+StrErr getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
 
 /**
  * Get integer named variable data
@@ -242,8 +242,8 @@ extern "C" {
  * @param[out] _piData8 return array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
- int readNamedMatrixOfUnsignedInteger8(char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8);
+StrErr readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
+StrErr readNamedMatrixOfUnsignedInteger8(char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -252,8 +252,8 @@ extern "C" {
  * @param[out] _piData16 return array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _psData16);
- int readNamedMatrixOfUnsignedInteger16(char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16);
+StrErr readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _psData16);
+StrErr readNamedMatrixOfUnsignedInteger16(char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -262,8 +262,8 @@ extern "C" {
  * @param[out] _piData32 return array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32);
- int readNamedMatrixOfUnsignedInteger32(char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32);
+StrErr readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32);
+StrErr readNamedMatrixOfUnsignedInteger32(char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -273,9 +273,10 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
- int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
- int readNamedMatrixOfUnsignedInteger64(char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
+StrErr readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
+StrErr readNamedMatrixOfUnsignedInteger64(char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
 #endif
+
 #ifdef __cplusplus
 }
 #endif

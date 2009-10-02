@@ -9419,7 +9419,7 @@ fi
 
 if test "x$with_hdf5_include" != "xyes"; then
 	save_CFLAGS="$CFLAGS"
-	CFLAGS="-I$with_fftw_include"
+	CFLAGS="-I$with_hdf5_include"
 	HDF5_CFLAGS="-I$with_hdf5_include"
     ac_fn_c_check_header_mongrel "$LINENO" "hdf5.h" "ac_cv_header_hdf5_h" "$ac_includes_default"
 if test "x$ac_cv_header_hdf5_h" = x""yes; then :

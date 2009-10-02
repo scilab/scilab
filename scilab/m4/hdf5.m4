@@ -31,7 +31,7 @@ AC_ARG_WITH(hdf5_library,
 		
 if test "x$with_hdf5_include" != "xyes"; then
 	save_CFLAGS="$CFLAGS"
-	CFLAGS="-I$with_fftw_include"
+	CFLAGS="-I$with_hdf5_include"
 	HDF5_CFLAGS="-I$with_hdf5_include"
     AC_CHECK_HEADER([hdf5.h],
 		["$HDF5_CFLAGS"],

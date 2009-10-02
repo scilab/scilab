@@ -16,30 +16,52 @@
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_pointer.h"
+#include "localization.h"
 
 #include "MALLOC.h"
 #include "stack-c.h"
 
-int getPointer(int* _piAddress, void** _pvPtr)
+StrErr getPointer(int* _piAddress, void** _pvPtr)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iType = 0;
 	int *piTmp = NULL;
 
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_pointer)
+	if(	_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("API_ERROR_GET_POINTER"));
+		return strErr;
 	}
 
+	strErr = getVarType(_piAddress, &iType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("API_ERROR_GET_POINTER"));
+		return strErr;
+	}
+	
+	if(iType != sci_pointer)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		return strErr;
+	}
+	
 	piTmp = (_piAddress + 4);
 
 	*_pvPtr = (void*)*(long long*)piTmp;
-	return 0;
+	return strErr;
 }
 
-int fillPointer(int *_piAddress, void** _pvPtr)
+StrErr fillPointer(int *_piAddress, void** _pvPtr)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_FILL_POINTER, _("API_ERROR_FILL_POINTER"));
+		return strErr;
 	}
 
 	_piAddress[0] = sci_pointer;
@@ -49,57 +71,46 @@ int fillPointer(int *_piAddress, void** _pvPtr)
 
 	*_pvPtr = _piAddress + 4;
 
-	return 0;
+	return strErr;
 }
 
-int allocPointer(int _iVar, void** _pvPtr)
+StrErr allocPointer(int _iVar, void** _pvPtr)
 {
-	int iRet				= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
 	void* pvPtr			= NULL;
 
-	iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
 
-	iRet = fillPointer(piAddr, &pvPtr);
-	if(iRet)
+	strErr = fillPointer(piAddr, &pvPtr);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_ALLOC_POINTER, _("API_ERROR_ALLOC_POINTER"));
+		return strErr;
 	}
 
 	*_pvPtr = pvPtr;
-	iRet = updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
-	if(iRet)
-	{
-		return 1;
-	}
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
 
-	iRet = updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	return 0;
+	return strErr;
 }
 
-int createPointer(int _iVar, void* _pvPtr)
+StrErr createPointer(int _iVar, void* _pvPtr)
 {
-	int iRet			= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	void* pvPtr		= NULL;
 
-	iRet = allocPointer(_iVar, &pvPtr);
-	if(iRet)
+	strErr = allocPointer(_iVar, &pvPtr);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER, _("API_ERROR_CREATE_POINTER"));
+		return strErr;
 	}
 
 	((long long*)pvPtr)[0] = (long long) ((unsigned long int) _pvPtr);
 
-	return 0;
+	return strErr;
 }
