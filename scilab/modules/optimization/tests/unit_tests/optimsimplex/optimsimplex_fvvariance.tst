@@ -7,7 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -44,43 +43,17 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-
 //
-// In this case, the mydata variable is passed
-// explicitely by the neldermead class.
-// So the actual name "mydata" does not matter
-// and whatever variable name can be used.
+// Test with 3 vertices
 //
-function [ y , mydata ] = rosenbrock ( x , mydata )
-  a = mydata.a
-  y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
-endfunction
-
-//
-// Test with an additional argument
-//
-mystuff = tlist(["T_MYSTUFF","a"]);
-mystuff.a = 12.0;
-
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",400);
-nm = neldermead_configure(nm,"-maxfunevals",800);
-nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
-nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
-nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",%t);
-nm = neldermead_configure(nm,"-costfargument",mystuff);
-nm = neldermead_search(nm);
-// Check optimum point
-xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [12.0 144.0]', 1e-6 );
-nm = neldermead_destroy(nm);
-
+s1 = optimsimplex_new ();
+simplex = [
+1. -2.0 1.0
+4. -1.0 3.0
+7. -3.0 2.0
+];
+s1 = optimsimplex_setall ( s1 , simplex );
+computed = optimsimplex_fvvariance ( s1 );
+assert_close ( computed , 9.0 , %eps );
+s1 = optimsimplex_destroy ( s1 );
 

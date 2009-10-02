@@ -119,13 +119,13 @@ function this = neldermead_variable ( this )
   //
   // Initialize
   //
-  terminate = 0;
+  terminate = %f;
   iter = 0;
   step = "init";
   //
   // Nelder-Mead Loop
   //
-  while ( terminate == 0 )
+  while ( ~terminate )
     this.optbase = optimbase_incriter ( this.optbase );
     iter = iter + 1;
     xlow = optimsimplex_getx ( simplex , 1 )
@@ -307,13 +307,13 @@ function this = neldermead_fixed (this)
   //
   // Initialize
   //
-  terminate = 0;
+  terminate = %f;
   iter = 0;
   step = "init";
   //
   // main N-M loop
   //
-  while (terminate == 0)
+  while ( ~terminate )
     this.optbase = optimbase_incriter ( this.optbase );
     iter = iter + 1;
     xlow = optimsimplex_getx ( simplex , ilow )
@@ -435,14 +435,17 @@ endfunction
 //     The worst point in the simplex is expected to be stored at n+1
 //   terminate : %t if the algorithm terminates, %f if the algorithm must continue.
 //   this.status : termination status
-//     status = "continue"
-//     status = "maxiter"
-//     status = "maxfuneval"
-//     status = "tolf"
-//     status = "tolx"
-//     status = "tolfstdev"
-//     status = "tolsize"
-//     status = "tolsizedeltafv"
+//     "continue"
+//     "maxiter"
+//     "maxfuneval"
+//     "tolf"
+//     "tolx"
+//     "tolfstdev"
+//     "tolsize"
+//     "tolsizedeltafv"
+//     "kelleystagnation"
+//     "tolboxf"
+//     "tolvariance"
 // Notes
 //   Use the function average on the simplex instead of the best function value.
 //   This is because the function average changes at each iteration.
@@ -470,7 +473,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > st_deviation(fv)=%e < tolfstdeviation=%e",...
         sd, this.tolfstdeviation));
       if sd < this.tolfstdeviation then
-        terminate = %f;
+        terminate = %t;
         status = "tolfstdev";
       end
     end
@@ -484,7 +487,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%e < %e + %e * %e",...
         ssize, this.tolsimplexizeabsolute , this.tolsimplexizerelative , this.simplexsize0 ));
       if ssize < this.tolsimplexizeabsolute + this.tolsimplexizerelative * this.simplexsize0 then
-        terminate = %f;
+        terminate = %t;
         status = "tolsize";
       end
     end
@@ -500,8 +503,8 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       shiftfv = abs(optimsimplex_deltafvmax( simplex ))
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > abs(fv(n+1) - fv(1))=%e < toldeltafv=%e",...
         shiftfv, this.toldeltafv));
-      if ssize < this.tolsimplexizeabsolute & shiftfv < this.toldeltafv then
-        terminate = %f;
+      if ( ( ssize < this.tolsimplexizeabsolute ) & ( shiftfv < this.toldeltafv ) ) then
+        terminate = %t;
         status = "tolsizedeltafv";
       end
     end
@@ -519,7 +522,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       this.optbase = optimbase_stoplog ( this.optbase , ...
         sprintf ( "Test Stagnation : newfvmean=%e >= oldfvmean=%e - %e * %e" , newfvmean, oldfvmean , this.kelleyalpha , nsg ) );
       if ( newfvmean >= oldfvmean - this.kelleyalpha * nsg ) then
-        terminate = %f;
+        terminate = %t;
         status = "kelleystagnation";
       end
     end
@@ -538,7 +541,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
         this.boxkount = this.boxkount + 1
         if ( this.boxkount == this.boxnbmatch ) then
           terminate = %t
-          status = "boxtolf"
+          status = "tolboxf"
         end
       else
         this.boxkount = 0
@@ -550,15 +553,17 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   //
   if ( ~terminate ) then
     if ( this.tolvarianceflag ) then
-      var = optimsimplex_variance ( simplex )
+      var = optimsimplex_fvvariance ( simplex )
       this.optbase = optimbase_stoplog ( this.optbase , ...
         sprintf ( "Test tolvariance : %e < %e" , var , this.tolabsolutevariance ) );
-      if ( var < this.tolabsolutevariance ) then
+      if ( var < this.tolrelativevariance * this.variancesimplex0 + this.tolabsolutevariance ) then
         terminate = %t
         status = "tolvariance"
       end
     end
   end
+  this.optbase = optimbase_stoplog (this.optbase,sprintf("  > Terminate = %s, status = %s",...
+    string(terminate) , status ));
 endfunction
   
 
@@ -604,7 +609,7 @@ endfunction
 function this = neldermead_storehistory ( this , n , fopt , xopt , xcoords )
   storehistory = optimbase_cget ( this.optbase , "-storehistory" );
   iterations = optimbase_get ( this.optbase , "-iterations" );
-  if storehistory == 1 then
+  if ( storehistory ) then
     this.optbase = optimbase_histset ( this.optbase , iterations , "-fopt" , fopt );
     this.optbase = optimbase_histset ( this.optbase , iterations , "-xopt" , xopt(1:n).' );
     this.historysimplex ( iterations , 1:n+1,1:n) = xcoords(1:n+1,1:n);
@@ -776,10 +781,8 @@ function this = neldermead_startup (this)
   this.optbase = optimbase_set ( this.optbase , "-xopt" , x0.' );
   this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
   this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
-  // 6. If Kelley's stagnation is enabled, initialize Kelley's stagnation detection system.
-  if ( this.kelleystagnationflag  ) then
-    this = neldermead_kelleystag ( this );
-  end
+  // 6. Initialize the termination criteria
+  this = neldermead_termstartup ( this );
 endfunction
 //
 // neldermead_scaletox0 --
@@ -852,7 +855,7 @@ function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
     end
 endfunction
 //
-// neldermead_kelleystag --
+// neldermead_termstartup --
 //   Initialize Kelley's stagnation detection system when normalization is required,
 //   by computing kelleyalpha.
 //   If the simplex gradient is zero, then
@@ -863,8 +866,12 @@ endfunction
 //   simplex : the simplex computed at the end of the failing
 //     optimization process
 //
-function this = neldermead_kelleystag ( this )
-    if ( this.kelleystagnationflag ) then
+function this = neldermead_termstartup ( this )
+  //
+  // Criteria #8 : Kelley stagnation, based on
+  // a sufficient decrease condition
+  //
+  if ( this.kelleystagnationflag ) then
       if ( ~this.kelleynormalizationflag ) then
         this.kelleyalpha = this.kelleystagnationalpha0
       else
@@ -878,7 +885,13 @@ function this = neldermead_kelleystag ( this )
         end
       end
       this = neldermead_log (this,sprintf("Test Stagnation Kelley : alpha0 = %e", this.kelleyalpha));
-    end
+  end
+  //
+  // Criteria #10 : variance of function values
+  //
+  if ( this.tolvarianceflag ) then
+      this.variancesimplex0 = optimsimplex_fvvariance ( this.simplex0 )
+  end
 endfunction
   //
   // _scaleinboundsandcons --
@@ -1025,13 +1038,13 @@ function this = neldermead_constraints ( this )
   //
   // Initialize
   //
-  terminate = 0;
+  terminate = %f;
   iter = 0;
   step = "init";
   //
   // Nelder-Mead Loop
   //
-  while ( terminate == 0 )
+  while ( ~terminate )
     this.optbase = optimbase_incriter ( this.optbase );
     iter = iter + 1;
     xlow = optimsimplex_getx ( simplex , ilow )
@@ -1219,13 +1232,13 @@ function this = neldermead_box ( this )
   //
   // Initialize
   //
-  terminate = 0;
+  terminate = %f;
   iter = 0;
   step = "init";
   //
   // Nelder-Mead Loop
   //
-  while ( terminate == 0 )
+  while ( ~terminate )
     this.optbase = optimbase_incriter ( this.optbase );
     iter = iter + 1;
     xlow = optimsimplex_getx ( simplex , ilow )

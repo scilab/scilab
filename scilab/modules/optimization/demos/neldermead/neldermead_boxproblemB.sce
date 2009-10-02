@@ -29,6 +29,13 @@ mprintf("Defining Box Problem A function...\n");
 //   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
 //   Pages: 487 - 489   
 //
+//   Richardson and Kuester Results :
+//   F=1.0000
+//   X1 = 3.0000
+//   X2 = 1.7320
+//   Iterations : 68
+//
+//
 // Note 
 //    The maximum bound for the parameter x1
 //    is not indicated in Box's paper, but indicated in "Algo 454".

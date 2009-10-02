@@ -60,6 +60,10 @@ function newobj = neldermead_new ()
     "boxnbmatch"
     "boxkount"
     "boxreflect"
+    "tolvarianceflag"
+    "tolabsolutevariance"
+    "tolrelativevariance"
+    "variancesimplex0"
     ]);
 
   newobj.optbase = optimbase_new();
@@ -164,6 +168,14 @@ function newobj = neldermead_new ()
   newobj.boxkount = 0
   // Box reflection/expansion factor
   newobj.boxreflect = 1.3
+  // Set to %t to enable tolerance on variance
+  newobj.tolvarianceflag = %f;
+  // Absolute tolerance on variance
+  newobj.tolabsolutevariance = 0.0;
+  // Relative tolerance on variance
+  newobj.tolrelativevariance = %eps;
+  // The variance of the initial simplex
+  newobj.variancesimplex0 = 0.0;
 endfunction
 
 
