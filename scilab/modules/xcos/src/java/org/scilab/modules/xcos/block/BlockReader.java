@@ -35,15 +35,20 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 
 public class BlockReader {
 
-    
+
     private static void INFO(String msg) {
 	//System.err.println("[INFO] BlockReader : "+msg);
     }
     
-    private static void DEBUG(String msg) {
-	System.err.println("[DEBUG] BlockReader : "+msg);
+    private static void WARNING(String msg) {
+	System.err.println("[WARNING] BlockReader : "+msg);
     }
     
+
+    private static void DEBUG(String msg) {
+	//System.err.println("[DEBUG] BlockReader : "+msg);
+    }
+
     public static HashMap<String, List> readDiagramFromFile(String hdf5File) {
 	ScilabMList data = new ScilabMList();
 	HashMap<String, List> result = new HashMap<String, List>();
@@ -210,9 +215,12 @@ public class BlockReader {
 	if (object instanceof ScilabDouble && ((ScilabDouble) object).isEmpty()) {
 	    return true;
 	}
+	if (object instanceof ScilabList && ((ScilabList) object).isEmpty()) {
+	    return true;
+	}
 	return false;
     }
-    
+
     private static void fillBlockStructure (ScilabMList blockFields , BasicBlock newBlock ) throws WrongStructureException, WrongTypeException {
 	String[] realNameOfBlockFields = {"Block", "graphics" , "model" , "gui" , "doc"};
 
@@ -298,7 +306,7 @@ public class BlockReader {
 	// sz = [width, height]
 	double width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
 	double height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
-	
+
 	// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
 	newBlock.getGeometry().setWidth(Math.max(2 * width, 20));
 	newBlock.getGeometry().setHeight(Math.max(2 * height, 20));
@@ -311,18 +319,19 @@ public class BlockReader {
 	// exprs 
 	if (!(graphicsStructure.get(5) instanceof ScilabString) 
 		&& !(graphicsStructure.get(5) instanceof ScilabList)
+		&& !(graphicsStructure.get(5) instanceof ScilabTList)
 		&& !isEmptyField(graphicsStructure.get(5))) {
 	    throw new WrongTypeException(); 
-	    }
+	}
 	// exprs = ["a", "b", "c"]
 	if (graphicsStructure.get(5) instanceof ScilabString) {
 	    for (int i = 0 ; i < graphicsStructure.get(5).getHeight() ; i++){
 		newBlock.getExprs().add(((ScilabString)graphicsStructure.get(5)).getData()[i][0]);
 	    }
 	}
-	if (graphicsStructure.get(5) instanceof ScilabList) {
+	else {
 	    // TODO : See how to store it properly;
-	    System.out.println("[Warning] exprs defined as Scilab List : Not managed !!!");
+	    WARNING("exprs defined as Scilab List : Not managed !!!");
 	}
 
 	// pin
@@ -338,7 +347,10 @@ public class BlockReader {
 	if (!(graphicsStructure.get(9) instanceof ScilabDouble)) { throw new WrongTypeException(); }
 
 	// gr_i
-	if (!(graphicsStructure.get(10) instanceof ScilabList)) { throw new WrongTypeException(); }
+	if (!(graphicsStructure.get(10) instanceof ScilabList)
+		&& !(graphicsStructure.get(10) instanceof ScilabString)) {
+	    throw new WrongTypeException(); 
+	}
 
 	// id
 	if (!(graphicsStructure.get(11) instanceof ScilabString))  { throw new WrongTypeException(); }
@@ -542,9 +554,9 @@ public class BlockReader {
 	    }
 	}
 	if (modelFields.get(13) instanceof ScilabList) {
-	    
+
 	}
-	
+
 
 	// ipar
 	if (!(modelFields.get(14) instanceof ScilabDouble)) { throw new WrongTypeException(); }
@@ -560,7 +572,11 @@ public class BlockReader {
 	newBlock.setBlockType(((ScilabString) modelFields.get(16)).getData()[0][0]);
 
 	//firing
-	if (!(modelFields.get(17) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	if (!(modelFields.get(17) instanceof ScilabDouble)
+		&& !(modelFields.get(17) instanceof ScilabBoolean))
+	{ 
+	    throw new WrongTypeException(); 
+	}
 
 	// dep-ut
 	if (!(modelFields.get(18) instanceof ScilabBoolean)){ throw new WrongTypeException(); }
@@ -577,16 +593,20 @@ public class BlockReader {
 	if (!(modelFields.get(21) instanceof ScilabDouble)) { throw new WrongTypeException(); }
 
 	// equations
-	if (!(modelFields.get(22) instanceof ScilabList)) { throw new WrongTypeException(); }
+	if (!(modelFields.get(22) instanceof ScilabTList)
+		&& !isEmptyField(modelFields.get(22))) 
+	{ 
+	    throw new WrongTypeException(); 
+	}
     }
 
-private static class WrongTypeException extends Exception {
+    private static class WrongTypeException extends Exception {
 
-};
+    };
 
-private static class WrongStructureException extends Exception {
+    private static class WrongStructureException extends Exception {
 
-};
+    };
 
 
 
