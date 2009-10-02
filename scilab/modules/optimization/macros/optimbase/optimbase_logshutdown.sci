@@ -8,19 +8,18 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// optimbase_log --
-//   If verbose logging is enabled, prints the given message in the console.
-//   If verbose logging is disabled, does nothing.
+// optimbase_logshutdown --
+//   Shut down the logging.
+//   If the logging is already started up, generates an error.
+//   If the loggin is started up, if there is a log file, close it.
 //
-function this = optimbase_log (this,msg)
-  if this.verbose == 1 then
-    if ( ~this.logstartup ) then
-      this = optimbase_logstartup ( this )
-    end
+function this = optimbase_logshutdown ( this )
+  if ~this.logstartup then
+    error ( gettext ( "%s: Logging not started." , "optimbase_logstartup" ) )
+  else
+    this.logstartup = %f;
     if ( this.logfile <> "" ) then
-      mfprintf ( this.logfilehandle , "%s\n" , msg );
-    else
-      mprintf("%s\n",msg);
+      mclose( this.logfilehandle );
     end
   end
 endfunction

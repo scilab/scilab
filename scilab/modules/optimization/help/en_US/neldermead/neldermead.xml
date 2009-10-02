@@ -1991,7 +1991,7 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
 
     <itemizedlist>
       <listitem>
-        <para>add the Box-Guin algoritm as a 4th method.</para>
+        <para>Add the Box-Guin algoritm as a 4th method.</para>
 
         <para>This algorithm solves an constrained optimization problem with a
         variable sized simplex made of an arbitrary k number of vertices. This
@@ -1999,8 +1999,21 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
       </listitem>
 
       <listitem>
-        <para>add the optimization of the Rosenbrock test case, with the
-        interactive plot thanks to the -outputcommand option</para>
+        <para>Add the optimization of the Rosenbrock test case, with the
+        interactive plot thanks to the -outputcommand option.</para>
+      </listitem>
+
+      <listitem>
+        <para>Add an option to let the user setup his own termination
+        criteria.</para>
+
+        <para>This might be handy in case where the user try to reproduce the
+        behaviour of another algorithm (be it a software or a paper), where
+        none of the provided termination criteria match the required one. This
+        feature would allow to use our own termination criteria, without
+        modifying the internal source code of the component. This might be
+        dangerous if the user does not clearly understand what is going on.
+        But that might be very handy as well.</para>
       </listitem>
     </itemizedlist>
   </refsection>

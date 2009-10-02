@@ -32,9 +32,9 @@ vertices.
 The goal of this toolbox is to provide a Nelder-Mead (1965) direct search optimization method to solve the 
 following unconstrained optimization problem
 \begin{eqnarray}
-\min f(x)
+\min f(\bx)
 \end{eqnarray}
-where $x\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
 function $f:\RR^n\rightarrow \RR$.
 In order to solve the unconstrained optimization problem, the Nelder-Mead 
 algorithm uses a variable shape simplex. The toolbox also provide Spendley's et al. 
@@ -43,9 +43,9 @@ by Nelder and Mead was designed as an improvement on Spendley's et al. algorithm
 The Box complex algorithm \cite{Box1965} (1965), which is an extension of Spendley's  et al. algorithm, solves the 
 following constrained problem
 \begin{eqnarray}
-&&\min f(x)\\
+&&\min f(\bx)\\
 &&\ell_i \leq x_i \leq u_i, \qquad i = 1,n\\
-&&g_j(x)\geq 0, \qquad j = 1, m\\
+&&g_j(\bx)\geq 0, \qquad j = 1, m\\
 \end{eqnarray}
 where $m$ is the number of nonlinear, positive constraints and $\ell_i,u_i\in \RR^n$ are the lower 
 and upper bounds of the variables.

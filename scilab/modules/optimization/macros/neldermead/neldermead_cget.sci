@@ -69,14 +69,22 @@ function value = neldermead_cget (this,key)
     value = this.restartsimplexmethod;
   case "-boxnbpoints" then
     value = this.boxnbpoints;
-  case "-nbineqloops" then
-    value = this.nbineqloops;
   case "-ineqscaling" then
     value = this.ineqscaling;
   case "-checkcostfunction" then
     value = this.checkcostfunction;
   case "-scalingmethod" then
     value = this.scalingmethod;
+  case "-guinalphamin" then
+    value = this.guinalphamin;
+  case "-boxtermination" then
+    value = this.boxtermination
+  case "-boxtolf" then
+    value = this.boxtolf
+  case "-boxnbmatch" then
+    value = this.boxnbmatch
+  case "-boxreflect" then
+    value = this.boxreflect
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );
