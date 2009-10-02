@@ -93,5 +93,7 @@ function [this , terminate , status] = optimbase_terminate (this , ...
       end
     end
   end
+  this = optimbase_stoplog (this,sprintf("  > Terminate = %s, status = %s",...
+    string(terminate) , status ));
 endfunction
   

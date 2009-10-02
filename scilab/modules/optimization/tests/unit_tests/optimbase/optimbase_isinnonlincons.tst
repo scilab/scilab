@@ -114,7 +114,7 @@ endfunction
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function result = gouldnonconvex2 ( x , index , mydata )
+function [ result , mystuff ] = gouldnonconvex2 ( x , index , mydata )
   if (~isdef('index','local')) then
     index = 1
   end
