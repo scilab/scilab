@@ -297,9 +297,10 @@ public class BlockReader {
 		y = ((ScilabDouble) graphicsStructure.get(1)).getRealPart()[1][0]; 
 	    }
 	}
-	// Multiply size by 2 for better visualisation
-	newBlock.getGeometry().setX(2 * x);
-	newBlock.getGeometry().setY(-2 * y);
+	// Multiply size by 40 for better visualisation
+	int sizeFactor = 40;
+	newBlock.getGeometry().setX(sizeFactor * x);
+	newBlock.getGeometry().setY(-sizeFactor * y);
 
 	// sz : must contains the size of the block
 	if (!(graphicsStructure.get(2) instanceof ScilabDouble)) { throw new WrongTypeException(); }
@@ -308,8 +309,8 @@ public class BlockReader {
 	double height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
 
 	// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
-	newBlock.getGeometry().setWidth(Math.max(2 * width, 20));
-	newBlock.getGeometry().setHeight(Math.max(2 * height, 20));
+	newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 20));
+	newBlock.getGeometry().setHeight(Math.max(sizeFactor * height, 20));
 
 	if (!((graphicsStructure.get(3) instanceof ScilabBoolean )&&// flip
 		(graphicsStructure.get(4) instanceof ScilabDouble))) {// theta 
