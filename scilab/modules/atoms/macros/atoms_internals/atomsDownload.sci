@@ -11,6 +11,18 @@
 
 function atomsDownload(url_in,file_out,md5sum)
 	
+	// Operating system detection
+	// =========================================================================
+	
+	if ~MSDOS then
+		OSNAME = unix_g('uname');
+		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+	else
+		MACOSX = %F;
+		LINUX  = %F;
+	end
+	
 	// Check input parameters number
 	// =========================================================================
 	
@@ -68,6 +80,8 @@ function atomsDownload(url_in,file_out,md5sum)
 		
 		if MSDOS then
 			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url_in + " -o " + file_out;
+		elseif MACOSX then
+			download_cmd = "curl -s "+url_in + " -o " + file_out;
 		else
 			download_cmd = "wget "+url_in + " -O " + file_out;
 		end

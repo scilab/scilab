@@ -35,7 +35,7 @@ function matrix_out = atomsLoadInstalledMat(allusers)
 	// the "allusers" value
 	// =========================================================================
 	
-	if (type(allusers)==10) & (allusers=="all") then
+	if allusers=="all" then
 		installed_file = [ pathconvert(SCI+"/.atoms/installed.bin",%F); pathconvert(SCIHOME+"/atoms/installed.bin",%F) ];
 	elseif allusers then
 		installed_file = pathconvert(SCI+"/.atoms/installed.bin",%F);
@@ -56,7 +56,7 @@ function matrix_out = atomsLoadInstalledMat(allusers)
 		if fileinfo(installed_file(i)) <> [] then
 			load(installed_file(i),"installed_mat");
 		else
-			continue
+			continue;
 		end
 		
 		matrix_out = [ matrix_out ; installed_mat ];
