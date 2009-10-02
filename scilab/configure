@@ -9938,11 +9938,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 9850 "configure"
-=======
-// #line 9940 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 9941 "configure"
 
 
 public class conftest {
@@ -9990,11 +9986,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 9898 "configure"
-=======
-// #line 9988 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 9989 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10040,11 +10032,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 9944 "configure"
-=======
-// #line 10034 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 10035 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10071,11 +10059,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 9971 "configure"
-=======
-// #line 10061 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 10062 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11277,7 +11261,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11173 "configure"
+// #line 11264 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -11349,11 +11333,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11245 "configure"
-=======
-// #line 11263 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11336 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11425,11 +11405,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11317 "configure"
-=======
-// #line 11335 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11408 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11501,11 +11477,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11389 "configure"
-=======
-// #line 11407 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11480 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11578,11 +11550,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11462 "configure"
-=======
-// #line 11480 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11553 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11654,11 +11622,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11534 "configure"
-=======
-// #line 11552 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11625 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11730,11 +11694,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11606 "configure"
-=======
-// #line 11624 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11697 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11806,11 +11766,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11678 "configure"
-=======
-// #line 11696 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11769 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11883,11 +11839,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11751 "configure"
-=======
-// #line 11769 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11842 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11959,11 +11911,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11823 "configure"
-=======
-// #line 11841 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11914 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12035,11 +11983,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11895 "configure"
-=======
-// #line 11913 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 11986 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -12112,11 +12056,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 11968 "configure"
-=======
-// #line 11986 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 12059 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12189,11 +12129,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 12041 "configure"
-=======
-// #line 12059 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 12132 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -20246,11 +20182,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-<<<<<<< HEAD:scilab/configure
-#line 20094 "configure"
-=======
-#line 20112 "configure"
->>>>>>> origin/master:scilab/configure
+#line 20185 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -20562,11 +20494,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-<<<<<<< HEAD:scilab/configure
-#line 20406 "configure"
-=======
-#line 20424 "configure"
->>>>>>> origin/master:scilab/configure
+#line 20497 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -21147,11 +21075,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 20987 "configure"
-=======
-// #line 21005 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21078 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -21223,11 +21147,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21059 "configure"
-=======
-// #line 21077 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21150 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -21301,11 +21221,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21133 "configure"
-=======
-// #line 21151 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21224 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -21377,11 +21293,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21205 "configure"
-=======
-// #line 21223 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21296 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -21453,11 +21365,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21277 "configure"
-=======
-// #line 21295 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21368 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -21529,11 +21437,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21349 "configure"
-=======
-// #line 21367 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21440 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -21605,11 +21509,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21421 "configure"
-=======
-// #line 21439 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21512 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -21681,11 +21581,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21493 "configure"
-=======
-// #line 21511 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21584 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -21758,11 +21654,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 21566 "configure"
-=======
-// #line 21584 "configure"
->>>>>>> origin/master:scilab/configure
+// #line 21657 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -22420,23 +22312,13 @@ if test "${lt_cv_nm_interface+set}" = set; then :
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-<<<<<<< HEAD:scilab/configure
-  (eval echo "\"\$as_me:22224: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:22315: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:22227: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:22318: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:22230: output\"" >&5)
-=======
-  (eval echo "\"\$as_me:22242: $ac_compile\"" >&5)
-  (eval "$ac_compile" 2>conftest.err)
-  cat conftest.err >&5
-  (eval echo "\"\$as_me:22245: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
-  (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
-  cat conftest.err >&5
-  (eval echo "\"\$as_me:22248: output\"" >&5)
->>>>>>> origin/master:scilab/configure
+  (eval echo "\"\$as_me:22321: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -23630,11 +23512,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-<<<<<<< HEAD:scilab/configure
-  echo '#line 23424 "configure"' > conftest.$ac_ext
-=======
-  echo '#line 23442 "configure"' > conftest.$ac_ext
->>>>>>> origin/master:scilab/configure
+  echo '#line 23515 "configure"' > conftest.$ac_ext
   if { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_compile\""; } >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -25657,19 +25535,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:25447: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25538: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:25451: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:25465: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>conftest.err)
-   ac_status=$?
-   cat conftest.err >&5
-   echo "$as_me:25469: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:25542: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26004,19 +25874,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:25786: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25877: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:25790: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:25804: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>conftest.err)
-   ac_status=$?
-   cat conftest.err >&5
-   echo "$as_me:25808: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:25881: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26117,19 +25979,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:25891: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25982: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:25895: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:25909: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:25913: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:25986: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26180,19 +26034,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:25946: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26037: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:25950: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:25964: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:25968: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:26041: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -28635,11 +28481,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-<<<<<<< HEAD:scilab/configure
-#line 28393 "configure"
-=======
-#line 28411 "configure"
->>>>>>> origin/master:scilab/configure
+#line 28484 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -28735,11 +28577,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-<<<<<<< HEAD:scilab/configure
-#line 28489 "configure"
-=======
-#line 28507 "configure"
->>>>>>> origin/master:scilab/configure
+#line 28580 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -30711,19 +30549,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:30461: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30552: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30465: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:30479: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>conftest.err)
-   ac_status=$?
-   cat conftest.err >&5
-   echo "$as_me:30483: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:30556: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30818,19 +30648,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:30560: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30651: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30564: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:30578: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:30582: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:30655: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -30878,19 +30700,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:30612: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30703: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30616: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:30630: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:30634: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:30707: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -32289,19 +32103,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:32015: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32106: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:32019: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:32033: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>conftest.err)
-   ac_status=$?
-   cat conftest.err >&5
-   echo "$as_me:32037: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:32110: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -32396,19 +32202,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:32114: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32205: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:32118: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:32132: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:32136: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:32209: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -32456,19 +32254,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< HEAD:scilab/configure
-   (eval echo "\"\$as_me:32166: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32257: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:32170: \$? = $ac_status" >&5
-=======
-   (eval echo "\"\$as_me:32184: $lt_compile\"" >&5)
-   (eval "$lt_compile" 2>out/conftest.err)
-   ac_status=$?
-   cat out/conftest.err >&5
-   echo "$as_me:32188: \$? = $ac_status" >&5
->>>>>>> origin/master:scilab/configure
+   echo "$as_me:32261: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
