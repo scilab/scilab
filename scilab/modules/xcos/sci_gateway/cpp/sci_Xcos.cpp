@@ -40,10 +40,19 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		int *lenStVarOne = NULL;
 		int i = 0;
 		int lw = 1;
+                int iType = 0;
+                StrErr strErr;
 
 		getVarAddressFromPosition(1, &piAddressVarOne);
 
-		if ( getVarType(piAddressVarOne) == sci_strings )
+                strErr = getVarType(piAddressVarOne, &iType);
+                if(strErr.iErr)
+                  {
+                    printError(strErr, 0);
+                    return false;
+                  }
+                
+		if ( iType == sci_strings )
 		{
 			/* get dimensions */
 			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
@@ -76,7 +85,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			callXcos(pStVarOne,m1 * n1);
 			freeArrayOfString(pStVarOne,m1 * n1);
 		}
-		else if (getVarType(piAddressVarOne) == sci_mlist)
+		else if (iType == sci_mlist)
 		{
 			C2F(overload)(&lw, fname, fname_len);
 			return 0;
