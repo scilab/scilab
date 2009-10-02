@@ -53,6 +53,7 @@ namespace DotNetScilab
         static Scilab instance = null;
         static readonly object padlock = new object();
         private Boolean withGraphics = false;
+        //private Scilab_cs_wrapper.api_Err StrErr;
         //=============================================================================
         /// <summary>
         /// Constructor, initialize scilab engine.

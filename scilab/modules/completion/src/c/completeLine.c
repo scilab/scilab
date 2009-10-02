@@ -75,7 +75,26 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 				new_line[l] = '\0';
 
 				/* special case with files begin with a '.' */
-				if (filePattern[0] == '.') strcat(new_line, &(stringToAdd[1]));
+				if (filePattern[0] == '.') 
+				{
+					/* bug 4838 cd ../et[tab] */
+					if ((int)strlen(filePattern)> 1)
+					{
+						if (filePattern[1] == '.')
+						{
+							strcat(new_line, ptr_strrchar1);
+						}
+						else
+						{
+							strcat(new_line, &(stringToAdd[1]));
+						}
+					}
+					else
+					{
+						strcat(new_line, &(stringToAdd[1]));
+					}
+					
+				}
 				else strcat(new_line, ptr_strrchar1);
 			}
 		}
