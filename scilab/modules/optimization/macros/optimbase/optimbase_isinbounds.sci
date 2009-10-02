@@ -25,13 +25,13 @@ function [ this , isfeasible ] = optimbase_isinbounds ( this , x )
           xix = x ( ix )
           if ( xix < xmin ) then
             isfeasible = %f
-            optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %e", ...
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %e", ...
               ix , this.numberofvariables , xmin ) )
             break
           end
           if (xix > xmax) then
             isfeasible = %f
-            optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %e", ...
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %e", ...
               ix , this.numberofvariables , xmax ) )
             break
           end

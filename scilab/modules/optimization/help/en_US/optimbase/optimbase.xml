@@ -1112,7 +1112,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
               <term>terminate</term>
 
               <listitem>
-                <para>1 if the algorithm must terminate, 0 if the algorithm
+                <para>%t if the algorithm must terminate, %f if the algorithm
                 must continue</para>
               </listitem>
             </varlistentry>
@@ -1121,8 +1121,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
               <term>status</term>
 
               <listitem>
-                <para>if terminate = 1, the detailed status of the
-                termination, as a string. If terminate = 0, the status is
+                <para>if terminate = %t, the detailed status of the
+                termination, as a string. If terminate = %f, the status is
                 "continue".</para>
 
                 <para>The following status are available :</para>
@@ -1179,8 +1179,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
           <para>Check that the cost function is correctly connected. Generate
           an error if there is one. Takes into account for the cost function
           at the initial guess x0 only. If there are nonlinear constraints,
-          check that the index flag is correctly used for index=1,2 or 3.
-          </para>
+          check that the index flag is correctly used for index=1,2 or
+          3.</para>
 
           <para>This function requires at least one call to the cost function
           to make the necessary checks.</para>

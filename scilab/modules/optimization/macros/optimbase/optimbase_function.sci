@@ -52,23 +52,23 @@ function [ this , result ] = optimbase_function ( this , x , index )
       if ( this.nbineqconst == 0 ) then
         // There is one additionnal argument, but no nonlinear constraints,
         // therefore, there is no need for a index value.
-        result = this.fun ( x , this.costfargument );
+        [ result , this.costfargument ] = this.fun ( x , this.costfargument );
       else
         // Set the index, so that, if an additionnal cost function argument is provided,
         // it can be appended at the end.
         index = 1;
-        result = this.fun ( x , index , this.costfargument );
+        [ result , this.costfargument ] = this.fun ( x , index , this.costfargument );
       end
     else
       // There is one additionnal argument, and the caller provided the value of index.
-      result = this.fun ( x , index , this.costfargument );
+      [ result , this.costfargument ] = this.fun ( x , index , this.costfargument );
     end
   end
   this.funevals = this.funevals + 1;
   if this.verbose == 1 then
     msg = sprintf ( "Function Evaluation #%d is [%s] at [%s]" , ...
       this.funevals , strcat(string(result)," ") , strcat(string(x)," ") )
-    optimbase_log ( this , msg )
+    this = optimbase_log ( this , msg )
   end
 endfunction
 

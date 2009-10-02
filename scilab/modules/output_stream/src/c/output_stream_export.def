@@ -1,13 +1,13 @@
-LIBRARY    time.dll
+LIBRARY    output_stream.dll
 
 
 EXPORTS
 ; --------------------------------------- 
-; time explicit export (SEP 35)
+; output_stream explicit export (SEP 35)
 ; --------------------------------------- 
- scilab_timer
- timer_
- realtimeinit_
- realtime_
+Scierror
+sciprint
+scivprint
+error_
+SciError
 ; --------------------------------------- 
- 

@@ -90,7 +90,7 @@ function result = optimtestcase ( x , index )
   end
 endfunction
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -100,7 +100,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -116,7 +116,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and restart
+// Test with NM-constrained algorithm and restart
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -126,7 +126,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-1);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -143,7 +143,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "maxfuneval" );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 //
@@ -155,7 +155,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -174,7 +174,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -183,11 +183,11 @@ nm = neldermead_destroy(nm);
 // The convergence is not accurate in this case, whatever the 
 // value of the relative tolerance on simplex size.
 //
-    //
-    // Initialize the random number generator, so that the results are always the
-    // same.
-    //
-    rand("seed" , 0)
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -196,7 +196,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -220,17 +220,17 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 8 );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
 // and user-defined number of points in the simplex, i.e. 6
 //
-    //
-    // Initialize the random number generator, so that the results are always the
-    // same.
-    //
-    rand("seed" , 0)
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -239,7 +239,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -264,7 +264,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 6 );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with NM-constrained algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is user-defined.
@@ -279,7 +279,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-method","nmconstraints");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -310,4 +310,528 @@ assert_equal ( status , "tolsize" );
 simplexopt = neldermead_get ( nm , "-simplexopt" );
 nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 7 );
+nm = neldermead_destroy(nm);
+//
+// Test with NM-constrained algorithm and default axes initial simplex
+// Test that verbose mode works fine.
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",4);
+nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
+nm = neldermead_configure(nm,"-maxiter",5);
+nm = neldermead_configure(nm,"-maxfunevals",1000);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
+nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
+nm = neldermead_configure(nm,"-simplex0method","randbounds");
+nm = neldermead_configure(nm,"-coords0",coords);
+nm = neldermead_search(nm);
+Function Evaluation #1 is [0] at [0 0 0 0]
+
+Function Evaluation #2 is [0] at [0 0 0 0]
+
+Function Evaluation #3 is [8 10 5] at [0 0 0 0]
+
+Function Evaluation #4 is [0 8 10 5] at [0 0 0 0]
+
+Function Evaluation #1 is [0] at [0 0 0 0]
+
+Function Evaluation #2 is [238.57187] at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
+
+Function Evaluation #3 is [32.861872] at [-2.767278 -4.1554667 1.3284976 -0.3470561]
+
+Function Evaluation #4 is [14.30847] at [-3.3565622 1.8701894 0.0306832 -1.2628248]
+
+Function Evaluation #5 is [213.76968] at [-4.6137504 2.6514897 -1.896092 8.3694157]
+
+Function Evaluation #6 is [265.53357] at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
+
+Function Evaluation #7 is [71.673505] at [-4.387004 -7.4398831 5.5662572 -5.7619391]
+
+Function Evaluation #8 is [379.26278] at [-7.7572907 3.7137919 -6.9375666 3.9417012]
+
+Scaling initial simplex into nonlinear inequality constraints...
+
+Scaling vertex #2/8 at [-3.8478185 8.6592324 -5.7079843 -3.7471601]... 
+
+Function Evaluation #9 is [-113.94243 -223.0288 -119.5671] at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #10 is [-18.868639 -50.155945 -22.989847] at [-1.9239093 4.3296162 -2.8539921 -1.87358]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #11 is [3.0913246 -5.9883585 -0.4214980] at [-0.9619546 2.1648081 -1.4269961 -0.9367900]
+
+Inequality constraint #2/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 2.500000e-001
+
+Function Evaluation #12 is [7.6770734 5.5282242 4.4326073] at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
+
+ > After scaling into inequality constraints p = [-0.4809773 1.0824041 -0.7134980 -0.4683950]
+
+Function Evaluation #13 is [11.33805] at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
+
+Scaling vertex #3/8 at [-2.767278 -4.1554667 1.3284976 -0.3470561]... 
+
+Function Evaluation #14 is [-21.874827 -37.313771 -28.316431] at [-2.767278 -4.1554667 1.3284976 -0.3470561]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #15 is [-0.2346425 -2.6070262 -3.0710995] at [-1.383639 -2.0777334 0.6642488 -0.1735280]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #16 is [5.5583716 6.4589517 3.1112293] at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
+
+ > After scaling into inequality constraints p = [-0.6918195 -1.0388667 0.3321244 -0.0867640]
+
+Function Evaluation #17 is [2.8574697] at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
+
+Scaling vertex #4/8 at [-3.3565622 1.8701894 0.0306832 -1.2628248]... 
+
+Function Evaluation #18 is [-4.4265425 -16.071508 -13.71108] at [-3.3565622 1.8701894 0.0306832 -1.2628248]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #19 is [5.8766753 2.3272762 2.1523522] at [-1.6782811 0.9350947 0.0153416 -0.6314124]
+
+ > After scaling into inequality constraints p = [-1.6782811 0.9350947 0.0153416 -0.6314124]
+
+Function Evaluation #20 is [3.0640533] at [-1.6782811 0.9350947 0.0153416 -0.6314124]
+
+Scaling vertex #5/8 at [-4.6137504 2.6514897 -1.896092 8.3694157]... 
+
+Function Evaluation #21 is [-76.428626 -165.28122 -27.950542] at [-4.6137504 2.6514897 -1.896092 8.3694157]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #22 is [-8.7244695 -32.88139 1.8244661] at [-2.3068752 1.3257449 -0.9480460 4.1847078]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #23 is [6.0102261 -0.2508893 6.7371673] at [-1.1534376 0.6628724 -0.4740230 2.0923539]
+
+Inequality constraint #2/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 2.500000e-001
+
+Function Evaluation #24 is [8.5982283 7.6720068 6.6998172] at [-0.5767188 0.3314362 -0.2370115 1.046177]
+
+ > After scaling into inequality constraints p = [-0.5767188 0.3314362 -0.2370115 1.046177]
+
+Function Evaluation #25 is [15.176183] at [-0.5767188 0.3314362 -0.2370115 1.046177]
+
+Scaling vertex #6/8 at [-9.1253313 -0.3629821 -4.720888 -1.7037926]... 
+
+Function Evaluation #26 is [-88.813676 -112.45691 -167.778] at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #27 is [-13.258558 -23.321508 -34.148527] at [-4.5626657 -0.1814911 -2.360444 -0.8518963]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #28 is [4.1577911 0.3159824 -2.7641457] at [-2.2813328 -0.0907455 -1.180222 -0.4259481]
+
+Inequality constraint #3/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 2.500000e-001
+
+Function Evaluation #29 is [7.7756631 6.9021754 4.0704566] at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
+
+ > After scaling into inequality constraints p = [-1.1406664 -0.0453728 -0.590111 -0.2129741]
+
+Function Evaluation #30 is [18.876707] at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
+
+Scaling vertex #7/8 at [-4.387004 -7.4398831 5.5662572 -5.7619391]... 
+
+Function Evaluation #31 is [-145.1619 -227.48157 -124.2545] at [-4.387004 -7.4398831 5.5662572 -5.7619391]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #32 is [-33.885744 -51.907628 -28.420579] at [-2.193502 -3.7199415 2.7831286 -2.8809696]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #33 is [-4.2690704 -6.745525 -3.9086215] at [-1.096751 -1.8599708 1.3915643 -1.4404848]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 2.500000e-001
+
+Function Evaluation #34 is [4.0339152 5.1793098 2.4961062] at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+
+ > After scaling into inequality constraints p = [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+
+Function Evaluation #35 is [-9.6087543] at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+
+Scaling vertex #8/8 at [-7.7572907 3.7137919 -6.9375666 3.9417012]... 
+
+Function Evaluation #36 is [-107.2843 -160.7795 -154.10312] at [-7.7572907 3.7137919 -6.9375666 3.9417012]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #37 is [-15.233487 -33.648771 -28.983262] at [-3.8786453 1.856896 -3.4687833 1.9708506]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 5.000000e-001
+
+Function Evaluation #38 is [4.9854221 -1.3891415 -0.5995563] at [-1.9393227 0.9284480 -1.7343917 0.9854253]
+
+Inequality constraint #2/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 2.500000e-001
+
+Function Evaluation #39 is [8.6432524 6.9142403 5.0482406] at [-0.9696613 0.4642240 -0.8671958 0.4927127]
+
+ > After scaling into inequality constraints p = [-0.9696613 0.4642240 -0.8671958 0.4927127]
+
+Function Evaluation #40 is [27.089858] at [-0.9696613 0.4642240 -0.8671958 0.4927127]
+
+Step #1 : order
+
+=================================================================
+
+Iteration #1 (total = 1)
+
+Function Eval #40
+
+Xopt : [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+
+Fopt : -9.608754e+000
+
+DeltaFv : 3.669861e+001
+
+Center : [-0.7608125 0.0998668 -0.1705710 -0.0726123]
+
+Size : 2.470577e+000
+
+Vertex #1/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
+
+Vertex #2/8 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000 0.000000e+000 0.000000e+000
+
+Vertex #3/8 : fv=2.857470e+000, x=-6.918195e-001 -1.038867e+000 3.321244e-001 -8.676401e-002
+
+Vertex #4/8 : fv=3.064053e+000, x=-1.678281e+000 9.350947e-001 1.534160e-002 -6.314124e-001
+
+Vertex #5/8 : fv=1.133805e+001, x=-4.809773e-001 1.082404e+000 -7.134980e-001 -4.683950e-001
+
+Vertex #6/8 : fv=1.517618e+001, x=-5.767188e-001 3.314362e-001 -2.370115e-001 1.046177e+000
+
+Vertex #7/8 : fv=1.887671e+001, x=-1.140666e+000 -4.537277e-002 -5.901110e-001 -2.129741e-001
+
+Vertex #8/8 : fv=2.708986e+001, x=-9.696613e-001 4.642240e-001 -8.671958e-001 4.927127e-001
+
+Reflect
+
+xbar=[-0.7309769 0.0478157 -0.0710532 -0.1533730]
+
+ > After projection into bounds p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+Function Evaluation #41 is [5.0560508 6.3901531 3.6702149] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+ > After scaling into inequality constraints p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+Function Evaluation #42 is [-14.449807] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+xr=[-0.4922926 -0.3685925 0.7250894 -0.7994586], f(xr)=-14.449807
+
+Expand
+
+ > After projection into bounds p = [-0.2536082 -0.7850008 1.5212321 -1.4455443]
+
+Function Evaluation #43 is [-0.5824575 0.5107345 0.2176639] at [-0.2536082 -0.7850008 1.5212321 -1.4455443]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #44 is [5.0560508 6.3901531 3.6702149] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+ > After scaling into inequality constraints p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+Function Evaluation #45 is [-14.449807] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+xe=[-0.4922926 -0.3685925 0.7250894 -0.7994586], f(xe)=-14.449807
+
+  > Perform reflection
+
+Sort
+
+=================================================================
+
+Iteration #2 (total = 2)
+
+Function Eval #45
+
+Xopt : [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+
+Fopt : -1.444981e+001
+
+DeltaFv : 3.332651e+001
+
+Center : [-0.7011414 -0.0042353 0.0284646 -0.2341337]
+
+Size : 2.197539e+000
+
+Vertex #1/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+
+Vertex #2/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
+
+Vertex #3/8 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000 0.000000e+000 0.000000e+000
+
+Vertex #4/8 : fv=2.857470e+000, x=-6.918195e-001 -1.038867e+000 3.321244e-001 -8.676401e-002
+
+Vertex #5/8 : fv=3.064053e+000, x=-1.678281e+000 9.350947e-001 1.534160e-002 -6.314124e-001
+
+Vertex #6/8 : fv=1.133805e+001, x=-4.809773e-001 1.082404e+000 -7.134980e-001 -4.683950e-001
+
+Vertex #7/8 : fv=1.517618e+001, x=-5.767188e-001 3.314362e-001 -2.370115e-001 1.046177e+000
+
+Vertex #8/8 : fv=1.887671e+001, x=-1.140666e+000 -4.537277e-002 -5.901110e-001 -2.129741e-001
+
+  > Termination ?
+
+  > iterations=2 >= maxiter=5
+
+  > funevals=45 >= maxfunevals=1000
+
+  > e(x)=2.830234e-001 < tolxrelative = 2.220446e-016 * 7.397608e-001 + 0.000000e+000
+
+  > simplex size=2.197539e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+
+Reflect
+
+xbar=[-0.6383521 0.0016415 0.1168326 -0.2371565]
+
+ > After projection into bounds p = [-0.1360378 0.0486557 0.8237762 -0.2613389]
+
+Function Evaluation #46 is [6.3317996 8.764179 4.3414053] at [-0.1360378 0.0486557 0.8237762 -0.2613389]
+
+ > After scaling into inequality constraints p = [-0.1360378 0.0486557 0.8237762 -0.2613389]
+
+Function Evaluation #47 is [-17.245376] at [-0.1360378 0.0486557 0.8237762 -0.2613389]
+
+xr=[-0.1360378 0.0486557 0.8237762 -0.2613389], f(xr)=-17.245376
+
+Expand
+
+ > After projection into bounds p = [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+Function Evaluation #48 is [3.3452158 7.4221434 1.457023] at [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+ > After scaling into inequality constraints p = [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+Function Evaluation #49 is [-31.542457] at [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+xe=[0.3662765 0.0956700 1.5307197 -0.2855214], f(xe)=-31.542457
+
+  > Perform Expansion
+
+Sort
+
+=================================================================
+
+Iteration #3 (total = 3)
+
+Function Eval #49
+
+Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+Fopt : -3.154246e+001
+
+DeltaFv : 4.671864e+001
+
+Center : [-0.5127735 0.0133950 0.2935685 -0.2432021]
+
+Size : 2.702011e+000
+
+Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+
+Vertex #2/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+
+Vertex #3/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
+
+Vertex #4/8 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000 0.000000e+000 0.000000e+000
+
+Vertex #5/8 : fv=2.857470e+000, x=-6.918195e-001 -1.038867e+000 3.321244e-001 -8.676401e-002
+
+Vertex #6/8 : fv=3.064053e+000, x=-1.678281e+000 9.350947e-001 1.534160e-002 -6.314124e-001
+
+Vertex #7/8 : fv=1.133805e+001, x=-4.809773e-001 1.082404e+000 -7.134980e-001 -4.683950e-001
+
+Vertex #8/8 : fv=1.517618e+001, x=-5.767188e-001 3.314362e-001 -2.370115e-001 1.046177e+000
+
+  > Termination ?
+
+  > iterations=3 >= maxiter=5
+
+  > funevals=49 >= maxfunevals=1000
+
+  > e(x)=3.258152e-001 < tolxrelative = 2.220446e-016 * 6.390977e-001 + 0.000000e+000
+
+  > simplex size=2.702011e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+
+Reflect
+
+xbar=[-0.5036385 -0.0320394 0.3693656 -0.4273991]
+
+ > After projection into bounds p = [-0.4305582 -0.3955150 0.9757427 -1.9009752]
+
+Function Evaluation #50 is [0.2507322 -1.0092652 2.0853594] at [-0.4305582 -0.3955150 0.9757427 -1.9009752]
+
+Inequality constraint #2/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #51 is [4.3450374 4.8961397 3.6218408] at [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+
+ > After scaling into inequality constraints p = [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+
+Function Evaluation #52 is [-16.344698] at [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+
+xr=[-0.4670983 -0.2137772 0.6725542 -1.1641872], f(xr)=-16.344698
+
+  > Perform reflection
+
+Sort
+
+=================================================================
+
+Iteration #4 (total = 4)
+
+Function Eval #52
+
+Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+Fopt : -3.154246e+001
+
+DeltaFv : 4.288051e+001
+
+Center : [-0.4990710 -0.0547566 0.4072642 -0.5194976]
+
+Size : 2.702011e+000
+
+Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+
+Vertex #2/8 : fv=-1.634470e+001, x=-4.670983e-001 -2.137772e-001 6.725542e-001 -1.164187e+000
+
+Vertex #3/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+
+Vertex #4/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
+
+Vertex #5/8 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000 0.000000e+000 0.000000e+000
+
+Vertex #6/8 : fv=2.857470e+000, x=-6.918195e-001 -1.038867e+000 3.321244e-001 -8.676401e-002
+
+Vertex #7/8 : fv=3.064053e+000, x=-1.678281e+000 9.350947e-001 1.534160e-002 -6.314124e-001
+
+Vertex #8/8 : fv=1.133805e+001, x=-4.809773e-001 1.082404e+000 -7.134980e-001 -4.683950e-001
+
+  > Termination ?
+
+  > iterations=4 >= maxiter=5
+
+  > funevals=52 >= maxfunevals=1000
+
+  > e(x)=3.067545e-001 < tolxrelative = 2.220446e-016 * 8.293443e-001 + 0.000000e+000
+
+  > simplex size=2.702011e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+
+Reflect
+
+xbar=[-0.5016558 -0.2172082 0.5673731 -0.5267980]
+
+ > After projection into bounds p = [-0.5223342 -1.5168204 1.8482442 -0.5852010]
+
+Function Evaluation #53 is [-1.7599751 -0.0827833 -2.3197696] at [-0.5223342 -1.5168204 1.8482442 -0.5852010]
+
+Inequality constraint #1/3 is not satisfied for x
+
+Scaling inequality constraint with alpha = 1.000000e+000
+
+Function Evaluation #54 is [3.0993829 5.0893666 1.8661831] at [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+
+ > After scaling into inequality constraints p = [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+
+Function Evaluation #55 is [-18.12034] at [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+
+xr=[-0.5119950 -0.8670143 1.2078086 -0.5559995], f(xr)=-18.120340
+
+  > Perform reflection
+
+Sort
+
+=================================================================
+
+Iteration #5 (total = 5)
+
+Function Eval #55
+
+Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+
+Fopt : -3.154246e+001
+
+DeltaFv : 3.460651e+001
+
+Center : [-0.5029482 -0.2984339 0.6474275 -0.5304482]
+
+Size : 2.702011e+000
+
+Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+
+Vertex #2/8 : fv=-1.812034e+001, x=-5.119950e-001 -8.670143e-001 1.207809e+000 -5.559995e-001
+
+Vertex #3/8 : fv=-1.634470e+001, x=-4.670983e-001 -2.137772e-001 6.725542e-001 -1.164187e+000
+
+Vertex #4/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+
+Vertex #5/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
+
+Vertex #6/8 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000 0.000000e+000 0.000000e+000
+
+Vertex #7/8 : fv=2.857470e+000, x=-6.918195e-001 -1.038867e+000 3.321244e-001 -8.676401e-002
+
+Vertex #8/8 : fv=3.064053e+000, x=-1.678281e+000 9.350947e-001 1.534160e-002 -6.314124e-001
+
+  > Termination ?
+
+  > iterations=5 >= maxiter=5
+
+Terminate with status : maxiter
+
 nm = neldermead_destroy(nm);

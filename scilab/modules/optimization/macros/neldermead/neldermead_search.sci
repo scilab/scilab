@@ -61,6 +61,8 @@ function this = neldermead_algo ( this )
       this = neldermead_variable (this);
     case "box" then
       this = neldermead_box (this);
+    case "nmconstraints" then
+      this = neldermead_constraints ( this );
     else
       errmsg = msprintf(gettext("%s: Unknown -method %s"), "neldermead_algo", this.method)
       error(errmsg)
@@ -170,7 +172,7 @@ function this = neldermead_variable ( this )
     if ( iter > 1 ) then
       [this , terminate , status] = neldermead_termination (this , ...
         fvinitial , oldfvmean , newfvmean , previouscenter , currentcenter , simplex );
-      if (terminate==1) then
+      if ( terminate ) then
         this = neldermead_log (this,sprintf("Terminate with status : %s",status));
         break
       end
@@ -355,7 +357,7 @@ function this = neldermead_fixed (this)
     if ( iter > 1 ) then
       [this , terminate , status] = neldermead_termination (this , ...
         fvinitial , oldfvmean , newfvmean , previouscenter , currentcenter , simplex );
-      if (terminate==1) then
+      if ( terminate ) then
         this = neldermead_log (this,sprintf("Terminate with status : %s",status));
         break;
       end
@@ -431,7 +433,7 @@ endfunction
 //   simplex : the simplex
 //     The best point in the simplex is expected to be stored at 1
 //     The worst point in the simplex is expected to be stored at n+1
-//   terminate : 1 if the algorithm terminates, 0 if the algorithm must continue.
+//   terminate : %t if the algorithm terminates, %f if the algorithm must continue.
 //   this.status : termination status
 //     status = "continue"
 //     status = "maxiter"
@@ -451,7 +453,7 @@ endfunction
 function [this , terminate , status ] = neldermead_termination (this , ...
   fvinitial , oldfvmean , newfvmean , previousxopt , currentxopt , ...
   simplex )
-  terminate = 0;
+  terminate = %f;
   status = "continue";
   //
   // Termination Criteria from parent optimization class
@@ -461,14 +463,14 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   //
   // Criteria #5 : standard deviation of function values
   //
-  if (terminate == 0) then
-    if ( this.tolfstdeviationmethod ) then
+  if ( ~terminate ) then
+    if this.tolfstdeviationmethod == "enabled" then
       fv = optimsimplex_getallfv ( simplex )
       sd = st_deviation(fv);
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > st_deviation(fv)=%e < tolfstdeviation=%e",...
         sd, this.tolfstdeviation));
       if sd < this.tolfstdeviation then
-        terminate = 1;
+        terminate = %f;
         status = "tolfstdev";
       end
     end
@@ -476,13 +478,13 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   //
   // Criteria #6 : simplex absolute + relative size
   //
-  if (terminate == 0) then
+  if ( ~terminate ) then
     if ( this.tolsimplexizemethod ) then
       ssize = optimsimplex_size ( simplex , "sigmaplus" );
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%e < %e + %e * %e",...
         ssize, this.tolsimplexizeabsolute , this.tolsimplexizerelative , this.simplexsize0 ));
       if ssize < this.tolsimplexizeabsolute + this.tolsimplexizerelative * this.simplexsize0 then
-        terminate = 1;
+        terminate = %f;
         status = "tolsize";
       end
     end
@@ -490,7 +492,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   //
   // Criteria #7 : simplex absolute size + difference in function values (Matlab-like)
   //
-  if (terminate == 0) then
+  if ( ~terminate ) then
     if ( this.tolssizedeltafvmethod ) then
       ssize = optimsimplex_size ( simplex , "sigmaplus" );
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%e < %e",...
@@ -499,7 +501,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > abs(fv(n+1) - fv(1))=%e < toldeltafv=%e",...
         shiftfv, this.toldeltafv));
       if ssize < this.tolsimplexizeabsolute & shiftfv < this.toldeltafv then
-        terminate = 1;
+        terminate = %f;
         status = "tolsizedeltafv";
       end
     end
@@ -508,7 +510,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   // Criteria #8 : Kelley stagnation, based on
   // a sufficient decrease condition
   //
-  if ( terminate == 0 ) then
+  if ( ~terminate ) then
     if ( this.kelleystagnationflag ) then
       [ sg , this ] = optimsimplex_gradientfv ( simplex , neldermead_costf , "forward" , this );
       nsg = sg.' * sg;
@@ -517,8 +519,43 @@ function [this , terminate , status ] = neldermead_termination (this , ...
       this.optbase = optimbase_stoplog ( this.optbase , ...
         sprintf ( "Test Stagnation : newfvmean=%e >= oldfvmean=%e - %e * %e" , newfvmean, oldfvmean , this.kelleyalpha , nsg ) );
       if ( newfvmean >= oldfvmean - this.kelleyalpha * nsg ) then
-        terminate = 1;
+        terminate = %f;
         status = "kelleystagnation";
+      end
+    end
+  end
+  //
+  // Criteria #9 : Box termination criteria
+  // The number of consecutive time that an absolute tolerance on
+  // function value is met.
+  // From Algorithm 454, the tolerance is the difference between the
+  // max and the min function values in the simplex.
+  //
+  if ( ~terminate ) then
+    if ( this.boxtermination ) then
+      shiftfv = abs(optimsimplex_deltafvmax( simplex ))
+      if ( shiftfv < this.boxtolf ) then
+        this.boxkount = this.boxkount + 1
+        if ( this.boxkount == this.boxnbmatch ) then
+          terminate = %t
+          status = "boxtolf"
+        end
+      else
+        this.boxkount = 0
+      end
+    end
+  end
+  //
+  // Criteria #10 : variance of function values
+  //
+  if ( ~terminate ) then
+    if ( this.tolvarianceflag ) then
+      var = optimsimplex_variance ( simplex )
+      this.optbase = optimbase_stoplog ( this.optbase , ...
+        sprintf ( "Test tolvariance : %e < %e" , var , this.tolabsolutevariance ) );
+      if ( var < this.tolabsolutevariance ) then
+        terminate = %t
+        status = "tolvariance"
       end
     end
   end
@@ -670,7 +707,7 @@ function this = neldermead_startup (this)
   // Note: this call to the cost function is not used, but helps the
   // user while he is tuning his object.
   if ( this.checkcostfunction ) then
-    optimbase_checkcostfun ( this.optbase );
+    this.optbase = optimbase_checkcostfun ( this.optbase );
   end
   // 1. If the problem has bounds, check that they are consistent
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
@@ -746,7 +783,7 @@ function this = neldermead_startup (this)
 endfunction
 //
 // neldermead_scaletox0 --
-//   Scale the simplex into the bounds and the 
+//   Scale the simplex into the 
 //   nonlinear inequality constraints, if any.
 //   Scale toward x0, which is feasible.
 // Arguments
@@ -777,7 +814,7 @@ function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
 endfunction
 //
 // neldermead_scaletocenter --
-//   Scale the simplex into the bounds and the 
+//   Scale the simplex into the 
 //   nonlinear inequality constraints, if any.
 //   Scale to the centroid of the points
 //   which satisfy the constraints.
@@ -844,86 +881,129 @@ function this = neldermead_kelleystag ( this )
     end
 endfunction
   //
-  // _scaleinconstraints --
+  // _scaleinboundsandcons --
   //   Given a point to scale and a reference point which satisfies the constraints, 
-  //   scale the point towards the reference point until it satisfies all the constraints.
-  //   Returns a list of key values with the following
-  //   keys : -status 0/1 -x x, where status
-  //   is 0 if the procedure has failed after -boxnbnlloops
+  //   scale the point towards the reference point until it satisfies all the constraints,
+  //   including boun constraints.
+  //   Returns isscaled = %T if the procedure has succeded before -boxnbnlloops
+  //   Returns isscaled = %F if the procedure has failed after -boxnbnlloops
   //   iterations.
   // Arguments
   //   x : the point to scale
   //   xref : the reference point
-  //   status : %T or %F
+  //   isscaled : %T or %F
   //   p : scaled point
   //
-function [ this , status , p ] = _scaleinconstraints ( this , x , xref )
+function [ this , isscaled , p ] = _scaleinboundsandcons ( this , x , xref )
   p = x
-  //
-  // Project the point into the bounds
-  //
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
+  nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
+  //
+  // 1. No bounds, no nonlinear inequality constraints
+  // => no problem
+  //
+  if ( ( hasbounds == %f ) & ( nbnlc == 0 ) ) then
+    isscaled = %T
+    return;
+  end
+  isscaled = %F
+  //
+  // 2. Scale into bounds
+  //
   if ( hasbounds ) then
     [ this.optbase , p ] = optimbase_proj2bnds ( this.optbase ,  p );
     this = neldermead_log (this,sprintf(" > After projection into bounds p = [%s]" , ...
-      strcat(string(p)," ")));
+      _strvec(p)));
   end
+  //
+  // 2. Scale into nonlinear constraints
+  // Try the current point and see if the constraints are satisfied.
+  // If not, move the point "halfway" to the centroid,
+  // which should satisfy the constraints, if
+  // the constraints are convex.
+  // Perform this loop until the constraints are satisfied.
+  // If all loops have been performed without success, the scaling
+  // has failed.
+  //
+  alpha = 1.0
+  p0 = p
+  while ( alpha > this.guinalphamin )
+      [ this.optbase , feasible ] = optimbase_isinnonlincons ( this.optbase , p );
+      if ( feasible ) then
+        isscaled = %T;
+        break;
+      end
+      alpha = alpha / 2.0
+      this = neldermead_log (this,sprintf("Scaling inequality constraint with alpha = %e", ...
+        alpha ));
+      p = ( 1.0 - alpha ) * xref + alpha * p0;
+  end
+  this = neldermead_log (this,sprintf(" > After scaling into inequality constraints p = [%s]" , ...
+    _strvec(p) ) );
+  if ( ~isscaled ) then
+    this = neldermead_log (this,sprintf(" > Impossible to scale into constraints." ));
+  end
+endfunction
+  //
+  // _scaleinconstraints --
+  //   Given a point to scale and a reference point which satisfies the constraints, 
+  //   scale the point towards the reference point until it satisfies all the constraints.
+  //   Returns isscaled = %T if the procedure has succeded before -boxnbnlloops
+  //   Returns isscaled = %F if the procedure has failed after -boxnbnlloops
+  //   iterations.
+  // Arguments
+  //   x : the point to scale
+  //   xref : the reference point
+  //   isscaled : %T or %F
+  //   p : scaled point
+  //
+function [ this , isscaled , p ] = _scaleinconstraints ( this , x , xref )
+  p = x
   //
   // Adjust point to satisfy nonlinear inequality constraints
   //
   nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
   if ( nbnlc == 0 ) then
-    scaled = %T
-  else
-    scaled = %F
-    //
-    // Try the current point and see if the constraints are satisfied.
-    // If not, move the point "halfway" to the centroid,
-    // which should satisfy the constraints, if
-    // the constraints are convex.
-    // Perform this loop until the constraints are satisfied.
-    // If all loops have been performed without success, the scaling
-    // has failed.
-    //
-    for i = 1 : this.nbineqloops
-      [ this , constlist ] = neldermead_function ( this , p , index=2 );
-      feasible = %T
-      for ic = 1 : this.optbase.nbineqconst;
-        const = constlist ( ic );
-        if ( const < 0.0 ) then
-          this = neldermead_log (this,sprintf("Constraint #%d/%d is not satisfied", ...
-            ic , this.optbase.nbineqconst ));
-          feasible = %F;
-          break;
-        end
-      end
-      if ( feasible ) then
-        scaled = %T;
-        break;
-      else
-        this = neldermead_log (this,sprintf("Scaling inequality constraint at loop #%d/%d", ...
-          i , this.nbineqloops));
-        p = ( xref + p ) * this.ineqscaling;
-      end
-    end
-    this = neldermead_log (this,sprintf(" > After scaling into inequality constraints p = [%s]" , ...
-      strcat(string(p)," ") ) );
+    isscaled = %T
+    return;
   end
-  if ( scaled ) then
-    status = %T
-  else
-    status = %F
+  isscaled = %F
+  //
+  // Try the current point and see if the constraints are satisfied.
+  // If not, move the point "halfway" to the centroid,
+  // which should satisfy the constraints, if
+  // the constraints are convex.
+  // Perform this loop until the constraints are satisfied.
+  // If all loops have been performed without success, the scaling
+  // has failed.
+  //
+  alpha = 1.0
+  p0 = p
+  while ( alpha > this.guinalphamin )
+      [ this.optbase , feasible ] = optimbase_isinnonlincons ( this.optbase , p );
+      if ( feasible ) then
+        isscaled = %T;
+        break;
+      end
+      alpha = alpha / 2.0
+      this = neldermead_log (this,sprintf("Scaling inequality constraint with alpha = %e", ...
+        alpha));
+      p = ( 1.0 - alpha ) * xref + alpha * p0;
+  end
+  this = neldermead_log (this,sprintf(" > After scaling into inequality constraints p = [%s]" , ...
+    _strvec(p) ) );
+  if ( ~isscaled ) then
     this = neldermead_log (this,sprintf(" > Impossible to scale into constraints after %d loops" , ...
       this.optbase.nbineqconst ));
   end
 endfunction
 //
-// neldermead_box --
+// neldermead_constraints --
 //   The Nelder-Mead algorithm, with variable-size simplex
 //   and modifications by Box for bounds and
 //   inequality constraints.
 //
-function this = neldermead_box ( this )
+function this = neldermead_constraints ( this )
   //
   // Order the vertices for the first time
   //
@@ -979,10 +1059,10 @@ function this = neldermead_box ( this )
     this = neldermead_log (this,sprintf("================================================================="));
     this = neldermead_log (this,sprintf("Iteration #%d (total = %d)",iter,totaliter));
     this = neldermead_log (this,sprintf("Function Eval #%d",funevals));
-    this = neldermead_log (this,sprintf("Xopt : [%s]",strcat(string(xlow)," ")));
+    this = neldermead_log (this,sprintf("Xopt : [%s]",_strvec(xlow)));
     this = neldermead_log (this,sprintf("Fopt : %e",flow));
     this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
-    this = neldermead_log (this,sprintf("Center : [%s]",strcat(string(currentcenter)," ")));
+    this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
     this = neldermead_log (this,sprintf("Size : %e",ssize));
     str = optimsimplex_tostring ( simplex )
     for i = 1:nbve
@@ -996,7 +1076,7 @@ function this = neldermead_box ( this )
     if ( iter > 1 ) then
       [this , terminate , status] = neldermead_termination (this , ...
         fvinitial , oldfvmean , newfvmean , previouscenter , currentcenter , simplex );
-      if (terminate==1) then
+      if ( terminate ) then
         this = neldermead_log (this,sprintf("Terminate with status : %s",status));
         break
       end
@@ -1006,21 +1086,22 @@ function this = neldermead_box ( this )
     //
     this = neldermead_log (this,sprintf("Reflect"));
     xbar = optimsimplex_xbar ( simplex );
-    this = neldermead_log (this,sprintf("xbar=[%s]" , strcat(string(xbar)," ")));
+    this = neldermead_log (this,sprintf("xbar=[%s]" , _strvec(xbar)));
     //
     // Reflect the worst point with respect to center
     //
     xr = neldermead_interpolate ( xbar , xhigh , this.rho );
+    this = neldermead_log (this,sprintf("xr=[%s]" , _strvec(xr)));
     // Adjust point to satisfy bounds and nonlinear inequality constraints
     if ( hasbounds | nbnlc > 0 ) then
-      [ this , status , xr ] = _scaleinconstraints ( this , xr , xbar )
+      [ this , status , xr ] = _scaleinboundsandcons ( this , xr , xbar );
       if ( ~status ) then
         status = "impossibleconstr"
         break
       end
     end
     [ this , fr ] = neldermead_function ( this , xr );
-    this = neldermead_log (this,sprintf("xr=[%s], f(xr)=%f", strcat(string(xr)," ") , fr));
+    this = neldermead_log (this,sprintf("xr=[%s], f(xr)=%f", _strvec(xr) , fr));
     if ( fr >= flow & fr < fn ) then
       this = neldermead_log (this,sprintf("  > Perform reflection"));
       simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
@@ -1031,7 +1112,7 @@ function this = neldermead_box ( this )
       xe = neldermead_interpolate ( xbar , xhigh , this.rho*this.chi );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
-        [ this , status , xe ] = _scaleinconstraints ( this , xe , xbar )
+        [ this , status , xe ] = _scaleinboundsandcons ( this , xe , xbar );
         if ( ~status ) then
           status = "impossibleconstr"
           break
@@ -1054,7 +1135,7 @@ function this = neldermead_box ( this )
       xc = neldermead_interpolate ( xbar , xhigh , this.rho*this.gamma );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
-        [ this , status , xc ] = _scaleinconstraints ( this , xc , xbar )
+        [ this , status , xc ] = _scaleinboundsandcons ( this , xc , xbar );
         if ( ~status ) then
           status = "impossibleconstr"
           break
@@ -1079,7 +1160,7 @@ function this = neldermead_box ( this )
       xc = neldermead_interpolate ( xbar , xhigh , -this.gamma );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
-        [ this , status , xc ] = _scaleinconstraints ( this , xc , xbar )
+        [ this , status , xc ] = _scaleinboundsandcons ( this , xc , xbar );
         if ( ~status ) then
           status = "impossibleconstr"
           break
@@ -1109,3 +1190,255 @@ function this = neldermead_box ( this )
   this.optbase = optimbase_set ( this.optbase , "-status" , status );
   this.simplexopt = simplex;
 endfunction
+//
+// neldermead_box --
+//   The Nelder-Mead algorithm, with variable-size simplex
+//   and modifications by Box for bounds and
+//   inequality constraints.
+//
+function this = neldermead_box ( this )
+  //
+  // Order the vertices for the first time
+  //
+  simplex = this.simplex0;
+  n = optimbase_cget ( this.optbase , "-numberofvariables" );
+  fvinitial = optimbase_get ( this.optbase , "-fx0" );
+  // Sort function values and x points by increasing function value order
+  this = neldermead_log (this,"Step #1 : order");
+  simplex = optimsimplex_sort ( simplex );
+  currentcenter = optimsimplex_center ( simplex );
+  currentxopt = optimbase_cget ( this.optbase , "-x0" );
+  newfvmean = optimsimplex_fvmean ( simplex );
+  nbve = optimsimplex_getnbve ( simplex );
+  ihigh = nbve;
+  inext = ihigh - 1
+  ilow = 1
+  [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
+  nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
+  rho = this.boxreflect;
+  //
+  // Initialize
+  //
+  terminate = 0;
+  iter = 0;
+  step = "init";
+  //
+  // Nelder-Mead Loop
+  //
+  while ( terminate == 0 )
+    this.optbase = optimbase_incriter ( this.optbase );
+    iter = iter + 1;
+    xlow = optimsimplex_getx ( simplex , ilow )
+    flow = optimsimplex_getfv ( simplex , ilow )
+    xhigh = optimsimplex_getx ( simplex , ihigh )
+    fhigh = optimsimplex_getfv ( simplex , ihigh )
+    xn = optimsimplex_getx ( simplex , inext )
+    fn = optimsimplex_getfv ( simplex , inext )
+    //
+    // Store history
+    //
+    xcoords = optimsimplex_getallx ( simplex )
+    this = neldermead_storehistory ( this , n , flow , xlow , xcoords );
+    deltafv = abs(optimsimplex_deltafvmax ( simplex ));
+    currentfopt = flow;
+    previousxopt = currentxopt;
+    currentxopt = xlow;
+    previouscenter = currentcenter;
+    currentcenter = optimsimplex_center ( simplex );
+    oldfvmean = newfvmean;
+    newfvmean = optimsimplex_fvmean ( simplex );
+    totaliter = optimbase_get ( this.optbase , "-iterations" );
+    funevals = optimbase_get ( this.optbase , "-funevals" );
+    ssize = optimsimplex_size ( simplex )
+    this = neldermead_log (this,sprintf("================================================================="));
+    this = neldermead_log (this,sprintf("Iteration #%d (total = %d)",iter,totaliter));
+    this = neldermead_log (this,sprintf("Function Eval #%d",funevals));
+    this = neldermead_log (this,sprintf("Xopt : [%s]",_strvec(xlow)));
+    this = neldermead_log (this,sprintf("Fopt : %e",flow));
+    this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
+    this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
+    this = neldermead_log (this,sprintf("Size : %e",ssize));
+    str = optimsimplex_tostring ( simplex )
+    for i = 1:nbve
+      this = neldermead_log (this,str(i));
+    end
+    neldermead_outputcmd ( this, "iter" , simplex , step )
+
+    //
+    // Update termination flag
+    //
+    if ( iter > 1 ) then
+      [this , terminate , status] = neldermead_termination (this , ...
+        fvinitial , oldfvmean , newfvmean , previouscenter , currentcenter , simplex );
+      if ( terminate ) then
+        this = neldermead_log (this,sprintf("Terminate with status : %s",status));
+        break
+      end
+    end
+    //
+    // Compute xbar, center of better vertices
+    //
+    this = neldermead_log (this,sprintf("Reflect"));
+    xbar = optimsimplex_xbar ( simplex );
+    this = neldermead_log (this,sprintf("xbar=[%s]" , _strvec(xbar)));
+    //
+    // Search a point improving cost function
+    // and satisfying constraints.
+    //
+    [ this , scaled , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh , fhigh , rho );
+    if ( scaled == %f ) then
+      status = "impossibleimprovement"
+      break
+    end
+    this = neldermead_log (this,sprintf("xr=[%s], f(xr)=%f", strcat(string(xr)," ") , fr));
+    this = neldermead_log (this,sprintf("  > Perform Reflection"));
+    simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
+    step = "boxreflection";
+    //
+    // Sort simplex
+    //
+    this = neldermead_log (this,sprintf("Sort"));
+    simplex  = optimsimplex_sort ( simplex );
+  end
+  this.optbase = optimbase_set ( this.optbase , "-xopt" , xlow.' );
+  this.optbase = optimbase_set ( this.optbase , "-fopt" , flow );
+  this.optbase = optimbase_set ( this.optbase , "-status" , status );
+  this.simplexopt = simplex;
+endfunction
+
+  //
+  // _strvec --
+  //  Returns a string for the given vector.
+  //
+  function str = _strvec ( x )
+    str = strcat(string(x)," ")
+  endfunction
+  //
+  // _boxlinesearch --
+  //   For Box's method, perform a line search
+  //   from xbar, on the line (xhigh,xbar) and returns:
+  //   status : %t if the search is successful
+  //   xr : the reflected point
+  //   fr : the function value
+  //   The reflected point satisfies the following
+  //   constraints :
+  //   * fr < fhigh
+  //   * xr satisfies the bounds constraints
+  //   * xr satisfies the nonlinear positive inequality constraints
+  //   * xr satisfies the linear positive inequality constraints
+  //   The method is based on projection and
+  //   scaling toward the centroid.
+  //
+  // Arguments
+  //   n : number of variables
+  //   xbar : the centroid
+  //   xhigh : the high point
+  //   fhigh : function value at xhigh
+  //   rho : reflection factor
+  //
+  function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh , fhigh , rho )
+    this = neldermead_log (this,"_boxlinesearch");
+    this = neldermead_log (this, sprintf ("> xhigh=[%s], fhigh=%e",_strvec(xhigh),fhigh));
+    this = neldermead_log (this, sprintf ( "> xbar=[%s]" , _strvec(xbar) ) );
+    xr = neldermead_interpolate ( xbar , xhigh , rho );
+    this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec ( xr ) ) );
+    status = %f
+    alphamin = this.guinalphamin
+    //
+    // Scale from xr toward xbar until fr < fhigh and update xr
+    //
+    xr0 = xr
+    alpha = 1.0
+    while ( alpha > alphamin )
+      [ this , fr ] = neldermead_function ( this , xr );
+      if ( fr < fhigh ) then
+        this = neldermead_log (this, sprintf ( "fr = %e improves %e : no need for scaling for f" , fr , fhigh ) );
+        status = %t;
+        break
+      end
+      alpha = alpha / 2.0;
+      this = neldermead_log (this, sprintf ( "Scaling for f with alpha=%e" , alpha ) );
+      xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
+      this = neldermead_log (this, sprintf ( "> xr = %s" , _strvec ( xr ) ) );
+    end
+    // If the scaling for function improvement has failed,
+    // we return.
+    if ( ~status ) then
+      return;
+    end
+    // scaledc is set to %t if xr is updated during scaling into constraints 
+    // That implies that the function value is to update.
+    scaledc = %f
+    //
+    // Project xr into bounds, with an additionnal alpha inside the bounds.
+    // This algo is always succesful.
+    // Note:
+    //   If the alpha coefficient was not used, the
+    //   projectinbounds method could be used directly.
+    //
+    [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
+    if ( hasbounds ) then
+      boxboundsalpha = this.boxboundsalpha;
+      boundsmax = optimbase_cget ( this.optbase , "-boundsmax" );
+      boundsmin = optimbase_cget ( this.optbase , "-boundsmin" );
+      for ix = 1:n
+        xmin = boundsmin ( ix );
+        xmax = boundsmax ( ix );
+        xrix = xr ( ix );
+        if ( xrix > xmax ) then
+          this = neldermead_log (this, sprintf ( "Projecting index #%d = %e on max bound %e - %e" , ix , xrix , xmax , boxboundsalpha ) );
+          xr ( ix ) = xmax - boxboundsalpha;
+          if ( ~scaledc ) then
+            scaledc = %t
+          end
+        elseif ( xrix < xmin ) then
+          this = neldermead_log (this, sprintf ( "Projecting index #%e = %e on min bound %e - %e" , ix , xrix , xmin , boxboundsalpha ) );
+          xr ( ix ) = xmin + boxboundsalpha;
+          if ( ~scaledc ) then
+            scaledc = %t
+          end
+        end
+      end
+      this = neldermead_log (this, sprintf ( " > After projection into bounds xr = [%s]" , _strvec(xr)));
+    end
+    //
+    // Scale from xr to xbar into nonlinear inequality constraints
+    // and update xr. 
+    // Set status to 0 if the process fails.
+    //
+    nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" );
+    if ( nbnlc == 0 ) then
+      status = %t
+    else
+      status = %f;
+      alpha = 1.0;
+      xr0 = xr;
+      while ( alpha > alphamin )
+        [ this.optbase , feasible ] = optimbase_isinnonlincons ( this.optbase , xr );
+        if ( feasible ) then
+          status = %t;
+          break
+        end
+        alpha = alpha / 2.0;
+        this = neldermead_log (this, sprintf ( "Scaling for nonlinear/linear inequality constraints with alpha=%e toward [%s]" , ...
+          alpha , _strvec(p0) ));
+        xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
+        this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec(xr) ));
+        if ( ~scaledc ) then
+          scaledc = %t;
+        end
+      end
+    end
+    // If scaling failed, returns immediately 
+    // (there is no need to update the function value).
+    if ( ~status ) then
+      return
+    end
+    if ( scaledc ) then
+      // Re-compute the function value at scaled point
+      [ this , fr ] = neldermead_function ( this , xr );
+    end
+    
+  endfunction
+
+
