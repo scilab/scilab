@@ -46,421 +46,404 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosPalette extends SwingScilabTab implements Tab
-{
-	private JPanel panel = null;
-	
-    /**
-     * 
-     */
-    protected JLabel selectedEntry = null;
+public class XcosPalette extends SwingScilabTab implements Tab {
 
-    /**
-     * 
-     */
-    protected mxEventSource eventSource = new mxEventSource(this);
+	private JPanel panel;
 
-    /**
-     * 
-     */
-    protected Color gradientColor = Color.LIGHT_GRAY;
+	protected JLabel selectedEntry;
 
-    /**
-     * 
-     */
-    
-    public XcosPalette(String paletteName)
-    {
-	super(paletteName);
-	setCallback(null);
-	setBackground(Color.WHITE);
-	panel = new JPanel();
-	panel.setBackground(Color.WHITE);
-	panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-	panel.setPreferredSize(new Dimension(600, 600));
-	JScrollPane jsp = new JScrollPane(panel);
-	setContentPane(jsp);
-	
-	// Clears the current selection when the background is clicked
-	addMouseListener(new MouseListener()
-	{
+	protected mxEventSource eventSource = new mxEventSource(this);
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-	     */
-	    public void mousePressed(MouseEvent e)
-	    {
-		clearSelection();
-	    }
+	protected Color gradientColor = Color.LIGHT_GRAY;
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-	     */
-	    public void mouseClicked(MouseEvent e)
-	    {
-	    }
+	public XcosPalette(String paletteName) {
+			super(paletteName);
+			
+			setCallback(null);
+			setBackground(Color.WHITE);
+			
+			panel = new JPanel();
+			panel.setBackground(Color.WHITE);
+			panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+			panel.setPreferredSize(new Dimension(600, 0));
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-	     */
-	    public void mouseEntered(MouseEvent e)
-	    {
-	    }
+			JScrollPane jsp = new JScrollPane(panel);
+			setContentPane(jsp);
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-	     */
-	    public void mouseExited(MouseEvent e)
-	    {
-	    }
+			// Clears the current selection when the background is clicked
+			addMouseListener(new MouseListener()
+			{
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-	     */
-	    public void mouseReleased(MouseEvent e)
-	    {
-	    }
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+				 */
+				public void mousePressed(MouseEvent e)
+				{
+					clearSelection();
+				}
 
-	});
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+				 */
+				public void mouseClicked(MouseEvent e)
+				{
+				}
 
-	// Shows a nice icon for drag and drop but doesn't import anything
-	setTransferHandler(new TransferHandler()
-	{
-	    public boolean canImport(JComponent comp, DataFlavor[] flavors)
-	    {
-		return true;
-	    }
-	});
-    }
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+				 */
+				public void mouseEntered(MouseEvent e)
+				{
+				}
 
-    /**
-     * 
-     */
-    public void setGradientColor(Color c)
-    {
-	gradientColor = c;
-    }
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+				 */
+				public void mouseExited(MouseEvent e)
+				{
+				}
 
-    /**
-     * 
-     */
-    public Color getGradientColor()
-    {
-	return gradientColor;
-    }
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+				 */
+				public void mouseReleased(MouseEvent e)
+				{
+				}
 
-    /**
-     * 
-     */
-    public void paintComponent(Graphics g)
-    {
-	if (gradientColor == null)
-	{
-	    super.paintComponent(g);
-	}
-	else
-	{
-	    Rectangle rect = getVisibleRect();
+			});
 
-	    if (g.getClipBounds() != null)
-	    {
-		rect = rect.intersection(g.getClipBounds());
-	    }
-
-	    Graphics2D g2 = (Graphics2D) g;
-
-	    g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-		    gradientColor));
-	    g2.fill(rect);
-	}
-    }
-
-    /**
-     * 
-     */
-    public void clearSelection()
-    {
-	setSelectionEntry(null, null);
-    }
-
-    /**
-     * 
-     */
-    public void setSelectionEntry(JLabel entry, mxGraphTransferable t)
-    {
-	JLabel last = selectedEntry;
-	selectedEntry = entry;
-
-	if (last != null)
-	{
-	    last.setBorder(null);
-	    last.setOpaque(false);
-	}
-
-	if (selectedEntry != null)
-	{
-	    selectedEntry.setBorder(new ShadowBorder());
-	    selectedEntry.setOpaque(true);
-	}
-
-	eventSource.fireEvent(mxEvent.SELECT, new mxEventObject(new Object[] {
-		selectedEntry, t, last }));
-    }
-
-    /**
-     * 
-     */
-    public void setPreferredWidth(int width)
-    {
-	int cols = width / 55;
-	panel.setPreferredSize(new Dimension(width, (getComponentCount() * 55 / cols) + 30));
-	panel.revalidate();
-    }
-
-    /**
-     * 
-     * @param name
-     * @param icon
-     * @param style
-     * @param width
-     * @param height
-     * @param value
-     */
-    public void addEdgeTemplate(final String name, ImageIcon icon,
-	    String style, int width, int height, Object value)
-    {
-	mxGeometry geometry = new mxGeometry(0, 0, width, height);
-	geometry.setTerminalPoint(new mxPoint(0, height), true);
-	geometry.setTerminalPoint(new mxPoint(width, 0), false);
-	geometry.setRelative(true);
-
-	mxCell cell = new mxCell(value, geometry, style);
-	cell.setEdge(true);
-
-	addTemplate(name, icon, cell);
-    }
-
-    /**
-     * 
-     * @param name
-     * @param icon
-     * @param style
-     * @param width
-     * @param height
-     * @param value
-     */
-    public void addTemplate(final String name, ImageIcon icon, String style,
-	    int width, int height, Object value)
-    {
-	mxCell cell = new mxCell(value, new mxGeometry(0, 0, width, height),
-		style);
-	cell.setVertex(true);
-
-	addTemplate(name, icon, cell);
-    }
-
-    /**
-     * 
-     * @param name
-     * @param icon
-     * @param style
-     * @param width
-     * @param height
-     * @param value
-     */
-    public void addTemplate(final String name, ImageIcon icon, mxCell cell)
-    {
-	mxRectangle bounds = (mxGeometry) cell.getGeometry().clone();
-	final mxGraphTransferable t = new mxGraphTransferable(
-		new Object[] { cell }, bounds);
-
-	// Scales the image if it's too large for the library
-	if (icon != null)
-	{
-	    if (icon.getIconWidth() > 128) {
-	    	icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
-	    }
-	    if (icon.getIconHeight() > 128) {
-	    	icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
-	    }
-	}
-
-	final JLabel entry = new JLabel(icon)
-	{
-	    /**
-	     * 
-	     */
-	    public void paint2(Graphics g)
-	    {
-		boolean opaque = isOpaque();
-		Color bg = getBackground();
-		Border br = getBorder();
-
-		if (selectedEntry == this)
-		{
-		    setBackground(XcosPalette.this.getBackground().brighter());
-		    setBorder(new ShadowBorder());
-		    setOpaque(true);
+			// Shows a nice icon for drag and drop but doesn't import anything
+			setTransferHandler(new TransferHandler()
+			{
+				public boolean canImport(JComponent comp, DataFlavor[] flavors)
+				{
+					return true;
+				}
+			});
 		}
 
-		super.paint(g);
+		/**
+		 * 
+		 */
+		public void setGradientColor(Color c)
+		{
+			gradientColor = c;
+		}
 
-		setBorder(br);
-		setBackground(bg);
-		setOpaque(opaque);
-	    }
-	};
+		/**
+		 * 
+		 */
+		public Color getGradientColor()
+		{
+			return gradientColor;
+		}
 
-	entry.setPreferredSize(new Dimension(150, 150));
-	entry.setBackground(XcosPalette.this.getBackground().brighter());
-	entry.setFont(new Font(entry.getFont().getFamily(), 0, 14));
+		/**
+		 * 
+		 */
+		public void paintComponent(Graphics g)
+		{
+			if (gradientColor == null)
+			{
+				super.paintComponent(g);
+			}
+			else
+			{
+				Rectangle rect = getVisibleRect();
 
-	entry.setVerticalTextPosition(JLabel.BOTTOM);
-	entry.setHorizontalTextPosition(JLabel.CENTER);
-	entry.setIconTextGap(0);
+				if (g.getClipBounds() != null)
+				{
+					rect = rect.intersection(g.getClipBounds());
+				}
 
-	entry.setToolTipText(name);
-	entry.setText(name);
+				Graphics2D g2 = (Graphics2D) g;
 
-	entry.addMouseListener(new MouseListener()
-	{
+				g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
+						gradientColor));
+				g2.fill(rect);
+			}
+		}
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-	     */
-	    public void mousePressed(MouseEvent e)
-	    {
-		setSelectionEntry(entry, t);
-	    }
+		/**
+		 * 
+		 */
+		public void clearSelection()
+		{
+			setSelectionEntry(null, null);
+		}
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-	     */
-	    public void mouseClicked(MouseEvent e)
-	    {
-	    }
+		/**
+		 * 
+		 */
+		public void setSelectionEntry(JLabel entry, mxGraphTransferable t)
+		{
+			JLabel last = selectedEntry;
+			selectedEntry = entry;
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-	     */
-	    public void mouseEntered(MouseEvent e)
-	    {
-	    }
+			if (last != null)
+			{
+				last.setBorder(null);
+				last.setOpaque(false);
+			}
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-	     */
-	    public void mouseExited(MouseEvent e)
-	    {
-	    }
+			if (selectedEntry != null)
+			{
+				selectedEntry.setBorder(new ShadowBorder());
+				selectedEntry.setOpaque(true);
+			}
 
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-	     */
-	    public void mouseReleased(MouseEvent e)
-	    {
-	    }
+			eventSource.fireEvent(mxEvent.SELECT, new mxEventObject(new Object[] {
+					selectedEntry, t, last }));
+		}
 
-	});
+		/**
+		 * 
+		 * @param name
+		 * @param icon
+		 * @param style
+		 * @param width
+		 * @param height
+		 * @param value
+		 */
+		public void addEdgeTemplate(final String name, ImageIcon icon,
+				String style, int width, int height, Object value)
+		{
+			mxGeometry geometry = new mxGeometry(0, 0, width, height);
+			geometry.setTerminalPoint(new mxPoint(0, height), true);
+			geometry.setTerminalPoint(new mxPoint(width, 0), false);
+			geometry.setRelative(true);
 
-	// Install the handler for dragging nodes into a graph
-	DragGestureListener dragGestureListener = new DragGestureListener()
-	{
-	    /**
-	     * 
-	     */
-	    public void dragGestureRecognized(DragGestureEvent e)
-	    {
-		e
-		.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
-			t, null);
-	    }
+			mxCell cell = new mxCell(value, geometry, style);
+			cell.setEdge(true);
 
-	};
+			addTemplate(name, icon, cell);
+		}
 
-	DragSource dragSource = new DragSource();
-	DragGestureRecognizer dgr = dragSource
-	.createDefaultDragGestureRecognizer(entry,
-		DnDConstants.ACTION_COPY, dragGestureListener);
+		/**
+		 * 
+		 * @param name
+		 * @param icon
+		 * @param style
+		 * @param width
+		 * @param height
+		 * @param value
+		 */
+		public void addTemplate(final String name, ImageIcon icon, String style,
+				int width, int height, Object value)
+		{
+			mxCell cell = new mxCell(value, new mxGeometry(0, 0, width, height),
+					style);
+			cell.setVertex(true);
 
-	panel.add(entry);
-    }
+			addTemplate(name, icon, cell);
+		}
 
-    /**
-     * @param eventName
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void addListener(String eventName, mxIEventListener listener)
-    {
-	eventSource.addListener(eventName, listener);
-    }
+		/**
+		 * 
+		 * @param name
+		 * @param icon
+		 * @param style
+		 * @param width
+		 * @param height
+		 * @param value
+		 */
+		public void addTemplate(final String name, ImageIcon icon, mxCell cell)
+		{
+			mxRectangle bounds = (mxGeometry) cell.getGeometry().clone();
+			final mxGraphTransferable t = new mxGraphTransferable(
+					new Object[] { cell }, bounds);
 
-    /**
-     * @return
-     * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
-     */
-    public boolean isEventsEnabled()
-    {
-	return eventSource.isEventsEnabled();
-    }
+			// Scales the image if it's too large for the library
+			if (icon != null)
+			{
+				if (icon.getIconWidth() > 128) {
+					icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
+				}
+				if (icon.getIconHeight() > 128) {
+					icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
+				}
+			}
 
-    /**
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener)
-    {
-	eventSource.removeListener(listener);
-    }
+			final JLabel entry = new JLabel(icon)
+			{
+				/**
+				 * 
+				 */
+				public void paint2(Graphics g)
+				{
+					boolean opaque = isOpaque();
+					Color bg = getBackground();
+					Border br = getBorder();
 
-    /**
-     * @param eventName
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener, String eventName)
-    {
-	eventSource.removeListener(listener, eventName);
-    }
+					if (selectedEntry == this)
+					{
+						setBackground(XcosPalette.this.getBackground().brighter());
+						setBorder(new ShadowBorder());
+						setOpaque(true);
+					}
 
-    /**
-     * @param eventsEnabled
-     * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
-     */
-    public void setEventsEnabled(boolean eventsEnabled)
-    {
-	eventSource.setEventsEnabled(eventsEnabled);
-    }
+					super.paint(g);
 
-    public SimpleTab getAsSimpleTab() {
-	return this;
-    }
+					setBorder(br);
+					setBackground(bg);
+					setOpaque(opaque);
+				}
+			};
 
-    public Window getParentWindow() {
-	return null;
-    }
+			entry.setPreferredSize(new Dimension(150, 150));
+			entry.setBackground(XcosPalette.this.getBackground().brighter());
+			entry.setFont(new Font(entry.getFont().getFamily(), 0, 14));
 
-    public void addInfoBar(TextBox infoBarToAdd) {
-	
-    }
+			entry.setVerticalTextPosition(JLabel.BOTTOM);
+			entry.setHorizontalTextPosition(JLabel.CENTER);
+			entry.setIconTextGap(0);
 
-    public void addMenuBar(MenuBar menuBarToAdd) {
-	
-    }
+			entry.setToolTipText(name);
+			entry.setText(name);
 
-    public void addToolBar(ToolBar toolBarToAdd) {
-	
-    }
+			entry.addMouseListener(new MouseListener()
+			{
 
-}
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+				 */
+				public void mousePressed(MouseEvent e)
+				{
+					setSelectionEntry(entry, t);
+				}
+
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+				 */
+				public void mouseClicked(MouseEvent e)
+				{
+				}
+
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+				 */
+				public void mouseEntered(MouseEvent e)
+				{
+				}
+
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+				 */
+				public void mouseExited(MouseEvent e)
+				{
+				}
+
+				/*
+				 * (non-Javadoc)
+				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+				 */
+				public void mouseReleased(MouseEvent e)
+				{
+				}
+
+			});
+
+			// Install the handler for dragging nodes into a graph
+			DragGestureListener dragGestureListener = new DragGestureListener()
+			{
+				/**
+				 * 
+				 */
+				public void dragGestureRecognized(DragGestureEvent e)
+				{
+					e
+					.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
+							t, null);
+				}
+
+			};
+
+			DragSource dragSource = new DragSource();
+			DragGestureRecognizer dgr = dragSource
+			.createDefaultDragGestureRecognizer(entry,
+					DnDConstants.ACTION_COPY, dragGestureListener);
+
+			panel.add(entry);
+
+			int panelWidth = (int) panel.getPreferredSize().getWidth();
+			int numberOfCols = panelWidth / 155;
+			panel.setPreferredSize(new Dimension(panelWidth, 155 * (panel.getComponentCount() / numberOfCols + 1)));
+		}
+
+		/**
+		 * @param eventName
+		 * @param listener
+		 * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
+		 */
+		public void addListener(String eventName, mxIEventListener listener)
+		{
+			eventSource.addListener(eventName, listener);
+		}
+
+		/**
+		 * @return
+		 * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
+		 */
+		public boolean isEventsEnabled()
+		{
+			return eventSource.isEventsEnabled();
+		}
+
+		/**
+		 * @param listener
+		 * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
+		 */
+		public void removeListener(mxIEventListener listener)
+		{
+			eventSource.removeListener(listener);
+		}
+
+		/**
+		 * @param eventName
+		 * @param listener
+		 * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
+		 */
+		public void removeListener(mxIEventListener listener, String eventName)
+		{
+			eventSource.removeListener(listener, eventName);
+		}
+
+		/**
+		 * @param eventsEnabled
+		 * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
+		 */
+		public void setEventsEnabled(boolean eventsEnabled)
+		{
+			eventSource.setEventsEnabled(eventsEnabled);
+		}
+
+		public SimpleTab getAsSimpleTab() {
+			return this;
+		}
+
+		public Window getParentWindow() {
+			return null;
+		}
+
+		public void addInfoBar(TextBox infoBarToAdd) {
+
+		}
+
+		public void addMenuBar(MenuBar menuBarToAdd) {
+
+		}
+
+		public void addToolBar(ToolBar toolBarToAdd) {
+
+		}
+
+	}
