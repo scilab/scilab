@@ -283,10 +283,10 @@ public class XcosPalette extends SwingScilabTab implements Tab
 	if (icon != null)
 	{
 	    if (icon.getIconWidth() > 128) {
-	    	icon = new ImageIcon(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
+	    	icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
 	    }
 	    if (icon.getIconHeight() > 128) {
-	    	icon = new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
+	    	icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
 	    }
 	}
 

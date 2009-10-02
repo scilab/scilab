@@ -78,6 +78,7 @@ import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -233,13 +234,17 @@ public class Xcos extends SwingScilabTab implements Tab {
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-    		File hdf5 = new File(blocksPath + blocksNames[kBlock] + ".h5");
-    		if (!hdf5.exists()) {
-    			System.err.println(blocksPath + blocksNames[kBlock] + ".h5 does not exists !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    		if (blocksNames[kBlock].equals("TEXT_f")) {
+    			theBloc = new TextBlock(blocksNames[kBlock]);
+    		} else {
+    			String dataFilename = blocksPath + blocksNames[kBlock] + ".h5";
+    			File hdf5 = new File(dataFilename);
+    			if (!hdf5.exists()) {
+    				System.err.println(dataFilename + " does not exists !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    			}
+    			theBloc = BlockReader.readBlockFromFile(dataFilename);
     		}
-    		theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
-    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
-    		
+			palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
     	}
 
     	return palette;
