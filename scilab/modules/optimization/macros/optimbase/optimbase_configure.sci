@@ -38,20 +38,20 @@ function this = optimbase_configure (this,key,value)
     this.tolxrelative = value;
   case "-tolxmethod" then
     select value
-    case "enabled" then
-      this.tolxmethod = "enabled";
-    case "disabled" then
-      this.tolxmethod = "disabled";
+    case %t then
+      this.tolxmethod = %t;
+    case %f then
+      this.tolxmethod = %f;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolxmethod option"),"optimbase_configure",value);
       error(errmsg);
     end
   case "-tolfunmethod" then
     select value
-    case "enabled" then
-      this.tolfunmethod = "enabled";
-    case "disabled" then
-      this.tolfunmethod = "disabled";
+    case %t then
+      this.tolfunmethod = %t;
+    case %f then
+      this.tolfunmethod = %f;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolfunmethod"),"optimbase_configure",value);
       error(errmsg);
@@ -65,13 +65,10 @@ function this = optimbase_configure (this,key,value)
   case "-numberofvariables" then
     this.numberofvariables = value;
   case "-storehistory" then
-    if value == 0 then
-      this.storehistory = 0;
-    elseif value == 1 then
-      this.storehistory = 1;
+    if ( value ) then
+      this.storehistory = %t;
     else
-      errmsg = msprintf(gettext("%s: Unexpected value %s for -storehistory option. O or 1 expected"),"optimbase_configure",string(value))
-      error(errmsg)
+      this.storehistory = %f;
     end
   case "-costfargument" then
     this.costfargument = value;
@@ -88,4 +85,3 @@ function this = optimbase_configure (this,key,value)
     error(errmsg)
   end
 endfunction
-

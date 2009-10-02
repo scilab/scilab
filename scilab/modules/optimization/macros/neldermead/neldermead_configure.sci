@@ -63,9 +63,9 @@ function this = neldermead_configure (this,key,value)
     this.tolfstdeviation = value;
   case "-tolfstdeviationmethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolfstdeviationmethod = value;
-    case "disabled" then
+    case %f then
       this.tolfstdeviationmethod = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolfstdeviationmethod option"),"neldermead_configure", value);
@@ -77,9 +77,9 @@ function this = neldermead_configure (this,key,value)
     this.tolsimplexizerelative = value;
   case "-tolsimplexizemethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolsimplexizemethod = value;
-    case "disabled" then
+    case %f then
       this.tolsimplexizemethod = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
@@ -89,9 +89,9 @@ function this = neldermead_configure (this,key,value)
     this.toldeltafv = value;
   case "-tolssizedeltafvmethod" then
     select value
-    case "enabled" then
+    case %t then
       this.tolssizedeltafvmethod = value;
-    case "disabled" then
+    case %f then
       this.tolssizedeltafvmethod = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
@@ -121,9 +121,9 @@ function this = neldermead_configure (this,key,value)
     this.ineqscaling = value;
   case "-checkcostfunction" then
     select value
-    case 0 then
+    case %f then
       this.checkcostfunction = value;
-    case 1 then
+    case %t then
       this.checkcostfunction = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);

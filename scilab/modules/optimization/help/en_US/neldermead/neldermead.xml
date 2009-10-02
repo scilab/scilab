@@ -600,9 +600,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfstdeviationmethod</term>
 
                     <listitem>
-                      <para>set to "enabled" to enable the termination
+                      <para>set to %t to enable the termination
                       criteria based on the standard deviation of the function
-                      values in the simplex. The default value is "disabled".
+                      values in the simplex. The default value is %f.
                       If this criteria is triggered, the status of the
                       optimization is set to "tolfstdev".</para>
 
@@ -624,8 +624,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolsimplexizemethod</term>
 
                     <listitem>
-                      <para>set to "disabled" to disable the tolerance on the
-                      simplex size. The default value is "enabled". If this
+                      <para>set to %f to disable the tolerance on the
+                      simplex size. The default value is %t. If this
                       criteria is triggered, the status of the optimization is
                       set to "tolsize".</para>
 
@@ -659,10 +659,10 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolssizedeltafvmethod</term>
 
                     <listitem>
-                      <para>set to "enabled" to enable the termination
+                      <para>set to %t to enable the termination
                       criteria based on the size of the simplex and the
                       difference of function value in the simplex. The default
-                      value is "disabled". If this criteria is triggered, the
+                      value is %f. If this criteria is triggered, the
                       status of the optimization is set to
                       "tolsizedeltafv".</para>
 
@@ -685,9 +685,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-kelleystagnationflag</term>
 
                     <listitem>
-                      <para>set to 1 to enable the termination criteria using
+                      <para>set to %t to enable the termination criteria using
                       Kelley's stagnation detection, based on sufficient
-                      decrease condition. The default value is 0. If this
+                      decrease condition. The default value is %f. If this
                       criteria is triggered, the status of the optimization is
                       set to "kelleystagnation".</para>
                     </listitem>
@@ -697,10 +697,10 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-kelleynormalizationflag</term>
 
                     <listitem>
-                      <para>set to 0 to disable the normalization of the alpha
+                      <para>set to %f to disable the normalization of the alpha
                       coefficient in Kelley's stagnation detection, i.e. use
                       the value of the option -kelleystagnationalpha0 as is.
-                      Default value is 1, i.e. the simplex gradient of the
+                      Default value is %t, i.e. the simplex gradient of the
                       initial simplex is taken into account in the stagnation
                       detection.</para>
                     </listitem>
@@ -719,8 +719,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-restartflag</term>
 
                     <listitem>
-                      <para>set to 1 to enable the automatic restart of the
-                      algorithm. Default value is 0.</para>
+                      <para>set to %t to enable the automatic restart of the
+                      algorithm. Default value is %f.</para>
                     </listitem>
                   </varlistentry>
 
@@ -752,7 +752,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
                             is used. If the test finds that the status of the
                             optimization is "kelleystagnation", a restart is
                             performed. This status may be generated if the
-                            -kelleystagnationflag option is set to 1.</para>
+                            -kelleystagnationflag option is set to %t.</para>
                           </listitem>
                         </varlistentry>
                       </variablelist>
@@ -1432,7 +1432,7 @@ function outputcmd(state, data, myobj)
     <itemizedlist>
       <listitem>
         <para>By default, the status is "continue" and the terminate flag is
-        0.</para>
+        %f.</para>
       </listitem>
 
       <listitem>
@@ -1444,7 +1444,7 @@ iterations &gt;= maxiter
  </programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1456,7 +1456,7 @@ funevals &gt;= maxfunevals
  </programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
-        set to 1.</para>
+        set to %t.</para>
       </listitem>
 
       <listitem>
@@ -1465,7 +1465,7 @@ funevals &gt;= maxfunevals
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1473,7 +1473,7 @@ funevals &gt;= maxfunevals
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1483,7 +1483,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
  </programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1503,7 +1503,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1511,7 +1511,7 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1521,16 +1521,16 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
  </programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
-              set to 1.</para>
+              set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>The relative termination criteria on x works
         well if x at optimum is different from zero. In that case, the
         condition measures the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on the function value works if
+        <para>The absolute termination criteria on x works if
         the user has an accurate idea of the scale of the optimum x. If the
         optimum x is near 0, the relative tolerance will not work and the
         absolute tolerance is more appropriate.</para>
@@ -1543,7 +1543,7 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1551,7 +1551,7 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1562,7 +1562,7 @@ st_deviation(fv) &lt; tolfstdeviation
 
               <para>is true where fv is an array containing the function
               values in the simplex, then the status is set to "tolfstdev" and
-              terminate is set to 1.</para>
+              terminate is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1574,7 +1574,7 @@ st_deviation(fv) &lt; tolfstdeviation
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1582,7 +1582,7 @@ st_deviation(fv) &lt; tolfstdeviation
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1593,7 +1593,7 @@ ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
 
               <para>is true where simplexsize0 is the size of the simplex at
               iteration 0, then the status is set to "tolsize" and terminate
-              is set to 1.</para>
+              is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1606,7 +1606,7 @@ ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1614,7 +1614,7 @@ ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if both the following conditions</para>
@@ -1630,7 +1630,7 @@ shiftfv &lt; toldeltafv
               <para>is true where ssize is the current simplex size and
               shiftfv is the absolute value of the difference of function
               value between the highest and lowest vertices, then the status
-              is set to "tolsizedeltafv" and terminate is set to 1.</para>
+              is set to "tolsizedeltafv" and terminate is set to %t.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1643,7 +1643,7 @@ shiftfv &lt; toldeltafv
 
         <variablelist>
           <varlistentry>
-            <term>"disabled"</term>
+            <term>%f</term>
 
             <listitem>
               <para>then the criteria is just ignored.</para>
@@ -1651,7 +1651,7 @@ shiftfv &lt; toldeltafv
           </varlistentry>
 
           <varlistentry>
-            <term>"enabled"</term>
+            <term>%t</term>
 
             <listitem>
               <para>if the following condition</para>
@@ -1663,7 +1663,7 @@ newfvmean &lt;= oldfvmean - alpha * sg' * sg
               <para>is true where newfvmean (resp. oldfvmean) is the function
               value average in the current iteration (resp. in the previous
               iteration), then the status is set to "kelleystagnation" and
-              terminate is set to 1. Here, alpha is a non-dimensional
+              terminate is set to %t. Here, alpha is a non-dimensional
               coefficient and sg is the simplex gradient.</para>
             </listitem>
           </varlistentry>

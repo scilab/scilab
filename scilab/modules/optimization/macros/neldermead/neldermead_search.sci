@@ -37,12 +37,12 @@
 //   Search the minimum with Nelder-Mead algorithm.
 //
 function this = neldermead_search ( this )
-  if ( this.startupflag == 0) then
+  if ( ~this.startupflag ) then
     this = neldermead_startup ( this );
-    this.startupflag = 1;
+    this.startupflag = %t;
   end
   neldermead_outputcmd ( this, "init" , this.simplex0 , "init" )
-  if this.restartflag == 1 then
+  if ( this.restartflag ) then
     this = neldermead_autorestart ( this )
   else
     this = neldermead_algo ( this );
@@ -479,7 +479,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   // Criteria #6 : simplex absolute + relative size
   //
   if ( ~terminate ) then
-    if this.tolsimplexizemethod == "enabled" then
+    if ( this.tolsimplexizemethod ) then
       ssize = optimsimplex_size ( simplex , "sigmaplus" );
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%e < %e + %e * %e",...
         ssize, this.tolsimplexizeabsolute , this.tolsimplexizerelative , this.simplexsize0 ));
@@ -493,7 +493,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   // Criteria #7 : simplex absolute size + difference in function values (Matlab-like)
   //
   if ( ~terminate ) then
-    if this.tolssizedeltafvmethod == "enabled" then
+    if ( this.tolssizedeltafvmethod ) then
       ssize = optimsimplex_size ( simplex , "sigmaplus" );
       this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%e < %e",...
         ssize, this.tolsimplexizeabsolute));
@@ -511,7 +511,7 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   // a sufficient decrease condition
   //
   if ( ~terminate ) then
-    if ( this.kelleystagnationflag==1 ) then
+    if ( this.kelleystagnationflag ) then
       [ sg , this ] = optimsimplex_gradientfv ( simplex , neldermead_costf , "forward" , this );
       nsg = sg.' * sg;
       sgstr = strcat(string(sg)," ");
@@ -638,7 +638,7 @@ endfunction
 //
 function [ this , istorestart ] = neldermead_isrkelley ( this )
   istorestart = 0
-  if ( this.kelleystagnationflag==1 ) then
+  if ( this.kelleystagnationflag ) then
     status = optimbase_get ( this.optbase , "-status" );
     if ( status =="kelleystagnation" ) then
        istorestart = 1
@@ -707,8 +707,7 @@ function this = neldermead_startup (this)
   // 0. Check that the cost function is correctly connected
   // Note: this call to the cost function is not used, but helps the
   // user while he is tuning his object.
-  checkfun = this.checkcostfunction;
-  if checkfun == 1 then
+  if ( this.checkcostfunction ) then
     this.optbase = optimbase_checkcostfun ( this.optbase );
   end
   // 1. If the problem has bounds, check that they are consistent
@@ -779,7 +778,7 @@ function this = neldermead_startup (this)
   this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
   this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
   // 6. If Kelley's stagnation is enabled, initialize Kelley's stagnation detection system.
-  if ( this.kelleystagnationflag == 1 ) then
+  if ( this.kelleystagnationflag  ) then
     this = neldermead_kelleystag ( this );
   end
 endfunction
@@ -866,8 +865,8 @@ endfunction
 //     optimization process
 //
 function this = neldermead_kelleystag ( this )
-    if this.kelleystagnationflag == 1 then
-      if this.kelleynormalizationflag == 0 then
+    if ( this.kelleystagnationflag ) then
+      if ( ~this.kelleynormalizationflag ) then
         this.kelleyalpha = this.kelleystagnationalpha0
       else
         [sg,this] = optimsimplex_gradientfv ( this.simplex0 , neldermead_costf , "forward" , this )
@@ -1442,4 +1441,5 @@ endfunction
     end
     
   endfunction
+
 
