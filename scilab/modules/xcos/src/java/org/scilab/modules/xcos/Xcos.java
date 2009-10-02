@@ -244,8 +244,6 @@ public class Xcos extends SwingScilabTab implements Tab {
     		if (theBloc == null) {
     			theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
     			allBlocks.put(blocksNames[kBlock], theBloc);
-    		} else {
-    			System.out.println("Multiple uses of " + blocksNames[kBlock]);
     		}
 
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
