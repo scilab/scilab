@@ -53,6 +53,7 @@ import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
@@ -494,6 +495,28 @@ public class XcosDiagram extends ScilabGraph {
 		return version;
 	}
 	
+	private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
+		if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
+			return new ExplicitLink();
+		}
+		if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
+			return new ImplicitLink();
+		}
+		if (from instanceof CommandPort && to instanceof ControlPort) {
+			return new CommandControlLink();
+		}
+		if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
+			return new ExplicitLink();
+		}
+		if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
+			return new ImplicitLink();
+		}
+		if (to instanceof CommandPort && from instanceof ControlPort) {
+			return new CommandControlLink();
+		}
+		return new ExplicitLink();
+	}
+	
     /**
      * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
      * @param diagramFileName file to open
@@ -510,27 +533,17 @@ public class XcosDiagram extends ScilabGraph {
 		    
 	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
 	    	List<BasicPort[]> allLinks = allObjects.get("Links");
-	    	getModel().beginUpdate();
 	    	for (int i = 0; i < allBlocks.size(); ++i) {
-	    		System.err.println("Adding Block : "+allBlocks.get(i).toString());
 	    		Object obj = this.addCell(allBlocks.get(i));
 	    	}
 	    	
 	    	for (int i = 0; i < allLinks.size(); ++i) {
-	    	    System.err.println("Wanna link : "+allLinks.get(i)[0].toString());
-	    	    System.err.println("        to : "+allLinks.get(i)[1].toString());	
-	    	    TextBlock link = new TextBlock("*<:-)");
-	    	    link.setStyle("CommanControlLink");
-	    	    link.setVertex(false);
-	    	    link.setEdge(true);    	    
+	    	    BasicLink link = createLinkFromPorts(allLinks.get(i)[0], allLinks.get(i)[1]);
+	    	    link.setGeometry(new mxGeometry(0,0,80,80));
 	    	    link.setSource(allLinks.get(i)[0]);
 	    	    link.setTarget(allLinks.get(i)[1]);
-	    	    //this.addCell(link);
-	    	    //this.addEdge(block, getDefaultParent(), allLinks.get(i)[0], allLinks.get(i)[1], null);
-	    	    //insertEdge(getDefaultParent(), "plop", "plop", allLinks.get(i)[0], allLinks.get(i)[1]);
+	    	    this.addCell(link);
 	    	}
-	    	
-	    	getModel().endUpdate();
 	    	
 	    	this.setTitle(diagramFileName);
 	    	this.getParentTab().setName(diagramFileName);
