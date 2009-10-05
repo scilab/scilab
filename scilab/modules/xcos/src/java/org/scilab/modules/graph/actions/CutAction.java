@@ -24,20 +24,46 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
-public class CutAction extends DefaultAction {
+/**
+ * Cut manager
+ * @author Bruno JOFFRET
+ */
+public final class CutAction extends DefaultAction {
     
-    public CutAction(ScilabGraph scilabGraph) {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
+   private CutAction(ScilabGraph scilabGraph) {
     	super(ScilabGraphMessages.CUT, scilabGraph);
     }
  
-    public static PushButton cutButton(ScilabGraph scilabGraph) {
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
+   public static PushButton cutButton(ScilabGraph scilabGraph) {
     	return createButton(ScilabGraphMessages.CUT, "edit-cut.png", new CutAction(scilabGraph));
     }
     
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
     public static MenuItem cutMenu(ScilabGraph scilabGraph) {
-    	return createMenu(ScilabGraphMessages.CUT, "edit-cut.png", new CutAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+    	return createMenu(ScilabGraphMessages.CUT, null, new CutAction(scilabGraph), 
+    			KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
     }
     
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
     public void actionPerformed(ActionEvent e) {
     	TransferHandler.getCutAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(), e.getID(), e.getActionCommand()));
     }

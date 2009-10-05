@@ -23,20 +23,46 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
+/**
+ * Undo manager
+ * @author Bruno JOFFRET
+ */
 public class UndoAction extends DefaultAction {
 
-	public UndoAction(ScilabGraph editgraph) {
-		super(ScilabGraphMessages.UNDO, editgraph);
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabgraph corresponding Scilab Graph
+	 */
+	public UndoAction(ScilabGraph scilabgraph) {
+		super(ScilabGraphMessages.UNDO, scilabgraph);
 	}
 
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton undoButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.UNDO, "edit-undo.png", new UndoAction(scilabGraph));
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem undoMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.UNDO, "edit-undo.png", new UndoAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		return createMenu(ScilabGraphMessages.UNDO, null, new UndoAction(scilabGraph), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 	}
 
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		getGraph(e).undo();
 	}

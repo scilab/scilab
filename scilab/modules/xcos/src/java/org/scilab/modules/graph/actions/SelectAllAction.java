@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph.actions;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
@@ -21,13 +22,38 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
-public class SelectAllAction extends DefaultAction {
+/**
+ * Selection management
+ * @author Vincent COUVERT
+ */
+public final class SelectAllAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	private SelectAllAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.SELECT_ALL, scilabGraph);
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.SELECT_ALL, null, new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+		return createMenu(ScilabGraphMessages.SELECT_ALL, null,
+				new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+	}
+	
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		getGraph(e).selectAll();
 	}
 }
