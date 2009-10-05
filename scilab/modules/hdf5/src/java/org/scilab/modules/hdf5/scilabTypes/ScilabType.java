@@ -12,7 +12,9 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
-public interface ScilabType {
+import java.io.Serializable;
+
+public interface ScilabType extends Serializable, Cloneable {
 
 	public int getWidth();
 	
