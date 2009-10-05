@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
- *
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -40,7 +41,7 @@ public class BlockReader {
 
 
     private static void INFO(String msg) {
-	System.err.println("[INFO] BlockReader : "+msg);
+	//System.err.println("[INFO] BlockReader : "+msg);
     }
 
     private static void WARNING(String msg) {
@@ -87,7 +88,7 @@ public class BlockReader {
 		}
 		catch (BlockReaderException e) {
 		    WARNING(" Fail reading Block " + (i + 1));
-		    DEBUG(e.getStackTrace().toString());
+		    e.printStackTrace();
 		}
 	    }
 	    for (int i = 0 ; i < blocks.size() ; ++i) {
@@ -394,7 +395,7 @@ public class BlockReader {
 	newBlock.setInterfaceFunctionName( getBlockInterfaceName (blockFields) );
 
 	// the last field must contain a list of nothing aka scicos doc
-	if (!(blockFields.get(4) instanceof ScilabList)) { throw new WrongTypeException(); } 
+	if (!(blockFields.get(4) instanceof ScilabList) && !isEmptyField(blockFields.get(4))) { throw new WrongTypeException(); } 
     }
 
     public static void fillGraphicsStructure (ScilabMList blockFields ,BasicBlock newBlock ) throws WrongTypeException, WrongStructureException{
@@ -452,6 +453,9 @@ public class BlockReader {
 	newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 20));
 	newBlock.getGeometry().setHeight(Math.max(sizeFactor * height, 20));
 
+	// Adjust block cause Scilab(0,0) is bottom left
+	newBlock.getGeometry().setY(newBlock.getGeometry().getY() - newBlock.getGeometry().getHeight()); 
+	
 	if (!((graphicsStructure.get(3) instanceof ScilabBoolean )&&// flip
 		(graphicsStructure.get(4) instanceof ScilabDouble))) {// theta 
 	    throw new WrongTypeException();
@@ -466,9 +470,10 @@ public class BlockReader {
 	}
 	// exprs = ["a", "b", "c"]
 	if (graphicsStructure.get(5) instanceof ScilabString) {
-	    for (int i = 0 ; i < graphicsStructure.get(5).getHeight() ; i++){
-		newBlock.getExprs().add(((ScilabString)graphicsStructure.get(5)).getData()[i][0]);
-	    }
+	    //	    for (int i = 0 ; i < graphicsStructure.get(5).getHeight() ; i++){
+	    //		newBlock.getExprs().add(((ScilabString)graphicsStructure.get(5)).getData()[i][0]);
+	    //	    }
+	    newBlock.setExprs(graphicsStructure.get(5));
 	}
 	else {
 	    // TODO : See how to store it properly;
@@ -488,10 +493,12 @@ public class BlockReader {
 	if (!(graphicsStructure.get(9) instanceof ScilabDouble)) { throw new WrongTypeException(); }
 
 	// gr_i
-	if (!(graphicsStructure.get(10) instanceof ScilabList)
-		&& !(graphicsStructure.get(10) instanceof ScilabString)) {
-	    throw new WrongTypeException(); 
-	}
+	// !! WARNING !! we do not care about gr_i because there are only
+	// block look related.
+	//	if (!(graphicsStructure.get(10) instanceof ScilabList)
+//		&& !(graphicsStructure.get(10) instanceof ScilabString)) {
+//	    throw new WrongTypeException(); 
+//	}
 
 	// id
 	if (!(graphicsStructure.get(11) instanceof ScilabString))  { throw new WrongTypeException(); }
@@ -661,13 +668,10 @@ public class BlockReader {
 
 
 	if (!(modelFields.get(8) instanceof ScilabDouble) && //evtin
-		!(modelFields.get(9) instanceof ScilabDouble) && // evtout
-		!(modelFields.get(10) instanceof ScilabDouble) && // state
-		!(modelFields.get(11) instanceof ScilabDouble) && // dstate
-		!(modelFields.get(12) instanceof ScilabList)) { //odstate
+		!(modelFields.get(9) instanceof ScilabDouble)) { // evtout
 	    throw new WrongTypeException();
 	}
-
+	
 	ScilabDouble dataNbControlPort = (ScilabDouble)modelFields.get(8);
 	ScilabDouble dataNbCommandPort = (ScilabDouble)modelFields.get(9);
 
@@ -685,40 +689,51 @@ public class BlockReader {
 	    }
 	}
 
+	if (!(modelFields.get(10) instanceof ScilabDouble) && // state
+		!(modelFields.get(11) instanceof ScilabDouble) && // dstate
+		!(modelFields.get(12) instanceof ScilabList)) { //odstate
+	    throw new WrongTypeException();
+	}
+	newBlock.setState(modelFields.get(10));
+	newBlock.setDState(modelFields.get(11));
+	newBlock.setODState(modelFields.get(12));
 
 	// rpar
 	// SuperBlocks store all "included" data in rpar field.
 	if (!(modelFields.get(13) instanceof ScilabDouble) && !(modelFields.get(13) instanceof ScilabMList)) { throw new WrongTypeException(); }
-	if (modelFields.get(13) instanceof ScilabDouble) {
-	    for (int i = 0; i < ((ScilabDouble)modelFields.get(13)).getHeight() ; i++){
-		newBlock.getRealParameters().add(((ScilabDouble)modelFields.get(13)).getRealPart()[i][0]); 
-	    }
-	}
-	if (modelFields.get(13) instanceof ScilabList) {
-
-	}
-
+//	if (modelFields.get(13) instanceof ScilabDouble) {
+//	    for (int i = 0; i < ((ScilabDouble)modelFields.get(13)).getHeight() ; i++){
+//		newBlock.getRealParameters().add(((ScilabDouble)modelFields.get(13)).getRealPart()[i][0]); 
+//	    }
+//	}
+//	if (modelFields.get(13) instanceof ScilabList) {
+//
+//	}
+	newBlock.setRealParameters(modelFields.get(13));
+	
 
 	// ipar
 	if (!(modelFields.get(14) instanceof ScilabDouble)) { throw new WrongTypeException(); }
-	for (int i = 0; i < ((ScilabDouble)modelFields.get(14)).getHeight() ; i++){
-	    newBlock.getIntegerParameters().add((int) ((ScilabDouble)modelFields.get(14)).getRealPart()[i][0]); 
-	}
+	//	for (int i = 0; i < ((ScilabDouble)modelFields.get(14)).getHeight() ; i++){
+	//	    newBlock.getIntegerParameters().add((int) ((ScilabDouble)modelFields.get(14)).getRealPart()[i][0]); 
+	//	}
+	newBlock.setIntegerParameters(modelFields.get(14));
 
 	// opar
 	if (!(modelFields.get(15) instanceof ScilabList)) { throw new WrongTypeException(); }
-
+	newBlock.setObjectsParameters(modelFields.get(15));
+	
 	//blocktype
 	if (!(modelFields.get(16) instanceof ScilabString)) { throw new WrongTypeException(); }
 	newBlock.setBlockType(((ScilabString) modelFields.get(16)).getData()[0][0]);
 
 	//firing
 	if (!(modelFields.get(17) instanceof ScilabDouble)
-		&& !(modelFields.get(17) instanceof ScilabBoolean))
-	{ 
+		&& !(modelFields.get(17) instanceof ScilabBoolean)) { 
 	    throw new WrongTypeException(); 
 	}
-
+	
+	
 	// dep-ut
 	if (!(modelFields.get(18) instanceof ScilabBoolean)){ throw new WrongTypeException(); }
 	newBlock.setDependsOnU( ((ScilabBoolean)modelFields.get(18)).getData()[0][0]);
@@ -728,11 +743,13 @@ public class BlockReader {
 	if (!(modelFields.get(19) instanceof ScilabString)) { throw new WrongTypeException(); }
 
 	// nzcross
-	if (!(modelFields.get(20) instanceof ScilabDouble)) { throw new WrongTypeException(); }  
+	if (!(modelFields.get(20) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	newBlock.setNbZerosCrossing(modelFields.get(20));
 
 	//nmode 
 	if (!(modelFields.get(21) instanceof ScilabDouble)) { throw new WrongTypeException(); }
-
+	newBlock.setNmode(modelFields.get(21));
+	
 	// equations
 	if (!(modelFields.get(22) instanceof ScilabTList)
 		&& !isEmptyField(modelFields.get(22))) 

@@ -41,11 +41,29 @@ public class BasicBlock extends mxCell {
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
 
-    private List<String> exprs = new ArrayList<String>();
-    private List<Double> realParameters = new ArrayList<Double>();
-    private List<Integer> integerParameters = new ArrayList<Integer>();
-    private List objectsParameters = new ArrayList();
+    // TODO :
+    // Must make this types evolve, but for now keep a strong link to Scilab
+    // !! WARNING !!
+    // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
+    
+    //private List<String> exprs = new ArrayList<String>();
+    private ScilabType exprs = new ScilabDouble();
+    //private List<Double> realParameters = new ArrayList<Double>();
+    private ScilabType realParameters = new ScilabDouble();
+    //private List<Integer> integerParameters = new ArrayList<Integer>();
+    private ScilabType integerParameters = new ScilabDouble();
+    //private List objectsParameters = new ArrayList();
+    private ScilabType objectsParameters = new ScilabList();
 
+    private ScilabType nbZerosCrossing = new ScilabDouble();
+    
+    private ScilabType nmode = new ScilabDouble();
+    
+    private ScilabType state = new ScilabDouble();
+    private ScilabType dState = new ScilabDouble();
+    private ScilabType oDState = new ScilabDouble();
+    
+    
     private boolean dependsOnU = false;
     private boolean dependsOnT = false;
 
@@ -145,27 +163,27 @@ public class BasicBlock extends mxCell {
 	return simulationFunctionType;
     }
 
-    public List getRealParameters() {
+    public ScilabType getRealParameters() {
 	return realParameters;
     }
 
-    public void setRealParameters(List<Double> realParameters) {
+    public void setRealParameters(ScilabType realParameters) {
 	this.realParameters = realParameters;
     }
 
-    public List getIntegerParameters() {
+    public ScilabType getIntegerParameters() {
 	return integerParameters;
     }
 
-    public void setIntegerParameters(List<Integer> integerParameters) {
+    public void setIntegerParameters(ScilabType integerParameters) {
 	this.integerParameters = integerParameters;
     }
 
-    public List getObjectsParameters() {
+    public ScilabType getObjectsParameters() {
 	return objectsParameters;
     }
 
-    public void setObjectsParameters(List objectsParameters) {
+    public void setObjectsParameters(ScilabType objectsParameters) {
 	this.objectsParameters = objectsParameters;
     }
 
@@ -201,12 +219,52 @@ public class BasicBlock extends mxCell {
 	return ordering;
     }
 
-    public void setExprs(List<String> exprs) {
+    public void setExprs(ScilabType exprs) {
 	this.exprs = exprs;
     }
 
-    public List<String> getExprs() {
+    public ScilabType getExprs() {
 	return exprs;
+    }
+
+    public ScilabType getNbZerosCrossing() {
+        return nbZerosCrossing;
+    }
+
+    public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
+        this.nbZerosCrossing = nbZerosCrossing;
+    }
+
+    public ScilabType getNmode() {
+        return nmode;
+    }
+
+    public void setNmode(ScilabType nmode) {
+        this.nmode = nmode;
+    }
+
+    public ScilabType getState() {
+        return state;
+    }
+
+    public void setState(ScilabType state) {
+        this.state = state;
+    }
+
+    public ScilabType getDState() {
+        return dState;
+    }
+
+    public void setDState(ScilabType state) {
+        dState = state;
+    }
+
+    public ScilabType getODState() {
+        return oDState;
+    }
+
+    public void setODState(ScilabType state) {
+        oDState = state;
     }
 
     protected List<InputPort> getAllInputPorts() {
@@ -384,16 +442,17 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabType getAllExprs() {
-	if (getExprs().isEmpty()) {
-	    return new ScilabList();
-	}
-
-	String[][] data = new String[getExprs().size()][1];
-	for (int i = 0 ; i < getExprs().size() ; ++i) {
-	    data[i][0] = getExprs().get(i);
-	}
-
-	return new ScilabString(data);
+//	if (getExprs().isEmpty()) {
+//	    return new ScilabList();
+//	}
+//
+//	String[][] data = new String[getExprs().size()][1];
+//	for (int i = 0 ; i < getExprs().size() ; ++i) {
+//	    data[i][0] = getExprs().get(i);
+//	}
+//
+//	return new ScilabString(data);
+	return getExprs();
     }
 
     private ScilabMList createScilabModelProperties() {
@@ -420,17 +479,17 @@ public class BasicBlock extends mxCell {
 
 	model.add(getAllPortsDataLines(getAllCommandPorts())); // evtout
 
-	model.add(new ScilabDouble()); // state
+	model.add(getState()); // state
 
-	model.add(new ScilabDouble()); // dstate
+	model.add(getDState()); // dstate
 
-	model.add(new ScilabList()); // odstate
+	model.add(getODState()); // odstate
 
 	model.add(createScilabRPar()); // rpar
 
 	model.add(createScilabIPar()); // ipar
 
-	model.add(new ScilabList()); // opar
+	model.add(getObjectsParameters()); // opar
 
 	model.add(new ScilabString(getBlockType())); // blocktype
 
@@ -441,9 +500,9 @@ public class BasicBlock extends mxCell {
 
 	model.add(new ScilabString("")); // label
 
-	model.add(new ScilabDouble(0)); // nzcross
+	model.add(getNbZerosCrossing()); // nzcross
 
-	model.add(new ScilabDouble(0)); // nmode
+	model.add(getNmode()); // nmode
 
 	model.add(new ScilabList()); // equations
 
@@ -464,27 +523,29 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabType createScilabRPar() {
-	if (realParameters.isEmpty()) {
-	    return new ScilabDouble();
-	}
-	double[][] data = new double[realParameters.size()][1];
-	for (int i = 0 ; i < realParameters.size() ; ++i) {
-	    data[i][0] = realParameters.get(i).doubleValue();
-	}
-
-	return new ScilabDouble(data);
+//	if (realParameters.isEmpty()) {
+//	    return new ScilabDouble();
+//	}
+//	double[][] data = new double[realParameters.size()][1];
+//	for (int i = 0 ; i < realParameters.size() ; ++i) {
+//	    data[i][0] = realParameters.get(i).doubleValue();
+//	}
+//
+//	return new ScilabDouble(data);
+	return getRealParameters();
     }
 
     private ScilabType createScilabIPar() {
-	if (integerParameters.isEmpty()) {
-	    return new ScilabDouble();
-	}
-	double[][] data = new double[integerParameters.size()][1];
-	for (int i = 0 ; i < integerParameters.size() ; ++i) {
-	    data[i][0] = integerParameters.get(i).doubleValue();
-	}
-
-	return new ScilabDouble(data);
+//	if (integerParameters.isEmpty()) {
+//	    return new ScilabDouble();
+//	}
+//	double[][] data = new double[integerParameters.size()][1];
+//	for (int i = 0 ; i < integerParameters.size() ; ++i) {
+//	    data[i][0] = integerParameters.get(i).doubleValue();
+//	}
+//
+//	return new ScilabDouble(data);
+	return getIntegerParameters();
     }
 
 
