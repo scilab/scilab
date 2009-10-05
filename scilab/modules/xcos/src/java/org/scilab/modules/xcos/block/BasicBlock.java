@@ -557,7 +557,10 @@ public class BasicBlock extends mxCell {
 	return new ScilabList();
     }
 
-    private ScilabList getSimulationFunctionNameAndType() {
+    private ScilabType getSimulationFunctionNameAndType() {
+	if (getSimulationFunctionType() == SimulationFunctionType.DEFAULT) {
+	    return new ScilabString(getSimulationFunctionName());
+	}
 	ScilabList data = new ScilabList();
 
 	data.add(new ScilabString(getSimulationFunctionName()));
