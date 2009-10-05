@@ -25,20 +25,46 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
+/**
+ * Zoom management
+ * @author Bruno JOFFRET
+ */
 public class ZoomInAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	public ZoomInAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.ZOOM_IN, scilabGraph);
 	}
 
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton zoominButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.ZOOM_IN, "list-add.png", new ZoomInAction(scilabGraph));
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem zoominMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.ZOOM_IN, null, new ZoomInAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_PLUS, ActionEvent.CTRL_MASK));
+		return createMenu(ScilabGraphMessages.ZOOM_IN, null, new ZoomInAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_PLUS, ActionEvent.CTRL_MASK));
 	}
 
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		mxGraphActions.getZoomInAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));

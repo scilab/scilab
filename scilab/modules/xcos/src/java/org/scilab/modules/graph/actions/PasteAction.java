@@ -24,20 +24,46 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
-public class PasteAction extends DefaultAction {
+/**
+ * Paste manager
+ * @author Bruno JOFFRET
+ */
+public final class PasteAction extends DefaultAction {
 
-	public PasteAction(ScilabGraph scilabGraph) {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
+	private PasteAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.PASTE, scilabGraph);
 	}
 
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton pasteButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.PASTE, "edit-paste.png", new PasteAction(scilabGraph));
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem pasteMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.PASTE, "edit-paste.png", new PasteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		return createMenu(ScilabGraphMessages.PASTE, null,
+				new PasteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
 	}
 
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		TransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));

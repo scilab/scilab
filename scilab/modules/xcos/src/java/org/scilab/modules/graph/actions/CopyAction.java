@@ -24,20 +24,46 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
-public class CopyAction extends DefaultAction {
+/**
+ * Copy manager
+ * @author Bruno JOFFRET
+ */
+public final class CopyAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	private CopyAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.COPY, scilabGraph);
 	}
 	
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
     public static PushButton copyButton(ScilabGraph scilabGraph) {
     	return createButton(ScilabGraphMessages.COPY, "edit-copy.png", new CopyAction(scilabGraph));
     }
     
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
     public static MenuItem copyMenu(ScilabGraph scilabGraph) {
-    	return createMenu(ScilabGraphMessages.COPY, "edit-copy.png", new CopyAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+    	return createMenu(ScilabGraphMessages.COPY, null, new CopyAction(scilabGraph),
+    			KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
     }
     
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
     public void actionPerformed(ActionEvent e) {
     	TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(), e.getID(), e.getActionCommand()));
     }

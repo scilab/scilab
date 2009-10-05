@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph.actions;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
@@ -21,18 +22,48 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
-public class DeleteAction extends DefaultAction {
+/**
+ * Delete manager
+ * @author Bruno JOFFRET
+ */
+public final class DeleteAction extends DefaultAction {
 
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	private DeleteAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.DELETE, scilabGraph);
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.DELETE, null, new DeleteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 	}
 	
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.DELETE, "edit-delete.png", new DeleteAction(scilabGraph));
+	}
+	
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+    	getGraph(e).removeCells(getGraph(e).getSelectionCells());
 	}
 
 }

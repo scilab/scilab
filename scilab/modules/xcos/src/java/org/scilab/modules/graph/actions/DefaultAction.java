@@ -31,80 +31,112 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 import com.mxgraph.swing.mxGraphComponent;
 
+/**
+ * Default action for a Scilab Graph
+ * @author Bruno JOFFRET
+ */
 public class DefaultAction extends CallBack {
 
-    private ScilabGraph _scilabGraph = null;
+	private static final long serialVersionUID = 1L;
 
-    public DefaultAction(ScilabGraph scilabGraph) {
-    	super("Default...");
-    	_scilabGraph = scilabGraph;
-    }
+	private ScilabGraph scilabGraph;
 
-    protected DefaultAction(String label, ScilabGraph scilabGraph) {
-    	super(label);
-    	_scilabGraph = scilabGraph;
-        }
-
-    /**
-     * 
-     * @param e
-     * @return Returns the graph for the given action event.
-     */
-    protected final ScilabGraph getGraph(ActionEvent e)
-    {
-	if (_scilabGraph != null) {
-	    return _scilabGraph;
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
+	public DefaultAction(ScilabGraph scilabGraph) {
+		super("Default...");
+		this.scilabGraph = scilabGraph;
 	}
 
-	if (e.getSource() instanceof Component)
-	{
-	    Component component = (Component) e.getSource();
-
-	    while (component != null
-		    && !(component instanceof mxGraphComponent))
-	    {
-		component = component.getParent();
-	    }
-
-	    return (ScilabGraph) ((mxGraphComponent) component).getGraph();
+	/**
+	 * Constructor
+	 * @param label action descriptor
+	 * @param scilabGraph associated Scilab Graph
+	 */
+	protected DefaultAction(String label, ScilabGraph scilabGraph) {
+		super(label);
+		this.scilabGraph = scilabGraph;
 	}
 
-	return null;
-    }
+	/**
+	 * Get associated graph
+	 * @param e event
+	 * @return Returns the graph for the given action event.
+	 */
+	protected final ScilabGraph getGraph(ActionEvent e) {
+		if (this.scilabGraph != null) {
+			return this.scilabGraph;
+		}
 
-    
-    protected static PushButton createButton(String title, String icon, ActionListener listener) {
-	PushButton button = ScilabPushButton.createPushButton(); 
-	((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
-	if (icon == null) {
-	    button.setText(title);
-	    button.setToolTipText(title);
+		if (e.getSource() instanceof Component) {
+			Component component = (Component) e.getSource();
+
+			while (component != null && !(component instanceof mxGraphComponent)) {
+				component = component.getParent();
+			}
+
+			return (ScilabGraph) ((mxGraphComponent) component).getGraph();
+		}
+
+		return null;
 	}
-	else {
-	    ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(System.getenv("SCI")+"/modules/xcos/images/icons/"+icon));
+
+
+	/**
+	 * Create a button for a graph toolbar
+	 * @param title name/tooltip of the button
+	 * @param icon the path the an icon file
+	 * @param listener action listener associated
+	 * @return the button
+	 */
+	protected static PushButton createButton(String title, String icon, ActionListener listener) {
+		PushButton button = ScilabPushButton.createPushButton(); 
+		((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
+		if (icon == null) {
+			button.setText(title);
+			button.setToolTipText(title);
+		} else {
+			((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(
+					new ImageIcon(System.getenv("SCI") + "/modules/xcos/images/icons/" + icon));
+		}
+		((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(title);
+		return button;
 	}
-	((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(title);
-	return button;
-    }
 
-    protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
-    	MenuItem menu = ScilabMenuItem.createMenuItem();
-    	menu.setCallback(listener);
-    	menu.setText(title);
+	/**
+	 * Create a button for a graph toolbar
+	 * @param title label of the menu
+	 * @param icon the path the an icon file
+	 * @param listener action listener associated
+	 * @param keyStroke menu shortcut
+	 * @return the button
+	 */
+	protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
+		MenuItem menu = ScilabMenuItem.createMenuItem();
+		menu.setCallback(listener);
+		menu.setText(title);
 
-    	if (keyStroke != null) {
-    		((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
-    	}
-	
-    	return menu;
-    }
-    
-    public void doAction() {
-    	JOptionPane.showMessageDialog(getGraph(null).getAsComponent(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
-    }
+		if (keyStroke != null) {
+			((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
+		}
 
-    public void callBack() {
-    	doAction();
-        }
+		return menu;
+	}
+
+	/**
+	 * Action associated
+	 */
+	public void doAction() {
+		JOptionPane.showMessageDialog(getGraph(null).getAsComponent(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * Action associated
+	 */
+	public void callBack() {
+		doAction();
+	}
 
 }

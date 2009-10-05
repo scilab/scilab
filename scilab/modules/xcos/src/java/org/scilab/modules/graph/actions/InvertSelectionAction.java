@@ -12,17 +12,45 @@
 
 package org.scilab.modules.graph.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
-public class InvertSelectionAction extends DefaultAction {
+/**
+ * Selection management
+ * @author Vincent COUVERT
+ */
+public final class InvertSelectionAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	private InvertSelectionAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.INVERT_SELECTION, scilabGraph);
 	}
 
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.INVERT_SELECTION, null, new InvertSelectionAction(scilabGraph), null);
+	}
+	
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		Object[] all = getGraph(e).getSelectionCells();
+		getGraph(e).selectAll();
+		getGraph(e).removeSelectionCells(all);
 	}
 }

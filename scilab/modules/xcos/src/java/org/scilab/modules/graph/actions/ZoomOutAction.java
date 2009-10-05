@@ -26,20 +26,46 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
+/**
+ * Zoom management
+ * @author Bruno JOFFRET
+ */
 public class ZoomOutAction extends DefaultAction implements ActionListener {
 
-	public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_OUT, "list-remove.png", new ZoomOutAction(scilabGraph));
-	}
+	private static final long serialVersionUID = 1L;
 
-	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, ActionEvent.CTRL_MASK));
-	}
-
+	/**
+	 * Constructor
+	 * @param scilabGraph corresponding Scilab Graph
+	 */
 	public ZoomOutAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.ZOOM_OUT, scilabGraph);
 	}
 
+	/**
+	 * Create a button for a graph toolbar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the button
+	 */
+	public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
+		return createButton(ScilabGraphMessages.ZOOM_OUT, "list-remove.png", new ZoomOutAction(scilabGraph));
+	}
+
+	/**
+	 * Create a menu for a graph menubar
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
+	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
+		return createMenu(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, ActionEvent.CTRL_MASK));
+	}
+
+	/**
+	 * Action associated
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		mxGraphActions.getZoomOutAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));
