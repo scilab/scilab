@@ -147,6 +147,8 @@ if sciargs()<>'-nouserstartup' then
     end
   end
 
+  clear startupfiles;
+  
 end
 
 // Menus/toolbar can now be enabled ====================================
