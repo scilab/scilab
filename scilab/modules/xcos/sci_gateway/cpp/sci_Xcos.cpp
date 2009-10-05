@@ -48,7 +48,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
                 strErr = getVarType(piAddressVarOne, &iType);
                 if(strErr.iErr)
                   {
-                    printError(strErr, 0);
+                    printError(&strErr, 0);
                     return false;
                   }
                 
