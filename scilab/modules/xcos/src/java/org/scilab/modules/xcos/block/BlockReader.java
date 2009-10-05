@@ -451,9 +451,21 @@ public class BlockReader {
 
 	// sz : must contains the size of the block
 	if (!(graphicsStructure.get(2) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	// !!! WARNING !!!
+	// scicos can store [width, height] or [width; height] watch out !!!!
 	// sz = [width, height]
-	double width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
-	double height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
+	double width = 0;
+	double height = 0;
+	if (graphicsStructure.get(2).getHeight() == 1 &&  graphicsStructure.get(2).getWidth() == 2) {
+	    width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
+	    height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
+	}
+	else {
+	    if (graphicsStructure.get(2).getHeight() == 2 &&  graphicsStructure.get(2).getWidth() == 1) {
+		width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
+		height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[1][0]; 
+	    }
+	}
 
 	// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
 	newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 20));
