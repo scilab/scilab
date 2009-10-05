@@ -343,7 +343,6 @@ public final class ConfigManager {
 		/*System.getProperty("user.dir") if no path*/
 		readDocument();
 		String path = new String() ;
-		System.out.println(USER_CONFIG_FILE);
 		
 		Element racine = document.getDocumentElement();
 		
@@ -357,7 +356,7 @@ public final class ConfigManager {
 		
 			path = lastOpenedDir.getAttribute(VALUE);
 			
-			if (path.isEmpty()){
+			if (path.length() == 0){
 				path = System.getProperty("user.dir") ;
 			}
 		}else{
