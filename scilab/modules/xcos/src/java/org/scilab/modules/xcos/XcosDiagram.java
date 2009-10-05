@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -48,6 +49,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
@@ -515,36 +517,75 @@ public class XcosDiagram extends ScilabGraph {
 		return new ExplicitLink();
 	}
 	
+	public void loadDiagram(String fileToLoad) {
+		// TODO factorization !!!
+		System.out.println("Openning to file : {" + fileToLoad + "}");
+
+		HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(fileToLoad);
+
+		List<BasicBlock> allBlocks = allObjects.get("Blocks");
+		List<BasicPort[]> allLinks = allObjects.get("Links");
+		for (int i = 0; i < allBlocks.size(); ++i) {
+			this.addCell(allBlocks.get(i));
+		}
+
+		for (int i = 0; i < allLinks.size(); ++i) {
+			BasicLink link = createLinkFromPorts(allLinks.get(i)[0], allLinks.get(i)[1]);
+			link.setGeometry(new mxGeometry(0,0,80,80));
+			link.setSource(allLinks.get(i)[0]);
+			link.setTarget(allLinks.get(i)[1]);
+			this.addCell(link);
+		}
+
+		this.setTitle(fileToLoad);
+		this.getParentTab().setName(fileToLoad);
+		// TODO factorization !!!
+		
+	}
+	
     /**
      * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
      * @param diagramFileName file to open
      */
     public void readDiagram(String diagramFileName) {
     	
-	    System.out.println("Openning to file : {" + diagramFileName + "}");
-	    
     	File theFile = new File(diagramFileName);
     	
 	    if (theFile.exists()) {
+	    	
+	    	String fileToLoad = diagramFileName;
+	    	// Try to find file type
+	    	int dotPos = theFile.getName().lastIndexOf('.');
+	    	String extension = "";
+	    	if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
+	    		extension = theFile.getName().substring(dotPos + 1);
+	    	}
 
-	    	HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(diagramFileName);
-		    
-	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
-	    	List<BasicPort[]> allLinks = allObjects.get("Links");
-	    	for (int i = 0; i < allBlocks.size(); ++i) {
-	    		this.addCell(allBlocks.get(i));
+	    	if (extension.equals("cosf")) {
+	    		final File tempOutput;
+	    		try {
+	    			tempOutput = File.createTempFile("xcos",".hdf5");
+	    			String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
+	    			cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+	    			cmd += "xcosNotify(\"" +tempOutput.getAbsolutePath()+ "\");";
+	    			InterpreterManagement.requestScilabExec(cmd);
+	    			Thread launchMe = new Thread() {
+	    				public void run() {
+	    					Signal.wait(tempOutput.getAbsolutePath());
+	    		    		loadDiagram(tempOutput.getAbsolutePath());
+	    				}
+	    			};
+	    			launchMe.start();
+	    			fileToLoad = tempOutput.getAbsolutePath();
+	    		} catch (IOException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}
+	    	} else {
+
+	    		loadDiagram(fileToLoad);
+
 	    	}
-	    	
-	    	for (int i = 0; i < allLinks.size(); ++i) {
-	    	    BasicLink link = createLinkFromPorts(allLinks.get(i)[0], allLinks.get(i)[1]);
-	    	    link.setGeometry(new mxGeometry(0,0,80,80));
-	    	    link.setSource(allLinks.get(i)[0]);
-	    	    link.setTarget(allLinks.get(i)[1]);
-	    	    this.addCell(link);
-	    	}
-	    	
-	    	this.setTitle(diagramFileName);
-	    	this.getParentTab().setName(diagramFileName);
 	    	
 	    } else {
 			int choice = JOptionPane.showConfirmDialog(this.getAsComponent(), XcosMessages.FILE_DOESNT_EXIST);
