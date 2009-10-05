@@ -18,6 +18,9 @@ if rhs < 2 then
   return
 end
 
+
+//load all files
+varsToLoad = [];
 for fIndex = 1:size(palFiles, "*")
 
   if ~isfile(palFiles(fIndex)) then
@@ -29,33 +32,38 @@ for fIndex = 1:size(palFiles, "*")
   names = who("get");
 
   // Try to find scs_m variables
-  varsToLoad = [];
   for kVar = 1:size(names, "*")
     if ~isempty(strindex(names(kVar), "scs_m")) then
-      varsToLoad($+1) = names(kVar);
-    end
-  end
-
-  for kVar = 1:size(varsToLoad, "*")
-
-    currentPal = eval(varsToLoad(kVar));
-
-    for kBlock = 1:size(currentPal.objs)
-
-      if typeof(currentPal.objs(kBlock))=="Block" then
-	
-	ierr = execstr("out  = " + currentPal.objs(kBlock).gui + "(""define"")", "errcatch");
-	
-	if ierr==0 then
-	  mprintf("%s\n",  currentPal.objs(kBlock).gui);
-	  export_to_hdf5(outPath + filesep() + currentPal.objs(kBlock).gui + ".h5", "out");
+      currentPal = eval(names(kVar));
+      for kBlock = 1:size(currentPal.objs)
+	if typeof(currentPal.objs(kBlock))=="Block" then
+	  if find(varsToLoad == currentPal.objs(kBlock).gui) == [] then
+	    varsToLoad($+1) = currentPal.objs(kBlock).gui;
+	  end
 	end
-	
       end
     end
-    
+  end
+end
+
+for kBlock = 1 : size(varsToLoad, "*")
+
+  BlockFile = outPath + varsToLoad(kBlock) + ".h5";
+
+  ierr = execstr("out  = " + varsToLoad(kBlock) + "(""define"")", "errcatch");
+  
+  if ierr == 0 then
+    mprintf("%d: %s\n",  kBlock, varsToLoad(kBlock));
+    bexport = export_to_hdf5(BlockFile, "out");
+    if (~bexport) then
+      mprintf(gettext("FAILED TO EXPORT: %s\n"),  varsToLoad(kBlock));
+    end
+    out1 = out;
+    bImport = import_from_hdf5(BlockFile);
+    if bImport == %f | or(out1 ~= out) then
+      mprintf(gettext("FAILED TO EXPORT: %s\n"),  varsToLoad(kBlock));
+    end
   end
   
 end
-
 endfunction
