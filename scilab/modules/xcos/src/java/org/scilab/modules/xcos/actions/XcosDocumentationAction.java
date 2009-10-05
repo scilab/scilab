@@ -22,7 +22,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Zoom management
+ * View Xcos documentation
  * @author Allan SIMON
  */
 public final class XcosDocumentationAction extends DefaultAction {
