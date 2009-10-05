@@ -14,48 +14,57 @@ function importScicosPal(palFiles, outPath)
 rhs = argn(2);
 
 if rhs < 2 then
-  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
-  return
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
+    return
 end
 
+
+//load all files
+varsToLoad = [];
 for fIndex = 1:size(palFiles, "*")
 
-  if ~isfile(palFiles(fIndex)) then
-    error(msprintf(gettext("%s: File ''%s'' does not exist.\n"), "importScicosPal", palFiles(fIndex)));
-    return
-  end
-  
-  exec(palFiles(fIndex), -1);
-  names = who("get");
-
-  // Try to find scs_m variables
-  varsToLoad = [];
-  for kVar = 1:size(names, "*")
-    if ~isempty(strindex(names(kVar), "scs_m")) then
-      varsToLoad($+1) = names(kVar);
+    if ~isfile(palFiles(fIndex)) then
+        error(msprintf(gettext("%s: File ''%s'' does not exist.\n"), "importScicosPal", palFiles(fIndex)));
+        return
     end
-  end
-
-  for kVar = 1:size(varsToLoad, "*")
-
-    currentPal = eval(varsToLoad(kVar));
-
-    for kBlock = 1:size(currentPal.objs)
-
-      if typeof(currentPal.objs(kBlock))=="Block" then
-	
-	ierr = execstr("out  = " + currentPal.objs(kBlock).gui + "(""define"")", "errcatch");
-	
-	if ierr==0 then
-	  mprintf("%s\n",  currentPal.objs(kBlock).gui);
-	  export_to_hdf5(outPath + filesep() + currentPal.objs(kBlock).gui + ".h5", "out");
-	end
-	
-      end
-    end
-    
-  end
   
+    exec(palFiles(fIndex), -1);
+    names = who("get");
+
+    // Try to find scs_m variables
+    for kVar = 1:size(names, "*")
+        if ~isempty(strindex(names(kVar), "scs_m")) then
+            currentPal = eval(names(kVar));
+            for kBlock = 1:size(currentPal.objs)
+                if typeof(currentPal.objs(kBlock))=="Block" then
+                    if find(varsToLoad == currentPal.objs(kBlock).gui) == [] then
+                        varsToLoad($+1) = currentPal.objs(kBlock).gui;
+                    end
+                end
+            end
+        end
+    end
 end
 
+for kBlock = 1 : size(varsToLoad, "*")
+
+    BlockFile = outPath + varsToLoad(kBlock) + ".h5";
+    deletefile(BlockFile);
+    ierr = execstr("out  = " + varsToLoad + "(""define"")", "errcatch");
+    if ierr == 0 then
+        mprintf("%d: %s\n",  kBlock, varsToLoad(kBlock));
+        bexport = export_to_hdf5(BlockFile, "out");
+        if(~bexport) then
+	        mprintf("FAILED TO EXPORT: %s\n",  varsToLoad(kBlock));
+	        mprintf("%s\n", "out  = " + varsToLoad(kBlock) + "(""define"");");
+	        mprintf("%s\n", 'export_to_hdf5 ' + outPath + varsToLoad(kBlock) + ".h5" + " out");
+        end
+//        out1 = out;
+//        bImport = import_from_hdf5(BlockFile);
+//        if bImport == %f | out1 ~= out then
+//            pause
+//        end
+    end
+    
+end
 endfunction
