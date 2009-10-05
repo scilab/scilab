@@ -114,9 +114,10 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	if isdir("/usr/include/scilab/") & ScilabTreeFound then
 	   cflags="-I/usr/include/scilab/ "+cflags
 	   fflags="-I/usr/include/scilab/ "+fflags
+	   ScilabTreeFound=%t
 	end
 
-	if ( ilib_verbose() <> 0 ) then
+	if ( ilib_verbose() <> 0 & ScilabTreeFound <> %t) then
 	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
 	end
 

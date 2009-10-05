@@ -34,7 +34,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -53,14 +53,14 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarOne, &iType1);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -74,7 +74,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 

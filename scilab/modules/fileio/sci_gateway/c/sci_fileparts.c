@@ -56,14 +56,14 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -76,7 +76,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -96,7 +96,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -105,14 +105,14 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -125,7 +125,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -145,7 +145,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 	}
@@ -209,7 +209,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &output_value);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -226,7 +226,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &path_out);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -235,7 +235,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfWideString(Rhs + 2, m_out, n_out, &name);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -244,7 +244,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfWideString(Rhs + 3, m_out, n_out, &ext);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 

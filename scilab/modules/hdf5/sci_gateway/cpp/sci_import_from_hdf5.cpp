@@ -63,14 +63,14 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddr);
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 	}
 
 	strErr = getVarDimension(piAddr, &iRows, &iCols);
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 	}
 
@@ -82,7 +82,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 	}
 
@@ -90,7 +90,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 	}
 
@@ -133,7 +133,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	strErr = allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn);
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 	}
 
@@ -272,7 +272,7 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -331,7 +331,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -549,7 +549,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -591,7 +591,7 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -678,7 +678,7 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -770,7 +770,7 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -832,7 +832,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddres
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 
@@ -924,7 +924,7 @@ static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piA
 
 	if(strErr.iErr)
 	{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return false;
 	}
 

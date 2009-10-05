@@ -48,6 +48,12 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends SwingScilabTab implements Tab {
 
+	private static final int BLOCK_WIDTH = 150;
+	private static final int BLOCK_HEIGHT = 150;
+	private static final int HMARGIN = 5;
+	private static final int VMARGIN = 5;
+	private static final int DEFAULT_NB_COLS = 4;
+	
 	private JPanel panel;
 
 	protected JLabel selectedEntry;
@@ -64,11 +70,15 @@ public class XcosPalette extends SwingScilabTab implements Tab {
 			
 			panel = new JPanel();
 			panel.setBackground(Color.WHITE);
-			panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-			panel.setPreferredSize(new Dimension(600, 0));
+			panel.setLayout(new FlowLayout(FlowLayout.LEADING, HMARGIN, VMARGIN));
+			panel.setPreferredSize(new Dimension(DEFAULT_NB_COLS * (BLOCK_WIDTH + HMARGIN), 0));
 
 			JScrollPane jsp = new JScrollPane(panel);
 			setContentPane(jsp);
+			jsp.getVerticalScrollBar().setBlockIncrement(BLOCK_HEIGHT + VMARGIN);
+			jsp.getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
+			jsp.getVerticalScrollBar().setUnitIncrement(BLOCK_HEIGHT + VMARGIN);
+			jsp.getHorizontalScrollBar().setUnitIncrement(BLOCK_WIDTH + HMARGIN);
 
 			// Clears the current selection when the background is clicked
 			addMouseListener(new MouseListener()
@@ -295,7 +305,7 @@ public class XcosPalette extends SwingScilabTab implements Tab {
 				}
 			};
 
-			entry.setPreferredSize(new Dimension(150, 150));
+			entry.setPreferredSize(new Dimension(BLOCK_WIDTH, BLOCK_HEIGHT));
 			entry.setBackground(XcosPalette.this.getBackground().brighter());
 			entry.setFont(new Font(entry.getFont().getFamily(), 0, 14));
 
@@ -375,8 +385,8 @@ public class XcosPalette extends SwingScilabTab implements Tab {
 			panel.add(entry);
 
 			int panelWidth = (int) panel.getPreferredSize().getWidth();
-			int numberOfCols = panelWidth / 155;
-			panel.setPreferredSize(new Dimension(panelWidth, 155 * (panel.getComponentCount() / numberOfCols + 1)));
+			int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
+			panel.setPreferredSize(new Dimension(panelWidth, (BLOCK_WIDTH + HMARGIN) * (panel.getComponentCount() / numberOfCols + 1)));
 		}
 
 		/**
