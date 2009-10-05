@@ -58,7 +58,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -66,7 +66,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -74,14 +74,14 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarTwo, &iType2);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -100,7 +100,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -113,7 +113,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -127,7 +127,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -138,7 +138,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -193,7 +193,7 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	strErr = createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -212,7 +212,7 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
