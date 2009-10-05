@@ -7,6 +7,12 @@ Xcos:
 
 TODO: add an explanation about xscos
 
+ATOMS:
+======
+
+TODO: add an explanation about atoms
+
+
 Xpad:
 =====
 
