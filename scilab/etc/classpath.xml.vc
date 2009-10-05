@@ -37,7 +37,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
 
 <!-- Load when needed -->
-<path value="$SCILAB/thirdparty/jlatexmath.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-0.1.jar" load="onUse">
         <load on="graphics"/>
         <load on="graphic_export"/>
 </path>
