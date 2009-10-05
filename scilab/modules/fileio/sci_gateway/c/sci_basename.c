@@ -43,26 +43,40 @@ int sci_basename(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarThree = NULL;
 		int *piData = NULL;
+		int iType3	= 0;
 		int m3 = 0, n3 = 0;
 
 		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType3 != sci_boolean)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
 			return 0;
 		}
 
 		strErr = getMatrixOfBoolean(piAddressVarThree, &m3, &n3,  &piData);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarDimension(piAddressVarThree, &m3, &n3);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -85,14 +99,14 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -113,7 +127,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfBoolean(piAddressVarTwo, &m2, &n2,  &piData);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -123,14 +137,14 @@ int sci_basename(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -139,7 +153,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = getVarDimension(piAddressVarOne, &m1, &n1);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -148,7 +162,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 			strErr = createMatrixOfDouble(Rhs + 1, m1, n1, NULL);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -165,7 +179,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = getVarDimension(piAddressVarOne, &m1, &n1);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -188,7 +202,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -209,7 +223,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfWideString(Rhs + 1, m1, n1, pStResult);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 

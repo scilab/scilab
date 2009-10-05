@@ -18,8 +18,15 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "stack-c.h"
+#ifdef _MSC_VER
 #include "strdup_windows.h"
+#endif
 #include "localization.h"
+
+extern "C"
+{
+	#include "mode_exec.h"
+}
 
 int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 {
@@ -29,7 +36,7 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 
 	va_start(ap,_pstMsg);
 #if defined (vsnprintf) || defined (linux)
-	iRet = vsnprintf(s_buf,bsiz-1, fmt, ap );
+	iRet = vsnprintf(pstMsg, bsiz-1, _pstMsg, ap );
 #else
 	iRet = vsprintf(pstMsg, _pstMsg, ap );
 #endif
@@ -39,29 +46,31 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 	return iRet;
 }
 
-int printError(StrErr _strErr, int _iLastMsg)
+int printError(StrErr* _pstrErr, int _iLastMsg)
 {
-	if(_strErr.iErr == 0)
+	int iMode = getExecMode();
+
+	if(_pstrErr->iErr == 0)
+	{
+		return 0;
+	}
+
+	SciError(_pstrErr->iErr);
+
+	if(iMode == SILENT_EXEC_MODE)
 	{
 		return 0;
 	}
 
 	if(_iLastMsg)
 	{
-		Scierror(_strErr.iErr, _strErr.pstMsg[0]);
+		sciprint(_("API error: %s"), _pstrErr->pstMsg[0]);
 	}
 	else
 	{
-		for(int i = _strErr.iMsgCount - 1;  i >= 0 ;i--)
+		for(int i = _pstrErr->iMsgCount - 1;  i >= 0 ;i--)
 		{
-			//if(i == _strErr.iMsgCount - 1)
-			//{
-			//	Scierror(_strErr.iErr, "%s", _strErr.pstMsg[i]);
-			//}
-			//else
-			{
-				sciprint(_("API error: %s"), _strErr.pstMsg[i]);
-			}
+			sciprint(_("API error: %s"), _pstrErr->pstMsg[i]);
 		}
 		sciprint("\n");
 	}

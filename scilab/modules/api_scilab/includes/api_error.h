@@ -185,7 +185,7 @@ extern "C" {
 
 /* error functions*/
 int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...);
-int printError(StrErr _strErr, int _iLastMsg);
+int printError(StrErr* _pstrErr, int _iLastMsg);
 char* getErrorMessage(StrErr _strErr);
 
 #ifdef __cplusplus
