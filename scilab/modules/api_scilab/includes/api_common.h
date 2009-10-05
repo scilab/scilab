@@ -17,12 +17,15 @@
 extern "C" {
 #endif
 
-
+	/**
+	 * The error management structure
+	 *
+	 */
 typedef struct api_Err
 {
-	int iErr;
-	int iMsgCount;
-	char* pstMsg[1024];
+	int iErr; /**< The error ID */
+	int iMsgCount; /**< Error level */
+	char* pstMsg[1024]; /**< The error message */
 } StrErr;
 
 #include "api_error.h"
