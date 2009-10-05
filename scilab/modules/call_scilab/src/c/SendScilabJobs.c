@@ -58,7 +58,7 @@ int SendScilabJob(char *job)
 		strErr = createNamedMatrixOfString("TMP_EXEC_STRING", 1, 1, &command);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			/* Problem */
 			fprintf(stderr, "Error : SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
 			retCode = -1;
@@ -76,7 +76,7 @@ int SendScilabJob(char *job)
 		strErr = getNamedVarDimension("Err_Job", &m, &n);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (2) 'Err_Job'.\n");	
 			retCode = -2;
 
@@ -100,7 +100,7 @@ int SendScilabJob(char *job)
 		strErr = readNamedMatrixOfDouble("Err_Job", &m, &n, &Err_Job);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (4) 'Err_Job'.\n");	
 			retCode = -4;
 
