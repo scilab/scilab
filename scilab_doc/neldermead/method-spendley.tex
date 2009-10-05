@@ -6,10 +6,10 @@ unconstrained optimization.
 We begin by presenting a global overview of the algorithm. 
 Then we present various geometric situations which might occur
 during the algorithm. In the second section, we present several 
-numerical experiments which allow to get some insight in the behaviour 
+numerical experiments which allow to get some insight in the behavior 
 of the algorithm on some simple situations. The two first cases 
 are involving only 2 variables and are based on a quadratic function.
-The last numerical experiment explores the behaviour of the algorith
+The last numerical experiment explores the behavior of the algorithm 
 when the number of variables increases.
 
 \section{Introduction}
@@ -32,10 +32,10 @@ following unconstrained optimization problem
 where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
 function $f:\RR^n\rightarrow \RR$.
 
-The simplex algorithms are based on the iterative update of 
-a \emph{simplex} made of $n+1$ points $S=\{\bx_i\}_{i=1,n+1}$. Each point 
+This algorithms is based on the iterative update of 
+a \emph{simplex} made of $n+1$ points $S=\{\bv_i\}_{i=1,n+1}$. Each point 
 in the simplex is called a \emph{vertex} and is associated with 
-a function value $f_i=f(x_i)$ for $i=1,n+1$.
+a function value $f_i=f(\bv_i)$ for $i=1,n+1$.
 
 The vertices are sorted by increasing function values so that the 
 \emph{best} vertex has index 1 and the \emph{worst} vertex 
@@ -45,32 +45,32 @@ has index $n+1$
 f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
-The $\bx_1$ vertex (resp. the $\bx_{n+1}$ vertex) is called the \emph{best} 
+The $\bv_1$ vertex (resp. the $\bv_{n+1}$ vertex) is called the \emph{best} 
 vertex (resp. \emph{worst}), because it is associated with the lowest (resp. highest)
-function value. As we are going to see, the \emph{next-to-worst} vertex $\bx_n$ has a 
+function value. As we are going to see, the \emph{next-to-worst} vertex $\bv_n$ has a 
 special role in this algorithm.
 
 The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
-where the vertex $\bx_j$ has been 
+where the vertex $\bv_j$ has been 
 excluded. This centroid is 
 \begin{eqnarray}
 \label{centroid-generalized}
-\overline{\bx} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bx_i.
+\overline{\bx} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bv_i.
 \end{eqnarray}
 The algorithm makes use
 of one coefficient $\rho>0$, called the reflection factor. The standard
 value of this coefficient is $\rho=1$.
-The algorithm attemps to replace some vertex 
-$\bx_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bx_j$
+The algorithm attempts to replace some vertex 
+$\bv_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bv_j$
 to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
 \begin{eqnarray}
 \label{interpolate-generalized}
-\bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bx_j.
+\bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bv_j.
 \end{eqnarray}
 
 \subsection{Algorithm}
 
-In this section, we analyse Spendley's et al algorithm, which
+In this section, we analyze Spendley's et al algorithm, which
 is presented in figure \ref{algo-spendley}.
 
 \begin{figure}[htbp]
@@ -91,50 +91,50 @@ is presented in figure \ref{algo-spendley}.
     \IF {$f_r^\prime<f_{n+1}$}
       \STATE Accept $\bx_r^\prime$
     \ELSE 
-      \STATE Compute the points $\bx_i=\bx_1 + \sigma (\bx_i - \bx_1)$, $i=2,n+1$ \COMMENT{Shrink}
-      \STATE Compute $f_i = f(\bx_i), i=2,n+1$
+      \STATE Compute the vertices $\bv_i=\bv_1 + \sigma (\bv_i - \bv_1)$ for $i=2,n+1$ \COMMENT{Shrink}
+      \STATE Compute $f_i = f(\bv_i)$ for $i=2,n+1$
     \ENDIF
   \ENDIF
   \STATE Sort the vertices of $S$ with increasing function values
 \ENDWHILE
 \end{algorithmic}
-\caption{Spendley et al. algorithm}
+\caption{Spendley's et al. algorithm}
 \label{algo-spendley}
 \end{figure}
 
-The first step of the algorithm is based on the centroid 
-$\overline{\bx} (n+1)$ where the worst vertex $\bx_{n+1}$ 
+At each iteration, we compute the centroid 
+$\overline{\bx} (n+1)$ where the worst vertex $\bv_{n+1}$ 
 has been excluded. This centroid is 
 \begin{eqnarray}
 \label{centroid-worst}
-\overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bx_i.
+\overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bv_i.
 \end{eqnarray}
-We perform a reflection with respect to the worst vertex $\bx_{n+1}$,
+We perform a reflection with respect to the worst vertex $\bv_{n+1}$,
 which creates the reflected point $\bx_r$ defined by 
 \begin{eqnarray}
 \label{interpolate-worst}
-\bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bx_{n+1}
+\bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bv_{n+1}
 \end{eqnarray}
 
 We then compute the function value of the reflected
 point as $f_r=f(\bx_r)$. If the function value $f_r$ is better than the worst function
-value $f_{n+1}$, i.e. if $f_r < f_{n+1}$, then the worst point $\bx_{n+1}$ is rejected from the 
+value $f_{n+1}$, i.e. if $f_r < f_{n+1}$, then the worst vertex $\bv_{n+1}$ is rejected from the 
 simplex and the reflected point $\bx_r$ is accepted. If the reflection point 
 does not improve the function value $f_{n+1}$, we consider the centroid 
-$\overline{\bx} (n)$, i.e. the centroid where the vertex $\bx_n$ has been excluded.
-We then consider the reflected vertex $\bx_r^\prime$, computed from the 
-next-to-worst vertex $\bx_n$ and the centroid $\overline{\bx} (n)$. 
+$\overline{\bx} (n)$, i.e. the centroid where the next-to-worst vertex $\bv_n$ has been excluded.
+We then consider the reflected point $\bx_r^\prime$, computed from the 
+next-to-worst vertex $\bv_n$ and the centroid $\overline{\bx} (n)$. 
 We compute the function value $f_r^\prime = f(\bx_r^\prime)$. If the function
-value $f_r^\prime$ improves over the worst function value $f_{n+1}$, the new reflection vertex 
+value $f_r^\prime$ improves over the worst function value $f_{n+1}$, then 
+the worst vertex $\bv_{n+1}$ is rejected from the simplex and the new reflection point 
 $\bx_r^\prime$ is accepted.
 
 At that point of the algorithm, neither the reflection with respect to 
-$\bx_{n+1}$ nor the reflection with respect to $\bx_n$ were able to improve over 
+$\bv_{n+1}$ nor the reflection with respect to $\bv_n$ were able to improve over 
 the worst function value $f_{n+1}$.
-Therefore, the algorithm shrinks the simplex toward the best vertex $\bx_1$.
+Therefore, the algorithm shrinks the simplex toward the best vertex $\bv_1$.
 That last step uses the shrink coefficient $0<\sigma<1$. The standard
 value for this coefficient is $\sigma=\frac{1}{2}$.
-
 
 \subsection{Geometric analysis}
 
@@ -245,7 +245,7 @@ with Spendley's et al. algorithm.
 The first numerical experiments involves one quadratic function
 in 2 dimensions. The second experiment is based on a 
 badly scaled quadratic in 2 dimension. In the third experiment,
-we analyse the behaviour of the algorithm with respect to the 
+we analyze the behavior of the algorithm with respect to the 
 number of variables.
 
 \subsection{Quadratic function}
@@ -263,11 +263,11 @@ with respect to the size of the initial simplex
 \end{eqnarray}
 The oriented length $\sigma_+(S)$ is defined by
 \begin{eqnarray}
-\sigma_+(S) = \max_{i=2,n+1} \|\bx_i - \bx_1\|_2
+\sigma_+(S) = \max_{i=2,n+1} \|\bv_i - \bv_1\|_2
 \end{eqnarray}
 where $\|.\|_2$ is the euclidian norm defined by 
 \begin{eqnarray}
-\|\bx\|_2 = \sum_{i=1,n}(x^j)^2.
+\|\bx\|_2 = \sum_{i=1,n}x_i^2.
 \end{eqnarray}
 
 The initial simplex is a regular simplex with length unity.
@@ -324,7 +324,7 @@ The various simplices generated during the iterations are
 presented in figure \ref{fig-spendley-numexp1-historysimplex}.
 The method use reflections in the early iterations. Then there
 is no possible improvement using reflections and shrinking is necessary.
-That behaviour is an illustration of the discretization which has already
+That behavior is an illustration of the discretization which has already
 been discussed.
 
 \begin{figure}
@@ -407,7 +407,7 @@ nm = nmplot_destroy(nm);
 The numerical results are presented in table \ref{fig-spendley-numexp1-table},
 where the experiment is presented for $a=100$. One can check that the 
 number of function evaluation is equal to its maximum limit, even if the value of the 
-function at optimum is very inacurate ($f(x^\star) \approx 0.08$).
+function at optimum is very inaccurate ($f(x^\star) \approx 0.08$).
 
 \begin{figure}[h]
 \begin{center}
@@ -434,7 +434,7 @@ Computed $f(x^\star)$ & $0.08$\\
 The various simplices generated during the iterations are 
 presented in figure \ref{fig-spendley-numexp2-historysimplex}.
 The method use reflections in the early iterations. Then there
-is no possible improvment using reflections and shrinking is necessary.
+is no possible improvement using reflections and shrinking is necessary.
 But the shrinking makes the simplex very small so that a large number of 
 iterations are necessary to improve the function value.
 This is a limitation of the method, which is based on a simplex 
@@ -448,8 +448,8 @@ which can vary its size, but not its shape.
 \label{fig-spendley-numexp2-historysimplex}
 \end{figure}
 
-In figure \ref{fig-spendley-numexp2-scaling}, we analyse the 
-behaviour of the method with respect to scaling.
+In figure \ref{fig-spendley-numexp2-scaling}, we analyze the 
+behavior of the method with respect to scaling.
 We check that the method behave poorly when the scaling is 
 bad. The convergence speed is slower and slower and impractical 
 when $a>10$
@@ -644,7 +644,7 @@ The figure \ref{fig-sp-numexp3-dimension} presents the number of function
 evaluations depending on the number of variables.
 
 One can see that the number of function evaluations 
-increases approximately linearily with the dimension of the problem in
+increases approximately linearly with the dimension of the problem in
 figure \ref{fig-sp-numexp3-fvn}. A rough rule of thumb is that, for $n=1,20$, 
 the number of function evaluations is equal to $30n$.
 This test is in fact the best that we can expect from this algorithm : since 

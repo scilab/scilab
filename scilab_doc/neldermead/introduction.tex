@@ -66,7 +66,7 @@ criteria.
 \item The "fminsearch" component provides a Scilab commands which aims 
 at behaving as Matlab's fminsearch. Specific terminations criteria, 
 initial simplex and auxiliary settings are automatically configured so 
-that the behaviour of Matlab's fminsearch is exactly reproduced.
+that the behavior of Matlab's fminsearch is exactly reproduced.
 \item The "optimset" and "optimget" components provide Scilab commands 
 to emulate their Matlab counterparts.
 \item The "nmplot" component provides features to 
@@ -168,10 +168,7 @@ is used, which corresponds to the "variable" value of the "-method" option.
 The verbose mode is enabled so that messages are generated during the algorithm. 
 After the optimization is performed, the optimum is retrieved with quiery features.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -193,10 +190,7 @@ nm = neldermead_destroy(nm);
 
 This produces the following output.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 -->nm = neldermead_search(nm);
 Function Evaluation #1 is [24.2] at [-1.2 1]
@@ -314,10 +308,7 @@ and are presented in figure \ref{fig-intro-demos}.
 The following script shows where the demonstration scripts are 
 available from the Scilab installation directory.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 -->cd SCI/modules/optimization/demos/neldermead
  ans  =
@@ -357,7 +348,6 @@ directory, under the "neldermead", "optimsimplex" and "optimbase" directories.
 Each unit test correspond to a .tst file. These tests are covering most 
 (if not all) the features provided by the components. This is why there are 
 a good source of information on how to use the functions.
-
 
 
 
