@@ -43,12 +43,26 @@ int sci_basename(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarThree = NULL;
 		int *piData = NULL;
+		int iType3	= 0;
 		int m3 = 0, n3 = 0;
 
 		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType3 != sci_boolean)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
 			return 0;
 		}
 
