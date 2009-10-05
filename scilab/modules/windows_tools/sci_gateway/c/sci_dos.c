@@ -244,9 +244,10 @@ int sci_dos(char *fname,unsigned long l)
 			}
 			else
 			{
+				/* returns [] */
 				int m_out1 = 0;
 				int n_out1 = 0;
-				strErr = createMatrixOfString(Rhs + 1, m_out1, n_out1, NULL);
+				strErr = createMatrixOfDouble(Rhs + 1, m_out1, n_out1, NULL);
 			}
 
 			if(strErr.iErr)
