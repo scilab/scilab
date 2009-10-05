@@ -299,8 +299,7 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     public boolean isCellDeletable(Object cell) {
-	return !(cell instanceof BasicPort) 
-		&& !(cell instanceof BasicLink)
+	return !(cell instanceof BasicPort)
 		&& super.isCellDeletable(cell);
     }
     
@@ -534,7 +533,7 @@ public class XcosDiagram extends ScilabGraph {
 	    	List<BasicBlock> allBlocks = allObjects.get("Blocks");
 	    	List<BasicPort[]> allLinks = allObjects.get("Links");
 	    	for (int i = 0; i < allBlocks.size(); ++i) {
-	    		Object obj = this.addCell(allBlocks.get(i));
+	    		this.addCell(allBlocks.get(i));
 	    	}
 	    	
 	    	for (int i = 0; i < allLinks.size(); ++i) {
