@@ -66,6 +66,7 @@ public class BlockReader {
 
 	try {
 	    int fileId = H5Read.openFile(hdf5File);
+	    if (fileId == -1) { throw new WrongStructureException(); }
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
 	    if(!isAValidScs_mStructure(data)) { throw new WrongStructureException(); }
@@ -75,9 +76,8 @@ public class BlockReader {
 	    for (int i = 0 ; i < nbObjs ; ++i) {
 		try {
 		    if(isBlock(data, i)) {
-			BasicBlock currentBlock = new BasicBlock("temp");
 			INFO("Reading Block "+ i);
-			fillBlockStructure(getBlockAt(data, i), currentBlock);
+			BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
 			currentBlock.setOrdering(i);
 			indexedBlock.put(i + 1, currentBlock);
 			blocks.add(currentBlock);
@@ -231,9 +231,10 @@ public class BlockReader {
 
 	try {
 	    int fileId = H5Read.openFile(hdf5file);
+	    //if (fileId == -1) { throw new WrongStructureException(); }
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
-	    fillBlockStructure(data , newBlock);
+	    newBlock = fillBlockStructure(data);
 	    newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 		    newBlock.getGeometry().getY(),
 		    newBlock.getGeometry().getWidth() * 2,
@@ -362,7 +363,7 @@ public class BlockReader {
 	return false;
     }
 
-    private static void fillBlockStructure (ScilabMList blockFields , BasicBlock newBlock ) throws WrongStructureException, WrongTypeException {
+    private static BasicBlock  fillBlockStructure (ScilabMList blockFields) throws WrongStructureException, WrongTypeException {
 	String[] realNameOfBlockFields = {"Block", "graphics" , "model" , "gui" , "doc"};
 
 	// we test if the structure as enough field
@@ -380,6 +381,14 @@ public class BlockReader {
 	    }
 	}
 
+	
+	// !! WARNING !! create block with different type depending on the interfaceFunction name.
+	// the fourth field must contain the name of the interface function
+	if (!(blockFields.get(3) instanceof ScilabString)) { throw new WrongTypeException(); } 
+	BasicBlock newBlock = BasicBlock.createBlock(getBlockInterfaceName (blockFields));
+	newBlock.setValue(getBlockInterfaceName (blockFields));
+	newBlock.setInterfaceFunctionName( getBlockInterfaceName (blockFields) );
+	
 	// the second field must contain list of all graphic property (how the block will be displayed )
 	if (!(blockFields.get(1) instanceof ScilabMList)) { throw new WrongTypeException(); }
 	fillGraphicsStructure( blockFields, newBlock);
@@ -389,13 +398,10 @@ public class BlockReader {
 	if (!(blockFields.get(2) instanceof ScilabMList)) { throw new WrongTypeException(); }
 	fillModelStructure(blockFields, newBlock);
 
-	// the fourth field must contain the name of the interface function
-	if (!(blockFields.get(3) instanceof ScilabString)) { throw new WrongTypeException(); } 
-	newBlock.setValue(getBlockInterfaceName (blockFields));
-	newBlock.setInterfaceFunctionName( getBlockInterfaceName (blockFields) );
-
 	// the last field must contain a list of nothing aka scicos doc
-	if (!(blockFields.get(4) instanceof ScilabList) && !isEmptyField(blockFields.get(4))) { throw new WrongTypeException(); } 
+	if (!(blockFields.get(4) instanceof ScilabList) && !isEmptyField(blockFields.get(4))) { throw new WrongTypeException(); }
+	
+	return newBlock;
     }
 
     public static void fillGraphicsStructure (ScilabMList blockFields ,BasicBlock newBlock ) throws WrongTypeException, WrongStructureException{
@@ -469,16 +475,16 @@ public class BlockReader {
 	    throw new WrongTypeException(); 
 	}
 	// exprs = ["a", "b", "c"]
-	if (graphicsStructure.get(5) instanceof ScilabString) {
+	//if (graphicsStructure.get(5) instanceof ScilabString) {
 	    //	    for (int i = 0 ; i < graphicsStructure.get(5).getHeight() ; i++){
 	    //		newBlock.getExprs().add(((ScilabString)graphicsStructure.get(5)).getData()[i][0]);
 	    //	    }
 	    newBlock.setExprs(graphicsStructure.get(5));
-	}
-	else {
+	//}
+	//else {
 	    // TODO : See how to store it properly;
-	    WARNING("exprs defined as Scilab List : Not managed !!!");
-	}
+	    //WARNING("exprs defined as Scilab List : Not managed !!!");
+	//}
 
 	// pin
 	if (!(graphicsStructure.get(6) instanceof ScilabDouble)) { throw new WrongTypeException(); }

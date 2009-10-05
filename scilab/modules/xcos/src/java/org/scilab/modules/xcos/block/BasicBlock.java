@@ -108,6 +108,19 @@ public class BasicBlock extends mxCell {
 	}
     };
 
+    public static BasicBlock createBlock(String label) {
+	if(label.compareTo("TEXT_f") == 0) {
+	    return new TextBlock(label);
+	}
+	if(label.compareTo("SUPER_f") == 0) {
+	    return new SuperBlock(label);
+	}
+	else {
+	    return new BasicBlock(label);
+	}
+	
+    }
+    
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
