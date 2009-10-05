@@ -14,8 +14,6 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.swing.KeyStroke;
 
@@ -26,8 +24,6 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class OpenAction extends DefaultAction {
