@@ -55,14 +55,14 @@ int sci_length(char *fname,unsigned long fname_len)
 	StrErr strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iScilabType);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -113,7 +113,7 @@ static int lengthStrings(int *piAddressVar)
 	strErr = getVarType(piAddressVar, &iType);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -126,7 +126,7 @@ static int lengthStrings(int *piAddressVar)
 	strErr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
 		return 0;
 	}
@@ -141,7 +141,7 @@ static int lengthStrings(int *piAddressVar)
 	strErr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		FREE(lenStVarOne); lenStVarOne = NULL;
 		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
 		return 0;
@@ -169,7 +169,7 @@ static int lengthStrings(int *piAddressVar)
 	strErr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		FREE(lenStVarOne); lenStVarOne = NULL;
 		freeArrayOfString(pStVarOne, m1 * n1);
 		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
@@ -237,7 +237,7 @@ static int lengthStrings(int *piAddressVar)
 	strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -269,7 +269,7 @@ static int lengthSparse(int *piAddressVar)
 	StrErr strErr = getVarDimension(piAddressVar, &m, &n);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -286,7 +286,7 @@ static int lengthSparse(int *piAddressVar)
 	strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -307,7 +307,7 @@ static int lengthList(int *piAddressVar)
 	StrErr strErr = getListItemNumber(piAddressVar, &nbItem);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -324,7 +324,7 @@ static int lengthList(int *piAddressVar)
 	strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -345,7 +345,7 @@ static int lengthDefault(int *piAddressVar)
 	StrErr strErr = getVarDimension(piAddressVar, &m, &n);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -362,7 +362,7 @@ static int lengthDefault(int *piAddressVar)
 	strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 

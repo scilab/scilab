@@ -60,14 +60,14 @@ int sci_dos(char *fname,unsigned long l)
 		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -80,7 +80,7 @@ int sci_dos(char *fname,unsigned long l)
 		strErr = getMatrixOfString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -96,7 +96,7 @@ int sci_dos(char *fname,unsigned long l)
 			strErr = getMatrixOfString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -121,14 +121,14 @@ int sci_dos(char *fname,unsigned long l)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -141,7 +141,7 @@ int sci_dos(char *fname,unsigned long l)
 	strErr = getMatrixOfString(piAddressVarOne,&m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -161,7 +161,7 @@ int sci_dos(char *fname,unsigned long l)
 		strErr = getMatrixOfString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -225,7 +225,7 @@ int sci_dos(char *fname,unsigned long l)
 			strErr = createMatrixOfBoolean(Rhs + 1, m_out, n_out, StatusExit);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -251,7 +251,7 @@ int sci_dos(char *fname,unsigned long l)
 
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -260,7 +260,7 @@ int sci_dos(char *fname,unsigned long l)
 			strErr = createMatrixOfBoolean(Rhs + 2, m_out2, n_out2, StatusExit);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -273,7 +273,7 @@ int sci_dos(char *fname,unsigned long l)
 			strErr = createMatrixOfDouble(Rhs + 3, m_out3, n_out3, &exitCode); 
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 

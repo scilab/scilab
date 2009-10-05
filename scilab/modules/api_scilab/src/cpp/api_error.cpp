@@ -46,16 +46,16 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 	return iRet;
 }
 
-int printError(StrErr _strErr, int _iLastMsg)
+int printError(StrErr* _pstrErr, int _iLastMsg)
 {
 	int iMode = getExecMode();
 
-	if(_strErr.iErr == 0)
+	if(_pstrErr->iErr == 0)
 	{
 		return 0;
 	}
 
-	Err = _strErr.iErr;
+	SciError(_pstrErr->iErr);
 
 	if(iMode == SILENT_EXEC_MODE)
 	{
@@ -64,13 +64,13 @@ int printError(StrErr _strErr, int _iLastMsg)
 
 	if(_iLastMsg)
 	{
-		sciprint(_("API error: %s"), _strErr.pstMsg[0]);
+		sciprint(_("API error: %s"), _pstrErr->pstMsg[0]);
 	}
 	else
 	{
-		for(int i = _strErr.iMsgCount - 1;  i >= 0 ;i--)
+		for(int i = _pstrErr->iMsgCount - 1;  i >= 0 ;i--)
 		{
-			sciprint(_("API error: %s"), _strErr.pstMsg[i]);
+			sciprint(_("API error: %s"), _pstrErr->pstMsg[i]);
 		}
 		sciprint("\n");
 	}
