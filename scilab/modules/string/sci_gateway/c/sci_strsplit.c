@@ -48,7 +48,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -56,7 +56,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarType(piAddressVarThree, &iType3);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -69,7 +69,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarDimension(piAddressVarThree, &m, &n);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -83,7 +83,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfDouble(piAddressVarThree, &m, &n, &pdVarThree);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -97,14 +97,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -118,14 +118,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 		
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -134,7 +134,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarDimension(piAddressVarOne, &m, &n);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -149,7 +149,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -177,14 +177,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
 		strErr = getVarType(piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -210,7 +210,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			strErr = getMatrixOfWideString(piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -218,7 +218,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			strErr = getMatrixOfDouble(piAddressVarTwo, &m2, &n2, &pdVarTwo);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -240,7 +240,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 						strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, results);
 						if(strErr.iErr)
 						{
-							printError(strErr, 0);
+							printError(&strErr, 0);
 							return 0;
 						}
 
@@ -293,7 +293,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			strErr = getVarDimension(piAddressVarTwo, &m, &n);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -313,7 +313,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				strErr = getMatrixOfWideString(piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
 				if(strErr.iErr)
 				{
-					printError(strErr, 0);
+					printError(&strErr, 0);
 					return 0;
 				}
 
@@ -328,7 +328,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				strErr = getMatrixOfWideString(piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
 				if(strErr.iErr)
 				{
-					printError(strErr, 0);
+					printError(&strErr, 0);
 					return 0;
 				}
 

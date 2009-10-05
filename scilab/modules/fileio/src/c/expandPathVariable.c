@@ -131,7 +131,6 @@ char *expandPathVariable(char* str)
 /*--------------------------------------------------------------------------*/
 wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
-	StrErr strErr;
 	wchar_t *VARVALUE = NULL;
 	char *varname = NULL;
 	int iType	= 0;
@@ -141,21 +140,22 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			strErr = getNamedVarType(varname, &iType);
+			StrErr strErr = getNamedVarType(varname, &iType);
 			if(strErr.iErr)
 			{
-				return 0;
+				return NULL;
 			}
 
 			if (iType == sci_strings)
 			{
+				
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
 
 				strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
 				if(strErr.iErr)
 				{
-					return 0;
+					return NULL;
 				}
 
 				if ( (m == 1) && (n == 1) )
@@ -165,7 +165,13 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 					{
 						BOOL bConvLong = FALSE;
 						wchar_t *LongName = NULL;
-						readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						if(strErr.iErr)
+						{
+							FREE(VARVALUE);
+							VARVALUE = NULL;
+							return 0;
+						}
 						LongName = getlongpathnameW(VARVALUE, &bConvLong);
 						if (LongName)
 						{

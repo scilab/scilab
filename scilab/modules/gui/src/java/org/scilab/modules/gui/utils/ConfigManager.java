@@ -343,7 +343,6 @@ public final class ConfigManager {
 		/*System.getProperty("user.dir") if no path*/
 		readDocument();
 		String path = new String() ;
-		System.out.println(USER_CONFIG_FILE);
 		
 		Element racine = document.getDocumentElement();
 		
