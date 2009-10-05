@@ -58,6 +58,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	int iType						= 0;
 	int* piAddr					= NULL;
 	char *pstVarName		= NULL;
+	bool bImport				= false;
 	StrErr strErr;
 
 	strErr = getVarAddressFromPosition(1, &piAddr);
@@ -107,7 +108,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
 	iNbItem = getVariableNames(iFile, pstVarNameList);
 
-	bool bImport = false;
+	//import all data
 	for(int i = 0 ; i < iNbItem ; i++)
 	{
 		int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
@@ -121,8 +122,8 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 		{
 			break;
 		}
+
 	}
-	//import all data
 
 	//close the file
 	closeHDF5File(iFile);
@@ -208,6 +209,7 @@ static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 			print_tree(pstMsg);
 		}
 	}
+
 	return bRet;
 }
 

@@ -64,6 +64,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	int** piAddrList		= NULL;
 	char* pstFilename		= NULL;
 	char** pstNameList	= NULL;
+	bool bExport				= false;
 
 	StrErr strErr;
 	/*get input data*/
@@ -93,8 +94,13 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	//open hdf5 file
 	int iH5File = createHDF5File(pstNameList[0]); 
 
+	if(iH5File < 0)
+	{
+		Scierror(999,_("%s: Cannot open file %s.\n"), fname, pstNameList[0]);
+		return 0;
+	}
+
 	// export data
-	bool bExport = false;
 	for(int i = 0 ; i < Rhs - 1; i++)
 	{
 		bExport = export_data(iH5File, piAddrList[i], pstNameList[i + 1]);
