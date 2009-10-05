@@ -84,7 +84,6 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
     {	
-	Thread.dumpStack();
 	System.err.println("[DEBUG] AddEdge :");
 	System.err.println("[DEBUG] AddEdge : source "+source.toString());
 	System.err.println("[DEBUG] AddEdge : target "+target.toString());
