@@ -36,14 +36,14 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -55,7 +55,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		strErr = getVarDimension(piAddressVarOne, &m, &n);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -80,7 +80,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfString(piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -100,7 +100,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		strErr = getMatrixOfString(piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
 		if(strErr.iErr)
 		{
-			printError(strErr, 0);
+			printError(&strErr, 0);
 			return 0;
 		}
 
@@ -112,7 +112,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			strErr = createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 
@@ -125,7 +125,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			strErr = createMatrixOfString(Rhs + 1, m_out, n_out, librariesResult);
 			if(strErr.iErr)
 			{
-				printError(strErr, 0);
+				printError(&strErr, 0);
 				return 0;
 			}
 

@@ -50,14 +50,14 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -70,7 +70,7 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	strErr = getVarDimension(piAddressVarOne, &m1, &n1);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -91,21 +91,21 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
 	strErr = getVarType(piAddressVarTwo, &iType2);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -119,7 +119,7 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	strErr = getVarDimension(piAddressVarTwo, &m2, &n2);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
@@ -142,7 +142,7 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	if(strErr.iErr)
 	{
-		printError(strErr, 0);
+		printError(&strErr, 0);
 		return 0;
 	}
 
