@@ -27,7 +27,9 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 		return
 	end
 	
-  if rhs<4, error('contour requires at least 4 arguments'),end;
+  if rhs<4
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour", 4));
+  end
   levels=[]
 
   opts=[]

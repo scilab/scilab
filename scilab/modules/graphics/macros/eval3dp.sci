@@ -37,6 +37,11 @@ function [x,y,z]=eval3dp(fun,p1,p2)
 // plot3d eval3d fac3d
 //!
 
+	[lhs,rhs]=argn(0)
+  if rhs<3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "eval3dp", 3));
+  end
+
 n1=prod(size(p1))
 n2=prod(size(p2))
 //on calcule la valeur de la fonction en tous le couples (p1(i),p2(j))

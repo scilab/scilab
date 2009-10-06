@@ -39,7 +39,8 @@ function fac3d1(x,y,z,T,A,leg,flags,ebox)
 		case 5 then plot3d1(x,y,z,T,A) 
 		case 6 then plot3d1(x,y,z,T,A,leg) 
 		case 7 then plot3d1(x,y,z,T,A,leg,flags) 
-		case 8 then plot3d1(x,y,z,T,A,leg,flags,ebox) 
+		case 8 then plot3d1(x,y,z,T,A,leg,flags,ebox)
+    else error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "fac3d1", 3, 8));
 	end
 	
 endfunction
