@@ -63,6 +63,7 @@ endfunction
 //    * simplex : the simplex, as a simplex object
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
 //
 function myoutputcmd ( state , data )
   global _OUTPUCMDFLAG_
@@ -72,6 +73,7 @@ function myoutputcmd ( state , data )
   fval = data.fval
   x = data.x
   simplex = data.simplex
+  step = data.step
   // Simplex is a data structure, which can be managed
   // by the simplex class.
   v = optimsimplex_dirmat ( simplex )
