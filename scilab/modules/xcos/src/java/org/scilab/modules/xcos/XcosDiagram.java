@@ -581,6 +581,26 @@ public class XcosDiagram extends ScilabGraph {
 	    			// TODO Auto-generated catch block
 	    			e.printStackTrace();
 	    		}
+	    	} else if (extension.equals("cos")) {
+		    		final File tempOutput;
+		    		try {
+		    			tempOutput = File.createTempFile("xcos",".hdf5");
+		    			String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
+		    			cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		    			cmd += "xcosNotify(\"" +tempOutput.getAbsolutePath()+ "\");";
+		    			InterpreterManagement.requestScilabExec(cmd);
+		    			Thread launchMe = new Thread() {
+		    				public void run() {
+		    					Signal.wait(tempOutput.getAbsolutePath());
+		    		    		loadDiagram(tempOutput.getAbsolutePath());
+		    				}
+		    			};
+		    			launchMe.start();
+		    			fileToLoad = tempOutput.getAbsolutePath();
+		    		} catch (IOException e) {
+		    			// TODO Auto-generated catch block
+		    			e.printStackTrace();
+		    		}
 	    	} else {
 
 	    		loadDiagram(fileToLoad);
