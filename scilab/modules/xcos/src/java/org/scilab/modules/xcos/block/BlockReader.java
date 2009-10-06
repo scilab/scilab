@@ -41,7 +41,7 @@ public class BlockReader {
 
 
     private static void INFO(String msg) {
-	//System.err.println("[INFO] BlockReader : "+msg);
+	System.err.println("[INFO] BlockReader : "+msg);
     }
 
     private static void WARNING(String msg) {
@@ -149,7 +149,7 @@ public class BlockReader {
 		    }
 		    catch (BlockReaderException e) {
 			WARNING(" Fail reading Link "+(i+1));
-			DEBUG(e.getStackTrace().toString());
+			e.printStackTrace();
 		    }
 		}
 	    }
@@ -451,9 +451,21 @@ public class BlockReader {
 
 	// sz : must contains the size of the block
 	if (!(graphicsStructure.get(2) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	// !!! WARNING !!!
+	// scicos can store [width, height] or [width; height] watch out !!!!
 	// sz = [width, height]
-	double width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
-	double height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
+	double width = 0;
+	double height = 0;
+	if (graphicsStructure.get(2).getHeight() == 1 &&  graphicsStructure.get(2).getWidth() == 2) {
+	    width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
+	    height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][1];
+	}
+	else {
+	    if (graphicsStructure.get(2).getHeight() == 2 &&  graphicsStructure.get(2).getWidth() == 1) {
+		width = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[0][0];
+		height = ((ScilabDouble) graphicsStructure.get(2)).getRealPart()[1][0]; 
+	    }
+	}
 
 	// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
 	newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 20));
@@ -594,11 +606,13 @@ public class BlockReader {
 	    for (int i = 0 ; i < size ; i++) {
 		InputPort tempInputPort = null;
 		// "E" -> Explicit
-		if (implicitExplicitInArray[i][0].equals("E")) {
-		    tempInputPort =  new ExplicitInputPort();
+		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth()) {
+			if (implicitExplicitInArray[i][0].equals("E")) { tempInputPort =  new ExplicitInputPort(); }
+			if (implicitExplicitInArray[i][0].equals("I")) { tempInputPort =  new ImplicitInputPort(); }
 		}
-		if(implicitExplicitInArray[i][0].equals("I")) {
-		    tempInputPort =  new ImplicitInputPort();
+		else {
+			if (implicitExplicitInArray[0][i].equals("E")) { tempInputPort =  new ExplicitInputPort(); }
+			if (implicitExplicitInArray[0][i].equals("I")) { tempInputPort =  new ImplicitInputPort(); }
 		}
 		ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
 		ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
@@ -649,12 +663,15 @@ public class BlockReader {
 
 	    for (int i = 0 ; i < size ; i++){
 		OutputPort tempOutputPort = null;
-		if (implicitExplicitInArray[i][0].equals("E")) {
-		    tempOutputPort =  new ExplicitOutputPort();
+		if (graphicsStructure.get(13).getHeight() > graphicsStructure.get(13).getWidth()) {
+			if (implicitExplicitInArray[i][0].equals("E")) { tempOutputPort =  new ExplicitOutputPort(); }
+			if (implicitExplicitInArray[i][0].equals("I")) { tempOutputPort =  new ImplicitOutputPort(); }
 		}
-		if(implicitExplicitInArray[i][0].equals("I")){
-		    tempOutputPort =  new ImplicitOutputPort();
+		else {
+			if (implicitExplicitInArray[0][i].equals("E")) { tempOutputPort =  new ExplicitOutputPort(); }
+			if (implicitExplicitInArray[0][i].equals("I")) { tempOutputPort =  new ImplicitOutputPort(); }
 		}
+
 		ScilabDouble dataLines = (ScilabDouble)modelFields.get(5);
 		ScilabDouble dataColumns = (ScilabDouble)modelFields.get(6);
 
@@ -758,10 +775,10 @@ public class BlockReader {
 	
 	// equations
 	if (!(modelFields.get(22) instanceof ScilabTList)
-		&& !isEmptyField(modelFields.get(22))) 
-	{ 
+		&& !isEmptyField(modelFields.get(22))) { 
 	    throw new WrongTypeException(); 
 	}
+	newBlock.setEquations(modelFields.get(22));
     }
 
     private static class BlockReaderException extends Exception { };

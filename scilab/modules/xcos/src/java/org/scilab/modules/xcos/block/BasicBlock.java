@@ -63,6 +63,7 @@ public class BasicBlock extends mxCell {
     private ScilabType dState = new ScilabDouble();
     private ScilabType oDState = new ScilabDouble();
     
+    private ScilabType equations = new ScilabList();
     
     private boolean dependsOnU = false;
     private boolean dependsOnT = false;
@@ -280,7 +281,15 @@ public class BasicBlock extends mxCell {
         oDState = state;
     }
 
-    protected List<InputPort> getAllInputPorts() {
+    public ScilabType getEquations() {
+		return equations;
+	}
+
+	public void setEquations(ScilabType equations) {
+		this.equations = equations;
+	}
+
+	protected List<InputPort> getAllInputPorts() {
 	List<InputPort> data = new ArrayList<InputPort>();
 	int childrenCount = getChildCount();
 	
@@ -517,7 +526,7 @@ public class BasicBlock extends mxCell {
 
 	model.add(getNmode()); // nmode
 
-	model.add(new ScilabList()); // equations
+	model.add(getEquations()); // equations
 
 	return model;
     }
