@@ -1,12 +1,15 @@
 /*
+ * The base of this file is comming from http://tips4java.wordpress.com/about/
+ * 
+ * The license allows us to us for whatever is the reason. The actual license is
+ * You are free to use and/or modify any or all code posted on the Java Tips Weblog without restriction. 
+ * A credit in the code comments would be nice, but not in any way mandatory.
+ * Author: Rob Camick
+ * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Modifications:
  * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 package org.scilab.modules.xpad;
