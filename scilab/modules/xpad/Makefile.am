@@ -33,7 +33,7 @@ XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
 
-GIWS_WRAPPERS = Xpad.giws.xml
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws

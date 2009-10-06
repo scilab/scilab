@@ -14,25 +14,27 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SelectAllAction extends DefaultAction {
 
-    private SelectAllAction(Xpad editor) {
-	super("Select All", editor);
-    }
-    
-    public void doAction() {
-	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.selectAllAction).actionPerformed(null);
-    }
+	private SelectAllAction(Xpad editor) {
+		super(XpadMessages.SELECT_ALL, editor);
+	}
 
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Select All", null, new SelectAllAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-    }
+	public void doAction() {
+		getEditor().getTextPane().getActionMap().get(DefaultEditorKit.selectAllAction).actionPerformed(null);
+	}
+
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.SELECT_ALL, null, new SelectAllAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_A, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	}
 
 }
