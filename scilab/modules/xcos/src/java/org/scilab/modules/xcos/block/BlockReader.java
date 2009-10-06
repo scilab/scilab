@@ -41,7 +41,7 @@ public class BlockReader {
 
 
     private static void INFO(String msg) {
-	System.err.println("[INFO] BlockReader : "+msg);
+	//System.err.println("[INFO] BlockReader : "+msg);
     }
 
     private static void WARNING(String msg) {
@@ -216,8 +216,12 @@ public class BlockReader {
     }
 
     private static PortType getPortType(int type, int io) throws WrongTypeException {
+	// regular link
 	if (type == 1 && io == 0) { return PortType.OUTPUT; }
 	if (type == 1 && io == 1) { return PortType.INPUT; }
+	// implicit link (information will be contained within port)
+	if (type == 2 && io == 0) { return PortType.OUTPUT; }
+	if (type ==2 && io == 1) { return PortType.INPUT; }
 	if (type == -1 && io == 0) { return PortType.COMMAND; }
 	if (type == -1 && io == 1) { return PortType.CONTROL; }
 
