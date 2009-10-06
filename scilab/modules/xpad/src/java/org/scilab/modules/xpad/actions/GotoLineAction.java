@@ -39,7 +39,7 @@ public class GotoLineAction extends DefaultAction {
 	
 	private static boolean windowAlreadyExist ;
 
-	private JFrame mainFrame ;
+	private static JFrame mainFrame ;
 	private JTextField enterLineNumberField ;
 	private JButton okButton ;
 	
@@ -233,4 +233,12 @@ public class GotoLineAction extends DefaultAction {
 		
 	}
 
+	public static void closeGotoLineWindow(){
+    	if (GotoLineAction.windowAlreadyExist ){
+    		mainFrame.dispose() ;
+    		GotoLineAction.windowAlreadyExist= false ;
+        	
+    	}
+		
+	}
 }
