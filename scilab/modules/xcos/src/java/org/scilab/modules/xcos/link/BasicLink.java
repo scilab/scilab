@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.link;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
@@ -19,6 +21,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxPoint;
 
 public abstract class BasicLink extends mxCell {
     
@@ -32,6 +35,18 @@ public abstract class BasicLink extends mxCell {
     public void setOrdering(int ordering) {
 	((BasicPort) this.getSource()).setConnectedLinkId(ordering);
 	((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
+    }
+    
+    public void insertPoint(int x, int y) {
+	mxPoint point = new mxPoint(x, y);
+	if (getGeometry().getPoints() == null) {
+	    getGeometry().setPoints(new ArrayList());
+	    getGeometry().getPoints().add(point);
+	}
+	else {
+	    // TODO : Must do the calculation to know where to insert it in List
+	    getGeometry().getPoints().add(point);
+	}
     }
 
     public ScilabMList getAsScilabObj() {

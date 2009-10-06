@@ -232,12 +232,7 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		    if (cell instanceof BasicLink) {
 			getModel().beginUpdate();
-			BasicLink link = (BasicLink) cell;
-			mxPoint point = new mxPoint(arg0.getX(), arg0.getY());
-			if (link.getGeometry().getPoints() == null) {
-			    link.getGeometry().setPoints(new ArrayList());
-			}
-			link.getGeometry().getPoints().add(new mxPoint(arg0.getX(), arg0.getY()));
+			((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
 			getModel().endUpdate();
 			refresh();
 		    }
