@@ -46,16 +46,19 @@ endfunction
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
+//
+// Test basic use without parameters
+//
 [x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] );
-assert_close ( x , [1.000022021783570   1.000042219751772], 1e-4 );
+assert_close ( x , [1.0   1.0], 1e-4 );
 assert_close ( fval , 0.0 , 1e-4 );
+assert_equal ( exitflag , 1 );
 assert_equal ( output.iterations , 85 );
 assert_equal ( output.algorithm , "Nelder-Mead simplex direct search" );
 assert_equal ( output.funcCount , 159 );
 assert_equal ( output.message(1) , "Optimization terminated:");
-assert_equal ( output.message(2) , "the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
-assert_equal ( output.message(3) , "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
-
+assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
+assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
 // 
 // fminsearch with incorrect number of input arguments
 //
@@ -64,5 +67,157 @@ execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "fminsearch: Unexpected number of input arguments : 0 provided while 2 or 3 are expected.";
 assert_equal ( computed , expected );
+//
+// Check that tolerance on X is correctly taken into account
+//
+opt = optimset ( "TolX" , 1.e-2 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-2 );
+assert_close ( fval , 0.0 , 1e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 70 );
+assert_equal ( output.funcCount , 130 );
+//
+// Check that tolerance on F is correctly taken into account
+//
+opt = optimset ( "TolFun" , 1.e-10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1e-2 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 90 );
+assert_equal ( output.funcCount , 168 );
+//
+// Check that maximum number of iterations is correctly taken into account
+//
+opt = optimset ( "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that maximum number of function evaluations is correctly taken into account
+//
+opt = optimset ( "MaxFunEvals" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 5 );
+assert_equal ( output.funcCount , 11 );
+//
+// Check that Display is correctly used in mode "final"
+//
+opt = optimset ( "Display" , "final" );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "iter"
+//
+opt = optimset ( "Display" , "iter" );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "off" (no message at all)
+//
+opt = optimset ( "Display" , "off" );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "notify" (display only problem messages)
+//
+opt = optimset ( "Display" , "notify" );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "off" (no message at all), when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "off" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "notify" (display only problem messages), when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "notify" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "iter", when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "iter" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "final", when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "final" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Define a new objective function
+//
+function f = objfun ( x ) 
+  f = exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
+endfunction
+//
+// Use output function
+//
+function outfun ( x , optimValues , state )
+  plot(x(1),x(2),'.');
+endfunction
+opt = optimset ( "OutputFcn" , outfun);
+[x fval] = fminsearch ( objfun , [-1 1] , opt );
+//
+// Use several output functions
+//
+function outfun2 ( x , optimValues , state )
+  plot(x(1),x(2),'.');
+endfunction
+myfunctions = list ( outfun , outfun2 );
+opt = optimset ( "OutputFcn" , myfunctions );
+[x fval] = fminsearch ( objfun , [-1 1] , opt );
+//
+// Use plot function
+//
+function plotfun ( x , optimValues , state )
+  plot(x(1),x(2),'.');
+endfunction
+opt = optimset ( "PlotFcns" , plotfun);
+[x fval] = fminsearch ( objfun , [-1 1] , opt );
+
 
 

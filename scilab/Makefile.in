@@ -75,7 +75,7 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in COPYING \
 	config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	config/ltmain.sh config/missing config/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -94,7 +94,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab.pc etc/modules.xml etc/classpath.xml \
@@ -181,7 +181,9 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
+	$(top_builddir)/modules/io/libsciio.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+	$(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
@@ -191,7 +193,7 @@ scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB)
 scilab_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_cli_bin_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__scilab_static_bin_SOURCES_DIST =  \
 	$(top_srcdir)/modules/shell/src/c/others/mainscic.c
 am__objects_1 = scilab_static_bin-mainscic.$(OBJEXT)
@@ -524,7 +526,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -549,6 +550,7 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
+scilab_cli_bin_LDFLAGS = 
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
 
@@ -560,6 +562,7 @@ $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(LTLIBINTL)
 
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la

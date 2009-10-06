@@ -19,13 +19,14 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class PageSetupAction extends DefaultAction {
 
 	private static PageFormat pageFormat;
 
 	private PageSetupAction(Xpad editor) {
-		super("Page Setup...", editor);
+		super(XpadMessages.PAGE_SETUP, editor);
 	}
 
 	public void doAction() {
@@ -34,7 +35,7 @@ public class PageSetupAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Page Setup...", null, new PageSetupAction(editor), null);
+		return createMenu(XpadMessages.PAGE_SETUP, null, new PageSetupAction(editor), null);
 	}
 
 	public static PageFormat getPageFormat() {

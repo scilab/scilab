@@ -83,10 +83,9 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		
 		//If the mask description is empty we allocate description 
 		//according to the extensions given
-		if (fileMaskDescription.length == 0) {
-			maskDescription = new String[mask.length];			
+		if (fileMaskDescription == null || fileMaskDescription.length == 0) {
 			for (int i = 0; i < mask.length; i++) {
-				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i], i/*, maskSize*/));
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], null, i/*, maskSize*/));
 			}
 		} else {
 			//If the mask description is filled

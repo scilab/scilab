@@ -20,7 +20,7 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
-libscixpad_la_etc_DATA = 	etc/configuration_xpad.xml \
+libscixpad_la_etc_DATA = 	etc/xpadConfiguration.xml \
 				etc/xpad.quit \
 				etc/xpad.start
 
@@ -33,7 +33,7 @@ XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
 
-GIWS_WRAPPERS = Xpad.giws.xml
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws

@@ -119,16 +119,21 @@ nm = neldermead_configure(nm,"-function",boxproblemB);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-logfile" , "boxproblemB.txt" );
 nm = neldermead_configure(nm,"-verbosetermination",1);
-// Configure like Box
 nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
 nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
+// Configure like Box
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
-nm = neldermead_configure(nm,"-nbineqconst",6);
+nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-tolxmethod" , %f );
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
+nm = neldermead_configure(nm,"-boxtermination" , %t );
+nm = neldermead_configure(nm,"-boxtolf" , 0.001 );
+nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
+
 //
 // Check that the cost function is correctly connected.
 // The index must be provided, because the additionnal argument "data"

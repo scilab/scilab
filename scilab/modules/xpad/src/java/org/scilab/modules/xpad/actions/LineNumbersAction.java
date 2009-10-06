@@ -13,17 +13,19 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class LineNumbersAction extends DefaultCheckAction {
 
     private LineNumbersAction(Xpad editor) {
-	super("Line Numbers", editor);
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+	super(XpadMessages.LINE_NUMBERS, editor);
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 
     public void doAction() {
@@ -31,7 +33,7 @@ public class LineNumbersAction extends DefaultCheckAction {
     }
 
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-    CheckBoxMenuItem lineNumber = createCheckBoxMenu("Line Numbers", null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    CheckBoxMenuItem lineNumber = createCheckBoxMenu(XpadMessages.LINE_NUMBERS, null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     lineNumber.setChecked(true);
 	return lineNumber;
     }

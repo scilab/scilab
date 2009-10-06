@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -36,6 +37,6 @@ public class CommentAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.COMMENT_SELECTION , null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.COMMENT_SELECTION , null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }
