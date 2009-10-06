@@ -33,14 +33,14 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	/* Check the number of output argument */
 	CheckLhs(1,1);
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -52,7 +52,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	{
 		int m = 0, n = 0;
 
-		strErr = getVarDimension(piAddressVarOne, &m, &n);
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -77,7 +77,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		char **librariesResult = NULL;
 		int librariesResultSize = 0;
 
-		strErr = getMatrixOfString(piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -97,7 +97,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfString(piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -109,7 +109,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		if ( (librariesResultSize == 0) || (librariesResult == NULL) )
 		{
 			// return []
-			strErr = createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -122,7 +122,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			int m_out = librariesResultSize;
 			int n_out = 1;
 
-			strErr = createMatrixOfString(Rhs + 1, m_out, n_out, librariesResult);
+			strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, librariesResult);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);

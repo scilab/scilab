@@ -563,6 +563,10 @@
 					RelativePath=".\api_scilab_export.def"
 					>
 				</File>
+				<File
+					RelativePath=".\api_scilab_header.def"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File

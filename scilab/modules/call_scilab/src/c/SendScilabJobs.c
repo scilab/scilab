@@ -55,7 +55,7 @@ int SendScilabJob(char *job)
 		SetLastJob(command);
 
 		/* Creation of a temp variable in Scilab which contains the command */
-		strErr = createNamedMatrixOfString("TMP_EXEC_STRING", 1, 1, &command);
+		strErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -73,7 +73,7 @@ int SendScilabJob(char *job)
 
 		/* Run the command within an execstr */
 		C2F(scirun)(COMMAND_EXECSTR,(long int)strlen(COMMAND_EXECSTR));
-		strErr = getNamedVarDimension("Err_Job", &m, &n);
+		strErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -97,7 +97,7 @@ int SendScilabJob(char *job)
 			return retCode;
 		}
 
-		strErr = readNamedMatrixOfDouble("Err_Job", &m, &n, &Err_Job);
+		strErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);

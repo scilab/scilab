@@ -39,14 +39,14 @@ int sci_isfile(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -59,7 +59,7 @@ int sci_isfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarDimension(piAddressVarOne, &m1, &n1);
+	strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -91,7 +91,7 @@ int sci_isfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -115,7 +115,7 @@ int sci_isfile(char *fname,unsigned long fname_len)
 	if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 	freeArrayOfWideString(pStVarOne, m1 * n1);
 
-	strErr = createMatrixOfBoolean(Rhs + 1, m1, n1, results);
+	strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, results);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);

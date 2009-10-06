@@ -20,10 +20,6 @@
 //
 function options = optimset (varargin)
   [lhs,rhs]=argn();
-  //mprintf("lhs\n");
-  //disp(lhs);
-  //mprintf("rhs\n");
-  //disp(rhs);
   if rhs == 0 then
     options = optimset_new ();
     return
@@ -73,9 +69,6 @@ function options = optimset (varargin)
     key = varargin(ivar);
     ivar = ivar + 1;
     value = varargin(ivar);
-    //mprintf("Argument #%d\n",ivar);
-    //mprintf("key = %s\n",key);
-    //mprintf("value = %s\n",string(value)); // One cannot display a function.
     options = optimset_configure (options,key,value);
   end
 endfunction
@@ -90,7 +83,17 @@ endfunction
 function options = optimset_configure ( options , key , value )
     select key
     case "Display" then
-      options.Display = value;
+      if ( ...
+      ( value == "off" ) | ...
+      ( value == "iter"  ) | ...
+      ( value == "final" ) | ...
+      ( value == "notify" ) ...
+      ) then
+        options.Display = value;
+      else
+        errmsg = msprintf(gettext("%s: Unrecognized value ''%s'' for ''Display'' option."), "optimset", value )
+        error(errmsg)
+      end
     case "FunValCheck" then
       options.FunValCheck = value;
     case "MaxFunEvals" then

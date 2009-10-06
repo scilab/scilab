@@ -44,14 +44,14 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		int *lenStVarOne = NULL;
 		int i = 0;
 
-		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarOne, &iType1);
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -65,7 +65,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
 
 		/* get dimensions */
-		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -81,7 +81,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
 
 		/* get lengths */
-		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -101,7 +101,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
   
 		/* get strings */
-		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);

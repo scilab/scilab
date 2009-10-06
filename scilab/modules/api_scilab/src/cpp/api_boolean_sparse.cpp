@@ -24,7 +24,7 @@
 #include "stack-c.h"
 
 
-StrErr getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
@@ -36,14 +36,14 @@ StrErr getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* 
 		return strErr;
 	}
 
-	strErr =  getVarType(_piAddress, &iType);
+	strErr =  getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr || iType != sci_boolean_sparse)
 	{
 		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
 		return strErr;
 	}
 
-	strErr = getVarDimension(_piAddress, _piRows, _piCols);
+	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
@@ -67,7 +67,7 @@ StrErr getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* 
 	return strErr;
 }
 
-StrErr allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
@@ -84,8 +84,8 @@ StrErr allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem,
 		return strErr;
 	}
 
-	getNewVarAddressFromPosition(iNewPos, &piAddr);
-	strErr = fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	strErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("API_ERROR_ALLOC_BOOLEAN_SPARSE"));
@@ -100,7 +100,7 @@ StrErr allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem,
 	return strErr;
 }
 
-StrErr fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 
@@ -123,13 +123,13 @@ StrErr fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNb
 	return strErr;
 }
 
-StrErr createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 
-	strErr = allocBooleanSparseMatrix(_iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	strErr = allocBooleanSparseMatrix(_pvCtx, _iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("API_ERROR_CREATE_BOOLEAN_SPARSE"));
@@ -141,7 +141,7 @@ StrErr createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem
 	return strErr;
 }
 
-StrErr createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -165,8 +165,8 @@ StrErr createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, in
 		return strErr;
 	}
 
-	getNewVarAddressFromPosition(Top, &piAddr);
-	strErr = fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+	strErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE"));
@@ -192,21 +192,21 @@ StrErr createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, in
 	return strErr;
 }
 
-StrErr readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 
-	strErr = getVarAddressFromName(_pstName, &piAddr);
+	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));
 		return strErr;
 	}
 
-	strErr = getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+	strErr = getBooleanSparseMatrix(_pvCtx, piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));

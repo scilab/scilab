@@ -10,8 +10,9 @@
 
 mprintf("Illustrates that the fixed-shape Spendley et al. algorithm performs badly on a badly quadratic test case.\n");
 mprintf("Defining quadratic function...\n");
+a = 100;
 function y = quadratic (x)
-  y = 100 * x(1)^2 + x(2)^2;
+  y = a * x(1)^2 + x(2)^2;
 endfunction
 
 mprintf("Creating nmplot object...\n");
