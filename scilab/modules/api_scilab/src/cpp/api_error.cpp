@@ -13,6 +13,7 @@
  * still available and supported in Scilab 6.
  */
 
+#include "MALLOC.h"
 #include <stdio.h> 
 #include "api_common.h"
 #include "sciprint.h"
@@ -41,6 +42,14 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
 	iRet = vsprintf(pstMsg, _pstMsg, ap );
 #endif
 
+	if(_pstrErr->iMsgCount == MESSAGE_STACK_SIZE - 1)
+	{//rotation ...
+		FREE(_pstrErr->pstMsg[0]);
+		for(int i = MESSAGE_STACK_SIZE - 1 ; i > 0 ; i--)
+		{
+			_pstrErr->pstMsg[i - 1] = _pstrErr->pstMsg[i];
+		}
+	}
 	_pstrErr->pstMsg[_pstrErr->iMsgCount++] = strdup(pstMsg);
 	_pstrErr->iErr = _iErr;
 	return iRet;
