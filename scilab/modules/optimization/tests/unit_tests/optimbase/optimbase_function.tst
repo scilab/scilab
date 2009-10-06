@@ -81,7 +81,7 @@ opt = optimbase_destroy(opt);
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock2 ( x , mydata )
+function [ y , mydata ] = rosenbrock2 ( x , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -182,7 +182,7 @@ opt = optimbase_destroy(opt);
 //    constraints
 //  The inequality constraints are expected to be positive.
 //
-function result = boxproblemA ( x , index , data )
+function [ result , data ] = boxproblemA ( x , index , data )
   b = x(2) + 0.01 * x(3)
   x6 = (data.k1 + data.k2 * x(2) ...
             + data.k3 * x(3) + data.k4 * x(4) + data.k5 * x(5)) * x(1)
@@ -286,5 +286,27 @@ assert_close ( f , -2351243.5  , 1.e-7 );
 assert_close ( f , [32745.827    261254.17    96991.969    197008.03    130368.43    146831.57] , 1.e-7 );
 [this,f] = optimbase_function ( opt , x0 , 3 );
 assert_close ( f , [-2351243.5    32745.827    261254.17    96991.969    197008.03    130368.43    146831.57] , 1.e-7 );
+opt = optimbase_destroy(opt);
+
+//
+// Test with an additional argument
+// which is modified by the call.
+//
+function [ y , mydata ] = rosenbrock3 ( x , mydata )
+  mydata.n = mydata.n + 1
+  y = 100*(x(2)-x(1)^2)^2 + ( 1.0 - x(1))^2;
+endfunction
+
+mystuff = tlist(["T_MYSTUFF","n"]);
+mystuff.n = 0;
+
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-function",rosenbrock3);
+opt = optimbase_configure(opt,"-costfargument",mystuff);
+[ opt , f ] = optimbase_function ( opt , [0.0 0.0] );
+assert_close ( f , 1.0 , %eps );
+mystuff = optimbase_cget ( opt , "-costfargument" );
+assert_equal ( mystuff.n , 1 );
 opt = optimbase_destroy(opt);
 

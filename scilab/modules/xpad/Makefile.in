@@ -83,7 +83,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -382,7 +382,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -478,7 +477,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
-GIWS_WRAPPERS = Xpad.giws.xml
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c

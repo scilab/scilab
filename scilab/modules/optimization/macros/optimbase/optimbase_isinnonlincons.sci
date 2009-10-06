@@ -22,7 +22,7 @@ function [ this , isfeasible ] = optimbase_isinnonlincons ( this , x )
         index = 0
         for ic = 1 : this.nbineqconst
           if ( const ( ic ) < 0.0 ) then
-            optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
+            this = optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
               ic , this.nbineqconst ) )
             isfeasible = %f
             break

@@ -17,61 +17,98 @@
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
 #include "api_internal_boolean_sparse.h"
+#include "localization.h"
 
 
 #include "call_scilab.h"
 #include "stack-c.h"
 
 
-int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_boolean_sparse)
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iType = 0;
+
+	if(	_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		return strErr;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
+	strErr =  getVarType(_piAddress, &iType);
+	if(strErr.iErr || iType != sci_boolean_sparse)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		return strErr;
+	}
+
+	strErr = getVarDimension(_piAddress, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		return strErr;
+	}
 
 	*_piNbItem = _piAddress[4];
 
 	if(_piNbItemRow == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 	*_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
 
 	if(_piColPos == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 	*_piColPos = *_piNbItemRow + *_piRows;
 
-	return 0;
+	return strErr;
 }
 
-int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iPos				= 0;
 	int* piAddr			= NULL;
 
+	int iSize = _iNbItem;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr) + 5 + _iRows);
+	if (iSize > iFreeSpace)
+	{
+		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("API_ERROR_ALLOC_BOOLEAN_SPARSE"));
+		return strErr;
+	}
+
 	getNewVarAddressFromPosition(iNewPos, &piAddr);
-	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	strErr = fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("API_ERROR_ALLOC_BOOLEAN_SPARSE"));
+		return strErr;
+	}
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
 	iPos += _iRows + _iNbItem;
 
 	updateInterSCI(_iVar, '$', iAddr, iPos);
 	updateLstk(iNewPos, iPos, 0);
-	return 0;
+	return strErr;
 }
 
-int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+
 	if(_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE, _("API_ERROR_FILL_BOOLEAN_SPARSE"));
+		return strErr;
 	}
 
 	_piAddress[0]		= sci_boolean_sparse;
@@ -83,31 +120,33 @@ int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbIte
 
 	*_piNbItemRow	= _piAddress + 5;//4 for header + 1 for NbItem
 	*_piColPos		= *_piNbItemRow + _iRows;
-	return 0;
+	return strErr;
 }
 
-int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 
-	int iRet = allocBooleanSparseMatrix(_iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
-	if(iRet)
+	strErr = allocBooleanSparseMatrix(_iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("API_ERROR_CREATE_BOOLEAN_SPARSE"));
+		return strErr;
 	}
 
 	memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
 	memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
-	return 0;
+	return strErr;
 }
 
-int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iRet					= 0;
 	int iPos					= 0;
 
 	int* piAddr				= NULL;
@@ -117,9 +156,22 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	int iSize = _iNbItem;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top) + 5 + _iRows);
+	if (iSize > iFreeSpace)
+	{
+		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE"));
+		return strErr;
+	}
 
-	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	getNewVarAddressFromPosition(Top, &piAddr);
+	strErr = fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE"));
+		return strErr;
+	}
 
 	memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
 	memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
@@ -137,30 +189,43 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
 	Top = iSaveTop;
   Rhs = iSaveRhs;
 
-	return 0;
+	return strErr;
 }
 
-int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 
-	getVarAddressFromName(_pstName, &piAddr);
-	getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));
+		return strErr;
+	}
+
+	strErr = getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));
+		return strErr;
+	}
 
 	if(_piNbItemRow == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	memcpy(_piNbItemRow, piNbItemRow, *_piRows * sizeof(int));
 
 	if(_piColPos == NULL)
 	{
-		return 0;
+		return strErr;
 	}
+
 	memcpy(_piColPos, piColPos, *_piNbItem * sizeof(int));
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/

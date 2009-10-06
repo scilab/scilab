@@ -47,6 +47,11 @@ HDF5_SCILAB_IMPEXP int readInterger16Matrix(int _iDatasetId, int _iRows, int _iC
 HDF5_SCILAB_IMPEXP int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
 HDF5_SCILAB_IMPEXP int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData);
 
+HDF5_SCILAB_IMPEXP int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData);
+HDF5_SCILAB_IMPEXP int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData);
+HDF5_SCILAB_IMPEXP int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData);
+HDF5_SCILAB_IMPEXP int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData);
+
 HDF5_SCILAB_IMPEXP int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg);
 HDF5_SCILAB_IMPEXP int readSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal);
 

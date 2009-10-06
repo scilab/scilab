@@ -19,6 +19,7 @@
 //        Initial guess for optimization algorithm.
 //  options : an optional struct, as provided by optimset
 //
+// TODO : implement Implement the following fminsearch features : Display, OutputFcn, PlotFcns
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then
@@ -64,13 +65,15 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-function",fun);
   nm = neldermead_configure(nm,"-maxiter",MaxIter);
   nm = neldermead_configure(nm,"-maxfunevals",MaxFunEvals);
-  nm = neldermead_configure(nm,"-tolxmethod","disabled");
-  nm = neldermead_configure(nm,"-tolfunmethod","disabled");
-  nm = neldermead_configure(nm,"-tolssizedeltafvmethod","enabled");
-  nm = neldermead_configure(nm,"-tolsimplexizemethod","disabled");
+  nm = neldermead_configure(nm,"-tolxmethod",%f);
+  nm = neldermead_configure(nm,"-tolfunmethod",%f);
+  nm = neldermead_configure(nm,"-tolssizedeltafvmethod",%t);
+  nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
   nm = neldermead_configure(nm,"-toldeltafv",TolFun);
   nm = neldermead_configure(nm,"-tolsimplexizeabsolute",TolX);
-  nm = neldermead_configure(nm,"-checkcostfunction",0);
+  nm = neldermead_configure(nm,"-checkcostfunction",%f);
+//nm = neldermead_configure(nm,"-verbose",1);
+//nm = neldermead_configure(nm,"-verbosetermination",1);
   nm = neldermead_search(nm);
   x = neldermead_get(nm,"-xopt").';
   fval = neldermead_get(nm,"-fopt");

@@ -26,14 +26,14 @@ function value = optimbase_get (this,key)
   case "-fopt" then
     value = this.fopt;
   case "-historyxopt" then
-    if this.storehistory == 0 then
+    if ( ~this.storehistory ) then
       errmsg = msprintf(gettext("%s: History disabled ; enable -storehistory option."),"optimbase_get")
       error(errmsg)
     else
       value = this.historyxopt;
     end
   case "-historyfopt" then
-    if this.storehistory == 0 then
+    if ( ~this.storehistory ) then
       errmsg = msprintf(gettext("%s: History disabled ; enable -storehistory option."),"optimbase_get")
       error(errmsg)
     else

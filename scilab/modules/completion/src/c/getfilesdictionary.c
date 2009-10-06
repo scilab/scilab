@@ -85,7 +85,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		
 		if (pathextended)
 		{
-			dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+			dictionary = findfiles(pathextended, filespec, &sizeListReturned, FALSE);
 			FREE(pathextended);
 			pathextended = NULL;
 		}

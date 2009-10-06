@@ -1,0 +1,21 @@
+LIBRARY    libshell.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; shell explicit export (SEP 35)
+; --------------------------------------- 
+setprlev_
+GetCurrentPrompt
+SetTemporaryPrompt
+GetTemporaryPrompt
+ClearTemporaryPrompt
+scilines
+scilinesdefault
+scilines_
+scilinesdefault_
+setColumnsSize
+setLinesSize
+getColumnsSize
+getLinesSize
+; --------------------------------------- 
