@@ -53,6 +53,15 @@ import javax.swing.text.Highlighter.HighlightPainter;
 
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
+/**
+ *  This class will display line numbers for a related text component. The text
+ *  component must use the same line height for each line. TextLineNumber
+ *  supports wrapped lines and will highlight the line number of the current
+ *  line in the text component.
+ *
+ *  This class was designed to be used as a component added to the row header
+ *  of a JScrollPane.
+ */
 public class XpadLineNumberPanel extends JPanel implements CaretListener, DocumentListener, PropertyChangeListener,
 MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
@@ -69,6 +78,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 	private JTextPane textPane;
 
+	//  Properties that can be changed
 	private boolean updateFont;
 	private int borderGap;
 	private Color currentLineForeground;
@@ -77,19 +87,33 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	private float alignmentOfNumber;
 	private int minimumNumbers;
 
+	//  Keep history information to reduce the number of times the component
+	//  needs to be repainted
 	private int lastNumber;
 	private int lastHeight;
 	private int lastLine;
 
 	private HashMap<String, FontMetrics> fonts;
 
-
+	/**
+	 *	Create a line number component for a text component. This minimum
+	 *  display width will be based on 3 digits.
+	 *
+	 *  @param textPane  the related text component
+	 */
 	public XpadLineNumberPanel(JTextPane textPane) {
 		// Here we have 3, it means that the LineNumber panel will 
 		// allow a minimum of 3 numbers
 		this(textPane, 3);
 	}
 
+	/**
+	 *	Create a line number component for a text component.
+	 *
+	 *  @param textPane the related text component
+	 *  @param minimumNumbers  the number of digits used to calculate
+	 *                               the minimum width of the component
+	 */
 	public XpadLineNumberPanel(JTextPane textPane, int minimumNumbers) {
 		this.textPane = textPane;
 
@@ -115,18 +139,42 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 	}
 
+	/**
+	 *  Gets the update font property
+	 *
+	 *  @return the update font property
+	 */
 	public boolean getUpdateFont() {
 		return updateFont;
 	}
 
+	/**
+	 *  Set the update font property. Indicates whether this Font should be
+	 *  updated automatically when the Font of the related text component
+	 *  is changed.
+	 *
+	 *  @param updateFont  when true update the Font and repaint the line
+	 *                     numbers, otherwise just repaint the line numbers.
+	 */
 	public void setUpdateFont(boolean updateFont) {
 		this.updateFont = updateFont;
 	}
 
+	/**
+	 *  Gets the border gap
+	 *
+	 *  @return the border gap in pixels
+	 */
 	public int getBorderGap() {
 		return borderGap;
 	}
 
+	/**
+	 *  The border gap is used in calculating the left and right insets of the
+	 *  border. Default value is 5.
+	 *
+	 *  @param borderGap  the gap in pixels
+	 */
 	public void setBorderGap(int borderGap) {
 		this.borderGap = borderGap;
 		Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
@@ -135,36 +183,78 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		setPreferredWidth();
 	}
 
+	/**
+	 *  Gets the current line rendering Color
+	 *
+	 *  @return the Color used to render the current line number
+	 */
 	public Color getCurrentLineForeground() {
 		return currentLineForeground == null ? getForeground() : currentLineForeground;
 	}
 
+	/**
+	 *  The Color used to render the current line numbers. Default is Coolor.RED.
+	 *
+	 *  @param currentLineForeground  the Color used to render the current line
+	 */
 	public void setCurrentLineForeground(Color currentLineForeground) {
 		this.currentLineForeground = currentLineForeground;
 	}
 
+	/**
+	 *  Gets the number alignment
+	 *
+	 *  @return the alignment of the painted numbers
+	 */
 	public float getNumberAlignment() {
 		return alignmentOfNumber;
 	}
 
+	/**
+	 *  Specify the horizontal alignment of the numbers within the component.
+	 *  Common values would be:
+	 *  <ul>
+	 *  <li>TextLineNumber.LEFT
+	 *  <li>TextLineNumber.CENTER
+	 *  <li>TextLineNumber.RIGHT (default)
+	 *	</ul>
+	 *  @param numberAlignment  the Color used to render the current line
+	 */
 	public void setNumberAlignment(float numberAlignment) {
 		this.alignmentOfNumber =
 			numberAlignment > 1.0f ? 1.0f : numberAlignment < 0.0f ? -1.0f : numberAlignment;
 	}
 
+	/**
+	 *  Gets the minimum display numbers
+	 *
+	 *  @return the minimum display numbers
+	 */
 	public int getMinimumNumbers() {
 		return minimumNumbers;
 	}
 
+	/**
+	 *  Specify the mimimum number of digits used to calculate the preferred
+	 *  width of the component. Default is 3.
+	 *
+	 *  @param minimumDisplayDigits  the number digits used in the preferred
+	 *                               width calculation
+	 */
 	public void setMinimumNumbers(int minimumNumbers) {
 		this.minimumNumbers = minimumNumbers;
 		setPreferredWidth();
 	}
 
+	/**
+	 *  Calculate the width needed to display the maximum line number
+	 */
 	private void setPreferredWidth() {
 		Element root = textPane.getDocument().getDefaultRootElement();
 		int lines = root.getElementCount();
 		int numbers = Math.max(String.valueOf(lines).length(), minimumNumbers);
+
+		//  Update sizes when number of digits in the line number changes
 
 		if (lastNumber != numbers) {
 			lastNumber = numbers;
@@ -180,40 +270,55 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		}
 	}
 
+	/**
+	 *  Draw the line numbers
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		//	Determine the width of the space available to draw the line number
 		FontMetrics fontMetrics = textPane.getFontMetrics(textPane.getFont());
 		Insets insets = getInsets();
 		int availableWidth = getSize().width - insets.left - insets.right;
 
+		//  Determine the rows to draw within the clipped bounds.
+
 		Rectangle clip = g.getClipBounds();
 		int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
 		int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
-		try {
-			while (rowStartOffset <= endOffset) {
-			
-					if (isCurrentLine(rowStartOffset))
-						g.setColor(getCurrentLineForeground());
-					else
-						g.setColor(getForeground());
-					
-					String lineNumber = getTextLineNumber(rowStartOffset);
-					int stringWidth = fontMetrics.stringWidth(lineNumber);
-					int x = getOffsetX(availableWidth, stringWidth) + insets.left;
-					int y = getOffsetY(rowStartOffset, fontMetrics);
-					g.drawString(lineNumber, x, y);
-	
-					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
-	
-	
+
+		while (rowStartOffset <= endOffset) {
+			try {
+				if (isCurrentLine(rowStartOffset))
+				{
+					g.setColor(getCurrentLineForeground());
+				} else {
+					g.setColor(getForeground());
+				}
+
+    			//  Get the line number as a string and then determine the
+    			//  "X" and "Y" offsets for drawing the string.
+
+				String lineNumber = getTextLineNumber(rowStartOffset);
+				int stringWidth = fontMetrics.stringWidth(lineNumber);
+				int x = getOffsetX(availableWidth, stringWidth) + insets.left;
+				int y = getOffsetY(rowStartOffset, fontMetrics);
+				g.drawString(lineNumber, x, y);
+
+    			//  Move to the next row
+
+				rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
 			}
-		}
-		catch(Exception ex) {
-			ex.printStackTrace();
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 
+	/*
+	 *  We need to know if the caret is currently positioned on the line we
+	 *  are about to paint so the line number can be highlighted.
+	 */
 	private boolean isCurrentLine(int rowStartOffset) {
 		int caretPosition = textPane.getCaretPosition();
 		Element root = textPane.getDocument().getDefaultRootElement();
@@ -224,6 +329,10 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 			return false;
 	}
 
+	/*
+	 *	Get the line number to be drawn. The empty string will be returned
+	 *  when a line of text has wrapped.
+	 */
 	protected String getTextLineNumber(int rowStartOffset) {
 		Element root = textPane.getDocument().getDefaultRootElement();
 		int index = root.getElementIndex(rowStartOffset);
@@ -235,10 +344,16 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 			return "";
 	}
 
+	/*
+	 *  Determine the X offset to properly align the line number when drawn
+	 */
 	private int getOffsetX(int availableWidth, int stringWidth) {
 		return (int)((availableWidth - stringWidth) * alignmentOfNumber);
 	}
 
+	/*
+	 *  Determine the Y offset for the current row
+	 */
 	private int getOffsetY(int rowStartOffset, FontMetrics fontMetrics) throws BadLocationException {
 
 		Rectangle r = textPane.modelToView(rowStartOffset);
@@ -246,9 +361,14 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int y = r.y + r.height;
 		int descent = 0;
 
-		if (r.height == lineHeight) {
+		//  The text needs to be positioned above the bottom of the bounding
+		//  rectangle based on the descent of the font(s) contained on the row.
+
+		if (r.height == lineHeight) { // default font is being used
+
 			descent = fontMetrics.getDescent();
-		} else {
+		} else { // We need to check all the attributes for font changes
+
 			if (fonts == null)
 				fonts = new HashMap<String, FontMetrics>();
 
@@ -277,11 +397,17 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		return y - descent;
 	}
 
+//
+//  Implement CaretListener interface
+//
 	public void caretUpdate(CaretEvent e) {
+		//  Get the line the caret is positioned on
 
 		int caretPosition = textPane.getCaretPosition();
 		Element root = textPane.getDocument().getDefaultRootElement();
 		int currentLine = root.getElementIndex(caretPosition);
+
+		//  Need to repaint so the correct line number can be highlighted
 
 		if (lastLine != currentLine) {
 			repaint();
@@ -292,6 +418,9 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		resetHighlight();
 	}
 
+//
+//  Implement DocumentListener interface
+//
 	public void changedUpdate(DocumentEvent e) {
 		documentChanged();
 		repaint();
@@ -306,11 +435,19 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		repaint();
 	}
 
+	/*
+	 *  A document change may affect the number of displayed lines of text.
+	 *  Therefore the lines numbers will also change.
+	 */
 	private void documentChanged() {
+		//  Preferred size of the component has not been updated at the time
+		//  the DocumentEvent is fired
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				int preferredHeight = textPane.getPreferredSize().height;
+				//  Document change has caused a change in the number of lines.
+				//  Repaint to reflect the new line numbers
 
 				if (lastHeight != preferredHeight) {
 					setPreferredWidth();
@@ -320,7 +457,10 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 			}
 		});
 	}
-	
+
+//
+//  Implement PropertyChangeListener interface
+//
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getNewValue() instanceof Font) {
 			if (updateFont) {
