@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
@@ -21,11 +22,12 @@ import javax.swing.text.DefaultEditorKit;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class PasteAction extends DefaultAction {
 
     private PasteAction(Xpad editor) {
-	super("Paste", editor);
+	super(XpadMessages.PASTE, editor);
     }
     
     public void doAction() {
@@ -33,10 +35,10 @@ public class PasteAction extends DefaultAction {
     }
 
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Paste", null, new PasteAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+	return createMenu(XpadMessages.PASTE, null, new PasteAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
     public static PushButton createButton(Xpad editor) {
-	return createButton("Paste", "edit-paste.png", new PasteAction(editor));
+	return createButton(XpadMessages.PASTE, "edit-paste.png", new PasteAction(editor));
     }
 }

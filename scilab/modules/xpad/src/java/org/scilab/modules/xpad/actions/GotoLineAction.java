@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.Toolkit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,7 @@ public class GotoLineAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 
 	 @Override
