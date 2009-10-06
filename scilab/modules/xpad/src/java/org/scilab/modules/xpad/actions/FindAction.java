@@ -57,7 +57,7 @@ public class FindAction extends DefaultAction {
 
 	private static boolean windowAlreadyExist ;
 	
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField textfieldFind;
 	private JTextField textfieldReplace;
 	private JRadioButton buttonForward;
@@ -97,8 +97,8 @@ public class FindAction extends DefaultAction {
 
 	public void doAction() {
     	if (!FindAction.windowAlreadyExist ){
-    		FindAction.windowAlreadyExist= true ;
         	findReplaceBox();
+        	FindAction.windowAlreadyExist= true ;
     	}
 	}
 
@@ -110,6 +110,8 @@ public class FindAction extends DefaultAction {
 	     return createButton( XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
 	 }
 	
+	 
+	 
 	public void findReplaceBox() {
 
 		//Find & Replace Frame
@@ -643,9 +645,7 @@ public class FindAction extends DefaultAction {
 		
 		}
 	}
-	
 
-	
 	private void replaceOnlyText(){
 		
 		boolean wrapSearchSelected = wrap.isSelected() ;
@@ -747,5 +747,13 @@ public class FindAction extends DefaultAction {
 		
 	}
 
+	public static void closeFindReplaceWindow(){
+    	if (FindAction.windowAlreadyExist ){
+    		frame.dispose() ;
+    		FindAction.windowAlreadyExist= false ;
+        	
+    	}
+		
+	}
 
 }

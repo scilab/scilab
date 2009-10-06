@@ -40,7 +40,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SetColorsAction extends DefaultAction {
 
-	private JFrame frame;
+	private static JFrame frame;
 	
 	private ArrayList<JLabel> stylesNamesLabelList ;
 	private ArrayList<JButton> changeColorButtonList ;
@@ -299,4 +299,14 @@ public class SetColorsAction extends DefaultAction {
 		frame.setVisible(true);	
 		
     }
+
+	public static void closeSetColorsWindow(){
+    	if (SetColorsAction.windowAlreadyExist ){
+    		frame.dispose() ;
+    		SetColorsAction.windowAlreadyExist= false ;
+        	
+    	}
+		
+	}
+
 }
