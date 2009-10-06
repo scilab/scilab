@@ -75,7 +75,7 @@ public final class OpenAction extends DefaultAction {
 		fc.setMultipleSelection(false);
 		fc.displayAndWait();
 
-		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
+		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return;
 		}
 
