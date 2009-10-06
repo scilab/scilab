@@ -231,7 +231,6 @@ public class XcosDiagram extends ScilabGraph {
 			block.openBlockSettings();
 		    }
 		    if (cell instanceof BasicLink) {
-			System.err.println("[DEBUG] insert Point on a Link");
 			getModel().beginUpdate();
 			BasicLink link = (BasicLink) cell;
 			mxPoint point = new mxPoint(arg0.getX(), arg0.getY());
@@ -240,6 +239,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 			link.getGeometry().getPoints().add(new mxPoint(arg0.getX(), arg0.getY()));
 			getModel().endUpdate();
+			refresh();
 		    }
 		}
 		
@@ -292,7 +292,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public boolean isCellMovable(Object cell) {
-	return !(cell instanceof BasicPort) && super.isCellMovable(cell);
+	return !(cell instanceof BasicLink) && !(cell instanceof BasicPort) && super.isCellMovable(cell);
     }
 
     public boolean isCellResizable(Object cell) {
