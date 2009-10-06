@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -33,7 +34,7 @@ public class NextTabAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.NEXT_TAB, null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.NEXT_TAB, null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 	
 }

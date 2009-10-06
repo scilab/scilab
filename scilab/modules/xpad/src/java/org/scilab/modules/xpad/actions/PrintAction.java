@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -37,7 +38,7 @@ public class PrintAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.PRINT, null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.PRINT, null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(Xpad editor) {

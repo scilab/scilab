@@ -25,6 +25,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -103,7 +104,7 @@ public class FindAction extends DefaultAction {
 	}
 
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu( XpadMessages.FIND_REPLACE +  "...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+		return createMenu( XpadMessages.FIND_REPLACE +  "...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 	 
 	 public static PushButton createButton(Xpad editor) {

@@ -13,6 +13,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -32,6 +33,6 @@ public class HighlightCurrentLineAction extends DefaultCheckAction {
 	}
 
 	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-		return createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
+		return createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_J, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 }

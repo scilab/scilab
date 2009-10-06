@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
@@ -33,7 +34,7 @@ public class SelectAllAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.SELECT_ALL, null, new SelectAllAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.SELECT_ALL, null, new SelectAllAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_A, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 }
