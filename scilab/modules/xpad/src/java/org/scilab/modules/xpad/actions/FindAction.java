@@ -221,7 +221,7 @@ public class FindAction extends DefaultAction {
 		options.add(regularExp, gbc);
 
 		//Find & Replace buttons
-		buttonFind = new JButton(XpadMessages.FIND);
+		buttonFind = new JButton(XpadMessages.FIND_BUTTON);
 		buttonReplaceFind = new JButton(XpadMessages.REPLACE_FIND);
 		buttonReplace = new JButton(XpadMessages.REPLACE);
 		buttonReplaceAll = new JButton(XpadMessages.REPLACE_ALL);
@@ -409,7 +409,7 @@ public class FindAction extends DefaultAction {
                     }
                     catch(PatternSyntaxException pse){
                     	
-                    	statusBar.setText(XpadMessages.UNVALID_REGEXP);
+                    	statusBar.setText(XpadMessages.INVALID_REGEXP);
                     	
                     	buttonFind.setEnabled(false);
                     	buttonReplaceAll.setEnabled(false);

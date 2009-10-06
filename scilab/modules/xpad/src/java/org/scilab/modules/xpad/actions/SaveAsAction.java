@@ -25,24 +25,25 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SaveAsAction extends DefaultAction {
 
 	private SaveAsAction(Xpad editor) {
-		super("Save As...", editor);
+		super(XpadMessages.SAVE_AS, editor);
 	}
 
 	public void doAction() {
 		
-		 getEditor().saveAs(getEditor().getTextPane() );
+		 getEditor().saveAs(getEditor().getTextPane());
 			
 	}
 	
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Save As...", null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+		return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 	 }
 	 
 	 public static PushButton createButton(Xpad editor) {
-	     return createButton("Save As...", "document-save-as.png", new SaveAsAction(editor));
+	     return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
 	 }
 }
