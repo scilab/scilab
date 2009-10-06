@@ -15,6 +15,7 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -55,7 +56,7 @@ public class RedoAction extends DefaultAction {
 	 */
 	public static MenuItem redoMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.REDO, null, new RedoAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+				KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

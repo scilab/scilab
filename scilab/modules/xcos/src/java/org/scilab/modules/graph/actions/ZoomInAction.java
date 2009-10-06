@@ -15,6 +15,7 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -57,7 +58,7 @@ public class ZoomInAction extends DefaultAction {
 	 */
 	public static MenuItem zoominMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.ZOOM_IN, null, new ZoomInAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_PLUS, ActionEvent.CTRL_MASK));
+				KeyStroke.getKeyStroke(KeyEvent.VK_PLUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

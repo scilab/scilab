@@ -15,6 +15,7 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.TransferHandler;
@@ -56,7 +57,7 @@ public final class CutAction extends DefaultAction {
 	 */
     public static MenuItem cutMenu(ScilabGraph scilabGraph) {
     	return createMenu(ScilabGraphMessages.CUT, null, new CutAction(scilabGraph), 
-    			KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+    			KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
 	/**

@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -30,7 +31,7 @@ public class PrintAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
