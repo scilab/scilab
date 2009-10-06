@@ -110,7 +110,7 @@ myobj.myarg = 12;
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock2 ( x , mydata )
+function [ y , mydata ] = rosenbrock2 ( x , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -237,7 +237,7 @@ Verbose logging : 0
 
 Verbose Termination : 0
 
-Store History : 1
+Store History : T
 
 Number of variables : 2
 
@@ -262,13 +262,13 @@ Number function evaluations : 0
 
 Maximum number of function evaluations : 200
 
-Termination Method on function value : disabled
+Termination Method on function value : F
 
 Termination Absolute Tolerance on function value : 0
 
 Termination Relative Tolerance on function value : 2.220D-15
 
-Termination Method on x : enabled
+Termination Method on x : T
 
 Termination Absolute Tolerance on x : 0
 

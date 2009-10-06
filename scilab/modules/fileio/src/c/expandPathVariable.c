@@ -16,8 +16,7 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"
-#include "api_string.h"
-#include "api_common.h"
+#include "api_scilab.h"
 #include "getlongpathname.h"
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
@@ -134,32 +133,50 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
 	wchar_t *VARVALUE = NULL;
 	char *varname = NULL;
+	int iType	= 0;
 
 	if (wcVarName)
 	{
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			if (getNamedVarType(varname) == sci_strings)
+			StrErr strErr = getNamedVarType(varname, &iType);
+			if(strErr.iErr)
 			{
+				return NULL;
+			}
+
+			if (iType == sci_strings)
+			{
+				
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
-				if (readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE) == 0)
+
+				strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+				if(strErr.iErr)
 				{
-					if ( (m == 1) && (n == 1) )
+					return NULL;
+				}
+
+				if ( (m == 1) && (n == 1) )
+				{
+					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+					if (VARVALUE)
 					{
-						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
-						if (VARVALUE)
+						BOOL bConvLong = FALSE;
+						wchar_t *LongName = NULL;
+						strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						if(strErr.iErr)
 						{
-							BOOL bConvLong = FALSE;
-							wchar_t *LongName = NULL;
-							readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
-							LongName = getlongpathnameW(VARVALUE, &bConvLong);
-							if (LongName)
-							{
-								FREE(VARVALUE);
-								VARVALUE = LongName;
-							}
+							FREE(VARVALUE);
+							VARVALUE = NULL;
+							return 0;
+						}
+						LongName = getlongpathnameW(VARVALUE, &bConvLong);
+						if (LongName)
+						{
+							FREE(VARVALUE);
+							VARVALUE = LongName;
 						}
 					}
 				}

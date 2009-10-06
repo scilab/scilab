@@ -487,7 +487,6 @@ public class FindAction extends DefaultAction {
 		
 		if (onlySelectedLines){
 			currentCaretPos = xpadTextPane.getCaretPosition() ;
-			System.out.println("only selected");
 			offsets = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findWord(wordToFind,startSelectedLines ,endSelectedLines-1, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 		}else{
 			currentCaretPos =  xpadTextPane.getCaretPosition() ;
@@ -674,7 +673,7 @@ public class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart ,currentPosEnd- currentPosStart ));
 				newWord = matcher.replaceAll(newWord);
 			}catch (BadLocationException ex){
-				System.out.println("Bad location");
+				System.err.println("Bad location");
 				ex.printStackTrace();
 
 			}
@@ -685,7 +684,7 @@ public class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart ,currentPosEnd- currentPosStart, newWord,null);
 		
 		}catch (BadLocationException ex){
-			System.out.println("Bad location");
+			System.err.println("Bad location");
 			ex.printStackTrace();
 
 		}
@@ -728,7 +727,7 @@ public class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart ,currentPosEnd- currentPosStart ));
 				newWord = matcher.replaceAll(newWord);
 			}catch (BadLocationException ex){
-				System.out.println("Bad location");
+				System.err.println("Bad location");
 				ex.printStackTrace();
 
 			}
@@ -739,7 +738,7 @@ public class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart ,currentPosEnd- currentPosStart, newWord,null);
 		
 		}catch (BadLocationException ex){
-			System.out.println("Bad location");
+			System.err.println("Bad location");
 			ex.printStackTrace();
 
 		}

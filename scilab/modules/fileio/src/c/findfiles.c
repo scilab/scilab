@@ -16,15 +16,14 @@
 	#include <sys/types.h>
 	#include <dirent.h>
 	#include <errno.h>
-	#include "localization.h"
 #endif
 #include <stdio.h>
 #include <string.h>
 #include "stack-def.h"
 #include "findfiles.h"
 #include "MALLOC.h"
-#include "BOOL.h"
-
+#include "localization.h"
+#include "sciprint.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -35,7 +34,7 @@ static BOOL find_spec( char *filename ,char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char **findfiles(char *path, char *filespec, int *sizeListReturned)
+char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
 {
 	char **ListFiles = NULL;
 	wchar_t *wcstrPattern = NULL;
@@ -69,13 +68,20 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 			}
 		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
 	}
+	else
+	{
+		if (warning)
+		{
+			sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+		}
+	}
 	FindClose(hFile);
 	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #else
 /*--------------------------------------------------------------------------*/
-char **findfiles(char *path, char *filespec, int *sizeListReturned)
+char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
 {
 	char **ListFiles = NULL;
 	int nbElements = 0;
@@ -110,7 +116,10 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 	}
 	else
 	{
-		sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+		if (warning)
+		{
+			sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+		}
 	}
 
 	*sizeListReturned = nbElements;

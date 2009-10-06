@@ -1,0 +1,180 @@
+\chapter{The \scifunction{fminsearch} function}
+
+In this chapter, we analyze the implementation of the \scifunction{fminsearch}
+which is provided in Scilab. In the first part, we describe the specific 
+choices of this implementation with respect to the Nelder-Mead algorithm.
+In the second part, we present some numerical experiments which 
+allows to check that the feature is behaving as expected, by comparison 
+to Matlab's \scifunction{fminsearch}.
+
+\section{\scifunction{fminsearch}'s algorithm}
+
+\subsection{The algorithm}
+
+The algorithm used is the Nelder-Mead algorithm. This corresponds to the 
+"variable" value of the "-method" option of the \scifunction{neldermead}.
+The "non greedy" version is used, that is, the expansion point is 
+accepted only if it improves over the reflection point.
+
+\subsection{The initial simplex}
+
+The fminsearch algorithm uses a special initial simplex, which is an 
+heuristic depending on the initial guess. The strategy chosen by 
+fminsearch corresponds to the -simplex0method flag of the neldermead 
+component, with the "pfeffer" method. It is associated with the -
+simplex0deltausual = 0.05 and -simplex0deltazero = 0.0075 parameters. 
+Pfeffer's method is an heuristic which is presented in "Global 
+Optimization Of Lennard-Jones Atomic Clusters" by Ellen Fan \cite{Fan2002}. 
+It is due to L. Pfeffer at Stanford. See in the help of optimsimplex for more 
+details.
+
+\subsection{The number of iterations}
+
+In this section, we present the default values for the number of 
+iterations in fminsearch.
+
+The options input argument is an optionnal data structure which can 
+contain the options.MaxIter field. It stores the maximum number of 
+iterations. The default value is 200n, where n is the number of 
+variables. The factor 200 has not been chosen by chance, but is the 
+result of experiments performed against quadratic functions with 
+increasing space dimension.
+
+This result is presented in "Effect of dimensionality on the nelder-mead 
+simplex method" by Lixing Han and Michael Neumann \cite{HanNeumann2006}. This paper is based 
+on Lixing Han's PhD, "Algorithms in Unconstrained Optimization" \cite{Han2000}. The 
+study is based on numerical experiment with a quadratic function where 
+the number of terms depends on the dimension of the space (i.e. the 
+number of variables). Their study shows that the number of iterations 
+required to reach the tolerance criteria is roughly 100n. Most 
+iterations are based on inside contractions. Since each step of the 
+Nelder-Mead algorithm only require one or two function evaluations, the 
+number of required function evaluations in this experiment is also 
+roughly 100n.
+
+\subsection{The termination criteria}
+
+The algorithm used by \scifunction{fminsearch} uses a particular 
+termination criteria, based both on the absolute size of the 
+simplex and the difference of the function values in the simplex.
+This termination criteria corresponds to the "-tolssizedeltafvmethod"
+termination criteria of the \scifunction{neldermead} component.
+
+The size of the simplex is computed with the $\sigma-+$ method,
+which corresponds to the "sigmaplus" method of the \scifunction{optimsimplex}
+component. The tolerance associated with this criteria is 
+given by the "TolX" parameter of the \scifunction{options} data structure.
+Its default value is 1.e-4.
+
+The function value difference is the difference 
+between the highest and the lowest function value in the simplex.
+The tolerance associated with this criteria is given by the 
+"TolFun" parameter of the \scifunction{options} data structure.
+Its default value is 1.e-4.
+
+\section{Numerical experiments}
+
+In this section, we analyse the behaviour of Scilab's \scifunction{fminsearch}
+function, by comparison of Matlab's \scifunction{fminsearch}. We especially analyse 
+the results of the optimization, so that we can check that the algorithm
+is indeed behaving the same way, even if the implementation is completely 
+different. Our test case is based on Rosenbrock's function.
+
+The following Matlab script allows to see the behaviour of Matlab's \scifunction{fminsearch}
+function on Rosenbrock's test case.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+format long
+banana = @(x)100*(x(2)-x(1)^2)^2+(1-x(1))^2;
+[x,fval,exitflag,output] = fminsearch(banana,[-1.2, 1])
+output.message
+\end{lstlisting}
+
+When this script is launched in Matlab, the following output is 
+produced.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+>> format long
+>> banana = @(x)100*(x(2)-x(1)^2)^2+(1-x(1))^2;
+>> [x,fval] = fminsearch(banana,[-1.2, 1])
+>> [x,fval,exitflag,output] = fminsearch(banana,[-1.2, 1])
+x =
+   1.000022021783570   1.000042219751772
+fval =
+     8.177661197416674e-10
+exitflag =
+     1
+output =
+    iterations: 85
+     funcCount: 159
+     algorithm: 'Nelder-Mead simplex direct search'
+       message: [1x194 char]
+>> output.message
+ans =
+Optimization terminated:
+the current x satisfies the termination criteria using
+OPTIONS.TolX of 1.000000e-04
+and F(X) satisfies the convergence criteria using
+OPTIONS.TolFun of 1.000000e-04
+\end{lstlisting}
+
+The following Scilab script allows to solve the problem with Scilab's 
+\scifunction{fminsearch}.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+format(25)
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] )
+output.message
+\end{lstlisting}
+
+The output associated with this Scilab script is the following.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+-->format(25)
+-->function y = banana (x)
+-->  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+-->endfunction
+-->[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] )
+ output  =
+   algorithm: "Nelder-Mead simplex direct search"
+   funcCount: 159
+   iterations: 85
+   message: [3x1 string]
+ exitflag  =
+    1.  
+ fval  =
+    0.0000000008177661099387  
+ x  =
+    1.0000220217835567027009    1.0000422197517710998227  
+-->output.message
+ ans  =
+ 
+!Optimization terminated:                                                              !
+!                                                                                      !
+!the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004  !
+!                                                                                      !
+!and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004     !
+\end{lstlisting}
+
+The result is as close as possible to the result produced 
+by Matlab. More specifically :
+\begin{itemize}
+\item the optimum $x$ is the same up to 14 significant digits,
+\item the function value at optimum is the same up to 9 significant digits,
+\item the number of iterations is the same,
+\item the number of function evaluations is the same,
+\item the exit flag is the same,
+\item the content of the output is the same (but the string is not 
+display the same way).
+\end{itemize}
+
+
+%TODO : check that the iterations are the same
+

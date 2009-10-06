@@ -274,7 +274,7 @@ nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-tolsimplexizemethod","enabled");
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-restartflag",1);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
@@ -417,6 +417,5 @@ assert_equal ( iterations > 110 , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
 assert_equal ( restartnb , 3 );
 nm = neldermead_destroy(nm);
-
 
 

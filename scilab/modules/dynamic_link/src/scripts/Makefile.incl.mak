@@ -48,8 +48,7 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
 -I"$(SCIDIR)/libs/f2c" \
 -I"$(SCIDIR)/libs/intl"
-
-
+#==================================================
 CC_LDFLAGS = 
 #==================================================
 # Fortran Compiler 
@@ -73,11 +72,9 @@ FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
 #==================================================
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 FC_OPTIONS=$(FC_OPTIONS_COMMON) /Zi /Od /debug /dbglibs
-FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib /NODEFAULTLIB:LIBCMT.lib
 #==================================================
 !ELSE
 FC_OPTIONS=$(FC_OPTIONS_COMMON)
-FORTRAN_RUNTIME_LIBRARIES = libifcoremd.lib libmmd.lib
 !ENDIF
 #==================================================
 LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple

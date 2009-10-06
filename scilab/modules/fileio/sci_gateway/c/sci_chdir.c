@@ -18,17 +18,16 @@
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 #include "isdir.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
+	int iType1	= 0;
 	int lenStVarOne = 0;
 	int m1 = 0, n1 = 0;
 
@@ -48,15 +47,33 @@ int sci_chdir(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if ( getVarType(piAddressVarOne) != sci_strings )
+		strErr = getVarType(piAddressVarOne, &iType1);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType1 != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m1 != n1) && (n1 != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
@@ -70,7 +87,12 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 	}
 
 	expandedPath = expandPathVariableW(pStVarOne);
@@ -81,22 +103,33 @@ int sci_chdir(char *fname,unsigned long fname_len)
 		/* get value of PWD scilab variable (compatiblity scilab 4.x) */
 		if (wcscmp(expandedPath, L"PWD") == 0)
 		{
-			if (getNamedVarType("PWD") == sci_strings)
+			strErr = getNamedVarType("PWD", &iType1);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			if (iType1 == sci_strings)
 			{
 				wchar_t *VARVALUE = NULL;
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
-				if (readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE) == 0)
+				strErr = readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
+				if(strErr.iErr)
 				{
-					if ( (m == 1) && (n == 1) )
+					printError(&strErr, 0);
+					return 0;
+				}
+
+				if ( (m == 1) && (n == 1) )
+				{
+					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+					if (VARVALUE)
 					{
-						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
-						if (VARVALUE)
-						{
-							readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
-							FREE(expandedPath);
-							expandedPath = VARVALUE;
-						}
+						readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
+						FREE(expandedPath);
+						expandedPath = VARVALUE;
 					}
 				}
 			}
@@ -111,7 +144,12 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			if (ierr) bOuput[0] = FALSE;
 			else bOuput[0] = TRUE; 
 
-			createMatrixOfBoolean(Rhs + 1, 1, 1, bOuput);
+			strErr = createMatrixOfBoolean(Rhs + 1, 1, 1, bOuput);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			LhsVar(1) = Rhs + 1;
 			C2F(putlhsvar)();
@@ -126,11 +164,17 @@ int sci_chdir(char *fname,unsigned long fname_len)
 				wchar_t *currentDir = scigetcwdW(&ierr);
 				if ( (ierr == 0) && currentDir)
 				{
-					createMatrixOfWideString(Rhs + 1, 1, 1, &currentDir);
+					strErr = createMatrixOfWideString(Rhs + 1, 1, 1, &currentDir);
 				}
 				else
 				{
-					createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+					strErr = createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+				}
+
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
 				}
 
 				LhsVar(1) = Rhs + 1;

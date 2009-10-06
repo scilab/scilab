@@ -2,8 +2,12 @@ LIBRARY    time.dll
 
 
 EXPORTS
-; explicit export (SEP 35)
+; --------------------------------------- 
+; time explicit export (SEP 35)
+; --------------------------------------- 
  scilab_timer
  timer_
  realtimeinit_
  realtime_
+; --------------------------------------- 
+ 

@@ -33,6 +33,7 @@ fout=$3
 
 echo "#ifndef __SCICOS_BLOCKS__ " > $fout 
 echo "#define __SCICOS_BLOCKS__ " >> $fout 
+echo "#include \"scicos.h\" " >> $fout
 echo "/******* Copyright INRIA *************/" >> $fout 
 echo "/******* Please do not edit (file automatically generated) *************/" >> $fout 
 

@@ -14,15 +14,14 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "funcprot.h"
-#include "api_common.h"
-#include "api_int.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	CheckLhs(1,1);
 	CheckRhs(0,1);
 
@@ -32,7 +31,13 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;
-		createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+		strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		LhsVar(1) = Rhs + 1; 
 		C2F(putlhsvar)();
 	}
@@ -40,20 +45,38 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 	{
 		int ilevel = 0;
 		int m1 = 0, n1 = 0;
-		int *piAddressVarOne = NULL;
-		double *pdVarOne = NULL;
+		int iType1						= 0;
+		int *piAddressVarOne	= NULL;
+		double *pdVarOne			= NULL;
 
 		/* get Address of inputs */
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(piAddressVarOne, &iType1);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		/* check input type */
-		if ( getVarType(piAddressVarOne) != sci_matrix )
+		if ( iType1 != sci_matrix )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
 			return 0;
 		}
 
-		getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
+		strErr = getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		//if ((m1 > 0) && (n1>0))
 		//if ( (m1 != n1) && (n1 != 1) ) 

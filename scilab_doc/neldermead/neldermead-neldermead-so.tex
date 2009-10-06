@@ -1,0 +1,97 @@
+%
+% neldermead.tex --
+%   Some notes about Nelder-Mead algorithms.
+%
+% Copyright 2008-2009 Michael Baudin
+%
+\documentclass[12pt]{report}
+
+\include{macros}
+
+\begin{document}
+%% User defined page headers
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter. #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
+\lhead[]{\fancyplain{}{\bfseries\leftmark}}
+\rhead[]{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+%% User defined figure legends
+\makeatletter
+\def\figurename{{\protect\sc \protect\small\bfseries Fig.}}
+\def\f@ffrench{\protect\figurename\space{\protect\small\bf \thefigure}\space}
+\let\fnum@figure\f@ffrench%
+\let\captionORI\caption
+\def\caption#1{\captionORI{\rm\small #1}}
+\makeatother
+
+%% First page
+\thispagestyle{empty}
+{
+\begin{center}
+%% Comment for DVI
+\includegraphics[height=40mm]{scilab_logo}
+\vskip2cm
+
+%% Empty space between the box and the text
+\fboxsep6mm
+%% Box thickness
+\fboxrule1.3pt
+\Huge
+$$\fbox{$
+  \begin{array}{c}
+  \textbf{Nelder-Mead}\\
+  \textbf{User's Manual}\\
+  \textbf{-- The Nelder-Mead Method --}\\
+  \end{array}
+  $}
+$$
+\end{center}
+
+\vskip1cm
+
+\begin{center}
+\begin{large}
+Micha\"el BAUDIN
+\end{large}
+\end{center}
+
+\vskip2cm
+
+
+\vskip1cm
+
+
+\begin{flushright}
+Version 0.3 \\
+September 2009
+\end{flushright}
+
+
+
+\clearpage
+
+%% Table of contents
+\renewcommand{\baselinestretch}{1.30}\small \normalsize
+
+\tableofcontents
+
+\renewcommand{\baselinestretch}{1.18}\small \normalsize
+
+\include{chapter-notations}
+\include{method-neldermead}
+
+\clearpage
+
+
+%% Bibliography
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{neldermead}
+
+% Index
+\printindex
+
+\end{document}
