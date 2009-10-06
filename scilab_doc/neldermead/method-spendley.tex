@@ -194,7 +194,7 @@ optimum is searched.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{spendley-steps-shrink.pdf}
+\includegraphics[width=8cm]{spendley-steps-shrink.pdf}
 \end{center}
 \caption{Spendley et al. simplex moves -- The shrink step is the 
 only possible move.}
@@ -235,9 +235,6 @@ In all cases, the difficulty is that a sequence of simplices produced
 by the Nelder-Mead simplex method can come arbitrarily close to 
 degeneracy.
 
-%% TODO...
-
-
 \section{Numerical experiments}
 
 In this section, we present some numerical experiments 
@@ -269,6 +266,8 @@ where $\|.\|_2$ is the euclidian norm defined by
 \begin{eqnarray}
 \|\bx\|_2 = \sum_{i=1,n}x_i^2.
 \end{eqnarray}
+In this experiment, we use $tol=10^{-8}$ as the relative tolerance 
+on simplex size.
 
 The initial simplex is a regular simplex with length unity.
 
@@ -306,11 +305,12 @@ The numerical results are presented in table \ref{fig-spendley-numexp1-table}.
 \hline
 Iterations & 49 \\
 Function Evaluations & 132 \\
-$x_0$ & $(2.0,2.0)$ \\
+$\bx_0$ & $(2.0,2.0)$ \\
 Relative tolerance on simplex size & $10^{-8}$ \\
-Exact $x^\star$ & $(0.,0.)$\\
-Computed $x^\star$ & $(2.169e-10, 2.169e-10)$\\
-Computed $f(x^\star)$ & $4.706e-20$\\
+Exact $\bx^\star$ & $(0.,0.)$\\
+Computed $\bx^\star$ & $(2.169e-10, 2.169e-10)$\\
+Exact $f(\b\bx^\star)$ & $0.$\\
+Computed $f(\bx^\star)$ & $4.706e-20$\\
 \hline
 \end{tabular}
 %\end{tiny}
@@ -370,6 +370,30 @@ f(x_1,x_2) = a x_1^2 + x_2^2,
 where $a>0$ is a chosen scaling parameter. 
 The more $a$ is large, the more difficult the problem is 
 to solve with the simplex algorithm.
+Indeed, let us compute the Hessian matrix associated with the 
+cost function. We have 
+\begin{eqnarray}
+\bH = \left(
+\begin{array}{cc}
+2 a & 0 \\
+0 & 2
+\end{array}
+\right).
+\end{eqnarray}
+Therefore, the eigenvalues of the Hessian matrix 
+are $2a$ and $2$, which are stricly 
+positive if $a>0$. Hence, the cost function is stricly convex and 
+there is only one global solution, that is $\bx^\star = (0,0,\ldots,0)^T$.
+The ratio between these two eigenvalues is $a$. This leads 
+to an elongated valley, which is extremely narrow when $a$ is large.
+
+The stopping criteria is based on the relative size of the simplex 
+with respect to the size of the initial simplex 
+\begin{eqnarray}
+\sigma_+(S) < tol \times \sigma_+(S_0).
+\end{eqnarray}
+In this experiment, we use $tol=10^{-8}$ as the relative tolerance 
+on simplex size.
 
 We set the maximum number of function evaluations to 400.
 The initial simplex is a regular simplex with length unity.
@@ -379,8 +403,9 @@ optimization.
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
+a = 100;
 function y = quadratic (x)
-  y = 100 * x(1)^2 + x(2)^2;
+  y = a * x(1)^2 + x(2)^2;
 endfunction
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
@@ -405,9 +430,9 @@ nm = nmplot_destroy(nm);
 
 
 The numerical results are presented in table \ref{fig-spendley-numexp1-table},
-where the experiment is presented for $a=100$. One can check that the 
-number of function evaluation is equal to its maximum limit, even if the value of the 
-function at optimum is very inaccurate ($f(x^\star) \approx 0.08$).
+where the experiment is presented for $a=100$. We can check that the 
+number of function evaluations is equal to its maximum limit, even if the value of the 
+function at optimum is very inaccurate ($f(\bx^\star) \approx 0.08$).
 
 \begin{figure}[h]
 \begin{center}
@@ -417,11 +442,11 @@ function at optimum is very inaccurate ($f(x^\star) \approx 0.08$).
 Iterations & 340 \\
 Function Evaluations & 400 \\
 $a$ & $100.0$ \\
-$x_0$ & $(10.0,10.0)$ \\
+$\bx_0$ & $(10.0,10.0)$ \\
 Relative tolerance on simplex size & $10^{-8}$ \\
-Exact $x^\star$ & $(0.,0.)$\\
-Computed $x^\star$ & $(0.001,0.2)$\\
-Computed $f(x^\star)$ & $0.08$\\
+Exact $\bx^\star$ & $(0.,0.)$\\
+Computed $\bx^\star$ & $(0.001,0.2)$\\
+Computed $f(\bx^\star)$ & $0.08$\\
 \hline
 \end{tabular}
 %\end{tiny}
@@ -430,14 +455,12 @@ Computed $f(x^\star)$ & $0.08$\\
 \label{fig-spendley-numexp2-table}
 \end{figure}
 
-
 The various simplices generated during the iterations are 
 presented in figure \ref{fig-spendley-numexp2-historysimplex}.
 The method use reflections in the early iterations. Then there
-is no possible improvement using reflections and shrinking is necessary.
-But the shrinking makes the simplex very small so that a large number of 
-iterations are necessary to improve the function value.
-This is a limitation of the method, which is based on a simplex 
+is no possible improvement using reflections, so that shrinking is necessary.
+But the repeated shrink steps makes the simplex very small, leading to a large number of 
+iterations. This is a limitation of the method, which is based on a simplex 
 which can vary its size, but not its shape.
 
 \begin{figure}
@@ -459,7 +482,7 @@ when $a>10$
 %\begin{tiny}
 \begin{tabular}{|l|l|l|}
 \hline
-$a$ & Function evaluations & Computed $f(x^\star)$ \\
+$a$ & Function evaluations & Computed $f(\bx^\star)$ \\
 $1.0$ & 160 & $2.35e-18$ \\
 $10.0$ & 222 & $1.2e-17$ \\
 $100.0$ & 400 & $0.083$ \\
@@ -476,7 +499,11 @@ $10000.0$ & 400 & $56.08$ \\
 \subsection{Sensitivity to dimension}
 
 In this section, we try to study the convergence of the 
-Spendley et al. algorithm with respect to the number of variables.
+Spendley et al. algorithm with respect to the number of variables,
+as presented by Han \& Neumann in \cite{HanNeumann2006}.
+We emphasize, though, that Han \& Neumann present their numerical 
+experiment with the Nelder-Mead algorithm, while we present 
+in this section the Spendley et al. algorithm.
 The function we try to minimize is the following quadratic function 
 in $n$-dimensions 
 \begin{eqnarray}
@@ -484,14 +511,16 @@ in $n$-dimensions
 f(\bx) = \sum_{i=1,n} x_i^2.
 \end{eqnarray}
 
-The initial guess is at 0 so that this vertex is never updated 
+The initial guess is the origin $\bx_0 = (0,0,\ldots,0)^T$,
+which is also the global solution of the problem.
+We have $f(\bx_0)=0$ so that this vertex is never updated 
 during the iterations.
 The initial simplex is computed with a random number generator.
 The first vertex of the initial simplex is the origin.
 The other vertices are uniform in the $[-1,1]$ interval.
-for $i = 2, 2, \ldots , n+1$.
-An absolute termination criteria on the size of the simplex is used.
-More precisely, the method was stopped when $\sigma(Sk) \leq 10^{-8}$ is satisfied.
+An absolute termination criteria on the size of the simplex is used, 
+that is, the algorithm is stopped when the inequality 
+$\sigma_+(S_k) \leq 10^{-8}$ is satisfied.
 
 For this test, we compute the rate of convergence as presented
 in Han \& Neuman \cite{HanNeumann2006}. This rate is defined as 
@@ -502,7 +531,7 @@ in Han \& Neuman \cite{HanNeumann2006}. This rate is defined as
 \end{eqnarray}
 where $k$ is the number of iterations.
 That definition can be viewed as the geometric mean of the ratio of the 
-oriented lengths between successive simplices and the minimizer 0.
+oriented lengths between successive simplices.
 This definition implies 
 \begin{eqnarray}
 \label{rho-sp-rate-convergence2}
@@ -513,9 +542,10 @@ This definition implies
 If $k$ is the number of iterations required to obtain convergence, as 
 indicated by the termination criteria, the rate of convergence is practically computed as 
 \begin{eqnarray}
-\rho(S_0,n,k) = \left( \frac{\sigma(S_{k})}{\sigma(S_0)}\right)^{1/k}
+\rho(S_0,n,k) = \left( \frac{\sigma(S_{k})}{\sigma(S_0)}\right)^{1/k}.
 \end{eqnarray}
 
+The following Scilab script allows to perform the optimization.
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -635,20 +665,20 @@ $n$ & \#Iterations & \# Reflections & \# Reflection & \#Shrink\\
 \end{tabular}
 %\end{tiny}
 \end{center}
-\caption{Numerical experiment with Spendley et al method on a generalized quadratic function -- number 
-and kinds of steps performed}
+\caption{Numerical experiment with Spendley et al method on a 
+generalized quadratic function -- Number of iterations 
+and types of steps performed}
 \label{fig-sp-numexp3-nbsteps}
 \end{figure}
 
 The figure \ref{fig-sp-numexp3-dimension} presents the number of function 
 evaluations depending on the number of variables.
-
-One can see that the number of function evaluations 
+We can see that the number of function evaluations 
 increases approximately linearly with the dimension of the problem in
 figure \ref{fig-sp-numexp3-fvn}. A rough rule of thumb is that, for $n=1,20$, 
-the number of function evaluations is equal to $30n$.
-This test is in fact the best that we can expect from this algorithm : since 
-most iterations are shrink steps, most iterations improves the function value.
+the number of function evaluations is equal to $30n$:
+most iterations are shrink steps and approximately 30 iterations are required,
+almost independently of $n$.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -697,9 +727,8 @@ depending on the number of variables}
 
 The table \ref{fig-sp-numexp3-dimension} also shows the interesting 
 fact that the convergence rate is almost constant and 
-very close to 1. This is a consequence of the shrink steps,
-which are dividing the size of the simplex at each iterations by 2.
-Therefore, the convergence rate is close to $1/2$.
+very close to $1/2$. This is a consequence of the shrink steps,
+which are dividing the size of the simplex at each iteration by 2.
 
 \section{Conclusion}
 
@@ -713,7 +742,7 @@ functions and generates a very slow method in these
 cases.
 
 In the last experiment, we have explored what happens when the number of 
-iterations is increasing. The rate of convergence in this case is close to $1/2$
+iterations is increasing. In this experiment, the rate of convergence is close to $1/2$
 and the number of function evaluations is a linear function of the number 
-of variables (approximately $30n$ in this case).
+of variables (approximately $30n$).
 
