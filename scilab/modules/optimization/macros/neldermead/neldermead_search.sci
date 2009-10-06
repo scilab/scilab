@@ -537,8 +537,12 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   if ( ~terminate ) then
     if ( this.boxtermination ) then
       shiftfv = abs(optimsimplex_deltafvmax( simplex ))
+      this.optbase = optimbase_stoplog ( this.optbase , ...
+        sprintf ( "Test Box : shiftfv=%e < boxtolf=%e" , shiftfv , this.boxtolf ) );
       if ( shiftfv < this.boxtolf ) then
         this.boxkount = this.boxkount + 1
+      this.optbase = optimbase_stoplog ( this.optbase , ...
+        sprintf ( "Test Box : boxkount=%d == boxnbmatch=%d" , this.boxkount , this.boxnbmatch ) );
         if ( this.boxkount == this.boxnbmatch ) then
           terminate = %t
           status = "tolboxf"
@@ -1433,8 +1437,8 @@ endfunction
           break
         end
         alpha = alpha / 2.0;
-        this = neldermead_log (this, sprintf ( "Scaling for nonlinear/linear inequality constraints with alpha=%e toward [%s]" , ...
-          alpha , _strvec(p0) ));
+        this = neldermead_log (this, sprintf ( "Scaling for nonlinear/linear inequality constraints with alpha=%e from xbar=[%s] toward [%s]" , ...
+          alpha , _strvec(xbar) , _strvec(xr0) ));
         xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
         this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec(xr) ));
         if ( ~scaledc ) then
