@@ -16,6 +16,7 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -58,7 +59,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 */
 	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, ActionEvent.CTRL_MASK));
+				KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

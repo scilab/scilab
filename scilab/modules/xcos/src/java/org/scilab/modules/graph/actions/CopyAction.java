@@ -15,6 +15,7 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.TransferHandler;
@@ -56,7 +57,7 @@ public final class CopyAction extends DefaultAction {
 	 */
     public static MenuItem copyMenu(ScilabGraph scilabGraph) {
     	return createMenu(ScilabGraphMessages.COPY, null, new CopyAction(scilabGraph),
-    			KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+    			KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
 	/**
