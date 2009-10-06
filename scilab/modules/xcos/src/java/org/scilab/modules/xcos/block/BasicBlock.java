@@ -669,6 +669,12 @@ public class BasicBlock extends mxCell {
 	this.setRealParameters(modifiedBlock.getRealParameters());
 	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
 	this.setObjectsParameters(modifiedBlock.getObjectsParameters());
+	
+	this.setState(modifiedBlock.getState());
+	this.setDState(modifiedBlock.getDState());
+	this.setODState(modifiedBlock.getODState());
+	
+	this.setEquations(modifiedBlock.getEquations());
 
 	System.out.println("pin = "+modifiedBlock.getAllInputPorts().size());
     }
