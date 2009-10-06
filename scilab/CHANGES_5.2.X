@@ -358,6 +358,8 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
+* bug 4087 fixed - Under Mac OS X, a Apple + C shortcut (Ctrl + C) didn't work from the console.
+
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
 * bug 4110 fixed - Demos order differs between Linux and Windows versions
