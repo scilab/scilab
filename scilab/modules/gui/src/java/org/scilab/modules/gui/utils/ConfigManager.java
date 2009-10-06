@@ -356,7 +356,7 @@ public final class ConfigManager {
 		
 			path = lastOpenedDir.getAttribute(VALUE);
 			
-			if (path.isEmpty()){
+			if (path.length() == 0){
 				path = System.getProperty("user.dir") ;
 			}
 		}else{
