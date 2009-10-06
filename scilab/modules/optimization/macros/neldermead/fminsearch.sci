@@ -28,32 +28,53 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   end
   fun = varargin(1);
   x0 = varargin(2);
+  defaultoptions = optimset ("fminsearch");
   if rhs==2 then
     // No options on the command line
     // Set default values
-    options = optimset ("fminsearch");
+    options = defaultoptions;
   elseif rhs==3 then
     // One options struc on the command line : use it !
     options = varargin(3);
   end
   // Compute options from the options struct
   numberofvariables = size(x0,2);
-  // If the MaxIter option is a string, this is the default 200 value.
+  MaxFunEvals = optimget ( options , "MaxFunEvals" , defaultoptions.MaxFunEvals );
+  MaxIter = optimget ( options , "MaxIter" , defaultoptions.MaxIter );
+  TolFun = optimget ( options , "TolFun" , defaultoptions.TolFun );
+  TolX = optimget ( options , "TolX" , defaultoptions.TolX );
+  Display = optimget ( options , "Display" , defaultoptions.Display );
+  OutputFcn = optimget ( options , "OutputFcn" , defaultoptions.OutputFcn );
+  // If the MaxIter option is a string, we make the assumption that it is the default 200 value.
   // If not, this is the actual value.
-  if type(options.MaxIter)==10 then
-    MaxIter = 200 * numberofvariables;
-  else
-    MaxIter = options.MaxIter;
+  if ( type ( MaxIter ) == 10 ) then
+    if ( MaxIter == "200*numberofvariables" ) then
+      MaxIter = 200 * numberofvariables;
+    else
+      errmsg = msprintf(gettext("%s: Unexpected maximum number of iterations %s."), "fminsearch", MaxIter );
+      error(errmsg)
+    end
   end
   // If the MaxFunEvals option is a string, this is the default 200 value
   // If not, this is the actual value.
-  if type(options.MaxFunEvals)==10 then
-    MaxFunEvals = 200 * numberofvariables;
-  else
-    MaxFunEvals = options.MaxFunEvals;
+  if ( type ( MaxFunEvals ) == 10 ) then
+    if ( MaxFunEvals == "200*numberofvariables" ) then
+      MaxFunEvals = 200 * numberofvariables;
+    else
+      errmsg = msprintf(gettext("%s: Unexpected maximum number of function evaluations %s."), "fminsearch", MaxFunEvals );
+      error(errmsg)
+    end
   end
-  TolFun = options.TolFun;
-  TolX = options.TolX;
+  if ( Display == "iter" ) then
+    mprintf ( "%10s   %10s   %10s %17s\n" , "Iteration", "Func-count" , "min f(x)" , "Procedure" );
+  end
+  // Prepare the data structure to pass to the output function
+  fmsdata = tlist(["T_FMINSEARCH" 
+    "Display" 
+    "OutputFcn" 
+    ]);
+  fmsdata.Display = Display
+  fmsdata.OutputFcn = OutputFcn
   // Perform Optimization
   nm = neldermead_new ();
   nm = neldermead_configure(nm,"-x0",x0.');
@@ -72,16 +93,28 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-toldeltafv",TolFun);
   nm = neldermead_configure(nm,"-tolsimplexizeabsolute",TolX);
   nm = neldermead_configure(nm,"-checkcostfunction",%f);
-//nm = neldermead_configure(nm,"-verbose",1);
-//nm = neldermead_configure(nm,"-verbosetermination",1);
+  nm = neldermead_configure(nm,"-outputcommand",fminsearch_outputfun);
+  nm = neldermead_configure(nm,"-outputcommandarg",fmsdata);
+  //nm = neldermead_configure(nm,"-verbose",1);
+  //nm = neldermead_configure(nm,"-verbosetermination",1);
   nm = neldermead_search(nm);
   x = neldermead_get(nm,"-xopt").';
   fval = neldermead_get(nm,"-fopt");
   status = neldermead_get(nm,"-status");
   select status
   case "maxiter" then
-    exitflag = -1;
+    if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
+      mprintf(gettext("Exiting: Maximum number of iterations has been exceeded\n"))
+      mprintf(gettext("         - increase MaxIter option.\n"))
+      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+    end
+    exitflag = 0;
   case "maxfuneval" then
+    if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
+      mprintf(gettext("Exiting: Maximum number of function evaluations has been exceeded\n"))
+      mprintf(gettext("         - increase MaxFunEvals option.\n"))
+      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+    end
     exitflag = 0;
   case "tolsizedeltafv" then
     exitflag = 1;
@@ -98,11 +131,71 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   output.funcCount = neldermead_get(nm,"-funevals");
   output.iterations = neldermead_get(nm,"-iterations");
   output.message = sprintf("%s\n%s %e\n%s %e", "Optimization terminated:",...
-    "the current x satisfies the termination criteria using OPTIONS.TolX of",...
+    " the current x satisfies the termination criteria using OPTIONS.TolX of",...
     TolX,...
-    "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
+    " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
     TolFun);
+  if ( ( Display == "final" ) & ( exitflag == 1 ) ) then
+    mprintf( "%s\n" , output.message(1) );
+    mprintf( "%s\n" , output.message(2) );
+    mprintf( "%s\n" , output.message(3) );
+  end
   nm = neldermead_destroy(nm);
-  clear nm;
+endfunction
+//
+// The output function called back by fminsearch
+//
+// Arguments
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//  data : the data at the current state
+//    This is a tlist with the following entries:
+//    * x : the optimal vector of parameters
+//    * fval : the minimum function value
+//    * simplex : the simplex, as a simplex object
+//    * iteration : the number of iterations performed
+//    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
+//  fmsdata : this is a tlist which contains specific data of the 
+//    fminsearch algorithm
+//    * Display : what to display
+//    * OutputFcn : the array of output functions
+//
+function fminsearch_outputfun ( state , data , fmsdata )
+  if ( fmsdata.Display == "iter" ) then
+    select data.step
+    case "init" then
+      dstep = "initial simplex"
+    case "done" then
+      dstep = "done"
+    case "reflection" then
+      dstep = "reflect"
+    case "expansion" then
+      dstep = "expand"
+    case "insidecontraction" then
+      dstep = "contract inside"
+    case "outsidecontraction" then
+      dstep = "contract outside"
+    case "reflectionnext" then
+      dstep = "reflectionnext"
+    case "shrink" then
+      dstep = "shrink"
+    else
+      errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
+      error(errmsg)
+    end
+    mprintf ( "%6s        %5s     %12s         %-20s\n", ...
+      string(data.iteration) , string(data.funccount) , string(data.fval) , dstep )
+  end
+  optimValues = struct(...
+      "funcCount" ,data.funccount , ...
+      "fval" ,data.fval , ...
+      "iteration" , data.iteration , ...
+      "procedure" , data.step ...
+      );
+  pause
+  //for i = 1:length(fmsdata.OutputFcn)
+    fmsdata.OutputFcn ( data.x , optimValues , state );
+  //end
 endfunction
 
