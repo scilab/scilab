@@ -320,7 +320,7 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
-	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 		return;
 	    }
 	    fileName = fc.getSelection()[0];
@@ -459,7 +459,7 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
-	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].isEmpty()) {
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 	    	return isSuccess;
 	    }
 	    fileName = fc.getSelection()[0];
