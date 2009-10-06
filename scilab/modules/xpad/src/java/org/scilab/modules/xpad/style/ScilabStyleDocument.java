@@ -359,7 +359,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		String firtstLine =  getText(startOffset, this.getParagraphElement(startPosition).getEndOffset());
-		String selectedText = getseletedDocumentLines(startOffset, endOffset);
+		String selectedText = getSelectedDocumentLines(startOffset, endOffset);
 		
 
 		Matcher matcherSpace = patternSpace.matcher(firtstLine);
@@ -1020,12 +1020,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					word = word.toLowerCase();
 				}
 			}
-			word = "(?m)" + word;
 
 
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText);
 
@@ -1045,7 +1045,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	
 	public ArrayList<Integer[]> findWord(String word,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
-		String fullText = getseletedDocumentLines(currentSelectStart, currentSelectEnd);
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
 		int lastIndex = 0;
@@ -1067,11 +1067,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					word = word.toLowerCase();
 				}
 			}		
-			word = "(?m)" + word;
+
 
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText);
 
@@ -1118,12 +1119,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-			word = "(?m)" + word;
-
+			}
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
 
@@ -1147,7 +1147,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	public int[] findNextWord (String word ,int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		
-		String fullText = getseletedDocumentLines(currentSelectStart, currentSelectEnd);
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
 		System.out.println(currentPos);
 		currentPos -=  offset;
@@ -1169,12 +1169,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-			word = "(?m)" + word;
+			}
 
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
 
@@ -1228,17 +1228,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-			word = "(?m)" + word;
+			}
 
 			//We find matching words ...
 			// ... for regexp or whole words
 
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				 pattern = Pattern.compile(word);
 			}else{// ... for other case
 				// we use regexp in both case cause of a nasty bug when you have string like 
 				//121212  and you search "121" forward then backward
+				word = "(?m)" + word;
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
@@ -1266,7 +1267,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	
 	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = getseletedDocumentLines(currentSelectStart, currentSelectEnd);
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
 		System.out.println(currentPos);
 		currentPos -=  offset;
@@ -1556,7 +1557,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 
 
-	public String getseletedDocumentLines(int start , int end ) {
+	public String getSelectedDocumentLines(int start , int end ) {
 		int startOffset;
 		int endOffset;
 

@@ -331,6 +331,7 @@ public class FindAction extends DefaultAction {
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();
+				String text = new String();
 				
 				boolean wrapSearchSelected = wrap.isSelected();
 				boolean backwardSearch = buttonBackward.isSelected();
@@ -340,6 +341,12 @@ public class FindAction extends DefaultAction {
 				
 				int currentPosStart = 0;
 				
+				if (buttonSelection.isSelected()){
+					text = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
+				}else{
+					text = xpadTextPane.getText();
+				}
+				System.out.println(text);
 				int[] nextFindArray = new int[] {-1,-1};
 				Pattern pattern = null;
 				
@@ -348,6 +355,7 @@ public class FindAction extends DefaultAction {
 				
 				
 				if (regexpSelected){
+					oldWord = "(?m)" + oldWord;
 			        pattern = Pattern.compile(oldWord);
 
 
@@ -362,8 +370,14 @@ public class FindAction extends DefaultAction {
 					}
 				}
 				
-	            Matcher matcher = pattern.matcher(xpadTextPane.getText());
-	            xpadTextPane.setText(matcher.replaceAll(newWord));
+	            Matcher matcher = pattern.matcher(text);
+	            try {
+	            	System.out.println(matcher.replaceAll(newWord));
+					((ScilabStyleDocument) xpadTextPane.getStyledDocument()).replace(startSelectedLines, text.length(),matcher.replaceAll(newWord), null);
+				} catch (BadLocationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 					
 				
 				
