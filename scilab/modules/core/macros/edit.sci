@@ -14,8 +14,8 @@ function edit(macroname,ueditor)
 // ueditor : external command : no more supported
 //
   
-  if ~with_module('scipad') then
-    warning(sprintf(gettext("%s: Requires Scipad.\n"),"edit"));
+  if ~with_module('xpad') then
+    warning(sprintf(gettext("%s: Requires xpad.\n"),"edit"));
     return
   end
   
@@ -63,6 +63,6 @@ function edit(macroname,ueditor)
   end
 
   // call the editor with the filename
-  scipad(fname)
+  xpad(fname)
 
 endfunction
