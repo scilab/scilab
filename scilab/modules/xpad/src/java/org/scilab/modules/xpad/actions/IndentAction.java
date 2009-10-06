@@ -21,13 +21,14 @@ import javax.swing.text.BadLocationException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class IndentAction extends DefaultAction {
 	
 	private static Xpad indent_editor;
 
 	private IndentAction(Xpad editor) {
-		super("Indent", editor);
+		super(XpadMessages.INDENT, editor);
 		indent_editor = editor;
 	}
 
@@ -43,7 +44,7 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Indent", null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.INDENT, null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 	}
 
 	public static void getXpadEditor(){

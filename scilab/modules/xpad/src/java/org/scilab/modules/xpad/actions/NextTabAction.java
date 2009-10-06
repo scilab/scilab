@@ -19,11 +19,12 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class NextTabAction extends DefaultAction {
 
 	private NextTabAction(Xpad editor) {
-		super("Next tab", editor);
+		super(XpadMessages.NEXT_TAB, editor);
 	}
 	
 	public void doAction() {
@@ -32,7 +33,7 @@ public class NextTabAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Next tab", null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.NEXT_TAB, null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
 	 }
 	
 }
