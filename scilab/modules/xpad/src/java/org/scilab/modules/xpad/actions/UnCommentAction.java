@@ -20,21 +20,22 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class UnCommentAction extends DefaultAction {
 
 	private UnCommentAction(Xpad editor) {
-		super("Uncomment Selection", editor);
+		super(XpadMessages.UNCOMMENT_SELECTION, editor);
 	}
 	
 	public void doAction() {
-		int start_position = getEditor().getTextPane().getSelectionStart();
-		int end_position = getEditor().getTextPane().getSelectionEnd();
+		int startPosition = getEditor().getTextPane().getSelectionStart();
+		int endPosition = getEditor().getTextPane().getSelectionEnd();
 		
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(start_position, end_position);
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(startPosition, endPosition);
 	}
 	
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Uncomment Selection", null, new UnCommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.UNCOMMENT_SELECTION, null, new UnCommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 	 }
 }

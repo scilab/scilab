@@ -18,19 +18,20 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class HighlightCurrentLineAction extends DefaultCheckAction {
 
-    private HighlightCurrentLineAction(Xpad editor) {
-	super("Highlight current line", editor);
-	setState(false);
-    }
+	private HighlightCurrentLineAction(Xpad editor) {
+		super(XpadMessages.HIGHLIGHT_CURRENT_LINE, editor);
+		setState(false);
+	}
 
-    public void doAction() {
-	getEditor().enableLineHighlight(this.getState());
-    }
+	public void doAction() {
+		getEditor().enableLineHighlight(this.getState());
+	}
 
-    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("Highlight current line", null, new HighlightCurrentLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
-    }
+	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+		return createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
+	}
 }

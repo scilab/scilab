@@ -531,6 +531,16 @@ case "$CC" in
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+	 case "$host" in
+	      i386-apple-darwin*)
+		CC=" $CC -arch i386 "
+		CXX=" $CXX -arch i386 "
+		;;
+	      x86_64-apple-darwin*)
+                CC=" $CC -arch x86_64 "
+                CXX=" $CXX -arch x86_64 "
+                ;;
+	esac
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -1138,7 +1148,10 @@ AC_PCRE()
 
 WITH_TKSCI=no
 if test "$with_tk" != no; then
-
+   if test "$MACOSX" = "1"; then
+      AC_MSG_ERROR([Due to technical constraints, Tcl/Tk must be disabled under Mac OS X (--without-tk)])
+   fi
+   
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
