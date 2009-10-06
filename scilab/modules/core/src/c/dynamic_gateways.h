@@ -134,6 +134,13 @@ int gw_dynamic_metanet(void);
 */
 int gw_dynamic_symbolic(void);
 
+/**
+* hdf5 gateway
+* hdf5 is loaded dynamically at runtime
+* load gw_symbolic in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
+*/
+int gw_dynamic_hdf5(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 
