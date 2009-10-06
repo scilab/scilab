@@ -426,6 +426,8 @@ public final class ConfigManager {
 	private static void readDocument() {
 		File xml = null;
 		DocumentBuilder docBuilder = null;
+		createUserCopy();
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			docBuilder = factory.newDocumentBuilder();
