@@ -158,7 +158,7 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Preferences"));
   setmenu(gettext("&Control"));
   setmenu(gettext("&Applications"));
-  if ~with_module("scipad") then // Desactivate Editor menu
+  if ~with_module("xpad") then // Desactivate Editor menu
     unsetmenu(gettext("&Applications"),1);
   end
   if ~with_module("scicos") then // Desactivate Scicos menu

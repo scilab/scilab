@@ -29,11 +29,6 @@ level-int=debug()</synopsis>
     <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
     sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
     et sont dédiés aux experts de Scilab.</para>
-    <para>Pour la valeur -1 de <literal>level-int</literal> , <literal>debug</literal>
-    définit un niveau spécial de déboggage dédié à l'instruction Tcl
-    ScilabEval.</para>
-    <para>Voir aussi le débuggueur intégré à l'éditeur <literal>Scipad</literal>, qui
-    est ciblé sur le déboggage des scripts Scilab.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
