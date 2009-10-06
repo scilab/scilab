@@ -53,14 +53,14 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -73,7 +73,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -93,7 +93,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -102,14 +102,14 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 
 	if (Rhs == 2)
 	{
-		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarTwo, &iType2);
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -122,7 +122,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -142,7 +142,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			return 0;
 		}
 		
-		strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -206,7 +206,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		}
 
 		m_out = 1; n_out = 1;
-		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &output_value);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &output_value);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -223,7 +223,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		wcscpy(path_out, drv);
 		wcscat(path_out, dir);
 
-		strErr = createMatrixOfWideString(Rhs + 1, m_out, n_out, &path_out);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &path_out);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -232,7 +232,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 
 		LhsVar(1) = Rhs + 1;
 
-		strErr = createMatrixOfWideString(Rhs + 2, m_out, n_out, &name);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, &name);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -241,7 +241,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 
 		LhsVar(2) = Rhs + 2;
 
-		strErr = createMatrixOfWideString(Rhs + 3, m_out, n_out, &ext);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 3, m_out, n_out, &ext);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);

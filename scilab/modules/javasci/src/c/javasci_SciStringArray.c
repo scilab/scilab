@@ -44,7 +44,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 
 	int dimension[2];
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -82,7 +82,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 		return jstrToReturn;
 	}
 
-	strErr = readNamedMatrixOfString((char*)cname, &cm, &cn, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &cm, &cn, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -115,7 +115,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 		}
 	}
 
-	strErr = readNamedMatrixOfString((char*)cname, &cm, &cn, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &cm, &cn, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));

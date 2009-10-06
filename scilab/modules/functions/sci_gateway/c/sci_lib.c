@@ -39,14 +39,14 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -59,7 +59,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -75,7 +75,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	/* get string One */
-	strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);

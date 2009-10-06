@@ -53,14 +53,14 @@ int sci_beep(char *fname,unsigned long fname_len)
 		int lenStVarOne = 0;
 		int m1 = 0, n1 = 0;
 
-		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarOne, &iType1);
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -73,7 +73,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -93,7 +93,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -130,7 +130,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		output = strdup(BEEP_OFF);
 	}
 
-	strErr = createMatrixOfString(Rhs + 1, m_out, n_out, &output);
+	strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &output);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
