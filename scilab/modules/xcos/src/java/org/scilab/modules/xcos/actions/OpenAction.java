@@ -19,6 +19,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -26,22 +27,51 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class OpenAction extends DefaultAction {
+/**
+ * File opening management
+ * @author Vincent COUVERT
+ */
+public final class OpenAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Scilab Graph
+	 */
 	private OpenAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.OPEN, scilabGraph);
 	}
 
+	/**
+	 * Create a menu to add in Scilab Graph menu bar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 	}
 
+	/**
+	 * Create a button to add in Scilab Graph tool bar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.OPEN, "document-open.png", new OpenAction(scilabGraph));
 	}
 
+	/**
+	 * Open file action
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
 		FileChooser fc = ScilabFileChooser.createFileChooser();
+
+		/* Standard files */
+		String[] mask = new String[]{"*.cos*", "*.h5"};
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
+		
 		fc.setMultipleSelection(false);
 		fc.displayAndWait();
 
