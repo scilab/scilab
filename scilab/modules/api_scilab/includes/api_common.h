@@ -21,11 +21,14 @@ extern "C" {
 	 * The error management structure
 	 *
 	 */
+
+#define MESSAGE_STACK_SIZE 5
+
 typedef struct api_Err
 {
 	int iErr; /**< The error ID */
 	int iMsgCount; /**< Error level */
-	char* pstMsg[1024]; /**< The error message */
+	char* pstMsg[MESSAGE_STACK_SIZE]; /**< The error message */
 } StrErr;
 
 #include "api_error.h"

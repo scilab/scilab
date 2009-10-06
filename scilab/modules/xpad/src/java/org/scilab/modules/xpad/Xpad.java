@@ -200,6 +200,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * Close Xpad instance including all tabs
 	 */
 	public static void closeXpad() {
+		
+		FindAction.closeFindReplaceWindow();
+		GotoLineAction.closeGotoLineWindow();
+		SetColorsAction.closeSetColorsWindow();
 		for (int i = 0; i < editor.getTabPane().getComponentCount(); i++) {
 			editor.closeTabAt(i);
 		}
