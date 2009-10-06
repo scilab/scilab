@@ -45,5 +45,9 @@ static const char g_SCILAB_CLASS_MLIST[]		=	"mlist";
 #define SCI_INT16		2
 #define SCI_INT32		4
 #define SCI_INT64		8
+#define SCI_UINT8		11
+#define SCI_UINT16	12
+#define SCI_UINT32	14
+#define SCI_UINT64	18
 
 #endif /* !__H5_ATTRIBUTECONSTATS_H__ */

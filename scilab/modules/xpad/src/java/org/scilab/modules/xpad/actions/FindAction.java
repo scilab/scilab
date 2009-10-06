@@ -57,7 +57,7 @@ public class FindAction extends DefaultAction {
 
 	private static boolean windowAlreadyExist ;
 	
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField textfieldFind;
 	private JTextField textfieldReplace;
 	private JRadioButton buttonForward;
@@ -97,8 +97,8 @@ public class FindAction extends DefaultAction {
 
 	public void doAction() {
     	if (!FindAction.windowAlreadyExist ){
-    		FindAction.windowAlreadyExist= true ;
         	findReplaceBox();
+        	FindAction.windowAlreadyExist= true ;
     	}
 	}
 
@@ -110,6 +110,8 @@ public class FindAction extends DefaultAction {
 	     return createButton( XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
 	 }
 	
+	 
+	 
 	public void findReplaceBox() {
 
 		//Find & Replace Frame
@@ -487,7 +489,6 @@ public class FindAction extends DefaultAction {
 		
 		if (onlySelectedLines){
 			currentCaretPos = xpadTextPane.getCaretPosition() ;
-			System.out.println("only selected");
 			offsets = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findWord(wordToFind,startSelectedLines ,endSelectedLines-1, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 		}else{
 			currentCaretPos =  xpadTextPane.getCaretPosition() ;
@@ -644,9 +645,7 @@ public class FindAction extends DefaultAction {
 		
 		}
 	}
-	
 
-	
 	private void replaceOnlyText(){
 		
 		boolean wrapSearchSelected = wrap.isSelected() ;
@@ -674,7 +673,7 @@ public class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart ,currentPosEnd- currentPosStart ));
 				newWord = matcher.replaceAll(newWord);
 			}catch (BadLocationException ex){
-				System.out.println("Bad location");
+				System.err.println("Bad location");
 				ex.printStackTrace();
 
 			}
@@ -685,7 +684,7 @@ public class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart ,currentPosEnd- currentPosStart, newWord,null);
 		
 		}catch (BadLocationException ex){
-			System.out.println("Bad location");
+			System.err.println("Bad location");
 			ex.printStackTrace();
 
 		}
@@ -728,7 +727,7 @@ public class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart ,currentPosEnd- currentPosStart ));
 				newWord = matcher.replaceAll(newWord);
 			}catch (BadLocationException ex){
-				System.out.println("Bad location");
+				System.err.println("Bad location");
 				ex.printStackTrace();
 
 			}
@@ -739,7 +738,7 @@ public class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart ,currentPosEnd- currentPosStart, newWord,null);
 		
 		}catch (BadLocationException ex){
-			System.out.println("Bad location");
+			System.err.println("Bad location");
 			ex.printStackTrace();
 
 		}
@@ -748,5 +747,13 @@ public class FindAction extends DefaultAction {
 		
 	}
 
+	public static void closeFindReplaceWindow(){
+    	if (FindAction.windowAlreadyExist ){
+    		frame.dispose() ;
+    		FindAction.windowAlreadyExist= false ;
+        	
+    	}
+		
+	}
 
 }

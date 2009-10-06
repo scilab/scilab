@@ -25,6 +25,8 @@
 #include "stack-c.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern "C" {
@@ -38,38 +40,67 @@ extern int C2F(stackp)(int *,int *);
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
-int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
+
+StrErr getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress != NULL && isVarMatrixType(_piAddress))
 	{
 		*_piRows		= _piAddress[1];
 		*_piCols		= _piAddress[2];
-		return 0;
 	}
 	else
 	{
 		*_piRows		= 0;
 		*_piCols		= 0;
-		return 1;
+		if(_piAddress == NULL)
+		{
+			addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		}
+		else
+		{
+			addErrorMessage(&strErr, API_ERROR_NOT_MATRIX_TYPE, _("API_ERROR_NOT_MATRIX_TYPE"));
+		}
 	}
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
+StrErr getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iRet				= 0;
 	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
 	{
-		return 0;
+		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("API_ERROR_NAMED_VARDIM"));
+		return strErr;
 	}
-	return getVarDimension(piAddr, _piRows, _piCols);
+
+	strErr = getVarDimension(piAddr, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("API_ERROR_NAMED_VARDIM"));
+		return strErr;
+	}
+
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getVarAddressFromPosition(int _iVar, int** _piAddress)
+StrErr getVarAddressFromPosition(int _iVar, int** _piAddress)
 {
-	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
-	int iValType	= *istk(iAddr);
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iAddr			= 0;
+	int iValType	= 0;
+	if(_iVar > Rhs)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_POSITION, _("API_ERROR_INVALID_POSITION"));
+		addErrorMessage(&strErr, API_ERROR_GET_VAR_ADDRESS, _("API_ERROR_GET_VAR_ADDRESS"));
+		return strErr;
+	}
+
+	iAddr = iadr(*Lstk(Top - Rhs + _iVar));
+	iValType	= *istk(iAddr);
 	if(iValType < 0)
 	{
 		iAddr				= iadr(*istk(iAddr + 1));
@@ -77,34 +108,36 @@ int getVarAddressFromPosition(int _iVar, int** _piAddress)
 
 	*_piAddress		= istk(iAddr);
 	intersci_.ntypes[_iVar - 1] = '$' ;
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getVarNameFromPosition(int _iVar, char* _pstName)
+StrErr getVarNameFromPosition(int _iVar, char* _pstName)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNameLen				= 0;
 	int iJob1						= 1;
 	CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
 	if(iNameLen == 0)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("API_ERROR_INVALID_NAME"));
+		addErrorMessage(&strErr, API_ERROR_GET_VAR_NAME, _("API_ERROR_GET_VAR_NAME"));
+		return strErr;
 	}
 
 	_pstName[iNameLen]	= '\0';
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
 int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(_iVar));
 	*_piAddress		= istk(iAddr);
-	//intersci_.ntypes[_iVar - 1] = '$' ;
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getVarAddressFromName(char* _pstName, int** _piAddress)
+StrErr getVarAddressFromName(char* _pstName, int** _piAddress)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
 
@@ -118,7 +151,8 @@ int getVarAddressFromName(char* _pstName, int** _piAddress)
 
 	if (Err > 0 || Fin == 0)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("API_ERROR_INVALID_NAME"));
+		return strErr;
 	}
 
 	//No idea :(
@@ -130,28 +164,43 @@ int getVarAddressFromName(char* _pstName, int** _piAddress)
 	getNewVarAddressFromPosition(Fin, &piAddr);
 
 	*_piAddress = piAddr;
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getVarType(int* _piAddress)
+StrErr getVarType(int* _piAddress, int* _piType)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		return 0;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_VARTPE, _("API_ERROR_GET_VARTPE"));
+		return strErr;
 	}
-	return _piAddress[0];
+
+	*_piType = _piAddress[0];
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedVarType(char* _pstName)
+StrErr getNamedVarType(char* _pstName, int* _piType)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iRet				= 0;
 	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
 	{
-		return 0;
+		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("API_ERROR_NAMED_TYPE"));
+		return strErr;
 	}
-	return getVarType(piAddr);
+	
+	strErr = getVarType(piAddr, _piType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("API_ERROR_NAMED_TYPE"));
+		return strErr;
+	}
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
 int isVarComplex(int* _piAddress)
@@ -164,7 +213,7 @@ int isVarComplex(int* _piAddress)
 		return 0;
 	}
 
-	iType = getVarType(_piAddress);
+	getVarType(_piAddress, &iType);
 	switch(iType)
 	{
 	case sci_matrix :
@@ -180,26 +229,25 @@ int isVarComplex(int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int isNamedVarComplex(char *_pstName)
 {
-	int iRet				= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet) return 0;
+
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
+	{
+		return 0;
+	}
 	return isVarComplex(piAddr);
 }
 /*--------------------------------------------------------------------------*/
 void createNamedVariable(int *_piVarID)
 {
 	int iOne				= 1;
-	//it seems this part setting up the output format but "stackp" print anything
-//	int iSaveLct		= C2F(iop).lct[3];
-//  C2F(iop).lct[3] = -1;
   C2F(stackp)(_piVarID, &iOne);
-//  C2F(iop).lct[3] = iSaveLct;
 }
 /*--------------------------------------------------------------------------*/
 int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress)
 {
-
 	intersci_.ntypes[_iVar - 1]	= _cType;
 	intersci_.iwhere[_iVar - 1]	= _iSCIAddress;
 	intersci_.lad[_iVar - 1]		= _iSCIDataAddress;
@@ -216,7 +264,8 @@ int isVarMatrixType(int* _piAddress)
 {
 	if(_piAddress != NULL)
 	{
-		int iType = getVarType(_piAddress);
+		int iType = 0;
+		getVarType(_piAddress, &iType);
 
 		switch(iType)
 		{
@@ -243,88 +292,109 @@ int isVarMatrixType(int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int isNamedVarMatrixType(char *_pstName)
 {
-	int iRet				= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet) return 0;
-    return isVarMatrixType(piAddr);
+
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
+	{
+		return 0;
+	}
+	return isVarMatrixType(piAddr);
 }
 /*--------------------------------------------------------------------------*/
-int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
+StrErr getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 {
-	int iRet				= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iRows1			= 0;
 	int iCols1			= 0;
 	int iRows2			= 0;
 	int iCols2			= 0;
+	int iType2			= 0;
 	int iMode				= 0;
 	int* piAddr2		= NULL;
 
-	iRet = getVarDimension(_piAddRef, &iRows1, &iCols1);
-	if(iRet)
+	strErr = getVarDimension(_piAddRef, &iRows1, &iCols1);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		return strErr;
 	}
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr2);
-	if(iRet)
+	strErr = getVarAddressFromPosition(_iPos, &piAddr2);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		return strErr;
 	}
 
-	if(getVarType(piAddr2) == sci_matrix && !isVarComplex(piAddr2))
+	strErr = getVarType(piAddr2, &iType2);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		return strErr;
+	}
+		
+	if(iType2 == sci_matrix && !isVarComplex(piAddr2))
 	{
 		double *pdblReal2 = NULL;
-		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
-		if(iRet)
+		strErr = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
 		if(iRows2 != 1 || iCols2 != 1)
 		{
-			Error(89);
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong size for argument %d.\n"), _iPos);
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
 		iMode = (int)pdblReal2[0];
 	}
-	else if(getVarType(piAddr2) == sci_strings)
+	else if(iType2 == sci_strings)
 	{
 		int iLen					= 0;
 		char *pstMode[1]	= {""};
 
-		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
-		if(iRet)
+		strErr = getVarDimension(piAddr2, &iRows2, &iCols2);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
 		if(iRows2 != 1 || iCols2 != 1)
 		{
-			Error(89);
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong size for argument %d.\n"), _iPos);
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, NULL);
-		if(iRet)
+		strErr = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, NULL);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
 		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, pstMode);
-		if(iRet)
+		strErr = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, pstMode);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			return strErr;
 		}
 
 		iMode = (int)pstMode[0][0];
 	}
 	else
 	{
-		Error(44);
-		return 2;
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong argument %d.\n"), _iPos);
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		return strErr;
 	}
 
 	if(iMode == ROW_LETTER || iMode == BY_ROWS)
@@ -343,36 +413,44 @@ int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 	}
 	else
 	{
-		Error(44);
-		return 2;
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong argument %d.\n"), _iPos);
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		return strErr;
 	}
-	return 0;
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-int getDimFromVar(int* _piAddress, int* _piVal)
+StrErr getDimFromVar(int* _piAddress, int* _piVal)
 {
-	int iRet					= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
 	double *pdblReal	= NULL;
-	int *piRealData		= NULL;
 
-	iType = getVarType(_piAddress);
+	strErr = getVarType(_piAddress, &iType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+		return strErr;
+	}
 
 	if(iType == sci_matrix)
 	{
 		if(isVarComplex(_piAddress))
 		{
-			Error(89);
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_piAddress));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
 		}
 
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		strErr = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
 		}
+
 		*_piVal = (int)Max(pdblReal[0], 0);
 	}
 	else if(iType == sci_ints)
@@ -382,21 +460,25 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		int iXInc			= 1;
 		int iYInc			= 1;
 
-		iRet = getVarDimension(_piAddress, &iRows, &iCols);
-		if(iRet)
+		strErr = getVarDimension(_piAddress, &iRows, &iCols);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
 		}
 
 		if(iRows != 1 || iCols != 1)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_piAddress));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
 		}
 
-		iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
-		if(iRet)
+		strErr = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
+		if(strErr.iErr)
 		{
-			return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
 		}
 
 		switch(iPrec)
@@ -404,10 +486,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_INT8 :
 			{
 				char* pcData		= NULL;
-				iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcData);
-				if(iRet)
+				strErr = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = pcData[0];
 			}
@@ -415,10 +498,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT8 :
 			{
 				unsigned char* pucData		= NULL;
-				iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucData);
-				if(iRet)
+				strErr = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = pucData[0];
 			}
@@ -426,10 +510,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_INT16 :
 			{
 				short* psData		= NULL;
-				iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psData);
-				if(iRet)
+				strErr = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = psData[0];
 			}
@@ -437,10 +522,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT16 :
 			{
 				unsigned short* pusData		= NULL;
-				iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusData);
-				if(iRet)
+				strErr = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = pusData[0];
 			}
@@ -448,10 +534,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_INT32 :
 			{
 				int* piData		= NULL;
-				iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piData);
-				if(iRet)
+				strErr = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = piData[0];
 			}
@@ -459,10 +546,11 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT32 :
 			{
 				unsigned int* puiData		= NULL;
-				iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiData);
-				if(iRet)
+				strErr = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiData);
+				if(strErr.iErr)
 				{
-					return 1;
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					return strErr;
 				}
 				*_piVal = puiData[0];
 			}
@@ -471,18 +559,48 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 	}
 	else
 	{
-		Error(89);
-		return 1;
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_piAddress));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			return strErr;
+	}
+	return strErr;
+}
+/*--------------------------------------------------------------------------*/
+StrErr getDimFromNamedVar(char* _pstName, int* _piVal)
+{
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int* piAddr		= NULL;
+
+	strErr = getVarAddressFromName(_pstName, &piAddr);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("API_ERROR_GET_NAMED_DIMFROMVAR"));
+		return strErr;
+	}
+
+	strErr = getDimFromVar(piAddr, _piVal);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("API_ERROR_GET_NAMED_DIMFROMVAR"));
+		return strErr;
+	}
+
+	return strErr;
+}
+/*--------------------------------------------------------------------------*/
+int getRhsFromAddress(int* _piAddress)
+{
+	int i = 0;
+	int* piAddr = NULL;
+	for(i = 0 ; i < Rhs ; i++)
+	{
+		getVarAddressFromPosition(i + 1, &piAddr);
+		if(_piAddress == piAddr)
+		{
+			return i + 1;
+		}
 	}
 	return 0;
 }
-/*--------------------------------------------------------------------------*/
-int getDimFromNamedVar(char* _pstName, int* _piVal)
-{
-	int iRet				= 0;
-	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet) return iRet;
-	return getDimFromVar(piAddr, _piVal);
-}
+
 /*--------------------------------------------------------------------------*/

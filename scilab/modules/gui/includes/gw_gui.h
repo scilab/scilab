@@ -14,7 +14,7 @@
 #ifndef __GW_GUI__
 #define __GW_GUI__
 #include "dynlib_gui.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 GUI_IMPEXP int gw_gui(void);
 /*--------------------------------------------------------------------------*/

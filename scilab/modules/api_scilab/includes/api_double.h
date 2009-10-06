@@ -29,7 +29,7 @@ extern "C" {
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
- int getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
+StrErr getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -40,7 +40,7 @@ extern "C" {
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
- int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+StrErr getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get double variable data
@@ -50,7 +50,7 @@ extern "C" {
  * @param[out] _pdblZ return pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
- int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
+StrErr getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
 
 /**
  * Get double variable data
@@ -60,7 +60,7 @@ extern "C" {
  * @param[out] _pdblReal return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal);
+StrErr allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -71,7 +71,7 @@ extern "C" {
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
- int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
+StrErr allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create double variable data
@@ -81,7 +81,7 @@ extern "C" {
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
- int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal);
+StrErr createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -92,19 +92,17 @@ extern "C" {
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
- int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+StrErr createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
- * Get double variable data
+ * Get complex double variable data
  * @param[in] _iVar variable number
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal pointer on real data
- * @param[in] _pdblImg pointer on img data
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[ ] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
- int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
+StrErr createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double variable data
@@ -114,7 +112,7 @@ extern "C" {
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal);
+StrErr createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -125,17 +123,17 @@ extern "C" {
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+StrErr createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double variable data
  * @param[in] _pstName variable name
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[in] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
- int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
+StrErr createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double named variable data
@@ -145,7 +143,7 @@ extern "C" {
  * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
+StrErr readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * Get double named variable data
@@ -156,8 +154,7 @@ extern "C" {
  * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
- int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
-
+StrErr readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 #ifdef __cplusplus
 }

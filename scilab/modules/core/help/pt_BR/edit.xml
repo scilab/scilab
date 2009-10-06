@@ -75,7 +75,6 @@ edit('myfunction')  //abre o editor para uma nova função
     <simplelist type="inline">
       <member><link linkend="manedit">manedit</link></member>
 
-      <member><link linkend="scipad">scipad</link></member>
     </simplelist>
   </refsection>
 </refentry>

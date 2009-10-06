@@ -15,7 +15,7 @@
 #define __GW_LINEAR_ALGEBRA2__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_linear_algebra.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 LINEAR_ALGEBRA_IMPEXP int gw_linear_algebra2(void);
 /*--------------------------------------------------------------------------*/

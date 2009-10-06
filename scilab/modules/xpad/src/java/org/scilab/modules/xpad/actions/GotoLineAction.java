@@ -33,23 +33,24 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class GotoLineAction extends DefaultAction {
 	
 	private static boolean windowAlreadyExist ;
 
-	private JFrame mainFrame ;
+	private static JFrame mainFrame ;
 	private JTextField enterLineNumberField ;
 	private JButton okButton ;
 	
 	private GotoLineAction(Xpad editor) {
 
-    		super("Goto Line...", editor);
+    		super(XpadMessages.GOTO_LINE, editor);
 
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Goto Line...", null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 	 }
 
 	 @Override
@@ -70,12 +71,12 @@ public class GotoLineAction extends DefaultAction {
 
 
 
-	        JLabel label = new JLabel("Enter line number");
+	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
 	         enterLineNumberField = new JTextField( );
 	        
-	        JButton cancelButton = new JButton("Cancel");
-	         okButton = new JButton("Ok");
+	        JButton cancelButton = new JButton(XpadMessages.CANCEL);
+	         okButton = new JButton(XpadMessages.OK);
 	        okButton.setPreferredSize(cancelButton.getPreferredSize());
 
 	        GridBagConstraints gbc = new GridBagConstraints();
@@ -189,7 +190,7 @@ public class GotoLineAction extends DefaultAction {
 			
 			
 	        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	        mainFrame.setTitle("Go to line ...");
+	        mainFrame.setTitle(XpadMessages.GOTO_LINE);
 	        mainFrame.pack();
 	        mainFrame.setLocationRelativeTo(null);
 	        mainFrame.setVisible(true);	
@@ -232,4 +233,12 @@ public class GotoLineAction extends DefaultAction {
 		
 	}
 
+	public static void closeGotoLineWindow(){
+    	if (GotoLineAction.windowAlreadyExist ){
+    		mainFrame.dispose() ;
+    		GotoLineAction.windowAlreadyExist= false ;
+        	
+    	}
+		
+	}
 }

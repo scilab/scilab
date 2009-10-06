@@ -332,6 +332,13 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
 	hobj_ref_t pRef[1] = {0};
 	pRef[0] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _pdblData);
+
+	//don't create reference for empty matrix
+	if(_iRows * _iCols == 0)
+	{
+		return 0;
+	}
+		
 	if(pRef[0] == 0)
 	{
 		return 1;
@@ -712,7 +719,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	int j								= 0;
 	long long* pllData	= NULL;
 
-	pllData = (void*)MALLOC(sizeof(char) * _iRows * _iCols);
+	pllData = (void*)MALLOC(sizeof(long long) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -740,6 +747,174 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	status = H5Sclose (iSpace);
 
 	FREE(pllData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned char* _pucData)
+{
+	hsize_t piDims[2]					= {_iRows, _iCols};
+	herr_t status							= 0;
+	hid_t iSpace							= 0;
+	hid_t iDataset						= 0;
+	hid_t iCompress						= 0;
+	int	i											= 0;
+	int j											= 0;
+	unsigned char* pucData		= NULL;
+
+	pucData = (void*)MALLOC(sizeof(unsigned char) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pucData[i * _iCols + j] = _pucData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pucData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u8");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pucData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned short* _pusData)
+{
+	hsize_t piDims[2]					= {_iRows, _iCols};
+	herr_t status							= 0;
+	hid_t iSpace							= 0;
+	hid_t iDataset						= 0;
+	hid_t iCompress						= 0;
+	int	i											= 0;
+	int j											= 0;
+	unsigned short* pusData		= NULL;
+
+	pusData = (void*)MALLOC(sizeof(unsigned short) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pusData[i * _iCols + j] = _pusData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pusData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u16");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pusData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned int* _puiData)
+{
+	hsize_t piDims[2]				= {_iRows, _iCols};
+	herr_t status						= 0;
+	hid_t iSpace						= 0;
+	hid_t iDataset					= 0;
+	hid_t iCompress					= 0;
+	int	i										= 0;
+	int j										= 0;
+	unsigned int* puiData		= NULL;
+
+	puiData = (void*)MALLOC(sizeof(unsigned int) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			puiData[i * _iCols + j] = _puiData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,	puiData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u32");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(puiData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned long long* _pullData)
+{
+	hsize_t piDims[2]							= {_iRows, _iCols};
+	herr_t status									= 0;
+	hid_t iSpace									= 0;
+	hid_t iDataset								= 0;
+	hid_t iCompress								= 0;
+	int	i													= 0;
+	int j													= 0;
+	unsigned long long * pullData	= NULL;
+
+	pullData = (void*)MALLOC(sizeof(unsigned long long) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pullData[i * _iCols + j] = _pullData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pullData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u64");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pullData);
 
 	return status;
 }
