@@ -41,7 +41,8 @@ public class GotoLineAction extends DefaultAction {
 	private static boolean windowAlreadyExist ;
 
 	private static JFrame mainFrame ;
-	private JTextField enterLineNumberField ;
+	private JTextField enterLineNumberField;
+	private int firstCaretPosition;
 	private JButton okButton ;
 	
 	private GotoLineAction(Xpad editor) {
@@ -57,8 +58,9 @@ public class GotoLineAction extends DefaultAction {
 	 @Override
 	public void doAction() {
 	    	if (!GotoLineAction.windowAlreadyExist ){
-	    		GotoLineAction.windowAlreadyExist= true ;
+	    		firstCaretPosition = getEditor().getTextPane().getCaretPosition();
 	    		gotoLineBox ();
+	    		GotoLineAction.windowAlreadyExist= true ;
 	    	}
 	}
 	
@@ -66,18 +68,14 @@ public class GotoLineAction extends DefaultAction {
 
 	        mainFrame = new JFrame();
 	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	      
 	        mainFrame.setLayout(new GridBagLayout());
-
-
 
 	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
-	         enterLineNumberField = new JTextField( );
+	        enterLineNumberField = new JTextField( );
 	        
 	        JButton cancelButton = new JButton(XpadMessages.CANCEL);
-	         okButton = new JButton(XpadMessages.OK);
+	        okButton = new JButton(XpadMessages.OK);
 	        okButton.setPreferredSize(cancelButton.getPreferredSize());
 
 	        GridBagConstraints gbc = new GridBagConstraints();
@@ -121,6 +119,7 @@ public class GotoLineAction extends DefaultAction {
 			cancelButton.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
+					getEditor().getTextPane().setCaretPosition(firstCaretPosition);
 					GotoLineAction.windowAlreadyExist= false ;
 					mainFrame.dispose();
 				}
