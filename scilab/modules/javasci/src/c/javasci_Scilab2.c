@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
 	cname = (*env)->GetStringUTFChars(env, jname, NULL); 
 	matrix = (*env)->GetDoubleArrayElements(env, jmatrix, NULL);
 
-	strErr = createNamedMatrixOfDouble((char*)cname, nbRow, nbCol, matrix);
+	strErr = createNamedMatrixOfDouble(pvApiCtx, (char*)cname, nbRow, nbCol, matrix);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -95,7 +95,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
 
 	cname = (*env)->GetStringUTFChars(env, jname, NULL); 
 
-	strErr = readNamedMatrixOfDouble((char*)cname, &rows, &cols, NULL);
+	strErr = readNamedMatrixOfDouble(pvApiCtx, (char*)cname, &rows, &cols, NULL);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -120,7 +120,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
 
 	matrix = (*env)->GetDoubleArrayElements(env, jmatrix, NULL);
 
-	strErr = readNamedMatrixOfDouble((char*)cname, &rows, &cols, matrix);
+	strErr = readNamedMatrixOfDouble(pvApiCtx, (char*)cname, &rows, &cols, matrix);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -158,7 +158,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclas
 	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = createNamedComplexMatrixOfDouble((char*)cname, nbRow, nbCol, cx, cy);
+	strErr = createNamedComplexMatrixOfDouble(pvApiCtx, (char*)cname, nbRow, nbCol, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -197,7 +197,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jc
 
 	cname = (*env)->GetStringUTFChars(env, jname, NULL); 
 
-	strErr = readNamedComplexMatrixOfDouble((char*)cname, &rows, &cols, NULL, NULL);
+	strErr = readNamedComplexMatrixOfDouble(pvApiCtx, (char*)cname, &rows, &cols, NULL, NULL);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -223,7 +223,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jc
 	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = readNamedComplexMatrixOfDouble((char*)cname, &rows, &cols, cx, cy);
+	strErr = readNamedComplexMatrixOfDouble(pvApiCtx, (char*)cname, &rows, &cols, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -279,7 +279,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 		(*env)->ReleaseStringUTFChars(env, jelement,  element);
 	}
 
-	createNamedMatrixOfString((char*)cname, nbRow, nbCol, pStrings);
+	createNamedMatrixOfString(pvApiCtx, (char*)cname, nbRow, nbCol, pStrings);
 
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 	freeArrayOfString(pStrings, nbRow * nbCol);
@@ -313,7 +313,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 
 	cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-	strErr = readNamedMatrixOfString((char*)cname, &rows, &cols, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &rows, &cols, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -340,7 +340,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 		return;
 	}
 
-	strErr = readNamedMatrixOfString((char*)cname, &rows, &cols, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &rows, &cols, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -361,7 +361,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 		}
 	}
 
-	strErr = readNamedMatrixOfString((char*)cname, &rows, &cols, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &rows, &cols, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -424,14 +424,14 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
 	cname = (*env)->GetStringUTFChars(env, name, NULL); 
 	(*env)->ReleaseStringUTFChars(env, name , cname);
 
-	strErr = getNamedVarType((char*)cname, &type); /* give type */
+	strErr = getNamedVarType(pvApiCtx, (char*)cname, &type); /* give type */
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
 		return obj;
 	}
 
-	strErr = getNamedVarDimension((char*)cname, &Dimensions[0], &Dimensions[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &Dimensions[0], &Dimensions[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -442,7 +442,7 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
 	{
 	case sci_matrix : 
 
-		if (isNamedVarComplex((char*)cname)) 
+		if (isNamedVarComplex(pvApiCtx, (char*)cname)) 
 		{
 			return getComplexMatrix(env, cl, name, Dimensions[0], Dimensions[1]);
 		}

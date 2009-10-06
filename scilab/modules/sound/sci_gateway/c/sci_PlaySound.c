@@ -42,14 +42,14 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -62,7 +62,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -82,7 +82,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);

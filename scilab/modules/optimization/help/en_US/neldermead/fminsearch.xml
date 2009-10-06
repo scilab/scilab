@@ -266,15 +266,15 @@
 
     <para>If both the following conditions</para>
 
-    <programlisting role="example"><![CDATA[ 
-ssize < options.TolX
- ]]></programlisting>
+    <programlisting role="example"> 
+ssize &lt; options.TolX
+ </programlisting>
 
     <para>and</para>
 
-    <programlisting role="example"><![CDATA[ 
-shiftfv < options.TolFun
- ]]></programlisting>
+    <programlisting role="example"> 
+shiftfv &lt; options.TolFun
+ </programlisting>
 
     <para>are true, then the iterations stop.</para>
 
@@ -331,12 +331,12 @@ shiftfv < options.TolFun
     "banana", and then use the fminsearch function to search the minimum,
     starting with the initial guess [-1.2 1.0].</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 [x, fval, exitflag, output] = fminsearch(banana, [-1.2 1]);
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -370,25 +370,30 @@ endfunction
   <refsection>
     <title>TODO</title>
 
-    <variablelist>
-      <varlistentry>
-        <term>unit tests</term>
+    <itemizedlist>
+      <listitem>
+        <para>implement the 'interrupt' state of the algorithm</para>
+      </listitem>
 
-        <listitem>
-          <para>add more unit tests for fminsearch, especially the management
-          of the options provided by optimset().</para>
-        </listitem>
-      </varlistentry>
+      <listitem>
+        <para>add more unit tests for fminsearch, especially the management of
+        the options provided by optimset().</para>
+      </listitem>
 
-      <varlistentry>
-        <term>demo with an output function</term>
+      <listitem>
+        <para>add a demo with an interactive output function, which draws the
+        plot during the optimization.</para>
+      </listitem>
 
-        <listitem>
-          <para>add a demo with an interactive output function, which draws
-          the plot during the optimization.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+      <listitem>
+        <para>implement the stop of an optimization via the stop output
+        argument of the output function</para>
+      </listitem>
+
+      <listitem>
+        <para>implement optimplotx, optimplotfval, optimplotfunccount</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>

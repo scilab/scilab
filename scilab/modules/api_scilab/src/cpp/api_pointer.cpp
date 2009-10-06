@@ -21,7 +21,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 
-StrErr getPointer(int* _piAddress, void** _pvPtr)
+StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
@@ -34,7 +34,7 @@ StrErr getPointer(int* _piAddress, void** _pvPtr)
 		return strErr;
 	}
 
-	strErr = getVarType(_piAddress, &iType);
+	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("API_ERROR_GET_POINTER"));
@@ -54,7 +54,7 @@ StrErr getPointer(int* _piAddress, void** _pvPtr)
 	return strErr;
 }
 
-StrErr fillPointer(int *_piAddress, void** _pvPtr)
+StrErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
@@ -74,7 +74,7 @@ StrErr fillPointer(int *_piAddress, void** _pvPtr)
 	return strErr;
 }
 
-StrErr allocPointer(int _iVar, void** _pvPtr)
+StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
@@ -82,9 +82,9 @@ StrErr allocPointer(int _iVar, void** _pvPtr)
 	int* piAddr			= NULL;
 	void* pvPtr			= NULL;
 
-	getNewVarAddressFromPosition(iNewPos, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
-	strErr = fillPointer(piAddr, &pvPtr);
+	strErr = fillPointer(_pvCtx, piAddr, &pvPtr);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_ALLOC_POINTER, _("API_ERROR_ALLOC_POINTER"));
@@ -98,12 +98,12 @@ StrErr allocPointer(int _iVar, void** _pvPtr)
 	return strErr;
 }
 
-StrErr createPointer(int _iVar, void* _pvPtr)
+StrErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	void* pvPtr		= NULL;
 
-	strErr = allocPointer(_iVar, &pvPtr);
+	strErr = allocPointer(_pvCtx, _iVar, &pvPtr);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER, _("API_ERROR_CREATE_POINTER"));

@@ -28,7 +28,7 @@ extern "C" {
  * @param[out] _piNbItem return number of item
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getListItemNumber(int* _piAddress, int* _piNbItem);
+StrErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem);
 
 /**
  * Get address of an item in a list
@@ -37,7 +37,7 @@ StrErr getListItemNumber(int* _piAddress, int* _piNbItem);
  * @param[out] _piItemAddress return item address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getListItemAddress(int* _piAddress, int _iItemNum, int** _piItemAddress);
+StrErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress);
 
 /**
  * get a list from a list
@@ -46,7 +46,7 @@ StrErr getListItemAddress(int* _piAddress, int _iItemNum, int** _piItemAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getListInList(int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a tlist from a list
@@ -55,7 +55,7 @@ StrErr getListInList(int* _piParent, int _iItemPos, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getTListInList(int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getTListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a mlist from a list
@@ -64,7 +64,7 @@ StrErr getTListInList(int* _piParent, int _iItemPos, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMListInList(int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getMListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a list from a named list
@@ -74,7 +74,7 @@ StrErr getMListInList(int* _piParent, int _iItemPos, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a tlist from a named list
@@ -84,7 +84,7 @@ StrErr getListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a mlist from a named list
@@ -94,7 +94,7 @@ StrErr getTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** 
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
+StrErr getMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * create a list
@@ -103,7 +103,7 @@ StrErr getMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** 
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createList(int _iVar, int _iNbItem, int** _piAddress);
+StrErr createList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress);
 
 /**
  * create a mlist
@@ -112,7 +112,7 @@ StrErr createList(int _iVar, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMList(int _iVar, int _iNbItem, int** _piAddress);
+StrErr createMList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress);
 
 /**
  * create a tlist
@@ -121,7 +121,7 @@ StrErr createMList(int _iVar, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createTList(int _iVar, int _iNbItem, int** _piAddress);
+StrErr createTList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress);
 
 /**
  * create a list
@@ -130,7 +130,7 @@ StrErr createTList(int _iVar, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createNamedList(char* _pstName, int _iNbItem, int** _piAddress);
+StrErr createNamedList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress);
 
 /**
  * create a tlist
@@ -139,7 +139,7 @@ StrErr createNamedList(char* _pstName, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createNamedTList(char* _pstName, int _iNbItem, int** _piAddress);
+StrErr createNamedTList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress);
 
 /**
  * create a mlist
@@ -148,7 +148,7 @@ StrErr createNamedTList(char* _pstName, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createNamedMList(char* _pstName, int _iNbItem, int** _piAddress);
+StrErr createNamedMList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress);
 
 /**
  * read a named list
@@ -157,7 +157,7 @@ StrErr createNamedMList(char* _pstName, int _iNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readNamedList(char* _pstName, int* _piNbItem, int** _piAddress);
+StrErr readNamedList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress);
 
 /**
  * read a named tlist
@@ -166,7 +166,7 @@ StrErr readNamedList(char* _pstName, int* _piNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readNamedTList(char* _pstName, int* _piNbItem, int** _piAddress);
+StrErr readNamedTList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress);
 
 /**
  * read a named mlist
@@ -175,7 +175,7 @@ StrErr readNamedTList(char* _pstName, int* _piNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readNamedMList(char* _pstName, int* _piNbItem, int** _piAddress);
+StrErr readNamedMList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress);
 
 /**
  * create a list in a list
@@ -186,7 +186,7 @@ StrErr readNamedMList(char* _pstName, int* _piNbItem, int** _piAddress);
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
  * create a tlist in a list
@@ -197,7 +197,7 @@ StrErr createListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, 
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createTListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createTListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
  * create a mlist in a list
@@ -208,7 +208,7 @@ StrErr createTListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem,
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createMListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
  * create a list in a named list
@@ -219,7 +219,7 @@ StrErr createMListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem,
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
  * create a tlist in a named list
@@ -230,7 +230,7 @@ StrErr createListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int 
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
  * create a mlist in a named list
@@ -241,7 +241,7 @@ StrErr createTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+StrErr createMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /*********************
  * Double functions *
@@ -256,7 +256,7 @@ StrErr createMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal);
+StrErr getMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -267,7 +267,7 @@ StrErr getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int*
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+StrErr getComplexMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Alloc double variable in a list
@@ -279,7 +279,7 @@ StrErr getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRow
  * @param[out] _pdblReal return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal);
+StrErr allocMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal);
 
 /**
  * Alloc double variable in a list
@@ -292,7 +292,7 @@ StrErr allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _
  * @param[out] _pdblImg return pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
+StrErr allocComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * create double variable in a list
@@ -304,7 +304,7 @@ StrErr allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
+StrErr createMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * create double variable in a list
@@ -317,7 +317,7 @@ StrErr createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int 
  * @param[in] _pdblImg pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+StrErr createComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * create double variable in a list
@@ -329,7 +329,7 @@ StrErr createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPo
  * @param[in] _pdblData pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createComplexZMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
+StrErr createComplexZMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * create double named variable in a list
@@ -341,7 +341,7 @@ StrErr createComplexZMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemP
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
+StrErr createMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * create double named variable in a list
@@ -354,7 +354,7 @@ StrErr createMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iIte
  * @param[in] _pdblImg pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+StrErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * create double named variable in a list
@@ -366,7 +366,7 @@ StrErr createComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, in
  * @param[in] _pdblData pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
+StrErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * read double named variable in a list
@@ -378,7 +378,7 @@ StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, i
  * @param[in] _pdblReal return data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal);
+StrErr readMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * read double named variable in a list
@@ -391,7 +391,7 @@ StrErr readMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemP
  * @param[in] _pdblImg return  imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+StrErr readComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 /*********************
  * Strings functions *
@@ -407,7 +407,7 @@ StrErr readComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int 
  * @param[out] _pstStrings return array of char
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMatrixOfStringInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+StrErr getMatrixOfStringInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
  * Create string variable in a list
@@ -419,7 +419,7 @@ StrErr getMatrixOfStringInList(int* _piParent, int _iItemPos, int* _piRows, int*
  * @param[in] _pstStrings array of strings ( null terminated )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
+StrErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Write string variable in a named list
@@ -432,7 +432,7 @@ StrErr createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
+StrErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Read string variable in a named list
@@ -444,7 +444,7 @@ StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iIte
  * @param[in] _pstStrings array of strings ( null terminated )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+StrErr readMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /*********************
  * boolean functions *
@@ -459,7 +459,7 @@ StrErr readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemP
  * @param[out] _piBool return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMatrixOfBooleanInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool);
+StrErr getMatrixOfBooleanInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool);
 
 /**
  * Alloc boolean variable in a list
@@ -471,7 +471,7 @@ StrErr getMatrixOfBooleanInList(int* _piParent, int _iItemPos, int* _piRows, int
  * @param[out] _piBool return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
+StrErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
 
 /**
  * create boolean variable in a list
@@ -483,7 +483,7 @@ StrErr allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int 
  * @param[in] _piBool  pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+StrErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
 
 /**
  * create boolean variable in a named list
@@ -495,7 +495,7 @@ StrErr createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+StrErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read string variable in a named list
@@ -507,7 +507,7 @@ StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iIt
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool);
+StrErr readMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool);
 
 /*************************
  * polynomials functions *
@@ -523,7 +523,7 @@ StrErr readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItem
  * @param[out] _pdblReal return polynomials coefficients
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+StrErr getMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get complex polynomial variable in list
@@ -536,7 +536,7 @@ StrErr getMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _
  * @param[out] _pdblImg return polynomials coefficients
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getComplexMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr getComplexMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create polynomial variable in list
@@ -549,7 +549,7 @@ StrErr getComplexMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows,
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+StrErr createMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Create complex polynomial variable in list
@@ -563,7 +563,7 @@ StrErr createMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* 
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr createComplexMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get polynomial variable in named list
@@ -577,7 +577,7 @@ StrErr createComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr NamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+StrErr NamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get polynomial variable in named list
@@ -592,7 +592,7 @@ StrErr NamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, in
 * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create polynomial variable in named list
@@ -606,7 +606,7 @@ StrErr readComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+StrErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Create complex polynomial variable in named list
@@ -621,7 +621,7 @@ StrErr createMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemP
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /*********************
  * integer functions *
@@ -638,8 +638,8 @@ StrErr createComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
-StrErr createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
+StrErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
+StrErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
 
 /**
  * create integer 16 variable in a list
@@ -652,8 +652,8 @@ StrErr createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iIte
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
-StrErr createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
+StrErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
+StrErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
 
 /**
  * create integer 32 variable in a list
@@ -666,8 +666,8 @@ StrErr createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iIt
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
-StrErr createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
+StrErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
+StrErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
 
 /**
  * create integer 64 variable in a list
@@ -680,8 +680,8 @@ StrErr createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iIt
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-StrErr createMatrixOfInteger64InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
-StrErr createMatrixOfUnsignedInteger64InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
+StrErr createMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
+StrErr createMatrixOfUnsignedInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
 #endif
 
 /**
@@ -695,8 +695,8 @@ StrErr createMatrixOfUnsignedInteger64InList(int _iVar, int* _piParent, int _iIt
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData);
-StrErr allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData);
+StrErr allocMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData);
+StrErr allocMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData);
 
 /**
  * alloc integer 16 variable in a list
@@ -709,8 +709,8 @@ StrErr allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItem
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData);
-StrErr allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData);
+StrErr allocMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData);
+StrErr allocMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData);
 
 /**
  * alloc integer 32 variable in a list
@@ -723,8 +723,8 @@ StrErr allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iIte
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData);
-StrErr allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData);
+StrErr allocMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData);
+StrErr allocMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData);
 
 /**
  * alloc integer 32 variable in a list
@@ -737,8 +737,8 @@ StrErr allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iIte
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-StrErr allocMatrixOfInteger64InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long** _pllData);
-StrErr allocMatrixOfUnsignedInteger64InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long** _pullData);
+StrErr allocMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long** _pllData);
+StrErr allocMatrixOfUnsignedInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long** _pullData);
 #endif
 /**
  * read integer 8 variable in a list
@@ -750,8 +750,8 @@ StrErr allocMatrixOfUnsignedInteger64InList(int _iVar, int* _piParent, int _iIte
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getMatrixOfInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData);
-StrErr getMatrixOfUnsignedInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData);
+StrErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData);
+StrErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData);
 
 /**
  * read integer 16 variable in a list
@@ -763,8 +763,8 @@ StrErr getMatrixOfUnsignedInteger8InList(int* _piParent, int _iItemPos, int* _pi
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getMatrixOfInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData);
-StrErr getMatrixOfUnsignedInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData);
+StrErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData);
+StrErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData);
 
 /**
  * read integer 32 variable in a list
@@ -776,8 +776,8 @@ StrErr getMatrixOfUnsignedInteger16InList(int* _piParent, int _iItemPos, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getMatrixOfInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData);
-StrErr getMatrixOfUnsignedInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData);
+StrErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData);
+StrErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData);
 
 /**
  * read integer 64 variable in a list
@@ -789,8 +789,8 @@ StrErr getMatrixOfUnsignedInteger32InList(int* _piParent, int _iItemPos, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-StrErr getMatrixOfInteger64InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long** _pllData);
-StrErr getMatrixOfUnsignedInteger64InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned long long** _pullData);
+StrErr getMatrixOfInteger64InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long** _pllData);
+StrErr getMatrixOfUnsignedInteger64InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned long long** _pullData);
 #endif
 
 /**
@@ -804,8 +804,8 @@ StrErr getMatrixOfUnsignedInteger64InList(int* _piParent, int _iItemPos, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
-StrErr createMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
+StrErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
+StrErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
 
 /**
  * Create integer 16 bis variable in named list
@@ -818,8 +818,8 @@ StrErr createMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
-StrErr createMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
+StrErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
+StrErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
 
 /**
  * Create integer 32 bis variable in named list
@@ -832,8 +832,8 @@ StrErr createMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
-StrErr createMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
+StrErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
+StrErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
 
 /**
  * Create integer 64 bis variable in named list
@@ -846,8 +846,8 @@ StrErr createMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-StrErr createMatrixOfInteger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
-StrErr createMatrixOfUnsignedInteger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
+StrErr createMatrixOfInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
+StrErr createMatrixOfUnsignedInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
 #endif
 
 /**
@@ -861,8 +861,8 @@ StrErr createMatrixOfUnsignedInteger64InNamedList(char* _pstName, int* _piParent
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readMatrixOfIntger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData);
-StrErr readMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData);
+StrErr readMatrixOfIntger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData);
+StrErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData);
 
 /**
  * read integer 16 named variable in a list
@@ -875,8 +875,8 @@ StrErr readMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent, i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readMatrixOfIntger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData);
-StrErr readMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData);
+StrErr readMatrixOfIntger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData);
+StrErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData);
 
 /**
  * read integer 32 named variable in a list
@@ -889,8 +889,8 @@ StrErr readMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent, 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readMatrixOfIntger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData);
-StrErr readMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData);
+StrErr readMatrixOfIntger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData);
+StrErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData);
 
 /**
  * read integer 64 named variable in a list
@@ -903,8 +903,8 @@ StrErr readMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent, 
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-StrErr readMatrixOfIntger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long* _pllData);
-StrErr readMatrixOfUnsignedInteger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned long long* _pullData);
+StrErr readMatrixOfIntger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long* _pllData);
+StrErr readMatrixOfUnsignedInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned long long* _pullData);
 #endif
 
 /********************
@@ -925,7 +925,7 @@ StrErr readMatrixOfUnsignedInteger64InNamedList(char* _pstName, int* _piParent, 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+StrErr createSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create complex sparse variable in a list
@@ -942,7 +942,7 @@ StrErr createSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+StrErr createComplexSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Create sparse variable in a named list
@@ -958,7 +958,7 @@ StrErr createComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+StrErr createSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create complex sparse variable in a named list
@@ -975,7 +975,7 @@ StrErr createSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemP
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+StrErr createComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * get complex sparse variable in a list
@@ -991,7 +991,7 @@ StrErr createComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+StrErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * get complex sparse variable in a list
@@ -1008,7 +1008,7 @@ StrErr getSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getComplexSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+StrErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * read sparse variable in a named list
@@ -1024,7 +1024,7 @@ StrErr getComplexSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+StrErr readSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * read complex sparse variable in a named list
@@ -1041,7 +1041,7 @@ StrErr readSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+StrErr readComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 
 /****************************
@@ -1061,7 +1061,7 @@ StrErr readComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create boolean sparse variable in a named list
@@ -1076,7 +1076,7 @@ StrErr createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * get boolean sparse variable in a list
@@ -1091,7 +1091,7 @@ StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getBooleanSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+StrErr getBooleanSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * read sparse variable in a named list
@@ -1106,7 +1106,7 @@ StrErr getBooleanSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+StrErr readBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 /*********************
  * pointer functions *
@@ -1121,7 +1121,7 @@ StrErr readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getPointerInList(int* _piParent, int _iItemPos, void** _pvPtr);
+StrErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr);
 
 /**
  * Create pointer in a list
@@ -1132,7 +1132,7 @@ StrErr getPointerInList(int* _piParent, int _iItemPos, void** _pvPtr);
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPtr);
+StrErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr);
 
 /**
  * Get pointer in a list
@@ -1143,7 +1143,7 @@ StrErr createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPt
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr);
+StrErr readPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr);
 
 /**
  * Create pointer in a list
@@ -1154,7 +1154,7 @@ StrErr readPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, voi
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
+StrErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
 
 #ifdef __cplusplus
 }
