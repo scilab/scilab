@@ -137,7 +137,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     	/** Create SOURCES palette */
     	String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
     			"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
-    			"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c", "OUT_f"};
+    			"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c"};
     	palette.addTab(createPalette(XcosMessages.SOURCES_PAL, sourcesBlocksNames));
 
     	palette.setVisible(true);
@@ -166,7 +166,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     	/** Create MATH OPERATIONS palette */
     	String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
-    			"MATDIV", "EXPBLK_m", "MATDIV", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
+    			"MATDIV", "EXPBLK_m", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
     			"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
     	palette.addTab(createPalette(XcosMessages.MATHSOPS_PAL, mathsBlocksNames));
 
@@ -199,7 +199,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     	palette.addTab(createPalette(XcosMessages.DISCRETE_PAL, discreteBlocksNames));
     	
       	/** Create EVENTS palette */
-    	String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "GotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
+    	String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "CLKGotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
     			"CLKSOMV_f", "CLOCK_c", "EVTGEN_f", "EVTVARDLY", "M_freq", "ANDBLK", "HALT_f", "freq_div", "ANDLOG_f",
     			"EVTDLY_c", "IFTHEL_f", "CEVENTSCOPE"};
     	palette.addTab(createPalette(XcosMessages.EVENTS_PAL, eventsBlocksNames));
