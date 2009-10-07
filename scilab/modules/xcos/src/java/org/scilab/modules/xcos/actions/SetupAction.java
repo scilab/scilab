@@ -75,16 +75,16 @@ public class SetupAction extends DefaultAction {
 
 
 		JLabel integrationLabel = new JLabel("Final inegration time");
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getFinalIntegrationTime( ) ,null,null, 1);
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getFinalIntegrationTime() ,null,null, 0.01);
 		integrationSpinner = new JSpinner( );
 		integrationSpinner.setModel(spinnerModel);
-		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner,"0"));
+		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner,"0.00"));
 
 		JLabel rtsLabel = new JLabel("Real time scaling");
-		spinnerModel = new SpinnerNumberModel(diagram.getRealTimeScaling() ,null,null, 0.0000001);
+		spinnerModel = new SpinnerNumberModel(diagram.getRealTimeScaling() ,null,null, 0.1);
 		rtsSpinner = new JSpinner( );
 		rtsSpinner.setModel(spinnerModel);
-		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner,"0.00000000"));
+		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner,"0.0"));
 
 		JLabel integratorAbsLabel = new JLabel("Integrator absolute tolerance");
 		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorAbsoluteTolerance(),null,null, 0.00001);
