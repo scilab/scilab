@@ -85,6 +85,6 @@
 <module name="atoms" activate="yes"/>
 <module name="hdf5" activate="yes"/>
 <module name="xpad" activate="yes"/>
-<module name="scipad" activate="no"/>
+<module name="scipad" activate="yes"/>
 <!-- comments -->
 </modules>

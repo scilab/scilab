@@ -366,10 +366,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on function
                       value in the termination criteria.</para>
 
-                      <para>The following values are available : %t,
-                      %f (default is %f). If this criteria is
-                      triggered, the status of the optimization is set to
-                      "tolf".</para>
+                      <para>The following values are available : %t, %f
+                      (default is %f). If this criteria is triggered, the
+                      status of the optimization is set to "tolf".</para>
                     </listitem>
                   </varlistentry>
 
@@ -398,10 +397,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on x in the
                       termination criteria.</para>
 
-                      <para>The following values are available : %t,
-                      %f (default is %t). If this criteria is
-                      triggered, the status of the optimization is set to
-                      "tolx".</para>
+                      <para>The following values are available : %t, %f
+                      (default is %t). If this criteria is triggered, the
+                      status of the optimization is set to "tolx".</para>
                     </listitem>
                   </varlistentry>
 
@@ -1555,14 +1553,14 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on x works
-        well if x at optimum is different from zero. In that case, the
-        condition measures the distance between two iterates.</para>
+        <para>The relative termination criteria on x works well if x at
+        optimum is different from zero. In that case, the condition measures
+        the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on x works if
-        the user has an accurate idea of the scale of the optimum x. If the
-        optimum x is near 0, the relative tolerance will not work and the
-        absolute tolerance is more appropriate.</para>
+        <para>The absolute termination criteria on x works if the user has an
+        accurate idea of the scale of the optimum x. If the optimum x is near
+        0, the relative tolerance will not work and the absolute tolerance is
+        more appropriate.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -1624,6 +1622,10 @@ opt = optimbase_destroy(opt);
       <listitem>
         <para>methods with derivatives : add a flag to manage for the
         derivatives of the cost function</para>
+      </listitem>
+
+      <listitem>
+        <para>rename -outputcommand to -outputfunction</para>
       </listitem>
     </itemizedlist>
   </refsection>

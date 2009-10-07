@@ -24,7 +24,7 @@
 
     <synopsis>
       val = optimget ( options , key )
-      val = optimset ( options , key , value )
+      val = optimget ( options , key , value )
     </synopsis>
   </refsynopsisdiv>
 
@@ -39,31 +39,34 @@
     <para>In the following, we analyse the various ways to call the optimget
     function.</para>
 
-    <para>The following calling sequence </para>
-    <programlisting role="example"><![CDATA[ 
-val = optimget(options , key)
- ]]></programlisting> 
-    <para>returns the value associated with the given
-    <literal>key</literal>. The <literal>key</literal> is expected to be a
-    string. We search the <literal>key</literal> among the list of all
-    possible fields in the <literal>options</literal> data structure. In this
-    search, the case is ignored. The <literal>key</literal> which matches a
-    possible field is returned. Some letters of the field may be dropped,
-    provided that the matching field is unique. For example, the key "MaxF"
-    corresponds to the field "MaxFunEval". But the key "Tol" corresponds both
-    to the "TolX" and "TolFun" fields and therefore will generate an
-    error.</para>
+    <para>The following calling sequence</para>
 
-    <para>The following calling sequence </para>
-    <programlisting role="example"><![CDATA[ 
-val = optimset(options, key, value)
- ]]></programlisting> 
-    <para>allows to manage default value for optimization parameters.
-    Indeed, if the field corresponding to the <literal>key</literal> is empty
-    (i.e. has not been set by the user), the input argument
-    <literal>value</literal> is returned. Instead, if the field corresponding
-    the the key is not empty (i.e. has been set by the user), the stored
-    parameter is returned.</para>
+    <programlisting role="example"> 
+val = optimget(options , key)
+ </programlisting>
+
+    <para>returns the value associated with the given <literal>key</literal>.
+    The <literal>key</literal> is expected to be a string. We search the
+    <literal>key</literal> among the list of all possible fields in the
+    <literal>options</literal> data structure. In this search, the case is
+    ignored. The <literal>key</literal> which matches a possible field is
+    returned. Some letters of the field may be dropped, provided that the
+    matching field is unique. For example, the key "MaxF" corresponds to the
+    field "MaxFunEval". But the key "Tol" corresponds both to the "TolX" and
+    "TolFun" fields and therefore will generate an error.</para>
+
+    <para>The following calling sequence</para>
+
+    <programlisting role="example"> 
+val = optimget(options, key, value)
+ </programlisting>
+
+    <para>allows to manage default value for optimization parameters. Indeed,
+    if the field corresponding to the <literal>key</literal> is empty (i.e.
+    has not been set by the user), the input argument <literal>value</literal>
+    is returned. Instead, if the field corresponding the the key is not empty
+    (i.e. has been set by the user), the parameter stored in the <literal>options</literal>
+    argument is returned.</para>
   </refsection>
 
   <refsection>
@@ -112,11 +115,11 @@ val = optimset(options, key, value)
     set the "TolX" field to 1.e-12. Then we use <literal>optimget</literal> to
     get back the value.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 op = optimset();
 op = optimset(op,'TolX',1.e-12);
 val = optimget(op,'TolX'); // val is 1.e-12
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -127,10 +130,10 @@ val = optimget(op,'TolX'); // val is 1.e-12
     corresponding to the "TolX" field, with 1.e-5 as the default value. Since
     the field is empty, we retrieve 1.e-5.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 op = optimset();
 val = optimget(op,'TolX' , 1.e-5); // val = 1.e-5
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -141,11 +144,11 @@ val = optimget(op,'TolX' , 1.e-5); // val = 1.e-5
     get back the value corresponding to the "TolX" field, with 1.e-5 as the
     default value. Since the field is not empty, we retrieve 1.e-12.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 op = optimset();
 op = optimset(op,'TolX',1.e-12);
 val = optimget(op,'TolX' , 1.e-5); // val = 1.e-12
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -158,11 +161,11 @@ val = optimget(op,'TolX' , 1.e-5); // val = 1.e-12
     "MaxFunEvals" field, there is only one match and the function returns
     10000.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 op = optimset();
 op = optimset(op, 'MaxFunEvals' , 1000);
 val = optimget(op, 'MaxF'); // val = 1000
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>

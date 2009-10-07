@@ -102,7 +102,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
 		return JNI_FALSE;
 	}
 
-	strErr = getNamedVarType((char*)cvarName, &sciType);
+	strErr = getNamedVarType(pvApiCtx, (char*)cvarName, &sciType);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -154,7 +154,7 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
 		return type;
 	}
 
-	strErr = getNamedVarType((char *)cvarName, (int*)&type);
+	strErr = getNamedVarType(pvApiCtx, (char *)cvarName, (int*)&type);
 	(*env)->ReleaseStringUTFChars(env, varName , cvarName);
 
 	return type;

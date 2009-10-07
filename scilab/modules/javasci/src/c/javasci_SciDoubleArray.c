@@ -41,7 +41,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 
 	int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -68,7 +68,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 	jx = (*env)->GetObjectField(env, obj_this, id_x);
 	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 
-	strErr = readNamedMatrixOfDouble((char*)cname, &cm, &cn, cx);
+	strErr = readNamedMatrixOfDouble(pvApiCtx, (char*)cname, &cm, &cn, cx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
