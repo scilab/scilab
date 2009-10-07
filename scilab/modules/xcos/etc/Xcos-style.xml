@@ -10,15 +10,8 @@
 	<add as="Label" extend="block">
 		<add as="strokeColor" value="white"/>
 	</add>
-	<add as="Sinusoid" extend="block">
-	</add>
-	<add as="Scope" extend="block">
-	</add>
-	<add as="Generic" extend="block">
-		<add as="strokeColor" value="red" />
-		<add as="strokeWidth" value="10" />
-		<add as="fillColor" value="red" />
-		<add as="opacity" value="25" />
+	<add as="Icon" extend="block">
+		<add as="shape" value="image"/>
 	</add>
 
 	
@@ -68,11 +61,21 @@
 	<!-- LINK definition -->
 	<add as="defaultEdge">
 		<!--<add as="edgeStyle" value="entityRelationEdgeStyle"/>-->
-		<add as="endArrow" value="none"/>
+		<add as="labelBackgroundColor" value="white"/>
+		<!-- To have rounded links -->
+		<!-- <add as="rounded" value="1"/> -->
+		<!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
+		<add as="shape" value="connector"/>
+		<add as="labelBackgroundColor" value="white"/>
+		<add as="endArrow" value="classicnone"/>
+		<add as="fontSize" value="10"/>
+		<add as="align" value="center"/>
+		<add as="verticalAlign" value="middle"/>
 		<add as="strokeColor" value="black"/>
 	</add>
 	<add as="CommandControlLink" extend="defaultEdge">
 		<add as="strokeColor" value="red"/>
+		<add as="elbow" value="vertical"/>
 	</add>
 	<add as="ExplicitLink" extend="defaultEdge">
 		<add as="strokeColor" value="blue"/>
