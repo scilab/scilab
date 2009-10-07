@@ -147,7 +147,7 @@ if sciargs()<>'-nouserstartup' then
     end
   end
 
-  clear startupfiles;
+  clear startupfiles isempty i;
   
 end
 
