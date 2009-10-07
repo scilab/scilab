@@ -420,9 +420,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public Xcos(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
 	
-
-	// TODO : Must check if Diagramm has been modified etc etc etc ...
-	this.setCallback(null);
+	this.setCallback(new CloseAction(diagram));
 	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
 	
     }

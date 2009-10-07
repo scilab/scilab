@@ -25,7 +25,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class CloseAction extends DefaultAction {
 
-	private CloseAction(ScilabGraph scilabGraph) {
+	public CloseAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.CLOSE, scilabGraph);
 	}
 
