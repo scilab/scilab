@@ -726,6 +726,22 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
 		fi
+
+		# Checkstyle (code checking)
+		AC_JAVA_CHECK_PACKAGE([checkstyle],[com.puppycrawl.tools.checkstyle.CheckStyleTask],[Checkstyle - code checking],"yes")
+		CHECKSTYLE=$PACKAGE_JAR_FILE
+		AC_SUBST(CHECKSTYLE)
+
+		# Commons beanutils (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([commons-beanutils],[org.apache.commons.beanutils.Converter],[Bean utility],"yes")
+		COMMONS_BEANUTILS=$PACKAGE_JAR_FILE
+		AC_SUBST(COMMONS_BEANUTILS)
+
+		# antlr (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
+		ANTLR=$PACKAGE_JAR_FILE
+		AC_SUBST(ANTLR)
+
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -1364,6 +1380,11 @@ AC_C_CONST()
 AC_C_INLINE()
 
 
+########## 
+##### Code quality
+##########
+AC_PATH_PROG(SPLINT, splint, no)
+
 #######################
 ###### Creation of the header file (machine.h)
 #######################
@@ -1741,6 +1762,13 @@ echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 fi
+
+echo ""
+echo "Code quality (optional):"
+echo "  Checkstyle .......... = $CHECKSTYLE"
+echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
+echo "  Antlr ............... = $ANTLR"
+echo "  splint .............. = $SPLINT"
 
 echo "" 
 echo "TCL/TK configuration:"

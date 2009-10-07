@@ -57,11 +57,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = true;
-	private boolean autoColorize = true;
+	private boolean autoIndent         = true;
+	private boolean autoColorize       = true;
 	private boolean colorizeInprogress = false;
-	private boolean indentInprogress = false;
-	private boolean updaterDisabled = false;
+	private boolean indentInprogress   = false;
+	private boolean updaterDisabled    = false;
 
 	private String EventType;
 	
@@ -936,65 +936,173 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT COMMENT ACTION
 	 */
-	public void commentText(int start_position, int end_position) {
-
-		String text_to_comment = "";
-		try {
-			// Get the document text to comment
-			text_to_comment = this.getText(start_position, end_position-start_position);
-		} catch (BadLocationException e) {
+	
+	/*
+	 * Comment the current line when no selection has been done
+	 */
+	
+	public int commentLine(int line)
+	{
+		// No selection : comment the current line
+		
+		String comment_str = "//";
+		int offset         = comment_str.length();
+		int start          = this.getDefaultRootElement().getElement(line).getStartOffset();
+		
+		try
+		{
+			// Replacement
+			this.replace(start, 0, comment_str, null);
+		}
+		catch (BadLocationException e){
 			e.printStackTrace();
 		}
-
-		ArrayList<Integer> line_break = new ArrayList<Integer>(); // positions of line break
-		ArrayList<String> all_lines = new ArrayList<String>(); // the document line by line
-		String line = "";
-
-		if (start_position != end_position) {
-			for (int i = 0; i < text_to_comment.length(); i++) {
-				line = line.concat(text_to_comment.charAt(i)+"");
-
-				if (text_to_comment.charAt(i)=='\n') {
-					line_break.add(i);
-					all_lines.add(line);
-					line = "";
-				}
-				if (i==text_to_comment.length()-1) {
-					all_lines.add(line);
-					line = "";
-				}
+		
+		return offset;
+	}
+	
+	/*
+	 * Comment several lines
+	 */
+	
+	public void commentLines(int line_start, int line_end)
+	{
+		String comment_str = "//";
+		
+		for (int i = line_start; i <= line_end; i++)
+		{
+			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
+			
+			try
+			{
+				// Replacement
+				this.replace(start, 0, comment_str, null);
 			}
-
-			String commented_text = "";
-			for (int i = 0; i < all_lines.size(); i++) {
-				String tmp = "";
-				if (!(all_lines.get(i).equals(""))) {
-					if (all_lines.get(i).length() >= 2) {
-						if (all_lines.get(i).substring(0, 2).equals("//")) {
-							tmp = all_lines.get(i).substring(2, all_lines.get(i).length());
-						} else {
-							tmp = "//" + all_lines.get(i);
-						}
-					}
-				}
-				commented_text += tmp;
-			}
-
-			// Display the text commented
-			try {
-				this.replace(start_position, end_position-start_position, commented_text, null);
-			} catch (BadLocationException e) {
+			catch (BadLocationException e){
 				e.printStackTrace();
 			}
 		}
-
-		line_break.clear();
-		all_lines.clear();
 	}
+	
+	/*
+	 * Comment a part of a line
+	 */
+	
+	public int commentText(int position_start, int position_end)
+	{
+		String comment_str = "//";
+		int offset         = comment_str.length();
+		
+		try
+		{
+			// Replacement
+			this.replace(position_start, 0, comment_str, null);
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
 	/**
 	 * DOCUMENT COMMENT ACTION END
 	 */
 
+	/**
+	 * DOCUMENT UN-COMMENT ACTION
+	 */
+	
+	public int uncommentLine(int line)
+	{
+		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
+		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
+		int offset  = 0;
+		
+		try
+		{
+			String text     = this.getText(start, end-start);
+			Pattern pattern = Pattern.compile("^(\\s)*//");
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(start+matcher.end()-2, 2, "", null);
+				offset = 2;
+			}
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/*
+	 * Un-Comment several lines
+	 */
+	
+	public void uncommentLines(int line_start, int line_end)
+	{
+		Pattern pattern = Pattern.compile("^(\\s)*//");
+		
+		for (int i = line_start; i <= line_end; i++)
+		{
+			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
+			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
+			
+			try
+			{
+				// Get the text line
+				String text     = this.getText(start, end-start);
+				Matcher matcher = pattern.matcher(text);
+				
+				if(matcher.find())
+				{
+					this.replace(start+matcher.end()-2, 2, "", null);
+				}
+			}
+			catch (BadLocationException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/*
+	 * Un-Comment a part of a line
+	 */
+	
+	public int uncommentText(int position_start, int position_end)
+	{
+		Pattern pattern = Pattern.compile("^//");
+		int offset      = 0;
+		
+		try
+		{
+			// Get the text line
+			String text     = this.getText(position_start,position_end);
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(position_start,2,"", null);
+				offset = 2;
+			}
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/**
+	 * DOCUMENT UN-COMMENT ACTION END
+	 */
+	
+	
 
 	/**
 	 * FIND AND REPLACE START

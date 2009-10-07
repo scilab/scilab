@@ -110,7 +110,7 @@ libscifunctions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+	$(top_builddir)/modules/api_scilab/libapi_scilab.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscifunctions_la-getmacroslist.lo \
 	libscifunctions_la-librarieslist.lo \
@@ -164,6 +164,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -175,6 +176,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -308,6 +311,7 @@ SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -432,7 +436,7 @@ INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
 libscifunctions_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+$(top_builddir)/modules/api_scilab/libapi_scilab.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
@@ -1029,10 +1033,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
