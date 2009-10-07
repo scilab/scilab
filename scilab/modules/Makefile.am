@@ -70,7 +70,6 @@ overloading \
 maple2scilab \
 m2sci \
 texmacs \
-scipad \
 development_tools \
 compatibility_functions \
 helptools \
