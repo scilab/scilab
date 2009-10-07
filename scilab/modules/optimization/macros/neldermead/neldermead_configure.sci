@@ -147,6 +147,20 @@ function this = neldermead_configure (this,key,value)
     this.boxnbmatch = value
   case "-boxreflect" then
     this.boxreflect = value
+  case "-mymethod" then
+    this.mymethod = value
+  case "-myterminate" then
+    this.myterminate = []
+  case "-myterminateflag" then
+    select value
+    case %f then
+      this.myterminateflag = value;
+    case %t then
+      this.myterminateflag = value;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
+      error(errmsg);
+    end
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
