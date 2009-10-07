@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -159,6 +160,9 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().setEnterStopsCellEditing(false);
 
 	setConnectableEdges(false);
+	
+	getAsComponent().getViewport().setOpaque(false);
+	getAsComponent().setBackground(Color.WHITE);
 	
 	mxMultiplicity[] multiplicities = new mxMultiplicity[1];
 
