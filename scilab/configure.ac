@@ -1380,6 +1380,11 @@ AC_C_CONST()
 AC_C_INLINE()
 
 
+########## 
+##### Code quality
+##########
+AC_PATH_PROG(SPLINT, splint, no)
+
 #######################
 ###### Creation of the header file (machine.h)
 #######################
@@ -1758,10 +1763,12 @@ echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 fi
 
-echo "Checkstyle (optional):"
+echo ""
+echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
+echo "  splint .............. = $SPLINT"
 
 echo "" 
 echo "TCL/TK configuration:"
