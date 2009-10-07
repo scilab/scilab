@@ -76,6 +76,8 @@ TODO: write an introduction about all that
   "sci_lufact_pointer" has been renamed to "sci_pointer".
   A define of "sci_lufact_pointer" on "sci_pointer" has been added to backward
   compatibilities.
+  The rational is to improve the use in special case of the pointer datatype
+  to avoid memory duplication.
 
 TODO: talk about call scilab based on api_scilab
 
