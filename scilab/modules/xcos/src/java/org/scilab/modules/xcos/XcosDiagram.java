@@ -527,6 +527,7 @@ public class XcosDiagram extends ScilabGraph {
 		this.setSolver((Double) properties.get("solver"));
 		this.setMaximumStepSize((Double) properties.get("maximumStepSize"));
 		
+		getModel().beginUpdate();
 		for (int i = 0; i < allBlocks.size(); ++i) {
 			this.addCell(allBlocks.get(i));
 		}
@@ -538,12 +539,16 @@ public class XcosDiagram extends ScilabGraph {
 			link.setTarget(allLinks.get(i)[1]);
 			this.addCell(link);
 		}
-
+		getModel().endUpdate();
+		
 		//this.setTitle(fileToLoad);
 		//this.getParentTab().setName(fileToLoad);
 		
 		this.setTitle((String) properties.get("title"));
 		this.getParentTab().setName((String) properties.get("title"));
+		
+		// Clear all undo events in Undo Manager
+		undoManager.reset();
 		// TODO factorization !!!
 		
 	}
