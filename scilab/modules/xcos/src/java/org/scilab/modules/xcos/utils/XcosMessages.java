@@ -60,6 +60,7 @@ public class XcosMessages {
     public static final String COMPILE = Messages.gettext("Compile");
     public static final String START = Messages.gettext("Start");
     public static final String STOP = Messages.gettext("Stop");
+    public static final String SET_CONTEXT = Messages.gettext("Set Context");
     
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
@@ -94,4 +95,11 @@ public class XcosMessages {
     
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save\nsave it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("This file doesn't exist\n Do you want to create it?");    
+
+    public static final String OK = Messages.gettext("Ok");
+    public static final String CANCEL = Messages.gettext("Cancel");
+    public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define "
+              + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
+              + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
+
 }

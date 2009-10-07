@@ -484,6 +484,10 @@ public class XcosDiagram extends ScilabGraph {
 		return wpar;
 	}
 	
+	public void setContext(String context){
+		this.context = context;
+	}
+	
 	public String getContext() {
 		return context;
 	}

@@ -62,6 +62,7 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
+import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
@@ -348,6 +349,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		menuBar.add(simulate);
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
+		simulate.add(SetContextAction.createMenu(scilabGraph));
 		simulate.add(CompileAction.createMenu(scilabGraph));
 		simulate.add(StartAction.createMenu(scilabGraph));
 		simulate.add(StopAction.createMenu(scilabGraph));
