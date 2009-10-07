@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class BlockReader {
 
 
     private static void INFO(String msg) {
-	//System.err.println("[INFO] BlockReader : "+msg);
+	System.err.println("[INFO] BlockReader : "+msg);
     }
 
     private static void WARNING(String msg) {
@@ -69,7 +70,7 @@ public class BlockReader {
 	    if (fileId == -1) { throw new WrongStructureException(); }
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
-	    validateScs_mStructure(data);
+	    if(!isAValidScs_mStructure(data)) { throw new WrongStructureException(); }
 	    int nbObjs = getNbObjs(data);
 
 	    // Read diagrams properties
@@ -84,6 +85,12 @@ public class BlockReader {
 			BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
 			currentBlock.setOrdering(i);
 			indexedBlock.put(i + 1, currentBlock);
+	    	String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
+	    	File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
+	    	if (tmp.exists()) {
+	    		currentBlock.setStyle("Icon;image=file://" + imagesPath + currentBlock.getValue() + ".gif");
+	    		currentBlock.setValue("");
+	    	}
 			blocks.add(currentBlock);
 			INFO("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
 			minX = Math.min(minX, currentBlock.getGeometry().getX());
@@ -220,12 +227,8 @@ public class BlockReader {
     }
 
     private static PortType getPortType(int type, int io) throws WrongTypeException {
-	// regular link
 	if (type == 1 && io == 0) { return PortType.OUTPUT; }
 	if (type == 1 && io == 1) { return PortType.INPUT; }
-	// implicit link (information will be contained within port)
-	if (type == 2 && io == 0) { return PortType.OUTPUT; }
-	if (type ==2 && io == 1) { return PortType.INPUT; }
 	if (type == -1 && io == 0) { return PortType.COMMAND; }
 	if (type == -1 && io == 1) { return PortType.CONTROL; }
 
@@ -302,35 +305,67 @@ public class BlockReader {
 	return ((ScilabString)blockFields.get(1)).getData()[0][0];
     }
 
-    public static void validateScs_mStructure (ScilabMList data) throws WrongStructureException, WrongTypeException{
+    public static boolean isAValidScs_mStructure (ScilabMList data) throws WrongTypeException {
 
 	int numberOfFieldInScs_m = 4 ;
 	String[] realNameOfScs_mFields = new String[]{"diagram", "props" , "objs" , "version"};
 	String realScicosVersion = new String ("scicos4.2");
 
 	// we test if the structure as enough field
-	if (data.size() != numberOfFieldInScs_m ) { throw new WrongStructureException(); }
+	if (data.size() == numberOfFieldInScs_m ){
 
-	// the first field is a list of string containing the name of the other fields
-	if (!(data.get(0) instanceof ScilabString)) { throw new WrongTypeException(); }
-	String[] nameOfScs_mFields = getNameOfFieldsInStructure(data);
+	    // the first field is a list of string containing the name of the other fields
+	    if ( data.get(0) instanceof ScilabString ) {
+		String[] nameOfScs_mFields = getNameOfFieldsInStructure(data);
 
-	// check if all the expecting field's name are present
-	if (nameOfScs_mFields.length != numberOfFieldInScs_m ) { throw new WrongStructureException(); }
-	for (int i = 0 ; i < numberOfFieldInScs_m ; i++){
-	    if ( !nameOfScs_mFields[i].equals(realNameOfScs_mFields[i])) {
-		throw new WrongStructureException();
+		// check if all the expecting field's name are present
+		if ( nameOfScs_mFields.length == numberOfFieldInScs_m ){
+		    for (int i = 0 ; i < numberOfFieldInScs_m ; i++){
+
+			if ( !nameOfScs_mFields[i].equals(realNameOfScs_mFields[i]))
+			    return false ;
+
+		    }
+		}
 	    }
-	}
+	    else{
+		return false ;
+	    }
+	    // the second field must contain list of props
+	    if (!( data.get(1) instanceof ScilabTList)) { 
+		return false ;
+	    }
+
 
 	// the second field must contain list of props
-	if (!(data.get(1) instanceof ScilabTList)) { throw new WrongTypeException(); }
+	if (!(data.get(1) instanceof ScilabTList)) { 
+		throw new WrongTypeException();
+		}
 
-	// the third field must contains lists of blocks and links 
-	if (!(data.get(2) instanceof ScilabList)) { throw new WrongTypeException(); }
+	    // the third field must contains lists of blocks and links 
 
-	// the last field must contain the scicos version used 
-	if (!(data.get(3) instanceof ScilabString)) { throw new WrongTypeException(); }
+	    if (!( data.get(2) instanceof ScilabList)) { 
+		return false ;
+	    }
+
+
+	    // the last field must contain the scicos version used 
+
+	    if (( data.get(3) instanceof ScilabString)) { 
+		String scicosVersion = ((ScilabString)data.get(3)).getData()[0][0];
+		if(! scicosVersion.equals(realScicosVersion) ){
+		    return false ;
+		}
+	    }
+	    else{
+		return false ;
+	    }
+	}
+	else{
+	    return false ;
+	}
+
+	return true ;
     }
 
     private static boolean isEmptyField(ScilabType object) {
@@ -454,7 +489,7 @@ public class BlockReader {
 
 	ScilabMList graphicsStructure =(ScilabMList)blockFields.get(1);
 
-	String[] realNameOfStructureFields = new String[]{"graphics", "orig" ,"sz" ,"flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit"};
+	String[] realNameOfStructureFields = new String[]{"graphics"	,"orig"	,"sz"	,"flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit"};
 
 	int numberOfFieldInStructure = realNameOfStructureFields.length;
 
