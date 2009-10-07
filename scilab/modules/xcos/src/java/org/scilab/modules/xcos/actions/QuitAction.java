@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
 
@@ -21,11 +20,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class QuitAction extends DefaultAction {
@@ -35,12 +30,11 @@ public class QuitAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.QUIT, null, new QuitAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.QUIT, null, new QuitAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 	
 	public void doAction() {
-		
-		((XcosDiagram) getGraph(null)).closeDiagram();
-
+		Xcos.closeSession();
 	}
 }

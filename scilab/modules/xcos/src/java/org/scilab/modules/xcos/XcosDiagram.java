@@ -80,7 +80,7 @@ public class XcosDiagram extends ScilabGraph {
     private String version = "scicos4.2";
 
     private Tab parentTab;
-    private Window palette;
+    //private Window palette;
     private Window viewPort;
 
     public Object addEdge(Object edge, Object parent, Object source,
@@ -402,9 +402,9 @@ public class XcosDiagram extends ScilabGraph {
     	this.viewPort = viewPort;
     }
 	
-    public void setPalette(Window palette) {
-    	this.palette = palette;
-    }
+    //public void setPalette(Window palette) {
+    //	this.palette = palette;
+    //}
 	
 	/**
 	 * Close Xcos instance including all tabs
@@ -431,8 +431,9 @@ public class XcosDiagram extends ScilabGraph {
 		if (wantToClose) {
 			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
 			xcosWindow.removeTab(parentTab);
-			palette.getAsSimpleWindow().close();
+			//palette.getAsSimpleWindow().close();
 			viewPort.getAsSimpleWindow().close();
+			Xcos.closeDiagram(this);
 		}
 	}
 

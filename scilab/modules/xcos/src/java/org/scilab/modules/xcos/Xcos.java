@@ -14,6 +14,7 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -87,52 +88,17 @@ import com.mxgraph.swing.mxGraphOutline;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
-    private XcosDiagram diagram;
+    private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
     private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
+    private static Window palette;
     
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-	    public void run() {
-		CreateAndShowGui();
-	    }
-	});
-    }
-
-    public static void xcos() {
-    	CreateAndShowGui();
-    }
-    
-    public static void xcos(String fileName) {
-    	XcosDiagram diagram = CreateAndShowGui();
+    /** Palette creation */
+    static {
     	
-	    diagram.readDiagram(fileName);
-    }
-    
+    	// Add a default Java bloc in HashMap
+    	allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 
-    public static void createViewPort(ScilabGraph xcosDiagramm) {
-	Window outline = ScilabWindow.createWindow();
-	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
-	outlineTab.setCallback(null);
-	
-	((XcosDiagram) xcosDiagramm).setViewPort(outline);
-	
-	// Creates the graph outline component
-	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
-	
-	graphOutline.setDrawLabels(true);
-	
-	((SwingScilabTab) outlineTab.getAsSimpleTab()).setContentPane(graphOutline);
-	outline.addTab(outlineTab);
-	outline.setVisible(true);
-    }
-
-    public static void createPalette(ScilabGraph xcosDiagramm) {
-
-    	Window palette = ScilabWindow.createWindow();
-    	((XcosDiagram) xcosDiagramm).setPalette(palette);
+    	palette = ScilabWindow.createWindow();
     	
     	/** Create SOURCES palette */
     	String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
@@ -224,9 +190,48 @@ public class Xcos extends SwingScilabTab implements Tab {
     	/** Create DEMO-BLOCKS palette */
     	String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
     	palette.addTab(createPalette(XcosMessages.DEMOBLOCKS_PAL, demoBlocksNames));
-
     }
     
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+	EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		CreateAndShowGui();
+	    }
+	});
+    }
+
+    public static void xcos() {
+    	CreateAndShowGui();
+    }
+    
+    public static void xcos(String fileName) {
+    	XcosDiagram diagram = CreateAndShowGui();
+    	
+	    diagram.readDiagram(fileName);
+    }
+    
+
+    public static void createViewPort(ScilabGraph xcosDiagramm) {
+	Window outline = ScilabWindow.createWindow();
+	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
+	outlineTab.setCallback(null);
+	
+	((XcosDiagram) xcosDiagramm).setViewPort(outline);
+	
+	// Creates the graph outline component
+	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
+	
+	graphOutline.setDrawLabels(true);
+	
+	((SwingScilabTab) outlineTab.getAsSimpleTab()).setContentPane(graphOutline);
+	outline.addTab(outlineTab);
+	outline.setVisible(true);
+    }
+
     public static XcosPalette createPalette(String paletteName, String[] blocksNames) {
  
     	String blocksPath = System.getenv("SCI")+ "/modules/scicos_blocks/blocks/";
@@ -412,14 +417,20 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     public Xcos(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
-	this.diagram = diagram;
+	
+
 	// TODO : Must check if Diagramm has been modified etc etc etc ...
 	this.setCallback(null);
 	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
 	
-	// Add a default Java bloc in HashMap
-	allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
-
+    }
+    
+    public static void closeDiagram(XcosDiagram diagramm) {
+    	diagrams.remove(diagramm);
+    	System.out.println("Number of opened diagrams after close = " + diagrams.size());
+    	if (diagrams.size() == 0) {
+    		closeSession();
+    	}
     }
     
     public static XcosDiagram CreateAndShowGui() {
@@ -428,6 +439,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 
 	
 	XcosDiagram xcosDiagramm = new XcosDiagram();
+
+	diagrams.add(xcosDiagramm);
+	System.out.println("Number of opened diagrams after creation = " + diagrams.size());
+	
 	Tab tab = new Xcos(xcosDiagramm);
 	tab.setName("Untitled");
 	xcosDiagramm.setParentTab(tab);
@@ -453,7 +468,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	/*
 	 * PALETTES
 	 */
-	createPalette(xcosDiagramm);
+	//createPalette(xcosDiagramm);
 	
 	return xcosDiagramm;
 
@@ -480,11 +495,17 @@ public class Xcos extends SwingScilabTab implements Tab {
 	((SwingScilabTab) this).setToolBar(toolBarToAdd);
     }
 
-	public XcosDiagram getDiagram() {
-		return diagram;
-	}
+    public static void closeSession() {
+    	for (int i = diagrams.size() - 1; i >= 0; i--) {
+    		diagrams.get(i).closeDiagram();
+    	}
+    	palette.getAsSimpleWindow().close();
+    }
+	//public XcosDiagram getDiagram() {
+	//	return diagram;
+	//}
 
-	public void setDiagram(XcosDiagram diagram) {
-		this.diagram = diagram;
-	}
+	//public void setDiagram(XcosDiagram diagram) {
+	//	this.diagram = diagram;
+	//}
 }
