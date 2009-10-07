@@ -976,20 +976,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void commentLines(int line_start, int line_end)
 	{
-		String comment_str = "//";
-		
-		for (int i = line_start; i <= line_end; i++)
+		try
 		{
-			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
-			
-			try
-			{
-				// Replacement
-				this.replace(start, 0, comment_str, null);
-			}
-			catch (BadLocationException e){
-				e.printStackTrace();
-			}
+			String comment_str = "//";
+			int start          = this.getDefaultRootElement().getElement(line_start).getStartOffset();
+			int end            = this.getDefaultRootElement().getElement(line_end).getEndOffset();
+			Pattern pattern    = Pattern.compile("^",Pattern.MULTILINE);
+			Matcher matcher    = pattern.matcher(this.getText(start,end-start));
+			this.replace(start,end-start,matcher.replaceAll(comment_str), null);	
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
 		}
 	}
 	
@@ -1161,21 +1158,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public int tabifyLines(int line_start, int line_end)
 	{
-		String tab = "\t";
-		int offset = tab.length();
+		String tab      = "\t";
+		int offset      = tab.length();
 		
-		for (int i = line_start; i <= line_end; i++)
-		{
-			int start = this.getDefaultRootElement().getElement(i).getStartOffset();
-			
-			try
-			{
-				// Replacement
-				this.replace(start, 0, tab, null);
-			}
-			catch (BadLocationException e){
-				e.printStackTrace();
-			}
+		int start       = this.getDefaultRootElement().getElement(line_start).getStartOffset();
+		int end         = this.getDefaultRootElement().getElement(line_end).getEndOffset();
+		
+		try{
+			Pattern pattern = Pattern.compile("^",Pattern.MULTILINE);
+			Matcher matcher = pattern.matcher(this.getText(start,end-start));
+			this.replace(start,end-start,matcher.replaceAll(tab), null);	
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
 		}
 		
 		return offset;
