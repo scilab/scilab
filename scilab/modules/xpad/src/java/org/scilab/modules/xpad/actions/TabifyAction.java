@@ -13,7 +13,6 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -22,10 +21,10 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class CommentAction extends DefaultAction {
+public class TabifyAction extends DefaultAction {
 
-	private CommentAction(Xpad editor) {
-		super(XpadMessages.COMMENT_SELECTION, editor);
+	private TabifyAction(Xpad editor) {
+		super(XpadMessages.TABIFY_SELECTION, editor);
 	}
 	
 	public void doAction()
@@ -38,31 +37,28 @@ public class CommentAction extends DefaultAction {
 		
 		if(position_start == position_end)
 		{
-			// No selection : comment the current line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLine(line_start);
-			getEditor().getTextPane().setCaretPosition(position_start+offset);
+			// No selection : Insert a Tab in the middle of the line
+			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertTab(position_start);
 		}
 		
 		else if( line_start == line_end )
 		{
-			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(position_start);
-			getEditor().getTextPane().setSelectionStart(position_start);
+			// A part of the line is selected : Insert a Tab at the beginning of the line
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).tabifyLine(line_start);
+			getEditor().getTextPane().setSelectionStart(position_start+offset);
 			getEditor().getTextPane().setSelectionEnd(position_end+offset);
 		}
 		
 		else
 		{
 			// several lines are selected
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLines(line_start, line_end);
-			position_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElement(line_end).getEndOffset();
-			
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end-1);
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).tabifyLines(line_start, line_end);
+			getEditor().getTextPane().setSelectionStart(position_start+offset);
+			getEditor().getTextPane().setSelectionEnd(position_end + offset*(line_end-line_start+1));
 		}
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.COMMENT_SELECTION , null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
+		return createMenu(XpadMessages.TABIFY_SELECTION , null, new TabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0));
+	}
 }
