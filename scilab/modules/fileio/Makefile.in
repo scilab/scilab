@@ -109,7 +109,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifileio_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/libs/libst/libscilibst.la
@@ -342,7 +342,6 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -548,7 +547,7 @@ INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 # pb of order $(top_builddir)/modules/shell/libscishell.la
 libscifileio_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/modules/string/libscistring.la \
-				$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
 				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 				$(top_builddir)/libs/libst/libscilibst.la

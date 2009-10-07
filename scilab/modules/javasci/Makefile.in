@@ -116,7 +116,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVASCI_TRUE@libjavasci_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 am__libjavasci_la_SOURCES_DIST = src/c/javasci_Scilab2.c \
 	src/c/javasci_globals.c src/c/javasci_SciAbstractArray.c \
@@ -306,7 +306,6 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -440,7 +439,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
 

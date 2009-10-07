@@ -110,7 +110,7 @@ libscifunctions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscifunctions_la-getmacroslist.lo \
 	libscifunctions_la-librarieslist.lo \
@@ -305,7 +305,6 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -436,7 +435,7 @@ INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
 libscifunctions_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libapi_scilab.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
