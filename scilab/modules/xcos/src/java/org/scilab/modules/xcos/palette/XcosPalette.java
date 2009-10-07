@@ -27,13 +27,6 @@ import javax.swing.TransferHandler;
 import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.Window;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -46,7 +39,7 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosPalette extends SwingScilabTab implements Tab {
+public class XcosPalette extends JScrollPane {
 
 	private static final int BLOCK_WIDTH = 150;
 	private static final int BLOCK_HEIGHT = 150;
@@ -62,23 +55,19 @@ public class XcosPalette extends SwingScilabTab implements Tab {
 
 	protected Color gradientColor = Color.LIGHT_GRAY;
 
-	public XcosPalette(String paletteName) {
-			super(paletteName);
-			
-			setCallback(null);
+	public XcosPalette() {
+			super(new JPanel());
+			panel = (JPanel) getViewport().getComponent(0);
 			setBackground(Color.WHITE);
 			
-			panel = new JPanel();
 			panel.setBackground(Color.WHITE);
 			panel.setLayout(new FlowLayout(FlowLayout.LEADING, HMARGIN, VMARGIN));
 			panel.setPreferredSize(new Dimension(DEFAULT_NB_COLS * (BLOCK_WIDTH + HMARGIN), 0));
 
-			JScrollPane jsp = new JScrollPane(panel);
-			setContentPane(jsp);
-			jsp.getVerticalScrollBar().setBlockIncrement(BLOCK_HEIGHT + VMARGIN);
-			jsp.getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
-			jsp.getVerticalScrollBar().setUnitIncrement(BLOCK_HEIGHT + VMARGIN);
-			jsp.getHorizontalScrollBar().setUnitIncrement(BLOCK_WIDTH + HMARGIN);
+			getVerticalScrollBar().setBlockIncrement(BLOCK_HEIGHT + VMARGIN);
+			getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
+			getVerticalScrollBar().setUnitIncrement(BLOCK_HEIGHT + VMARGIN);
+			getHorizontalScrollBar().setUnitIncrement(BLOCK_WIDTH + HMARGIN);
 
 			// Clears the current selection when the background is clicked
 			addMouseListener(new MouseListener()
@@ -434,26 +423,6 @@ public class XcosPalette extends SwingScilabTab implements Tab {
 		public void setEventsEnabled(boolean eventsEnabled)
 		{
 			eventSource.setEventsEnabled(eventsEnabled);
-		}
-
-		public SimpleTab getAsSimpleTab() {
-			return this;
-		}
-
-		public Window getParentWindow() {
-			return null;
-		}
-
-		public void addInfoBar(TextBox infoBarToAdd) {
-
-		}
-
-		public void addMenuBar(MenuBar menuBarToAdd) {
-
-		}
-
-		public void addToolBar(ToolBar toolBarToAdd) {
-
 		}
 
 	}

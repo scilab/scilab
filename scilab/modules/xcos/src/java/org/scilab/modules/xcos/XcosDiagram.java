@@ -81,7 +81,7 @@ public class XcosDiagram extends ScilabGraph {
 
     private Tab parentTab;
     //private Window palette;
-    private Window viewPort;
+    private Tab viewPort;
 
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
@@ -398,11 +398,11 @@ public class XcosDiagram extends ScilabGraph {
     	this.parentTab = parentTab;
     }
     
-    public void setViewPort(Window viewPort) {
+    public void setViewPort(Tab viewPort) {
     	this.viewPort = viewPort;
     }
 	
-    public Window getViewPort() {
+    public Tab getViewPort() {
     	return viewPort;
     }
 	
@@ -436,7 +436,7 @@ public class XcosDiagram extends ScilabGraph {
 			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
 			xcosWindow.removeTab(parentTab);
 			//palette.getAsSimpleWindow().close();
-			viewPort.getAsSimpleWindow().close();
+			viewPort.close();
 			Xcos.closeDiagram(this);
 		}
 	}
