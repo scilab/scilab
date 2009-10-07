@@ -782,7 +782,8 @@ public class BlockReader {
 	
 
 	// ipar
-	if (!(modelFields.get(14) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	// !! WARNING !! scifunc_block_m ipar = list(...)
+	if (!(modelFields.get(14) instanceof ScilabDouble) && !(modelFields.get(14) instanceof ScilabList)) { throw new WrongTypeException(); }
 	//	for (int i = 0; i < ((ScilabDouble)modelFields.get(14)).getHeight() ; i++){
 	//	    newBlock.getIntegerParameters().add((int) ((ScilabDouble)modelFields.get(14)).getRealPart()[i][0]); 
 	//	}
