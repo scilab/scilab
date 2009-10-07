@@ -221,7 +221,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
 	outlineTab.setCallback(null);
 	
-	((XcosDiagram) xcosDiagramm).setViewPort(outline);
+	((XcosDiagram) xcosDiagramm).setViewPort(outlineTab);
 	
 	// Creates the graph outline component
 	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
@@ -231,6 +231,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	((SwingScilabTab) outlineTab.getAsSimpleTab()).setContentPane(graphOutline);
 	outline.addTab(outlineTab);
 	outline.setVisible(false);
+	outlineTab.setVisible(false);
     }
 
     public static XcosPalette createPalette(String paletteName, String[] blocksNames) {

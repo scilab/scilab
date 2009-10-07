@@ -16,37 +16,63 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class ViewViewportAction extends DefaultAction {
+/**
+ * Viewport window visibility managemet 
+ * @author Vincent COUVERT
+ */
+public final class ViewViewportAction extends DefaultAction {
 	
+	private static final long serialVersionUID = 1L;
+
 	private static CheckBoxMenuItem menu;
 
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Scilab Graph
+	 */
 	private ViewViewportAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.VIEWPORT, scilabGraph);
 	}
 
+	/**
+	 * Create menu for the graph menu bar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
 	}
 	
+	/**
+	 * Create checkbox menu for the graph menu bar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the menu
+	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
 		menu =  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
 		return menu;
 	}
 	
+	/**
+	 * Action !
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
-		Window viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
-		if (viewPort.isVisible()) {
-			viewPort.setVisible(false);
-			menu.setChecked(false);
-		} else {
-			viewPort.setVisible(true);
-			menu.setChecked(true);
+		Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
+
+		boolean newState = !viewPort.isVisible();
+		// Hide/Show parent window if the viewport is the only tab
+		if (viewPort.getParentWindow().getNbDockedObjects() == 1) {
+			viewPort.getParentWindow().setVisible(newState);
 		}
-		
+		// Hide/Show viewport tab
+		viewPort.setVisible(newState);
+		// Check/Uncheck the menu
+		menu.setChecked(newState);
 	}
 	
 }
