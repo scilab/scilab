@@ -64,6 +64,9 @@ function newobj = neldermead_new ()
     "tolabsolutevariance"
     "tolrelativevariance"
     "variancesimplex0"
+    "mymethod"
+    "myterminate"
+    "myterminateflag"
     ]);
 
   newobj.optbase = optimbase_new();
@@ -176,6 +179,11 @@ function newobj = neldermead_new ()
   newobj.tolrelativevariance = %eps;
   // The variance of the initial simplex
   newobj.variancesimplex0 = 0.0;
+  // User-defined algorithm
+  newobj.mymethod = []
+  // User-defined terimination criteria
+  newobj.myterminate = []
+  // Flag to enable the user-defined terimination criteria
+  newobj.myterminateflag = %f
 endfunction
-
 
