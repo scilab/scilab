@@ -11,7 +11,7 @@
 		<add as="strokeColor" value="white"/>
 	</add>
 	<add as="Icon" extend="block">
-		<!--<add as="shape" value="image"/>-->
+		<add as="shape" value="image"/>
 	</add>
 
 	

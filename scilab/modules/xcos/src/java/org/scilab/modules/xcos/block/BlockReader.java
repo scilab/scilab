@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.block;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,7 +102,7 @@ public class BlockReader {
     				String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
     				File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
     				if (tmp.exists()) {
-    					currentBlock.setStyle("Icon;image=file://" + imagesPath + currentBlock.getValue() + ".gif");
+    					currentBlock.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
     					currentBlock.setValue("");
     				}
     				blocks.add(currentBlock);
@@ -110,6 +111,9 @@ public class BlockReader {
     				minY = Math.min(minY, currentBlock.getGeometry().getY());
     			}
     		} catch (BlockReaderException e) {
+    			WARNING(" Fail reading Block " + (i + 1));
+    			e.printStackTrace();
+    		}catch(MalformedURLException e){
     			WARNING(" Fail reading Block " + (i + 1));
     			e.printStackTrace();
     		}

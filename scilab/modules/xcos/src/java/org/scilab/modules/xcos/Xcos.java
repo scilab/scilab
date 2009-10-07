@@ -14,6 +14,7 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -243,7 +244,7 @@ public class Xcos extends SwingScilabTab implements Tab {
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-    		
+    		try{
     		// Search the bloc in global hashmap
     		theBloc = allBlocks.get(blocksNames[kBlock]);
     		
@@ -255,11 +256,16 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     		File tmp = new File(imagesPath + blocksNames[kBlock] + ".gif");
     		if (tmp.exists()) {
-    			theBloc.setStyle("Icon;image=file://"+imagesPath + blocksNames[kBlock] + ".gif");
-    			//theBloc.setValue("");
+    			System.out.println(tmp.toURI().toURL().toString());
+    			theBloc.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
+    			theBloc.setValue("");
     		}
     		
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
+    		}catch(MalformedURLException e){
+    			System.err.println(" Fail reading Block " + (kBlock + 1));
+    			e.printStackTrace();    			
+    		}
     	}
 
     	return palette;
