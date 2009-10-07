@@ -7,6 +7,7 @@ Xcos:
 
 TODO: add an explanation about xscos
 
+
 ATOMS:
 ======
 
@@ -20,6 +21,9 @@ TODO: add an explanation about xpad
 
 Introduction of new binaries:
 =============================
+
+The goal of these changes is to improve the capabilities to use Scilab
+in different environnements and use cases.
 
 * Scilab 5.2 introduces new binaries in the distribution:
 
