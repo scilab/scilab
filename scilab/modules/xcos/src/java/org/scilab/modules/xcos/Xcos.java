@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
@@ -89,110 +90,121 @@ import com.mxgraph.swing.mxGraphOutline;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
-    private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
-    private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
-    private static Window palette;
-    
-    /** Palette creation */
-    static {
-    	
-    	// Add a default Java bloc in HashMap
-    	allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
+	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
+	private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
+	private static Tab palette;
 
-    	palette = ScilabWindow.createWindow();
-    	
-    	/** Create SOURCES palette */
-    	String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
-    			"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
-    			"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c"};
-    	palette.addTab(createPalette(XcosMessages.SOURCES_PAL, sourcesBlocksNames));
+	/** Palette creation */
+	static {
+		Thread t = new Thread() {
+			public void run() {
+				// Add a default Java bloc in HashMap
+				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 
-    	palette.setVisible(true);
+				Window palWin = ScilabWindow.createWindow();
+				palWin.setVisible(true);
+				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
+				palette.setCallback(null);
+				palWin.addTab(palette);
 
-    	/** Create CONTINUOUS palette */
-    	String[] continuousBlocksNames = {"DERIV", "INTEGRAL_m", "CLSS", "CLR", "TIME_DELAY", "TCLSS", "VARIABLE_DELAY",
-    			"PID", "INTEGRAL_f"};
-    	palette.addTab(createPalette(XcosMessages.CONTINUOUS_PAL, continuousBlocksNames));
+				JTabbedPane allpalettes = new JTabbedPane();
+				((SwingScilabTab) palette.getAsSimpleTab()).setContentPane(allpalettes);
 
-    	/** Create DISCONTINUOUS palette */
-    	String[] discontinuousBlocksNames = {"SATURATION", "DEADBAND", "HYSTHERESIS", "BACKLASH", "RATELIMITER", "REGISTER",
-    			"DELAYV_f"};
-    	palette.addTab(createPalette(XcosMessages.DISCONTINUOUS_PAL, discontinuousBlocksNames));
+				/** Create SOURCES palette */
+				String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
+						"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
+						"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c"};
+				allpalettes.addTab(XcosMessages.SOURCES_PAL, createPalette(sourcesBlocksNames));
 
-    	/** Create LOOKUP TABLES palette */
-    	String[] lookupBlocksNames = {"LOOKUP_f", "INTRP2BLK_f", "INTRPLBLK_f"};
-    	palette.addTab(createPalette(XcosMessages.LOOKUPTABLES_PAL, lookupBlocksNames));
+				palette.setVisible(true);
 
-    	/** Create SIGNAL PROCESSING palette */
-    	String[] signalBlocksNames = {"MCLOCK_f", "QUANT_f", "MFCLCK_f", "SAMPHOLD_m"};
-    	palette.addTab(createPalette(XcosMessages.SIGNALPROCESSING_PAL, signalBlocksNames));
+				/** Create CONTINUOUS palette */
+				String[] continuousBlocksNames = {"DERIV", "INTEGRAL_m", "CLSS", "CLR", "TIME_DELAY", "TCLSS", "VARIABLE_DELAY",
+						"PID", "INTEGRAL_f"};
+				allpalettes.addTab(XcosMessages.CONTINUOUS_PAL, createPalette(continuousBlocksNames));
 
-    	/** Create THRESHOLD palette */
-    	String[] thresholdBlocksNames = {"NEGTOPOS_f", "POSTONEG_f", "ZCROSS_f", "GENERAL_f","CLINDUMMY_f"};
-    	palette.addTab(createPalette(XcosMessages.THRESHOLD_PAL, thresholdBlocksNames));
+				/** Create DISCONTINUOUS palette */
+				String[] discontinuousBlocksNames = {"SATURATION", "DEADBAND", "HYSTHERESIS", "BACKLASH", "RATELIMITER", "REGISTER",
+				"DELAYV_f"};
+				allpalettes.addTab(XcosMessages.DISCONTINUOUS_PAL, createPalette(discontinuousBlocksNames));
 
-    	/** Create MATH OPERATIONS palette */
-    	String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
-    			"MATDIV", "EXPBLK_m", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
-    			"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
-    	palette.addTab(createPalette(XcosMessages.MATHSOPS_PAL, mathsBlocksNames));
+				/** Create LOOKUP TABLES palette */
+				String[] lookupBlocksNames = {"LOOKUP_f", "INTRP2BLK_f", "INTRPLBLK_f"};
+				allpalettes.addTab(XcosMessages.LOOKUPTABLES_PAL, createPalette(lookupBlocksNames));
 
-    	/** Create MODELICA palette */
-    	String[] modelicaBlocksNames = {"MBLOCK", "FROMMO", "GOTOMO", "GotoTagVisibilityMO", "OUTIMPL_f"};
-    	palette.addTab(createPalette(XcosMessages.MODELICA_PAL, modelicaBlocksNames));
+				/** Create SIGNAL PROCESSING palette */
+				String[] signalBlocksNames = {"MCLOCK_f", "QUANT_f", "MFCLCK_f", "SAMPHOLD_m"};
+				allpalettes.addTab(XcosMessages.SIGNALPROCESSING_PAL, createPalette(signalBlocksNames));
 
-    	/** Create INTEGER palette */
-    	String[] integerBlocksNames = {"BITCLEAR", "BITSET", "CONVERT", "EXTRACTBITS", "INTMUL", "SHIFT", "LOGIC",
-    			"DLATCH", "DFLIPFLOP", "JKFLIPFLOP", "SRFLIPFLOP"};
-    	palette.addTab(createPalette(XcosMessages.INTEGER_PAL, integerBlocksNames));
-    	
-    	/** Create MATRIX palette */
-    	String[] matrixBlocksNames = {"CUMSUM", "SQRT", "MATZREIM", "SUBMAT", "MATBKSL", "MATINV", "MATCATV", "MATSUM", 
-    			"RICC", "ROOTCOEF", "MATCATH", "MATLU", "MATDIV", "MATZCONJ", "MATMAGPHI", "EXTRACT", "MATEXPM", 
-    			"MATDET", "MATPINV", "EXTTRI", "MATMUL", "MATTRAN", "MATSING", "MATRESH", "MATDIAG", "MATEIG"};
-    	palette.addTab(createPalette(XcosMessages.MATRIX_PAL, matrixBlocksNames));
-    	
-    	/** Create SINKS palette */
-    	String[] sinksBlocksNames = {"CFSCOPE", "CANIMXY", "CSCOPE", "CSCOPXY", "TOWS_c", "CMAT3D", "CSCOPXY3D", "CANIMXY3D",
-    			"CMATVIEW", "CMSCOPE", "AFFICH_m", "TRASH_f"};
-    	palette.addTab(createPalette(XcosMessages.SINKS_PAL, sinksBlocksNames));
-    	
-      	/** Create PORT ACTION palette */
-    	String[] portactionBlocksNames = {"Extract_Activation", "IFTHEL_f", "ESELECT_f", "EDGE_TRIGGER"};
-    	palette.addTab(createPalette(XcosMessages.PORTACTION_PAL, portactionBlocksNames));
-    	
-    	/** Create DISCRETE palette */
-    	String[] discreteBlocksNames = {"DLRADAPT_f", "DLR", "DLSS", "DELAY_f", "DOLLAR_f", "DELAYV_f"};
-    	palette.addTab(createPalette(XcosMessages.DISCRETE_PAL, discreteBlocksNames));
-    	
-      	/** Create EVENTS palette */
-    	String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "CLKGotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
-    			"CLKSOMV_f", "CLOCK_c", "EVTGEN_f", "EVTVARDLY", "M_freq", "ANDBLK", "HALT_f", "freq_div", "ANDLOG_f",
-    			"EVTDLY_c", "IFTHEL_f", "CEVENTSCOPE"};
-    	palette.addTab(createPalette(XcosMessages.EVENTS_PAL, eventsBlocksNames));
-    	
-    	/** Create SIGNAL ROUTING palette */
-    	String[] routingBlocksNames = {"ISELECT_m", "RELAY_f", "WRITEAU_f", "SELECT_m", "EXTRACTOR", "M_SWITCH", "SWITCH_f",
-    			"SWITCH2_m", "NRMSOM_f", "READC_f", "WRITEC_f", "GOTO", "GotoTagVisibility", "FROM", "RFILE_f", "WFILE_f",
-    			"ANDBLK", "MUX", "DEMUX"};
-    	palette.addTab(createPalette(XcosMessages.SIGNALROUTING_PAL, routingBlocksNames));
-    	
-    	/** Create COMMONLY USED BLOCKS palette */
-    	String[] commonBlocksNames = {"DEMUX", "MUX", "NRMSOM_f", "OUT_f", "IN_f", "RELATIONALOP", "PRODUCT", "BIGSOM_f",
-    			"DOLLAR_f", "INTEGRAL_f", "CONST_m", "SATURATION", "CMSCOPE", "CSCOPXY", "ANDBLK", "LOGICAL_OP", "SWITCH2_m",
-    			"CONVERT", "TEXT_f"};
-    	palette.addTab(createPalette(XcosMessages.COMMONUSED_PAL, commonBlocksNames));
-    	
-    	/** Create USER-DEFINED FUNCTIONS palette */
-    	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
-    			"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
-    	palette.addTab(createPalette(XcosMessages.USERDEFINEDFUNCTIONS_PAL, userdefinedBlocksNames));
+				/** Create THRESHOLD palette */
+				String[] thresholdBlocksNames = {"NEGTOPOS_f", "POSTONEG_f", "ZCROSS_f", "GENERAL_f","CLINDUMMY_f"};
+				allpalettes.addTab(XcosMessages.THRESHOLD_PAL, createPalette(thresholdBlocksNames));
 
-    	/** Create DEMO-BLOCKS palette */
-    	String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
-    	palette.addTab(createPalette(XcosMessages.DEMOBLOCKS_PAL, demoBlocksNames));
-    }
-    
+				/** Create MATH OPERATIONS palette */
+				String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
+						"MATDIV", "EXPBLK_m", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
+						"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
+				allpalettes.addTab(XcosMessages.MATHSOPS_PAL, createPalette(mathsBlocksNames));
+
+				/** Create MODELICA palette */
+				String[] modelicaBlocksNames = {"MBLOCK", "FROMMO", "GOTOMO", "GotoTagVisibilityMO", "OUTIMPL_f"};
+				allpalettes.addTab(XcosMessages.MODELICA_PAL, createPalette(modelicaBlocksNames));
+
+				/** Create INTEGER palette */
+				String[] integerBlocksNames = {"BITCLEAR", "BITSET", "CONVERT", "EXTRACTBITS", "INTMUL", "SHIFT", "LOGIC",
+						"DLATCH", "DFLIPFLOP", "JKFLIPFLOP", "SRFLIPFLOP"};
+				allpalettes.addTab(XcosMessages.INTEGER_PAL, createPalette(integerBlocksNames));
+
+				/** Create MATRIX palette */
+				String[] matrixBlocksNames = {"CUMSUM", "SQRT", "MATZREIM", "SUBMAT", "MATBKSL", "MATINV", "MATCATV", "MATSUM", 
+						"RICC", "ROOTCOEF", "MATCATH", "MATLU", "MATDIV", "MATZCONJ", "MATMAGPHI", "EXTRACT", "MATEXPM", 
+						"MATDET", "MATPINV", "EXTTRI", "MATMUL", "MATTRAN", "MATSING", "MATRESH", "MATDIAG", "MATEIG"};
+				allpalettes.addTab(XcosMessages.MATRIX_PAL, createPalette(matrixBlocksNames));
+
+				/** Create SINKS palette */
+				String[] sinksBlocksNames = {"CFSCOPE", "CANIMXY", "CSCOPE", "CSCOPXY", "TOWS_c", "CMAT3D", "CSCOPXY3D", "CANIMXY3D",
+						"CMATVIEW", "CMSCOPE", "AFFICH_m", "TRASH_f"};
+				allpalettes.addTab(XcosMessages.SINKS_PAL, createPalette(sinksBlocksNames));
+
+				/** Create PORT ACTION palette */
+				String[] portactionBlocksNames = {"Extract_Activation", "IFTHEL_f", "ESELECT_f", "EDGE_TRIGGER"};
+				allpalettes.add(XcosMessages.PORTACTION_PAL, createPalette(portactionBlocksNames));
+
+				/** Create DISCRETE palette */
+				String[] discreteBlocksNames = {"DLRADAPT_f", "DLR", "DLSS", "DELAY_f", "DOLLAR_f", "DELAYV_f"};
+				allpalettes.addTab(XcosMessages.DISCRETE_PAL, createPalette(discreteBlocksNames));
+
+				/** Create EVENTS palette */
+				String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "CLKGotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
+						"CLKSOMV_f", "CLOCK_c", "EVTGEN_f", "EVTVARDLY", "M_freq", "ANDBLK", "HALT_f", "freq_div", "ANDLOG_f",
+						"EVTDLY_c", "IFTHEL_f", "CEVENTSCOPE"};
+				allpalettes.addTab(XcosMessages.EVENTS_PAL, createPalette(eventsBlocksNames));
+
+				/** Create SIGNAL ROUTING palette */
+				String[] routingBlocksNames = {"ISELECT_m", "RELAY_f", "WRITEAU_f", "SELECT_m", "EXTRACTOR", "M_SWITCH", "SWITCH_f",
+						"SWITCH2_m", "NRMSOM_f", "READC_f", "WRITEC_f", "GOTO", "GotoTagVisibility", "FROM", "RFILE_f", "WFILE_f",
+						"ANDBLK", "MUX", "DEMUX"};
+				allpalettes.addTab(XcosMessages.SIGNALROUTING_PAL, createPalette(routingBlocksNames));
+
+				/** Create COMMONLY USED BLOCKS palette */
+				String[] commonBlocksNames = {"DEMUX", "MUX", "NRMSOM_f", "OUT_f", "IN_f", "RELATIONALOP", "PRODUCT", "BIGSOM_f",
+						"DOLLAR_f", "INTEGRAL_f", "CONST_m", "SATURATION", "CMSCOPE", "CSCOPXY", "ANDBLK", "LOGICAL_OP", "SWITCH2_m",
+						"CONVERT", "TEXT_f"};
+				allpalettes.addTab(XcosMessages.COMMONUSED_PAL, createPalette(commonBlocksNames));
+
+				/** Create USER-DEFINED FUNCTIONS palette */
+				String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
+						"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
+				allpalettes.addTab(XcosMessages.USERDEFINEDFUNCTIONS_PAL, createPalette(userdefinedBlocksNames));
+
+				/** Create DEMO-BLOCKS palette */
+				String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
+				allpalettes.addTab(XcosMessages.DEMOBLOCKS_PAL, createPalette(demoBlocksNames));
+			}
+		};
+		t.start();
+	}
+
     
     /**
      * @param args
@@ -234,13 +246,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	outlineTab.setVisible(false);
     }
 
-    public static XcosPalette createPalette(String paletteName, String[] blocksNames) {
+    public static XcosPalette createPalette(String[] blocksNames) {
  
     	String blocksPath = System.getenv("SCI")+ "/modules/scicos_blocks/blocks/";
     	String imagesPath = System.getenv("SCI")+ "/modules/xcos/images/blocks/";
     	String palImagesPath = System.getenv("SCI")+ "/modules/scicos/help/images/";
 
-    	XcosPalette palette = new XcosPalette(paletteName);
+    	XcosPalette palette = new XcosPalette();
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
@@ -336,7 +348,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		view.add(FitDiagramToViewAction.createMenu(scilabGraph));
 		view.add(NormalViewAction.createMenu(scilabGraph));
 		view.addSeparator();
-		view.add(ViewPaletteBrowserAction.createMenu(scilabGraph));
+		view.add(ViewPaletteBrowserAction.createCheckBoxMenu(scilabGraph));
 		view.add(ViewDiagramBrowserAction.createMenu(scilabGraph));
 		view.add(ViewViewportAction.createCheckBoxMenu(scilabGraph));
 		view.add(ViewGetinfosAction.createMenu(scilabGraph));
@@ -501,7 +513,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     	for (int i = diagrams.size() - 1; i >= 0; i--) {
     		diagrams.get(i).closeDiagram();
     	}
-    	palette.getAsSimpleWindow().close();
+    	palette.close();
     }
 	//public XcosDiagram getDiagram() {
 	//	return diagram;
@@ -510,4 +522,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	//public void setDiagram(XcosDiagram diagram) {
 	//	this.diagram = diagram;
 	//}
+    
+    public static Tab getPalettes() {
+    	return palette;
+    }
 }

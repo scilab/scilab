@@ -15,13 +15,12 @@ package org.scilab.modules.xcos.actions;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Viewport window visibility managemet 
+ * Viewport tab visibility managemet 
  * @author Vincent COUVERT
  */
 public final class ViewViewportAction extends DefaultAction {
@@ -38,15 +37,6 @@ public final class ViewViewportAction extends DefaultAction {
 		super(XcosMessages.VIEWPORT, scilabGraph);
 	}
 
-	/**
-	 * Create menu for the graph menu bar
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
-	}
-	
 	/**
 	 * Create checkbox menu for the graph menu bar
 	 * @param scilabGraph associated Scilab Graph
