@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
+
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -54,128 +57,152 @@ public class BlockReader {
 	System.err.println("[DEBUG] BlockReader : "+msg);
     }
 
-    public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
-	ScilabMList data = new ScilabMList();
+    public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
 
-	HashMap<String, Object> result = new HashMap<String, Object>();
-	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
+    	try {
+			if (!isAValidScs_mStructure(data)) {
+				WARNING("Invalid data structure !!");
+			}
+		} catch (WrongTypeException e2) {
+			WARNING("Invalid data structure !!");
+			e2.printStackTrace();
+		}
 
-	List<BasicBlock> blocks = new ArrayList<BasicBlock>();
-	List<BasicPort[]> links = new ArrayList<BasicPort[]>();
-	double minX = Double.MAX_VALUE;
-	double minY = Double.MAX_VALUE;
+    	HashMap<String, Object> result = new HashMap<String, Object>();
+    	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
 
-	try {
-	    int fileId = H5Read.openFile(hdf5File);
-	    if (fileId == -1) { throw new WrongStructureException(); }
-	    H5Read.readDataFromFile(fileId, data);
-	    H5Read.closeFile(fileId);
-	    if(!isAValidScs_mStructure(data)) { throw new WrongStructureException(); }
-	    int nbObjs = getNbObjs(data);
+    	List<BasicBlock> blocks = new ArrayList<BasicBlock>();
+    	List<BasicPort[]> links = new ArrayList<BasicPort[]>();
 
-	    // Read diagrams properties
-	    HashMap<String, Object> properties = fillDiagrammProperties((ScilabTList) data.get(1));
-	    result.put("Properties", properties);
-	    
-	    // Read all Blocks
-	    for (int i = 0 ; i < nbObjs ; ++i) {
+    	double minX = Double.MAX_VALUE;
+    	double minY = Double.MAX_VALUE;
+
+    	int nbObjs = getNbObjs(data);
+
+    	// Read diagrams properties
+    	HashMap<String, Object> properties = null;
 		try {
-		    if(isBlock(data, i)) {
-			INFO("Reading Block "+ i);
-			BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
-			currentBlock.setOrdering(i);
-			indexedBlock.put(i + 1, currentBlock);
-	    	String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
-	    	File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
-	    	if (tmp.exists()) {
-	    		currentBlock.setStyle("Icon;image=file://" + imagesPath + currentBlock.getValue() + ".gif");
-	    		currentBlock.setValue("");
-	    	}
-			blocks.add(currentBlock);
-			INFO("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
-			minX = Math.min(minX, currentBlock.getGeometry().getX());
-			minY = Math.min(minY, currentBlock.getGeometry().getY());
-		    }
+			properties = fillDiagrammProperties((ScilabTList) data.get(1));
+		} catch (WrongStructureException e1) {
+			return result;
+		} catch (WrongTypeException e1) {
+			return result;
 		}
-		catch (BlockReaderException e) {
-		    WARNING(" Fail reading Block " + (i + 1));
-		    e.printStackTrace();
-		}
-	    }
-	    for (int i = 0 ; i < blocks.size() ; ++i) {
-		blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX + 20));
-		blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY + 20));
-	    }
-	    result.put("Blocks", blocks);
+    	result.put("Properties", properties);
 
-	    // Read all Links
-	    for (int i = 0 ; i < nbObjs ; ++i) {
-		if(isLink(data, i)) {
-		    try {
-			INFO("Reading Link " + (i + 1));
-			ScilabMList link = getLinkAt(data, i);
-			BasicPort startingPort = null;
-			BasicPort endingPort = null;
-			
-			int startBlockIndex = getStartBlockIndex(link);
-			int startPortIndex = getStartPortIndex(link);
-			PortType startPortType = getStartPortType(link);
-			int endBlockIndex = getEndBlockIndex(link);
-			int endPortIndex = getEndPortIndex(link);
-			PortType endPortType = getEndPortType(link);
+    	// Read all Blocks
+    	for (int i = 0; i < nbObjs; ++i) {
+    		try {
+    			if (isBlock(data, i)) {
+    				INFO("Reading Block " + i);
+    				BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
+    				currentBlock.setOrdering(i);
+    				indexedBlock.put(i + 1, currentBlock);
+    				String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
+    				File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
+    				if (tmp.exists()) {
+    					currentBlock.setStyle("Icon;image=file://" + imagesPath + currentBlock.getValue() + ".gif");
+    					currentBlock.setValue("");
+    				}
+    				blocks.add(currentBlock);
+    				INFO("Block geometry " + currentBlock.getGeometry().getX() + " , " + currentBlock.getGeometry().getY());
+    				minX = Math.min(minX, currentBlock.getGeometry().getX());
+    				minY = Math.min(minY, currentBlock.getGeometry().getY());
+    			}
+    		} catch (BlockReaderException e) {
+    			WARNING(" Fail reading Block " + (i + 1));
+    			e.printStackTrace();
+    		}
+    	}
+    	for (int i = 0; i < blocks.size(); ++i) {
+    		blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX + 20));
+    		blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY + 20));
+    	}
+    	result.put("Blocks", blocks);
 
-			DEBUG("Start : ["+startBlockIndex+", "+startPortIndex+", "+startPortType+"]");
-			DEBUG("End : ["+endBlockIndex+", "+endPortIndex+", "+endPortType+"]");
-			switch (startPortType) {
-			case INPUT:
-			    startingPort = indexedBlock.get(startBlockIndex).getAllInputPorts().get(startPortIndex - 1);
-			    break;
-			case OUTPUT:
-			    startingPort = indexedBlock.get(startBlockIndex).getAllOutputPorts().get(startPortIndex - 1);
-			    break;
-			case COMMAND:
-			    startingPort = indexedBlock.get(startBlockIndex).getAllCommandPorts().get(startPortIndex - 1);
-			    break;
-			case CONTROL:
-			    startingPort = indexedBlock.get(startBlockIndex).getAllControlPorts().get(startPortIndex - 1);
-			    break;
-			}
-			
-			switch (endPortType) {
-			case INPUT:
-			    endingPort = indexedBlock.get(endBlockIndex).getAllInputPorts().get(endPortIndex - 1);
-			    break;
-			case OUTPUT:
-			    endingPort = indexedBlock.get(endBlockIndex).getAllOutputPorts().get(endPortIndex - 1);
-			    break;
-			case COMMAND:
-			    endingPort = indexedBlock.get(endBlockIndex).getAllCommandPorts().get(endPortIndex - 1);
-			    break;
-			case CONTROL:
-			    endingPort = indexedBlock.get(endBlockIndex).getAllControlPorts().get(endPortIndex - 1);
-			    break;
-			}
-			BasicPort[] startAndEnd = {startingPort, endingPort};
-			links.add(startAndEnd);
-		    }
-		    catch (BlockReaderException e) {
-			WARNING(" Fail reading Link "+(i+1));
-			e.printStackTrace();
-		    }
-		}
-	    }
-	    result.put("Links", links);
+    	// Read all Links
+    	for (int i = 0; i < nbObjs; ++i) {
+    		if (isLink(data, i)) {
+    			try {
+    				INFO("Reading Link " + (i + 1));
+    				ScilabMList link = getLinkAt(data, i);
+    				BasicPort startingPort = null;
+    				BasicPort endingPort = null;
 
-	    return result;
-	}
-	catch (Exception e) {
-	    e.printStackTrace();
-	}
-	finally {
-	    result.put("Blocks", blocks);
+    				int startBlockIndex = getStartBlockIndex(link);
+    				int startPortIndex = getStartPortIndex(link);
+    				PortType startPortType = getStartPortType(link);
+    				int endBlockIndex = getEndBlockIndex(link);
+    				int endPortIndex = getEndPortIndex(link);
+    				PortType endPortType = getEndPortType(link);
 
-	    return result;
-	}
+    				DEBUG("Start : [" + startBlockIndex + ", " + startPortIndex + ", " + startPortType + "]");
+    				DEBUG("End : [" + endBlockIndex + ", " + endPortIndex + ", " + endPortType + "]");
+    				switch (startPortType) {
+    				case INPUT:
+    					startingPort = indexedBlock.get(startBlockIndex).getAllInputPorts().get(startPortIndex - 1);
+    					break;
+    				case OUTPUT:
+    					startingPort = indexedBlock.get(startBlockIndex).getAllOutputPorts().get(startPortIndex - 1);
+    					break;
+    				case COMMAND:
+    					startingPort = indexedBlock.get(startBlockIndex).getAllCommandPorts().get(startPortIndex - 1);
+    					break;
+    				case CONTROL:
+    					startingPort = indexedBlock.get(startBlockIndex).getAllControlPorts().get(startPortIndex - 1);
+    					break;
+    				}
+
+    				switch (endPortType) {
+    				case INPUT:
+    					endingPort = indexedBlock.get(endBlockIndex).getAllInputPorts().get(endPortIndex - 1);
+    					break;
+    				case OUTPUT:
+    					endingPort = indexedBlock.get(endBlockIndex).getAllOutputPorts().get(endPortIndex - 1);
+    					break;
+    				case COMMAND:
+    					endingPort = indexedBlock.get(endBlockIndex).getAllCommandPorts().get(endPortIndex - 1);
+    					break;
+    				case CONTROL:
+    					endingPort = indexedBlock.get(endBlockIndex).getAllControlPorts().get(endPortIndex - 1);
+    					break;
+    				}
+    				BasicPort[] startAndEnd = {startingPort, endingPort};
+    				links.add(startAndEnd);
+    			} catch (BlockReaderException e) {
+    				WARNING(" Fail reading Link " + (i + 1));
+    				e.printStackTrace();
+    			}
+    		}
+    	}
+    	result.put("Links", links);
+    	
+    	result.put("Blocks", blocks);
+
+    	return result;
+    }
+    
+    public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
+    	ScilabMList data = new ScilabMList();
+
+    	HashMap<String, Object> result = new HashMap<String, Object>();
+
+    	try {
+    		int fileId = H5Read.openFile(hdf5File);
+    		if (fileId == -1) { 
+    			throw new WrongStructureException();
+    		}
+    		H5Read.readDataFromFile(fileId, data);
+    		H5Read.closeFile(fileId);
+    		
+        	return convertMListToDiagram(data);
+    	} catch (HDF5LibraryException e) {
+    		return result;
+    	} catch (WrongStructureException e) {
+    		return result;
+    	} catch (HDF5Exception e) {
+    		return result;
+    	}
     }
 
     private static int getStartBlockIndex(ScilabMList link) throws WrongTypeException {

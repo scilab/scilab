@@ -31,6 +31,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
@@ -508,28 +509,34 @@ public class XcosDiagram extends ScilabGraph {
 		return new ExplicitLink();
 	}
 	
-	public void loadDiagram(String fileToLoad) {
-		// TODO factorization !!!
-		System.out.println("Openning to file : {" + fileToLoad + "}");
-
-		HashMap<String, Object> diagramm = BlockReader.readDiagramFromFile(fileToLoad);
-
+	public void openSuperBlockDiagram(ScilabMList diagramContents) {
+		
+		HashMap<String, Object> diagramm = null;
+		
+		diagramm = BlockReader.convertMListToDiagram(diagramContents);
+		
+		openDiagram(diagramm);
+	}
+	
+	public void openDiagram(HashMap<String, Object> diagramm) {
 		List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
 		List<BasicPort[]> allLinks = (List) diagramm.get("Links");
 		HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 		
-		this.setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
-		this.setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
-		this.setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
-		this.setToleranceOnTime((Double) properties.get("toleranceOnTime"));
-		this.setMaxIntegrationTimeinterval((Double) properties.get("maxIntegrationTimeinterval"));
-		this.setRealTimeScaling((Double) properties.get("realTimeScaling"));
-		this.setSolver((Double) properties.get("solver"));
-		this.setMaximumStepSize((Double) properties.get("maximumStepSize"));
+		XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+		
+		xcosDiagram.setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
+		xcosDiagram.setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
+		xcosDiagram.setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
+		xcosDiagram.setToleranceOnTime((Double) properties.get("toleranceOnTime"));
+		xcosDiagram.setMaxIntegrationTimeinterval((Double) properties.get("maxIntegrationTimeinterval"));
+		xcosDiagram.setRealTimeScaling((Double) properties.get("realTimeScaling"));
+		xcosDiagram.setSolver((Double) properties.get("solver"));
+		xcosDiagram.setMaximumStepSize((Double) properties.get("maximumStepSize"));
 		
 		getModel().beginUpdate();
 		for (int i = 0; i < allBlocks.size(); ++i) {
-			this.addCell(allBlocks.get(i));
+			xcosDiagram.addCell(allBlocks.get(i));
 		}
 
 		for (int i = 0; i < allLinks.size(); ++i) {
@@ -537,20 +544,26 @@ public class XcosDiagram extends ScilabGraph {
 			link.setGeometry(new mxGeometry(0,0,80,80));
 			link.setSource(allLinks.get(i)[0]);
 			link.setTarget(allLinks.get(i)[1]);
-			this.addCell(link);
+			xcosDiagram.addCell(link);
 		}
 		getModel().endUpdate();
 		
 		//this.setTitle(fileToLoad);
 		//this.getParentTab().setName(fileToLoad);
 		
-		this.setTitle((String) properties.get("title"));
-		this.getParentTab().setName((String) properties.get("title"));
+		xcosDiagram.setTitle((String) properties.get("title"));
+		xcosDiagram.getParentTab().setName((String) properties.get("title"));
 		
 		// Clear all undo events in Undo Manager
 		undoManager.reset();
-		// TODO factorization !!!
-		
+	}
+	
+	public void loadDiagram(String fileToLoad) {
+		System.out.println("Openning to file : {" + fileToLoad + "}");
+
+		HashMap<String, Object> diagramm = BlockReader.readDiagramFromFile(fileToLoad);
+
+		openDiagram(diagramm);
 	}
 	
     /**
