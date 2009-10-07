@@ -40,9 +40,9 @@ public class SetContextAction extends DefaultAction {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private XcosDiagram diagram;
+	private static XcosDiagram diagram;
 	private static JFrame mainFrame;
-	private JTextArea contextArea;
+	private static JTextArea contextArea;
 	
 	/**
 	 * Constructor
@@ -53,16 +53,18 @@ public class SetContextAction extends DefaultAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		setContextBox(e);
+		diagram = (XcosDiagram)getGraph(e);
+		setContextBox(diagram);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SET_CONTEXT, null, new SetContextAction(scilabGraph), null);
 	}
 	
-	public void setContextBox(ActionEvent e){
-		diagram = (XcosDiagram)getGraph(e);
-
+	public static void setContextBox(XcosDiagram diagramArgu){
+		
+		diagram = diagramArgu;
+		
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(new GridBagLayout());

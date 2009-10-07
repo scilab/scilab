@@ -122,15 +122,18 @@ public class SetupAction extends DefaultAction {
 		maxStepSizeSpinner.setModel(spinnerModel);
 		maxStepSizeSpinner.setEditor(new JSpinner.NumberEditor(maxStepSizeSpinner,"0"));//0.####E0
 
-		JButton cancelButton = new JButton("Cancel");
-		JButton okButton = new JButton("Ok");
+		JButton cancelButton = new JButton(XcosMessages.CANCEL);
+		JButton okButton = new JButton(XcosMessages.OK);
 		JButton defaultButton = new JButton("Default");
+		JButton setContextButton = new JButton(XcosMessages.SET_CONTEXT);
 		okButton.setPreferredSize(cancelButton.getPreferredSize());
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.gridx = gbc.gridy = 0;
-		gbc.gridheight = gbc.gridwidth = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		gbc.insets = new Insets(0, 10, 0, 0);
 
 
@@ -138,7 +141,8 @@ public class SetupAction extends DefaultAction {
 
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		gbc.gridheight = gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(0, 10, 0, 0);
 
@@ -165,6 +169,9 @@ public class SetupAction extends DefaultAction {
 
 		gbc.gridy = 11;
 		mainFrame.add( maxStepSizeLabel , gbc);
+		
+		gbc.gridy = 12;
+		mainFrame.add( setContextButton , gbc);
 
 
 		gbc.gridx = 1;
@@ -197,18 +204,19 @@ public class SetupAction extends DefaultAction {
 
 
 		gbc.gridx = 1;
-		gbc.gridy = 13;
+		gbc.gridy = 14;
 		gbc.gridheight = gbc.gridwidth = 1;
 		gbc.weightx = 1.;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(5, 0, 10, 5);
-		mainFrame.add(cancelButton, gbc);
+		mainFrame.add(okButton, gbc);
 
 
 		gbc.gridx = 2;
 		gbc.weightx = 0.;
 		gbc.insets = new Insets(5, 0, 10, 10);
-		mainFrame.add(okButton, gbc);
+		mainFrame.add(cancelButton, gbc);
+		
 
 		gbc.gridx = 3;
 		gbc.weightx = 0.;
@@ -271,6 +279,15 @@ public class SetupAction extends DefaultAction {
 			}
 		});
 
+		setContextButton.addActionListener(new ActionListener() {
+
+
+			
+
+			public void actionPerformed(ActionEvent e) {
+				SetContextAction.setContextBox(diagram);
+			}
+		});
 
 		//display the frame and set some properties
 
