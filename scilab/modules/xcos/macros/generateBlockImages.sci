@@ -73,8 +73,15 @@ for kBlock = 1 : size(varsToLoad, "*")
     if stripblanks(scs_m.graphics.gr_i(1)) == ""  | isempty(scs_m.graphics.gr_i(1)) then
       mprintf(" FAILED (empty gr_i)\n");
     else
-      ierr = execstr(scs_m.graphics.gr_i(1), "errcatch");
-      //execstr(scs_m.graphics.gr_i(1));
+      ierr = 0;
+      if type(scs_m.graphics.gr_i)==10 & size(scs_m.graphics.gr_i, "*") <> 1 then
+	for k=1:size(scs_m.graphics.gr_i, "*")
+	  disp(scs_m.graphics.gr_i(k))
+	  ierr = ierr + execstr(scs_m.graphics.gr_i(k), "errcatch");
+	end
+      else
+	ierr = execstr(strcat(scs_m.graphics.gr_i(1)), "errcatch");
+      end
       if ierr <> 0 then
 	mprintf(" FAILED\n");
 	failed($+1) = kBlock;
