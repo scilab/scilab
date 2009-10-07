@@ -45,6 +45,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   TolX = optimget ( options , "TolX" , defaultoptions.TolX );
   Display = optimget ( options , "Display" , defaultoptions.Display );
   OutputFcn = optimget ( options , "OutputFcn" , defaultoptions.OutputFcn );
+  PlotFcns = optimget ( options , "PlotFcns" , defaultoptions.PlotFcns );
   // If the MaxIter option is a string, we make the assumption that it is the default 200 value.
   // If not, this is the actual value.
   if ( type ( MaxIter ) == 10 ) then
@@ -72,9 +73,11 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   fmsdata = tlist(["T_FMINSEARCH" 
     "Display" 
     "OutputFcn" 
+    "PlotFcns" 
     ]);
   fmsdata.Display = Display
   fmsdata.OutputFcn = OutputFcn
+  fmsdata.PlotFcns = PlotFcns
   // Perform Optimization
   nm = neldermead_new ();
   nm = neldermead_configure(nm,"-x0",x0.');
@@ -135,10 +138,12 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     TolX,...
     " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
     TolFun);
-  if ( ( Display == "final" ) & ( exitflag == 1 ) ) then
-    mprintf( "%s\n" , output.message(1) );
-    mprintf( "%s\n" , output.message(2) );
-    mprintf( "%s\n" , output.message(3) );
+  if ( ( Display == "final" ) | ( Display == "iter" ) ) then
+    if ( ( exitflag == 1 ) ) then
+      mprintf( "%s\n" , output.message(1) );
+      mprintf( "%s\n" , output.message(2) );
+      mprintf( "%s\n" , output.message(3) );
+    end
   end
   nm = neldermead_destroy(nm);
 endfunction
@@ -165,9 +170,13 @@ function fminsearch_outputfun ( state , data , fmsdata )
   if ( fmsdata.Display == "iter" ) then
     select data.step
     case "init" then
-      dstep = "initial simplex"
+      if ( data.iteration == 0 ) then
+        dstep = "";
+      else
+        dstep = "initial simplex";
+      end
     case "done" then
-      dstep = "done"
+      dstep = ""
     case "reflection" then
       dstep = "reflect"
     case "expansion" then
@@ -184,9 +193,14 @@ function fminsearch_outputfun ( state , data , fmsdata )
       errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
       error(errmsg)
     end
+    if ( data.step <> "done" ) then
     mprintf ( "%6s        %5s     %12s         %-20s\n", ...
       string(data.iteration) , string(data.funccount) , string(data.fval) , dstep )
+    else
+      mprintf ( "\n" )
+    end
   end
+  // Process output functions
   optimValues = struct(...
       "funcCount" ,data.funccount , ...
       "fval" ,data.fval , ...
@@ -194,9 +208,35 @@ function fminsearch_outputfun ( state , data , fmsdata )
       "procedure" , data.step ...
       );
   if ( fmsdata.OutputFcn <> [] ) then
-  //for i = 1:length(fmsdata.OutputFcn)
-    fmsdata.OutputFcn ( data.x , optimValues , state );
-  //end
+    if ( type ( fmsdata.OutputFcn ) == 13 ) then
+      // The output function is a macro
+      fmsdata.OutputFcn ( data.x , optimValues , state );
+    elseif ( type ( fmsdata.OutputFcn ) == 15 ) then
+      // The output function is a list of macros
+      for i = 1:length(fmsdata.OutputFcn)
+        fmsdata.OutputFcn(i) ( data.x , optimValues , state );
+      end
+    else
+      // The user did something wrong...
+      errmsg = msprintf(gettext("%s: The output function associated with ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
+      error(errmsg)
+    end
+  end
+  // Process plot functions
+  if ( fmsdata.PlotFcns <> [] ) then
+    if ( type ( fmsdata.PlotFcns ) == 13 ) then
+      // The output function is a macro
+      fmsdata.PlotFcns ( data.x , optimValues , state );
+    elseif ( type ( fmsdata.PlotFcns ) == 15 ) then
+      // The output function is a list of macros
+      for i = 1:length(fmsdata.PlotFcns)
+        fmsdata.PlotFcns(i) ( data.x , optimValues , state );
+      end
+    else
+      // The user did something wrong...
+      errmsg = msprintf(gettext("%s: The output function associated with ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
+      error(errmsg)
+    end
   end
 endfunction
 
