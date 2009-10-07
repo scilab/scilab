@@ -53,10 +53,10 @@ public class BlockReader {
 	System.err.println("[DEBUG] BlockReader : "+msg);
     }
 
-    public static HashMap<String, List> readDiagramFromFile(String hdf5File) {
+    public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
 	ScilabMList data = new ScilabMList();
 
-	HashMap<String, List> result = new HashMap<String, List>();
+	HashMap<String, Object> result = new HashMap<String, Object>();
 	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
 
 	List<BasicBlock> blocks = new ArrayList<BasicBlock>();
@@ -72,7 +72,11 @@ public class BlockReader {
 	    validateScs_mStructure(data);
 	    int nbObjs = getNbObjs(data);
 
-	    // First read all Block
+	    // Read diagrams properties
+	    HashMap<String, Object> properties = fillDiagrammProperties((ScilabTList) data.get(1));
+	    result.put("Properties", properties);
+	    
+	    // Read all Blocks
 	    for (int i = 0 ; i < nbObjs ; ++i) {
 		try {
 		    if(isBlock(data, i)) {
@@ -92,12 +96,12 @@ public class BlockReader {
 		}
 	    }
 	    for (int i = 0 ; i < blocks.size() ; ++i) {
-		blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX));
-		blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY));
+		blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX + 20));
+		blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY + 20));
 	    }
 	    result.put("Blocks", blocks);
 
-	    // Then read all Link
+	    // Read all Links
 	    for (int i = 0 ; i < nbObjs ; ++i) {
 		if(isLink(data, i)) {
 		    try {
@@ -320,7 +324,7 @@ public class BlockReader {
 	}
 
 	// the second field must contain list of props
-	if (!( data.get(1) instanceof ScilabTList)) { throw new WrongTypeException(); }
+	if (!(data.get(1) instanceof ScilabTList)) { throw new WrongTypeException(); }
 
 	// the third field must contains lists of blocks and links 
 	if (!(data.get(2) instanceof ScilabList)) { throw new WrongTypeException(); }
@@ -339,7 +343,73 @@ public class BlockReader {
 	return false;
     }
 
-    private static BasicBlock  fillBlockStructure (ScilabMList blockFields) throws WrongStructureException, WrongTypeException {
+    private static HashMap<String, Object> fillDiagrammProperties(ScilabTList params) throws WrongStructureException, WrongTypeException {
+	HashMap<String, Object> diagramProperties = new HashMap<String, Object>();
+	
+	String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	// we test if the structure as enough field
+	if(params.size() != propsFields.length) { throw new WrongStructureException(); }
+	
+	// check if all fields are present
+	if (!(params.get(0) instanceof ScilabString)) { throw new WrongStructureException(); }
+	String[] nameOfScs_mFields = ((ScilabString)params.get(0)).getData()[0];
+
+	// check if all the expecting field's name are present
+	if (nameOfScs_mFields.length != propsFields.length ) { throw new WrongStructureException(); }
+	for (int i = 0 ; i < propsFields.length ; i++){
+	    if (!nameOfScs_mFields[i].equals(propsFields[i])) {
+		throw new WrongStructureException();
+	    }
+	}
+	
+	// wpar
+	if(!(params.get(1) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	
+	// title
+	if(!(params.get(2) instanceof ScilabString)) { throw new WrongTypeException(); }
+	diagramProperties.put("title", ((ScilabString) params.get(2)).getData()[0][0]);
+	
+	//tol
+	if(!(params.get(3) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	diagramProperties.put("integratorAbsoluteTolerance", ((ScilabDouble) params.get(3)).getRealPart()[0][0]);
+	diagramProperties.put("integratorRelativeTolerance", ((ScilabDouble) params.get(3)).getRealPart()[1][0]);
+	diagramProperties.put("toleranceOnTime", ((ScilabDouble) params.get(3)).getRealPart()[2][0]);
+	diagramProperties.put("maxIntegrationTimeinterval", ((ScilabDouble) params.get(3)).getRealPart()[3][0]);
+	diagramProperties.put("realTimeScaling", ((ScilabDouble) params.get(3)).getRealPart()[4][0]);
+	diagramProperties.put("solver", ((ScilabDouble) params.get(3)).getRealPart()[5][0]);
+	if(params.getHeight() >= 7) {
+	    diagramProperties.put("maximumStepSize", ((ScilabDouble) params.get(3)).getRealPart()[6][0]);
+	}
+	else {
+	    diagramProperties.put("maximumStepSize", 0.0);
+	}
+	
+	//tf
+	if(!(params.get(4) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+	diagramProperties.put("finalIntegrationTime", ((ScilabDouble) params.get(4)).getRealPart()[0][0]);
+	
+	//context
+	if(!(params.get(5) instanceof ScilabString)) { throw new WrongTypeException(); }
+	
+	//void1
+	if(!isEmptyField(params.get(6))) { throw new WrongTypeException(); }
+	
+	//options
+	if(!(params.get(7) instanceof ScilabTList)) { throw new WrongTypeException(); }
+	
+	//void2
+	if(!isEmptyField(params.get(8))) { throw new WrongTypeException(); }
+	
+	//void3
+	if(!isEmptyField(params.get(9))) { throw new WrongTypeException(); }
+	
+	//doc
+	if(!(params.get(10) instanceof ScilabList) && !isEmptyField(params.get(10))) { throw new WrongTypeException(); }
+	
+	return diagramProperties;
+    }
+    
+    private static BasicBlock  fillBlockStructure(ScilabMList blockFields) throws WrongStructureException, WrongTypeException {
 	String[] realNameOfBlockFields = {"Block", "graphics" , "model" , "gui" , "doc"};
 
 	// we test if the structure as enough field

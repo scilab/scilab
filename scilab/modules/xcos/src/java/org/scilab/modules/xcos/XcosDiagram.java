@@ -17,7 +17,6 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +57,6 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -210,7 +208,6 @@ public class XcosDiagram extends ScilabGraph {
 	});
 
 	getAsComponent().getGraphControl().addMouseListener(new MouseListener() {
-
 	    public void mouseClicked(MouseEvent arg0) {
 		Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
 
@@ -302,12 +299,11 @@ public class XcosDiagram extends ScilabGraph {
     public boolean isCellEditable(Object cell) {
 	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
     }
-    
-    
-    //    public boolean isCellConnectable(Object cell)
-    //    {
-    //	return (cell instanceof InputPort) && super.isCellConnectable(cell);
-    //    }
+
+    public boolean isCellConnectable(Object cell)
+    {
+	return !(cell instanceof BasicBlock) && super.isCellConnectable(cell);
+    }
 
     public void dumpToHdf5File(String fileName) {
 	if (fileName == null) {
@@ -516,10 +512,21 @@ public class XcosDiagram extends ScilabGraph {
 		// TODO factorization !!!
 		System.out.println("Openning to file : {" + fileToLoad + "}");
 
-		HashMap<String, List> allObjects = BlockReader.readDiagramFromFile(fileToLoad);
+		HashMap<String, Object> diagramm = BlockReader.readDiagramFromFile(fileToLoad);
 
-		List<BasicBlock> allBlocks = allObjects.get("Blocks");
-		List<BasicPort[]> allLinks = allObjects.get("Links");
+		List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
+		List<BasicPort[]> allLinks = (List) diagramm.get("Links");
+		HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
+		
+		this.setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
+		this.setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
+		this.setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
+		this.setToleranceOnTime((Double) properties.get("toleranceOnTime"));
+		this.setMaxIntegrationTimeinterval((Double) properties.get("maxIntegrationTimeinterval"));
+		this.setRealTimeScaling((Double) properties.get("realTimeScaling"));
+		this.setSolver((Double) properties.get("solver"));
+		this.setMaximumStepSize((Double) properties.get("maximumStepSize"));
+		
 		for (int i = 0; i < allBlocks.size(); ++i) {
 			this.addCell(allBlocks.get(i));
 		}
@@ -532,8 +539,11 @@ public class XcosDiagram extends ScilabGraph {
 			this.addCell(link);
 		}
 
-		this.setTitle(fileToLoad);
-		this.getParentTab().setName(fileToLoad);
+		//this.setTitle(fileToLoad);
+		//this.getParentTab().setName(fileToLoad);
+		
+		this.setTitle((String) properties.get("title"));
+		this.getParentTab().setName((String) properties.get("title"));
 		// TODO factorization !!!
 		
 	}
