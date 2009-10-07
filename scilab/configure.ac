@@ -1313,18 +1313,6 @@ fi
 AC_SUBST(JAVASCI_ENABLE)
 
 ##############################################################
-## Scipad module
-##############################################################
-
-SCIPAD_ENABLE=yes
-
-if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
-   SCIPAD_ENABLE=no
-fi
-
-AC_SUBST(SCIPAD_ENABLE)
-
-##############################################################
 ## demo_tools module
 ##############################################################
 
@@ -1489,7 +1477,6 @@ modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
-modules/scipad/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
