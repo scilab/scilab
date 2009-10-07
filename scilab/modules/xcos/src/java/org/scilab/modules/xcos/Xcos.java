@@ -269,7 +269,6 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     		File tmp = new File(imagesPath + blocksNames[kBlock] + ".gif");
     		if (tmp.exists()) {
-    			System.out.println(tmp.toURI().toURL().toString());
     			theBloc.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
     			theBloc.setValue("");
     		}

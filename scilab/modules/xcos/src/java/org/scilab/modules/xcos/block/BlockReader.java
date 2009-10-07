@@ -46,7 +46,7 @@ public class BlockReader {
 
 
     private static void INFO(String msg) {
-	System.err.println("[INFO] BlockReader : "+msg);
+	//System.err.println("[INFO] BlockReader : "+msg);
     }
 
     private static void WARNING(String msg) {
@@ -106,7 +106,6 @@ public class BlockReader {
     					currentBlock.setValue("");
     				}
     				blocks.add(currentBlock);
-    				INFO("Block geometry " + currentBlock.getGeometry().getX() + " , " + currentBlock.getGeometry().getY());
     				minX = Math.min(minX, currentBlock.getGeometry().getX());
     				minY = Math.min(minY, currentBlock.getGeometry().getY());
     			}
@@ -691,8 +690,6 @@ public class BlockReader {
 
 	int size = modelFields.get(2).getHeight();
 
-	INFO("inputs = "+size);
-
 	// in_implicit = []
 	// by defaults Ports are Explicit
 	if (isEmptyField(graphicsStructure.get(12))) {
@@ -747,8 +744,6 @@ public class BlockReader {
 		!(modelFields.get(7) instanceof ScilabDouble)) { throw new WrongTypeException(); }
 
 	size = modelFields.get(5).getHeight();
-
-	INFO("outputs = "+size);
 
 	// out_implicit = []
 	// by defaults Ports are Explicit
