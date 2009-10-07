@@ -193,9 +193,10 @@ function fminsearch_outputfun ( state , data , fmsdata )
       "iteration" , data.iteration , ...
       "procedure" , data.step ...
       );
-  pause
+  if ( fmsdata.OutputFcn <> [] ) then
   //for i = 1:length(fmsdata.OutputFcn)
     fmsdata.OutputFcn ( data.x , optimValues , state );
   //end
+  end
 endfunction
 

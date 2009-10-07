@@ -27,10 +27,12 @@ check-local: $(top_builddir)/scilab-bin
 # splint options
 SPLINT_OPTIONS=-weak -booltype BOOL
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 
 
 ########################### JAVA ######################################

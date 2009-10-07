@@ -159,10 +159,10 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing call_scilab sound time \
 	sparse windows_tools functions overloading maple2scilab m2sci \
-	texmacs scipad development_tools compatibility_functions \
-	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio atoms hdf5 xpad \
-	scicos_blocks scicos . javasci
+	texmacs development_tools compatibility_functions helptools \
+	fftw umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters matio atoms hdf5 xpad scicos_blocks scicos . \
+	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -193,6 +193,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -204,6 +205,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -331,12 +334,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -430,7 +433,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing core call_scilab \
 	interpolation sound time randlib sparse windows_tools \
-	functions overloading maple2scilab m2sci texmacs scipad \
+	functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
 	parameters matio atoms hdf5 xpad $(am__append_1) scicos . \

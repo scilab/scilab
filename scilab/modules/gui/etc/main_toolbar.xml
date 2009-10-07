@@ -2,18 +2,27 @@
 <toolbar>
     <!-- xpad -->
     <button icon="accessories-text-editor.png" tooltiptext="Launch xpad">
-        <callback instruction="xpad();" type="0"/>
+        <callback 
+        instruction='
+          if with_module("xpad") then
+            xpad();
+          else
+            messagebox(_("Please install xpad module."));
+          end' type="0"/>
     </button>
     <!-- Open File -->
     <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction='
-          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with xpad"));
-          if ~isempty(%fileToOpen) then 
-            xpad(%fileToOpen);
-          end
-          clear %fileToOpen isempty'
-        type="0"/>
+          if with_module("xpad") then
+            %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with xpad"));
+            if ~(%fileToOpen == "") then
+              xpad(string(%fileToOpen));
+            end
+            clear("%fileToOpen");
+          else
+            messagebox(_("Please install xpad module."));
+          end' type="0"/>
     </button> 
 
     <separator/>
@@ -37,10 +46,10 @@
         <callback 
         instruction='
           %newDir = uigetdir(pwd(), gettext("Select a directory"));
-          if ~isempty(%newDir) then 
+          if ~(%newDir == "") then 
             cd(%newDir);
           end
-          clear %newDir isempty'
+          clear("%newDir");'
         type="0"/>
     </button> 
 
