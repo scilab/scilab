@@ -120,6 +120,9 @@ libs/MALLOC/Makefile.am and launch autoreconf.
 toolbox_skeleton:
 =================
 
+The toolbox skeleton is an example of standard toolbox which shows most of the
+use cases.
+
 * examples of gateways functions (c_sum, f_sum, cpp_find) rewritten with new API.
 
 * cleaner added
