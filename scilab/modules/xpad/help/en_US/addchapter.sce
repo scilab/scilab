@@ -1,6 +1,5 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET <allan.cornet@inria.fr>
+// Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,9 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
-end
-
-genlib("xpadlib","SCI/modules/xpad/macros",%f,%t);
+add_help_chapter("xpad",SCI+"/modules/xpad/help/en_US",%T);
 
