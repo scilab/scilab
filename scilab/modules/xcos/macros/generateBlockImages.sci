@@ -49,6 +49,7 @@ end
 failed = [];
 
 f = gcf();
+varsToLoad = gsort(varsToLoad, "r", "i");
 for kBlock = 1 : size(varsToLoad, "*")
   
   clf();
@@ -68,16 +69,20 @@ for kBlock = 1 : size(varsToLoad, "*")
     a.margins = [0, 0, 0, 0];
     f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
     a.background = addcolor([0.9,0.9,0.9]);
-    ierr = execstr(scs_m.graphics.gr_i(1), "errcatch");
-    //execstr(scs_m.graphics.gr_i(1));
-    if ierr <> 0 then
-      mprintf(" FAILED\n");
-      failed($+1) = kBlock;
+    if scs_m.graphics.gr_i(1) == "" then
+      mprintf(" FAILED (empty gr_i)\n");
     else
-      //xs2jpg(f.figure_id, outPath + scs_m.gui + ".jpg");
-      xs2gif(f.figure_id, outPath + scs_m.gui + ".gif");
-      //xs2svg(f.figure_id, outPath + scs_m.gui + ".svg");
-      mprintf(" SUCCEED %d %d\n", f.axes_size(1), f.axes_size(2));
+      ierr = execstr(scs_m.graphics.gr_i(1), "errcatch");
+      //execstr(scs_m.graphics.gr_i(1));
+      if ierr <> 0 then
+	mprintf(" FAILED\n");
+	failed($+1) = kBlock;
+      else
+	//xs2jpg(f.figure_id, outPath + scs_m.gui + ".jpg");
+	xs2gif(f.figure_id, outPath + scs_m.gui + ".gif");
+	//xs2svg(f.figure_id, outPath + scs_m.gui + ".svg");
+	mprintf(" SUCCEED %d %d\n", f.axes_size(1), f.axes_size(2));
+      end
     end
   end
   
