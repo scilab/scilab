@@ -89,7 +89,7 @@ public class BlockReader {
 	    	File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
 	    	if (tmp.exists()) {
 	    		currentBlock.setStyle("Icon;image=file://" + imagesPath + currentBlock.getValue() + ".gif");
-	    		currentBlock.setValue("");
+	    		//currentBlock.setValue("");
 	    	}
 			blocks.add(currentBlock);
 			INFO("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
