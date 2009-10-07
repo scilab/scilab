@@ -64,11 +64,12 @@ TODO: write an introduction about all that
   - manages all Scilab data types
   - consistency over all data types
   - will be maintained over future versions of Scilab
+  - error management
   - fully documented
   - fully tested by unitary tests
 
   Note that all other Scilab API (straight access to the Scilab stack, stack1,
-  stack2 and stack3) will be maintained in the Scilab 5.X familly but most of
+  stack2 and stack3) will be maintained in the Scilab 5.X family but most of
   them will be dropped in the 6 family.
 
 * In the enum sci_types which list all Scilab datatypes, the type 
