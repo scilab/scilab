@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO
- * 
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -14,7 +14,6 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -23,11 +22,10 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class UnCommentAction extends DefaultAction {
+public class UnTabifyAction extends DefaultAction {
 
-	private UnCommentAction(Xpad editor)
-	{
-		super(XpadMessages.UNCOMMENT_SELECTION, editor);
+	private UnTabifyAction(Xpad editor) {
+	  super(XpadMessages.UNTABIFY_SELECTION, editor);
 	}
 	
 	public void doAction()
@@ -40,30 +38,28 @@ public class UnCommentAction extends DefaultAction {
 		
 		if(position_start == position_end)
 		{
-			// No selection : uncomment the current line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentLine(line_start);
-			getEditor().getTextPane().setCaretPosition(position_start-offset);
+			// No selection : Delete a Tab in the middle of the line, just before the caret position
+			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).deleteTab(position_start-1);
 		}
+		
 		else if( line_start == line_end )
 		{
-			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentText(position_start,position_end);
-			getEditor().getTextPane().setSelectionStart(position_start);
+			// A part of the line is selected : Delete a Tab at the beginning of the line
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLine(line_start);
+			getEditor().getTextPane().setSelectionStart(position_start-offset);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
+		
 		else
 		{
 			// several lines are selected
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentLines(line_start, line_end);
-			position_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElement(line_end).getEndOffset();
-			
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end-1);
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLines(line_start, line_end);
+			getEditor().getTextPane().setSelectionStart(position_start-offset);
+			getEditor().getTextPane().setSelectionEnd(position_end - offset*(line_end-line_start+1));
 		}
 	}
 	
-	public static MenuItem createMenu(Xpad editor)
-	{
-		return createMenu(XpadMessages.UNCOMMENT_SELECTION, null, new UnCommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,ActionEvent.SHIFT_MASK));
 	}
 }
