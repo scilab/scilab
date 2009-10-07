@@ -402,7 +402,11 @@ public class XcosDiagram extends ScilabGraph {
     	this.viewPort = viewPort;
     }
 	
-    //public void setPalette(Window palette) {
+    public Window getViewPort() {
+    	return viewPort;
+    }
+	
+     //public void setPalette(Window palette) {
     //	this.palette = palette;
     //}
 	

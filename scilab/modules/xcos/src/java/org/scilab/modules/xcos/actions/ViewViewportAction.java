@@ -14,10 +14,15 @@ package org.scilab.modules.xcos.actions;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class ViewViewportAction extends DefaultAction {
+	
+	private static CheckBoxMenuItem menu;
 
 	private ViewViewportAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.VIEWPORT, scilabGraph);
@@ -26,4 +31,22 @@ public class ViewViewportAction extends DefaultAction {
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
 	}
+	
+	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
+		menu =  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
+		return menu;
+	}
+	
+	public void doAction() {
+		Window viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
+		if (viewPort.isVisible()) {
+			viewPort.setVisible(false);
+			menu.setChecked(false);
+		} else {
+			viewPort.setVisible(true);
+			menu.setChecked(true);
+		}
+		
+	}
+	
 }

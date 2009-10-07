@@ -230,7 +230,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	
 	((SwingScilabTab) outlineTab.getAsSimpleTab()).setContentPane(graphOutline);
 	outline.addTab(outlineTab);
-	outline.setVisible(true);
+	outline.setVisible(false);
     }
 
     public static XcosPalette createPalette(String paletteName, String[] blocksNames) {
@@ -337,7 +337,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		view.addSeparator();
 		view.add(ViewPaletteBrowserAction.createMenu(scilabGraph));
 		view.add(ViewDiagramBrowserAction.createMenu(scilabGraph));
-		view.add(ViewViewportAction.createMenu(scilabGraph));
+		view.add(ViewViewportAction.createCheckBoxMenu(scilabGraph));
 		view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
 		view.add(ViewBrowserAction.createMenu(scilabGraph));
@@ -464,6 +464,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * VIEW PORT
 	 */
 	createViewPort(xcosDiagramm);
+	
 
 	/*
 	 * PALETTES

@@ -23,6 +23,8 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -115,6 +117,26 @@ public class DefaultAction extends CallBack {
 	 */
 	protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
 		MenuItem menu = ScilabMenuItem.createMenuItem();
+		menu.setCallback(listener);
+		menu.setText(title);
+
+		if (keyStroke != null) {
+			((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
+		}
+
+		return menu;
+	}
+	
+	/**
+	 * Create a button for a graph toolbar
+	 * @param title label of the menu
+	 * @param icon the path the an icon file
+	 * @param listener action listener associated
+	 * @param keyStroke menu shortcut
+	 * @return the button
+	 */
+	protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
+		CheckBoxMenuItem menu = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 		menu.setCallback(listener);
 		menu.setText(title);
 
