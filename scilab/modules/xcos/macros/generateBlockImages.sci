@@ -49,6 +49,7 @@ end
 failed = [];
 
 f = gcf();
+
 varsToLoad = gsort(varsToLoad, "r", "i");
 for kBlock = 1 : size(varsToLoad, "*")
   
@@ -69,7 +70,7 @@ for kBlock = 1 : size(varsToLoad, "*")
     a.margins = [0, 0, 0, 0];
     f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
     a.background = addcolor([0.9,0.9,0.9]);
-    if scs_m.graphics.gr_i(1) == "" then
+    if stripblanks(scs_m.graphics.gr_i(1)) == ""  | isempty(scs_m.graphics.gr_i(1)) then
       mprintf(" FAILED (empty gr_i)\n");
     else
       ierr = execstr(scs_m.graphics.gr_i(1), "errcatch");
