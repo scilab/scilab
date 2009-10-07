@@ -181,9 +181,7 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-	$(am__DEPENDENCIES_1)
+	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
@@ -316,6 +314,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -327,6 +326,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -454,12 +455,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -562,7 +563,6 @@ $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(LTLIBINTL)
 
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la

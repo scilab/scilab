@@ -18,13 +18,13 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
@@ -39,7 +39,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private UndoManager undo = new UndoManager() {
 		public void undoableEditHappened(UndoableEditEvent e) {
 					
-			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) || EventType.equals(DocumentEvent.EventType.REMOVE.toString()) ) && (e.getEdit().canUndo()) ){
+			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+						|| EventType.equals(DocumentEvent.EventType.REMOVE.toString()) )
+				&& (e.getEdit().canUndo()) ){
 				/*
 				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
 					System.out.println("remove");
@@ -162,16 +164,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		this.addDocumentListener( new DocumentListener(){
 			
-			 public void changedUpdate(DocumentEvent documentEvent) {
-
-			      }
-			      public void insertUpdate(DocumentEvent documentEvent) {
-			        handleEvent(documentEvent);
-			      }
-			      public void removeUpdate(DocumentEvent documentEvent) {
-			    	  handleEvent(documentEvent);
-			      }
-			      private void handleEvent(DocumentEvent documentEvent) {
+				public void changedUpdate(DocumentEvent documentEvent){
+				}
+			      
+				public void insertUpdate(DocumentEvent documentEvent){
+					handleEvent(documentEvent);
+			    }
+			    
+			    public void removeUpdate(DocumentEvent documentEvent){
+			    	handleEvent(documentEvent);
+			    }
+			    
+			    private void handleEvent(DocumentEvent documentEvent){
 			        DocumentEvent.EventType type = documentEvent.getType();
 			        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
 			         
@@ -182,9 +186,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			        	setContentModified(true);
 			        }  
 
-			      }
+			   }
 		});
-		
 	}
 
 
@@ -988,7 +991,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Comment a part of a line
 	 */
 	
-	public int commentText(int position_start, int position_end)
+	public int commentText(int position_start)
 	{
 		String comment_str = "//";
 		int offset         = comment_str.length();
@@ -1103,7 +1106,173 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 	
 	
-
+	/**
+	 * DOCUMENT TABIFY ACTION
+	 */
+	
+	/*
+	 * Insert a tab just after the caret position
+	 */
+	
+	public void insertTab(int position)
+	{
+		String tab = "\t";
+		
+		try
+		{
+			this.replace(position, 0, tab, null);
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * Tabify a line
+	 */
+	
+	public int tabifyLine(int line)
+	{
+		String tab = "\t";
+		int offset = tab.length();
+		int start  = this.getDefaultRootElement().getElement(line).getStartOffset();
+		
+		try
+		{
+			this.replace(start, 0, tab, null);
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/*
+	 * Tabify several lines
+	 */
+	
+	public int tabifyLines(int line_start, int line_end)
+	{
+		String tab = "\t";
+		int offset = tab.length();
+		
+		for (int i = line_start; i <= line_end; i++)
+		{
+			int start = this.getDefaultRootElement().getElement(i).getStartOffset();
+			
+			try
+			{
+				// Replacement
+				this.replace(start, 0, tab, null);
+			}
+			catch (BadLocationException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return offset;
+	}
+	
+	
+	
+	/**
+	 * DOCUMENT UNTABIFY ACTION
+	 */
+	
+	/*
+	 * Delete a tab just before the caret position
+	 */
+	
+	public int deleteTab(int position)
+	{
+		Pattern pattern = Pattern.compile("^\t");
+		int offset      = 0;
+		
+		try
+		{
+			// Get the text line
+			String text     = this.getText(position,position+1);
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(position,1,"", null);
+				offset = 1;
+			}
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/*
+	 * Delete a tab at the beginning of the line "line"
+	 */
+	
+	public int untabifyLine(int line)
+	{
+		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
+		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
+		int offset  = 0;
+		
+		try
+		{
+			String text     = this.getText(start, end-start);
+			Pattern pattern = Pattern.compile("^\t");
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(start+matcher.end()-1, 1, "", null);
+				offset = 1;
+			}
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/*
+	 * Delete tabs at the beginning of several lines
+	 */
+	
+	public int untabifyLines(int line_start, int line_end)
+	{
+		Pattern pattern = Pattern.compile("^\t");
+		int offset      = 0;
+		
+		for (int i = line_start; i <= line_end; i++)
+		{
+			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
+			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
+			
+			try
+			{
+				// Get the text line
+				String text     = this.getText(start, end-start);
+				Matcher matcher = pattern.matcher(text);
+				
+				if(matcher.find())
+				{
+					this.replace(start+matcher.end()-1, 1, "", null);
+					offset = 1;
+				}
+			}
+			catch (BadLocationException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return offset;
+	}
+	
 	/**
 	 * FIND AND REPLACE START
 	 */
@@ -1762,24 +1931,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	
 	public void insertUpdate(DocumentEvent e) {
-		if (e != null){
-			EventType = e.getType().toString();
 		
-			//Element[] pouet =  e.getChange( this.getParagraphElement(editor.getTextPane().getCaretPosition())).getChildrenAdded();
+		if (e != null)
+		{
+			EventType = e.getType().toString();
 		}
 		
 		DEBUG("--- Calling insertUpdate");
 		if (!updaterDisabled) {
 
 			if (autoColorize) {
-			    DEBUG("--- Calling insertUpdate -> colorize");
+				DEBUG("--- Calling insertUpdate -> colorize");
 			    SwingUtilities.invokeLater(new ColorUpdater(e));
 			}
 			if (autoIndent) {
 			    DEBUG("--- Calling insertUpdate -> indent");
 			    SwingUtilities.invokeLater(new IndentUpdater(e));
 			}
-
 		}
 	}
 	

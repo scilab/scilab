@@ -46,7 +46,7 @@ public class CommentAction extends DefaultAction {
 		else if( line_start == line_end )
 		{
 			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(position_start,position_end);
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(position_start);
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end+offset);
 		}

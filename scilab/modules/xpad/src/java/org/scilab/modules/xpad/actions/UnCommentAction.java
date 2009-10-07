@@ -40,7 +40,7 @@ public class UnCommentAction extends DefaultAction {
 		
 		if(position_start == position_end)
 		{
-			// No selection : comment the current line
+			// No selection : uncomment the current line
 			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentLine(line_start);
 			getEditor().getTextPane().setCaretPosition(position_start-offset);
 		}
