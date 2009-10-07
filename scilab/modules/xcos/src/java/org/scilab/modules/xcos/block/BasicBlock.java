@@ -75,8 +75,10 @@ public class BasicBlock extends mxCell {
     public enum SimulationFunctionType {
 	DEFAULT,
 	TYPE_2,
+	TYPE_3,
 	C_OR_FORTRAN,
-	SCILAB;
+	SCILAB,
+	UNKNOWN;
 
 	public static SimulationFunctionType convertScilabValue(int scilabValue) {
 	    switch (scilabValue) {
@@ -84,12 +86,14 @@ public class BasicBlock extends mxCell {
 		return DEFAULT;
 	    case 2:
 		return TYPE_2;
+	    case 3:
+		return TYPE_3;
 	    case 4:
 		return C_OR_FORTRAN;
 	    case 5:
 		return SCILAB;
 	    default:
-		return DEFAULT;
+		return UNKNOWN;
 	    }
 	}
 
@@ -99,6 +103,8 @@ public class BasicBlock extends mxCell {
 		return 0.0;
 	    case TYPE_2 :
 		return 2.0;
+	    case TYPE_3 :
+		return 3.0;
 	    case C_OR_FORTRAN:
 		return 4.0;
 	    case SCILAB:
