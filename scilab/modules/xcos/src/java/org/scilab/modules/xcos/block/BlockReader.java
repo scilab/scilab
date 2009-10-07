@@ -435,18 +435,35 @@ public class BlockReader {
 	diagramProperties.put("title", ((ScilabString) params.get(2)).getData()[0][0]);
 	
 	//tol
+	// !! WARNING !! parameters can be stored row or column wise
 	if(!(params.get(3) instanceof ScilabDouble)) { throw new WrongTypeException(); }
-	diagramProperties.put("integratorAbsoluteTolerance", ((ScilabDouble) params.get(3)).getRealPart()[0][0]);
-	diagramProperties.put("integratorRelativeTolerance", ((ScilabDouble) params.get(3)).getRealPart()[1][0]);
-	diagramProperties.put("toleranceOnTime", ((ScilabDouble) params.get(3)).getRealPart()[2][0]);
-	diagramProperties.put("maxIntegrationTimeinterval", ((ScilabDouble) params.get(3)).getRealPart()[3][0]);
-	diagramProperties.put("realTimeScaling", ((ScilabDouble) params.get(3)).getRealPart()[4][0]);
-	diagramProperties.put("solver", ((ScilabDouble) params.get(3)).getRealPart()[5][0]);
-	if(params.getHeight() >= 7) {
-	    diagramProperties.put("maximumStepSize", ((ScilabDouble) params.get(3)).getRealPart()[6][0]);
+	if( params.get(3).getHeight() >= params.get(3).getWidth()) {
+	    diagramProperties.put("integratorAbsoluteTolerance", ((ScilabDouble) params.get(3)).getRealPart()[0][0]);
+	    diagramProperties.put("integratorRelativeTolerance", ((ScilabDouble) params.get(3)).getRealPart()[1][0]);
+	    diagramProperties.put("toleranceOnTime", ((ScilabDouble) params.get(3)).getRealPart()[2][0]);
+	    diagramProperties.put("maxIntegrationTimeinterval", ((ScilabDouble) params.get(3)).getRealPart()[3][0]);
+	    diagramProperties.put("realTimeScaling", ((ScilabDouble) params.get(3)).getRealPart()[4][0]);
+	    diagramProperties.put("solver", ((ScilabDouble) params.get(3)).getRealPart()[5][0]);
+	    if(params.get(3).getHeight() >= 7) {
+		diagramProperties.put("maximumStepSize", ((ScilabDouble) params.get(3)).getRealPart()[6][0]);
+	    }
+	    else {
+		diagramProperties.put("maximumStepSize", 0.0);
+	    }
 	}
 	else {
-	    diagramProperties.put("maximumStepSize", 0.0);
+	    diagramProperties.put("integratorAbsoluteTolerance", ((ScilabDouble) params.get(3)).getRealPart()[0][0]);
+	    diagramProperties.put("integratorRelativeTolerance", ((ScilabDouble) params.get(3)).getRealPart()[0][1]);
+	    diagramProperties.put("toleranceOnTime", ((ScilabDouble) params.get(3)).getRealPart()[0][2]);
+	    diagramProperties.put("maxIntegrationTimeinterval", ((ScilabDouble) params.get(3)).getRealPart()[0][3]);
+	    diagramProperties.put("realTimeScaling", ((ScilabDouble) params.get(3)).getRealPart()[0][4]);
+	    diagramProperties.put("solver", ((ScilabDouble) params.get(3)).getRealPart()[0][5]);
+	    if(params.get(3).getWidth() >= 7) {
+		diagramProperties.put("maximumStepSize", ((ScilabDouble) params.get(3)).getRealPart()[0][6]);
+	    }
+	    else {
+		diagramProperties.put("maximumStepSize", 0.0);
+	    }
 	}
 	
 	//tf
