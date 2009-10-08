@@ -43,14 +43,20 @@ The option is "disableUnderMode" and can be:
 	<load on="graphic_export"/>
 	<load on="XCos"/>
 </path>
+
 <path value="@GLUEGEN_RT@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="XCos"/>
 </path>
 
+<!-- XCOS -->
 <path value="@JHDF5@" load="onUse">
         <load on="XCos"/>
+</path>
+
+<path value="@JGRAPHX@" load="onUse">
+        <load on="xcos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
@@ -59,6 +65,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
 	<load on="XCos"/>
 </path>
+<!-- END -->
 
 <!-- Documentation (not mandatory) -->
 <path value="@JEUCLID_CORE@" load="onUse">
