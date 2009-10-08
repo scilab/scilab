@@ -41,7 +41,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , job
 
 	int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -79,7 +79,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , job
 
 	for (j = 0; j < cm * cn; j++) icx[j] = (int)cx[j];
 
-	strErr = readNamedMatrixOfInteger32((char*)cname, &cm, &cn, icx);
+	strErr = readNamedMatrixOfInteger32(pvApiCtx, (char*)cname, &cm, &cn, icx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));

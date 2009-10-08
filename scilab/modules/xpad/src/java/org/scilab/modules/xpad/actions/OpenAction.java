@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 import java.io.File;
 
 import javax.swing.JFileChooser;
@@ -24,6 +25,7 @@ import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -49,11 +51,16 @@ public final class OpenAction extends DefaultAction {
 	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-
+		
+		String initialDirectoryPath = getEditor().getTextPane().getName();
+		if (initialDirectoryPath == null ){
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
+		}
+		System.out.println(initialDirectoryPath);
 		String[] mask = new String[]{"*.sce",  "*.sc*", "*.cos*", "*.sci"}; 
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-
+		fileChooser.setInitialDirectory(initialDirectoryPath);
 		fileChooser .setAcceptAllFileFilterUsed(true);
 		fileChooser .addMask(mask, null);		
 		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);	 	
@@ -61,11 +68,14 @@ public final class OpenAction extends DefaultAction {
 		int retval = fileChooser.showOpenDialog(getEditor());
 		if (retval == JFileChooser.APPROVE_OPTION) {
 			File f = fileChooser.getSelectedFile();
+			ConfigManager.saveLastOpenedDirectory(f.getPath());
+			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+			System.out.println("save to config finished");
+			getEditor().setTitle(f.getPath() + " - Xpad");
+			getEditor().updateRecentOpenedFilesMenu();
 			getEditor().readFile(f);
 
-			getEditor().setTitle(f.getPath() + " - Xpad");
-			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-			getEditor().updateRecentOpenedFilesMenu();
+
 		}
 	}
 
@@ -75,7 +85,7 @@ public final class OpenAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.OPEN, null, new OpenAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.OPEN, null, new OpenAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

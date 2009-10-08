@@ -31,6 +31,19 @@ typedef struct api_Err
 	char* pstMsg[MESSAGE_STACK_SIZE]; /**< The error message */
 } StrErr;
 
+typedef struct api_Ctx
+{
+	char* pstName; /**< Function name */
+} StrCtx, *pStrCtx;
+
+#ifdef _MSC_VER
+	#ifndef API_SCILAB_EXPORTS
+		__declspec( dllimport ) StrCtx* pvApiCtx;
+	#endif
+#else
+	extern StrCtx* pvApiCtx;
+#endif
+
 #include "api_error.h"
 /* generics functions */
 
@@ -40,7 +53,7 @@ typedef struct api_Err
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getVarAddressFromPosition(int _iVar, int** _piAddress);
+StrErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress);
 
 /**
  * Get memory address of a variable from the variable position
@@ -48,7 +61,7 @@ StrErr getVarAddressFromPosition(int _iVar, int** _piAddress);
  * @param[out] _pstName variable name
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getVarNameFromPosition(int _iVar, char* _pstName);
+StrErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName);
 
 /**
  * Get memory address of a variable from the variable name
@@ -56,7 +69,7 @@ StrErr getVarNameFromPosition(int _iVar, char* _pstName);
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getVarAddressFromName(char* _pstName, int** _piAddress);
+StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress);
 
 /**
  * Get variable type
@@ -64,28 +77,28 @@ StrErr getVarAddressFromName(char* _pstName, int** _piAddress);
  * @param[out] returns _piType variable type
  * @return scilab variable type ( sci_matrix, sci_strings, ... )
  */
-StrErr getVarType(int* _piAddress, int* _piType);
+StrErr getVarType(void* _pvCtx, int* _piAddress, int* _piType);
 
 /**
 * Get variable type  from the variable name
 * @param[in] _piAddress variable address
 * @return scilab variable type ( sci_matrix, sci_strings, ... )
 */
-StrErr getNamedVarType(char* _pstName, int* _piType);
+StrErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType);
 
 /**
  * Get complex information
  * @param[in] _piAddress variable address
  * @return if complex 1 otherwise 0
  */
- int isVarComplex(int* _piAddress);
+int isVarComplex(void* _pvCtx, int* _piAddress);
 
 /**
 * Get named complex information
 * @param[in] _pstName variable name
 * @return if complex 1 otherwise 0
 */
- int isNamedVarComplex(char *_pstName);
+int isNamedVarComplex(void* _pvCtx, char *_pstName);
 
 /**
  * Get variable dimension
@@ -94,7 +107,7 @@ StrErr getNamedVarType(char* _pstName, int* _piType);
  * @param[out] _piCols Number of cols
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
+StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols);
 
 /**
 * Get named variable dimension
@@ -103,21 +116,21 @@ StrErr getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
 * @param[out] _piCols Number of cols
 * @return if the operation successed (0) or not ( !0 )
 */
-StrErr getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
+StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols);
 
 /**
  * check if a variable is a matrix form ( row x col )
  * @param[in] _piAddress variable address
  * @return if matrix form type variable 1 otherwise 0
  */
- int isVarMatrixType(int* _piAddress);
+int isVarMatrixType(void* _pvCtx, int* _piAddress);
 
 /**
 * check if a named variable is a matrix form ( row x col )
 * @param[in] _pstName variable name
 * @return if matrix form type variable 1 otherwise 0
 */
- int isNamedVarMatrixType(char *_pstName);
+int isNamedVarMatrixType(char *_pstName);
 
 /**
  * get process mode from input variable
@@ -126,7 +139,7 @@ StrErr getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols);
  * @param[out] _piMode return process mode ( 0 -> All, 1 -> Row, 2 -> Col )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
+StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode);
 
 /**
  * get dimension for variable, extract value from a single value
@@ -134,7 +147,7 @@ StrErr getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
  * @param[out] _piVal return value
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getDimFromVar(int* _piAddress, int* _piVal);
+StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal);
 
 /**
 * get dimension for a named variable, extract value from a single value
@@ -142,14 +155,14 @@ StrErr getDimFromVar(int* _piAddress, int* _piVal);
 * @param[out] _piVal return value
 * @return if the operation successed (0) or not ( !0 )
 */
-StrErr getDimFromNamedVar(char* _pstName, int* _piVal);
+StrErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal);
 
 /**
 * Get Rhs value from variable Address
 * @param[in] _piAddress varaible address
 * @return rhs value of the variable, if failed returns 0
 */
-int getRhsFromAddress(int* _piAddress);
+int getRhsFromAddress(void* _pvCtx, int* _piAddress);
 
 #ifdef __cplusplus
 }

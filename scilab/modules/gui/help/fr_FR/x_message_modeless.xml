@@ -52,7 +52,7 @@ x_message_modeless('Voici un deuxieme message')
         <link linkend="x_mdialog">x_mdialog</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
     </simplelist>
   </refsection>

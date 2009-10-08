@@ -35,14 +35,14 @@ int sci_fsum(char *fname)
   CheckLhs(1,1) ;   
   
   /* get Address of inputs */
-  strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+  strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
     return 0;
   }
     
-  strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+  strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
@@ -50,7 +50,7 @@ int sci_fsum(char *fname)
   }  
   
   /* check input type */
-  strErr = getVarType(piAddressVarOne, &iType1);
+  strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
@@ -63,7 +63,7 @@ int sci_fsum(char *fname)
     return 0;
   }
 
-  strErr = getVarType(piAddressVarTwo, &iType2);
+  strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
@@ -77,14 +77,14 @@ int sci_fsum(char *fname)
   }
 
   /* get matrix */
-  strErr = getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
+  strErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
     return 0;
   }
     
-  strErr = getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
+  strErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
   if(strErr.iErr)
   {
     printError(&strErr, 0);
@@ -108,7 +108,7 @@ int sci_fsum(char *fname)
   
   /* create result on stack */
   m_out = 1;  n_out = 1;
-  strErr = createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+  strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
   if(strErr.iErr)
   {
     printError(&strErr, 0);

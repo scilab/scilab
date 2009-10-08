@@ -1,0 +1,523 @@
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.9.7)  8 OCT 2009 11:49
+entering extended mode
+**fminsearch-so
+(fminsearch-so.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, german-x-2008-06-18, ngerman-x-2008-06-18, french, loaded.
+(D:\Programs\Miktex-2.7\tex\latex\base\report.cls
+Document Class: report 2005/09/16 v1.4f Standard LaTeX document class
+(D:\Programs\Miktex-2.7\tex\latex\base\size12.clo
+File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+\@input{macros.aux}
+(macros.tex (D:\Programs\Miktex-2.7\tex\latex\aeguill\aeguill.sty
+Package: aeguill 2003/08/02 1.02 AE fonts with french guillemets (D. Roegel)
+
+(D:\Programs\Miktex-2.7\tex\latex\ae\ae.sty
+Package: ae 2001/02/12 1.3 Almost European Computer Modern
+
+(D:\Programs\Miktex-2.7\tex\latex\base\fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(D:\Programs\Miktex-2.7\tex\latex\base\t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)
+LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
+
+(D:\Programs\Miktex-2.7\tex\latex\ae\t1aer.fd
+File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
+)))
+(D:\Programs\Miktex-2.7\tex\latex\base\fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(D:\Programs\Miktex-2.7\tex\latex\cyrillic\ot2enc.def
+File: ot2enc.def 2001/08/11 v3.3a Cyrillic encoding definition file
+)
+(D:\Programs\Miktex-2.7\tex\latex\base\t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)))
+(D:\Programs\Miktex-2.7\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(D:\Programs\Miktex-2.7\tex\latex\graphics\graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(D:\Programs\Miktex-2.7\tex\latex\graphics\keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(D:\Programs\Miktex-2.7\tex\latex\graphics\graphics.sty
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(D:\Programs\Miktex-2.7\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(D:\Programs\Miktex-2.7\tex\latex\00miktex\graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 90.
+
+(D:\Programs\Miktex-2.7\tex\latex\pdftex-def\pdftex.def
+File: pdftex.def 2008/09/08 v0.04l Graphics/color for pdfTeX
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(D:\Programs\Miktex-2.7\tex\latex\base\makeidx.sty
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+\@indexfile=\write3
+
+Writing index file fminsearch-so.idx
+(D:\Programs\Miktex-2.7\tex\latex\hyperref\hyperref.sty
+Package: hyperref 2008/09/29 v6.78l Hypertext links for LaTeX
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2007/12/12 v1.6 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\ifvtex.sty
+Package: ifvtex 2007/09/09 v1.3 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(D:\Programs\Miktex-2.7\tex\generic\ifxetex\ifxetex.sty
+Package: ifxetex 2008/09/18 v0.4 Provides ifxetex conditional
+)
+(D:\Programs\Miktex-2.7\tex\latex\oberdiek\hycolor.sty
+Package: hycolor 2008/09/08 v1.4 Code for color options of hyperref/bookmark (H
+O)
+
+(D:\Programs\Miktex-2.7\tex\latex\oberdiek\xcolor-patch.sty
+Package: xcolor-patch 2008/09/08 xcolor patch
+))
+\@linkdim=\dimen105
+\Hy@linkcounter=\count89
+\Hy@pagecounter=\count90
+
+(D:\Programs\Miktex-2.7\tex\latex\hyperref\pd1enc.def
+File: pd1enc.def 2008/09/29 v6.78l Hyperref: PDFDocEncoding definition (HO)
+)
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(D:\Programs\Miktex-2.7\tex\latex\00miktex\hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(D:\Programs\Miktex-2.7\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2007/10/18 v3.0 Keyval support for LaTeX options (HO)
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 2796.
+Package hyperref Info: Hyper figures OFF on input line 2907.
+Package hyperref Info: Link nesting OFF on input line 2912.
+Package hyperref Info: Hyper index ON on input line 2915.
+Package hyperref Info: Plain pages OFF on input line 2922.
+Package hyperref Info: Backreferencing OFF on input line 2927.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3117.
+(D:\Programs\Miktex-2.7\tex\latex\ltxmisc\url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3351.
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\pdftexcmds.sty
+Package: pdftexcmds 2007/12/12 v0.3 LuaTeX support for pdfTeX utility functions
+ (HO)
+Package pdftexcmds Info: LuaTeX not detected on input line 139.
+)))
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2007/09/29 v1.3 Key value parser with default handler suppor
+t (HO)
+)
+\Fld@menulength=\count91
+\Field@Width=\dimen106
+\Fld@charsize=\dimen107
+\Field@toks=\toks15
+Package hyperref Info: Hyper figures OFF on input line 4268.
+Package hyperref Info: Link nesting OFF on input line 4273.
+Package hyperref Info: Hyper index ON on input line 4276.
+Package hyperref Info: backreferencing OFF on input line 4283.
+Package hyperref Info: Link coloring ON on input line 4286.
+Package hyperref Info: Link coloring with OCG OFF on input line 4293.
+Package hyperref Info: PDF/A mode OFF on input line 4298.
+
+(D:\Programs\Miktex-2.7\tex\generic\oberdiek\atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+\Hy@abspage=\count92
+\c@Item=\count93
+\c@Hfootnote=\count94
+)
+*hyperref using driver hpdftex*
+(D:\Programs\Miktex-2.7\tex\latex\hyperref\hpdftex.def
+File: hpdftex.def 2008/09/29 v6.78l Hyperref driver for pdfTeX
+\Fld@listcount=\count95
+)
+(D:\Programs\Miktex-2.7\tex\latex\ltxmisc\anysize.sty
+Package: anysize 1994/08/13 1.0 Contributed LaTeX2e package
+
+Package: `anysize' 1.0 <1994/08/13>
+\@Leftmargin=\dimen108
+\@Rightmargin=\dimen109
+\@Topmargin=\dimen110
+\@Bottommargin=\dimen111
+) (D:\Programs\Miktex-2.7\tex\latex\natbib\natbib.sty
+Package: natbib 2007/10/30 8.1 (PWD)
+\bibhang=\skip52
+\bibsep=\skip53
+LaTeX Info: Redefining \cite on input line 602.
+\c@NAT@ctr=\count96
+)
+(D:\Programs\Miktex-2.7\tex\latex\amsfonts\amssymb.sty
+Package: amssymb 2002/01/22 v2.2d
+
+(D:\Programs\Miktex-2.7\tex\latex\amsfonts\amsfonts.sty
+Package: amsfonts 2001/10/25 v2.2f
+\@emptytoks=\toks16
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+))
+(D:\Programs\Miktex-2.7\tex\latex\listings\listings.sty
+\lst@mode=\count97
+\lst@gtempboxa=\box26
+\lst@token=\toks17
+\lst@length=\count98
+\lst@currlwidth=\dimen112
+\lst@column=\count99
+\lst@pos=\count100
+\lst@lostspace=\dimen113
+\lst@width=\dimen114
+\lst@newlines=\count101
+\lst@lineno=\count102
+\lst@maxwidth=\dimen115
+
+(D:\Programs\Miktex-2.7\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count103
+\lst@skipnumbers=\count104
+\lst@framebox=\box27
+)
+(D:\Programs\Miktex-2.7\tex\latex\listings\listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(D:\Programs\Miktex-2.7\tex\latex\algorithms\algorithmic.sty
+Package: algorithmic 2006/06/02
+
+Document Style `algorithmic' - environment
+(D:\Programs\Miktex-2.7\tex\latex\base\ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(D:\Programs\Miktex-2.7\tex\latex\tools\calc.sty
+Package: calc 2005/08/06 v4.2 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count105
+\calc@Bcount=\count106
+\calc@Adimen=\dimen116
+\calc@Bdimen=\dimen117
+\calc@Askip=\skip54
+\calc@Bskip=\skip55
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count107
+\calc@Cskip=\skip56
+)
+\c@ALC@line=\count108
+\c@ALC@rem=\count109
+\c@ALC@depth=\count110
+\ALC@tlm=\skip57
+\algorithmicindent=\skip58
+)) (fminsearch-so.aux
+(fminsearch.aux))
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT2/cmr/m/n on input line 5.
+LaTeX Font Info:    Try loading font information for OT2+cmr on input line 5.
+ (D:\Programs\Miktex-2.7\tex\latex\base\ot2cmr.fd
+File: ot2cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+
+(D:\Programs\Miktex-2.7\tex\context\base\supp-pdf.tex
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count111
+\scratchdimen=\dimen118
+\scratchbox=\box28
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen119
+\MPnumerator=\count115
+\everyMPtoPDFconversion=\toks19
+) (D:\Programs\Miktex-2.7\tex\latex\graphics\color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(D:\Programs\Miktex-2.7\tex\latex\00miktex\color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+Package hyperref Info: Link coloring ON on input line 5.
+
+(D:\Programs\Miktex-2.7\tex\latex\hyperref\nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(D:\Programs\Miktex-2.7\tex\latex\oberdiek\refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count116
+)
+LaTeX Info: Redefining \ref on input line 5.
+LaTeX Info: Redefining \pageref on input line 5.
+ (fminsearch-so.out)
+(fminsearch-so.out)
+\@outlinefile=\write4
+\AtBeginShipoutBox=\box29
+\c@lstlisting=\count117
+ <scilab_logo.jpg, id=50, 452.69125pt x 261.97874pt>
+File: scilab_logo.jpg Graphic file (type jpg)
+
+<use scilab_logo.jpg>
+LaTeX Font Info:    Try loading font information for U+msa on input line 36.
+ (D:\Programs\Miktex-2.7\tex\latex\amsfonts\umsa.fd
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 36.
+
+(D:\Programs\Miktex-2.7\tex\latex\amsfonts\umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+) [1
+
+
+
+{C:/ProgramData/MiKTeX/2.7/pdftex/config/pdftex.map} <scilab_logo.jpg>] (fminse
+arch-so.toc)
+\tf@toc=\write5
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2
+
+
+] (fminsearch.tex
+Chapter 1.
+
+Overfull \hbox (10.45222pt too wide) in paragraph at lines 36--42
+[]\T1/aer/m/n/12 The op-tions in-put ar-gu-ment is an op-tion-nal data struc-tu
+re which can con-tain the op-tions.MaxIter
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 140.
+
+ (D:\Programs\Miktex-2.7\tex\latex\ae\omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <6> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+
+LaTeX Font Warning: Font shape `T1/aer/bx/sc' undefined
+(Font)              using `T1/aer/bx/n' instead on input line 267.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6]
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 314.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8] <testFminsearchPlotMatlab.png, id=377, 422.32782pt x 316.18124pt>
+File: testFminsearchPlotMatlab.png Graphic file (type png)
+
+<use testFminsearchPlotMatlab.png>
+<testFminsearchPlotScilab.png, id=379, 612.2875pt x 461.725pt>
+File: testFminsearchPlotScilab.png Graphic file (type png)
+
+<use testFminsearchPlotScilab.png>
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9] <testFminsearchOptimplotfvalMatlab.png, id=451, 422.32782pt x 316.18124pt>
+File: testFminsearchOptimplotfvalMatlab.png Graphic file (type png)
+
+<use testFminsearchOptimplotfvalMatlab.png>
+<testFminsearchOptimplotfvalScilab.png, id=453, 612.2875pt x 461.725pt>
+File: testFminsearchOptimplotfvalScilab.png Graphic file (type png)
+
+<use testFminsearchOptimplotfvalScilab.png>)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10 <testFminsearchPlotMatlab.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <testFminsearchPlotScilab.png (PNG copy)> <testFminsearchOptimplotfvalMatla
+b.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <testFminsearchOptimplotfvalScilab.png (PNG copy)>] (fminsearch-so.bbl)
+(fminsearch-so.ind)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13
+
+
+
+] (fminsearch-so.aux (fminsearch.aux))
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 25 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 8791 strings out of 95304
+ 116611 string characters out of 1183261
+ 363995 words of memory out of 1500000
+ 11438 multiletter control sequences out of 110000
+ 65794 words of font info for 134 fonts, out of 1200000 for 2000
+ 14 hyphenation exceptions out of 8191
+ 40i,12n,45p,709b,2080s stack positions out of 5000i,500n,10000p,200000b,5000s
+<D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmbsy10.pfb><D:/
+Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmbx10.pfb><D:/Programs/Miktex-2.7/f
+onts/type1/bluesky/cm/cmbx12.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm
+/cmbx6.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmbxti10.pfb><D:/Prog
+rams/Miktex-2.7/fonts/type1/bluesky/cm/cmmi12.pfb><D:/Programs/Miktex-2.7/fonts
+/type1/bluesky/cm/cmmi6.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmmi
+8.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmr10.pfb><D:/Programs/Mik
+tex-2.7/fonts/type1/bluesky/cm/cmr12.pfb><D:/Programs/Miktex-2.7/fonts/type1/bl
+uesky/cm/cmr6.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmr8.pfb><D:/P
+rograms/Miktex-2.7/fonts/type1/bluesky/cm/cmsy10.pfb><D:/Programs/Miktex-2.7/fo
+nts/type1/bluesky/cm/cmsy6.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/c
+msy8.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/cm/cmti10.pfb><D:/Programs
+/Miktex-2.7/fonts/type1/bluesky/cm/cmti12.pfb><D:/Programs/Miktex-2.7/fonts/typ
+e1/bluesky/cm/cmti7.pfb><D:/Programs/Miktex-2.7/fonts/type1/bluesky/ams/msbm10.
+pfb>
+Output written on fminsearch-so.pdf (13 pages, 226589 bytes).
+PDF statistics:
+ 617 PDF objects out of 1000 (max. 8388607)
+ 357 named destinations out of 1000 (max. 131072)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+

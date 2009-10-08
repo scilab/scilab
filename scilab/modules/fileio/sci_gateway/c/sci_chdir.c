@@ -47,14 +47,14 @@ int sci_chdir(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarOne, &iType1);
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -67,7 +67,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -87,7 +87,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -103,7 +103,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 		/* get value of PWD scilab variable (compatiblity scilab 4.x) */
 		if (wcscmp(expandedPath, L"PWD") == 0)
 		{
-			strErr = getNamedVarType("PWD", &iType1);
+			strErr = getNamedVarType(pvApiCtx, "PWD", &iType1);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -115,7 +115,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 				wchar_t *VARVALUE = NULL;
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
-				strErr = readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
+				strErr = readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
 				if(strErr.iErr)
 				{
 					printError(&strErr, 0);
@@ -127,7 +127,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
 					if (VARVALUE)
 					{
-						readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
+						readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
 						FREE(expandedPath);
 						expandedPath = VARVALUE;
 					}
@@ -144,7 +144,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			if (ierr) bOuput[0] = FALSE;
 			else bOuput[0] = TRUE; 
 
-			strErr = createMatrixOfBoolean(Rhs + 1, 1, 1, bOuput);
+			strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOuput);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -164,11 +164,11 @@ int sci_chdir(char *fname,unsigned long fname_len)
 				wchar_t *currentDir = scigetcwdW(&ierr);
 				if ( (ierr == 0) && currentDir)
 				{
-					strErr = createMatrixOfWideString(Rhs + 1, 1, 1, &currentDir);
+					strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, &currentDir);
 				}
 				else
 				{
-					strErr = createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+					strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
 				}
 
 				if(strErr.iErr)

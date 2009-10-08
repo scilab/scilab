@@ -61,7 +61,6 @@
 <module name="tclsci" activate="@WITH_TKSCI@"/>
 <module name="texmacs" activate="yes"/>
 <module name="sound" activate="yes"/>
-<module name="scipad" activate="@SCIPAD_ENABLE@"/>
 <module name="randlib" activate="yes"/>
 <module name="development_tools" activate="yes"/>
 <module name="demo_tools" activate="@DEMOTOOLS_ENABLE@"/>

@@ -36,46 +36,64 @@
 #include "localization.h"
 
 //internal functions
-static StrErr createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAddress);
-static StrErr createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed);
-static StrErr createCommonNamedList(char* _pstName, int _iListType, int _iNbItem, int** _piAddress);
-static StrErr createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
-static StrErr getCommonListInList(int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
-static StrErr getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
-static StrErr readCommonNamedList(char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
-static StrErr fillCommonList(int* _piAddress, int _iListType, int _iNbItem);
+static StrErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress);
+static StrErr createCommonListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed);
+static StrErr createCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int _iNbItem, int** _piAddress);
+static StrErr createCommonListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
+static StrErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
+static StrErr getCommomListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
+static StrErr readCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
+static StrErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbItem);
 static int isKindOfList(int* _piNode);
-static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent);
+static int getParentList(void* _pvCtx, int* _piStart, int* _piToFind, int* _piDepth, int** _piParent);
 static void closeList(int _iVar, int *_piEnd);
-static void updateListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
-static void updateNamedListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
-static void updateCommunListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+static void updateNamedListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+static void updateCommunListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
-static StrErr allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-static StrErr getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
-static StrErr createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
-static StrErr fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
-static StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
-static StrErr readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
-static StrErr allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr);
-static StrErr fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
-static StrErr getCommonxMatrixOfPolyInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
-static StrErr createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
-static StrErr fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen);
-static StrErr fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
-static StrErr readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-static StrErr createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-static StrErr createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static StrErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+static StrErr getCommonMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+static StrErr createCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+static StrErr fillCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
+static StrErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+static StrErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+static StrErr allocCommonItemInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piChildAddr);
+static StrErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
+static StrErr getCommonMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static StrErr createCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static StrErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen);
+static StrErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
+static StrErr readCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static StrErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static StrErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
-StrErr getListItemNumber(int* _piAddress, int* _piNbItem)
+char* getListTypeName(int _iType)
+{
+	switch(_iType)
+	{
+	case sci_list :
+		return "list";
+		break;
+	case sci_tlist :
+		return "tlist";
+		break;
+	case sci_mlist :
+		return "mlist";
+		break;
+	default:
+		break;
+	}
+	return "";
+}
+StrErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType	= 0;
 
-	strErr = getVarType(_piAddress, &iType);
+	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_LIST_ITEM_NUMBER, _("API_ERROR_LIST_ITEM_NUMBER"));
+		addErrorMessage(&strErr, API_ERROR_LIST_ITEM_NUMBER, _("%s: Unable to get item number of list"), "getListItemNumber");
 		return strErr;
 	}
 	switch(iType)
@@ -86,14 +104,13 @@ StrErr getListItemNumber(int* _piAddress, int* _piNbItem)
 		*_piNbItem = _piAddress[1];
 		break;
 	default :
-		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("API_ERROR_INVALID_LIST_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_LIST_ITEM_NUMBER, _("API_ERROR_LIST_ITEM_NUMBER"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListItemNumber", _("list"));
 		return strErr;
 	}
 	return strErr;
 }
 
-StrErr getListItemAddress(int* _piAddress, int _iItemNum, int** _piItemAddress)
+StrErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iItem						= 0;
@@ -101,10 +118,16 @@ StrErr getListItemAddress(int* _piAddress, int _iItemNum, int** _piItemAddress)
 	int* piItemAddress	= NULL;
 
 	//get item count
-	strErr = getListItemNumber(_piAddress, &iItem);
+	strErr = getListItemNumber(_pvCtx, _piAddress, &iItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_ITEM_ADDRESS, _("API_ERROR_GET_ITEM_ADDRESS"));
+		addErrorMessage(&strErr, API_ERROR_GET_ITEM_ADDRESS, _("%s: Unable to get address of item #%d in argument #%d"), "getListItemAddress", _iItemNum + 1, getRhsFromAddress(_pvCtx, _piAddress));
+		return strErr;
+	}
+
+	if(_iItemNum > iItem)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_ITEM_ADDRESS, _("%s: Unable to get address of item #%d in argument #%d"), "getListItemAddress", _iItemNum + 1, getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -115,37 +138,37 @@ StrErr getListItemAddress(int* _piAddress, int _iItemNum, int** _piItemAddress)
 	return strErr;
 }
 
-StrErr createList(int _iVar, int _iNbItem, int** _piAddress)
+StrErr createList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress)
 {
-	return createCommonList(_iVar, sci_list, _iNbItem, _piAddress);
+	return createCommonList(_pvCtx, _iVar, sci_list, _iNbItem, _piAddress);
 }
 
-StrErr createMList(int _iVar, int _iNbItem, int** _piAddress)
+StrErr createMList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress)
 {
-	return createCommonList(_iVar, sci_mlist, _iNbItem, _piAddress);
+	return createCommonList(_pvCtx, _iVar, sci_mlist, _iNbItem, _piAddress);
 }
 
-StrErr createTList(int _iVar, int _iNbItem, int** _piAddress)
+StrErr createTList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress)
 {
-	return createCommonList(_iVar, sci_tlist, _iNbItem, _piAddress);
+	return createCommonList(_pvCtx, _iVar, sci_tlist, _iNbItem, _piAddress);
 }
 
-StrErr createNamedList(char* _pstName, int _iNbItem, int** _piAddress)
+StrErr createNamedList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
 {
-	return createCommonNamedList(_pstName, sci_list, _iNbItem, _piAddress);
+	return createCommonNamedList(_pvCtx, _pstName, sci_list, _iNbItem, _piAddress);
 }
 
-StrErr createNamedTList(char* _pstName, int _iNbItem, int** _piAddress)
+StrErr createNamedTList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
 {
-	return createCommonNamedList(_pstName, sci_tlist, _iNbItem, _piAddress);
+	return createCommonNamedList(_pvCtx, _pstName, sci_tlist, _iNbItem, _piAddress);
 }
 
-StrErr createNamedMList(char* _pstName, int _iNbItem, int** _piAddress)
+StrErr createNamedMList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
 {
-	return createCommonNamedList(_pstName, sci_mlist, _iNbItem, _piAddress);
+	return createCommonNamedList(_pvCtx, _pstName, sci_mlist, _iNbItem, _piAddress);
 }
 
-static StrErr createCommonNamedList(char* _pstName, int _iListType, int _iNbItem, int** _piAddress)
+static StrErr createCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int _iNbItem, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -157,12 +180,12 @@ static StrErr createCommonNamedList(char* _pstName, int _iListType, int _iNbItem
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 	
-	strErr = fillCommonList(piAddr, _iListType, _iNbItem);
+	strErr = fillCommonList(_pvCtx, piAddr, _iListType, _iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_LIST, _("API_ERROR_CREATE_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_LIST,_("%s: Unable to create %s named \"%s\""), "createNamedList", getListTypeName(_iListType), _pstName);
 		return strErr;
 	}
 
@@ -184,19 +207,19 @@ static StrErr createCommonNamedList(char* _pstName, int _iListType, int _iNbItem
 	return strErr;
 }
 
-static StrErr createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAddress)
+static StrErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piAddr			= NULL;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	getNewVarAddressFromPosition(iNewPos, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
-	strErr = fillCommonList(piAddr, _iListType, _iNbItem);
+	strErr = fillCommonList(_pvCtx, piAddr, _iListType, _iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_LIST, _("API_ERROR_CREATE_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_LIST, _("%s: Unable to create variable in Scilab memory"), "createList");
 		return strErr;
 	}
 
@@ -207,7 +230,7 @@ static StrErr createCommonList(int _iVar, int _iListType, int _iNbItem, int** _p
 	return strErr;
 }
 
-StrErr fillCommonList(int* _piAddress, int _iListType, int _iNbItem)
+StrErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbItem)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piOffset = NULL;
@@ -225,45 +248,44 @@ StrErr fillCommonList(int* _piAddress, int _iListType, int _iNbItem)
 	return strErr;
 }
 
-StrErr readNamedList(char* _pstName, int* _piNbItem, int** _piAddress)
+StrErr readNamedList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
 {
-	return readCommonNamedList(_pstName, sci_list, _piNbItem, _piAddress);
+	return readCommonNamedList(_pvCtx, _pstName, sci_list, _piNbItem, _piAddress);
 }
 
-StrErr readNamedTList(char* _pstName, int* _piNbItem, int** _piAddress)
+StrErr readNamedTList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
 {
-	return readCommonNamedList(_pstName, sci_tlist, _piNbItem, _piAddress);
+	return readCommonNamedList(_pvCtx, _pstName, sci_tlist, _piNbItem, _piAddress);
 }
 
-StrErr readNamedMList(char* _pstName, int* _piNbItem, int** _piAddress)
+StrErr readNamedMList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
 {
-	return readCommonNamedList(_pstName, sci_mlist, _piNbItem, _piAddress);
+	return readCommonNamedList(_pvCtx, _pstName, sci_mlist, _piNbItem, _piAddress);
 }
 
-static StrErr readCommonNamedList(char* _pstName, int _iListType, int* _piNbItem, int** _piAddress)
+static StrErr readCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int* _piNbItem, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 	int iNbItem		= 0;
 
-	strErr = getVarAddressFromName(_pstName, &piAddr);
+	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_LIST, _("API_ERROR_READ_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_LIST, _("%s: Unable to get variable \"%s\""), "readNamedList", _pstName);
 		return strErr;
 	}
 
 	if(piAddr[0] != _iListType)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("API_ERROR_INVALID_LIST_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_LIST, _("API_ERROR_READ_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "readNamedList", getListTypeName(_iListType));
 		return strErr;
 	}
 
-	strErr = getListItemNumber(piAddr, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, piAddr, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_LIST, _("API_ERROR_READ_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_LIST, _("%s: Unable to get variable \"%s\""), "readNamedList", _pstName);
 		return strErr;
 	}
 
@@ -273,72 +295,70 @@ static StrErr readCommonNamedList(char* _pstName, int _iListType, int* _piNbItem
 	return strErr;
 }
 
-StrErr getListInList(int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_piParent, _iItemPos, sci_list, _piAddress);
+	return getCommonListInList(_pvCtx, _piParent, _iItemPos, sci_list, _piAddress);
 }
 
-StrErr getTListInList(int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getTListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_piParent, _iItemPos, sci_tlist, _piAddress);
+	return getCommonListInList(_pvCtx, _piParent, _iItemPos, sci_tlist, _piAddress);
 }
 
-StrErr getMListInList(int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getMListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_piParent, _iItemPos, sci_mlist, _piAddress);
+	return getCommonListInList(_pvCtx, _piParent, _iItemPos, sci_mlist, _piAddress);
 }
 
-StrErr getCommonListInList(int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
+StrErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, _piAddress);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, _piAddress);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_LIST, _("API_ERROR_GET_LIST_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getListInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	if((*_piAddress)[0] != _iListType)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("API_ERROR_INVALID_LIST_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_LIST, _("API_ERROR_GET_LIST_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListInList", getListTypeName(_iListType));
 		return strErr;
 	}
 	return strErr;
 }
 
-StrErr getListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommomListInNamedList(_pstName, _piParent, _iItemPos, sci_list, _piAddress);
+	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_list, _piAddress);
 }
 
-StrErr getTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommomListInNamedList(_pstName, _piParent, _iItemPos, sci_tlist, _piAddress);
+	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_tlist, _piAddress);
 }
 
-StrErr getMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+StrErr getMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommomListInNamedList(_pstName, _piParent, _iItemPos, sci_mlist, _piAddress);
+	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_mlist, _piAddress);
 }
 
-StrErr getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
+StrErr getCommomListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_NAMED_LIST, _("API_ERROR_GET_LIST_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "getListInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	if(piAddr[0] != _iListType)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("API_ERROR_INVALID_LIST_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_LIST_IN_NAMED_LIST, _("API_ERROR_GET_LIST_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListInNamedList", getListTypeName(_iListType));
 		return strErr;
 	}
 
@@ -346,22 +366,22 @@ StrErr getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, i
 	return strErr;
 }
 
-StrErr createListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInList(_iVar, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress, 0);
+	return createCommonListInList(_pvCtx, _iVar, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress, 0);
 }
 
-StrErr createTListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createTListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInList(_iVar, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress, 0);
+	return createCommonListInList(_pvCtx, _iVar, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress, 0);
 }
 
-StrErr createMListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createMListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInList(_iVar, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress, 0);
+	return createCommonListInList(_pvCtx, _iVar, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress, 0);
 }
 
-static StrErr createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed)
+static StrErr createCommonListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos				= Top - Rhs + _iVar;
@@ -369,26 +389,25 @@ static StrErr createCommonListInList(int _iVar, int* _piParent, int _iItemPos, i
 	int* piChildAddr	= NULL;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_LIST, _("API_ERROR_CREATE_LIST_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_LIST, _("API_ERROR_CREATE_LIST_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonList(piChildAddr, _iListType, _iNbItem);
+	strErr = fillCommonList(_pvCtx, piChildAddr, _iListType, _iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_LIST, _("API_ERROR_CREATE_LIST_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -410,33 +429,33 @@ static StrErr createCommonListInList(int _iVar, int* _piParent, int _iItemPos, i
 		piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2;
 		if(iNamed)
 		{
-			updateNamedListOffset(_iVar, _piParent, _iItemPos, piEnd);
+			updateNamedListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 		}
 		else
 		{
-			updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+			updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 		}
 	}
 
 	return strErr;
 }
 
-StrErr createListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInNamedList(_pstName, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress);
+	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress);
 }
 
-StrErr createTListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInNamedList(_pstName, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress);
+	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress);
 }
 
-StrErr createMListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+StrErr createMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
-	return createCommonListInNamedList(_pstName, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress);
+	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress);
 }
 
-StrErr createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress)
+StrErr createCommonListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -445,17 +464,17 @@ StrErr createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
-	strErr = createCommonListInList(Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
+	strErr = createCommonListInList(_pvCtx, Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_NAMED_LIST, _("API_ERROR_CREATE_LIST_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_LIST_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createListInList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	if(_iNbItem == 0 && _iItemPos == _piParent[1])
 	{
 		int* piEnd = *_piAddress + 4;
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -463,7 +482,7 @@ StrErr createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos
 	return strErr;
 }
 
-StrErr	allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr)
+StrErr	allocCommonItemInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piChildAddr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piOffset = NULL;
@@ -472,15 +491,14 @@ StrErr	allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr)
 	piOffset		= _piParent + 2;
 	if(piOffset[_iItemPos - 1] == -1)
 	{//Previous items wasn't inserted
-		addErrorMessage(&strErr, API_ERROR_NON_ORDERED_INSERTION, _("API_ERROR_NON_ORDERED_INSERTION"));
-		addErrorMessage(&strErr, API_ERROR_ALLOC_IN_LIST, _("API_ERROR_ALLOC_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_NON_ORDERED_INSERTION, _("%s: Items must be inserted in order"), "allocItemInList");
 		return strErr;
 	}
 
-	strErr = getListItemAddress(_piParent, _iItemPos, _piChildAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, _piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_IN_LIST, _("API_ERROR_ALLOC_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "allocItemInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -491,57 +509,57 @@ StrErr	allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr)
  * Double functions *
  *********************/
 
-StrErr getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
+StrErr getMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
 {
-	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
+	return getCommonMatrixOfDoubleInList(_pvCtx, _piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+StrErr getComplexMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return getCommonMatrixOfDoubleInList(_pvCtx, _piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-static StrErr getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+static StrErr getCommonMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE_IN_LIST, _("API_ERROR_GET_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexMatrixOfDoubleInList" : "getMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfDouble(piAddr, _iComplex, _piRows, _piCols, _pdblReal, _pdblImg);
+	strErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE_IN_LIST, _("API_ERROR_GET_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexMatrixOfDoubleInList" : "getMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 	return strErr;
 }
 
-StrErr allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal)
+StrErr allocMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal)
 {
-	return allocCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
+	return allocCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-StrErr allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+StrErr allocComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-	return allocCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return allocCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-static StrErr allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+static StrErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos				= Top - Rhs + _iVar;
 	int* piEnd				= NULL;
 
-	strErr = fillCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+	strErr = fillCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE_IN_LIST, _("API_ERROR_GET_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
@@ -550,13 +568,13 @@ static StrErr allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iI
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 
 	return strErr;
 }
 
-static StrErr fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+static StrErr fillCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -564,32 +582,31 @@ static StrErr fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iIt
 	int* piChildAddr	= NULL;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_DOUBLE_IN_LIST, _("API_ERROR_FILL_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_DOUBLE_IN_LIST, _("API_ERROR_FILL_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfDoubleInList" : "createMatrixOfDoubleInList", _iItemPos + 1);
 		return strErr;
 	}
 
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_DOUBLE_IN_LIST, _("API_ERROR_FILL_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfDouble(piChildAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+	strErr = fillCommonMatrixOfDouble(_pvCtx, piChildAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_DOUBLE_IN_LIST, _("API_ERROR_FILL_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
@@ -599,26 +616,26 @@ static StrErr fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iIt
 	return strErr;
 }
 
-StrErr createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
+StrErr createMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
 {
-	return createCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
+	return createCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-StrErr createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	return createCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return createCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-StrErr createComplexZMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData)
+StrErr createComplexZMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	strErr = allocCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = allocCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE_IN_LIST, _("API_ERROR_CREATE_ZDOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createComplexZMatrixOfDoubleInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -627,16 +644,16 @@ StrErr createComplexZMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemP
 	return strErr;
 }
 
-StrErr createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	strErr = allocCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = allocCommonMatrixOfDoubleInList(_pvCtx, _iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_LIST, _("API_ERROR_CREATE_DOUBLE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfDoubleInList" : "createMatrixOfDoubleInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -652,17 +669,17 @@ StrErr createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos
 	return strErr;
 }
 
-StrErr createMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
+StrErr createMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
 {
-	return createCommomMatrixOfDoubleInNamedList(_pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
+	return createCommomMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-StrErr createComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	return createCommomMatrixOfDoubleInNamedList(_pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return createCommomMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData)
+StrErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -677,21 +694,21 @@ StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, i
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = fillCommonMatrixOfDoubleInList(Top, _piParent, _iItemPos, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = fillCommonMatrixOfDoubleInList(_pvCtx, Top, _piParent, _iItemPos, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST, _("API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createComplexZMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST, _("API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createComplexZMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -700,7 +717,7 @@ StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, i
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -710,7 +727,7 @@ StrErr createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, i
 	return strErr;
 }
 
-StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -725,12 +742,12 @@ StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = fillCommonMatrixOfDoubleInList(Top, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = fillCommonMatrixOfDoubleInList(_pvCtx, Top, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST, _("API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexMatrixOfDoubleInNamedList" : "createMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -740,10 +757,10 @@ StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int
 		memcpy(pdblImg, _pdblImg, sizeof(double) * _iRows * _iCols);
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST, _("API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexMatrixOfDoubleInNamedList" : "createMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -752,7 +769,7 @@ StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -762,17 +779,17 @@ StrErr createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int
 	return strErr;
 }
 
-StrErr readMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal)
+StrErr readMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal)
 {
-	return readCommonMatrixOfDoubleInNamedList(_pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
+	return readCommonMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr readComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+StrErr readComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
-	return readCommonMatrixOfDoubleInNamedList(_pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return readCommonMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-static StrErr readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+static StrErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -783,30 +800,30 @@ static StrErr readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
-	if(strErr.iErr)
-	{
-		addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("API_ERROR_READ_DOUBLE_IN_NAMED_LIST"));
-		return strErr;
-	}
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
+		if(strErr.iErr)
+		{
+			addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""),_iComplex ? "readComplexMatrixOfDoubleInNamedList" : "readMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
+			return strErr;
+		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("API_ERROR_READ_DOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""),_iComplex ? "readComplexMatrixOfDoubleInNamedList" : "readMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfDouble(piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
+	strErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("API_ERROR_READ_DOUBLE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""),_iComplex ? "readComplexMatrixOfDoubleInNamedList" : "readMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -828,23 +845,23 @@ static StrErr readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent
  * Strings functions *
  *********************/
 
-StrErr getMatrixOfStringInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+StrErr getMatrixOfStringInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iRet			= 0;
 	int* piAddr		= NULL;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_STRING_IN_LIST, _("API_ERROR_GET_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_STRING_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfStringInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
+	strErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_STRING_IN_LIST, _("API_ERROR_GET_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_STRING_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfStringInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
@@ -852,7 +869,7 @@ StrErr getMatrixOfStringInList(int* _piParent, int _iItemPos, int* _piRows, int*
 }
 
 
-StrErr createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
+StrErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -862,31 +879,30 @@ StrErr createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int 
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
 
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("API_ERROR_CREATE_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("API_ERROR_CREATE_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piItemAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("API_ERROR_CREATE_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfStringInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+	strErr = fillCommonMatrixOfStringInList(_pvCtx, _iVar, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("API_ERROR_CREATE_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -895,13 +911,13 @@ StrErr createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int 
 
 	if(_iItemPos == iNbItem)
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 
 	return strErr;
 }
 
-StrErr fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
+StrErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem			= 0;
@@ -910,25 +926,24 @@ StrErr fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, 
 	int* piOffset		= NULL;
 
 	//Does item can be added in the list
-	getListItemNumber(_piParent, &iNbItem);
+	getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_STRING_IN_LIST, _("API_ERROR_FILL_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_STRING_IN_LIST, _("API_ERROR_FILL_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_STRING_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "fillMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, _piTotalLen);
+	strErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, _piTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_STRING_IN_LIST, _("API_ERROR_FILL_STRING_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_STRING_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "fillMatrixOfStringInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -938,7 +953,7 @@ StrErr fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, 
 	return strErr;
 }
 
-StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
+StrErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -952,17 +967,17 @@ StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iIte
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piItemAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_NAMED_LIST, _("API_ERROR_CREATE_STRING_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfStringInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfStringInList(Top, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+	strErr = fillCommonMatrixOfStringInList(_pvCtx, Top, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_NAMED_LIST, _("API_ERROR_CREATE_STRING_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_STRING_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfStringInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -971,7 +986,7 @@ StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iIte
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -982,7 +997,7 @@ StrErr createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iIte
 	return strErr;
 }
 
-StrErr readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+StrErr readMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -991,30 +1006,30 @@ StrErr readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemP
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("API_ERROR_READ_STRING_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfStringInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("API_ERROR_READ_STRING_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfStringInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
+	strErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("API_ERROR_READ_STRING_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_STRING_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfStringInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1025,37 +1040,37 @@ StrErr readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemP
  * boolean functions *
  *********************/
 
-StrErr getMatrixOfBooleanInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
+StrErr getMatrixOfBooleanInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_IN_LIST, _("API_ERROR_GET_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfBooleanInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getMatrixOfBoolean(piAddr, _piRows, _piCols, _piBool);
+	strErr = getMatrixOfBoolean(_pvCtx, piAddr, _piRows, _piCols, _piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_IN_LIST, _("API_ERROR_GET_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfBooleanInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+StrErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piBool			= NULL;
 
-	strErr = allocMatrixOfBooleanInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, &piBool);
+	strErr = allocMatrixOfBooleanInList(_pvCtx, _iVar, _piParent, _iItemPos, _iRows, _iCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_LIST, _("API_ERROR_CREATE_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBooleanInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1066,16 +1081,16 @@ StrErr createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int
 	return strErr;
 }
 
-StrErr allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
+StrErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos				= Top - Rhs + _iVar;
 	int* piEnd				= NULL;
 
-	strErr = fillMatrixOfBoolInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _piBool);
+	strErr = fillMatrixOfBoolInList(_pvCtx, _iVar, _piParent, _iItemPos, _iRows, _iCols, _piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_IN_LIST, _("API_ERROR_ALLOC_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "allocMatrixOfBooleanInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1084,12 +1099,12 @@ StrErr allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int 
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 	return strErr;
 }
 
-static StrErr fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
+static StrErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1097,32 +1112,31 @@ static StrErr fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, i
 	int* piChildAddr	= NULL;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("API_ERROR_FILL_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("API_ERROR_FILL_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBooleanInList", _iItemPos + 1);
 		return strErr;
 	}
 
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("API_ERROR_FILL_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillMatrixOfBoolean(piChildAddr, _iRows, _iCols, _piBool);
+	strErr = fillMatrixOfBoolean(_pvCtx, piChildAddr, _iRows, _iCols, _piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("API_ERROR_FILL_BOOLEAN_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1132,7 +1146,7 @@ static StrErr fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, i
 	return strErr;
 }
 
-StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+StrErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1146,21 +1160,21 @@ StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iIt
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 	
-	strErr = fillMatrixOfBoolInList(Top, _piParent, _iItemPos, _iRows, _iCols, &piBool);
+	strErr = fillMatrixOfBoolInList(_pvCtx, Top, _piParent, _iItemPos, _iRows, _iCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST, _("API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfBooleanInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST, _("API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfBooleanInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1169,7 +1183,7 @@ StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iIt
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -1179,7 +1193,7 @@ StrErr createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iIt
 	return strErr;
 }
 
-StrErr readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool)
+StrErr readMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -1190,30 +1204,30 @@ StrErr readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItem
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfBooleanInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfBooleanInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getMatrixOfBoolean(piAddr, _piRows, _piCols, &piBool);
+	strErr = getMatrixOfBoolean(_pvCtx, piAddr, _piRows, _piCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfBooleanInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1231,29 +1245,29 @@ StrErr readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItem
  * polynomials functions *
  *************************/
 
-StrErr getMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+StrErr getMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
-	return getCommonxMatrixOfPolyInList(_piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+	return getCommonMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-StrErr getComplexMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr getComplexMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonxMatrixOfPolyInList(_piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	return getCommonMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-StrErr getCommonxMatrixOfPolyInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr getCommonMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_IN_LIST, _("API_ERROR_GET_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_POLY_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexMatrixOfPolyInList" : "getMatrixOfPolyInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfPoly(piAddr, _iComplex, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	strErr = getCommonMatrixOfPoly(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
 		addErrorMessage(&strErr, API_ERROR_GET_POLY_IN_LIST, _("API_ERROR_GET_POLY_IN_LIST"));
@@ -1263,17 +1277,17 @@ StrErr getCommonxMatrixOfPolyInList(int* _piParent, int _iItemPos, int _iComplex
 	return strErr;
 }
 
-StrErr createMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+StrErr createMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
 {
-	return createCommonMatrixOfPolyInList(_iVar, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonMatrixOfPolyInList(_pvCtx, _iVar, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-StrErr createComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createComplexMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return createCommonMatrixOfPolyInList(_iVar, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonMatrixOfPolyInList(_pvCtx, _iVar, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-StrErr createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piItemAddr			= NULL;
@@ -1281,17 +1295,17 @@ StrErr createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, 
 	int iItemLen				= 0;
 	int iTotalLen				= 0;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piItemAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_LIST, _("API_ERROR_CREATE_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfPolyInList(_iVar, _piParent, _iItemPos, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	strErr = fillCommonMatrixOfPolyInList(_pvCtx, _iVar, _piParent, _iItemPos, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_LIST, _("API_ERROR_CREATE_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1300,7 +1314,7 @@ StrErr createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, 
 	piEnd								=	piItemAddr + iItemLen;
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 
 	closeList(_iVar, piEnd);
@@ -1308,7 +1322,7 @@ StrErr createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, 
 	return strErr;
 }
 
-static StrErr fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)
+static StrErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1319,31 +1333,30 @@ static StrErr fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItem
 	int iItemLen			= 0;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("API_ERROR_FILL_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("API_ERROR_FILL_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("API_ERROR_FILL_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfPoly(piChildAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	strErr = fillCommonMatrixOfPoly(_pvCtx, piChildAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("API_ERROR_FILL_POLY_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_POLY_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexMatrixOfPolyInList" : "createMatrixOfPolyInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1358,17 +1371,17 @@ static StrErr fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItem
 }
 
 
-StrErr createMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+StrErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
 {
-	return createCommonMatrixOfPolyInNamedList(_pstName, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-StrErr createComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return createCommonMatrixOfPolyInNamedList(_pstName, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-StrErr createCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1383,22 +1396,22 @@ StrErr createCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = fillCommonMatrixOfPolyInList(Top, _piParent, _iItemPos, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	strErr = fillCommonMatrixOfPolyInList(_pvCtx, Top, _piParent, _iItemPos, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_NAMED_LIST, _("API_ERROR_CREATE_POLY_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexMatrixOfPolyInNamedList" : "createMatrixOfPolyInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	iItemLen						= 9 + _iRows * _iCols + (9 + _iRows * _iCols)%2;
 	iItemLen						+= iTotalLen;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piChildAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_NAMED_LIST, _("API_ERROR_CREATE_POLY_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexMatrixOfPolyInNamedList" : "createMatrixOfPolyInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1407,7 +1420,7 @@ StrErr createCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -1418,17 +1431,17 @@ StrErr createCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _
 	return strErr;
 }
 
-StrErr readMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+StrErr readMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
-	return readCommonMatrixOfPolyInNamedList(_pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+	return readCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-StrErr readComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return readCommonMatrixOfPolyInNamedList(_pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	return readCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-StrErr readCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -1437,30 +1450,30 @@ StrErr readCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iI
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("API_ERROR_READ_POLY_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexMatrixOfPolyInNamedList" : "readMatrixOfPolyInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("API_ERROR_READ_POLY_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexMatrixOfPolyInNamedList" : "readMatrixOfPolyInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfPoly(piAddr, _iComplex, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	strErr = getCommonMatrixOfPoly(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("API_ERROR_READ_POLY_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_POLY_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexMatrixOfPolyInNamedList" : "readMatrixOfPolyInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1471,7 +1484,7 @@ StrErr readCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iI
  * integers functions *
  **********************/
 
-static StrErr fillCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
+static StrErr fillCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1479,32 +1492,31 @@ static StrErr fillCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iI
 	int* piChildAddr	= NULL;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("API_ERROR_FILL_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("API_ERROR_FILL_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("API_ERROR_FILL_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonMatrixOfInteger(piChildAddr, _iPrecision, _iRows, _iCols, _pvData);
+	strErr = fillCommonMatrixOfInteger(_pvCtx, piChildAddr, _iPrecision, _iRows, _iCols, _pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("API_ERROR_FILL_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_INT_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1524,16 +1536,16 @@ static StrErr fillCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iI
 	return strErr;
 }
 
-static StrErr allocCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
+static StrErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos				= Top - Rhs + _iVar;
 	int* piEnd				= NULL;
 
-	strErr = fillCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
+	strErr = fillCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT_IN_LIST, _("API_ERROR_ALLOC_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_INT_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "allocMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1542,50 +1554,50 @@ static StrErr allocCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _i
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 	return strErr;
 }
 
-StrErr allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)
+StrErr allocMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, (void **)_pucData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, (void **)_pucData);
 }
 
-StrErr allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)
+StrErr allocMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, (void**)_pusData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, (void**)_pusData);
 }
 
-StrErr allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)
+StrErr allocMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, (void**)_puiData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, (void**)_puiData);
 }
 
-StrErr allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)
+StrErr allocMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, (void**)_pcData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, (void**)_pcData);
 }
 
-StrErr allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)
+StrErr allocMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, (void**)_psData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, (void**)_psData);
 }
 
-StrErr allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)
+StrErr allocMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, (void**)_piData);
+	return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, (void**)_piData);
 }
 
-static StrErr createCommomMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+static StrErr createCommomMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	void *pvData = NULL;
 
-	strErr = allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, &pvData);
+	strErr = allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, &pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_LIST, _("API_ERROR_CREATE_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_LIST,_("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1596,89 +1608,89 @@ static StrErr createCommomMatrixOfIntegerInList(int _iVar, int* _piParent, int _
 	return strErr;
 }
 
-StrErr createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)
+StrErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
 }
 
-StrErr createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)
+StrErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
 }
 
-StrErr createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)
+StrErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
 }
 
-StrErr createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
+StrErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
-StrErr createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
+StrErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
-StrErr createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
+StrErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 {
-	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
+	return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
-static StrErr getCommonMatrixOfIntegerInList(int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
+static StrErr getCommonMatrixOfIntegerInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 	
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_INT_IN_LIST, _("API_ERROR_GET_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_INT_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfIntegerInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfInteger(piAddr, _iPrecision, _piRows, _piCols, _pvData);
+	strErr = getCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _piRows, _piCols, _pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_INT_IN_LIST, _("API_ERROR_GET_INT_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_INT_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getMatrixOfIntegerInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr getMatrixOfUnsignedInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)
+StrErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, (void**)_pucData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, (void**)_pucData);
 }
 
-StrErr getMatrixOfUnsignedInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)
+StrErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, (void**)_pusData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, (void**)_pusData);
 }
 
-StrErr getMatrixOfUnsignedInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)
+StrErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, (void**)_puiData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, (void**)_puiData);
 }
 
-StrErr getMatrixOfInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)
+StrErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT8, _piRows, _piCols, (void**)_pcData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, (void**)_pcData);
 }
 
-StrErr getMatrixOfInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)
+StrErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT16, _piRows, _piCols, (void**)_psData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, (void**)_psData);
 }
 
-StrErr getMatrixOfInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)
+StrErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)
 {
-	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
+	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
 }
 
-static StrErr createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+static StrErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1691,19 +1703,19 @@ static StrErr createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piPar
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = createCommomMatrixOfIntegerInList(Top, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
+	strErr = createCommomMatrixOfIntegerInList(_pvCtx, Top, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_NAMED_LIST, _("API_ERROR_CREATE_INT_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_NAMED_LIST,_("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfIntegerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_NAMED_LIST, _("API_ERROR_CREATE_INT_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT_IN_NAMED_LIST,_("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfIntegerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1716,7 +1728,7 @@ static StrErr createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piPar
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -1726,37 +1738,37 @@ static StrErr createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piPar
 	return strErr;
 }
 
-StrErr createMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)
+StrErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
 }
 
-StrErr createMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)
+StrErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
 }
 
-StrErr createMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)
+StrErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
 }
 
-StrErr createMatrixOfInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
+StrErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
-StrErr createMatrixOfInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
+StrErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
-StrErr createMatrixOfInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
+StrErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 {
-	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
+	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
-static StrErr readCommonMatrixOfIntgerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
+static StrErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1766,30 +1778,30 @@ static StrErr readCommonMatrixOfIntgerInNamedList(char* _pstName, int* _piParent
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("API_ERROR_READ_INT_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfIntgerInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("API_ERROR_READ_INT_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfIntgerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getCommonMatrixOfInteger(piAddr, _iPrecision, _piRows, _piCols, &pvData);
+	strErr = getCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _piRows, _piCols, &pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("API_ERROR_READ_INT_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_INT_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readMatrixOfIntgerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1802,41 +1814,41 @@ static StrErr readCommonMatrixOfIntgerInNamedList(char* _pstName, int* _piParent
 	return strErr;
 }
 
-StrErr readMatrixOfUnsignedInteger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)
+StrErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, _pucData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, _pucData);
 }
 
-StrErr readMatrixOfUnsignedInteger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)
+StrErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, _pusData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, _pusData);
 }
 
-StrErr readMatrixOfUnsignedInteger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)
+StrErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, _puiData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, _puiData);
 }
 
-StrErr readMatrixOfIntger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)
+StrErr readMatrixOfIntger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, _pcData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, _pcData);
 }
 
-StrErr readMatrixOfIntger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)
+StrErr readMatrixOfIntger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, _psData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, _psData);
 }
 
-StrErr readMatrixOfIntger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)
+StrErr readMatrixOfIntger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)
 {
-	return readCommonMatrixOfIntgerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, _piData);
+	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, _piData);
 }
 
 /*********************
  * sparses functions *
  *********************/
 
-static StrErr fillCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int* _piTotalSize)
+static StrErr fillCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int* _piTotalSize)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1851,31 +1863,30 @@ static StrErr fillCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItem
 	int iItemLen			= 0;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("API_ERROR_FILL_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createComplexSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("API_ERROR_FILL_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createSparseMatrixInNamedList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("API_ERROR_FILL_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createComplexSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonSparseMatrix(piChildAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalLen);
+	strErr = fillCommonSparseMatrix(_pvCtx, piChildAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("API_ERROR_FILL_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createComplexSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -1898,7 +1909,7 @@ static StrErr fillCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItem
 	return strErr;
 }
 
-static StrErr createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static StrErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr					= NULL;
@@ -1906,17 +1917,17 @@ static StrErr createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iIt
 	int iItemLen				= 0;
 	int iTotalLen				= 0;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_LIST, _("API_ERROR_CREATE_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createComplexSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalLen);
+	strErr = fillCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_LIST, _("API_ERROR_CREATE_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), _iComplex ? "createComplexSparseMatrixInList" : "createComplexSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 	
@@ -1925,7 +1936,7 @@ static StrErr createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iIt
 	piEnd								=	piAddr + iItemLen;
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 
 	closeList(_iVar, piEnd);
@@ -1933,17 +1944,17 @@ static StrErr createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iIt
 	return strErr;
 }
 
-StrErr createSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
+StrErr createSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
 {
-	return createCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+	return createCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-StrErr createComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+StrErr createComplexSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-	return createCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	return createCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-StrErr createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+StrErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1957,19 +1968,19 @@ StrErr createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = createCommonSparseMatrixInList(Top, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	strErr = createCommonSparseMatrixInList(_pvCtx, Top, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_NAMED_LIST, _("API_ERROR_CREATE_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexSparseMatrixInNamedList" : "createSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_NAMED_LIST, _("API_ERROR_CREATE_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexSparseMatrixInNamedList" : "createSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -1980,7 +1991,7 @@ StrErr createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -1990,49 +2001,49 @@ StrErr createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _
 	return strErr;
 }
 
-StrErr createSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
+StrErr createSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
 {
-	return createCommonSparseMatrixInNamedList(_pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+	return createCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-StrErr createComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+StrErr createComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-	return createCommonSparseMatrixInNamedList(_pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	return createCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static StrErr getCommonSparseMatrixInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+static StrErr getCommonSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 	
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE_IN_LIST, _("API_ERROR_GET_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_SPARSE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexSparseMatrixInList" : "getSparseMatrixInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getCommonSparseMatrix(piAddr, _iComplex, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	strErr = getCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE_IN_LIST, _("API_ERROR_GET_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_SPARSE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexSparseMatrixInList" : "getSparseMatrixInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr getSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+StrErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
 {
-	return getCommonSparseMatrixInList(_piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+	return getCommonSparseMatrixInList(_pvCtx, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-StrErr getComplexSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+StrErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonSparseMatrixInList(_piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	return getCommonSparseMatrixInList(_pvCtx, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static StrErr readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static StrErr readCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2045,30 +2056,30 @@ static StrErr readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, 
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_SPARSE_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST,_("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexSparseMatrixInNamedList" : "readSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST,_("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexSparseMatrixInNamedList" : "readSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getCommonSparseMatrix(piAddr, _iComplex, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+	strErr = getCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_SPARSE_IN_NAMED_LIST,_("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexSparseMatrixInNamedList" : "readSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -2098,20 +2109,20 @@ static StrErr readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, 
 	return strErr;
 }
 
-StrErr readSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
+StrErr readSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
 {
-	return readCommonSparseMatrixInNamedList(_pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+	return readCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-StrErr readComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+StrErr readComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-	return readCommonSparseMatrixInNamedList(_pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	return readCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
 /*****************************
  * boolean sparses functions *
  *****************************/
-static StrErr fillBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+static StrErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2123,31 +2134,30 @@ static StrErr fillBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iIte
 	int iItemLen			= 0;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillBooleanSparseMatrix(piChildAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+	strErr = fillBooleanSparseMatrix(_pvCtx, piChildAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -2162,24 +2172,24 @@ static StrErr fillBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iIte
 	return strErr;
 }
 
-StrErr createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr					= NULL;
 	int *piEnd					= NULL;
 	int iItemLen				= 0;
 
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillBooleanSparseMatrixInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	strErr = fillBooleanSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
 		return strErr;
 	}
 	
@@ -2187,7 +2197,7 @@ StrErr createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos,
 	piEnd								=	piAddr + iItemLen;
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 
 	closeList(_iVar, piEnd);
@@ -2195,7 +2205,7 @@ StrErr createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos,
 	return strErr;
 }
 
-StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -2209,19 +2219,19 @@ StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int 
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = createBooleanSparseMatrixInList(Top, _piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	strErr = createBooleanSparseMatrixInList(_pvCtx, Top, _piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST, _("API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST, _("API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -2231,7 +2241,7 @@ StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int 
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -2241,29 +2251,29 @@ StrErr createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int 
 	return strErr;
 }
 
-StrErr getBooleanSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+StrErr getBooleanSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 	
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getBooleanSparseMatrixInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos);
+	strErr = getBooleanSparseMatrix(_pvCtx, piAddr, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST, _("API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getBooleanSparseMatrixInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+StrErr readBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2274,30 +2284,30 @@ StrErr readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _i
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+	strErr = getBooleanSparseMatrix(_pvCtx, piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -2319,29 +2329,29 @@ StrErr readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _i
 /*********************
  * Pointer functions *
  *********************/
-StrErr getPointerInList(int* _piParent, int _iItemPos, void** _pvPtr)
+StrErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 	
-	strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POINTER_IN_LIST, _("API_ERROR_GET_POINTER_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_POINTER_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getPointerInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
-	strErr = getPointer(piAddr, _pvPtr);
+	strErr = getPointer(_pvCtx, piAddr, _pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POINTER_IN_LIST, _("API_ERROR_GET_POINTER_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_GET_POINTER_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "getPointerInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)
+StrErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2352,32 +2362,31 @@ StrErr createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPt
 	int iNewPos				= Top - Rhs + _iVar;
 
 	//Does item can be added in the list
-	strErr = getListItemNumber(_piParent, &iNbItem);
+	strErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("API_ERROR_CREATE_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
 	if(iNbItem < _iItemPos)
 	{
-		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("API_ERROR_ITEM_LIST_NUMBER"));
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("API_ERROR_CREATE_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createPointerInList", _iItemPos + 1);
 		return strErr;
 	}
 
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("API_ERROR_CREATE_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
-	strErr = fillPointer(piChildAddr, &pvPtr);
+	strErr = fillPointer(_pvCtx, piChildAddr, &pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("API_ERROR_CREATE_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createListInList", _iItemPos + 1);
 		return strErr;
 	}
 
@@ -2391,12 +2400,12 @@ StrErr createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPt
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+		updateListOffset(_pvCtx, _iVar, _piParent, _iItemPos, piEnd);
 	}
 	return strErr;
 }
 
-StrErr readPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
+StrErr readPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2405,37 +2414,37 @@ StrErr readPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, voi
 
 	if(_piParent == NULL)
 	{
-		strErr = readNamedList(_pstName, &iNbItem, &piRoot);
+		strErr = readNamedList(_pvCtx, _pstName, &iNbItem, &piRoot);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("API_ERROR_READ_POINTER_IN_NAMED_LIST"));
+			addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readPointerInNamedList", _iItemPos + 1, _pstName);
 			return strErr;
 		}
 
-		strErr = getListItemAddress(piRoot, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, piRoot, _iItemPos, &piAddr);
 	}
 	else
 	{
-		strErr = getListItemAddress(_piParent, _iItemPos, &piAddr);
+		strErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
 	}
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("API_ERROR_READ_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readPointerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = getPointer(piAddr, _pvPtr);
+	strErr = getPointer(_pvCtx, piAddr, _pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("API_ERROR_READ_POINTER_IN_NAMED_LIST"));
+		addErrorMessage(&strErr, API_ERROR_READ_POINTER_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), "readPointerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
 	return strErr;
 }
 
-StrErr createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
+StrErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -2448,19 +2457,19 @@ StrErr createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, v
   C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	strErr = createPointerInList(Top, _piParent, _iItemPos, _pvPtr);
+	strErr = createPointerInList(_pvCtx, Top, _piParent, _iItemPos, _pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_LIST, _("API_ERROR_CREATE_POINTER_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createPointerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
-	strErr = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	strErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_LIST, _("API_ERROR_CREATE_POINTER_IN_LIST"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createPointerInNamedList", _iItemPos + 1, _pstName);
 		return strErr;
 	}
 
@@ -2469,7 +2478,7 @@ StrErr createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, v
 
 	if(_iItemPos == _piParent[1])
 	{
-		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
 		createNamedVariable(iVarID);
 	}
 
@@ -2485,19 +2494,19 @@ StrErr createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, v
  * tools  functions *
  ********************/
 
-static void updateNamedListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
+static void updateNamedListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
-	updateCommunListOffset(_iVar, _piCurrentNode, _iItemPos, _piEnd);
+	updateCommunListOffset(_pvCtx, _iVar, _piCurrentNode, _iItemPos, _piEnd);
 }
 
-static void updateListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
+static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
 	int iNewPos				= Top - Rhs + _iVar;
-	updateCommunListOffset(iNewPos, _piCurrentNode, _iItemPos, _piEnd);
+	updateCommunListOffset(_pvCtx, iNewPos, _piCurrentNode, _iItemPos, _piEnd);
 }
 
 //internal tool functions
-static void updateCommunListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
+static void updateCommunListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
 	//find list depth and update list offset for last item
 	int i							= 0;
@@ -2506,12 +2515,12 @@ static void updateCommunListOffset(int _iVar, int *_piCurrentNode, int _iItemPos
 	int iMaxDepth			= 0; //we are already in a list
 	int **piParent			= NULL;
 
-	getParentList(piRoot, _piCurrentNode, &iDepth, NULL);
+	getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, NULL);
 	piParent = (int**)MALLOC(sizeof(int*) * iDepth);
 	iMaxDepth = iDepth;
 	iDepth = 1;
 	piParent[0] = piRoot;
-	getParentList(piRoot, _piCurrentNode, &iDepth, piParent);
+	getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, piParent);
 	for(i = iMaxDepth - 2 ; i >= 0 ; i--)
 	{
 		int j					=	0;
@@ -2555,7 +2564,7 @@ static void closeList(int _iVar, int *_piEnd)
 	updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
 
-static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)
+static int getParentList(void* _pvCtx, int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)
 {
 	if(isKindOfList(_piStart))
 	{
@@ -2566,7 +2575,7 @@ static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _pi
 		{
 			int *piChild = NULL;
 			int iRet = 0;
-			getListItemAddress(_piStart, iIndex + 1, &piChild);
+			getListItemAddress(_pvCtx, _piStart, iIndex + 1, &piChild);
 			if(piChild == _piToFind)
 			{
 				if(_piParent != NULL)
@@ -2577,7 +2586,7 @@ static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _pi
 				return 1;
 			}
 
-			iRet = getParentList(piChild, _piToFind, _piDepth, _piParent);
+			iRet = getParentList(_pvCtx, piChild, _piToFind, _piDepth, _piParent);
 			if(iRet != 0)
 			{//find a child
 				if(_piParent != NULL)

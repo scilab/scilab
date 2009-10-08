@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -33,7 +34,7 @@ public class RedoAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-	    return createMenu(XpadMessages.REDO, null, new RedoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+	    return createMenu(XpadMessages.REDO, null, new RedoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(Xpad editor) {

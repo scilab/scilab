@@ -43,7 +43,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
   int i = 0;
   int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -79,7 +79,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 	  return 1;
   }
 
-	strErr = readNamedMatrixOfBoolean((char*)cname, &cm, &cn, CX);
+	strErr = readNamedMatrixOfBoolean(pvApiCtx, (char*)cname, &cm, &cn, CX);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));

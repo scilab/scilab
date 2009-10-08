@@ -257,10 +257,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on function
                       value in the termination criteria.</para>
 
-                      <para>The following values are available :
-                      "absolute+relative", "relative", "absolute", "disabled"
-                      (default is "disabled"). If this criteria is triggered,
-                      the status of the optimization is set to "tolf".</para>
+                      <para>The following values are available : %t, %f
+                      (default is %f). If this criteria is triggered, the
+                      status of the optimization is set to "tolf".</para>
                     </listitem>
                   </varlistentry>
 
@@ -289,10 +288,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                       <para>the method used for the tolerance on x in the
                       termination criteria.</para>
 
-                      <para>The following values are available : "relative",
-                      "absolute", "disabled" (default is "relative"). If this
-                      criteria is triggered, the status of the optimization is
-                      set to "tolx".</para>
+                      <para>The following values are available : %t, %f
+                      (default is %t). If this criteria is triggered, the
+                      status of the optimization is set to "tolx".</para>
                     </listitem>
                   </varlistentry>
 
@@ -600,11 +598,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfstdeviationmethod</term>
 
                     <listitem>
-                      <para>set to %t to enable the termination
-                      criteria based on the standard deviation of the function
-                      values in the simplex. The default value is %f.
-                      If this criteria is triggered, the status of the
-                      optimization is set to "tolfstdev".</para>
+                      <para>set to %t to enable the termination criteria based
+                      on the standard deviation of the function values in the
+                      simplex. The default value is %f. If this criteria is
+                      triggered, the status of the optimization is set to
+                      "tolfstdev".</para>
 
                       <para>This criteria is suggested by Nelder and
                       Mead.</para>
@@ -624,10 +622,10 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolsimplexizemethod</term>
 
                     <listitem>
-                      <para>set to %f to disable the tolerance on the
-                      simplex size. The default value is %t. If this
-                      criteria is triggered, the status of the optimization is
-                      set to "tolsize".</para>
+                      <para>set to %f to disable the tolerance on the simplex
+                      size. The default value is %t. If this criteria is
+                      triggered, the status of the optimization is set to
+                      "tolsize".</para>
 
                       <para>When this criteria is enabled, the values of the
                       options -tolsimplexizeabsolute and
@@ -659,12 +657,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolssizedeltafvmethod</term>
 
                     <listitem>
-                      <para>set to %t to enable the termination
-                      criteria based on the size of the simplex and the
-                      difference of function value in the simplex. The default
-                      value is %f. If this criteria is triggered, the
-                      status of the optimization is set to
-                      "tolsizedeltafv".</para>
+                      <para>set to %t to enable the termination criteria based
+                      on the size of the simplex and the difference of
+                      function value in the simplex. The default value is %f.
+                      If this criteria is triggered, the status of the
+                      optimization is set to "tolsizedeltafv".</para>
 
                       <para>This termination criteria uses the values of the
                       options -tolsimplexizeabsolute and -toldeltafv. This
@@ -697,12 +694,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-kelleynormalizationflag</term>
 
                     <listitem>
-                      <para>set to %f to disable the normalization of the alpha
-                      coefficient in Kelley's stagnation detection, i.e. use
-                      the value of the option -kelleystagnationalpha0 as is.
-                      Default value is %t, i.e. the simplex gradient of the
-                      initial simplex is taken into account in the stagnation
-                      detection.</para>
+                      <para>set to %f to disable the normalization of the
+                      alpha coefficient in Kelley's stagnation detection, i.e.
+                      use the value of the option -kelleystagnationalpha0 as
+                      is. Default value is %t, i.e. the simplex gradient of
+                      the initial simplex is taken into account in the
+                      stagnation detection.</para>
                     </listitem>
                   </varlistentry>
 
@@ -813,7 +810,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
                             computed from a design of experiments). This allows
                             also to configure the initial simplex so that a
                             specific behaviour of the algorithm an be reproduced
-                            (for example the Mac Kinnon test case).</para>
+                            (for example the Mc Kinnon test case).</para>
 
                             <para>The given matrix is expected to have n rows
                             and k columns, where n is the dimension of the
@@ -1423,11 +1420,29 @@ function outputcmd(state, data, myobj)
     optimization_termination function and adding external criterias, rather
     than by modification of this function.</para>
 
+    <para>The following termination criterias are enabled by default :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>-maxiter,</para>
+      </listitem>
+
+      <listitem>
+        <para>-maxfunevals,</para>
+      </listitem>
+
+      <listitem>
+        <para>-tolsimplexizemethod.</para>
+      </listitem>
+    </itemizedlist>
+
     <para>The optimization_terminate function uses a set of rules to compute
     if the termination occurs, which leads to an optimization status which is
     equal to one of the following : "continue", "maxiter", "maxfunevals",
     "tolf", "tolx", "tolfstdev", "tolsize", "tolsizedeltafv",
-    "kelleystagnation". The set of rules is the following.</para>
+    "kelleystagnation". </para>
+
+    <para>The following set of rules is examined in this order.</para>
 
     <itemizedlist>
       <listitem>
@@ -1526,14 +1541,14 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on x works
-        well if x at optimum is different from zero. In that case, the
-        condition measures the distance between two iterates.</para>
+        <para>The relative termination criteria on x works well if x at
+        optimum is different from zero. In that case, the condition measures
+        the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on x works if
-        the user has an accurate idea of the scale of the optimum x. If the
-        optimum x is near 0, the relative tolerance will not work and the
-        absolute tolerance is more appropriate.</para>
+        <para>The absolute termination criteria on x works if the user has an
+        accurate idea of the scale of the optimum x. If the optimum x is near
+        0, the relative tolerance will not work and the absolute tolerance is
+        more appropriate.</para>
       </listitem>
 
       <listitem>
@@ -1927,6 +1942,13 @@ endfunction
 //  state : the current state of the algorithm
 //    "init", "iter", "done"
 //  data : the data at the current state
+//    This is a tlist with the following entries:
+//    * x : the optimal vector of parameters
+//    * fval : the minimum function value
+//    * simplex : the simplex, as a simplex object
+//    * iteration : the number of iterations performed
+//    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
 //
 function myoutputcmd ( state , data )
   iter = data.iteration
@@ -2013,7 +2035,12 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
         feature would allow to use our own termination criteria, without
         modifying the internal source code of the component. This might be
         dangerous if the user does not clearly understand what is going on.
-        But that might be very handy as well.</para>
+        But that might be very handy as well. This is done : add the help for
+        this option.</para>
+      </listitem>
+
+      <listitem>
+        <para>add help for -mymethod</para>
       </listitem>
     </itemizedlist>
   </refsection>

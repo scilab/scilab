@@ -99,7 +99,7 @@ rep=x_mdialog(['Simulation d''un systeme';'avec un regulateur PI'],...
         <link linkend="x_choose">x_choose</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
       <member>
         <link linkend="getvalue">getvalue</link>
