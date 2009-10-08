@@ -33,7 +33,12 @@ opt = optimset ( "Display" , "iter" );
 function outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
 endfunction
-opt = optimset ( "OutputFcn" , outfun);
+opt = optimset ( "OutputFcn" , outfun );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+
+
+// Check that the optimplotfval functions is OK
+opt = optimset ( "OutputFcn" , optimplotfval );
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );
 
 

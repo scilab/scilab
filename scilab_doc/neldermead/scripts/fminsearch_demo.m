@@ -68,7 +68,7 @@ hold off
 options = optimset('PlotFcns',@optimplotfval);
 [x ffinal] = fminsearch(@onehump,[2,1],options)
 
-% Sample use of a plot function : optimplotfval
+% Sample use of a plot function : optimplotx
 options = optimset('PlotFcns',@optimplotx);
 [x ffinal] = fminsearch(@onehump,[2,1],options)
 

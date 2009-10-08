@@ -20,7 +20,10 @@ opt = optimset('Display','iter');
 
 % Check that the output functions are OK
 options = optimset('OutputFcn', @outfun);
-[x fval] = fminsearch(banana, [-1.2, 1], options)
+[x fval] = fminsearch(banana , [-1.2, 1] , options)
 
+% Sample use of a plot function : optimplotfval
+options = optimset('PlotFcns',@optimplotfval);
+[x fval] = fminsearch(banana , [-1.2, 1] , options)
 
 
