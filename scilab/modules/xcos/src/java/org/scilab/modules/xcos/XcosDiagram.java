@@ -31,7 +31,6 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -142,6 +141,8 @@ public class XcosDiagram extends ScilabGraph {
 	Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 	codec.decode(doc.getDocumentElement(), getStylesheet());
 
+	getAsComponent().setToolTips(true);
+	
 	// Forbid disconnecting cells once it is connected.
 	//setCellsDisconnectable(false);
 
@@ -228,16 +229,17 @@ public class XcosDiagram extends ScilabGraph {
 		// Double Click within some component
 		if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell != null)
 		{
+		    getModel().beginUpdate();
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openBlockSettings();
+			getAsComponent().doLayout();
 		    }
 		    if (cell instanceof BasicLink) {
-			getModel().beginUpdate();
 			((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
-			getModel().endUpdate();
-			refresh();
 		    }
+		    getModel().endUpdate();
+		    refresh();
 		}
 
 		// Ctrl + Shift + Right Double Click : for debug !!
@@ -255,12 +257,10 @@ public class XcosDiagram extends ScilabGraph {
 
 	    public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
 	    }
 
 	    public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
 	    }
 
 	    public void mousePressed(MouseEvent arg0) {
@@ -664,8 +664,16 @@ public class XcosDiagram extends ScilabGraph {
 	    }	
 
 	}
-
     }
-
+	/**
+	 * Returns the tooltip to be used for the given cell.
+	 */
+	public String getToolTipForCell(Object cell)
+	{
+	    if (cell instanceof BasicBlock) {
+		return ((BasicBlock) cell).getToolTipText();
+	    }
+	    return "";
+	}
 }
 
