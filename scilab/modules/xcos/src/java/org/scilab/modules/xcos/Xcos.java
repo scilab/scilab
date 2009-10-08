@@ -39,7 +39,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -96,13 +95,18 @@ import com.mxgraph.swing.mxGraphOutline;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
 	private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
 	private static Tab palette;
+	private static Thread paletteThread;
 
 	/** Palette creation */
 	static {
-		Thread t = new Thread() {
+		paletteThread = new Thread() {
 			public void run() {
 				// Add a default Java bloc in HashMap
 				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
@@ -221,9 +225,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 				/** Create DEMO-BLOCKS palette */
 				String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
 				allpalettes.addTab(XcosMessages.DEMOBLOCKS_PAL, createPalette(demoBlocksNames));
+				synchronized(this) { 
+					this.notify();
+				} 
 			}
 		};
-		t.start();
+		paletteThread.start();
 	}
 
     
@@ -246,7 +253,14 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void xcos(String fileName) {
     	XcosDiagram diagram = CreateAndShowGui();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
-	    diagram.openDiagramFromFile(fileName);
+    	synchronized(paletteThread) {
+    		try {
+    			paletteThread.wait();
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
+    }
+    diagram.openDiagramFromFile(fileName);
     }
     
 
@@ -536,8 +550,6 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public void addInfoBar(TextBox infoBarToAdd) {
-	// TODO Auto-generated method stub
-	
     }
 
     public void addMenuBar(MenuBar menuBarToAdd) {
