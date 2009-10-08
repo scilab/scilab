@@ -225,7 +225,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void xcos(String fileName) {
     	XcosDiagram diagram = CreateAndShowGui();
     	
-	    diagram.readDiagram(fileName);
+	    diagram.openDiagramFromFile(fileName);
     }
     
 
