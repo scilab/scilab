@@ -692,7 +692,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
 				LDFLAGS_save=$LDFLAGS
 				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/"
+				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(top_srcdir)/thirdparty'
 				AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
 				  [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
 				LDFLAGS=$LDFLAGS_save
@@ -705,8 +705,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
 				LDFLAGS_save=$LDFLAGS
 				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl"
-				if test "$MACOSX" -eq 1; then
+				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$(top_srcdir)/thirdparty/'
+				if test "$MACOSX" = 1; then
 				   symbol="Java_com_sun_gluegen_runtime_MacOSXDynamicLinkerImpl_dlclose__J"
 				else
 				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
@@ -1036,7 +1036,7 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
 
    LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
-   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/"
+   LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(top_srcdir)/thirdparty'
    AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
      [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
    LDFLAGS=$LDFLAGS_save
@@ -1132,8 +1132,8 @@ if test "$enable_build_localization" != no; then
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
-   AC_PATH_PROG(MSGFMT, msgfmt, no)
-   AC_PATH_PROG(XGETTEXT, xgettext, no)
+#   AC_PATH_PROG(MSGFMT, msgfmt, no)
+#   AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
 	  AC_ERROR([The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
