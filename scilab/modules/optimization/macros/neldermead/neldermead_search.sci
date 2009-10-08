@@ -61,8 +61,6 @@ function this = neldermead_algo ( this )
       this = neldermead_variable (this);
     case "box" then
       this = neldermead_box (this);
-    case "nmconstraints" then
-      this = neldermead_constraints ( this );
     case "mine" then
       this = this.mymethod ( this );
     else

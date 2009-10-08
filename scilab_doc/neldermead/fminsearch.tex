@@ -541,7 +541,7 @@ Optimization terminated:
 A close inspection at the data reveals that the two softwares produces
 indeed the same intermediate results. 
 
-\subsection{Plot features}
+\subsection{Plot functions}
 
 In this section, we check that the plotting features of the 
 \scifunction{fminsearch} function are the same.
@@ -607,4 +607,62 @@ in figure \ref{fig-fminsearch-scilab-outputfun}.
 
 Except for the size of the dots (which can be configured in 
 both softwares), the graphics are exactly the same.
+
+\subsection{Predefined plot functions}
+
+Several pre-defined plot functions are provided with 
+the \scifunction{fminsearch} function.
+These functions are 
+\begin{itemize}
+\item \scifunction{optimplotfval},
+\item \scifunction{optimplotx},
+\item \scifunction{optimplotfunccount}.
+\end{itemize}
+
+In the following Matlab script, we use the \scifunction{optimplotfval}
+pre-defined function.
+
+\lstset{language=matlabscript}
+\begin{lstlisting}
+% Matlab
+options = optimset('PlotFcns',@optimplotfval);
+[x fval] = fminsearch(banana , [-1.2, 1] , options)
+\end{lstlisting}
+
+The previous script produces the plot which is presented in figure 
+\ref{fig-fminsearch-matlab-optimplotfval}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotfvalMatlab.png}
+\end{center}
+\caption{Plot produced by Matlab's fminsearch, with the \scifunction{optimplotfval} function.}
+\label{fig-fminsearch-matlab-optimplotfval}
+\end{figure}
+
+The following Scilab script uses the \scifunction{optimplotfval}
+pre-defined function.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+// Scilab
+opt = optimset ( "OutputFcn" , optimplotfval );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+\end{lstlisting}
+
+The previous script produces the plot which is presented in figure 
+\ref{fig-fminsearch-scilab-optimplotfval}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotfvalScilab.png}
+\end{center}
+\caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotfval} function.}
+\label{fig-fminsearch-scilab-optimplotfval}
+\end{figure}
+
+The comparison between the figures \ref{fig-fminsearch-matlab-optimplotfval} and 
+\ref{fig-fminsearch-scilab-optimplotfval} shows that the two features produce
+very similar plots. Notice that Scilab's \scifunction{fminsearch} does not 
+provide the "Stop" and "Pause" buttons.
 

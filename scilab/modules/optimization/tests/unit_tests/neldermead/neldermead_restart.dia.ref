@@ -6,9 +6,6 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -28,7 +25,7 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
 //
 // assert_equal --
@@ -43,14 +40,11 @@ function flag = assert_equal ( computed , expected )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
-
-
 //
 // Test with default NM
 //
@@ -73,7 +67,6 @@ nm = neldermead_search(nm);
 nm = neldermead_configure(nm,"-maxiter",100);
 nm = neldermead_restart(nm);
 nm = neldermead_destroy(nm);
-
 function f = objfun ( x ) 
   f = exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
 endfunction
@@ -89,4 +82,3 @@ nm = neldermead_search(nm);
 nm = neldermead_configure(nm,"-maxfunevals",200);
 nm = neldermead_restart(nm);
 nm = neldermead_destroy(nm);
-
