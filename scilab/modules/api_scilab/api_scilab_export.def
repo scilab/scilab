@@ -44,6 +44,7 @@ pvApiCtx DATA
 	createNamedComplexZMatrixOfDouble
 	readNamedMatrixOfDouble
 	readNamedComplexMatrixOfDouble
+	addStackSizeError
 	addErrorMessage
 	printError
 	getErrorMessage

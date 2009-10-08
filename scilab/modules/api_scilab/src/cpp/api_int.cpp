@@ -27,15 +27,13 @@ StrErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_INT_PRECISION, _("API_ERROR_GET_INT_PRECISION"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfIntegerPrecision");
 		return strErr;
 	}
 
 	if(_piAddress[0] != sci_ints)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_INT_PRECISION, _("API_ERROR_GET_INT_PRECISION"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfIntegerPrecision", _("int matrix"));
 		return strErr;
 	}
 
@@ -80,22 +78,20 @@ StrErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
 
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_INT, _("API_ERROR_GET_INT"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfInteger");
 		return strErr;
 	}
 
 	strErr = getMatrixOfIntegerPrecision(_pvCtx, _piAddress, &iPrec);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_INT, _("API_ERROR_GET_INT"));
+		addErrorMessage(&strErr, API_ERROR_GET_INT, _("%s: Unable to get argument #%d"), "getMatrixOfInteger", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
 	if(iPrec != _iPrecision)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_INT, _("API_ERROR_GET_INT"));
-		addErrorMessage(&strErr, API_ERROR_GET_INT_PRECISION, _("API_ERROR_GET_INT_PRECISION"));
+		addErrorMessage(&strErr, API_ERROR_GET_INT, _("%s: Unable to get argument #%d"), "getMatrixOfInteger", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -115,7 +111,7 @@ StrErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _
 	strErr = allocMatrixOfUnsignedInteger8(_pvCtx, _iVar, _iRows, _iCols, &pucData8);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfUnsignedInteger8");
 		return strErr;
 	}
 
@@ -132,7 +128,7 @@ StrErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int 
 	strErr = allocMatrixOfUnsignedInteger16(_pvCtx, _iVar, _iRows, _iCols, &psData16);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfUnsignedInteger16");
 		return strErr;
 	}
 
@@ -149,7 +145,7 @@ StrErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int 
 	strErr = allocMatrixOfUnsignedInteger32(_pvCtx, _iVar, _iRows, _iCols, &piData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfUnsignedInteger32");
 		return strErr;
 	}
 
@@ -166,7 +162,7 @@ StrErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, c
 	strErr = allocMatrixOfInteger8(_pvCtx, _iVar, _iRows, _iCols, &pcData8);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfInteger8");
 		return strErr;
 	}
 
@@ -183,7 +179,7 @@ StrErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
 	strErr = allocMatrixOfInteger16(_pvCtx, _iVar, _iRows, _iCols, &psData16);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfInteger16");
 		return strErr;
 	}
 
@@ -200,7 +196,7 @@ StrErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
 	strErr = allocMatrixOfInteger32(_pvCtx, _iVar, _iRows, _iCols, &piData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfInteger32");
 		return strErr;
 	}
 
@@ -218,7 +214,7 @@ StrErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
 	strErr = allocMatrixOfInteger64(_iVar, _iRows, _iCols, &pllData64);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("API_ERROR_CREATE_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfInteger64");
 		return strErr;
 	}
 
@@ -239,7 +235,7 @@ StrErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, ch
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT8, _iRows, _iCols, (void**)&pcData8);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfInteger8");
 		return strErr;
 	}
 
@@ -259,7 +255,7 @@ StrErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, s
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT16, _iRows, _iCols, (void**)&psData16);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfInteger16");
 		return strErr;
 	}
 
@@ -279,7 +275,7 @@ StrErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, i
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&piData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfInteger32");
 		return strErr;
 	}
 
@@ -300,7 +296,7 @@ StrErr allocMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, l
 	strErr = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT64, _iRows, _iCols, (void**)&piData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfInteger64");
 		return strErr;
 	}
 
@@ -321,7 +317,7 @@ StrErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _i
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT8, _iRows, _iCols, (void**)&pucData8);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfUnsignedInteger8");
 		return strErr;
 	}
 
@@ -341,7 +337,7 @@ StrErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT16, _iRows, _iCols, (void**)&pusData16);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfUnsignedInteger16");
 		return strErr;
 	}
 
@@ -361,7 +357,7 @@ StrErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _
 	strErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&puiData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfUnsignedInteger32");
 		return strErr;
 	}
 
@@ -382,7 +378,7 @@ StrErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
 	strErr = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT64, _iRows, _iCols, (void**)&puiData32);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_INT, _("API_ERROR_ALLOC_INT"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfUnsignedInteger64");
 		return strErr;
 	}
 
@@ -403,6 +399,13 @@ StrErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int 
 	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
 	int iTotalSize	= iDouble + iMod;
 
+	int iMemSize = iTotalSize + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
 
 	fillCommonMatrixOfInteger(_pvCtx, _piAddress, _iPrecision, _iRows, _iCols, pvData);
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
@@ -479,6 +482,14 @@ StrErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrec
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
+	int iMemSize = iTotalSize + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
+
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
@@ -507,15 +518,14 @@ StrErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPr
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_NAMED_INT_PRECISION, _("API_ERROR_GET_NAMED_INT_PRECISION"));
+		addErrorMessage(&strErr, API_ERROR_GET_NAMED_INT_PRECISION, _("%s: Unable to get precision of variable \"%s\""), "getNamedMatrixOfIntegerPrecision", _pstName);
 		return strErr;
 	}
 
 	//check variable type
 	if(piAddr[0] != sci_ints)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_NAMED_INT_PRECISION, _("API_ERROR_GET_NAMED_INT_PRECISION"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getNamedMatrixOfIntegerPrecision", _("int matrix"));
 		return strErr;
 	}
 
@@ -570,14 +580,14 @@ StrErr readCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecis
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_INT, _("API_ERROR_READ_NAMED_INT"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_INT, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfInteger", _pstName);
 		return strErr;
 	}
 
 	strErr = getCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _piRows, _piCols, &pvData);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_INT, _("API_ERROR_READ_NAMED_INT"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_INT, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfInteger", _pstName);
 		return strErr;
 	}
 	iSize = *_piRows * *_piCols;

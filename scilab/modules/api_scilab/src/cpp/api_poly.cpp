@@ -33,15 +33,13 @@ StrErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_VARNAME, _("API_ERROR_GET_POLY_VARNAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPolyVariableName");
 		return strErr;
 	}
 
 	if(_piAddress[0] != sci_poly)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_VARNAME, _("API_ERROR_GET_POLY_VARNAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPolyVariableName", _("polynomial matrix"));
 		return strErr;
 	}
 
@@ -61,8 +59,7 @@ StrErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 
 	if(_pstVarName == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_VAR_POINTER, _("API_ERROR_INVALID_VAR_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_VARNAME, _("API_ERROR_GET_POLY_VARNAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_VAR_POINTER, _("%s: Unable to get formal variable name"), "getPolyVariableName");
 		return strErr;
 	}
 
@@ -92,36 +89,33 @@ StrErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("API_ERROR_GET_POLY"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly");
 		return strErr;
 	}
 
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("API_ERROR_GET_POLY"));
+		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 	
 	if(iType != sci_poly)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("API_ERROR_GET_POLY"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", _("polynomial matrix"));
 		return strErr;
 	}
 
 	if(isVarComplex(_pvCtx, _piAddress) != _iComplex)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("API_ERROR_INVALID_COMPLEXITY"));
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_VARNAME, _("API_ERROR_GET_POLY_VARNAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly");
 		return strErr;
 	}
 
 	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POLY_VARNAME, _("API_ERROR_GET_POLY_VARNAME"));
+		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -183,7 +177,7 @@ StrErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 	strErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POLY, _("API_ERROR_CREATE_POLY"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
 		return strErr;
 	}
 
@@ -214,8 +208,7 @@ StrErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, 
 	piVarName = _piAddress + 4;//4 for header
 	if(strlen(_pstVarName) > 4)//4 characters max
 	{
-		addErrorMessage(&strErr, API_ERROR_TOO_LONG_VAR, _("API_ERROR_TOO_LONG_VAR"));
-		addErrorMessage(&strErr, API_ERROR_FILL_POLY, _("API_ERROR_FILL_POLY"));
+		addErrorMessage(&strErr, API_ERROR_TOO_LONG_VAR, _("%s: Formal variable name of polynomial can't exceed 4 characters"));
 		return strErr;
 	}
 
@@ -281,7 +274,7 @@ StrErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVar
 	strErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_POLY, _("API_ERROR_CREATE_NAMED_POLY"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_POLY, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexMatrixOfPoly" : "createNamedMatrixOfPoly", _("matrix of double"), _pstName);
 		return strErr;
 	}
 
@@ -317,7 +310,7 @@ StrErr readCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int _iComplex, 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("API_ERROR_READ_NAMED_POLY"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfPoly" :"readNamedMatrixOfPoly", _pstName);
 		return strErr;
 	}
 	
@@ -332,7 +325,7 @@ StrErr readCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int _iComplex, 
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("API_ERROR_READ_NAMED_POLY"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfPoly" :"readNamedMatrixOfPoly", _pstName);
 		return strErr;
 	}
 

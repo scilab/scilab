@@ -61,11 +61,11 @@ StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 		*_piCols		= 0;
 		if(_piAddress == NULL)
 		{
-			addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
+			addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarDimension");
 		}
 		else
 		{
-			addErrorMessage(&strErr, API_ERROR_NOT_MATRIX_TYPE, _("API_ERROR_NOT_MATRIX_TYPE"));
+			addErrorMessage(&strErr, API_ERROR_NOT_MATRIX_TYPE, _("%s: matrix argument excepted"), "getVarDimension");
 		}
 	}
 	return strErr;
@@ -79,14 +79,14 @@ StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _pi
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("API_ERROR_NAMED_VARDIM"));
+		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("%s: Unable to get dimension of variable \"%s\""), "getNamedVarDimension", _pstName);
 		return strErr;
 	}
 
 	strErr = getVarDimension(_pvCtx, piAddr, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("API_ERROR_NAMED_VARDIM"));
+		addErrorMessage(&strErr, API_ERROR_NAMED_VARDIM, _("%s: Unable to get dimension of variable \"%s\""), "getNamedVarDimension", _pstName);
 		return strErr;
 	}
 
@@ -98,10 +98,10 @@ StrErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iAddr			= 0;
 	int iValType	= 0;
-	if(_iVar > Rhs)
+	/* we accept a call to getVarAddressFromPosition after a create... call */
+	if(_iVar > Rhs && _iVar > Nbvars)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POSITION, _("API_ERROR_INVALID_POSITION"));
-		addErrorMessage(&strErr, API_ERROR_GET_VAR_ADDRESS, _("API_ERROR_GET_VAR_ADDRESS"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), ((StrCtx*)_pvCtx)->pstName, "getVarAddressFromPosition");
 		return strErr;
 	}
 
@@ -125,8 +125,7 @@ StrErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName)
 	CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
 	if(iNameLen == 0)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("API_ERROR_INVALID_NAME"));
-		addErrorMessage(&strErr, API_ERROR_GET_VAR_NAME, _("API_ERROR_GET_VAR_NAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("%s: Unable to get name of argument #%d"), "getVarNameFromPosition", _iVar);
 		return strErr;
 	}
 
@@ -157,7 +156,7 @@ StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 
 	if (Err > 0 || Fin == 0)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("API_ERROR_INVALID_NAME"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
 		return strErr;
 	}
 
@@ -166,7 +165,6 @@ StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	//WARNING check in VarType can be negative
 	getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
 
 	*_piAddress = piAddr;
@@ -178,8 +176,7 @@ StrErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_VARTPE, _("API_ERROR_GET_VARTPE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
 		return strErr;
 	}
 
@@ -196,14 +193,14 @@ StrErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("API_ERROR_NAMED_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
 		return strErr;
 	}
 	
 	strErr = getVarType(_pvCtx, piAddr, _piType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("API_ERROR_NAMED_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
 		return strErr;
 	}
 	return strErr;
@@ -323,21 +320,21 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 	strErr = getVarDimension(_pvCtx, _piAddRef, &iRows1, &iCols1);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument dimension"), "getProcessMode");
 		return strErr;
 	}
 
 	strErr = getVarAddressFromPosition(_pvCtx, _iPos, &piAddr2);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get variable address"), "getProcessMode");
 		return strErr;
 	}
 
 	strErr = getVarType(_pvCtx, piAddr2, &iType2);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument type"), "getProcessMode");
 		return strErr;
 	}
 		
@@ -347,14 +344,13 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		strErr = getMatrixOfDouble(_pvCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument data"), "getProcessMode");
 			return strErr;
 		}
 
 		if(iRows2 != 1 || iCols2 != 1)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong size for argument %d.\n"), _iPos);
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1, 1);
 			return strErr;
 		}
 
@@ -368,21 +364,20 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		strErr = getVarDimension(_pvCtx, piAddr2, &iRows2, &iCols2);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument dimension"), "getProcessMode");
 			return strErr;
 		}
 
 		if(iRows2 != 1 || iCols2 != 1)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong size for argument %d.\n"), _iPos);
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1, 1);
 			return strErr;
 		}
 
 		strErr = getMatrixOfString(_pvCtx, piAddr2, &iRows2, &iCols2, &iLen, NULL);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument data"), "getProcessMode");
 			return strErr;
 		}
 
@@ -390,7 +385,7 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		strErr = getMatrixOfString(_pvCtx, piAddr2, &iRows2, &iCols2, &iLen, pstMode);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+			addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument data"), "getProcessMode");
 			return strErr;
 		}
 
@@ -398,8 +393,7 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 	}
 	else
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong argument %d.\n"), _iPos);
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"), "getProcessMode", _iPos);
 		return strErr;
 	}
 
@@ -419,8 +413,7 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 	}
 	else
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("Wrong argument %d.\n"), _iPos);
-		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("API_ERROR_GET_PROCESSMODE"));
+		addErrorMessage(&strErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "getProcessMode", _iPos, "'*', 'r', 'c', 'm', '0', '1', '2'", "-1");
 		return strErr;
 	}
 	return strErr;
@@ -437,7 +430,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+		addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument type"), "getDimFromVar");
 		return strErr;
 	}
 
@@ -445,15 +438,14 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	{
 		if(isVarComplex(_pvCtx, _piAddress))
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_pvCtx, _piAddress));
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
 			return strErr;
 		}
 
 		strErr = getMatrixOfDouble(_pvCtx, _piAddress, &iRows, &iCols, &pdblReal);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 			return strErr;
 		}
 
@@ -469,21 +461,20 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 		strErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument dimension"), "getDimFromVar");
 			return strErr;
 		}
 
 		if(iRows != 1 || iCols != 1)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_pvCtx, _piAddress));
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
 			return strErr;
 		}
 
 		strErr = getMatrixOfIntegerPrecision(_pvCtx, _piAddress, &iPrec);
 		if(strErr.iErr)
 		{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument precision"), "getDimFromVar");
 			return strErr;
 		}
 
@@ -495,7 +486,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pcData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = pcData[0];
@@ -507,7 +498,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfUnsignedInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pucData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = pucData[0];
@@ -519,7 +510,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfInteger16(_pvCtx, _piAddress, &iRows, &iCols, &psData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = psData[0];
@@ -531,7 +522,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfUnsignedInteger16(_pvCtx, _piAddress, &iRows, &iCols, &pusData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = pusData[0];
@@ -543,7 +534,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfInteger32(_pvCtx, _piAddress, &iRows, &iCols, &piData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = piData[0];
@@ -555,7 +546,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 				strErr = getMatrixOfUnsignedInteger32(_pvCtx, _piAddress, &iRows, &iCols, &puiData);
 				if(strErr.iErr)
 				{
-					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+					addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
 					return strErr;
 				}
 				*_piVal = puiData[0];
@@ -565,8 +556,7 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	}
 	else
 	{
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("Wrong size for argument %d.\n"), getRhsFromAddress(_pvCtx, _piAddress));
-			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("API_ERROR_GET_DIMFROMVAR"));
+			addErrorMessage(&strErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or a integer scalar expected.\n"), "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
 			return strErr;
 	}
 	return strErr;
@@ -580,14 +570,14 @@ StrErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal)
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("API_ERROR_GET_NAMED_DIMFROMVAR"));
+		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("%s: Unable to get dimension from variable \"%s\""), "getDimFromNamedVar", _pstName);
 		return strErr;
 	}
 
 	strErr = getDimFromVar(_pvCtx, piAddr, _piVal);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("API_ERROR_GET_NAMED_DIMFROMVAR"));
+		addErrorMessage(&strErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("%s: Unable to get dimension from variable \"%s\""), "getDimFromNamedVar", _pstName);
 		return strErr;
 	}
 

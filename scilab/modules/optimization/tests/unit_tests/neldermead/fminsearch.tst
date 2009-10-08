@@ -196,28 +196,91 @@ endfunction
 //
 // Use output function
 //
+// outfun --
+//   A sample output function
+// Arguments, input
+//   x : the current point
+//   optimValues : a tlist which contains the following fields
+//     funcCount" : the number of function evaluations
+//     fval : the current function value
+//     iteration : the current iteration
+//     procedure : a string containing the current type of step
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//
 function outfun ( x , optimValues , state )
-  plot(x(1),x(2),'.');
+  plot( x(1),x(2),'.');
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 [x fval] = fminsearch ( objfun , [-1 1] , opt );
+close();
 //
 // Use several output functions
 //
+function outfun ( x , optimValues , state )
+  scf ( fig1 );
+  plot( x(1),x(2),'.');
+endfunction
 function outfun2 ( x , optimValues , state )
-  plot(x(1),x(2),'.');
+  scf ( fig2 );
+  plot( x(1),x(2),'o');
 endfunction
 myfunctions = list ( outfun , outfun2 );
+fig1 = scf(1000);
+fig2 = scf(1001);
 opt = optimset ( "OutputFcn" , myfunctions );
 [x fval] = fminsearch ( objfun , [-1 1] , opt );
+close(fig1);
+close(fig2);
 //
 // Use plot function
+//
+//
+// plotfun --
+//   A sample plot function
+// Arguments, input
+//   x : the current point
+//   optimValues : a tlist which contains the following fields
+//     funcCount" : the number of function evaluations
+//     fval : the current function value
+//     iteration : the current iteration
+//     procedure : a string containing the current type of step
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
 //
 function plotfun ( x , optimValues , state )
   plot(x(1),x(2),'.');
 endfunction
 opt = optimset ( "PlotFcns" , plotfun);
 [x fval] = fminsearch ( objfun , [-1 1] , opt );
-
+close();
+//
+// Use several plot functions
+//
+function plotfun ( x , optimValues , state )
+  scf ( fig1 );
+  plot( x(1),x(2),'.');
+endfunction
+function plotfun2 ( x , optimValues , state )
+  scf ( fig2 );
+  plot( x(1),x(2),'o');
+endfunction
+myfunctions = list ( plotfun , plotfun2 );
+fig1 = scf(1000);
+fig2 = scf(1001);
+opt = optimset ( "PlotFcns" , myfunctions );
+[x fval] = fminsearch ( objfun , [-1 1] , opt );
+close(fig1);
+close(fig2);
+//
+// Use optimplotfval plot function
+//
+function f = onehump ( x )
+  r = x(1)^2 + x(2)^2;
+  s = exp(-r);
+  f = x(1)*s+r/20;
+endfunction
+opt = optimset ( "PlotFcns" , optimplotfval );
+[x fval] = fminsearch ( onehump , [2 1] , opt );
 
 

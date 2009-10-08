@@ -29,22 +29,20 @@ StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("API_ERROR_GET_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
 		return strErr;
 	}
 
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("API_ERROR_GET_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 	
 	if(iType != sci_pointer)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
 		return strErr;
 	}
 	
@@ -59,8 +57,7 @@ StrErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_POINTER, _("API_ERROR_FILL_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillPointer");
 		return strErr;
 	}
 
@@ -82,12 +79,20 @@ StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	int* piAddr			= NULL;
 	void* pvPtr			= NULL;
 
+	int iMemSize = 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
+
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
 	strErr = fillPointer(_pvCtx, piAddr, &pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_POINTER, _("API_ERROR_ALLOC_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
 		return strErr;
 	}
 
@@ -106,7 +111,7 @@ StrErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 	strErr = allocPointer(_pvCtx, _iVar, &pvPtr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER, _("API_ERROR_CREATE_POINTER"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER, _("%s: Unable to create variable in Scilab memory"), "createPointer");
 		return strErr;
 	}
 
