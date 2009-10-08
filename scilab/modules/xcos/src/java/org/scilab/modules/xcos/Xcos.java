@@ -515,7 +515,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	diagrams.add(xcosDiagramm);
 	
 	Tab tab = new Xcos(xcosDiagramm);
-	tab.setName("Untitled");
+	tab.setName(XcosMessages.UNTITLED);
 	xcosDiagramm.setParentTab(tab);
 	main.setVisible(true);
 	main.addTab(tab);
