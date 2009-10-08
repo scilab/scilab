@@ -107,4 +107,6 @@ public class XcosMessages {
               + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
               + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
 
+    public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
+
 }
