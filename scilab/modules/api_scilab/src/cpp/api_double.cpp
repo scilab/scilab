@@ -46,7 +46,7 @@ StrErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
 	strErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, isVarComplex(_pvCtx, _piAddress), _piRows, _piCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_ZDOUBLE, _("API_ERROR_GET_ZDOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_GET_ZDOUBLE, _("%s: Unable to get argument #%d"), "getComplexZMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 	
@@ -60,36 +60,27 @@ StrErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
 	int iType = 0;
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble");
 		return strErr;
 	}
 	
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
-	if(strErr.iErr)
+	if(strErr.iErr || iType != sci_matrix)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
-		return strErr;
-	}
-
-	if(iType != sci_matrix)
-	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", _("double matrix"));
 		return strErr;
 	}
 
 	if(isVarComplex(_pvCtx, _piAddress) != _iComplex)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("API_ERROR_INVALID_COMPLEXITY"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), "getComplexMatrixOfDouble");
 		return strErr;
 	}
 
 	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -112,7 +103,7 @@ StrErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doub
 	strErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 0, _iRows, _iCols, &pdblReal, NULL);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE, _("API_ERROR_ALLOC_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfDouble");
 		return strErr;
 	}
 
@@ -130,7 +121,7 @@ StrErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCol
 	strErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("API_ERROR_ALLOC_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -145,6 +136,14 @@ StrErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
+
+	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 	fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
@@ -186,7 +185,7 @@ StrErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, dou
 	strErr = allocMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("API_ERROR_ALLOC_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -206,7 +205,7 @@ StrErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCo
 	strErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_COMPLEX_DOUBLE, _("API_ERROR_CREATE_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -225,7 +224,7 @@ StrErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
 	strErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE, _("API_ERROR_CREATE_ZDOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -291,6 +290,14 @@ StrErr createCommunNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
+	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
+
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
@@ -336,14 +343,14 @@ StrErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("API_ERROR_READ_NAMED_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfDouble" : "readNamedMatrixOfDouble", _pstName);
 		return strErr;
 	}
 	
 	strErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("API_ERROR_READ_NAMED_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfDouble" : "readNamedMatrixOfDouble", _pstName);
 		return strErr;
 	}
 
