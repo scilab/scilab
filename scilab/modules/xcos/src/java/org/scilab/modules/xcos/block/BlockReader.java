@@ -22,6 +22,8 @@ import java.util.List;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -39,6 +41,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -61,13 +64,22 @@ public class BlockReader {
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
 
     	try {
-			if (!isAValidScs_mStructure(data)) {
-				WARNING("Invalid data structure !!");
-			}
-		} catch (WrongTypeException e2) {
-			WARNING("Invalid data structure !!");
-			e2.printStackTrace();
-		}
+    	    isAValidScs_mStructure(data);
+    	} catch (WrongTypeException e2) {
+    	    WARNING("Invalid data structure !!");
+    	    e2.printStackTrace();
+    	    return null;
+    	} catch (WrongStructureException e) {
+    	    WARNING("Invalid data structure !!");
+	    e.printStackTrace();
+	    return null;
+	} catch (VersionMismatchException e) {
+	    MessageBox messageBox = ScilabMessageBox.createMessageBox();
+	    messageBox.setTitle(XcosMessages.FAIL_LOADING_DIAGRAM);
+	    String[] message = {"Unknow Diagram Version : "+e.getVersion(), "Will try to continue..."};
+	    messageBox.setMessage(message);
+	    messageBox.displayAndWait();
+	} 
 
     	HashMap<String, Object> result = new HashMap<String, Object>();
     	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
@@ -83,11 +95,13 @@ public class BlockReader {
     	// Read diagrams properties
     	HashMap<String, Object> properties = null;
 		try {
-			properties = fillDiagrammProperties((ScilabTList) data.get(1));
+		    properties = fillDiagrammProperties((ScilabTList) data.get(1));
 		} catch (WrongStructureException e1) {
-			return result;
+		    e1.printStackTrace();
+		    return null;
 		} catch (WrongTypeException e1) {
-			return result;
+		    e1.printStackTrace();
+		    return null;
 		}
     	result.put("Properties", properties);
 
@@ -112,9 +126,11 @@ public class BlockReader {
     		} catch (BlockReaderException e) {
     			WARNING(" Fail reading Block " + (i + 1));
     			e.printStackTrace();
+    			return null;
     		}catch(MalformedURLException e){
     			WARNING(" Fail reading Block " + (i + 1));
     			e.printStackTrace();
+    			return null;
     		}
     	}
     	for (int i = 0; i < blocks.size(); ++i) {
@@ -175,6 +191,7 @@ public class BlockReader {
     			} catch (BlockReaderException e) {
     				WARNING(" Fail reading Link " + (i + 1));
     				e.printStackTrace();
+    				return null;
     			}
     		}
     	}
@@ -188,8 +205,6 @@ public class BlockReader {
     public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
     	ScilabMList data = new ScilabMList();
 
-    	HashMap<String, Object> result = new HashMap<String, Object>();
-
     	try {
     		int fileId = H5Read.openFile(hdf5File);
     		if (fileId == -1) { 
@@ -200,11 +215,11 @@ public class BlockReader {
     		
         	return convertMListToDiagram(data);
     	} catch (HDF5LibraryException e) {
-    		return result;
+    		return null;
     	} catch (WrongStructureException e) {
-    		return result;
+    		return null;
     	} catch (HDF5Exception e) {
-    		return result;
+    		return null;
     	}
     }
 
@@ -327,75 +342,49 @@ public class BlockReader {
 	return ((ScilabString)structure.get(0)).getData()[0];
     }
 
-    public static String getBlockInterfaceName (ScilabMList blockFields ){
+    private static String getBlockInterfaceName (ScilabMList blockFields ){
 	return ((ScilabString)blockFields.get(3)).getData()[0][0];
     }
 
-    public static String getBlockSimulationFunctionName(ScilabMList blockFields) {
+    private static String getBlockSimulationFunctionName(ScilabMList blockFields) {
 	return ((ScilabString)blockFields.get(1)).getData()[0][0];
     }
 
-    public static boolean isAValidScs_mStructure (ScilabMList data) throws WrongTypeException {
+    private static void isAValidScs_mStructure (ScilabMList data) throws WrongTypeException, VersionMismatchException, WrongStructureException {
 
 	int numberOfFieldInScs_m = 4 ;
 	String[] realNameOfScs_mFields = new String[]{"diagram", "props" , "objs" , "version"};
 	String realScicosVersion = new String ("scicos4.2");
 
 	// we test if the structure as enough field
-	if (data.size() == numberOfFieldInScs_m ){
+	if (data.size() < numberOfFieldInScs_m ) { throw new WrongStructureException(); }
 
-	    // the first field is a list of string containing the name of the other fields
-	    if ( data.get(0) instanceof ScilabString ) {
-		String[] nameOfScs_mFields = getNameOfFieldsInStructure(data);
+	// the first field is a list of string containing the name of the other fields
+	if (!(data.get(0) instanceof ScilabString)) { throw new WrongTypeException(); }
 
-		// check if all the expecting field's name are present
-		if ( nameOfScs_mFields.length == numberOfFieldInScs_m ){
-		    for (int i = 0 ; i < numberOfFieldInScs_m ; i++){
-
-			if ( !nameOfScs_mFields[i].equals(realNameOfScs_mFields[i]))
-			    return false ;
-
-		    }
-		}
+	String[] nameOfScs_mFields = getNameOfFieldsInStructure(data);
+	// check if all the expecting field's name are present
+	if (nameOfScs_mFields.length < numberOfFieldInScs_m ) { throw new WrongStructureException(); }
+	for (int i = 0 ; i < numberOfFieldInScs_m ; i++) {
+	    if (!nameOfScs_mFields[i].equals(realNameOfScs_mFields[i])) {
+		    throw new WrongStructureException();
 	    }
-	    else{
-		return false ;
-	    }
-	    // the second field must contain list of props
-	    if (!( data.get(1) instanceof ScilabTList)) { 
-		return false ;
-	    }
-
+	}
 
 	// the second field must contain list of props
-	if (!(data.get(1) instanceof ScilabTList)) { 
-		throw new WrongTypeException();
-		}
+	if (!(data.get(1) instanceof ScilabTList)) { throw new WrongTypeException(); } 
 
-	    // the third field must contains lists of blocks and links 
+	// the second field must contain list of props
+	if (!(data.get(1) instanceof ScilabTList)) { throw new WrongTypeException(); }
 
-	    if (!( data.get(2) instanceof ScilabList)) { 
-		return false ;
-	    }
+	// the third field must contains lists of blocks and links 
+	if (!( data.get(2) instanceof ScilabList)) { throw new WrongTypeException(); }
 
-
-	    // the last field must contain the scicos version used 
-
-	    if (( data.get(3) instanceof ScilabString)) { 
-		String scicosVersion = ((ScilabString)data.get(3)).getData()[0][0];
-		if(! scicosVersion.equals(realScicosVersion) ){
-		    return false ;
-		}
-	    }
-	    else{
-		return false ;
-	    }
-	}
-	else{
-	    return false ;
-	}
-
-	return true ;
+	// the last field must contain the scicos version used 
+	if (!(data.get(3) instanceof ScilabString)) { throw new WrongTypeException(); } 
+	
+	String scicosVersion = ((ScilabString)data.get(3)).getData()[0][0];
+	if(! scicosVersion.equals(realScicosVersion) ) { throw new VersionMismatchException(scicosVersion); }
     }
 
     private static boolean isEmptyField(ScilabType object) {
@@ -922,7 +911,16 @@ public class BlockReader {
     private static class BlockReaderException extends Exception { };
     private static class WrongTypeException extends BlockReaderException { };
     private static class WrongStructureException extends BlockReaderException { };
-
+    private static class VersionMismatchException extends BlockReaderException {
+	private String version;
+	public VersionMismatchException(String version) {
+	    this.version = version;
+	}
+	
+	public String getVersion() {
+	    return version;
+	} };
+    
     private static enum PortType {
 	INPUT,
 	OUTPUT,

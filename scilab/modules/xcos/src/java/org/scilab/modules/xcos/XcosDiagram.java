@@ -29,6 +29,8 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -552,10 +554,6 @@ public class XcosDiagram extends ScilabGraph {
 	return new ExplicitLink();
     }
 
-    public void openSuperBlockDiagram(ScilabMList diagramContents) {
-	openDiagram(BlockReader.convertMListToDiagram(diagramContents));
-    }
-
     /**
      * Open a Diagram :
      * If current Diagram is empty, open within it
@@ -564,12 +562,21 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramm
      */
     public void openDiagram(HashMap<String, Object> diagramm) {
-	if (getModel().getChildCount(getDefaultParent()) == 0) {
-	    loadDiagram(diagramm);
+	if (diagramm != null) {
+	    if (getModel().getChildCount(getDefaultParent()) == 0) {
+		loadDiagram(diagramm);
+	    }
+	    else {
+		XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+		xcosDiagram.loadDiagram(diagramm);
+	    }
 	}
 	else {
-	    XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
-	    xcosDiagram.loadDiagram(diagramm);
+	    MessageBox messageBox = ScilabMessageBox.createMessageBox();
+	    messageBox.setTitle(XcosMessages.FAIL_LOADING_DIAGRAM);
+	    String[] message = {"An error Occured while loading diagram", "Aborting..."};
+	    messageBox.setMessage(message);
+	    messageBox.displayAndWait();
 	}
     }
 
