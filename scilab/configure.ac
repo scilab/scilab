@@ -690,6 +690,31 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
 
+				LDFLAGS_save=$LDFLAGS
+				# Provide known paths where distribs/OS can store JNI libs
+				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/"
+				AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
+				  [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				LDFLAGS=$LDFLAGS_save
+
+				# JoGL Native <=> Java connector
+				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+				GLUEGEN_RT=$PACKAGE_JAR_FILE
+				AC_SUBST(GLUEGEN_RT)
+
+
+				LDFLAGS_save=$LDFLAGS
+				# Provide known paths where distribs/OS can store JNI libs
+				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl"
+				if test "$MACOSX" -eq 1; then
+				   symbol="Java_com_sun_gluegen_runtime_MacOSXDynamicLinkerImpl_dlclose__J"
+				else
+				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
+				fi
+				AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+				  [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				LDFLAGS=$LDFLAGS_save
+
 				# Jhall
 				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
@@ -700,11 +725,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 					JHALL=$PACKAGE_JAR_FILE
 				fi
 				AC_SUBST(JHALL)
-
-				# JoGL Native <=> Java connector
-				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-				GLUEGEN_RT=$PACKAGE_JAR_FILE
-				AC_SUBST(GLUEGEN_RT)
 
 				# Console API
 				AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
@@ -1756,8 +1776,10 @@ echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
 echo "  JOGL ................ = $JOGL"
-echo "  Jhall  .............. = $JHALL"
+echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
