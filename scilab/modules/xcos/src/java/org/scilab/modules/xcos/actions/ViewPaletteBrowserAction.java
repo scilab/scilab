@@ -46,7 +46,6 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
 		CheckBoxMenuItem menu =  createCheckBoxMenu(XcosMessages.PALETTE_BROWSER, null, new ViewPaletteBrowserAction(scilabGraph), null);
-		menu.setChecked(true); // Palettes are displayed at startup
 		menus.add(menu);
 		return menu;
 	}
