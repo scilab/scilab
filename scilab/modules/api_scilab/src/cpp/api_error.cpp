@@ -52,7 +52,7 @@ int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
 	sprintf(pstMsg1, _("stack size exceeded!\n"));
 	sprintf(pstMsg2, _("Use stacksize function to increase it.\n"));
 	sprintf(pstMsg3, _("Memory used for variables: %d\n"),Memory_used_for_variables);
-	sprintf(pstMsg4, _("Intermediate memory needed: %d\n"),Intermediate_Memory);
+	sprintf(pstMsg4, _("Intermediate memory needed: %d\n"),_iNeeded);
 	sprintf(pstMsg5, _("Total memory available: %d\n"),Total_Memory_available);
 #endif
 
