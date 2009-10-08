@@ -38,9 +38,11 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -49,6 +51,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.CloseAction;
+import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DumpAction;
@@ -105,10 +108,25 @@ public class Xcos extends SwingScilabTab implements Tab {
 				Window palWin = ScilabWindow.createWindow();
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
-				palette.setCallback(null);
+				
+				palette.setCallback(new ClosePalettesAction(null));
+				
+				MenuBar palMenuBar = ScilabMenuBar.createMenuBar();
+				palette.addMenuBar(palMenuBar);
+				
+				Menu palMenu = ScilabMenu.createMenu();
+				palMenu.setText(XcosMessages.PALETTES);
+				palMenu.setMnemonic('P');
+				palMenuBar.add(palMenu);
+				
+				palMenu.add(ClosePalettesAction.createMenu(null));
+				
+				palette.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+				
 				palWin.addTab(palette);
 
 				JTabbedPane allpalettes = new JTabbedPane();
+				allpalettes.setTabPlacement(JTabbedPane.BOTTOM);
 				((SwingScilabTab) palette.getAsSimpleTab()).setContentPane(allpalettes);
 
 				/** Create SOURCES palette */
@@ -220,11 +238,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     public static void xcos() {
     	CreateAndShowGui();
+    	ViewPaletteBrowserAction.setPalettesVisible(true);
     }
     
     public static void xcos(String fileName) {
     	XcosDiagram diagram = CreateAndShowGui();
-    	
+    	ViewPaletteBrowserAction.setPalettesVisible(true);
 	    diagram.openDiagramFromFile(fileName);
     }
     
@@ -233,7 +252,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
 	outlineTab.setCallback(null);
-	
+	outlineTab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 	((XcosDiagram) xcosDiagramm).setViewPort(outlineTab);
 	
 	// Creates the graph outline component
@@ -445,7 +464,6 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static void closeDiagram(XcosDiagram diagramm) {
     	diagrams.remove(diagramm);
-    	System.out.println("Number of opened diagrams after close = " + diagrams.size());
     	if (diagrams.size() == 0) {
     		closeSession();
     	}
@@ -459,7 +477,6 @@ public class Xcos extends SwingScilabTab implements Tab {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 
 	diagrams.add(xcosDiagramm);
-	System.out.println("Number of opened diagrams after creation = " + diagrams.size());
 	
 	Tab tab = new Xcos(xcosDiagramm);
 	tab.setName("Untitled");
@@ -485,9 +502,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 	
 
 	/*
-	 * PALETTES
+	 * INFO BAR
 	 */
-	//createPalette(xcosDiagramm);
+	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 	
 	return xcosDiagramm;
 
@@ -518,15 +535,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     	for (int i = diagrams.size() - 1; i >= 0; i--) {
     		diagrams.get(i).closeDiagram();
     	}
-    	palette.close();
+    	ViewPaletteBrowserAction.setPalettesVisible(false);
     }
-	//public XcosDiagram getDiagram() {
-	//	return diagram;
-	//}
-
-	//public void setDiagram(XcosDiagram diagram) {
-	//	this.diagram = diagram;
-	//}
     
     public static Tab getPalettes() {
     	return palette;

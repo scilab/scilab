@@ -74,6 +74,7 @@ public class XcosMessages {
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + "...";
     
     /** PALETTES */
+    public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
     public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
     public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuous");
