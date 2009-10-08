@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BasicBlock extends mxCell {
     // Must make this types evolve, but for now keep a strong link to Scilab
     // !! WARNING !!
     // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
-    
+
     //private List<String> exprs = new ArrayList<String>();
     private ScilabType exprs = new ScilabDouble();
     //private List<Double> realParameters = new ArrayList<Double>();
@@ -56,15 +57,15 @@ public class BasicBlock extends mxCell {
     private ScilabType objectsParameters = new ScilabList();
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
-    
+
     private ScilabType nmode = new ScilabDouble();
-    
+
     private ScilabType state = new ScilabDouble();
     private ScilabType dState = new ScilabDouble();
     private ScilabType oDState = new ScilabDouble();
-    
+
     private ScilabType equations = new ScilabList();
-    
+
     private boolean dependsOnU = false;
     private boolean dependsOnT = false;
 
@@ -121,7 +122,7 @@ public class BasicBlock extends mxCell {
 	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
 	else { return new BasicBlock(label); }
     }
-    
+
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
@@ -152,7 +153,7 @@ public class BasicBlock extends mxCell {
 	updateCommandPortsPositions();
 	updateControlPortsPositions();
     }
-    
+
     protected void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
     }
@@ -242,106 +243,106 @@ public class BasicBlock extends mxCell {
     }
 
     public ScilabType getNbZerosCrossing() {
-        return nbZerosCrossing;
+	return nbZerosCrossing;
     }
 
     public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
-        this.nbZerosCrossing = nbZerosCrossing;
+	this.nbZerosCrossing = nbZerosCrossing;
     }
 
     public ScilabType getNmode() {
-        return nmode;
+	return nmode;
     }
 
     public void setNmode(ScilabType nmode) {
-        this.nmode = nmode;
+	this.nmode = nmode;
     }
 
     public ScilabType getState() {
-        return state;
+	return state;
     }
 
     public void setState(ScilabType state) {
-        this.state = state;
+	this.state = state;
     }
 
     public ScilabType getDState() {
-        return dState;
+	return dState;
     }
 
     public void setDState(ScilabType state) {
-        dState = state;
+	dState = state;
     }
 
     public ScilabType getODState() {
-        return oDState;
+	return oDState;
     }
 
     public void setODState(ScilabType state) {
-        oDState = state;
+	oDState = state;
     }
 
     public ScilabType getEquations() {
-		return equations;
-	}
+	return equations;
+    }
 
-	public void setEquations(ScilabType equations) {
-		this.equations = equations;
-	}
+    public void setEquations(ScilabType equations) {
+	this.equations = equations;
+    }
 
-	protected List<InputPort> getAllInputPorts() {
+    protected List<InputPort> getAllInputPorts() {
 	List<InputPort> data = new ArrayList<InputPort>();
 	int childrenCount = getChildCount();
-	
+
 	for (int i = 0 ; i < childrenCount ; ++i) {
 	    if(getChildAt(i) instanceof InputPort) {
 		data.add((InputPort) getChildAt(i));
 	    }
 	}
-	
+
 	return data;
     }
-    
+
     protected List<OutputPort> getAllOutputPorts() {
 	List<OutputPort> data = new ArrayList<OutputPort>();
 	int childrenCount = getChildCount();
-	
+
 	for (int i = 0 ; i < childrenCount ; ++i) {
 	    if(getChildAt(i) instanceof OutputPort) {
 		data.add((OutputPort) getChildAt(i));
 	    }
 	}
-	
+
 	return data;
     }
 
     protected List<CommandPort> getAllCommandPorts() {
 	List<CommandPort> data = new ArrayList<CommandPort>();
 	int childrenCount = getChildCount();
-	
+
 	for (int i = 0 ; i < childrenCount ; ++i) {
 	    if(getChildAt(i) instanceof CommandPort) {
 		data.add((CommandPort) getChildAt(i));
 	    }
 	}
-	
+
 	return data;
     }
 
     protected List<ControlPort> getAllControlPorts() {
 	List<ControlPort> data = new ArrayList<ControlPort>();
 	int childrenCount = getChildCount();
-	
+
 	for (int i = 0 ; i < childrenCount ; ++i) {
 	    if(getChildAt(i) instanceof ControlPort) {
 		data.add((ControlPort) getChildAt(i));
 	    }
 	}
-	
+
 	return data;
     }
-    
-    
+
+
     protected void addPort(InputPort port) {
 	insert(port);
 	updateInputPortsPositions();
@@ -358,7 +359,7 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getHeight()));
 	}
     }
-    
+
     protected void addPort(OutputPort port) {
 	insert(port);
 	updateOutputPortsPositions();
@@ -375,7 +376,7 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getHeight()));
 	}
     }
-    
+
     protected void addPort(CommandPort port) {
 	insert(port);
 	updateCommandPortsPositions();
@@ -392,7 +393,7 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getHeight()));
 	}
     }
-    
+
     protected void addPort(ControlPort port) {
 	insert(port);
 	updateControlPortsPositions();
@@ -409,8 +410,8 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getHeight()));
 	}
     }
- 
-    
+
+
     public ScilabMList getAsScilabObj() {
 	String[] objFields = {"Block", "graphics", "model", "gui", "doc"};
 	ScilabMList obj = new ScilabMList(objFields);
@@ -464,16 +465,16 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabType getAllExprs() {
-//	if (getExprs().isEmpty()) {
-//	    return new ScilabList();
-//	}
-//
-//	String[][] data = new String[getExprs().size()][1];
-//	for (int i = 0 ; i < getExprs().size() ; ++i) {
-//	    data[i][0] = getExprs().get(i);
-//	}
-//
-//	return new ScilabString(data);
+	//	if (getExprs().isEmpty()) {
+	//	    return new ScilabList();
+	//	}
+	//
+	//	String[][] data = new String[getExprs().size()][1];
+	//	for (int i = 0 ; i < getExprs().size() ; ++i) {
+	//	    data[i][0] = getExprs().get(i);
+	//	}
+	//
+	//	return new ScilabString(data);
 	return getExprs();
     }
 
@@ -545,28 +546,28 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabType createScilabRPar() {
-//	if (realParameters.isEmpty()) {
-//	    return new ScilabDouble();
-//	}
-//	double[][] data = new double[realParameters.size()][1];
-//	for (int i = 0 ; i < realParameters.size() ; ++i) {
-//	    data[i][0] = realParameters.get(i).doubleValue();
-//	}
-//
-//	return new ScilabDouble(data);
+	//	if (realParameters.isEmpty()) {
+	//	    return new ScilabDouble();
+	//	}
+	//	double[][] data = new double[realParameters.size()][1];
+	//	for (int i = 0 ; i < realParameters.size() ; ++i) {
+	//	    data[i][0] = realParameters.get(i).doubleValue();
+	//	}
+	//
+	//	return new ScilabDouble(data);
 	return getRealParameters();
     }
 
     private ScilabType createScilabIPar() {
-//	if (integerParameters.isEmpty()) {
-//	    return new ScilabDouble();
-//	}
-//	double[][] data = new double[integerParameters.size()][1];
-//	for (int i = 0 ; i < integerParameters.size() ; ++i) {
-//	    data[i][0] = integerParameters.get(i).doubleValue();
-//	}
-//
-//	return new ScilabDouble(data);
+	//	if (integerParameters.isEmpty()) {
+	//	    return new ScilabDouble();
+	//	}
+	//	double[][] data = new double[integerParameters.size()][1];
+	//	for (int i = 0 ; i < integerParameters.size() ; ++i) {
+	//	    data[i][0] = integerParameters.get(i).doubleValue();
+	//	}
+	//
+	//	return new ScilabDouble(data);
 	return getIntegerParameters();
     }
 
@@ -669,14 +670,46 @@ public class BasicBlock extends mxCell {
 	this.setRealParameters(modifiedBlock.getRealParameters());
 	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
 	this.setObjectsParameters(modifiedBlock.getObjectsParameters());
-	
+
 	this.setState(modifiedBlock.getState());
 	this.setDState(modifiedBlock.getDState());
 	this.setODState(modifiedBlock.getODState());
-	
+
 	this.setEquations(modifiedBlock.getEquations());
 
-	System.out.println("pin = "+modifiedBlock.getAllInputPorts().size());
+	// Check if new input port have been added
+	if (modifiedBlock.getAllInputPorts().size() > getAllInputPorts().size()) {
+	    for(int i = getAllInputPorts().size() - 1 ; i < modifiedBlock.getAllInputPorts().size() ; ++i)
+	    {
+		addPort(modifiedBlock.getAllInputPorts().get(i));
+	    }
+	}
+	
+	// Check if new output port have been added
+	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
+	    for(int i = getAllOutputPorts().size() - 1 ; i < modifiedBlock.getAllOutputPorts().size() ; ++i)
+	    {
+		addPort(modifiedBlock.getAllOutputPorts().get(i));
+	    }
+	}
+
+	// Check if new command port have been added
+	if (modifiedBlock.getAllCommandPorts().size() > getAllCommandPorts().size()) {
+	    for(int i = getAllCommandPorts().size() - 1 ; i < modifiedBlock.getAllCommandPorts().size() ; ++i)
+	    {
+		addPort(modifiedBlock.getAllCommandPorts().get(i));
+	    }
+	}
+
+	// Check if new control port have been added
+	if (modifiedBlock.getAllControlPorts().size() > getAllControlPorts().size()) {
+	    for(int i = getAllControlPorts().size() - 1 ; i < modifiedBlock.getAllControlPorts().size() ; ++i)
+	    {
+		addPort(modifiedBlock.getAllControlPorts().get(i));
+	    }
+	}
+
+    
     }
 
     public void openBlockSettings() {
@@ -708,27 +741,17 @@ public class BasicBlock extends mxCell {
 	    e.printStackTrace();
 	}
     }
-    
-    public String toString() {
-	String result = super.toString();
-	result += "\n";
-	result += "Input ports :\n";
-	for (int i = 0 ; i < getAllInputPorts().size() ; ++i) {
-	    result += "   " + getAllInputPorts().get(i).toString() + "\n";
-	}
-	result += "Output ports :\n";
-	for (int i = 0 ; i < getAllOutputPorts().size() ; ++i) {
-	    result += "   " + getAllOutputPorts().get(i).toString() + "\n";
-	}
-	result += "Control ports :\n";
-	for (int i = 0 ; i < getAllControlPorts().size() ; ++i) {
-	    result += "   " + getAllControlPorts().get(i).toString() + "\n";
-	}
-	result += "Command ports :\n";
-	for (int i = 0 ; i < getAllCommandPorts().size() ; ++i) {
-	    result += "   " + getAllCommandPorts().get(i).toString() + "\n";
-	}
-	return result;
+
+    public String getToolTipText() {
+	StringBuffer result = new StringBuffer();
+	result.append("<html>");
+	result.append("Block Name : "+getInterfaceFunctionName()+"<br>");
+	result.append("Input ports : "+getAllInputPorts().size()+"<br>");
+	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
+	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
+	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
+	result.append("</html>");
+	return result.toString();
     }
-    
+
 }
