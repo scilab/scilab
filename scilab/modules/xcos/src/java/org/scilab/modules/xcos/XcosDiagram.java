@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.tab.Tab;
@@ -82,6 +83,8 @@ public class XcosDiagram extends ScilabGraph {
     private Tab parentTab;
     //private Window palette;
     private Tab viewPort;
+    
+    private CheckBoxMenuItem viewPortMenu;
 
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
@@ -398,18 +401,45 @@ public class XcosDiagram extends ScilabGraph {
 	this.parentTab = parentTab;
     }
 
+    /**
+     * Set the associated ViewPort
+     * @param viewPort the Viewport
+     */
     public void setViewPort(Tab viewPort) {
-	this.viewPort = viewPort;
+    	this.viewPort = viewPort;
     }
 
+    /**
+     * Get the associated ViewPort
+     * @return the Viewport
+     */
     public Tab getViewPort() {
-	return viewPort;
+    	return viewPort;
     }
 
-    //public void setPalette(Window palette) {
-    //	this.palette = palette;
-    //}
-
+    /**
+     * Manage the visibility of the associated viewport
+     * @param status new status
+     */
+    public void setViewPortVisible(boolean status) {
+		// Hide/Show parent window if the viewport is the only tab
+		if (viewPort.getParentWindow().getNbDockedObjects() == 1) {
+			viewPort.getParentWindow().setVisible(status);
+		}
+		// Hide/Show viewport tab
+		viewPort.setVisible(status);
+    	
+		// (Un)Check the corresponding menu
+		viewPortMenu.setChecked(status);
+    }
+    
+    /**
+     * Set menu used to manage Viewport visibility
+     * @param menu the menu
+     */
+    public void setViewPortMenuItem(CheckBoxMenuItem menu) {
+    	this.viewPortMenu = menu;
+    }
     /**
      * Close Xcos instance including all tabs
      */

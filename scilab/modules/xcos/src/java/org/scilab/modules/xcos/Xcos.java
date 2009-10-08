@@ -34,6 +34,7 @@ import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -52,6 +53,7 @@ import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
+import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DumpAction;
@@ -251,8 +253,21 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
-	outlineTab.setCallback(null);
+	
+	outlineTab.setCallback(new CloseViewportAction(xcosDiagramm));
+	
+	MenuBar vpMenuBar = ScilabMenuBar.createMenuBar();
+	outlineTab.addMenuBar(vpMenuBar);
+	
+	Menu vpMenu = ScilabMenu.createMenu();
+	vpMenu.setText(XcosMessages.VIEWPORT);
+	vpMenu.setMnemonic('V');
+	vpMenuBar.add(vpMenu);
+	
+	vpMenu.add(CloseViewportAction.createMenu(xcosDiagramm));
+	
 	outlineTab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+
 	((XcosDiagram) xcosDiagramm).setViewPort(outlineTab);
 	
 	// Creates the graph outline component
@@ -374,7 +389,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 		view.addSeparator();
 		view.add(ViewPaletteBrowserAction.createCheckBoxMenu(scilabGraph));
 		view.add(ViewDiagramBrowserAction.createMenu(scilabGraph));
-		view.add(ViewViewportAction.createCheckBoxMenu(scilabGraph));
+		CheckBoxMenuItem menu = ViewViewportAction.createCheckBoxMenu(scilabGraph);
+		view.add(menu);
+		((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
 		view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
 		view.add(ViewBrowserAction.createMenu(scilabGraph));

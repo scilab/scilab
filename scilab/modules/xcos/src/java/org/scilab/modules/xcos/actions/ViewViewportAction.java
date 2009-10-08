@@ -27,8 +27,6 @@ public final class ViewViewportAction extends DefaultAction {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static CheckBoxMenuItem menu;
-
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
@@ -43,8 +41,7 @@ public final class ViewViewportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		menu =  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
-		return menu;
+		return  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
 	}
 	
 	/**
@@ -54,15 +51,6 @@ public final class ViewViewportAction extends DefaultAction {
 	public void doAction() {
 		Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
 
-		boolean newState = !viewPort.isVisible();
-		// Hide/Show parent window if the viewport is the only tab
-		if (viewPort.getParentWindow().getNbDockedObjects() == 1) {
-			viewPort.getParentWindow().setVisible(newState);
-		}
-		// Hide/Show viewport tab
-		viewPort.setVisible(newState);
-		// Check/Uncheck the menu
-		menu.setChecked(newState);
+		((XcosDiagram) getGraph(null)).setViewPortVisible(!viewPort.isVisible());
 	}
-	
 }
