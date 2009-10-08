@@ -91,10 +91,12 @@ import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.SetFontAction;
 import org.scilab.modules.xpad.actions.ShowToolBarAction;
+import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UTF8EncodingAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UndoAction;
+import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
@@ -272,6 +274,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editMenu.addSeparator();
 		editMenu.add(CommentAction.createMenu(editorInstance));
 		editMenu.add(UnCommentAction.createMenu(editorInstance));
+		editMenu.addSeparator();
+		editMenu.add(TabifyAction.createMenu(editorInstance));
+		editMenu.add(UnTabifyAction.createMenu(editorInstance));
 		editMenu.addSeparator();
 		editMenu.add(IndentAction.createMenu(editorInstance));
 		menuBar.add(editMenu);
@@ -876,6 +881,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
+				
+				// Empty the undo Manager
+				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+				undo.discardAllEdits();
+				
 			} catch (IOException ioex) {
 
 				int choice = JOptionPane.showConfirmDialog(editor, XpadMessages.FILE_DOESNT_EXIST);

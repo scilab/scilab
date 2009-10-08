@@ -45,7 +45,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv
 
 	int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -76,7 +76,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv
 	jy = (*env)->GetObjectField(env, obj_this, id_y);
 	cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = readNamedComplexMatrixOfDouble((char*)cname, &cm, &cn, cx, cy);
+	strErr = readNamedComplexMatrixOfDouble(pvApiCtx, (char*)cname, &cm, &cn, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -142,7 +142,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
 
 	int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -173,7 +173,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
 	jy = (*env)->GetObjectField(env, obj_this, id_y);
 	cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = readNamedComplexMatrixOfDouble((char*)cname, &cm, &cn, cx, cy);
+	strErr = readNamedComplexMatrixOfDouble(pvApiCtx, (char*)cname, &cm, &cn, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));

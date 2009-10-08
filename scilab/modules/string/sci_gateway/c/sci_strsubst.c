@@ -38,13 +38,13 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 	CheckRhs(3,4);
 	CheckLhs(1,1);
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
-	strErr = getVarType(piAddressVarOne, &iType);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -78,13 +78,14 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			char *pStVarFour			= NULL;
 			int lenStVarFour			= 0;
 
-			strErr = getVarAddressFromPosition(4, &piAddressVarFour);
+			strErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
 				return 0;
 			}
-			strErr = getVarType(piAddressVarFour, &iType4);
+
+			strErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -97,7 +98,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			strErr = getMatrixOfString(piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -113,7 +114,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			pStVarFour = (char*)MALLOC(sizeof(char)*(lenStVarFour + 1));
 			if (pStVarFour)
 			{
-				strErr = getMatrixOfString(piAddressVarFour, &mFour, &nFour, &lenStVarFour, &pStVarFour);
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &mFour, &nFour, &lenStVarFour, &pStVarFour);
 				if(strErr.iErr)
 				{
 					printError(&strErr, 0);
@@ -145,7 +146,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			}
 		}
 
-		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
+		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -153,7 +154,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks type 3th input argument
-		strErr = getVarType(piAddressVarThree, &iType3);
+		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -167,7 +168,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks dimension 3th input argument
-		strErr = getMatrixOfString(piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -180,7 +181,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -189,7 +190,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 
 
 		// checks type 2nd input argument
-		strErr = getVarType(piAddressVarTwo, &iType2);
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -203,7 +204,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks dimension 2nd input argument
-		strErr = getMatrixOfString(piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -216,7 +217,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -224,7 +225,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks type 1st input argument
-		strErr = getVarType(piAddressVarOne, &iType);
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 		if (iType  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
@@ -232,7 +233,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// get length 3th input argument
-		strErr = getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -243,7 +244,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		if (pStVarThree)
 		{
 			// get value 3th input argument
-			strErr = getMatrixOfString(piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -251,7 +252,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			}
 
 			// get length 2nd input argument
-			strErr = getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -262,14 +263,14 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			if (pStVarTwo)
 			{
 				// get value 2nd input argument
-				strErr = getMatrixOfString(piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
 				if(strErr.iErr)
 				{
 					printError(&strErr, 0);
 					return 0;
 				}
 
-				strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
 				if(strErr.iErr)
 				{
 					printError(&strErr, 0);
@@ -279,7 +280,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 				lenStVarOne = (int *)MALLOC(sizeof(int) * (mOne * nOne));
 				if (lenStVarOne)
 				{
-					strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+					strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
 					if(strErr.iErr)
 					{
 						printError(&strErr, 0);
@@ -306,7 +307,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 							}
 						}
 
-						strErr = getMatrixOfString(piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+						strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
 						if(strErr.iErr)
 						{
 							printError(&strErr, 0);
@@ -336,7 +337,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 						FREE(pStVarThree); pStVarThree = NULL;
 						FREE(pStVarTwo); pStVarTwo = NULL;
 
-						strErr = createMatrixOfString(Rhs + 1, mOne, nOne, Output_StringMatrix);
+						strErr = createMatrixOfString(pvApiCtx, Rhs + 1, mOne, nOne, Output_StringMatrix);
 						if(strErr.iErr)
 						{
 							printError(&strErr, 0);
@@ -379,7 +380,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 	}
 	else if (iType == sci_matrix)
 	{
-		strErr = getVarDimension(piAddressVarOne, &mOne, &nOne);
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &mOne, &nOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -388,7 +389,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 
 		if ( (mOne == 0) && (nOne == 0) ) /* strsubst([],...) returns [] */
 		{
-			strErr = createMatrixOfDouble(Rhs + 1, mOne, nOne, NULL);
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, mOne, nOne, NULL);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);

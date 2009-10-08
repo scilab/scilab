@@ -22,15 +22,10 @@ extern "C" {
 #define API_ERROR_INVALID_POINTER													1
 #define API_ERROR_INVALID_TYPE														2
 #define API_ERROR_NOT_MATRIX_TYPE													3
-#define API_ERROR_GET_VARTPE															4
-#define API_ERROR_VARDIM																	5
 #define API_ERROR_GET_PROCESSMODE													6
 #define API_ERROR_INVALID_POSITION												7
 #define API_ERROR_INVALID_COMPLEXITY											8
 #define API_ERROR_GET_DIMFROMVAR													9
-#define API_ERROR_GET_VAR_ADDRESS													10
-#define API_ERROR_GET_VAR_NAME														11
-#define API_ERROR_NO_MORE_MEMORY													12
 
 #define API_ERROR_INVALID_NAME														50
 #define API_ERROR_NAMED_TYPE															51
@@ -53,7 +48,6 @@ extern "C" {
 #define API_ERROR_CREATE_POLY															203
 #define API_ERROR_TOO_LONG_VAR														204
 #define API_ERROR_INVALID_VAR_POINTER											205
-#define API_ERROR_FILL_POLY																206
 #define API_ERROR_CREATE_NAMED_POLY												207
 #define API_ERROR_READ_NAMED_POLY													208
 
@@ -67,7 +61,6 @@ extern "C" {
 	/*sparse errors						501 - 599*/
 #define API_ERROR_GET_SPARSE															501
 #define API_ERROR_ALLOC_SPARSE														502
-#define API_ERROR_FILL_SPARSE															503
 #define API_ERROR_CREATE_SPARSE														504
 #define API_ERROR_CREATE_NAMED_SPARSE											505
 #define API_ERROR_READ_NAMED_SPARSE												506
@@ -83,7 +76,6 @@ extern "C" {
 	/*matlab sparse errors		701 - 799*/
 
 	/*ints errors							801 - 899*/
-#define API_ERROR_GET_INT_PRECISION												802
 #define API_ERROR_GET_INT																	802
 #define API_ERROR_CREATE_INT															803
 #define API_ERROR_ALLOC_INT																804
@@ -94,7 +86,6 @@ extern "C" {
 #define API_ERROR_GET_STRING															1001
 #define API_ERROR_INVALID_SUBSTRING_POINTER								1002
 #define API_ERROR_CREATE_STRING														1003
-#define API_ERROR_FILL_STRING															1004
 #define API_ERROR_CREATE_NAMED_STRING											1005
 #define API_ERROR_READ_NAMED_STRING												1006
 #define API_ERROR_GET_WIDE_STRING													1007
@@ -120,7 +111,6 @@ extern "C" {
 		/*double in list*/
 #define API_ERROR_GET_DOUBLE_IN_LIST											1520
 #define API_ERROR_ALLOC_DOUBLE_IN_LIST										1521
-#define API_ERROR_FILL_DOUBLE_IN_LIST											1522
 #define API_ERROR_CREATE_ZDOUBLE_IN_LIST									1523
 #define API_ERROR_CREATE_DOUBLE_IN_LIST										1524
 #define API_ERROR_CREATE_ZDOUBLE_IN_NAMED_LIST						1525
@@ -179,11 +169,11 @@ extern "C" {
 
 /*pointer errors					12801 - 12899*/
 #define API_ERROR_GET_POINTER															12801
-#define API_ERROR_FILL_POINTER														12802
 #define API_ERROR_ALLOC_POINTER														12803
 #define API_ERROR_CREATE_POINTER													12804
 
 /* error functions*/
+int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int iNeeded);
 int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...);
 int printError(StrErr* _pstrErr, int _iLastMsg);
 char* getErrorMessage(StrErr _strErr);

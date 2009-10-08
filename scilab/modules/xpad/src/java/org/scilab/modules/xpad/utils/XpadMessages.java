@@ -45,8 +45,10 @@ public class XpadMessages {
     public static final String DELETE = Messages.gettext("Delete");
     public static final String COMMENT_SELECTION = Messages.gettext("Comment Selection");
     public static final String UNCOMMENT_SELECTION = Messages.gettext("Uncomment Selection");
+    public static final String TABIFY_SELECTION = Messages.gettext("Tabify Selection");
+    public static final String UNTABIFY_SELECTION = Messages.gettext("Untabify Selection");
     public static final String INDENT = Messages.gettext("Indent");
-        
+    
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");

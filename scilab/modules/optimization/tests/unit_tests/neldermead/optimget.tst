@@ -103,4 +103,11 @@ op = optimset ();
 op = optimset ( op , 'MaxFunEvals' , 1000 );
 val = optimget ( op , 'MaxF' );
 assert_equal ( val , 1000 );
+// 
+// val = optimget ( options , key , default )
+//
+default = optimset ( 'fminsearch' );
+op = optimset ();
+value = optimget(op,'TolX',default.TolX);
+assert_equal ( value , 1.e-4 );
 

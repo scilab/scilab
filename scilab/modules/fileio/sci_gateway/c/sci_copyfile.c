@@ -47,21 +47,21 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,2);
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if (iType1 != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
-	strErr = getVarDimension(piAddressVarOne, &m1, &n1);
+	strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -82,21 +82,21 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	
-	strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarTwo, &iType2);
+	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -110,7 +110,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarDimension(piAddressVarTwo, &m2, &n2);
+	strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -133,7 +133,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	
-	strErr = getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -326,12 +326,13 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 	}
 #endif
 
-	createMatrixOfDouble(Rhs + 1, m_out, n_out, &dError);
+	createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dError);
+	
 	LhsVar(1) = Rhs + 1;
 
 	if (Lhs == 2)
 	{
-		createMatrixOfWideString(Rhs + 2, m_out, n_out, strError);
+		createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, strError);
 		LhsVar(2) = Rhs + 2;
 	}
 

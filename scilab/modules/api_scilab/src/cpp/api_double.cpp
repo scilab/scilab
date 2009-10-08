@@ -27,26 +27,26 @@
 /*   double matrix functions   */
 /*******************************/
 
-StrErr getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
+StrErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {
-	return getCommonMatrixOfDouble(_piAddress, 0, _piRows, _piCols, _pdblReal, NULL);
+	return getCommonMatrixOfDouble(_pvCtx, _piAddress, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+StrErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonMatrixOfDouble(_piAddress, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return getCommonMatrixOfDouble(_pvCtx, _piAddress, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-StrErr getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ)
+StrErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal = NULL;
 	double *pdblImg	 = NULL;
 
-	strErr = getCommonMatrixOfDouble(_piAddress, isVarComplex(_piAddress), _piRows, _piCols, &pdblReal, &pdblImg);
+	strErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, isVarComplex(_pvCtx, _piAddress), _piRows, _piCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_ZDOUBLE, _("API_ERROR_GET_ZDOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_GET_ZDOUBLE, _("%s: Unable to get argument #%d"), "getComplexZMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 	
@@ -54,42 +54,33 @@ StrErr getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, do
 	return strErr;
 }
 
-StrErr getCommonMatrixOfDouble(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+StrErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble");
 		return strErr;
 	}
 	
-	strErr = getVarType(_piAddress, &iType);
+	strErr = getVarType(_pvCtx, _piAddress, &iType);
+	if(strErr.iErr || iType != sci_matrix)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", _("double matrix"));
+		return strErr;
+	}
+
+	if(isVarComplex(_pvCtx, _piAddress) != _iComplex)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), "getComplexMatrixOfDouble");
+		return strErr;
+	}
+
+	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
-		return strErr;
-	}
-
-	if(iType != sci_matrix)
-	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
-		return strErr;
-	}
-
-	if(isVarComplex(_piAddress) != _iComplex)
-	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("API_ERROR_INVALID_COMPLEXITY"));
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
-		return strErr;
-	}
-
-	strErr = getVarDimension(_piAddress, _piRows, _piCols);
-	if(strErr.iErr)
-	{
-		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("API_ERROR_GET_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -104,15 +95,15 @@ StrErr getCommonMatrixOfDouble(int* _piAddress, int _iComplex, int* _piRows, int
 	return strErr;
 }
 
-StrErr allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal)
+StrErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 
-	strErr = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL);
+	strErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 0, _iRows, _iCols, &pdblReal, NULL);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE, _("API_ERROR_ALLOC_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfDouble");
 		return strErr;
 	}
 
@@ -121,16 +112,16 @@ StrErr allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal
 	return strErr;
 }
 
-StrErr allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+StrErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	strErr = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("API_ERROR_ALLOC_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -139,21 +130,29 @@ StrErr allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _p
 	return strErr;
 }
 
-StrErr allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+StrErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
 
-	getNewVarAddressFromPosition(iNewPos, &piAddr);
-	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
+
+	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
 	return strErr;
 }
 
-StrErr fillCommonMatrixOfDouble(int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+StrErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	_piAddress[0]		= sci_matrix;
@@ -175,7 +174,7 @@ StrErr fillCommonMatrixOfDouble(int* _piAddress, int _iComplex, int _iRows, int 
 	return strErr;
 }
 
-StrErr createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal)
+StrErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
@@ -183,10 +182,10 @@ StrErr createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	strErr = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal);
+	strErr = allocMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("API_ERROR_ALLOC_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -194,7 +193,7 @@ StrErr createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal
 	return strErr;
 }
 
-StrErr createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
@@ -203,10 +202,10 @@ StrErr createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _p
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	strErr = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_COMPLEX_DOUBLE, _("API_ERROR_CREATE_COMPLEX_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -215,17 +214,17 @@ StrErr createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _p
 	return strErr;
 }
 
-StrErr createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
+StrErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
 
 
-	strErr = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+	strErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE, _("API_ERROR_CREATE_ZDOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_ZDOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
 		return strErr;
 	}
 
@@ -233,17 +232,17 @@ StrErr createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecom
 	return strErr;
 }
 
-StrErr createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal)
+StrErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, 0, _iRows, _iCols, _pdblReal, NULL);
+	return createCommunNamedMatrixOfDouble(_pvCtx, _pstName, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-StrErr createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return createCommunNamedMatrixOfDouble(_pvCtx, _pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-StrErr createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
+StrErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -257,10 +256,10 @@ StrErr createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols,
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
-	fillCommonMatrixOfDouble(piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	fillCommonMatrixOfDouble(_pvCtx, piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 
 	vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
 
@@ -277,7 +276,7 @@ StrErr createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols,
 	return strErr;
 }
 
-StrErr createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+StrErr createCommunNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -291,10 +290,18 @@ StrErr createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(Top, &piAddr);
+	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return strErr;
+	}
+
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
-	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
+	fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	//copy data in stack
 	memcpy(pdblReal, _pdblReal, sizeof(double) * _iRows * _iCols);
 
@@ -316,34 +323,34 @@ StrErr createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows
 	return strErr;
 }
 
-StrErr readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
+StrErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
 {
-	return readCommonNamedMatrixOfDouble(_pstName, 0, _piRows, _piCols, _pdblReal, NULL);
+	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+StrErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
-	return readCommonNamedMatrixOfDouble(_pstName, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-StrErr readCommonNamedMatrixOfDouble(char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+StrErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	strErr = getVarAddressFromName(_pstName, &piAddr);
+	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("API_ERROR_READ_NAMED_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfDouble" : "readNamedMatrixOfDouble", _pstName);
 		return strErr;
 	}
 	
-	strErr = getCommonMatrixOfDouble(piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
+	strErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("API_ERROR_READ_NAMED_DOUBLE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_DOUBLE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfDouble" : "readNamedMatrixOfDouble", _pstName);
 		return strErr;
 	}
 

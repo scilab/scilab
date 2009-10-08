@@ -1,10 +1,12 @@
 LIBRARY    api_scilab.dll
 
 
+
 EXPORTS
 ; --------------------------------------- 
 ; api_scilab explicit export (SEP 35)
 ; --------------------------------------- 
+pvApiCtx DATA
 	getMatrixOfBoolean
 	allocMatrixOfBoolean
 	createMatrixOfBoolean
@@ -25,7 +27,6 @@ EXPORTS
 	isVarComplex
 	isNamedVarComplex
 	isVarMatrixType
-	isNamedVarMatrixType
 	getProcessMode
 	getDimFromVar
 	getDimFromNamedVar
@@ -43,6 +44,7 @@ EXPORTS
 	createNamedComplexZMatrixOfDouble
 	readNamedMatrixOfDouble
 	readNamedComplexMatrixOfDouble
+	addStackSizeError
 	addErrorMessage
 	printError
 	getErrorMessage

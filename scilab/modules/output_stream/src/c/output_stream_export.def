@@ -10,4 +10,5 @@ sciprint
 scivprint
 error_
 SciError
+SciStoreError
 ; --------------------------------------- 

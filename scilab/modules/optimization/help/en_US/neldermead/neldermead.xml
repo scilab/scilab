@@ -600,11 +600,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfstdeviationmethod</term>
 
                     <listitem>
-                      <para>set to %t to enable the termination
-                      criteria based on the standard deviation of the function
-                      values in the simplex. The default value is %f.
-                      If this criteria is triggered, the status of the
-                      optimization is set to "tolfstdev".</para>
+                      <para>set to %t to enable the termination criteria based
+                      on the standard deviation of the function values in the
+                      simplex. The default value is %f. If this criteria is
+                      triggered, the status of the optimization is set to
+                      "tolfstdev".</para>
 
                       <para>This criteria is suggested by Nelder and
                       Mead.</para>
@@ -624,10 +624,10 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolsimplexizemethod</term>
 
                     <listitem>
-                      <para>set to %f to disable the tolerance on the
-                      simplex size. The default value is %t. If this
-                      criteria is triggered, the status of the optimization is
-                      set to "tolsize".</para>
+                      <para>set to %f to disable the tolerance on the simplex
+                      size. The default value is %t. If this criteria is
+                      triggered, the status of the optimization is set to
+                      "tolsize".</para>
 
                       <para>When this criteria is enabled, the values of the
                       options -tolsimplexizeabsolute and
@@ -659,12 +659,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolssizedeltafvmethod</term>
 
                     <listitem>
-                      <para>set to %t to enable the termination
-                      criteria based on the size of the simplex and the
-                      difference of function value in the simplex. The default
-                      value is %f. If this criteria is triggered, the
-                      status of the optimization is set to
-                      "tolsizedeltafv".</para>
+                      <para>set to %t to enable the termination criteria based
+                      on the size of the simplex and the difference of
+                      function value in the simplex. The default value is %f.
+                      If this criteria is triggered, the status of the
+                      optimization is set to "tolsizedeltafv".</para>
 
                       <para>This termination criteria uses the values of the
                       options -tolsimplexizeabsolute and -toldeltafv. This
@@ -697,12 +696,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-kelleynormalizationflag</term>
 
                     <listitem>
-                      <para>set to %f to disable the normalization of the alpha
-                      coefficient in Kelley's stagnation detection, i.e. use
-                      the value of the option -kelleystagnationalpha0 as is.
-                      Default value is %t, i.e. the simplex gradient of the
-                      initial simplex is taken into account in the stagnation
-                      detection.</para>
+                      <para>set to %f to disable the normalization of the
+                      alpha coefficient in Kelley's stagnation detection, i.e.
+                      use the value of the option -kelleystagnationalpha0 as
+                      is. Default value is %t, i.e. the simplex gradient of
+                      the initial simplex is taken into account in the
+                      stagnation detection.</para>
                     </listitem>
                   </varlistentry>
 
@@ -1526,14 +1525,14 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on x works
-        well if x at optimum is different from zero. In that case, the
-        condition measures the distance between two iterates.</para>
+        <para>The relative termination criteria on x works well if x at
+        optimum is different from zero. In that case, the condition measures
+        the distance between two iterates.</para>
 
-        <para>The absolute termination criteria on x works if
-        the user has an accurate idea of the scale of the optimum x. If the
-        optimum x is near 0, the relative tolerance will not work and the
-        absolute tolerance is more appropriate.</para>
+        <para>The absolute termination criteria on x works if the user has an
+        accurate idea of the scale of the optimum x. If the optimum x is near
+        0, the relative tolerance will not work and the absolute tolerance is
+        more appropriate.</para>
       </listitem>
 
       <listitem>
@@ -1927,6 +1926,13 @@ endfunction
 //  state : the current state of the algorithm
 //    "init", "iter", "done"
 //  data : the data at the current state
+//    This is a tlist with the following entries:
+//    * x : the optimal vector of parameters
+//    * fval : the minimum function value
+//    * simplex : the simplex, as a simplex object
+//    * iteration : the number of iterations performed
+//    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
 //
 function myoutputcmd ( state , data )
   iter = data.iteration

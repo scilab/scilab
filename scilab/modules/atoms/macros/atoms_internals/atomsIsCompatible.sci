@@ -51,9 +51,10 @@ function result = atomsIsCompatible(version_str)
 	end
 	
 	// Get scilab version (Only the first digit)
-	// =========================================================================
-	sciversion = strcat(string(getversion("scilab")) + ".");
-	sciversion = strsubst(sciversion,"/\.$/","","r");
+	// =========================================================================	
+	sciversion_mat = getversion("scilab");
+	sciversion     = strcat(string(sciversion_mat(1:3)) + ".");
+	sciversion     = strsubst(sciversion,"/\.$/","","r");
 	
 	// Get the dependency operator and version
 	// =========================================================================

@@ -29,7 +29,7 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen);
+StrErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen);
 
 /**
  * Get polynomial variable data
@@ -41,7 +41,7 @@ StrErr getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLe
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+StrErr getMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get complex polynomial variable data
@@ -54,7 +54,7 @@ StrErr getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCo
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr getComplexMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get polynomial named variable data
@@ -67,7 +67,7 @@ StrErr getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* 
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+StrErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get complex polynomial named variable data
@@ -81,7 +81,7 @@ StrErr createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, 
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create polynomial named variable
@@ -93,7 +93,7 @@ StrErr createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr createNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+StrErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Create complex polynomial named variable
@@ -106,7 +106,7 @@ StrErr createNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, in
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr createNamedComplexMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get double named variable data
@@ -118,7 +118,7 @@ StrErr createNamedComplexMatrixOfPoly(char* _pstName, char* _pstVarName, int _iR
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr readNamedMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+StrErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get double named variable data
@@ -131,7 +131,7 @@ StrErr readNamedMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
  
-StrErr readNamedComplexMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+StrErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 #ifdef __cplusplus
 }

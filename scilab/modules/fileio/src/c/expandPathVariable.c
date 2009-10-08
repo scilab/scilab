@@ -140,7 +140,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			StrErr strErr = getNamedVarType(varname, &iType);
+			StrErr strErr = getNamedVarType(pvApiCtx, varname, &iType);
 			if(strErr.iErr)
 			{
 				return NULL;
@@ -152,7 +152,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
 
-				strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+				strErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
 				if(strErr.iErr)
 				{
 					return NULL;
@@ -165,7 +165,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 					{
 						BOOL bConvLong = FALSE;
 						wchar_t *LongName = NULL;
-						strErr = readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						strErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
 						if(strErr.iErr)
 						{
 							FREE(VARVALUE);

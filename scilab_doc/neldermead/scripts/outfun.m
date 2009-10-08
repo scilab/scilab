@@ -7,8 +7,10 @@
 % are also available at
 % http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-format long
-banana = @(x)100*(x(2)-x(1)^2)^2+(1-x(1))^2;
-[x,fval,exitflag,output] = fminsearch(banana,[-1.2, 1])
-output.message
+% Use output function
+function stop = outfun(x, optimValues, state)
+stop = false;
+hold on;
+plot(x(1),x(2),'.');
+drawnow
 

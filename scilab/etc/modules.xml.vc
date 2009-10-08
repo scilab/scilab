@@ -86,6 +86,5 @@
 <module name="hdf5" activate="yes"/>
 <module name="xcos" activate="yes"/>
 <module name="xpad" activate="yes"/>
-<module name="scipad" activate="no"/>
 <!-- comments -->
 </modules>
