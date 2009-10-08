@@ -91,14 +91,14 @@ StrErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType);
  * @param[in] _piAddress variable address
  * @return if complex 1 otherwise 0
  */
- int isVarComplex(void* _pvCtx, int* _piAddress);
+int isVarComplex(void* _pvCtx, int* _piAddress);
 
 /**
 * Get named complex information
 * @param[in] _pstName variable name
 * @return if complex 1 otherwise 0
 */
- int isNamedVarComplex(void* _pvCtx, char *_pstName);
+int isNamedVarComplex(void* _pvCtx, char *_pstName);
 
 /**
  * Get variable dimension
@@ -123,14 +123,14 @@ StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _pi
  * @param[in] _piAddress variable address
  * @return if matrix form type variable 1 otherwise 0
  */
- int isVarMatrixType(void* _pvCtx, int* _piAddress);
+int isVarMatrixType(void* _pvCtx, int* _piAddress);
 
 /**
 * check if a named variable is a matrix form ( row x col )
 * @param[in] _pstName variable name
 * @return if matrix form type variable 1 otherwise 0
 */
- int isNamedVarMatrixType(char *_pstName);
+int isNamedVarMatrixType(char *_pstName);
 
 /**
  * get process mode from input variable

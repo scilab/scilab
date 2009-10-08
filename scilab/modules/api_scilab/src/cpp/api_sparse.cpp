@@ -42,29 +42,26 @@ StrErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("API_ERROR_GET_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix");
 		return strErr;
 	}
 	
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("API_ERROR_GET_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
 	if(iType != sci_sparse)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("API_ERROR_GET_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix", _("sparse matrix"));
 		return strErr;
 	}
 
 	if(isVarComplex(_pvCtx, _piAddress) != _iComplex)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("API_ERROR_INVALID_COMPLEXITY"));
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("API_ERROR_GET_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix");
 		return strErr;
 	}
 
@@ -72,7 +69,7 @@ StrErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("API_ERROR_GET_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_GET_SPARSE, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -128,7 +125,7 @@ StrErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRow
 	strErr = fillCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_SPARSE, _("API_ERROR_ALLOC_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "allocComplexSparseMatrix" : "allocSparseMatrix");
 		return strErr;
 	}
 
@@ -145,8 +142,7 @@ StrErr fillCommonSparseMatrix(void* _pvCtx, int *_piAddress, int _iComplex, int 
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_SPARSE, _("API_ERROR_FILL_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillCommonSparseMatrix");
 		return strErr;
 	}
 
@@ -191,7 +187,7 @@ StrErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
 	strErr = allocCommonSparseMatrix(_pvCtx, _iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE, _("API_ERROR_CREATE_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
 		return strErr;
 	}
 
@@ -239,7 +235,7 @@ StrErr createCommonNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex
 	strErr = fillCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalSize);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_SPARSE, _("API_ERROR_CREATE_NAMED_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_SPARSE, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexSparseMatrix" : "createNamedSparseMatrix", _("sparse matrix"), _pstName);
 		return strErr;
 	}
 
@@ -291,7 +287,7 @@ StrErr readCommonNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex, 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_SPARSE, _("API_ERROR_READ_NAMED_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_SPARSE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexSparseMatrix" : "readNamedSparseMatrix", _pstName);
 		return strErr;
 	}
 	
@@ -306,7 +302,7 @@ StrErr readCommonNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex, 
 
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_SPARSE, _("API_ERROR_READ_NAMED_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_SPARSE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexSparseMatrix" : "readNamedSparseMatrix", _pstName);
 		return strErr;
 	}
 

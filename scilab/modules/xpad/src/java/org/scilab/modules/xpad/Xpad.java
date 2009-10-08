@@ -881,6 +881,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
+				
+				// Empty the undo Manager
+				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+				undo.discardAllEdits();
+				
 			} catch (IOException ioex) {
 
 				int choice = JOptionPane.showConfirmDialog(editor, XpadMessages.FILE_DOESNT_EXIST);
