@@ -59,7 +59,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfRowsFromScilab(J
 
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -89,7 +89,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfColsFromScilab(J
 
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -160,7 +160,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get(JNIEnv *env, jobject ob
 
 	int dimension[2];
 
-	strErr = getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]);
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -309,7 +309,7 @@ static int JNI_getMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_th
 
 	for (i = 0; i < (Rows * Cols); i++) icx[i] = (int)cx[i];
 
-	strErr = readNamedMatrixOfInteger32(name, &cm, &cn, icx);
+	strErr = readNamedMatrixOfInteger32(pvApiCtx, name, &cm, &cn, icx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -333,7 +333,7 @@ static int JNI_getMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_thi
 	jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 
-	strErr = readNamedMatrixOfDouble(name, &cm, &cn, cx);
+	strErr = readNamedMatrixOfDouble(pvApiCtx, name, &cm, &cn, cx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -360,7 +360,7 @@ static int JNI_getMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_th
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	double *cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = readNamedComplexMatrixOfDouble(name, &cm, &cn, cx, cy);
+	strErr = readNamedComplexMatrixOfDouble(pvApiCtx, name, &cm, &cn, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -393,7 +393,7 @@ static int JNI_getMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 		return 1;
 	}
 
-	strErr = readNamedMatrixOfString(name, &cm, &cn, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, name, &cm, &cn, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -420,7 +420,7 @@ static int JNI_getMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 		}
 	}
 
-	strErr = readNamedMatrixOfString(name, &cm, &cn, pLength, pStrings);
+	strErr = readNamedMatrixOfString(pvApiCtx, name, &cm, &cn, pLength, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -459,7 +459,7 @@ static int JNI_getMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_th
 		return 1;
 	}
 
-	strErr = readNamedMatrixOfBoolean(name, &cm, &cn, CX);
+	strErr = readNamedMatrixOfBoolean(pvApiCtx, name, &cm, &cn, CX);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -500,7 +500,7 @@ static int JNI_setMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_th
 
 	for (i = 0; i < (Rows * Cols); i++) icx[i] = (int)cx[i];
 
-	strErr = createNamedMatrixOfInteger32(name, Rows, Cols, icx);
+	strErr = createNamedMatrixOfInteger32(pvApiCtx, name, Rows, Cols, icx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -523,7 +523,7 @@ static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_thi
 	jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 
-	strErr = createNamedMatrixOfDouble(name, Rows, Cols, cx);
+	strErr = createNamedMatrixOfDouble(pvApiCtx, name, Rows, Cols, cx);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -548,7 +548,7 @@ static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_th
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	double *cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	strErr = createNamedComplexMatrixOfDouble(name, Rows, Cols, cx, cy);
+	strErr = createNamedComplexMatrixOfDouble(pvApiCtx, name, Rows, Cols, cx, cy);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -586,7 +586,7 @@ static int JNI_setMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 		(*env)->ReleaseStringUTFChars(env, jelement,  element);
 	}
 
-	strErr = createNamedMatrixOfString(name, Rows, Cols, pStrings);
+	strErr = createNamedMatrixOfString(pvApiCtx, name, Rows, Cols, pStrings);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));
@@ -621,7 +621,7 @@ static int JNI_setMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_th
 		CX[i] = (int)cx[i];
 	}
 
-	strErr = createNamedMatrixOfBoolean(name, Rows, Cols, CX);
+	strErr = createNamedMatrixOfBoolean(pvApiCtx, name, Rows, Cols, CX);
 	if(strErr.iErr)
 	{
 		fprintf(stderr,"%s", getErrorMessage(strErr));

@@ -54,6 +54,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -91,10 +92,12 @@ import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.SetFontAction;
 import org.scilab.modules.xpad.actions.ShowToolBarAction;
+import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UTF8EncodingAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UndoAction;
+import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
@@ -125,7 +128,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private XpadLineNumberPanel xln;
 	private Menu recentsMenu;
 	private int numberOfUntitled;
-	private String lastSaveDir;
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
@@ -179,10 +181,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public static void xpad(String filePath) {
 		Xpad editorInstance = launchXpad();
 		File f = new File(filePath);
-
-		editorInstance.readFile(f);
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
+		editorInstance.readFile(f);
+
+
 	}
 
 	/**
@@ -272,6 +275,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editMenu.addSeparator();
 		editMenu.add(CommentAction.createMenu(editorInstance));
 		editMenu.add(UnCommentAction.createMenu(editorInstance));
+		editMenu.addSeparator();
+		editMenu.add(TabifyAction.createMenu(editorInstance));
+		editMenu.add(UnTabifyAction.createMenu(editorInstance));
 		editMenu.addSeparator();
 		editMenu.add(IndentAction.createMenu(editorInstance));
 		menuBar.add(editMenu);
@@ -453,8 +459,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		boolean isSuccess = false;
 		String extension = new String();
 
-		if (lastSaveDir == null) {
-			lastSaveDir = System.getProperty("user.dir");
+		String initialDirectoryPath = getTextPane().getName();
+		if (initialDirectoryPath == null ){
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
 		}
 
 		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
@@ -463,8 +470,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
+		fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
 		fileChooser .setAcceptAllFileFilterUsed(true);
-		fileChooser .setInitialDirectory(lastSaveDir);
+		fileChooser .setInitialDirectory(initialDirectoryPath);
 		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(scxFilter);
@@ -474,7 +482,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		if (retval == JFileChooser.APPROVE_OPTION) {
 			File f = fileChooser.getSelectedFile();
-			lastSaveDir = f.getPath();
+			initialDirectoryPath = f.getPath();
 			if (f.exists()) {
 				int actionDialog = JOptionPane.showConfirmDialog(this, XpadMessages.REPLACE_FILE_TITLE, 
 						XpadMessages.FILE_ALREADY_EXIST, JOptionPane.YES_NO_OPTION);
@@ -518,7 +526,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				writer.flush();
 				writer.close();
 
-
+				ConfigManager.saveLastOpenedDirectory(f.getPath());
 				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 				textPane.setName(f.getPath());
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
@@ -840,6 +848,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 				ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 				Scanner scanner = new Scanner(f);
 				
+				System.out.println("File = " + f.getAbsolutePath());
+				theTextPane.setName(f.getAbsolutePath());
+				
 				int startPosition = 0 ;
 				
 				styleDocument.disableUpdaters(); 
@@ -867,8 +878,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 				}
 				styleDocument.enableUpdaters();
-				System.out.println("File = " + f.getAbsolutePath());
-				theTextPane.setName(f.getAbsolutePath());
+
 
 
 
@@ -876,6 +886,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
+				
+				// Empty the undo Manager
+				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+				undo.discardAllEdits();
+				
 			} catch (IOException ioex) {
 
 				int choice = JOptionPane.showConfirmDialog(editor, XpadMessages.FILE_DOESNT_EXIST);

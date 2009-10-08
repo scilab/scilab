@@ -19,9 +19,9 @@
 
 // 2 - Start Scipad
 
-// 3 - In Scipad enter:
+// 3 - In xpad enter:
 // function [in,out]=get_csv();
-//   data_file=xgetfile("*.csv",title="Select Data File");
+//   data_file=uigetfile("*.csv",title="Select Data File");
 //   Value_labels=["Input columns";"Output columns"];
 //   [_Input,_Output]=getvalue("Input and outputs column numbers",Value_labels,...
 //   list("vec",-1,"vec",-1)
@@ -32,4 +32,4 @@
 
 // 4 - CTRL+L
 
-// 5 - Check that Scilab and Scipad are alive
+// 5 - Check that Scilab and xpad are alive

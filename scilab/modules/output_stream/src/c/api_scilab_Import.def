@@ -11,4 +11,5 @@ EXPORTS
 	createMatrixOfBoolean
 	getVarDimension
 	printError
+	pvApiCtx DATA
 	

@@ -33,7 +33,7 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+StrErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
  * Get strings variable data
@@ -45,7 +45,7 @@ StrErr getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLe
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
+StrErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -57,7 +57,7 @@ StrErr getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
+StrErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -69,7 +69,7 @@ StrErr createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstString
 * @return if the operation successed (0) or not ( !0 )
 */
 
-StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
+StrErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Create strings variable data
@@ -81,7 +81,7 @@ StrErr createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pw
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
+StrErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -93,7 +93,7 @@ StrErr createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** 
 * @return if the operation successed (0) or not ( !0 )
 */
 
-StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
+StrErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
 
 /**
  * Get strings variable data
@@ -105,7 +105,7 @@ StrErr createNamedMatrixOfWideString(char* _pstName, int _iRows, int _iCols, wch
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+StrErr readNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
 * Get wide strings variable data
@@ -117,7 +117,7 @@ StrErr readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* 
 * @return if the operation successed (0) or not ( !0 )
 */
 
-StrErr readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
+StrErr readNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
 
 #ifdef __cplusplus
 }

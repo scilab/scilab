@@ -85,6 +85,12 @@ function value = neldermead_cget (this,key)
     value = this.boxnbmatch
   case "-boxreflect" then
     value = this.boxreflect
+  case "-mymethod" then
+    value = this.mymethod
+  case "-myterminate" then
+    value = this.myterminate
+  case "-myterminateflag" then
+    value = this.myterminateflag
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );

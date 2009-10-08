@@ -21,8 +21,8 @@ function this = neldermead_configure (this,key,value)
       this.method = "variable";
     case "box" then
       this.method = "box";
-    case "nmconstraints" then
-      this.method = "nmconstraints";
+    case "mine" then
+      this.method = "mine";
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
       error(errmsg);
@@ -147,8 +147,23 @@ function this = neldermead_configure (this,key,value)
     this.boxnbmatch = value
   case "-boxreflect" then
     this.boxreflect = value
+  case "-mymethod" then
+    this.mymethod = value
+  case "-myterminate" then
+    this.myterminate = value
+  case "-myterminateflag" then
+    select value
+    case %f then
+      this.myterminateflag = value;
+    case %t then
+      this.myterminateflag = value;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
+      error(errmsg);
+    end
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
   end
 endfunction
+

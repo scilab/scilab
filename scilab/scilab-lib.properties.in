@@ -17,7 +17,11 @@ jrosetta-API.jar=@JROSETTA_API@
 
 jrosetta-engine.jar=@JROSETTA_ENGINE@
 
-checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+checkstyle.jar=@CHECKSTYLE@
+
+commons-beanutils.jar=@COMMONS_BEANUTILS@
+
+antlr.jar=@ANTLR@
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar

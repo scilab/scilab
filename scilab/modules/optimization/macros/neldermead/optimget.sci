@@ -52,7 +52,7 @@ function val = optimget (varargin)
   val = options(name);
   // When the value is given and the field is empty, return the value.
   if rhs==3 then
-    if val ==[] then
+    if val == [] then
       val = varargin(3)
     end
   end

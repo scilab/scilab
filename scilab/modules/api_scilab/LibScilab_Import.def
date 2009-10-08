@@ -16,3 +16,5 @@ str2name_
 cvnamel_
 freeArrayOfString
 getExecMode
+getIntermediateMemoryNeeded
+getstackinfo_

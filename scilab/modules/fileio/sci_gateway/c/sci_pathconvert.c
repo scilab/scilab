@@ -49,14 +49,14 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 		int lenStVarFour = 0;
 		int m4 = 0, n4 = 0;
 
-		strErr = getVarAddressFromPosition(4, &piAddressVarFour);
+		strErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarFour, &iType4);
+		strErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -69,7 +69,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarDimension(piAddressVarFour, &m4, &n4);
+		strErr = getVarDimension(pvApiCtx, piAddressVarFour, &m4, &n4);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -82,7 +82,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -97,7 +97,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -132,14 +132,14 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 		int iType3	= 0;
 		int m3 = 0, n3 = 0;
 
-		strErr = getVarAddressFromPosition(3, &piAddressVarThree);
+		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarThree, &iType3);
+		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -152,7 +152,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarDimension(piAddressVarThree, &m3, &n3);
+		strErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -166,7 +166,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfBoolean(piAddressVarThree, &m3, &n3,  &piData);
+		strErr = getMatrixOfBoolean(pvApiCtx, piAddressVarThree, &m3, &n3,  &piData);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -183,14 +183,14 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 		int iType2	= 0;
 		int m2 = 0, n2 = 0;
 
-		strErr = getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(piAddressVarTwo, &iType2);
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -203,7 +203,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarDimension(piAddressVarTwo, &m2, &n2);
+		strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -216,7 +216,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfBoolean(piAddressVarTwo, &m2, &n2,  &piData);
+		strErr = getMatrixOfBoolean(pvApiCtx, piAddressVarTwo, &m2, &n2,  &piData);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -226,14 +226,14 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 		flagtrail = piData[0];
 	}
 
-	strErr = getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(piAddressVarOne, &iType1);
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -242,7 +242,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 
 	if (iType1 == sci_matrix)
 	{
-		strErr = getVarDimension(piAddressVarOne, &m1, &n1);
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -251,7 +251,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 
 		if ( (m1 == n1) && (m1 == 0) )
 		{
-			strErr = createMatrixOfDouble(Rhs + 1, m1, n1, NULL);
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -268,7 +268,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 	}
 	else if (iType1 == sci_strings)
 	{
-		strErr = getVarDimension(piAddressVarOne, &m1, &n1);
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -300,7 +300,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
@@ -312,7 +312,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			results[i] = pathconvertW(pStVarOne[i], flagtrail, flagexpand, PType);
 		}
 
-		strErr = createMatrixOfWideString(Rhs + 1, m1, n1, results);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, results);
 		if(strErr.iErr)
 		{
 			printError(&strErr, 0);
