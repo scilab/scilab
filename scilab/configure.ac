@@ -660,7 +660,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		if test "$with_gui" != no; then
 
 				# jgraphx
-				AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[JGraph X])
+				AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
 				JGRAPHX=$PACKAGE_JAR_FILE
 				AC_SUBST(JGRAPHX)
 
@@ -1014,8 +1014,15 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
+   LDFLAGS_save=$LDFLAGS
+   # Provide known paths where distribs/OS can store JNI libs
+   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/"
+   AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
+     [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+   LDFLAGS=$LDFLAGS_save
+
 #################
-## ocaml which only called with using Scicos
+## ocaml which only called when using Scicos
 #################
 
 		if test "$with_ocaml" != no; then
@@ -1784,6 +1791,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
    echo "  HDF5 Java ........... = $JHDF5"
+   echo "  JHDF5 LIBS (JNI) .... = $JHDF5_LIBS"
 else
    echo "Not using HDF5"
 fi
