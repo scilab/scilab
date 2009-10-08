@@ -148,14 +148,23 @@ public final class BlockWriter {
 		for (int i = 0; i < nbObjs; ++i) {
 			Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
 			if (currentObject instanceof BasicBlock) {
-				blockList.add((BasicBlock) currentObject);
+			    blockList.add((BasicBlock) currentObject);
+			    //
+			    // Look inside a Block to see if there is no "AutoLink"
+			    // Jgraphx will store this link as block's child  
+			    //
+			    for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
+				if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
+				    linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
+				}
+			    }
 			} else if (currentObject instanceof BasicLink) {
 				linkList.add((BasicLink) currentObject);
 			} else {
 				System.out.println("Not a BasicBlock nor BasicLink");
 			}
 		}
-
+		
 		// Go over all list to set ID
 		for (int i = 0; i < linkList.size(); ++i) {
 			linkList.get(i).setOrdering(i + blockList.size() + 1);

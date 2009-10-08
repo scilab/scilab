@@ -880,6 +880,19 @@ public class BlockReader {
 		&& !(modelFields.get(17) instanceof ScilabBoolean)) { 
 	    throw new WrongTypeException(); 
 	}
+	if (modelFields.get(17) instanceof ScilabDouble && !isEmptyField(modelFields.get(17))) {
+	    List<CommandPort> allCommandPorts = newBlock.getAllCommandPorts();
+	    if(modelFields.get(17).getHeight() >= modelFields.get(17).getWidth()) {
+		for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
+		    allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(17)).getRealPart()[i][0]);
+		}
+	    }
+	    else {
+		for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
+		    allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(17)).getRealPart()[0][i]);
+		}
+	    }
+	}
 	
 	
 	// dep-ut
