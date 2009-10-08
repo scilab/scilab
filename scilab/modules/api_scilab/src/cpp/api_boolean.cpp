@@ -35,22 +35,21 @@ StrErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfBoolean");
 		return strErr;
 	}
 	
 	strErr = getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr || iType != sci_boolean)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("API_ERROR_INVALID_TYPE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfBoolean", _("boolean matrix"));
 		return strErr;
 	}
 
 	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("%s: Unable to get argument #%d"), "getMatrixOfBoolean", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -68,12 +67,11 @@ StrErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	int iSize = _iRows * _iCols;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr) + 3);
-	if (iSize > iFreeSpace)
+	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
 	{
-		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN, _("API_ERROR_GET_BOOLEAN"));
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
 		return strErr;
 	}
 
@@ -105,7 +103,7 @@ StrErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, in
 	strErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN, _("API_ERROR_CREATE_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
 		return strErr;
 	}
 
@@ -125,12 +123,11 @@ StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	int iSize = _iRows * _iCols;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)) + 3);
-	if (iSize > iFreeSpace)
+	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+	if (iMemSize > iFreeSpace)
 	{
-		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("API_ERROR_CREATE_NAMED_BOOLEAN"));
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
 		return strErr;
 	}
 
@@ -140,7 +137,7 @@ StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 	strErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("API_ERROR_CREATE_NAMED_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
 		return strErr;
 	}
 
@@ -167,14 +164,14 @@ StrErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int*
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("API_ERROR_READ_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
 		return strErr;
 	}
 
 	strErr = getMatrixOfBoolean(_pvCtx, piAddr, _piRows, _piCols, &piBool);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("API_ERROR_READ_BOOLEAN"));
+		addErrorMessage(&strErr, API_ERROR_READ_BOOLEAN, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
 		return strErr;
 	}
 	

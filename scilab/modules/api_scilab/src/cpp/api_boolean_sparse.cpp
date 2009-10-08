@@ -31,22 +31,21 @@ StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getBooleanSparseMatrix");
 		return strErr;
 	}
 
 	strErr =  getVarType(_pvCtx, _piAddress, &iType);
 	if(strErr.iErr || iType != sci_boolean_sparse)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("%s: Unable to get argument #%d"), "getBooleanSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
 	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("API_ERROR_GET_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_GET_BOOLEAN_SPARSE, _("%s: Unable to get argument #%d"), "getBooleanSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
 		return strErr;
 	}
 
@@ -72,15 +71,14 @@ StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
-	int iPos				= 0;
+	int iPos				= 5 + _iRows + _iNbItem;
 	int* piAddr			= NULL;
 
-	int iSize = _iNbItem;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr) + 5 + _iRows);
-	if (iSize > iFreeSpace)
+	int iMemSize = (int)( ( (double)iPos / 2 ) + 0.5);
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
 	{
-		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
-		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("API_ERROR_ALLOC_BOOLEAN_SPARSE"));
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
 		return strErr;
 	}
 
@@ -88,13 +86,11 @@ StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	strErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("API_ERROR_ALLOC_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "allocBooleanSparseMatrix");
 		return strErr;
 	}
 
-	iPos	= iAddr + 5;//4 for header + 1 for NbItem
-	iPos += _iRows + _iNbItem;
-
+	iPos += iAddr;
 	updateInterSCI(_iVar, '$', iAddr, iPos);
 	updateLstk(iNewPos, iPos, 0);
 	return strErr;
@@ -106,8 +102,7 @@ StrErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _i
 
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("API_ERROR_INVALID_POINTER"));
-		addErrorMessage(&strErr, API_ERROR_FILL_BOOLEAN_SPARSE, _("API_ERROR_FILL_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillBooleanSparseMatrix");
 		return strErr;
 	}
 
@@ -132,7 +127,7 @@ StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 	strErr = allocBooleanSparseMatrix(_pvCtx, _iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("API_ERROR_CREATE_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "createBooleanSparseMatrix");
 		return strErr;
 	}
 
@@ -156,12 +151,11 @@ StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	int iSize = _iNbItem;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top) + 5 + _iRows);
-	if (iSize > iFreeSpace)
+	int iMemSize = (int)( ( (double)iPos / 2) + 0.5);
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+	if (iMemSize > iFreeSpace)
 	{
-		addErrorMessage(&strErr, API_ERROR_NO_MORE_MEMORY, _("API_ERROR_NO_MORE_MEMORY"));
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE"));
+		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
 		return strErr;
 	}
 
@@ -169,7 +163,7 @@ StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
 	strErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("%s: Unable to create %s named \"%s\""), "createNamedBooleanSparseMatrix", _("boolean sparse matrix"), _pstName);
 		return strErr;
 	}
 
@@ -202,7 +196,7 @@ StrErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("%s: Unable to get variable \"%s\""), "readNamedBooleanSparseMatrix", _pstName);
 		return strErr;
 	}
 
