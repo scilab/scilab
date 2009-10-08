@@ -64,7 +64,7 @@ int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
 	return addErrorMessage(_pstrErr, 17, pstMsg1);
 }
 
-int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...)
+int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
 {
 	int iRet = 0;
 	char pstMsg[bsiz];

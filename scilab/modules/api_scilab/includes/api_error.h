@@ -174,7 +174,7 @@ extern "C" {
 
 /* error functions*/
 int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int iNeeded);
-int addErrorMessage(StrErr* _pstrErr, int _iErr, char* _pstMsg, ...);
+int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...);
 int printError(StrErr* _pstrErr, int _iLastMsg);
 char* getErrorMessage(StrErr _strErr);
 
