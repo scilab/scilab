@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.block;
 
 
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +74,7 @@ public class BasicBlock extends mxCell {
 
     public enum SimulationFunctionType {
 	DEFAULT,
+	TYPE_1,
 	TYPE_2,
 	TYPE_3,
 	C_OR_FORTRAN,
@@ -85,6 +85,8 @@ public class BasicBlock extends mxCell {
 	    switch (scilabValue) {
 	    case 0:
 		return DEFAULT;
+	    case 1:
+		return TYPE_1;
 	    case 2:
 		return TYPE_2;
 	    case 3:
@@ -102,6 +104,8 @@ public class BasicBlock extends mxCell {
 	    switch (this) {
 	    case DEFAULT:
 		return 0.0;
+	    case TYPE_1:
+		return 1.0;
 	    case TYPE_2 :
 		return 2.0;
 	    case TYPE_3 :
