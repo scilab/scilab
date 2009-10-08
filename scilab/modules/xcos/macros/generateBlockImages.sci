@@ -67,9 +67,10 @@ function generateBlockImages(palFiles, outPath)
       a = gca();
       a.data_bounds = [orig(1), orig(2); sz(1), sz(2)];
       a.isoview = "on";
-      a.margins = [0, 0, 0, 0];
+      a.margins = [0.001, 0.001, 0.001, 0.001];
+      a.box ="on";
       f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
-      a.background = addcolor([0.9,0.9,0.9]);
+      //a.background = addcolor([0.9,0.9,0.9]);
       if stripblanks(scs_m.graphics.gr_i(1)) == ""  | isempty(scs_m.graphics.gr_i(1)) then
 	mprintf("(empty gr_i)");
 	diagram = scicos_diagram();
@@ -82,7 +83,6 @@ function generateBlockImages(palFiles, outPath)
 	o = scs_m; 
 	o.graphics.exprs = ["";""];
 	ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""plot"",o)", "errcatch");
-	execstr("scs_m  = " + varsToLoad(kBlock) + "(""plot"",o)");
 	if ierr <> 0 then
 	  mprintf(" FAILED\n");
 	  failed_gri($+1) = kBlock;
