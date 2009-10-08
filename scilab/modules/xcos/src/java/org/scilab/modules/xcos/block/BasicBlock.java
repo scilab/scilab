@@ -116,16 +116,10 @@ public class BasicBlock extends mxCell {
     };
 
     public static BasicBlock createBlock(String label) {
-	if(label.compareTo("TEXT_f") == 0) {
-	    return new TextBlock(label);
-	}
-	if(label.compareTo("SUPER_f") == 0) {
-	    return new SuperBlock(label);
-	}
-	else {
-	    return new BasicBlock(label);
-	}
-	
+	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
+	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
+	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
+	else { return new BasicBlock(label); }
     }
     
     protected BasicBlock(String label) {

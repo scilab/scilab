@@ -109,6 +109,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				palWin.addTab(palette);
 
 				JTabbedPane allpalettes = new JTabbedPane();
+				allpalettes.setTabPlacement(JTabbedPane.BOTTOM);
 				((SwingScilabTab) palette.getAsSimpleTab()).setContentPane(allpalettes);
 
 				/** Create SOURCES palette */

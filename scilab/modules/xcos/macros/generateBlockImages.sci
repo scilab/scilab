@@ -46,11 +46,8 @@ function generateBlockImages(palFiles, outPath)
     end
   end
   
-  failed = [];
-  failed_gri = [];
-  
   f = gcf();
-  
+
   varsToLoad = gsort(varsToLoad, "r", "i");
   for kBlock = 1 : size(varsToLoad, "*")
     
@@ -64,28 +61,28 @@ function generateBlockImages(palFiles, outPath)
       mprintf("%d: %s",  kBlock, varsToLoad(kBlock));
       sz = scs_m.graphics.sz;
       orig = scs_m.graphics.orig;
+
+      // Customize axes
       a = gca();
       a.data_bounds = [orig(1), orig(2); sz(1), sz(2)];
       a.isoview = "on";
-      a.margins = [0, 0, 0, 0];
+      a.margins = [0.001, 0.001, 0.001, 0.001];
+      a.box ="on";
       f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
-      a.background = addcolor([0.9,0.9,0.9]);
+
       if stripblanks(scs_m.graphics.gr_i(1)) == ""  | isempty(scs_m.graphics.gr_i(1)) then
 	mprintf("(empty gr_i)");
 	diagram = scicos_diagram();
 	options = diagram.props.options;
 	sz = scs_m.graphics.sz;
 	orig = scs_m.graphics.orig;
-	f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
-	a.margins = [0, 0, 0.001, 0];
 	
+	// Create variable o because needed inside "plot"
 	o = scs_m; 
 	o.graphics.exprs = ["";""];
 	ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""plot"",o)", "errcatch");
-	execstr("scs_m  = " + varsToLoad(kBlock) + "(""plot"",o)");
 	if ierr <> 0 then
 	  mprintf(" FAILED\n");
-	  failed_gri($+1) = kBlock;
 	else
 	  xs2gif(f.figure_id, outPath + varsToLoad(kBlock) + ".gif");
 	  mprintf(" SUCCEED\n");
@@ -98,11 +95,10 @@ function generateBlockImages(palFiles, outPath)
             ierr = ierr + execstr(scs_m.graphics.gr_i(k), "errcatch");
           end
         else
-          ierr = execstr(strcat(scs_m.graphics.gr_i(1)), "errcatch");
+	  ierr = execstr(strcat(scs_m.graphics.gr_i(1),";"), "errcatch");
         end
         if ierr <> 0 then
           mprintf(" FAILED\n");
-          failed($+1) = kBlock;
         else
           xs2gif(f.figure_id, outPath + scs_m.gui + ".gif");
           mprintf(" SUCCEED\n");
