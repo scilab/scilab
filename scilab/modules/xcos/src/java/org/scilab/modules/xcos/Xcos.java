@@ -103,6 +103,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
 	private static Tab palette;
 	private static Thread paletteThread;
+	private static boolean paletteLoaded;
 
 	/** Palette creation */
 	static {
@@ -228,6 +229,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				synchronized(this) { 
 					this.notify();
 				} 
+				paletteLoaded = true;
 			}
 		};
 		paletteThread.start();
@@ -255,7 +257,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	synchronized(paletteThread) {
     		try {
-    			paletteThread.wait();
+    			if(paletteLoaded == false)
+    			{
+    				paletteThread.wait();
+    			}
     	} catch (InterruptedException e) {
     		e.printStackTrace();
     	}
