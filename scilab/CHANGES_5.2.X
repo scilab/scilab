@@ -7,6 +7,7 @@ Xcos:
 
 TODO: add an explanation about xscos
 
+
 ATOMS:
 ======
 
@@ -20,6 +21,9 @@ TODO: add an explanation about xpad
 
 Introduction of new binaries:
 =============================
+
+The goal of these changes is to improve the capabilities to use Scilab
+in different environnements and use cases.
 
 * Scilab 5.2 introduces new binaries in the distribution:
 
@@ -60,17 +64,20 @@ TODO: write an introduction about all that
   - manages all Scilab data types
   - consistency over all data types
   - will be maintained over future versions of Scilab
+  - error management
   - fully documented
   - fully tested by unitary tests
 
   Note that all other Scilab API (straight access to the Scilab stack, stack1,
-  stack2 and stack3) will be maintained in the Scilab 5.X familly but most of
+  stack2 and stack3) will be maintained in the Scilab 5.X family but most of
   them will be dropped in the 6 family.
 
 * In the enum sci_types which list all Scilab datatypes, the type 
   "sci_lufact_pointer" has been renamed to "sci_pointer".
   A define of "sci_lufact_pointer" on "sci_pointer" has been added to backward
   compatibilities.
+  The rational is to improve the use in special case of the pointer datatype
+  to avoid memory duplication.
 
 TODO: talk about call scilab based on api_scilab
 
@@ -112,6 +119,9 @@ libs/MALLOC/Makefile.am and launch autoreconf.
 
 toolbox_skeleton:
 =================
+
+The toolbox skeleton is an example of standard toolbox which shows most of the
+use cases.
 
 * examples of gateways functions (c_sum, f_sum, cpp_find) rewritten with new API.
 
@@ -357,6 +367,8 @@ Bug fixes:
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
+
+* bug 4087 fixed - Under Mac OS X, a Apple + C shortcut (Ctrl + C) didn't work from the console.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 

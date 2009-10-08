@@ -1,27 +1,22 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2009 - Digiteo - Pierre MARECHAL
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-//
-// <-- Non-regression test for bug 3553 -->
+
+// <-- Non-regression test for bug 4879 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3553
+// http://bugzilla.scilab.org/show_bug.cgi?id=4879
 //
 // <-- Short Description -->
-//    system crash executing tk_getfile() from within scipad by CTRL+L.
+// Even if no text is selected, if the edition zone is focused, "Menu→Edit→Comment Region" should comment
+// the current line.
 
-// 1 - Start Scilab
-
-// 2 - Start Scipad
-
-// 3 - In Scipad enter:
-// tk_getfile()
-
-// 4 - CTRL+L
-
-// 5 - Check that you can select a file
+xpad()
+// Type some Scilab code
+// Put the cursor wherever you want
+// "Menu→Edit→Comment Region"

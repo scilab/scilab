@@ -18,13 +18,18 @@ namespace DotNetScilab
 {
     class Scilab_cs_wrapper
     {
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        public unsafe struct api_Ctx  
+        {
+            public String pstName; /**< Function name */
+        }
         //=============================================================================
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public unsafe struct api_Err
         {
             public int iErr;
             public int iMsgCount;
-            IntPtr pstMsg;
+            public fixed int pstructMsg[5];
         }
         //=============================================================================
         private const string CALL_SCILAB_DLL = "call_scilab.dll";
@@ -62,7 +67,7 @@ namespace DotNetScilab
         /// import createNamedMatrixOfString from C (see api_string.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public static extern api_Err createNamedMatrixOfString([In] String _pstName,
+        public static extern api_Err createNamedMatrixOfString([In]IntPtr pvApiCtx, [In] String _pstName,
                                                             [In] int _iRows, [In] int _iCols,
                                                             [In] String[] _pstStrings);
         //=============================================================================
@@ -70,7 +75,8 @@ namespace DotNetScilab
         /// import createNamedMatrixOfWideString from C (see api_string.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Unicode)]
-        public static extern api_Err createNamedMatrixOfWideString([In] String _pstName,
+        public static extern api_Err createNamedMatrixOfWideString([In]IntPtr pvApiCtx,
+                                                            [In] String _pstName,
                                                             [In] int _iRows, [In] int _iCols,
                                                             [In] String[] _pstStrings);
         //=============================================================================
@@ -79,7 +85,7 @@ namespace DotNetScilab
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
         [return: MarshalAs(UnmanagedType.Struct)]
-        public static extern api_Err createNamedMatrixOfDouble([In] String _pstName,
+        public static extern api_Err createNamedMatrixOfDouble([In]IntPtr pvApiCtx, [In] String _pstName,
                                                             [In] int _iRows, [In] int _iCols,
                                                             [In] double[] _pdblReal);
 
@@ -89,7 +95,7 @@ namespace DotNetScilab
         /// import createNamedMatrixOfBoolean from C (see api_boolean.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public static extern api_Err createNamedMatrixOfBoolean([In] String _pstName,
+        public static extern api_Err createNamedMatrixOfBoolean([In]IntPtr pvApiCtx, [In] String _pstName,
                                                             [In] int _iRows, [In] int _iCols,
                                                             [In] int[] _piBool);
         //=============================================================================
@@ -97,7 +103,7 @@ namespace DotNetScilab
         /// import createNamedMatrixOfInteger32 from C (see api_int.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err createNamedMatrixOfInteger32([In] String _pstName,
+        public unsafe static extern api_Err createNamedMatrixOfInteger32([In]IntPtr pvApiCtx, [In] String _pstName,
                                                            [In] int _iRows, [In] int _iCols,
                                                            [In] int[] _piData);
         //=============================================================================
@@ -105,7 +111,7 @@ namespace DotNetScilab
         /// import createNamedComplexMatrixOfDouble from C (see api_double.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err createNamedComplexMatrixOfDouble([In] String _pstName,
+        public unsafe static extern api_Err createNamedComplexMatrixOfDouble([In]IntPtr pvApiCtx, [In] String _pstName,
                                                             [In] int _iRows, [In] int _iCols,
                                                             [In] double[] _pdblReal,
                                                             [In] double[] _pdblImg);
@@ -114,7 +120,7 @@ namespace DotNetScilab
         /// import readNamedMatrixOfString from C (see api_string.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err readNamedMatrixOfString([In] String _pstName,
+        public unsafe static extern api_Err readNamedMatrixOfString([In]IntPtr pvApiCtx, [In] String _pstName,
                                                           [Out]  Int32* _piRows, [Out]  Int32* _piCols,
                                                           [In, Out] int[] _piLength,
                                                           [In, Out] String[] _pstStrings);
@@ -123,7 +129,7 @@ namespace DotNetScilab
         /// import readNamedMatrixOfWideString from C (see api_string.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Unicode)]
-        public unsafe static extern api_Err readNamedMatrixOfWideString([In] String _pstName,
+        public unsafe static extern api_Err readNamedMatrixOfWideString([In]IntPtr pvApiCtx, [In] String _pstName,
                                                           [Out]  Int32* _piRows, [Out]  Int32* _piCols,
                                                           [In, Out] int[] _piLength,
                                                           [In, Out] String[] _pstStrings);
@@ -132,7 +138,7 @@ namespace DotNetScilab
         /// import readNamedMatrixOfDouble from C (see api_double.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err readNamedMatrixOfDouble([In] String _pstName,
+        public unsafe static extern api_Err readNamedMatrixOfDouble([In]IntPtr pvApiCtx, [In] String _pstName,
                                                           [Out] Int32* _piRows, [Out] Int32* _piCols,
                                                           [In, Out] Double[] _pdblReal);
         //=============================================================================
@@ -140,7 +146,7 @@ namespace DotNetScilab
         /// import readNamedMatrixOfBoolean from C (see api_boolean.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err readNamedMatrixOfBoolean([In] String _pstName,
+        public unsafe static extern api_Err readNamedMatrixOfBoolean([In]IntPtr pvApiCtx, [In] String _pstName,
                                                           [Out] Int32* _piRows, [Out] Int32* _piCols,
                                                           [In, Out] int[] _piBool);
         //=============================================================================
@@ -148,7 +154,7 @@ namespace DotNetScilab
         /// import readNamedMatrixOfInteger32 from C (see api_int.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err readNamedMatrixOfInteger32([In] String _pstName,
+        public unsafe static extern api_Err readNamedMatrixOfInteger32([In]IntPtr pvApiCtx, [In] String _pstName,
                                                           [Out] Int32* _piRows, [Out] Int32* _piCols,
                                                           [In, Out] int[] _piData);
 
@@ -157,7 +163,7 @@ namespace DotNetScilab
         /// import readNamedComplexMatrixOfDouble from C (see api_double.h)
         /// </summary>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err readNamedComplexMatrixOfDouble([In] String _pstName,
+        public unsafe static extern api_Err readNamedComplexMatrixOfDouble([In]IntPtr pvApiCtx, [In] String _pstName,
                                                         [Out] Int32* _piRows, [Out] Int32* _piCols,
                                                         [In, Out] double[] _pdblReal,
                                                         [In, Out] double[] _pdblImg);
@@ -170,7 +176,7 @@ namespace DotNetScilab
         /// <param name="_piAddress"> stack address</param>
         /// <returns>1 if ok</returns>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err getVarAddressFromName([In] String _pstName,
+        public unsafe static extern api_Err getVarAddressFromName([In]IntPtr pvApiCtx, [In] String _pstName,
                                                                [Out] Int32** _piAddress);
         //=============================================================================
         /// <summary>
@@ -179,7 +185,7 @@ namespace DotNetScilab
         /// <param name="_pstName">variable name</param>
         /// <returns>type or -1</returns>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err getNamedVarType([In] String _pstName, [Out]Int32* _piType);
+        public unsafe static extern api_Err getNamedVarType([In]IntPtr pvApiCtx, [In] String _pstName, [Out]Int32* _piType);
         //=============================================================================
         /// <summary>
         /// get variable type with adress in scilab stack
@@ -188,7 +194,7 @@ namespace DotNetScilab
         /// <param name="_piAddress"> stack address</param>
         /// <returns>scilab type, 0 fails</returns>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err getVarType([In] Int32* _piAddress, [Out]Int32* _piType);
+        public unsafe static extern api_Err getVarType([In]IntPtr pvApiCtx, [In] Int32* _piAddress, [Out]Int32* _piType);
         //=============================================================================
         /// <summary>
         ///  Detect if a Scilab graphic window is opened
@@ -210,7 +216,7 @@ namespace DotNetScilab
         /// import getNamedVarDimension from C (see api_common.h)
         /// <returns>int last error code</returns>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern api_Err getNamedVarDimension([In] String _pstName,
+        public unsafe static extern api_Err getNamedVarDimension([In]IntPtr pvApiCtx, [In] String _pstName,
                                    [Out] Int32* _piRows, [Out] Int32* _piCols);
         //=============================================================================
         /// <summary>
@@ -219,7 +225,7 @@ namespace DotNetScilab
         /// import isNamedVarComplex from C (see api_common.h)
         /// <returns>int if complex 1 otherwise 0</returns>
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
-        public unsafe static extern int isNamedVarComplex([In] String _pstName);
+        public unsafe static extern int isNamedVarComplex([In]IntPtr pvApiCtx, [In] String _pstName);
         //=============================================================================
 
     }

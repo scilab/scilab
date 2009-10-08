@@ -36,6 +36,7 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -55,7 +56,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscidoublylinkedlist_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = libs/doublylinkedlist
@@ -100,7 +102,8 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(pkglibdir)"
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libscidoublylinkedlist_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidoublylinkedlist_la_DEPENDENCIES =
 am__objects_1 = libscidoublylinkedlist_la-DoublyLinkedList.lo
@@ -126,6 +129,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscidoublylinkedlist_la_SOURCES)
 DIST_SOURCES = $(libscidoublylinkedlist_la_SOURCES)
+HEADERS = $(libscidoublylinkedlist_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -133,6 +137,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -144,6 +149,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -271,12 +278,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -359,6 +366,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 DOUBLYLINKEDLIST_C_SOURCES = src/DoublyLinkedList.c
+libscidoublylinkedlist_la_includedir = $(pkgincludedir)
+libscidoublylinkedlist_la_include_HEADERS = includes/DoublyLinkedList.h
 libscidoublylinkedlist_la_CFLAGS = -I$(srcdir)/src/ -I$(srcdir)/includes/
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
 libscidoublylinkedlist_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -543,6 +552,26 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libscidoublylinkedlist_la_includeHEADERS: $(libscidoublylinkedlist_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscidoublylinkedlist_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidoublylinkedlist_la_includedir)"
+	@list='$(libscidoublylinkedlist_la_include_HEADERS)'; test -n "$(libscidoublylinkedlist_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscidoublylinkedlist_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscidoublylinkedlist_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscidoublylinkedlist_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscidoublylinkedlist_la_include_HEADERS)'; test -n "$(libscidoublylinkedlist_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscidoublylinkedlist_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscidoublylinkedlist_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -629,9 +658,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) all-local
+all-am: Makefile $(LTLIBRARIES) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidoublylinkedlist_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -682,7 +711,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local
+install-data-am: install-data-local \
+	install-libscidoublylinkedlist_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -728,7 +758,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-pkglibLTLIBRARIES
+uninstall-am: uninstall-libscidoublylinkedlist_la_includeHEADERS \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -740,13 +771,16 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	install install-am install-data install-data-am \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am install-man \
+	install-html-local install-info install-info-am \
+	install-libscidoublylinkedlist_la_includeHEADERS install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-pkglibLTLIBRARIES
+	tags uninstall uninstall-am \
+	uninstall-libscidoublylinkedlist_la_includeHEADERS \
+	uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
@@ -755,10 +789,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
