@@ -301,12 +301,6 @@ precision is both these softwares is $\epsilon \approx 10^{-16}$.
 That implies that there are approximately 16 significant digits.
 Therefore, the relative error on $x$, which is equivalent to 15
 significant digits, is acceptable. 
-If we now consider the relative error on $f$, which is equivalent 
-to only 8 significant digits, that may sound as a problem.
-This corresponds to the square root of the relative precision,
-because $\sqrt{\epsilon} = \approx 10^{-8}$.
-In fact, this is the best that we can expect from an optimization
-algorithm (\cite{Brent73algorithmsfor,Gill81MurrayWright}). 
 
 Therefore, the result is as close as possible to the result produced 
 by Matlab. More specifically :
@@ -541,7 +535,7 @@ Optimization terminated:
 A close inspection at the data reveals that the two softwares produces
 indeed the same intermediate results. 
 
-\subsection{Plot features}
+\subsection{Plot functions}
 
 In this section, we check that the plotting features of the 
 \scifunction{fminsearch} function are the same.
@@ -607,4 +601,91 @@ in figure \ref{fig-fminsearch-scilab-outputfun}.
 
 Except for the size of the dots (which can be configured in 
 both softwares), the graphics are exactly the same.
+
+\subsection{Predefined plot functions}
+
+Several pre-defined plot functions are provided with 
+the \scifunction{fminsearch} function.
+These functions are 
+\begin{itemize}
+\item \scifunction{optimplotfval},
+\item \scifunction{optimplotx},
+\item \scifunction{optimplotfunccount}.
+\end{itemize}
+
+In the following Matlab script, we use the \scifunction{optimplotfval}
+pre-defined function.
+
+\lstset{language=matlabscript}
+\begin{lstlisting}
+% Matlab
+options = optimset('PlotFcns',@optimplotfval);
+[x fval] = fminsearch(banana , [-1.2, 1] , options)
+\end{lstlisting}
+
+The previous script produces the plot which is presented in figure 
+\ref{fig-fminsearch-matlab-optimplotfval}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotfvalMatlab.png}
+\end{center}
+\caption{Plot produced by Matlab's fminsearch, with the \scifunction{optimplotfval} function.}
+\label{fig-fminsearch-matlab-optimplotfval}
+\end{figure}
+
+The following Scilab script uses the \scifunction{optimplotfval}
+pre-defined function.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+// Scilab
+opt = optimset ( "OutputFcn" , optimplotfval );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+\end{lstlisting}
+
+The previous script produces the plot which is presented in figure 
+\ref{fig-fminsearch-scilab-optimplotfval}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotfvalScilab.png}
+\end{center}
+\caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotfval} function.}
+\label{fig-fminsearch-scilab-optimplotfval}
+\end{figure}
+
+The comparison between the figures \ref{fig-fminsearch-matlab-optimplotfval} and 
+\ref{fig-fminsearch-scilab-optimplotfval} shows that the two features produce
+very similar plots. Notice that Scilab's \scifunction{fminsearch} does not 
+provide the "Stop" and "Pause" buttons.
+
+The figures \ref{fig-fminsearch-scilab-optimplotx} and \ref{fig-fminsearch-scilab-optimplotfunccount}
+present the results of Scilab's \scifunction{optimplotx} and \scifunction{optimplotfunccount}
+functions.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotxScilab.png}
+\end{center}
+\caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotx} function.}
+\label{fig-fminsearch-scilab-optimplotx}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{testFminsearchOptimplotfunccountScilab.png}
+\end{center}
+\caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotfunccount} function.}
+\label{fig-fminsearch-scilab-optimplotfunccount}
+\end{figure}
+
+\section{Conclusion}
+
+The current version of Scilab's \scifunction{fminsearch} provides the same algorithm
+as Matlab's \scifunction{fminsearch}. The numerical precision is the same.
+The \scifunction{optimset} and \scifunction{optimget} functions allows to configure the optimization, 
+as well as the output and plotting function.
+Pre-defined plotting function allows to get a fast and nice plot of the optimization.
+
 
