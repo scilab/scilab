@@ -32,6 +32,27 @@ function xcos_simulate(scs_m)
   //** extract solver type from tolerances
   solver = tolerances(6) ; 
 
+  // Propagate context through all blocks
+  %scicos_context = struct();
+  context = scs_m.props.context;
+  //** context eval here
+  [%scicos_context, ierr] = script2var(context, %scicos_context);
+  
+  //for backward compatibility for scifunc
+  if ierr==0 then
+    %mm = getfield(1,%scicos_context)
+    for %mi=%mm(3:$)
+      ierr = execstr(%mi+'=%scicos_context(%mi)','errcatch')
+      if ierr<>0 then
+	break; //** in case of error exit 
+      end
+    end
+  end
+  //end of for backward compatibility for scifuncpagate context values
+  
+  [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr);
+  
+  
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
   

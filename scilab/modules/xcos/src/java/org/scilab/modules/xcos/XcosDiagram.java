@@ -237,7 +237,7 @@ public class XcosDiagram extends ScilabGraph {
 		    getModel().beginUpdate();
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
-			block.openBlockSettings();
+			block.openBlockSettings(getContext());
 			getAsComponent().doLayout();
 		    }
 		    if (cell instanceof BasicLink) {
