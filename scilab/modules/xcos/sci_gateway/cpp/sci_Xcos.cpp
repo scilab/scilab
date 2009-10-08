@@ -40,22 +40,32 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		int *lenStVarOne = NULL;
 		int i = 0;
 		int lw = 1;
-                int iType = 0;
-                StrErr strErr;
+		int iType = 0;
+		StrErr strErr;
 
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-                strErr = getVarType(piAddressVarOne, &iType);
-                if(strErr.iErr)
-                  {
-                    printError(&strErr, 0);
-                    return false;
-                  }
-                
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( iType == sci_strings )
 		{
 			/* get dimensions */
-			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
 			if (lenStVarOne == NULL)
@@ -65,7 +75,12 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			}
 
 			/* get lengths */
-			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
 			if (pStVarOne == NULL)
@@ -80,7 +95,12 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			}
 
 			/* get strings */
-			getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			callXcos(pStVarOne,m1 * n1);
 			freeArrayOfString(pStVarOne,m1 * n1);
