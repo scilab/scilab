@@ -12,19 +12,20 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
-public class SuperBlock extends BasicBlock {
+public class ConstBlock extends BasicBlock {
 
-    public SuperBlock(String label) {
+    protected ConstBlock(String label) {
 	super(label);
+	setStyle("Const");
+	setInterfaceFunctionName("CONST_m");
     }
-
-    public void openBlockSettings() {
-	XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
-	xcosDiagram.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    
+    public void setExprs(ScilabType exprs) {
+	super.setExprs(exprs);
+	setValue(((ScilabString) getExprs()).getData()[0][0]);
     }
     
 }

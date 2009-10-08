@@ -10,6 +10,8 @@
 	<add as="Label" extend="block">
 		<add as="strokeColor" value="white"/>
 	</add>
+	<add as="Const" extend="block">
+	</add>
 	<add as="Icon" extend="block">
 		<add as="shape" value="image"/>
 	</add>

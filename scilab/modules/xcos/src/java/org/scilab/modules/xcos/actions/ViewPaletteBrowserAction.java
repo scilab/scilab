@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -24,11 +26,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @author Vincent COUVERT
  */
 public final class ViewPaletteBrowserAction extends DefaultAction {
-
 	
 	private static final long serialVersionUID = 1L;
 
-	private static CheckBoxMenuItem menu;
+	private static ArrayList<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
 
 	/**
 	 * Constructor
@@ -44,8 +45,8 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		menu =  createCheckBoxMenu(XcosMessages.PALETTE_BROWSER, null, new ViewPaletteBrowserAction(scilabGraph), null);
-		menu.setChecked(true); // Palettes are displayed at startup
+		CheckBoxMenuItem menu =  createCheckBoxMenu(XcosMessages.PALETTE_BROWSER, null, new ViewPaletteBrowserAction(scilabGraph), null);
+		menus.add(menu);
 		return menu;
 	}
 	
@@ -54,17 +55,26 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
+		setPalettesVisible(!Xcos.getPalettes().isVisible());
+	}	
+	
+	/**
+	 * Set the visibility of the palette Window and Tab
+	 * Update all menus "View/Palette browser"
+	 * @param status status to be set
+	 */
+	public static void setPalettesVisible(boolean status) {
 		Tab palette = Xcos.getPalettes();
 
-		boolean newState = !palette.isVisible();
 		// Hide/Show parent window if the viewport is the only tab
 		if (palette.getParentWindow().getNbDockedObjects() == 1) {
-			palette.getParentWindow().setVisible(newState);
+			palette.getParentWindow().setVisible(status);
 		}
 		// Hide/Show viewport tab
-		palette.setVisible(newState);
+		palette.setVisible(status);
 		// Check/Uncheck the menu
-		menu.setChecked(newState);
+		for (int i = (menus.size() - 1); i >= 0; i--) {
+			menus.get(i).setChecked(status);
+		}
 	}
-
 }

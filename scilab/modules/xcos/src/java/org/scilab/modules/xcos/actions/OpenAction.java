@@ -79,7 +79,6 @@ public final class OpenAction extends DefaultAction {
 		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return;
 		}
-
-		((XcosDiagram) getGraph(null)).readDiagram(fc.getSelection()[0]);
+		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
 	}
 }

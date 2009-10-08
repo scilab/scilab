@@ -36,6 +36,7 @@ Source: modules\{#XCOS}\etc\Xcos-style.xml; DestDir: {app}\modules\{#XCOS}\etc; 
 Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\images\blocks\*.gif; DestDir: {app}\modules\{#XCOS}\images\blocks; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
