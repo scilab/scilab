@@ -2035,7 +2035,12 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
         feature would allow to use our own termination criteria, without
         modifying the internal source code of the component. This might be
         dangerous if the user does not clearly understand what is going on.
-        But that might be very handy as well.</para>
+        But that might be very handy as well. This is done : add the help for
+        this option.</para>
+      </listitem>
+
+      <listitem>
+        <para>add help for -mymethod</para>
       </listitem>
     </itemizedlist>
   </refsection>
