@@ -66,7 +66,7 @@ public class XcosDiagram extends ScilabGraph {
 
     // Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
     private double[][] wpar = {{600,450,0,0,600,450}}; 
-    private String title = "Untitled";
+    private String title = XcosMessages.UNTITLED;
     private double finalIntegrationTime = 100000;
     private double integratorAbsoluteTolerance = 1e-4;
     private double integratorRelativeTolerance = 1e-6;
@@ -473,7 +473,7 @@ public class XcosDiagram extends ScilabGraph {
 
     public boolean saveDiagram() {
 
-	if (title == "Untitled") {
+	if (title.equals(XcosMessages.UNTITLED)) {
 	    return saveDiagramAs();
 	} else {
 	    return BlockWriter.writeDiagramToFile(title, this);

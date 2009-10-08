@@ -17,17 +17,21 @@ public class XcosMessages {
 	
 	public static final String XCOS = Messages.gettext("Xcos");
 	
+	public static final String DOTS = "...";
+	
+	public static final String UNTITLED = "Untitled";
+
 	/** File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New");
-    public static final String NEW_DIAGRAM = Messages.gettext("New diagram") + "...";
-    public static final String NEW_PALETTE = Messages.gettext("New palette") + "...";
-    public static final String OPEN = Messages.gettext("Open") + "...";
+    public static final String NEW_DIAGRAM = Messages.gettext("New diagram") + DOTS;
+    public static final String NEW_PALETTE = Messages.gettext("New palette") + DOTS;
+    public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String SAVE = Messages.gettext("Save");
-    public static final String SAVE_AS = Messages.gettext("Save as") + "...";
-    public static final String EXPORT = Messages.gettext("Export") + "...";
-    public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + "...";
-    public static final String PRINT = Messages.gettext("Print") + "...";
+    public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String EXPORT = Messages.gettext("Export") + DOTS;
+    public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + DOTS;
+    public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String QUIT = Messages.gettext("Quit");
     
@@ -40,7 +44,7 @@ public class XcosMessages {
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
     public static final String REMOVE = Messages.gettext("Remove");
-    public static final String CUSTOMIZE = Messages.gettext("Customize") + "...";
+    public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
     
     /** View Menu */
@@ -71,7 +75,7 @@ public class XcosMessages {
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos documentation");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block documentation");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos demonstrations");
-    public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + "...";
+    public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
     
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
