@@ -38,6 +38,7 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -49,6 +50,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.CloseAction;
+import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DumpAction;
@@ -105,7 +107,19 @@ public class Xcos extends SwingScilabTab implements Tab {
 				Window palWin = ScilabWindow.createWindow();
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
-				palette.setCallback(null);
+				
+				palette.setCallback(new ClosePalettesAction(null));
+				
+				MenuBar palMenuBar = ScilabMenuBar.createMenuBar();
+				palette.addMenuBar(palMenuBar);
+				
+				Menu palMenu = ScilabMenu.createMenu();
+				palMenu.setText(XcosMessages.PALETTES);
+				palMenu.setMnemonic('P');
+				palMenuBar.add(palMenu);
+				
+				palMenu.add(ClosePalettesAction.createMenu(null));
+				
 				palWin.addTab(palette);
 
 				JTabbedPane allpalettes = new JTabbedPane();
