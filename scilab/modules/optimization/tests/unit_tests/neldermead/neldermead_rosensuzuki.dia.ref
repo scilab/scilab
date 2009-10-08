@@ -103,33 +103,33 @@ function result = optimtestcase ( x , index )
   end
 endfunction
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
-nm = neldermead_configure(nm,"-maxiter",200);
-nm = neldermead_configure(nm,"-maxfunevals",400);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
+nm = neldermead_configure(nm,"-maxiter",400);
+nm = neldermead_configure(nm,"-maxfunevals",1000);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
-//nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0 1.0 2.0 -1.0]', 1e-3 );
+assert_close ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -44.0 , 1e-5 );
+assert_close ( fopt , -44.0 , 1e-2 );
 // Check status
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and restart
+// Test with Box algorithm and restart
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -139,7 +139,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-1);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -156,7 +156,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "maxfuneval" );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 //
@@ -164,11 +164,11 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
-nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxiter",400);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -187,7 +187,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -209,7 +209,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -233,7 +233,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 8 );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -252,7 +252,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -277,7 +277,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 6 );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is user-defined.
@@ -292,7 +292,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -325,7 +325,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 7 );
 nm = neldermead_destroy(nm);
 //
-// Test with NM-constrained algorithm and default axes initial simplex
+// Test with Box algorithm and default axes initial simplex
 // Test that verbose mode works fine.
 //
 nm = neldermead_new ();
@@ -336,7 +336,7 @@ nm = neldermead_configure(nm,"-maxiter",5);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-method","nmconstraints");
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
@@ -573,37 +573,25 @@ Reflect
 
 xbar=[-0.7309769 0.0478157 -0.0710532 -0.1533730]
 
-xr=[-0.4922926 -0.3685925 0.7250894 -0.7994586]
+_boxlinesearch
 
- > After projection into bounds p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+> xhigh=[-0.9696613 0.4642240 -0.8671958 0.4927127], fhigh=2.708986e+001
 
-Function Evaluation #45 is [5.0560508 6.3901531 3.6702149] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+> xbar=[-0.7309769 0.0478157 -0.0710532 -0.1533730]
 
- > After scaling into inequality constraints p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+> xr = [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-Function Evaluation #46 is [-14.449807] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+Function Evaluation #45 is [-19.359077] at [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-xr=[-0.4922926 -0.3685925 0.7250894 -0.7994586], f(xr)=-14.449807
+fr = -1.935908e+001 improves 2.708986e+001 : no need for scaling for f
 
-Expand
+ > After projection into bounds xr = [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
- > After projection into bounds p = [-0.2536082 -0.7850008 1.5212321 -1.4455443]
+Function Evaluation #46 is [3.6336418 5.0195437 2.8278973] at [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-Function Evaluation #47 is [-0.5824575 0.5107345 0.2176639] at [-0.2536082 -0.7850008 1.5212321 -1.4455443]
+xr=[-0.4206872 -0.493515 0.9639322 -0.9932843], f(xr)=-19.359077
 
-Inequality constraint #1/3 is not satisfied for x
-
-Scaling inequality constraint with alpha = 5.000000e-001
-
-Function Evaluation #48 is [5.0560508 6.3901531 3.6702149] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
-
- > After scaling into inequality constraints p = [-0.4922926 -0.3685925 0.7250894 -0.7994586]
-
-Function Evaluation #49 is [-14.449807] at [-0.4922926 -0.3685925 0.7250894 -0.7994586]
-
-xe=[-0.4922926 -0.3685925 0.7250894 -0.7994586], f(xe)=-14.449807
-
-  > Perform reflection
+  > Perform Reflection
 
 Sort
 
@@ -611,19 +599,19 @@ Sort
 
 Iteration #2 (total = 2)
 
-Function Eval #49
+Function Eval #46
 
-Xopt : [-0.4922926 -0.3685925 0.7250894 -0.7994586]
+Xopt : [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-Fopt : -1.444981e+001
+Fopt : -1.935908e+001
 
-DeltaFv : 3.332651e+001
+DeltaFv : 3.823578e+001
 
-Center : [-0.7011414 -0.0042353 0.0284646 -0.2341337]
+Center : [-0.6921907 -0.0198506 0.0583200 -0.2583619]
 
-Size : 2.197539e+000
+Size : 2.511286e+000
 
-Vertex #1/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+Vertex #1/8 : fv=-1.935908e+001, x=-4.206872e-001 -4.935150e-001 9.639322e-001 -9.932843e-001
 
 Vertex #2/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
 
@@ -643,45 +631,39 @@ Vertex #8/8 : fv=1.887671e+001, x=-1.140666e+000 -4.537277e-002 -5.901110e-001 -
 
   > iterations=2 >= maxiter=5
 
-  > funevals=49 >= maxfunevals=1000
+  > funevals=46 >= maxfunevals=1000
 
-  > e(x)=2.830234e-001 < tolxrelative = 2.220446e-016 * 7.397608e-001 + 0.000000e+000
+  > e(x)=3.254769e-001 < tolxrelative = 2.220446e-016 * 7.414001e-001 + 0.000000e+000
 
   > Terminate = F, status = continue
 
-  > simplex size=2.197539e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+  > simplex size=2.511286e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
 
   > Terminate = F, status = continue
 
 Reflect
 
-xbar=[-0.6383521 0.0016415 0.1168326 -0.2371565]
+xbar=[-0.6281228 -0.0162046 0.1509530 -0.2648459]
 
-xr=[-0.1360378 0.0486557 0.8237762 -0.2613389]
+_boxlinesearch
 
- > After projection into bounds p = [-0.1360378 0.0486557 0.8237762 -0.2613389]
+> xhigh=[-1.1406664 -0.0453728 -0.590111 -0.2129741], fhigh=1.887671e+001
 
-Function Evaluation #50 is [6.3317996 8.764179 4.3414053] at [-0.1360378 0.0486557 0.8237762 -0.2613389]
+> xbar=[-0.6281228 -0.0162046 0.1509530 -0.2648459]
 
- > After scaling into inequality constraints p = [-0.1360378 0.0486557 0.8237762 -0.2613389]
+> xr = [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Function Evaluation #51 is [-17.245376] at [-0.1360378 0.0486557 0.8237762 -0.2613389]
+Function Evaluation #47 is [-23.430675] at [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-xr=[-0.1360378 0.0486557 0.8237762 -0.2613389], f(xr)=-17.245376
+fr = -2.343067e+001 improves 1.887671e+001 : no need for scaling for f
 
-Expand
+ > After projection into bounds xr = [0.0381840 0.0217141 1.1143362 -0.3322792]
 
- > After projection into bounds p = [0.3662765 0.0956700 1.5307197 -0.2855214]
+Function Evaluation #48 is [5.1828306 8.2409397 3.3679343] at [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Function Evaluation #52 is [3.3452158 7.4221434 1.457023] at [0.3662765 0.0956700 1.5307197 -0.2855214]
+xr=[0.0381840 0.0217141 1.1143362 -0.3322792], f(xr)=-23.430675
 
- > After scaling into inequality constraints p = [0.3662765 0.0956700 1.5307197 -0.2855214]
-
-Function Evaluation #53 is [-31.542457] at [0.3662765 0.0956700 1.5307197 -0.2855214]
-
-xe=[0.3662765 0.0956700 1.5307197 -0.2855214], f(xe)=-31.542457
-
-  > Perform Expansion
+  > Perform Reflection
 
 Sort
 
@@ -689,21 +671,21 @@ Sort
 
 Iteration #3 (total = 3)
 
-Function Eval #53
+Function Eval #48
 
-Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+Xopt : [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Fopt : -3.154246e+001
+Fopt : -2.343067e+001
 
-DeltaFv : 4.671864e+001
+DeltaFv : 3.860686e+001
 
-Center : [-0.5127735 0.0133950 0.2935685 -0.2432021]
+Center : [-0.5448344 -0.0114648 0.2713759 -0.2732751]
 
-Size : 2.702011e+000
+Size : 2.253394e+000
 
-Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+Vertex #1/8 : fv=-2.343067e+001, x=3.818396e-002 2.171405e-002 1.114336e+000 -3.322792e-001
 
-Vertex #2/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+Vertex #2/8 : fv=-1.935908e+001, x=-4.206872e-001 -4.935150e-001 9.639322e-001 -9.932843e-001
 
 Vertex #3/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
 
@@ -721,39 +703,49 @@ Vertex #8/8 : fv=1.517618e+001, x=-5.767188e-001 3.314362e-001 -2.370115e-001 1.
 
   > iterations=3 >= maxiter=5
 
-  > funevals=53 >= maxfunevals=1000
+  > funevals=48 >= maxfunevals=1000
 
-  > e(x)=3.258152e-001 < tolxrelative = 2.220446e-016 * 6.390977e-001 + 0.000000e+000
+  > e(x)=2.596140e-001 < tolxrelative = 2.220446e-016 * 6.673081e-001 + 0.000000e+000
 
   > Terminate = F, status = continue
 
-  > simplex size=2.702011e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+  > simplex size=2.253394e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
 
   > Terminate = F, status = continue
 
 Reflect
 
-xbar=[-0.5036385 -0.0320394 0.3693656 -0.4273991]
+xbar=[-0.5402795 -0.0604506 0.3440026 -0.4617682]
 
-xr=[-0.4305582 -0.3955150 0.9757427 -1.9009752]
+_boxlinesearch
 
- > After projection into bounds p = [-0.4305582 -0.3955150 0.9757427 -1.9009752]
+> xhigh=[-0.5767188 0.3314362 -0.2370115 1.046177], fhigh=1.517618e+001
 
-Function Evaluation #54 is [0.2507322 -1.0092652 2.0853594] at [-0.4305582 -0.3955150 0.9757427 -1.9009752]
+> xbar=[-0.5402795 -0.0604506 0.3440026 -0.4617682]
 
-Inequality constraint #2/3 is not satisfied for x
+> xr = [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-Scaling inequality constraint with alpha = 5.000000e-001
+Function Evaluation #49 is [-25.875044] at [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-Function Evaluation #55 is [4.3450374 4.8961397 3.6218408] at [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+fr = -2.587504e+001 improves 1.517618e+001 : no need for scaling for f
 
- > After scaling into inequality constraints p = [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+ > After projection into bounds xr = [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-Function Evaluation #56 is [-16.344698] at [-0.4670983 -0.2137772 0.6725542 -1.1641872]
+Function Evaluation #50 is [-3.2412218 -6.7491576 0.9746024] at [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-xr=[-0.4670983 -0.2137772 0.6725542 -1.1641872], f(xr)=-16.344698
+Inequality constraint #1/3 is not satisfied for x
 
-  > Perform reflection
+Scaling for nonlinear/linear inequality constraints with alpha=5.000000e-001 from xbar=[-0.5402795 -0.0604506 0.3440026 -0.4617682] toward [-0.4929085 -0.5699035 1.099321 -2.4220969]
+
+> xr = [-0.516594 -0.3151770 0.7216618 -1.4419326]
+
+Function Evaluation #51 is [3.0716514 2.8967962 3.1222073] at [-0.516594 -0.3151770 0.7216618 -1.4419326]
+
+Function Evaluation #52 is [-17.602604] at [-0.516594 -0.3151770 0.7216618 -1.4419326]
+
+xr=[-0.516594 -0.3151770 0.7216618 -1.4419326], f(xr)=-17.602604
+
+  > Perform Reflection
 
 Sort
 
@@ -761,23 +753,23 @@ Sort
 
 Iteration #4 (total = 4)
 
-Function Eval #56
+Function Eval #52
 
-Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+Xopt : [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Fopt : -3.154246e+001
+Fopt : -2.343067e+001
 
-DeltaFv : 4.288051e+001
+DeltaFv : 3.476873e+001
 
-Center : [-0.4990710 -0.0547566 0.4072642 -0.5194976]
+Center : [-0.5373188 -0.0922914 0.3912100 -0.5842887]
 
-Size : 2.702011e+000
+Size : 2.253394e+000
 
-Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+Vertex #1/8 : fv=-2.343067e+001, x=3.818396e-002 2.171405e-002 1.114336e+000 -3.322792e-001
 
-Vertex #2/8 : fv=-1.634470e+001, x=-4.670983e-001 -2.137772e-001 6.725542e-001 -1.164187e+000
+Vertex #2/8 : fv=-1.935908e+001, x=-4.206872e-001 -4.935150e-001 9.639322e-001 -9.932843e-001
 
-Vertex #3/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+Vertex #3/8 : fv=-1.760260e+001, x=-5.165940e-001 -3.151770e-001 7.216618e-001 -1.441933e+000
 
 Vertex #4/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
 
@@ -793,39 +785,49 @@ Vertex #8/8 : fv=1.133805e+001, x=-4.809773e-001 1.082404e+000 -7.134980e-001 -4
 
   > iterations=4 >= maxiter=5
 
-  > funevals=56 >= maxfunevals=1000
+  > funevals=52 >= maxfunevals=1000
 
-  > e(x)=3.067545e-001 < tolxrelative = 2.220446e-016 * 8.293443e-001 + 0.000000e+000
+  > e(x)=3.430440e-001 < tolxrelative = 2.220446e-016 * 8.897572e-001 + 0.000000e+000
 
   > Terminate = F, status = continue
 
-  > simplex size=2.702011e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
+  > simplex size=2.253394e+000 < 0.000000e+000 + 1.000000e-003 * 2.022362e+000
 
   > Terminate = F, status = continue
 
 Reflect
 
-xbar=[-0.5016558 -0.2172082 0.5673731 -0.5267980]
+xbar=[-0.5453676 -0.2601051 0.5490255 -0.6008450]
 
-xr=[-0.5223342 -1.5168204 1.8482442 -0.5852010]
+_boxlinesearch
 
- > After projection into bounds p = [-0.5223342 -1.5168204 1.8482442 -0.5852010]
+> xhigh=[-0.4809773 1.0824041 -0.7134980 -0.4683950], fhigh=1.133805e+001
 
-Function Evaluation #57 is [-1.7599751 -0.0827833 -2.3197696] at [-0.5223342 -1.5168204 1.8482442 -0.5852010]
+> xbar=[-0.5453676 -0.2601051 0.5490255 -0.6008450]
+
+> xr = [-0.6290750 -2.0053669 2.190306 -0.7730300]
+
+Function Evaluation #53 is [-23.625739] at [-0.6290750 -2.0053669 2.190306 -0.7730300]
+
+fr = -2.362574e+001 improves 1.133805e+001 : no need for scaling for f
+
+ > After projection into bounds xr = [-0.6290750 -2.0053669 2.190306 -0.7730300]
+
+Function Evaluation #54 is [-6.1518755 -5.8334243 -6.1306545] at [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
 Inequality constraint #1/3 is not satisfied for x
 
-Scaling inequality constraint with alpha = 5.000000e-001
+Scaling for nonlinear/linear inequality constraints with alpha=5.000000e-001 from xbar=[-0.5453676 -0.2601051 0.5490255 -0.6008450] toward [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
-Function Evaluation #58 is [3.0993829 5.0893666 1.8661831] at [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+> xr = [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
- > After scaling into inequality constraints p = [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+Function Evaluation #55 is [1.422095 2.9950803 0.5060364] at [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
-Function Evaluation #59 is [-18.12034] at [-0.5119950 -0.8670143 1.2078086 -0.5559995]
+Function Evaluation #56 is [-19.119986] at [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
-xr=[-0.5119950 -0.8670143 1.2078086 -0.5559995], f(xr)=-18.120340
+xr=[-0.5872213 -1.132736 1.3696658 -0.6869375], f(xr)=-19.119986
 
-  > Perform reflection
+  > Perform Reflection
 
 Sort
 
@@ -833,25 +835,25 @@ Sort
 
 Iteration #5 (total = 5)
 
-Function Eval #59
+Function Eval #56
 
-Xopt : [0.3662765 0.0956700 1.5307197 -0.2855214]
+Xopt : [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Fopt : -3.154246e+001
+Fopt : -2.343067e+001
 
-DeltaFv : 3.460651e+001
+DeltaFv : 2.649473e+001
 
-Center : [-0.5029482 -0.2984339 0.6474275 -0.5304482]
+Center : [-0.5505993 -0.3691839 0.6516055 -0.6116066]
 
-Size : 2.702011e+000
+Size : 2.253394e+000
 
-Vertex #1/8 : fv=-3.154246e+001, x=3.662765e-001 9.566998e-002 1.530720e+000 -2.855214e-001
+Vertex #1/8 : fv=-2.343067e+001, x=3.818396e-002 2.171405e-002 1.114336e+000 -3.322792e-001
 
-Vertex #2/8 : fv=-1.812034e+001, x=-5.119950e-001 -8.670143e-001 1.207809e+000 -5.559995e-001
+Vertex #2/8 : fv=-1.935908e+001, x=-4.206872e-001 -4.935150e-001 9.639322e-001 -9.932843e-001
 
-Vertex #3/8 : fv=-1.634470e+001, x=-4.670983e-001 -2.137772e-001 6.725542e-001 -1.164187e+000
+Vertex #3/8 : fv=-1.911999e+001, x=-5.872213e-001 -1.132736e+000 1.369666e+000 -6.869375e-001
 
-Vertex #4/8 : fv=-1.444981e+001, x=-4.922926e-001 -3.685925e-001 7.250894e-001 -7.994586e-001
+Vertex #4/8 : fv=-1.760260e+001, x=-5.165940e-001 -3.151770e-001 7.216618e-001 -1.441933e+000
 
 Vertex #5/8 : fv=-9.608754e+000, x=-5.483755e-001 -9.299854e-001 6.957821e-001 -7.202424e-001
 

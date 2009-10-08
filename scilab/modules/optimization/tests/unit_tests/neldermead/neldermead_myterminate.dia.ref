@@ -6,9 +6,6 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -28,7 +25,7 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
 //
 // assert_equal --
@@ -43,50 +40,43 @@ function flag = assert_equal ( computed , expected )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
+function [ this , terminate , status ] = mystoppingrule ( this , somplex )
+  ssize = optimsimplex_size ( simplex , "sigmaplus" );
+  if ( ssize < 1.e-4 ) then
+        terminate = %t;
+        status = "mysize";
+  end
+endfunction
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
-
-
 //
-// Test with default NM
+// Test with my own termination criteria 
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0].');
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",400);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",0);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+// Disable default terminations
+nm = neldermead_configure(nm,"-tolxmethod",%f);
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
+nm = neldermead_configure(nm,"-myterminateflag",%t);
+nm = neldermead_configure(nm,"-myterminate",mystoppingrule);
 nm = neldermead_search(nm);
-nm = neldermead_restart(nm);
+// Check optimum point
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [1.0 1.0]', 1e-3 );
+// Check optimum point value
+fopt = neldermead_get(nm,"-fopt");
+assert_close ( fopt , 0.0 , 1e-5 );
+// Check status
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "mysize" );
 nm = neldermead_destroy(nm);
-//
-// Test with and maximum number of iterations reached
-//
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0].');
-nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_search(nm);
-nm = neldermead_configure(nm,"-maxiter",100);
-nm = neldermead_restart(nm);
-nm = neldermead_destroy(nm);
-
-function f = objfun ( x ) 
-  f = exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
-endfunction
-//
-// Test with "difficult case"
-//
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",objfun);
-nm = neldermead_configure(nm,"-x0",[-1 1].');
-//nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_search(nm);
-nm = neldermead_configure(nm,"-maxfunevals",200);
-nm = neldermead_restart(nm);
-nm = neldermead_destroy(nm);
-

@@ -29,9 +29,7 @@
 //   correct plot can be update (and not another).
 //
 function optimplotfval ( x , optimValues , state )
-  mprintf ( "Iteration = %d, state = %s\n", optimValues.iteration , state )
   if ( state == "init" ) then
-    mprintf ( "Init\n")
     opfvh = scf();
     plot ( 0 , optimValues.fval );
     opfvh.user_data = "optimplotfval";
