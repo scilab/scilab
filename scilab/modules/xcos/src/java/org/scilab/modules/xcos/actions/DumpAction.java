@@ -14,7 +14,10 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -25,18 +28,26 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 public class DumpAction extends DefaultAction {
 
     public DumpAction(ScilabGraph scilabGraph) {
-    	super(XcosMessages.DUMP, scilabGraph);
+	super(XcosMessages.DUMP, scilabGraph);
     }
- 
+
     public static PushButton dumpButton(ScilabGraph scilabGraph) {
 	return createButton(XcosMessages.DUMP, null, new DumpAction(scilabGraph));
     }
-    
+
     public static MenuItem dumpMenu(ScilabGraph scilabGraph) {
-    	return createMenu(XcosMessages.DUMP, null, new DumpAction(scilabGraph), null);
+	return createMenu(XcosMessages.DUMP, null, new DumpAction(scilabGraph), null);
     }
-    
+
     public void actionPerformed(ActionEvent e) {
-    	((XcosDiagram) getGraph(e)).dumpToHdf5File(null);
+	try {
+	    File temp = File.createTempFile("xcos",".hdf5");
+	    temp.delete();
+	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");");
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
     }
 }
