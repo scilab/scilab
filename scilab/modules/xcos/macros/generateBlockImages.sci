@@ -50,7 +50,7 @@ function generateBlockImages(palFiles, outPath)
   failed_gri = [];
   
   f = gcf();
-  
+
   varsToLoad = gsort(varsToLoad, "r", "i");
   for kBlock = 1 : size(varsToLoad, "*")
     
@@ -98,7 +98,7 @@ function generateBlockImages(palFiles, outPath)
             ierr = ierr + execstr(scs_m.graphics.gr_i(k), "errcatch");
           end
         else
-          ierr = execstr(strcat(scs_m.graphics.gr_i(1)), "errcatch");
+	  ierr = execstr(strcat(scs_m.graphics.gr_i(1),";"), "errcatch");
         end
         if ierr <> 0 then
           mprintf(" FAILED\n");
