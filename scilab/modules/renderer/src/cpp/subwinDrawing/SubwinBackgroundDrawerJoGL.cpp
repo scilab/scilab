@@ -38,7 +38,7 @@ void SubwinBackgroundDrawerJoGL::drawAxesBox(int concealedCornerIndex)
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
-  getSubwinBackgroundDrawerJavaMapper()->setBoxParameters(sciGetGraphicContext(pSubwin)->backgroundcolor);
+  getSubwinBackgroundDrawerJavaMapper()->setBoxParameters(sciGetBackgroundColor(pSubwin));
 
   // get displayed bounds
   double bounds[6];
