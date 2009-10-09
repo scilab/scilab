@@ -42,10 +42,6 @@ public class H5WriteScilabInteger {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT64 : HDF5Constants.H5T_NATIVE_INT64; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT64 : H5ScilabConstant.SCILAB_CLASS_INT64; 
 			dataToWrite = getDataToWrite64(data);
-		}else
-		{
-			nativeType = -1; 
-			classType = "FAILED !"; 
 		}
 
 		long[] dims = {data.getHeight(), data.getWidth()};
