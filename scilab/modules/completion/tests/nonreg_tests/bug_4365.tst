@@ -26,3 +26,8 @@ if ierr<>0 then pause, end
 currentline = 'cd SCI/modules/arnoldi/nonreg_tes';
 r = completeline(currentline,'nonreg_test_run',getfilepartlevel(currentline),getpartlevel(currentline),%f);
 if r <> currentline then pause,end
+
+currentline = 'cd modules/arnoldi/src/c';
+r = completeline(currentline,'c/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd modules/arnoldi/src/c/' then pause,end
+
