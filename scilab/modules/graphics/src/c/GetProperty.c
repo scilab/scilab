@@ -267,62 +267,6 @@ sciGetGraphicContext (sciPointObj * pobj)
   return (sciGraphicContext *) NULL;
 }
 
-/**
-* sciGetBackgroundColor function 
-* @return the stored value of BackgroundColor index
-*/
-int sciGetBackgroundColor (sciPointObj * pobj)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    return sciGetGraphicContext(pobj)->backgroundcolor;
-  }
-  printSetGetErrorMessage("background");
-  return -999;
-}
-
-/**
-* sciGetForegroundColor function 
-* @return the stored value of ForegroundColor index
-*/
-int sciGetForegroundColor (sciPointObj * pobj)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    return sciGetGraphicContext(pobj)->foregroundcolor;
-  }
-  printSetGetErrorMessage("foreground");
-  return -999;
-}
-
-/**
-* sciGetMarkBackgroundColor function 
-* @return the stored value of MarkBackgroundColor index
-*/
-int sciGetMarkBackgroundColor (sciPointObj * pobj)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    return sciGetGraphicContext(pobj)->markbackground;
-  }
-  printSetGetErrorMessage("markbackground");
-  return -999;
-}
-
-/**
-* sciGetMarkForegroundColor function 
-* @return the stored value of MarkForegroundColor index
-*/
-int sciGetMarkForegroundColor (sciPointObj * pobj)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    return sciGetGraphicContext(pobj)->markforeground;
-  }
-  printSetGetErrorMessage("markforeground");
-  return -999;
-}
-
 
 /**sciGetNumColors
  * This function gets the number of the color defined in colormap
@@ -382,19 +326,33 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
 int
 sciGetForeground (sciPointObj * pobj)
 {
-  int colorindex = sciGetForegroundColor(pobj);
-  /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
-  if(colorindex==-999) return -999;
-  /*make index conversion*/
-  return sciGetGoodIndex(pobj, colorindex+1);
+
+  int colorindex = -999;
+  
+  if(sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+  }
+  else
+  {
+    /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
+    return -999;
+  }
+
+  colorindex = sciGetGoodIndex(pobj, colorindex);
+  
+  return colorindex;
 }
 
 
 int
 sciGetForegroundToDisplay (sciPointObj * pobj)
 {
-  int colorindex = sciGetForeground(pobj);
+
+  int colorindex = -999;
   int m = sciGetNumColors(pobj);
+
+  colorindex = sciGetForeground(pobj);
   
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
     
@@ -409,11 +367,22 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
 int
 sciGetBackground (sciPointObj * pobj)
 {
-  int colorindex = sciGetBackgroundColor(pobj);
-  /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
-  if(colorindex==-999) return -999;
-  /*make index conversion*/ 
-  return sciGetGoodIndex(pobj, colorindex+1);
+
+  int colorindex = -999;
+  
+  if(sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+  }
+  else
+  {
+    /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
+    return -999;
+  }
+  
+  colorindex = sciGetGoodIndex(pobj, colorindex);
+  
+  return colorindex;
 }
 
 
@@ -423,8 +392,11 @@ sciGetBackground (sciPointObj * pobj)
 int
 sciGetBackgroundToDisplay (sciPointObj * pobj)
 {
-  int colorindex = sciGetBackground(pobj);
+
+  int colorindex = -999;
   int m = sciGetNumColors(pobj);
+  
+  colorindex = sciGetBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
   
@@ -438,19 +410,33 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
 int
 sciGetMarkForeground (sciPointObj * pobj)
 {
-  int colorindex = sciGetMarkForegroundColor(pobj);
-  /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
-  if(colorindex==-999) return -999;
-  /*make index conversion*/ 
-  return sciGetGoodIndex(pobj, colorindex+1);
+
+  int colorindex = -999;
+  
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = sciGetGraphicContext(pobj)->markforeground + 1;
+  }
+  else
+  {
+    printSetGetErrorMessage("mark_foreground");
+    return -1;
+  }
+
+  colorindex = sciGetGoodIndex(pobj, colorindex);
+  
+  return colorindex;
 }
 
 
 int
 sciGetMarkForegroundToDisplay (sciPointObj * pobj)
 {
-  int colorindex = sciGetMarkForeground(pobj);
+
+  int colorindex = -999;
   int m = sciGetNumColors(pobj);
+
+  colorindex = sciGetMarkForeground(pobj);
   
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
     
@@ -466,11 +452,21 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
 int
 sciGetMarkBackground (sciPointObj * pobj)
 {
-  int colorindex = sciGetMarkBackgroundColor(pobj);
-  /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
-  if(colorindex==-999) return -999;
-  /*make index conversion*/ 
-  return sciGetGoodIndex(pobj, colorindex+1);
+
+  int colorindex = -999;
+  
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = sciGetGraphicContext(pobj)->markbackground + 1;
+  }
+  else
+  {
+    printSetGetErrorMessage("mark_background");
+    return -1;
+  }
+  
+  return sciGetGoodIndex(pobj, colorindex);
+  
 }
 
 
@@ -480,11 +476,14 @@ sciGetMarkBackground (sciPointObj * pobj)
 int
 sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 {
-  int colorindex = sciGetMarkBackground(pobj);
+
+  int colorindex = -999;
   int m = sciGetNumColors(pobj);
+  
+  colorindex = sciGetMarkBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-
+  
   return colorindex;
 }
 

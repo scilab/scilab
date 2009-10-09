@@ -40,7 +40,7 @@ void FullBoxDrawerJoGL::drawAxesBox(int concealedCornerIndex)
   initializeDrawing();
 
   getFullBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
-                                                 sciGetForegroundColor(pSubwin),
+                                                 sciGetGraphicContext(pSubwin)->foregroundcolor,
                                                  sciGetLineStyle(pSubwin),
                                                  (float) sciGetLineWidth(pSubwin));
 
