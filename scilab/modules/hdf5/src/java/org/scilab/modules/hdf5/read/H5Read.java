@@ -20,6 +20,7 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
@@ -120,28 +121,36 @@ public class H5Read {
 	return false;
     }
     
-    private static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
-	int attributeId = -1;
-	try {
-	    // If there is no attribue do not try to open it
-	    // There _must_ be at least one : SCILAB_CLASS
-	    if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
-		return "";
-	    }
-	    attributeId = H5.H5Aopen_name(dataSetId, attributeName);
-	}
-	catch (HDF5AttributeException e) {
-	    return "";
-	}
-	int stringLength = H5.H5Tget_size(H5.H5Aget_type(attributeId));
-	int tid = H5.H5Tcopy(HDF5Constants.H5T_C_S1);
-	H5.H5Tset_size(tid, stringLength);
-	byte[] data = new byte[stringLength];
-	H5.H5Aread(attributeId, tid, data);
-	String result = new String(data, 0, stringLength).trim();
-	H5.H5Aclose(attributeId);
+    public static String getIntegerPrecision(int dataSetId) throws NullPointerException, HDF5Exception {
+    	// Only one attribute (ie CLASS) so the SCILAB_CLASS_PREC attribute is not present
+    	if (H5.H5Aget_num_attrs(dataSetId) <= 1) {
+    		return "";
+    	}
+    	return readAttribute(dataSetId, H5ScilabConstant.SCILAB_CLASS_PREC);
+    }
 
-	return result;
+    private static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
+    	int attributeId = -1;
+    	try {
+    		// If there is no attribue do not try to open it
+    		// There _must_ be at least one : SCILAB_CLASS
+    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    			return "";
+    		}
+    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+    	}
+    	catch (HDF5AttributeException e) {
+    		return "";
+    	}
+    	int stringLength = H5.H5Tget_size(H5.H5Aget_type(attributeId));
+    	int tid = H5.H5Tcopy(HDF5Constants.H5T_C_S1);
+    	H5.H5Tset_size(tid, stringLength);
+    	byte[] data = new byte[stringLength];
+    	H5.H5Aread(attributeId, tid, data);
+    	String result = new String(data, 0, stringLength).trim();
+    	H5.H5Aclose(attributeId);
+
+    	return result;
     }
 
     /**
@@ -252,6 +261,10 @@ public class H5Read {
 	    data = new ScilabBoolean(); 
 	    H5ReadScilabBoolean.readData(dataSetId, (ScilabBoolean) data);    
 	}
+	if(isScilabInteger(dataType)) { 
+	    data = new ScilabInteger(); 
+	    H5ReadScilabInteger.readData(dataSetId, (ScilabInteger) data);    
+	}
 	
 	return data;
     }
@@ -262,4 +275,5 @@ public class H5Read {
     private static boolean isScilabMList(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_MLIST) == 0; }
     private static boolean isScilabTList(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_TLIST) == 0; }
     private static boolean isScilabBoolean(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_BOOLEAN) == 0; }
+    private static boolean isScilabInteger(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_INT) == 0; }
 }

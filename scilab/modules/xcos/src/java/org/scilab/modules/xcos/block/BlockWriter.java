@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -57,7 +59,12 @@ public final class BlockWriter {
 		data.add(getDiagramObjs(diagram));
 		data.add(getDiagramVersion(diagram));
 
-		H5Write.writeInDataSet(fileId, "scs_m", data);
+		try {
+			H5Write.writeInDataSet(fileId, "scs_m", data);
+		} catch (HDF5Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		H5Write.closeFile(fileId);
 
 		return isSuccess;
