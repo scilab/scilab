@@ -33,111 +33,138 @@
 #include "StringMatrix.h"
 #include "BOOL.h"
 
-void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
-void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
-sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
-char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
+void *sciGetPointerToFeature (sciPointObj * pobj);
+void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr);
+sciEntityType sciGetEntityType (sciPointObj * pobj); 
+char *sciGetCharEntityType (sciPointObj * pobj); 
 
 /* Graphic Context Functions */
-sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
-int sciGetNumColors (sciPointObj * pobj); /* GET */
-int sciGetColormap (sciPointObj * pobj, double rgbmat[] ); /* GET */
-int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
+sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj);
+int sciGetNumColors (sciPointObj * pobj);
+int sciGetColormap (sciPointObj * pobj, double rgbmat[] );
+int sciGetGoodIndex(sciPointObj * pobj, int colorindex); 
 
-int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
-int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
+/**
+* sciGetBackgroundColor function 
+* @return the stored value of BackgroundColor index
+*/
+int sciGetBackgroundColor (sciPointObj * pobj);
 
-int sciGetBackground (sciPointObj * pobj); /* GET */
-int sciGetForeground (sciPointObj * pobj); /* GET */
-int sciGetLineWidth (sciPointObj * pobj); /* GET */
-BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
-int sciGetLineStyle (sciPointObj * pobj); /* GET */
-BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
-BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
-double sciGetArrowSize (sciPointObj * pobj); /* GET */
+/**
+* sciGetForegroundColor function 
+* @return the stored value of ForegroundColor index
+*/
+int sciGetForegroundColor (sciPointObj * pobj);
 
-EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ; /* GET */
-BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
-int sciGetMarkStyle (sciPointObj * pobj); /* GET */
-int sciGetMarkSize (sciPointObj * pobj); /* GET */
-int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
+/**
+* sciGetMarkBackgroundColor function 
+* @return the stored value of MarkBackgroundColor index
+*/
+int sciGetMarkBackgroundColor (sciPointObj * pobj);
+
+/**
+* sciGetMarkForegroundColor function 
+* @return the stored value of MarkForegroundColor index
+*/
+int sciGetMarkForegroundColor (sciPointObj * pobj);
+
+int sciGetForeground (sciPointObj * pobj);
+int sciGetForegroundToDisplay (sciPointObj * pobj);
+
+int sciGetBackground (sciPointObj * pobj);
+int sciGetBackgroundToDisplay (sciPointObj * pobj);
+
+int sciGetMarkBackground (sciPointObj * pobj);
+int sciGetMarkBackgroundToDisplay (sciPointObj * pobj);
+
+int sciGetMarkForeground (sciPointObj * pobj);
+int sciGetMarkForegroundToDisplay (sciPointObj * pobj);
+
+int sciGetLineWidth (sciPointObj * pobj);
+BOOL sciGetIsLine (sciPointObj * pobj);
+int sciGetLineStyle (sciPointObj * pobj);
+BOOL sciGetIsMark (sciPointObj * pobj);
+BOOL sciGetIsFilled (sciPointObj * pobj);
+double sciGetArrowSize (sciPointObj * pobj);
+
+EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ;
+BOOL sciGetIsBoxed (sciPointObj * pobj);
+int sciGetMarkStyle (sciPointObj * pobj);
+int sciGetMarkSize (sciPointObj * pobj);
+int sciGetMarkSizeUnit (sciPointObj * pobj);
 
 /* Text Functions */
-sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
-double sciGetFontSize(sciPointObj * pobj); /* GET */
-double sciGetFontOrientation (sciPointObj * pobj); /* GET */
-StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
-void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
+sciFont *sciGetFontContext (sciPointObj * pobj); 
+double sciGetFontSize(sciPointObj * pobj);
+double sciGetFontOrientation (sciPointObj * pobj);
+StringMatrix * sciGetText (sciPointObj * pobj);
+void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ;
 BOOL sciisTextEmpty( sciPointObj * pobj);
-unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
+unsigned int sciGetTextLength (sciPointObj * pobj);
 
-int sciGetFontBackground (sciPointObj * pobj); /* GET */
-int sciGetFontForeground (sciPointObj * pobj); /* GET */
-int sciGetMarkBackground (sciPointObj * pobj); /* GET */
-int sciGetMarkForeground (sciPointObj * pobj); /* GET */
+int sciGetFontBackground (sciPointObj * pobj);
+int sciGetFontForeground (sciPointObj * pobj);
 /* F.Leray 09.04.04*/
-int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
-int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
-int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
-int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetFontBackgroundToDisplay (sciPointObj * pobj);
+int sciGetFontForegroundToDisplay (sciPointObj * pobj);
 
-int sciGetFontStyle (sciPointObj * pobj); /* GET */
+int sciGetFontStyle (sciPointObj * pobj);
 
 /* Legend */
 sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
 void sciGetLegendPos (sciPointObj * pobj , double position[]);
 
 /* Figure / Subwin main functions */
-sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
-sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */
-int sciGetNumFigure (sciPointObj * pobj); /* GET */
+sciPointObj *sciGetParentFigure (sciPointObj * pobj);
+sciPointObj *sciGetParentSubwin (sciPointObj * pobj);
+int sciGetNumFigure (sciPointObj * pobj);
 
 /* GMODE */
-scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
+scigMode *sciGetGraphicMode (sciPointObj * pobj); 
 int sciGetIsClipRegionValuated (sciPointObj * pobj);
-int sciGetIsClipping (sciPointObj * pobj); /* GET */
-double *sciGetClipping (sciPointObj * pobj); /* GET */
-BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
-BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
-BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
-int sciGetXorMode (sciPointObj * pobj);  /* GET */
-BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
-BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
-BOOL sciGetResize (sciPointObj * pobj);  /* GET */
+int sciGetIsClipping (sciPointObj * pobj);
+double *sciGetClipping (sciPointObj * pobj);
+BOOL sciGetAddPlot (sciPointObj * pobj); 
+BOOL sciGetAutoScale (sciPointObj * pobj); 
+BOOL sciGetZooming (sciPointObj * pobj); 
+int sciGetXorMode (sciPointObj * pobj); 
+BOOL sciGetRealVisibility (sciPointObj * pobj) ;
+BOOL sciGetVisibility (sciPointObj * pobj); 
+BOOL sciGetResize (sciPointObj * pobj); 
 
 
 /* Window Functions */
-char *sciGetName (sciPointObj * pobj);  /* GET */
-int sciGetNum (sciPointObj * pobj);  /* GET */
-int sciGetWidth (sciPointObj * pobj);   /* GET */
-int sciGetHeight (sciPointObj * pobj);  /* GET */
-void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
-int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
-int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
-sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
+char *sciGetName (sciPointObj * pobj); 
+int sciGetNum (sciPointObj * pobj); 
+int sciGetWidth (sciPointObj * pobj);  
+int sciGetHeight (sciPointObj * pobj); 
+void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ;
+int sciGetWindowWidth(sciPointObj * pObj) ;
+int sciGetWindowHeight(sciPointObj * pObj) ;
+sciPointObj *sciIsExistingSubWin (double *WRect); /* WARNING special case here */
 
 
-double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
+double *sciGetPoint (sciPointObj * pthis, int *num, int *numco);
 
-BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
-sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
+BOOL sciGetdrawmode (sciPointObj *pobj);
+sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
 
 
-int sciType (char *marker, sciPointObj *pobj); /* GET */
+int sciType (char *marker, sciPointObj *pobj);
 
-sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
+sciPointObj *sciGetSurface(sciPointObj *psubwin);
 
 char sciGetxLocation(sciPointObj * pObj);
 char sciGetyLocation(sciPointObj * pObj);
 
 
-int CheckForCompound (long *tabpointobj, int number); /* GET */
+int CheckForCompound (long *tabpointobj, int number);
 
 /* UNUSED ? */
 sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
 
-int * sciGetInterpVector(sciPointObj * pobj); /* GET */
-BOOL sciGetIsColorInterpolated(sciPointObj * pobj); /* GET */
+int * sciGetInterpVector(sciPointObj * pobj);
+BOOL sciGetIsColorInterpolated(sciPointObj * pobj);
 
 BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
@@ -157,19 +184,19 @@ BOOL sciGetAutoSize( sciPointObj * pObj ) ;
 sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
 void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
 
-int sciGetNbChildren( sciPointObj * pObj ) ; /* GET */
+int sciGetNbChildren( sciPointObj * pObj ) ;
 
-BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ; /* GET */
+BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ;
 
-int sciGetNbAccessibleChildren( sciPointObj * pObj ) ; /* GET */
+int sciGetNbAccessibleChildren( sciPointObj * pObj ) ;
 
-BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
+BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ;
 
 int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
-int sciGetHiddenColor( sciPointObj * pObj ) ; /* GET */
+int sciGetHiddenColor( sciPointObj * pObj ) ;
 
-int sciGetHiddenAxisColor( sciPointObj * pObj ) ; /* GET */
+int sciGetHiddenAxisColor( sciPointObj * pObj ) ;
 
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
@@ -191,64 +218,64 @@ char * sciGetEventHandler( sciPointObj * pObj ) ;
 double * sciGetAxesBounds( sciPointObj * pObj ) ;
 double * sciGetMargins( sciPointObj * pObj ) ;
 
-void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
-void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
-void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6]); /* GET */
+void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ;
+void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ;
+void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6]);
 
-void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
+void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ;
 
-void sciGetLogFlags(sciPointObj * pObj, char flags[3]); /* GET */
+void sciGetLogFlags(sciPointObj * pObj, char flags[3]);
 
-BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */
+BOOL sciGetPixmapMode(sciPointObj * pObj);
 
-int sciGetNbPoints(sciPointObj * pObj); /* GET */
+int sciGetNbPoints(sciPointObj * pObj);
 
-int sciGetPolylineStyle(sciPointObj * pObj); /* GET */
+int sciGetPolylineStyle(sciPointObj * pObj);
 
-BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
+BOOL sciGetIsClosed(sciPointObj * pObj);
 
-void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
+void sciGetTextPos(sciPointObj * pObj, double position[3]);
 
-void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
+void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]);
 
-void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2]); /* GET */
+void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2]);
 
-void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2]); /* GET */
+void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2]);
 
-void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[2], int pixelCoords[2]); /* GET */
+void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[2], int pixelCoords[2]);
 
-BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
+BOOL sciGetIsIsoView(sciPointObj * pObj);
 
-BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */
+BOOL sciGetIsCubeScaled(sciPointObj * pObj);
 
-void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3]); /* GET */
+void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3]);
 
-BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
+BOOL sciGetTightLimitsOn(sciPointObj * pObj);
 
-void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* GET */
+void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]);
 
-BOOL sciGetAutoSubticks(sciPointObj * pObj); /* GET */
+BOOL sciGetAutoSubticks(sciPointObj * pObj);
 
-void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
+void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]);
 
-void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
+void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]);
 
 void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-                             double corner3[2], double corner4[2]); /* GET */
+                             double corner3[2], double corner4[2]);
 
 void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3]); /* GET */
+                           double corner3[3], double corner4[3]);
 
 void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2]); /* GET */
+                            int corner3[2], int corner4[2]);
 
-void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height); /* GET */
+void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height);
 
-void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); /* GET */
+void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]);
 
-BOOL sciGetUseNurbs(sciPointObj * pObj); /* GET */
+BOOL sciGetUseNurbs(sciPointObj * pObj);
 
-BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj); /* GET */
+BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj);
 
 int sciGetNbXTicks(sciPointObj * pSubwin);
 void sciGetXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
@@ -259,17 +286,17 @@ void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabe
 
 BOOL sciGetIsAbleToCreateWindow(void);
 
-int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
+int sciGetSubwinIndex(sciPointObj * pSubwin);
 
 BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
 
-void sciGetColorRange(sciPointObj * pObj, int subset[2]); /* GET */
-void sciGetOutsideColor(sciPointObj * pObj, int colors[2]); /* GET */
-void sciGetZBounds(sciPointObj * pObj, double bounds[2]); /* GET */
+void sciGetColorRange(sciPointObj * pObj, int subset[2]);
+void sciGetOutsideColor(sciPointObj * pObj, int colors[2]);
+void sciGetZBounds(sciPointObj * pObj, double bounds[2]);
 
-BOOL sciGetGridFront(sciPointObj * pObj); /* GET */
+BOOL sciGetGridFront(sciPointObj * pObj);
 
-sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET */
+sciLegendPlace sciGetLegendLocation(sciPointObj * pObj);
 
 void printSetGetErrorMessage(const char * propertyName);
 

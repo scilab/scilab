@@ -76,7 +76,7 @@ void TicksDrawerJoGL::initializeDrawing(void)
   // set other parameters
   getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pObj),
                                                  (float) sciGetLineWidth(pObj),
-                                                 sciGetGraphicContext(pObj)->foregroundcolor,
+                                                 sciGetForegroundColor(pObj),
                                                  sciGetFontStyle(pObj),
                                                  sciGetFontSize(pObj),
                                                  sciGetFontContext(pObj)->foregroundcolor,

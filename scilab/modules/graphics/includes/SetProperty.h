@@ -35,146 +35,174 @@
 
 #include "BOOL.h"
 
-void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */
+void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta);
 
-int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
+int sciSetEntityType (sciPointObj * pobj, sciEntityType value);
 int sciSetColormap (sciPointObj * pobj, double *rgbmat,
-			   int m, int n); /* SET */
-int sciInitNumColors( sciPointObj * pobj, int numcolors ) ; /* SET */
-int sciSetNumColors ( sciPointObj * pobj, int numcolors ) ; /* SET */
+			   int m, int n);
+int sciInitNumColors( sciPointObj * pobj, int numcolors ) ;
+int sciSetNumColors ( sciPointObj * pobj, int numcolors ) ;
 
-int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
-void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
-int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
+int sciSetGoodIndex(sciPointObj * pobj, int colorindex); 
+void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m); 
+int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ;
+
+/**
+* sciSetBackgroundColor function 
+* Set the stored value of BackgroundColor index
+* @return 0 if ok, -1 if not (no GraphicContext)
+*/
+int sciSetBackgroundColor (sciPointObj * pobj, int colorindex);
+
+/**
+* sciSetForegroundColor function 
+* Set the stored value of ForegroundColor index
+* @return 0 if ok, -1 if not (no GraphicContext)
+*/
+int sciSetForegroundColor (sciPointObj * pobj, int colorindex);
+
+/**
+* sciSetMarkBackgroundColor function 
+* Set the stored value of MarkBackgroundColor index
+* @return 0 if ok, -1 if not (no GraphicContext)
+*/
+int sciSetMarkBackgroundColor (sciPointObj * pobj, int colorindex);
+
+/**
+* sciSetMarkForegroundColor function 
+* Set the stored value of MarkForegroundColor index
+* @return 0 if ok, -1 if not (no GraphicContext)
+*/
+int sciSetMarkForegroundColor (sciPointObj * pobj, int colorindex);
 
 int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
-int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
+int sciSetBackground ( sciPointObj * pobj, int colorindex ) ;
 
 int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
-int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
+int sciSetForeground ( sciPointObj * pobj, int colorindex ) ;
 
 int sciInitLineWidth( sciPointObj * pobj, int linewidth ) ;
-int sciSetLineWidth ( sciPointObj * pobj, int linewidth ) ;  /* SET */
+int sciSetLineWidth ( sciPointObj * pobj, int linewidth ) ; 
 
 int sciInitIsLine(sciPointObj * pobj, BOOL isline);
-int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
+int sciSetIsLine (sciPointObj * pobj, BOOL isline); 
 
 int sciInitLineStyle( sciPointObj * pobj, int linestyle ) ;
-int sciSetLineStyle ( sciPointObj * pobj, int linestyle ) ; /* SET */
+int sciSetLineStyle ( sciPointObj * pobj, int linestyle ) ;
 
-int sciInitIsMark(sciPointObj * pobj, BOOL ismark);  /* SET */
-int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
+int sciInitIsMark(sciPointObj * pobj, BOOL ismark); 
+int sciSetIsMark (sciPointObj * pobj, BOOL ismark); 
 
 int sciInitIsFilled(sciPointObj * pobj, BOOL isfilled);
-int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled);  /* SET */
+int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled); 
 
 int sciInitPolylineStyle( sciPointObj * pobj, int plot );
 int sciInitArrowSize( sciPointObj * pobj, double size );
 
 int sciInitMarkStyle(sciPointObj * pobj, int markstyle);
-int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
+int sciSetMarkStyle (sciPointObj * pobj, int markstyle);
 
 int sciInitMarkSize(sciPointObj * pobj, int marksize);
-int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
+int sciSetMarkSize (sciPointObj * pobj, int marksize);
 
 int sciInitMarkSizeUnit(sciPointObj * pobj, int marksizeunit);
-int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
+int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit);
 
 int sciInitMarkBackground(sciPointObj * pobj, int colorindex);
-int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
+int sciSetMarkBackground (sciPointObj * pobj, int colorindex); 
 
 int sciInitMarkForeground(sciPointObj * pobj, int colorindex);
-int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
+int sciSetMarkForeground (sciPointObj * pobj, int colorindex); 
 
 int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type ) ;
-int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
+int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ;
 
 int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
-int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
+int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed);
 
 /* Text Functions */
-int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */
-int sciSetFontSize (sciPointObj * pobj, double fontSize); /* SET */
+int sciInitFontSize(sciPointObj * pobj, double fontSize);
+int sciSetFontSize (sciPointObj * pobj, double fontSize);
 
-int sciInitFontOrientation(sciPointObj * pobj, double textorientation); /* SET */
-int sciSetFontOrientation (sciPointObj * pobj, double textorientation); /* SET */
+int sciInitFontOrientation(sciPointObj * pobj, double textorientation);
+int sciSetFontOrientation (sciPointObj * pobj, double textorientation);
 
-int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ; /* SET */
-int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
+int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ;
+int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ;
 
 int sciInitFontBackground(sciPointObj * pobj, int color);
-int sciSetFontBackground (sciPointObj * pobj, int color); /* SET */
+int sciSetFontBackground (sciPointObj * pobj, int color);
 
 int sciInitFontForeground(sciPointObj * pobj, int colorindex ) ;
-int sciSetFontForeground (sciPointObj * pobj, int colorindex ) ; /* SET */
+int sciSetFontForeground (sciPointObj * pobj, int colorindex ) ;
 
 int sciInitFontStyle(sciPointObj * pobj, int iAttributes ) ;
-int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
+int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ;
 
 /* Legend */
 int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
-int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */
+int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place);
 
 int sciInitLegendPos(sciPointObj * pobj, double position[]);
-int sciSetLegendPos (sciPointObj * pobj, double position[]); /* SET */
+int sciSetLegendPos (sciPointObj * pobj, double position[]);
 
 /* GMODE */
 int sciInitIsClipping(sciPointObj * pobj, int value) ;
-int sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
+int sciSetIsClipping (sciPointObj * pobj, int value);
 
-int sciSetClipping (sciPointObj * pobj, double pclip[4] ); /* SET */
+int sciSetClipping (sciPointObj * pobj, double pclip[4] );
 
 int sciInitAddPlot (sciPointObj * pobj, BOOL value);
-int sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
+int sciSetAddPlot (sciPointObj * pobj, BOOL value);
 
 int sciInitAutoScale(sciPointObj * pobj, BOOL value);
-int sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
+int sciSetAutoScale (sciPointObj * pobj, BOOL value);
 
 int sciInitZooming(sciPointObj * pobj, BOOL value);
-int sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
+int sciSetZooming (sciPointObj * pobj, BOOL value);
 
 int sciInitXorMode(sciPointObj * pobj, int value);
-int sciSetXorMode (sciPointObj * pobj, int value); /* SET */
+int sciSetXorMode (sciPointObj * pobj, int value);
 
 int sciInitVisibility (sciPointObj * pobj, BOOL value);
-int sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
+int sciSetVisibility (sciPointObj * pobj, BOOL value);
 
 int sciInitResize(sciPointObj * pobj, BOOL value);
-int sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
+int sciSetResize (sciPointObj * pobj, BOOL value);
 
-int sciSetDefaultValues (void); /* SET */
+int sciSetDefaultValues (void);
 
 
 /* Window Functions */
-int sciInitName(sciPointObj * pobj, char * newName); /* SET */
-int sciSetName (sciPointObj * pobj, char * newName); /* SET */
+int sciInitName(sciPointObj * pobj, char * newName);
+int sciSetName (sciPointObj * pobj, char * newName);
 int sciInitNum( sciPointObj * pobj, int value ) ;
-int sciSetNum ( sciPointObj * pobj, int value ) ; /* SET */
+int sciSetNum ( sciPointObj * pobj, int value ) ;
 
 int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
-int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ;
 
 int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight ) ;
-int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ;
 
 int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
-int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy); /* SET */
+int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy);
 
 
-void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
+void sciSelectFirstSubwin( sciPointObj * parentFigure ) ;
 
 int sciInitSelectedSubWin (sciPointObj * psubwinobj);
-int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
+int sciSetSelectedSubWin (sciPointObj * psubwinobj);
 
-int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
+int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin);
 
-int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol); /* SET */
+int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol);
 
-int sciSetdrawmode(BOOL mode); /* SET */
-int sciSwitchWindow(int winnum); /* SET */
+int sciSetdrawmode(BOOL mode);
+int sciSwitchWindow(int winnum);
 
-int sciInitUsedWindow( int winNum ) ; /* SET */
-int sciSetUsedWindow( int winNum ) ; /* SET */
+int sciInitUsedWindow( int winNum ) ;
+int sciSetUsedWindow( int winNum ) ;
 
 int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 
@@ -214,12 +242,12 @@ int sciInitdrawmode( BOOL mode );
 int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 
 int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
-int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; /* SET */
+int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ;
 
-int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
+int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ;
 
 int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage);
-int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
+int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ;
 
 int sciInitEventHandler( sciPointObj * pObj, char * name ) ;
 int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
@@ -227,51 +255,51 @@ int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
 int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
 int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
-int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
-int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]); /* SET */
+int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ;
+int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]);
 
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
-int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
+int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta);
 
 int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta);
 
 int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff);
-int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
+int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff);
 
 int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 
 int sciInitLogFlags(sciPointObj * pObj, char logFlags[3]);
-int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
+int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ;
 
 int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
-int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
+int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
 
-int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]); /* SET */
+int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]);
 
 int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
 int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
 
 int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs);
-int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs); /* SET */
+int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs);
 
 int sciInitIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
-int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics); /* SET */
+int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
 
 int sciInitColorRange(sciPointObj * pObj, int subset[2]); 
-int sciSetColorRange(sciPointObj * pObj, int subset[2]); /* SET */
+int sciSetColorRange(sciPointObj * pObj, int subset[2]);
 
 int sciInitOutsideColors(sciPointObj * pObj, int colors[2]);
-int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
+int sciSetOutsideColors(sciPointObj * pObj, int colors[2]);
 
 int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
-int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
+int sciSetZBounds(sciPointObj * pObj, double bounds[2]);
 
 int sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
-int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
+int sciSetGridFront(sciPointObj * pObj, BOOL gridFront);
 
 int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
-int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
+int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location);
 
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 

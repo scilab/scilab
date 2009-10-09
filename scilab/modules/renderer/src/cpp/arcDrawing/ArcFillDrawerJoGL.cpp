@@ -39,7 +39,7 @@ void ArcFillDrawerJoGL::drawArc( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
+  getFillDrawerJavaMapper()->setBackColor(sciGetBackgroundColor(pObj)) ;
 
   // get the data of thar arc
   double center[3];

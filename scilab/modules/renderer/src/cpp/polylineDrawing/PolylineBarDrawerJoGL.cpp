@@ -54,8 +54,8 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   
 
   // set the line parameters
-  getBarDrawerJavaMapper()->setBarParameters(sciGetGraphicContext(pObj)->backgroundcolor,
-                                             sciGetGraphicContext(pObj)->foregroundcolor,
+  getBarDrawerJavaMapper()->setBarParameters(sciGetBackgroundColor(pObj),
+                                             sciGetForegroundColor(pObj),
                                             (float)sciGetLineWidth(pObj),
                                              sciGetLineStyle(pObj));
 
