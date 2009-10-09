@@ -452,6 +452,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static ToolBar createToolBar(ScilabGraph scilabGraph) {
     	ToolBar toolBar = ScilabToolBar.createToolBar();
     	
+    	toolBar.add(NewDiagramAction.createButton(scilabGraph));
+
     	toolBar.add(OpenAction.createButton(scilabGraph));
     	toolBar.add(SaveAction.createButton(scilabGraph));
 
