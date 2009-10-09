@@ -12,13 +12,12 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -30,21 +29,45 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphComponent;
 
-public class PrintAction extends DefaultAction {
+/**
+ * Diagram printing management
+ * @author Vincent COUVERT
+ *
+ */
+public final class PrintAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/** Constructor
+	 * @param scilabGraph associated diagram
+	 */
 	private PrintAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.PRINT, scilabGraph);
 	}
 
+	/**
+	 * Print menu creation 
+	 * @param scilabGraph associated diagram
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph),
 				KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
+	/**
+	 * Print button creation 
+	 * @param scilabGraph associated diagram
+	 * @return the button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.PRINT, "document-print.png", new PrintAction(scilabGraph));
 	}
 
+	/**
+	 * Action !
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
 		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
 		PrinterJob pj = PrinterJob.getPrinterJob();
