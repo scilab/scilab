@@ -575,6 +575,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
     //**  -------------- 'Quit' ------------------------------------
     //**  Quit exit from suberblock or go back to Scilab command line
     do_exit() ;
+    
     if ~super_block then // even after quiting, workspace variables
                          // must be saved and be usable in Scilab
       if find(%mac=='scilab2scicos') ==[] then

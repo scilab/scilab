@@ -89,11 +89,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       //cmd = 'Cmenu='+sci2exp(str);
       cmd=str
     elseif (btn==0) then
-      if SL_mode then
-	cmd = 'Cmenu = '"XcosMenuSmartMove'"'
-      else
-	cmd = 'Cmenu = '"XcosMenuMoveLink'"'
-      end
+      cmd = 'Cmenu = '"XcosMenuMoveLink'"'
     elseif (btn==3) then
       cmd='Cmenu=''XcosMenuSelectLink''' //** indirect call via commands 
     elseif (btn==10) then 
@@ -131,12 +127,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     Cmenu = "XcosMenuSelectLink" ; //** direct command: "Link" or selection of a block 
     
   //** -----------------------------------------------------------
-  elseif (btn==0) then //** Press button : Left Mouse Button : no window check 
-    if SL_mode then
-      Cmenu = "XcosMenuSmartMove"
-    else
-      Cmenu = "XcosMenuMoveLink"
-    end
+  elseif (btn==0) then //** Press button : Left Mouse Button : no window check
+    Cmenu = "XcosMenuMoveLink"
   elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress] 
     Cmenu = "XcosMenuSmartMove"   ; //** Smart Move
   

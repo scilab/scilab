@@ -57,15 +57,15 @@ function XcosMenuMoveLink()
 
     //** look for an object 
     %kk = getobj(scs_m,%pt)
-    
     //** if an object id found 
     if %kk<>[] then
-      ObjSel = size (Select) ; //** [row, col]
-      ObjSel = ObjSel(1) ; //**  row 
-			   //**--------------------------------------------------------------
-      if ObjSel<=1 then //** with zero or one object already selected 
         
-	Cmenu = check_edge(scs_m.objs(%kk),"XcosMenuMove",%pt);
+	if size (Select,1) then //** with zero or one object already selected 
+        if SL_mode then
+	   Cmenu = check_edge(scs_m.objs(%kk),"XcosMenuSmartMove",%pt);
+	else
+	  Cmenu = check_edge(scs_m.objs(%kk),"XcosMenuMove",%pt);
+	end
 	//** N.B. if the click is over an output port [Cmenu = "XcosMenuLink"]       
         
 	if Cmenu=="XcosMenuLink" then
@@ -74,13 +74,14 @@ function XcosMenuMoveLink()
 	  Select = [%kk, %win]; //** Execute "Move" with the object selected 
 	end 
 	
-      else //** more than one object is selected 
-        SelectedObjs = Select(:,1)'; //** isolate the object column and put in a row 
-	if or(%kk==SelectedObjs) then //** check if the user want to move the aggregate
-	  Cmenu = "XcosMenuMove";
-	  //** Select information is preserved    
+	else //** more than one object is selected
+	if SL_mode then
+	  Cmenu = "XcosMenuSmartMove"
 	else
-	  Cmenu  = "XcosMenuMove";
+	  Cmenu = "XcosMenuMove";
+	end
+        SelectedObjs = Select(:,1)'; //** isolate the object column and put in a row 
+	if ~or(%kk==SelectedObjs) then //** check if the user want to move the aggregate
 	  Select = [%kk, %win]; //** user want to move only the object in the focus
 	end 
 	
