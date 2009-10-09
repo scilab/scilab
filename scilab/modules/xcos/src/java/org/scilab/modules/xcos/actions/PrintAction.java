@@ -14,6 +14,10 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
@@ -24,6 +28,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.swing.mxGraphComponent;
+
 public class PrintAction extends DefaultAction {
 
 	private PrintAction(ScilabGraph scilabGraph) {
@@ -31,11 +37,32 @@ public class PrintAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.PRINT, "document-print.png", new PrintAction(scilabGraph));
 	}
 
+	public void doAction() {
+		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
+		PrinterJob pj = PrinterJob.getPrinterJob();
+
+		if (pj.printDialog()) {
+			PageFormat pf = graphComponent.getPageFormat();
+			Paper paper = new Paper();
+			double margin = 36;
+			paper.setImageableArea(margin, margin, paper.getWidth()	- margin * 2, paper.getHeight() - margin * 2);
+			pf.setPaper(paper);
+			pj.setPrintable(graphComponent, pf);
+
+			try {
+				pj.print();
+			} catch (PrinterException e2) {
+				System.out.println(e2);
+			}
+		}
+
+	}
 }
