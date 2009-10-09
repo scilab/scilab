@@ -147,7 +147,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				String path = new String("");
 				if (getTextPane() != null) {
 					if (getTextPane().getName() != null) {
-						path  =  " ( " + getTextPane().getName() + " )";
+						path  =  " ( " + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - Xpad");
 					updateUI();
@@ -219,7 +219,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	private static Xpad createEditor() {
 		ConfigXpadManager.createUserCopy();	
-		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles() ;
+		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
 
 		Window mainWindow = ScilabWindow.createWindow();
 		Xpad editorInstance = new Xpad(mainWindow);
@@ -391,8 +391,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 				save(textPaneAt);
 			} else if (choice == 1) {
 				String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-				if(getTextPane().getName() == null ){
-					String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+				if(getTextPane().getName() == null) {
+					String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
 					tabList.removeElement(Integer.parseInt(closedTabNameIndex));
 					closedTabList.add(Integer.parseInt(closedTabNameIndex));
 				}
@@ -402,8 +402,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 		} else {
 			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-			if(getTextPane().getName() == null ){
-				String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+			if(getTextPane().getName() == null) {
+				String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
 				tabList.removeElement(Integer.parseInt(closedTabNameIndex));
 				closedTabList.add(Integer.parseInt(closedTabNameIndex));
 			}
@@ -460,8 +460,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		String extension = new String();
 
 		String initialDirectoryPath = getTextPane().getName();
-		if (initialDirectoryPath == null ){
-			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
+		if (initialDirectoryPath == null) {
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
 		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
@@ -827,48 +827,48 @@ public class Xpad extends SwingScilabTab implements Tab {
 	
 	private class ReadFileThread extends Thread{
   		
-		File fileToRead ;
+		private File fileToRead;
 		
-		public ReadFileThread(File f){
-			this.fileToRead = f ;
+		public ReadFileThread(File f) {
+			this.fileToRead = f;
 		}
 
 		public void run() {
-			readFile(fileToRead );
-			this.stop() ;
+			readFile(fileToRead);
+			this.stop();
 			System.err.println("I'm still alive baaaaahhhh");
 		}
 	   
 		public void readFile(File f) {
 			/* First try to open file before creating tab */
+			getInfoBar().setText("Loading...");
+			StringBuilder contents = new StringBuilder();
+			JTextPane theTextPane = addTab(f.getName()); 
+			String eof = System.getProperty("line.separator");
+			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+			System.out.println("File = " + f.getAbsolutePath());
+			theTextPane.setName(f.getAbsolutePath());
+			
 			try {
-				getInfoBar().setText("Loading...");
-				StringBuilder contents = new StringBuilder();
-				JTextPane theTextPane = addTab(f.getName()); 
-				ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 				Scanner scanner = new Scanner(f);
-				
-				System.out.println("File = " + f.getAbsolutePath());
-				theTextPane.setName(f.getAbsolutePath());
-				
-				int startPosition = 0 ;
+
 				
 				styleDocument.disableUpdaters(); 
 				while (scanner.hasNextLine()) {
 					
-					synchronized ( styleDocument) {
+					synchronized (styleDocument) {
 						
-					
-					
-						String lineIdented = styleDocument.indentLine(scanner.nextLine(),"")+ System.getProperty("line.separator");
+						String lineIdented = scanner.nextLine() + eof;
 						//contents.append();
 						//contents.append(System.getProperty("line.separator"));
 						try {
+							
 							if (styleDocument.getAutoIndent()) {
-								styleDocument.insertString( styleDocument.getLength(), lineIdented, null);
+								lineIdented = styleDocument.indentLine(lineIdented, "");
+								styleDocument.insertString(styleDocument.getLength(), lineIdented, null);
 							}
 							if (styleDocument.getColorize()) {
-								styleDocument.colorize(styleDocument.getLength()- lineIdented.length(),styleDocument.getLength());
+								styleDocument.colorize(styleDocument.getLength() - lineIdented.length(), styleDocument.getLength());
 							}
 						} catch (BadLocationException e) {
 							System.err.println("");

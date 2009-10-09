@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 4838 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4838
+//
+// <-- Short Description -->
+// bug in the completion (insertion)
+// load(SCIH[TAB]/macros)
+
+// <-- JVM NOT MANDATORY -->
+
+ilib_verbose(0);
+ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
+if ierr<>0 then pause, end
+ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
+if ierr<>0 then pause, end
+
+
+currentline = 'load(SCIH';
+r = completeline(currentline,'SCIHOME',getfilepartlevel(currentline),getpartlevel(currentline),%t,'/modules)');
+if r <> 'load(SCIHOME/modules)' then pause,end
