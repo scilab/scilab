@@ -207,6 +207,8 @@ static int gchar_no_echo(void);
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
 static void strip_blank(char *source);
 static int  translate(int ichar);
+static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max);
+static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max);
 
 /* function for console mode */
 static void enable_keypad_mode(void);
@@ -780,7 +782,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 	{
 		if (sizedictionaryFiles == 1)
 		{
-			char *new_line = completeLine(currentline,dictionaryFiles[0],filePattern,defaultPattern,TRUE);
+			char *new_line = completeLine(currentline,dictionaryFiles[0],filePattern,defaultPattern,TRUE,"");
 			if (new_line)
 			{
 				char buflinetmp[WK_BUF_SIZE + 1];
@@ -807,7 +809,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 			}
 			else if (common)
 			{
-				char *new_line = completeLine(currentline,common,filePattern,defaultPattern,TRUE);
+				char *new_line = completeLine(currentline,common,filePattern,defaultPattern,TRUE,"");
 				if (new_line)
 				{
 					char buflinetmp[WK_BUF_SIZE + 1];
@@ -881,7 +883,7 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 				if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
 				if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
 
-				new_line = completeLine(currentline, completionDictionary[0],NULL,defaultPattern,FALSE);
+				new_line = completeLine(currentline, completionDictionary[0],NULL,defaultPattern,FALSE,"");
 				if (new_line)
 				{
 					char buflinetmp[WK_BUF_SIZE + 1];
@@ -933,7 +935,7 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 				{
 					char *new_line = NULL;
 
-					new_line = completeLine(currentline, commonAll,NULL,defaultPattern,FALSE);
+					new_line = completeLine(currentline, commonAll,NULL,defaultPattern,FALSE, "");
 					if (new_line)
 					{
 						char buflinetmp[WK_BUF_SIZE + 1];
@@ -982,6 +984,34 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 	if (fileSearchedPattern) FREE(fileSearchedPattern);
 	if (SearchedPattern) FREE(SearchedPattern);
 }
+/*--------------------------------------------------------------------------*/
+static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
+{
+	char *line = NULL;
+	
+	line = strdup(wk_buf);
+	line[cursor] = '\0';
+	
+	return line;
+}
+/*--------------------------------------------------------------------------*/
+static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
+{
+	char *line = NULL;
+	
+	if (cursor != cursor_max)
+	{
+		line = strdup(&wk_buf[cursor]);
+		line[(cursor_max - cursor) + 1] = '\0';
+	}
+	else
+	{
+		line = strdup("");
+	}
+	return line;
+}
+/*--------------------------------------------------------------------------*/
+
 /***********************************************************************
  * backspace - move cursor n char to the left
  **********************************************************************/

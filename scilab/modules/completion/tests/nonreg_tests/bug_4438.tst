@@ -1,19 +1,18 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 4365 -->
+// <-- Non-regression test for bug 4838 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4365
+// http://bugzilla.scilab.org/show_bug.cgi?id=4838
 //
 // <-- Short Description -->
-// completion fails and returns a bad value if we try to use it on a path that doesn't exist 
-// cd SCI/modules/arnoldi/nonreg_tes[TAB]
-
+// bug in the completion (insertion)
+// load(SCIH[TAB]/macros)
 
 // <-- JVM NOT MANDATORY -->
 
@@ -23,6 +22,7 @@ if ierr<>0 then pause, end
 ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
 if ierr<>0 then pause, end
 
-currentline = 'cd SCI/modules/arnoldi/nonreg_tes';
-r = completeline(currentline,'nonreg_test_run',getfilepartlevel(currentline),getpartlevel(currentline),%f);
-if r <> currentline then pause,end
+
+currentline = 'load(SCIH';
+r = completeline(currentline,'SCIHOME',getfilepartlevel(currentline),getpartlevel(currentline),%t,'/modules)');
+if r <> 'load(SCIHOME/modules)' then pause,end
