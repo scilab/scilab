@@ -12,9 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
@@ -25,6 +24,7 @@ import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -50,7 +50,8 @@ public final class OpenAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**
@@ -79,6 +80,10 @@ public final class OpenAction extends DefaultAction {
 		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return;
 		}
-		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
+		if (getGraph(null) == null) { // Called from palettes 
+			Xcos.xcos(fc.getSelection()[0]);
+		} else {
+			((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
+		}
 	}
 }

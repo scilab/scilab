@@ -18,80 +18,44 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.GroupAction;
-import org.scilab.modules.graph.actions.RedoAction;
 import org.scilab.modules.graph.actions.UnGroupAction;
-import org.scilab.modules.graph.actions.UndoAction;
-import org.scilab.modules.graph.actions.ZoomInAction;
-import org.scilab.modules.graph.actions.ZoomOutAction;
 
 import com.mxgraph.swing.handler.mxKeyboardHandler;
-import com.mxgraph.swing.util.mxGraphActions;
 
 
 public class XcosShortCut extends mxKeyboardHandler {
 
-    private ScilabGraph component;
-    
-    public XcosShortCut(ScilabGraph component) {
-	super(component.getAsComponent());
-	this.component = component;
-    }
+	private ScilabGraph component;
 
-    /**
-     * Return JTree's input map.
-     */
-    protected InputMap getInputMap(int condition)
-    {
-	InputMap map = super.getInputMap(condition);
-
-	if (condition == JComponent.WHEN_FOCUSED && map != null)
-	{
-	    map.put(KeyStroke.getKeyStroke("control S"), "save");
-	    map.put(KeyStroke.getKeyStroke("control shift S"), "saveAs");
-	    map.put(KeyStroke.getKeyStroke("control N"), "new");
-	    map.put(KeyStroke.getKeyStroke("control O"), "open");
-
-	    map.put(KeyStroke.getKeyStroke("control G"), "group");
-	    map.put(KeyStroke.getKeyStroke("control shift G"), "ungroup");
-
-	    map.put(KeyStroke.getKeyStroke("control Z"), "undo");
-	    map.put(KeyStroke.getKeyStroke("control Y"), "redo");
-	    map.put(KeyStroke.getKeyStroke("control A"), "selectAll");
-	    map.put(KeyStroke.getKeyStroke("delete"), "deleteSelection");
-
-	    map.put(KeyStroke.getKeyStroke("control +"), "zoomIn");
-	    map.put(KeyStroke.getKeyStroke("control -"), "zoomOut");
+	public XcosShortCut(ScilabGraph component) {
+		super(component.getAsComponent());
+		this.component = component;
 	}
 
-	return map;
-    }   
-  
-    /**
-     * Return the mapping between JTree's input map and JGraph's actions.
-     */
-    protected ActionMap createActionMap()
-    {
-	ActionMap map = super.createActionMap();
-	map.put("save", new DefaultAction(component));
-	map.put("saveAs", new DefaultAction(component));
-	
-	map.put("new", new DefaultAction(component));
-	map.put("open", new DefaultAction(component));
-	
-	map.put("undo", new UndoAction(component));
-	map.put("redo", new RedoAction(component));
-	
-	map.put("group", new GroupAction(component));
-	map.put("ungroup", new UnGroupAction(component));
-	
-	map.put("selectAll", mxGraphActions.getSelectAllAction());
-	map.put("delete", mxGraphActions.getDeleteAction());
+	/**
+	 * Return JTree's input map.
+	 */
+	protected InputMap getInputMap(int condition) {
+		InputMap map = super.getInputMap(condition);
 
-	map.put("zoomIn", new ZoomInAction(component));
-	map.put("zoomOut", new ZoomOutAction(component));
-	return map;
-    } 
+		if (condition == JComponent.WHEN_FOCUSED && map != null) {
+			map.put(KeyStroke.getKeyStroke("control G"), "group");
+			map.put(KeyStroke.getKeyStroke("control shift G"), "ungroup");
+		}
+
+		return map;
+	}   
+
+	/**
+	 * Return the mapping between JTree's input map and JGraph's actions.
+	 */
+	protected ActionMap createActionMap() {
+		ActionMap map = super.createActionMap();
+
+		map.put("group", new GroupAction(component));
+		map.put("ungroup", new UnGroupAction(component));
+		return map;
+	} 
 
 }

@@ -16,8 +16,9 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 // disp("hdf5FileToSave = "+ hdf5FileToSave)
   
 // push some old scicos variable in environment. 
-  needcompile = [];
-  
+  needcompile = 0;
+  alreadyran = %f;
+   
 // define context
   import_from_hdf5(hdf5ContextFile);
   %scicos_context = struct();

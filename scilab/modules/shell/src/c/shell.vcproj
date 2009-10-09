@@ -586,6 +586,10 @@
 				Name="Import"
 				>
 				<File
+					RelativePath=".\fileio_Import.def"
+					>
+				</File>
+				<File
 					RelativePath=".\libjvm_Import.def"
 					>
 				</File>

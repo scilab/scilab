@@ -72,9 +72,9 @@ public class XcosMessages {
     
     /** Help menu */
     public static final String HELP = Messages.gettext("Help");
-    public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos documentation");
-    public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block documentation");
-    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos demonstrations");
+    public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
+    public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
+    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
     
     /** PALETTES */
@@ -108,5 +108,8 @@ public class XcosMessages {
               + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
+    public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
+    public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
+    public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
 
 }

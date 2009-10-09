@@ -174,13 +174,14 @@ public";
 char *getCommonPart(char **dictionnary, int sizeDictionnary);
 
 /* JavaDoc */
-%javamethodmodifiers completelineforjava(char *currentLine, char *stringToAdd, BOOL isFile) "
+%javamethodmodifiers completelineforjava(char *currentLine, char *stringToAdd, BOOL isFile, char *postCaretLine) "
 /**
 * complete line
-* @param[in] current line
+* @param[in] current line (before caret)
 * @param[in] line to add
 * @param[in] type of line to add
+* @param[in] line after caret
 * @return modified line 
 */
 public";
-char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile);
+char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile, char *postCaretLine);

@@ -23,17 +23,36 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class QuitAction extends DefaultAction {
+/**
+ * Management of exit of Xcos
+ * @author Vincent COUVERT
+ */
+public final class QuitAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Xcos diagram
+	 */
 	private QuitAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.QUIT, scilabGraph);
 	}
 
+	/**
+	 * Create menu for the Scilab Graph menubar
+	 * @param scilabGraph associated Xcos diagram
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.QUIT, null, new QuitAction(scilabGraph),
 				KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 	
+	/**
+	 * Associated action
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
 		Xcos.closeSession();
 	}

@@ -12,9 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
@@ -22,20 +21,50 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class NewDiagramAction extends DefaultAction {
+/**
+ * New Diagram creation
+ * @author Vincent COUVERT
+ */
+public final class NewDiagramAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Scilab Graph
+	 */
 	private NewDiagramAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.NEW_DIAGRAM, scilabGraph);
 	}
 
+	/**
+	 * Create a menu item for the graph menubar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.NEW_DIAGRAM, null, new NewDiagramAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.NEW_DIAGRAM, null, new NewDiagramAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
+	/**
+	 * Create a button for the graph toolbar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.NEW_DIAGRAM, "document-new.png", new NewDiagramAction(scilabGraph));
+	}
+	
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		Xcos.CreateAndShowGui();
 	}
 
 }

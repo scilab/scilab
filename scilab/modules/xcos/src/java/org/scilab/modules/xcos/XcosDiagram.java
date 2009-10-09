@@ -489,6 +489,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Choose a filename
 	FileChooser fc = ScilabFileChooser.createFileChooser();
+	fc.setTitle(XcosMessages.SAVE_AS);
 	fc.setMultipleSelection(false);
 	fc.displayAndWait();
 
