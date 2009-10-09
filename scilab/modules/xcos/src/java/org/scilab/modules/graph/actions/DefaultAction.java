@@ -72,9 +72,9 @@ public class DefaultAction extends CallBack {
 			return this.scilabGraph;
 		}
 		
-		//if (e == null) {
-		//	return null;
-		//}
+		if (e == null) {
+			return null;
+		}
 
 		if (e.getSource() instanceof Component) {
 			Component component = (Component) e.getSource();
