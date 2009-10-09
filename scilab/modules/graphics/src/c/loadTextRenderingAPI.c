@@ -11,6 +11,7 @@
  */
 #include "loadTextRenderingAPI.h"
 #include "BOOL.h"
+#include "loadOnUseClassPath.h"
 
 /* Variable to store if you have already loaded or not the Latex 
  * dependencies */
