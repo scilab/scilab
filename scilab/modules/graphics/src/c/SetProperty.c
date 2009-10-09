@@ -50,6 +50,7 @@
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
+#include "loadTextRenderingAPI.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -58,13 +59,6 @@
 
 #define MAX_MARK_STYLE 14
 #define MAX_MARK_STYLE_S "14"
-
-/* Variable to store if you have already loaded or not the Latex 
- * dependencies */
-static BOOL loadedDepLatex = FALSE;
-/* Variable to store if you have already loaded or not the MathML
- * dependencies */
-static BOOL loadedDepMathML = FALSE;
 
 /*---------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
@@ -1038,47 +1032,6 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
   return 0;
 }
 
-/**
- * Taken a Matrix of string, we check if any char is starting by 
- * $ or < which are the two tags for, respectively, latex & MathML
- *
- * @param text  the matrix of string
- * @param nbRow the number of row
- * @param nbCol  the number of col
- */
-static void loadTextRenderingAPIifNeeded(char **text, int nbRow, int nbCol)
-{
-
-	int i;
-
-	/* We already loaded both, don't need to check again */
-	if (loadedDepLatex && loadedDepMathML) 
-	{
-		return; 
-	}
-
-
-	/* For each element in the array, look if the text starts by:
-	 * '$' for latex
-	 * '<' for MathML
-	 */
-	for ( i = 0 ; i < nbRow * nbCol ; i++ )
-	{
-		if (text[i][0]=='$' && !loadedDepLatex) /* One of the string starts by a $. This might be a Latex expression */
-		{
-			loadOnUseClassPath("graphics_latex_textrendering");
-			loadedDepLatex=TRUE;
-		}
-
-		if (text[i][0]=='<' && !loadedDepMathML) /* One of the string starts by a <. This might be a MathML expression */
-		{
-			loadOnUseClassPath("graphics_mathml_textrendering");
-			loadedDepMathML=TRUE;
-		}
-	}
-
-}
-
 /**sciSetText
  * Sets the Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
@@ -1089,8 +1042,11 @@ static void loadTextRenderingAPIifNeeded(char **text, int nbRow, int nbCol)
  */
 int sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol)
 {
-	loadTextRenderingAPIifNeeded(text, nbRow, nbCol);
-  switch (sciGetEntityType (pobj))
+
+/* Check if we should load LaTex / MathML Java libraries */
+	loadTextRenderingAPI(text, nbRow, nbCol);
+
+	switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
       deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;
