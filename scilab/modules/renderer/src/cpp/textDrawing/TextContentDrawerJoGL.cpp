@@ -132,8 +132,8 @@ void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3]
   {
     getTextContentDrawerJavaMapper()->setBoxDrawingParameters(sciGetIsLine(pText) == TRUE,
                                                               sciGetIsFilled(pText) == TRUE,
-                                                              sciGetGraphicContext(pText)->foregroundcolor,
-                                                              sciGetGraphicContext(pText)->backgroundcolor);
+                                                              sciGetForegroundColor(pText),
+                                                              sciGetBackgroundColor(pText));
   }
   else
   {

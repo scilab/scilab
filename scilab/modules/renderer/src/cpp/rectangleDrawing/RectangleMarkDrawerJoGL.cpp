@@ -42,8 +42,8 @@ void RectangleMarkDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pObj)->markbackground,
-                                               sciGetGraphicContext(pObj)->markforeground,
+  getMarkDrawerJavaMapper()->setMarkParameters(sciGetMarkBackgroundColor(pObj),
+                                               sciGetMarkForegroundColor(pObj),
                                                sciGetMarkSizeUnit(pObj),
                                                sciGetMarkSize(pObj),
                                                sciGetMarkStyle(pObj));
