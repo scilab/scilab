@@ -72,9 +72,9 @@ public class XcosMessages {
     
     /** Help menu */
     public static final String HELP = Messages.gettext("Help");
-    public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos documentation");
-    public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block documentation");
-    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos demonstrations");
+    public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
+    public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
+    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
     
     /** PALETTES */

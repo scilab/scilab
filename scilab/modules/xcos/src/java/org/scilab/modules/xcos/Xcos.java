@@ -118,6 +118,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				
 				palette.setCallback(new ClosePalettesAction(null));
 				
+				/** Create the menubar */
 				MenuBar palMenuBar = ScilabMenuBar.createMenuBar();
 				palette.addMenuBar(palMenuBar);
 				
@@ -128,6 +129,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 				
 				palMenu.add(ClosePalettesAction.createMenu(null));
 				
+				/** Create the toolbar */
+				ToolBar palToolbar = ScilabToolBar.createToolBar();
+				palette.addToolBar(palToolbar);
+				palToolbar.add(NewDiagramAction.createButton(null));
+				palToolbar.add(OpenAction.createButton(null));
+				
+				/** Create the infobar */
 				palette.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 				
 				palWin.addTab(palette);
@@ -418,7 +426,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Simulation menu */
 		Menu simulate = ScilabMenu.createMenu();
 		simulate.setText(XcosMessages.SIMULATION);
-		view.setMnemonic('S');
+		simulate.setMnemonic('S');
 		menuBar.add(simulate);
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
@@ -452,6 +460,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static ToolBar createToolBar(ScilabGraph scilabGraph) {
     	ToolBar toolBar = ScilabToolBar.createToolBar();
     	
+    	toolBar.add(NewDiagramAction.createButton(scilabGraph));
+
     	toolBar.add(OpenAction.createButton(scilabGraph));
     	toolBar.add(SaveAction.createButton(scilabGraph));
 

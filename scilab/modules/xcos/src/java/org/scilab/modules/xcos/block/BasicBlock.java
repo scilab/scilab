@@ -716,18 +716,32 @@ public class BasicBlock extends mxCell {
     
     }
 
-    public void openBlockSettings() {
+    public void openBlockSettings(String context) {
 	final File tempOutput;
 	final File tempInput;
+	final File tempContext;
 	try {
 	    tempOutput = File.createTempFile("xcos",".hdf5");
 	    tempInput = File.createTempFile("xcos",".hdf5");
+	    tempContext = File.createTempFile("xcos",".hdf5");
 	    tempOutput.delete();
 	    tempInput.delete();
+	    tempContext.delete();
+	    // Write scs_m
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", getAsScilabObj());
 	    H5Write.closeFile(file_id);
-	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\", \""+tempInput.getAbsolutePath()+"\", "+getInterfaceFunctionName()+", \"set\");");
+	    
+	    // Write context
+	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
+	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
+	    H5Write.closeFile(context_file_id);
+	    
+	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
+		    ", \""+tempInput.getAbsolutePath()+"\""+
+		    ", "+getInterfaceFunctionName()+
+		    ", \"set\""+
+		    ", \""+tempContext.getAbsolutePath()+"\");");
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(tempInput.getAbsolutePath());
