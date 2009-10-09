@@ -69,6 +69,8 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 	int lencurrentline = 0;
 	int lenstringToAddAtTheEnd = 0;
 
+	char *pos = NULL;
+
 	int i = 0;
 	int j = 0;
 
@@ -159,13 +161,26 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 			if (dir) {FREE(dir); dir = NULL;}
 			if (name) {FREE(name); name = NULL;}
 			if (ext) {FREE(ext); ext = NULL;}
-			
 		}
 	}
 
 	lenstringToAdd = (int)strlen(stringToAdd);
 
 	result = strrstr(currentline, stringToAdd);
+
+	pos = &currentline[lencurrentline - lenstringToAdd];
+	stringToAddTmp = strdup(stringToAdd);
+	stringToAddTmp[lenstringToAdd] = 0;
+	if (stringToAddTmp[0] != 0)
+	{
+		if (strcmp(pos, stringToAddTmp) != 0)
+		{
+			result = NULL;
+		}
+	}
+	FREE(stringToAddTmp);
+	stringToAddTmp = NULL;
+
 	if (result)
 	{
 		j = lenstringToAdd;
@@ -199,34 +214,27 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 				stringToAddTmp = NULL;
 			}
 		}
+
+		if (stringToAddTmp)
+		{
+			FREE(stringToAddTmp);
+			stringToAddTmp = NULL;
+		}
 	}
 
+	pos = &currentline[lencurrentline - j];
+	stringToAddTmp = strdup(stringToAdd);
+	stringToAddTmp[j] = 0;
+	if (stringToAddTmp[0] != 0)
 	{
-		char *pos = &currentline[lencurrentline - j];
-		stringToAddTmp = strdup(stringToAdd);
-		stringToAddTmp[j] = 0;
-		if (stringToAddTmp[0] != 0)
+		if (strcmp(pos, stringToAddTmp) == 0)
 		{
-			if (strcmp(pos, stringToAddTmp) == 0)
-			{
-				lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
-				new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
-				strcpy(new_line, currentline);
-				new_line[lencurrentline - j] = 0;
-				strcat(new_line, stringToAdd);
-				strcat(new_line, stringToAddAtTheEnd);
-			}
-			else
-			{
-				lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
-				new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
-				if (new_line)
-				{
-					strcpy(new_line, currentline);
-					strcat(new_line, stringToAdd);
-					strcat(new_line, stringToAddAtTheEnd);
-				}
-			}
+			lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+			new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+			strcpy(new_line, currentline);
+			new_line[lencurrentline - j] = 0;
+			strcat(new_line, stringToAdd);
+			strcat(new_line, stringToAddAtTheEnd);
 		}
 		else
 		{
@@ -240,6 +248,24 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 			}
 		}
 	}
+	else
+	{
+		lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+		new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+		if (new_line)
+		{
+			strcpy(new_line, currentline);
+			strcat(new_line, stringToAdd);
+			strcat(new_line, stringToAddAtTheEnd);
+		}
+	}
+
+	if (stringToAddTmp)
+	{
+		FREE(stringToAddTmp);
+		stringToAddTmp = NULL;
+	}
+
 	return new_line;
 }
 /*--------------------------------------------------------------------------*/
