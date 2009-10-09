@@ -990,19 +990,19 @@ static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
 	char *line = NULL;
 	
 	line = strdup(wk_buf);
-	line[cursor] = '\0';
+	line[*cursor] = '\0';
 	
 	return line;
 }
 /*--------------------------------------------------------------------------*/
-static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
+static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
 {
 	char *line = NULL;
 	
-	if (cursor != cursor_max)
+	if (*cursor != *cursor_max)
 	{
-		line = strdup(&wk_buf[cursor]);
-		line[(cursor_max - cursor) + 1] = '\0';
+		line = strdup(&wk_buf[*cursor]);
+		line[(*cursor_max - *cursor) + 1] = '\0';
 	}
 	else
 	{
