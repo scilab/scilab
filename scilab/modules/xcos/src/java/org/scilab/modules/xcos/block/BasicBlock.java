@@ -658,9 +658,9 @@ public class BasicBlock extends mxCell {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
-	String[][] data = new String[1][ports.size()];
+	String[][] data = new String[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getType().getAsString();
+	    data[i][0] = ((BasicPort) ports.get(i)).getType().getAsString();
 	}
 
 	return new ScilabString(data);

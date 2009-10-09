@@ -599,6 +599,7 @@ public class XcosDiagram extends ScilabGraph {
 	setRealTimeScaling((Double) properties.get("realTimeScaling"));
 	setSolver((Double) properties.get("solver"));
 	setMaximumStepSize((Double) properties.get("maximumStepSize"));
+	setContext((String) properties.get("context"));
 
 	getModel().beginUpdate();
 	for (int i = 0; i < allBlocks.size(); ++i) {
