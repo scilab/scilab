@@ -28,17 +28,17 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 //** 8 Aug 2007 : improved version 
 
   win = %win;
-
+  K=find(Select(:,2)==%win)
   //** Fiter out the multiple object selected / not in current window cases
-  if Select==[] then //** if no object is already selected
+  if K==[] then //** if no object is already selected
     xc  = %pt(1); //** acquire the last "cosclick" position and
     yc  = %pt(2);
     %pt = []    ; //** look for a object
     K = getblocklink(scs_m,[xc;yc]) ;
   else
-    K   = Select(:,1)';
+    K   = Select(K,1)';
     %pt = [] ;
-    if size(K,'*')>1 | %win<>Select(1,2) then
+    if size(K,'*')>1  then
       messagebox(_("Only one block can be selected in current window for this operation."),'modal')
       Cmenu=[]; %pt=[]; return ; //** ---> EXIT
     end

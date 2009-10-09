@@ -22,18 +22,18 @@
 function scs_m = do_ident(scs_m)
 
 //** Alan 21/12/06 : use of objects swap in gh_curwin.children.children()
-
-  if Select==[] then //** if no object are selected,
+  K=find(Select(:,2)==%win)
+  if K==[] then //** if no object are selected,
     xc = %pt(1);     //** take the last "cosclic" mouse position  and
     yc = %pt(2)  ;
-    k = getobj(scs_m,[xc;yc]) ; //** fook for an object
+    k = getobj(scs_m,[xc;yc]) ; //** look for an object
     if k==[] then return,end  ; //** if no object --> EXIT
   else
-    k = Select(:,1)'; %pt=[]  ; //** ... otherwise take the object
+    k = Select(K,1)'; %pt=[]  ; //** ... otherwise take the object
   end
 
   //** Filter out the "mutiple object selected" case
-  if size(k,'*')>1 | %win<>Select(1,2) then
+  if size(k,'*')>1
     messagebox(_("Only one block can be selected in current window for this operation."),"modal")
     Cmenu=[]; %pt=[]; return
   end
