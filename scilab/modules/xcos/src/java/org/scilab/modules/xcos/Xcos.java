@@ -426,7 +426,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Simulation menu */
 		Menu simulate = ScilabMenu.createMenu();
 		simulate.setText(XcosMessages.SIMULATION);
-		view.setMnemonic('S');
+		simulate.setMnemonic('S');
 		menuBar.add(simulate);
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
