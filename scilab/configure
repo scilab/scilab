@@ -11549,7 +11549,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used 
 
 				LDFLAGS_save=$LDFLAGS
 				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(top_srcdir)/thirdparty -L$(top_srcdir)/bin'
+				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(SCI_SRCDIR)/thirdparty/ -L$(SCI_SRCDIR)/bin/'
 				{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl" >&5
 $as_echo_n "checking for glTexParameterf in -ljogl... " >&6; }
 if test "${ac_cv_lib_jogl_glTexParameterf+set}" = set; then :
@@ -11669,7 +11669,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt
 
 				LDFLAGS_save=$LDFLAGS
 				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$(top_srcdir)/thirdparty/ -L$(top_srcdir)/bin/'
+				LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$(SCI_SRCDIR)/thirdparty/ -L$(SCI_SRCDIR)/bin/'
 				if test "$MACOSX" = 1; then
 				   symbol="Java_com_sun_gluegen_runtime_MacOSXDynamicLinkerImpl_dlclose__J"
 				else
@@ -15826,7 +15826,7 @@ fi
 
    LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
-   LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(top_srcdir)/bin -L$(top_srcdir)/thirdparty  -lpthread'
+   LDFLAGS='-L/usr/lib/jni -L/usr/lib64/jni/ -L$(SCI_SRCDIR)/bin/ -L$(SCI_SRCDIR)/thirdparty/  -lpthread'
    # -lpthread because of packaging bug in jhdf5
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for h5JNIFatalError in -ljhdf5" >&5
 $as_echo_n "checking for h5JNIFatalError in -ljhdf5... " >&6; }
