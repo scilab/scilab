@@ -60,19 +60,18 @@ opt = optimset('Display','iter' , 'MaxIter' , 10 );
 % Sample use of an output function
 options = optimset('OutputFcn', @outfun);
 hold on
-objfun=@(x) exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
-[x fval] = fminsearch(objfun, [-1 1], options)
+[x fval] = fminsearch(objfun, [-1.2, 1], options)
 hold off
 
 % Sample use of a plot function : optimplotfval
 options = optimset('PlotFcns',@optimplotfval);
-[x ffinal] = fminsearch(@onehump,[2,1],options)
+[x ffinal] = fminsearch(banana,[-1.2, 1],options)
 
 % Sample use of a plot function : optimplotx
 options = optimset('PlotFcns',@optimplotx);
-[x ffinal] = fminsearch(@onehump,[2,1],options)
+[x ffinal] = fminsearch(banana,[-1.2, 1],options)
 
 % Sample use of a plot function : optimplotfunccount
 options = optimset('PlotFcns',@optimplotfunccount);
-[x ffinal] = fminsearch(@onehump,[2,1],options)
+[x ffinal] = fminsearch(banana,[-1.2, 1],options)
 

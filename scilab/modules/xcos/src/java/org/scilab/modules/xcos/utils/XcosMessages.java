@@ -108,5 +108,8 @@ public class XcosMessages {
               + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
+    public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
+    public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
+    public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
 
 }

@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 4421 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4421
+//
+// <-- Short Description -->
+// bug with the completion
+// <-- JVM NOT MANDATORY -->
+ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
+cd TMPDIR;
+mkdir('scicoinor');
+mkdir('dir1');
+cd (TMPDIR+'/dir1');
+mkdir('dir2');
+cd (TMPDIR+'/dir1/dir2');
+currentline = 'cd ../../scicoi';
+r = completeline(currentline,'scicoinor',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd ../../scicoinor' then bugmes();quit;end

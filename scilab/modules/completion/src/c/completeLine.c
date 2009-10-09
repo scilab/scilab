@@ -17,105 +17,255 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "getPartLine.h"
+#include "splitpath.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 static char * strrstr(char *string, char *find)
 {
-	size_t stringlen, findlen;
-	char *cp = NULL;
+	char   *cp = NULL;
 
-	findlen = strlen(find);
-	stringlen = strlen(string);
-	if (findlen > stringlen)
-		return NULL;
+	if (string == NULL) return NULL;
 
-	for (cp = string + stringlen - findlen; cp >= string; cp--)
-		if (strncmp(cp, find, findlen) == 0)
-			return cp;
+	cp = string + strlen(string);
+	if (*find != '\0')
+	{
+		if (*string == '\0')
+		{
+			cp = NULL;
+		}
+		else
+		{ 
+			int len = strlen(find + 1);
 
-	return NULL;
+			do 
+			{  
+				while (*--cp != *find && cp > string);
+
+				if (*cp == *find && strncmp(cp+1, find+1, len) == 0) break;
+
+				if (cp == string)
+				{ 
+					cp = NULL;
+					break;
+				}
+			}
+			while (TRUE);
+		}
+	}
+	return cp;
 }
 /*--------------------------------------------------------------------------*/
 char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
-				   char *defaultPattern,BOOL stringToAddIsPath)
+				   char *defaultPattern,BOOL stringToAddIsPath, char *postCaretLine)
 {
 	char *new_line = NULL;
+	int lengthNewLine = 0;
 
-	if (stringToAddIsPath)
+	char *stringToAddTmp = NULL;
+	char *stringToAddAtTheEnd = NULL;
+
+	int lenstringToAdd = 0;
+	int lencurrentline = 0;
+	int lenstringToAddAtTheEnd = 0;
+
+	char *pos = NULL;
+
+	int i = 0;
+	int j = 0;
+
+	char *result = NULL;
+
+	if (currentline == NULL) 
 	{
-		char *ptr_strrchar1 = NULL;
+		return  strdup("");
+	}
 
-		ptr_strrchar1 = strstr(stringToAdd, defaultPattern);
+	lencurrentline = (int)strlen(currentline);
 
-		if (ptr_strrchar1) 
+	if (postCaretLine == NULL)
+	{
+		stringToAddAtTheEnd = strdup("");
+		lenstringToAddAtTheEnd = strlen(stringToAddAtTheEnd);
+	}
+	else
+	{
+		stringToAddAtTheEnd = strdup(postCaretLine);
+		lenstringToAddAtTheEnd = strlen(stringToAddAtTheEnd);
+	}
+
+	if ( (stringToAdd == NULL)  || (strcmp(stringToAdd, "") == 0) )
+	{
+		lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
+		new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
+		if (new_line)
 		{
-			char *ptr_strrchar2 = NULL;
+			strcpy(new_line, currentline);
+			strcat(new_line, stringToAddAtTheEnd);
+		}
+		return new_line;
+	}
 
-			if (strcmp(defaultPattern,"") == 0)
+	if (stringToAddIsPath == FALSE)
+	{
+		char *filePatternBuf = NULL;
+		BOOL bfilePatternBuf = FALSE;
+
+		if (filePattern != NULL)
+		{
+			filePatternBuf = filePattern;
+		}
+		else
+		{
+			filePatternBuf = getFilePartLevel(currentline);
+			bfilePatternBuf = TRUE;
+		}
+
+		if (filePatternBuf)
+		{
+			char* drv = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* dir = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* name = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* ext = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+
+			splitpath(filePatternBuf,TRUE, drv,dir, name, ext);
+
+			if (bfilePatternBuf)
 			{
-				if ( ((filePattern[strlen(filePattern)-1] == '\\') || (filePattern[strlen(filePattern)-1] == '/')) &&  ((int)strlen(filePattern) > 1) )
-				{
-					ptr_strrchar2 = strrstr(currentline, defaultPattern);
-				}
-				else ptr_strrchar2 = strrstr(currentline, filePattern);
+				FREE(filePatternBuf);
+				filePatternBuf = NULL;
+				bfilePatternBuf = FALSE;
 			}
-			else ptr_strrchar2 = strrstr(currentline, defaultPattern);
 
-			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(stringToAdd) + 1));
-
-			if (new_line)
+			if ( strcmp(drv,"") || strcmp(dir,"") )
 			{
-				int l = 0;
+				/* bug 4365 */
+				/*cd SCI/modules/arnoldi/nonreg_tes */
 
-				if (ptr_strrchar2) l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
-				else l = (int)strlen(currentline);
+				if (drv) {FREE(drv); drv = NULL;}
+				if (dir) {FREE(dir); dir = NULL;}
+				if (name) {FREE(name); name = NULL;}
+				if (ext) {FREE(ext); ext = NULL;}
 
-				if (l < 0) l = 0 - l;
-
-				strncpy(new_line,currentline, l);
-				new_line[l] = '\0';
-
-				/* special case with files begin with a '.' */
-				if (filePattern[0] == '.') 
+				lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
+				new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
+				if (new_line)
 				{
-					/* bug 4838 cd ../et[tab] */
-					if ((int)strlen(filePattern)> 1)
+					strcpy(new_line, currentline);
+					strcat(new_line, stringToAddAtTheEnd);
+				}
+				return new_line;
+			}
+
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
+		}
+	}
+
+	lenstringToAdd = (int)strlen(stringToAdd);
+
+	result = strrstr(currentline, stringToAdd);
+
+	pos = &currentline[lencurrentline - lenstringToAdd];
+	stringToAddTmp = strdup(stringToAdd);
+	stringToAddTmp[lenstringToAdd] = 0;
+	if (stringToAddTmp[0] != 0)
+	{
+		if (strcmp(pos, stringToAddTmp) != 0)
+		{
+			result = NULL;
+		}
+	}
+	FREE(stringToAddTmp);
+	stringToAddTmp = NULL;
+
+	if (result)
+	{
+		j = lenstringToAdd;
+	}
+	else
+	{
+		for(i = 0; i < lenstringToAdd; i++)
+		{
+			stringToAddTmp = (char*)MALLOC((i+1)*sizeof(char));;
+			if (stringToAddTmp)
+			{
+				strncpy(stringToAddTmp,stringToAdd,i);
+				stringToAddTmp[i] = 0;
+
+				if (stringToAddTmp[0] != 0)
+				{
+					result = strrstr(currentline, stringToAddTmp);
+					if (result)
 					{
-						if (filePattern[1] == '.')
-						{
-							strcat(new_line, ptr_strrchar1);
-						}
-						else
-						{
-							strcat(new_line, &(stringToAdd[1]));
-						}
+						j = i;
 					}
 					else
 					{
-						strcat(new_line, &(stringToAdd[1]));
+						FREE(stringToAddTmp);
+						stringToAddTmp = NULL;
+						break;
 					}
-					
 				}
-				else strcat(new_line, ptr_strrchar1);
+
+				FREE(stringToAddTmp);
+				stringToAddTmp = NULL;
+			}
+		}
+
+		if (stringToAddTmp)
+		{
+			FREE(stringToAddTmp);
+			stringToAddTmp = NULL;
+		}
+	}
+
+	pos = &currentline[lencurrentline - j];
+	stringToAddTmp = strdup(stringToAdd);
+	stringToAddTmp[j] = 0;
+	if (stringToAddTmp[0] != 0)
+	{
+		if (strcmp(pos, stringToAddTmp) == 0)
+		{
+			lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+			new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+			strcpy(new_line, currentline);
+			new_line[lencurrentline - j] = 0;
+			strcat(new_line, stringToAdd);
+			strcat(new_line, stringToAddAtTheEnd);
+		}
+		else
+		{
+			lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+			new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+			if (new_line)
+			{
+				strcpy(new_line, currentline);
+				strcat(new_line, stringToAdd);
+				strcat(new_line, stringToAddAtTheEnd);
 			}
 		}
 	}
 	else
 	{
-		if ( (int)strlen(defaultPattern) < (int)strlen(stringToAdd) )
-		{	
-			char *partResult =  &stringToAdd[(int)strlen(defaultPattern)];
-			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
-			if (new_line)
-			{
-				strcpy(new_line, currentline);
-				strcat(new_line, partResult);
-			}
-		}
-		else
+		lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+		new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+		if (new_line)
 		{
-			new_line = strdup(currentline);
+			strcpy(new_line, currentline);
+			strcat(new_line, stringToAdd);
+			strcat(new_line, stringToAddAtTheEnd);
 		}
 	}
+
+	if (stringToAddTmp)
+	{
+		FREE(stringToAddTmp);
+		stringToAddTmp = NULL;
+	}
+
 	return new_line;
 }
 /*--------------------------------------------------------------------------*/

@@ -43,13 +43,13 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = banana (x)
+function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
 // Test basic use without parameters
 //
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] );
 assert_close ( x , [1.0   1.0], 1e-4 );
 assert_close ( fval , 0.0 , 1e-4 );
 assert_equal ( exitflag , 1 );
@@ -71,7 +71,7 @@ assert_equal ( computed , expected );
 // Check that tolerance on X is correctly taken into account
 //
 opt = optimset ( "TolX" , 1.e-2 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-2 );
 assert_close ( fval , 0.0 , 1e-4 );
 assert_equal ( exitflag , 1 );
@@ -81,7 +81,7 @@ assert_equal ( output.funcCount , 130 );
 // Check that tolerance on F is correctly taken into account
 //
 opt = optimset ( "TolFun" , 1.e-10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-4 );
 assert_close ( fval , 0.0 , 1e-2 );
 assert_equal ( exitflag , 1 );
@@ -91,7 +91,7 @@ assert_equal ( output.funcCount , 168 );
 // Check that maximum number of iterations is correctly taken into account
 //
 opt = optimset ( "MaxIter" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
@@ -101,7 +101,7 @@ assert_equal ( output.funcCount , 21 );
 // Check that maximum number of function evaluations is correctly taken into account
 //
 opt = optimset ( "MaxFunEvals" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
@@ -111,7 +111,7 @@ assert_equal ( output.funcCount , 11 );
 // Check that Display is correctly used in mode "final"
 //
 opt = optimset ( "Display" , "final" );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-4 );
 assert_close ( fval , 0.0 , 1.e-4 );
 assert_equal ( exitflag , 1 );
@@ -121,7 +121,7 @@ assert_equal ( output.funcCount , 159 );
 // Check that Display is correctly used in mode "iter"
 //
 opt = optimset ( "Display" , "iter" );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-4 );
 assert_close ( fval , 0.0 , 1.e-4 );
 assert_equal ( exitflag , 1 );
@@ -131,7 +131,7 @@ assert_equal ( output.funcCount , 159 );
 // Check that Display is correctly used in mode "off" (no message at all)
 //
 opt = optimset ( "Display" , "off" );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-4 );
 assert_close ( fval , 0.0 , 1.e-4 );
 assert_equal ( exitflag , 1 );
@@ -141,7 +141,7 @@ assert_equal ( output.funcCount , 159 );
 // Check that Display is correctly used in mode "notify" (display only problem messages)
 //
 opt = optimset ( "Display" , "notify" );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e-4 );
 assert_close ( fval , 0.0 , 1.e-4 );
 assert_equal ( exitflag , 1 );
@@ -151,7 +151,7 @@ assert_equal ( output.funcCount , 159 );
 // Check that Display is correctly used in mode "off" (no message at all), when there is a maximum number of iterations reached
 //
 opt = optimset ( "Display" , "off" , "MaxIter" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
@@ -161,7 +161,7 @@ assert_equal ( output.funcCount , 21 );
 // Check that Display is correctly used in mode "notify" (display only problem messages), when there is a maximum number of iterations reached
 //
 opt = optimset ( "Display" , "notify" , "MaxIter" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
@@ -171,7 +171,7 @@ assert_equal ( output.funcCount , 21 );
 // Check that Display is correctly used in mode "iter", when there is a maximum number of iterations reached
 //
 opt = optimset ( "Display" , "iter" , "MaxIter" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
@@ -181,18 +181,13 @@ assert_equal ( output.funcCount , 21 );
 // Check that Display is correctly used in mode "final", when there is a maximum number of iterations reached
 //
 opt = optimset ( "Display" , "final" , "MaxIter" , 10 );
-[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 assert_close ( x , [1.0 1.0], 1.e1 );
 assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
 assert_equal ( output.iterations , 10 );
 assert_equal ( output.funcCount , 21 );
-//
-// Define a new objective function
-//
-function f = objfun ( x ) 
-  f = exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
-endfunction
+
 //
 // Use output function
 //
@@ -212,7 +207,7 @@ function outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
-[x fval] = fminsearch ( objfun , [-1 1] , opt );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 close();
 //
 // Use several output functions
@@ -229,7 +224,7 @@ myfunctions = list ( outfun , outfun2 );
 fig1 = scf(1000);
 fig2 = scf(1001);
 opt = optimset ( "OutputFcn" , myfunctions );
-[x fval] = fminsearch ( objfun , [-1 1] , opt );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 close(fig1);
 close(fig2);
 //
@@ -252,7 +247,7 @@ function plotfun ( x , optimValues , state )
   plot(x(1),x(2),'.');
 endfunction
 opt = optimset ( "PlotFcns" , plotfun);
-[x fval] = fminsearch ( objfun , [-1 1] , opt );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 close();
 //
 // Use several plot functions
@@ -269,18 +264,26 @@ myfunctions = list ( plotfun , plotfun2 );
 fig1 = scf(1000);
 fig2 = scf(1001);
 opt = optimset ( "PlotFcns" , myfunctions );
-[x fval] = fminsearch ( objfun , [-1 1] , opt );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 close(fig1);
 close(fig2);
 //
 // Use optimplotfval plot function
 //
-function f = onehump ( x )
-  r = x(1)^2 + x(2)^2;
-  s = exp(-r);
-  f = x(1)*s+r/20;
-endfunction
 opt = optimset ( "PlotFcns" , optimplotfval );
-[x fval] = fminsearch ( onehump , [2 1] , opt );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use optimplotx plot function
+//
+opt = optimset ( "PlotFcns" , optimplotx );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use optimplotfunccount plot function
+//
+opt = optimset ( "PlotFcns" , optimplotfunccount );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
 
 
