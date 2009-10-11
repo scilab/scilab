@@ -8,6 +8,8 @@ Improvements:
 
 * Portugues do Brazil Localization added (Thanks Daniel de Souza Grilo and others)
 
+* Japanese localization added (Thanks Hiroshi Saito)
+
 * More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
@@ -66,7 +68,10 @@ Compilation:
 		  ncurses.h, term.h, and termcap.h.
 		- Large amounts of cleanup of the PVM configure code (Closes: #4151)
 
-* automake version changed (1.10.1 => 1.10.2)
+* improve detection of build/run environnement under GNU/Linux Debian under
+  arm, armel, mips & mipsel
+
+* automake version changed (1.10.1 => 1.11)
 
 * autoconf version changed (2.63 => 2.64)
 
