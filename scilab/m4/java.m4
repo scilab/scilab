@@ -425,6 +425,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
+		  armv4l|armv5tel)
+		  machine=arm
+		  ;;
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
 		  ;;
