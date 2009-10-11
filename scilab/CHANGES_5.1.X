@@ -260,7 +260,15 @@ Bug fixes:
 
  * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
 
+ * bug 4429 fixed - Use hidden_axes instead of hidden_axis
 
+ * bug 4396 fixed - In Plot2d, the nax option can receive -1 for number of ticks, it's mean autoticks
+
+ * bug 4394 fixed - Add 'origin' as position for X and Y axes
+
+ * bug 4431 fixed - xsegs() accept z argument
+
+ * bug 4826 fixed - The type of the 'dims' entry of an hypermat is not always the same.
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
