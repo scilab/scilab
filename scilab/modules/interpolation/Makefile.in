@@ -108,7 +108,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_etcdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/interpolation/Makefile.in
 	"$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciinterpolation_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/interpolation/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciinterpolation_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -163,6 +168,10 @@ DIST_SOURCES = $(libsciinterpolation_la_SOURCES)
 DATA = $(libsciinterpolation_la_etc_DATA) \
 	$(libsciinterpolation_la_root_DATA) \
 	$(libsciinterpolation_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/interpolation/Makefile.in
+=======
+HEADERS = $(libsciinterpolation_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/interpolation/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -733,6 +742,15 @@ libsciinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
+<<<<<<< HEAD:scilab/modules/interpolation/Makefile.in
+=======
+libsciinterpolation_la-dtensbs.lo: src/fortran/slatec/dtensbs.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-dtensbs.lo `test -f 'src/fortran/slatec/dtensbs.f' || echo '$(srcdir)/'`src/fortran/slatec/dtensbs.f
+
+libsciinterpolation_la-pchim.lo: src/fortran/slatec/pchim.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-pchim.lo `test -f 'src/fortran/slatec/pchim.f' || echo '$(srcdir)/'`src/fortran/slatec/pchim.f
+
+>>>>>>> origin/5.1:scilab/modules/interpolation/Makefile.in
 libsciinterpolation_la-somespline.lo: src/fortran/somespline.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-somespline.lo `test -f 'src/fortran/somespline.f' || echo '$(srcdir)/'`src/fortran/somespline.f
 
@@ -807,6 +825,29 @@ uninstall-libsciinterpolation_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/interpolation/Makefile.in
+=======
+install-libsciinterpolation_la_includeHEADERS: $(libsciinterpolation_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciinterpolation_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinterpolation_la_includedir)"
+	@list='$(libsciinterpolation_la_include_HEADERS)'; test -n "$(libsciinterpolation_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciinterpolation_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciinterpolation_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libsciinterpolation_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciinterpolation_la_include_HEADERS)'; test -n "$(libsciinterpolation_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libsciinterpolation_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciinterpolation_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/interpolation/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

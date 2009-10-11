@@ -107,7 +107,12 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_etcdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_rootdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" \
+<<<<<<< HEAD:scilab/modules/dynamic_link/Makefile.in
 	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)"
+=======
+	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)" \
+	"$(DESTDIR)$(libscidynamic_link_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/dynamic_link/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidynamic_link_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -163,6 +168,10 @@ DATA = $(libscidynamic_link_la_etc_DATA) \
 	$(libscidynamic_link_la_root_DATA) \
 	$(libscidynamic_link_la_sci_gateway_DATA) \
 	$(libscidynamic_link_la_script_DATA)
+<<<<<<< HEAD:scilab/modules/dynamic_link/Makefile.in
+=======
+HEADERS = $(libscidynamic_link_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/dynamic_link/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -698,6 +707,7 @@ libscidynamic_link_la-AddFunctionInTable.lo: src/c/AddFunctionInTable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/AddFunctionInTable.c' object='libscidynamic_link_la-AddFunctionInTable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-AddFunctionInTable.lo `test -f 'src/c/AddFunctionInTable.c' || echo '$(srcdir)/'`src/c/AddFunctionInTable.c
+<<<<<<< HEAD:scilab/modules/dynamic_link/Makefile.in
 
 libscidynamic_link_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-ilib_verbose.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-ilib_verbose.Tpo -c -o libscidynamic_link_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
@@ -705,6 +715,8 @@ libscidynamic_link_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ilib_verbose.c' object='libscidynamic_link_la-ilib_verbose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
+=======
+>>>>>>> origin/5.1:scilab/modules/dynamic_link/Makefile.in
 
 libscidynamic_link_la-gw_dynamic_link.lo: sci_gateway/c/gw_dynamic_link.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-gw_dynamic_link.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Tpo -c -o libscidynamic_link_la-gw_dynamic_link.lo `test -f 'sci_gateway/c/gw_dynamic_link.c' || echo '$(srcdir)/'`sci_gateway/c/gw_dynamic_link.c
@@ -754,6 +766,7 @@ libscidynamic_link_la-sci_c_link.lo: sci_gateway/c/sci_c_link.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_c_link.c' object='libscidynamic_link_la-sci_c_link.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-sci_c_link.lo `test -f 'sci_gateway/c/sci_c_link.c' || echo '$(srcdir)/'`sci_gateway/c/sci_c_link.c
+<<<<<<< HEAD:scilab/modules/dynamic_link/Makefile.in
 
 libscidynamic_link_la-sci_ilib_verbose.lo: sci_gateway/c/sci_ilib_verbose.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-sci_ilib_verbose.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-sci_ilib_verbose.Tpo -c -o libscidynamic_link_la-sci_ilib_verbose.lo `test -f 'sci_gateway/c/sci_ilib_verbose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ilib_verbose.c
@@ -761,6 +774,8 @@ libscidynamic_link_la-sci_ilib_verbose.lo: sci_gateway/c/sci_ilib_verbose.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ilib_verbose.c' object='libscidynamic_link_la-sci_ilib_verbose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-sci_ilib_verbose.lo `test -f 'sci_gateway/c/sci_ilib_verbose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ilib_verbose.c
+=======
+>>>>>>> origin/5.1:scilab/modules/dynamic_link/Makefile.in
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -859,6 +874,29 @@ uninstall-libscidynamic_link_la_scriptDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscidynamic_link_la_scriptdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/dynamic_link/Makefile.in
+=======
+install-libscidynamic_link_la_includeHEADERS: $(libscidynamic_link_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscidynamic_link_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_includedir)"
+	@list='$(libscidynamic_link_la_include_HEADERS)'; test -n "$(libscidynamic_link_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscidynamic_link_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscidynamic_link_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscidynamic_link_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscidynamic_link_la_include_HEADERS)'; test -n "$(libscidynamic_link_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscidynamic_link_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscidynamic_link_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/dynamic_link/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

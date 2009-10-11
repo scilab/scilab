@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciinteger_la_etcdir)" \
 	"$(DESTDIR)$(libsciinteger_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/integer/Makefile.in
 	"$(DESTDIR)$(libsciinteger_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libsciinteger_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciinteger_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/integer/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciinteger_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -181,6 +186,10 @@ SOURCES = $(libsciinteger_la_SOURCES)
 DIST_SOURCES = $(libsciinteger_la_SOURCES)
 DATA = $(libsciinteger_la_etc_DATA) $(libsciinteger_la_root_DATA) \
 	$(libsciinteger_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/integer/Makefile.in
+=======
+HEADERS = $(libsciinteger_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/integer/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1329,6 +1338,29 @@ uninstall-libsciinteger_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciinteger_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciinteger_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/integer/Makefile.in
+=======
+install-libsciinteger_la_includeHEADERS: $(libsciinteger_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciinteger_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinteger_la_includedir)"
+	@list='$(libsciinteger_la_include_HEADERS)'; test -n "$(libsciinteger_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciinteger_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciinteger_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libsciinteger_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciinteger_la_include_HEADERS)'; test -n "$(libsciinteger_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libsciinteger_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciinteger_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/integer/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

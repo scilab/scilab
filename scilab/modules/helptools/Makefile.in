@@ -114,7 +114,12 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_schemadir)" \
 	"$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
+<<<<<<< HEAD:scilab/modules/helptools/Makefile.in
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)"
+=======
+	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)" \
+	"$(DESTDIR)$(libscihelptools_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/helptools/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @BUILD_HELP_TRUE@libscihelptools_la_DEPENDENCIES =  \
 @BUILD_HELP_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
@@ -171,6 +176,10 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_sci_gateway_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
 	$(libscihelptools_la_xsl_fo_DATA)
+<<<<<<< HEAD:scilab/modules/helptools/Makefile.in
+=======
+HEADERS = $(libscihelptools_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/helptools/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1014,6 +1023,29 @@ uninstall-libscihelptools_la_xsl_foDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihelptools_la_xsl_fodir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/helptools/Makefile.in
+=======
+install-libscihelptools_la_includeHEADERS: $(libscihelptools_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_includedir)"
+	@list='$(libscihelptools_la_include_HEADERS)'; test -n "$(libscihelptools_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscihelptools_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscihelptools_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscihelptools_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihelptools_la_include_HEADERS)'; test -n "$(libscihelptools_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscihelptools_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscihelptools_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/helptools/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

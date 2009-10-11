@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_etcdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/spreadsheet/Makefile.in
 	"$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscispreadsheet_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/spreadsheet/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscispreadsheet_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/fileio/libscifileio.la \
@@ -145,6 +150,10 @@ DIST_SOURCES = $(libscispreadsheet_la_SOURCES)
 DATA = $(libscispreadsheet_la_etc_DATA) \
 	$(libscispreadsheet_la_root_DATA) \
 	$(libscispreadsheet_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/spreadsheet/Makefile.in
+=======
+HEADERS = $(libscispreadsheet_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/spreadsheet/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -736,6 +745,29 @@ uninstall-libscispreadsheet_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/spreadsheet/Makefile.in
+=======
+install-libscispreadsheet_la_includeHEADERS: $(libscispreadsheet_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscispreadsheet_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_includedir)"
+	@list='$(libscispreadsheet_la_include_HEADERS)'; test -n "$(libscispreadsheet_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscispreadsheet_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscispreadsheet_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscispreadsheet_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscispreadsheet_la_include_HEADERS)'; test -n "$(libscispreadsheet_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscispreadsheet_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscispreadsheet_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/spreadsheet/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

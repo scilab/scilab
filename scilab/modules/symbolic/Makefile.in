@@ -108,7 +108,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisymbolic_la_etcdir)" \
 	"$(DESTDIR)$(libscisymbolic_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/symbolic/Makefile.in
 	"$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisymbolic_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/symbolic/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisymbolic_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -149,6 +154,10 @@ SOURCES = $(libscisymbolic_la_SOURCES)
 DIST_SOURCES = $(libscisymbolic_la_SOURCES)
 DATA = $(libscisymbolic_la_etc_DATA) $(libscisymbolic_la_root_DATA) \
 	$(libscisymbolic_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/symbolic/Makefile.in
+=======
+HEADERS = $(libscisymbolic_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/symbolic/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -708,6 +717,29 @@ uninstall-libscisymbolic_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/symbolic/Makefile.in
+=======
+install-libscisymbolic_la_includeHEADERS: $(libscisymbolic_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscisymbolic_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbolic_la_includedir)"
+	@list='$(libscisymbolic_la_include_HEADERS)'; test -n "$(libscisymbolic_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisymbolic_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisymbolic_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscisymbolic_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscisymbolic_la_include_HEADERS)'; test -n "$(libscisymbolic_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscisymbolic_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscisymbolic_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/symbolic/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

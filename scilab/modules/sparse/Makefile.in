@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisparse_la_etcdir)" \
 	"$(DESTDIR)$(libscisparse_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/sparse/Makefile.in
 	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisparse_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/sparse/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisparse_la_DEPENDENCIES = $(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -184,6 +189,10 @@ SOURCES = $(libscisparse_la_SOURCES)
 DIST_SOURCES = $(libscisparse_la_SOURCES)
 DATA = $(libscisparse_la_etc_DATA) $(libscisparse_la_root_DATA) \
 	$(libscisparse_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/sparse/Makefile.in
+=======
+HEADERS = $(libscisparse_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/sparse/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1326,6 +1335,15 @@ lspis.lo: src/fortran/lspis.f
 
 dspmin.lo: src/fortran/dspmin.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmin.lo `test -f 'src/fortran/dspmin.f' || echo '$(srcdir)/'`src/fortran/dspmin.f
+<<<<<<< HEAD:scilab/modules/sparse/Makefile.in
+=======
+
+dspdsp.lo: src/fortran/dspdsp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspdsp.lo `test -f 'src/fortran/dspdsp.f' || echo '$(srcdir)/'`src/fortran/dspdsp.f
+
+wspdsp.lo: src/fortran/wspdsp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wspdsp.lo `test -f 'src/fortran/wspdsp.f' || echo '$(srcdir)/'`src/fortran/wspdsp.f
+>>>>>>> origin/5.1:scilab/modules/sparse/Makefile.in
 
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
@@ -1461,6 +1479,29 @@ uninstall-libscisparse_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisparse_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/sparse/Makefile.in
+=======
+install-libscisparse_la_includeHEADERS: $(libscisparse_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscisparse_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_includedir)"
+	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisparse_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisparse_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscisparse_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscisparse_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscisparse_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/sparse/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

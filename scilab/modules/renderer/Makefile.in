@@ -467,7 +467,10 @@ GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GMSGFMT = @GMSGFMT@
 GMSGFMT_015 = @GMSGFMT_015@
+<<<<<<< HEAD:scilab/modules/renderer/Makefile.in
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
+=======
+>>>>>>> origin/5.1:scilab/modules/renderer/Makefile.in
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
 HDF5_CFLAGS = @HDF5_CFLAGS@

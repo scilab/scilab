@@ -1,0 +1,259 @@
+# Localization of the module optimization
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: etc/optimization.start, line: 13
+msgid "Optimization and Simulation"
+msgstr "最適化とシミュレーション"
+
+#
+# File: macros/bvodeS.sci, line: 76
+# File: macros/bvodeS.sci, line: 121
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: 入力引数で不正な型です。\n"
+
+#
+# File: macros/derivative.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 入力引数で不正な数値: %d から %d が想定されます。\n"
+
+#
+# File: macros/derivative.sci, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: N-次元配列 を想定します。\n"
+
+#
+# File: macros/derivative.sci, line: 44
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
+
+#
+# File: macros/derivative.sci, line: 49
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s:順序が１、２ または、４ でなくてはなりません。\n"
+
+#
+# File: macros/derivative.sci, line: 135
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
+
+#
+# File: macros/fit_dat.sci, line: 78
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数(s)の不正な数値です。\n"
+
+#
+# File: macros/fit_dat.sci, line: 81
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: 行列の分母は、平方でなくてはなりません。\n"
+
+#
+# File: macros/fit_dat.sci, line: 100
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: 最初の推測でうまくいきそうもありません。\n"
+
+#
+# File: macros/karmarkar.sci, line: 28
+# File: macros/karmarkar.sci, line: 32
+# File: macros/karmarkar.sci, line: 36
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: 入力引数 #%d で不正なサイズです。"
+
+#
+# File: macros/karmarkar.sci, line: 39
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s: x0 はうまくいきそうもありません。"
+
+#
+# File: macros/karmarkar.sci, line: 56
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr "%s:果てしない問題!"
+
+#
+# File: macros/lmisolver.sci, line: 135
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " 制約,,数値 (%s)'),'lmisolver',%m,%fm));"
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 62
+#, c-format
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 列 %d の数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 148
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s: 多すぎる繰り返し(%d 以上)。\n"
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 150
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr "%s: 収束基準は不正確で満足しません。\n"
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 152
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: 作業整列の範囲は、あまりにも短いです。\n"
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 154
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: 制約は一貫性がないです。\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 81
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s: 引数 3: 列 %d の不正な値が想定されます。\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 110
+# File: sci_gateway/c/sci_qp_solve.c, line: 134
+# File: sci_gateway/c/sci_qp_solve.c, line: 142
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: これ以上メモリを割り当てられません。\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 170
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: 最小限化問題は、いかなる解決策も持っていません。\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 174
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Qは、対称的な明確な定義ではありません。\n"
+
+#
+# File: src/c/sp.c, line: 266
+msgid "m must be at least one.\n"
+msgstr "mは、最低でも1でなくてはなりません。\n"
+
+#
+# File: src/c/sp.c, line: 271
+msgid "L must be at least one.\n"
+msgstr "Lは、最低でも1でなくてはなりません。\n"
+
+#
+# File: src/c/sp.c, line: 276
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d]は、最低でも1でなくてはなりません。\n"
+
+#
+# File: src/c/sp.c, line: 281
+msgid "nu must be at least 1.0.\n"
+msgstr "muは、最低でも1.0でなくてはなりません。\n"
+
+#
+# File: src/c/sp.c, line: 302
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "行列 Fi, i=1,..., mは１次従属です。\n"
+
+#
+# File: src/c/sp.c, line: 316
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr "z0は、二つの部分から成る実現性のために平等条件を満足しません。\n"
+
+#
+# File: src/c/sp.c, line: 351
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "作業空間はあまりにも小さいです。最低でも %d*sizeof(double) の必要があります。\n"
+
+#
+# File: src/c/sp.c, line: 406
+# File: src/c/sp.c, line: 591
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "dspgvでエラー, 情報 = %d\n"
+
+#
+# File: src/c/sp.c, line: 408
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0は、厳密でないため実行できそうもありません。\n"
+
+#
+# File: src/c/sp.c, line: 421
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0は、明確な定義ではありません。\n"
+
+#
+# File: src/c/sp.c, line: 424
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Zは、否定の固有値を持っています。\n"
+
+#
+# File: src/c/sp.c, line: 446
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+"\n"
+"   最初のオブジェクト、二重オブジェクト、二重空間 \n"
+
+#
+# File: src/c/sp.c, line: 504
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "dgelsでエラー、情報 = %d\n"
+
+#
+# File: src/c/sp.c, line: 516
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "dtrconでエラー、情報 = %d\n"
+
+#
+# File: src/c/sp.c, line: 520
+msgid "The matrices F_i, i=1,...,m are linearly dependent (or the initial points are very badly conditioned).\n"
+msgstr "行列  F_i, i=1,..., mは１次従属です(あるいは、最初の点は、とても悪い条件でした)\n"
+
+#
+# File: src/c/sp.c, line: 564
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "dspst でエラー, 情報 = %d.\n"
+
+#
+# File: src/c/sp.c, line: 572
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "dspev でエラー, 情報 = %d.\n"
+

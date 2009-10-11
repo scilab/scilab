@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_etcdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/signal_processing/Makefile.in
 	"$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisignal_processing_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/signal_processing/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
@@ -169,6 +174,10 @@ DIST_SOURCES = $(libscisignal_processing_la_SOURCES)
 DATA = $(libscisignal_processing_la_etc_DATA) \
 	$(libscisignal_processing_la_root_DATA) \
 	$(libscisignal_processing_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/signal_processing/Makefile.in
+=======
+HEADERS = $(libscisignal_processing_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/signal_processing/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1063,6 +1072,29 @@ uninstall-libscisignal_processing_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/signal_processing/Makefile.in
+=======
+install-libscisignal_processing_la_includeHEADERS: $(libscisignal_processing_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscisignal_processing_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisignal_processing_la_includedir)"
+	@list='$(libscisignal_processing_la_include_HEADERS)'; test -n "$(libscisignal_processing_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisignal_processing_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisignal_processing_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscisignal_processing_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscisignal_processing_la_include_HEADERS)'; test -n "$(libscisignal_processing_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscisignal_processing_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscisignal_processing_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/signal_processing/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

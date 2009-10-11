@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscispecial_functions_la_etcdir)" \
 	"$(DESTDIR)$(libscispecial_functions_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/special_functions/Makefile.in
 	"$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscispecial_functions_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/special_functions/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscispecial_functions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -164,6 +169,10 @@ DIST_SOURCES = $(libscispecial_functions_la_SOURCES)
 DATA = $(libscispecial_functions_la_etc_DATA) \
 	$(libscispecial_functions_la_root_DATA) \
 	$(libscispecial_functions_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/special_functions/Makefile.in
+=======
+HEADERS = $(libscispecial_functions_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/special_functions/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -848,6 +857,29 @@ uninstall-libscispecial_functions_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/special_functions/Makefile.in
+=======
+install-libscispecial_functions_la_includeHEADERS: $(libscispecial_functions_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscispecial_functions_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscispecial_functions_la_includedir)"
+	@list='$(libscispecial_functions_la_include_HEADERS)'; test -n "$(libscispecial_functions_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscispecial_functions_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscispecial_functions_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscispecial_functions_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscispecial_functions_la_include_HEADERS)'; test -n "$(libscispecial_functions_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscispecial_functions_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscispecial_functions_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/special_functions/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

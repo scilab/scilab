@@ -104,7 +104,12 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirandlib_la_etcdir)" \
 	"$(DESTDIR)$(libscirandlib_la_rootdir)" \
+<<<<<<< HEAD:scilab/modules/randlib/Makefile.in
 	"$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)"
+=======
+	"$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscirandlib_la_includedir)"
+>>>>>>> origin/5.1:scilab/modules/randlib/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirandlib_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -151,6 +156,10 @@ SOURCES = $(libscirandlib_la_SOURCES)
 DIST_SOURCES = $(libscirandlib_la_SOURCES)
 DATA = $(libscirandlib_la_etc_DATA) $(libscirandlib_la_root_DATA) \
 	$(libscirandlib_la_sci_gateway_DATA)
+<<<<<<< HEAD:scilab/modules/randlib/Makefile.in
+=======
+HEADERS = $(libscirandlib_la_include_HEADERS)
+>>>>>>> origin/5.1:scilab/modules/randlib/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -754,9 +763,24 @@ genmn.lo: src/fortran/genmn.f
 
 phrtsd.lo: src/fortran/phrtsd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o phrtsd.lo `test -f 'src/fortran/phrtsd.f' || echo '$(srcdir)/'`src/fortran/phrtsd.f
+<<<<<<< HEAD:scilab/modules/randlib/Makefile.in
 
 ignnbn.lo: src/fortran/ignnbn.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ignnbn.lo `test -f 'src/fortran/ignnbn.f' || echo '$(srcdir)/'`src/fortran/ignnbn.f
+=======
+
+spofa.lo: src/fortran/spofa.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spofa.lo `test -f 'src/fortran/spofa.f' || echo '$(srcdir)/'`src/fortran/spofa.f
+
+sdot.lo: src/fortran/sdot.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sdot.lo `test -f 'src/fortran/sdot.f' || echo '$(srcdir)/'`src/fortran/sdot.f
+
+ignnbn.lo: src/fortran/ignnbn.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ignnbn.lo `test -f 'src/fortran/ignnbn.f' || echo '$(srcdir)/'`src/fortran/ignnbn.f
+
+lennob.lo: src/fortran/lennob.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lennob.lo `test -f 'src/fortran/lennob.f' || echo '$(srcdir)/'`src/fortran/lennob.f
+>>>>>>> origin/5.1:scilab/modules/randlib/Makefile.in
 
 genf.lo: src/fortran/genf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genf.lo `test -f 'src/fortran/genf.f' || echo '$(srcdir)/'`src/fortran/genf.f
@@ -841,6 +865,29 @@ uninstall-libscirandlib_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" && rm -f $$files
+<<<<<<< HEAD:scilab/modules/randlib/Makefile.in
+=======
+install-libscirandlib_la_includeHEADERS: $(libscirandlib_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscirandlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_includedir)"
+	@list='$(libscirandlib_la_include_HEADERS)'; test -n "$(libscirandlib_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscirandlib_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscirandlib_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscirandlib_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscirandlib_la_include_HEADERS)'; test -n "$(libscirandlib_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscirandlib_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscirandlib_la_includedir)" && rm -f $$files
+>>>>>>> origin/5.1:scilab/modules/randlib/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
