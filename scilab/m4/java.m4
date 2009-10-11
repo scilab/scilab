@@ -531,7 +531,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
                 AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
-		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
+				libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -563,6 +563,32 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             fi
         fi
     fi
+
+        # Under GNU/Debian on a mipsel CPU, uname -m is still returning mips
+		# causing a confusion with mips... Therefor, I have to hardcode this 
+		# test
+		# Note that most of the code is duplicated from
+        # Sun/Blackdown 1.4 for Linux (client JVM) tests
+        F=jre/lib/mipsel/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+                D=$ac_java_jvm_dir/jre/lib/mipsel/client
+		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+			# Try the server directory
+			D=$ac_java_jvm_dir/jre/lib/mipsel/server
+		fi
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+                D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+            fi
+        fi
 
     # Generate error for unsupported JVM layout
 
