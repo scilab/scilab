@@ -1,0 +1,615 @@
+# Localization of the module randlib
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: etc/randlib.start, line: 23
+msgid "Random"
+msgstr "ランダム"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 147
+# File: sci_gateway/c/sci_grand.c, line: 416
+# File: sci_gateway/c/sci_grand.c, line: 462
+# File: sci_gateway/c/sci_grand.c, line: 699
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
+msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 152
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
+msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' の %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 190
+#, c-format
+msgid "The %s option affects only the clcg4 generator\n"
+msgstr "%s オプションは、単に clcg４ 生成に影響します\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 193
+# File: sci_gateway/c/sci_grand.c, line: 330
+# File: sci_gateway/c/sci_grand.c, line: 355
+# File: sci_gateway/c/sci_grand.c, line: 376
+# File: sci_gateway/c/sci_grand.c, line: 397
+# File: sci_gateway/c/sci_grand.c, line: 432
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
+msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 197
+# File: sci_gateway/c/sci_grand.c, line: 254
+# File: sci_gateway/c/sci_grand.c, line: 276
+# File: sci_gateway/c/sci_grand.c, line: 301
+# File: sci_gateway/c/sci_grand.c, line: 317
+# File: sci_gateway/c/sci_grand.c, line: 487
+#, c-format
+msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 200
+# File: sci_gateway/c/sci_grand.c, line: 257
+# File: sci_gateway/c/sci_grand.c, line: 279
+# File: sci_gateway/c/sci_grand.c, line: 304
+#, c-format
+msgid "%s: Wrong type for third input argument: Scalar expected.\n"
+msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 203
+# File: sci_gateway/c/sci_grand.c, line: 282
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
+msgstr "%s: 4番目の入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 206
+# File: sci_gateway/c/sci_grand.c, line: 285
+#, c-format
+msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
+msgstr "%s: 5番目の入力引数で不正な型: 素カーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 224
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected for '%s' with the %s generator.\n"
+msgstr "%1$s: 入力引数で不正な数: %4$s 生成 '%3$s' の %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 234
+#, c-format
+msgid "%s: Wrong values for input argument: Vector of %d or %d values for %s expected.\n"
+msgstr "%1$s: 入力引数で不正な値: %2$d のベクトル、または 、%4$s の　%3$d 値を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 245
+#, c-format
+msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgstr "%s: 2番目の入力引数で不正なサイズ: %dx%d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 262
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected for '%s' option with the %s generator.\n"
+msgstr "%1$s: 入力引数で不正な数: %5$s 生成を持つ '%4$s' オプションの %2$d または %3$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 271
+#, c-format
+msgid "%s: Wrong number of input arguments: expected %d for '%s' option with the %s or %s generator.\n"
+msgstr "%1$s: 入力引数で不正な数: %4$s または %5$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 296
+# File: sci_gateway/c/sci_grand.c, line: 312
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected for '%s' option with the %s generator.\n"
+msgstr "%1$s: 入力引数で不正な数: %4$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 335
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
+msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' の %2$d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 352
+#, c-format
+msgid "%s: The %s option affects only the %s generator\n"
+msgstr "%s:  %s オプションは、単に %s 生成に影響します\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 361
+#, c-format
+msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d, %d または %d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 373
+# File: sci_gateway/c/sci_grand.c, line: 394
+#, c-format
+msgid "The %s option affects only the %s generator\n"
+msgstr "%s オプションは、単に %s 生成に影響します\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 382
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgstr "%s: 2番目の入力引数で不正な値: %d と %d の間でなければなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 404
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgstr "%s: 2番目の入力引数で不正な値: > %d でなければなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 420
+msgid "This information concerns only the clcg4 generator\n"
+msgstr "この情報は、単に clcg4 生成に関わります\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 450
+#, c-format
+msgid "%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 2番目の入力引数で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 472
+#, c-format
+msgid "%s Wrong value for first input argument %s.\n"
+msgstr "%s: 入力引数 %s で不正な値です。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 483
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 502
+msgid "Missing A and B for beta law\n"
+msgstr "ベータ 規定の A と B が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 504
+# File: sci_gateway/c/sci_grand.c, line: 506
+# File: sci_gateway/c/sci_grand.c, line: 526
+# File: sci_gateway/c/sci_grand.c, line: 528
+# File: sci_gateway/c/sci_grand.c, line: 555
+# File: sci_gateway/c/sci_grand.c, line: 611
+# File: sci_gateway/c/sci_grand.c, line: 613
+# File: sci_gateway/c/sci_grand.c, line: 636
+# File: sci_gateway/c/sci_grand.c, line: 638
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
+msgstr "%s: 入力引数で不正なサイズ: %s のスカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 510
+#, c-format
+msgid "Rand(...,'bet',..): A or B < %f\n"
+msgstr "Rand(...,'bet',..): A または B < %f\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 524
+msgid "Missing Dfn and Dfd for F law\n"
+msgstr "F 規定の Dfn と Dfd が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 532
+msgid "Degrees of freedom nonpositive\n"
+msgstr "自由の程度が不明確\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 548
+#, c-format
+msgid "%s: Wrong value for first input argument: Must be the number of random deviate.\n"
+msgstr "%s: 最初の入力引数で不正な値: ランダム偏差の数でなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 553
+msgid "Missing N and P for MULtinomial law\n"
+msgstr "多項係数の N と P が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 559
+#, c-format
+msgid "%s: Wrong size for input argument: Column vector expected.\n"
+msgstr "%s: 入力引数で不正なサイズ: 列ベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 566
+# File: sci_gateway/c/sci_grand.c, line: 752
+# File: sci_gateway/c/sci_grand.c, line: 779
+msgid "N < 0\n"
+msgstr "N < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 571
+msgid "Ncat <= 1\n"
+msgstr "Ncat <= 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 579
+#, c-format
+msgid "P(%d) < 0\n"
+msgstr "P(%d) < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 584
+#, c-format
+msgid "P(%d) > 1\n"
+msgstr "P(%d) > 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 591
+msgid "Sum of P(i) > 1\n"
+msgstr "Sum of P(i) > 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 609
+msgid "Missing shape and scale for Gamma law\n"
+msgstr "ガンマ規定の形と記数法が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 617
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 634
+msgid "Missing Av and Sd for Normal law\n"
+msgstr "標準規定の Av と Sd が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 642
+msgid "SD < 0.0\n"
+msgstr "SD < 0.0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 655
+msgid "Missing Low and High for Uniform Real law\n"
+msgstr "同型の実数規定の低と高が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 657
+# File: sci_gateway/c/sci_grand.c, line: 659
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 681
+# File: sci_gateway/c/sci_grand.c, line: 741
+# File: sci_gateway/c/sci_grand.c, line: 743
+# File: sci_gateway/c/sci_grand.c, line: 768
+# File: sci_gateway/c/sci_grand.c, line: 770
+# File: sci_gateway/c/sci_grand.c, line: 932
+# File: sci_gateway/c/sci_grand.c, line: 934
+# File: sci_gateway/c/sci_grand.c, line: 956
+# File: sci_gateway/c/sci_grand.c, line: 958
+# File: sci_gateway/c/sci_grand.c, line: 960
+# File: sci_gateway/c/sci_grand.c, line: 983
+# File: sci_gateway/c/sci_grand.c, line: 1003
+# File: sci_gateway/c/sci_grand.c, line: 1025
+# File: sci_gateway/c/sci_grand.c, line: 1045
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 664
+msgid "Low > High\n"
+msgstr "低 > 高\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 677
+msgid "Missing Low and High for Uniform int law\n"
+msgstr "同型のint規定の低と高が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 685
+msgid "a and b must integers with (b-a+1) <= 2147483561"
+msgstr "a と b は (b-a+1) <= 2147483561 の整数でなければなりません"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 714
+#, c-format
+msgid "%s: Wrong value for input argument: Number of random simulation expected.\n"
+msgstr "%s: 入力引数で不正な値: ランダム・シュミレーションの数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 720
+msgid "Missing vect for random permutation\n"
+msgstr "ランダム順列の vect  が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 723
+# File: sci_gateway/c/sci_grand.c, line: 801
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr "%s: 入力引数で不正な型: 列ベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 739
+msgid "Missing N and P for Negative Binomial law\n"
+msgstr "否定二項式の規定の N と P が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 747
+# File: sci_gateway/c/sci_grand.c, line: 774
+msgid "P is not in [0,1]\n"
+msgstr "Pは、 [0,1]にありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 766
+msgid "Missing N and P for Binomial law\n"
+msgstr "二項式の規定の N と P が不明です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 795
+# File: sci_gateway/c/sci_grand.c, line: 832
+#, c-format
+msgid "%s: Wrong value for first input argument: Must be the number of random simulation.\n"
+msgstr "%s: 最初の入力引数で不正な値: ランダム・シミュレーションの数でなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 799
+msgid "Missing Mean and Cov for Multivariate Normal law\n"
+msgstr "平均とCovは多変量の標準規定に見当たりません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 803
+#, c-format
+msgid "%s: Wrong type for input argument: Square matrix expected.\n"
+msgstr "%s: 入力引数で不正な型: 正方行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 804
+#, c-format
+msgid "%s: Wrong type for input arguments: Mean and Cov have incompatible dimensions\n"
+msgstr "%s: 入力引数で不正な型: 平均 と Cov は、互換性がない次元を持っています\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 812
+#, c-format
+msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
+msgstr "%s: 入力引数でサイズが不正: 平均 と Cov は、NULLのサイズです。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 836
+#, c-format
+msgid "%s: Missing P matrix and X0 for Markov chain\n"
+msgstr "%s: p行列 と マルコフ連鎖の X0 が不明です。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 841
+#, c-format
+msgid "%s: Wrong second input argument: Square matrix or row vector expected.\n"
+msgstr "%s: 2番目の入力引数が不正: 正方行列、または、行ベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 844
+msgid "X0 is empty\n"
+msgstr "X0は空です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 849
+#, c-format
+msgid "%s: X0(%d) must be in the range [1,%d]\n"
+msgstr "%s: X0(%d)  は [1,%d] の範囲でなければなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 864
+#, c-format
+msgid "P(%d,%d) < 0\n"
+msgstr "P(%d,%d) < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 869
+#, c-format
+msgid "P(%d,%d) > 1\n"
+msgstr "P(%d,%d) > 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 876
+#, c-format
+msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
+msgstr "Sum of P(%d,1:%d)=%f ~= 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 916
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 入力引数で不正な数です。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 930
+msgid "Missing Df and Xnonc for non-central chi-square law\n"
+msgstr "確率分布 二乗分布規定の Df と Xnonc がありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 938
+msgid "DF < 1 or XNONC < 0\n"
+msgstr "DF < 1 or XNONC < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 953
+msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
+msgstr "確率分布規定の Dfn, Dfd と Xnonc がありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 964
+msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+msgstr "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 979
+msgid "Missing Df for chi-square law\n"
+msgstr "二乗分布規定の Df がありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 987
+msgid "Rand: DF <= 0\n"
+msgstr "Rand: DF <= 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1000
+msgid "Missing Av for Poisson law\n"
+msgstr "ポアソン規定の Av がありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1007
+msgid "Av < 0\n"
+msgstr "Av < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1022
+msgid "Missing p for Geometric law\n"
+msgstr "幾何学規定の p はありません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1027
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
+msgstr "%s: 入力引数で不正な値: '%s' と %d の間でなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1042
+msgid "Missing Av for exponential law\n"
+msgstr "指数規定に Av が見当たりません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1049
+msgid "Av < 0.0\n"
+msgstr "Av < 0.0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1063
+#, c-format
+msgid "%s: Wrong value for input argument %s.\n"
+msgstr "%s: 入力引数 %s で不正な値です。\n"
+
+#
+# File: src/c/clcg2.c, line: 82
+msgid ""
+"\n"
+"Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
+"                                        and  s2 in [1, 2147483398]\n"
+msgstr ""
+"\n"
+"clcg2の悪い種です、s1 の [1, 2147483562] は整数でなくてはなりません\n"
+"                                        また  s2 の [1, 2147483398]\n"
+
+#
+# File: src/c/clcg4.c, line: 161
+msgid ""
+"\n"
+" bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
+"                                             s2 in [1, 2147483542]\n"
+"                                             s3 in [1, 2147483422]\n"
+"                                             s4 in [1, 2147483322]"
+msgstr ""
+"\n"
+" clcg4の悪い種です、s1 の [1, 2147483646]　は整数でなくてはなりません\n"
+"                                             s2 の [1, 2147483542]\n"
+"                                             s3 の [1, 2147483422]\n"
+"                                             s4 の [1, 2147483322]"
+
+#
+# File: src/c/clcg4.c, line: 179
+#, c-format
+msgid ""
+"\n"
+"=> be aware that you have may lost synchronization\n"
+"    between the virtual gen %d and the others !\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgstr ""
+"\n"
+"=>気づいてください、それは同期性を失うかも知れません\n"
+"    仮想の間で、%d そして、その他を得ます!\n"
+"    もし望めば、grand(\"setall\", s1, s2, s3, s4)を利用してください。"
+
+#
+# File: src/c/fsultra.c, line: 165
+msgid ""
+"\n"
+"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultraの悪い根源、[0, 2^32-1]の整数でなければなりません\n"
+
+#
+# File: src/c/fsultra.c, line: 178
+#, c-format
+msgid ""
+"\n"
+"The first component of the fsultra state, must be an int in [0, %d]\n"
+msgstr ""
+"\n"
+"fsultra状態の最初の構成要素、[0, %d]の整数でなければなりません\n"
+
+#
+# File: src/c/fsultra.c, line: 186
+msgid ""
+"\n"
+"The second component of the fsultra state, must be 0 or 1\n"
+msgstr ""
+"\n"
+"fsultra状態の第２の構成要素、 0 または 1 でなければなりません\n"
+
+#
+# File: src/c/fsultra.c, line: 194
+msgid ""
+"\n"
+"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultra状態の第３の構成要素、[1, 2^32-1]の整数でなければなりません\n"
+
+#
+# File: src/c/kiss.c, line: 64
+msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
+msgstr "kissの悪い根源、[0,2^32-1]の整数でなければなりません\n"
+
+#
+# File: src/c/mt.c, line: 138
+msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
+msgstr "mtの悪い根源、[0, 2^32-1]の整数でなければなりません\n"
+
+#
+# File: src/c/mt.c, line: 165
+msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
+msgstr "mt状態 mtの最初の構成要素、[1, 624]の整数でなければなりません\n"
+
+#
+# File: src/c/urand.c, line: 47
+msgid ""
+"\n"
+"Bad seed for urand, must be an int in [0,  2147483647]\n"
+msgstr ""
+"\n"
+"urand の悪い根源、[0,  2147483647]の整数でなければなりません\n"
+
+#
+# File: src/norandlib/norandlib.c, line: 19
+msgid "Scilab randlib interface not installed.\n"
+msgstr "Scilab randlibインターフェースはインストールされていません。\n"
+

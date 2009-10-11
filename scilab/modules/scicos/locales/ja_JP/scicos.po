@@ -1,0 +1,199 @@
+# Localization of the module scicos
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: etc/scicos.start, line: 22
+msgid "Scicos"
+msgstr "Scicos"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 115
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: 入力 ports は適切な番号をつけられません。\n"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 120
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: 出力 ports は適切な番号をつけられません。\n"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 126
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: 図は、通過した %d をコンパイルしません。\n"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 180
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズです。\n"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 136
+#, c-format
+msgid ""
+"%s: Diagram does not compile in pass %d.\n"
+"'),"
+msgstr ""
+"%s: 図は、通過した %d をコンパイルしません。\n"
+"'),"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 181
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s: 入力引数で不正番号:  %dと%dの間である必要があります。\n"
+
+#
+# File: macros/scicos_scicos/MODCOM.sci, line: 83
+# File: macros/scicos_scicos/build_block.sci, line: 75
+# File: macros/scicos_scicos/compile_modelica.sci, line: 28
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: エラー: Modelica(MODELICAC)コンパイラーは有効でありません。"
+
+#
+# File: macros/scicos_scicos/MODCOM.sci, line: 91
+#, c-format
+msgid "%s: An error occurred during the compilation of the Modelica block."
+msgstr "%s: Modelicaブロックのコンパイル中に問題が起こりました。"
+
+#
+# File: macros/scicos_scicos/build_block.sci, line: 31
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: エラー:  scifuncブロックは、定義されませんでした。"
+
+#
+# File: macros/scicos_scicos/build_block.sci, line: 92
+#, c-format
+msgid "%s: Error : the following command line failed to execute: %s.\n"
+msgstr "%s: エラー: 以下のコマンドを実行できませんでした。: %s\n"
+
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
+msgid "Only one block can be selected in current window for this operation."
+msgstr "単一のブロックは、現在のウインドウで選択ができます。"
+
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 67
+msgid "The current icon depends on block parameter\n"
+msgstr "現在のアイコンは、ブロック・パラメーターに頼ります\n"
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 52
+# File: macros/scicos_scicos/do_palettes.sci, line: 90
+# File: macros/scicos_scicos/menu_stuff.sci, line: 26
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 53
+# File: macros/scicos_scicos/do_palettes.sci, line: 91
+# File: macros/scicos_scicos/menu_stuff.sci, line: 27
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
+# File: macros/scicos_scicos/do_palettes.sci, line: 92
+# File: macros/scicos_scicos/menu_stuff.sci, line: 28
+msgid "&?"
+msgstr "&?"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 32
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+msgstr "%s: エラー: Modelica(MODELICAC)コンパイラーは有効でありません。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 45
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: どんなMOファイルも以下の場所で見つけることができません: %s \n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 55
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " %s.mo を強制的に生成しました。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 76
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr "%s.mo は生成されなくてはなりません。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 79
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr "%s.mo を生成できませんでした。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 95
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "ライブラリ %s を構築している間に問題 がありました。\n"
+
+#
+# File: macros/scicos_scicos/menu_stuff.sci, line: 25
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 不正な数値の入力引数です: %d が想定されます。\n"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 32
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 出力引数で不正な番号: %d を想定します。\n"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 36
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 39
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 43
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ひとつの整数を想定します。\n"
+
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 46
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr "%s: 出力引数 #%d で不正なサイズ: ひとつの整数を想定します。\n"
+
