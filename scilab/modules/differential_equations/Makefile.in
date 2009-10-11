@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_etcdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/differential_equations/Makefile.in
 	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscidifferential_equations_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/differential_equations/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidifferential_equations_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -193,10 +188,6 @@ DIST_SOURCES = $(libscidifferential_equations_la_SOURCES)
 DATA = $(libscidifferential_equations_la_etc_DATA) \
 	$(libscidifferential_equations_la_root_DATA) \
 	$(libscidifferential_equations_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/differential_equations/Makefile.in
-=======
-HEADERS = $(libscidifferential_equations_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/differential_equations/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1051,12 +1042,6 @@ svcar1.lo: src/fortran/svcar1.f
 
 daux.lo: src/fortran/daux.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o daux.lo `test -f 'src/fortran/daux.f' || echo '$(srcdir)/'`src/fortran/daux.f
-<<<<<<< HEAD:scilab/modules/differential_equations/Makefile.in
-=======
-
-dgbfa.lo: src/fortran/dgbfa.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dgbfa.lo `test -f 'src/fortran/dgbfa.f' || echo '$(srcdir)/'`src/fortran/dgbfa.f
->>>>>>> origin/5.1:scilab/modules/differential_equations/Makefile.in
 
 rscom1.lo: src/fortran/rscom1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rscom1.lo `test -f 'src/fortran/rscom1.f' || echo '$(srcdir)/'`src/fortran/rscom1.f
@@ -1294,29 +1279,6 @@ uninstall-libscidifferential_equations_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/differential_equations/Makefile.in
-=======
-install-libscidifferential_equations_la_includeHEADERS: $(libscidifferential_equations_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscidifferential_equations_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidifferential_equations_la_includedir)"
-	@list='$(libscidifferential_equations_la_include_HEADERS)'; test -n "$(libscidifferential_equations_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscidifferential_equations_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscidifferential_equations_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscidifferential_equations_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscidifferential_equations_la_include_HEADERS)'; test -n "$(libscidifferential_equations_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscidifferential_equations_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscidifferential_equations_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/differential_equations/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

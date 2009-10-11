@@ -696,7 +696,6 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscioutput_stream_la-erro.lo: src/c/erro.c
-<<<<<<< HEAD:scilab/modules/output_stream/Makefile.in
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-erro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-erro.Tpo -c -o libscioutput_stream_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-erro.Tpo $(DEPDIR)/libscioutput_stream_la-erro.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/erro.c' object='libscioutput_stream_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
@@ -968,111 +967,6 @@ intprint.lo: sci_gateway/fortran/intprint.f
 
 intdisp.lo: sci_gateway/fortran/intdisp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdisp.lo `test -f 'sci_gateway/fortran/intdisp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdisp.f
-=======
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-erro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-erro.Tpo -c -o libscioutput_stream_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-erro.Tpo $(DEPDIR)/libscioutput_stream_la-erro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/erro.c' object='libscioutput_stream_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
-
-libscioutput_stream_la-cerro.lo: src/c/cerro.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-cerro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-cerro.Tpo -c -o libscioutput_stream_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-cerro.Tpo $(DEPDIR)/libscioutput_stream_la-cerro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cerro.c' object='libscioutput_stream_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
-
-libscioutput_stream_la-Scierror.lo: src/c/Scierror.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-Scierror.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo $(DEPDIR)/libscioutput_stream_la-Scierror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Scierror.c' object='libscioutput_stream_la-Scierror.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
-
-libscioutput_stream_la-msgstore.lo: src/c/msgstore.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstore.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo $(DEPDIR)/libscioutput_stream_la-msgstore.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstore.c' object='libscioutput_stream_la-msgstore.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
-
-libscioutput_stream_la-msgout.lo: src/c/msgout.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgout.Tpo -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgout.Tpo $(DEPDIR)/libscioutput_stream_la-msgout.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgout.c' object='libscioutput_stream_la-msgout.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
-
-libscioutput_stream_la-msgs.lo: src/c/msgs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgs.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgs.Tpo -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgs.Tpo $(DEPDIR)/libscioutput_stream_la-msgs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgs.c' object='libscioutput_stream_la-msgs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
-
-libscioutput_stream_la-msgstxt.lo: src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstxt.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo $(DEPDIR)/libscioutput_stream_la-msgstxt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstxt.c' object='libscioutput_stream_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
-
-libscioutput_stream_la-basout.lo: src/c/basout.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-basout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-basout.Tpo -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-basout.Tpo $(DEPDIR)/libscioutput_stream_la-basout.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/basout.c' object='libscioutput_stream_la-basout.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
-
-libscioutput_stream_la-sciprint.lo: src/c/sciprint.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint.Tpo -c -o libscioutput_stream_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sciprint.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint.c' object='libscioutput_stream_la-sciprint.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
-
-libscioutput_stream_la-sciprint_nd.lo: src/c/sciprint_nd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint_nd.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Tpo -c -o libscioutput_stream_la-sciprint_nd.lo `test -f 'src/c/sciprint_nd.c' || echo '$(srcdir)/'`src/c/sciprint_nd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint_nd.c' object='libscioutput_stream_la-sciprint_nd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint_nd.lo `test -f 'src/c/sciprint_nd.c' || echo '$(srcdir)/'`src/c/sciprint_nd.c
-
-libscioutput_stream_la-sciprint_full.lo: src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint_full.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint_full.Tpo -c -o libscioutput_stream_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sciprint_full.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint_full.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint_full.c' object='libscioutput_stream_la-sciprint_full.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
-
-libscioutput_stream_la-errmds.lo: src/c/errmds.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-errmds.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-errmds.Tpo -c -o libscioutput_stream_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-errmds.Tpo $(DEPDIR)/libscioutput_stream_la-errmds.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmds.c' object='libscioutput_stream_la-errmds.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
-
-libscioutput_stream_la-errmsg.lo: src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-errmsg.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-errmsg.Tpo -c -o libscioutput_stream_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-errmsg.Tpo $(DEPDIR)/libscioutput_stream_la-errmsg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libscioutput_stream_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
-
-libscioutput_stream_la-error.lo: src/c/error.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-error.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-error.Tpo -c -o libscioutput_stream_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-error.Tpo $(DEPDIR)/libscioutput_stream_la-error.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error.c' object='libscioutput_stream_la-error.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
-
-libscioutput_stream_la-error_internal.lo: src/c/error_internal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-error_internal.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-error_internal.Tpo -c -o libscioutput_stream_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-error_internal.Tpo $(DEPDIR)/libscioutput_stream_la-error_internal.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error_internal.c' object='libscioutput_stream_la-error_internal.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
->>>>>>> origin/5.1:scilab/modules/output_stream/Makefile.in
 
 mostlyclean-libtool:
 	-rm -f *.lo

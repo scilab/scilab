@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_etcdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/data_structures/Makefile.in
 	"$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscidata_structures_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/data_structures/Makefile.in
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_data_structures_la_LIBADD =
 am_libdummy_data_structures_la_OBJECTS =  \
@@ -182,10 +177,6 @@ DIST_SOURCES = $(libdummy_data_structures_la_SOURCES) \
 DATA = $(libscidata_structures_la_etc_DATA) \
 	$(libscidata_structures_la_root_DATA) \
 	$(libscidata_structures_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/data_structures/Makefile.in
-=======
-HEADERS = $(libscidata_structures_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/data_structures/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -908,29 +899,6 @@ uninstall-libscidata_structures_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/data_structures/Makefile.in
-=======
-install-libscidata_structures_la_includeHEADERS: $(libscidata_structures_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscidata_structures_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidata_structures_la_includedir)"
-	@list='$(libscidata_structures_la_include_HEADERS)'; test -n "$(libscidata_structures_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscidata_structures_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscidata_structures_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscidata_structures_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscidata_structures_la_include_HEADERS)'; test -n "$(libscidata_structures_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscidata_structures_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscidata_structures_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/data_structures/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

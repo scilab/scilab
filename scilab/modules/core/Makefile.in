@@ -828,16 +828,7 @@ includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 includes/warningmode.h
-=======
-includes/warningmode.h \
-includes/xscion.h \
-includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h \
-includes/getos.h
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1220,16 +1211,6 @@ libscicore_la-stack1.lo: src/c/stack1.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stack1.c' object='libscicore_la-stack1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-stack1.lo `test -f 'src/c/stack1.c' || echo '$(srcdir)/'`src/c/stack1.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-scicurdir.lo: src/c/scicurdir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scicurdir.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scicurdir.Tpo -c -o libscicore_la-scicurdir.lo `test -f 'src/c/scicurdir.c' || echo '$(srcdir)/'`src/c/scicurdir.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-scicurdir.Tpo $(DEPDIR)/libscicore_la-scicurdir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicurdir.c' object='libscicore_la-scicurdir.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-scicurdir.lo `test -f 'src/c/scicurdir.c' || echo '$(srcdir)/'`src/c/scicurdir.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-realmain.lo: src/c/realmain.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-realmain.lo -MD -MP -MF $(DEPDIR)/libscicore_la-realmain.Tpo -c -o libscicore_la-realmain.lo `test -f 'src/c/realmain.c' || echo '$(srcdir)/'`src/c/realmain.c
@@ -1251,16 +1232,6 @@ libscicore_la-str2sci.lo: src/c/str2sci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/str2sci.c' object='libscicore_la-str2sci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-str2sci.lo `test -f 'src/c/str2sci.c' || echo '$(srcdir)/'`src/c/str2sci.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-cluni0.lo: src/c/cluni0.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-cluni0.lo -MD -MP -MF $(DEPDIR)/libscicore_la-cluni0.Tpo -c -o libscicore_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-cluni0.Tpo $(DEPDIR)/libscicore_la-cluni0.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cluni0.c' object='libscicore_la-cluni0.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-getmodules.lo: src/c/getmodules.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getmodules.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getmodules.Tpo -c -o libscicore_la-getmodules.lo `test -f 'src/c/getmodules.c' || echo '$(srcdir)/'`src/c/getmodules.c
@@ -1296,16 +1267,6 @@ libscicore_la-csignal.lo: src/c/csignal.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/csignal.c' object='libscicore_la-csignal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-csignal.lo `test -f 'src/c/csignal.c' || echo '$(srcdir)/'`src/c/csignal.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-prompt.lo: src/c/prompt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-prompt.lo -MD -MP -MF $(DEPDIR)/libscicore_la-prompt.Tpo -c -o libscicore_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-prompt.Tpo $(DEPDIR)/libscicore_la-prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/prompt.c' object='libscicore_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-callinterf.lo: src/c/callinterf.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-callinterf.lo -MD -MP -MF $(DEPDIR)/libscicore_la-callinterf.Tpo -c -o libscicore_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
@@ -1488,16 +1449,6 @@ libscicore_la-GetXmlFileEncoding.lo: src/c/GetXmlFileEncoding.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetXmlFileEncoding.c' object='libscicore_la-GetXmlFileEncoding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-GetXmlFileEncoding.lo `test -f 'src/c/GetXmlFileEncoding.c' || echo '$(srcdir)/'`src/c/GetXmlFileEncoding.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-GetenvB.lo: src/c/GetenvB.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-GetenvB.lo -MD -MP -MF $(DEPDIR)/libscicore_la-GetenvB.Tpo -c -o libscicore_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-GetenvB.Tpo $(DEPDIR)/libscicore_la-GetenvB.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetenvB.c' object='libscicore_la-GetenvB.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-islittleendian.lo: src/c/islittleendian.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-islittleendian.lo -MD -MP -MF $(DEPDIR)/libscicore_la-islittleendian.Tpo -c -o libscicore_la-islittleendian.lo `test -f 'src/c/islittleendian.c' || echo '$(srcdir)/'`src/c/islittleendian.c
@@ -1547,23 +1498,6 @@ libscicore_la-callFunctionFromGateway.lo: src/c/callFunctionFromGateway.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callFunctionFromGateway.c' object='libscicore_la-callFunctionFromGateway.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-callFunctionFromGateway.lo `test -f 'src/c/callFunctionFromGateway.c' || echo '$(srcdir)/'`src/c/callFunctionFromGateway.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-librarieslist.lo: src/c/librarieslist.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-librarieslist.lo -MD -MP -MF $(DEPDIR)/libscicore_la-librarieslist.Tpo -c -o libscicore_la-librarieslist.lo `test -f 'src/c/librarieslist.c' || echo '$(srcdir)/'`src/c/librarieslist.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-librarieslist.Tpo $(DEPDIR)/libscicore_la-librarieslist.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/librarieslist.c' object='libscicore_la-librarieslist.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-librarieslist.lo `test -f 'src/c/librarieslist.c' || echo '$(srcdir)/'`src/c/librarieslist.c
-
-libscicore_la-libraryinfo.lo: src/c/libraryinfo.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-libraryinfo.Tpo -c -o libscicore_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-libraryinfo.Tpo $(DEPDIR)/libscicore_la-libraryinfo.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/libraryinfo.c' object='libscicore_la-libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-getvariablesname.lo: src/c/getvariablesname.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getvariablesname.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getvariablesname.Tpo -c -o libscicore_la-getvariablesname.lo `test -f 'src/c/getvariablesname.c' || echo '$(srcdir)/'`src/c/getvariablesname.c
@@ -1655,7 +1589,6 @@ libscicore_la-getos.lo: src/c/getos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getos.c' object='libscicore_la-getos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getos.lo `test -f 'src/c/getos.c' || echo '$(srcdir)/'`src/c/getos.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 
 libscicore_la-mode_exec.lo: src/c/mode_exec.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-mode_exec.lo -MD -MP -MF $(DEPDIR)/libscicore_la-mode_exec.Tpo -c -o libscicore_la-mode_exec.lo `test -f 'src/c/mode_exec.c' || echo '$(srcdir)/'`src/c/mode_exec.c
@@ -1705,8 +1638,6 @@ libscicore_la-funcprot.lo: src/c/funcprot.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/funcprot.c' object='libscicore_la-funcprot.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-funcprot.lo `test -f 'src/c/funcprot.c' || echo '$(srcdir)/'`src/c/funcprot.c
-=======
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
@@ -1861,16 +1792,6 @@ libscicore_la-sci_dispbpt.lo: sci_gateway/c/sci_dispbpt.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dispbpt.c' object='libscicore_la-sci_dispbpt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_dispbpt.lo `test -f 'sci_gateway/c/sci_dispbpt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dispbpt.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-sci_whereis.lo: sci_gateway/c/sci_whereis.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_whereis.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_whereis.Tpo -c -o libscicore_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_whereis.Tpo $(DEPDIR)/libscicore_la-sci_whereis.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_whereis.c' object='libscicore_la-sci_whereis.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-sci_intppty.lo: sci_gateway/c/sci_intppty.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_intppty.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_intppty.Tpo -c -o libscicore_la-sci_intppty.lo `test -f 'sci_gateway/c/sci_intppty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_intppty.c
@@ -1934,23 +1855,6 @@ libscicore_la-sci_clear.lo: sci_gateway/c/sci_clear.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_clear.c' object='libscicore_la-sci_clear.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_clear.lo `test -f 'sci_gateway/c/sci_clear.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clear.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-sci_chdir.lo: sci_gateway/c/sci_chdir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_chdir.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_chdir.Tpo -c -o libscicore_la-sci_chdir.lo `test -f 'sci_gateway/c/sci_chdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chdir.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_chdir.Tpo $(DEPDIR)/libscicore_la-sci_chdir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chdir.c' object='libscicore_la-sci_chdir.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_chdir.lo `test -f 'sci_gateway/c/sci_chdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chdir.c
-
-libscicore_la-sci_comp.lo: sci_gateway/c/sci_comp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_comp.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_comp.Tpo -c -o libscicore_la-sci_comp.lo `test -f 'sci_gateway/c/sci_comp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_comp.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_comp.Tpo $(DEPDIR)/libscicore_la-sci_comp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_comp.c' object='libscicore_la-sci_comp.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_comp.lo `test -f 'sci_gateway/c/sci_comp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_comp.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-sci_clearfun.lo: sci_gateway/c/sci_clearfun.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_clearfun.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_clearfun.Tpo -c -o libscicore_la-sci_clearfun.lo `test -f 'sci_gateway/c/sci_clearfun.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clearfun.c
@@ -2000,16 +1904,6 @@ libscicore_la-sci_arg.lo: sci_gateway/c/sci_arg.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_arg.c' object='libscicore_la-sci_arg.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_arg.lo `test -f 'sci_gateway/c/sci_arg.c' || echo '$(srcdir)/'`sci_gateway/c/sci_arg.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-sci_getcwd.lo: sci_gateway/c/sci_getcwd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getcwd.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getcwd.Tpo -c -o libscicore_la-sci_getcwd.lo `test -f 'sci_gateway/c/sci_getcwd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcwd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getcwd.Tpo $(DEPDIR)/libscicore_la-sci_getcwd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getcwd.c' object='libscicore_la-sci_getcwd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getcwd.lo `test -f 'sci_gateway/c/sci_getcwd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcwd.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-sci_type.lo: sci_gateway/c/sci_type.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_type.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_type.Tpo -c -o libscicore_la-sci_type.lo `test -f 'sci_gateway/c/sci_type.c' || echo '$(srcdir)/'`sci_gateway/c/sci_type.c
@@ -2122,23 +2016,6 @@ libscicore_la-sci_getscilabmode.lo: sci_gateway/c/sci_getscilabmode.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getscilabmode.c' object='libscicore_la-sci_getscilabmode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getscilabmode.lo `test -f 'sci_gateway/c/sci_getscilabmode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getscilabmode.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-libscicore_la-sci_librarieslist.lo: sci_gateway/c/sci_librarieslist.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_librarieslist.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_librarieslist.Tpo -c -o libscicore_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_librarieslist.Tpo $(DEPDIR)/libscicore_la-sci_librarieslist.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_librarieslist.c' object='libscicore_la-sci_librarieslist.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
-
-libscicore_la-sci_libraryinfo.lo: sci_gateway/c/sci_libraryinfo.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_libraryinfo.Tpo -c -o libscicore_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_libraryinfo.Tpo $(DEPDIR)/libscicore_la-sci_libraryinfo.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_libraryinfo.c' object='libscicore_la-sci_libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 libscicore_la-sci_getvariablesonstack.lo: sci_gateway/c/sci_getvariablesonstack.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getvariablesonstack.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getvariablesonstack.Tpo -c -o libscicore_la-sci_getvariablesonstack.lo `test -f 'sci_gateway/c/sci_getvariablesonstack.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getvariablesonstack.c
@@ -2153,7 +2030,6 @@ libscicore_la-sci_readgateway.lo: sci_gateway/c/sci_readgateway.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readgateway.c' object='libscicore_la-sci_readgateway.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_readgateway.lo `test -f 'sci_gateway/c/sci_readgateway.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readgateway.c
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 
 libscicore_la-sci_comp.lo: sci_gateway/c/sci_comp.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_comp.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_comp.Tpo -c -o libscicore_la-sci_comp.lo `test -f 'sci_gateway/c/sci_comp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_comp.c
@@ -2168,8 +2044,6 @@ libscicore_la-sci_exit.lo: sci_gateway/c/sci_exit.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_exit.c' object='libscicore_la-sci_exit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_exit.lo `test -f 'sci_gateway/c/sci_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exit.c
-=======
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -2180,12 +2054,6 @@ libscicore_la-sci_exit.lo: sci_gateway/c/sci_exit.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-algebre.lo: src/fortran/algebre.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algebre.lo `test -f 'src/fortran/algebre.f' || echo '$(srcdir)/'`src/fortran/algebre.f
-
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 clunit.lo: src/fortran/clunit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o clunit.lo `test -f 'src/fortran/clunit.f' || echo '$(srcdir)/'`src/fortran/clunit.f
 
@@ -2194,12 +2062,6 @@ getlin.lo: src/fortran/getlin.f
 
 allowptr.lo: src/fortran/allowptr.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o allowptr.lo `test -f 'src/fortran/allowptr.f' || echo '$(srcdir)/'`src/fortran/allowptr.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-dldsp.lo: src/fortran/dldsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dldsp.lo `test -f 'src/fortran/dldsp.f' || echo '$(srcdir)/'`src/fortran/dldsp.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 isany.lo: src/fortran/isany.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isany.lo `test -f 'src/fortran/isany.f' || echo '$(srcdir)/'`src/fortran/isany.f
@@ -2209,12 +2071,6 @@ hmcreate.lo: src/fortran/hmcreate.f
 
 nextj.lo: src/fortran/nextj.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nextj.lo `test -f 'src/fortran/nextj.f' || echo '$(srcdir)/'`src/fortran/nextj.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-functionsforbasout.lo: src/fortran/functionsforbasout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o functionsforbasout.lo `test -f 'src/fortran/functionsforbasout.f' || echo '$(srcdir)/'`src/fortran/functionsforbasout.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 setgetmode.lo: src/fortran/setgetmode.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o setgetmode.lo `test -f 'src/fortran/setgetmode.f' || echo '$(srcdir)/'`src/fortran/setgetmode.f
@@ -2326,21 +2182,9 @@ stackgl.lo: src/fortran/stackgl.f
 
 allops.lo: src/fortran/allops.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o allops.lo `test -f 'src/fortran/allops.f' || echo '$(srcdir)/'`src/fortran/allops.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 
 mname.lo: src/fortran/mname.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mname.lo `test -f 'src/fortran/mname.f' || echo '$(srcdir)/'`src/fortran/mname.f
-=======
-
-print.lo: src/fortran/print.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o print.lo `test -f 'src/fortran/print.f' || echo '$(srcdir)/'`src/fortran/print.f
-
-mname.lo: src/fortran/mname.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mname.lo `test -f 'src/fortran/mname.f' || echo '$(srcdir)/'`src/fortran/mname.f
-
-prntid.lo: src/fortran/prntid.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o prntid.lo `test -f 'src/fortran/prntid.f' || echo '$(srcdir)/'`src/fortran/prntid.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 command.lo: src/fortran/command.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o command.lo `test -f 'src/fortran/command.f' || echo '$(srcdir)/'`src/fortran/command.f
@@ -2359,12 +2203,6 @@ isbrk.lo: src/fortran/isbrk.f
 
 majmin.lo: src/fortran/majmin.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majmin.lo `test -f 'src/fortran/majmin.f' || echo '$(srcdir)/'`src/fortran/majmin.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-dmdspf.lo: src/fortran/dmdspf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmdspf.lo `test -f 'src/fortran/dmdspf.f' || echo '$(srcdir)/'`src/fortran/dmdspf.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 xerbla.lo: src/fortran/xerbla.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o xerbla.lo `test -f 'src/fortran/xerbla.f' || echo '$(srcdir)/'`src/fortran/xerbla.f
@@ -2407,12 +2245,6 @@ defmat.lo: src/fortran/defmat.f
 
 mklist.lo: src/fortran/mklist.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mklist.lo `test -f 'src/fortran/mklist.f' || echo '$(srcdir)/'`src/fortran/mklist.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-dmdsp.lo: src/fortran/dmdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmdsp.lo `test -f 'src/fortran/dmdsp.f' || echo '$(srcdir)/'`src/fortran/dmdsp.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sigbas.lo: src/fortran/sigbas.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sigbas.lo `test -f 'src/fortran/sigbas.f' || echo '$(srcdir)/'`src/fortran/sigbas.f
@@ -2443,12 +2275,6 @@ dbasin.lo: src/fortran/dbasin.f
 
 macro.lo: src/fortran/macro.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o macro.lo `test -f 'src/fortran/macro.f' || echo '$(srcdir)/'`src/fortran/macro.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-lspdsp.lo: src/fortran/lspdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lspdsp.lo `test -f 'src/fortran/lspdsp.f' || echo '$(srcdir)/'`src/fortran/lspdsp.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 extlarg.lo: src/fortran/extlarg.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o extlarg.lo `test -f 'src/fortran/extlarg.f' || echo '$(srcdir)/'`src/fortran/extlarg.f
@@ -2464,12 +2290,6 @@ storeglobal.lo: src/fortran/storeglobal.f
 
 lst2vars.lo: src/fortran/lst2vars.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lst2vars.lo `test -f 'src/fortran/lst2vars.f' || echo '$(srcdir)/'`src/fortran/lst2vars.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-fmttyp.lo: src/fortran/fmttyp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmttyp.lo `test -f 'src/fortran/fmttyp.f' || echo '$(srcdir)/'`src/fortran/fmttyp.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 basnms.lo: src/fortran/basnms.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basnms.lo `test -f 'src/fortran/basnms.f' || echo '$(srcdir)/'`src/fortran/basnms.f
@@ -2515,15 +2335,6 @@ putid.lo: src/fortran/putid.f
 
 itosci.lo: src/fortran/itosci.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-formatnumber.lo: src/fortran/formatnumber.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o formatnumber.lo `test -f 'src/fortran/formatnumber.f' || echo '$(srcdir)/'`src/fortran/formatnumber.f
-
-wmdsp.lo: src/fortran/wmdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmdsp.lo `test -f 'src/fortran/wmdsp.f' || echo '$(srcdir)/'`src/fortran/wmdsp.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 stackr2d.lo: src/fortran/stackr2d.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stackr2d.lo `test -f 'src/fortran/stackr2d.f' || echo '$(srcdir)/'`src/fortran/stackr2d.f
@@ -2536,24 +2347,12 @@ stackc2i.lo: src/fortran/stackc2i.f
 
 isinstring.lo: src/fortran/isinstring.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isinstring.lo `test -f 'src/fortran/isinstring.f' || echo '$(srcdir)/'`src/fortran/isinstring.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-promptecho.lo: src/fortran/promptecho.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o promptecho.lo `test -f 'src/fortran/promptecho.f' || echo '$(srcdir)/'`src/fortran/promptecho.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 relocstack.lo: src/fortran/relocstack.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f
 
 sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-sci_funcprot.lo: sci_gateway/fortran/sci_funcprot.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_funcprot.lo `test -f 'sci_gateway/fortran/sci_funcprot.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_funcprot.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sci_global.lo: sci_gateway/fortran/sci_global.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_global.lo `test -f 'sci_gateway/fortran/sci_global.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_global.f
@@ -2569,12 +2368,6 @@ sci_dispbpt.lo: sci_gateway/fortran/sci_dispbpt.f
 
 sci_useascommand.lo: sci_gateway/fortran/sci_useascommand.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_useascommand.lo `test -f 'sci_gateway/fortran/sci_useascommand.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_useascommand.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-sci_whereis.lo: sci_gateway/fortran/sci_whereis.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_whereis.lo `test -f 'sci_gateway/fortran/sci_whereis.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_whereis.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sci_intppty.lo: sci_gateway/fortran/sci_intppty.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_intppty.lo `test -f 'sci_gateway/fortran/sci_intppty.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_intppty.f
@@ -2584,12 +2377,6 @@ sci_ieee.lo: sci_gateway/fortran/sci_ieee.f
 
 sci_macrovar.lo: sci_gateway/fortran/sci_macrovar.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_macrovar.lo `test -f 'sci_gateway/fortran/sci_macrovar.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_macrovar.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
-=======
-
-sci_funptr.lo: sci_gateway/fortran/sci_funptr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_funptr.lo `test -f 'sci_gateway/fortran/sci_funptr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_funptr.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sci_exists.lo: sci_gateway/fortran/sci_exists.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_exists.lo `test -f 'sci_gateway/fortran/sci_exists.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_exists.f
@@ -2602,24 +2389,9 @@ sci_clear.lo: sci_gateway/fortran/sci_clear.f
 
 sci_argn.lo: sci_gateway/fortran/sci_argn.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_argn.lo `test -f 'sci_gateway/fortran/sci_argn.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_argn.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 
 sci_setbpt.lo: sci_gateway/fortran/sci_setbpt.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setbpt.lo `test -f 'sci_gateway/fortran/sci_setbpt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setbpt.f
-=======
-
-sci_comp.lo: sci_gateway/fortran/sci_comp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_comp.lo `test -f 'sci_gateway/fortran/sci_comp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_comp.f
-
-sci_setbpt.lo: sci_gateway/fortran/sci_setbpt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setbpt.lo `test -f 'sci_gateway/fortran/sci_setbpt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setbpt.f
-
-sci_predef.lo: sci_gateway/fortran/sci_predef.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_predef.lo `test -f 'sci_gateway/fortran/sci_predef.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_predef.f
-
-sci_typnam.lo: sci_gateway/fortran/sci_typnam.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_typnam.lo `test -f 'sci_gateway/fortran/sci_typnam.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_typnam.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sci_clearglobal.lo: sci_gateway/fortran/sci_clearglobal.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_clearglobal.lo `test -f 'sci_gateway/fortran/sci_clearglobal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_clearglobal.f
@@ -2632,24 +2404,12 @@ where.lo: sci_gateway/fortran/where.f
 
 sci_iserror.lo: sci_gateway/fortran/sci_iserror.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_iserror.lo `test -f 'sci_gateway/fortran/sci_iserror.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_iserror.f
-<<<<<<< HEAD:scilab/modules/core/Makefile.in
 
 sci_debug.lo: sci_gateway/fortran/sci_debug.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_debug.lo `test -f 'sci_gateway/fortran/sci_debug.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_debug.f
 
 sci_comp.lo: sci_gateway/fortran/sci_comp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_comp.lo `test -f 'sci_gateway/fortran/sci_comp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_comp.f
-=======
-
-sci_type.lo: sci_gateway/fortran/sci_type.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_type.lo `test -f 'sci_gateway/fortran/sci_type.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_type.f
-
-sci_mode.lo: sci_gateway/fortran/sci_mode.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_mode.lo `test -f 'sci_gateway/fortran/sci_mode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_mode.f
-
-sci_debug.lo: sci_gateway/fortran/sci_debug.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_debug.lo `test -f 'sci_gateway/fortran/sci_debug.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_debug.f
->>>>>>> origin/5.1:scilab/modules/core/Makefile.in
 
 sci_isglobal.lo: sci_gateway/fortran/sci_isglobal.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_isglobal.lo `test -f 'sci_gateway/fortran/sci_isglobal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_isglobal.f

@@ -720,7 +720,6 @@ libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
-<<<<<<< HEAD:scilab/modules/shell/Makefile.in
 
 libscishell_la-prompt.lo: src/c/prompt.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-prompt.lo -MD -MP -MF $(DEPDIR)/libscishell_la-prompt.Tpo -c -o libscishell_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
@@ -735,8 +734,6 @@ libscishell_la-promptecho.lo: src/c/promptecho.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/promptecho.c' object='libscishell_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
-=======
->>>>>>> origin/5.1:scilab/modules/shell/Makefile.in
 
 libscishell_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libscishell_la-initMacOSXEnv.Tpo -c -o libscishell_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c

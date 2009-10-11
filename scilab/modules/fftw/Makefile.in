@@ -109,12 +109,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_etcdir)" \
 	"$(DESTDIR)$(libscifftw_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/fftw/Makefile.in
 	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscifftw_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/fftw/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES =  \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -170,17 +165,6 @@ SOURCES = $(libscifftw_la_SOURCES)
 DIST_SOURCES = $(am__libscifftw_la_SOURCES_DIST)
 DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_root_DATA) \
 	$(libscifftw_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/fftw/Makefile.in
-=======
-am__libscifftw_la_include_HEADERS_DIST =  \
-	includes/sci_loadfftwlibrary.h \
-	includes/sci_fftwlibraryisloaded.h \
-	includes/sci_disposefftwlibrary.h includes/sci_fftw_flags.h \
-	includes/gw_fftw.h includes/sci_fftw.h \
-	includes/sci_get_fftw_wisdom.h includes/sci_set_fftw_wisdom.h \
-	includes/sci_fftw_forget_wisdom.h includes/with_fftw.h
-HEADERS = $(libscifftw_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/fftw/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -805,29 +789,6 @@ uninstall-libscifftw_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscifftw_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/fftw/Makefile.in
-=======
-install-libscifftw_la_includeHEADERS: $(libscifftw_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscifftw_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscifftw_la_includedir)"
-	@list='$(libscifftw_la_include_HEADERS)'; test -n "$(libscifftw_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscifftw_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscifftw_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscifftw_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscifftw_la_include_HEADERS)'; test -n "$(libscifftw_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscifftw_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscifftw_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/fftw/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

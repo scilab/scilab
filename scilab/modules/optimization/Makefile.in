@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioptimization_la_etcdir)" \
 	"$(DESTDIR)$(libscioptimization_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
 	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscioptimization_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioptimization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -178,10 +173,6 @@ DIST_SOURCES = $(libscioptimization_la_SOURCES)
 DATA = $(libscioptimization_la_etc_DATA) \
 	$(libscioptimization_la_root_DATA) \
 	$(libscioptimization_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
-=======
-HEADERS = $(libscioptimization_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -934,12 +925,6 @@ zqnbd.lo: src/fortran/zqnbd.f
 
 ajour.lo: src/fortran/ajour.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ajour.lo `test -f 'src/fortran/ajour.f' || echo '$(srcdir)/'`src/fortran/ajour.f
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
-=======
-
-dpmpar.lo: src/fortran/dpmpar.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpmpar.lo `test -f 'src/fortran/dpmpar.f' || echo '$(srcdir)/'`src/fortran/dpmpar.f
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 
 fretc1.lo: src/fortran/fretc1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fretc1.lo `test -f 'src/fortran/fretc1.f' || echo '$(srcdir)/'`src/fortran/fretc1.f
@@ -1018,21 +1003,9 @@ zgcbd.lo: src/fortran/zgcbd.f
 
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
 
 qpgen1sci.lo: src/fortran/qpgen1sci.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen1sci.lo `test -f 'src/fortran/qpgen1sci.f' || echo '$(srcdir)/'`src/fortran/qpgen1sci.f
-=======
-
-dpofa.lo: src/fortran/dpofa.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpofa.lo `test -f 'src/fortran/dpofa.f' || echo '$(srcdir)/'`src/fortran/dpofa.f
-
-qpgen1sci.lo: src/fortran/qpgen1sci.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen1sci.lo `test -f 'src/fortran/qpgen1sci.f' || echo '$(srcdir)/'`src/fortran/qpgen1sci.f
-
-util.lo: src/fortran/util.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o util.lo `test -f 'src/fortran/util.f' || echo '$(srcdir)/'`src/fortran/util.f
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 
 sci_f_semidef.lo: sci_gateway/fortran/sci_f_semidef.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_semidef.lo `test -f 'sci_gateway/fortran/sci_f_semidef.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_semidef.f
@@ -1087,12 +1060,9 @@ lmder.lo: src/fortran/minpack/lmder.f
 
 hybrd.lo: src/fortran/minpack/hybrd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hybrd.lo `test -f 'src/fortran/minpack/hybrd.f' || echo '$(srcdir)/'`src/fortran/minpack/hybrd.f
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
 
 dpmpar.lo: src/fortran/minpack/dpmpar.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpmpar.lo `test -f 'src/fortran/minpack/dpmpar.f' || echo '$(srcdir)/'`src/fortran/minpack/dpmpar.f
-=======
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 
 lmpar.lo: src/fortran/minpack/lmpar.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lmpar.lo `test -f 'src/fortran/minpack/lmpar.f' || echo '$(srcdir)/'`src/fortran/minpack/lmpar.f
@@ -1189,29 +1159,6 @@ uninstall-libscioptimization_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/optimization/Makefile.in
-=======
-install-libscioptimization_la_includeHEADERS: $(libscioptimization_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscioptimization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscioptimization_la_includedir)"
-	@list='$(libscioptimization_la_include_HEADERS)'; test -n "$(libscioptimization_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscioptimization_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscioptimization_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscioptimization_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscioptimization_la_include_HEADERS)'; test -n "$(libscioptimization_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscioptimization_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscioptimization_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/optimization/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

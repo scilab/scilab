@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistring_la_etcdir)" \
 	"$(DESTDIR)$(libscistring_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
 	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscistring_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistring_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -184,10 +179,6 @@ SOURCES = $(libscistring_la_SOURCES)
 DIST_SOURCES = $(libscistring_la_SOURCES)
 DATA = $(libscistring_la_etc_DATA) $(libscistring_la_root_DATA) \
 	$(libscistring_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
-=======
-HEADERS = $(libscistring_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -773,7 +764,6 @@ libscistring_la-strcatfunction.lo: src/c/strcatfunction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strcatfunction.c' object='libscistring_la-strcatfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strcatfunction.lo `test -f 'src/c/strcatfunction.c' || echo '$(srcdir)/'`src/c/strcatfunction.c
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
 
 libscistring_la-strsplitfunction.lo: src/c/strsplitfunction.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-strsplitfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_la-strsplitfunction.Tpo -c -o libscistring_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
@@ -781,8 +771,6 @@ libscistring_la-strsplitfunction.lo: src/c/strsplitfunction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strsplitfunction.c' object='libscistring_la-strsplitfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
-=======
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 
 libscistring_la-partfunction.lo: src/c/partfunction.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-partfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_la-partfunction.Tpo -c -o libscistring_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c
@@ -881,7 +869,6 @@ libscistring_la-isalphanum.lo: src/c/isalphanum.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isalphanum.c' object='libscistring_la-isalphanum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-isalphanum.lo `test -f 'src/c/isalphanum.c' || echo '$(srcdir)/'`src/c/isalphanum.c
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
 
 libscistring_la-NumTokens.lo: src/c/NumTokens.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-NumTokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-NumTokens.Tpo -c -o libscistring_la-NumTokens.lo `test -f 'src/c/NumTokens.c' || echo '$(srcdir)/'`src/c/NumTokens.c
@@ -903,15 +890,6 @@ libscistring_la-scistrtostr.lo: src/c/scistrtostr.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scistrtostr.c' object='libscistring_la-scistrtostr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
-=======
-
-libscistring_la-kmp.lo: src/c/kmp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-kmp.lo -MD -MP -MF $(DEPDIR)/libscistring_la-kmp.Tpo -c -o libscistring_la-kmp.lo `test -f 'src/c/kmp.c' || echo '$(srcdir)/'`src/c/kmp.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-kmp.Tpo $(DEPDIR)/libscistring_la-kmp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/kmp.c' object='libscistring_la-kmp.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-kmp.lo `test -f 'src/c/kmp.c' || echo '$(srcdir)/'`src/c/kmp.c
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 
 libscistring_la-gw_string.lo: sci_gateway/c/gw_string.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gw_string.Tpo -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
@@ -1129,7 +1107,6 @@ libscistring_la-sci_regexp.lo: sci_gateway/c/sci_regexp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_regexp.c' object='libscistring_la-sci_regexp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_regexp.lo `test -f 'sci_gateway/c/sci_regexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_regexp.c
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
 
 libscistring_la-sci_NumTokens.lo: sci_gateway/c/sci_NumTokens.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_NumTokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_NumTokens.Tpo -c -o libscistring_la-sci_NumTokens.lo `test -f 'sci_gateway/c/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_NumTokens.c
@@ -1137,8 +1114,6 @@ libscistring_la-sci_NumTokens.lo: sci_gateway/c/sci_NumTokens.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_NumTokens.c' object='libscistring_la-sci_NumTokens.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_NumTokens.lo `test -f 'sci_gateway/c/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_NumTokens.c
-=======
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1149,12 +1124,6 @@ libscistring_la-sci_NumTokens.lo: sci_gateway/c/sci_NumTokens.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
-=======
-strdsp.lo: src/fortran/strdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o strdsp.lo `test -f 'src/fortran/strdsp.f' || echo '$(srcdir)/'`src/fortran/strdsp.f
-
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 sci_string.lo: sci_gateway/fortran/sci_string.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_string.lo `test -f 'sci_gateway/fortran/sci_string.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_string.f
 
@@ -1226,29 +1195,6 @@ uninstall-libscistring_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscistring_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/string/Makefile.in
-=======
-install-libscistring_la_includeHEADERS: $(libscistring_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscistring_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscistring_la_includedir)"
-	@list='$(libscistring_la_include_HEADERS)'; test -n "$(libscistring_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscistring_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscistring_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscistring_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscistring_la_include_HEADERS)'; test -n "$(libscistring_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscistring_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscistring_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/string/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

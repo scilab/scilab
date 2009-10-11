@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_etcdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
 	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscipolynomials_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscipolynomials_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -182,10 +177,6 @@ DIST_SOURCES = $(libscipolynomials_la_SOURCES)
 DATA = $(libscipolynomials_la_etc_DATA) \
 	$(libscipolynomials_la_root_DATA) \
 	$(libscipolynomials_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-HEADERS = $(libscipolynomials_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -935,12 +926,6 @@ wpmul1.lo: src/fortran/wpmul1.f
 
 wmpcnc.lo: src/fortran/wmpcnc.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpcnc.lo `test -f 'src/fortran/wmpcnc.f' || echo '$(srcdir)/'`src/fortran/wmpcnc.f
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-
-dmpdsp.lo: src/fortran/dmpdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpdsp.lo `test -f 'src/fortran/dmpdsp.f' || echo '$(srcdir)/'`src/fortran/dmpdsp.f
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 mptri.lo: src/fortran/mptri.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mptri.lo `test -f 'src/fortran/mptri.f' || echo '$(srcdir)/'`src/fortran/mptri.f
@@ -965,12 +950,6 @@ dmpcle.lo: src/fortran/dmpcle.f
 
 rpoly.lo: src/fortran/rpoly.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpoly.lo `test -f 'src/fortran/rpoly.f' || echo '$(srcdir)/'`src/fortran/rpoly.f
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-
-wmptld.lo: src/fortran/wmptld.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmptld.lo `test -f 'src/fortran/wmptld.f' || echo '$(srcdir)/'`src/fortran/wmptld.f
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 wpodiv.lo: src/fortran/wpodiv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpodiv.lo `test -f 'src/fortran/wpodiv.f' || echo '$(srcdir)/'`src/fortran/wpodiv.f
@@ -1022,19 +1001,12 @@ impcnc.lo: src/fortran/impcnc.f
 
 wdmpad.lo: src/fortran/wdmpad.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wdmpad.lo `test -f 'src/fortran/wdmpad.f' || echo '$(srcdir)/'`src/fortran/wdmpad.f
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-
-fmt.lo: src/fortran/fmt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmt.lo `test -f 'src/fortran/fmt.f' || echo '$(srcdir)/'`src/fortran/fmt.f
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 wmpcle.lo: src/fortran/wmpcle.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpcle.lo `test -f 'src/fortran/wmpcle.f' || echo '$(srcdir)/'`src/fortran/wmpcle.f
 
 quadit.lo: src/fortran/quadit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quadit.lo `test -f 'src/fortran/quadit.f' || echo '$(srcdir)/'`src/fortran/quadit.f
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
 
 quad.lo: src/fortran/quad.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quad.lo `test -f 'src/fortran/quad.f' || echo '$(srcdir)/'`src/fortran/quad.f
@@ -1044,14 +1016,6 @@ calcsc.lo: src/fortran/calcsc.f
 
 writebufsfact.lo: src/fortran/writebufsfact.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebufsfact.lo `test -f 'src/fortran/writebufsfact.f' || echo '$(srcdir)/'`src/fortran/writebufsfact.f
-=======
-
-dmrdsp.lo: src/fortran/dmrdsp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmrdsp.lo `test -f 'src/fortran/dmrdsp.f' || echo '$(srcdir)/'`src/fortran/dmrdsp.f
-
-quad.lo: src/fortran/quad.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quad.lo `test -f 'src/fortran/quad.f' || echo '$(srcdir)/'`src/fortran/quad.f
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 sci_f_simp.lo: sci_gateway/fortran/sci_f_simp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simp.lo `test -f 'sci_gateway/fortran/sci_f_simp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simp.f
@@ -1106,12 +1070,6 @@ sci_f_sfact.lo: sci_gateway/fortran/sci_f_sfact.f
 
 sci_f_simpmd.lo: sci_gateway/fortran/sci_f_simpmd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simpmd.lo `test -f 'sci_gateway/fortran/sci_f_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simpmd.f
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-
-balbak.lo: src/fortran/eispack/balbak.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1178,29 +1136,6 @@ uninstall-libscipolynomials_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/polynomials/Makefile.in
-=======
-install-libscipolynomials_la_includeHEADERS: $(libscipolynomials_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipolynomials_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipolynomials_la_includedir)"
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscipolynomials_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscipolynomials_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscipolynomials_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscipolynomials_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/polynomials/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

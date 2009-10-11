@@ -113,12 +113,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphics_la_etcdir)" \
 	"$(DESTDIR)$(libscigraphics_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" \
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
 	"$(DESTDIR)$(libscigraphics_la_geddir)"
-=======
-	"$(DESTDIR)$(libscigraphics_la_geddir)" \
-	"$(DESTDIR)$(libscigraphics_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphics_disable_la_LIBADD =
 am_libscigraphics_disable_la_OBJECTS =  \
@@ -514,7 +509,6 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
 SOURCES = $(libscigraphics_disable_la_SOURCES) \
 	$(libscigraphics_la_SOURCES)
 DIST_SOURCES = $(libscigraphics_disable_la_SOURCES) \
@@ -522,64 +516,6 @@ DIST_SOURCES = $(libscigraphics_disable_la_SOURCES) \
 DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
 	$(nobase_libscigraphics_la_ged_DATA)
-=======
-SOURCES = $(libscigraphics_la_SOURCES)
-DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
-DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
-	$(libscigraphics_la_sci_gateway_DATA) \
-	$(nobase_libscigraphics_la_ged_DATA)
-am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
-	includes/sci_winsid.h includes/sci_addcb.h \
-	includes/sci_grayplot.h includes/sci_xlfont.h \
-	includes/GetCommandArg.h includes/sci_xgrid.h \
-	includes/sci_geom3d.h includes/DefaultCommandArg.h \
-	includes/sci_xgraduate.h includes/sci_unzoom.h \
-	includes/sci_xsegs.h includes/sci_clear_pixmap.h \
-	includes/sci_xarc.h includes/sci_xpolys.h \
-	includes/sci_xstring.h includes/Axes.h includes/sci_xsetech.h \
-	includes/sciMatrix.h includes/sci_show_window.h \
-	includes/sci_param3d1.h includes/graphicModuleLoad.h \
-	includes/sci_matplot.h includes/sci_drawaxis.h \
-	includes/sci_xrect.h includes/sci_plot2d1.h \
-	includes/GetProperty.h includes/SetProperty.h \
-	includes/sci_xarrows.h includes/sci_move.h \
-	includes/sci_relocate_handle.h includes/BasicAlgos.h \
-	includes/sciCall.h includes/sci_showalluimenushandles.h \
-	includes/sci_get.h includes/InitObjects.h \
-	includes/sci_xfpoly.h includes/sci_drawlater.h \
-	includes/Format.h includes/sci_set.h includes/sci_delete.h \
-	includes/sci_plot2d.h includes/sci_StringBox.h \
-	includes/sci_xgetmouse.h includes/Interaction.h \
-	includes/sci_xfarcs.h includes/sci_contour2di.h \
-	includes/HandleManagement.h includes/sci_fec.h \
-	includes/sci_matplot1.h includes/XsetXgetParameters.h \
-	includes/sci_xfpolys.h includes/WindowList.h \
-	includes/sci_xget.h includes/sci_swap_handles.h \
-	includes/sci_newaxes.h includes/PloEch.h includes/sci_xclick.h \
-	includes/sci_xset.h includes/sci_xgetech.h includes/sci_glue.h \
-	includes/sci_xstringb.h includes/sci_xname.h \
-	includes/DrawObjects.h includes/sci_xpoly.h \
-	includes/sci_xchange.h includes/sci_demo.h \
-	includes/ObjectStructure.h includes/sci_draw.h \
-	includes/sci_plot3d.h includes/sci_copy.h \
-	includes/BuildObjects.h includes/CloneObjects.h \
-	includes/sci_xarcs.h includes/pixel_mode.h \
-	includes/sci_champ.h includes/Champ.h includes/StringMatrix.h \
-	includes/sci_unglue.h includes/gw_graphics.h \
-	includes/sci_zoom_rect.h includes/DestroyObjects.h \
-	includes/sci_xrects.h includes/sci_xtitle.h \
-	includes/math_graphics.h includes/sci_drawnow.h \
-	includes/sci_param3d.h includes/CurrentObjectsManagement.h \
-	includes/ObjectSelection.h includes/axesScale.h \
-	includes/Contour.h includes/getDictionaryGetProperties.h \
-	includes/getDictionarySetProperties.h includes/GrayPlot.h \
-	includes/sci_xload.h includes/sci_xsave.h \
-	includes/TerminateGraphics.h includes/sci_rubberbox.h \
-	includes/sci_rotate_axes.h includes/sci_is_handle_valid.h \
-	includes/sci_show_pixmap.h includes/sci_Legend.h \
-	includes/Plot2d.h
-HEADERS = $(libscigraphics_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1830,21 +1766,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
 libscigraphics_disable_la-nographics.lo: src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_disable_la_CFLAGS) $(CFLAGS) -MT libscigraphics_disable_la-nographics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_disable_la-nographics.Tpo -c -o libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_disable_la-nographics.Tpo $(DEPDIR)/libscigraphics_disable_la-nographics.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nographics/nographics.c' object='libscigraphics_disable_la-nographics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_disable_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
-=======
-libscigraphics_la-nographics.lo: src/nographics/nographics.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-nographics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-nographics.Tpo -c -o libscigraphics_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_la-nographics.Tpo $(DEPDIR)/libscigraphics_la-nographics.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nographics/nographics.c' object='libscigraphics_la-nographics.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 
 libscigraphics_la-GetCommandArg.lo: src/c/GetCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetCommandArg.Tpo -c -o libscigraphics_la-GetCommandArg.lo `test -f 'src/c/GetCommandArg.c' || echo '$(srcdir)/'`src/c/GetCommandArg.c
@@ -2790,7 +2717,6 @@ libscigraphics_la-get_grid_position_property.lo: src/c/getHandleProperty/get_gri
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_grid_position_property.c' object='libscigraphics_la-get_grid_position_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_grid_position_property.lo `test -f 'src/c/getHandleProperty/get_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_position_property.c
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
 
 libscigraphics_la-get_anti_aliasing_property.lo: src/c/getHandleProperty/get_anti_aliasing_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Tpo -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
@@ -2798,8 +2724,6 @@ libscigraphics_la-get_anti_aliasing_property.lo: src/c/getHandleProperty/get_ant
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_anti_aliasing_property.c' object='libscigraphics_la-get_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
-=======
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 
 libscigraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo -c -o libscigraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
@@ -3752,7 +3676,6 @@ libscigraphics_la-set_grid_position_property.lo: src/c/getHandleProperty/set_gri
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_grid_position_property.c' object='libscigraphics_la-set_grid_position_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_grid_position_property.lo `test -f 'src/c/getHandleProperty/set_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_position_property.c
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
 
 libscigraphics_la-set_anti_aliasing_property.lo: src/c/getHandleProperty/set_anti_aliasing_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Tpo -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
@@ -3760,8 +3683,6 @@ libscigraphics_la-set_anti_aliasing_property.lo: src/c/getHandleProperty/set_ant
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_anti_aliasing_property.c' object='libscigraphics_la-set_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
-=======
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 
 libscigraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo -c -o libscigraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c
@@ -4551,29 +4472,6 @@ uninstall-nobase_libscigraphics_la_gedDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscigraphics_la_geddir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscigraphics_la_geddir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/graphics/Makefile.in
-=======
-install-libscigraphics_la_includeHEADERS: $(libscigraphics_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphics_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_includedir)"
-	@list='$(libscigraphics_la_include_HEADERS)'; test -n "$(libscigraphics_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscigraphics_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscigraphics_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscigraphics_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraphics_la_include_HEADERS)'; test -n "$(libscigraphics_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigraphics_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigraphics_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/graphics/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

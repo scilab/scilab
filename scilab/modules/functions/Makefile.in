@@ -80,11 +80,6 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
-=======
-SOURCES =
-DIST_SOURCES =
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -106,7 +101,6 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_la_etcdir)" \
 	"$(DESTDIR)$(libscifunctions_la_rootdir)" \
@@ -165,11 +159,6 @@ DATA = $(libscifunctions_la_etc_DATA) $(libscifunctions_la_root_DATA) \
 	$(libscifunctions_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
-=======
-am__installdirs = "$(DESTDIR)$(libscifunctions_la_etcdir)" \
-	"$(DESTDIR)$(libscifunctions_la_rootdir)"
-DATA = $(libscifunctions_la_etc_DATA) $(libscifunctions_la_root_DATA)
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -561,7 +550,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -754,8 +742,6 @@ intexecstr.lo: sci_gateway/fortran/intexecstr.f
 
 intexec.lo: sci_gateway/fortran/intexec.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intexec.lo `test -f 'sci_gateway/fortran/intexec.f' || echo '$(srcdir)/'`sci_gateway/fortran/intexec.f
-=======
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -802,7 +788,6 @@ uninstall-libscifunctions_la_rootDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscifunctions_la_rootdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscifunctions_la_rootdir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
 install-libscifunctions_la_sci_gatewayDATA: $(libscifunctions_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscifunctions_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)"
@@ -832,8 +817,6 @@ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
 	      END { if (nonempty) { for (i in files) print i; }; }'`; \
 	mkid -fID $$unique
-=======
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 tags: TAGS
 
 TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
@@ -972,11 +955,7 @@ install-dvi: install-dvi-am
 
 install-dvi-am:
 
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
 install-exec-am: install-pkglibLTLIBRARIES
-=======
-install-exec-am:
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 
 install-html: install-html-am
 
@@ -1017,7 +996,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscifunctions_la_etcDATA \
-<<<<<<< HEAD:scilab/modules/functions/Makefile.in
 	uninstall-libscifunctions_la_rootDATA \
 	uninstall-libscifunctions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1042,25 +1020,6 @@ uninstall-am: uninstall-libscifunctions_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-=======
-	uninstall-libscifunctions_la_rootDATA
-
-.MAKE: check-am install-am install-strip
-
-.PHONY: all all-am all-local check check-am check-local clean \
-	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distclean-local distdir \
-	dvi dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscifunctions_la_etcDATA \
-	install-libscifunctions_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
->>>>>>> origin/5.1:scilab/modules/functions/Makefile.in
 	uninstall-libscifunctions_la_etcDATA \
 	uninstall-libscifunctions_la_rootDATA \
 	uninstall-libscifunctions_la_sci_gatewayDATA \

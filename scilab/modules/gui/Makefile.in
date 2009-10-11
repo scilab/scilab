@@ -115,12 +115,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigui_la_etcdir)" \
 	"$(DESTDIR)$(libscigui_la_rootdir)" \
 	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 	"$(DESTDIR)$(libscigui_la_iconsdir)"
-=======
-	"$(DESTDIR)$(libscigui_la_iconsdir)" \
-	"$(DESTDIR)$(libscigui_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_disable_la_LIBADD =
 am__objects_1 = libscigui_disable_la-nogui.lo
@@ -269,20 +264,11 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 SOURCES = $(libscigui_disable_la_SOURCES) $(libscigui_la_SOURCES)
 DIST_SOURCES = $(libscigui_disable_la_SOURCES) $(libscigui_la_SOURCES)
 DATA = $(libscigui_la_etc_DATA) $(libscigui_la_root_DATA) \
 	$(libscigui_la_sci_gateway_DATA) \
 	$(nobase_libscigui_la_icons_DATA)
-=======
-SOURCES = $(libscigui_la_SOURCES)
-DIST_SOURCES = $(am__libscigui_la_SOURCES_DIST)
-DATA = $(libscigui_la_etc_DATA) $(libscigui_la_root_DATA) \
-	$(libscigui_la_sci_gateway_DATA) \
-	$(nobase_libscigui_la_icons_DATA)
-HEADERS = $(libscigui_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1093,21 +1079,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 libscigui_disable_la-nogui.lo: src/nogui/nogui.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -MT libscigui_disable_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscigui_disable_la-nogui.Tpo -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_disable_la-nogui.Tpo $(DEPDIR)/libscigui_disable_la-nogui.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nogui/nogui.c' object='libscigui_disable_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
-=======
-libscigui_la-nogui.lo: src/nogui/nogui.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscigui_la-nogui.Tpo -c -o libscigui_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-nogui.Tpo $(DEPDIR)/libscigui_la-nogui.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nogui/nogui.c' object='libscigui_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 
 libscigui_la-TerminateGui.lo: src/c/TerminateGui.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-TerminateGui.lo -MD -MP -MF $(DEPDIR)/libscigui_la-TerminateGui.Tpo -c -o libscigui_la-TerminateGui.lo `test -f 'src/c/TerminateGui.c' || echo '$(srcdir)/'`src/c/TerminateGui.c
@@ -1444,7 +1421,6 @@ libscigui_la-sci_uigetfile.lo: sci_gateway/cpp/sci_uigetfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uigetfile.cpp' object='libscigui_la-sci_uigetfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uigetfile.lo `test -f 'sci_gateway/cpp/sci_uigetfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetfile.cpp
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 
 libscigui_la-sci_displaytree.lo: sci_gateway/cpp/sci_displaytree.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_displaytree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_displaytree.Tpo -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
@@ -1452,8 +1428,6 @@ libscigui_la-sci_displaytree.lo: sci_gateway/cpp/sci_displaytree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_displaytree.cpp' object='libscigui_la-sci_displaytree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
-=======
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 
 libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiputfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiputfile.Tpo -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
@@ -1860,7 +1834,6 @@ libscigui_la-GetUiobjectEnable.lo: src/cpp/GetUiobjectEnable.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUiobjectEnable.cpp' object='libscigui_la-GetUiobjectEnable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUiobjectEnable.lo `test -f 'src/cpp/GetUiobjectEnable.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectEnable.cpp
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 
 libscigui_la-SetUimenuChecked.lo: src/cpp/SetUimenuChecked.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUimenuChecked.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUimenuChecked.Tpo -c -o libscigui_la-SetUimenuChecked.lo `test -f 'src/cpp/SetUimenuChecked.cpp' || echo '$(srcdir)/'`src/cpp/SetUimenuChecked.cpp
@@ -1875,8 +1848,6 @@ libscigui_la-GetUimenuChecked.lo: src/cpp/GetUimenuChecked.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUimenuChecked.cpp' object='libscigui_la-GetUimenuChecked.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUimenuChecked.lo `test -f 'src/cpp/GetUimenuChecked.cpp' || echo '$(srcdir)/'`src/cpp/GetUimenuChecked.cpp
-=======
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 
 libscigui_la-SetUicontrolMin.lo: src/cpp/SetUicontrolMin.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolMin.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolMin.Tpo -c -o libscigui_la-SetUicontrolMin.lo `test -f 'src/cpp/SetUicontrolMin.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolMin.cpp
@@ -2087,7 +2058,6 @@ libscigui_la-CallJuigetfile.lo: src/cpp/CallJuigetfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallJuigetfile.cpp' object='libscigui_la-CallJuigetfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallJuigetfile.lo `test -f 'src/cpp/CallJuigetfile.cpp' || echo '$(srcdir)/'`src/cpp/CallJuigetfile.cpp
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
 
 libscigui_la-displaytree.lo: src/cpp/displaytree.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-displaytree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-displaytree.Tpo -c -o libscigui_la-displaytree.lo `test -f 'src/cpp/displaytree.cpp' || echo '$(srcdir)/'`src/cpp/displaytree.cpp
@@ -2102,8 +2072,6 @@ libscigui_la-ScilabDisplayTree.lo: src/jni/ScilabDisplayTree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ScilabDisplayTree.cpp' object='libscigui_la-ScilabDisplayTree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
-=======
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -2193,29 +2161,6 @@ uninstall-nobase_libscigui_la_iconsDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscigui_la_iconsdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscigui_la_iconsdir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/gui/Makefile.in
-=======
-install-libscigui_la_includeHEADERS: $(libscigui_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_includedir)"
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscigui_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscigui_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscigui_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigui_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigui_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/gui/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

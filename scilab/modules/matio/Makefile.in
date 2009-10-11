@@ -105,12 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimatio_la_etcdir)" \
 	"$(DESTDIR)$(libscimatio_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/matio/Makefile.in
 	"$(DESTDIR)$(libscimatio_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscimatio_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscimatio_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/matio/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimatio_la_LIBADD =
 am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
@@ -174,10 +169,6 @@ SOURCES = $(libscimatio_la_SOURCES)
 DIST_SOURCES = $(am__libscimatio_la_SOURCES_DIST)
 DATA = $(libscimatio_la_etc_DATA) $(libscimatio_la_root_DATA) \
 	$(libscimatio_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/matio/Makefile.in
-=======
-HEADERS = $(libscimatio_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/matio/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -889,29 +880,6 @@ uninstall-libscimatio_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscimatio_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscimatio_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/matio/Makefile.in
-=======
-install-libscimatio_la_includeHEADERS: $(libscimatio_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscimatio_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscimatio_la_includedir)"
-	@list='$(libscimatio_la_include_HEADERS)'; test -n "$(libscimatio_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscimatio_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscimatio_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscimatio_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscimatio_la_include_HEADERS)'; test -n "$(libscimatio_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscimatio_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscimatio_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/matio/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

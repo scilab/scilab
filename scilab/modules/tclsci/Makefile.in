@@ -105,12 +105,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_etcdir)" \
 	"$(DESTDIR)$(libscitclsci_la_rootdir)" \
 	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
-<<<<<<< HEAD:scilab/modules/tclsci/Makefile.in
 	"$(DESTDIR)$(libscitclsci_la_tcldir)"
-=======
-	"$(DESTDIR)$(libscitclsci_la_tcldir)" \
-	"$(DESTDIR)$(libscitclsci_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/tclsci/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
@@ -191,10 +186,6 @@ DIST_SOURCES = $(am__libscitclsci_la_SOURCES_DIST)
 DATA = $(libscitclsci_la_etc_DATA) $(libscitclsci_la_root_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
-<<<<<<< HEAD:scilab/modules/tclsci/Makefile.in
-=======
-HEADERS = $(libscitclsci_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/tclsci/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -1158,29 +1149,6 @@ uninstall-nobase_libscitclsci_la_tclDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscitclsci_la_tcldir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscitclsci_la_tcldir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/tclsci/Makefile.in
-=======
-install-libscitclsci_la_includeHEADERS: $(libscitclsci_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitclsci_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_includedir)"
-	@list='$(libscitclsci_la_include_HEADERS)'; test -n "$(libscitclsci_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscitclsci_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscitclsci_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscitclsci_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitclsci_la_include_HEADERS)'; test -n "$(libscitclsci_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscitclsci_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscitclsci_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/tclsci/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

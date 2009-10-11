@@ -104,12 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisound_la_etcdir)" \
 	"$(DESTDIR)$(libscisound_la_rootdir)" \
-<<<<<<< HEAD:scilab/modules/sound/Makefile.in
 	"$(DESTDIR)$(libscisound_la_sci_gatewaydir)"
-=======
-	"$(DESTDIR)$(libscisound_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscisound_la_includedir)"
->>>>>>> origin/5.1:scilab/modules/sound/Makefile.in
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisound_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -139,10 +134,6 @@ SOURCES = $(libscisound_la_SOURCES)
 DIST_SOURCES = $(libscisound_la_SOURCES)
 DATA = $(libscisound_la_etc_DATA) $(libscisound_la_root_DATA) \
 	$(libscisound_la_sci_gateway_DATA)
-<<<<<<< HEAD:scilab/modules/sound/Makefile.in
-=======
-HEADERS = $(libscisound_la_include_HEADERS)
->>>>>>> origin/5.1:scilab/modules/sound/Makefile.in
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -663,29 +654,6 @@ uninstall-libscisound_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisound_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisound_la_sci_gatewaydir)" && rm -f $$files
-<<<<<<< HEAD:scilab/modules/sound/Makefile.in
-=======
-install-libscisound_la_includeHEADERS: $(libscisound_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscisound_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_includedir)"
-	@list='$(libscisound_la_include_HEADERS)'; test -n "$(libscisound_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisound_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisound_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscisound_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscisound_la_include_HEADERS)'; test -n "$(libscisound_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscisound_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscisound_la_includedir)" && rm -f $$files
->>>>>>> origin/5.1:scilab/modules/sound/Makefile.in
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

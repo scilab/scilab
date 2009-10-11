@@ -362,15 +362,6 @@ includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
-<<<<<<< HEAD:scilab/modules/core/Makefile.am
 includes/warningmode.h
-=======
-includes/warningmode.h \
-includes/xscion.h \
-includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h \
-includes/getos.h
->>>>>>> origin/5.1:scilab/modules/core/Makefile.am
 
 include $(top_srcdir)/Makefile.incl.am
