@@ -328,11 +328,19 @@ case $OS in
 				proc="amd64"
 				;;
 			i?86)
-
 				if test -d ${JRE_HOME}/lib/`uname -m` ; then
 					proc=`uname -m`
 				else
 					proc="i386"
+				fi
+				;;
+			"mips"|"mipsel") # under mipsel, uname -m is
+					# usually returning mips ...
+					# but binary are in mipsel
+				if test -d ${JRE_HOME}/lib/mipsel ; then
+					proc="mipsel"
+				else
+					proc="mips"
 				fi
 				;;
 			"ia64")
@@ -346,6 +354,9 @@ case $OS in
 				;;
 			"s390"|"s390x")
 				proc="s390"
+				;;
+			"armv4l"|"armv5tel")
+				proc="arm"
 				;;
 			*)
 				echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
