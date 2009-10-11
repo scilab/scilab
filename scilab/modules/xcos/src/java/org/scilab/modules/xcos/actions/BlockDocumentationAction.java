@@ -20,6 +20,7 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -64,7 +65,10 @@ public final class BlockDocumentationAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
 		if (selectedBlock != null) {
+			System.out.println(selectedBlock.getInterfaceFunctionName());
 			InterpreterManagement.requestScilabExec("help " + selectedBlock.getInterfaceFunctionName());
+		} else {
+			XcosDialogs.noBlockSelected();
 		}
 	}
 

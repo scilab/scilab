@@ -13,8 +13,20 @@ package org.scilab.modules.xcos.utils;
 
 import org.scilab.modules.localization.Messages;
 
-public class XcosMessages {
+/**
+ * All localized messages/menus labels used in Xcos
+ * @author Vincent COUVERT
+ *
+ */
+public final class XcosMessages {
 	
+	/**
+	 * Constructor
+	 */
+	private XcosMessages() {
+		
+	}
+
 	public static final String XCOS = Messages.gettext("Xcos");
 	
 	public static final String DOTS = "...";
@@ -111,5 +123,8 @@ public class XcosMessages {
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
+    
+    public static final String XCOS_ERROR = Messages.gettext("Xcos error");
+    public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
 }
