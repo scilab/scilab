@@ -10,5 +10,9 @@
 //
 
 my_path = SCI+"/modules/graphics/demos/misc";
-funcprot(0);exec(my_path+"/misc.dem.sci");funcprot(1);
+funcprot(0);
+exec(my_path+"/misc.dem.sci");funcprot(1);
 demo_misc();
+f=mopen(my_path+"/misc.dem.sci");
+demo_viewCode("misc.dem.sci");
+mclose(f);

@@ -110,7 +110,7 @@
 			>
 		</Filter>
 		<File
-			RelativePath="..\..\..\build.xml"
+			RelativePath="..\..\build.xml"
 			>
 		</File>
 	</Files>

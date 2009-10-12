@@ -13,30 +13,8 @@
 // Arguments
 //   x : the point where the function is to be evaluated.
 //   index : a flag to pass to the cost function (default = 1)
-//   result : the result of the cost function
-//     This result may be the value of the cost function, the 
-//     values are the inequality constraints, the values of the 
-//     gradient of f or of the constraints, etc...
-// Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
-//  The inequality constraints are expected to be positive.
+//   f : the cost function
 //
-// Note
-//   This is the function which is used internally
-//   by the neldermead class.
-//
-function [ this , result ] = nmplot_function ( this , x , index )
-  if (~isdef('index','local')) then
-    [ this.nmbase , result ] = neldermead_function ( this.nmbase , x )
-  else
-    [ this.nmbase , result ] = neldermead_function ( this.nmbase , x , index )
-  end
+function [ this , f ] = nmplot_function ( this , x )
+    [ this.nmbase , f ] = neldermead_function ( this.nmbase , x )
 endfunction

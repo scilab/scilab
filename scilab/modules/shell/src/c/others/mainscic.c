@@ -21,7 +21,6 @@
 #include "scilabmode.h"
 #include "getcommandlineargs.h"
 #include "texmacs.h"
-#include "x_main.h"
 #include "Thread_Wrapper.h"
 #include "core_math.h"
 #include "setgetlanguage.h"

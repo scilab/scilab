@@ -1,0 +1,667 @@
+# Localization of the module elementary_functions
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/GLoad.sci, line: 24
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s or %s expected"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 未知のファイル拡張子, %s, %s, %s または %s を想定します。\n"
+" "
+
+#
+# File: macros/acosh.sci, line: 30
+# File: macros/acoshm.sci, line: 17
+# File: macros/acosm.sci, line: 16
+# File: macros/asinh.sci, line: 23
+# File: macros/asinhm.sci, line: 19
+# File: macros/asinm.sci, line: 16
+# File: macros/atanh.sci, line: 22
+# File: macros/atanhm.sci, line: 16
+# File: macros/atanm.sci, line: 21
+# File: macros/bitand.sci, line: 35
+# File: macros/bitcmp.sci, line: 45
+# File: macros/bitget.sci, line: 37
+# File: macros/bitor.sci, line: 36
+# File: macros/bitxor.sci, line: 33
+# File: macros/cell2mat.sci, line: 21
+# File: macros/cellstr.sci, line: 21
+# File: macros/cosh.sci, line: 33
+# File: macros/coshm.sci, line: 16
+# File: macros/cosm.sci, line: 21
+# File: macros/cotg.sci, line: 19
+# File: macros/coth.sci, line: 18
+# File: macros/cothm.sci, line: 16
+# File: macros/dec2hex.sci, line: 23
+# File: macros/dec2oct.sci, line: 21
+# File: macros/erf.sci, line: 32
+# File: macros/erfc.sci, line: 33
+# File: macros/erfcx.sci, line: 29
+# File: macros/factorial.sci, line: 19
+# File: macros/isinf.sci, line: 15
+# File: macros/sinh.sci, line: 22
+# File: macros/sinhm.sci, line: 16
+# File: macros/sinm.sci, line: 21
+# File: macros/tanh.sci, line: 22
+# File: macros/tanhm.sci, line: 16
+# File: macros/tanm.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/acosh.sci, line: 34
+# File: macros/acoshm.sci, line: 21
+# File: macros/acosm.sci, line: 20
+# File: macros/asinh.sci, line: 27
+# File: macros/asinhm.sci, line: 23
+# File: macros/asinm.sci, line: 20
+# File: macros/atanh.sci, line: 26
+# File: macros/atanhm.sci, line: 20
+# File: macros/atanm.sci, line: 25
+# File: macros/cosh.sci, line: 37
+# File: macros/coshm.sci, line: 20
+# File: macros/cosm.sci, line: 25
+# File: macros/cotg.sci, line: 23
+# File: macros/coth.sci, line: 22
+# File: macros/cothm.sci, line: 20
+# File: macros/sinh.sci, line: 26
+# File: macros/sinhm.sci, line: 20
+# File: macros/sinm.sci, line: 25
+# File: macros/tanh.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数、または、複素行列を想定します。\n"
+
+#
+# File: macros/acoshm.sci, line: 27
+# File: macros/acosm.sci, line: 26
+# File: macros/asinhm.sci, line: 29
+# File: macros/asinm.sci, line: 26
+# File: macros/atanhm.sci, line: 28
+# File: macros/atanm.sci, line: 32
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/asecd.sci, line: 12
+# File: macros/asind.sci, line: 12
+# File: macros/atand.sci, line: 12
+# File: macros/atand.sci, line: 16
+# File: macros/cosd.sci, line: 12
+# File: macros/cotd.sci, line: 12
+# File: macros/cscd.sci, line: 12
+# File: macros/interp1.sci, line: 66
+# File: macros/interp1.sci, line: 69
+# File: macros/interp1.sci, line: 92
+# File: macros/interp1.sci, line: 98
+# File: macros/interp1.sci, line: 101
+# File: macros/secd.sci, line: 12
+# File: macros/sind.sci, line: 12
+# File: macros/tand.sci, line: 12
+# File: macros/acscd.sci, line: 12
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数の配列を想定します。\n"
+
+#
+# File: macros/atanm.sci, line: 39
+#, c-format
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr "%s: 行列は対角化可能ではありません。\n"
+
+#
+# File: macros/base2dec.sci, line: 28
+# File: macros/bin2dec.sci, line: 34
+# File: macros/hex2dec.sci, line: 27
+# File: macros/oct2dec.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定します。\n"
+
+#
+# File: macros/base2dec.sci, line: 32
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+#
+# File: macros/base2dec.sci, line: 36
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr "%s: 入力引数 #%d で不正な値: %d と %d の間でなくてはなりません。"
+
+#
+# File: macros/base2dec.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument(s): Valid base %d representations expected.\n"
+msgstr "%s: 入力引数(s)で不正な値: 適切な基礎 %d 代表を想定します。\n"
+
+#
+# File: macros/bin2dec.sci, line: 47
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Matrix of strings made of zeros and ones expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 文字列の行列はひとつのゼロで作られていると想定します。\n"
+
+#
+# File: macros/bin2dec.sci, line: 51
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: %d 文字以下でなくてはなりません。\n"
+
+#
+# File: macros/binomial.sci, line: 27
+# File: macros/integrate.sci, line: 46
+# File: macros/integrate.sci, line: 50
+# File: macros/primes.sci, line: 20
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数を想定します。\n"
+
+#
+# File: macros/binomial.sci, line: 31
+# File: macros/factor.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+#
+# File: macros/binomial.sci, line: 35
+# File: macros/integrate.sci, line: 34
+# File: macros/integrate.sci, line: 38
+# File: macros/integrate.sci, line: 42
+# File: macros/primes.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 実数を想定します。\n"
+
+#
+# File: macros/binomial.sci, line: 39
+# File: macros/factor.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
+
+#
+# File: macros/binomial.sci, line: 43
+# File: macros/bitcmp.sci, line: 80
+# File: macros/bitget.sci, line: 83
+# File: macros/bitset.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d と %d の間でなくてはなりません。\n"
+
+#
+# File: macros/binomial.sci, line: 47
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 整数 >= %d を想定します。\n"
+
+#
+# File: macros/bitand.sci, line: 39
+# File: macros/bitor.sci, line: 40
+# File: macros/bitxor.sci, line: 37
+# File: macros/cat.sci, line: 88
+# File: macros/cat.sci, line: 93
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: 入力引数で不正な型: 同じ型を想定します。\n"
+
+#
+# File: macros/bitand.sci, line: 43
+# File: macros/bitget.sci, line: 44
+# File: macros/bitget.sci, line: 54
+# File: macros/bitor.sci, line: 44
+# File: macros/bitxor.sci, line: 41
+# File: macros/cat.sci, line: 66
+# File: macros/intsplin.sci, line: 27
+# File: macros/inttrap.sci, line: 23
+# File: macros/modulo.sci, line: 26
+# File: macros/pmodulo.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: macros/bitand.sci, line: 55
+# File: macros/bitand.sci, line: 62
+# File: macros/bitcmp.sci, line: 56
+# File: macros/bitget.sci, line: 63
+# File: macros/bitget.sci, line: 70
+# File: macros/bitor.sci, line: 56
+# File: macros/bitor.sci, line: 63
+#, c-format
+msgid "%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"
+msgstr "%s: 入力引数 #%d が不正: 符号なし整数のスカラー/行列/正方行列を想定します。\n"
+
+#
+# File: macros/bitcmp.sci, line: 47
+# File: macros/bitset.sci, line: 25
+# File: macros/integrate.sci, line: 30
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: 最小の %d を想定します。\n"
+
+#
+# File: macros/bitcmp.sci, line: 65
+#, c-format
+msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr "%s: 入力引数 #%d が不正: 符号なし整数を想定します。\n"
+
+#
+# File: macros/bitset.sci, line: 32
+# File: macros/bitset.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 入力引数で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: macros/bitset.sci, line: 51
+# File: macros/bitset.sci, line: 58
+# File: macros/bitxor.sci, line: 54
+# File: macros/bitxor.sci, line: 62
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 符号なし整数のスカラー/行列/正方行列を想定します。\n"
+
+#
+# File: macros/bitset.sci, line: 80
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
+msgstr "%s: 入力引数 #%d で不正な値: 0 または 1 を想定します。\n"
+
+#
+# File: macros/cat.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 明確な実数を想定します。\n"
+
+#
+# File: macros/cell2mat.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: セルを想定します。\n"
+
+#
+# File: macros/cell2mat.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Same type expected for all cell contents"
+msgstr "%s: 入力引数 #%d で不正な型: 全てのセル内容で同じ型を想定します。"
+
+#
+# File: macros/cellstr.sci, line: 26
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: <= %d でなくてはなりません。\n"
+
+#
+# File: macros/cellstr.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定します。\n"
+
+#
+# File: macros/complex.sci, line: 26
+# File: macros/complex.sci, line: 34
+# File: macros/complex.sci, line: 36
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
+
+#
+# File: macros/complex.sci, line: 39
+# File: macros/dec2bin.sci, line: 34
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d または %d を想定します。\n"
+
+#
+# File: macros/cothm.sci, line: 28
+# File: macros/tanhm.sci, line: 29
+# File: macros/tanm.sci, line: 30
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列は対角可能ではありません。\n"
+
+#
+# File: macros/dec2bin.sci, line: 39
+# File: macros/dec2oct.sci, line: 25
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な整数のスカラー/ベクトル/行列を想定します。\n"
+
+#
+# File: macros/dec2bin.sci, line: 43
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な整数を想定します。"
+
+#
+# File: macros/dec2hex.sci, line: 29
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負でない整数行列を想定します。\n"
+
+#
+# File: macros/factor.sci, line: 29
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な整数スカラーを想定します。\n"
+
+#
+# File: macros/factorial.sci, line: 23
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of positive integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な整数のスカラー/ベクトル/行列/多次元配列を想定します。\n"
+
+#
+# File: macros/flipdim.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 明確な整数を想定します。\n"
+
+#
+# File: macros/flipdim.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 明確な整数を想定します。\n"
+
+#
+# File: macros/flipdim.sci, line: 30
+# File: macros/flipdim.sci, line: 32
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 実行列を想定します。\n"
+
+#
+# File: macros/hex2dec.sci, line: 39
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切な１６進表記を想定します。\n"
+
+#
+# File: macros/integrate.sci, line: 63
+#, c-format
+msgid "%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+msgstr "%s: 入力引数 #%d で不正な値: 与えられた表現の構文エラー\n"
+
+#
+# File: macros/interp1.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s: 入力引数の不正な数: %d と %d の間でなくてはなりません。\n"
+
+#
+# File: macros/interp1.sci, line: 50
+# File: macros/interp1.sci, line: 118
+# File: macros/interp1.sci, line: 135
+# File: macros/interp1.sci, line: 260
+# File: macros/interp1.sci, line: 312
+# File: macros/interp1.sci, line: 441
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトル、または、行列を想定します。\n"
+
+#
+# File: macros/interp1.sci, line: 107
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 予想された実数、しかし、いくつかのNaNが見つかりました。\n"
+
+#
+# File: macros/interp1.sci, line: 111
+# File: macros/interp1.sci, line: 115
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: macros/interp1.sci, line: 121
+# File: macros/perms.sci, line: 23
+# File: macros/vectorfind.sci, line: 13
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定します。\n"
+
+#
+# File: macros/interp1.sci, line: 183
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' また ''%s'' を想定します。\n"
+
+#
+# File: macros/interp1.sci, line: 207
+# File: macros/interp1.sci, line: 233
+# File: macros/interp1.sci, line: 272
+# File: macros/interp1.sci, line: 282
+# File: macros/interp1.sci, line: 304
+# File: macros/interp1.sci, line: 325
+# File: macros/interp1.sci, line: 333
+# File: macros/interp1.sci, line: 366
+# File: macros/interp1.sci, line: 372
+# File: macros/interp1.sci, line: 419
+# File: macros/interp1.sci, line: 427
+# File: macros/interp1.sci, line: 444
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または、実数を想定します。\n"
+
+#
+# File: macros/intersect.sci, line: 133
+# File: macros/union.sci, line: 48
+# File: macros/unique.sci, line: 55
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d,''%s'',%d または ''%s'' を想定します。\n"
+
+#
+# File: macros/isempty.sci, line: 15
+# File: macros/lex_sort.sci, line: 33
+# File: sci_gateway/c/sci_gsort.c, line: 324
+# File: sci_gateway/c/sci_gsort.c, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: macros/lex_sort.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: ほとんど %d を想定します。\n"
+
+#
+# File: macros/lex_sort.sci, line: 30
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
+
+#
+# File: macros/linspace.sci, line: 20
+#, c-format
+msgid "%s: Unexpected value of n: %d. Expected value is greater than %d.\n"
+msgstr "%s: n の思いがけない値: %d, 期待値は、%dよりも大きいです。\n"
+
+#
+# File: macros/logm.sci, line: 23
+# File: macros/signm.sci, line: 24
+# File: macros/tanhm.sci, line: 23
+# File: macros/tanm.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/logm.sci, line: 34
+# File: macros/logm.sci, line: 59
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr "%s: 特異行列のログ\n"
+
+#
+# File: macros/logm.sci, line: 52
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: 対角化することができません。\n"
+
+#
+# File: macros/meshgrid.sci, line: 26
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s: 出力引数の不正な数: ほとんど %d を想定します。\n"
+
+#
+# File: macros/meshgrid.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s: 入力引数の不正な数: ほとんどの %d を想定します。\n"
+
+#
+# File: macros/meshgrid.sci, line: 52
+#, c-format
+msgid "%s: Wrong number of output arguments vs. input arguments: Same number expected.\n"
+msgstr "%s: 出力引数の不正な数と入力引数: 同じ数を想定します。\n"
+
+#
+# File: macros/ndgrid.sci, line: 40
+# File: macros/num2cell.sci, line: 33
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 入力引数の不正な数: 最小の %d を想定します。\n"
+
+#
+# File: macros/ndgrid.sci, line: 45
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s: 引数 #%d のための型が不正: 実数を想定します。\n"
+
+#
+# File: macros/num2cell.sci, line: 43
+#, c-format
+msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr "%s: 引数 #%d が不正: 明確な整数を想定します。\n"
+
+#
+# File: macros/oct2dec.sci, line: 39
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Valid octal representations expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切な８進数を想定します。\n"
+
+#
+# File: macros/permute.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: 入力引数の不正な数: %d を想定します。"
+
+#
+# File: macros/permute.sci, line: 27
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定します。\n"
+
+#
+# File: macros/permute.sci, line: 30
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+
+#
+# File: macros/permute.sci, line: 33
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At least the size of input argument #%d expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 少なくとも入力引数 #%d のサイズを想定します。\n"
+
+#
+# File: macros/signm.sci, line: 30
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 非対称行列\n"
+
+#
+# File: macros/sprand.sci, line: 25
+# File: macros/sprand.sci, line: 28
+# File: macros/vectorfind.sci, line: 35
+# File: sci_gateway/c/sci_gsort.c, line: 69
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: macros/toeplitz.sci, line: 23
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r(1).\n"
+msgstr "%s: 入力引数 #%d と #%d で不正な値: c(1) は、r(1) に等しくなければなりません。\n"
+
+#
+# File: macros/vectorfind.sci, line: 18
+# File: macros/vectorfind.sci, line: 27
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s: 入力引数で不正なサイズ]:  互換性がないサイズです。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 81
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 空でない文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 87
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'', ''%s'', ''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 137
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数、複素、整数行列、または、文字列の行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 161
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な値です。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 277
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 未知の型です。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 360
+# File: sci_gateway/c/sci_gsort.c, line: 377
+# File: sci_gateway/c/sci_gsort.c, line: 385
+# File: sci_gateway/c/sci_gsort.c, line: 394
+# File: src/c/sci_tools.c, line: 122
+# File: src/c/sci_tools.c, line: 147
+# File: src/c/sci_tools.c, line: 177
+# File: src/c/sci_tools.c, line: 212
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリがありません。\n"
+
+#
+# File: sci_gateway/c/sci_gsort.c, line: 367
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected .\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
+

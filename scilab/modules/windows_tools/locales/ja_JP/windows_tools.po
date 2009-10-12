@@ -1,0 +1,106 @@
+# Localization of the module windows_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+# File: sci_gateway/c/sci_chartooem.c, line: 48
+# File: sci_gateway/c/sci_dos.c, line: 50
+# File: sci_gateway/c/sci_dos.c, line: 62
+# File: sci_gateway/c/sci_findfileassociation.c, line: 38
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
+# File: sci_gateway/c/sci_mcisendstring.c, line: 106
+# File: sci_gateway/c/sci_oemtochar.c, line: 48
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_consolebox.c, line: 45
+# File: sci_gateway/c/sci_consolebox.c, line: 82
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "ウインドウズモードに限定されます、コンソールモードではありません。\n"
+
+#
+# File: sci_gateway/c/sci_createGUID.c, line: 56
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s: メモリの割り当てに失敗しました。\n"
+
+#
+# File: sci_gateway/c/sci_createGUID.c, line: 61
+#, c-format
+msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgstr "%s: 不正な値の入力引数: 負ではない整数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_createGUID.c, line: 66
+# File: sci_gateway/c/sci_createGUID.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_dos.c, line: 70
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_findfileassociation.c, line: 56
+# File: sci_gateway/c/sci_winhttpdownload.c, line: 67
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
+#, c-format
+msgid "%s: Wrong value for input argument: %s.\n"
+msgstr "%s: 不正な値の入力引数: %s \n"
+
+#
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
+msgid "see help"
+msgstr "ヘルプを見てください。"
+
+#
+# File: sci_gateway/c/sci_winopen.c, line: 34
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル '%s' をオープンできません。\n"
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 37
+# File: sci_gateway/c/sci_winqueryreg.c, line: 45
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 89
+#, c-format
+msgid "%s: Cannot open Windows registry.\n"
+msgstr "%s: ウインドウズのレジストリを開けません。\n"
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 137
+#, c-format
+msgid "%s: Cannot query value of this type.\n"
+msgstr "%s: この型の値を得ることができません。\n"
+

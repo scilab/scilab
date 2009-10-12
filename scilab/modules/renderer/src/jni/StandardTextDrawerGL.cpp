@@ -380,10 +380,11 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "getScreenBoundingBox");
 }
 }
                         jdoubleArray res =  (jdoubleArray) curEnv->CallObjectMethod( this->instance, jdoubleArraygetScreenBoundingBoxjdoublejdoublejdoubleID ,centerPixX, centerPixY, centerPixZ);
-                        if (curEnv->ExceptionCheck()) {
+if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
-}
+}                        
 jsize len = curEnv->GetArrayLength(res);
+
 jboolean isCopy = JNI_FALSE;
 
 /* faster than getXXXArrayElements */

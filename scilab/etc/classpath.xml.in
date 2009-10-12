@@ -38,6 +38,7 @@ The option is "disableUnderMode" and can be:
 <path value="@JGRAPHX@"/>
 
 <!-- Load when needed -->
+
 <path value="@JOGL@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
@@ -70,6 +71,7 @@ The option is "disableUnderMode" and can be:
 <!-- Documentation (not mandatory) -->
 <path value="@JEUCLID_CORE@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="@FOP@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -79,6 +81,7 @@ The option is "disableUnderMode" and can be:
 </path>
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="@XML_APIS_EXT@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -87,14 +90,20 @@ The option is "disableUnderMode" and can be:
 <!-- PDF doc generation -->
 <path value="@COMMONS_IO@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
 <path value="@XMLGRAPHICS_COMMONS@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="@AVALON_FRAMEWORK@" load="onUse">
 	<load on="documentationGeneration"/>
+</path>
+
+<path value="@JLATEXMATH@" load="onUse">
+		<load on="graphics_latex_textrendering"/>
 </path>
 
 <!-- helptools module doc generation -->

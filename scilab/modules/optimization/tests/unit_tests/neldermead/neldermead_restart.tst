@@ -46,7 +46,7 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -74,7 +74,7 @@ nm = neldermead_configure(nm,"-maxiter",100);
 nm = neldermead_restart(nm);
 nm = neldermead_destroy(nm);
 
-function f = objfun ( x ) 
+function [ f , index ] = objfun ( x , index ) 
   f = exp(x(1))*(4*x(1)^2+2*x(2)^2+x(1)*x(2)+2*x(2));
 endfunction
 //

@@ -1,0 +1,1868 @@
+# Localization of the module output_stream
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: src/c/errmsg.c, line: 66
+msgid "Incorrect assignment.\n"
+msgstr "不正確な割り当てです。\n"
+
+#
+# File: src/c/errmsg.c, line: 78
+msgid "Waiting for right parenthesis.\n"
+msgstr "正しい括弧を待っています。\n"
+
+#
+# File: src/c/errmsg.c, line: 87
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "変数は定義されていません: %s\n"
+
+#
+# File: src/c/errmsg.c, line: 95
+msgid "Inconsistent column/row dimensions.\n"
+msgstr "一貫性がない 列/行 次元 です。\n"
+
+#
+# File: src/c/errmsg.c, line: 100
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "一貫性がない 行/列 次元 です。\n"
+
+#
+# File: src/c/errmsg.c, line: 105
+msgid "Dot cannot be used as modifier for this operator.\n"
+msgstr "ドットは、この操作で修飾語として使うことができません。\n"
+
+#
+# File: src/c/errmsg.c, line: 110
+msgid "Inconsistent addition.\n"
+msgstr "一貫性がない追加です。\n"
+
+#
+# File: src/c/errmsg.c, line: 115
+msgid "Inconsistent subtraction.\n"
+msgstr "一貫性がない引き算です。\n"
+
+#
+# File: src/c/errmsg.c, line: 120
+msgid "Inconsistent multiplication.\n"
+msgstr "一貫性がない掛け算です。\n"
+
+#
+# File: src/c/errmsg.c, line: 125
+msgid "Inconsistent right division.\n"
+msgstr "一貫性がない右辺割り算です。\n"
+
+#
+# File: src/c/errmsg.c, line: 130
+msgid "Inconsistent left division.\n"
+msgstr "一貫性がない左辺割り算です。\n"
+
+#
+# File: src/c/errmsg.c, line: 135
+msgid "Redefining permanent variable.\n"
+msgstr "再定義されている永久的な変数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 140
+msgid "Eye variable undefined in this context.\n"
+msgstr "この文脈で不確定な目変数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 145
+msgid "Submatrix incorrectly defined.\n"
+msgstr "部分行列は正しくない定義です。\n"
+
+#
+# File: src/c/errmsg.c, line: 150
+msgid "Incorrect command!\n"
+msgstr "正しくないコマンドです。\n"
+
+#
+# File: src/c/errmsg.c, line: 163
+msgid "stack size exceeded!\n"
+msgstr "スタックサイズは制限を越えました。\n"
+
+#
+# File: src/c/errmsg.c, line: 164
+msgid "Use stacksize function to increase it.\n"
+msgstr "スタックサイズ関数を使ってそれを増やして下さい。\n"
+
+#
+# File: src/c/errmsg.c, line: 165
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "変数にメモリが使われました: %d\n"
+
+#
+# File: src/c/errmsg.c, line: 166
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "中間のメモリは必要とされました: %d\n"
+
+#
+# File: src/c/errmsg.c, line: 167
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "全部のメモリは可能です: %d\n"
+
+#
+# File: src/c/errmsg.c, line: 172
+msgid "Too many variables!\n"
+msgstr "変数が多すぎます!\n"
+
+#
+# File: src/c/errmsg.c, line: 177
+msgid "Problem is singular.\n"
+msgstr "重大な問題です。\n"
+
+#
+# File: src/c/errmsg.c, line: 184
+msgid "Wrong type for first argument: Square matrix expected.\n"
+msgstr "最初の引数で不正な型: 正方行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 188
+#, c-format
+msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgstr "引数 %d で不正な型: 正方行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 194
+msgid "Invalid index.\n"
+msgstr "不正なインデックスです。\n"
+
+#
+# File: src/c/errmsg.c, line: 199
+msgid "Recursion problems. Sorry...\n"
+msgstr "回帰問題。すみません....\n"
+
+#
+# File: src/c/errmsg.c, line: 204
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
+msgstr "行列標準は、1, 2, inf, と fro です。\n"
+
+#
+# File: src/c/errmsg.c, line: 209
+msgid "Convergence problem...\n"
+msgstr "収束問題...\n"
+
+#
+# File: src/c/errmsg.c, line: 217
+#, c-format
+msgid "Bad call to primitive: %s\n"
+msgstr "最初の呼び出し不正: %s\n"
+
+#
+# File: src/c/errmsg.c, line: 225
+msgid "Too complex recursion! (recursion tables are full)\n"
+msgstr "とても複雑な回帰!(回帰テーブルが満ちています)\n"
+
+#
+# File: src/c/errmsg.c, line: 233
+msgid "Division by zero...\n"
+msgstr "ゼロ割り...\n"
+
+#
+# File: src/c/errmsg.c, line: 238
+msgid "Empty function...\n"
+msgstr "空の関数...\n"
+
+#
+# File: src/c/errmsg.c, line: 243
+msgid "Matrix is not positive definite.\n"
+msgstr "行列は、明確な定義ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 248
+msgid "Invalid exponent.\n"
+msgstr "不正なベキ指数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 253
+msgid "Incorrect string.\n"
+msgstr "不正確な文字列です。\n"
+
+#
+# File: src/c/errmsg.c, line: 259
+msgid "Singularity of log or tan function.\n"
+msgstr "logの特異点、または、tan関数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 264
+msgid "Too many ':'\n"
+msgstr "':' が多すぎます\n"
+
+#
+# File: src/c/errmsg.c, line: 269
+msgid "Incorrect control instruction syntax.\n"
+msgstr "コントロール命令の構文が正しくありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 278
+# File: src/c/errmsg.c, line: 282
+# File: src/c/errmsg.c, line: 286
+#, c-format
+msgid "Syntax error in a '%s' instruction.\n"
+msgstr "'%s' 命令の構文が間違っています。\n"
+
+#
+# File: src/c/errmsg.c, line: 296
+# File: src/c/errmsg.c, line: 347
+msgid "Wrong first argument.\n"
+msgstr "最初の引数が不正です。\n"
+
+#
+# File: src/c/errmsg.c, line: 300
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr "入力引数 %d が不正です。\n"
+
+#
+# File: src/c/errmsg.c, line: 307
+#, c-format
+msgid "Incorrect function at line %d.\n"
+msgstr "行 %d で正しくない関数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 309
+msgid "Incorrect function.\n"
+msgstr "正しくない関数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 314
+msgid "Wrong file name.\n"
+msgstr "誤っているファイル名です。\n"
+
+#
+# File: src/c/errmsg.c, line: 319
+msgid "Incorrect number of input arguments.\n"
+msgstr "入力引数で正しくない数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 324
+msgid "Waiting for end of command.\n"
+msgstr "コマンドの終了を待っています。\n"
+
+#
+# File: src/c/errmsg.c, line: 330
+msgid "Incompatible output argument.\n"
+msgstr "互換性のない出力引数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 335
+msgid "Incompatible input argument.\n"
+msgstr "互換性のない入力引数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 340
+msgid "Not implemented in scilab...\n"
+msgstr "Scilab で実施されませんでした...\n"
+
+#
+# File: src/c/errmsg.c, line: 351
+#, c-format
+msgid "Wrong argument %d.\n"
+msgstr "不正な引数 %d です。\n"
+
+#
+# File: src/c/errmsg.c, line: 358
+#, c-format
+msgid "null matrix (argument # %d).\n"
+msgstr "NULL行列(引数 #%d)\n"
+
+#
+# File: src/c/errmsg.c, line: 363
+msgid "Incorrect syntax.\n"
+msgstr "不正確な構文です。\n"
+
+#
+# File: src/c/errmsg.c, line: 369
+msgid " end or else is missing...\n"
+msgstr " end または、 else は間違っています...\n"
+
+#
+# File: src/c/errmsg.c, line: 375
+#, c-format
+msgid " input line longer than buffer size: %d\n"
+msgstr "バッファ・サイズよりも長い入力行: %d\n"
+
+#
+# File: src/c/errmsg.c, line: 380
+msgid "Incorrect file or format.\n"
+msgstr "正しくないファイル、またはフォーマットです。\n"
+
+#
+# File: src/c/errmsg.c, line: 388
+#, c-format
+msgid "subroutine not found: %s\n"
+msgstr "サブルーチンが見つかりません: %s\n"
+
+#
+# File: src/c/errmsg.c, line: 401
+#, c-format
+msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgstr "入力引数 %d で不正な型: 実数行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 406
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr "入力引数 %d で不正な型: 実数、または、複素行列.を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 411
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
+msgstr "入力引数 %d で不正な型: 多項式を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 416
+#, c-format
+msgid "Wrong type for argument %d: String expected.\n"
+msgstr "入力引数 %d で、不正な型: 文字列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 421
+#, c-format
+msgid "Wrong type for argument %d: List expected.\n"
+msgstr "入力引数 %d で不正な型: リストを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 426
+msgid "Problem with comparison symbol...\n"
+msgstr "比較シンボルの問題...\n"
+
+#
+# File: src/c/errmsg.c, line: 433
+msgid "Function has no input argument...\n"
+msgstr "関数はどのような入力引数もありません...\n"
+
+#
+# File: src/c/errmsg.c, line: 437
+msgid "Wrong number of arguments in function call...\n"
+msgstr "関数呼び出しで引数の数が不正です...\n"
+
+#
+# File: src/c/errmsg.c, line: 438
+# File: src/c/errmsg.c, line: 454
+msgid "Arguments are :\n"
+msgstr "引数です:\n"
+
+#
+# File: src/c/errmsg.c, line: 449
+msgid "Function has no output.\n"
+msgstr "関数は出力がありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 453
+msgid "Incorrect # of outputs in the function\n"
+msgstr "関数出力の 正しくない # です。\n"
+
+#
+# File: src/c/errmsg.c, line: 462
+msgid "Wrong size for argument: Incompatible dimensions.\n"
+msgstr "引数でサイズが不正: 互換性がない次元です。\n"
+
+#
+# File: src/c/errmsg.c, line: 467
+msgid "Direct access : give format.\n"
+msgstr "直接アクセス : フォーマットを与えて下さい。\n"
+
+#
+# File: src/c/errmsg.c, line: 472
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr "行 %d でファイルの終端です。\n"
+
+#
+# File: src/c/errmsg.c, line: 477
+#, c-format
+msgid "%d graphic terminal?\n"
+msgstr "%d グラフィック ターミナル?\n"
+
+#
+# File: src/c/errmsg.c, line: 482
+msgid "Integration fails.\n"
+msgstr "統合失敗\n"
+
+#
+# File: src/c/errmsg.c, line: 487
+#, c-format
+msgid "%d: logical unit already used.\n"
+msgstr "%d:  ロジカルユニットはすでに使われています。\n"
+
+#
+# File: src/c/errmsg.c, line: 492
+msgid "No more logical units available!\n"
+msgstr "これ以上のロジカルユニットは可能ではありません!\n"
+
+#
+# File: src/c/errmsg.c, line: 497
+msgid "Unknown file format.\n"
+msgstr "未知のファイルフォーマットです。\n"
+
+#
+# File: src/c/errmsg.c, line: 502
+#, c-format
+msgid ""
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"Bad call to a scilab function ?\n"
+"Otherwise, send a bug report to :\n"
+msgstr ""
+"致命的エラー!!!あなたの変数は、ファイル %s で保存されました。\n"
+"scilab関数の悪い呼び出し?\n"
+"別として、バグ・レポートを送って下さい。\n"
+
+#
+# File: src/c/errmsg.c, line: 510
+msgid "Floating point exception.\n"
+msgstr "浮動小数点例外\n"
+
+#
+# File: src/c/errmsg.c, line: 515
+msgid "Too many arguments in fort (max 30).\n"
+msgstr "砦で引数が多すぎます(最大 30)\n"
+
+#
+# File: src/c/errmsg.c, line: 520
+msgid "This variable is not valid in fort.\n"
+msgstr "この変数は、砦で妥当ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 528
+#, c-format
+msgid "%s is not valid in this context.\n"
+msgstr "%s は、この文脈で妥当ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 536
+msgid "Error while linking.\n"
+msgstr "リンク中にエラー\n"
+
+#
+# File: src/c/errmsg.c, line: 541
+msgid "Leading coefficient is zero.\n"
+msgstr "主要な係数はゼロです。\n"
+
+#
+# File: src/c/errmsg.c, line: 546
+msgid "Too high degree (max 100).\n"
+msgstr "とても高い度(最大 100)です。\n"
+
+#
+# File: src/c/errmsg.c, line: 551
+#, c-format
+msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
+msgstr "for x=val with type(val)=%d は、Scilabで装備されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 559
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 入力引数で不正な数値です。\n"
+
+#
+# File: src/c/errmsg.c, line: 570
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: 出力引数で不正な番号です。\n"
+
+#
+# File: src/c/errmsg.c, line: 578
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr "再開の出力引数でインデックスは許されませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 584
+# File: src/c/errmsg.c, line: 977
+#, c-format
+msgid "Incorrect function (argument n: %d).\n"
+msgstr "不正確な関数(引数 n: %d)\n"
+
+#
+# File: src/c/errmsg.c, line: 592
+# File: src/c/errmsg.c, line: 1021
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 実数 または複素行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 603
+# File: src/c/errmsg.c, line: 1034
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 実数行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 614
+# File: src/c/errmsg.c, line: 1047
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 実数ベクトルを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 625
+# File: src/c/errmsg.c, line: 1058
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgstr "%s: 引数 %d で不正なサイズ: スカラーを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 633
+msgid "Host does not answer...\n"
+msgstr "ホストは応答しません...\n"
+
+#
+# File: src/c/errmsg.c, line: 638
+msgid "Uncontrollable system.\n"
+msgstr "システムのコントロールが不能です。\n"
+
+#
+# File: src/c/errmsg.c, line: 643
+msgid "Unobservable system.\n"
+msgstr "システムの識別が出来ません。\n"
+
+#
+# File: src/c/errmsg.c, line: 648
+#, c-format
+msgid "%s: singular or assymetric problem.\n"
+msgstr "%s: 特異または非対称問題です。\n"
+
+#
+# File: src/c/errmsg.c, line: 653
+#, c-format
+msgid "Wrong size for argument %d.\n"
+msgstr "引数 %d で不正なサイズです。\n"
+
+#
+# File: src/c/errmsg.c, line: 658
+#, c-format
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgstr "引数 %d で不正なサイズ: 行列変換を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 663
+#, c-format
+msgid "Wrong type for argument %d: In state space form expected.\n"
+msgstr "引数 %d で不正なサイズ: 空き状態を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 668
+#, c-format
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgstr "引数 %d で不正なサイズ: 有理数行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 673
+#, c-format
+msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgstr "引数 %d で不正なサイズ: 連続時間を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 678
+#, c-format
+msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgstr "引数 %d で不正なサイズ: 離散時間を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 683
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "引数 %d で不正なサイズ: SISOを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 688
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
+msgstr "引数 %d の時間領域は、定義されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 693
+#, c-format
+msgid "Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"
+msgstr "引数 %d で不正な型: システム空間の状態、または、伝達行列を想定しました。\n"
+
+#
+# File: src/c/errmsg.c, line: 698
+msgid "Variable returned by scilab argument function is incorrect.\n"
+msgstr "scilab引数関数によって返された変数は、不正確です。\n"
+
+#
+# File: src/c/errmsg.c, line: 705
+#, c-format
+msgid "Elements of %dth argument must be in increasing order.\n"
+msgstr "%d 番目の要素は、増加順序でなくてはなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 709
+msgid "Elements of first argument are not (strictly) increasing.\n"
+msgstr "最初の引数は増加になっていません(厳密に)\n"
+
+#
+# File: src/c/errmsg.c, line: 717
+#, c-format
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
+msgstr "%d 番目の引数は減算順序になっていません(厳密に)\n"
+
+#
+# File: src/c/errmsg.c, line: 721
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
+msgstr "最初の引数は減算順序になっていません(厳密に)\n"
+
+#
+# File: src/c/errmsg.c, line: 729
+#, c-format
+msgid "Last element of %dth argument <> first.\n"
+msgstr "%d 番目の引数の最後の要素 <> 初期\n"
+
+#
+# File: src/c/errmsg.c, line: 733
+msgid "Last element of first argument does not match the first one.\n"
+msgstr "最後の引数の最初の要素が初期のものと一致しません。\n"
+
+#
+# File: src/c/errmsg.c, line: 742
+#, c-format
+msgid "Variable or function %s are not in file.\n"
+msgstr "変数または機能 %s は、ファイルにありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 753
+#, c-format
+msgid "Variable %s is not a valid rational function.\n"
+msgstr "変数 %s は、妥当な有理関数ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 764
+#, c-format
+msgid "Variable %s is not a valid state space representation.\n"
+msgstr "変数 %s は、妥当な公式の空間表現ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 772
+msgid "Undefined fonction.\n"
+msgstr "関数は定義されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 777
+msgid "Function name already used.\n"
+msgstr "関数名は既に使われています。\n"
+
+#
+# File: src/c/errmsg.c, line: 782
+#, c-format
+msgid "Too many functions are defined (maximum #:%d).\n"
+msgstr "多すぎる関数定義です(最大 #:%d)\n"
+
+#
+# File: src/c/errmsg.c, line: 787
+msgid "Too complex for scilab, may be a too long control instruction.\n"
+msgstr "あまりにもscilabにとって複雑です、とても長いコントロール指示かもしれません。\n"
+
+#
+# File: src/c/errmsg.c, line: 792
+msgid "Too large, can't be displayed.\n"
+msgstr "とても大きく、表示できませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 800
+#, c-format
+msgid "%s was a function when compiled but is now a primitive!\n"
+msgstr "%s は、編集された場合には関数ですが、今は未開です!\n"
+
+#
+# File: src/c/errmsg.c, line: 811
+#, c-format
+msgid "Trying to re-define function %s.\n"
+msgstr "機能 %s を再定義するよう試みてください。\n"
+
+#
+# File: src/c/errmsg.c, line: 819
+msgid "No more memory.\n"
+msgstr "これ以上メモリがありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 824
+msgid "Too large string.\n"
+msgstr "文字列が大きすぎます。\n"
+
+#
+# File: src/c/errmsg.c, line: 829
+msgid "Too many linked routines.\n"
+msgstr "ルーチンのリンクが多すぎます。\n"
+
+#
+# File: src/c/errmsg.c, line: 834
+msgid ""
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output arguments.\n"
+"No output argument test has been made for this function.\n"
+"Please report this bug :\n"
+msgstr ""
+"ループ内にスタック問題がみつかりました。\n"
+"原始関数は、出力引数で誤っている数で呼ばれました。\n"
+"いかなる出力引数テストも、この関数のために作られませんでした。\n"
+"どうぞこのバグを報告して下さい :\n"
+
+#
+# File: src/c/errmsg.c, line: 843
+#, c-format
+msgid "Wrong value for argument %d.\n"
+msgstr "引数 %d で不正な値です。\n"
+
+#
+# File: src/c/errmsg.c, line: 848
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "リスト要素番号 %d は、定義されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 854
+#, c-format
+msgid "Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr "引数 %d で不正な型: 予想しなかった表現の変数名が付けられています。\n"
+
+#
+# File: src/c/errmsg.c, line: 864
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr "零でない要素のインデックスは、２つの行列の列によって与えられなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 869
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr "零でない要素の互換性がないインデックスです。\n"
+
+#
+# File: src/c/errmsg.c, line: 874
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr "ロジカルユニット番号は、 %d よりも大きくなければなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 879
+msgid "Function not bounded from below.\n"
+msgstr "下からの関数は抑制されませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 889
+msgid "Problem may be unbounded: too high distance between two consecutive iterations.\n"
+msgstr "問題は果てしないかもしれません: ２回の連続する繰り返しのとても高い距離です。\n"
+
+#
+# File: src/c/errmsg.c, line: 894
+msgid "Inconsistent constraints.\n"
+msgstr "一貫性がない制約です。\n"
+
+#
+# File: src/c/errmsg.c, line: 899
+msgid "No feasible solution.\n"
+msgstr "実行できる解決策がありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 904
+msgid "Degenerate starting point.\n"
+msgstr "悪化している開始点\n"
+
+#
+# File: src/c/errmsg.c, line: 909
+msgid "No feasible point has been found.\n"
+msgstr "いかなる実行できる点も、見つけられませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 914
+msgid "Optimization fails: back to initial point.\n"
+msgstr "最適化失敗: 最初の点に戻ります。\n"
+
+#
+# File: src/c/errmsg.c, line: 919
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr "%s: シミュレーターから停止要求(ind=0)\n"
+
+#
+# File: src/c/errmsg.c, line: 924
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr "%s: 入力引数が不正です。\n"
+
+#
+# File: src/c/errmsg.c, line: 929
+msgid "Too small memory.\n"
+msgstr "メモリが小さすぎます。\n"
+
+#
+# File: src/c/errmsg.c, line: 934
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr "%s: シュミレーションの最初の固定値は問題です。\n"
+
+#
+# File: src/c/errmsg.c, line: 939
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr "%s: 界と初期推測は、互換性がありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 944
+msgid "%: This method is NOT implemented.\n"
+msgstr "%s: この方法は装備されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 949
+msgid "NO hot restart available in this method.\n"
+msgstr "この方法でいかなる最新のリスタートは可能ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 954
+#, c-format
+msgid "%s: Incorrect stopping parameters.\n"
+msgstr "%s: 不正確な停止パラメータです。\n"
+
+#
+# File: src/c/errmsg.c, line: 959
+#, c-format
+msgid "%s: Incorrect bounds.\n"
+msgstr "%s: 不正確な境界\n"
+
+#
+# File: src/c/errmsg.c, line: 968
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr "変数 : %s リストでなくてはなりません\n"
+
+#
+# File: src/c/errmsg.c, line: 982
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr "最新のリスタート: 動作テーブルの次元(引数 n:%d)\n"
+
+#
+# File: src/c/errmsg.c, line: 987
+#, c-format
+msgid "%s: df0 must be positive !\n"
+msgstr "%s: df0 は明確でなくてはいけません!\n"
+
+#
+# File: src/c/errmsg.c, line: 995
+msgid "Undefined operation for the given operands.\n"
+msgstr "与えられたオペランドのための不確定の操作です。\n"
+
+#
+# File: src/c/errmsg.c, line: 996
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "負荷をかけすぎる関数 %s 定義、または、チェックです。\n"
+
+#
+# File: src/c/errmsg.c, line: 1072
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: 入力引数 %d で不正なサイズ:  (%d,%d) を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1085
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: 入力引数 %d で不正なサイズ: %d を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1096
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 文字列の行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1107
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: 入力引数  %d で不正な型: ブーリアン行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1118
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1129
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: リストを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1140
+#, c-format
+msgid "%s: Wrong type for argument %d: Function or string (external function) expected.\n"
+msgstr "%s: 引数 %d で不正な型: 関数、または文字列(外部関数) を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1151
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 多項式行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1162
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: 働く数値行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1173
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: ベクトルを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1183
+#, c-format
+msgid "%dth argument type must be boolean.\n"
+msgstr "%d 番目の引数型は、ブーリアンでなくてはなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1187
+msgid "Argument type must be boolean.\n"
+msgstr "引数型はブーリアンでなければなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1193
+#, c-format
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgstr "引数 %d で不正な型: ブーリアン、またはスカラーを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1198
+#, c-format
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgstr "引数 %d で不正な型: 疎行列、またはスカラーを想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1203
+#, c-format
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgstr "引数 %d で不正な型: 疎LU要素を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1209
+#, c-format
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgstr "引数 %d で不正な型: 疎、または　完全スカラ行列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1214
+msgid "Null variable cannot be used here.\n"
+msgstr "NULL 変数は、ここで使うことはできません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1219
+msgid "A sparse matrix entry is defined with two differents values.\n"
+msgstr "疎行列入力は、２つの違った値で定義されています。\n"
+
+#
+# File: src/c/errmsg.c, line: 1224
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr "%s 満足な入力パラメーターのためにまだ装備されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1232
+#, c-format
+msgid "It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr "%s 原始根を再定義することは、できません(clearfun参照)\n"
+
+#
+# File: src/c/errmsg.c, line: 1240
+msgid "Type data base is full.\n"
+msgstr "型のデータベースはいっぱいです。\n"
+
+#
+# File: src/c/errmsg.c, line: 1245
+msgid "This data type is already defined.\n"
+msgstr "このデータ型は、すでに定義されます。\n"
+
+#
+# File: src/c/errmsg.c, line: 1250
+msgid "Inequality comparison with empty matrix.\n"
+msgstr "空行列で不等比較です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1255
+msgid "Missing index.\n"
+msgstr "インデックスが間違っています。\n"
+
+#
+# File: src/c/errmsg.c, line: 1263
+#, c-format
+msgid "reference to the cleared global variable %s.\n"
+msgstr "クリアされたグローバル変数 %s への参照です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1271
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr "/ のオペレータ、または、\\ オペレータ は　InfのNaNを含んではいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1276
+msgid "semi def fails.\n"
+msgstr "中途半端な定義です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1281
+msgid "Wrong type for first input argument: Single string expected.\n"
+msgstr "入力引数で不正な型: 単一文字列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1286
+msgid "Entry name not found.\n"
+msgstr "入力名が見つかりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1291
+msgid "Maximum number of dynamic interfaces reached.\n"
+msgstr "動的なインターフェースの最大数です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1296
+#, c-format
+msgid "%s: expecting more than one argument.\n"
+msgstr "%s: ひとつ以上の引数を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1301
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: 入力点でひとつの問題があります。\n"
+
+#
+# File: src/c/errmsg.c, line: 1306
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
+msgstr "%s: 共有アーカイブは、ロードできませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 1311
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
+msgstr "%s: このオペレーティング・システムでは単一の入力点のみが許されます。\n"
+
+#
+# File: src/c/errmsg.c, line: 1316
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
+msgstr "%s: 最初の引数は、数字にできません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1321
+msgid "You cannot link more functions, maxentry reached.\n"
+msgstr "多くの関数を関連づけることができません、最大入力に達しました。\n"
+
+#
+# File: src/c/errmsg.c, line: 1329
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr "ファイル \"%s\" はすでに存在します、または、ディレクトリー書き込みアクセスを拒否しました。\n"
+
+#
+# File: src/c/errmsg.c, line: 1340
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr "ファイル \"%s\" が存在しないか、読み込みを拒否されました。\n"
+
+#
+# File: src/c/errmsg.c, line: 1348
+msgid "Binary direct acces files must be opened by 'file'.\n"
+msgstr "バイナリーの直接参照ファイルは、「ファイル」によって開かれなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1353
+msgid "C file logical unit not allowed here.\n"
+msgstr "C ファイル・ロジカルユニットはここに許されませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 1358
+msgid "Fortran file logical unit not allowed here.\n"
+msgstr "Fortran ファイル・ロジカルユニットはここに許されませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 1363
+#, c-format
+msgid "No input file associated to logical unit %d.\n"
+msgstr "ロジカルユニット %d に関連した入力ファイルはありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1369
+msgid "Function not defined for given argument type(s),\n"
+msgstr "関数は与えられた引数型(s)の定義がされていません,\n"
+
+#
+# File: src/c/errmsg.c, line: 1372
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  引数をチェックするか、もしくは、負荷をかけすぎる %s 関数定義です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1380
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr "引数 %d で不正な値: lu ハンドルは適当ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1385
+#, c-format
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgstr "引数 %d で不正な値: 正確な変数名を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1390
+#, c-format
+msgid "Wrong value for argument %d: Empty string expected.\n"
+msgstr "入力引数 %d で不正な値: 空文字列を想定します。\n"
+
+#
+# File: src/c/errmsg.c, line: 1395
+msgid "Recursive extraction is not valid in this context.\n"
+msgstr "帰納的な抽出は、この前後関係で妥当ではありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1400
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
+msgstr "%s: ipar 次元は、最低でも 11 必要です。 \n"
+
+#
+# File: src/c/errmsg.c, line: 1405
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
+msgstr "%s: ltol は、ipar(11)サイズでなければなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1410
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
+msgstr "%s: fixpnt は、ipar(11)サイズでなければなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1415
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
+msgstr "%s: ncomp < 20 を要求しました。\n"
+
+#
+# File: src/c/errmsg.c, line: 1420
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
+msgstr "%s: m は　ncompサイズでなければなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1425
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
+msgstr "%s: sum(m) は 40 より小さくなくてはなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1430
+#, c-format
+msgid "%s: input data error.\n"
+msgstr "%s: 入力データエラー\n"
+
+#
+# File: src/c/errmsg.c, line: 1435
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
+msgstr "%s: いいえ、記憶領域を超えた補助間隔です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1440
+#, c-format
+msgid "%s: Th colocation matrix is singular.\n"
+msgstr "%s: 関連度行列は単独です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1445
+msgid "Interface property table is full.\n"
+msgstr "インターフェース・プロパティ テーブルは一杯です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1451
+#, c-format
+msgid "Too many global variables! , max number is %d.\n"
+msgstr "多すぎるグローバル変数! 最大数は %d です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1456
+msgid "Error while writing in file,(disk full or deleted file.\n"
+msgstr "ファイルの書き込み中にエラー、(ディスクが一杯か、または、ファイル削除)\n"
+
+#
+# File: src/c/errmsg.c, line: 1461
+#, c-format
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr "引数 %d で不正な値: NaN または Inf を含んではいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1466
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
+msgstr "%s と %s は、行の数と等しくなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1471
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
+msgstr "%s と %s は、列の数と等しくなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1476
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
+msgstr "%s と %s は、等しい次元を持っていなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1481
+#, c-format
+msgid "Invalid return value for function passed in arg %d.\n"
+msgstr "引数 %d の関数透過による戻り値が不正です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1486
+#, c-format
+msgid "Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgstr "引数 %d で不正な値: 固有値モジュールは、負の実数部を持たなくてはなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1491
+#, c-format
+msgid "Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgstr "引数 %d で不正な値: 固有値モジュールは、ひとつ以下でなくてはなりません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1496
+#, c-format
+msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr "引数の変えているサイズ *eye()、(引数 %d) は、ここで考慮されませんでした。\n"
+
+#
+# File: src/c/errmsg.c, line: 1501
+msgid "endfunction is missing.\n"
+msgstr "終了関数が間違っています。\n"
+
+#
+# File: src/c/errmsg.c, line: 1506
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgstr "左側指示: 点または左の括弧を待ちます。\n"
+
+#
+# File: src/c/errmsg.c, line: 1511
+msgid "Instruction left hand side: waiting for a name.\n"
+msgstr "左側指示: 名前を待ちます。\n"
+
+#
+# File: src/c/errmsg.c, line: 1516
+msgid "varargout keyword cannot be used here.\n"
+msgstr "可変の入力引数キーワードはここで使うことはできません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1521
+msgid "Missing operator, comma, or semicolon.\n"
+msgstr "オペレータ、カンマ、または、セミコロンの間違いです。\n"
+
+#
+# File: src/c/errmsg.c, line: 1527
+msgid "Too many commands defined.\n"
+msgstr "多すぎる命令が定義されました。\n"
+
+#
+# File: src/c/errmsg.c, line: 1535
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr "%s: 入力引数は、同じ正式な変数名を持っているべきです。\n"
+
+#
+# File: src/c/errmsg.c, line: 1645
+msgid "\"unknown data\""
+msgstr "\"未知のデータ\""
+
+#
+# File: src/c/msgs.c, line: 511
+# File: src/c/msgs.c, line: 522
+# File: src/c/msgs.c, line: 534
+# File: src/c/msgs.c, line: 554
+# File: src/c/msgs.c, line: 569
+# File: src/c/msgs.c, line: 796
+msgid "Warning :\n"
+msgstr "警告:\n"
+
+#
+# File: src/c/msgs.c, line: 512
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "QZの非集合アルゴリズム。\n"
+
+#
+# File: src/c/msgs.c, line: 515
+# File: src/c/msgs.c, line: 740
+# File: src/c/msgs.c, line: 748
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr "一番上の %d x %d ブロックは、Schurフォーム規則にないかもしれません。\n"
+
+#
+# File: src/c/msgs.c, line: 523
+# File: src/c/msgs.c, line: 535
+msgid "Non convergence in QR steps.\n"
+msgstr "QRの非集合ステップ。\n"
+
+#
+# File: src/c/msgs.c, line: 527
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr "一番上の %d x %d ブロックは、Schurフォームにないかもしれません。\n"
+
+#
+# File: src/c/msgs.c, line: 538
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr "最初の %d 単数値は、不正確かもしれません。\n"
+
+#
+# File: src/c/msgs.c, line: 545
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr "警告: 結果は不正確かもしれません。\n"
+
+#
+# File: src/c/msgs.c, line: 555
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "行列は単数に近いです、または、最悪の比率です。 状態 = %s\n"
+
+#
+# File: src/c/msgs.c, line: 559
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "最小二乗法計算の解決方法(lsq参照)\n"
+
+#
+# File: src/c/msgs.c, line: 570
+msgid "eigenvectors are badly conditioned.\n"
+msgstr "固有ベクトルは最悪な状態です。\n"
+
+#
+# File: src/c/msgs.c, line: 571
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr "結果は不正確かもしれません。状態 = %s\n"
+
+#
+# File: src/c/msgs.c, line: 577
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr "警告: '==' ではなく、 使われなくなった '=' が使われています。\n"
+
+#
+# File: src/c/msgs.c, line: 584
+msgid "Warning: obsolete use of eye rand or ones.\n"
+msgstr "警告: 乱数行列単位は、使われなくなった使用です。\n"
+
+#
+# File: src/c/msgs.c, line: 591
+#, c-format
+msgid "Rank defficient. rank = %d\n"
+msgstr "階数落ち、階級 = %d\n"
+
+#
+# File: src/c/msgs.c, line: 603
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr "Quaproは縮退点で周期に衝突します。\n"
+
+#
+# File: src/c/msgs.c, line: 616
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr "投影勾配のノルムが %s 以下です。\n"
+
+#
+# File: src/c/msgs.c, line: 626
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr "繰り返し最後の f %s以下で減少。\n"
+
+#
+# File: src/c/msgs.c, line: 632
+msgid "Optimization stops because too small variations for x.\n"
+msgstr "x のとても小さい変化のため最適化を中断します。\n"
+
+#
+# File: src/c/msgs.c, line: 638
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr "最適化の中断: f への呼び出しの最大数に達しました。\n"
+
+#
+# File: src/c/msgs.c, line: 644
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr "最適化の中断: 繰り返しの最大数に達しました。\n"
+
+#
+# File: src/c/msgs.c, line: 650
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr "最適化の中断: 勾配方向のとても小さい変化です。\n"
+
+#
+# File: src/c/msgs.c, line: 656
+msgid "Stop during calculation of descent direction.\n"
+msgstr "下り方向の計算中に停止しました。\n"
+
+#
+# File: src/c/msgs.c, line: 662
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr "ヘッセ推定の計算中に停止しました。\n"
+
+#
+# File: src/c/msgs.c, line: 668
+msgid "End of optimization.\n"
+msgstr "最適化の終了\n"
+
+#
+# File: src/c/msgs.c, line: 674
+msgid "End of optimization (linear search fails).\n"
+msgstr "最適化の終了(一次の検索失敗)\n"
+
+#
+# File: src/c/msgs.c, line: 682
+#, c-format
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr "事実 : 不完全な収束相対精度に達しました: 10**(%s)\n"
+
+#
+# File: src/c/msgs.c, line: 688
+msgid "Help file inconsistent...\n"
+msgstr "一貫性がないヘルプファイルです...\n"
+
+#
+# File: src/c/msgs.c, line: 699
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "関数ファイルの場所 : %s\n"
+
+#
+# File: src/c/msgs.c, line: 720
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "休止モード: 空行で続きます。\n"
+
+#
+# File: src/c/msgs.c, line: 729
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr "関数のブレーク・ポイント : %s\n"
+
+#
+# File: src/c/msgs.c, line: 754
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr "警告: 回帰問題..., クリアしました。\n"
+
+#
+# File: src/c/msgs.c, line: 761
+msgid "Warning: stack problem..., cleared.\n"
+msgstr "警告: スタック問題..., クリアしました。\n"
+
+#
+# File: src/c/msgs.c, line: 781
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr "関数 %s の列 %s の後で停止\n"
+
+#
+# File: src/c/msgs.c, line: 797
+#, c-format
+msgid "The identifier : %s\n"
+msgstr "身元: %s\n"
+
+#
+# File: src/c/msgs.c, line: 799
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr "破棄されました: %s\n"
+
+#
+# File: src/c/msgs.c, line: 806
+msgid "Real part\n"
+msgstr "実の部分\n"
+
+#
+# File: src/c/msgs.c, line: 812
+msgid "Imaginary part\n"
+msgstr "架空の部分\n"
+
+#
+# File: src/c/msgs.c, line: 818
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr "バッファの最大サイズ : %d 文字\n"
+
+#
+# File: src/c/msgs.c, line: 829
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr "不完全なランク : rank = %s  - tol = %s .\n"
+
+#
+# File: src/c/msgs.c, line: 835
+msgid "Your variables are:\n"
+msgstr "変数です:\n"
+
+#
+# File: src/c/msgs.c, line: 847
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr "%2$s を超えた要素 %1$s を使います。\n"
+
+#
+# File: src/c/msgs.c, line: 851
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr " そして、%2$s を超えた変数 %1$sです。\n"
+
+#
+# File: src/c/msgs.c, line: 857
+msgid "System functions:\n"
+msgstr "システム関数:\n"
+
+#
+# File: src/c/msgs.c, line: 863
+msgid "Commands:\n"
+msgstr "コマンド:\n"
+
+#
+# File: src/c/msgs.c, line: 879
+#, c-format
+msgid "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr "警告: 関数の再定義です: %s, funcprot(０)を使ってこのメッセージを避けて下さい"
+
+#
+# File: src/c/msgs.c, line: 906
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr "       内部関数: %s\n"
+
+#
+# File: src/c/msgs.c, line: 913
+msgid "Not enough memory to perform simplification.\n"
+msgstr "単純化を実行するのに十分なメモリがありません。\n"
+
+#
+# File: src/c/msgs.c, line: 919
+msgid "Your global variables are...\n"
+msgstr "全体変数です...\n"
+
+#
+# File: src/c/msgs.c, line: 955
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s: ループで二つの状態を見つけました。\n"
+
+#
+# File: src/c/msgs.c, line: 961
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: 要求の状態に達することができません。\n"
+"   前の計算状態を解決策として返しました。\n"
+
+#
+# File: src/c/msgs.c, line: 967
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: 領域境界で共有部分を見たときに失敗しました。\n"
+"   前の計算状態を解決策として返しました。\n"
+
+#
+# File: src/c/msgs.c, line: 973
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: 多すぎる解決方法が見つかれました。\n"
+"  前の計算状態を解決策として返しました。\n"
+
+#
+# File: src/c/msgs.c, line: 1015
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+"警告: ロードされたファイルは、Scilabの前のバージョンで作られました\n"
+"異なるアーキテクチャーでファイル保存を試みてください。\n"
+
+#
+# File: src/c/msgs.c, line: 1024
+# File: src/c/msgs.c, line: 1404
+msgid "Warning:\n"
+msgstr "警告:\n"
+
+#
+# File: src/c/msgs.c, line: 1025
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr "変数 %s をロードすることができません。\n"
+
+#
+# File: src/c/msgs.c, line: 1031
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr ""
+"警告: 構造定義型への標準リスト使用はサポートされません、\n"
+"         tlist を使ってください。\n"
+
+#
+# File: src/c/msgs.c, line: 1037
+msgid "Warning : division by zero...\n"
+msgstr "警告: ゼロ割り...\n"
+
+#
+# File: src/c/msgs.c, line: 1043
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr "警告: 'log' または 'tan' 関数が奇妙です。\n"
+
+#
+# File: src/c/msgs.c, line: 1081
+#, c-format
+msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgstr "現在: %s , 正確に成し遂げるためには多すぎる繰り返しです。\n"
+
+#
+# File: src/c/msgs.c, line: 1087
+msgid "stepsize not significant in rkqc.\n"
+msgstr "rkq で重要ではないステップ・サイズ。\n"
+
+#
+# File: src/c/msgs.c, line: 1093
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr "警告: 変数 %%ODEOPTIONS は見つけられませんでした。\n"
+
+#
+# File: src/c/msgs.c, line: 1099
+msgid "Warning: integration up to tcrit.\n"
+msgstr "警告: tcrit まで統合\n"
+
+#
+# File: src/c/msgs.c, line: 1105
+msgid "Warning: integration not completed! check tolerance parameters or step size.\n"
+msgstr "警告: 統合は完成できませんでした! 許容パラメーターまたはステップ・サイズをチェックしてください。\n"
+
+#
+# File: src/c/msgs.c, line: 1111
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used!,  see %ODEOPTIONS(6).\n"
+msgstr ""
+"警告: 外部の与えられたヤコビアン、しかし、\n"
+"使われていません、%ODEOPTIONS(６)を見てください!\n"
+
+#
+# File: src/c/msgs.c, line: 1117
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+"警告: 外部の与えられたヤコビアンはありません、\n"
+"しかし、ひとつは、%ODEOPTIONS(６)値によって必要とされます!\n"
+
+#
+# File: src/c/msgs.c, line: 1123
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+"itask=2,3 または 5: 最大ひとつの t 値が許され、\n"
+"最後の要素 t は使われます。\n"
+
+#
+# File: src/c/msgs.c, line: 1129
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr ""
+"警告: 離散効力 itask=4 と ハンドル\n"
+" 信頼区間(tcrit).\n"
+
+#
+# File: src/c/msgs.c, line: 1141
+msgid "Warning: function is already compiled.\n"
+msgstr "警告: 関数は既にコンパイルされています。\n"
+
+#
+# File: src/c/msgs.c, line: 1147
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr "%s: 二等分三角への空間不足のため終了しました。\n"
+
+#
+# File: src/c/msgs.c, line: 1153
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr "%s: 端数切捨ての影響で終了しました。\n"
+
+#
+# File: src/c/msgs.c, line: 1159
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr "%s: 相対誤差 < (5.0*%eps) のため終了\n"
+
+#
+# File: src/c/msgs.c, line: 1165
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr "%s: 終了: 関数評価 > MEVALS\n"
+
+#
+# File: src/c/msgs.c, line: 1171
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr "%s: maxptsは、行われるには、あまりにも小さいです、正確にしてください。\n"
+
+#
+# File: src/c/msgs.c, line: 1201
+msgid "Too many input/output ports for hilited block.\n"
+msgstr "勾配ブロックの多すぎる入出力の部品です。\n"
+
+#
+# File: src/c/msgs.c, line: 1207
+msgid "Too many input/output entries for hilited block.\n"
+msgstr "勾配ブロックの多すぎる入出力の投入です。\n"
+
+#
+# File: src/c/msgs.c, line: 1261
+msgid "Undefined display for this data type.\n"
+msgstr "このデータ型は表示することが出来ません。\n"
+
+#
+# File: src/c/msgs.c, line: 1279
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr "警告: 最初の関数 %s は動きました。\n"
+
+#
+# File: src/c/msgs.c, line: 1280
+# File: src/c/msgs.c, line: 1300
+msgid "Rebuild your function libraries.\n"
+msgstr "関数ライブラリを再構築してください。\n"
+
+#
+# File: src/c/msgs.c, line: 1299
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr "警告: 初期関数 %s は新しい Scilab 関数です。\n"
+
+#
+# File: src/c/msgs.c, line: 1308
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+"主要な固有値の作成で端数切捨てエラー\n"
+" Schurフォームで、もはや基準ではありません。\n"
+
+#
+# File: src/c/msgs.c, line: 1314
+msgid "Formal variable name has been truncated.\n"
+msgstr "正式な変数名は切り取られました。\n"
+
+#
+# File: src/c/msgs.c, line: 1323
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr "未知のキー <%s> を無視しました。\n"
+
+#
+# File: src/c/msgs.c, line: 1330
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr "%s: ウインドウ次元が 2^16 よりも少なく設定されています。\n"
+
+#
+# File: src/c/msgs.c, line: 1336
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr "いくらかのデータが計算されませんでした、それらは NaN によって変更されました。\n"
+
+#
+# File: src/c/msgs.c, line: 1344
+#, c-format
+msgid "%s: both actual and predicted relative reductions in the criterion at most %s.\n"
+msgstr "%s: 共に実際に、相対的な %s の標準として予想された減少です。\n"
+
+#
+# File: src/c/msgs.c, line: 1350
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr "%s: 繰り返し連続する２の間で %s の関係エラーです。\n"
+
+#
+# File: src/c/msgs.c, line: 1356
+#, c-format
+msgid "%s: the cosine of the angle between %s and any column of the jacobian is at most %s in absolute value.\n"
+msgstr "%s: %s の間で直角のコサイン、そして、ヤコビアンの列は絶対値の %s にあります。\n"
+
+#
+# File: src/c/msgs.c, line: 1363
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %sへの呼出しの数は、%sに達したか、または超えました。\n"
+
+#
+# File: src/c/msgs.c, line: 1369
+# File: src/c/msgs.c, line: 1376
+#, c-format
+msgid "%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr "%s: %s は小さすぎます、標準は可能ですが、それ以上の削減はできません。\n"
+
+#
+# File: src/c/msgs.c, line: 1383
+#, c-format
+msgid "%s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"
+msgstr "%s: %s は小さすぎます、%s は、列の矩形か、または、精密機械へのヤコビアンです。\n"
+
+#
+# File: src/c/msgs.c, line: 1389
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr "代数曲面: 変数名は、５文字よりも少しは長くなくてはいけません。\n"
+
+#
+# File: src/c/sciprint_full.c, line: 50
+# File: src/c/sciprint_full.c, line: 60
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリがありません。\n"
+
+#
+# File: src/c/sciprint_full.c, line: 96
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr "  (続き) %s\n"
+
+#
+# File: src/c/sciprint_full.c, line: 100
+#, c-format
+msgid "     (end) %s\n"
+msgstr "     (終了) %s\n"
+

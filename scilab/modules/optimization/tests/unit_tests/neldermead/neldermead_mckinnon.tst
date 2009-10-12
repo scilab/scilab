@@ -110,7 +110,7 @@ endfunction
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );

@@ -40,7 +40,7 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getLineDrawerJavaMapper()->setLineParameters(sciGetForegroundColor(pObj),
+  getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pObj)->foregroundcolor,
                                                (float)sciGetLineWidth(pObj),
                                                sciGetLineStyle(pObj));
 

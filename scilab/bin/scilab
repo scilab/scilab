@@ -400,6 +400,15 @@ fi
 						;;
 				esac
 				;;
+			"mips"|"mipsel") # under mipsel, uname -m is
+					# usually returning mips ...
+					# but binary are in mipsel
+				if test -d ${JRE_HOME}/lib/mipsel ; then
+					proc="mipsel"
+				else
+					proc="mips"
+				fi
+				;;
 			"ia64")
 				proc="ia64"
 				;;
@@ -416,15 +425,18 @@ fi
 				proc="win32"
 				JAVA_SHLIB="jvm.dll"
 				;;
+			"armv4l"|"armv5tel")
+				proc="arm"
+				;;
 			*darwin* | *Darwin*) # MacOS X
         # For Mac OS X, Since path are different from the JVM normal tree, 
 		# don't need to detect the CPU
 				JAVA_SHLIB="libjava.jnilib"
 				;;
 			*)
-			echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
-                        echo "Fallback on the model <${MODEL}> found by uname -m"
-                        proc=$MODEL
+				echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+                echo "Fallback on the model <${MODEL}> found by uname -m"
+                proc=$MODEL
                 ;;
 		esac
 		

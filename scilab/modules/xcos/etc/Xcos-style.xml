@@ -7,6 +7,8 @@
 		<add as="strokeColor" value="black"/>
 		<add as="fillColor" value="white"/>
 	</add>
+	<add as="Affiche" extend="block">
+	</add>
 	<add as="Label" extend="block">
 		<add as="strokeColor" value="white"/>
 	</add>

@@ -1,0 +1,102 @@
+# Localization of the module development_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/bench_run.sci, line: 73
+# File: macros/test_clean.sci, line: 97
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s はインストールモジュールではありません"
+
+#
+# File: macros/bench_run.sci, line: 92
+msgid "error : Input argument sizes are not valid"
+msgstr "エラー: 入力引数サイズは、妥当ではありません"
+
+#
+# File: macros/bench_run.sci, line: 105
+# File: macros/test_clean.sci, line: 135
+# File: macros/test_run.sci, line: 239
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "%2$s モジュールで、 テスト %1$s は可能ではありません"
+
+#
+# File: macros/scitest.sci, line: 32
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr "%s: 最初の入力引数は不正: ファイルの識別子 .dia を想定します。"
+
+#
+# File: macros/scitest.sci, line: 124
+# File: macros/scitest.sci, line: 130
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "テスト失敗, %s 実行で、ERROR DETECTED"
+
+#
+# File: macros/scitest.sci, line: 145
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "テスト失敗, 詳細: fc /L /N  %s"
+
+#
+# File: macros/scitest.sci, line: 147
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "テスト失敗, 詳細: diff -wu %s "
+
+#
+# File: macros/scitest.sci, line: 150
+msgid "Test passed"
+msgstr "テストは通りました"
+
+#
+# File: macros/test_clean.sci, line: 116
+# File: macros/test_run.sci, line: 219
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: 入力引数で不正なサイズです。"
+
+#
+# File: macros/test_run.sci, line: 200
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%sは、インストールモジュール、またはツールボックスではありません"
+
+#
+# File: macros/test_run.sci, line: 252
+#, c-format
+msgid "The test %s is not available from the %s toolbox"
+msgstr "テスト %s は、%s ツールボックスから利用できません"
+
+#
+# File: macros/test_run.sci, line: 858
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "参照ファイル(%s) はありません"
+
+#
+# File: macros/testexamples.sci, line: 17
+# File: macros/testexamples.sci, line: 32
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "参照ファイルの変数　%s_ref はありません"
+
