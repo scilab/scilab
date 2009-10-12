@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
-
+// <-- ENGLISH IMPOSED -->
 // optim_script.tst --
 //   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.
