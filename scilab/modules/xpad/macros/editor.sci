@@ -10,9 +10,13 @@
 //
 
 function editor()
-  if getscilabmode() <> 'NWNI' then
+if getscilabmode() <> "NWNI" then
+  if with_module("xpad") then
     xpad();
   else
-    mprintf(gettext('Editor is disabled in this mode; %s.\n'),getscilabmode());
+    messagebox(_("Please install xpad module."), _("No text editor available."), "error");
   end
+else
+  mprintf(gettext('Editor is disabled in this mode; %s.\n'),getscilabmode());
+end
 endfunction
