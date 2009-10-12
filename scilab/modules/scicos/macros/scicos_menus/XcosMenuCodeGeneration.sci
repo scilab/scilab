@@ -1375,25 +1375,25 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   end
 
   //Check if input/output ports are numered properly
-  IN=-sort(-IN);
+  IN=-gsort(-IN);
   if or(IN<>[1:size(IN,'*')]) then
     ok=%f;%cpr=list()
     messagebox(_('Input ports are not numbered properly.'),'modal','error')
     return
   end
-  OUT=-sort(-OUT);
+  OUT=-gsort(-OUT);
   if or(OUT<>[1:size(OUT,'*')]) then
     ok=%f;%cpr=list()
     messagebox(_('Output ports are not numbered properly.'),'modal','error')
     return
   end
-  clkIN=-sort(-clkIN);
+  clkIN=-gsort(-clkIN);
   if or(clkIN<>[1:size(clkIN,'*')]) then
     ok=%f;%cpr=list()
     messagebox(_('Event input ports are not numbered properly.'),'modal','error')
     return
   end
-  clkOUT=-sort(-clkOUT);
+  clkOUT=-gsort(-clkOUT);
   if or(clkOUT<>[1:size(clkOUT,'*')]) then
     ok=%f;%cpr=list()
     messagebox(_('Event output ports are not numbered properly.'),'modal','error')
