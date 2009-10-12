@@ -5,7 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // optim_script.tst --
 //   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.
@@ -53,7 +54,7 @@ endfunction
 lines(0);
 // Open up the console for messages which may appear there
 consolebox("on");
-Seulement en mode graphique, non disponible en mode batch
+Only on Windows Mode, not in Console Mode.
 //
 // 1. Test unconstrained BFGS
 // Test without arguments
@@ -90,7 +91,7 @@ max number of calls to costf allowed: nap=       100
 ------------------------------------------------
  iter num   38, nb calls=  46, f=0.0000E+00
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 // imp = 2 : one line by iteration
 [f,x,g]=optim(rosenbrock,x0,'qn',imp=2);
@@ -139,7 +140,7 @@ max number of calls to costf allowed: nap=       100
  iter num   37, nb calls=  45, f=0.4980E-29
  iter num   38, nb calls=  46, f=0.0000E+00
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 // imp = 3 : one line by iteration + one line by line search
 [f,x,g]=optim(rosenbrock,x0,'qn',imp=3);
@@ -270,11 +271,11 @@ max number of calls to costf allowed: nap=       100
                 step length= 1.000    , df=-.4980E-29, derivative=0.0000E+00
  iter num   38, nb calls=  46, f=0.0000E+00
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 // Negative imp : call back the cost function with ind = 0 each -imp iteration
 [f,x,g]=optim(rosenbrock,x0,'qn',imp=-5);
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 //
 // 2. Test unconstrained Limited Memory BFGS
@@ -313,7 +314,7 @@ assert_close ( g , gopt , Leps );
      norm of x =  0.14142136D+01
      f         =  0.00000000D+00
      norm of x =  0.00000000D+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 // imp = 3 : one line by iteration
 [f,x,g]=optim(rosenbrock,x0,'gc',imp=2);
@@ -339,7 +340,7 @@ La norme du gradient projeté est inférieure à   0.0000000D+00.
      norm of x =  0.14142136D+01
      f         =  0.00000000D+00
      norm of x =  0.00000000D+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 // imp = 4 : one line by iteration + one line by line search
 [f,x,g]=optim(rosenbrock,x0,'gc',imp=3);
@@ -408,7 +409,7 @@ La norme du gradient projeté est inférieure à   0.0000000D+00.
      norm of x =  0.14142136D+01
      f         =  0.00000000D+00
      norm of x =  0.00000000D+00
-La norme du gradient projeté est inférieure à   0.0000000D+00.
+Norm of projected gradient lower than   0.0000000D+00.
 
 //
 // 3. Test unconstrained non-differentiable method
@@ -434,7 +435,7 @@ assert_close ( g , gopt , Leps );
 entry in n1fc1 . n=   2 memax= 10  
 minimal array sizes: iz(    22)  rz(    70)  dz(   198)
 n1fc1      Incorrect end of fprf2
-Fin de l'optimisation.
+End of optimization.
 
 // imp = 3 : one line by iteration
 [f,x,g]=optim(rosenbrock,x0,'nd',imp=2);
@@ -450,7 +451,7 @@ n1fc1   eta2 assigned to  0.444D-14
  n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  ( 0.00D+00)
  n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
 n1fc1      Incorrect end of fprf2
-Fin de l'optimisation.
+End of optimization.
 
 // imp = 4 : one line by iteration + one line by line search
 [f,x,g]=optim(rosenbrock,x0,'nd',imp=3);
@@ -502,7 +503,7 @@ n1fc1     34   90   0.1890964D-06  0.93D-07  0.14D-06  0.00D+00  3
 n1fc1     35   92   0.8733602D-08  0.93D-07  0.15D-07  0.00D+00  3
 n1fc1     36   95   0.2709627D-08  0.12D-07  0.75D-06  0.32D+02  2
 n1fc1      Incorrect end of fprf2
-Fin de l'optimisation.
+End of optimization.
 
 //
 // 4. Test bound-constrained BFGS
@@ -527,7 +528,7 @@ assert_close ( g , gopt , Leps );
 [f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=1);
  *********** qnbd ****************
  qnbd : indqn=      13
-Fin de l'optimisation (échec de la recherche en ligne).
+End of optimization (linear search fails).
 
 // imp = 3 : one line by iteration
 [f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=2);
@@ -676,7 +677,7 @@ Fin de l'optimisation (échec de la recherche en ligne).
  qnbd : iter= 48  f=  0.7741575D-24
  qnbd : nbre fact  0 defact  0 total var factorisees  2
  qnbd : indqn=      13
-Fin de l'optimisation (échec de la recherche en ligne).
+End of optimization (linear search fails).
 
 // imp = 4 : one line by iteration + one line by line search
 [f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=3);
@@ -915,7 +916,7 @@ d   t= 0.2500E+00 h= 0.6644E-22 dh/dt= 0.5547E-21 dfh/dt= 0.8434E-21 dt-0.2E+00
 d   t= 0.1250E+00 h= 0.1515E-22 dh/dt= 0.2657E-21 dfh/dt= 0.4103E-21 dt-0.1E+00
 d   t= 0.6250E-01 h= 0.3062E-23 dh/dt= 0.1212E-21 dfh/dt= 0.1934E-21 dt-0.6E-01
 d   t= 0.3125E-01 h= 0.4061E-24 dh/dt= 0.4904E-22 dfh/dt= 0.8499E-22 dt-0.3E-01
-    t= 0.1563E-01 h=-0.7863E-25 dh/dt= 0.1291E-22 dfh/dt= 0.3102E-22 dt-0.2E-01
+    t= 0.1562E-01 h=-0.7863E-25 dh/dt= 0.1291E-22 dfh/dt= 0.3102E-22 dt-0.2E-01
  qnbd : epsg,difg= 0.2220D-15 0.2730D-10  epsf,diff= 0.0000D+00 0.7863D-25  nap= 63
  qnbd : iter= 44  f=  0.8155913D-24
  qnbd : emploi truc powell (y,s)= 0.5658D-24
@@ -980,7 +981,7 @@ d   t= 0.1000E-05 h= 0.1767E-24 dh/dt= 0.3901E-18 dfh/dt= 0.2305E-17 dt-0.9E-05
 d   t= 0.5000E-06 h= 0.3717E-25 dh/dt= 0.1781E-18 dfh/dt= 0.2790E-18 dt-0.5E-06
     t= 0.2500E-06 h= 0.5251E-26 dh/dt= 0.1781E-18 dfh/dt= 0.0000E+00 dt-0.3E-06
  qnbd : indqn=      13
-Fin de l'optimisation (échec de la recherche en ligne).
+End of optimization (linear search fails).
 
 //
 // 5. Test bound-constrained Limited Memory BFGS
@@ -1006,7 +1007,7 @@ assert_close ( g , gopt , Leps );
  gcbd max appels simul
  gcbd : retour avec indgc=       4
  f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
-Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.
+Optim stops: maximum number of calls to f is reached.
 
 // imp = 3 : one line by iteration
 [f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=2);
@@ -1098,7 +1099,7 @@ Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.
  gcbd max appels simul
  gcbd : retour avec indgc=       4
  f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
-Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.
+Optim stops: maximum number of calls to f is reached.
 
 // imp = 4 : one line by iteration + one line by line search
 [f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=3);
@@ -1429,7 +1430,7 @@ d   t= 0.3894E+01 h=-0.3634E-24 dh/dt= 0.1157E-22 dfh/dt=-0.9333E-25 dt 0.4E+01
  gcbd max appels simul
  gcbd : retour avec indgc=       4
  f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
-Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.
+Optim stops: maximum number of calls to f is reached.
 
 //
 // 6. Test "sd", "si", "td", "ti" options
