@@ -124,9 +124,17 @@ public class BasicBlock extends mxCell {
 	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
 	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
 	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
+	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
 	else { return new BasicBlock(label); }
     }
 
+    protected BasicBlock() {
+	super();
+	setVertex(true);
+	setConnectable(false);
+	setGeometry(new mxGeometry(0,0,80,80));
+    }
+    
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
@@ -188,7 +196,7 @@ public class BasicBlock extends mxCell {
 
     public void setRealParameters(ScilabType realParameters) {
 	this.realParameters = realParameters;
-    }
+    } 
 
     public ScilabType getIntegerParameters() {
 	return integerParameters;
