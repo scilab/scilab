@@ -128,11 +128,10 @@ public class BasicBlock extends mxCell {
 	else { return new BasicBlock(label); }
     }
 
-    protected BasicBlock() {
+    public BasicBlock() {
 	super();
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,80,80));
+	setVertex(false);
+	setVisible(false);
     }
     
     protected BasicBlock(String label) {
@@ -166,7 +165,7 @@ public class BasicBlock extends mxCell {
 	updateControlPortsPositions();
     }
 
-    protected void setInterfaceFunctionName(String interfaceFunctionName) {
+    public void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
     }
 
