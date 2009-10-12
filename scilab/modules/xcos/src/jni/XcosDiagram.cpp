@@ -109,7 +109,7 @@ exit(EXIT_FAILURE);
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidsetBlockValuejintjobjectArrayjintjintID=NULL; 
+voidsetBlockTextValuejintjobjectArrayjintjintID=NULL; 
 
 
 }
@@ -138,7 +138,7 @@ curEnv->ExceptionDescribe();
 exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
-        voidsetBlockValuejintjobjectArrayjintjintID=NULL; 
+        voidsetBlockTextValuejintjobjectArrayjintjintID=NULL; 
 
 
 }
@@ -162,15 +162,15 @@ exit(EXIT_FAILURE);
 }
 // Method(s)
 
-void XcosDiagram::setBlockValue (JavaVM * jvm_, int blockID, char ** blockValue, int blockValueSize, int iRows, int iCols){
+void XcosDiagram::setBlockTextValue (JavaVM * jvm_, int blockID, char ** blockValue, int blockValueSize, int iRows, int iCols){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetBlockValuejintjobjectArrayjintjintID = curEnv->GetStaticMethodID(cls, "setBlockValue", "(I[Ljava/lang/String;II)V" ) ;
-if (voidsetBlockValuejintjobjectArrayjintjintID == NULL) {
-std::cerr << "Could not access to the method " << "setBlockValue" << std::endl;
+jmethodID voidsetBlockTextValuejintjobjectArrayjintjintID = curEnv->GetStaticMethodID(cls, "setBlockTextValue", "(I[Ljava/lang/String;II)V" ) ;
+if (voidsetBlockTextValuejintjobjectArrayjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setBlockTextValue" << std::endl;
 curEnv->ExceptionDescribe();
 exit(EXIT_FAILURE);
 }
@@ -199,7 +199,7 @@ curEnv->SetObjectArrayElement( blockValue_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidsetBlockValuejintjobjectArrayjintjintID ,blockID, blockValue_, iRows, iCols);
+                         curEnv->CallStaticVoidMethod(cls, voidsetBlockTextValuejintjobjectArrayjintjintID ,blockID, blockValue_, iRows, iCols);
 curEnv->DeleteLocalRef(stringArrayClass);
 curEnv->DeleteLocalRef(blockValue_);
 

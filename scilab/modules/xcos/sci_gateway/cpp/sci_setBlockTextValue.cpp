@@ -16,8 +16,7 @@ extern "C"
 {
 #include "gw_xcos.h"
 #include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -25,7 +24,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_xcos_utils;
+using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
 int sci_setBlockTextValue(char *fname,unsigned long fname_len)
 {
@@ -34,12 +33,16 @@ int sci_setBlockTextValue(char *fname,unsigned long fname_len)
 
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
-	char **pStVarOne = NULL;
-	int *lenStVarOne = NULL;
+	int *piAddressVarTwo = NULL;
+	double *pStVarOne = NULL;
+	char **pStVarTwo = NULL;
+	int *lenStVarTwo = NULL;
         int i = 0;
 	int iType = 0;
+        int iBlockID = 0;
 	StrErr strErr;
 
+        /* Read bloc ID */
 	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
@@ -54,37 +57,73 @@ int sci_setBlockTextValue(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	if ( iType != sci_strings )
+	if ( iType != sci_matrix )
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A Real Scalar expected.\n"),fname,1);
 		return 0;
 	}
 
-	/* get dimensions */
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+        strErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m1, &n1, &pStVarOne); 
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	lenStVarOne = (int*)MALLOC(sizeof(int));
-	if (lenStVarOne == NULL)
+        if (m1 * n1 != 1)
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: A Real Scalar expected.\n"),fname,1);
+		return 0;
+	}
+
+        iBlockID = (int) pStVarOne[0];
+
+        /* Read text value */
+	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if ( iType != sci_strings )
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+		return 0;
+	}
+
+	/* get dimensions */
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m1, &n1, lenStVarTwo, pStVarTwo);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	lenStVarTwo = (int*)MALLOC(sizeof(int));
+	if (lenStVarTwo == NULL)
 	{
 		Scierror(999,_("%s: No more memory.\n"), fname);
 		return 0;
 	}
 
 	/* get lengths */
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m1, &n1, lenStVarTwo, pStVarTwo);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
-	if (pStVarOne == NULL)
+	pStVarTwo = (char **)MALLOC(sizeof(char*)*(m1*n1));
+	if (pStVarTwo == NULL)
 	{
 		Scierror(999,_("%s: No more memory.\n"), fname);
 		return 0;
@@ -92,19 +131,19 @@ int sci_setBlockTextValue(char *fname,unsigned long fname_len)
 
         for(i = 0; i < m1 * n1; i++)
           {
-            pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
+            pStVarTwo[i] = (char*)MALLOC(sizeof(char*) * (lenStVarTwo[i] + 1));
           }
 
 	/* get strings */
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m1, &n1, lenStVarTwo, pStVarTwo);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
 		return 0;
 	}
 
-	XcosDiagram::setBlockTextValue(getScilabJavaVM(), pStVarOne[0], m1, n1, m1, n1);
-	freeArrayOfString(pStVarOne, 1);
+	XcosDiagram::setBlockTextValue(getScilabJavaVM(), iBlockID, pStVarTwo, m1*n1, m1, n1);
+	freeArrayOfString(pStVarTwo, 1);
 
 	LhsVar(1) = 0;
 	PutLhsVar();

@@ -52,7 +52,7 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voidsetBlockValuejintjobjectArrayjintjintID; // cache method id
+jmethodID voidsetBlockTextValuejintjobjectArrayjintjintID; // cache method id
 jclass stringArrayClass;
 
 
@@ -95,7 +95,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void setBlockValue(JavaVM * jvm_, int blockID, char ** blockValue, int blockValueSize, int iRows, int iCols);
+static void setBlockTextValue(JavaVM * jvm_, int blockID, char ** blockValue, int blockValueSize, int iRows, int iCols);
 
 
                         /**

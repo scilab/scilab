@@ -18,6 +18,7 @@
 XCOS_IMPEXP int gw_xcos(void);
 XCOS_IMPEXP int sci_Xcos(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_xcosNotify(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_setBlockTextValue(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XCOS__ */
 /*--------------------------------------------------------------------------*/
