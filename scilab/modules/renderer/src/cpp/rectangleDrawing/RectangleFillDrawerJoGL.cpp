@@ -38,7 +38,7 @@ void RectangleFillDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getFillDrawerJavaMapper()->setBackColor(sciGetBackgroundColor(pObj)) ;
+  getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
 
   // get the coordinates of the four corners of the rectangle.
   double corner1[3] ;

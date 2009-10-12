@@ -1,0 +1,263 @@
+# Localization of the module sound
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/auread.sci, line: 34
+# File: macros/auwrite.sci, line: 42
+# File: macros/auwrite.sci, line: 44
+# File: macros/wavwrite.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/auread.sci, line: 43
+# File: macros/auwrite.sci, line: 68
+# File: macros/loadwave.sci, line: 32
+# File: macros/savewave.sci, line: 242
+# File: macros/wavread.sci, line: 49
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s がオープンできません。\n"
+
+#
+# File: macros/auread.sci, line: 65
+# File: macros/auread.sci, line: 107
+# File: macros/auread.sci, line: 110
+# File: macros/auread.sci, line: 113
+# File: macros/auread.sci, line: 121
+# File: macros/auread.sci, line: 177
+# File: macros/auread.sci, line: 209
+# File: macros/auread.sci, line: 214
+# File: macros/auwrite.sci, line: 72
+# File: macros/auwrite.sci, line: 88
+# File: macros/auwrite.sci, line: 125
+# File: macros/auwrite.sci, line: 143
+# File: macros/auwrite.sci, line: 147
+# File: macros/savewave.sci, line: 146
+# File: macros/savewave.sci, line: 185
+# File: macros/sound.sci, line: 41
+# File: macros/wavread.sci, line: 82
+# File: macros/wavread.sci, line: 87
+# File: macros/wavread.sci, line: 102
+# File: macros/wavread.sci, line: 108
+# File: macros/wavread.sci, line: 119
+# File: macros/wavread.sci, line: 137
+# File: macros/wavread.sci, line: 159
+# File: macros/wavread.sci, line: 170
+# File: macros/wavread.sci, line: 178
+# File: macros/wavread.sci, line: 189
+# File: macros/wavread.sci, line: 200
+# File: macros/wavread.sci, line: 255
+# File: macros/wavread.sci, line: 271
+# File: macros/wavread.sci, line: 275
+# File: macros/wavread.sci, line: 278
+# File: sci_gateway/c/sci_PlaySound.c, line: 62
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが起こりました: %s\n"
+
+#
+# File: macros/auwrite.sci, line: 60
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: 入力引数で不正な数: ファイル名は文字列でなければなりません。\n"
+
+#
+# File: macros/auwrite.sci, line: 72
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "データ配列は、単に １- または ２-次元 を持っていなくてはいけません。"
+
+#
+# File: macros/auwrite.sci, line: 88
+msgid "Error while writing sound file."
+msgstr "サウンド・ファイルの書き込み中にエラー。"
+
+#
+# File: macros/auwrite.sci, line: 125
+msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr "Mu-law は、単に８ビット・データで使うことができます。方法=''linear''を代わりに使ってください。"
+
+#
+# File: macros/auwrite.sci, line: 143
+# File: macros/auwrite.sci, line: 147
+msgid "Unrecognized data format."
+msgstr "承認されていないデータ・フォーマット。"
+
+#
+# File: macros/loadwave.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/loadwave.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: 出力引数で不正な数です。\n"
+
+#
+# File: macros/loadwave.sci, line: 27
+# File: macros/savewave.sci, line: 228
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/loadwave.sci, line: 43
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: 出力引数(s)で不正な数です。\n"
+
+#
+# File: macros/playsnd.sci, line: 32
+msgid "Audio capabilities not available."
+msgstr "オーディオの能力は利用できません。"
+
+#
+# File: macros/savewave.sci, line: 98
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+
+#
+# File: macros/savewave.sci, line: 146
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "符号化のためには ８/１６/２４/３２ ビット だけです。"
+
+#
+# File: macros/savewave.sci, line: 185
+msgid "Unknown data format."
+msgstr "未知のデータ・フォーマットです。"
+
+#
+# File: macros/sound.sci, line: 27
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: 最小の %d を想定します。\n"
+
+#
+# File: macros/sound.sci, line: 41
+msgid "Requires 2-D values only."
+msgstr "２-D値のみが必要です。"
+
+#
+# File: macros/wavread.sci, line: 60
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a vector of %d integers.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %s または %s でなければなりません、整数 または、 %d 整数のベクトル\n"
+
+#
+# File: macros/wavread.sci, line: 65
+#, c-format
+msgid "%s: Wrong value for input argument: Index range must be specified as a scalar or %d-element vector.\n"
+msgstr "%s: 入力引数で不正な値: インデックス範囲は、スカラーとして明確に述べられなくてはいけません、あるいは、%d-要素ベクトル\n"
+
+#
+# File: macros/wavread.sci, line: 75
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a vector of %d integers.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %s または %s でなければなりません、整数、または %d 整数のベクトル\n"
+
+#
+# File: macros/wavread.sci, line: 82
+msgid ".wav file does not contain the RIFF identifier."
+msgstr ".wavファイルは、RIFF識別を含んでいません。"
+
+#
+# File: macros/wavread.sci, line: 87
+msgid ".wav file does not contain the wave identifier."
+msgstr ".wavファイルは、wave識別を含んでいません。"
+
+#
+# File: macros/wavread.sci, line: 102
+# File: macros/wavread.sci, line: 159
+# File: macros/wavread.sci, line: 178
+msgid "Error reading .wav file."
+msgstr ".wav ファイルを読み込み中にエラー"
+
+#
+# File: macros/wavread.sci, line: 108
+msgid "Error reading <fact-ck> chunk."
+msgstr "読み込み中エラー <fact-ck> チャンク"
+
+#
+# File: macros/wavread.sci, line: 119
+msgid "Invalid .wav file: found data before format information."
+msgstr "無効な.wavファイル:見つけたデータは前に情報をフォーマットします。"
+
+#
+# File: macros/wavread.sci, line: 137
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "RIFF・ファイルの不正確なチャンクサイズ情報。"
+
+#
+# File: macros/wavread.sci, line: 170
+msgid "Invalid wav format."
+msgstr "wavフォーマットが間違いです。"
+
+#
+# File: macros/wavread.sci, line: 189
+# File: macros/wavread.sci, line: 200
+msgid "Error reading wav file."
+msgstr "wavファイルの読み込みエラーです。"
+
+#
+# File: macros/wavread.sci, line: 236
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
+
+#
+# File: macros/wavread.sci, line: 255
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr "１サンプル当たり１６ビット以上で.wavファイルを読むことができません。"
+
+#
+# File: macros/wavread.sci, line: 271
+msgid "Sample limit vector must have 2 entries."
+msgstr "サンプル限界ベクトルのは、２つの登録をしなくてはいけません。"
+
+#
+# File: macros/wavread.sci, line: 275
+msgid "Sample limits out of range."
+msgstr "サンプル限界を超えました。"
+
+#
+# File: macros/wavread.sci, line: 278
+msgid "Invalid sample limits (use ascending order)."
+msgstr "無効なサンプル限界(昇順使用)"
+
+#
+# File: sci_gateway/c/sci_PlaySound.c, line: 62
+msgid "Cannot play file."
+msgstr "ファイルをプレイできません。"
+
+#
+# File: sci_gateway/c/sci_beep.c, line: 52
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d が不正: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/nosound/nosound.c, line: 19
+msgid "Scilab sound module not installed.\n"
+msgstr "Scilabサウンド・モジュールは装備されていません。\n"
+

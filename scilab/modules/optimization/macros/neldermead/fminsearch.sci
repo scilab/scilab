@@ -78,6 +78,11 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   fmsdata.Display = Display
   fmsdata.OutputFcn = OutputFcn
   fmsdata.PlotFcns = PlotFcns
+  // Prepare the data structure to pass to the cost function
+  fmsfundata = tlist(["T_FMINSEARCH" 
+    "Fun" 
+    ]);
+  fmsfundata.Fun = fun
   // Perform Optimization
   nm = neldermead_new ();
   nm = neldermead_configure(nm,"-x0",x0.');
@@ -86,7 +91,8 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
   nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
   nm = neldermead_configure(nm,"-method","variable");
-  nm = neldermead_configure(nm,"-function",fun);
+  nm = neldermead_configure(nm,"-function",fminsearch_function);
+  nm = neldermead_configure(nm,"-costfargument",fmsfundata);
   nm = neldermead_configure(nm,"-maxiter",MaxIter);
   nm = neldermead_configure(nm,"-maxfunevals",MaxFunEvals);
   nm = neldermead_configure(nm,"-tolxmethod",%f);
@@ -238,5 +244,13 @@ function fminsearch_outputfun ( state , data , fmsdata )
       error(errmsg)
     end
   end
+endfunction
+//
+// fminsearch_function --
+//   Calls the cost function and make it match
+//   neldermead requirements.
+//
+function [ f , index , fmsfundata ] = fminsearch_function ( x , index , fmsfundata )
+  f = fmsfundata.Fun ( x )
 endfunction
 

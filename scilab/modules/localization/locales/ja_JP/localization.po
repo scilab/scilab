@@ -1,0 +1,69 @@
+# Localization of the module localization
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+# File: sci_gateway/c/sci_gettext.c, line: 81
+# File: sci_gateway/c/sci_setlanguage.c, line: 104
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 41
+#, c-format
+msgid "%s: This feature is only used on Windows.\n"
+msgstr "%s: この特徴はウインドウズだけで使うことができます。\n"
+
+#
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 62
+# File: sci_gateway/c/sci_setlanguage.c, line: 91
+#, c-format
+msgid "Unsupported language '%s'.\n"
+msgstr "言語 '%s' はサポートされていません。\n"
+
+#
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 105
+msgid "The language for menus cannot be changed on a running console.\n"
+msgstr "メニューのため言語は、実行中のコンソールで変えることはできません。\n"
+
+#
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 106
+msgid "Restart Scilab to apply to menus.\n"
+msgstr "Scilabを再スタートさせてメニューに適用する。\n"
+
+#
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 125
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr "%s: 最初の入力引数で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_setlanguage.c, line: 48
+# File: sci_gateway/c/sci_setlanguage.c, line: 52
+#, c-format
+msgid "%s: Unsupported language '%s'.\n"
+msgstr "%s: 言語 '%s' はサポートされていません。\n"
+
+#
+# File: sci_gateway/c/sci_setlanguage.c, line: 92
+#, c-format
+msgid "Switching to default language : '%s'.\n"
+msgstr "自動設定される言語を切り替え : '%s' \n"
+

@@ -48,7 +48,7 @@ endfunction
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function [ y , mydata ] = rosenbrock ( x , mydata )
+function [ y , index , mydata ] = rosenbrock ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -73,13 +73,15 @@ nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_configure(nm,"-costfargument",mystuff);
 nm = neldermead_search(nm);
-Function Evaluation #1 is [193.6] at [-1.2 1]
+Function Evaluation #1 at [-1.2 1]
 
-Function Evaluation #2 is [193.6] at [-1.2 1]
+Function Evaluation #2 at [-1.2 1]
 
-Function Evaluation #3 is [241] at [-0.2 1]
+Function Evaluation #3 at [-1.2 1]
 
-Function Evaluation #4 is [205.6] at [-1.2 2]
+Function Evaluation #4 at [-0.2 1]
+
+Function Evaluation #5 at [-1.2 2]
 
 Step #1 : order
 
@@ -87,7 +89,7 @@ Step #1 : order
 
 Iteration #1 (total = 1)
 
-Function Eval #4
+Function Eval #5
 
 Xopt : -1.2 1
 
@@ -109,13 +111,13 @@ Reflect
 
 xbar=-1.2 1.5
 
-Function Evaluation #5 is [1008.2] at [-2.2 2]
+Function Evaluation #6 at [-2.2 2]
 
 xr=[-2.2 2], f(xr)=1008.200000
 
 Contract - inside
 
-Function Evaluation #6 is [219.05] at [-0.7 1.25]
+Function Evaluation #7 at [-0.7 1.25]
 
 xc=-0.7 1.25, f(xc)=219.050000
 
@@ -127,7 +129,7 @@ Sort
 
 Iteration #2 (total = 2)
 
-Function Eval #6
+Function Eval #7
 
 Xopt : -1.2 1
 
@@ -149,13 +151,13 @@ Reflect
 
 xbar=-1.2 1.5
 
-Function Evaluation #7 is [317.65] at [-1.7 1.75]
+Function Evaluation #8 at [-1.7 1.75]
 
 xr=[-1.7 1.75], f(xr)=317.650000
 
 Contract - inside
 
-Function Evaluation #8 is [190.02812] at [-0.95 1.375]
+Function Evaluation #9 at [-0.95 1.375]
 
 xc=-0.95 1.375, f(xc)=190.028125
 
@@ -167,7 +169,7 @@ Sort
 
 Iteration #3 (total = 3)
 
-Function Eval #8
+Function Eval #9
 
 Xopt : -0.95 1.375
 
@@ -189,13 +191,13 @@ Reflect
 
 xbar=-1.075 1.1875
 
-Function Evaluation #9 is [195.52812] at [-0.95 0.375]
+Function Evaluation #10 at [-0.95 0.375]
 
 xr=[-0.95 0.375], f(xr)=195.528125
 
 Contract - outside
 
-Function Evaluation #10 is [175.27418] at [-1.0125 0.78125]
+Function Evaluation #11 at [-1.0125 0.78125]
 
 xc=-1.0125 0.78125, f(xc)=175.274182
 
@@ -207,7 +209,7 @@ Sort
 
 Iteration #4 (total = 4)
 
-Function Eval #10
+Function Eval #11
 
 Xopt : -1.0125 0.78125
 
@@ -229,13 +231,13 @@ Reflect
 
 xbar=-0.98125 1.078125
 
-Function Evaluation #11 is [195.92594] at [-0.7625 1.15625]
+Function Evaluation #12 at [-0.7625 1.15625]
 
 xr=[-0.7625 1.15625], f(xr)=195.925940
 
 Contract - inside
 
-Function Evaluation #12 is [173.62649] at [-1.090625 1.0390625]
+Function Evaluation #13 at [-1.090625 1.0390625]
 
 xc=-1.090625 1.0390625, f(xc)=173.626491
 
@@ -247,7 +249,7 @@ Sort
 
 Iteration #5 (total = 5)
 
-Function Eval #12
+Function Eval #13
 
 Xopt : -1.090625 1.0390625
 
@@ -269,13 +271,13 @@ Reflect
 
 xbar=-1.0515625 0.9101562
 
-Function Evaluation #13 is [251.21834] at [-1.153125 0.4453125]
+Function Evaluation #14 at [-1.153125 0.4453125]
 
 xr=[-1.153125 0.4453125], f(xr)=251.218339
 
 Contract - inside
 
-Function Evaluation #14 is [171.00884] at [-1.0007812 1.1425781]
+Function Evaluation #15 at [-1.0007812 1.1425781]
 
 xc=-1.0007812 1.1425781, f(xc)=171.008837
 
@@ -287,7 +289,7 @@ Sort
 
 Iteration #6 (total = 6)
 
-Function Eval #14
+Function Eval #15
 
 Xopt : -1.0007812 1.1425781
 
@@ -309,13 +311,13 @@ Reflect
 
 xbar=-1.0457031 1.0908203
 
-Function Evaluation #15 is [176.64401] at [-1.0789062 1.4003906]
+Function Evaluation #16 at [-1.0789062 1.4003906]
 
 xr=[-1.0789062 1.4003906], f(xr)=176.644012
 
 Contract - inside
 
-Function Evaluation #16 is [171.27075] at [-1.0291016 0.9360352]
+Function Evaluation #17 at [-1.0291016 0.9360352]
 
 xc=-1.0291016 0.9360352, f(xc)=171.270753
 
@@ -327,7 +329,7 @@ Sort
 
 Iteration #7 (total = 7)
 
-Function Eval #16
+Function Eval #17
 
 Xopt : -1.0007812 1.1425781
 
@@ -349,13 +351,13 @@ Reflect
 
 xbar=-1.0149414 1.0393066
 
-Function Evaluation #17 is [169.90015] at [-0.9392578 1.0395508]
+Function Evaluation #18 at [-0.9392578 1.0395508]
 
 xr=[-0.9392578 1.0395508], f(xr)=169.900155
 
 Expand
 
-Function Evaluation #18 is [174.11717] at [-0.8635742 1.0397949]
+Function Evaluation #19 at [-0.8635742 1.0397949]
 
 xe=-0.8635742 1.0397949, f(xe)=174.117170
 
@@ -367,7 +369,7 @@ Sort
 
 Iteration #8 (total = 8)
 
-Function Eval #18
+Function Eval #19
 
 Xopt : -0.9392578 1.0395508
 
@@ -389,13 +391,13 @@ Reflect
 
 xbar=-0.9700195 1.0910645
 
-Function Evaluation #19 is [184.02176] at [-0.9109375 1.2460938]
+Function Evaluation #20 at [-0.9109375 1.2460938]
 
 xr=[-0.9109375 1.2460938], f(xr)=184.021762
 
 Contract - inside
 
-Function Evaluation #20 is [169.00939] at [-0.9995605 1.0135498]
+Function Evaluation #21 at [-0.9995605 1.0135498]
 
 xc=-0.9995605 1.0135498, f(xc)=169.009393
 
@@ -407,7 +409,7 @@ Sort
 
 Iteration #9 (total = 9)
 
-Function Eval #20
+Function Eval #21
 
 Xopt : -0.9995605 1.0135498
 
@@ -429,13 +431,13 @@ Reflect
 
 xbar=-0.9694092 1.0265503
 
-Function Evaluation #21 is [167.48649] at [-0.9380371 0.9105225]
+Function Evaluation #22 at [-0.9380371 0.9105225]
 
 xr=[-0.9380371 0.9105225], f(xr)=167.486494
 
 Expand
 
-Function Evaluation #22 is [166.65789] at [-0.9066650 0.7944946]
+Function Evaluation #23 at [-0.9066650 0.7944946]
 
 xe=-0.9066650 0.7944946, f(xe)=166.657885
 
@@ -447,7 +449,7 @@ Sort
 
 Iteration #10 (total = 10)
 
-Function Eval #22
+Function Eval #23
 
 Xopt : -0.9066650 0.7944946
 
@@ -469,13 +471,13 @@ Reflect
 
 xbar=-0.9531128 0.9040222
 
-Function Evaluation #23 is [170.91558] at [-0.9669678 0.7684937]
+Function Evaluation #24 at [-0.9669678 0.7684937]
 
 xr=[-0.9669678 0.7684937], f(xr)=170.915578
 
 Contract - inside
 
-Function Evaluation #24 is [168.18924] at [-0.9461853 0.9717865]
+Function Evaluation #25 at [-0.9461853 0.9717865]
 
 xc=-0.9461853 0.9717865, f(xc)=168.189243
 
@@ -487,7 +489,7 @@ Sort
 
 Iteration #11 (total = 11)
 
-Function Eval #24
+Function Eval #25
 
 Xopt : -0.9066650 0.7944946
 
@@ -509,13 +511,13 @@ Reflect
 
 xbar=-0.9264252 0.8831406
 
-Function Evaluation #25 is [165.26771] at [-0.8532898 0.7527313]
+Function Evaluation #26 at [-0.8532898 0.7527313]
 
 xr=[-0.8532898 0.7527313], f(xr)=165.267712
 
 Expand
 
-Function Evaluation #26 is [163.35106] at [-0.7801544 0.6223221]
+Function Evaluation #27 at [-0.7801544 0.6223221]
 
 xe=-0.7801544 0.6223221, f(xe)=163.351064
 
@@ -527,7 +529,7 @@ Sort
 
 Iteration #12 (total = 12)
 
-Function Eval #26
+Function Eval #27
 
 Xopt : -0.7801544 0.6223221
 
@@ -549,7 +551,7 @@ Reflect
 
 xbar=-0.8434097 0.7084084
 
-Function Evaluation #27 is [163.39516] at [-0.7406342 0.4450302]
+Function Evaluation #28 at [-0.7406342 0.4450302]
 
 xr=[-0.7406342 0.4450302], f(xr)=163.395165
 
@@ -561,7 +563,7 @@ Sort
 
 Iteration #13 (total = 13)
 
-Function Eval #27
+Function Eval #28
 
 Xopt : -0.7801544 0.6223221
 
@@ -583,13 +585,13 @@ Reflect
 
 xbar=-0.7603943 0.5336761
 
-Function Evaluation #28 is [160.20375] at [-0.6141235 0.2728577]
+Function Evaluation #29 at [-0.6141235 0.2728577]
 
 xr=[-0.6141235 0.2728577], f(xr)=160.203754
 
 Expand
 
-Function Evaluation #29 is [159.72592] at [-0.4678528 0.0120392]
+Function Evaluation #30 at [-0.4678528 0.0120392]
 
 xe=-0.4678528 0.0120392, f(xe)=159.725923
 
@@ -601,7 +603,7 @@ Sort
 
 Iteration #14 (total = 14)
 
-Function Eval #29
+Function Eval #30
 
 Xopt : -0.4678528 0.0120392
 
@@ -623,13 +625,13 @@ Reflect
 
 xbar=-0.6240036 0.3171806
 
-Function Evaluation #30 is [156.89809] at [-0.5073730 0.1893311]
+Function Evaluation #31 at [-0.5073730 0.1893311]
 
 xr=[-0.5073730 0.1893311], f(xr)=156.898092
 
 Expand
 
-Function Evaluation #31 is [154.36221] at [-0.3907425 0.0614815]
+Function Evaluation #32 at [-0.3907425 0.0614815]
 
 xe=-0.3907425 0.0614815, f(xe)=154.362211
 
@@ -641,7 +643,7 @@ Sort
 
 Iteration #15 (total = 15)
 
-Function Eval #31
+Function Eval #32
 
 Xopt : -0.3907425 0.0614815
 
@@ -663,13 +665,13 @@ Reflect
 
 xbar=-0.4292976 0.0367603
 
-Function Evaluation #32 is [176.68617] at [-0.0784409 -0.5488014]
+Function Evaluation #33 at [-0.0784409 -0.5488014]
 
 xr=[-0.0784409 -0.5488014], f(xr)=176.686171
 
 Contract - inside
 
-Function Evaluation #33 is [159.00982] at [-0.6047260 0.3295412]
+Function Evaluation #34 at [-0.6047260 0.3295412]
 
 xc=-0.6047260 0.3295412, f(xc)=159.009818
 
@@ -681,7 +683,7 @@ Sort
 
 Iteration #16 (total = 16)
 
-Function Eval #33
+Function Eval #34
 
 Xopt : -0.3907425 0.0614815
 
@@ -703,7 +705,7 @@ Reflect
 
 xbar=-0.4977343 0.1955113
 
-Function Evaluation #34 is [157.9533] at [-0.5276157 0.3789835]
+Function Evaluation #35 at [-0.5276157 0.3789835]
 
 xr=[-0.5276157 0.3789835], f(xr)=157.953295
 
@@ -715,7 +717,7 @@ Sort
 
 Iteration #17 (total = 17)
 
-Function Eval #34
+Function Eval #35
 
 Xopt : -0.3907425 0.0614815
 
@@ -737,13 +739,13 @@ Reflect
 
 xbar=-0.4591791 0.2202325
 
-Function Evaluation #35 is [151.64131] at [-0.3136322 0.1109238]
+Function Evaluation #36 at [-0.3136322 0.1109238]
 
 xr=[-0.3136322 0.1109238], f(xr)=151.641310
 
 Expand
 
-Function Evaluation #36 is [148.13326] at [-0.1680853 0.0016150]
+Function Evaluation #37 at [-0.1680853 0.0016150]
 
 xe=-0.1680853 0.0016150, f(xe)=148.133256
 
@@ -755,7 +757,7 @@ Sort
 
 Iteration #18 (total = 18)
 
-Function Eval #36
+Function Eval #37
 
 Xopt : -0.1680853 0.0016150
 
@@ -777,13 +779,13 @@ Reflect
 
 xbar=-0.2794139 0.0315483
 
-Function Evaluation #37 is [154.79016] at [-0.0312120 -0.3158870]
+Function Evaluation #38 at [-0.0312120 -0.3158870]
 
 xr=[-0.0312120 -0.3158870], f(xr)=154.790163
 
 Contract - outside
 
-Function Evaluation #38 is [150.51692] at [-0.1553130 -0.1421694]
+Function Evaluation #39 at [-0.1553130 -0.1421694]
 
 xc=-0.1553130 -0.1421694, f(xc)=150.516919
 
@@ -795,7 +797,7 @@ Sort
 
 Iteration #19 (total = 19)
 
-Function Eval #38
+Function Eval #39
 
 Xopt : -0.1680853 0.0016150
 
@@ -817,13 +819,13 @@ Reflect
 
 xbar=-0.1616991 -0.0702772
 
-Function Evaluation #39 is [146.65543] at [0.0673442 -0.2020358]
+Function Evaluation #40 at [0.0673442 -0.2020358]
 
 xr=[0.0673442 -0.2020358], f(xr)=146.655433
 
 Expand
 
-Function Evaluation #40 is [154.75257] at [0.2963876 -0.3337944]
+Function Evaluation #41 at [0.2963876 -0.3337944]
 
 xe=0.2963876 -0.3337944, f(xe)=154.752574
 
@@ -835,7 +837,7 @@ Sort
 
 Iteration #20 (total = 20)
 
-Function Eval #40
+Function Eval #41
 
 Xopt : 0.0673442 -0.2020358
 
@@ -857,13 +859,13 @@ Reflect
 
 xbar=-0.0503705 -0.1002104
 
-Function Evaluation #41 is [143.06816] at [0.0545719 -0.0582514]
+Function Evaluation #42 at [0.0545719 -0.0582514]
 
 xr=[0.0545719 -0.0582514], f(xr)=143.068157
 
 Expand
 
-Function Evaluation #42 is [140.3713] at [0.1595144 -0.0162924]
+Function Evaluation #43 at [0.1595144 -0.0162924]
 
 xe=0.1595144 -0.0162924, f(xe)=140.371300
 
@@ -875,7 +877,7 @@ Sort
 
 Iteration #21 (total = 21)
 
-Function Eval #42
+Function Eval #43
 
 Xopt : 0.1595144 -0.0162924
 
@@ -897,13 +899,13 @@ Reflect
 
 xbar=0.1134293 -0.1091641
 
-Function Evaluation #43 is [148.8092] at [0.3949439 -0.2199432]
+Function Evaluation #44 at [0.3949439 -0.2199432]
 
 xr=[0.3949439 -0.2199432], f(xr)=148.809205
 
 Contract - inside
 
-Function Evaluation #44 is [144.95388] at [-0.0273280 -0.0537745]
+Function Evaluation #45 at [-0.0273280 -0.0537745]
 
 xc=-0.0273280 -0.0537745, f(xc)=144.953876
 
@@ -915,7 +917,7 @@ Sort
 
 Iteration #22 (total = 22)
 
-Function Eval #44
+Function Eval #45
 
 Xopt : 0.1595144 -0.0162924
 
@@ -937,7 +939,7 @@ Reflect
 
 xbar=0.0660932 -0.0350335
 
-Function Evaluation #45 is [144.08037] at [0.0648421 0.1319689]
+Function Evaluation #46 at [0.0648421 0.1319689]
 
 xr=[0.0648421 0.1319689], f(xr)=144.080367
 
@@ -949,7 +951,7 @@ Sort
 
 Iteration #23 (total = 23)
 
-Function Eval #45
+Function Eval #46
 
 Xopt : 0.1595144 -0.0162924
 
@@ -971,13 +973,13 @@ Reflect
 
 xbar=0.1121782 0.0578382
 
-Function Evaluation #46 is [139.14876] at [0.2516845 0.169451]
+Function Evaluation #47 at [0.2516845 0.169451]
 
 xr=[0.2516845 0.169451], f(xr)=139.148764
 
 Expand
 
-Function Evaluation #47 is [136.40371] at [0.3911907 0.2810638]
+Function Evaluation #48 at [0.3911907 0.2810638]
 
 xe=0.3911907 0.2810638, f(xe)=136.403713
 
@@ -989,7 +991,7 @@ Sort
 
 Iteration #24 (total = 24)
 
-Function Eval #47
+Function Eval #48
 
 Xopt : 0.3911907 0.2810638
 
@@ -1011,13 +1013,13 @@ Reflect
 
 xbar=0.2753525 0.1323857
 
-Function Evaluation #48 is [133.64162] at [0.4858629 0.1328025]
+Function Evaluation #49 at [0.4858629 0.1328025]
 
 xr=[0.4858629 0.1328025], f(xr)=133.641621
 
 Expand
 
-Function Evaluation #49 is [140.14243] at [0.6963734 0.1332193]
+Function Evaluation #50 at [0.6963734 0.1332193]
 
 xe=0.6963734 0.1332193, f(xe)=140.142428
 
@@ -1029,7 +1031,7 @@ Sort
 
 Iteration #25 (total = 25)
 
-Function Eval #49
+Function Eval #50
 
 Xopt : 0.4858629 0.1328025
 
@@ -1051,13 +1053,13 @@ Reflect
 
 xbar=0.4385268 0.2069331
 
-Function Evaluation #50 is [128.0114] at [0.7175393 0.4301586]
+Function Evaluation #51 at [0.7175393 0.4301586]
 
 xr=[0.7175393 0.4301586], f(xr)=128.011396
 
 Expand
 
-Function Evaluation #51 is [132.61761] at [0.9965518 0.6533842]
+Function Evaluation #52 at [0.9965518 0.6533842]
 
 xe=0.9965518 0.6533842, f(xe)=132.617606
 
@@ -1069,7 +1071,7 @@ Sort
 
 Iteration #26 (total = 26)
 
-Function Eval #51
+Function Eval #52
 
 Xopt : 0.7175393 0.4301586
 
@@ -1091,13 +1093,13 @@ Reflect
 
 xbar=0.6017011 0.2814806
 
-Function Evaluation #52 is [139.43915] at [0.8122115 0.2818974]
+Function Evaluation #53 at [0.8122115 0.2818974]
 
 xr=[0.8122115 0.2818974], f(xr)=139.439154
 
 Contract - inside
 
-Function Evaluation #53 is [132.45296] at [0.4964459 0.2812722]
+Function Evaluation #54 at [0.4964459 0.2812722]
 
 xc=0.4964459 0.2812722, f(xc)=132.452955
 
@@ -1109,7 +1111,7 @@ Sort
 
 Iteration #27 (total = 27)
 
-Function Eval #53
+Function Eval #54
 
 Xopt : 0.7175393 0.4301586
 
@@ -1131,13 +1133,13 @@ Reflect
 
 xbar=0.6069926 0.3557154
 
-Function Evaluation #54 is [127.29013] at [0.7281223 0.5786283]
+Function Evaluation #55 at [0.7281223 0.5786283]
 
 xr=[0.7281223 0.5786283], f(xr)=127.290126
 
 Expand
 
-Function Evaluation #55 is [124.98419] at [0.8492519 0.8015412]
+Function Evaluation #56 at [0.8492519 0.8015412]
 
 xe=0.8492519 0.8015412, f(xe)=124.984190
 
@@ -1149,7 +1151,7 @@ Sort
 
 Iteration #28 (total = 28)
 
-Function Eval #55
+Function Eval #56
 
 Xopt : 0.8492519 0.8015412
 
@@ -1171,13 +1173,13 @@ Reflect
 
 xbar=0.7833956 0.6158499
 
-Function Evaluation #56 is [123.2681] at [1.0703453 0.9504277]
+Function Evaluation #57 at [1.0703453 0.9504277]
 
 xr=[1.0703453 0.9504277], f(xr)=123.268100
 
 Expand
 
-Function Evaluation #57 is [144.31929] at [1.357295 1.2850055]
+Function Evaluation #58 at [1.357295 1.2850055]
 
 xe=1.357295 1.2850055, f(xe)=144.319289
 
@@ -1189,7 +1191,7 @@ Sort
 
 Iteration #29 (total = 29)
 
-Function Eval #57
+Function Eval #58
 
 Xopt : 1.0703453 0.9504277
 
@@ -1211,13 +1213,13 @@ Reflect
 
 xbar=0.9597986 0.8759845
 
-Function Evaluation #58 is [118.11173] at [1.202058 1.3218103]
+Function Evaluation #59 at [1.202058 1.3218103]
 
 xr=[1.202058 1.3218103], f(xr)=118.111727
 
 Expand
 
-Function Evaluation #59 is [121.56133] at [1.4443173 1.7676361]
+Function Evaluation #60 at [1.4443173 1.7676361]
 
 xe=1.4443173 1.7676361, f(xe)=121.561332
 
@@ -1229,7 +1231,7 @@ Sort
 
 Iteration #30 (total = 30)
 
-Function Eval #59
+Function Eval #60
 
 Xopt : 1.202058 1.3218103
 
@@ -1251,13 +1253,13 @@ Reflect
 
 xbar=1.1362016 1.136119
 
-Function Evaluation #60 is [142.63483] at [1.4231513 1.4706968]
+Function Evaluation #61 at [1.4231513 1.4706968]
 
 xr=[1.4231513 1.4706968], f(xr)=142.634827
 
 Contract - inside
 
-Function Evaluation #61 is [121.18787] at [0.9927268 0.9688301]
+Function Evaluation #62 at [0.9927268 0.9688301]
 
 xc=0.9927268 0.9688301, f(xc)=121.187874
 
@@ -1269,7 +1271,7 @@ Sort
 
 Iteration #31 (total = 31)
 
-Function Eval #61
+Function Eval #62
 
 Xopt : 1.202058 1.3218103
 
@@ -1291,7 +1293,7 @@ Reflect
 
 xbar=1.0973924 1.1453202
 
-Function Evaluation #62 is [118.85312] at [1.1244394 1.3402127]
+Function Evaluation #63 at [1.1244394 1.3402127]
 
 xr=[1.1244394 1.3402127], f(xr)=118.853120
 
@@ -1303,7 +1305,7 @@ Sort
 
 Iteration #32 (total = 32)
 
-Function Eval #62
+Function Eval #63
 
 Xopt : 1.202058 1.3218103
 
@@ -1325,13 +1327,13 @@ Reflect
 
 xbar=1.1632487 1.3310115
 
-Function Evaluation #63 is [114.50378] at [1.3337706 1.6931929]
+Function Evaluation #64 at [1.3337706 1.6931929]
 
 xr=[1.3337706 1.6931929], f(xr)=114.503775
 
 Expand
 
-Function Evaluation #64 is [114.4664] at [1.5042925 2.0553742]
+Function Evaluation #65 at [1.5042925 2.0553742]
 
 xe=1.5042925 2.0553742, f(xe)=114.466400
 
@@ -1343,7 +1345,7 @@ Sort
 
 Iteration #33 (total = 33)
 
-Function Eval #64
+Function Eval #65
 
 Xopt : 1.5042925 2.0553742
 
@@ -1365,13 +1367,13 @@ Reflect
 
 xbar=1.3531752 1.6885923
 
-Function Evaluation #65 is [130.20287] at [1.581911 2.0369718]
+Function Evaluation #66 at [1.581911 2.0369718]
 
 xr=[1.581911 2.0369718], f(xr)=130.202870
 
 Contract - inside
 
-Function Evaluation #66 is [115.84424] at [1.2388073 1.5144025]
+Function Evaluation #67 at [1.2388073 1.5144025]
 
 xc=1.2388073 1.5144025, f(xc)=115.844238
 
@@ -1383,7 +1385,7 @@ Sort
 
 Iteration #34 (total = 34)
 
-Function Eval #66
+Function Eval #67
 
 Xopt : 1.5042925 2.0553742
 
@@ -1405,13 +1407,13 @@ Reflect
 
 xbar=1.3715499 1.7848884
 
-Function Evaluation #67 is [110.99873] at [1.5410419 2.2479664]
+Function Evaluation #68 at [1.5410419 2.2479664]
 
 xr=[1.5410419 2.2479664], f(xr)=110.998735
 
 Expand
 
-Function Evaluation #68 is [110.49052] at [1.7105338 2.7110445]
+Function Evaluation #69 at [1.7105338 2.7110445]
 
 xe=1.7105338 2.7110445, f(xe)=110.490517
 
@@ -1423,7 +1425,7 @@ Sort
 
 Iteration #35 (total = 35)
 
-Function Eval #68
+Function Eval #69
 
 Xopt : 1.7105338 2.7110445
 
@@ -1445,13 +1447,13 @@ Reflect
 
 xbar=1.6074132 2.3832094
 
-Function Evaluation #69 is [143.07341] at [1.976019 3.2520163]
+Function Evaluation #70 at [1.976019 3.2520163]
 
 xr=[1.976019 3.2520163], f(xr)=143.073406
 
 Contract - inside
 
-Function Evaluation #70 is [112.45486] at [1.4231102 1.9488059]
+Function Evaluation #71 at [1.4231102 1.9488059]
 
 xc=1.4231102 1.9488059, f(xc)=112.454856
 
@@ -1463,7 +1465,7 @@ Sort
 
 Iteration #36 (total = 36)
 
-Function Eval #70
+Function Eval #71
 
 Xopt : 1.7105338 2.7110445
 
@@ -1485,13 +1487,13 @@ Reflect
 
 xbar=1.566822 2.3299252
 
-Function Evaluation #71 is [107.80346] at [1.6293516 2.6044762]
+Function Evaluation #72 at [1.6293516 2.6044762]
 
 xr=[1.6293516 2.6044762], f(xr)=107.803462
 
 Expand
 
-Function Evaluation #72 is [106.28476] at [1.6918811 2.8790272]
+Function Evaluation #73 at [1.6918811 2.8790272]
 
 xe=1.6918811 2.8790272, f(xe)=106.284757
 
@@ -1503,7 +1505,7 @@ Sort
 
 Iteration #37 (total = 37)
 
-Function Eval #72
+Function Eval #73
 
 Xopt : 1.6918811 2.8790272
 
@@ -1525,7 +1527,7 @@ Reflect
 
 xbar=1.7012075 2.7950358
 
-Function Evaluation #73 is [108.05299] at [1.9793047 3.6412658]
+Function Evaluation #74 at [1.9793047 3.6412658]
 
 xr=[1.9793047 3.6412658], f(xr)=108.052993
 
@@ -1537,7 +1539,7 @@ Sort
 
 Iteration #38 (total = 38)
 
-Function Eval #73
+Function Eval #74
 
 Xopt : 1.6918811 2.8790272
 
@@ -1559,13 +1561,13 @@ Reflect
 
 xbar=1.8355929 3.2601465
 
-Function Evaluation #74 is [100.91036] at [1.9606519 3.8092484]
+Function Evaluation #75 at [1.9606519 3.8092484]
 
 xr=[1.9606519 3.8092484], f(xr)=100.910364
 
 Expand
 
-Function Evaluation #75 is [98.299785] at [2.085711 4.3583504]
+Function Evaluation #76 at [2.085711 4.3583504]
 
 xe=2.085711 4.3583504, f(xe)=98.299785
 
@@ -1577,7 +1579,7 @@ Sort
 
 Iteration #39 (total = 39)
 
-Function Eval #75
+Function Eval #76
 
 Xopt : 2.085711 4.3583504
 
@@ -1599,13 +1601,13 @@ Reflect
 
 xbar=1.8887961 3.6186888
 
-Function Evaluation #76 is [117.19919] at [1.7982874 3.5961118]
+Function Evaluation #77 at [1.7982874 3.5961118]
 
 xr=[1.7982874 3.5961118], f(xr)=117.199189
 
 Contract - inside
 
-Function Evaluation #77 is [102.54599] at [1.9340504 3.6299773]
+Function Evaluation #78 at [1.9340504 3.6299773]
 
 xc=1.9340504 3.6299773, f(xc)=102.545993
 
@@ -1617,7 +1619,7 @@ Sort
 
 Iteration #40 (total = 40)
 
-Function Eval #77
+Function Eval #78
 
 Xopt : 2.085711 4.3583504
 
@@ -1639,13 +1641,13 @@ Reflect
 
 xbar=2.0098807 3.9941638
 
-Function Evaluation #78 is [103.14293] at [2.3278803 5.1093005]
+Function Evaluation #79 at [2.3278803 5.1093005]
 
 xr=[2.3278803 5.1093005], f(xr)=103.142929
 
 Contract - outside
 
-Function Evaluation #79 is [98.970758] at [2.1688805 4.5517321]
+Function Evaluation #80 at [2.1688805 4.5517321]
 
 xc=2.1688805 4.5517321, f(xc)=98.970758
 
@@ -1657,7 +1659,7 @@ Sort
 
 Iteration #41 (total = 41)
 
-Function Eval #79
+Function Eval #80
 
 Xopt : 2.085711 4.3583504
 
@@ -1679,13 +1681,13 @@ Reflect
 
 xbar=2.1272957 4.4550412
 
-Function Evaluation #80 is [94.790352] at [2.3205411 5.2801052]
+Function Evaluation #81 at [2.3205411 5.2801052]
 
 xr=[2.3205411 5.2801052], f(xr)=94.790352
 
 Expand
 
-Function Evaluation #81 is [94.565856] at [2.5137865 6.1051692]
+Function Evaluation #82 at [2.5137865 6.1051692]
 
 xe=2.5137865 6.1051692, f(xe)=94.565856
 
@@ -1697,7 +1699,7 @@ Sort
 
 Iteration #42 (total = 42)
 
-Function Eval #81
+Function Eval #82
 
 Xopt : 2.5137865 6.1051692
 
@@ -1719,13 +1721,13 @@ Reflect
 
 xbar=2.2997488 5.2317598
 
-Function Evaluation #82 is [91.574602] at [2.4306171 5.9117875]
+Function Evaluation #83 at [2.4306171 5.9117875]
 
 xr=[2.4306171 5.9117875], f(xr)=91.574602
 
 Expand
 
-Function Evaluation #83 is [89.179244] at [2.5614853 6.5918151]
+Function Evaluation #84 at [2.5614853 6.5918151]
 
 xe=2.5614853 6.5918151, f(xe)=89.179244
 
@@ -1737,7 +1739,7 @@ Sort
 
 Iteration #43 (total = 43)
 
-Function Eval #83
+Function Eval #84
 
 Xopt : 2.5614853 6.5918151
 
@@ -1759,13 +1761,13 @@ Reflect
 
 xbar=2.5376359 6.3484922
 
-Function Evaluation #84 is [117.04897] at [2.9895609 8.338634]
+Function Evaluation #85 at [2.9895609 8.338634]
 
 xr=[2.9895609 8.338634], f(xr)=117.048966
 
 Contract - inside
 
-Function Evaluation #85 is [93.872862] at [2.3116735 5.3534213]
+Function Evaluation #86 at [2.3116735 5.3534213]
 
 xc=2.3116735 5.3534213, f(xc)=93.872862
 
@@ -1777,7 +1779,7 @@ Sort
 
 Iteration #44 (total = 44)
 
-Function Eval #85
+Function Eval #86
 
 Xopt : 2.5614853 6.5918151
 
@@ -1799,13 +1801,13 @@ Reflect
 
 xbar=2.4365794 5.9726182
 
-Function Evaluation #86 is [100.41807] at [2.3593723 5.8400672]
+Function Evaluation #87 at [2.3593723 5.8400672]
 
 xr=[2.3593723 5.8400672], f(xr)=100.418075
 
 Contract - inside
 
-Function Evaluation #87 is [91.490164] at [2.475183 6.0388937]
+Function Evaluation #88 at [2.475183 6.0388937]
 
 xc=2.475183 6.0388937, f(xc)=91.490164
 
@@ -1817,7 +1819,7 @@ Sort
 
 Iteration #45 (total = 45)
 
-Function Eval #87
+Function Eval #88
 
 Xopt : 2.5614853 6.5918151
 
@@ -1839,13 +1841,13 @@ Reflect
 
 xbar=2.5183342 6.3153544
 
-Function Evaluation #88 is [88.225286] at [2.7249948 7.2772876]
+Function Evaluation #89 at [2.7249948 7.2772876]
 
 xr=[2.7249948 7.2772876], f(xr)=88.225286
 
 Expand
 
-Function Evaluation #89 is [94.864606] at [2.9316555 8.2392207]
+Function Evaluation #90 at [2.9316555 8.2392207]
 
 xe=2.9316555 8.2392207, f(xe)=94.864606
 
@@ -1857,7 +1859,7 @@ Sort
 
 Iteration #46 (total = 46)
 
-Function Eval #89
+Function Eval #90
 
 Xopt : 2.7249948 7.2772876
 
@@ -1879,13 +1881,13 @@ Reflect
 
 xbar=2.6432401 6.9345513
 
-Function Evaluation #90 is [84.967835] at [2.8112972 7.830209]
+Function Evaluation #91 at [2.8112972 7.830209]
 
 xr=[2.8112972 7.830209], f(xr)=84.967835
 
 Expand
 
-Function Evaluation #91 is [83.642665] at [2.9793543 8.7258666]
+Function Evaluation #92 at [2.9793543 8.7258666]
 
 xe=2.9793543 8.7258666, f(xe)=83.642665
 
@@ -1897,7 +1899,7 @@ Sort
 
 Iteration #47 (total = 47)
 
-Function Eval #91
+Function Eval #92
 
 Xopt : 2.9793543 8.7258666
 
@@ -1919,13 +1921,13 @@ Reflect
 
 xbar=2.8521746 8.0015771
 
-Function Evaluation #92 is [100.18814] at [3.1428638 9.411339]
+Function Evaluation #93 at [3.1428638 9.411339]
 
 xr=[3.1428638 9.411339], f(xr)=100.188141
 
 Contract - inside
 
-Function Evaluation #93 is [86.454409] at [2.70683 7.2966961]
+Function Evaluation #94 at [2.70683 7.2966961]
 
 xc=2.70683 7.2966961, f(xc)=86.454409
 
@@ -1937,7 +1939,7 @@ Sort
 
 Iteration #48 (total = 48)
 
-Function Eval #93
+Function Eval #94
 
 Xopt : 2.9793543 8.7258666
 
@@ -1959,13 +1961,13 @@ Reflect
 
 xbar=2.8430921 8.0112813
 
-Function Evaluation #94 is [81.754702] at [2.9611895 8.7452751]
+Function Evaluation #95 at [2.9611895 8.7452751]
 
 xr=[2.9611895 8.7452751], f(xr)=81.754702
 
 Expand
 
-Function Evaluation #95 is [79.579874] at [3.0792868 9.4792689]
+Function Evaluation #96 at [3.0792868 9.4792689]
 
 xe=3.0792868 9.4792689, f(xe)=79.579874
 
@@ -1977,7 +1979,7 @@ Sort
 
 Iteration #49 (total = 49)
 
-Function Eval #95
+Function Eval #96
 
 Xopt : 3.0792868 9.4792689
 
@@ -1999,13 +2001,13 @@ Reflect
 
 xbar=3.0293206 9.1025677
 
-Function Evaluation #96 is [85.431717] at [3.3518111 10.908439]
+Function Evaluation #97 at [3.3518111 10.908439]
 
 xr=[3.3518111 10.908439], f(xr)=85.431717
 
 Contract - outside
 
-Function Evaluation #97 is [80.640932] at [3.1905658 10.005504]
+Function Evaluation #98 at [3.1905658 10.005504]
 
 xc=3.1905658 10.005504, f(xc)=80.640932
 
@@ -2017,7 +2019,7 @@ Sort
 
 Iteration #50 (total = 50)
 
-Function Eval #97
+Function Eval #98
 
 Xopt : 3.0792868 9.4792689
 
@@ -2039,13 +2041,13 @@ Reflect
 
 xbar=3.1349263 9.7423862
 
-Function Evaluation #98 is [76.324276] at [3.2904983 10.758906]
+Function Evaluation #99 at [3.2904983 10.758906]
 
 xr=[3.2904983 10.758906], f(xr)=76.324276
 
 Expand
 
-Function Evaluation #99 is [74.169208] at [3.4460703 11.775426]
+Function Evaluation #100 at [3.4460703 11.775426]
 
 xe=3.4460703 11.775426, f(xe)=74.169208
 
@@ -2057,7 +2059,7 @@ Sort
 
 Iteration #51 (total = 51)
 
-Function Eval #99
+Function Eval #100
 
 Xopt : 3.4460703 11.775426
 
@@ -2079,7 +2081,7 @@ Reflect
 
 xbar=3.2626785 10.627347
 
-Function Evaluation #100 is [76.733438] at [3.3347912 11.249191]
+Function Evaluation #101 at [3.3347912 11.249191]
 
 xr=[3.3347912 11.249191], f(xr)=76.733438
 
@@ -2091,7 +2093,7 @@ Sort
 
 Iteration #52 (total = 52)
 
-Function Eval #100
+Function Eval #101
 
 Xopt : 3.4460703 11.775426
 
@@ -2113,13 +2115,13 @@ Reflect
 
 xbar=3.3904307 11.512308
 
-Function Evaluation #101 is [71.307067] at [3.7015747 13.545348]
+Function Evaluation #102 at [3.7015747 13.545348]
 
 xr=[3.7015747 13.545348], f(xr)=71.307067
 
 Expand
 
-Function Evaluation #102 is [91.204394] at [4.0127186 15.578387]
+Function Evaluation #103 at [4.0127186 15.578387]
 
 xe=4.0127186 15.578387, f(xe)=91.204394
 
@@ -2131,7 +2133,7 @@ Sort
 
 Iteration #53 (total = 53)
 
-Function Eval #102
+Function Eval #103
 
 Xopt : 3.7015747 13.545348
 
@@ -2153,13 +2155,13 @@ Reflect
 
 xbar=3.5738225 12.660387
 
-Function Evaluation #103 is [88.770276] at [3.8128538 14.071582]
+Function Evaluation #104 at [3.8128538 14.071582]
 
 xr=[3.8128538 14.071582], f(xr)=88.770276
 
 Contract - inside
 
-Function Evaluation #104 is [73.079736] at [3.4543068 11.954789]
+Function Evaluation #105 at [3.4543068 11.954789]
 
 xc=3.4543068 11.954789, f(xc)=73.079736
 
@@ -2171,7 +2173,7 @@ Sort
 
 Iteration #54 (total = 54)
 
-Function Eval #104
+Function Eval #105
 
 Xopt : 3.7015747 13.545348
 
@@ -2193,13 +2195,13 @@ Reflect
 
 xbar=3.5779408 12.750068
 
-Function Evaluation #105 is [68.871544] at [3.7098112 13.724711]
+Function Evaluation #106 at [3.7098112 13.724711]
 
 xr=[3.7098112 13.724711], f(xr)=68.871544
 
 Expand
 
-Function Evaluation #106 is [66.90821] at [3.8416817 14.699353]
+Function Evaluation #107 at [3.8416817 14.699353]
 
 xe=3.8416817 14.699353, f(xe)=66.908210
 
@@ -2211,7 +2213,7 @@ Sort
 
 Iteration #55 (total = 55)
 
-Function Eval #106
+Function Eval #107
 
 Xopt : 3.8416817 14.699353
 
@@ -2233,13 +2235,13 @@ Reflect
 
 xbar=3.7716282 14.12235
 
-Function Evaluation #107 is [81.040041] at [4.0889496 16.289912]
+Function Evaluation #108 at [4.0889496 16.289912]
 
 xr=[4.0889496 16.289912], f(xr)=81.040041
 
 Contract - inside
 
-Function Evaluation #108 is [70.364708] at [3.6129675 13.03857]
+Function Evaluation #109 at [3.6129675 13.03857]
 
 xc=3.6129675 13.03857, f(xc)=70.364708
 
@@ -2251,7 +2253,7 @@ Sort
 
 Iteration #56 (total = 56)
 
-Function Eval #108
+Function Eval #109
 
 Xopt : 3.8416817 14.699353
 
@@ -2273,7 +2275,7 @@ Reflect
 
 xbar=3.7273246 13.868961
 
-Function Evaluation #109 is [69.156819] at [3.7530746 14.192575]
+Function Evaluation #110 at [3.7530746 14.192575]
 
 xr=[3.7530746 14.192575], f(xr)=69.156819
 
@@ -2285,7 +2287,7 @@ Sort
 
 Iteration #57 (total = 57)
 
-Function Eval #109
+Function Eval #110
 
 Xopt : 3.8416817 14.699353
 
@@ -2307,13 +2309,13 @@ Reflect
 
 xbar=3.7973782 14.445964
 
-Function Evaluation #110 is [64.291876] at [3.9817888 15.853359]
+Function Evaluation #111 at [3.9817888 15.853359]
 
 xr=[3.9817888 15.853359], f(xr)=64.291876
 
 Expand
 
-Function Evaluation #111 is [62.29896] at [4.1661994 17.260754]
+Function Evaluation #112 at [4.1661994 17.260754]
 
 xe=4.1661994 17.260754, f(xe)=62.298960
 
@@ -2325,7 +2327,7 @@ Sort
 
 Iteration #58 (total = 58)
 
-Function Eval #111
+Function Eval #112
 
 Xopt : 4.1661994 17.260754
 
@@ -2347,13 +2349,13 @@ Reflect
 
 xbar=4.0039406 15.980054
 
-Function Evaluation #112 is [71.267367] at [4.2548066 17.767532]
+Function Evaluation #113 at [4.2548066 17.767532]
 
 xr=[4.2548066 17.767532], f(xr)=71.267367
 
 Contract - inside
 
-Function Evaluation #113 is [66.147807] at [3.8785076 15.086314]
+Function Evaluation #114 at [3.8785076 15.086314]
 
 xc=3.8785076 15.086314, f(xc)=66.147807
 
@@ -2365,7 +2367,7 @@ Sort
 
 Iteration #59 (total = 59)
 
-Function Eval #113
+Function Eval #114
 
 Xopt : 4.1661994 17.260754
 
@@ -2387,13 +2389,13 @@ Reflect
 
 xbar=4.0223535 16.173534
 
-Function Evaluation #114 is [60.824167] at [4.2030253 17.647715]
+Function Evaluation #115 at [4.2030253 17.647715]
 
 xr=[4.2030253 17.647715], f(xr)=60.824167
 
 Expand
 
-Function Evaluation #115 is [58.908749] at [4.383697 19.121896]
+Function Evaluation #116 at [4.383697 19.121896]
 
 xe=4.383697 19.121896, f(xe)=58.908749
 
@@ -2405,7 +2407,7 @@ Sort
 
 Iteration #60 (total = 60)
 
-Function Eval #115
+Function Eval #116
 
 Xopt : 4.383697 19.121896
 
@@ -2427,13 +2429,13 @@ Reflect
 
 xbar=4.2749482 18.191325
 
-Function Evaluation #116 is [81.327682] at [4.6713889 21.296335]
+Function Evaluation #117 at [4.6713889 21.296335]
 
 xr=[4.6713889 21.296335], f(xr)=81.327682
 
 Contract - inside
 
-Function Evaluation #117 is [62.814757] at [4.0767279 16.63882]
+Function Evaluation #118 at [4.0767279 16.63882]
 
 xc=4.0767279 16.63882, f(xc)=62.814757
 
@@ -2445,7 +2447,7 @@ Sort
 
 Iteration #61 (total = 61)
 
-Function Eval #117
+Function Eval #118
 
 Xopt : 4.383697 19.121896
 
@@ -2467,13 +2469,13 @@ Reflect
 
 xbar=4.2749482 18.191325
 
-Function Evaluation #118 is [63.697286] at [4.4731686 19.74383]
+Function Evaluation #119 at [4.4731686 19.74383]
 
 xr=[4.4731686 19.74383], f(xr)=63.697286
 
 Contract - inside
 
-Function Evaluation #119 is [61.268367] at [4.1758381 17.415072]
+Function Evaluation #120 at [4.1758381 17.415072]
 
 xc=4.1758381 17.415072, f(xc)=61.268367
 
@@ -2485,7 +2487,7 @@ Sort
 
 Iteration #62 (total = 62)
 
-Function Eval #119
+Function Eval #120
 
 Xopt : 4.383697 19.121896
 
@@ -2507,13 +2509,13 @@ Reflect
 
 xbar=4.2797676 18.268484
 
-Function Evaluation #120 is [57.924767] at [4.3933357 19.276214]
+Function Evaluation #121 at [4.3933357 19.276214]
 
 xr=[4.3933357 19.276214], f(xr)=57.924767
 
 Expand
 
-Function Evaluation #121 is [56.226228] at [4.5069038 20.283944]
+Function Evaluation #122 at [4.5069038 20.283944]
 
 xe=4.5069038 20.283944, f(xe)=56.226228
 
@@ -2525,7 +2527,7 @@ Sort
 
 Iteration #63 (total = 63)
 
-Function Eval #121
+Function Eval #122
 
 Xopt : 4.5069038 20.283944
 
@@ -2547,7 +2549,7 @@ Reflect
 
 xbar=4.4453004 19.70292
 
-Function Evaluation #122 is [58.749574] at [4.7147628 21.990768]
+Function Evaluation #123 at [4.7147628 21.990768]
 
 xr=[4.7147628 21.990768], f(xr)=58.749574
 
@@ -2559,7 +2561,7 @@ Sort
 
 Iteration #64 (total = 64)
 
-Function Eval #122
+Function Eval #123
 
 Xopt : 4.5069038 20.283944
 
@@ -2581,7 +2583,7 @@ Reflect
 
 xbar=4.6108333 21.137356
 
-Function Evaluation #123 is [57.702315] at [4.8379695 23.152816]
+Function Evaluation #124 at [4.8379695 23.152816]
 
 xr=[4.8379695 23.152816], f(xr)=57.702315
 
@@ -2593,7 +2595,7 @@ Sort
 
 Iteration #65 (total = 65)
 
-Function Eval #123
+Function Eval #124
 
 Xopt : 4.5069038 20.283944
 
@@ -2615,13 +2617,13 @@ Reflect
 
 xbar=4.6724367 21.71838
 
-Function Evaluation #124 is [54.321781] at [4.6301106 21.445993]
+Function Evaluation #125 at [4.6301106 21.445993]
 
 xr=[4.6301106 21.445993], f(xr)=54.321781
 
 Expand
 
-Function Evaluation #125 is [56.52448] at [4.5877845 21.173605]
+Function Evaluation #126 at [4.5877845 21.173605]
 
 xe=4.5877845 21.173605, f(xe)=56.524480
 
@@ -2633,7 +2635,7 @@ Sort
 
 Iteration #66 (total = 66)
 
-Function Eval #125
+Function Eval #126
 
 Xopt : 4.6301106 21.445993
 
@@ -2655,13 +2657,13 @@ Reflect
 
 xbar=4.5685072 20.864968
 
-Function Evaluation #126 is [60.21357] at [4.2990448 18.577121]
+Function Evaluation #127 at [4.2990448 18.577121]
 
 xr=[4.2990448 18.577121], f(xr)=60.213570
 
 Contract - inside
 
-Function Evaluation #127 is [54.487267] at [4.7032384 22.008892]
+Function Evaluation #128 at [4.7032384 22.008892]
 
 xc=4.7032384 22.008892, f(xc)=54.487267
 
@@ -2673,7 +2675,7 @@ Sort
 
 Iteration #67 (total = 67)
 
-Function Eval #127
+Function Eval #128
 
 Xopt : 4.6301106 21.445993
 
@@ -2695,13 +2697,13 @@ Reflect
 
 xbar=4.6666745 21.727443
 
-Function Evaluation #128 is [52.988371] at [4.8264451 23.170941]
+Function Evaluation #129 at [4.8264451 23.170941]
 
 xr=[4.8264451 23.170941], f(xr)=52.988371
 
 Expand
 
-Function Evaluation #129 is [55.339045] at [4.9862158 24.614439]
+Function Evaluation #130 at [4.9862158 24.614439]
 
 xe=4.9862158 24.614439, f(xe)=55.339045
 
@@ -2713,7 +2715,7 @@ Sort
 
 Iteration #68 (total = 68)
 
-Function Eval #129
+Function Eval #130
 
 Xopt : 4.8264451 23.170941
 
@@ -2735,13 +2737,13 @@ Reflect
 
 xbar=4.7282779 22.308467
 
-Function Evaluation #130 is [52.534053] at [4.7533173 22.608041]
+Function Evaluation #131 at [4.7533173 22.608041]
 
 xr=[4.7533173 22.608041], f(xr)=52.534053
 
 Expand
 
-Function Evaluation #131 is [52.713456] at [4.7783568 22.907616]
+Function Evaluation #132 at [4.7783568 22.907616]
 
 xe=4.7783568 22.907616, f(xe)=52.713456
 
@@ -2753,7 +2755,7 @@ Sort
 
 Iteration #69 (total = 69)
 
-Function Eval #131
+Function Eval #132
 
 Xopt : 4.7533173 22.608041
 
@@ -2775,13 +2777,13 @@ Reflect
 
 xbar=4.7898812 22.889491
 
-Function Evaluation #132 is [52.465152] at [4.9496519 24.332989]
+Function Evaluation #133 at [4.9496519 24.332989]
 
 xr=[4.9496519 24.332989], f(xr)=52.465152
 
 Expand
 
-Function Evaluation #133 is [58.351007] at [5.1094226 25.776488]
+Function Evaluation #134 at [5.1094226 25.776488]
 
 xe=5.1094226 25.776488, f(xe)=58.351007
 
@@ -2793,7 +2795,7 @@ Sort
 
 Iteration #70 (total = 70)
 
-Function Eval #133
+Function Eval #134
 
 Xopt : 4.9496519 24.332989
 
@@ -2815,13 +2817,13 @@ Reflect
 
 xbar=4.8514846 23.470515
 
-Function Evaluation #134 is [50.75472] at [4.8765241 23.77009]
+Function Evaluation #135 at [4.8765241 23.77009]
 
 xr=[4.8765241 23.77009], f(xr)=50.754720
 
 Expand
 
-Function Evaluation #135 is [50.58439] at [4.9015636 24.069664]
+Function Evaluation #136 at [4.9015636 24.069664]
 
 xe=4.9015636 24.069664, f(xe)=50.584390
 
@@ -2833,7 +2835,7 @@ Sort
 
 Iteration #71 (total = 71)
 
-Function Eval #135
+Function Eval #136
 
 Xopt : 4.9015636 24.069664
 
@@ -2855,7 +2857,7 @@ Reflect
 
 xbar=4.9256078 24.201327
 
-Function Evaluation #136 is [51.400796] at [5.0978982 25.794612]
+Function Evaluation #137 at [5.0978982 25.794612]
 
 xr=[5.0978982 25.794612], f(xr)=51.400796
 
@@ -2867,7 +2869,7 @@ Sort
 
 Iteration #72 (total = 72)
 
-Function Eval #136
+Function Eval #137
 
 Xopt : 4.9015636 24.069664
 
@@ -2889,13 +2891,13 @@ Reflect
 
 xbar=4.9997309 24.932138
 
-Function Evaluation #137 is [48.399439] at [5.0498099 25.531287]
+Function Evaluation #138 at [5.0498099 25.531287]
 
 xr=[5.0498099 25.531287], f(xr)=48.399439
 
 Expand
 
-Function Evaluation #138 is [49.089461] at [5.0998888 26.130436]
+Function Evaluation #139 at [5.0998888 26.130436]
 
 xe=5.0998888 26.130436, f(xe)=49.089461
 
@@ -2907,7 +2909,7 @@ Sort
 
 Iteration #73 (total = 73)
 
-Function Eval #138
+Function Eval #139
 
 Xopt : 5.0498099 25.531287
 
@@ -2929,13 +2931,13 @@ Reflect
 
 xbar=4.9756867 24.800476
 
-Function Evaluation #139 is [57.328648] at [4.8534753 23.806339]
+Function Evaluation #140 at [4.8534753 23.806339]
 
 xr=[4.8534753 23.806339], f(xr)=57.328648
 
 Contract - inside
 
-Function Evaluation #140 is [49.000837] at [5.0367924 25.297544]
+Function Evaluation #141 at [5.0367924 25.297544]
 
 xc=5.0367924 25.297544, f(xc)=49.000837
 
@@ -2947,7 +2949,7 @@ Sort
 
 Iteration #74 (total = 74)
 
-Function Eval #140
+Function Eval #141
 
 Xopt : 5.0498099 25.531287
 
@@ -2969,13 +2971,13 @@ Reflect
 
 xbar=5.0433012 25.414416
 
-Function Evaluation #141 is [48.0177] at [5.1850387 26.759167]
+Function Evaluation #142 at [5.1850387 26.759167]
 
 xr=[5.1850387 26.759167], f(xr)=48.017700
 
 Expand
 
-Function Evaluation #142 is [51.8558] at [5.3267763 28.103919]
+Function Evaluation #143 at [5.3267763 28.103919]
 
 xe=5.3267763 28.103919, f(xe)=51.855800
 
@@ -2987,7 +2989,7 @@ Sort
 
 Iteration #75 (total = 75)
 
-Function Eval #142
+Function Eval #143
 
 Xopt : 5.1850387 26.759167
 
@@ -3009,13 +3011,13 @@ Reflect
 
 xbar=5.1174243 26.145227
 
-Function Evaluation #143 is [46.338679] at [5.1980561 26.99291]
+Function Evaluation #144 at [5.1980561 26.99291]
 
 xr=[5.1980561 26.99291], f(xr)=46.338679
 
 Expand
 
-Function Evaluation #144 is [45.233411] at [5.278688 27.840593]
+Function Evaluation #145 at [5.278688 27.840593]
 
 xe=5.278688 27.840593, f(xe)=45.233411
 
@@ -3027,7 +3029,7 @@ Sort
 
 Iteration #76 (total = 76)
 
-Function Eval #144
+Function Eval #145
 
 Xopt : 5.278688 27.840593
 
@@ -3049,13 +3051,13 @@ Reflect
 
 xbar=5.2318633 27.29988
 
-Function Evaluation #145 is [49.233953] at [5.4139168 29.068473]
+Function Evaluation #146 at [5.4139168 29.068473]
 
 xr=[5.4139168 29.068473], f(xr)=49.233953
 
 Contract - inside
 
-Function Evaluation #146 is [47.064042] at [5.1408366 26.415584]
+Function Evaluation #147 at [5.1408366 26.415584]
 
 xc=5.1408366 26.415584, f(xc)=47.064042
 
@@ -3067,7 +3069,7 @@ Sort
 
 Iteration #77 (total = 77)
 
-Function Eval #146
+Function Eval #147
 
 Xopt : 5.278688 27.840593
 
@@ -3089,7 +3091,7 @@ Reflect
 
 xbar=5.2097623 27.128089
 
-Function Evaluation #147 is [46.716343] at [5.2344858 27.49701]
+Function Evaluation #148 at [5.2344858 27.49701]
 
 xr=[5.2344858 27.49701], f(xr)=46.716343
 
@@ -3101,7 +3103,7 @@ Sort
 
 Iteration #78 (total = 78)
 
-Function Eval #147
+Function Eval #148
 
 Xopt : 5.278688 27.840593
 
@@ -3123,13 +3125,13 @@ Reflect
 
 xbar=5.2565869 27.668802
 
-Function Evaluation #148 is [44.286065] at [5.3723372 28.92202]
+Function Evaluation #149 at [5.3723372 28.92202]
 
 xr=[5.3723372 28.92202], f(xr)=44.286065
 
 Expand
 
-Function Evaluation #149 is [42.720097] at [5.4880875 30.175237]
+Function Evaluation #150 at [5.4880875 30.175237]
 
 xe=5.4880875 30.175237, f(xe)=42.720097
 
@@ -3141,7 +3143,7 @@ Sort
 
 Iteration #79 (total = 79)
 
-Function Eval #149
+Function Eval #150
 
 Xopt : 5.4880875 30.175237
 
@@ -3163,13 +3165,13 @@ Reflect
 
 xbar=5.3833877 29.007915
 
-Function Evaluation #150 is [42.595285] at [5.5322896 30.518821]
+Function Evaluation #151 at [5.5322896 30.518821]
 
 xr=[5.5322896 30.518821], f(xr)=42.595285
 
 Expand
 
-Function Evaluation #151 is [45.989304] at [5.6811915 32.029726]
+Function Evaluation #152 at [5.6811915 32.029726]
 
 xe=5.6811915 32.029726, f(xe)=45.989304
 
@@ -3181,7 +3183,7 @@ Sort
 
 Iteration #80 (total = 80)
 
-Function Eval #151
+Function Eval #152
 
 Xopt : 5.5322896 30.518821
 
@@ -3203,13 +3205,13 @@ Reflect
 
 xbar=5.5101886 30.347029
 
-Function Evaluation #152 is [40.455347] at [5.7416892 32.853465]
+Function Evaluation #153 at [5.7416892 32.853465]
 
 xr=[5.7416892 32.853465], f(xr)=40.455347
 
 Expand
 
-Function Evaluation #153 is [46.504611] at [5.9731898 35.359901]
+Function Evaluation #154 at [5.9731898 35.359901]
 
 xe=5.9731898 35.359901, f(xe)=46.504611
 
@@ -3221,7 +3223,7 @@ Sort
 
 Iteration #81 (total = 81)
 
-Function Eval #153
+Function Eval #154
 
 Xopt : 5.7416892 32.853465
 
@@ -3243,13 +3245,13 @@ Reflect
 
 xbar=5.6369894 31.686143
 
-Function Evaluation #154 is [46.426582] at [5.7858913 33.197048]
+Function Evaluation #155 at [5.7858913 33.197048]
 
 xr=[5.7858913 33.197048], f(xr)=46.426582
 
 Contract - inside
 
-Function Evaluation #155 is [41.45333] at [5.5625384 30.93069]
+Function Evaluation #156 at [5.5625384 30.93069]
 
 xc=5.5625384 30.93069, f(xc)=41.453330
 
@@ -3261,7 +3263,7 @@ Sort
 
 Iteration #82 (total = 82)
 
-Function Eval #155
+Function Eval #156
 
 Xopt : 5.7416892 32.853465
 
@@ -3283,13 +3285,13 @@ Reflect
 
 xbar=5.6521138 31.892078
 
-Function Evaluation #156 is [39.038095] at [5.771938 33.265334]
+Function Evaluation #157 at [5.771938 33.265334]
 
 xr=[5.771938 33.265334], f(xr)=39.038095
 
 Expand
 
-Function Evaluation #157 is [37.86218] at [5.8917622 34.638591]
+Function Evaluation #158 at [5.8917622 34.638591]
 
 xe=5.8917622 34.638591, f(xe)=37.862180
 
@@ -3301,7 +3303,7 @@ Sort
 
 Iteration #83 (total = 83)
 
-Function Eval #157
+Function Eval #158
 
 Xopt : 5.8917622 34.638591
 
@@ -3323,13 +3325,13 @@ Reflect
 
 xbar=5.8167257 33.746028
 
-Function Evaluation #158 is [43.834021] at [6.0709129 36.561366]
+Function Evaluation #159 at [6.0709129 36.561366]
 
 xr=[6.0709129 36.561366], f(xr)=43.834021
 
 Contract - inside
 
-Function Evaluation #159 is [39.933329] at [5.6896321 32.338359]
+Function Evaluation #160 at [5.6896321 32.338359]
 
 xc=5.6896321 32.338359, f(xc)=39.933329
 
@@ -3341,7 +3343,7 @@ Sort
 
 Iteration #84 (total = 84)
 
-Function Eval #159
+Function Eval #160
 
 Xopt : 5.8917622 34.638591
 
@@ -3363,7 +3365,7 @@ Reflect
 
 xbar=5.7906971 33.488475
 
-Function Evaluation #160 is [37.99473] at [5.8397051 34.123485]
+Function Evaluation #161 at [5.8397051 34.123485]
 
 xr=[5.8397051 34.123485], f(xr)=37.994730
 
@@ -3375,7 +3377,7 @@ Sort
 
 Iteration #85 (total = 85)
 
-Function Eval #160
+Function Eval #161
 
 Xopt : 5.8917622 34.638591
 
@@ -3397,13 +3399,13 @@ Reflect
 
 xbar=5.8657336 34.381038
 
-Function Evaluation #161 is [36.140614] at [6.0418352 36.423717]
+Function Evaluation #162 at [6.0418352 36.423717]
 
 xr=[6.0418352 36.423717], f(xr)=36.140614
 
 Expand
 
-Function Evaluation #162 is [37.287252] at [6.2179368 38.466396]
+Function Evaluation #163 at [6.2179368 38.466396]
 
 xe=6.2179368 38.466396, f(xe)=37.287252
 
@@ -3415,7 +3417,7 @@ Sort
 
 Iteration #86 (total = 86)
 
-Function Eval #162
+Function Eval #163
 
 Xopt : 6.0418352 36.423717
 
@@ -3437,13 +3439,13 @@ Reflect
 
 xbar=5.9667987 35.531154
 
-Function Evaluation #163 is [38.75121] at [6.0938923 36.938823]
+Function Evaluation #164 at [6.0938923 36.938823]
 
 xr=[6.0938923 36.938823], f(xr)=38.751210
 
 Contract - inside
 
-Function Evaluation #164 is [37.214703] at [5.9032519 34.82732]
+Function Evaluation #165 at [5.9032519 34.82732]
 
 xc=5.9032519 34.82732, f(xc)=37.214703
 
@@ -3455,7 +3457,7 @@ Sort
 
 Iteration #87 (total = 87)
 
-Function Eval #164
+Function Eval #165
 
 Xopt : 6.0418352 36.423717
 
@@ -3477,13 +3479,13 @@ Reflect
 
 xbar=5.9725435 35.625518
 
-Function Evaluation #165 is [35.454733] at [6.0533249 36.612446]
+Function Evaluation #166 at [6.0533249 36.612446]
 
 xr=[6.0533249 36.612446], f(xr)=35.454733
 
 Expand
 
-Function Evaluation #166 is [34.486475] at [6.1341063 37.599373]
+Function Evaluation #167 at [6.1341063 37.599373]
 
 xe=6.1341063 37.599373, f(xe)=34.486475
 
@@ -3495,7 +3497,7 @@ Sort
 
 Iteration #88 (total = 88)
 
-Function Eval #166
+Function Eval #167
 
 Xopt : 6.1341063 37.599373
 
@@ -3517,7 +3519,7 @@ Reflect
 
 xbar=6.0879707 37.011545
 
-Function Evaluation #167 is [35.078078] at [6.2726896 39.195771]
+Function Evaluation #168 at [6.2726896 39.195771]
 
 xr=[6.2726896 39.195771], f(xr)=35.078078
 
@@ -3529,7 +3531,7 @@ Sort
 
 Iteration #89 (total = 89)
 
-Function Eval #167
+Function Eval #168
 
 Xopt : 6.1341063 37.599373
 
@@ -3551,13 +3553,13 @@ Reflect
 
 xbar=6.2033979 38.397572
 
-Function Evaluation #168 is [33.750166] at [6.3649607 40.371427]
+Function Evaluation #169 at [6.3649607 40.371427]
 
 xr=[6.3649607 40.371427], f(xr)=33.750166
 
 Expand
 
-Function Evaluation #169 is [36.220254] at [6.5265234 42.345281]
+Function Evaluation #170 at [6.5265234 42.345281]
 
 xe=6.5265234 42.345281, f(xe)=36.220254
 
@@ -3569,7 +3571,7 @@ Sort
 
 Iteration #90 (total = 90)
 
-Function Eval #169
+Function Eval #170
 
 Xopt : 6.3649607 40.371427
 
@@ -3591,13 +3593,13 @@ Reflect
 
 xbar=6.2495335 38.9854
 
-Function Evaluation #170 is [33.339981] at [6.2263773 38.775029]
+Function Evaluation #171 at [6.2263773 38.775029]
 
 xr=[6.2263773 38.775029], f(xr)=33.339981
 
 Expand
 
-Function Evaluation #171 is [34.320137] at [6.2032212 38.564658]
+Function Evaluation #172 at [6.2032212 38.564658]
 
 xe=6.2032212 38.564658, f(xe)=34.320137
 
@@ -3609,7 +3611,7 @@ Sort
 
 Iteration #91 (total = 91)
 
-Function Eval #171
+Function Eval #172
 
 Xopt : 6.2263773 38.775029
 
@@ -3631,13 +3633,13 @@ Reflect
 
 xbar=6.295669 39.573228
 
-Function Evaluation #172 is [32.935201] at [6.4572317 41.547083]
+Function Evaluation #173 at [6.4572317 41.547083]
 
 xr=[6.4572317 41.547083], f(xr)=32.935201
 
 Expand
 
-Function Evaluation #173 is [37.223148] at [6.6187944 43.520937]
+Function Evaluation #174 at [6.6187944 43.520937]
 
 xe=6.6187944 43.520937, f(xe)=37.223148
 
@@ -3649,7 +3651,7 @@ Sort
 
 Iteration #92 (total = 92)
 
-Function Eval #173
+Function Eval #174
 
 Xopt : 6.4572317 41.547083
 
@@ -3671,13 +3673,13 @@ Reflect
 
 xbar=6.3418045 40.161056
 
-Function Evaluation #174 is [32.342107] at [6.3186484 39.950685]
+Function Evaluation #175 at [6.3186484 39.950685]
 
 xr=[6.3186484 39.950685], f(xr)=32.342107
 
 Expand
 
-Function Evaluation #175 is [33.688263] at [6.2954923 39.740314]
+Function Evaluation #176 at [6.2954923 39.740314]
 
 xe=6.2954923 39.740314, f(xe)=33.688263
 
@@ -3689,7 +3691,7 @@ Sort
 
 Iteration #93 (total = 93)
 
-Function Eval #175
+Function Eval #176
 
 Xopt : 6.3186484 39.950685
 
@@ -3711,7 +3713,7 @@ Reflect
 
 xbar=6.3879401 40.748884
 
-Function Evaluation #176 is [32.709414] at [6.5495028 42.722739]
+Function Evaluation #177 at [6.5495028 42.722739]
 
 xr=[6.5495028 42.722739], f(xr)=32.709414
 
@@ -3723,7 +3725,7 @@ Sort
 
 Iteration #94 (total = 94)
 
-Function Eval #176
+Function Eval #177
 
 Xopt : 6.3186484 39.950685
 
@@ -3745,13 +3747,13 @@ Reflect
 
 xbar=6.4340756 41.336712
 
-Function Evaluation #177 is [31.307795] at [6.4109195 41.126341]
+Function Evaluation #178 at [6.4109195 41.126341]
 
 xr=[6.4109195 41.126341], f(xr)=31.307795
 
 Expand
 
-Function Evaluation #178 is [32.761694] at [6.3877633 40.91597]
+Function Evaluation #179 at [6.3877633 40.91597]
 
 xe=6.3877633 40.91597, f(xe)=32.761694
 
@@ -3763,7 +3765,7 @@ Sort
 
 Iteration #95 (total = 95)
 
-Function Eval #178
+Function Eval #179
 
 Xopt : 6.4109195 41.126341
 
@@ -3785,13 +3787,13 @@ Reflect
 
 xbar=6.3647839 40.538513
 
-Function Evaluation #179 is [36.466419] at [6.1800651 38.354288]
+Function Evaluation #180 at [6.1800651 38.354288]
 
 xr=[6.1800651 38.354288], f(xr)=36.466419
 
 Contract - inside
 
-Function Evaluation #180 is [31.133815] at [6.4571434 41.630626]
+Function Evaluation #181 at [6.4571434 41.630626]
 
 xc=6.4571434 41.630626, f(xc)=31.133815
 
@@ -3803,7 +3805,7 @@ Sort
 
 Iteration #96 (total = 96)
 
-Function Eval #180
+Function Eval #181
 
 Xopt : 6.4571434 41.630626
 
@@ -3825,13 +3827,13 @@ Reflect
 
 xbar=6.4340314 41.378483
 
-Function Evaluation #181 is [30.492951] at [6.5494144 42.806282]
+Function Evaluation #182 at [6.5494144 42.806282]
 
 xr=[6.5494144 42.806282], f(xr)=30.492951
 
 Expand
 
-Function Evaluation #182 is [31.903365] at [6.6647974 44.23408]
+Function Evaluation #183 at [6.6647974 44.23408]
 
 xe=6.6647974 44.23408, f(xe)=31.903365
 
@@ -3843,7 +3845,7 @@ Sort
 
 Iteration #97 (total = 97)
 
-Function Eval #182
+Function Eval #183
 
 Xopt : 6.5494144 42.806282
 
@@ -3865,13 +3867,13 @@ Reflect
 
 xbar=6.5032789 42.218454
 
-Function Evaluation #183 is [32.888854] at [6.5956383 43.310567]
+Function Evaluation #184 at [6.5956383 43.310567]
 
 xr=[6.5956383 43.310567], f(xr)=32.888854
 
 Contract - inside
 
-Function Evaluation #184 is [30.770979] at [6.4570992 41.672397]
+Function Evaluation #185 at [6.4570992 41.672397]
 
 xc=6.4570992 41.672397, f(xc)=30.770979
 
@@ -3883,7 +3885,7 @@ Sort
 
 Iteration #98 (total = 98)
 
-Function Eval #184
+Function Eval #185
 
 Xopt : 6.5494144 42.806282
 
@@ -3905,13 +3907,13 @@ Reflect
 
 xbar=6.5032568 42.23934
 
-Function Evaluation #185 is [29.922784] at [6.5493702 42.848053]
+Function Evaluation #186 at [6.5493702 42.848053]
 
 xr=[6.5493702 42.848053], f(xr)=29.922784
 
 Expand
 
-Function Evaluation #186 is [29.399224] at [6.5954837 43.456767]
+Function Evaluation #187 at [6.5954837 43.456767]
 
 xe=6.5954837 43.456767, f(xe)=29.399224
 
@@ -3923,7 +3925,7 @@ Sort
 
 Iteration #99 (total = 99)
 
-Function Eval #186
+Function Eval #187
 
 Xopt : 6.5954837 43.456767
 
@@ -3945,7 +3947,7 @@ Reflect
 
 xbar=6.5724491 43.131524
 
-Function Evaluation #187 is [30.069166] at [6.6877989 44.590651]
+Function Evaluation #188 at [6.6877989 44.590651]
 
 xr=[6.6877989 44.590651], f(xr)=30.069166
 
@@ -3957,7 +3959,7 @@ Sort
 
 Iteration #100 (total = 100)
 
-Function Eval #187
+Function Eval #188
 
 Xopt : 6.5954837 43.456767
 
@@ -3979,13 +3981,13 @@ Reflect
 
 xbar=6.6416413 44.023709
 
-Function Evaluation #188 is [28.810504] at [6.7338682 45.241137]
+Function Evaluation #189 at [6.7338682 45.241137]
 
 xr=[6.7338682 45.241137], f(xr)=28.810504
 
 Expand
 
-Function Evaluation #189 is [28.64646] at [6.8260951 46.458564]
+Function Evaluation #190 at [6.8260951 46.458564]
 
 xe=6.8260951 46.458564, f(xe)=28.646460
 
@@ -3997,7 +3999,7 @@ Sort
 
 Iteration #101 (total = 101)
 
-Function Eval #189
+Function Eval #190
 
 Xopt : 6.8260951 46.458564
 
@@ -4019,13 +4021,13 @@ Reflect
 
 xbar=6.7107894 44.957666
 
-Function Evaluation #190 is [27.769597] at [6.7337798 45.32468]
+Function Evaluation #191 at [6.7337798 45.32468]
 
 xr=[6.7337798 45.32468], f(xr)=27.769597
 
 Expand
 
-Function Evaluation #191 is [27.63396] at [6.7567703 45.691694]
+Function Evaluation #192 at [6.7567703 45.691694]
 
 xe=6.7567703 45.691694, f(xe)=27.633960
 
@@ -4037,7 +4039,7 @@ Sort
 
 Iteration #102 (total = 102)
 
-Function Eval #191
+Function Eval #192
 
 Xopt : 6.7567703 45.691694
 
@@ -4059,13 +4061,13 @@ Reflect
 
 xbar=6.7914327 46.075129
 
-Function Evaluation #192 is [26.816636] at [6.9873817 48.693492]
+Function Evaluation #193 at [6.9873817 48.693492]
 
 xr=[6.9873817 48.693492], f(xr)=26.816636
 
 Expand
 
-Function Evaluation #193 is [31.516952] at [7.1833307 51.311854]
+Function Evaluation #194 at [7.1833307 51.311854]
 
 xe=7.1833307 51.311854, f(xe)=31.516952
 
@@ -4077,7 +4079,7 @@ Sort
 
 Iteration #103 (total = 103)
 
-Function Eval #193
+Function Eval #194
 
 Xopt : 6.9873817 48.693492
 
@@ -4099,13 +4101,13 @@ Reflect
 
 xbar=6.872076 47.192593
 
-Function Evaluation #194 is [26.276525] at [6.9180569 47.926622]
+Function Evaluation #195 at [6.9180569 47.926622]
 
 xr=[6.9180569 47.926622], f(xr)=26.276525
 
 Expand
 
-Function Evaluation #195 is [28.012197] at [6.9640378 48.66065]
+Function Evaluation #196 at [6.9640378 48.66065]
 
 xe=6.9640378 48.66065, f(xe)=28.012197
 
@@ -4117,7 +4119,7 @@ Sort
 
 Iteration #104 (total = 104)
 
-Function Eval #195
+Function Eval #196
 
 Xopt : 6.9180569 47.926622
 
@@ -4139,7 +4141,7 @@ Reflect
 
 xbar=6.9527193 48.310057
 
-Function Evaluation #196 is [26.599305] at [7.1486683 50.928419]
+Function Evaluation #197 at [7.1486683 50.928419]
 
 xr=[7.1486683 50.928419], f(xr)=26.599305
 
@@ -4151,7 +4153,7 @@ Sort
 
 Iteration #105 (total = 105)
 
-Function Eval #196
+Function Eval #197
 
 Xopt : 6.9180569 47.926622
 
@@ -4173,13 +4175,13 @@ Reflect
 
 xbar=7.0333626 49.42752
 
-Function Evaluation #197 is [24.41039] at [7.0793435 50.161549]
+Function Evaluation #198 at [7.0793435 50.161549]
 
 xr=[7.0793435 50.161549], f(xr)=24.410390
 
 Expand
 
-Function Evaluation #198 is [25.333208] at [7.1253244 50.895577]
+Function Evaluation #199 at [7.1253244 50.895577]
 
 xe=7.1253244 50.895577, f(xe)=25.333208
 
@@ -4191,7 +4193,7 @@ Sort
 
 Iteration #106 (total = 106)
 
-Function Eval #198
+Function Eval #199
 
 Xopt : 7.0793435 50.161549
 
@@ -4213,13 +4215,13 @@ Reflect
 
 xbar=6.9987002 49.044085
 
-Function Evaluation #199 is [33.018697] at [6.8487321 47.159751]
+Function Evaluation #200 at [6.8487321 47.159751]
 
 xr=[6.8487321 47.159751], f(xr)=33.018697
 
 Contract - inside
 
-Function Evaluation #200 is [24.526213] at [7.0736842 49.986252]
+Function Evaluation #201 at [7.0736842 49.986252]
 
 xc=7.0736842 49.986252, f(xc)=24.526213
 
@@ -4231,7 +4233,7 @@ Sort
 
 Iteration #107 (total = 107)
 
-Function Eval #200
+Function Eval #201
 
 Xopt : 7.0793435 50.161549
 
@@ -4253,13 +4255,13 @@ Reflect
 
 xbar=7.0765139 50.0739
 
-Function Evaluation #201 is [24.233793] at [7.2349709 52.221179]
+Function Evaluation #202 at [7.2349709 52.221179]
 
 xr=[7.2349709 52.221179], f(xr)=24.233793
 
 Expand
 
-Function Evaluation #202 is [29.882759] at [7.3934278 54.368458]
+Function Evaluation #203 at [7.3934278 54.368458]
 
 xe=7.3934278 54.368458, f(xe)=29.882759
 
@@ -4271,7 +4273,7 @@ Sort
 
 Iteration #108 (total = 108)
 
-Function Eval #202
+Function Eval #203
 
 Xopt : 7.2349709 52.221179
 
@@ -4293,13 +4295,13 @@ Reflect
 
 xbar=7.1571572 51.191364
 
-Function Evaluation #203 is [22.743098] at [7.2406301 52.396476]
+Function Evaluation #204 at [7.2406301 52.396476]
 
 xr=[7.2406301 52.396476], f(xr)=22.743098
 
 Expand
 
-Function Evaluation #204 is [22.031271] at [7.324103 53.601588]
+Function Evaluation #205 at [7.324103 53.601588]
 
 xe=7.324103 53.601588, f(xe)=22.031271
 
@@ -4311,7 +4313,7 @@ Sort
 
 Iteration #109 (total = 109)
 
-Function Eval #204
+Function Eval #205
 
 Xopt : 7.324103 53.601588
 
@@ -4333,13 +4335,13 @@ Reflect
 
 xbar=7.2795369 52.911384
 
-Function Evaluation #205 is [28.563789] at [7.4797304 55.661218]
+Function Evaluation #206 at [7.4797304 55.661218]
 
 xr=[7.4797304 55.661218], f(xr)=28.563789
 
 Contract - inside
 
-Function Evaluation #206 is [23.244031] at [7.1794402 51.536466]
+Function Evaluation #207 at [7.1794402 51.536466]
 
 xc=7.1794402 51.536466, f(xc)=23.244031
 
@@ -4351,7 +4353,7 @@ Sort
 
 Iteration #110 (total = 110)
 
-Function Eval #206
+Function Eval #207
 
 Xopt : 7.324103 53.601588
 
@@ -4373,7 +4375,7 @@ Reflect
 
 xbar=7.2517716 52.569027
 
-Function Evaluation #207 is [23.104326] at [7.2685724 52.916875]
+Function Evaluation #208 at [7.2685724 52.916875]
 
 xr=[7.2685724 52.916875], f(xr)=23.104326
 
@@ -4385,7 +4387,7 @@ Sort
 
 Iteration #111 (total = 111)
 
-Function Eval #207
+Function Eval #208
 
 Xopt : 7.324103 53.601588
 
@@ -4407,13 +4409,13 @@ Reflect
 
 xbar=7.2963377 53.259231
 
-Function Evaluation #208 is [21.105701] at [7.4132352 54.981997]
+Function Evaluation #209 at [7.4132352 54.981997]
 
 xr=[7.4132352 54.981997], f(xr)=21.105701
 
 Expand
 
-Function Evaluation #209 is [19.980061] at [7.5301327 56.704762]
+Function Evaluation #210 at [7.5301327 56.704762]
 
 xe=7.5301327 56.704762, f(xe)=19.980061
 
@@ -4425,7 +4427,7 @@ Sort
 
 Iteration #112 (total = 112)
 
-Function Eval #209
+Function Eval #210
 
 Xopt : 7.5301327 56.704762
 
@@ -4447,7 +4449,7 @@ Reflect
 
 xbar=7.4271179 55.153175
 
-Function Evaluation #210 is [21.82156] at [7.5856633 57.389475]
+Function Evaluation #211 at [7.5856633 57.389475]
 
 xr=[7.5856633 57.389475], f(xr)=21.821560
 
@@ -4459,7 +4461,7 @@ Sort
 
 Iteration #113 (total = 113)
 
-Function Eval #210
+Function Eval #211
 
 Xopt : 7.5301327 56.704762
 
@@ -4481,13 +4483,13 @@ Reflect
 
 xbar=7.557898 57.047119
 
-Function Evaluation #211 is [22.454888] at [7.791693 60.492649]
+Function Evaluation #212 at [7.791693 60.492649]
 
 xr=[7.791693 60.492649], f(xr)=22.454888
 
 Contract - inside
 
-Function Evaluation #212 is [20.979272] at [7.4410005 55.324353]
+Function Evaluation #213 at [7.4410005 55.324353]
 
 xc=7.4410005 55.324353, f(xc)=20.979272
 
@@ -4499,7 +4501,7 @@ Sort
 
 Iteration #114 (total = 114)
 
-Function Eval #212
+Function Eval #213
 
 Xopt : 7.5301327 56.704762
 
@@ -4521,13 +4523,13 @@ Reflect
 
 xbar=7.4855666 56.014558
 
-Function Evaluation #213 is [22.186431] at [7.3854699 54.63964]
+Function Evaluation #214 at [7.3854699 54.63964]
 
 xr=[7.3854699 54.63964], f(xr)=22.186431
 
 Contract - inside
 
-Function Evaluation #214 is [20.627572] at [7.535615 56.702016]
+Function Evaluation #215 at [7.535615 56.702016]
 
 xc=7.535615 56.702016, f(xc)=20.627572
 
@@ -4539,7 +4541,7 @@ Sort
 
 Iteration #115 (total = 115)
 
-Function Eval #214
+Function Eval #215
 
 Xopt : 7.5301327 56.704762
 
@@ -4561,13 +4563,13 @@ Reflect
 
 xbar=7.5328739 56.703389
 
-Function Evaluation #215 is [19.438167] at [7.6247472 58.082425]
+Function Evaluation #216 at [7.6247472 58.082425]
 
 xr=[7.6247472 58.082425], f(xr)=19.438167
 
 Expand
 
-Function Evaluation #216 is [19.065947] at [7.7166205 59.461461]
+Function Evaluation #217 at [7.7166205 59.461461]
 
 xe=7.7166205 59.461461, f(xe)=19.065947
 
@@ -4579,7 +4581,7 @@ Sort
 
 Iteration #116 (total = 116)
 
-Function Eval #216
+Function Eval #217
 
 Xopt : 7.7166205 59.461461
 
@@ -4601,13 +4603,13 @@ Reflect
 
 xbar=7.6233766 58.083112
 
-Function Evaluation #217 is [18.394988] at [7.7111382 59.464207]
+Function Evaluation #218 at [7.7111382 59.464207]
 
 xr=[7.7111382 59.464207], f(xr)=18.394988
 
 Expand
 
-Function Evaluation #218 is [17.699702] at [7.7988998 60.845302]
+Function Evaluation #219 at [7.7988998 60.845302]
 
 xe=7.7988998 60.845302, f(xe)=17.699702
 
@@ -4619,7 +4621,7 @@ Sort
 
 Iteration #117 (total = 117)
 
-Function Eval #218
+Function Eval #219
 
 Xopt : 7.7988998 60.845302
 
@@ -4641,7 +4643,7 @@ Reflect
 
 xbar=7.7577602 60.153381
 
-Function Evaluation #219 is [18.820318] at [7.9853876 63.602001]
+Function Evaluation #220 at [7.9853876 63.602001]
 
 xr=[7.9853876 63.602001], f(xr)=18.820318
 
@@ -4653,7 +4655,7 @@ Sort
 
 Iteration #118 (total = 118)
 
-Function Eval #219
+Function Eval #220
 
 Xopt : 7.7988998 60.845302
 
@@ -4675,13 +4677,13 @@ Reflect
 
 xbar=7.8921437 62.223651
 
-Function Evaluation #220 is [16.491606] at [8.067667 64.985842]
+Function Evaluation #221 at [8.067667 64.985842]
 
 xr=[8.067667 64.985842], f(xr)=16.491606
 
 Expand
 
-Function Evaluation #221 is [18.200173] at [8.2431902 67.748032]
+Function Evaluation #222 at [8.2431902 67.748032]
 
 xe=8.2431902 67.748032, f(xe)=18.200173
 
@@ -4693,7 +4695,7 @@ Sort
 
 Iteration #119 (total = 119)
 
-Function Eval #221
+Function Eval #222
 
 Xopt : 8.067667 64.985842
 
@@ -4715,13 +4717,13 @@ Reflect
 
 xbar=7.9332834 62.915572
 
-Function Evaluation #222 is [18.313941] at [7.8811792 62.229143]
+Function Evaluation #223 at [7.8811792 62.229143]
 
 xr=[7.8811792 62.229143], f(xr)=18.313941
 
 Contract - outside
 
-Function Evaluation #223 is [16.981642] at [7.9072313 62.572357]
+Function Evaluation #224 at [7.9072313 62.572357]
 
 xc=7.9072313 62.572357, f(xc)=16.981642
 
@@ -4733,7 +4735,7 @@ Sort
 
 Iteration #120 (total = 120)
 
-Function Eval #223
+Function Eval #224
 
 Xopt : 8.067667 64.985842
 
@@ -4755,13 +4757,13 @@ Reflect
 
 xbar=7.9874491 63.7791
 
-Function Evaluation #224 is [16.420001] at [8.1759984 66.712897]
+Function Evaluation #225 at [8.1759984 66.712897]
 
 xr=[8.1759984 66.712897], f(xr)=16.420001
 
 Expand
 
-Function Evaluation #225 is [23.390267] at [8.3645477 69.646695]
+Function Evaluation #226 at [8.3645477 69.646695]
 
 xe=8.3645477 69.646695, f(xe)=23.390267
 
@@ -4773,7 +4775,7 @@ Sort
 
 Iteration #121 (total = 121)
 
-Function Eval #225
+Function Eval #226
 
 Xopt : 8.1759984 66.712897
 
@@ -4795,13 +4797,13 @@ Reflect
 
 xbar=8.1218327 65.84937
 
-Function Evaluation #226 is [27.093318] at [8.3364341 69.126382]
+Function Evaluation #227 at [8.3364341 69.126382]
 
 xr=[8.3364341 69.126382], f(xr)=27.093318
 
 Contract - inside
 
-Function Evaluation #227 is [15.931739] at [8.014532 64.210863]
+Function Evaluation #228 at [8.014532 64.210863]
 
 xc=8.014532 64.210863, f(xc)=15.931739
 
@@ -4813,7 +4815,7 @@ Sort
 
 Iteration #122 (total = 122)
 
-Function Eval #227
+Function Eval #228
 
 Xopt : 8.014532 64.210863
 
@@ -4835,13 +4837,13 @@ Reflect
 
 xbar=8.0952652 65.46188
 
-Function Evaluation #228 is [15.217016] at [8.1228634 65.937919]
+Function Evaluation #229 at [8.1228634 65.937919]
 
 xr=[8.1228634 65.937919], f(xr)=15.217016
 
 Expand
 
-Function Evaluation #229 is [14.844764] at [8.1504617 66.413957]
+Function Evaluation #230 at [8.1504617 66.413957]
 
 xe=8.1504617 66.413957, f(xe)=14.844764
 
@@ -4853,7 +4855,7 @@ Sort
 
 Iteration #123 (total = 123)
 
-Function Eval #229
+Function Eval #230
 
 Xopt : 8.1504617 66.413957
 
@@ -4875,13 +4877,13 @@ Reflect
 
 xbar=8.0824968 65.31241
 
-Function Evaluation #230 is [16.860419] at [7.9889953 63.911924]
+Function Evaluation #231 at [7.9889953 63.911924]
 
 xr=[7.9889953 63.911924], f(xr)=16.860419
 
 Contract - inside
 
-Function Evaluation #231 is [15.501312] at [8.1292476 66.012654]
+Function Evaluation #232 at [8.1292476 66.012654]
 
 xc=8.1292476 66.012654, f(xc)=15.501312
 
@@ -4893,7 +4895,7 @@ Sort
 
 Iteration #124 (total = 124)
 
-Function Eval #231
+Function Eval #232
 
 Xopt : 8.1504617 66.413957
 
@@ -4915,7 +4917,7 @@ Reflect
 
 xbar=8.1398546 66.213306
 
-Function Evaluation #232 is [14.897739] at [8.2651773 68.215748]
+Function Evaluation #233 at [8.2651773 68.215748]
 
 xr=[8.2651773 68.215748], f(xr)=14.897739
 
@@ -4927,7 +4929,7 @@ Sort
 
 Iteration #125 (total = 125)
 
-Function Eval #232
+Function Eval #233
 
 Xopt : 8.1504617 66.413957
 
@@ -4949,13 +4951,13 @@ Reflect
 
 xbar=8.2078195 67.314853
 
-Function Evaluation #233 is [14.013964] at [8.2863914 68.617051]
+Function Evaluation #234 at [8.2863914 68.617051]
 
 xr=[8.2863914 68.617051], f(xr)=14.013964
 
 Expand
 
-Function Evaluation #234 is [13.498224] at [8.3649633 69.91925]
+Function Evaluation #235 at [8.3649633 69.91925]
 
 xe=8.3649633 69.91925, f(xe)=13.498224
 
@@ -4967,7 +4969,7 @@ Sort
 
 Iteration #126 (total = 126)
 
-Function Eval #234
+Function Eval #235
 
 Xopt : 8.3649633 69.91925
 
@@ -4989,7 +4991,7 @@ Reflect
 
 xbar=8.2577125 68.166604
 
-Function Evaluation #235 is [14.319458] at [8.2502476 68.11746]
+Function Evaluation #236 at [8.2502476 68.11746]
 
 xr=[8.2502476 68.11746], f(xr)=14.319458
 
@@ -5001,7 +5003,7 @@ Sort
 
 Iteration #127 (total = 127)
 
-Function Eval #235
+Function Eval #236
 
 Xopt : 8.3649633 69.91925
 
@@ -5023,13 +5025,13 @@ Reflect
 
 xbar=8.3076054 69.018355
 
-Function Evaluation #236 is [12.583418] at [8.4647492 71.622752]
+Function Evaluation #237 at [8.4647492 71.622752]
 
 xr=[8.4647492 71.622752], f(xr)=12.583418
 
 Expand
 
-Function Evaluation #237 is [12.619151] at [8.6218929 74.22715]
+Function Evaluation #238 at [8.6218929 74.22715]
 
 xe=8.6218929 74.22715, f(xe)=12.619151
 
@@ -5041,7 +5043,7 @@ Sort
 
 Iteration #128 (total = 128)
 
-Function Eval #237
+Function Eval #238
 
 Xopt : 8.4647492 71.622752
 
@@ -5063,13 +5065,13 @@ Reflect
 
 xbar=8.4148562 70.771001
 
-Function Evaluation #238 is [15.037043] at [8.5794648 73.424543]
+Function Evaluation #239 at [8.5794648 73.424543]
 
 xr=[8.5794648 73.424543], f(xr)=15.037043
 
 Contract - inside
 
-Function Evaluation #239 is [13.466582] at [8.3325519 69.44423]
+Function Evaluation #240 at [8.3325519 69.44423]
 
 xc=8.3325519 69.44423, f(xc)=13.466582
 
@@ -5081,7 +5083,7 @@ Sort
 
 Iteration #129 (total = 129)
 
-Function Eval #239
+Function Eval #240
 
 Xopt : 8.4647492 71.622752
 
@@ -5103,7 +5105,7 @@ Reflect
 
 xbar=8.3986506 70.533491
 
-Function Evaluation #240 is [12.916663] at [8.4323379 71.147733]
+Function Evaluation #241 at [8.4323379 71.147733]
 
 xr=[8.4323379 71.147733], f(xr)=12.916663
 
@@ -5115,7 +5117,7 @@ Sort
 
 Iteration #130 (total = 130)
 
-Function Eval #240
+Function Eval #241
 
 Xopt : 8.4647492 71.622752
 
@@ -5137,13 +5139,13 @@ Reflect
 
 xbar=8.4485435 71.385242
 
-Function Evaluation #241 is [11.864956] at [8.5645351 73.326254]
+Function Evaluation #242 at [8.5645351 73.326254]
 
 xr=[8.5645351 73.326254], f(xr)=11.864956
 
 Expand
 
-Function Evaluation #242 is [11.729178] at [8.6805267 75.267267]
+Function Evaluation #243 at [8.6805267 75.267267]
 
 xe=8.6805267 75.267267, f(xe)=11.729178
 
@@ -5155,7 +5157,7 @@ Sort
 
 Iteration #131 (total = 131)
 
-Function Eval #242
+Function Eval #243
 
 Xopt : 8.6805267 75.267267
 
@@ -5177,13 +5179,13 @@ Reflect
 
 xbar=8.572638 73.445009
 
-Function Evaluation #243 is [13.797799] at [8.7129381 75.742286]
+Function Evaluation #244 at [8.7129381 75.742286]
 
 xr=[8.7129381 75.742286], f(xr)=13.797799
 
 Contract - inside
 
-Function Evaluation #244 is [12.234248] at [8.5024879 72.296371]
+Function Evaluation #245 at [8.5024879 72.296371]
 
 xc=8.5024879 72.296371, f(xc)=12.234248
 
@@ -5195,7 +5197,7 @@ Sort
 
 Iteration #132 (total = 132)
 
-Function Eval #244
+Function Eval #245
 
 Xopt : 8.6805267 75.267267
 
@@ -5217,13 +5219,13 @@ Reflect
 
 xbar=8.5915073 73.781819
 
-Function Evaluation #245 is [11.222269] at [8.7182655 75.940885]
+Function Evaluation #246 at [8.7182655 75.940885]
 
 xr=[8.7182655 75.940885], f(xr)=11.222269
 
 Expand
 
-Function Evaluation #246 is [11.762641] at [8.8450236 78.099952]
+Function Evaluation #247 at [8.8450236 78.099952]
 
 xe=8.8450236 78.099952, f(xe)=11.762641
 
@@ -5235,7 +5237,7 @@ Sort
 
 Iteration #133 (total = 133)
 
-Function Eval #246
+Function Eval #247
 
 Xopt : 8.7182655 75.940885
 
@@ -5257,13 +5259,13 @@ Reflect
 
 xbar=8.6993961 75.604076
 
-Function Evaluation #247 is [15.036175] at [8.8963043 78.911781]
+Function Evaluation #248 at [8.8963043 78.911781]
 
 xr=[8.8963043 78.911781], f(xr)=15.036175
 
 Contract - inside
 
-Function Evaluation #248 is [11.62109] at [8.600942 73.950223]
+Function Evaluation #249 at [8.600942 73.950223]
 
 xc=8.600942 73.950223, f(xc)=11.621090
 
@@ -5275,7 +5277,7 @@ Sort
 
 Iteration #134 (total = 134)
 
-Function Eval #248
+Function Eval #249
 
 Xopt : 8.7182655 75.940885
 
@@ -5297,7 +5299,7 @@ Reflect
 
 xbar=8.6596037 74.945554
 
-Function Evaluation #249 is [11.299345] at [8.6386807 74.623842]
+Function Evaluation #250 at [8.6386807 74.623842]
 
 xr=[8.6386807 74.623842], f(xr)=11.299345
 
@@ -5309,7 +5311,7 @@ Sort
 
 Iteration #135 (total = 135)
 
-Function Eval #249
+Function Eval #250
 
 Xopt : 8.7182655 75.940885
 
@@ -5331,13 +5333,13 @@ Reflect
 
 xbar=8.6784731 75.282364
 
-Function Evaluation #250 is [10.805523] at [8.7560042 76.614504]
+Function Evaluation #251 at [8.7560042 76.614504]
 
 xr=[8.7560042 76.614504], f(xr)=10.805523
 
 Expand
 
-Function Evaluation #251 is [10.74392] at [8.8335353 77.946644]
+Function Evaluation #252 at [8.8335353 77.946644]
 
 xe=8.8335353 77.946644, f(xe)=10.743920
 
@@ -5349,7 +5351,7 @@ Sort
 
 Iteration #136 (total = 136)
 
-Function Eval #251
+Function Eval #252
 
 Xopt : 8.8335353 77.946644
 
@@ -5371,13 +5373,13 @@ Reflect
 
 xbar=8.7759004 76.943765
 
-Function Evaluation #252 is [12.769564] at [8.91312 79.263688]
+Function Evaluation #253 at [8.91312 79.263688]
 
 xr=[8.91312 79.263688], f(xr)=12.769564
 
 Contract - inside
 
-Function Evaluation #253 is [10.951529] at [8.7072905 75.783804]
+Function Evaluation #254 at [8.7072905 75.783804]
 
 xc=8.7072905 75.783804, f(xc)=10.951529
 
@@ -5389,7 +5391,7 @@ Sort
 
 Iteration #137 (total = 137)
 
-Function Eval #253
+Function Eval #254
 
 Xopt : 8.8335353 77.946644
 
@@ -5411,13 +5413,13 @@ Reflect
 
 xbar=8.7704129 76.865224
 
-Function Evaluation #254 is [10.326603] at [8.8225603 77.789563]
+Function Evaluation #255 at [8.8225603 77.789563]
 
 xr=[8.8225603 77.789563], f(xr)=10.326603
 
 Expand
 
-Function Evaluation #255 is [9.9840207] at [8.8747078 78.713901]
+Function Evaluation #256 at [8.8747078 78.713901]
 
 xe=8.8747078 78.713901, f(xe)=9.984021
 
@@ -5429,7 +5431,7 @@ Sort
 
 Iteration #138 (total = 138)
 
-Function Eval #255
+Function Eval #256
 
 Xopt : 8.8747078 78.713901
 
@@ -5451,13 +5453,13 @@ Reflect
 
 xbar=8.8541215 78.330273
 
-Function Evaluation #256 is [10.96561] at [9.0009525 80.876742]
+Function Evaluation #257 at [9.0009525 80.876742]
 
 xr=[9.0009525 80.876742], f(xr)=10.965610
 
 Contract - inside
 
-Function Evaluation #257 is [10.555349] at [8.780706 77.057038]
+Function Evaluation #258 at [8.780706 77.057038]
 
 xc=8.780706 77.057038, f(xc)=10.555349
 
@@ -5469,7 +5471,7 @@ Sort
 
 Iteration #139 (total = 139)
 
-Function Eval #257
+Function Eval #258
 
 Xopt : 8.8747078 78.713901
 
@@ -5491,7 +5493,7 @@ Reflect
 
 xbar=8.8277069 77.88547
 
-Function Evaluation #258 is [10.100611] at [8.8218786 77.824295]
+Function Evaluation #259 at [8.8218786 77.824295]
 
 xr=[8.8218786 77.824295], f(xr)=10.100611
 
@@ -5503,7 +5505,7 @@ Sort
 
 Iteration #140 (total = 140)
 
-Function Eval #258
+Function Eval #259
 
 Xopt : 8.8747078 78.713901
 
@@ -5525,13 +5527,13 @@ Reflect
 
 xbar=8.8482932 78.269098
 
-Function Evaluation #259 is [9.5256325] at [8.9158803 79.481158]
+Function Evaluation #260 at [8.9158803 79.481158]
 
 xr=[8.9158803 79.481158], f(xr)=9.525633
 
 Expand
 
-Function Evaluation #260 is [9.1084356] at [8.9834675 80.693218]
+Function Evaluation #261 at [8.9834675 80.693218]
 
 xe=8.9834675 80.693218, f(xe)=9.108436
 
@@ -5543,7 +5545,7 @@ Sort
 
 Iteration #141 (total = 141)
 
-Function Eval #260
+Function Eval #261
 
 Xopt : 8.9834675 80.693218
 
@@ -5565,7 +5567,7 @@ Reflect
 
 xbar=8.9290876 79.70356
 
-Function Evaluation #261 is [9.2995417] at [9.0362967 81.582824]
+Function Evaluation #262 at [9.0362967 81.582824]
 
 xr=[9.0362967 81.582824], f(xr)=9.299542
 
@@ -5577,7 +5579,7 @@ Sort
 
 Iteration #142 (total = 142)
 
-Function Eval #261
+Function Eval #262
 
 Xopt : 8.9834675 80.693218
 
@@ -5599,13 +5601,13 @@ Reflect
 
 xbar=9.0098821 81.138021
 
-Function Evaluation #262 is [8.6395083] at [9.1450564 83.562141]
+Function Evaluation #263 at [9.1450564 83.562141]
 
 xr=[9.1450564 83.562141], f(xr)=8.639508
 
 Expand
 
-Function Evaluation #263 is [9.2581777] at [9.2802307 85.986261]
+Function Evaluation #264 at [9.2802307 85.986261]
 
 xe=9.2802307 85.986261, f(xe)=9.258178
 
@@ -5617,7 +5619,7 @@ Sort
 
 Iteration #143 (total = 143)
 
-Function Eval #263
+Function Eval #264
 
 Xopt : 9.1450564 83.562141
 
@@ -5639,13 +5641,13 @@ Reflect
 
 xbar=9.0642619 82.12768
 
-Function Evaluation #264 is [8.456696] at [9.0922271 82.672535]
+Function Evaluation #265 at [9.0922271 82.672535]
 
 xr=[9.0922271 82.672535], f(xr)=8.456696
 
 Expand
 
-Function Evaluation #265 is [8.4491729] at [9.1201924 83.21739]
+Function Evaluation #266 at [9.1201924 83.21739]
 
 xe=9.1201924 83.21739, f(xe)=8.449173
 
@@ -5657,7 +5659,7 @@ Sort
 
 Iteration #144 (total = 144)
 
-Function Eval #265
+Function Eval #266
 
 Xopt : 9.1201924 83.21739
 
@@ -5679,13 +5681,13 @@ Reflect
 
 xbar=9.1326244 83.389766
 
-Function Evaluation #266 is [7.8131636] at [9.2817813 86.086313]
+Function Evaluation #267 at [9.2817813 86.086313]
 
 xr=[9.2817813 86.086313], f(xr)=7.813164
 
 Expand
 
-Function Evaluation #267 is [9.1515553] at [9.4309382 88.782861]
+Function Evaluation #268 at [9.4309382 88.782861]
 
 xe=9.4309382 88.782861, f(xe)=9.151555
 
@@ -5697,7 +5699,7 @@ Sort
 
 Iteration #145 (total = 145)
 
-Function Eval #267
+Function Eval #268
 
 Xopt : 9.2817813 86.086313
 
@@ -5719,13 +5721,13 @@ Reflect
 
 xbar=9.2009868 84.651852
 
-Function Evaluation #268 is [7.7850676] at [9.2569173 85.741563]
+Function Evaluation #269 at [9.2569173 85.741563]
 
 xr=[9.2569173 85.741563], f(xr)=7.785068
 
 Expand
 
-Function Evaluation #269 is [8.2640649] at [9.3128477 86.831273]
+Function Evaluation #270 at [9.3128477 86.831273]
 
 xe=9.3128477 86.831273, f(xe)=8.264065
 
@@ -5737,7 +5739,7 @@ Sort
 
 Iteration #146 (total = 146)
 
-Function Eval #269
+Function Eval #270
 
 Xopt : 9.2569173 85.741563
 
@@ -5759,13 +5761,13 @@ Reflect
 
 xbar=9.2693493 85.913938
 
-Function Evaluation #270 is [7.6200572] at [9.4185062 88.610486]
+Function Evaluation #271 at [9.4185062 88.610486]
 
 xr=[9.4185062 88.610486], f(xr)=7.620057
 
 Expand
 
-Function Evaluation #271 is [11.351829] at [9.5676631 91.307033]
+Function Evaluation #272 at [9.5676631 91.307033]
 
 xe=9.5676631 91.307033, f(xe)=11.351829
 
@@ -5777,7 +5779,7 @@ Sort
 
 Iteration #147 (total = 147)
 
-Function Eval #271
+Function Eval #272
 
 Xopt : 9.4185062 88.610486
 
@@ -5799,13 +5801,13 @@ Reflect
 
 xbar=9.3377117 87.176024
 
-Function Evaluation #272 is [6.8567158] at [9.3936422 88.265735]
+Function Evaluation #273 at [9.3936422 88.265735]
 
 xr=[9.3936422 88.265735], f(xr)=6.856716
 
 Expand
 
-Function Evaluation #273 is [6.8770628] at [9.4495726 89.355446]
+Function Evaluation #274 at [9.4495726 89.355446]
 
 xe=9.4495726 89.355446, f(xe)=6.877063
 
@@ -5817,7 +5819,7 @@ Sort
 
 Iteration #148 (total = 148)
 
-Function Eval #273
+Function Eval #274
 
 Xopt : 9.3936422 88.265735
 
@@ -5839,13 +5841,13 @@ Reflect
 
 xbar=9.4060742 88.43811
 
-Function Evaluation #274 is [8.7919948] at [9.5552311 91.134658]
+Function Evaluation #275 at [9.5552311 91.134658]
 
 xr=[9.5552311 91.134658], f(xr)=8.791995
 
 Contract - inside
 
-Function Evaluation #275 is [7.1378785] at [9.3314957 87.089836]
+Function Evaluation #276 at [9.3314957 87.089836]
 
 xc=9.3314957 87.089836, f(xc)=7.137879
 
@@ -5857,7 +5859,7 @@ Sort
 
 Iteration #149 (total = 149)
 
-Function Eval #275
+Function Eval #276
 
 Xopt : 9.3936422 88.265735
 
@@ -5879,13 +5881,13 @@ Reflect
 
 xbar=9.3625689 87.677786
 
-Function Evaluation #276 is [8.9885095] at [9.3066317 86.745086]
+Function Evaluation #277 at [9.3066317 86.745086]
 
 xr=[9.3066317 86.745086], f(xr)=8.988509
 
 Contract - inside
 
-Function Evaluation #277 is [6.9541482] at [9.3905375 88.144136]
+Function Evaluation #278 at [9.3905375 88.144136]
 
 xc=9.3905375 88.144136, f(xc)=6.954148
 
@@ -5897,7 +5899,7 @@ Sort
 
 Iteration #150 (total = 150)
 
-Function Eval #277
+Function Eval #278
 
 Xopt : 9.3936422 88.265735
 
@@ -5919,13 +5921,13 @@ Reflect
 
 xbar=9.3920898 88.204935
 
-Function Evaluation #278 is [6.5990467] at [9.452684 89.320034]
+Function Evaluation #279 at [9.452684 89.320034]
 
 xr=[9.452684 89.320034], f(xr)=6.599047
 
 Expand
 
-Function Evaluation #279 is [6.6370913] at [9.5132781 90.435133]
+Function Evaluation #280 at [9.5132781 90.435133]
 
 xe=9.5132781 90.435133, f(xe)=6.637091
 
@@ -5937,7 +5939,7 @@ Sort
 
 Iteration #151 (total = 151)
 
-Function Eval #279
+Function Eval #280
 
 Xopt : 9.452684 89.320034
 
@@ -5959,13 +5961,13 @@ Reflect
 
 xbar=9.4231631 88.792884
 
-Function Evaluation #280 is [6.5611919] at [9.4557886 89.441633]
+Function Evaluation #281 at [9.4557886 89.441633]
 
 xr=[9.4557886 89.441633], f(xr)=6.561192
 
 Expand
 
-Function Evaluation #281 is [6.6726295] at [9.4884141 90.090382]
+Function Evaluation #282 at [9.4884141 90.090382]
 
 xe=9.4884141 90.090382, f(xe)=6.672630
 
@@ -5977,7 +5979,7 @@ Sort
 
 Iteration #152 (total = 152)
 
-Function Eval #281
+Function Eval #282
 
 Xopt : 9.4557886 89.441633
 
@@ -5999,13 +6001,13 @@ Reflect
 
 xbar=9.4542363 89.380834
 
-Function Evaluation #282 is [6.3061421] at [9.5148304 90.495932]
+Function Evaluation #283 at [9.5148304 90.495932]
 
 xr=[9.5148304 90.495932], f(xr)=6.306142
 
 Expand
 
-Function Evaluation #283 is [6.4826782] at [9.5754246 91.611031]
+Function Evaluation #284 at [9.5754246 91.611031]
 
 xe=9.5754246 91.611031, f(xe)=6.482678
 
@@ -6017,7 +6019,7 @@ Sort
 
 Iteration #153 (total = 153)
 
-Function Eval #283
+Function Eval #284
 
 Xopt : 9.5148304 90.495932
 
@@ -6039,13 +6041,13 @@ Reflect
 
 xbar=9.4853095 89.968783
 
-Function Evaluation #284 is [6.230575] at [9.517935 90.617532]
+Function Evaluation #285 at [9.517935 90.617532]
 
 xr=[9.517935 90.617532], f(xr)=6.230575
 
 Expand
 
-Function Evaluation #285 is [6.2814282] at [9.5505606 91.26628]
+Function Evaluation #286 at [9.5505606 91.26628]
 
 xe=9.5505606 91.26628, f(xe)=6.281428
 
@@ -6057,7 +6059,7 @@ Sort
 
 Iteration #154 (total = 154)
 
-Function Eval #285
+Function Eval #286
 
 Xopt : 9.517935 90.617532
 
@@ -6079,13 +6081,13 @@ Reflect
 
 xbar=9.5163827 90.556732
 
-Function Evaluation #286 is [6.088714] at [9.5769769 91.671831]
+Function Evaluation #287 at [9.5769769 91.671831]
 
 xr=[9.5769769 91.671831], f(xr)=6.088714
 
 Expand
 
-Function Evaluation #287 is [6.4997103] at [9.637571 92.78693]
+Function Evaluation #288 at [9.637571 92.78693]
 
 xe=9.637571 92.78693, f(xe)=6.499710
 
@@ -6097,7 +6099,7 @@ Sort
 
 Iteration #155 (total = 155)
 
-Function Eval #287
+Function Eval #288
 
 Xopt : 9.5769769 91.671831
 
@@ -6119,13 +6121,13 @@ Reflect
 
 xbar=9.547456 91.144681
 
-Function Evaluation #288 is [5.8799331] at [9.5800815 91.79343]
+Function Evaluation #289 at [9.5800815 91.79343]
 
 xr=[9.5800815 91.79343], f(xr)=5.879933
 
 Expand
 
-Function Evaluation #289 is [5.8438903] at [9.612707 92.442179]
+Function Evaluation #290 at [9.612707 92.442179]
 
 xe=9.612707 92.442179, f(xe)=5.843890
 
@@ -6137,7 +6139,7 @@ Sort
 
 Iteration #156 (total = 156)
 
-Function Eval #289
+Function Eval #290
 
 Xopt : 9.612707 92.442179
 
@@ -6159,13 +6161,13 @@ Reflect
 
 xbar=9.594842 92.057005
 
-Function Evaluation #290 is [5.6346417] at [9.6717489 93.496478]
+Function Evaluation #291 at [9.6717489 93.496478]
 
 xr=[9.6717489 93.496478], f(xr)=5.634642
 
 Expand
 
-Function Evaluation #291 is [6.0753247] at [9.7486558 94.935951]
+Function Evaluation #292 at [9.7486558 94.935951]
 
 xe=9.7486558 94.935951, f(xe)=6.075325
 
@@ -6177,7 +6179,7 @@ Sort
 
 Iteration #157 (total = 157)
 
-Function Eval #291
+Function Eval #292
 
 Xopt : 9.6717489 93.496478
 
@@ -6199,13 +6201,13 @@ Reflect
 
 xbar=9.6422279 92.969328
 
-Function Evaluation #292 is [5.3559981] at [9.707479 94.266826]
+Function Evaluation #293 at [9.707479 94.266826]
 
 xr=[9.707479 94.266826], f(xr)=5.355998
 
 Expand
 
-Function Evaluation #293 is [5.2979517] at [9.7727301 95.564323]
+Function Evaluation #294 at [9.7727301 95.564323]
 
 xe=9.7727301 95.564323, f(xe)=5.297952
 
@@ -6217,7 +6219,7 @@ Sort
 
 Iteration #158 (total = 158)
 
-Function Eval #293
+Function Eval #294
 
 Xopt : 9.7727301 95.564323
 
@@ -6239,13 +6241,13 @@ Reflect
 
 xbar=9.7222395 94.530401
 
-Function Evaluation #294 is [4.9047577] at [9.8317719 96.618623]
+Function Evaluation #295 at [9.8317719 96.618623]
 
 xr=[9.8317719 96.618623], f(xr)=4.904758
 
 Expand
 
-Function Evaluation #295 is [5.7434416] at [9.9413043 98.706845]
+Function Evaluation #296 at [9.9413043 98.706845]
 
 xe=9.9413043 98.706845, f(xe)=5.743442
 
@@ -6257,7 +6259,7 @@ Sort
 
 Iteration #159 (total = 159)
 
-Function Eval #295
+Function Eval #296
 
 Xopt : 9.8317719 96.618623
 
@@ -6279,13 +6281,13 @@ Reflect
 
 xbar=9.802251 96.091473
 
-Function Evaluation #296 is [4.3457857] at [9.9327531 98.686468]
+Function Evaluation #297 at [9.9327531 98.686468]
 
 xr=[9.9327531 98.686468], f(xr)=4.345786
 
 Expand
 
-Function Evaluation #297 is [3.7662522] at [10.063255 101.28146]
+Function Evaluation #298 at [10.063255 101.28146]
 
 xe=10.063255 101.28146, f(xe)=3.766252
 
@@ -6297,7 +6299,7 @@ Sort
 
 Iteration #160 (total = 160)
 
-Function Eval #297
+Function Eval #298
 
 Xopt : 10.063255 101.28146
 
@@ -6319,13 +6321,13 @@ Reflect
 
 xbar=9.9475136 98.950043
 
-Function Evaluation #298 is [5.0916445] at [10.122297 102.33576]
+Function Evaluation #299 at [10.122297 102.33576]
 
 xr=[10.122297 102.33576], f(xr)=5.091644
 
 Contract - outside
 
-Function Evaluation #299 is [4.179937] at [10.034905 100.6429]
+Function Evaluation #300 at [10.034905 100.6429]
 
 xc=10.034905 100.6429, f(xc)=4.179937
 
@@ -6337,7 +6339,7 @@ Sort
 
 Iteration #161 (total = 161)
 
-Function Eval #299
+Function Eval #300
 
 Xopt : 10.063255 101.28146
 
@@ -6359,7 +6361,7 @@ Reflect
 
 xbar=10.04908 100.96218
 
-Function Evaluation #300 is [3.8701554] at [10.266389 105.30574]
+Function Evaluation #301 at [10.266389 105.30574]
 
 xr=[10.266389 105.30574], f(xr)=3.870155
 
@@ -6371,7 +6373,7 @@ Sort
 
 Iteration #162 (total = 162)
 
-Function Eval #300
+Function Eval #301
 
 Xopt : 10.063255 101.28146
 
@@ -6393,13 +6395,13 @@ Reflect
 
 xbar=10.164822 103.2936
 
-Function Evaluation #301 is [3.0473243] at [10.294739 105.9443]
+Function Evaluation #302 at [10.294739 105.9443]
 
 xr=[10.294739 105.9443], f(xr)=3.047324
 
 Expand
 
-Function Evaluation #302 is [3.0968405] at [10.424655 108.595]
+Function Evaluation #303 at [10.424655 108.595]
 
 xe=10.424655 108.595, f(xe)=3.096840
 
@@ -6411,7 +6413,7 @@ Sort
 
 Iteration #163 (total = 163)
 
-Function Eval #302
+Function Eval #303
 
 Xopt : 10.294739 105.9443
 
@@ -6433,13 +6435,13 @@ Reflect
 
 xbar=10.178997 103.61288
 
-Function Evaluation #303 is [4.2744727] at [10.091605 101.92002]
+Function Evaluation #304 at [10.091605 101.92002]
 
 xr=[10.091605 101.92002], f(xr)=4.274473
 
 Contract - inside
 
-Function Evaluation #304 is [3.3535963] at [10.222693 104.45931]
+Function Evaluation #305 at [10.222693 104.45931]
 
 xc=10.222693 104.45931, f(xc)=3.353596
 
@@ -6451,7 +6453,7 @@ Sort
 
 Iteration #164 (total = 164)
 
-Function Eval #304
+Function Eval #305
 
 Xopt : 10.294739 105.9443
 
@@ -6473,13 +6475,13 @@ Reflect
 
 xbar=10.258716 105.20181
 
-Function Evaluation #305 is [5.1999834] at [10.454176 109.12215]
+Function Evaluation #306 at [10.454176 109.12215]
 
 xr=[10.454176 109.12215], f(xr)=5.199983
 
 Contract - inside
 
-Function Evaluation #306 is [3.3835656] at [10.160985 103.24164]
+Function Evaluation #307 at [10.160985 103.24164]
 
 xc=10.160985 103.24164, f(xc)=3.383566
 
@@ -6491,7 +6493,7 @@ Sort
 
 Iteration #165 (total = 165)
 
-Function Eval #306
+Function Eval #307
 
 Xopt : 10.294739 105.9443
 
@@ -6513,13 +6515,13 @@ Reflect
 
 xbar=10.258716 105.20181
 
-Function Evaluation #307 is [3.5846647] at [10.356446 107.16198]
+Function Evaluation #308 at [10.356446 107.16198]
 
 xr=[10.356446 107.16198], f(xr)=3.584665
 
 Contract - inside
 
-Function Evaluation #308 is [3.2419822] at [10.209851 104.22172]
+Function Evaluation #309 at [10.209851 104.22172]
 
 xc=10.209851 104.22172, f(xc)=3.241982
 
@@ -6531,7 +6533,7 @@ Sort
 
 Iteration #166 (total = 166)
 
-Function Eval #308
+Function Eval #309
 
 Xopt : 10.294739 105.9443
 
@@ -6553,13 +6555,13 @@ Reflect
 
 xbar=10.252295 105.08301
 
-Function Evaluation #309 is [2.9632842] at [10.281896 105.70671]
+Function Evaluation #310 at [10.281896 105.70671]
 
 xr=[10.281896 105.70671], f(xr)=2.963284
 
 Expand
 
-Function Evaluation #310 is [2.852208] at [10.311498 106.33041]
+Function Evaluation #311 at [10.311498 106.33041]
 
 xe=10.311498 106.33041, f(xe)=2.852208
 
@@ -6571,7 +6573,7 @@ Sort
 
 Iteration #167 (total = 167)
 
-Function Eval #310
+Function Eval #311
 
 Xopt : 10.311498 106.33041
 
@@ -6593,13 +6595,13 @@ Reflect
 
 xbar=10.303118 106.13736
 
-Function Evaluation #311 is [2.6730182] at [10.396386 108.05299]
+Function Evaluation #312 at [10.396386 108.05299]
 
 xr=[10.396386 108.05299], f(xr)=2.673018
 
 Expand
 
-Function Evaluation #312 is [2.6934194] at [10.489654 109.96863]
+Function Evaluation #313 at [10.489654 109.96863]
 
 xe=10.489654 109.96863, f(xe)=2.693419
 
@@ -6611,7 +6613,7 @@ Sort
 
 Iteration #168 (total = 168)
 
-Function Eval #312
+Function Eval #313
 
 Xopt : 10.396386 108.05299
 
@@ -6633,13 +6635,13 @@ Reflect
 
 xbar=10.353942 107.1917
 
-Function Evaluation #313 is [2.5211316] at [10.413146 108.4391]
+Function Evaluation #314 at [10.413146 108.4391]
 
 xr=[10.413146 108.4391], f(xr)=2.521132
 
 Expand
 
-Function Evaluation #314 is [2.360624] at [10.472349 109.6865]
+Function Evaluation #315 at [10.472349 109.6865]
 
 xe=10.472349 109.6865, f(xe)=2.360624
 
@@ -6651,7 +6653,7 @@ Sort
 
 Iteration #169 (total = 169)
 
-Function Eval #314
+Function Eval #315
 
 Xopt : 10.472349 109.6865
 
@@ -6673,13 +6675,13 @@ Reflect
 
 xbar=10.434368 108.86975
 
-Function Evaluation #315 is [2.2947731] at [10.557237 111.40908]
+Function Evaluation #316 at [10.557237 111.40908]
 
 xr=[10.557237 111.40908], f(xr)=2.294773
 
 Expand
 
-Function Evaluation #316 is [3.093811] at [10.680107 113.94842]
+Function Evaluation #317 at [10.680107 113.94842]
 
 xe=10.680107 113.94842, f(xe)=3.093811
 
@@ -6691,7 +6693,7 @@ Sort
 
 Iteration #170 (total = 170)
 
-Function Eval #316
+Function Eval #317
 
 Xopt : 10.557237 111.40908
 
@@ -6713,13 +6715,13 @@ Reflect
 
 xbar=10.514793 110.54779
 
-Function Evaluation #317 is [1.9181333] at [10.6332 113.04259]
+Function Evaluation #318 at [10.6332 113.04259]
 
 xr=[10.6332 113.04259], f(xr)=1.918133
 
 Expand
 
-Function Evaluation #318 is [1.9145853] at [10.751607 115.53739]
+Function Evaluation #319 at [10.751607 115.53739]
 
 xe=10.751607 115.53739, f(xe)=1.914585
 
@@ -6731,7 +6733,7 @@ Sort
 
 Iteration #171 (total = 171)
 
-Function Eval #318
+Function Eval #319
 
 Xopt : 10.751607 115.53739
 
@@ -6753,13 +6755,13 @@ Reflect
 
 xbar=10.654422 113.47324
 
-Function Evaluation #319 is [4.232313] at [10.836495 117.25997]
+Function Evaluation #320 at [10.836495 117.25997]
 
 xr=[10.836495 117.25997], f(xr)=4.232313
 
 Contract - inside
 
-Function Evaluation #320 is [2.066617] at [10.563386 111.57987]
+Function Evaluation #321 at [10.563386 111.57987]
 
 xc=10.563386 111.57987, f(xc)=2.066617
 
@@ -6771,7 +6773,7 @@ Sort
 
 Iteration #172 (total = 172)
 
-Function Eval #320
+Function Eval #321
 
 Xopt : 10.751607 115.53739
 
@@ -6793,13 +6795,13 @@ Reflect
 
 xbar=10.657497 113.55863
 
-Function Evaluation #321 is [1.5878611] at [10.757756 115.70818]
+Function Evaluation #322 at [10.757756 115.70818]
 
 xr=[10.757756 115.70818], f(xr)=1.587861
 
 Expand
 
-Function Evaluation #322 is [1.4545098] at [10.858015 117.85772]
+Function Evaluation #323 at [10.858015 117.85772]
 
 xe=10.858015 117.85772, f(xe)=1.454510
 
@@ -6811,7 +6813,7 @@ Sort
 
 Iteration #173 (total = 173)
 
-Function Eval #322
+Function Eval #323
 
 Xopt : 10.858015 117.85772
 
@@ -6833,13 +6835,13 @@ Reflect
 
 xbar=10.804811 116.69756
 
-Function Evaluation #323 is [5.0759282] at [11.046237 121.81524]
+Function Evaluation #324 at [11.046237 121.81524]
 
 xr=[11.046237 121.81524], f(xr)=5.075928
 
 Contract - inside
 
-Function Evaluation #324 is [1.7442562] at [10.684099 114.13871]
+Function Evaluation #325 at [10.684099 114.13871]
 
 xc=10.684099 114.13871, f(xc)=1.744256
 
@@ -6851,7 +6853,7 @@ Sort
 
 Iteration #174 (total = 174)
 
-Function Eval #324
+Function Eval #325
 
 Xopt : 10.858015 117.85772
 
@@ -6873,7 +6875,7 @@ Reflect
 
 xbar=10.771057 115.99822
 
-Function Evaluation #325 is [1.5205251] at [10.790507 116.45904]
+Function Evaluation #326 at [10.790507 116.45904]
 
 xr=[10.790507 116.45904], f(xr)=1.520525
 
@@ -6885,7 +6887,7 @@ Sort
 
 Iteration #175 (total = 175)
 
-Function Eval #325
+Function Eval #326
 
 Xopt : 10.858015 117.85772
 
@@ -6907,13 +6909,13 @@ Reflect
 
 xbar=10.824261 117.15838
 
-Function Evaluation #326 is [1.2366796] at [10.964423 120.17805]
+Function Evaluation #327 at [10.964423 120.17805]
 
 xr=[10.964423 120.17805], f(xr)=1.236680
 
 Expand
 
-Function Evaluation #327 is [2.1037479] at [11.104586 123.19772]
+Function Evaluation #328 at [11.104586 123.19772]
 
 xe=11.104586 123.19772, f(xe)=2.103748
 
@@ -6925,7 +6927,7 @@ Sort
 
 Iteration #176 (total = 176)
 
-Function Eval #327
+Function Eval #328
 
 Xopt : 10.964423 120.17805
 
@@ -6947,13 +6949,13 @@ Reflect
 
 xbar=10.911219 119.01789
 
-Function Evaluation #328 is [2.5449943] at [11.031932 121.57673]
+Function Evaluation #329 at [11.031932 121.57673]
 
 xr=[11.031932 121.57673], f(xr)=2.544994
 
 Contract - inside
 
-Function Evaluation #329 is [1.3212794] at [10.850863 117.73847]
+Function Evaluation #330 at [10.850863 117.73847]
 
 xc=10.850863 117.73847, f(xc)=1.321279
 
@@ -6965,7 +6967,7 @@ Sort
 
 Iteration #177 (total = 177)
 
-Function Eval #329
+Function Eval #330
 
 Xopt : 10.964423 120.17805
 
@@ -6987,13 +6989,13 @@ Reflect
 
 xbar=10.907643 118.95826
 
-Function Evaluation #330 is [1.0881785] at [10.957271 120.0588]
+Function Evaluation #331 at [10.957271 120.0588]
 
 xr=[10.957271 120.0588], f(xr)=1.088179
 
 Expand
 
-Function Evaluation #331 is [0.9918953] at [11.006899 121.15934]
+Function Evaluation #332 at [11.006899 121.15934]
 
 xe=11.006899 121.15934, f(xe)=0.991895
 
@@ -7005,7 +7007,7 @@ Sort
 
 Iteration #178 (total = 178)
 
-Function Eval #331
+Function Eval #332
 
 Xopt : 11.006899 121.15934
 
@@ -7027,7 +7029,7 @@ Reflect
 
 xbar=10.985661 120.66869
 
-Function Evaluation #332 is [1.2051227] at [11.120459 123.59892]
+Function Evaluation #333 at [11.120459 123.59892]
 
 xr=[11.120459 123.59892], f(xr)=1.205123
 
@@ -7039,7 +7041,7 @@ Sort
 
 Iteration #179 (total = 179)
 
-Function Eval #332
+Function Eval #333
 
 Xopt : 11.006899 121.15934
 
@@ -7061,13 +7063,13 @@ Reflect
 
 xbar=11.063679 122.37913
 
-Function Evaluation #333 is [0.796182] at [11.162935 124.58021]
+Function Evaluation #334 at [11.162935 124.58021]
 
 xr=[11.162935 124.58021], f(xr)=0.796182
 
 Expand
 
-Function Evaluation #334 is [0.8540101] at [11.26219 126.78128]
+Function Evaluation #335 at [11.26219 126.78128]
 
 xe=11.26219 126.78128, f(xe)=0.854010
 
@@ -7079,7 +7081,7 @@ Sort
 
 Iteration #180 (total = 180)
 
-Function Eval #334
+Function Eval #335
 
 Xopt : 11.162935 124.58021
 
@@ -7101,13 +7103,13 @@ Reflect
 
 xbar=11.084917 122.86977
 
-Function Evaluation #335 is [1.1735488] at [11.049374 122.14062]
+Function Evaluation #336 at [11.049374 122.14062]
 
 xr=[11.049374 122.14062], f(xr)=1.173549
 
 Contract - outside
 
-Function Evaluation #336 is [0.9253754] at [11.067145 122.50519]
+Function Evaluation #337 at [11.067145 122.50519]
 
 xc=11.067145 122.50519, f(xc)=0.925375
 
@@ -7119,7 +7121,7 @@ Sort
 
 Iteration #181 (total = 181)
 
-Function Eval #336
+Function Eval #337
 
 Xopt : 11.162935 124.58021
 
@@ -7141,13 +7143,13 @@ Reflect
 
 xbar=11.11504 123.5427
 
-Function Evaluation #337 is [0.7172376] at [11.223181 125.92606]
+Function Evaluation #338 at [11.223181 125.92606]
 
 xr=[11.223181 125.92606], f(xr)=0.717238
 
 Expand
 
-Function Evaluation #338 is [1.2470731] at [11.331322 128.30943]
+Function Evaluation #339 at [11.331322 128.30943]
 
 xe=11.331322 128.30943, f(xe)=1.247073
 
@@ -7159,7 +7161,7 @@ Sort
 
 Iteration #182 (total = 182)
 
-Function Eval #338
+Function Eval #339
 
 Xopt : 11.223181 125.92606
 
@@ -7181,13 +7183,13 @@ Reflect
 
 xbar=11.193058 125.25314
 
-Function Evaluation #339 is [1.8565604] at [11.31897 128.00108]
+Function Evaluation #340 at [11.31897 128.00108]
 
 xr=[11.31897 128.00108], f(xr)=1.856560
 
 Contract - inside
 
-Function Evaluation #340 is [0.7567231] at [11.130102 123.87916]
+Function Evaluation #341 at [11.130102 123.87916]
 
 xc=11.130102 123.87916, f(xc)=0.756723
 
@@ -7199,7 +7201,7 @@ Sort
 
 Iteration #183 (total = 183)
 
-Function Eval #340
+Function Eval #341
 
 Xopt : 11.223181 125.92606
 
@@ -7221,13 +7223,13 @@ Reflect
 
 xbar=11.176641 124.90261
 
-Function Evaluation #341 is [0.6556631] at [11.190348 125.22502]
+Function Evaluation #342 at [11.190348 125.22502]
 
 xr=[11.190348 125.22502], f(xr)=0.655663
 
 Expand
 
-Function Evaluation #342 is [0.6610180] at [11.204055 125.54743]
+Function Evaluation #343 at [11.204055 125.54743]
 
 xe=11.204055 125.54743, f(xe)=0.661018
 
@@ -7239,7 +7241,7 @@ Sort
 
 Iteration #184 (total = 184)
 
-Function Eval #342
+Function Eval #343
 
 Xopt : 11.190348 125.22502
 
@@ -7261,7 +7263,7 @@ Reflect
 
 xbar=11.206765 125.57554
 
-Function Evaluation #343 is [0.7055060] at [11.283428 127.27192]
+Function Evaluation #344 at [11.283428 127.27192]
 
 xr=[11.283428 127.27192], f(xr)=0.705506
 
@@ -7273,7 +7275,7 @@ Sort
 
 Iteration #185 (total = 185)
 
-Function Eval #343
+Function Eval #344
 
 Xopt : 11.190348 125.22502
 
@@ -7295,13 +7297,13 @@ Reflect
 
 xbar=11.236888 126.24847
 
-Function Evaluation #344 is [0.5641123] at [11.250595 126.57088]
+Function Evaluation #345 at [11.250595 126.57088]
 
 xr=[11.250595 126.57088], f(xr)=0.564112
 
 Expand
 
-Function Evaluation #345 is [0.5489891] at [11.264302 126.89329]
+Function Evaluation #346 at [11.264302 126.89329]
 
 xe=11.264302 126.89329, f(xe)=0.548989
 
@@ -7313,7 +7315,7 @@ Sort
 
 Iteration #186 (total = 186)
 
-Function Eval #345
+Function Eval #346
 
 Xopt : 11.264302 126.89329
 
@@ -7335,13 +7337,13 @@ Reflect
 
 xbar=11.227325 126.05916
 
-Function Evaluation #346 is [0.9387246] at [11.171222 124.84639]
+Function Evaluation #347 at [11.171222 124.84639]
 
 xr=[11.171222 124.84639], f(xr)=0.938725
 
 Contract - inside
 
-Function Evaluation #347 is [0.5867171] at [11.255376 126.66554]
+Function Evaluation #348 at [11.255376 126.66554]
 
 xc=11.255376 126.66554, f(xc)=0.586717
 
@@ -7353,7 +7355,7 @@ Sort
 
 Iteration #187 (total = 187)
 
-Function Eval #347
+Function Eval #348
 
 Xopt : 11.264302 126.89329
 
@@ -7375,13 +7377,13 @@ Reflect
 
 xbar=11.259839 126.77942
 
-Function Evaluation #348 is [0.4894350] at [11.32933 128.33381]
+Function Evaluation #349 at [11.32933 128.33381]
 
 xr=[11.32933 128.33381], f(xr)=0.489435
 
 Expand
 
-Function Evaluation #349 is [0.5631461] at [11.398821 129.8882]
+Function Evaluation #350 at [11.398821 129.8882]
 
 xe=11.398821 129.8882, f(xe)=0.563146
 
@@ -7393,7 +7395,7 @@ Sort
 
 Iteration #188 (total = 188)
 
-Function Eval #349
+Function Eval #350
 
 Xopt : 11.32933 128.33381
 
@@ -7415,13 +7417,13 @@ Reflect
 
 xbar=11.296816 127.61355
 
-Function Evaluation #350 is [0.4409600] at [11.338255 128.56156]
+Function Evaluation #351 at [11.338255 128.56156]
 
 xr=[11.338255 128.56156], f(xr)=0.440960
 
 Expand
 
-Function Evaluation #351 is [0.3994612] at [11.379695 129.50957]
+Function Evaluation #352 at [11.379695 129.50957]
 
 xe=11.379695 129.50957, f(xe)=0.399461
 
@@ -7433,7 +7435,7 @@ Sort
 
 Iteration #189 (total = 189)
 
-Function Eval #351
+Function Eval #352
 
 Xopt : 11.379695 129.50957
 
@@ -7455,7 +7457,7 @@ Reflect
 
 xbar=11.354512 128.92169
 
-Function Evaluation #352 is [0.4081606] at [11.444723 130.95008]
+Function Evaluation #353 at [11.444723 130.95008]
 
 xr=[11.444723 130.95008], f(xr)=0.408161
 
@@ -7467,7 +7469,7 @@ Sort
 
 Iteration #190 (total = 190)
 
-Function Eval #352
+Function Eval #353
 
 Xopt : 11.379695 129.50957
 
@@ -7489,13 +7491,13 @@ Reflect
 
 xbar=11.412209 130.22983
 
-Function Evaluation #353 is [0.2674647] at [11.495088 132.12584]
+Function Evaluation #354 at [11.495088 132.12584]
 
 xr=[11.495088 132.12584], f(xr)=0.267465
 
 Expand
 
-Function Evaluation #354 is [0.2534164] at [11.577966 134.02186]
+Function Evaluation #355 at [11.577966 134.02186]
 
 xe=11.577966 134.02186, f(xe)=0.253416
 
@@ -7507,7 +7509,7 @@ Sort
 
 Iteration #191 (total = 191)
 
-Function Eval #354
+Function Eval #355
 
 Xopt : 11.577966 134.02186
 
@@ -7529,7 +7531,7 @@ Reflect
 
 xbar=11.47883 131.76572
 
-Function Evaluation #355 is [0.3501271] at [11.512938 132.58135]
+Function Evaluation #356 at [11.512938 132.58135]
 
 xr=[11.512938 132.58135], f(xr)=0.350127
 
@@ -7541,7 +7543,7 @@ Sort
 
 Iteration #192 (total = 192)
 
-Function Eval #355
+Function Eval #356
 
 Xopt : 11.577966 134.02186
 
@@ -7563,13 +7565,13 @@ Reflect
 
 xbar=11.545452 133.3016
 
-Function Evaluation #356 is [0.429088] at [11.71121 137.09364]
+Function Evaluation #357 at [11.71121 137.09364]
 
 xr=[11.71121 137.09364], f(xr)=0.429088
 
 Contract - inside
 
-Function Evaluation #357 is [0.3113145] at [11.462573 131.40559]
+Function Evaluation #358 at [11.462573 131.40559]
 
 xc=11.462573 131.40559, f(xc)=0.311314
 
@@ -7581,7 +7583,7 @@ Sort
 
 Iteration #193 (total = 193)
 
-Function Eval #357
+Function Eval #358
 
 Xopt : 11.577966 134.02186
 
@@ -7603,13 +7605,13 @@ Reflect
 
 xbar=11.52027 132.71372
 
-Function Evaluation #358 is [0.3791526] at [11.527602 132.8461]
+Function Evaluation #359 at [11.527602 132.8461]
 
 xr=[11.527602 132.8461], f(xr)=0.379153
 
 Contract - inside
 
-Function Evaluation #359 is [0.2572848] at [11.516604 132.64754]
+Function Evaluation #360 at [11.516604 132.64754]
 
 xc=11.516604 132.64754, f(xc)=0.257285
 
@@ -7621,7 +7623,7 @@ Sort
 
 Iteration #194 (total = 194)
 
-Function Eval #359
+Function Eval #360
 
 Xopt : 11.577966 134.02186
 
@@ -7643,13 +7645,13 @@ Reflect
 
 xbar=11.547285 133.3347
 
-Function Evaluation #360 is [0.2917692] at [11.631997 135.26381]
+Function Evaluation #361 at [11.631997 135.26381]
 
 xr=[11.631997 135.26381], f(xr)=0.291769
 
 Contract - outside
 
-Function Evaluation #361 is [0.2105186] at [11.589641 134.29926]
+Function Evaluation #362 at [11.589641 134.29926]
 
 xc=11.589641 134.29926, f(xc)=0.210519
 
@@ -7661,7 +7663,7 @@ Sort
 
 Iteration #195 (total = 195)
 
-Function Eval #361
+Function Eval #362
 
 Xopt : 11.589641 134.29926
 
@@ -7683,13 +7685,13 @@ Reflect
 
 xbar=11.583804 134.16056
 
-Function Evaluation #362 is [0.6444660] at [11.651003 135.67358]
+Function Evaluation #363 at [11.651003 135.67358]
 
 xr=[11.651003 135.67358], f(xr)=0.644466
 
 Contract - inside
 
-Function Evaluation #363 is [0.2033165] at [11.550204 133.40405]
+Function Evaluation #364 at [11.550204 133.40405]
 
 xc=11.550204 133.40405, f(xc)=0.203316
 
@@ -7701,7 +7703,7 @@ Sort
 
 Iteration #196 (total = 196)
 
-Function Eval #363
+Function Eval #364
 
 Xopt : 11.550204 133.40405
 
@@ -7723,13 +7725,13 @@ Reflect
 
 xbar=11.569922 133.85165
 
-Function Evaluation #364 is [0.1938894] at [11.561879 133.68144]
+Function Evaluation #365 at [11.561879 133.68144]
 
 xr=[11.561879 133.68144], f(xr)=0.193889
 
 Expand
 
-Function Evaluation #365 is [0.2395926] at [11.553835 133.51123]
+Function Evaluation #366 at [11.553835 133.51123]
 
 xe=11.553835 133.51123, f(xe)=0.239593
 
@@ -7741,7 +7743,7 @@ Sort
 
 Iteration #197 (total = 197)
 
-Function Eval #365
+Function Eval #366
 
 Xopt : 11.561879 133.68144
 
@@ -7763,13 +7765,13 @@ Reflect
 
 xbar=11.556041 133.54274
 
-Function Evaluation #366 is [0.2663831] at [11.522441 132.78623]
+Function Evaluation #367 at [11.522441 132.78623]
 
 xr=[11.522441 132.78623], f(xr)=0.266383
 
 Contract - inside
 
-Function Evaluation #367 is [0.1917817] at [11.572841 133.921]
+Function Evaluation #368 at [11.572841 133.921]
 
 xc=11.572841 133.921, f(xc)=0.191782
 
@@ -7781,7 +7783,7 @@ Sort
 
 Iteration #198 (total = 198)
 
-Function Eval #367
+Function Eval #368
 
 Xopt : 11.572841 133.921
 
@@ -7803,13 +7805,13 @@ Reflect
 
 xbar=11.56736 133.80122
 
-Function Evaluation #368 is [0.1733111] at [11.584516 134.19839]
+Function Evaluation #369 at [11.584516 134.19839]
 
 xr=[11.584516 134.19839], f(xr)=0.173311
 
 Expand
 
-Function Evaluation #369 is [0.1597054] at [11.601672 134.59556]
+Function Evaluation #370 at [11.601672 134.59556]
 
 xe=11.601672 134.59556, f(xe)=0.159705
 
@@ -7821,7 +7823,7 @@ Sort
 
 Iteration #199 (total = 199)
 
-Function Eval #369
+Function Eval #370
 
 Xopt : 11.601672 134.59556
 
@@ -7843,7 +7845,7 @@ Reflect
 
 xbar=11.587257 134.25828
 
-Function Evaluation #370 is [0.1830069] at [11.612634 134.83512]
+Function Evaluation #371 at [11.612634 134.83512]
 
 xr=[11.612634 134.83512], f(xr)=0.183007
 
@@ -7855,7 +7857,7 @@ Sort
 
 Iteration #200 (total = 200)
 
-Function Eval #370
+Function Eval #371
 
 Xopt : 11.601672 134.59556
 
@@ -7877,13 +7879,13 @@ Reflect
 
 xbar=11.607153 134.71534
 
-Function Evaluation #371 is [0.1482049] at [11.641465 135.50969]
+Function Evaluation #372 at [11.641465 135.50969]
 
 xr=[11.641465 135.50969], f(xr)=0.148205
 
 Expand
 
-Function Evaluation #372 is [0.1440736] at [11.675777 136.30403]
+Function Evaluation #373 at [11.675777 136.30403]
 
 xe=11.675777 136.30403, f(xe)=0.144074
 
@@ -7895,7 +7897,7 @@ Sort
 
 Iteration #201 (total = 201)
 
-Function Eval #372
+Function Eval #373
 
 Xopt : 11.675777 136.30403
 
@@ -7917,13 +7919,13 @@ Reflect
 
 xbar=11.638724 135.4498
 
-Function Evaluation #373 is [0.1135214] at [11.664815 136.06448]
+Function Evaluation #374 at [11.664815 136.06448]
 
 xr=[11.664815 136.06448], f(xr)=0.113521
 
 Expand
 
-Function Evaluation #374 is [0.0959006] at [11.690905 136.67915]
+Function Evaluation #375 at [11.690905 136.67915]
 
 xe=11.690905 136.67915, f(xe)=0.095901
 
@@ -7935,7 +7937,7 @@ Sort
 
 Iteration #202 (total = 202)
 
-Function Eval #374
+Function Eval #375
 
 Xopt : 11.690905 136.67915
 
@@ -7957,7 +7959,7 @@ Reflect
 
 xbar=11.683341 136.49159
 
-Function Evaluation #375 is [0.1327137] at [11.76501 138.38762]
+Function Evaluation #376 at [11.76501 138.38762]
 
 xr=[11.76501 138.38762], f(xr)=0.132714
 
@@ -7969,7 +7971,7 @@ Sort
 
 Iteration #203 (total = 203)
 
-Function Eval #375
+Function Eval #376
 
 Xopt : 11.690905 136.67915
 
@@ -7991,13 +7993,13 @@ Reflect
 
 xbar=11.727957 137.53339
 
-Function Evaluation #376 is [0.0562636] at [11.780137 138.76274]
+Function Evaluation #377 at [11.780137 138.76274]
 
 xr=[11.780137 138.76274], f(xr)=0.056264
 
 Expand
 
-Function Evaluation #377 is [0.0416958] at [11.832318 139.99209]
+Function Evaluation #378 at [11.832318 139.99209]
 
 xe=11.832318 139.99209, f(xe)=0.041696
 
@@ -8009,7 +8011,7 @@ Sort
 
 Iteration #204 (total = 204)
 
-Function Eval #377
+Function Eval #378
 
 Xopt : 11.832318 139.99209
 
@@ -8031,13 +8033,13 @@ Reflect
 
 xbar=11.761611 138.33562
 
-Function Evaluation #378 is [0.1371965] at [11.758212 138.28362]
+Function Evaluation #379 at [11.758212 138.28362]
 
 xr=[11.758212 138.28362], f(xr)=0.137196
 
 Contract - inside
 
-Function Evaluation #379 is [0.0752169] at [11.763311 138.36162]
+Function Evaluation #380 at [11.763311 138.36162]
 
 xc=11.763311 138.36162, f(xc)=0.075217
 
@@ -8049,7 +8051,7 @@ Sort
 
 Iteration #205 (total = 205)
 
-Function Eval #379
+Function Eval #380
 
 Xopt : 11.832318 139.99209
 
@@ -8071,13 +8073,13 @@ Reflect
 
 xbar=11.797814 139.17685
 
-Function Evaluation #380 is [0.2383712] at [11.904723 141.67456]
+Function Evaluation #381 at [11.904723 141.67456]
 
 xr=[11.904723 141.67456], f(xr)=0.238371
 
 Contract - inside
 
-Function Evaluation #381 is [0.0657421] at [11.744359 137.928]
+Function Evaluation #382 at [11.744359 137.928]
 
 xc=11.744359 137.928, f(xc)=0.065742
 
@@ -8089,7 +8091,7 @@ Sort
 
 Iteration #206 (total = 206)
 
-Function Eval #381
+Function Eval #382
 
 Xopt : 11.832318 139.99209
 
@@ -8111,13 +8113,13 @@ Reflect
 
 xbar=11.788338 138.96004
 
-Function Evaluation #382 is [0.0356403] at [11.813366 139.55847]
+Function Evaluation #383 at [11.813366 139.55847]
 
 xr=[11.813366 139.55847], f(xr)=0.035640
 
 Expand
 
-Function Evaluation #383 is [0.0347885] at [11.838394 140.15689]
+Function Evaluation #384 at [11.838394 140.15689]
 
 xe=11.838394 140.15689, f(xe)=0.034789
 
@@ -8129,7 +8131,7 @@ Sort
 
 Iteration #207 (total = 207)
 
-Function Eval #383
+Function Eval #384
 
 Xopt : 11.838394 140.15689
 
@@ -8151,13 +8153,13 @@ Reflect
 
 xbar=11.835356 140.07449
 
-Function Evaluation #384 is [0.0340117] at [11.926353 142.22098]
+Function Evaluation #385 at [11.926353 142.22098]
 
 xr=[11.926353 142.22098], f(xr)=0.034012
 
 Expand
 
-Function Evaluation #385 is [0.2425197] at [12.017349 144.36747]
+Function Evaluation #386 at [12.017349 144.36747]
 
 xe=12.017349 144.36747, f(xe)=0.242520
 
@@ -8169,7 +8171,7 @@ Sort
 
 Iteration #208 (total = 208)
 
-Function Eval #385
+Function Eval #386
 
 Xopt : 11.926353 142.22098
 
@@ -8191,13 +8193,13 @@ Reflect
 
 xbar=11.882374 141.18894
 
-Function Evaluation #386 is [0.0054151] at [11.932429 142.38579]
+Function Evaluation #387 at [11.932429 142.38579]
 
 xr=[11.932429 142.38579], f(xr)=0.005415
 
 Expand
 
-Function Evaluation #387 is [0.0010255] at [11.982485 143.58264]
+Function Evaluation #388 at [11.982485 143.58264]
 
 xe=11.982485 143.58264, f(xe)=0.001026
 
@@ -8209,7 +8211,7 @@ Sort
 
 Iteration #209 (total = 209)
 
-Function Eval #387
+Function Eval #388
 
 Xopt : 11.982485 143.58264
 
@@ -8231,13 +8233,13 @@ Reflect
 
 xbar=11.954419 142.90181
 
-Function Evaluation #388 is [0.2439592] at [12.070444 145.64672]
+Function Evaluation #389 at [12.070444 145.64672]
 
 xr=[12.070444 145.64672], f(xr)=0.243959
 
 Contract - inside
 
-Function Evaluation #389 is [0.0130923] at [11.896407 141.52935]
+Function Evaluation #390 at [11.896407 141.52935]
 
 xc=11.896407 141.52935, f(xc)=0.013092
 
@@ -8249,7 +8251,7 @@ Sort
 
 Iteration #210 (total = 210)
 
-Function Eval #389
+Function Eval #390
 
 Xopt : 11.982485 143.58264
 
@@ -8271,13 +8273,13 @@ Reflect
 
 xbar=11.939446 142.55599
 
-Function Evaluation #390 is [0.0795898] at [11.952539 142.89101]
+Function Evaluation #391 at [11.952539 142.89101]
 
 xr=[11.952539 142.89101], f(xr)=0.079590
 
 Contract - inside
 
-Function Evaluation #391 is [0.0076385] at [11.932899 142.38849]
+Function Evaluation #392 at [11.932899 142.38849]
 
 xc=11.932899 142.38849, f(xc)=0.007638
 
@@ -8289,7 +8291,7 @@ Sort
 
 Iteration #211 (total = 211)
 
-Function Eval #391
+Function Eval #392
 
 Xopt : 11.982485 143.58264
 
@@ -8311,13 +8313,13 @@ Reflect
 
 xbar=11.957692 142.98556
 
-Function Evaluation #392 is [0.0201291] at [12.018978 144.44177]
+Function Evaluation #393 at [12.018978 144.44177]
 
 xr=[12.018978 144.44177], f(xr)=0.020129
 
 Contract - inside
 
-Function Evaluation #393 is [0.0061897] at [11.92705 142.25746]
+Function Evaluation #394 at [11.92705 142.25746]
 
 xc=11.92705 142.25746, f(xc)=0.006190
 
@@ -8329,7 +8331,7 @@ Sort
 
 Iteration #212 (total = 212)
 
-Function Eval #393
+Function Eval #394
 
 Xopt : 11.982485 143.58264
 
@@ -8351,13 +8353,13 @@ Reflect
 
 xbar=11.954767 142.92005
 
-Function Evaluation #394 is [0.0144866] at [11.976636 143.45161]
+Function Evaluation #395 at [11.976636 143.45161]
 
 xr=[11.976636 143.45161], f(xr)=0.014487
 
 Contract - inside
 
-Function Evaluation #395 is [0.0032338] at [11.943833 142.65427]
+Function Evaluation #396 at [11.943833 142.65427]
 
 xc=11.943833 142.65427, f(xc)=0.003234
 
@@ -8369,7 +8371,7 @@ Sort
 
 Iteration #213 (total = 213)
 
-Function Eval #395
+Function Eval #396
 
 Xopt : 11.982485 143.58264
 
@@ -8391,13 +8393,13 @@ Reflect
 
 xbar=11.963159 143.11845
 
-Function Evaluation #396 is [0.0009098] at [11.999269 143.97945]
+Function Evaluation #397 at [11.999269 143.97945]
 
 xr=[11.999269 143.97945], f(xr)=0.000910
 
 Expand
 
-Function Evaluation #397 is [0.0110681] at [12.035379 144.84044]
+Function Evaluation #398 at [12.035379 144.84044]
 
 xe=12.035379 144.84044, f(xe)=0.011068
 
@@ -8409,7 +8411,7 @@ Sort
 
 Iteration #214 (total = 214)
 
-Function Eval #397
+Function Eval #398
 
 Xopt : 11.999269 143.97945
 
@@ -8431,13 +8433,13 @@ Reflect
 
 xbar=11.990877 143.78104
 
-Function Evaluation #398 is [0.0028295] at [12.037921 144.90782]
+Function Evaluation #399 at [12.037921 144.90782]
 
 xr=[12.037921 144.90782], f(xr)=0.002829
 
 Contract - outside
 
-Function Evaluation #399 is [0.0003924] at [12.014399 144.34443]
+Function Evaluation #400 at [12.014399 144.34443]
 
 xc=12.014399 144.34443, f(xc)=0.000392
 
@@ -8449,7 +8451,7 @@ Sort
 
 Iteration #215 (total = 215)
 
-Function Eval #399
+Function Eval #400
 
 Xopt : 12.014399 144.34443
 
@@ -8471,13 +8473,13 @@ Reflect
 
 xbar=12.006834 144.16194
 
-Function Evaluation #400 is [0.0075786] at [12.031183 144.74124]
+Function Evaluation #401 at [12.031183 144.74124]
 
 xr=[12.031183 144.74124], f(xr)=0.007579
 
 Contract - inside
 
-Function Evaluation #401 is [0.0000464] at [11.99466 143.87229]
+Function Evaluation #402 at [11.99466 143.87229]
 
 xc=11.99466 143.87229, f(xc)=0.000046
 
@@ -8489,7 +8491,7 @@ Sort
 
 Iteration #216 (total = 216)
 
-Function Eval #401
+Function Eval #402
 
 Xopt : 11.99466 143.87229
 
@@ -8511,13 +8513,13 @@ Reflect
 
 xbar=12.004529 144.10836
 
-Function Evaluation #402 is [0.0005878] at [12.00979 144.23727]
+Function Evaluation #403 at [12.00979 144.23727]
 
 xr=[12.00979 144.23727], f(xr)=0.000588
 
 Contract - outside
 
-Function Evaluation #403 is [0.0001378] at [12.00716 144.17281]
+Function Evaluation #404 at [12.00716 144.17281]
 
 xc=12.00716 144.17281, f(xc)=0.000138
 
@@ -8529,7 +8531,7 @@ Sort
 
 Iteration #217 (total = 217)
 
-Function Eval #403
+Function Eval #404
 
 Xopt : 11.99466 143.87229
 
@@ -8551,13 +8553,13 @@ Reflect
 
 xbar=12.00091 144.02255
 
-Function Evaluation #404 is [0.0007479] at [11.98742 143.70067]
+Function Evaluation #405 at [11.98742 143.70067]
 
 xr=[11.98742 143.70067], f(xr)=0.000748
 
 Contract - inside
 
-Function Evaluation #405 is [0.0000662] at [12.007654 144.18349]
+Function Evaluation #406 at [12.007654 144.18349]
 
 xc=12.007654 144.18349, f(xc)=0.000066
 
@@ -8569,7 +8571,7 @@ Sort
 
 Iteration #218 (total = 218)
 
-Function Eval #405
+Function Eval #406
 
 Xopt : 11.99466 143.87229
 
@@ -8591,13 +8593,13 @@ Reflect
 
 xbar=12.001157 144.02789
 
-Function Evaluation #406 is [0.0000830] at [11.995155 143.88296]
+Function Evaluation #407 at [11.995155 143.88296]
 
 xr=[11.995155 143.88296], f(xr)=0.000083
 
 Contract - outside
 
-Function Evaluation #407 is [0.0000136] at [11.998156 143.95543]
+Function Evaluation #408 at [11.998156 143.95543]
 
 xc=11.998156 143.95543, f(xc)=0.000014
 
@@ -8609,7 +8611,7 @@ Sort
 
 Iteration #219 (total = 219)
 
-Function Eval #407
+Function Eval #408
 
 Xopt : 11.998156 143.95543
 
@@ -8631,13 +8633,13 @@ Reflect
 
 xbar=11.996408 143.91386
 
-Function Evaluation #408 is [0.0002220] at [11.985161 143.64422]
+Function Evaluation #409 at [11.985161 143.64422]
 
 xr=[11.985161 143.64422], f(xr)=0.000222
 
 Contract - inside
 
-Function Evaluation #409 is [0.0000047] at [12.002031 144.04867]
+Function Evaluation #410 at [12.002031 144.04867]
 
 xc=12.002031 144.04867, f(xc)=0.000005
 
@@ -8649,7 +8651,7 @@ Sort
 
 Iteration #220 (total = 220)
 
-Function Eval #409
+Function Eval #410
 
 Xopt : 12.002031 144.04867
 
@@ -8671,13 +8673,13 @@ Reflect
 
 xbar=12.000093 144.00205
 
-Function Evaluation #410 is [0.0001067] at [12.005527 144.13181]
+Function Evaluation #411 at [12.005527 144.13181]
 
 xr=[12.005527 144.13181], f(xr)=0.000107
 
 Contract - inside
 
-Function Evaluation #411 is [0.0000084] at [11.997377 143.93717]
+Function Evaluation #412 at [11.997377 143.93717]
 
 xc=11.997377 143.93717, f(xc)=0.000008
 
@@ -8689,7 +8691,7 @@ Sort
 
 Iteration #221 (total = 221)
 
-Function Eval #411
+Function Eval #412
 
 Xopt : 12.002031 144.04867
 
@@ -8711,13 +8713,13 @@ Reflect
 
 xbar=11.999704 143.99292
 
-Function Evaluation #412 is [0.0000151] at [12.001252 144.03041]
+Function Evaluation #413 at [12.001252 144.03041]
 
 xr=[12.001252 144.03041], f(xr)=0.000015
 
 Contract - inside
 
-Function Evaluation #413 is [0.0000033] at [11.99893 143.97417]
+Function Evaluation #414 at [11.99893 143.97417]
 
 xc=11.99893 143.97417, f(xc)=0.000003
 
@@ -8729,7 +8731,7 @@ Sort
 
 Iteration #222 (total = 222)
 
-Function Eval #413
+Function Eval #414
 
 Xopt : 11.99893 143.97417
 
@@ -8751,13 +8753,13 @@ Reflect
 
 xbar=12.000481 144.01142
 
-Function Evaluation #414 is [0.0000258] at [12.003584 144.08568]
+Function Evaluation #415 at [12.003584 144.08568]
 
 xr=[12.003584 144.08568], f(xr)=0.000026
 
 Contract - inside
 
-Function Evaluation #415 is [0.0000012] at [11.998929 143.97429]
+Function Evaluation #416 at [11.998929 143.97429]
 
 xc=11.998929 143.97429, f(xc)=0.000001
 
@@ -8769,7 +8771,7 @@ Sort
 
 Iteration #223 (total = 223)
 
-Function Eval #415
+Function Eval #416
 
 Xopt : 11.998929 143.97429
 
@@ -8791,13 +8793,13 @@ Reflect
 
 xbar=11.998929 143.97423
 
-Function Evaluation #416 is [0.0000180] at [11.995827 143.8998]
+Function Evaluation #417 at [11.995827 143.8998]
 
 xr=[11.995827 143.8998], f(xr)=0.000018
 
 Contract - inside
 
-Function Evaluation #417 is [0.0000007] at [12.00048 144.01145]
+Function Evaluation #418 at [12.00048 144.01145]
 
 xc=12.00048 144.01145, f(xc)=0.000001
 
@@ -8809,7 +8811,7 @@ Sort
 
 Iteration #224 (total = 224)
 
-Function Eval #417
+Function Eval #418
 
 Xopt : 12.00048 144.01145
 
@@ -8831,7 +8833,7 @@ Reflect
 
 xbar=11.999704 143.99287
 
-Function Evaluation #418 is [0.0000009] at [12.000479 144.01158]
+Function Evaluation #419 at [12.000479 144.01158]
 
 xr=[12.000479 144.01158], f(xr)=0.000001
 
@@ -8843,7 +8845,7 @@ Sort
 
 Iteration #225 (total = 225)
 
-Function Eval #418
+Function Eval #419
 
 Xopt : 12.00048 144.01145
 
@@ -8865,13 +8867,13 @@ Reflect
 
 xbar=12.00048 144.01151
 
-Function Evaluation #419 is [0.0000041] at [12.00203 144.04873]
+Function Evaluation #420 at [12.00203 144.04873]
 
 xr=[12.00203 144.04873], f(xr)=0.000004
 
 Contract - inside
 
-Function Evaluation #420 is [9.316D-08] at [11.999704 143.9929]
+Function Evaluation #421 at [11.999704 143.9929]
 
 xc=11.999704 143.9929, f(xc)=0.000000
 
@@ -8883,7 +8885,7 @@ Sort
 
 Iteration #226 (total = 226)
 
-Function Eval #420
+Function Eval #421
 
 Xopt : 11.999704 143.9929
 
@@ -8905,13 +8907,13 @@ Reflect
 
 xbar=12.000092 144.00218
 
-Function Evaluation #421 is [0.0000022] at [11.999705 143.99278]
+Function Evaluation #422 at [11.999705 143.99278]
 
 xr=[11.999705 143.99278], f(xr)=0.000002
 
 Contract - inside
 
-Function Evaluation #422 is [0.0000001] at [12.000285 144.00688]
+Function Evaluation #423 at [12.000285 144.00688]
 
 xc=12.000285 144.00688, f(xc)=0.000000
 
@@ -8923,7 +8925,7 @@ Sort
 
 Iteration #227 (total = 227)
 
-Function Eval #422
+Function Eval #423
 
 Xopt : 11.999704 143.9929
 
@@ -8945,13 +8947,13 @@ Reflect
 
 xbar=11.999995 143.99989
 
-Function Evaluation #423 is [0.0000013] at [11.999509 143.98833]
+Function Evaluation #424 at [11.999509 143.98833]
 
 xr=[11.999509 143.98833], f(xr)=0.000001
 
 Contract - inside
 
-Function Evaluation #424 is [0.0000001] at [12.000237 144.00567]
+Function Evaluation #425 at [12.000237 144.00567]
 
 xc=12.000237 144.00567, f(xc)=0.000000
 
@@ -8963,7 +8965,7 @@ Sort
 
 Iteration #228 (total = 228)
 
-Function Eval #424
+Function Eval #425
 
 Xopt : 11.999704 143.9929
 
@@ -8985,13 +8987,13 @@ Reflect
 
 xbar=11.999971 143.99929
 
-Function Evaluation #425 is [0.0000003] at [11.999656 143.9917]
+Function Evaluation #426 at [11.999656 143.9917]
 
 xr=[11.999656 143.9917], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #426 is [2.238D-08] at [12.000128 144.00308]
+Function Evaluation #427 at [12.000128 144.00308]
 
 xc=12.000128 144.00308, f(xc)=0.000000
 
@@ -9003,7 +9005,7 @@ Sort
 
 Iteration #229 (total = 229)
 
-Function Eval #426
+Function Eval #427
 
 Xopt : 12.000128 144.00308
 
@@ -9025,13 +9027,13 @@ Reflect
 
 xbar=11.999916 143.99799
 
-Function Evaluation #427 is [0.0000003] at [11.999595 143.99032]
+Function Evaluation #428 at [11.999595 143.99032]
 
 xr=[11.999595 143.99032], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #428 is [1.562D-08] at [12.000077 144.00183]
+Function Evaluation #429 at [12.000077 144.00183]
 
 xc=12.000077 144.00183, f(xc)=0.000000
 
@@ -9043,7 +9045,7 @@ Sort
 
 Iteration #230 (total = 230)
 
-Function Eval #428
+Function Eval #429
 
 Xopt : 12.000077 144.00183
 
@@ -9065,13 +9067,13 @@ Reflect
 
 xbar=12.000102 144.00246
 
-Function Evaluation #429 is [0.0000003] at [12.000501 144.01201]
+Function Evaluation #430 at [12.000501 144.01201]
 
 xr=[12.000501 144.01201], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #430 is [1.041D-08] at [11.999903 143.99768]
+Function Evaluation #431 at [11.999903 143.99768]
 
 xc=11.999903 143.99768, f(xc)=0.000000
 
@@ -9083,7 +9085,7 @@ Sort
 
 Iteration #231 (total = 231)
 
-Function Eval #430
+Function Eval #431
 
 Xopt : 11.999903 143.99768
 
@@ -9105,13 +9107,13 @@ Reflect
 
 xbar=11.99999 143.99976
 
-Function Evaluation #431 is [4.257D-08] at [11.999852 143.99643]
+Function Evaluation #432 at [11.999852 143.99643]
 
 xr=[11.999852 143.99643], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #432 is [3.979D-09] at [12.000059 144.00142]
+Function Evaluation #433 at [12.000059 144.00142]
 
 xc=12.000059 144.00142, f(xc)=0.000000
 
@@ -9123,7 +9125,7 @@ Sort
 
 Iteration #232 (total = 232)
 
-Function Eval #432
+Function Eval #433
 
 Xopt : 12.000059 144.00142
 
@@ -9145,13 +9147,13 @@ Reflect
 
 xbar=11.999981 143.99955
 
-Function Evaluation #433 is [3.652D-08] at [11.999886 143.99727]
+Function Evaluation #434 at [11.999886 143.99727]
 
 xr=[11.999886 143.99727], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #434 is [2.108D-09] at [12.000029 144.00069]
+Function Evaluation #435 at [12.000029 144.00069]
 
 xc=12.000029 144.00069, f(xc)=0.000000
 
@@ -9163,7 +9165,7 @@ Sort
 
 Iteration #233 (total = 233)
 
-Function Eval #434
+Function Eval #435
 
 Xopt : 12.000029 144.00069
 
@@ -9185,13 +9187,13 @@ Reflect
 
 xbar=12.000044 144.00106
 
-Function Evaluation #435 is [3.629D-08] at [12.000185 144.00443]
+Function Evaluation #436 at [12.000185 144.00443]
 
 xr=[12.000185 144.00443], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #436 is [8.607D-10] at [11.999974 143.99937]
+Function Evaluation #437 at [11.999974 143.99937]
 
 xc=11.999974 143.99937, f(xc)=0.000000
 
@@ -9203,7 +9205,7 @@ Sort
 
 Iteration #234 (total = 234)
 
-Function Eval #436
+Function Eval #437
 
 Xopt : 11.999974 143.99937
 
@@ -9225,13 +9227,13 @@ Reflect
 
 xbar=12.000001 144.00003
 
-Function Evaluation #437 is [5.208D-09] at [11.999944 143.99864]
+Function Evaluation #438 at [11.999944 143.99864]
 
 xr=[11.999944 143.99864], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #438 is [9.403D-10] at [12.00003 144.00073]
+Function Evaluation #439 at [12.00003 144.00073]
 
 xc=12.00003 144.00073, f(xc)=0.000000
 
@@ -9243,7 +9245,7 @@ Sort
 
 Iteration #235 (total = 235)
 
-Function Eval #438
+Function Eval #439
 
 Xopt : 11.999974 143.99937
 
@@ -9265,13 +9267,13 @@ Reflect
 
 xbar=12.000002 144.00005
 
-Function Evaluation #439 is [3.535D-09] at [11.999975 143.9994]
+Function Evaluation #440 at [11.999975 143.9994]
 
 xr=[11.999975 143.9994], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #440 is [4.137D-10] at [12.000015 144.00037]
+Function Evaluation #441 at [12.000015 144.00037]
 
 xc=12.000015 144.00037, f(xc)=0.000000
 
@@ -9283,7 +9285,7 @@ Sort
 
 Iteration #236 (total = 236)
 
-Function Eval #440
+Function Eval #441
 
 Xopt : 12.000015 144.00037
 
@@ -9305,13 +9307,13 @@ Reflect
 
 xbar=11.999995 143.99987
 
-Function Evaluation #441 is [1.724D-09] at [11.999959 143.99901]
+Function Evaluation #442 at [11.999959 143.99901]
 
 xr=[11.999959 143.99901], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #442 is [1.596D-10] at [12.000012 144.0003]
+Function Evaluation #443 at [12.000012 144.0003]
 
 xc=12.000012 144.0003, f(xc)=0.000000
 
@@ -9323,7 +9325,7 @@ Sort
 
 Iteration #237 (total = 237)
 
-Function Eval #442
+Function Eval #443
 
 Xopt : 12.000012 144.0003
 
@@ -9345,13 +9347,13 @@ Reflect
 
 xbar=12.000014 144.00033
 
-Function Evaluation #443 is [3.488D-09] at [12.000054 144.0013]
+Function Evaluation #444 at [12.000054 144.0013]
 
 xr=[12.000054 144.0013], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #444 is [5.312D-11] at [11.999994 143.99985]
+Function Evaluation #445 at [11.999994 143.99985]
 
 xc=11.999994 143.99985, f(xc)=0.000000
 
@@ -9363,7 +9365,7 @@ Sort
 
 Iteration #238 (total = 238)
 
-Function Eval #444
+Function Eval #445
 
 Xopt : 11.999994 143.99985
 
@@ -9385,13 +9387,13 @@ Reflect
 
 xbar=12.000003 144.00007
 
-Function Evaluation #445 is [4.718D-10] at [11.999991 143.99978]
+Function Evaluation #446 at [11.999991 143.99978]
 
 xr=[11.999991 143.99978], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #446 is [1.108D-10] at [12.000009 144.00022]
+Function Evaluation #447 at [12.000009 144.00022]
 
 xc=12.000009 144.00022, f(xc)=0.000000
 
@@ -9403,7 +9405,7 @@ Sort
 
 Iteration #239 (total = 239)
 
-Function Eval #446
+Function Eval #447
 
 Xopt : 11.999994 143.99985
 
@@ -9425,7 +9427,7 @@ Reflect
 
 xbar=12.000002 144.00004
 
-Function Evaluation #447 is [1.021D-10] at [11.999991 143.99978]
+Function Evaluation #448 at [11.999991 143.99978]
 
 xr=[11.999991 143.99978], f(xr)=0.000000
 
@@ -9437,7 +9439,7 @@ Sort
 
 Iteration #240 (total = 240)
 
-Function Eval #447
+Function Eval #448
 
 Xopt : 11.999994 143.99985
 
@@ -9459,13 +9461,13 @@ Reflect
 
 xbar=11.999992 143.99981
 
-Function Evaluation #448 is [6.408D-10] at [11.999975 143.9994]
+Function Evaluation #449 at [11.999975 143.9994]
 
 xr=[11.999975 143.9994], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #449 is [6.930D-12] at [12.000001 144.00002]
+Function Evaluation #450 at [12.000001 144.00002]
 
 xc=12.000001 144.00002, f(xc)=0.000000
 
@@ -9477,7 +9479,7 @@ Sort
 
 Iteration #241 (total = 241)
 
-Function Eval #449
+Function Eval #450
 
 Xopt : 12.000001 144.00002
 
@@ -9499,7 +9501,7 @@ Reflect
 
 xbar=11.999997 143.99993
 
-Function Evaluation #450 is [4.079D-11] at [12.000004 144.00009]
+Function Evaluation #451 at [12.000004 144.00009]
 
 xr=[12.000004 144.00009], f(xr)=0.000000
 
@@ -9511,7 +9513,7 @@ Sort
 
 Iteration #242 (total = 242)
 
-Function Eval #450
+Function Eval #451
 
 Xopt : 12.000001 144.00002
 
@@ -9533,13 +9535,13 @@ Reflect
 
 xbar=12.000002 144.00006
 
-Function Evaluation #451 is [1.182D-10] at [12.000011 144.00026]
+Function Evaluation #452 at [12.000011 144.00026]
 
 xr=[12.000011 144.00026], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #452 is [1.031D-11] at [11.999998 143.99995]
+Function Evaluation #453 at [11.999998 143.99995]
 
 xc=11.999998 143.99995, f(xc)=0.000000
 
@@ -9551,7 +9553,7 @@ Sort
 
 Iteration #243 (total = 243)
 
-Function Eval #452
+Function Eval #453
 
 Xopt : 12.000001 144.00002
 
@@ -9573,13 +9575,13 @@ Reflect
 
 xbar=11.999999 143.99999
 
-Function Evaluation #453 is [5.182D-11] at [11.999995 143.99988]
+Function Evaluation #454 at [11.999995 143.99988]
 
 xr=[11.999995 143.99988], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #454 is [9.107D-12] at [12.000002 144.00004]
+Function Evaluation #455 at [12.000002 144.00004]
 
 xc=12.000002 144.00004, f(xc)=0.000000
 
@@ -9591,7 +9593,7 @@ Sort
 
 Iteration #244 (total = 244)
 
-Function Eval #454
+Function Eval #455
 
 Xopt : 12.000001 144.00002
 
@@ -9613,13 +9615,13 @@ Reflect
 
 xbar=12.000001 144.00003
 
-Function Evaluation #455 is [2.493D-11] at [12.000004 144.0001]
+Function Evaluation #456 at [12.000004 144.0001]
 
 xr=[12.000004 144.0001], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #456 is [1.779D-12] at [12 143.99999]
+Function Evaluation #457 at [12 143.99999]
 
 xc=12 143.99999, f(xc)=0.000000
 
@@ -9631,7 +9633,7 @@ Sort
 
 Iteration #245 (total = 245)
 
-Function Eval #456
+Function Eval #457
 
 Xopt : 12 143.99999
 
@@ -9653,13 +9655,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #457 is [1.614D-11] at [11.999999 143.99997]
+Function Evaluation #458 at [11.999999 143.99997]
 
 xr=[11.999999 143.99997], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #458 is [1.715D-12] at [12.000001 144.00002]
+Function Evaluation #459 at [12.000001 144.00002]
 
 xc=12.000001 144.00002, f(xc)=0.000000
 
@@ -9671,7 +9673,7 @@ Sort
 
 Iteration #246 (total = 246)
 
-Function Eval #458
+Function Eval #459
 
 Xopt : 12.000001 144.00002
 
@@ -9693,13 +9695,13 @@ Reflect
 
 xbar=12 144.00001
 
-Function Evaluation #459 is [2.274D-11] at [12 143.99999]
+Function Evaluation #460 at [12 143.99999]
 
 xr=[12 143.99999], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #460 is [7.364D-13] at [12 144.00001]
+Function Evaluation #461 at [12 144.00001]
 
 xc=12 144.00001, f(xc)=0.000000
 
@@ -9711,7 +9713,7 @@ Sort
 
 Iteration #247 (total = 247)
 
-Function Eval #460
+Function Eval #461
 
 Xopt : 12 144.00001
 
@@ -9733,13 +9735,13 @@ Reflect
 
 xbar=12.000001 144.00002
 
-Function Evaluation #461 is [4.191D-12] at [12.000002 144.00004]
+Function Evaluation #462 at [12.000002 144.00004]
 
 xr=[12.000002 144.00004], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #462 is [5.110D-13] at [12 144]
+Function Evaluation #463 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -9751,7 +9753,7 @@ Sort
 
 Iteration #248 (total = 248)
 
-Function Eval #462
+Function Eval #463
 
 Xopt : 12 144
 
@@ -9773,13 +9775,13 @@ Reflect
 
 xbar=12 144.00001
 
-Function Evaluation #463 is [1.002D-12] at [12 143.99999]
+Function Evaluation #464 at [12 143.99999]
 
 xr=[12 143.99999], f(xr)=0.000000
 
 Contract - outside
 
-Function Evaluation #464 is [2.362D-13] at [12 144]
+Function Evaluation #465 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -9791,7 +9793,7 @@ Sort
 
 Iteration #249 (total = 249)
 
-Function Eval #464
+Function Eval #465
 
 Xopt : 12 144
 
@@ -9813,13 +9815,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #465 is [9.468D-13] at [12 143.99999]
+Function Evaluation #466 at [12 143.99999]
 
 xr=[12 143.99999], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #466 is [1.721D-13] at [12 144.00001]
+Function Evaluation #467 at [12 144.00001]
 
 xc=12 144.00001, f(xc)=0.000000
 
@@ -9831,7 +9833,7 @@ Sort
 
 Iteration #250 (total = 250)
 
-Function Eval #466
+Function Eval #467
 
 Xopt : 12 144.00001
 
@@ -9853,13 +9855,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #467 is [2.234D-12] at [12 144]
+Function Evaluation #468 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #468 is [4.661D-14] at [12 144]
+Function Evaluation #469 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -9871,7 +9873,7 @@ Sort
 
 Iteration #251 (total = 251)
 
-Function Eval #468
+Function Eval #469
 
 Xopt : 12 144
 
@@ -9893,13 +9895,13 @@ Reflect
 
 xbar=12 144.00001
 
-Function Evaluation #469 is [2.829D-13] at [12 144.00001]
+Function Evaluation #470 at [12 144.00001]
 
 xr=[12 144.00001], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #470 is [9.327D-14] at [12 144]
+Function Evaluation #471 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -9911,7 +9913,7 @@ Sort
 
 Iteration #252 (total = 252)
 
-Function Eval #470
+Function Eval #471
 
 Xopt : 12 144
 
@@ -9933,13 +9935,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #471 is [3.052D-14] at [12 144]
+Function Evaluation #472 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Expand
 
-Function Evaluation #472 is [1.949D-13] at [12 144]
+Function Evaluation #473 at [12 144]
 
 xe=12 144, f(xe)=0.000000
 
@@ -9951,7 +9953,7 @@ Sort
 
 Iteration #253 (total = 253)
 
-Function Eval #472
+Function Eval #473
 
 Xopt : 12 144
 
@@ -9973,13 +9975,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #473 is [3.689D-13] at [12 144]
+Function Evaluation #474 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #474 is [1.274D-14] at [12 144]
+Function Evaluation #475 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -9991,7 +9993,7 @@ Sort
 
 Iteration #254 (total = 254)
 
-Function Eval #474
+Function Eval #475
 
 Xopt : 12 144
 
@@ -10013,13 +10015,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #475 is [5.687D-15] at [12 144]
+Function Evaluation #476 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Expand
 
-Function Evaluation #476 is [4.791D-14] at [12 144]
+Function Evaluation #477 at [12 144]
 
 xe=12 144, f(xe)=0.000000
 
@@ -10031,7 +10033,7 @@ Sort
 
 Iteration #255 (total = 255)
 
-Function Eval #476
+Function Eval #477
 
 Xopt : 12 144
 
@@ -10053,13 +10055,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #477 is [7.405D-14] at [12 144]
+Function Evaluation #478 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #478 is [4.046D-15] at [12 144]
+Function Evaluation #479 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10071,7 +10073,7 @@ Sort
 
 Iteration #256 (total = 256)
 
-Function Eval #478
+Function Eval #479
 
 Xopt : 12 144
 
@@ -10093,13 +10095,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #479 is [3.290D-14] at [12 144]
+Function Evaluation #480 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #480 is [1.554D-15] at [12 144]
+Function Evaluation #481 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10111,7 +10113,7 @@ Sort
 
 Iteration #257 (total = 257)
 
-Function Eval #480
+Function Eval #481
 
 Xopt : 12 144
 
@@ -10133,13 +10135,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #481 is [1.627D-14] at [12 144]
+Function Evaluation #482 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #482 is [6.494D-16] at [12 144]
+Function Evaluation #483 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10151,7 +10153,7 @@ Sort
 
 Iteration #258 (total = 258)
 
-Function Eval #482
+Function Eval #483
 
 Xopt : 12 144
 
@@ -10173,13 +10175,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #483 is [8.828D-15] at [12 144]
+Function Evaluation #484 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #484 is [5.980D-16] at [12 144]
+Function Evaluation #485 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10191,7 +10193,7 @@ Sort
 
 Iteration #259 (total = 259)
 
-Function Eval #484
+Function Eval #485
 
 Xopt : 12 144
 
@@ -10213,13 +10215,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #485 is [4.336D-15] at [12 144]
+Function Evaluation #486 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #486 is [1.721D-16] at [12 144]
+Function Evaluation #487 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10231,7 +10233,7 @@ Sort
 
 Iteration #260 (total = 260)
 
-Function Eval #486
+Function Eval #487
 
 Xopt : 12 144
 
@@ -10253,13 +10255,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #487 is [2.121D-15] at [12 144]
+Function Evaluation #488 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #488 is [7.243D-17] at [12 144]
+Function Evaluation #489 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10271,7 +10273,7 @@ Sort
 
 Iteration #261 (total = 261)
 
-Function Eval #488
+Function Eval #489
 
 Xopt : 12 144
 
@@ -10293,13 +10295,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #489 is [9.602D-16] at [12 144]
+Function Evaluation #490 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #490 is [1.140D-16] at [12 144]
+Function Evaluation #491 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10311,7 +10313,7 @@ Sort
 
 Iteration #262 (total = 262)
 
-Function Eval #490
+Function Eval #491
 
 Xopt : 12 144
 
@@ -10333,13 +10335,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #491 is [6.143D-16] at [12 144]
+Function Evaluation #492 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #492 is [1.655D-17] at [12 144]
+Function Evaluation #493 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10351,7 +10353,7 @@ Sort
 
 Iteration #263 (total = 263)
 
-Function Eval #492
+Function Eval #493
 
 Xopt : 12 144
 
@@ -10373,13 +10375,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #493 is [1.669D-16] at [12 144]
+Function Evaluation #494 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #494 is [2.578D-17] at [12 144]
+Function Evaluation #495 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10391,7 +10393,7 @@ Sort
 
 Iteration #264 (total = 264)
 
-Function Eval #494
+Function Eval #495
 
 Xopt : 12 144
 
@@ -10413,13 +10415,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #495 is [1.718D-16] at [12 144]
+Function Evaluation #496 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #496 is [1.205D-17] at [12 144]
+Function Evaluation #497 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10431,7 +10433,7 @@ Sort
 
 Iteration #265 (total = 265)
 
-Function Eval #496
+Function Eval #497
 
 Xopt : 12 144
 
@@ -10453,13 +10455,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #497 is [2.272D-17] at [12 144]
+Function Evaluation #498 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - outside
 
-Function Evaluation #498 is [5.420D-18] at [12 144]
+Function Evaluation #499 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10471,7 +10473,7 @@ Sort
 
 Iteration #266 (total = 266)
 
-Function Eval #498
+Function Eval #499
 
 Xopt : 12 144
 
@@ -10493,13 +10495,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #499 is [4.490D-17] at [12 144]
+Function Evaluation #500 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #500 is [2.188D-18] at [12 144]
+Function Evaluation #501 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10511,7 +10513,7 @@ Sort
 
 Iteration #267 (total = 267)
 
-Function Eval #500
+Function Eval #501
 
 Xopt : 12 144
 
@@ -10533,13 +10535,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #501 is [4.332D-17] at [12 144]
+Function Evaluation #502 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #502 is [1.376D-18] at [12 144]
+Function Evaluation #503 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10551,7 +10553,7 @@ Sort
 
 Iteration #268 (total = 268)
 
-Function Eval #502
+Function Eval #503
 
 Xopt : 12 144
 
@@ -10573,13 +10575,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #503 is [2.239D-18] at [12 144]
+Function Evaluation #504 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - outside
 
-Function Evaluation #504 is [2.922D-19] at [12 144]
+Function Evaluation #505 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10591,7 +10593,7 @@ Sort
 
 Iteration #269 (total = 269)
 
-Function Eval #504
+Function Eval #505
 
 Xopt : 12 144
 
@@ -10613,13 +10615,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #505 is [8.086D-18] at [12 144]
+Function Evaluation #506 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #506 is [1.662D-19] at [12 144]
+Function Evaluation #507 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10631,7 +10633,7 @@ Sort
 
 Iteration #270 (total = 270)
 
-Function Eval #506
+Function Eval #507
 
 Xopt : 12 144
 
@@ -10653,13 +10655,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #507 is [1.931D-18] at [12 144]
+Function Evaluation #508 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #508 is [2.932D-19] at [12 144]
+Function Evaluation #509 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10671,7 +10673,7 @@ Sort
 
 Iteration #271 (total = 271)
 
-Function Eval #508
+Function Eval #509
 
 Xopt : 12 144
 
@@ -10693,13 +10695,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #509 is [5.714D-19] at [12 144]
+Function Evaluation #510 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #510 is [5.722D-20] at [12 144]
+Function Evaluation #511 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10711,7 +10713,7 @@ Sort
 
 Iteration #272 (total = 272)
 
-Function Eval #510
+Function Eval #511
 
 Xopt : 12 144
 
@@ -10733,13 +10735,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #511 is [5.490D-19] at [12 144]
+Function Evaluation #512 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #512 is [4.872D-20] at [12 144]
+Function Evaluation #513 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10751,7 +10753,7 @@ Sort
 
 Iteration #273 (total = 273)
 
-Function Eval #512
+Function Eval #513
 
 Xopt : 12 144
 
@@ -10773,13 +10775,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #513 is [6.506D-19] at [12 144]
+Function Evaluation #514 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #514 is [1.103D-20] at [12 144]
+Function Evaluation #515 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10791,7 +10793,7 @@ Sort
 
 Iteration #274 (total = 274)
 
-Function Eval #514
+Function Eval #515
 
 Xopt : 12 144
 
@@ -10813,13 +10815,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #515 is [7.860D-20] at [12 144]
+Function Evaluation #516 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #516 is [1.673D-20] at [12 144]
+Function Evaluation #517 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10831,7 +10833,7 @@ Sort
 
 Iteration #275 (total = 275)
 
-Function Eval #516
+Function Eval #517
 
 Xopt : 12 144
 
@@ -10853,13 +10855,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #517 is [3.887D-20] at [12 144]
+Function Evaluation #518 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - outside
 
-Function Evaluation #518 is [8.610D-21] at [12 144]
+Function Evaluation #519 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10871,7 +10873,7 @@ Sort
 
 Iteration #276 (total = 276)
 
-Function Eval #518
+Function Eval #519
 
 Xopt : 12 144
 
@@ -10893,13 +10895,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #519 is [9.312D-20] at [12 144]
+Function Evaluation #520 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #520 is [6.930D-22] at [12 144]
+Function Evaluation #521 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10911,7 +10913,7 @@ Sort
 
 Iteration #277 (total = 277)
 
-Function Eval #520
+Function Eval #521
 
 Xopt : 12 144
 
@@ -10933,13 +10935,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #521 is [1.152D-20] at [12 144]
+Function Evaluation #522 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #522 is [4.276D-21] at [12 144]
+Function Evaluation #523 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -10951,7 +10953,7 @@ Sort
 
 Iteration #278 (total = 278)
 
-Function Eval #522
+Function Eval #523
 
 Xopt : 12 144
 
@@ -10973,7 +10975,7 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #523 is [1.818D-21] at [12 144]
+Function Evaluation #524 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
@@ -10985,7 +10987,7 @@ Sort
 
 Iteration #279 (total = 279)
 
-Function Eval #523
+Function Eval #524
 
 Xopt : 12 144
 
@@ -11007,13 +11009,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #524 is [1.353D-20] at [12 144]
+Function Evaluation #525 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #525 is [4.173D-22] at [12 144]
+Function Evaluation #526 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11025,7 +11027,7 @@ Sort
 
 Iteration #280 (total = 280)
 
-Function Eval #525
+Function Eval #526
 
 Xopt : 12 144
 
@@ -11047,13 +11049,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #526 is [3.167D-21] at [12 144]
+Function Evaluation #527 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #527 is [3.393D-22] at [12 144]
+Function Evaluation #528 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11065,7 +11067,7 @@ Sort
 
 Iteration #281 (total = 281)
 
-Function Eval #527
+Function Eval #528
 
 Xopt : 12 144
 
@@ -11087,13 +11089,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #528 is [1.483D-21] at [12 144]
+Function Evaluation #529 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #529 is [1.050D-22] at [12 144]
+Function Evaluation #530 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11105,7 +11107,7 @@ Sort
 
 Iteration #282 (total = 282)
 
-Function Eval #529
+Function Eval #530
 
 Xopt : 12 144
 
@@ -11127,13 +11129,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #530 is [1.986D-21] at [12 144]
+Function Evaluation #531 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #531 is [2.168D-23] at [12 144]
+Function Evaluation #532 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11145,7 +11147,7 @@ Sort
 
 Iteration #283 (total = 283)
 
-Function Eval #531
+Function Eval #532
 
 Xopt : 12 144
 
@@ -11167,13 +11169,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #532 is [3.401D-22] at [12 144]
+Function Evaluation #533 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #533 is [9.660D-23] at [12 144]
+Function Evaluation #534 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11185,7 +11187,7 @@ Sort
 
 Iteration #284 (total = 284)
 
-Function Eval #533
+Function Eval #534
 
 Xopt : 12 144
 
@@ -11207,13 +11209,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #534 is [1.660D-22] at [12 144]
+Function Evaluation #535 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #535 is [2.917D-23] at [12 144]
+Function Evaluation #536 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11225,7 +11227,7 @@ Sort
 
 Iteration #285 (total = 285)
 
-Function Eval #535
+Function Eval #536
 
 Xopt : 12 144
 
@@ -11247,13 +11249,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #536 is [9.911D-23] at [12 144]
+Function Evaluation #537 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #537 is [2.592D-23] at [12 144]
+Function Evaluation #538 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11265,7 +11267,7 @@ Sort
 
 Iteration #286 (total = 286)
 
-Function Eval #537
+Function Eval #538
 
 Xopt : 12 144
 
@@ -11287,13 +11289,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #538 is [5.419D-23] at [12 144]
+Function Evaluation #539 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #539 is [5.889D-24] at [12 144]
+Function Evaluation #540 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11305,7 +11307,7 @@ Sort
 
 Iteration #287 (total = 287)
 
-Function Eval #539
+Function Eval #540
 
 Xopt : 12 144
 
@@ -11327,13 +11329,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #540 is [5.237D-23] at [12 144]
+Function Evaluation #541 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #541 is [3.991D-24] at [12 144]
+Function Evaluation #542 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11345,7 +11347,7 @@ Sort
 
 Iteration #288 (total = 288)
 
-Function Eval #541
+Function Eval #542
 
 Xopt : 12 144
 
@@ -11367,13 +11369,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #542 is [6.974D-23] at [12 144]
+Function Evaluation #543 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #543 is [2.648D-24] at [12 144]
+Function Evaluation #544 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11385,7 +11387,7 @@ Sort
 
 Iteration #289 (total = 289)
 
-Function Eval #543
+Function Eval #544
 
 Xopt : 12 144
 
@@ -11407,13 +11409,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #544 is [1.134D-23] at [12 144]
+Function Evaluation #545 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #545 is [2.272D-24] at [12 144]
+Function Evaluation #546 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11425,7 +11427,7 @@ Sort
 
 Iteration #290 (total = 290)
 
-Function Eval #545
+Function Eval #546
 
 Xopt : 12 144
 
@@ -11447,21 +11449,21 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #546 is [2.983D-24] at [12 144]
+Function Evaluation #547 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - outside
 
-Function Evaluation #547 is [3.771D-24] at [12 144]
+Function Evaluation #548 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
   > Perform Shrink
 
-Function Evaluation #548 is [1.608D-24] at [12 144]
+Function Evaluation #549 at [12 144]
 
-Function Evaluation #549 is [3.024D-24] at [12 144]
+Function Evaluation #550 at [12 144]
 
 Sort
 
@@ -11469,7 +11471,7 @@ Sort
 
 Iteration #291 (total = 291)
 
-Function Eval #549
+Function Eval #550
 
 Xopt : 12 144
 
@@ -11491,13 +11493,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #550 is [3.066D-24] at [12 144]
+Function Evaluation #551 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #551 is [2.932D-24] at [12 144]
+Function Evaluation #552 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11509,7 +11511,7 @@ Sort
 
 Iteration #292 (total = 292)
 
-Function Eval #551
+Function Eval #552
 
 Xopt : 12 144
 
@@ -11531,13 +11533,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #552 is [2.953D-24] at [12 144]
+Function Evaluation #553 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #553 is [2.912D-24] at [12 144]
+Function Evaluation #554 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11549,7 +11551,7 @@ Sort
 
 Iteration #293 (total = 293)
 
-Function Eval #553
+Function Eval #554
 
 Xopt : 12 144
 
@@ -11571,13 +11573,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #554 is [2.923D-24] at [12 144]
+Function Evaluation #555 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #555 is [2.908D-24] at [12 144]
+Function Evaluation #556 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11589,7 +11591,7 @@ Sort
 
 Iteration #294 (total = 294)
 
-Function Eval #555
+Function Eval #556
 
 Xopt : 12 144
 
@@ -11611,13 +11613,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #556 is [7.331D-25] at [12 144]
+Function Evaluation #557 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Expand
 
-Function Evaluation #557 is [1.636D-26] at [12 144]
+Function Evaluation #558 at [12 144]
 
 xe=12 144, f(xe)=0.000000
 
@@ -11629,7 +11631,7 @@ Sort
 
 Iteration #295 (total = 295)
 
-Function Eval #557
+Function Eval #558
 
 Xopt : 12 144
 
@@ -11651,7 +11653,7 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #558 is [1.501D-24] at [12 144]
+Function Evaluation #559 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
@@ -11663,7 +11665,7 @@ Sort
 
 Iteration #296 (total = 296)
 
-Function Eval #558
+Function Eval #559
 
 Xopt : 12 144
 
@@ -11685,13 +11687,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #559 is [1.870D-24] at [12 144]
+Function Evaluation #560 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #560 is [6.965D-25] at [12 144]
+Function Evaluation #561 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11703,7 +11705,7 @@ Sort
 
 Iteration #297 (total = 297)
 
-Function Eval #560
+Function Eval #561
 
 Xopt : 12 144
 
@@ -11725,7 +11727,7 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #561 is [2.860D-25] at [12 144]
+Function Evaluation #562 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
@@ -11737,7 +11739,7 @@ Sort
 
 Iteration #298 (total = 298)
 
-Function Eval #561
+Function Eval #562
 
 Xopt : 12 144
 
@@ -11759,13 +11761,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #562 is [1.203D-24] at [12 144]
+Function Evaluation #563 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #563 is [1.309D-25] at [12 144]
+Function Evaluation #564 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11777,7 +11779,7 @@ Sort
 
 Iteration #299 (total = 299)
 
-Function Eval #563
+Function Eval #564
 
 Xopt : 12 144
 
@@ -11799,13 +11801,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #564 is [7.340D-25] at [12 144]
+Function Evaluation #565 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #565 is [9.998D-26] at [12 144]
+Function Evaluation #566 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11817,7 +11819,7 @@ Sort
 
 Iteration #300 (total = 300)
 
-Function Eval #565
+Function Eval #566
 
 Xopt : 12 144
 
@@ -11839,7 +11841,7 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #566 is [5.498D-26] at [12 144]
+Function Evaluation #567 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
@@ -11851,7 +11853,7 @@ Sort
 
 Iteration #301 (total = 301)
 
-Function Eval #566
+Function Eval #567
 
 Xopt : 12 144
 
@@ -11873,13 +11875,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #567 is [1.294D-24] at [12 144]
+Function Evaluation #568 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #568 is [8.998D-26] at [12 144]
+Function Evaluation #569 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11891,7 +11893,7 @@ Sort
 
 Iteration #302 (total = 302)
 
-Function Eval #568
+Function Eval #569
 
 Xopt : 12 144
 
@@ -11913,13 +11915,13 @@ Reflect
 
 xbar=12 144
 
-Function Evaluation #569 is [1.293D-24] at [12 144]
+Function Evaluation #570 at [12 144]
 
 xr=[12 144], f(xr)=0.000000
 
 Contract - inside
 
-Function Evaluation #570 is [8.635D-26] at [12 144]
+Function Evaluation #571 at [12 144]
 
 xc=12 144, f(xc)=0.000000
 
@@ -11931,7 +11933,7 @@ Sort
 
 Iteration #303 (total = 303)
 
-Function Eval #570
+Function Eval #571
 
 Xopt : 12 144
 

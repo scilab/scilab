@@ -9,34 +9,22 @@
 
 //
 // neldermead_function --
-//   Call the cost function and return the value.
+//   Call the cost function and return the value of f.
+//   This is a simple way to get the value of the cost function
+//   from outside.
 // Arguments
 //   x : the point where the function is to be evaluated.
 //   index : a flag to pass to the cost function (default = 1)
-//   result : the result of the cost function
-//     This result may be the value of the cost function, the 
-//     values are the inequality constraints, the values of the 
-//     gradient of f or of the constraints, etc...
-// Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
-//  The inequality constraints are expected to be positive.
+//   f : the cost function
 //
-// Note
-//   This is the function which is used internally
-//   by the neldermead class.
-//
-function [ this , result ] = neldermead_function ( this , x , index )
-  if (~isdef('index','local')) then
-    [ this.optbase , result ] = optimbase_function ( this.optbase , x )
+function [ this , f ] = neldermead_function ( this , x )
+  index = 2;
+  [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
+  if ( hasnlcons ) then
+    [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , index );
   else
-    [ this.optbase , result ] = optimbase_function ( this.optbase , x , index )
+    [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , index );
   end
+  // Ignores the value of index at output.
 endfunction
+

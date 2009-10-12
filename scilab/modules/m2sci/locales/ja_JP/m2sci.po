@@ -1,0 +1,1363 @@
+# Localization of the module m2sci
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+# File: macros/cb_m2sci_gui.sci, line: 61
+msgid "Select the directory to convert"
+msgstr "変換するディレクトリーを選んで下さい"
+
+#
+# File: macros/cb_m2sci_gui.sci, line: 69
+msgid "Select the file to convert"
+msgstr "変換するファイルを選んでください"
+
+#
+# File: macros/cb_m2sci_gui.sci, line: 77
+msgid "Select the directory for generated files"
+msgstr "ファイル生成のためのディレクトリーを選んで下さい"
+
+#
+# File: macros/cb_m2sci_gui.sci, line: 179
+msgid "About_M2SCI_tools"
+msgstr "M2SCI_ツール_バージョン情報"
+
+#
+# File: macros/kernel/%contents_i_funcall.sci, line: 15
+# File: macros/kernel/%contents_i_operatio.sci, line: 15
+# File: macros/kernel/%contents_i_variable.sci, line: 15
+# File: macros/kernel/%l_i_cste.sci, line: 17
+# File: macros/kernel/%l_i_funcall.sci, line: 16
+# File: macros/kernel/%l_i_operatio.sci, line: 16
+# File: macros/kernel/%l_i_variable.sci, line: 18
+# File: macros/kernel/%s_i_operatio.sci, line: 16
+# File: macros/kernel/%s_i_variable.sci, line: 19
+# File: macros/kernel/%type_i_cste.sci, line: 15
+# File: macros/kernel/%type_i_funcall.sci, line: 15
+# File: macros/kernel/%type_i_operatio.sci, line: 15
+# File: macros/kernel/%type_i_variable.sci, line: 16
+# File: macros/kernel/%type_i_variable.sci, line: 30
+# File: macros/kernel/%type_i_variable.sci, line: 36
+# File: macros/kernel/infer2txt.sci, line: 18
+# File: macros/percent/%i_ce2sci.sci, line: 65
+# File: macros/percent/%i_ce2sci.sci, line: 168
+# File: macros/percent/%i_st2sci.sci, line: 89
+msgid "Not yet implemented."
+msgstr "まだ装備されていませんでした。"
+
+#
+# File: macros/kernel/%cste_e.sci, line: 25
+# File: macros/kernel/%funcall_6.sci, line: 27
+# File: macros/kernel/%funcall_e.sci, line: 26
+# File: macros/kernel/%m2scivar_e.sci, line: 26
+# File: macros/kernel/%operatio_6.sci, line: 27
+# File: macros/kernel/%operatio_e.sci, line: 27
+# File: macros/kernel/%variable_6.sci, line: 27
+# File: macros/kernel/%variable_e.sci, line: 28
+#, c-format
+msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
+msgstr "''%2$s'' tlist からの %1$s の抽出は、まだ装備されていません。"
+
+#
+# File: macros/kernel/Contents.sci, line: 22
+# File: macros/kernel/Contents.sci, line: 25
+#, c-format
+msgid "index must be a list instead of a: %s."
+msgstr "index は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Contents.sci, line: 29
+# File: macros/kernel/Cste.sci, line: 16
+# File: macros/kernel/Equal.sci, line: 16
+# File: macros/kernel/Funcall.sci, line: 18
+# File: macros/kernel/M2scivar.sci, line: 16
+# File: macros/kernel/Operation.sci, line: 17
+# File: macros/kernel/Variable.sci, line: 16
+# File: macros/kernel/getvar2sci.sci, line: 18
+# File: macros/kernel/m2sci.sci, line: 25
+# File: macros/kernel/repl_poss.sci, line: 17
+msgid "Wrong number of inputs."
+msgstr "入力の数が不正です。"
+
+#
+# File: macros/kernel/Equal.sci, line: 22
+#, c-format
+msgid "lhslist should be a list and not a: %s."
+msgstr "lhslistは、これでないリストであるべきです: %s"
+
+#
+# File: macros/kernel/Equal.sci, line: 26
+#, c-format
+msgid "expression can not be a: %s."
+msgstr "これで表現できません: %s"
+
+#
+# File: macros/kernel/Equal.sci, line: 29
+#, c-format
+msgid "endsymbol should be a character string and not a: %s."
+msgstr "endsymbol は、文字列と違っています: %s"
+
+#
+# File: macros/kernel/Funcall.sci, line: 20
+# File: macros/kernel/Variable.sci, line: 20
+#, c-format
+msgid "name must be a string instead of a: %s."
+msgstr "name は、文字列の代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Funcall.sci, line: 22
+#, c-format
+msgid "lhsnb must be a constant instead of a: %s."
+msgstr "lhsnb は、定数の代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Funcall.sci, line: 24
+#, c-format
+msgid "rhslist must be a list instead of a: %s."
+msgstr "rhslist は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Funcall.sci, line: 26
+#, c-format
+msgid "lhslist must be a list instead of a: %s."
+msgstr "lhslist は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Infer.sci, line: 24
+# File: macros/kernel/Infer.sci, line: 32
+#, c-format
+msgid "dims must be a list instead of a: %s."
+msgstr "dims は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Infer.sci, line: 27
+# File: macros/kernel/Infer.sci, line: 35
+#, c-format
+msgid "type must be a ''type'' tlist instead of a: %s."
+msgstr "type は、 ''type'' リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Infer.sci, line: 38
+#, c-format
+msgid "contents must be a ''contents'' tlist instead of a: %s."
+msgstr "contents は、 ''contents'' リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/M2scivar.sci, line: 23
+#, c-format
+msgid "sciname must be a string instead of a: %s."
+msgstr "sciname は、文字列の代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/M2scivar.sci, line: 25
+#, c-format
+msgid "matname must be a string instead of a: %s."
+msgstr "matname は、文字列の代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/M2scivar.sci, line: 27
+# File: macros/kernel/Variable.sci, line: 22
+#, c-format
+msgid "infer must be an ''infer'' tlist instead of a: %s."
+msgstr "infer は、''infer'' リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Operation.sci, line: 21
+#, c-format
+msgid "operator must be a string instead of a: %s."
+msgstr "operator は、文字列の代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Operation.sci, line: 23
+#, c-format
+msgid "operands must be a list instead of a: %s."
+msgstr "operands は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Operation.sci, line: 25
+#, c-format
+msgid "out must be a list instead of a: %s."
+msgstr "out は、リストの代わりでなくてはなりません: %s"
+
+#
+# File: macros/kernel/Type.sci, line: 20
+# File: macros/kernel/convert2double.sci, line: 37
+# File: macros/kernel/equal2sci.sci, line: 88
+# File: macros/kernel/expression2sci.sci, line: 116
+#, c-format
+msgid "%s is not yet implemented."
+msgstr "%s はまだ装備されていません。"
+
+#
+# File: macros/kernel/Type.sci, line: 24
+msgid "list of properties is not yet implemented."
+msgstr "プロパティのリストはまだ装備されていません。"
+
+#
+# File: macros/kernel/Type.sci, line: 26
+#, c-format
+msgid "wrong property %s."
+msgstr "プロパティ %s が間違っています。"
+
+#
+# File: macros/kernel/clause2sci.sci, line: 379
+#, c-format
+msgid "unknown clause type: %s."
+msgstr "未知の節型: %s"
+
+#
+# File: macros/kernel/default_trad.sci, line: 41
+#, c-format
+msgid "Matlab function %s not yet converted, original calling sequence used."
+msgstr "Matlab 関数 %s はまだ変換されていません、原型の呼び出し順を使いました。"
+
+#
+# File: macros/kernel/default_trad.sci, line: 45
+# File: macros/kernel/default_trad.sci, line: 76
+# File: macros/kernel/default_trad.sci, line: 83
+#, c-format
+msgid "(Warning name conflict: function name changed from %s to %s)."
+msgstr "(名前が矛盾しています: 関数名 %s から %s へ変更されました)"
+
+#
+# File: macros/kernel/default_trad.sci, line: 52
+#, c-format
+msgid "Matlab toolbox(es) function %s not converted, original calling sequence used"
+msgstr "Matlabツールボックス(es)関数 %s は変換できませんでした、元の呼ばれているシーケンスは使われました"
+
+#
+# File: macros/kernel/default_trad.sci, line: 56
+#, c-format
+msgid "Matlab toolbox(es) function %s not converted, original calling sequence used."
+msgstr "Matlabツールボックス(es)関数 %s は変換できませんでした、元の呼ばれているシーケンスは使われました。"
+
+#
+# File: macros/kernel/default_trad.sci, line: 58
+#, c-format
+msgid "(Find this function in matlab/%s)."
+msgstr "(この関数を matlab/%s で見つけて下さい)"
+
+#
+# File: macros/kernel/default_trad.sci, line: 72
+#, c-format
+msgid "Unknown function %s not converted, original calling sequence used."
+msgstr "未知の関数 %s は変換されません、元の呼び出しシーケンスを使用しました。"
+
+#
+# File: macros/kernel/equal2sci.sci, line: 42
+#, c-format
+msgid "lhs cannot be a %s operation."
+msgstr "lhsは、%s オペレーションができません。"
+
+#
+# File: macros/kernel/equal2sci.sci, line: 56
+#, c-format
+msgid "lhs cannot be a %s."
+msgstr "lhs は、%s ができません。"
+
+#
+# File: macros/kernel/expression2sci.sci, line: 110
+#, c-format
+msgid "recursive extraction with one index of type %s is not yet implemented."
+msgstr "１つのインデックスをもつ帰納抽出、型 %s は、まだ装備されていません。"
+
+#
+# File: macros/kernel/funcall2sci.sci, line: 82
+#, c-format
+msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
+msgstr "実行中にエラー : [sci_equiv]=sci_%s(mtlb_expr)."
+
+#
+# File: macros/kernel/funcallsearch.sci, line: 85
+msgid ": The 24 first characters of the files names are equal: "
+msgstr ":ファイル名の最初の２４文字は、等しいです:"
+
+#
+# File: macros/kernel/get_unknown.sci, line: 22
+#, c-format
+msgid "Matlab function %s not yet converted."
+msgstr "Matlab関数 %s はまだ変換されていません。"
+
+#
+# File: macros/kernel/get_unknown.sci, line: 27
+#, c-format
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr "mtlb(%s) は、%s() に取り替えられることができます、あるいは、%s かどうかにかかわらず、%s はM-file ではありません。"
+
+#
+# File: macros/kernel/getoperands.sci, line: 15
+msgid "input argument must be an ''operation'' tlist."
+msgstr "入力引数は、''operation'' tlist でなくてはなりません。"
+
+#
+# File: macros/kernel/getrhs.sci, line: 15
+msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
+msgstr "getrhs() 入力引数が不正です(\"funcall\" tlist でなくてはなりません)"
+
+#
+# File: macros/kernel/getvar2sci.sci, line: 39
+#, c-format
+msgid "L.%d: Unknown variable %s is a M-file."
+msgstr "L.%d: M-file の未知の変数 %s"
+
+#
+# File: macros/kernel/getvar2sci.sci, line: 45
+#, c-format
+msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
+msgstr "L.%1$d: M-file(sci_%3$sが存在) の未知の変数 %2$s"
+
+#
+# File: macros/kernel/getvar2sci.sci, line: 50
+#, c-format
+msgid "Variable %s supposed to be the Imaginary unit."
+msgstr "変数 %s は仮定の虚数単位です。"
+
+#
+# File: macros/kernel/getvar2sci.sci, line: 57
+#, c-format
+msgid "L.%d: Unknown variable %s."
+msgstr "L.%d: 未知の変数 %s"
+
+#
+# File: macros/kernel/instruction2sci.sci, line: 29
+#, c-format
+msgid "unknown instruction type %s."
+msgstr "未知の指示型 %s"
+
+#
+# File: macros/kernel/isdefinedvar.sci, line: 32
+#, c-format
+msgid "Bad use of isdefinedvar() with input: %s."
+msgstr "入力で isdefinedvar() の悪い使い方: %s"
+
+#
+# File: macros/kernel/lst_funcall.sci, line: 68
+# File: macros/kernel/multi_fun_file.sci, line: 78
+#, c-format
+msgid " -- File %s contains more than one function -- "
+msgstr " -- ファイル %s は、１つ以上の関数を含みます --"
+
+#
+# File: macros/kernel/lst_funcall.sci, line: 98
+# File: macros/kernel/multi_fun_file.sci, line: 103
+#, c-format
+msgid " -- Each function converted separately: %s -- "
+msgstr " -- 別々に変換されたそれぞれの関数: %s --"
+
+#
+# File: macros/kernel/lst_funcall.sci, line: 99
+# File: macros/kernel/multi_fun_file.sci, line: 104
+#, c-format
+msgid " -- Temporary files put in: %s -- "
+msgstr " -- 一時ファイルを置きます: %s --"
+
+#
+# File: macros/kernel/m2sci.sci, line: 110
+msgid "// Number of arguments in function call"
+msgstr "// 関数呼び出しで引数の数"
+
+#
+# File: macros/kernel/m2sci.sci, line: 114
+msgid "// Display mode"
+msgstr "// 表示モード"
+
+#
+# File: macros/kernel/m2sci.sci, line: 116
+msgid "// Display warning for floating point exception"
+msgstr "// 浮動小数点例外の警告表示"
+
+#
+# File: macros/kernel/m2sci.sci, line: 141
+msgid "// Ouput variables initialisation (not found in input variables)"
+msgstr "// 出力変数の初期化(入力変数では見つけられません)"
+
+#
+# File: macros/kernel/m2sci.sci, line: 147
+msgid "TESTING M2SCI: creating varslist file..."
+msgstr "TESTING M2SCI: varslist ファイル作成..."
+
+#
+# File: macros/kernel/m2sci.sci, line: 190
+#, c-format
+msgid ""
+"// Generated by M2SCI\n"
+"// Conversion function for Matlab %s\n"
+"// Input: tree = Matlab funcall tree\n"
+"// Ouput: tree = Scilab equivalent for tree"
+msgstr ""
+"// M2SCI によって生成されました\n"
+"// Matlab の変換関数 %s\n"
+"// 入力: ツリー= Matlab 関数呼び出しツリー\n"
+"// 出力: ツリー = Scilab ツリーと等価"
+
+#
+# File: macros/kernel/m2sci.sci, line: 197
+#, c-format
+msgid ""
+"// Copyright INRIA (Generated by M2SCI)\n"
+"// Conversion function for Matlab %s()\n"
+"// Input: tree = Matlab funcall tree\n"
+"// Ouput: tree = Scilab equivalent for tree"
+msgstr ""
+"// 著作権INRIA(M２SCI によって作成)\n"
+"// Matlab からの変換関数 %s()\n"
+"// 入力: ツリー = Matlab 関数呼び出し ツリー\n"
+"// 出力: ツリー = ツリーへの Scilab 互換"
+
+#
+# File: macros/kernel/m2sci.sci, line: 265
+# File: macros/kernel/m2sci.sci, line: 267
+msgid "//  dims(i,:) is the ith output argument dimensions vector"
+msgstr "// dims(i,:) の i 番目は 出力引数 の 次元ベクトルです。"
+
+#
+# File: macros/kernel/m2sci.sci, line: 269
+msgid "//  prop(i) is the ith output argument property"
+msgstr "// prop(i) の i 番目は出力引数のプロパティです。"
+
+#
+# File: macros/kernel/m2sci.sci, line: 286
+msgid "// Inference for varargout"
+msgstr "// 変形引数出力(varargout)の推論"
+
+#
+# File: macros/kernel/m2sci_info.sci, line: 26
+msgid "loginfos: verb_mode 0 should not be used in this context, information ignored."
+msgstr "loginfos: verb_mode 0 は、この前後関係で使われるべきでありません、情報は無視しました。"
+
+#
+# File: macros/kernel/m2sci_syntax.sci, line: 304
+msgid "m2sciassume is obsolete, used m2scideclare instead."
+msgstr "m2sciassume はもう使われません, 代わりに m2scideclare を使いました。"
+
+#
+# File: macros/kernel/mtlbtoolfun.sci, line: 18
+msgid "not matlab path"
+msgstr "Matlabパスではありません"
+
+#
+# File: macros/kernel/mtlbtree2sci.sci, line: 28
+msgid "wrong type of input."
+msgstr "入力の型が不正です。"
+
+#
+# File: macros/kernel/mtlbtree2sci.sci, line: 41
+msgid "Conversion of M-tree..."
+msgstr "M-treeの変換..."
+
+#
+# File: macros/kernel/mtlbtree2sci.sci, line: 102
+#, c-format
+msgid "%s line %s out of %s..."
+msgstr "%1$s 行 %3$s からの %2$s..."
+
+#
+# File: macros/kernel/mtlbtree2sci.sci, line: 118
+msgid "Conversion of M-tree: Done"
+msgstr "M-treeの変換: 完了"
+
+#
+# File: macros/kernel/no_equiv.sci, line: 12
+#, c-format
+msgid "No Scilab equivalent for: %s"
+msgstr "Scilabと互換性がありません: %s"
+
+#
+# File: macros/kernel/operation2sci.sci, line: 62
+#, c-format
+msgid "operator %s not found."
+msgstr "オペレータ %s が見つかりません。"
+
+#
+# File: macros/kernel/repl_poss.sci, line: 20
+msgid " may be replaced by:"
+msgstr "　これで取り替えられるかもしれません:"
+
+#
+# File: macros/kernel/repl_poss.sci, line: 35
+msgid "if"
+msgstr "もし"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 53
+msgid "not enough data, you should give at least variable_name|dimensions|datatype."
+msgstr "資料が足りません、最も小さな、変数名|次元|データ型 で行うべきです。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 55
+msgid "too much data."
+msgstr "多すぎるデータです。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 90
+#, c-format
+msgid "Unknown datatype %s."
+msgstr "未知のデータ型 %s です。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 100
+#, c-format
+msgid "Unknown property %s."
+msgstr "未知のプロパティ %s です。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 138
+msgid "Wrong dimensions user data."
+msgstr "ユーザー・データの次元が不正です。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 197
+# File: macros/kernel/sci_m2scideclare.sci, line: 278
+#, c-format
+msgid ""
+"Dimensions current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given dimension: %s\n"
+"   Current dimension: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"以下のように、次元の現在値とm２scideclare文が矛盾します: %s\n"
+"   m2scideclare 与えられた次元: %s\n"
+"   現在の次元: %s\n"
+"   m2scideclare を無視しました"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 206
+# File: macros/kernel/sci_m2scideclare.sci, line: 287
+#, c-format
+msgid ""
+"Type current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given type: %s\n"
+"   current type: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"現在の値型とm２scideclare文が矛盾します: %s\n"
+"   m2scideclare 与えた型: %s\n"
+"   現在の型: %s\n"
+"   m2scideclareを無視しました"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 215
+# File: macros/kernel/sci_m2scideclare.sci, line: 294
+#, c-format
+msgid ""
+"Property current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given type: %s\n"
+"   current type: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"現在の値プロパティとm2scideclare文が矛盾: %s\n"
+"   m2scideclare の与えられた型: %s\n"
+"   現在の値の型: %s\n"
+"   m2scideclareを無視しました"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 254
+#, c-format
+msgid "%graphicswindow set to default value Handle."
+msgstr "%g 標準値ハンドルにグラフィック・ウインドウを設定します。"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 323
+# File: macros/kernel/sci_m2scideclare.sci, line: 333
+#, c-format
+msgid "type %d is not implemented."
+msgstr "型 %d は装備されていません。"
+
+#
+# File: macros/m2sci_gui.sci, line: 22
+msgid "Matlab to Scilab conversion tool"
+msgstr "MatlabからScilabへの変換ツール"
+
+#
+# File: macros/m2sci_gui.sci, line: 25
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: macros/m2sci_gui.sci, line: 26
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+#
+# File: macros/m2sci_gui.sci, line: 27
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: macros/m2sci_gui.sci, line: 28
+msgid "&?"
+msgstr "&?"
+
+#
+# File: macros/m2sci_gui.sci, line: 31
+msgid "File"
+msgstr "ファイル"
+
+#
+# File: macros/m2sci_gui.sci, line: 32
+msgid "Close"
+msgstr "閉じる"
+
+#
+# File: macros/m2sci_gui.sci, line: 34
+msgid "?"
+msgstr "?"
+
+#
+# File: macros/m2sci_gui.sci, line: 35
+msgid "Mfile2sci help page"
+msgstr "Mfile2sci ヘルプページ"
+
+#
+# File: macros/m2sci_gui.sci, line: 36
+msgid "Translatepaths help page"
+msgstr "翻訳パス ヘルプページ"
+
+#
+# File: macros/m2sci_gui.sci, line: 37
+msgid "About M2SCI tools..."
+msgstr "M2SCIツール　バージョン情報..."
+
+#
+# File: macros/m2sci_gui.sci, line: 52
+msgid "Convert"
+msgstr "変換"
+
+#
+# File: macros/m2sci_gui.sci, line: 64
+msgid "Cancel"
+msgstr "キャンセル"
+
+#
+# File: macros/m2sci_gui.sci, line: 89
+msgid "Options"
+msgstr "オプション"
+
+#
+# File: macros/m2sci_gui.sci, line: 100
+msgid "Generate pretty printed code: "
+msgstr "きれいに印刷されたコードを生成:"
+
+#
+# File: macros/m2sci_gui.sci, line: 108
+# File: macros/m2sci_gui.sci, line: 208
+# File: macros/m2sci_gui.sci, line: 245
+msgid "Yes"
+msgstr "はい"
+
+#
+# File: macros/m2sci_gui.sci, line: 121
+# File: macros/m2sci_gui.sci, line: 221
+# File: macros/m2sci_gui.sci, line: 258
+msgid "No"
+msgstr "いいえ"
+
+#
+# File: macros/m2sci_gui.sci, line: 137
+msgid "Verbose mode: "
+msgstr "冗長モード:"
+
+#
+# File: macros/m2sci_gui.sci, line: 145
+msgid "0"
+msgstr "0"
+
+#
+# File: macros/m2sci_gui.sci, line: 158
+msgid "1"
+msgstr "1"
+
+#
+# File: macros/m2sci_gui.sci, line: 171
+msgid "2"
+msgstr "2"
+
+#
+# File: macros/m2sci_gui.sci, line: 184
+msgid "3"
+msgstr "3"
+
+#
+# File: macros/m2sci_gui.sci, line: 200
+msgid "Only double values used: "
+msgstr "単に 倍精度実数値 は使われました:"
+
+#
+# File: macros/m2sci_gui.sci, line: 237
+msgid "Recursive conversion: "
+msgstr "帰納的な転換:"
+
+#
+# File: macros/m2sci_gui.sci, line: 288
+msgid "Output directory"
+msgstr "出力ディレクトリ"
+
+#
+# File: macros/m2sci_gui.sci, line: 297
+# File: macros/m2sci_gui.sci, line: 364
+msgid "Directory name: "
+msgstr "ディレクトリ名:"
+
+#
+# File: macros/m2sci_gui.sci, line: 315
+# File: macros/m2sci_gui.sci, line: 385
+# File: macros/m2sci_gui.sci, line: 417
+msgid "Browse"
+msgstr "ブラウズ"
+
+#
+# File: macros/m2sci_gui.sci, line: 341
+msgid "Input directory"
+msgstr "入力ディレクトリ"
+
+#
+# File: macros/m2sci_gui.sci, line: 352
+msgid "Input file"
+msgstr "入力ファイル"
+
+#
+# File: macros/m2sci_gui.sci, line: 397
+msgid "File name: "
+msgstr "ファイル名:"
+
+#
+# File: macros/m2sci_gui.sci, line: 407
+msgid "<enter a file name>"
+msgstr "<ファイル名の入力>"
+
+#
+# File: macros/m2sci_gui.sci, line: 443
+msgid "Conversion mode"
+msgstr "変換モード"
+
+#
+# File: macros/m2sci_gui.sci, line: 454
+msgid "Convert a single file"
+msgstr "単一ファイルの変換"
+
+#
+# File: macros/m2sci_gui.sci, line: 467
+msgid "Convert a whole directory"
+msgstr "全体のディレクトリーの変換"
+
+#
+# File: macros/mfile2sci.sci, line: 67
+msgid "OFF"
+msgstr "オフ"
+
+#
+# File: macros/mfile2sci.sci, line: 68
+# File: macros/mfile2sci.sci, line: 69
+msgid "NO"
+msgstr "いいえ"
+
+#
+# File: macros/mfile2sci.sci, line: 70
+# File: macros/mfile2sci.sci, line: 72
+msgid "YES"
+msgstr "はい"
+
+#
+# File: macros/mfile2sci.sci, line: 71
+msgid "ON"
+msgstr "オン"
+
+#
+# File: macros/mfile2sci.sci, line: 123
+msgid "****** Beginning of mfile2sci() session ******"
+msgstr "****** mfile2sci() セッションの開始 ******"
+
+#
+# File: macros/mfile2sci.sci, line: 124
+msgid "File to convert:"
+msgstr "ファイルの変換:"
+
+#
+# File: macros/mfile2sci.sci, line: 125
+msgid "Result file path:"
+msgstr "結果ファイルパス:"
+
+#
+# File: macros/mfile2sci.sci, line: 126
+msgid "Recursive mode:"
+msgstr "帰納モード:"
+
+#
+# File: macros/mfile2sci.sci, line: 127
+msgid "Only double values used in M-file:"
+msgstr "単に M-file で、倍精度実数値 は使われました:"
+
+#
+# File: macros/mfile2sci.sci, line: 128
+msgid "Verbose mode:"
+msgstr "冗長モード:"
+
+#
+# File: macros/mfile2sci.sci, line: 129
+msgid "Generate formated code:"
+msgstr "フォーマットされたコードを生成:"
+
+#
+# File: macros/mfile2sci.sci, line: 133
+msgid "M-file reading..."
+msgstr "M-ファイルの読み込み..."
+
+#
+# File: macros/mfile2sci.sci, line: 135
+msgid "M-file reading: Done"
+msgstr "M-ファイルの読み込み: 完了"
+
+#
+# File: macros/mfile2sci.sci, line: 141
+#, c-format
+msgid "File %s is an empty file ! Nothing done..."
+msgstr "ファイル%sは、空っぽのファイルです!終わったものはありません..."
+
+#
+# File: macros/mfile2sci.sci, line: 147
+msgid "Syntax modification..."
+msgstr "文法修正..."
+
+#
+# File: macros/mfile2sci.sci, line: 155
+msgid "Syntax modification: Done"
+msgstr "文法修正: 完了"
+
+#
+# File: macros/mfile2sci.sci, line: 205
+#, c-format
+msgid ""
+"Warning: file %s defines function %s instead of %s\n"
+"         %s.sci, %s.cat and sci_%s.sci will be generated !"
+msgstr ""
+"警告: ファイル%1$sは、%3$sでなく関数%2$sを定義します\n"
+"         %4$s.sci, %5$s.cat と sci_%6$s.sci を生成します!"
+
+#
+# File: macros/mfile2sci.sci, line: 214
+msgid "Macro to tree conversion..."
+msgstr "ツリー変換へのマクロ..."
+
+#
+# File: macros/mfile2sci.sci, line: 240
+# File: macros/mfile2sci.sci, line: 242
+# File: macros/mfile2sci.sci, line: 245
+# File: macros/mfile2sci.sci, line: 248
+# File: macros/mfile2sci.sci, line: 280
+msgid "resumelogfile.dat"
+msgstr "resumelogfile.dat"
+
+#
+# File: macros/mfile2sci.sci, line: 247
+msgid "resume"
+msgstr "回復"
+
+#
+# File: macros/mfile2sci.sci, line: 266
+#, c-format
+msgid "****** %s: Functions of mfile2sci() session ******"
+msgstr "****** %s: mfile2sci() セッションの関数 ******"
+
+#
+# File: macros/mfile2sci.sci, line: 268
+#, c-format
+msgid "%d Matlab Function(s) not yet converted, original calling sequence used:"
+msgstr "%d Matlab関数はまだ変換されませんでした、原型呼び出しはシーケンスを使います:"
+
+#
+# File: macros/mfile2sci.sci, line: 271
+#, c-format
+msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
+msgstr "%d Matlab ツールボックス(es) 関数、原型の呼び出し順を使いました :"
+
+#
+# File: macros/mfile2sci.sci, line: 274
+#, c-format
+msgid "%d Unknown Function(s), original calling sequence used :"
+msgstr "%d 関数(s) は見つかりません、原型の呼び出し順を使いました :"
+
+#
+# File: macros/mfile2sci.sci, line: 283
+msgid "Macro to tree conversion: Done"
+msgstr "ツリー変換へのマクロ: 完了"
+
+#
+# File: macros/mfile2sci.sci, line: 318
+msgid ""
+"Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n"
+"  Type help mtlb_<funname> in Scilab command window to get information about improvements."
+msgstr ""
+"翻訳は改善されるかもしれません: //!コメント と すべてのmtlb_<funname>関数呼び出しを見て下さい、\n"
+"  型ヘルプ、Scilabウィンドウ命令のmtlb_<funname>が、改善に関する情報を得るのを助けます。"
+
+#
+# File: macros/mfile2sci.sci, line: 321
+msgid "Translation may be wrong (see the //!! comments)."
+msgstr "翻訳は誤っているかもしれません(//!!コメントを見て下さい)"
+
+#
+# File: macros/mfile2sci.sci, line: 327
+msgid "File contains no instruction, no translation made..."
+msgstr "ファイルはいかなる指示も含みません、いかなる翻訳も作りませんでした..."
+
+#
+# File: macros/mfile2sci.sci, line: 331
+msgid "****** End of mfile2sci() session ******"
+msgstr "****** mfile2sci() セッションの終了 ******"
+
+#
+# File: macros/percent/%a2sci.sci, line: 66
+# File: macros/percent/%s2sci.sci, line: 65
+#, c-format
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgstr "%s 空行列の最低１つのオペランド 、Scilab同等は、[] です。"
+
+#
+# File: macros/percent/%e2sci.sci, line: 76
+#, c-format
+msgid "recursive extraction from a variable %s of type %s."
+msgstr "型 %2$s の変数 %1$s から、帰納抽出"
+
+#
+# File: macros/percent/%e2sci.sci, line: 164
+msgid "Extraction from strings with more than two indexes not implemented."
+msgstr "２以上のインデックスで文字列からの抽出は装備されていませんでした。"
+
+#
+# File: macros/percent/%e_ce2sci.sci, line: 56
+# File: macros/percent/%e_ce2sci.sci, line: 161
+# File: macros/percent/%e_st2sci.sci, line: 55
+# File: macros/percent/%e_st2sci.sci, line: 97
+#, c-format
+msgid "M2SCI bug: extraction from unknown variable %s in varslist."
+msgstr "M2SCIバグ: varslistで、未知の変数 %s の抽出"
+
+#
+# File: macros/percent/%i2sci.sci, line: 145
+#, c-format
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgstr "変数の帰納挿入、構造でもセルでも、どちらでもありません: %s"
+
+#
+# File: macros/percent/%i_ce2sci.sci, line: 38
+#, c-format
+msgid "destination variable is not a cell: %s is of type %s."
+msgstr "あて先変数は、セルではありません: 型 %2$s の %1$s です。"
+
+#
+# File: macros/percent/%imp2sci.sci, line: 32
+# File: macros/percent/%imp2sci.sci, line: 67
+#, c-format
+msgid "One operand is an empty matrix in : %s, result set to []."
+msgstr "１つのオペランドが空行列です: %s , 結果を [] に設定します。"
+
+#
+# File: macros/percent/%log2sci.sci, line: 42
+#, c-format
+msgid "At least one operand is an empty matrix for operator: %s, result set to []."
+msgstr "少なくとも、１つのオペランドは、オペレータにとって空の行列です: %s、結果を [] に設定します。"
+
+#
+# File: macros/sci_files/sci_acoth.sci, line: 19
+# File: macros/sci_files/sci_asin.sci, line: 21
+# File: macros/sci_files/sci_atanh.sci, line: 21
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"もし %s が外側 [-1,1]\n"
+"    %s の複雑な出力の一部は、Matlab のものと正反対になるでしょう。"
+
+#
+# File: macros/sci_files/sci_all.sci, line: 31
+# File: macros/sci_files/sci_all.sci, line: 73
+# File: macros/sci_files/sci_any.sci, line: 31
+# File: macros/sci_files/sci_any.sci, line: 73
+# File: macros/sci_files/sci_cell.sci, line: 29
+# File: macros/sci_files/sci_cell.sci, line: 62
+# File: macros/sci_files/sci_dec2hex.sci, line: 23
+# File: macros/sci_files/sci_eye.sci, line: 96
+# File: macros/sci_files/sci_eye.sci, line: 153
+# File: macros/sci_files/sci_false.sci, line: 96
+# File: macros/sci_files/sci_false.sci, line: 153
+# File: macros/sci_files/sci_find.sci, line: 29
+# File: macros/sci_files/sci_find.sci, line: 58
+# File: macros/sci_files/sci_int16.sci, line: 42
+# File: macros/sci_files/sci_int32.sci, line: 42
+# File: macros/sci_files/sci_int8.sci, line: 42
+# File: macros/sci_files/sci_log2.sci, line: 30
+# File: macros/sci_files/sci_ones.sci, line: 96
+# File: macros/sci_files/sci_ones.sci, line: 153
+# File: macros/sci_files/sci_pow2.sci, line: 35
+# File: macros/sci_files/sci_pow2.sci, line: 42
+# File: macros/sci_files/sci_rand.sci, line: 96
+# File: macros/sci_files/sci_rand.sci, line: 153
+# File: macros/sci_files/sci_randn.sci, line: 96
+# File: macros/sci_files/sci_randn.sci, line: 153
+# File: macros/sci_files/sci_repmat.sci, line: 24
+# File: macros/sci_files/sci_repmat.sci, line: 94
+# File: macros/sci_files/sci_repmat.sci, line: 101
+# File: macros/sci_files/sci_tril.sci, line: 28
+# File: macros/sci_files/sci_triu.sci, line: 28
+# File: macros/sci_files/sci_true.sci, line: 96
+# File: macros/sci_files/sci_true.sci, line: 153
+# File: macros/sci_files/sci_uint16.sci, line: 42
+# File: macros/sci_files/sci_uint32.sci, line: 42
+# File: macros/sci_files/sci_uint8.sci, line: 42
+# File: macros/sci_files/sci_zeros.sci, line: 96
+# File: macros/sci_files/sci_zeros.sci, line: 153
+msgid "is Real."
+msgstr "これは実数です。"
+
+#
+# File: macros/sci_files/sci_axis.sci, line: 78
+msgid "cube_scaling only used in 3d mode."
+msgstr "cube_scaling は3Dモードでのみ使われます。"
+
+#
+# File: macros/sci_files/sci_besseli.sci, line: 17
+# File: macros/sci_files/sci_besselj.sci, line: 17
+# File: macros/sci_files/sci_besselk.sci, line: 17
+# File: macros/sci_files/sci_bessely.sci, line: 17
+msgid "Bessel function is not implemented for 2 outputs arguments."
+msgstr "ベッセル関数は、２つのアウトプット引数のために実装されません。"
+
+#
+# File: macros/sci_files/sci_blanks.sci, line: 24
+# File: macros/sci_files/sci_blanks.sci, line: 28
+msgid "is a scalar."
+msgstr "これはスカラーです。"
+
+#
+# File: macros/sci_files/sci_char.sci, line: 40
+#, c-format
+msgid "%s is not implemented."
+msgstr "%s は装備されていませんでした。"
+
+#
+# File: macros/sci_files/sci_chol.sci, line: 34
+msgid "Call to chol() with 2 outputs."
+msgstr "二つの出力で chol() を呼び出します。"
+
+#
+# File: macros/sci_files/sci_cla.sci, line: 17
+# File: macros/sci_files/sci_clf.sci, line: 17
+msgid "All children will be deleted, no HandleVisibility property in Scilab graphics."
+msgstr "すべての子は削除されました、Scilabグラフィックのハンドル表現プロパティではありません。"
+
+#
+# File: macros/sci_files/sci_clf.sci, line: 20
+msgid "All properties will be reset."
+msgstr "すべてのプロパティはリセットされます。"
+
+#
+# File: macros/sci_files/sci_close.sci, line: 20
+#, c-format
+msgid "%s will be ignored at run time."
+msgstr "%s 実行時に無視されます。"
+
+#
+# File: macros/sci_files/sci_close.sci, line: 53
+msgid "All windows will be deleted."
+msgstr "すべてのウインドウは削除されるでしょう。"
+
+#
+# File: macros/sci_files/sci_cumprod.sci, line: 59
+# File: macros/sci_files/sci_cumsum.sci, line: 59
+#, c-format
+msgid "Scilab %s() does not work when dim input argument is greater than number of dims of first rhs..."
+msgstr "dim入力引数は大きいときに Scilab %s() で働きません、そして、最初のrhsのdimの数.."
+
+#
+# File: macros/sci_files/sci_display.sci, line: 16
+msgid "Verify that overloading functions have been written for inputs in display()."
+msgstr "display() の入力に書かれた積み過ぎの関数を確認して下さい。"
+
+#
+# File: macros/sci_files/sci_drawnow.sci, line: 16
+msgid "Drawing events are not queued in Scilab."
+msgstr "描画イベントは、Scilabで順に並べられません。"
+
+#
+# File: macros/sci_files/sci_eig.sci, line: 31
+#, c-format
+msgid "mtlb_eig() called because Scilab and Matlab value do not always match for %s."
+msgstr "Scilabでは、mtlb_eig()を呼びます、また、Matlab値が %s に必ずしも匹敵しません。"
+
+#
+# File: macros/sci_files/sci_eig.sci, line: 44
+msgid "''nobalance'' option, IGNORED."
+msgstr "\"釣り合わない\" オプション、無視しました。"
+
+#
+# File: macros/sci_files/sci_eig.sci, line: 64
+msgid "eig() with 2 inputs: consider generalized eigen. Check."
+msgstr "二つの入力でeig(): 一般固有を考慮してください、確認"
+
+#
+# File: macros/sci_files/sci_eig.sci, line: 92
+#, c-format
+msgid "%s, flag IGNORED."
+msgstr "%s フラグを無視しました。"
+
+#
+# File: macros/sci_files/sci_exist.sci, line: 17
+msgid "Matlab exist(), mtlb_exist() is called."
+msgstr "Matlab exist(), mtlb_exist() は呼ばれました。"
+
+#
+# File: macros/sci_files/sci_exist.sci, line: 19
+msgid "mtlb_exist() is just a partial emulation of Matlab exist() function."
+msgstr "mtlb_exist() は、Matlab exist() 関数のエミュレーションの一部です。"
+
+#
+# File: macros/sci_files/sci_fclose.sci, line: 21
+msgid "Unknown type for input parameter: consider fclose(fid)."
+msgstr "入力パラメーターで未知のタイプ: fclose(fid)を考慮して下さい。"
+
+#
+# File: macros/sci_files/sci_ferror.sci, line: 22
+# File: macros/sci_files/sci_ferror.sci, line: 31
+#, c-format
+msgid "%s with two outputs."
+msgstr "%s: 二つの出力で"
+
+#
+# File: macros/sci_files/sci_feval.sci, line: 17
+msgid "Verify that expression evaluated by execstr() is Scilab compatible."
+msgstr "Scilab互換のexecstr()によって評価されたその表現を確かめます。"
+
+#
+# File: macros/sci_files/sci_findstr.sci, line: 17
+msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
+msgstr "Scilabのfindstr()で等しくありません、そして、 mtlb_findstr() は呼ばれました。"
+
+#
+# File: macros/sci_files/sci_fopen.sci, line: 29
+msgid "fopen(''all'') has no translation."
+msgstr "fopen(''all'') は翻訳しません。"
+
+#
+# File: macros/sci_files/sci_fopen.sci, line: 33
+#, c-format
+msgid "%s (See fileinfo() function)."
+msgstr "%s (fileinfo() 関数を見てください)."
+
+#
+# File: macros/sci_files/sci_fopen.sci, line: 40
+msgid "W and A permission parameters."
+msgstr "W と A の許可パラメーター。"
+
+#
+# File: macros/sci_files/sci_fopen.sci, line: 59
+msgid "fopen used with three outputs."
+msgstr "fopen は３つの出力で使いました。"
+
+#
+# File: macros/sci_files/sci_fprintf.sci, line: 17
+# File: macros/sci_files/sci_fread.sci, line: 19
+# File: macros/sci_files/sci_fscanf.sci, line: 19
+# File: macros/sci_files/sci_fwrite.sci, line: 17
+# File: macros/sci_files/sci_type.sci, line: 17
+#, c-format
+msgid "No simple equivalent, so %s() is called."
+msgstr "単純に等しくありません、 %s は呼ばれました。"
+
+#
+# File: macros/sci_files/sci_fread.sci, line: 22
+# File: macros/sci_files/sci_fwrite.sci, line: 20
+#, c-format
+msgid "%s() called with skip parameter."
+msgstr "スキップ・パラメーターで、 %s() が呼び出されました。"
+
+#
+# File: macros/sci_files/sci_fseek.sci, line: 33
+# File: macros/sci_files/sci_fseek.sci, line: 44
+#, c-format
+msgid "Not enough information on %s to set the proper flag."
+msgstr "情報が足りません、%s で適切なフラグを設定します。"
+
+#
+# File: macros/sci_files/sci_global.sci, line: 31
+#, c-format
+msgid "Global variable %s added to M2SCI variable list."
+msgstr "M2SCI 変数リストへ 全体変数 %s を追加しました。"
+
+#
+# File: macros/sci_files/sci_grid.sci, line: 34
+# File: macros/sci_files/sci_grid.sci, line: 51
+msgid "No minor grid in Scilab."
+msgstr "Scilabのマイナーグリッドがありません。"
+
+#
+# File: macros/sci_files/sci_hold.sci, line: 33
+#, c-format
+msgid "%s option."
+msgstr "%s オプション"
+
+#
+# File: macros/sci_files/sci_int16.sci, line: 33
+# File: macros/sci_files/sci_int16.sci, line: 41
+# File: macros/sci_files/sci_int32.sci, line: 33
+# File: macros/sci_files/sci_int32.sci, line: 41
+# File: macros/sci_files/sci_int8.sci, line: 33
+# File: macros/sci_files/sci_int8.sci, line: 41
+# File: macros/sci_files/sci_uint16.sci, line: 33
+# File: macros/sci_files/sci_uint16.sci, line: 41
+# File: macros/sci_files/sci_uint32.sci, line: 33
+# File: macros/sci_files/sci_uint32.sci, line: 41
+# File: macros/sci_files/sci_uint8.sci, line: 33
+# File: macros/sci_files/sci_uint8.sci, line: 41
+#, c-format
+msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
+msgstr "Scilab %s() は複雑な値で働きません: %s() の呼び出しを無視します。"
+
+#
+# File: macros/sci_files/sci_isa.sci, line: 63
+#, c-format
+msgid "Unhandled class: %s."
+msgstr "ハンドルされないクラス: %s"
+
+#
+# File: macros/sci_files/sci_isequal.sci, line: 17
+msgid "isequal requires fields are in the same order for structs to be equal."
+msgstr "isequal は、フィールドが structs と等しい同じ順序でなくてはなりません。"
+
+#
+# File: macros/sci_files/sci_load.sci, line: 28
+# File: macros/sci_files/sci_save.sci, line: 26
+msgid "Option -regexp not yet handled: will be ignored."
+msgstr "オプション -regexp はまだハンドルされていません: 無視します。"
+
+#
+# File: macros/sci_files/sci_logical.sci, line: 25
+#, c-format
+msgid "%s is an empty matrix, so result is set to []."
+msgstr "%s は、空行列です、結果を [] に設定します。"
+
+#
+# File: macros/sci_files/sci_logm.sci, line: 24
+msgid "second output argument will be ignored."
+msgstr "第二出力引数は無視します。"
+
+#
+# File: macros/sci_files/sci_lookfor.sci, line: 17
+msgid "-all option ignored."
+msgstr "-all オプションを無視しました。"
+
+#
+# File: macros/sci_files/sci_mkdir.sci, line: 25
+#, c-format
+msgid "%s when called with three outputs."
+msgstr "%s は、3つの出力で呼ばれたときです。"
+
+#
+# File: macros/sci_files/sci_nargin.sci, line: 28
+# File: macros/sci_files/sci_nargout.sci, line: 28
+#, c-format
+msgid "%s considered to be a Scilab macro."
+msgstr "%s  Scilabマクロとみなします。"
+
+#
+# File: macros/sci_files/sci_num2str.sci, line: 17
+msgid "string output can be different from Matlab num2str output."
+msgstr "出力文字列は、Matlab num２str 出力と異なることが出来ます。"
+
+#
+# File: macros/sci_files/sci_num2str.sci, line: 25
+msgid "See msprintf for solutions."
+msgstr "解決のため msprintf を参照して下さい。"
+
+#
+# File: macros/sci_files/sci_qr.sci, line: 75
+msgid "Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used."
+msgstr "ScilabとMatlab qr() は同じ結果を与えません、なぜなら、mtlb_qr() が使われています。"
+
+#
+# File: macros/sci_files/sci_reshape.sci, line: 27
+msgid "is not a character string matrix."
+msgstr "これは文字列行列ではありません。"
+
+#
+# File: macros/sci_files/sci_reshape.sci, line: 46
+msgid "WARNING: Matlab reshape() suppresses singleton higher dimension, it is not the case for matrix."
+msgstr "警告: Matlab reshape() は、一つ高い次元を抑えます、それは、行列の事例ではありません。"
+
+#
+# File: macros/sci_files/sci_save.sci, line: 28
+msgid "Option -append not yet handled: will be ignored."
+msgstr "オプション -append はまだハンドルされていません: 無視します。"
+
+#
+# File: macros/sci_files/sci_setstr.sci, line: 20
+#, c-format
+msgid ""
+"In %s %s is a String,\n"
+"So result is set to %s."
+msgstr ""
+"%s %s は文字列です、\n"
+"結果を %s へ設定します。"
+
+#
+# File: macros/sci_files/sci_size.sci, line: 32
+#, c-format
+msgid ""
+"M2SCI found: %s > size(size(%s),2),\n"
+"So result is set to 1."
+msgstr ""
+"M2SCI は見つかりました: %s > サイズ(サイズ(%s),2),\n"
+"結果は１への設定です。"
+
+#
+# File: macros/sci_files/sci_sort.sci, line: 62
+# File: macros/sci_files/sci_sort.sci, line: 101
+msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
+msgstr "Scilab の sort() と gsort() は、多次元配列で働きません"
+
+#
+# File: macros/sci_files/sci_sparse.sci, line: 19
+msgid "Call to sparse(): nzmax option ignored."
+msgstr "sparse() の呼び出し: nzmax オプションを無視しました。"
+
+#
+# File: macros/sci_files/sci_sparse.sci, line: 61
+msgid "For Scilab sparse(), input values must have the same size, not sure they have."
+msgstr "Scilab sparse() のための、入力値は、同じサイズを持っていなくてはいけません、それらは持っていません。"
+
+#
+# File: macros/sci_files/sci_warning.sci, line: 30
+msgid "message_id ignored in following line."
+msgstr "message_id は、以下の線で無視しました。"
+
+#
+# File: macros/sci_files/sci_warning.sci, line: 37
+#, c-format
+msgid "%s: Output value set to ''on''."
+msgstr "%s: 出力値に\"on\"を設定"
+
+#
+# File: macros/translatepaths.sci, line: 55
+# File: macros/translatepaths.sci, line: 58
+# File: macros/translatepaths.sci, line: 61
+# File: macros/translatepaths.sci, line: 65
+# File: macros/translatepaths.sci, line: 188
+msgid "unitfile.dat"
+msgstr "unitfile.dat"
+

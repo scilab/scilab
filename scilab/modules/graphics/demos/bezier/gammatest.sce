@@ -37,4 +37,5 @@ function gammatest (N)
 endfunction
 
 gammatest();
+demo_viewCode("gammatest.sce");
 clear gammatest;

@@ -14,63 +14,130 @@
 //   Generate an error if there is one.
 //
 function this = optimbase_checkcostfun ( this )
-  //
-  // Check that f(x0) works and is a scalar
-  //
-  cmd = "[ this , fx0 ] = optimbase_function ( this , this.x0 )";
-  ierr=execstr(cmd,"errcatch");
-  if ierr <> 0 then
-    errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function at x0." ) , "optimbase_checkcostfun" )
-    error ( errmsg );
-  end
-  if ( size(fx0,1) <> 1 ) | ( size(fx0,2) <> 1 ) then
-    errmsg = msprintf ( gettext ( "%s: Call to cost function with x0 is not a scalar, but a %d x %d matrix." ) , "optimbase_checkcostfun" , size(fx0,1) , size(fx0,2) )
+  if ( this.x0 == [] ) then
+    errmsg = msprintf ( gettext ( "%s: Cannot check cost function when x0 is empty" ) , "optimbase_checkcostfun" )
     error ( errmsg );
   end
   //
-  // If there are nonlinear constraints, check that the index is correctly managed.
+  // If there are nonlinear constraints and no derivatives, check that the index is correctly managed.
   //
-  if this.nbineqconst > 0 then
-    // index = 1
+  if ( ( this.nbineqconst > 0 ) & ( ~this.withderivatives ) ) then
+    //
     index = 1;
-    cmd = "[ this , fx0 ] = optimbase_function ( this , this.x0 , index )";
+    cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
     if ierr <> 0 then
-      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function at (x0,index=1)." ) , "optimbase_checkcostfun" )
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
-    // index = 2
+    //
     index = 2;
-    cmd = "[ this , result ] = optimbase_function ( this , this.x0 , index )";
+    cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
     if ierr <> 0 then
-      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function at (x0,index=2)." ) , "optimbase_checkcostfun" )
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
-    if size(result,1) <> 1 then
-      errmsg = msprintf ( gettext ( "%s: The result of the cost function at (x0,index=2) has %d rows, instead of only 1." ) , "optimbase_checkcostfun" , size(result,1))
-      error ( errmsg );
-    end
-    if ( size(result,2) <> this.nbineqconst ) then
-      errmsg = msprintf ( gettext ( "%s: The result of the cost function at (x0,index=2) has %d columns, instead of the number of constraints %d." ) , "optimbase_checkcostfun" , size(result,2) , this.nbineqconst )
-      error ( errmsg );
-    end
-    // index = 3
-    index = 3;
-    cmd = "[ this , result ] = optimbase_function ( this , this.x0 , index )";
+    this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
+    //
+    index = 5;
+    cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
     if ierr <> 0 then
-      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function at (x0,index=3)." ) , "optimbase_checkcostfun" )
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,5)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
-    if size(result,1) <> 1 then
-      errmsg = msprintf ( gettext ( "%s: The result of the cost function at (x0,index=3) has %d rows, instead of only 1." ) , "optimbase_checkcostfun" , size(result,1))
+    this = optimbase_checkshape ( this , "c" , c , index , 1 , this.nbineqconst );
+    //
+    index = 6;
+    cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,6)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
-    if ( size(result,2) <> this.nbineqconst + 1 ) then
-      errmsg = msprintf ( gettext ( "%s: The result of the cost function at (x0,index=3) has %d columns, instead of the number of constraints %d + 1." ) , "optimbase_checkcostfun" , size(result,2) , this.nbineqconst )
-      error ( errmsg );
-    end
+    this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
+    this = optimbase_checkshape ( this , "c" , c , index , 1 , this.nbineqconst );
   end    
+  //
+  // If there are no nonlinear constraints and no derivatives, check that the index is correctly managed.
+  //
+  if ( ( this.nbineqconst == 0 ) & ( ~this.withderivatives ) ) then
+    //
+    index = 1;
+    cmd = "[ this , f , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    //
+    index = 2;
+    cmd = "[ this , f , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
+  end    
+  //
+  // If there are no nonlinear constraints and derivatives, check that the index is correctly managed.
+  //
+  if ( ( this.nbineqconst == 0 ) & ( this.withderivatives ) ) then
+    //
+    index = 1;
+    cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    //
+    index = 2;
+    cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
+    //
+    index = 3;
+    cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,3)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    this = optimbase_checkshape ( this , "g" , g , index , 1 , this.numberofvariables );
+    //
+    index = 4;
+    cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
+    ierr=execstr(cmd,"errcatch");
+    if ierr <> 0 then
+      errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,4)." ) , "optimbase_checkcostfun" )
+      error ( errmsg );
+    end
+    this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
+    this = optimbase_checkshape ( this , "g" , g , index , 1 , this.numberofvariables );
+  end    
+endfunction
+
+
+//
+// optimbase_checkcostfun --
+//   Check that the cost function is correctly connected.
+//   Generate an error if there is one.
+//
+function this = optimbase_checkshape ( this , varname , data , index , expectednrows , expectedncols )
+    if size(data,1) <> expectednrows then
+      errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(data,1) , expectednrows )
+      error ( errmsg );
+    end
+    if size(data,2) <> expectedncols then
+      errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(data,2) , expectedncols )
+      error ( errmsg );
+    end
 endfunction
 

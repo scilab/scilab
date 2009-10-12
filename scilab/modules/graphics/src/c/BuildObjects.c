@@ -23,6 +23,7 @@
  - setting default value
  - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
+#include <string.h>
 
 #include "BuildObjects.h"
 #include "GetProperty.h"
@@ -42,6 +43,7 @@
 #include "ColorMapManagement.h"
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
+#include "loadTextRenderingAPI.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
@@ -591,6 +593,9 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   ppText->clip_region_set = 0 ;
   sciInitIsClipping( pObj, sciGetIsClipping( pparentsubwin ) ) ;
   sciSetClipping( pObj, sciGetClipping(pparentsubwin) );
+
+  /* Check if we should load LaTex / MathML Java libraries */
+  loadTextRenderingAPI(text, nbRow, nbCol);
 
   /* allocate the matrix */
   ppText->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;

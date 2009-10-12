@@ -61,45 +61,28 @@ endfunction
 //    
 // Arguments
 //   x: the point where to compute the function
-//   index : the stuff to compute
+//   index : what to compute
+//     if index=2, returns f
+//     if index=5, returns c
+//     if index=6, returns f and c
 // Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
 //  The inequality constraints are expected to be positive.
 //
-function result = optimtestcase ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index == 1 | index == 3 ) then
+function [ f , c , index ] = optimtestcase ( x , index )
+  f = []
+  c = []
+  if ( ( index == 2 ) | ( index == 6 ) ) then
     f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
       - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
   end
-  if ( index == 2 | index == 3 ) then
+  if ( ( index == 5 ) | ( index == 6 ) ) then
     c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
               - x(1) + x(2) - x(3) + x(4) + 8
     c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
               + x(1) + x(4) + 10.0
     c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
               + x(2) + x(4) + 5.0
-  end
-  select index
-  case 1 then
-    result = f
-  case 2 then
-    result = [c1 c2 c3]
-  case 3 then
-    result = [f c1 c2 c3]
-  else
-    errmsg = sprintf("Unexpected index %d" , index);
-    error(errmsg);
+    c = [c1 c2 c3]
   end
 endfunction
 //
@@ -345,195 +328,195 @@ nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
 nm = neldermead_configure(nm,"-coords0",coords);
 nm = neldermead_search(nm);
-Function Evaluation #1 is [0] at [0 0 0 0]
+Function Evaluation #1 at [0 0 0 0]
 
-Function Evaluation #2 is [0] at [0 0 0 0]
+Function Evaluation #2 at [0 0 0 0]
 
-Function Evaluation #3 is [8 10 5] at [0 0 0 0]
+Function Evaluation #3 at [0 0 0 0]
 
-Function Evaluation #4 is [0 8 10 5] at [0 0 0 0]
+Function Evaluation #4 at [0 0 0 0]
 
-Function Evaluation #5 is [0] at [0 0 0 0]
+Function Evaluation #5 at [0 0 0 0]
 
-Function Evaluation #6 is [238.57187] at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
+Function Evaluation #6 at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
 
-Function Evaluation #7 is [32.861872] at [-2.767278 -4.1554667 1.3284976 -0.3470561]
+Function Evaluation #7 at [-2.767278 -4.1554667 1.3284976 -0.3470561]
 
-Function Evaluation #8 is [14.30847] at [-3.3565622 1.8701894 0.0306832 -1.2628248]
+Function Evaluation #8 at [-3.3565622 1.8701894 0.0306832 -1.2628248]
 
-Function Evaluation #9 is [213.76968] at [-4.6137504 2.6514897 -1.896092 8.3694157]
+Function Evaluation #9 at [-4.6137504 2.6514897 -1.896092 8.3694157]
 
-Function Evaluation #10 is [265.53357] at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
+Function Evaluation #10 at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
 
-Function Evaluation #11 is [71.673505] at [-4.387004 -7.4398831 5.5662572 -5.7619391]
+Function Evaluation #11 at [-4.387004 -7.4398831 5.5662572 -5.7619391]
 
-Function Evaluation #12 is [379.26278] at [-7.7572907 3.7137919 -6.9375666 3.9417012]
+Function Evaluation #12 at [-7.7572907 3.7137919 -6.9375666 3.9417012]
 
 Scaling initial simplex into nonlinear inequality constraints...
 
 Scaling vertex #2/8 at [-3.8478185 8.6592324 -5.7079843 -3.7471601]... 
 
-Function Evaluation #13 is [-113.94243 -223.0288 -119.5671] at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
+Function Evaluation #13 at [-3.8478185 8.6592324 -5.7079843 -3.7471601]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #14 is [-18.868639 -50.155945 -22.989847] at [-1.9239093 4.3296162 -2.8539921 -1.87358]
+Function Evaluation #14 at [-1.9239093 4.3296162 -2.8539921 -1.87358]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #15 is [3.0913246 -5.9883585 -0.4214980] at [-0.9619546 2.1648081 -1.4269961 -0.9367900]
+Function Evaluation #15 at [-0.9619546 2.1648081 -1.4269961 -0.9367900]
 
 Inequality constraint #2/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 1.250000e-001
 
-Function Evaluation #16 is [7.6770734 5.5282242 4.4326073] at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
+Function Evaluation #16 at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
 
  > After scaling into inequality constraints p = [-0.4809773 1.0824041 -0.7134980 -0.4683950]
 
-Function Evaluation #17 is [11.33805] at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
+Function Evaluation #17 at [-0.4809773 1.0824041 -0.7134980 -0.4683950]
 
 Scaling vertex #3/8 at [-2.767278 -4.1554667 1.3284976 -0.3470561]... 
 
-Function Evaluation #18 is [-21.874827 -37.313771 -28.316431] at [-2.767278 -4.1554667 1.3284976 -0.3470561]
+Function Evaluation #18 at [-2.767278 -4.1554667 1.3284976 -0.3470561]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #19 is [-0.2346425 -2.6070262 -3.0710995] at [-1.383639 -2.0777334 0.6642488 -0.1735280]
+Function Evaluation #19 at [-1.383639 -2.0777334 0.6642488 -0.1735280]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #20 is [5.5583716 6.4589517 3.1112293] at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
+Function Evaluation #20 at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
 
  > After scaling into inequality constraints p = [-0.6918195 -1.0388667 0.3321244 -0.0867640]
 
-Function Evaluation #21 is [2.8574697] at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
+Function Evaluation #21 at [-0.6918195 -1.0388667 0.3321244 -0.0867640]
 
 Scaling vertex #4/8 at [-3.3565622 1.8701894 0.0306832 -1.2628248]... 
 
-Function Evaluation #22 is [-4.4265425 -16.071508 -13.71108] at [-3.3565622 1.8701894 0.0306832 -1.2628248]
+Function Evaluation #22 at [-3.3565622 1.8701894 0.0306832 -1.2628248]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #23 is [5.8766753 2.3272762 2.1523522] at [-1.6782811 0.9350947 0.0153416 -0.6314124]
+Function Evaluation #23 at [-1.6782811 0.9350947 0.0153416 -0.6314124]
 
  > After scaling into inequality constraints p = [-1.6782811 0.9350947 0.0153416 -0.6314124]
 
-Function Evaluation #24 is [3.0640533] at [-1.6782811 0.9350947 0.0153416 -0.6314124]
+Function Evaluation #24 at [-1.6782811 0.9350947 0.0153416 -0.6314124]
 
 Scaling vertex #5/8 at [-4.6137504 2.6514897 -1.896092 8.3694157]... 
 
-Function Evaluation #25 is [-76.428626 -165.28122 -27.950542] at [-4.6137504 2.6514897 -1.896092 8.3694157]
+Function Evaluation #25 at [-4.6137504 2.6514897 -1.896092 8.3694157]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #26 is [-8.7244695 -32.88139 1.8244661] at [-2.3068752 1.3257449 -0.9480460 4.1847078]
+Function Evaluation #26 at [-2.3068752 1.3257449 -0.9480460 4.1847078]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #27 is [6.0102261 -0.2508893 6.7371673] at [-1.1534376 0.6628724 -0.4740230 2.0923539]
+Function Evaluation #27 at [-1.1534376 0.6628724 -0.4740230 2.0923539]
 
 Inequality constraint #2/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 1.250000e-001
 
-Function Evaluation #28 is [8.5982283 7.6720068 6.6998172] at [-0.5767188 0.3314362 -0.2370115 1.046177]
+Function Evaluation #28 at [-0.5767188 0.3314362 -0.2370115 1.046177]
 
  > After scaling into inequality constraints p = [-0.5767188 0.3314362 -0.2370115 1.046177]
 
-Function Evaluation #29 is [15.176183] at [-0.5767188 0.3314362 -0.2370115 1.046177]
+Function Evaluation #29 at [-0.5767188 0.3314362 -0.2370115 1.046177]
 
 Scaling vertex #6/8 at [-9.1253313 -0.3629821 -4.720888 -1.7037926]... 
 
-Function Evaluation #30 is [-88.813676 -112.45691 -167.778] at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
+Function Evaluation #30 at [-9.1253313 -0.3629821 -4.720888 -1.7037926]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #31 is [-13.258558 -23.321508 -34.148527] at [-4.5626657 -0.1814911 -2.360444 -0.8518963]
+Function Evaluation #31 at [-4.5626657 -0.1814911 -2.360444 -0.8518963]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #32 is [4.1577911 0.3159824 -2.7641457] at [-2.2813328 -0.0907455 -1.180222 -0.4259481]
+Function Evaluation #32 at [-2.2813328 -0.0907455 -1.180222 -0.4259481]
 
 Inequality constraint #3/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 1.250000e-001
 
-Function Evaluation #33 is [7.7756631 6.9021754 4.0704566] at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
+Function Evaluation #33 at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
 
  > After scaling into inequality constraints p = [-1.1406664 -0.0453728 -0.590111 -0.2129741]
 
-Function Evaluation #34 is [18.876707] at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
+Function Evaluation #34 at [-1.1406664 -0.0453728 -0.590111 -0.2129741]
 
 Scaling vertex #7/8 at [-4.387004 -7.4398831 5.5662572 -5.7619391]... 
 
-Function Evaluation #35 is [-145.1619 -227.48157 -124.2545] at [-4.387004 -7.4398831 5.5662572 -5.7619391]
+Function Evaluation #35 at [-4.387004 -7.4398831 5.5662572 -5.7619391]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #36 is [-33.885744 -51.907628 -28.420579] at [-2.193502 -3.7199415 2.7831286 -2.8809696]
+Function Evaluation #36 at [-2.193502 -3.7199415 2.7831286 -2.8809696]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #37 is [-4.2690704 -6.745525 -3.9086215] at [-1.096751 -1.8599708 1.3915643 -1.4404848]
+Function Evaluation #37 at [-1.096751 -1.8599708 1.3915643 -1.4404848]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 1.250000e-001
 
-Function Evaluation #38 is [4.0339152 5.1793098 2.4961062] at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+Function Evaluation #38 at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
 
  > After scaling into inequality constraints p = [-0.5483755 -0.9299854 0.6957821 -0.7202424]
 
-Function Evaluation #39 is [-9.6087543] at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
+Function Evaluation #39 at [-0.5483755 -0.9299854 0.6957821 -0.7202424]
 
 Scaling vertex #8/8 at [-7.7572907 3.7137919 -6.9375666 3.9417012]... 
 
-Function Evaluation #40 is [-107.2843 -160.7795 -154.10312] at [-7.7572907 3.7137919 -6.9375666 3.9417012]
+Function Evaluation #40 at [-7.7572907 3.7137919 -6.9375666 3.9417012]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 5.000000e-001
 
-Function Evaluation #41 is [-15.233487 -33.648771 -28.983262] at [-3.8786453 1.856896 -3.4687833 1.9708506]
+Function Evaluation #41 at [-3.8786453 1.856896 -3.4687833 1.9708506]
 
 Inequality constraint #1/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 2.500000e-001
 
-Function Evaluation #42 is [4.9854221 -1.3891415 -0.5995563] at [-1.9393227 0.9284480 -1.7343917 0.9854253]
+Function Evaluation #42 at [-1.9393227 0.9284480 -1.7343917 0.9854253]
 
 Inequality constraint #2/3 is not satisfied for x
 
 Scaling inequality constraint with alpha = 1.250000e-001
 
-Function Evaluation #43 is [8.6432524 6.9142403 5.0482406] at [-0.9696613 0.4642240 -0.8671958 0.4927127]
+Function Evaluation #43 at [-0.9696613 0.4642240 -0.8671958 0.4927127]
 
  > After scaling into inequality constraints p = [-0.9696613 0.4642240 -0.8671958 0.4927127]
 
-Function Evaluation #44 is [27.089858] at [-0.9696613 0.4642240 -0.8671958 0.4927127]
+Function Evaluation #44 at [-0.9696613 0.4642240 -0.8671958 0.4927127]
 
 Step #1 : order
 
@@ -581,13 +564,13 @@ _boxlinesearch
 
 > xr = [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-Function Evaluation #45 is [-19.359077] at [-0.4206872 -0.493515 0.9639322 -0.9932843]
+Function Evaluation #45 at [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
 fr = -1.935908e+001 improves 2.708986e+001 : no need for scaling for f
 
  > After projection into bounds xr = [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
-Function Evaluation #46 is [3.6336418 5.0195437 2.8278973] at [-0.4206872 -0.493515 0.9639322 -0.9932843]
+Function Evaluation #46 at [-0.4206872 -0.493515 0.9639322 -0.9932843]
 
 xr=[-0.4206872 -0.493515 0.9639322 -0.9932843], f(xr)=-19.359077
 
@@ -653,13 +636,13 @@ _boxlinesearch
 
 > xr = [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Function Evaluation #47 is [-23.430675] at [0.0381840 0.0217141 1.1143362 -0.3322792]
+Function Evaluation #47 at [0.0381840 0.0217141 1.1143362 -0.3322792]
 
 fr = -2.343067e+001 improves 1.887671e+001 : no need for scaling for f
 
  > After projection into bounds xr = [0.0381840 0.0217141 1.1143362 -0.3322792]
 
-Function Evaluation #48 is [5.1828306 8.2409397 3.3679343] at [0.0381840 0.0217141 1.1143362 -0.3322792]
+Function Evaluation #48 at [0.0381840 0.0217141 1.1143362 -0.3322792]
 
 xr=[0.0381840 0.0217141 1.1143362 -0.3322792], f(xr)=-23.430675
 
@@ -725,13 +708,13 @@ _boxlinesearch
 
 > xr = [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-Function Evaluation #49 is [-25.875044] at [-0.4929085 -0.5699035 1.099321 -2.4220969]
+Function Evaluation #49 at [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
 fr = -2.587504e+001 improves 1.517618e+001 : no need for scaling for f
 
  > After projection into bounds xr = [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
-Function Evaluation #50 is [-3.2412218 -6.7491576 0.9746024] at [-0.4929085 -0.5699035 1.099321 -2.4220969]
+Function Evaluation #50 at [-0.4929085 -0.5699035 1.099321 -2.4220969]
 
 Inequality constraint #1/3 is not satisfied for x
 
@@ -739,9 +722,9 @@ Scaling for nonlinear/linear inequality constraints with alpha=5.000000e-001 fro
 
 > xr = [-0.516594 -0.3151770 0.7216618 -1.4419326]
 
-Function Evaluation #51 is [3.0716514 2.8967962 3.1222073] at [-0.516594 -0.3151770 0.7216618 -1.4419326]
+Function Evaluation #51 at [-0.516594 -0.3151770 0.7216618 -1.4419326]
 
-Function Evaluation #52 is [-17.602604] at [-0.516594 -0.3151770 0.7216618 -1.4419326]
+Function Evaluation #52 at [-0.516594 -0.3151770 0.7216618 -1.4419326]
 
 xr=[-0.516594 -0.3151770 0.7216618 -1.4419326], f(xr)=-17.602604
 
@@ -807,13 +790,13 @@ _boxlinesearch
 
 > xr = [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
-Function Evaluation #53 is [-23.625739] at [-0.6290750 -2.0053669 2.190306 -0.7730300]
+Function Evaluation #53 at [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
 fr = -2.362574e+001 improves 1.133805e+001 : no need for scaling for f
 
  > After projection into bounds xr = [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
-Function Evaluation #54 is [-6.1518755 -5.8334243 -6.1306545] at [-0.6290750 -2.0053669 2.190306 -0.7730300]
+Function Evaluation #54 at [-0.6290750 -2.0053669 2.190306 -0.7730300]
 
 Inequality constraint #1/3 is not satisfied for x
 
@@ -821,9 +804,9 @@ Scaling for nonlinear/linear inequality constraints with alpha=5.000000e-001 fro
 
 > xr = [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
-Function Evaluation #55 is [1.422095 2.9950803 0.5060364] at [-0.5872213 -1.132736 1.3696658 -0.6869375]
+Function Evaluation #55 at [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
-Function Evaluation #56 is [-19.119986] at [-0.5872213 -1.132736 1.3696658 -0.6869375]
+Function Evaluation #56 at [-0.5872213 -1.132736 1.3696658 -0.6869375]
 
 xr=[-0.5872213 -1.132736 1.3696658 -0.6869375], f(xr)=-19.119986
 
