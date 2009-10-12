@@ -20,7 +20,7 @@ mprintf("Illustrates the 1st counter example given by Han et al.\n");
 //   Ph.D., The University of Connecticut
 //
 mprintf("Defining Han function...\n");
-function f = han1 ( x )
+function [ f , index ] = han1 ( x , index )
   f = x(1)^2 + x(2) * (x(2) + 2.0) * (x(2) - 0.5) * (x(2) - 2.0);
 endfunction
 
@@ -68,11 +68,12 @@ nmplot_display(nm);
 //
 mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
-//[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.2 , ymax = 1.2 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
+drawlater();
 contour ( xdata , ydata , zdata , [-5 -4 -2 -1 0 1 1.5] )
 nmplot_simplexhistory ( nm );
+drawnow();
 //
 // Clean-up
 //

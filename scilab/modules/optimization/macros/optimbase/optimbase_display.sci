@@ -17,7 +17,7 @@ function this = optimbase_display ( this )
   mprintf("Number of variables : %s\n", string(this.numberofvariables));
   x0 = optimbase_cget (this,"-x0")
   mprintf("Initial Guess : [%s]\n" , _strvec(x0) );
-  mprintf("Initial Function Value :%e\n",this.fx0);
+  mprintf("Initial Function Value :%s\n",_strvec(this.fx0));
   mprintf("Number of Inequality Constraints :%d\n",this.nbineqconst);
   mprintf("Bounds Mininimum : [%s]\n", _strvec(this.boundsmin));
   mprintf("Bounds Maxinimum :[%s]\n", _strvec(this.boundsmax));

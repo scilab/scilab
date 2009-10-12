@@ -51,7 +51,12 @@ function this = neldermead_updatesimp ( this )
     error(errmsg)
   end
   //
-  // Scale the simplex into the bounds and the nonlinear inequality constraints, if any
+  // Scale the simplex into the bounds and the nonlinear inequality constraints, if any.
+  // Caution !
+  // The initial simplex may be computed with an "axis-by-axis" simplex,
+  // so that it does not satisfies bounds constraints.
+  // The scaling should therefore take into accounts for bounds.
+  // TODO : project vertices into bounds
   //
   nbve = optimsimplex_getnbve ( simplex0 );
   this = neldermead_log (this,"Before scaling:");
@@ -60,7 +65,8 @@ function this = neldermead_updatesimp ( this )
     this = neldermead_log (this,str(i));
   end
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
-  if ( hasbounds | this.optbase.nbineqconst > 0 ) then
+  [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
+  if ( hasbounds | hasnlcons ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));
     nbve = optimsimplex_getnbve ( simplex0 )
     for ive = 1 : nbve
@@ -76,7 +82,12 @@ function this = neldermead_updatesimp ( this )
         error(errmsg);
       end
       if ( or(x <> xp) ) then
-        [ this , fv ] = neldermead_function ( this , xp )
+        index = 2
+        if ( hasnlcons ) then
+          [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , index );
+        else
+          [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xp , index );
+        end
         // Transpose xp because optimsimplex takes row coordinate vectors.
         simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' )
       end

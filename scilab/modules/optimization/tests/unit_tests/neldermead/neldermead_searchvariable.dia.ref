@@ -42,7 +42,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
@@ -116,13 +116,15 @@ nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
-Function Evaluation #1 is [24.2] at [-1.2 1]
+Function Evaluation #1 at [-1.2 1]
 
-Function Evaluation #2 is [24.2] at [-1.2 1]
+Function Evaluation #2 at [-1.2 1]
 
-Function Evaluation #3 is [93.6] at [-0.2 1]
+Function Evaluation #3 at [-1.2 1]
 
-Function Evaluation #4 is [36.2] at [-1.2 2]
+Function Evaluation #4 at [-0.2 1]
+
+Function Evaluation #5 at [-1.2 2]
 
 Step #1 : order
 
@@ -130,7 +132,7 @@ Step #1 : order
 
 Iteration #1 (total = 1)
 
-Function Eval #4
+Function Eval #5
 
 Xopt : -1.2 1
 
@@ -152,13 +154,13 @@ Reflect
 
 xbar=-1.2 1.5
 
-Function Evaluation #5 is [816.8] at [-2.2 2]
+Function Evaluation #6 at [-2.2 2]
 
 xr=[-2.2 2], f(xr)=816.800000
 
 Contract - inside
 
-Function Evaluation #6 is [60.65] at [-0.7 1.25]
+Function Evaluation #7 at [-0.7 1.25]
 
 xc=-0.7 1.25, f(xc)=60.650000
 
@@ -170,7 +172,7 @@ Sort
 
 Iteration #2 (total = 2)
 
-Function Eval #6
+Function Eval #7
 
 Xopt : -1.2 1
 
@@ -192,7 +194,7 @@ Vertex #3/3 : fv=6.065000e+001, x=-7.000000e-001 1.250000e+000
 
   > iterations=2 >= maxiter=5
 
-  > funevals=6 >= maxfunevals=300
+  > funevals=7 >= maxfunevals=300
 
   > e(x)=1.863390e-001 < tolxrelative = 2.220446e-015 * 1.753489e+000 + 0.000000e+000
 
@@ -206,13 +208,13 @@ Reflect
 
 xbar=-1.2 1.5
 
-Function Evaluation #7 is [137.25] at [-1.7 1.75]
+Function Evaluation #8 at [-1.7 1.75]
 
 xr=[-1.7 1.75], f(xr)=137.250000
 
 Contract - inside
 
-Function Evaluation #8 is [26.128125] at [-0.95 1.375]
+Function Evaluation #9 at [-0.95 1.375]
 
 xc=-0.95 1.375, f(xc)=26.128125
 
@@ -224,7 +226,7 @@ Sort
 
 Iteration #3 (total = 3)
 
-Function Eval #8
+Function Eval #9
 
 Xopt : -1.2 1
 
@@ -246,7 +248,7 @@ Vertex #3/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
 
   > iterations=3 >= maxiter=5
 
-  > funevals=8 >= maxfunevals=300
+  > funevals=9 >= maxfunevals=300
 
   > e(x)=9.316950e-002 < tolxrelative = 2.220446e-015 * 1.836758e+000 + 0.000000e+000
 
@@ -260,13 +262,13 @@ Reflect
 
 xbar=-1.075 1.1875
 
-Function Evaluation #9 is [31.628125] at [-0.95 0.375]
+Function Evaluation #10 at [-0.95 0.375]
 
 xr=[-0.95 0.375], f(xr)=31.628125
 
 Contract - outside
 
-Function Evaluation #10 is [9.9991821] at [-1.0125 0.78125]
+Function Evaluation #11 at [-1.0125 0.78125]
 
 xc=-1.0125 0.78125, f(xc)=9.999182
 
@@ -278,7 +280,7 @@ Sort
 
 Iteration #4 (total = 4)
 
-Function Eval #10
+Function Eval #11
 
 Xopt : -1.0125 0.78125
 
@@ -300,7 +302,7 @@ Vertex #3/3 : fv=2.612813e+001, x=-9.500000e-001 1.375000e+000
 
   > iterations=4 >= maxiter=5
 
-  > funevals=10 >= maxfunevals=300
+  > funevals=11 >= maxfunevals=300
 
   > e(x)=4.110296e-001 < tolxrelative = 2.220446e-015 * 1.489344e+000 + 0.000000e+000
 
@@ -314,13 +316,13 @@ Reflect
 
 xbar=-1.10625 0.890625
 
-Function Evaluation #11 is [146.17164] at [-1.2625 0.40625]
+Function Evaluation #12 at [-1.2625 0.40625]
 
 xr=[-1.2625 0.40625], f(xr)=146.171643
 
 Contract - inside
 
-Function Evaluation #12 is [4.6874228] at [-1.028125 1.1328125]
+Function Evaluation #13 at [-1.028125 1.1328125]
 
 xc=-1.028125 1.1328125, f(xc)=4.687423
 
@@ -332,7 +334,7 @@ Sort
 
 Iteration #5 (total = 5)
 
-Function Eval #12
+Function Eval #13
 
 Xopt : -1.028125 1.1328125
 
