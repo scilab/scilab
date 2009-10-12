@@ -95,9 +95,9 @@ function result = atomsLoad(name,version)
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
-		VERBOSE = %T;
+		ATOMSVERBOSE = %T;
 	else
-		VERBOSE = %F;
+		ATOMSVERBOSE = %F;
 	end
 	
 	// Define the path of the loaded file
@@ -141,9 +141,7 @@ function result = atomsLoad(name,version)
 		// Check if this toolbox is already loaded
 		// =====================================================================
 		if atomsIsLoaded(name(i),version(i)) then
-			if VERBOSE then
-				mprintf("\tThe package %s (%s) is already loaded\n",name(i),version(i));
-			end
+			atomsDisp(msprintf("\tThe package %s (%s) is already loaded\n",name(i),version(i)));
 			continue;
 		end
 		

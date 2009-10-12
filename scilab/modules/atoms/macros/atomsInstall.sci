@@ -79,9 +79,9 @@ function result = atomsInstall(packages,allusers)
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
-		VERBOSE = %T;
+		ATOMSVERBOSE = %T;
 	else
-		VERBOSE = %F;
+		ATOMSVERBOSE = %F;
 	end
 	
 	// Install for all users or just for me ?
@@ -236,13 +236,11 @@ function result = atomsInstall(packages,allusers)
 	// Loop on install_package_list to print if a package has to be installed
 	// or not
 	// =========================================================================
-	if VERBOSE 
-		for i=1:size(install_package_list(:,1),"*")
-			if install_package_list(i,1) == "+" then
-				mprintf("\t%s (%s) will be installed\n",install_package_list(i,3),install_package_list(i,4));
-			elseif install_package_list(i,1) == "~" then
-				mprintf("\t%s (%s) is already installed and up-to-date\n",install_package_list(i,3),install_package_list(i,4));
-			end
+	for i=1:size(install_package_list(:,1),"*")
+		if install_package_list(i,1) == "+" then
+			atomsDisp(msprintf("\t%s (%s) will be installed\n",install_package_list(i,3),install_package_list(i,4)));
+		elseif install_package_list(i,1) == "~" then
+			atomsDisp(msprintf("\t%s (%s) is already installed and up-to-date\n",install_package_list(i,3),install_package_list(i,4)));
 		end
 	end
 	
@@ -260,9 +258,7 @@ function result = atomsInstall(packages,allusers)
 			continue;
 		end
 		
-		if VERBOSE then
-			mprintf("\tInstalling %s (%s) ...",this_package_name,this_package_version);
-		end
+		atomsDisp(msprintf("\tInstalling %s (%s) ...",this_package_name,this_package_version));
 		
 		// Define the path of the directory where will be installed this toolbox
 		// =====================================================================
@@ -393,9 +389,7 @@ function result = atomsInstall(packages,allusers)
 		// Sucess message if needed
 		// =====================================================================
 		
-		if VERBOSE then
-			mprintf(" success\n");
-		end
+		atomsDisp(msprintf(" success\n"));
 		
 	end
 	
@@ -414,9 +408,9 @@ function result = atomsInstall(packages,allusers)
 		
 		packages_out = atomsUpdateDeps(result(i,1),result(i,2),allusers);
 		
-		if VERBOSE then
+		if ATOMSVERBOSE then
 			for j=1:size(packages_out(:,1),"*")
-				mprintf("\t%s (%s) will now use the version %s of the package %s\n",packages_out(j,1),packages_out(j,2),result(i,1),result(i,2));
+				atomsDisp(msprintf("\t%s (%s) will now use the version %s of the package %s\n",packages_out(j,1),packages_out(j,2),result(i,1),result(i,2)));
 			end
 		end
 		
