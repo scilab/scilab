@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 mprintf("Defining Rosenbrock function...\n");
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
 y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
 x0 = [-1.2 1.0]';
@@ -32,7 +32,12 @@ mprintf("Searching for minimum...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
 mprintf("Plot contour...\n");
-xmin = -2.0 ; xmax = 2.0 ; ymin = -2.0 ; ymax = 2.0 ; nx = 100 ; ny = 100;
+xmin = -2.0 ; 
+xmax = 2.0 ; 
+ymin = -2.0 ; 
+ymax = 2.0 ; 
+nx = 50; 
+ny = 50;
 stepx = (xmax - xmin)/nx
 xdata = xmin:stepx:xmax;
 stepy = (ymax - ymin)/ny
@@ -46,7 +51,7 @@ for ix = 1:length(xdata)
 end
 wnum = 100001;
 my_handle             = scf(wnum);
-contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
+contour ( xdata , ydata , zdata , [3 10 100 500 1000 2000] )
 // Plot starting point
 mprintf("x0 : blue dot\n");
 plot(x0(1),x0(2));

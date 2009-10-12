@@ -49,7 +49,7 @@ endfunction
 // The _MYDATA_ variable name is chosen so that 
 // no name conflict can possibly occur.
 //
-function y = rosenbrock ( x , _MYDATA_ )
+function [ y , index ] = rosenbrock ( x , index )
   a = _MYDATA_.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
   _MYDATA_.nb = _MYDATA_.nb + 1

@@ -44,6 +44,7 @@ function newobj = optimbase_new ()
     "logfile"
     "logfilehandle"
     "logstartup"
+    "withderivatives"
     ]);
   // The number of variables to optimize
   newobj.numberofvariables = 0
@@ -52,9 +53,9 @@ function newobj = optimbase_new ()
   // The verbose option for termination criteria
   newobj.verbosetermination = 0;
   // The initial guess
-  newobj.x0 = 0.0;
+  newobj.x0 = [];
   // The value of the function for the initial guess
-  newobj.fx0 = 0;
+  newobj.fx0 = [];
   // The maximum number of function evaluations
   newobj.maxfunevals = 100;
   // The maximum number of iterations
@@ -117,6 +118,7 @@ function newobj = optimbase_new ()
   newobj.logfilehandle = 0;
   // Set to %t when the logging is started up
   newobj.logstartup = %f;
+  // Set to %t when the method uses derivatives
+  newobj.withderivatives = %f
 endfunction
-
 

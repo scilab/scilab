@@ -77,32 +77,18 @@ endfunction
 //    Numerical methods for Nonlinear optimization
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
-function result = gouldnonconvex ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
+function [ f , c , index ] = gouldnonconvex ( x , index )
+  f = []
+  c = []
+  if ( index==2 | index==6 ) then
     f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
   end
-  if ( index==2 | index==3 ) then
+  if ( index==5 | index==6 ) then
     c1 = x(1) - 13.0
     c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
     c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
     c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
+    c = [c1 c2 c3 c4]
   end
 endfunction
 //

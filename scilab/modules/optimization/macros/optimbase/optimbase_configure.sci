@@ -80,6 +80,12 @@ function this = optimbase_configure (this,key,value)
     this.nbineqconst = value;
   case "-logfile" then
     this.logfile = value;
+  case "-withderivatives" then
+    if ( value ) then
+      this.withderivatives = %t;
+    else
+      this.withderivatives = %f;
+    end
   else
     errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_configure",key)
     error(errmsg)

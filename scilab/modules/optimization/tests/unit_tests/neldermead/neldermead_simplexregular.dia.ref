@@ -27,7 +27,7 @@ function flag = assert_close ( computed, expected, epsilon )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 nm = neldermead_new ();

@@ -19,7 +19,7 @@ subdemolist = [
 "nmplot/Quadratic Fixed #1"   "neldermead/nmplot_quadratic.fixed.sce"       
 "nmplot/Quadratic Fixed #2"   "neldermead/nmplot_quadratic.fixed2.sce"       
 "nmplot/Rosenbrock Fixed"   "neldermead/nmplot_rosenbrock.fixed.sce"       
-"nmplot/Rosenbrock"         "neldermead/nmplot_rosenbrock.sce"       
+"nmplot/Rosenbrock Variable"         "neldermead/nmplot_rosenbrock.sce"       
 ];
 subdemolist(:,2) = demopath + subdemolist(:,2)
 

@@ -7,14 +7,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+
+
 //
-// nmplot_function --
-//   Call the cost function and return the value.
+// optimbase_hasnlcons --
+//   Returns %T if current problem has non 
+//   linear constraints.
 // Arguments
-//   x : the point where the function is to be evaluated.
-//   index : a flag to pass to the cost function (default = 1)
-//   f : the cost function
+//   this : the current object
+//   hasnlcons : %T or %F (see above)
 //
-function [ this , f ] = nmplot_function ( this , x )
-    [ this.nmbase , f ] = neldermead_function ( this.nmbase , x )
+function [ this , hasnlcons ] = optimbase_hasnlcons ( this )
+  hasnlcons = ( this.nbineqconst > 0 )
 endfunction
+

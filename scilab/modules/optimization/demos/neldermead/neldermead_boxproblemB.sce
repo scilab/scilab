@@ -52,22 +52,10 @@ mprintf("Defining Box Problem A function...\n");
 //   x: the point where to compute the function
 //   index : the stuff to compute
 //   data : the parameters of Box cost function
-// Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
-//  The inequality constraints are expected to be positive.
 //
-function result = boxproblemB ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
+function [ f , c , index ] = boxproblemB ( x , index )
+  f = []
+  c = []
   x3 = x(1) + sqrt(3.0) * x(2)
   if ( index==1 | index==3 ) then
     f = -(9.0 - (x(1) - 3.0) ^ 2) * x(2) ^ 3 / 27.0 / sqrt(3.0)
@@ -76,17 +64,7 @@ function result = boxproblemB ( x , index )
       c1 = x(1) / sqrt(3.0) - x(2)
       c2 = x3
       c3 = 6.0 - x3
-  end
-  select index
-  case 1 then
-    result = f
-  case 2 then
-    result = [c1 c2 c3]
-  case 3 then
-    result = [f c1 c2 c3]
-  else
-    errmsg = sprintf("Unexpected index %d" , index);
-    error(errmsg);
+      c = [c1 c2 c3]
   end
 endfunction
 
