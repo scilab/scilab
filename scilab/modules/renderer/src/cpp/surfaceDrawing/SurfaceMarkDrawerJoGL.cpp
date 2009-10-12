@@ -88,8 +88,8 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   initializeDrawing();
 
   getMarkDrawerJavaMapper()->setSurfaceType(ppSurface->typeof3d);
-  getMarkDrawerJavaMapper()->setMarkParameters(sciGetMarkBackgroundColor(pSurface),
-                                               sciGetMarkForegroundColor(pSurface),
+  getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pSurface)->markbackground,
+                                               sciGetGraphicContext(pSurface)->markforeground,
                                                sciGetMarkSizeUnit(pSurface),
                                                sciGetMarkSize(pSurface),
                                                sciGetMarkStyle(pSurface));

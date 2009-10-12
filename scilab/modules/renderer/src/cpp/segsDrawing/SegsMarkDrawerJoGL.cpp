@@ -44,8 +44,8 @@ void SegsMarkDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
 
   initializeDrawing();
-  getMarkDrawerJavaMapper()->setMarkParameters(sciGetMarkBackgroundColor(pSegs),
-                                               sciGetMarkForegroundColor(pSegs),
+  getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pSegs)->markbackground,
+                                               sciGetGraphicContext(pSegs)->markforeground,
                                                sciGetMarkSizeUnit(pSegs),
                                                sciGetMarkSize(pSegs),
                                                sciGetMarkStyle(pSegs));

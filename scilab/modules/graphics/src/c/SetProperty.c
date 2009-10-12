@@ -488,76 +488,6 @@ sciSetNumColors (sciPointObj * pobj, int numcolors)
 
 }
 
-/**
-* sciSetBackgroundColor function 
-* Set the stored value of BackgroundColor index
-* @return 0 if ok, -1 if not (no GraphicContext)
-*/
-int sciSetBackgroundColor (sciPointObj * pobj, int colorindex)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    sciGetGraphicContext(pobj)->backgroundcolor=colorindex;
-    if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
-    {
-			/* disable protection since this function will call Java */
-		  disableFigureSynchronization(pobj);
-      sciSetJavaBackground(pobj, colorindex);
-			enableFigureSynchronization(pobj);
-    }
-    return 0;
-  }
-  printSetGetErrorMessage("background");
-  return -1;
-}
-
-/**
-* sciSetForegroundColor function 
-* Set the stored value of ForegroundColor index
-* @return 0 if ok, -1 if not (no GraphicContext)
-*/
-int sciSetForegroundColor (sciPointObj * pobj, int colorindex)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    sciGetGraphicContext(pobj)->foregroundcolor=colorindex;
-    return 0;
-  }
-  printSetGetErrorMessage("background");
-  return -1;
-}
-
-/**
-* sciSetMarkBackgroundColor function 
-* Set the stored value of MarkBackgroundColor index
-* @return 0 if ok, -1 if not (no GraphicContext)
-*/
-int sciSetMarkBackgroundColor (sciPointObj * pobj, int colorindex)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    sciGetGraphicContext(pobj)->markbackground=colorindex;
-    return 0;
-  }
-  printSetGetErrorMessage("background");
-  return -1;
-}
-
-/**
-* sciSetMarkForegroundColor function 
-* Set the stored value of MarkForegroundColor index
-* @return 0 if ok, -1 if not (no GraphicContext)
-*/
-int sciSetMarkForegroundColor (sciPointObj * pobj, int colorindex)
-{
-  if(sciGetGraphicContext(pobj) != NULL)
-  {
-    sciGetGraphicContext(pobj)->markforeground=colorindex;
-    return 0;
-  }
-  printSetGetErrorMessage("background");
-  return -1;
-}
 
 /*** Adding F.Leray 31.03.04 for supporting -1 and -2 indexes.*/
 /* retrieve the realindex inside the colormap from the handle color property */
@@ -577,12 +507,28 @@ int sciSetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
 int sciInitBackground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj);
-  if(!sciCheckColorIndex(pobj, colorindex)) return -1;
-  /*make index conversion*/
-  colorindex = sciSetGoodIndex(pobj,colorindex);
-  colorindex = Max (0, Min (colorindex - 1, m + 1));
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
 
-  return sciSetBackgroundColor(pobj, colorindex);
+  colorindex = sciSetGoodIndex(pobj,colorindex);
+
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    int newIndex = Max (0, Min (colorindex - 1, m + 1));
+    sciGetGraphicContext(pobj)->backgroundcolor = newIndex;
+
+    if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
+    {
+			/* disable protection since this function will call Java */
+		  disableFigureSynchronization(pobj);
+      sciSetJavaBackground(pobj, newIndex);
+			enableFigureSynchronization(pobj);
+    }
+
+    return 0;
+  }
+
+  /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
+  return -1;
 }
 
 /**sciSetBackground
@@ -591,23 +537,32 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 int
 sciSetBackground (sciPointObj * pobj, int colorindex)
 {
-  if(sciGetBackground(pobj)==colorindex)    /* nothing to do */
+  if ( sciGetBackground( pobj ) == colorindex )
   {
+    /* nothing to do */
     return 1 ;
   }
+
   return sciInitBackground( pobj, colorindex ) ;
+
 }
 
 
 int sciInitForeground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj);
-  if(!sciCheckColorIndex(pobj, colorindex)) return -1;
-  /*make index conversion*/
-  colorindex = sciSetGoodIndex(pobj,colorindex);
-  colorindex = Max (0, Min (colorindex - 1, m + 1));
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
 
-  return sciSetForegroundColor(pobj, colorindex);
+  colorindex = sciSetGoodIndex(pobj,colorindex);
+
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    sciGetGraphicContext(pobj)->foregroundcolor = Max (0, Min (colorindex - 1, m + 1));
+    return 0;
+  }
+
+  /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
+  return -1;
 }
 
 /**sciSetForeground
@@ -616,11 +571,12 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
 int
 sciSetForeground (sciPointObj * pobj, int colorindex)
 {
-  if (sciGetForeground(pobj)==colorindex)   /* nothing to do */
+  if ( sciGetForeground( pobj ) == colorindex )
   {
     return 1 ;
   }
   return sciInitForeground( pobj, colorindex ) ;
+
 }
 
 int sciSetLineWidth( sciPointObj * pobj, double linewidth )
@@ -640,13 +596,15 @@ int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
+
   if (linewidth < 0)
-  {
-    Scierror(999, _("Line width must be greater than %d.\n"),0);
-    return -1;
-  }
+    {
+      Scierror(999, _("Line width must be greater than %d.\n"),0);
+      return -1;
+    }
   else
   {
+
     if (sciGetGraphicContext(pobj) != NULL)
     {
       (sciGetGraphicContext(pobj))->linewidth = linewidth;
@@ -674,11 +632,12 @@ int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 int
 sciInitLineStyle (sciPointObj * pobj, int linestyle)
 {
+
   if (linestyle < 0)
-  {
-    Scierror(999, _("The line style must be greater than %d.\n"),0);
-    return -1;
-  }
+    {
+      Scierror(999, _("The line style must be greater than %d.\n"),0);
+      return -1;
+    }
   else
   {
     if (sciGetGraphicContext(pobj) != NULL)
@@ -687,6 +646,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
       return 0;
     }
   }
+
   printSetGetErrorMessage("line_style");
   return -1;
 }
@@ -694,13 +654,16 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
 
 int sciInitIsMark( sciPointObj * pobj, BOOL ismark )
 {
+
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->ismark = ismark;
     return 0;
   }
+
   printSetGetErrorMessage("mark_mode");
   return -1;
+
 }
 
 /**sciSetIsMark
@@ -709,11 +672,14 @@ int sciInitIsMark( sciPointObj * pobj, BOOL ismark )
 int
 sciSetIsMark (sciPointObj * pobj, BOOL ismark)
 {
-  if (sciGetIsMark(pobj) == ismark)    /* nothing to do */
+
+  if ( sciGetIsMark(pobj) == ismark )
   {
+    /* nothing to do */
     return 1 ;
   }
-  return sciInitIsMark(pobj, ismark);
+  return sciInitIsMark( pobj, ismark ) ;
+
 }
 
 
