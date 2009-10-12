@@ -8,3 +8,4 @@
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
 	cplxroot(2,20,130,45);
+  demo_viewCode("cplxroot.sce");

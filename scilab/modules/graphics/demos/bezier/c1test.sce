@@ -56,4 +56,5 @@ function c1test
 endfunction
 
 c1test();
+demo_viewCode("c1test.sce");
 clear c1test;

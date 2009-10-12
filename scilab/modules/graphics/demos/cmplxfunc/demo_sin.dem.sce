@@ -18,11 +18,11 @@ function demo_sin()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_sin.dem.sce");
 	
 	PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"sin",theta,alpha,[-R,R]);
 	
 endfunction
 
 demo_sin()
+demo_viewCode("demo_sin.dem.sce");
 clear demo_sin;
