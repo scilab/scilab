@@ -1,6 +1,7 @@
 #
 # Linux objects files
 #
+*.loT
 *.lo
 *.la
 *.o
