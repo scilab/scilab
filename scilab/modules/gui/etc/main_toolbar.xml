@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <toolbar>
     <!-- xpad -->
-    <button icon="accessories-text-editor.png" tooltiptext="Launch xpad">
+    <button icon="accessories-text-editor.png" tooltiptext="Launch Scilab text editor">
         <callback 
         instruction='editor()' type="0"/>
     </button>
