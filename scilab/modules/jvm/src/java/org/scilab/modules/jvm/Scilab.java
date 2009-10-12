@@ -102,30 +102,31 @@ public class Scilab {
 		 */
 		if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null) {
 			/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
-
 			try {
 				
 				/** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
 				System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, "true");
 				
 				String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
-
-				if (isWindowsPlateform()) {
-					scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-				} else {
-					scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-				}
-
-				/* Init the LookAndFeelManager all the time since we can
-				 * create windows in the NW mode */
-
-				LookAndFeelManager lookAndFeel = new LookAndFeelManager();
-
-				if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
-					lookAndFeel.setLookAndFeel(scilabLookAndFeel);
-				} else {
-					lookAndFeel.setSystemLookAndFeel();
-				}
+                                
+                                if (isWindowsPlateform()) {
+                                    scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+                                } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) {
+                                    scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
+                                } else {
+                                    scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+                                }
+                                
+                                /* Init the LookAndFeelManager all the time since we can
+                                 * create windows in the NW mode */
+                                
+                                LookAndFeelManager lookAndFeel = new LookAndFeelManager();
+                                
+                                if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
+                                    lookAndFeel.setLookAndFeel(scilabLookAndFeel);
+                                } else {
+                                    lookAndFeel.setSystemLookAndFeel();
+                                }
 
 			} catch (java.lang.NoClassDefFoundError exception) {
 				System.err.println("Could not initialize graphics Environment");
