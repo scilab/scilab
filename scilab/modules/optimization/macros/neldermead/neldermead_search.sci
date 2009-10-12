@@ -790,7 +790,8 @@ function this = neldermead_startup (this)
   //
   // 3. Scale the simplex into the bounds and the nonlinear inequality constraints, if any
   //
-  if ( hasbounds | this.optbase.nbineqconst > 0 ) then
+  [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
+  if ( hasbounds | hasnlcons ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));
     select this.scalingmethod
     case "tox0" then
@@ -826,6 +827,7 @@ endfunction
 //   simplex0 : the initial simplex
 //
 function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
+    [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     nbve = optimsimplex_getnbve ( simplex0 );
     x0 = optimbase_cget ( this.optbase , "-x0" );
     for ive = 2 : nbve
@@ -842,7 +844,11 @@ function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
         error(errmsg);
       end
       if ( or ( x <> xp ) ) then
-        [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
+        if ( hasnlcons ) then
+          [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
+        else
+          [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xp , 2 );
+        end
         // Transpose xp, which is a column vector
         simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
       end
@@ -864,6 +870,7 @@ endfunction
 //   
 //
 function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
+    [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     nbve = optimsimplex_getnbve ( simplex0 );
     xref = optimsimplex_getx ( simplex0 , 1 );
     for ive = 2 : nbve
@@ -881,7 +888,11 @@ function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
         error(errmsg);
       end
       if ( or ( x <> xp ) ) then
-        [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
+        if ( hasnlcons ) then
+          [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
+        else
+          [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xp , 2 );
+        end
         // Transpose xp, which is a column vector
         simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
       end
@@ -941,16 +952,26 @@ endfunction
 //
 function [ this , isscaled , p ] = _scaleinconstraints ( this , x , xref )
   p = x
-  //
-  // Adjust point to satisfy nonlinear inequality constraints
-  //
+  [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
   nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
-  if ( nbnlc == 0 ) then
+  //
+  // 1. No bounds, no nonlinear inequality constraints
+  // => no problem
+  //
+  if ( ( hasbounds == %f ) & ( nbnlc == 0 ) ) then
     isscaled = %T
     return;
   end
-  isscaled = %F
   //
+  // 2. Scale into bounds
+  //
+  if ( hasbounds ) then
+    [ this.optbase , p ] = optimbase_proj2bnds ( this.optbase ,  p );
+    this = neldermead_log (this,sprintf(" > After projection into bounds p = [%s]" , ...
+      _strvec(p)));
+  end
+  //
+  // 3. Scale into non linear constraints
   // Try the current point and see if the constraints are satisfied.
   // If not, move the point "halfway" to the centroid,
   // which should satisfy the constraints, if
@@ -959,6 +980,7 @@ function [ this , isscaled , p ] = _scaleinconstraints ( this , x , xref )
   // If all loops have been performed without success, the scaling
   // has failed.
   //
+  isscaled = %F
   alpha = 1.0
   p0 = p
   while ( alpha > this.guinalphamin )
@@ -1139,13 +1161,18 @@ endfunction
     this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec ( xr ) ) );
     status = %f
     alphamin = this.guinalphamin
+    [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     //
     // Scale from xr toward xbar until fr < fhigh and update xr
     //
     xr0 = xr
     alpha = 1.0
     while ( alpha > alphamin )
-      [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      if ( hasnlcons ) then
+        [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      else
+        [ this.optbase , fr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      end
       if ( fr < fhigh ) then
         this = neldermead_log (this, sprintf ( "fr = %e improves %e : no need for scaling for f" , fr , fhigh ) );
         status = %t;
@@ -1231,7 +1258,11 @@ endfunction
     end
     if ( scaledc ) then
       // Re-compute the function value at scaled point
-      [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      if ( hasnlcons ) then
+        [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      else
+        [ this.optbase , fr , index ] = optimbase_function ( this.optbase , xr , 2 );
+      end
     end
     
   endfunction
