@@ -301,6 +301,7 @@ String manipulation:
 * Rewrite :
     + strsplit - SEP 26
 
+* 'NumTokens' is obsolete. see 'tokens'
 
 Java/Scilab API:
 ================
