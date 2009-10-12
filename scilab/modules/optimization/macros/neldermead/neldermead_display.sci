@@ -12,7 +12,7 @@
 // neldermead_display --
 //   Display a Nelder-Mead engine
 //
-function this = neldermead_display ( this )
+function neldermead_display ( this )
   mprintf("Nelder-Mead Object\n");
   this.optbase = optimbase_display ( this.optbase )
   mprintf("Simplex0 : \n");
@@ -36,8 +36,6 @@ function this = neldermead_display ( this )
   mprintf("Termination on simplex size, Absolute Tolerance : %s\n", string(this.tolsimplexizeabsolute));
   mprintf("Termination on simplex size, Relative Tolerance : %s\n", string(this.tolsimplexizerelative));
   mprintf("Termination on simplex size, Initial Simplex Size : %s\n", string(this.simplexsize0));
-  mprintf("Termination on Standard Deviation of Function Falue : %s\n", string(this.tolfstdeviationmethod));
-  mprintf("Termination on Standard Deviation of Function Falue, Absolute Tolerance : %s\n", string(this.tolfstdeviation));
   mprintf("Termination on simplex size + Delta of function value : %s\n", string(this.tolssizedeltafvmethod));
   mprintf("Termination on simplex size + Delta of function value, Absolute Tolerance on Delta F : %s\n", string(this.toldeltafv));
   mprintf("Termination on Kelley''s Stagnation : %s\n", string(this.kelleystagnationflag));
@@ -70,8 +68,8 @@ function this = neldermead_display ( this )
   mprintf("Automatic Checking of Cost Function : %s\n", string(this.checkcostfunction));
   mprintf("Box, Number of Points  : %s\n", string(this.boxnbpoints));
   mprintf("Box, Current Number of Points  : %s\n", string(this.boxnbpointseff));
-  mprintf("Box, Scaling, Factor  : %s\n", string(this.ineqscaling));
-  mprintf("Box, Scaling, Method  : %s\n", string(this.scalingmethod));
+  mprintf("Box, Scaling, Factor  : %s\n", string(this.boxineqscaling));
+  mprintf("Box, Scaling, Method  : %s\n", string(this.scalingsimplex0));
   mprintf("Box, Scaling, Minimum : %s\n", string(this.guinalphamin));
   mprintf("Box, Bounds Parameter: %s\n", string(this.boxboundsalpha));
   mprintf("Box, Reflection Coefficient : %s\n", string(this.boxreflect));
