@@ -42,7 +42,7 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getArrowDrawerJavaMapper()->setArrowParameters(sciGetForegroundColor(pObj),
+  getArrowDrawerJavaMapper()->setArrowParameters(sciGetGraphicContext(pObj)->foregroundcolor,
                                                  sciGetArrowSize(pObj) * sciGetLineWidth(pObj));
 
   double bounds[6];
