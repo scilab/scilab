@@ -86,6 +86,7 @@ import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
+import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -102,6 +103,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static final long serialVersionUID = 1L;
 	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
 	private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
+	private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
+
 	private static Tab palette;
 	private static Thread paletteThread;
 	private static boolean paletteLoaded;
@@ -257,6 +260,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 		paletteThread.start();
 	}
 
+	public static HashMap<Integer, AfficheBlock> getAfficheBlocks() {
+		return afficheBlocks;
+	}
     
     /**
      * @param args

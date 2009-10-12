@@ -11,24 +11,33 @@
  */
 package org.scilab.modules.xcos.block;
 
+import java.util.UUID;
+
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 
 public class AfficheBlock extends BasicBlock {
 
-    protected AfficheBlock(String label) {
-	super(label);
-	setStyle("Affiche");
-	setInterfaceFunctionName("AFFICH_m");
-	
-	setValue("0.00");
-    }
+	private int hashCode = 0;
+	protected AfficheBlock(String label) {
+		super(label);
+		setStyle("Affiche");
+		setInterfaceFunctionName("AFFICH_m");
+		setValue("0.00");
+		//generate UID
+		hashCode = UUID.randomUUID().hashCode();
+		Xcos.getAfficheBlocks().put(hashCode, this);
+	}
 
-    public ScilabType getObjectsParameters() {
-	ScilabList list = new ScilabList();
-	list.add(new ScilabString(this.getId()));
-	return list;
-    }
-    
+	public ScilabType getObjectsParameters() {
+		ScilabList list = new ScilabList();
+		if(this.getId() != null){
+			System.err.println(this.getId());
+			list.add(new ScilabDouble(hashCode));
+		}
+		return list;
+	}
+
 }
