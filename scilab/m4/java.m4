@@ -209,7 +209,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 		case "$host_os" in
 		     *darwin* ) 
 			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
-			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
+			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Versions/Current/"
 			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac
