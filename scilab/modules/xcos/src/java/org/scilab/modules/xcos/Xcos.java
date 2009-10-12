@@ -232,12 +232,25 @@ public class Xcos extends SwingScilabTab implements Tab {
 						"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
 				allpalettes.addTab(XcosMessages.USERDEFINEDFUNCTIONS_PAL, createPalette(userdefinedBlocksNames));
 
+				/** Create ELECTRICAL palette */
+				String[] electricalBlocksNames = {"Capacitor", "Ground", "VVsourceAC", "ConstantVoltage", "Inductor",
+						"PotentialSensor", "VariableResistor", "CurrentSensor", "Resistor", "VoltageSensor", "Diode",
+						"VsourceAC", "NPN", "PNP", "SineVoltage", "Switch", "OpAmp", "PMOS", "NMOS", "CCS", "CVS",
+						"IdealTransformer", "Gyrator"};
+				allpalettes.addTab(XcosMessages.ELECTRICAL_PAL, createPalette(electricalBlocksNames));
+
+				/** Create THERMO-HYDRAULICS palette */
+				String[] thermoHydraulicsBlocksNames = {"Bache", "VanneReglante", "PerteDP", "PuitsP", "SourceP"};
+				allpalettes.addTab(XcosMessages.THERMOHYDRAULICS_PAL, createPalette(thermoHydraulicsBlocksNames));
+
 				/** Create DEMO-BLOCKS palette */
 				String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
 				allpalettes.addTab(XcosMessages.DEMOBLOCKS_PAL, createPalette(demoBlocksNames));
-				synchronized(this) { 
+				
+				synchronized (this) { 
 					this.notify();
 				} 
+				
 				paletteLoaded = true;
 			}
 		};
