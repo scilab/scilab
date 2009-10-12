@@ -68,7 +68,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 	case "$host_os" in
 	     *darwin* ) 
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Commands/javac"
+		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -209,7 +209,8 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 		case "$host_os" in
 		     *darwin* ) 
 			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
-			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/"
+			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
+			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac
 	fi
@@ -525,9 +526,8 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         # Sun on MacOS X Java Compiler
 
-        FMacOSX="../Libraries/libjava.jnilib Libraries/libjava.jnilib"
+        F=../Libraries/libjava.jnilib
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-	for F in $FMacOSX; do
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
                 AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
@@ -536,8 +536,11 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+
+                D=$ac_java_jvm_dir/jre/lib/i386/server
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
             fi
-	    done
         fi
 
         # Sun JDK 1.4 and 1.5 for Win32 (client JVM)
@@ -707,32 +710,23 @@ AC_DEFUN([AC_JAVA_WITH_JDK], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_TOOLS], [
-   BINARYDIRECTORY="bin"
-		  
-   case "$host_os" in
-     *darwin* )
-    BINARYDIRECTORY="Commands"
-    ;;
-    esac
-
-    AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_dir/$BINARYDIRECTORY)
-
-    AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_dir/$BINARYDIRECTORY)
+	
+    AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_dir/bin)
 
     # Don't error if java_g can not be found
-    AC_JAVA_TOOLS_CHECK(JAVA_G, java_g, $ac_java_jvm_dir/$BINARYDIRECTORY, 1)
+    AC_JAVA_TOOLS_CHECK(JAVA_G, java_g, $ac_java_jvm_dir/bin, 1)
 
     if test "x$JAVA_G" = "x" ; then
         JAVA_G=$JAVA
     fi
 
     TOOL=javah
-    AC_JAVA_TOOLS_CHECK(JAVAH, $TOOL, $ac_java_jvm_dir/$BINARYDIRECTORY)  
+    AC_JAVA_TOOLS_CHECK(JAVAH, $TOOL, $ac_java_jvm_dir/bin)  
 
-    AC_JAVA_TOOLS_CHECK(JAR, jar, $ac_java_jvm_dir/$BINARYDIRECTORY)
+    AC_JAVA_TOOLS_CHECK(JAR, jar, $ac_java_jvm_dir/bin)
 
     # Don't error if jdb can not be found
-    AC_JAVA_TOOLS_CHECK(JDB, jdb, $ac_java_jvm_dir/$BINARYDIRECTORY, 1)
+    AC_JAVA_TOOLS_CHECK(JDB, jdb, $ac_java_jvm_dir/bin, 1)
 
     case "$ac_java_jvm_version" in
         *)
