@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{45ECEB36-A12B-42F5-9D7A-216A0E70601D}">
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{45ECEB36-A12B-42F5-9D7A-216A0E70601D}">
 	<Platforms>
 		<Platform Name="Win32"/>
 		<Platform Name="x64"/></Platforms>
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/boolean_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -19,7 +19,7 @@ copy boolean_f.def ..\..\..\..\..\libs\boolean_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/boolean_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>

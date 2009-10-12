@@ -228,6 +228,8 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
+* Scilab on Windows built with Intel Fortran 11.0.061 and Intel C++ 11.0.074
+
 * Symbols in dlls are explicitly exported on Windows.
   In previous versions of Scilab all symbols were exported.
 
