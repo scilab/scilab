@@ -157,10 +157,6 @@ Termination on simplex size, Relative Tolerance : 2.220D-16
 
 Termination on simplex size, Initial Simplex Size : 0
 
-Termination on Standard Deviation of Function Falue : F
-
-Termination on Standard Deviation of Function Falue, Absolute Tolerance : 0
-
 Termination on simplex size + Delta of function value : F
 
 Termination on simplex size + Delta of function value, Absolute Tolerance on Delta F : 2.220D-16
