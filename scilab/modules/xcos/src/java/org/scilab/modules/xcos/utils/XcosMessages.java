@@ -13,27 +13,28 @@ package org.scilab.modules.xcos.utils;
 
 import org.scilab.modules.localization.Messages;
 
+
 /**
  * All localized messages/menus labels used in Xcos
  * @author Vincent COUVERT
  *
  */
 public final class XcosMessages {
-	
-	/**
-	 * Constructor
-	 */
-	private XcosMessages() {
-		
-	}
 
-	public static final String XCOS = Messages.gettext("Xcos");
-	
-	public static final String DOTS = "...";
-	
-	public static final String UNTITLED = "Untitled";
+    /**
+     * Constructor
+     */
+    private XcosMessages() {
 
-	/** File menu */
+    }
+
+    public static final String XCOS = Messages.gettext("Xcos");
+
+    public static final String DOTS = "...";
+
+    public static final String UNTITLED = "Untitled";
+
+    /** File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New");
     public static final String NEW_DIAGRAM = Messages.gettext("New diagram") + DOTS;
@@ -46,7 +47,7 @@ public final class XcosMessages {
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String QUIT = Messages.gettext("Quit");
-    
+
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
 
@@ -58,7 +59,7 @@ public final class XcosMessages {
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
-    
+
     /** View Menu */
     public static final String VIEW = Messages.gettext("View");
     public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram to view");
@@ -69,7 +70,7 @@ public final class XcosMessages {
     public static final String GET_INFOS = Messages.gettext("Get infos");
     public static final String DETAILS = Messages.gettext("Details");
     public static final String BROWSER = Messages.gettext("Browser");
-    
+
     /** Simulation menu */
     public static final String SIMULATION = Messages.gettext("Simulation");
     public static final String SETUP = Messages.gettext("Setup");
@@ -77,18 +78,18 @@ public final class XcosMessages {
     public static final String START = Messages.gettext("Start");
     public static final String STOP = Messages.gettext("Stop");
     public static final String SET_CONTEXT = Messages.gettext("Set Context");
-    
+
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
-    
+
     /** Help menu */
     public static final String HELP = Messages.gettext("Help");
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
-    
+
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
@@ -111,22 +112,25 @@ public final class XcosMessages {
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
-    
+
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save\nsave it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("This file doesn't exist\n Do you want to create it?");    
 
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define "
-              + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
-              + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
+	    + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
+	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
-    
+
     public static final String XCOS_ERROR = Messages.gettext("Xcos error");
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
+
+    public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
+    public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
 
 }

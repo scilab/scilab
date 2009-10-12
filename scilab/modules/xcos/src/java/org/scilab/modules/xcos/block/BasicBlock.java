@@ -39,69 +39,209 @@ import com.mxgraph.util.mxEventObject;
 
 public class BasicBlock extends mxCell {
 
-	private String interfaceFunctionName = "xcos_block";
-	private String simulationFunctionName = "xcos_simulate";
-	private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
+    private String interfaceFunctionName = "xcos_block";
+    private String simulationFunctionName = "xcos_simulate";
+    private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
 
-	// TODO :
-	// Must make this types evolve, but for now keep a strong link to Scilab
-	// !! WARNING !!
-	// exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
+    // TODO :
+    // Must make this types evolve, but for now keep a strong link to Scilab
+    // !! WARNING !!
+    // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
-	//private List<String> exprs = new ArrayList<String>();
-	private ScilabType exprs = new ScilabDouble();
-	//private List<Double> realParameters = new ArrayList<Double>();
-	private ScilabType realParameters = new ScilabDouble();
-	//private List<Integer> integerParameters = new ArrayList<Integer>();
-	private ScilabType integerParameters = new ScilabDouble();
-	//private List objectsParameters = new ArrayList();
-	private ScilabType objectsParameters = new ScilabList();
+    //private List<String> exprs = new ArrayList<String>();
+    private ScilabType exprs = new ScilabDouble();
+    //private List<Double> realParameters = new ArrayList<Double>();
+    private ScilabType realParameters = new ScilabDouble();
+    //private List<Integer> integerParameters = new ArrayList<Integer>();
+    private ScilabType integerParameters = new ScilabDouble();
+    //private List objectsParameters = new ArrayList();
+    private ScilabType objectsParameters = new ScilabList();
 
-	private ScilabType nbZerosCrossing = new ScilabDouble();
+    private ScilabType nbZerosCrossing = new ScilabDouble();
 
-	private ScilabType nmode = new ScilabDouble();
+    private ScilabType nmode = new ScilabDouble();
 
-	private ScilabType state = new ScilabDouble();
-	private ScilabType dState = new ScilabDouble();
-	private ScilabType oDState = new ScilabDouble();
+    private ScilabType state = new ScilabDouble();
+    private ScilabType dState = new ScilabDouble();
+    private ScilabType oDState = new ScilabDouble();
 
-	private ScilabType equations = new ScilabList();
+    private ScilabType equations = new ScilabList();
 
-	private boolean dependsOnU = false;
-	private boolean dependsOnT = false;
+    private boolean dependsOnU = false;
+    private boolean dependsOnT = false;
 
-	private String blockType = "c";
+    private String blockType = "c";
 
-	private int ordering = 0;
+    private int ordering = 0;
 
-	public enum SimulationFunctionType {
-		DEFAULT,
-		TYPE_1,
-		TYPE_2,
-		TYPE_3,
-		C_OR_FORTRAN,
-		SCILAB,
-		UNKNOWN;
+    public enum SimulationFunctionType {
+	DEFAULT,
+	TYPE_1,
+	TYPE_2,
+	TYPE_3,
+	C_OR_FORTRAN,
+	SCILAB,
+	UNKNOWN;
 
-		public static SimulationFunctionType convertScilabValue(int scilabValue) {
-			switch (scilabValue) {
-			case 0:
-				return DEFAULT;
-			case 1:
-				return TYPE_1;
-			case 2:
-				return TYPE_2;
-			case 3:
-				return TYPE_3;
-			case 4:
-				return C_OR_FORTRAN;
-			case 5:
-				return SCILAB;
-			default:
-				return UNKNOWN;
-			}
-		}
+	public static SimulationFunctionType convertScilabValue(int scilabValue) {
+	    switch (scilabValue) {
+	    case 0:
+		return DEFAULT;
+	    case 1:
+		return TYPE_1;
+	    case 2:
+		return TYPE_2;
+	    case 3:
+		return TYPE_3;
+	    case 4:
+		return C_OR_FORTRAN;
+	    case 5:
+		return SCILAB;
+	    default:
+		return UNKNOWN;
+	    }
+	}
 
+	public double getAsDouble() {
+	    switch (this) {
+	    case DEFAULT:
+		return 0.0;
+	    case TYPE_1:
+		return 1.0;
+	    case TYPE_2 :
+		return 2.0;
+	    case TYPE_3 :
+		return 3.0;
+	    case C_OR_FORTRAN:
+		return 4.0;
+	    case SCILAB:
+		return 5.0;
+	    default:
+		return -1;
+	    }
+	}
+    };
+
+    public static BasicBlock createBlock(String label) {
+	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
+	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
+	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
+	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
+	else { return new BasicBlock(label); }
+    }
+
+    public BasicBlock() {
+	super();
+	setVertex(false);
+	setVisible(false);
+    }
+    
+    protected BasicBlock(String label) {
+	super();
+	setValue(label);
+	setStyle("block");
+	setVertex(true);
+	setConnectable(false);
+	setGeometry(new mxGeometry(0,0,80,80));
+    }
+
+    protected BasicBlock(String label, String style) {
+	super();
+	setValue(label);
+	setStyle(style);
+	setVertex(true);
+	setConnectable(false);
+	setGeometry(new mxGeometry(0,0,80,80));
+    }
+
+    public String getInterfaceFunctionName() {
+	return interfaceFunctionName;
+    }
+
+    public void setGeometry(mxGeometry geometry)
+    {
+	super.setGeometry(geometry);
+	updateInputPortsPositions();
+	updateOutputPortsPositions();
+	updateCommandPortsPositions();
+	updateControlPortsPositions();
+    }
+
+    public void setInterfaceFunctionName(String interfaceFunctionName) {
+	this.interfaceFunctionName = interfaceFunctionName;
+    }
+
+    public void setSimulationFunctionName(String simulationFunctionName) {
+	this.simulationFunctionName = simulationFunctionName;
+    }
+
+    public String getSimulationFunctionName() {
+	return simulationFunctionName;
+    }
+
+    public void setSimulationFunctionType(int scilabValue) {
+	this.simulationFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
+    }
+
+    public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
+	this.simulationFunctionType = simulationFunctionType;
+    }
+
+    public SimulationFunctionType getSimulationFunctionType() {
+	return simulationFunctionType;
+    }
+
+    public ScilabType getRealParameters() {
+	return realParameters;
+    }
+
+    public void setRealParameters(ScilabType realParameters) {
+	this.realParameters = realParameters;
+    } 
+
+    public ScilabType getIntegerParameters() {
+	return integerParameters;
+    }
+
+    public void setIntegerParameters(ScilabType integerParameters) {
+	this.integerParameters = integerParameters;
+    }
+
+    public ScilabType getObjectsParameters() {
+	return objectsParameters;
+    }
+
+    public void setObjectsParameters(ScilabType objectsParameters) {
+	this.objectsParameters = objectsParameters;
+    }
+
+    public void setDependsOnU(boolean dependsOnU) {
+	this.dependsOnU = dependsOnU;
+    }
+
+    public boolean dependsOnU() {
+	return dependsOnU;
+    }
+
+    public void setDependsOnT(boolean dependsOnT) {
+	this.dependsOnT = dependsOnT;
+    }
+
+    public boolean dependsOnT() {
+	return dependsOnT;
+    }
+
+    public void setBlockType(String blockType) {
+	this.blockType = blockType;
+    }
+
+    public String getBlockType() {
+	return blockType;
+    }
+
+    public void setOrdering(int ordering) {
+	this.ordering = ordering;
+    }
 		public double getAsDouble() {
 			switch (this) {
 			case DEFAULT:

@@ -59,6 +59,7 @@ import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -115,7 +116,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 			public void run() {
 				// Add a default Java bloc in HashMap
 				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
-
+				
 				Window palWin = ScilabWindow.createWindow();
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
@@ -380,19 +381,20 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(newMenu);
 
 		fileMenu.add(OpenAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsAction.createMenu(scilabGraph));
 		fileMenu.add(ExportAction.createMenu(scilabGraph));
 		fileMenu.add(ExportToXMLAction.createMenu(scilabGraph));
+		fileMenu.add(ImportFromXMLAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(CloseAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(QuitAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
 		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
 		

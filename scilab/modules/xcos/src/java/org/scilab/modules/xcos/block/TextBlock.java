@@ -14,6 +14,12 @@ package org.scilab.modules.xcos.block;
 
 public class TextBlock extends BasicBlock {
 
+    public TextBlock() {
+	super();
+	setVertex(false);
+	setVisible(false);
+    }
+
     public TextBlock(String label) {
 	super(label);
 	setStyle("Label");

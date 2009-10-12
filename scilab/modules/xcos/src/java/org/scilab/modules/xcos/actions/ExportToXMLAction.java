@@ -1,53 +1,80 @@
 package org.scilab.modules.xcos.actions;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.beans.XMLEncoder;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-
+import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ConstBlock;
+import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Document;
+
+import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxObjectCodec;
+import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxUtils;
 
 public class ExportToXMLAction extends DefaultAction {
 
-	private static final long serialVersionUID = 1L;
-	private XcosDiagram diagram;
-	
-	public ExportToXMLAction(ScilabGraph scilabGraph) {
-		super("Export to XML",scilabGraph);
-	}
-	
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu("Export to XML", null, new ExportToXMLAction(scilabGraph), null);
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		diagram = (XcosDiagram)getGraph(e);
-		String[] properties = { "label" };
+    private static final long serialVersionUID = 1L;
 
-		//GraphToXml.writeDiagramToXML("/home/allan/Bureau/testexport.xml", diagram);
-		XMLEncoder encoder;;
-		//XML
-		
-		try {
+    public ExportToXMLAction(ScilabGraph scilabGraph) {
+	super(XcosMessages.EXPORT_TO_XML,scilabGraph);
+    }
 
-			encoder = new XMLEncoder(new BufferedOutputStream(
-					new FileOutputStream(("/home/allan/Bureau/testexport.xml"))));
-			//configureEncoder(encoder);
-			encoder.writeObject(diagram);
-			encoder.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			//JOptionPane.showMessageDialog(diagram, e1.getMessage(), "Error",
-					//JOptionPane.ERROR_MESSAGE);
-		}
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+	return createMenu(XcosMessages.EXPORT_TO_XML, null, new ExportToXMLAction(scilabGraph), null);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
+	//mxObjectCodec constBlockCodec = new TextBlockCodec(BasicBlock.createBlock("CONST_m"));
+	String[] ignore = {"exprs", "realParameters", "integerParameters", "nbZerosCrossing", "nmode", "state", "dState", "oDState",
+		"simulationFunctionType", "SimulationFunctionType"};
+	String[] refs = {"parent", "source", "target"};
+
+	// Blocks
+	mxObjectCodec textBlockCodec = new mxObjectCodec(new TextBlock(), ignore, refs, null);
+	mxCodecRegistry.register(textBlockCodec);
+	mxObjectCodec basicBlockCodec = new mxObjectCodec(new BasicBlock(), ignore, refs, null);
+	mxCodecRegistry.register(basicBlockCodec);
+	mxObjectCodec constBlockCodec = new mxObjectCodec(new ConstBlock(), ignore, refs, null);
+	mxCodecRegistry.register(constBlockCodec);
+	mxObjectCodec cellCodec = new mxObjectCodec(new mxCell(), null, refs, null);
+	mxCodecRegistry.register(cellCodec);
 	
+	
+	// Diagram
+	String[] diagramIgnore = {"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "wpar", "multiplicities"};
+	mxObjectCodec diagramCodec = new mxObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	mxCodecRegistry.register(diagramCodec);
+
+	// Ports
+	mxObjectCodec explicitOutputPortCodec = new mxObjectCodec(new ExplicitOutputPort(), null, refs, null);
+	mxCodecRegistry.register(explicitOutputPortCodec);
+	
+	mxCodec codec = new mxCodec();
+	String xml = mxUtils.getXml(codec.encode(getGraph(e)));
+
+	try {
+	    mxUtils.writeFile(xml, "/tmp/testexport.xml");
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
 	}
-	
+    }
+
 }
