@@ -68,7 +68,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 	case "$host_os" in
 	     *darwin* ) 
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/javac"
+		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -209,7 +209,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 		case "$host_os" in
 		     *darwin* ) 
 			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
-			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Versions/Current/"
+			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
 			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac

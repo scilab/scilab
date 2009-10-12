@@ -54,13 +54,21 @@ CC_LDFLAGS =
 # Fortran Compiler 
 # default usage is to use f2c 
 #==================================================
-# detect intel fortran compiler 10.x family
-!IF "$(IFORT_COMPILER10)" == ""
 USE_F2C=YES
+# detect intel fortran compiler 9,10,11.x family
+!IF "$(IFORT_COMPILER9)" == ""
 !ELSE
 USE_F2C=NO
 !ENDIF
-
+!IF "$(IFORT_COMPILER10)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
+!IF "$(IFORT_COMPILER11)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
+#==================================================
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 10.x)
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
