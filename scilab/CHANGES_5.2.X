@@ -507,6 +507,8 @@ Bug fixes:
 
 * bug 4638 fixed - this example with optim freezes scilab
 
+* bug 4639 fixed - Some graphics demos does not contain the menu item "show code"
+
 * bug 4641 fixed - the parameter Q of the function derivative was not clear.
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
