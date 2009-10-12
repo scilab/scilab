@@ -1,4 +1,4 @@
-   /*
+/*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
@@ -47,12 +47,12 @@ import org.flexdock.docking.DockingConstants;
 public class Scilab {
 
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
-	
+
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
 
 	/** Index of windows vista version */
 	private static final double VISTA_VERSION = 6.0;
-	
+
 	private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
 	private static final String ENABLE = "true";
 	private static final String DISABLE = "false";
@@ -66,7 +66,7 @@ public class Scilab {
 
 	private Window mainView;
 
-	 /**
+	/**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
@@ -79,7 +79,7 @@ public class Scilab {
 		 */
 		try {
 			SCIDIR = System.getenv("SCI");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");
 			System.err.println(e.getLocalizedMessage());
 			System.exit(-1);
@@ -93,42 +93,45 @@ public class Scilab {
 		 * they must be set before creating GUI
 		 */
 		setJOGLFlags();
-		
+
 		/*
 		 * if not API mode
 		 * bug 3673 by default in API mode we dont modify look n feel
 		 * If SCI_JAVA_ENABLE_HEADLESS is set, do not set the look and feel.
 		 * (needed when building the documentation under *ux)
 		 */
-		if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null ) {
-		/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
-		
-		try {
-                    System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, "true");
-			String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
-			
-		    if (isWindowsPlateform()) {
-				scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-		    } else {
-				scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-		    }
-		    
-			/* Init the LookAndFeelManager all the time since we can
-			 * create windows in the NW mode */
+		if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null) {
+			/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 
-			LookAndFeelManager lookAndFeel = new LookAndFeelManager();
+			try {
+				
+				/** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
+				System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, "true");
+				
+				String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-			if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
-				lookAndFeel.setLookAndFeel(scilabLookAndFeel);
-			} else {
-				lookAndFeel.setSystemLookAndFeel();
+				if (isWindowsPlateform()) {
+					scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+				} else {
+					scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+				}
+
+				/* Init the LookAndFeelManager all the time since we can
+				 * create windows in the NW mode */
+
+				LookAndFeelManager lookAndFeel = new LookAndFeelManager();
+
+				if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
+					lookAndFeel.setLookAndFeel(scilabLookAndFeel);
+				} else {
+					lookAndFeel.setSystemLookAndFeel();
+				}
+
+			} catch (java.lang.NoClassDefFoundError exception) {
+				System.err.println("Could not initialize graphics Environment");
+				System.err.println("Scilab Graphical option may not be working correctly.");
+				System.err.println("An error occurred: " + exception.getLocalizedMessage());
 			}
-
-		} catch (java.lang.NoClassDefFoundError exception) {
-			System.err.println("Could not initialize graphics Environment");
-			System.err.println("Scilab Graphical option may not be working correctly.");
-			System.err.println("An error occurred: " + exception.getLocalizedMessage());
-		}
 		}
 
 		if (mode == 2) { /* Mode GUI */
@@ -143,12 +146,11 @@ public class Scilab {
 						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
-			} 
-			catch (java.awt.HeadlessException exception){
+			} catch (java.awt.HeadlessException exception) {
 				System.err.println("Error during the initialization of the window: "  + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-			
+
 			mainView.setPosition(ConfigManager.getMainWindowPosition());
 			mainView.setDims(ConfigManager.getMainWindowSize());
 
@@ -178,9 +180,9 @@ public class Scilab {
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-			
+
 			TextBox infoBar = ScilabTextBox.createTextBox();
-			
+
 			/** Adding content into container */
 			toolBar.setVisible(false); // Enabled in scilab.start
 			ScilabConsole.getConsole().addToolBar(toolBar);
@@ -201,20 +203,20 @@ public class Scilab {
 	public void setPrompt(String prompt) {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
-	
+
 	/**
 	 * Set the command line flags to the JVM
 	 */
 	public static void setJOGLFlags() {
-		
-	    // Must give popUpMenu heavy weight
-	    // in case we enable GLCanvas
-	    JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+
+		// Must give popUpMenu heavy weight
+		// in case we enable GLCanvas
+		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 		// Uneash OpenGL power
 		// Not yet
 		//System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
 		System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
-		
+
 		if (isWindowsPlateform()) {
 			if (findWindowsVersion() >= VISTA_VERSION) {
 				// don't enable OpenGL because of aero
@@ -225,7 +227,7 @@ public class Scilab {
 		}
 
 	}
-	
+
 	/**
 	 * @return true if the os is windows, false otherwise
 	 */
@@ -233,7 +235,7 @@ public class Scilab {
 		// get os name
 		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
-	
+
 	/**
 	 * Find the verion of windows used on the computer if one
 	 * @return negative value if the OS is not windows, the version of windows otherwise
@@ -241,15 +243,15 @@ public class Scilab {
 	public static double findWindowsVersion() {
 		// default valu enot windows
 		double windowsVersion = -1.0;
-		
+
 		if (isWindowsPlateform()) {
 			// windows plateform
 			return Double.valueOf(System.getProperty("os.version"));
 		}
-		
+
 		return windowsVersion;
 	}
-	
+
 }
 /*--------------------------------------------------------------------------*/
 
