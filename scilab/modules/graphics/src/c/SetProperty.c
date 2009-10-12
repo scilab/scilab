@@ -597,7 +597,7 @@ int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
 
-  if (linewidth < 0.0)
+  if (linewidth < 0)
     {
       Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;

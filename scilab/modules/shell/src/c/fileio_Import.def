@@ -1,4 +1,4 @@
 	LIBRARY    fileio.dll
 
 EXPORTS 
-  getdiary
+  splitpath

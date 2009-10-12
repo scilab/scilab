@@ -1,0 +1,45 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 4365 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4365
+//
+// <-- Short Description -->
+// completion fails and returns a bad value if we try to use it on a path that doesn't exist 
+// cd SCI/modules/arnoldi/nonreg_tes[TAB]
+// <-- JVM NOT MANDATORY -->
+ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
+currentline = 'cd SCI/modules/arnoldi/nonreg_tes';
+r = completeline(currentline,'nonreg_test_run',getfilepartlevel(currentline),getpartlevel(currentline),%f);
+if r <> currentline then bugmes();quit;end
+currentline = 'cd modules/arnoldi/src/c';
+r = completeline(currentline,'c/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd modules/arnoldi/src/c/' then bugmes();quit;end
+currentline = 'cd reposit';
+r = completeline(currentline,'repositories/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/' then bugmes();quit;end
+currentline = 'cd repositories/';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then bugmes();quit;end
+currentline = 'cd repositories/to';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then bugmes();quit;end
+currentline = 'cd repositories/tooboxes_google';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then bugmes();quit;end
+currentline = 'cd repositories/tooboxes_google/sci';
+r = completeline(currentline,'scicoinor/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/' then bugmes();quit;end
+currentline = 'cd repositories/tooboxes_google/scicoinor/sci';
+r = completeline(currentline,'sci_gateway/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/sci_gateway/' then bugmes();quit;end
+currentline = 'cd repositories/tooboxes_google/scicoinor/';
+r = completeline(currentline,'sci_gateway/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/sci_gateway/' then bugmes();quit;end

@@ -402,6 +402,8 @@ Bug fixes:
 
 * bug 4364 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
+* bug 4365 fixed - completion fails on a wrong path.
+
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.
 
@@ -419,7 +421,11 @@ Bug fixes:
 * bug 4407 fixed - help file scilab_xx_XX_help.jar have another scilab_xx_XX_help.jar embedded
                    and not valid.
 
+* bug 4421 fixed - completion fails on some relative path.
+
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
+
+* bug 4438 fixed - completion does not support insert mode.
 
 * bug 4461 fixed - redefines prompt not displayed in a diary.
 
@@ -531,6 +537,8 @@ Bug fixes:
 
 * bug 4732 fixed - the help page of function ss2ss has some missing part
 
+* bug 4737 fixed - completion fails on file extension search.
+
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
 
 * bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
@@ -550,6 +558,8 @@ Bug fixes:
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
+
+* bug 4828 fixed - completion clears the content of some completed path.
 
 * bug 4832 fixed - wavread returns a non explicit error if RIFF have some 'smpl' chunck.
 
