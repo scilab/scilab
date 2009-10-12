@@ -133,7 +133,7 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosNotify.lo \
 	libscixcos_la-sci_setBlockTextValue.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
-	libscixcos_la-Signal.lo libscixcos_la-XcosDiagram.lo
+	libscixcos_la-Signal.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
@@ -487,9 +487,7 @@ XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx \
-			src/jni/XcosDiagram.cpp \
-			src/jni/XcosDiagram.hxx
+			src/jni/Signal.hxx
 
 GIWS_WRAPPERS = Xcos.giws.xml \
 XcosUtils.giws.xml
@@ -505,7 +503,7 @@ libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes	
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -515,6 +513,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
+                        -I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 
@@ -628,7 +627,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Xcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-XcosDiagram.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-callxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
@@ -732,13 +730,6 @@ libscixcos_la-Signal.lo: src/jni/Signal.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Signal.cpp' object='libscixcos_la-Signal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
-
-libscixcos_la-XcosDiagram.lo: src/jni/XcosDiagram.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-XcosDiagram.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-XcosDiagram.Tpo -c -o libscixcos_la-XcosDiagram.lo `test -f 'src/jni/XcosDiagram.cpp' || echo '$(srcdir)/'`src/jni/XcosDiagram.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-XcosDiagram.Tpo $(DEPDIR)/libscixcos_la-XcosDiagram.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XcosDiagram.cpp' object='libscixcos_la-XcosDiagram.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-XcosDiagram.lo `test -f 'src/jni/XcosDiagram.cpp' || echo '$(srcdir)/'`src/jni/XcosDiagram.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

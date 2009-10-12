@@ -259,7 +259,8 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/fortran/tcsltj.f src/fortran/timblk.f src/fortran/trash.f \
 	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
-	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c
+	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c \
+	src/jni/XcosDiagram.cpp
 @SCICOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absolute_value.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-absblk.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-andlog.lo \
@@ -577,12 +578,14 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoMemoryScope.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-affich.lo
+@SCICOS_TRUE@am__objects_4 = XcosDiagram.lo
 @SCICOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
-@SCICOS_TRUE@	$(am__objects_2) $(am__objects_3)
+@SCICOS_TRUE@	$(am__objects_2) $(am__objects_3) \
+@SCICOS_TRUE@	$(am__objects_4)
 libsciscicos_blocks_la_OBJECTS = $(am_libsciscicos_blocks_la_OBJECTS)
-libsciscicos_blocks_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(libsciscicos_blocks_la_LDFLAGS) $(LDFLAGS) -o $@
+libsciscicos_blocks_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libsciscicos_blocks_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -595,6 +598,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -1219,6 +1231,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@src/c/writec.c \
 @SCICOS_TRUE@src/c/zcross2.c
 
+@SCICOS_TRUE@SCICOS_BLOCK_CPP_SOURCES = src/jni/XcosDiagram.cpp
 @SCICOS_TRUE@NON_BLOCK_C_SOURCES = src/c/scoGetProperty.c \
 @SCICOS_TRUE@src/c/scoSetProperty.c \
 @SCICOS_TRUE@src/c/scoMisc.c \
@@ -1303,7 +1316,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
 @SCICOS_TRUE@$(SCICOS_BLOCKS_FORTRAN_SOURCES) \
-@SCICOS_TRUE@$(NON_BLOCK_C_SOURCES)
+@SCICOS_TRUE@$(NON_BLOCK_C_SOURCES) \
+@SCICOS_TRUE@$(SCICOS_BLOCK_CPP_SOURCES)
 
 
 # For the code check (splint)
@@ -1364,7 +1378,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1435,6 +1449,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/XcosDiagram.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absblk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absolute_value.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acos_blk.Plo@am__quote@
@@ -3888,6 +3903,34 @@ libsciscicos_blocks_la-affich.lo: src/c/affich.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/affich.c' object='libsciscicos_blocks_la-affich.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+XcosDiagram.lo: src/jni/XcosDiagram.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT XcosDiagram.lo -MD -MP -MF $(DEPDIR)/XcosDiagram.Tpo -c -o XcosDiagram.lo `test -f 'src/jni/XcosDiagram.cpp' || echo '$(srcdir)/'`src/jni/XcosDiagram.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/XcosDiagram.Tpo $(DEPDIR)/XcosDiagram.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XcosDiagram.cpp' object='XcosDiagram.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o XcosDiagram.lo `test -f 'src/jni/XcosDiagram.cpp' || echo '$(srcdir)/'`src/jni/XcosDiagram.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
