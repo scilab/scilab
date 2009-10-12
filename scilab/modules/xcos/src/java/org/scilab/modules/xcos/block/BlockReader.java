@@ -515,7 +515,7 @@ public class BlockReader {
 	// the fourth field must contain the name of the interface function
 	if (!(blockFields.get(3) instanceof ScilabString)) { throw new WrongTypeException(); } 
 	BasicBlock newBlock = BasicBlock.createBlock(getBlockInterfaceName (blockFields));
-	newBlock.setValue(getBlockInterfaceName (blockFields));
+	//newBlock.setValue(getBlockInterfaceName (blockFields));
 	newBlock.setInterfaceFunctionName( getBlockInterfaceName (blockFields) );
 	
 	// the second field must contain list of all graphic property (how the block will be displayed )
