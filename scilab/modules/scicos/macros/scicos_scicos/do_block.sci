@@ -28,6 +28,11 @@ function [scs_m] = do_block(%pt,scs_m)
 //   not in the current window out of the selection
 
   K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+				      
+  if K==[] then
+    K = getblock(scs_m, %pt(:))
+  end
+   				      
   if K==[] then
     messagebox(_("No selected block in the current Scicos window."),'error','modal')
     return

@@ -22,6 +22,10 @@ function scs_m = do_icon_edit(%pt,scs_m)
   
   K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
   if K==[] then
+    K = getblock(scs_m, %pt(:))
+  end
+
+  if K==[] then
     messagebox(_("No selected block in the current Scicos window."),'error','modal')
     return
   end

@@ -275,6 +275,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
       'XcosMenuGetInfo',               _("Click on object  to get information on it");
       'XcosMenuCodeGeneration',        _("Click on a Super Block (without activation output) to obtain a coded block!") ;
       'XcosMenuIcon',                  _("Click on block to edit its icon");
+      'XcosMenuIconEditor',            _("Click on block to  open graphic icon editor");
       'XcosMenuColor',                 _("Click on object to choose its color");
       'XcosMenuIdentification',        _("Click on an object to set or get identification");
       'XcosMenuResize',                _("Click block to resize");
