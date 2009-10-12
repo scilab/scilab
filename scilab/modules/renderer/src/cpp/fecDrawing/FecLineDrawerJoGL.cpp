@@ -43,7 +43,7 @@ void FecLineDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
 {
   sciPointObj * pFec = getDrawer()->getDrawedObject();
   initializeDrawing();
-  getLineDrawerJavaMapper()->setLineParameters(sciGetForegroundColor(pFec),
+  getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pFec)->foregroundcolor,
                                                (float)sciGetLineWidth(pFec),
                                                sciGetLineStyle(pFec));
 

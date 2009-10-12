@@ -62,25 +62,21 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 	char *new_line = NULL;
 	int lengthNewLine = 0;
 
-	char *stringToAddTmp = NULL;
 	char *stringToAddAtTheEnd = NULL;
-
-	int lenstringToAdd = 0;
-	int lencurrentline = 0;
 	int lenstringToAddAtTheEnd = 0;
 
-	char *pos = NULL;
+	char *res = NULL;
+
+	int lencurrentline = 0;
+	int lenstringToAdd = 0;
 
 	int i = 0;
-	int j = 0;
-
-	char *result = NULL;
+	int iposInsert = 0;
 
 	if (currentline == NULL) 
 	{
 		return  strdup("");
 	}
-
 	lencurrentline = (int)strlen(currentline);
 
 	if (postCaretLine == NULL)
@@ -166,104 +162,49 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 
 	lenstringToAdd = (int)strlen(stringToAdd);
 
-	result = strrstr(currentline, stringToAdd);
-
-	pos = &currentline[lencurrentline - lenstringToAdd];
-	stringToAddTmp = strdup(stringToAdd);
-	stringToAddTmp[lenstringToAdd] = 0;
-	if (stringToAddTmp[0] != 0)
+	iposInsert = lencurrentline;
+	for(i = 1; i < lenstringToAdd+1;i++)
 	{
-		if (strcmp(pos, stringToAddTmp) != 0)
+		char *partstringToAdd = strdup(stringToAdd);
+		partstringToAdd[i] = 0;
+
+		res = strrstr(currentline, partstringToAdd);
+		
+		FREE(partstringToAdd);
+		partstringToAdd = NULL;
+
+		if (res)
 		{
-			result = NULL;
-		}
-	}
-	FREE(stringToAddTmp);
-	stringToAddTmp = NULL;
-
-	if (result)
-	{
-		j = lenstringToAdd;
-	}
-	else
-	{
-		for(i = 0; i < lenstringToAdd; i++)
-		{
-			stringToAddTmp = (char*)MALLOC((i+1)*sizeof(char));;
-			if (stringToAddTmp)
-			{
-				strncpy(stringToAddTmp,stringToAdd,i);
-				stringToAddTmp[i] = 0;
-
-				if (stringToAddTmp[0] != 0)
-				{
-					result = strrstr(currentline, stringToAddTmp);
-					if (result)
-					{
-						j = i;
-					}
-					else
-					{
-						FREE(stringToAddTmp);
-						stringToAddTmp = NULL;
-						break;
-					}
-				}
-
-				FREE(stringToAddTmp);
-				stringToAddTmp = NULL;
-			}
-		}
-
-		if (stringToAddTmp)
-		{
-			FREE(stringToAddTmp);
-			stringToAddTmp = NULL;
-		}
-	}
-
-	pos = &currentline[lencurrentline - j];
-	stringToAddTmp = strdup(stringToAdd);
-	stringToAddTmp[j] = 0;
-	if (stringToAddTmp[0] != 0)
-	{
-		if (strcmp(pos, stringToAddTmp) == 0)
-		{
-			lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
-			new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
-			strcpy(new_line, currentline);
-			new_line[lencurrentline - j] = 0;
-			strcat(new_line, stringToAdd);
-			strcat(new_line, stringToAddAtTheEnd);
+			iposInsert = lencurrentline - (int) strlen(res);
 		}
 		else
 		{
-			lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
-			new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
-			if (new_line)
-			{
-				strcpy(new_line, currentline);
-				strcat(new_line, stringToAdd);
-				strcat(new_line, stringToAddAtTheEnd);
-			}
-		}
-	}
-	else
-	{
-		lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
-		new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
-		if (new_line)
-		{
-			strcpy(new_line, currentline);
-			strcat(new_line, stringToAdd);
-			strcat(new_line, stringToAddAtTheEnd);
+			break;
 		}
 	}
 
-	if (stringToAddTmp)
+	res = strstr(stringToAdd,&currentline[iposInsert]);
+	if (res == NULL)
 	{
-		FREE(stringToAddTmp);
-		stringToAddTmp = NULL;
+		if ((currentline[lencurrentline - 1] == '/') || (currentline[lencurrentline - 1] == '\\'))
+		{
+			iposInsert = lencurrentline;
+		}
+		else
+		{
+			iposInsert = lencurrentline - 1;
+		}
+	}
+
+	lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+	new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+	if (new_line)
+	{
+		strcpy(new_line, currentline);
+		new_line[iposInsert] = 0;
+
+		strcat(new_line, stringToAdd);
+		strcat(new_line, stringToAddAtTheEnd);
 	}
 
 	return new_line;

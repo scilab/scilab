@@ -45,12 +45,12 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
   if ( sciGetPolylineStyle(pObj) == 5)
   {
     // strange mode
-    getFillDrawerJavaMapper()->setBackColor(sciGetForegroundColor(pObj));
+    getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->foregroundcolor) ;
   }
   else
   {
     // normal mode
-    getFillDrawerJavaMapper()->setBackColor(sciGetBackgroundColor(pObj));
+    getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
   }
   
 

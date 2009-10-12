@@ -31,3 +31,30 @@ currentline = 'cd modules/arnoldi/src/c';
 r = completeline(currentline,'c/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
 if r <> 'cd modules/arnoldi/src/c/' then pause,end
 
+currentline = 'cd reposit';
+r = completeline(currentline,'repositories/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/' then pause,end
+
+currentline = 'cd repositories/';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then pause,end
+
+currentline = 'cd repositories/to';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then pause,end
+
+currentline = 'cd repositories/tooboxes_google';
+r = completeline(currentline,'tooboxes_google/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/' then pause,end
+
+currentline = 'cd repositories/tooboxes_google/sci';
+r = completeline(currentline,'scicoinor/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/' then pause,end
+
+currentline = 'cd repositories/tooboxes_google/scicoinor/sci';
+r = completeline(currentline,'sci_gateway/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/sci_gateway/' then pause,end
+
+currentline = 'cd repositories/tooboxes_google/scicoinor/';
+r = completeline(currentline,'sci_gateway/',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'cd repositories/tooboxes_google/scicoinor/sci_gateway/' then pause,end

@@ -25,6 +25,8 @@ commons-beanutils.jar=@COMMONS_BEANUTILS@
 
 antlr.jar=@ANTLR@
 
+jlatexmath.jar=@JLATEXMATH@
+
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar
 

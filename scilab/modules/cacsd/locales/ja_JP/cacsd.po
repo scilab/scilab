@@ -1,0 +1,1250 @@
+# Localization of the module cacsd
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: etc/cacsd.start, line: 20
+msgid "CACSD"
+msgstr "CACSD"
+
+#
+# File: macros/abcd.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgstr "%s: 入力引数で不正な型: 動的線システムを想定します。\n"
+
+#
+# File: macros/abinv.sci, line: 51
+# File: macros/ctr_gram.sci, line: 55
+# File: macros/h_norm.sci, line: 30
+# File: macros/obsv_mat.sci, line: 26
+# File: macros/plzr.sci, line: 42
+# File: macros/repfreq.sci, line: 17
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線の動的システムを想定します。\n"
+
+#
+# File: macros/abinv.sci, line: 60
+# File: macros/abinv.sci, line: 66
+# File: macros/abinv.sci, line: 70
+# File: macros/plzr.sci, line: 36
+# File: macros/plzr.sci, line: 48
+# File: macros/syslin.sci, line: 83
+# File: macros/syslin.sci, line: 90
+# File: macros/syslin.sci, line: 97
+# File: macros/syslin.sci, line: 107
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 浮動小数点数の整列を想定します。\n"
+
+#
+# File: macros/abinv.sci, line: 76
+# File: macros/augment.sci, line: 119
+# File: macros/augment.sci, line: 250
+# File: macros/csim.sci, line: 82
+# File: macros/ctr_gram.sci, line: 22
+# File: macros/gtild.sci, line: 42
+# File: macros/gtild.sci, line: 53
+# File: macros/obs_gram.sci, line: 18
+# File: macros/show_margins.sci, line: 13
+# File: macros/syslin.sci, line: 35
+# File: macros/time_id.sci, line: 25
+# File: macros/time_id.sci, line: 28
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d で不正な値: {%s} に設定しなくてはなりません。\n"
+
+#
+# File: macros/abinv.sci, line: 82
+# File: macros/cls2dls.sci, line: 27
+# File: macros/csim.sci, line: 52
+# File: macros/ctr_gram.sci, line: 34
+# File: macros/ctr_gram.sci, line: 47
+# File: macros/dscr.sci, line: 38
+# File: macros/hankelsv.sci, line: 16
+# File: macros/leqr.sci, line: 31
+# File: macros/lqg.sci, line: 29
+# File: macros/lqg2stan.sci, line: 40
+# File: macros/nehari.sci, line: 23
+# File: macros/obs_gram.sci, line: 29
+# File: macros/obs_gram.sci, line: 42
+# File: macros/st_ility.sci, line: 26
+# File: macros/svplot.sci, line: 37
+#, c-format
+msgid "%s: Input argument %d is assumed continuous time.\n"
+msgstr "%s: 入力引数 %d は、連続的な時間を想定します。\n"
+
+#
+# File: macros/abinv.sci, line: 156
+# File: macros/abinv.sci, line: 173
+#, c-format
+msgid "%s: Needs %s => Use default value %s=%d.\n"
+msgstr "%s: 必要性 %s => デフォルト値使用 %s=%d.\n"
+
+#
+# File: macros/acf.sci, line: 24
+msgid "Autocorrelation Function"
+msgstr "自己相関関数"
+
+#
+# File: macros/arhnk.sci, line: 23
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 安定システムを想定します。\n"
+
+#
+# File: macros/arma2p.sci, line: 15
+# File: macros/copfac.sci, line: 32
+# File: macros/csim.sci, line: 48
+# File: macros/narsimul.sci, line: 141
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: %s データ構造を想定します。\n"
+
+#
+# File: macros/armac.sci, line: 25
+# File: macros/armac.sci, line: 31
+# File: macros/armac.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 列次元は、%d と等しくなければなりません。\n"
+
+#
+# File: macros/armac.sci, line: 36
+#, c-format
+msgid "%s: Wrong size of input argument #%d: Number of columns are incompatible with %s.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 列の数は、%s と互換性がありません。\n"
+
+#
+# File: macros/armax.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgstr "%s: 入力引数で不正な値: もし、%s と %s　は同一視するものにならなければ。\n"
+
+#
+# File: macros/armax.sci, line: 82
+#, c-format
+msgid "%s: %s is numerically singular.\n"
+msgstr "%s: %s は、数値単数です。\n"
+
+#
+# File: macros/armax.sci, line: 117
+# File: macros/armax.sci, line: 121
+#, c-format
+msgid "%s: Standard deviation of the estimator %s:\n"
+msgstr "%s: %s 評価の標準偏差:\n"
+
+#
+# File: macros/armax1.sci, line: 47
+# File: macros/frep2tf.sci, line: 105
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 同じ要素の数を想定します。\n"
+
+#
+# File: macros/arsimul.sci, line: 18
+# File: macros/black.sci, line: 68
+# File: macros/black.sci, line: 98
+# File: macros/bode.sci, line: 32
+# File: macros/bode.sci, line: 62
+# File: macros/findABCD.sci, line: 84
+# File: macros/findAC.sci, line: 60
+# File: macros/findBDK.sci, line: 90
+# File: macros/findx0BD.sci, line: 61
+# File: macros/gainplot.sci, line: 33
+# File: macros/gainplot.sci, line: 59
+# File: macros/narsimul.sci, line: 29
+# File: macros/narsimul.sci, line: 44
+# File: macros/nyquist.sci, line: 35
+# File: macros/nyquist.sci, line: 67
+# File: macros/repfreq.sci, line: 45
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/arsimul.sci, line: 32
+#, c-format
+msgid "%s: Number of rows of %s are incompatible with %s object.\n"
+msgstr "%s: %s の列の数は、%s オブジェクトで互換性がありません。\n"
+
+#
+# File: macros/arsimul.sci, line: 71
+# File: macros/arsimul.sci, line: 90
+# File: macros/arsimul.sci, line: 109
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 空行列を想定します。\n"
+
+#
+# File: macros/arsimul.sci, line: 77
+# File: macros/arsimul.sci, line: 96
+# File: macros/arsimul.sci, line: 115
+#, c-format
+msgid "%s: %s must be of dimension (%s, %s).\n"
+msgstr "%s: %s は、次元(%s、%s) でなくてはなりません。\n"
+
+#
+# File: macros/augment.sci, line: 48
+# File: macros/augment.sci, line: 182
+# File: macros/ss2des.sci, line: 18
+# File: macros/tf2des.sci, line: 20
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
+
+#
+# File: macros/black.sci, line: 61
+# File: macros/black.sci, line: 79
+# File: macros/bode.sci, line: 25
+# File: macros/bode.sci, line: 43
+# File: macros/gainplot.sci, line: 26
+# File: macros/gainplot.sci, line: 43
+# File: macros/nyquist.sci, line: 28
+# File: macros/nyquist.sci, line: 46
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 列ベクトルで長さ > %d を想定します。\n"
+
+#
+# File: macros/black.sci, line: 83
+# File: macros/black.sci, line: 90
+# File: macros/black.sci, line: 94
+# File: macros/bode.sci, line: 47
+# File: macros/bode.sci, line: 54
+# File: macros/bode.sci, line: 58
+# File: macros/csim.sci, line: 91
+# File: macros/gainplot.sci, line: 47
+# File: macros/gainplot.sci, line: 55
+# File: macros/nyquist.sci, line: 50
+# File: macros/nyquist.sci, line: 57
+# File: macros/nyquist.sci, line: 61
+# File: macros/reglin.sci, line: 23
+# File: macros/sylv.sci, line: 19
+# File: macros/syslin.sci, line: 101
+# File: macros/syslin.sci, line: 127
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 同じ列次元を想定します。\n"
+
+#
+# File: macros/black.sci, line: 101
+# File: macros/bode.sci, line: 65
+# File: macros/gainplot.sci, line: 62
+# File: macros/nyquist.sci, line: 70
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"
+msgstr "%s: 入力引数 #%d で不整な型: 動的線システム、または、変動の行ベクトルを想定します。\n"
+
+#
+# File: macros/black.sci, line: 112
+# File: macros/bode.sci, line: 74
+# File: macros/gainplot.sci, line: 68
+# File: macros/nyquist.sci, line: 80
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 要素の数が同じものを想定します。\n"
+
+#
+# File: macros/black.sci, line: 185
+# File: macros/bode.sci, line: 101
+# File: macros/bode.sci, line: 121
+# File: macros/gainplot.sci, line: 87
+msgid "Frequency (Hz)"
+msgstr "周波数 (Hz)"
+
+#
+# File: macros/black.sci, line: 185
+# File: macros/bode.sci, line: 101
+# File: macros/gainplot.sci, line: 87
+msgid "Magnitude (Db)"
+msgstr "マグニチュード (Db)"
+
+#
+# File: macros/bloc2exp.sci, line: 16
+# File: macros/bloc2exp.sci, line: 19
+# File: macros/bloc2ss.sci, line: 17
+# File: macros/bloc2ss.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: 入力引数 #%d で不整な型: リストを想定します。\n"
+
+#
+# File: macros/bloc2exp.sci, line: 130
+# File: macros/bloc2ss.sci, line: 225
+#, c-format
+msgid "%s: Undefined type ''%s''.\n"
+msgstr "%s: 型 ''%s'' が未定義です。\n"
+
+#
+# File: macros/bloc2exp.sci, line: 135
+# File: macros/bloc2ss.sci, line: 236
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: ある出力は、不確定です。\n"
+
+#
+# File: macros/bloc2exp.sci, line: 138
+# File: macros/bloc2ss.sci, line: 239
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: ある入力は、不確定です。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 48
+#, c-format
+msgid "%s: Hybrid system not implemented.\n"
+msgstr "%s: 混成システムは装備されていません。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 52
+#, c-format
+msgid "%s: Multi rate discrete system not implemented.\n"
+msgstr "%s: マルチ割合は別個のシステムで装備されていません。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 117
+#, c-format
+msgid "%s: Incorrect link: %s"
+msgstr "%s: 不正確なリンク : %s"
+
+#
+# File: macros/bloc2ss.sci, line: 181
+#, c-format
+msgid "%s: Wrong size for link from block %s.\n"
+msgstr "%s: ブロック %s からのリンクにとって誤っているサイズです。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 188
+#, c-format
+msgid "%s: Invalid sizes found during the process.\n"
+msgstr "%s: 無効なサイズを、処理中に見つけました。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 230
+#, c-format
+msgid "%s: No output found.\n"
+msgstr "%s: 出力が見つかりません。\n"
+
+#
+# File: macros/bloc2ss.sci, line: 233
+#, c-format
+msgid "%s: No input found.\n"
+msgstr "%s: 入力が見つかりません。\n"
+
+#
+# File: macros/bode.sci, line: 121
+msgid "Phase (degree)"
+msgstr "位相 (度)"
+
+#
+# File: macros/cainv.sci, line: 60
+# File: macros/sgrid.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字整列を想定します。\n"
+
+#
+# File: macros/cainv.sci, line: 63
+# File: macros/sgrid.sci, line: 28
+# File: macros/syslin.sci, line: 25
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/calfrq.sci, line: 23
+# File: macros/dtsi.sci, line: 109
+# File: macros/h_inf.sci, line: 36
+# File: macros/kpure.sci, line: 20
+# File: macros/krac2.sci, line: 18
+# File: macros/lcf.sci, line: 21
+# File: macros/lft.sci, line: 26
+# File: macros/lft.sci, line: 39
+# File: macros/linf.sci, line: 22
+# File: macros/lqg.sci, line: 14
+# File: macros/pfss.sci, line: 29
+# File: macros/syslin.sci, line: 50
+# File: macros/trfmod.sci, line: 42
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線の場所空間、あるいは、移転機能を想定します。\n"
+
+#
+# File: macros/calfrq.sci, line: 43
+#, c-format
+msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
+msgstr "%s: ナイキスト周波数を越える周波数は、無視されます。\n"
+
+#
+# File: macros/calfrq.sci, line: 47
+#, c-format
+msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
+msgstr "%s: ナイキスト周波数下の否定の周波数は、無視されます。\n"
+
+#
+# File: macros/calfrq.sci, line: 90
+# File: macros/repfreq.sci, line: 64
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正な値: %s < %s を想定します。\n"
+
+#
+# File: macros/chart.sci, line: 11
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "y/(1+y)の振幅と段階輪郭"
+
+#
+# File: macros/chart.sci, line: 78
+msgid "phase(y) (degree)"
+msgstr "位相(y) (度)"
+
+#
+# File: macros/chart.sci, line: 78
+msgid "magnitude(y) (Db)"
+msgstr "マグニチュード(y) (Db)"
+
+#
+# File: macros/cls2dls.sci, line: 24
+# File: macros/invrs.sci, line: 15
+# File: macros/invsyslin.sci, line: 13
+# File: macros/leqe.sci, line: 12
+# File: macros/leqr.sci, line: 23
+# File: macros/lqr.sci, line: 18
+# File: macros/nehari.sci, line: 20
+# File: macros/observer.sci, line: 47
+# File: macros/st_ility.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線状態空間を想定します。\n"
+
+#
+# File: macros/cls2dls.sci, line: 31
+# File: macros/kpure.sci, line: 23
+# File: macros/krac2.sci, line: 21
+# File: macros/linf.sci, line: 25
+# File: macros/nehari.sci, line: 27
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 連続的な時間システムを想定します。\n"
+
+#
+# File: macros/cont_mat.sci, line: 20
+# File: macros/cont_mat.sci, line: 29
+# File: macros/ctr_gram.sci, line: 30
+# File: macros/ctr_gram.sci, line: 42
+# File: macros/obs_gram.sci, line: 25
+# File: macros/obs_gram.sci, line: 37
+# File: macros/obsv_mat.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: 入力引数で不正な数: %d を想定します。"
+
+#
+# File: macros/cont_mat.sci, line: 35
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
+msgstr "%s: 入力引数 #%d で不正な型: 動的線システムを想定します。\n"
+
+#
+# File: macros/cont_mat.sci, line: 37
+# File: macros/ctr_gram.sci, line: 57
+# File: macros/obs_gram.sci, line: 52
+# File: macros/obsv_mat.sci, line: 28
+# File: macros/obsvss.sci, line: 42
+# File: macros/plzr.sci, line: 44
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 浮動小数点の整列を想定します。\n"
+
+#
+# File: macros/contrss.sci, line: 15
+# File: macros/minss.sci, line: 15
+# File: macros/ss2tf.sci, line: 37
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 場所空間の形を想定します。\n"
+
+#
+# File: macros/copfac.sci, line: 49
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 安定化可能システムを想定します。\n"
+
+#
+# File: macros/copfac.sci, line: 57
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 判定システムを想定します。\n"
+
+#
+# File: macros/csim.sci, line: 58
+#, c-format
+msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgstr "%s: ﾀﾞｲﾚｸﾄﾌｨｰﾄﾞｽﾙｰをゼロ度係数に合わせる。\n"
+
+#
+# File: macros/csim.sci, line: 72
+# File: macros/csim.sci, line: 78
+#, c-format
+msgid "%s: Direct feedthrough set to zero.\n"
+msgstr "%s: ﾀﾞｲﾚｸﾄﾌｨｰﾄﾞｽﾙｰをゼロに合わせる。\n"
+
+#
+# File: macros/ctr_gram.sci, line: 62
+# File: macros/h2norm.sci, line: 29
+# File: macros/h2norm.sci, line: 48
+# File: macros/hankelsv.sci, line: 29
+# File: macros/obs_gram.sci, line: 58
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 安定システムを想定します。\n"
+
+#
+# File: macros/ddp.sci, line: 57
+# File: macros/ddp.sci, line: 60
+# File: macros/narsimul.sci, line: 81
+# File: macros/sylv.sci, line: 16
+# File: macros/syslin.sci, line: 94
+# File: macros/syslin.sci, line: 124
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 同じ列次元を想定します。\n"
+
+#
+# File: macros/ddp.sci, line: 91
+#, c-format
+msgid "%s: Bad conditioning.\n"
+msgstr "%s: 悪い条件付けです。\n"
+
+#
+# File: macros/des2tf.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: 出力引数で不正な数: %d または %d を想定します。\n"
+
+#
+# File: macros/dhnorm.sci, line: 21
+# File: macros/h_norm.sci, line: 108
+#, c-format
+msgid "%s: More than %d iterations.\n"
+msgstr "%s: %d 以上の繰り返し。\n"
+
+#
+# File: macros/dscr.sci, line: 15
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数を想定します。\n"
+
+#
+# File: macros/dscr.sci, line: 18
+# File: macros/syslin.sci, line: 20
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
+
+#
+# File: macros/dscr.sci, line: 21
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: 入力引数 #%d は厳密でなければ生りません。\n"
+
+#
+# File: macros/dscr.sci, line: 25
+#, c-format
+msgid "%s: Input argument #%d must be strictly positive.\n"
+msgstr "%s: 入力引数 #%d は厳密でなければなりません。\n"
+
+#
+# File: macros/dtsi.sci, line: 39
+#, c-format
+msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値:  適切な要素を想定します。\n"
+
+#
+# File: macros/dtsi.sci, line: 127
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切な移転関数を想定します。\n"
+
+#
+# File: macros/evans.sci, line: 42
+# File: macros/trzeros.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 動的線システム、または、多項式を想定します。\n"
+
+#
+# File: macros/evans.sci, line: 45
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Single input, single output system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 単一入力、単一出力のシステムを想定します。\n"
+
+#
+# File: macros/evans.sci, line: 129
+msgid "open loop zeroes"
+msgstr "ゼロループを開く"
+
+#
+# File: macros/evans.sci, line: 136
+msgid "open loop poles"
+msgstr "ループ極を開く"
+
+#
+# File: macros/evans.sci, line: 164
+msgid "asymptotic directions"
+msgstr "漸近方向"
+
+#
+# File: macros/evans.sci, line: 179
+msgid "Evans root locus"
+msgstr "根軌跡"
+
+#
+# File: macros/evans.sci, line: 179
+# File: macros/plzr.sci, line: 97
+msgid "Real axis"
+msgstr "実軸"
+
+#
+# File: macros/evans.sci, line: 179
+# File: macros/plzr.sci, line: 98
+msgid "Imaginary axis"
+msgstr "虚軸"
+
+#
+# File: macros/evans.sci, line: 184
+#, c-format
+msgid "%s: Curve truncated to the first %d discretization points.\n"
+msgstr "%s: %d 離散化の最初の点に切断されている曲線です。\n"
+
+#
+# File: macros/findABCD.sci, line: 106
+# File: macros/findABCD.sci, line: 109
+# File: macros/findAC.sci, line: 73
+# File: macros/findBDK.sci, line: 119
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%1$s: 出力引数で不正な数:　%3$d への %2$d　を想定します。\n"
+
+#
+# File: macros/findx0BD.sci, line: 64
+#, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr "%s: 出力引数で不正な数: 最も小さな %d を想定します。\n"
+
+#
+# File: macros/findx0BD.sci, line: 77
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d または %d を想定します。\n"
+
+#
+# File: macros/flts.sci, line: 34
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/flts.sci, line: 50
+#, c-format
+msgid "%s: At least %s past values needed.\n"
+msgstr "%s: 最小の %s で、過去の値は必要とされました。\n"
+
+#
+# File: macros/frep2tf.sci, line: 43
+#, c-format
+msgid "%s: Iteration %s, error=%s.\n"
+msgstr "%s: %s 繰り返し、エラー=%s\n"
+
+#
+# File: macros/g_margin.sci, line: 20
+# File: macros/kpure.sci, line: 26
+# File: macros/krac2.sci, line: 24
+# File: macros/p_margin.sci, line: 20
+# File: macros/routh_t.sci, line: 19
+# File: macros/trfmod.sci, line: 20
+# File: macros/trfmod.sci, line: 25
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single input, single output system expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 単一の入力、単一の出力を想定します。\n"
+
+#
+# File: macros/gamitg.sci, line: 67
+# File: macros/gamitg.sci, line: 71
+#, c-format
+msgid "%s: Dimensions of %s are inadequate.\n"
+msgstr "%s: %sの次元は、不十分です。\n"
+
+#
+# File: macros/gamitg.sci, line: 82
+# File: macros/gamitg.sci, line: 86
+#, c-format
+msgid "%s: %s is not full rank at the machine precision.\n"
+msgstr "%s: %s は、機械精度の完全な列ではありません。\n"
+
+#
+# File: macros/gamitg.sci, line: 95
+# File: macros/gamitg.sci, line: 100
+#, c-format
+msgid "%s: %s is nearly unstabilizable.\n"
+msgstr "%s: %s は、ほとんど安定しません。\n"
+
+#
+# File: macros/gamitg.sci, line: 110
+# File: macros/gamitg.sci, line: 118
+#, c-format
+msgid "%s: %s has zero(s) near the imaginary axis.\n"
+msgstr "%s: %s は、想像上の軸の近くの ゼロ(s) を持っています。\n"
+
+#
+# File: macros/gamitg.sci, line: 227
+# File: macros/gamitg.sci, line: 241
+#, c-format
+msgid "%s: %s has pure imaginary eigenvalue(s).\n"
+msgstr "%s: %s は、想像上の純粋な固有値(s)を持っています。\n"
+
+#
+# File: macros/gamitg.sci, line: 277
+# File: macros/gamitg.sci, line: 301
+#, c-format
+msgid "%s: %s is indefinite.\n"
+msgstr "%s: %s は明確ではありません。\n"
+
+#
+# File: macros/gamitg.sci, line: 336
+#, c-format
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr "%s: %s の管理 と 識別モード(s)は、想像上の軸の近くです。\n"
+
+#
+# File: macros/gamitg.sci, line: 341
+#, c-format
+msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
+msgstr "%s: %s のすべての方法は、ほとんど最短です、それで、その %s は、ほとんど %d です。\n"
+
+#
+# File: macros/gfrancis.sci, line: 63
+#, c-format
+msgid "%s: Francis equations not satisfied.\n"
+msgstr "%s: フランシス均衡は満足しません。\n"
+
+#
+# File: macros/h2norm.sci, line: 25
+# File: macros/h2norm.sci, line: 44
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切なシステムを想定します。\n"
+
+#
+# File: macros/h_inf.sci, line: 45
+#, c-format
+msgid "%s : No feasible ro in bounds [%g  %g]\n"
+msgstr "%s: 、境界[%g%g] ro は実行できません。\n"
+
+#
+# File: macros/h_inf.sci, line: 104
+#, c-format
+msgid "%s:  %s is not stabilizable.\n"
+msgstr "%s: %s は安定化可能ではありません。\n"
+
+#
+# File: macros/h_inf.sci, line: 107
+#, c-format
+msgid "%s: %s is stabilizable.\n"
+msgstr "%s: %s は安定化可能です。\n"
+
+#
+# File: macros/h_inf.sci, line: 113
+#, c-format
+msgid "%s:   %s is not detectable.\n"
+msgstr "%s: %s は、見つからないようです。\n"
+
+#
+# File: macros/h_inf.sci, line: 116
+#, c-format
+msgid "%s: %s is detectable.\n"
+msgstr "%s: %s は見つけられそうです。\n"
+
+#
+# File: macros/h_inf.sci, line: 124
+# File: macros/h_inf.sci, line: 133
+#, c-format
+msgid "%s: %s has a zero on/close the imaginary axis.\n"
+msgstr "%s: %sはゼロを持つ　オン/閉じる　想像上の軸\n"
+
+#
+# File: macros/h_inf.sci, line: 142
+# File: macros/h_inf.sci, line: 149
+# File: macros/h_inf.sci, line: 297
+# File: macros/h_inf.sci, line: 304
+#, c-format
+msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %sは、完全な列ではありません。\n"
+
+#
+# File: macros/h_inf.sci, line: 255
+#, c-format
+msgid "%s: gamma too small.\n"
+msgstr "%s:  とても小さいガンマです。\n"
+
+#
+# File: macros/h_inf.sci, line: 345
+# File: macros/h_inf.sci, line: 472
+#, c-format
+msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
+msgstr "%s: %s(管理)の固有値が想像上の軸に近いです。\n"
+
+#
+# File: macros/h_inf.sci, line: 352
+# File: macros/h_inf.sci, line: 377
+# File: macros/h_inf.sci, line: 477
+# File: macros/h_inf.sci, line: 494
+#, c-format
+msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
+msgstr "%s: 不正確なリカッチ解決策: 均衡エラー = %g\n"
+
+#
+# File: macros/h_inf.sci, line: 369
+# File: macros/h_inf.sci, line: 490
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: %s(観察)の固有値が想像上の軸に近いです。\n"
+
+#
+# File: macros/h_inf.sci, line: 403
+# File: macros/h_inf.sci, line: 411
+msgid "Unfeasible (Hx hamiltonian)"
+msgstr "実行できません(Hx ハミルトニアン)"
+
+#
+# File: macros/h_inf.sci, line: 404
+# File: macros/h_inf.sci, line: 405
+# File: macros/h_inf.sci, line: 413
+msgid "Unfeasible (Hy hamiltonian)"
+msgstr "実行できません(Hy ハミルトニアン)"
+
+#
+# File: macros/h_inf.sci, line: 415
+msgid "Unfeasible (spectral radius)"
+msgstr "実行できません(スペクトル半径)"
+
+#
+# File: macros/h_inf_st.sci, line: 33
+# File: macros/h_inf_st.sci, line: 37
+#, c-format
+msgid "%s: %s not full rank.\n"
+msgstr "%s: %s は、非退化です。\n"
+
+#
+# File: macros/h_norm.sci, line: 43
+#, c-format
+msgid "%s: System is not stable.\n"
+msgstr "%s: システムは安定していません。\n"
+
+#
+# File: macros/h_norm.sci, line: 90
+#, c-format
+msgid ""
+"%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
+"Hinfnorm is probably exactly max sv(D)\n"
+"The system might be all-pass"
+msgstr ""
+"%s: 標準は計算することができません。１e-３よりも小さい相対精度\n"
+"無限大ノルムは、たぶんまさに最大 sv(D)\n"
+"システムは、全てパスします"
+
+#
+# File: macros/hankelsv.sci, line: 13
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 状態-空間 線システムを想定します。\n"
+
+#
+# File: macros/hankelsv.sci, line: 19
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 連続的-時間 線システムを想定します。\n"
+
+#
+# File: macros/hankelsv.sci, line: 26
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 純虚極を想定します。\n"
+
+#
+# File: macros/inistate.sci, line: 55
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 別個の時間システムを想定します。\n"
+
+#
+# File: macros/inistate.sci, line: 58
+# File: macros/inistate.sci, line: 108
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 入力引数で不正な数: 最少量で、%d を想定します。\n"
+
+#
+# File: macros/invrs.sci, line: 29
+#, c-format
+msgid "%s: Square but singular system.\n"
+msgstr "%s: 平方で、しかし珍しいシステムです。\n"
+
+#
+# File: macros/invsyslin.sci, line: 18
+# File: macros/trzeros.sci, line: 61
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 平方システムを想定します。\n"
+
+#
+# File: macros/kpure.sci, line: 36
+#, c-format
+msgid "%s: Infinite solution.\n"
+msgstr "%s:  無限の解決策です。\n"
+
+#
+# File: macros/leqr.sci, line: 48
+# File: macros/leqr.sci, line: 77
+# File: macros/lqr.sci, line: 38
+# File: macros/lqr.sci, line: 62
+#, c-format
+msgid "%s: Stable subspace is too small.\n"
+msgstr "%s: 安定した空間部分はあまりにも小さいです。\n"
+
+#
+# File: macros/leqr.sci, line: 56
+# File: macros/leqr.sci, line: 84
+# File: macros/lqr.sci, line: 45
+# File: macros/lqr.sci, line: 69
+# File: macros/ui_observer.sci, line: 111
+# File: macros/ui_observer.sci, line: 114
+#, c-format
+msgid "%s: Bad conditionning.\n"
+msgstr "%s: 悪い状態です。\n"
+
+#
+# File: macros/leqr.sci, line: 92
+#, c-format
+msgid "%s: %s non symmetric.\n"
+msgstr "%s: %s は比対称です。\n"
+
+#
+# File: macros/linfn.sci, line: 111
+#, c-format
+msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
+msgstr "%s: 警告: 行列は、想像上の軸の近くの固有値を持っています。\n"
+
+#
+# File: macros/linfn.sci, line: 209
+#, c-format
+msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
+msgstr "%s: 想像上の軸の近くの管理と識別方法(s)"
+
+#
+# File: macros/linfn.sci, line: 214
+#, c-format
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgstr "%s: そのすべての方法はほとんど最小ではありません || G || だいたい ０ です。\n"
+
+#
+# File: macros/linfn.sci, line: 229
+# File: macros/linfn.sci, line: 238
+#, c-format
+msgid "%s: The computed value of || G || may be inaccurate.\n"
+msgstr "%s: 計算された値、 || G || 不正確かもしれません。\n"
+
+#
+# File: macros/lqg.sci, line: 24
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s はゼロではありません!(ゼロに設定)"
+
+#
+# File: macros/lqr.sci, line: 26
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 時間領域は、''c'' or ''d'' でなくてはなりません。\n"
+
+#
+# File: macros/minreal.sci, line: 17
+# File: macros/minreal.sci, line: 33
+# File: macros/obsvss.sci, line: 16
+# File: macros/obsvss.sci, line: 27
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/minreal.sci, line: 26
+# File: macros/minreal.sci, line: 39
+# File: macros/obsvss.sci, line: 35
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d または %d を想定します。\n"
+
+#
+# File: macros/narsimul.sci, line: 51
+# File: macros/narsimul.sci, line: 84
+# File: macros/narsimul.sci, line: 94
+# File: macros/narsimul.sci, line: 99
+# File: macros/narsimul.sci, line: 109
+# File: macros/narsimul.sci, line: 114
+# File: macros/syslin.sci, line: 111
+# File: macros/ui_observer.sci, line: 71
+# File: macros/ui_observer.sci, line: 76
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: "
+msgstr "%s: 入力引数 #%d と #%d の互換性がありません:"
+
+#
+# File: macros/nehari.sci, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 純粋な虚極を想定します。\n"
+
+#
+# File: macros/nyquist.sci, line: 196
+# File: macros/nyquist.sci, line: 198
+# File: macros/nyquist.sci, line: 200
+msgid "Nyquist plot"
+msgstr "ナイキスト・プロット"
+
+#
+# File: macros/obs_gram.sci, line: 50
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線の動的システムを想定します。\n"
+
+#
+# File: macros/obsvss.sci, line: 23
+#, c-format
+msgid "%s Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d  または %d を想定します。\n"
+
+#
+# File: macros/obsvss.sci, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線状態の空間を想定します。\n"
+
+#
+# File: macros/plzr.sci, line: 16
+# File: macros/plzr.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d を想定します。\n"
+
+#
+# File: macros/plzr.sci, line: 21
+# File: macros/plzr.sci, line: 29
+#, c-format
+msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+msgstr "%s: 入力引数 %d で不正な値: 適切なシステムを想定します。\n"
+
+#
+# File: macros/plzr.sci, line: 33
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/plzr.sci, line: 85
+msgid "Zeros"
+msgstr "ゼロ"
+
+#
+# File: macros/plzr.sci, line: 92
+msgid "Poles"
+msgstr "極"
+
+#
+# File: macros/plzr.sci, line: 97
+msgid "Transmission zeros and poles"
+msgstr "ゼロと極の伝達"
+
+#
+# File: macros/ric_desc.sci, line: 56
+#, c-format
+msgid "%s: Stationary Riccati solver failed.\n"
+msgstr "%s: 動かないリカッチ解明は失敗しました。\n"
+
+#
+# File: macros/riccati.sci, line: 34
+# File: macros/riccati.sci, line: 42
+# File: macros/riccati.sci, line: 50
+#, c-format
+msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgstr "%s: 安定している部分空間の次元(%d)が不正です: %d を想定します。\n"
+
+#
+# File: macros/routh_t.sci, line: 15
+#, c-format
+msgid "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 有理分数の整列を想定します。\n"
+
+#
+# File: macros/routh_t.sci, line: 27
+# File: macros/sm2ss.sci, line: 16
+# File: macros/syslin.sci, line: 57
+# File: macros/syslin.sci, line: 60
+# File: macros/syslin.sci, line: 119
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 多項式の整列を想定します。\n"
+
+#
+# File: macros/routh_t.sci, line: 30
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 多項式を想定します。\n"
+
+#
+# File: macros/sm2des.sci, line: 29
+# File: macros/sm2ss.sci, line: 30
+#, c-format
+msgid "%s: Cannot find the state dimension.\n"
+msgstr "%s: 状態次元を見つけることができません。\n"
+
+#
+# File: macros/sm2ss.sci, line: 35
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 線状態の空間システムを想定します。\n"
+
+#
+# File: macros/ssrand.sci, line: 193
+#, c-format
+msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgstr "%s: 入力引数 #%d で不正な値:  rk<nout の選択をしなくてはなりません。\n"
+
+#
+# File: macros/stabil.sci, line: 40
+#, c-format
+msgid "%s: System not stabilizable (or detectable) => Stabilizing the stabilizable part.\n"
+msgstr "%s: システムは安定化していません(また、気づく) => 安定化部分を安定させてください。\n"
+
+#
+# File: macros/statgain.sci, line: 25
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列状態は奇怪です。\n"
+
+#
+# File: macros/statgain.sci, line: 30
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列状態 - 目は奇怪です。\n"
+
+#
+# File: macros/sysconv.sci, line: 65
+# File: macros/sysconv.sci, line: 68
+# File: macros/sysconv.sci, line: 76
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr "%s:  時間領域は互換性がありません。\n"
+
+#
+# File: macros/syslin.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String, Scalar or empty matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列、または、空行列を想定します。\n"
+
+#
+# File: macros/syslin.sci, line: 64
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+
+#
+# File: macros/syslin.sci, line: 69
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same formal variable names expected.\n"
+msgstr "%s: 入力引数 #%d と #%d は互換性がありません: 同じ正式な変数名を想定します。\n"
+
+#
+# File: macros/syslin.sci, line: 87
+# File: macros/trzeros.sci, line: 22
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/trfmod.sci, line: 97
+msgid "Gain :"
+msgstr "ゲイン :"
+
+#
+# File: macros/trfmod.sci, line: 97
+msgid "Numerator :"
+msgstr "分子 :"
+
+#
+# File: macros/trfmod.sci, line: 97
+# File: macros/trfmod.sci, line: 107
+msgid "Denominator :"
+msgstr "分母 :"
+
+#
+# File: macros/trfmod.sci, line: 101
+msgid "Irreducible Factors of transfer function (click below)"
+msgstr "伝達関数の既約要因(以下のクリック)"
+
+#
+# File: macros/trfmod.sci, line: 103
+msgid "Irreducible Factors of transfer function natural frequency and damping factor (click below)"
+msgstr "移転関数の削減できない要因、固有振動数 と 減衰定数(以下のクリック)"
+
+#
+# File: macros/trfmod.sci, line: 137
+# File: macros/trfmod.sci, line: 166
+#, c-format
+msgid "%s: Incorrect answer.\n"
+msgstr "%s:  不正確な答えです。\n"
+
+#
+# File: macros/trzeros.sci, line: 49
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square system expected.\n"
+"'),"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 立方のシステムを想定します。\n"
+"'),"
+
+#
+# File: macros/ui_observer.sci, line: 96
+#, c-format
+msgid "%s: Residual norm = %g\n"
+msgstr "%s: 収束性 = %g\n"
+
+#
+# File: sci_gateway/c/sci_contr.c, line: 48
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正な値です。\n"
+
+#
+# File: sci_gateway/c/sci_contr.c, line: 55
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr "%s: 入力引数 #%d で不正な値: [%d %d] でなくてはなりません。\n"
+

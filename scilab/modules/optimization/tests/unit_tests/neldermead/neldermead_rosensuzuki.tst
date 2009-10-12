@@ -66,45 +66,28 @@ endfunction
 //    
 // Arguments
 //   x: the point where to compute the function
-//   index : the stuff to compute
+//   index : what to compute
+//     if index=2, returns f
+//     if index=5, returns c
+//     if index=6, returns f and c
 // Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
 //  The inequality constraints are expected to be positive.
 //
-function result = optimtestcase ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index == 1 | index == 3 ) then
+function [ f , c , index ] = optimtestcase ( x , index )
+  f = []
+  c = []
+  if ( ( index == 2 ) | ( index == 6 ) ) then
     f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
       - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
   end
-  if ( index == 2 | index == 3 ) then
+  if ( ( index == 5 ) | ( index == 6 ) ) then
     c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
               - x(1) + x(2) - x(3) + x(4) + 8
     c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
               + x(1) + x(4) + 10.0
     c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
               + x(2) + x(4) + 5.0
-  end
-  select index
-  case 1 then
-    result = f
-  case 2 then
-    result = [c1 c2 c3]
-  case 3 then
-    result = [f c1 c2 c3]
-  else
-    errmsg = sprintf("Unexpected index %d" , index);
-    error(errmsg);
+    c = [c1 c2 c3]
   end
 endfunction
 

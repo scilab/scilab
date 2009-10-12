@@ -88,7 +88,7 @@ void SurfaceLineDrawerJoGL::drawSurface( void )
 
   initializeDrawing();
   getLineDrawerJavaMapper()->setSurfaceType(ppSurface->typeof3d);
-  getLineDrawerJavaMapper()->setLineParameters(sciGetForegroundColor(pSurface),
+  getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pSurface)->foregroundcolor,
                                                (float) sciGetLineWidth(pSurface),
                                                sciGetLineStyle(pSurface));
   try

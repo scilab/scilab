@@ -48,7 +48,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -128,7 +128,7 @@ clear nm;
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );

@@ -1,0 +1,203 @@
+# Localization of the module io
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 18:25+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/fscanf.sci, line: 21
+# File: macros/sscanf.sci, line: 19
+# File: macros/unix_g.sci, line: 44
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: 入力引数(s)で不正な数です。\n"
+
+#
+# File: macros/fscanf.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ファイル記述子を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ファイル記述子を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 33
+# File: macros/halt.sci, line: 26
+# File: macros/input.sci, line: 14
+# File: macros/sscanf.sci, line: 30
+# File: macros/sscanf.sci, line: 38
+# File: macros/unix_g.sci, line: 36
+# File: macros/unix_s.sci, line: 33
+# File: macros/unix_w.sci, line: 34
+# File: macros/unix_x.sci, line: 34
+# File: sci_gateway/c/sci_host.c, line: 55
+# File: sci_gateway/c/sci_newest.c, line: 60
+# File: sci_gateway/c/sci_newest.c, line: 76
+# File: sci_gateway/c/sci_newest.c, line: 92
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 37
+# File: macros/halt.sci, line: 30
+# File: macros/input.sci, line: 18
+# File: macros/sscanf.sci, line: 34
+# File: macros/sscanf.sci, line: 42
+# File: macros/unix_g.sci, line: 40
+# File: macros/unix_s.sci, line: 37
+# File: macros/unix_w.sci, line: 38
+# File: macros/unix_x.sci, line: 38
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
+# File: sci_gateway/c/sci_host.c, line: 35
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 44
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル記述子を想定します。\n"
+
+#
+# File: macros/halt.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 入力引数で不正な数です。\n"
+
+#
+# File: macros/input.sci, line: 27
+# File: macros/input.sci, line: 31
+msgid ": "
+msgstr ":"
+
+#
+# File: macros/sscanf.sci, line: 55
+#, c-format
+msgid "%s: Incorrect format.\n"
+msgstr "%s:  不正確なフォーマット\n"
+
+#
+# File: macros/sscanf.sci, line: 62
+# File: macros/sscanf.sci, line: 72
+#, c-format
+msgid "%s: Invalid conversion.\n"
+msgstr "%s: 無効なコンバージョン\n"
+
+#
+# File: macros/sscanf.sci, line: 70
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr "%s: 最終のコンバージョンの前に入力の終わりに達しました。\n"
+
+#
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s システムはこのページで表示できません。\n"
+
+#
+# File: macros/unix_g.sci, line: 32
+# File: macros/unix_s.sci, line: 29
+# File: macros/unix_w.sci, line: 30
+# File: macros/unix_x.sci, line: 30
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/unix_g.sci, line: 82
+# File: macros/unix_g.sci, line: 84
+# File: macros/unix_s.sci, line: 52
+# File: macros/unix_w.sci, line: 55
+# File: macros/unix_x.sci, line: 61
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: システムのインタープリタは応答しません..."
+
+#
+# File: macros/unix_s.sci, line: 44
+# File: macros/unix_s.sci, line: 56
+# File: macros/unix_w.sci, line: 44
+# File: macros/unix_x.sci, line: 47
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: %s 実行で、エラー"
+
+#
+# File: sci_gateway/c/intsetenv.c, line: 53
+# File: sci_gateway/c/intsetenv.c, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 行列、または文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 36
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列です。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 50
+#, c-format
+msgid "%s: Wrong value for input argument: no empty string expected.\n"
+msgstr "%s: 入力引数で不正な値: 空でない文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 100
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 117
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 84
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 88
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 63
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 68
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: %d 文字以下であるべきです。\n"
+
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 25
+# File: sci_gateway/c/sci_mgetl.c, line: 32
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数スカラーを想定します。\n"
+
+#
+# File: src/c/getenvc.c, line: 37
+# File: src/c/getenvc.c, line: 49
+#, c-format
+msgid "Undefined environment variable %s.\n"
+msgstr "環境変数 %s は定義されていません。\n"
+

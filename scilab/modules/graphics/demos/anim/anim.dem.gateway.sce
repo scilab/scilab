@@ -18,7 +18,7 @@ subdemolist=[ ..
 	"Shell"                              ,"anim7/anim7_gateway.sce"];
 
 if ~ usecanvas() then
-	subdemolist = [ subdemolist ; "Rieman surface","anim8/anim8_gateway.sce" ];
+	subdemolist = [ subdemolist ; "Riemann surface","anim8/anim8_gateway.sce" ];
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
