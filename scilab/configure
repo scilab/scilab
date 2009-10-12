@@ -9666,7 +9666,7 @@ $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
 	case "$host_os" in
 	     *darwin* )
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/javac"
+		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
