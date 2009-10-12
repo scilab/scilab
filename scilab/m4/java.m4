@@ -68,7 +68,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 	case "$host_os" in
 	     *darwin* ) 
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java"
+		JAVAC="/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/javac"
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
