@@ -19,6 +19,12 @@ function demo_riemann()
 	// =========================================================================
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+
+	// Add "see code" menu item
+	// =========================================================================
+  f=mopen("SCI/modules/graphics/demos/anim/anim8/anim8.sci");
+  demo_viewCode("anim8.sci");
+  mclose(f);
 	
 	// Drawlater
 	// =========================================================================

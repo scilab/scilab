@@ -84,6 +84,8 @@
 		<pathelement location="${fop.jar}"/>
 
 		<pathelement location="${jeuclid-core.jar}"/>
+
+		<pathelement location="${jlatexmath.jar}"/>
 	</path>
 
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>

@@ -57,6 +57,8 @@ public class Scilab {
 	private static final String ENABLE = "true";
 	private static final String DISABLE = "false";
 	private static final String DISABLE_DDRAW = "sun.java2d.noddraw";
+	private static final String OSNAME = "os.name";
+	private static final String MACOS = "mac";
 
 	private static String SCIDIR;
 
@@ -102,16 +104,17 @@ public class Scilab {
 		 */
 		if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null) {
 			/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
-
 			try {
-				
+
 				/** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
-				System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, "true");
-				
+				System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
+
 				String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
 				if (isWindowsPlateform()) {
 					scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+				} else if (System.getProperty(OSNAME).toLowerCase().indexOf(MACOS) != -1) {
+					scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
 				} else {
 					scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 				}
@@ -233,7 +236,7 @@ public class Scilab {
 	 */
 	public static boolean isWindowsPlateform() {
 		// get os name
-		return System.getProperty("os.name").toLowerCase().contains("windows");
+		return System.getProperty(OSNAME).toLowerCase().contains("windows");
 	}
 
 	/**
