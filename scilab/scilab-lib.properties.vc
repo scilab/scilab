@@ -16,6 +16,8 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
+jlatexmath.jar=${thirdparty.dir}/jlatexmath.jar
+
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
