@@ -1,0 +1,105 @@
+# Localization of the module shell
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: sci_gateway/c/sci_clc.c, line: 41
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d での不正な値です。\n"
+
+#
+# File: sci_gateway/c/sci_clc.c, line: 47
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: この特徴は実行されませんでした。\n"
+
+#
+# File: sci_gateway/c/sci_clc.c, line: 60
+# File: sci_gateway/c/sci_tohome.c, line: 29
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s: この特徴は、このモードで実行されませんでした。\n"
+
+#
+# File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr "%s: このモードでは実行できません。\n"
+
+#
+# File: sci_gateway/c/sci_lines.c, line: 56
+# File: sci_gateway/c/sci_lines.c, line: 70
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_prompt.c, line: 47
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_prompt.c, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+
+#
+# File: src/c/more.c, line: 25
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr "[表示を続けますか? n(no) で中止、任意のキーで続けます]"
+
+#
+# File: src/c/others/zzledt.c, line: 806
+# File: src/c/windows/TermCompletion.c, line: 80
+msgid "File or Directory"
+msgstr "ファイル、またはディレクトリ"
+
+#
+# File: src/c/others/zzledt.c, line: 940
+# File: src/c/windows/TermCompletion.c, line: 222
+msgid "Scilab Function"
+msgstr "Scilab関数"
+
+#
+# File: src/c/others/zzledt.c, line: 941
+# File: src/c/windows/TermCompletion.c, line: 223
+msgid "Scilab Command"
+msgstr "Scilabコマンド"
+
+#
+# File: src/c/others/zzledt.c, line: 942
+# File: src/c/windows/TermCompletion.c, line: 224
+msgid "Scilab Macro"
+msgstr "Scilabマクロ"
+
+#
+# File: src/c/others/zzledt.c, line: 943
+# File: src/c/windows/TermCompletion.c, line: 225
+msgid "Scilab Variable"
+msgstr "Scilab変数"
+
+#
+# File: src/c/others/zzledt.c, line: 944
+# File: src/c/windows/TermCompletion.c, line: 226
+msgid "Graphics handle field"
+msgstr "グラフィック・ハンドル・フィールド"
+

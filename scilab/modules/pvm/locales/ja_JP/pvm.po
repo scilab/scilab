@@ -1,0 +1,312 @@
+# Localization of the module pvm
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: etc/pvm.start, line: 23
+msgid "PVM parallel Toolbox"
+msgstr "PVM 平行したツールボックス"
+
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
+# File: sci_gateway/c/sci_pvm_send.c, line: 51
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s: 作業スペース(スタックサイズ)はとても小さい d です。\n"
+
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
+# File: sci_gateway/c/sci_pvm_send.c, line: 53
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s: 未知の型、または、まだ装備されていません\n"
+
+#
+# File: sci_gateway/c/sci_pvm_config.c, line: 38
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 44
+# File: src/c/pvm_info.c, line: 52
+# File: src/c/pvm_info.c, line: 115
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが起きました: %s\n"
+
+#
+# File: sci_gateway/c/sci_pvm_error_mode.c, line: 43
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr "%s: 最初の入力引数が不正: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/pvm_grp.c, line: 120
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "エラー pvm_reduce: スカラー型ではありません\n"
+
+#
+# File: src/c/pvm_grp.c, line: 138
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "エラー pvm_reduce: 未知の削減操作 %s \n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 200
+# File: src/c/pvm_proc_ctrl.c, line: 245
+msgid "Unknown Error"
+msgstr "未知のエラー"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 207
+msgid "OK"
+msgstr "OK"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 208
+msgid "Bad parameter"
+msgstr "不正なパラメータ"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 209
+msgid "Barrier count mismatch"
+msgstr "障害　数が合いません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 210
+msgid "Read past end of buffer"
+msgstr "バッファの終わりを読みました"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 211
+msgid "No such host"
+msgstr "ホストがありません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 212
+msgid "No such executable"
+msgstr "実行可能ファイルはありません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 213
+msgid "Can not get memory"
+msgstr "メモリを得ることができません。"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 214
+msgid "Can not decode received msg"
+msgstr "受け取ったメッセージを復号化することができません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 215
+msgid "Daemon pvmd is not responding"
+msgstr "デーモン pvmd は応答しません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 216
+msgid "No current buffer"
+msgstr "現在のバッファでありません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 217
+msgid "Bad message id"
+msgstr "不正なメッセージID"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 218
+msgid "Null group name is illegal"
+msgstr "空のグループ名は不正です"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 219
+msgid "Already in group"
+msgstr "既にグループです。"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 220
+msgid "No group with that name"
+msgstr "その名前をもつグループはありません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 221
+msgid "Not in group"
+msgstr "グループに在りません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 222
+msgid "No such instance in group"
+msgstr "グループ内に事例なし"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 223
+msgid "Host failed"
+msgstr "ホストは失敗しました"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 224
+msgid "No parent task"
+msgstr "親タスクなし"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 225
+msgid "Function not implemented"
+msgstr "関数は実行されませんでした"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 226
+msgid "Pvmd system error"
+msgstr "Pvmd システムエラー"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 227
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Pvmd-pvmd プロトコルが合いません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 228
+msgid "Out of ressources"
+msgstr "リソース外"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 229
+msgid "Host already configured (Duplicate host)"
+msgstr "ホストは既に構成されています(ホストの重複)"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 230
+msgid "Failed to exec new slave pvmd"
+msgstr "新しい代替 pvmd 実施は失敗しました"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 231
+msgid "Already oing operation"
+msgstr "すでに oing 操作"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 232
+msgid "No such task"
+msgstr "タスクがありません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 234
+msgid "PVM not found"
+msgstr "PVMが見つかりません"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 235
+msgid "PVM exists"
+msgstr "PVMは存在します"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 238
+msgid "No such (group,instance)"
+msgstr "ありません(グループ、事例)"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 242
+msgid "(group,instance) already exists"
+msgstr "(グループ、事例) 既に在ります"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 282
+msgid "Error MALLOC in pvm_error\n"
+msgstr "pvm_error で MALLOC エラー\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 292
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "構成ファイル %s は使われました。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 299
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "警告: PVM_ROOTは %s への設定です。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 300
+msgid "but there exists no configuration file:\n"
+msgstr "しかし、そこにはどんな構成ファイルも存在しません:\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 306
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "警告: PVM_ROOTは設定されません。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 315
+# File: src/c/sci_tools.c, line: 94
+# File: src/c/sci_tools.c, line: 118
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリはありません。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 324
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"標準構成ファイル $SCI%s は使われます。\n"
+"SCI=%s で\n"
+"SCIがリモート・ホストに設定されている必要があります\n"
+"Scilabを作成するために\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 329
+#, c-format
+msgid "The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"
+msgstr "標準構成ファイル $SCI%s%s は、環境変数 %s、%s、%s のセットを必要とします。PVMは開始できません。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 339
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"警告: 標準構成ファイル $SCI%s が見つかりません。\n"
+"私たちは、PVMとscilabがあなたのネットの標準の場所にあると仮定します\n"
+"(man pvm3 参照)\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 347
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: ファイル、またはディレクトリが在りません。\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 368
+# File: src/c/pvm_proc_ctrl.c, line: 379
+# File: src/c/pvm_proc_ctrl.c, line: 385
+msgid "Error pvm_halt - signal\n"
+msgstr "pvm_halt エラー - シグナル\n"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 470
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: 作り出そうとしている過程でエラー: %s\n"
+
+#
+# File: src/nopvm/nopvm.c, line: 28
+msgid "Scilab PVM module not installed.\n"
+msgstr "Scilab PVM モジュールはインストールされていません。\n"
+

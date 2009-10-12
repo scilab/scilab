@@ -78,8 +78,11 @@ function gateway_filename = ilib_gen_gateway(name,tables)
           'int C2F(' + tname + ')()';
           '{';
           '  Rhs = Max(0, Rhs);';
-          '  if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
-          '  pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
+          '  if (*(Tab[Fin-1].f) != NULL) '
+          '  {';
+          '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
+          '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+          '  }';
           '  return 0;';
           '}'];
 

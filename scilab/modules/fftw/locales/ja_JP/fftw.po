@@ -1,0 +1,139 @@
+# Localization of the module fftw
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: sci_gateway/c/gw_fftw.c, line: 45
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "FFTW ライブラリ %s が見つかりません。\n"
+
+#
+# File: sci_gateway/c/gw_fftw.c, line: 49
+msgid "FFTW Library not found.\n"
+msgstr "FFTW ライブラリ が見つかりません。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 98
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: 入力引数で不正な番号: %d でないと想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 165
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数、または複素数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 172
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な値です。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 187
+#, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: n次元配列 を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 197
+# File: sci_gateway/c/sci_fftw.c, line: 221
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 211
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 228
+#, c-format
+msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr "%s: 入力引数 '#%d と '#%d' とで互換性がありません: 同じサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 235
+# File: sci_gateway/c/sci_fftw.c, line: 241
+# File: sci_gateway/c/sci_fftw.c, line: 415
+# File: sci_gateway/c/sci_fftw.c, line: 433
+# File: sci_gateway/c/sci_fftw.c, line: 461
+# File: sci_gateway/c/sci_fftw.c, line: 472
+# File: sci_gateway/c/sci_fftw.c, line: 495
+# File: sci_gateway/c/sci_fftw.c, line: 535
+# File: sci_gateway/c/sci_fftw.c, line: 561
+# File: sci_gateway/c/sci_fftw_flags.c, line: 176
+# File: sci_gateway/c/sci_fftw_flags.c, line: 183
+# File: sci_gateway/c/sci_fftw_flags.c, line: 201
+# File: sci_gateway/c/sci_fftw_flags.c, line: 208
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 66
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 86
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 92
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 60
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリがありません。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 297
+# File: sci_gateway/c/sci_fftw.c, line: 350
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負でない整数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw_flags.c, line: 146
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: FFTWフラグを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fftw_flags.c, line: 158
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 50
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 85
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが起こりました: %s.\n"
+
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
+msgid "FFTW can't read wisdom."
+msgstr "FFTW wisdom を読めません。"
+
+#
+# File: src/nofftw/nofftw.c, line: 20
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Scilab FFTW モジュールはインストールされていません。\n"
+
