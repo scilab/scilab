@@ -34,6 +34,8 @@ import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.localization.Messages;
 
+import org.flexdock.docking.DockingConstants;
+
 /**
  * Main Class for Scilab
  * @author Allan CORNET
@@ -102,7 +104,7 @@ public class Scilab {
 		/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 		
 		try {
-		
+                    System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, "true");
 			String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 			
 		    if (isWindowsPlateform()) {
