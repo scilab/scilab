@@ -8,6 +8,12 @@
 
 function ged_insert(k,win)
 //xset, xget used because ged should handle both old and new style
+
+	[lhs,rhs]=argn(0);
+
+  if rhs<2,
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "ged_insert", 2));
+  end
   
   global active men  
   
