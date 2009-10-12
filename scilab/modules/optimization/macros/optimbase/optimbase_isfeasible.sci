@@ -49,7 +49,7 @@ function [ this , isfeasible ] = optimbase_isfeasible ( this , x )
     if ( isfeasible == 1 ) then
       if ( this.nbineqconst > 0) then
         if ( this.withderivatives ) then 
-          [ this , f , g , c , gc , index ] = optimbase_function ( this , x , 7 );
+          [ this , f , g , c , gc , index ] = optimbase_function ( this , x , 5 );
         else
           [ this , f , c , index ] = optimbase_function ( this , x , 5 );
         end

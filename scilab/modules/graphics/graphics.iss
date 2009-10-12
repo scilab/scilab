@@ -15,6 +15,8 @@ Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Comp
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
+Source: thirdparty\jlatexmath-0.1.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+;
 Source: bin\graphics.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\nographics.dll; DestDir: {app}\bin; DestName: graphics.dll; Components: not ({#COMPN_GRAPHICS})
