@@ -20,9 +20,9 @@
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with xpad"));
+              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scilab text editor"));
               if ~(%fileToOpen == "") then
-                xpad(%fileToOpen);
+                editor(%fileToOpen);
               end
               clear("%fileToOpen");'
             type="0"/>
@@ -148,7 +148,7 @@
     <!-- Applications menu -->
     <menu label="&amp;Applications" enabled="false">
         <submenu label="&amp;Editor">
-            <callback instruction='xpad();' type="0"/>
+            <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Scicos">

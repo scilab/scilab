@@ -3,26 +3,17 @@
     <!-- xpad -->
     <button icon="accessories-text-editor.png" tooltiptext="Launch xpad">
         <callback 
-        instruction='
-          if with_module("xpad") then
-            xpad();
-          else
-            messagebox(_("Please install xpad module."));
-          end' type="0"/>
+        instruction='editor()' type="0"/>
     </button>
     <!-- Open File -->
     <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction='
-          if with_module("xpad") then
-            %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with xpad"));
-            if ~(%fileToOpen == "") then
-              xpad(string(%fileToOpen));
-            end
-            clear("%fileToOpen");
-          else
-            messagebox(_("Please install xpad module."));
-          end' type="0"/>
+          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scilab text editor"));
+          if ~(%fileToOpen == "") then
+            editor(%fileToOpen);
+          end
+          clear("%fileToOpen");' type="0"/>
     </button> 
 
     <separator/>
