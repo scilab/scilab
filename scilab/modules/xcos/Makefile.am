@@ -31,7 +31,9 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx
+			src/jni/Signal.hxx \
+			src/jni/XcosDiagram.cpp \
+			src/jni/XcosDiagram.hxx
 
 GIWS_WRAPPERS = Xcos.giws.xml \
 XcosUtils.giws.xml
@@ -44,7 +46,8 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp
+sci_gateway/cpp/sci_xcosNotify.cpp \
+sci_gateway/cpp/sci_setBlockTextValue.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

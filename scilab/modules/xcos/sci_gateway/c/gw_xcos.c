@@ -25,6 +25,7 @@ static BOOL loadedDep = FALSE;
 static gw_generic_table Tab[] = {
   {sci_Xcos, "xcos"},
   {sci_xcosNotify, "xcosNotify"}
+  {sci_setBlockTextValue, "setBlockTextValue"}
 };
 
 /*--------------------------------------------------------------------------*/
