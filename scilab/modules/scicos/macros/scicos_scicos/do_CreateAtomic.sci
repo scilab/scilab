@@ -27,17 +27,18 @@ graphics=o.graphics;
 XX = o;
 [params,param_types]=FindSBParams(model.rpar,[])
 if params<>[] then
-  messagebox('The parameter ""'+params+'"" must be defined in the context of the atomic super block.',"modal")
+  messagebox(msprintf(_("The parameter(s) ""%s"" \nmust be defined in the"+...
+		       " context of the atomic super block."),strcat(params,', ')),"modal")
   return;
 end
 ALL=%f;
-xx=CodeGeneration_;
+xx=XcosMenuCodeGeneration;
 [ok, XX, gui_path,flgcdgen, szclkINTemp, freof,c_atomic_code] = ...
     do_compile_superblock42(scs_m, k, %t); 
 if ~ok then return; end
 
 if freof <> [] then 
-  messagebox('An Atomic Superblock cannot contain sample clocks','modal')
+  messagebox(_("An Atomic Superblock cannot contain sample clocks"),'modal')
   return
 end
 

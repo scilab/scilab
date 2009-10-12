@@ -20,14 +20,27 @@
 //
 
 function XcosMenuRemoveMask()
-Cmenu=[];%pt=[];
-if size(Select,1)<>1 | curwin<>Select(1,2) then
-   return
-end
-i=Select(1)
-o=scs_m.objs(i)
-if typeof(o)=='Block' then
-   if o.model.sim=='csuper' & isequal(o.model.ipar,1)  then  
+  
+  K=find(Select(:,2)==%win)
+  if K==[] then
+    K = getblock(scs_m, %pt(:))
+  else
+    K=Select(K,1)
+  end
+  Cmenu=[];%pt=[];
+
+  if K==[] then
+    messagebox(_("No selected block in the current Scicos window."),'error','modal')
+    return
+  end  	
+  if size(K,'*')>1 then
+    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
+    return
+  end 
+  i=K
+  o=scs_m.objs(i)
+  if typeof(o)=='Block' then
+    if o.model.sim=='csuper' & isequal(o.model.ipar,1)  then  
       o.model.sim='super'
       o.model.ipar=[] 
       o.gui='SUPER_f'
@@ -38,10 +51,10 @@ if typeof(o)=='Block' then
       needcompile=4  // this is perhaps too conservative
       enable_undo = %t
       edited=%t
-   else
+    else
       messagebox('This block is not masked.','modal')
-   end
-else
-  messagebox('Select a block.','modal')
-end
+    end
+  else
+    messagebox('Select a block.','modal')
+  end
 endfunction

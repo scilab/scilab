@@ -24,28 +24,38 @@ function XcosMenuCreateMask()
 //   - check selection against curwin
 //   - add a message in case of multiple selection
 
-Cmenu=[];%pt=[];
-K=find(Select(:,2)==curwin)
-if K==[] then return,end
-if size(K,'*')>1 then
-  messagebox("Create Mask applies to a single selected SuperBlock",'modal')
-  return
-end
-gh_axes=gca()
-i=Select(K,1)
-o=scs_m.objs(i)
-if typeof(o)=="Block" then
-   model=o.model
-   graphics=o.graphics;
-   if model.sim=='super' then  //
+
+  K=find(Select(:,2)==%win)
+  if K==[] then
+    K = getblock(scs_m, %pt(:))
+  else
+    K=Select(K,1)
+  end
+  Cmenu=[];%pt=[];
+  if K==[] then
+    messagebox(_("No selected block in the current Scicos window."),'error','modal')
+    return
+  end  	
+  if size(K,'*')>1 then
+    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
+    return
+  end 
+
+  gh_axes=gca()
+  i=K
+  o=scs_m.objs(i)
+  if typeof(o)=="Block" then
+    model=o.model
+    graphics=o.graphics;
+    if model.sim=='super' then  //
       [params,param_types]=FindSBParams(model.rpar,[])
       bname=model.rpar.props.title(1)
       model.sim='csuper'
       model.ipar=1 ;  // specifies the type of csuper (mask)
       graphics.exprs=list(params,list(params,..
-                    ["Set block parameters";params],param_types));     
+				      ["Set block parameters";params],param_types));     
       graphics.gr_i=list('xstringb(orig(1),orig(2),'"'+..
-        bname+''",sz(1),sz(2),''fill'');',8)
+			 bname+''",sz(1),sz(2),''fill'');',8)
       o.model=model;
       o.graphics=graphics;
       o.gui='DSUPER';
@@ -60,10 +70,10 @@ if typeof(o)=="Block" then
       drawlater();
       update_gr(gh_k,o)
       drawnow(); 
-   else
-      messagebox("Mask can only be created for Super Blocks.",'modal')
-   end
-else
-  messagebox("Mask can only be created for Super Blocks.",'modal')
-end
+    else
+      messagebox(_("Mask can only be created for Super Blocks."),'modal')
+    end
+  else
+    messagebox(_("Mask can only be created for Super Blocks."),'modal')
+  end
 endfunction

@@ -54,7 +54,6 @@ function [params,param_types]=FindSBParams(scs_m,params)
             par_types=[];
             execstr('blk='+o.gui+'(''define'')')
             execstr(o.gui+'(''set'',blk)','errcatch')
-
             Del=[];kk=1;
             for jj=1:2:length(par_types)
               if par_types(jj)=='str' then Del=[Del,kk],end
@@ -70,7 +69,6 @@ function [params,param_types]=FindSBParams(scs_m,params)
   deff('%Font3()',Fun)
   xx=macrovar(%Font3);
   params=xx(3)
-
   %vaar=["%s" "%z" "%e" "%i" "%pi"]
   [%junk,%ind]=intersect(params,%vaar)  
   params(%ind)=[]
@@ -80,7 +78,6 @@ function [params,param_types]=FindSBParams(scs_m,params)
    if ~exists(params(ii)) then Del=[Del,ii],end
   end
   params(Del)=[]
-
   param_types=list()
   for X=params'
     select evstr('type('+X+')')
