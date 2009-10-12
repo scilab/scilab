@@ -55,7 +55,15 @@ function details = atomsToolboxDetails(name,version,field)
 	packages = atomsGetTOOLBOXES();
 	
 	if ~ isfield(packages,name) then
-		error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
+		if ~ atomsIsInstalled(name,version) then
+			// The module is not (or no more) present on the repository and not installed
+			// => in a nutshell, unknown
+			error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
+		else
+			// The module has been removed from the repository but it's still 
+			// installed
+			packages = atomsDESCRIPTIONread(atomsGetInstalledPath(name,version)+filesep()+"DESCRIPTION");
+		end
 	end
 	
 	package_versions = packages(name);
