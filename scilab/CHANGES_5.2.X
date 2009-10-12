@@ -301,6 +301,7 @@ String manipulation:
 * Rewrite :
     + strsplit - SEP 26
 
+* 'NumTokens' is obsolete. see 'tokens'
 
 Java/Scilab API:
 ================
@@ -517,7 +518,7 @@ Bug fixes:
 
 * bug 4654 fixed - max of an empty sparse matrix makes Scilab hangs
 
-* bug 4658 fixed - For graphics macros from adddcolor to fac3d and all colormap.
+* bug 4658 fixed - For graphics macros from adddcolor to getfont and all colormap.
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
