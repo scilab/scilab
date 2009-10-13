@@ -355,8 +355,6 @@ public class XcosDiagram extends ScilabGraph {
 			if(!(cells[i] instanceof BasicLink)){
 				movable = true;
 				break;
-			}else{
-				break;
 			}
 		}
 		
@@ -387,6 +385,7 @@ public class XcosDiagram extends ScilabGraph {
 		return (cell instanceof AfficheBlock) || super.isAutoSizeCell(cell);
 	}
 
+	
 	public void dumpToHdf5File(String fileName) {
 		if (fileName == null) {
 			FileChooser fc = ScilabFileChooser.createFileChooser();
