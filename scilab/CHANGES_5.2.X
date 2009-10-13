@@ -561,6 +561,8 @@ Bug fixes:
 
 * bug 4702 fixed - on some case, dos(cmd) does not return results
 
+* bug 4707 fixed - Can not save a Scicos diagram to a non existing file under MacOS
+
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
