@@ -15,6 +15,7 @@ package org.scilab.modules.xcos;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -595,7 +596,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void loadDiagram(HashMap<String, Object> diagramm) {
 		List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-		List<BasicPort[]> allLinks = (List) diagramm.get("Links");
+		HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 		HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
 		setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
@@ -608,16 +609,23 @@ public class XcosDiagram extends ScilabGraph {
 		setMaximumStepSize((Double) properties.get("maximumStepSize"));
 		setContext((String) properties.get("context"));
 
+		List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
+		List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");
+
 		getModel().beginUpdate();
 		for (int i = 0; i < allBlocks.size(); ++i) {
 			addCell(allBlocks.get(i));
 		}
 
-		for (int i = 0; i < allLinks.size(); ++i) {
-			BasicLink link = createLinkFromPorts(allLinks.get(i)[0], allLinks.get(i)[1]);
+		for (int i = 0; i < linkPorts.size(); ++i) {
+			BasicLink link = createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
 			link.setGeometry(new mxGeometry(0,0,80,80));
-			link.setSource(allLinks.get(i)[0]);
-			link.setTarget(allLinks.get(i)[1]);
+			link.setSource(linkPorts.get(i)[0]);
+			link.setTarget(linkPorts.get(i)[1]);
+			double[][] points = linkPoints.get(i);
+			for(int point = 0 ; point < points.length ; point++){
+				link.addPoint(points[point][0], points[point][1]);
+			}
 			addCell(link);
 		}
 		getModel().endUpdate();
