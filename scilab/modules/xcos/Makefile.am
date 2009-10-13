@@ -44,8 +44,7 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp \
-sci_gateway/cpp/sci_setBlockTextValue.cpp
+sci_gateway/cpp/sci_xcosNotify.cpp 
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
