@@ -34,6 +34,9 @@ import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.graph.actions.PasteAction;
+import org.scilab.modules.graph.actions.RedoAction;
+import org.scilab.modules.graph.actions.SelectAllAction;
+import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -47,6 +50,8 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.SetContextAction;
+import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
@@ -294,16 +299,23 @@ public class XcosDiagram extends ScilabGraph {
 						// Display diagram context menu
 						ContextMenu menu = ScilabContextMenu.createContextMenu();
 						
-						menu.add(CutAction.cutMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.add(CopyAction.copyMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
 						menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.add(DeleteAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
 						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
+						menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
+						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
 						menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
 						menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
 						menu.getAsSimpleContextMenu().addSeparator();
-						menu.add(RegionToSuperblockAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
 						menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
 						menu.setVisible(true);

@@ -50,6 +50,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
@@ -413,6 +414,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		edit.addSeparator();
 		edit.add(SelectAllAction.createMenu(scilabGraph));
 		edit.add(InvertSelectionAction.createMenu(scilabGraph));
+		edit.addSeparator();
+		edit.add(BlockParametersAction.createMenu(scilabGraph));
 		edit.addSeparator();
 		edit.add(RegionToSuperblockAction.createMenu(scilabGraph));
 		Menu superblockMask = ScilabMenu.createMenu();
