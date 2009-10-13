@@ -19,6 +19,8 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -156,8 +158,19 @@ public class XcosDiagram extends ScilabGraph {
 		super();
 		keyboardHandler = new XcosShortCut(this);
 		mxCodec codec = new mxCodec();
-		Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
-		codec.decode(doc.getDocumentElement(), getStylesheet());
+
+		try {
+			File uri = new File(System.getenv("SCI"));
+			String xml = mxUtils.readFile(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
+			xml = xml.replaceAll("\\$SCILAB", uri.toURI().toURL().toString());
+			System.out.println(xml);
+			Document doc = mxUtils.parse(xml);
+			codec.decode(doc.getDocumentElement(), getStylesheet());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		getAsComponent().setToolTips(true);
 
