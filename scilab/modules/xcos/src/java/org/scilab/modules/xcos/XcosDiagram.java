@@ -391,8 +391,8 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellDeletable(Object cell) {
-	    if (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked())) {
-		return true;
+	    if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
+		return false;
 	    }
 	    return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
 	}
