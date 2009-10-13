@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -81,7 +82,6 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 
 	// Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-	private double[][] wpar = {{600,450,0,0,600,450}}; 
 	private String title = XcosMessages.UNTITLED;
 	private double finalIntegrationTime = 100000;
 	private double integratorAbsoluteTolerance = 1e-4;
@@ -344,7 +344,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellMovable(Object cell) {
-		return !(cell instanceof BasicLink) && !(cell instanceof BasicPort) && super.isCellMovable(cell);
+		return !(cell instanceof BasicPort) && super.isCellMovable(cell);
 	}
 
 	public boolean isCellResizable(Object cell) {
@@ -352,9 +352,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellDeletable(Object cell) {
-		return !(cell instanceof BasicPort)
-		&& (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked()))
-		&& super.isCellDeletable(cell);
+	    if (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked())) {
+		return true;
+	    }
+	    return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
 	}
 
 	public boolean isCellEditable(Object cell) {
@@ -606,10 +607,6 @@ public class XcosDiagram extends ScilabGraph {
 		return title;
 	}
 
-	public double[][] getWpar() {
-		return wpar;
-	}
-
 	public void setContext(String context){
 		this.context = context;
 	}
@@ -671,7 +668,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void loadDiagram(HashMap<String, Object> diagramm) {
 		List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-		List<BasicPort[]> allLinks = (List) diagramm.get("Links");
+		HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 		HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
 		setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
@@ -684,16 +681,23 @@ public class XcosDiagram extends ScilabGraph {
 		setMaximumStepSize((Double) properties.get("maximumStepSize"));
 		setContext((String) properties.get("context"));
 
+		List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
+		List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");
+
 		getModel().beginUpdate();
 		for (int i = 0; i < allBlocks.size(); ++i) {
 			addCell(allBlocks.get(i));
 		}
 
-		for (int i = 0; i < allLinks.size(); ++i) {
-			BasicLink link = createLinkFromPorts(allLinks.get(i)[0], allLinks.get(i)[1]);
+		for (int i = 0; i < linkPorts.size(); ++i) {
+			BasicLink link = createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
 			link.setGeometry(new mxGeometry(0,0,80,80));
-			link.setSource(allLinks.get(i)[0]);
-			link.setTarget(allLinks.get(i)[1]);
+			link.setSource(linkPorts.get(i)[0]);
+			link.setTarget(linkPorts.get(i)[1]);
+			double[][] points = linkPoints.get(i);
+			for(int point = 0 ; point < points.length ; point++){
+				link.addPoint(points[point][0], points[point][1]);
+			}
 			addCell(link);
 		}
 		getModel().endUpdate();
