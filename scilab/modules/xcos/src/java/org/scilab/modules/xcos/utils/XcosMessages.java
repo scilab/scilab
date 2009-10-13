@@ -79,6 +79,12 @@ public final class XcosMessages {
     public static final String STOP = Messages.gettext("Stop");
     public static final String SET_CONTEXT = Messages.gettext("Set Context");
 
+    /** Format menu */
+    public static final String FORMAT = Messages.gettext("Format");
+    public static final String RESIZE = Messages.gettext("Resize");
+    public static final String ROTATE = Messages.gettext("Rotate");
+    public static final String FLIP = Messages.gettext("Flip");
+    
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");

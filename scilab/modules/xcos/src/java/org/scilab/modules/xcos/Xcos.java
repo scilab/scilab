@@ -59,6 +59,7 @@ import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
@@ -67,6 +68,7 @@ import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.actions.PrintAction;
 import org.scilab.modules.xcos.actions.QuitAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
@@ -458,6 +460,15 @@ public class Xcos extends SwingScilabTab implements Tab {
 		simulate.add(StartAction.createMenu(scilabGraph));
 		simulate.add(StopAction.createMenu(scilabGraph));
 	
+		/** Format menu */
+		Menu format = ScilabMenu.createMenu();
+		format.setText(XcosMessages.FORMAT);
+		format.setMnemonic('F');
+		menuBar.add(format);
+		
+		format.add(RotateAction.createMenu(scilabGraph));
+		format.add(FlipAction.createMenu(scilabGraph));
+		
 		/** Tools menu */
 		Menu tools = ScilabMenu.createMenu();
 		tools.setText(XcosMessages.TOOLS);
