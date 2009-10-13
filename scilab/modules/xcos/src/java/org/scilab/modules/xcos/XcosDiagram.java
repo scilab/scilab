@@ -68,7 +68,10 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 
 	// Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-	private double[][] wpar = {{600,450,0,0,600,450}}; 
+	
+    	// wpar is never modified so it's useless
+    	// cf. BlockWriter.getDiagramProps
+    	//private double[][] wpar = {{600,450,0,0,600,450}}; 
 	private String title = XcosMessages.UNTITLED;
 	private double finalIntegrationTime = 100000;
 	private double integratorAbsoluteTolerance = 1e-4;
@@ -523,10 +526,6 @@ public class XcosDiagram extends ScilabGraph {
 
 	public String getTitle() {
 		return title;
-	}
-
-	public double[][] getWpar() {
-		return wpar;
 	}
 
 	public void setContext(String context){

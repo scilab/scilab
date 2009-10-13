@@ -78,7 +78,9 @@ public final class BlockWriter {
 	private static ScilabTList getDiagramProps(XcosDiagram diagram) {
 		String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
 		ScilabTList data = new ScilabTList(propsFields);
-		data.add(new ScilabDouble(diagram.getWpar())); // wpar
+		// This propertie has no impact among simulation
+		double[][] wpar = {{600,450,0,0,600,450}};
+		data.add(new ScilabDouble(wpar)); // wpar
 		data.add(new ScilabString(diagram.getTitle())); // title
 		data.add(new ScilabDouble(createTol(diagram))); // tol
 		data.add(new ScilabDouble(diagram.getFinalIntegrationTime())); // tf
