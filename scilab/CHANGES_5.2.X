@@ -219,6 +219,10 @@ Dynamic link:
 
 * ilib_gen_loader now generates loaders which can be executed outside the loader's directory
 
+* bug 4726 fixed - Under !Windows, when the link dynamic was copying the files,
+  in some cases, it was going to copy backup files (for example, sci_luinc.c.bak
+  instead of sci_luinc.c)
+
 * bug 4919 fixed - If the source file was stored in TMPDIR, the dynamic link
   was removing the content of this file.
 
@@ -453,6 +457,8 @@ Bug fixes:
 
 * bug 4421 fixed - completion fails on some relative path.
 
+* bug 4430 fixed - incorrect description of the margins property in the axes_properties help page.
+
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
 * bug 4438 fixed - completion does not support insert mode.
@@ -612,3 +618,5 @@ Bug fixes:
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
 
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
+
+* bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
