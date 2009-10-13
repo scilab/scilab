@@ -693,7 +693,7 @@ public class XcosDiagram extends ScilabGraph {
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
 				loadDiagram(diagramm);
 			} else {
-				XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 				xcosDiagram.loadDiagram(diagramm);
 			}
 		} else {
@@ -832,7 +832,7 @@ public class XcosDiagram extends ScilabGraph {
 						setTitle(theFile.getAbsolutePath());
 					}
 				} else {
-					XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+					XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 					codec.decode(document.getDocumentElement(), xcosDiagram);
 					if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
 						XcosDialogs.couldNotLoadFile();

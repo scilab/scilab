@@ -64,7 +64,7 @@ public final class NewDiagramAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		Xcos.CreateAndShowGui();
+		Xcos.createEmptyDiagram();
 	}
 
 }

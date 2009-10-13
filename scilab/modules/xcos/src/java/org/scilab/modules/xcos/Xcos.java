@@ -274,18 +274,18 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
-		CreateAndShowGui();
+		createEmptyDiagram();
 	    }
 	});
     }
 
     public static void xcos() {
-    	CreateAndShowGui();
+    	createEmptyDiagram();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     }
     
     public static void xcos(String fileName) {
-    	XcosDiagram diagram = CreateAndShowGui();
+    	XcosDiagram diagram = createEmptyDiagram();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	synchronized(paletteThread) {
     		try {
@@ -547,45 +547,48 @@ public class Xcos extends SwingScilabTab implements Tab {
     	}
     }
     
-    public static XcosDiagram CreateAndShowGui() {
+    
+    
+    public static XcosDiagram createEmptyDiagram() {
+	XcosDiagram xcosDiagramm = new XcosDiagram();
+	showDiagram(xcosDiagramm);
+	return xcosDiagramm;
+    }
+    
+    public static void showDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
 	
-	XcosDiagram xcosDiagramm = new XcosDiagram();
-
-	diagrams.add(xcosDiagramm);
+	diagrams.add(xcosDiagram);
 	
-	Tab tab = new Xcos(xcosDiagramm);
+	Tab tab = new Xcos(xcosDiagram);
 	tab.setName(XcosMessages.UNTITLED);
-	xcosDiagramm.setParentTab(tab);
+	xcosDiagram.setParentTab(tab);
 	main.setVisible(true);
 	main.addTab(tab);
 	/*
 	 * MENU BAR
 	 */
-	MenuBar menuBar = createMenuBar(xcosDiagramm);
+	MenuBar menuBar = createMenuBar(xcosDiagram);
 	tab.addMenuBar(menuBar);
 
 	/*
 	 * TOOL BAR
 	 */
-	ToolBar toolBar = createToolBar(xcosDiagramm);
+	ToolBar toolBar = createToolBar(xcosDiagram);
 	tab.addToolBar(toolBar);
 
 	/*
 	 * VIEW PORT
 	 */
-	createViewPort(xcosDiagramm);
+	createViewPort(xcosDiagram);
 	
 
 	/*
 	 * INFO BAR
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
-	
-	return xcosDiagramm;
-
     }
 
     public SimpleTab getAsSimpleTab() {
