@@ -128,6 +128,9 @@ if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   clear %toolboxes %toolboxes_dir;
 end
 
+// ATOMS ===============================================================
+atomsSystemInit();
+
 // calling user initialization =========================================
 
 if sciargs()<>'-nouserstartup' then

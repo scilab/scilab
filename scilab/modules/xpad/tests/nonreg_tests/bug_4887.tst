@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XPAD -->
+// <-- TEST WITH EDITOR -->
 //
 // <-- Non-regression test for bug 4592 -->
 //
@@ -17,7 +17,7 @@
 //    remove configuration.xml , make xpad launch exception while trying to open file
 
 //rm -rf ~/.Scilab
-//xpad()
+//editor()
 //
 //Menu : File -> Open
 

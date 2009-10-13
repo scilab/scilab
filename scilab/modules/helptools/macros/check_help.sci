@@ -189,8 +189,8 @@ function check_help(dirs)
 		end
 		
 		if grep(sciargs(),"-nw") == [] then
-			if with_module('xpad') then
-			  xpad(logfile);
+			if isdef('editor') then
+			  editor(logfile);
 			else
 			  mprintf("\n\tSee %s\n",logfile);
 			end

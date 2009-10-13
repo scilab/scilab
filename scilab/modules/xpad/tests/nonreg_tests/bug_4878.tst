@@ -21,7 +21,7 @@
 // => These commands should not have the same shortcut.
 // => "Menu→Edit→Comment Selection" should add a second "//" even if the line is already commented.
 
-xpad()
+editor()
 // Type the following line : "// A comment"
 // Select it
 // Menu→Edit→Comment Selection
