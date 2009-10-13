@@ -8,10 +8,10 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosCodec;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;
 
 public class ImportFromXMLAction extends DefaultAction {
@@ -32,7 +32,7 @@ public class ImportFromXMLAction extends DefaultAction {
 	    e1.printStackTrace();
 	}
 
-	mxCodec codec2 = new mxCodec(document);
+	XcosCodec codec2 = new XcosCodec(document);
 	
 	XcosDiagram diagram = Xcos.CreateAndShowGui();
 	//diagram.getModel().beginUpdate();
