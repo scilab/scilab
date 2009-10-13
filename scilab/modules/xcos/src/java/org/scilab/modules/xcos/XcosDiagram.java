@@ -735,18 +735,19 @@ public class XcosDiagram extends ScilabGraph {
 			return;
 		}
 		
-		block.setValue(blockValue[0]);
-//		mxCell currentObject = (mxCell)getModel().getChildAt(getDefaultParent(), blockID);
-//		if(currentObject != null){
-//			String value = "";
-//			for(int i = 0 ; i < iRows ; i++){
-//				for(int j = 0 ; j < iCols ; j++){
-//					//blockValue[i]
-//				}
-//			}
-			//TODO format value string with itemS
-//		}
-//	currentObject.setValue(blockValue[0]);
+		String blockResult = "";
+		
+		for(int i = 0 ; i < iRows ; i++){
+			for(int j = 0 ; j < iCols ; j++){
+				if(iCols != 0){
+					blockResult += "  ";
+				}
+				blockResult += blockValue[j * iRows + i];
+			}
+			blockResult += System.getProperty("line.separator");
+		}
+		block.setValue(blockResult);
+		System.err.println("blockResult : \n" + blockResult);
 	}
 }
 
