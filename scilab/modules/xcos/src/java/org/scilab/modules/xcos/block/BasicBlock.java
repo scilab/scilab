@@ -71,6 +71,8 @@ public class BasicBlock extends mxCell {
     private String blockType = "c";
 
     private int ordering = 0;
+    
+    private boolean locked = false;
 
     public enum SimulationFunctionType {
 	DEFAULT,
@@ -300,6 +302,14 @@ public class BasicBlock extends mxCell {
 
     public void setEquations(ScilabType equations) {
 	this.equations = equations;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     protected List<InputPort> getAllInputPorts() {
@@ -756,9 +766,11 @@ public class BasicBlock extends mxCell {
 		    updateBlockSettings(modifiedBlock);
 		    //tempOutput.delete();
 		    //tempInput.delete();
+		    setLocked(false);
 		}
 	    };
 	    launchMe.start();
+	    setLocked(true);
 
 	} catch (Exception e) {
 	    // TODO Auto-generated catch block
