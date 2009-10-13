@@ -52,4 +52,16 @@ public final class XcosDialogs {
 		messageBox.displayAndWait();
 
 	}
+	
+	/**
+	 * Dialog displayed when loading failed
+	 */
+	public static void couldNotLoadFile() {
+		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+		messageBox.setTitle(XcosMessages.XCOS_ERROR);
+		messageBox.setMessage(XcosMessages.FAIL_LOADING_DIAGRAM);
+		messageBox.setModal(true);
+		messageBox.setIcon("error");
+		messageBox.displayAndWait();
+	}
 }

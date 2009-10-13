@@ -71,7 +71,7 @@ public final class OpenAction extends DefaultAction {
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 
 		/* Standard files */
-		String[] mask = new String[]{"*.h5", "*.cos*"};
+		String[] mask = new String[]{"*.cos*", "*.xcos"};
 		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
 		
 		fc.setMultipleSelection(false);

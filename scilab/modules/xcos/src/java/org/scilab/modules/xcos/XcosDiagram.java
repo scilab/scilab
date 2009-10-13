@@ -504,7 +504,7 @@ public class XcosDiagram extends ScilabGraph {
 		fc.setTitle(XcosMessages.SAVE_AS);
 		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
-		String[] mask = {".xcos"};
+		String[] mask = {"*.xcos"};
 		String[] maskDesc = {"Xcos file (XML)"};  
 		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
 		fc.displayAndWait();
@@ -519,6 +519,9 @@ public class XcosDiagram extends ScilabGraph {
 		if (extension.equals(fileName)) {
 			/* No extension given --> .xcos added */
 			fileName += ".xcos";
+		} else if (!extension.equals(".xcos")) {
+			XcosDialogs.couldNotSaveFile();
+			return false;
 		}
 		
 		XcosCodec codec = new XcosCodec();
@@ -544,7 +547,6 @@ public class XcosDiagram extends ScilabGraph {
 
 		if (isSuccess) {
 			this.setTitle(fileName);
-			this.getParentTab().setName(fileName);
 		} else {
 			XcosDialogs.couldNotSaveFile();
 		}
@@ -554,6 +556,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	public void setTitle(String title) {
 		this.title = title;
+		parentTab.setName(title);
 	}
 
 	public String getTitle() {
@@ -609,18 +612,12 @@ public class XcosDiagram extends ScilabGraph {
 		if (diagramm != null) {
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
 				loadDiagram(diagramm);
-			}
-			else {
+			} else {
 				XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
 				xcosDiagram.loadDiagram(diagramm);
 			}
-		}
-		else {
-			MessageBox messageBox = ScilabMessageBox.createMessageBox();
-			messageBox.setTitle(XcosMessages.FAIL_LOADING_DIAGRAM);
-			String[] message = {"An error Occured while loading diagram", "Aborting..."};
-			messageBox.setMessage(message);
-			messageBox.displayAndWait();
+		} else {
+			XcosDialogs.couldNotLoadFile();
 		}
 	}
 
@@ -726,8 +723,37 @@ public class XcosDiagram extends ScilabGraph {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else  if (extension.equals("xcos")) {
+				Document document = null;
+				try {
+				    document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
+				} catch (IOException e1) {
+				    // TODO Auto-generated catch block
+				    e1.printStackTrace();
+				}
+
+				XcosCodec codec = new XcosCodec(document);
+				
+				if (getModel().getChildCount(getDefaultParent()) == 0) {
+					codec.decode(document.getDocumentElement(), this);
+					if (getModel().getChildCount(getDefaultParent()) == 0) {
+						XcosDialogs.couldNotLoadFile();
+					} else {
+						setTitle(theFile.getAbsolutePath());
+					}
+				} else {
+					XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+					codec.decode(document.getDocumentElement(), xcosDiagram);
+					if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
+						XcosDialogs.couldNotLoadFile();
+					} else {
+						setTitle(theFile.getAbsolutePath());
+					}
+				}
+				
 			} else {
 				openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+				XcosDialogs.couldNotLoadFile();
 			}
 
 		} else {
