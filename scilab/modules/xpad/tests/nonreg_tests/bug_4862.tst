@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XPAD -->
+// <-- TEST WITH EDITOR -->
 //
 // <-- Non-regression test for bug 4862 -->
 //
@@ -14,9 +14,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4862
 //
 // <-- Short Description -->
-//    The "Xpad" query-replace window is not closed when closing Xpad.
+//    The "Scilab editor" query-replace window is not closed when closing scilab editor.
 
-//xpad()
+//editor()
 //<ctlr + f>
 //Menu : File -> Quit
 

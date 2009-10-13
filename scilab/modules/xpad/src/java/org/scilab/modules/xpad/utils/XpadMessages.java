@@ -21,7 +21,8 @@ public class XpadMessages {
 
 	public static final String DOTS = "...";
 	
-	/** FILE MENU */
+	  public static final String SCILAB_EDITOR = Messages.gettext("Scilab editor");
+    /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
@@ -82,7 +83,7 @@ public class XpadMessages {
     public static final String EVALUATE_SELECTION = Messages.gettext("Evaluate Selection");
     
     /** HELP MENU */
-    public static final String HELP = Messages.gettext("Xpad Help") + DOTS;
+    public static final String HELP = Messages.gettext("Scilab editor Help") + DOTS;
     public static final String ABOUT = Messages.gettext("About") + DOTS;
     
     /** FIND/REPLACE DIALOG */

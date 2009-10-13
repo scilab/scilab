@@ -13,9 +13,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4868
 //
 // <-- Short Description -->
-// xpad() deletes blanks lines when commenting region
+// editor() deletes blanks lines when commenting region
 
-xpad()
+editor()
 
 //Type :
 //  "comment 1"

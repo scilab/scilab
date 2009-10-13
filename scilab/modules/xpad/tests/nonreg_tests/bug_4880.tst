@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XPAD -->
+// <-- TEST WITH EDITOR -->
 //
 // <-- Non-regression test for bug 4880 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    regular expressions with "^" and "$" match only one expression
 
-//  xpad()
+//  editor()
 //  add several line with "aa bb"
 //  "Menu→Search→Find/Replace"
 //  Find : "^aa"

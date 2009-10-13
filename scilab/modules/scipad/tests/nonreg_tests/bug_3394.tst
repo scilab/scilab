@@ -19,7 +19,7 @@
 
 // 2 - Start Scipad
 
-// 3 - In xpad enter:
+// 3 - In scilab editor enter:
 // function [in,out]=get_csv();
 //   data_file=uigetfile("*.csv",title="Select Data File");
 //   Value_labels=["Input columns";"Output columns"];
