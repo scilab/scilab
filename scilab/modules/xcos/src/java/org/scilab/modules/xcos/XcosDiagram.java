@@ -343,7 +343,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellMovable(Object cell) {
-		return !(cell instanceof BasicLink) && !(cell instanceof BasicPort) && super.isCellMovable(cell);
+		return !(cell instanceof BasicPort) && super.isCellMovable(cell);
 	}
 
 	public boolean isCellResizable(Object cell) {
@@ -351,9 +351,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellDeletable(Object cell) {
-		return !(cell instanceof BasicPort)
-		&& (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked()))
-		&& super.isCellDeletable(cell);
+	    if (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked())) {
+		return true;
+	    }
+	    return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
 	}
 
 	public boolean isCellEditable(Object cell) {
