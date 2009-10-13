@@ -120,8 +120,12 @@ function ilib_gen_Make_unix(names,   ..
 			filename = strsubst(x,'.o','');
 			chdir(originPath); // Switch back to the source dir in order to have only the filename
 			filesMatching = ls(filename+".*");
-			// The user provided the real filename
-			if filesMatching == [] then
+			
+			// Two cases here:
+			// * The user provided the real filename. Then, take if straight
+			// * The user provided a file ending by .o (example: myfile.o)
+			// We stripped the ending .o and looked for all files
+			if filesMatching == [] | fileinfo(x) <> [] then
 
 				pathFrom=fileparts(x); // Retrieve the path of the file
 				if length(pathFrom) == 0 then // Empty => it should be PWD
