@@ -7,34 +7,29 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Internal function
+// Load one or several toolboxes
 
-// Remove a toolbox
-
-function atomsDisp(str)
+function atomsSystemInit()
 	
-	// Check input parameters
+	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
-	
-	rhs = argn(2);
-	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsDisp",1,2))
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	if type(str) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsDisp",1));
-	end
-	
-	// Verbose Mode ?
+	// Check if we have the write access
 	// =========================================================================
-	
-	if isdef("ATOMSVERBOSE") then
-		if ATOMSVERBOSE then
-			mprintf(str+"\n");
-		end
-	elseif strcmpi(atomsGetConfig("Verbose"),"True") == 0
-		mprintf(str+"\n");
+	allusers = %F;
+	if atomsAUWriteAccess() then
+		allusers = %T;
 	end
+	
+	// Toremove process
+	// =========================================================================
+	atomsToremoveProcess(allusers);
+	
+	// Autoload process
+	// =========================================================================
+	atomsAutoload();
 	
 endfunction
