@@ -695,8 +695,11 @@ public class XcosDiagram extends ScilabGraph {
 			link.setSource(linkPorts.get(i)[0]);
 			link.setTarget(linkPorts.get(i)[1]);
 			double[][] points = linkPoints.get(i);
-			for(int point = 0 ; point < points.length ; point++){
-				link.addPoint(points[point][0], points[point][1]);
+			
+			if(points != null){
+				for(int point = 0 ; point < points.length ; point++){
+					link.addPoint(points[point][0], points[point][1]);
+				}
 			}
 			addCell(link);
 		}
