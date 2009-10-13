@@ -766,7 +766,7 @@ public class XcosDiagram extends ScilabGraph {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else  if (extension.equals("xcos")) {
+			} else if (extension.equals("xcos")) {
 				Document document = null;
 				try {
 				    document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
@@ -794,8 +794,9 @@ public class XcosDiagram extends ScilabGraph {
 					}
 				}
 				
-			} else {
+			} else if (extension.equals("h5")) {
 				openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+			} else {
 				XcosDialogs.couldNotLoadFile();
 			}
 
