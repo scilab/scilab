@@ -35,9 +35,9 @@ static BOOL isGoodExtension(char *chainefichier,char *ext);
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
 #define MSG_SCIMSG3 "%s -e edit_graph(getlongpathname('%s'));"
 #define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
-#define MSG_SCIMSG5_XPAD "%s -e xpad(getlongpathname('%s'));"
-/* we try to launch xpad */
-#define MSG_SCIMSG6_XPAD "execstr('xpad(getlongpathname(''%s''));','errcatch');"
+#define MSG_SCIMSG5_EDITOR "%s -e editor(getlongpathname('%s'));"
+/* we try to launch scilab editor */
+#define MSG_SCIMSG6_EDITOR "execstr('editor(getlongpathname(''%s''));','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
 /*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
@@ -168,7 +168,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 				{
 					if (with_module("xpad"))
 					{
-						wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 					}
 				}
 				else
@@ -178,7 +178,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					ScilabDestination = getLastScilabFinded();
 					if (with_module("xpad"))
 					{
-						wsprintf(Cmd,MSG_SCIMSG6_XPAD,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG6_EDITOR,FinalFileName);
 					}
 
 					if (ScilabDestination)
@@ -191,7 +191,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					{
 						if (with_module("xpad"))
 						{
-							wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
+							wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 						}
 					}
 				}

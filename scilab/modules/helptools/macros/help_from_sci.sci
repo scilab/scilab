@@ -149,8 +149,8 @@ if argn(2)==0 then
     'endfunction'
   ];
   f=mopen(TMPDIR+filesep()+'function_template.sci','w'); mfprintf(f,'%s\n',template); mclose(f);
-  if with_module('xpad') then
-    xpad(TMPDIR+filesep()+'function_template.sci'); helptxt=[];
+  if isdef('editor') then
+    editor(TMPDIR+filesep()+'function_template.sci'); helptxt=[];
   end
   return;
 end

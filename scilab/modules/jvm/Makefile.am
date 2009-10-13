@@ -41,6 +41,7 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 pkglib_LTLIBRARIES = libscijvm-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
 endif
 
@@ -90,8 +91,6 @@ src/c/loadLibrarypath.c \
 src/c/getLibrarypath.c \
 src/c/addToLibrarypath.c \
 src/c/getJvmOptions.c
-
-USEANT=1
 
 libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
 libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \

@@ -488,7 +488,6 @@ src/jni/JOGLConstant.giws.xml
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
-USEANT = 1
 @GIWS_TRUE@BUILT_SOURCES = giws
 
 # All the sources needed by libscigraphic_export.la
@@ -501,6 +500,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_1)
+@GUI_TRUE@USEANT = 1
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### graphic_export : gateway declaration ####
