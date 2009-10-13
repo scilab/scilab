@@ -83,7 +83,7 @@ public class SciTextRenderer {
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
 
-	    if (str.charAt(0) == '<' || str.charAt(0) == '$') { /* MathML / LaTeX management */
+	    if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) { /* MathML / LaTeX management */
 		    speRenderer.draw3D(str, (float) x, (float) y, (float) z, useFractionalMetrics ? scaleFactor : 1.0f);
 		    return;
 		}
@@ -204,7 +204,7 @@ public class SciTextRenderer {
 		Rectangle2D res; 
 		
 		/* Set also for the MathML / LaTeX rendering */
-		if (str.charAt(0) == '<' || str.charAt(0) == '$') {
+		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
 		    res = speRenderer.getBounds(str);
 		} else {
 		    res = renderer.getBounds(str);

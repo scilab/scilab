@@ -773,6 +773,35 @@ public class BasicBlock extends mxCell {
 	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
 	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
 	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
+	//exprs
+	if (getExprs() != null) {
+	    result.append("Exprs : "+getExprs().toString()+"<br>");
+	}
+	else {
+	    result.append("Exprs : (null)<br>");
+	}
+	//ipar
+	if (getIntegerParameters() != null ) {
+	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Ipar : (null)<br>");
+	}
+	//rpar
+	if (getRealParameters() != null) {
+	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Rpar : (null)<br>");
+	}
+	//opar
+	if (getObjectsParameters() != null) {
+	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Opar : (null)<br>");
+	}
+	
 	result.append("</html>");
 	return result.toString();
     }

@@ -18,7 +18,7 @@ public class ScilabDouble implements ScilabType {
 	realPart = null;
 	imaginaryPart = null;
     }
-    
+
     public ScilabDouble(double data) {
 	realPart = new double[1][1];
 	realPart[0][0] = data;
@@ -31,55 +31,84 @@ public class ScilabDouble implements ScilabType {
 	imaginaryPart = new double[1][1];
 	imaginaryPart[0][0] = imagData;
     }
-    
+
     public ScilabDouble(double[][] data) {
 	realPart = data;
 	imaginaryPart = null;
     }
-    
+
     public ScilabDouble(double[][] realData, double[][] imagData) {
 	realPart = realData;
 	imaginaryPart = imagData;
     }
-    
+
     public boolean isEmpty() {
 	return (realPart == null && imaginaryPart == null);
     }
-    
+
     public boolean isReal() {
 	return (imaginaryPart == null);
     }
-    
+
     public double[][] getRealPart() {
-        return realPart;
+	return realPart;
     }
-    
+
     public void setRealPart(double[][] realPart) {
-        this.realPart = realPart;
+	this.realPart = realPart;
     }
-    
+
     public double[][] getImaginaryPart() {
-        return imaginaryPart;
+	return imaginaryPart;
     }
 
     public void setImaginaryPart(double[][] imaginaryPart) {
-        this.imaginaryPart = imaginaryPart;
+	this.imaginaryPart = imaginaryPart;
     }
 
     private double[][] realPart;
     private double[][] imaginaryPart;
-	
+
     public int getHeight() {
-		if (isEmpty()) {
-			return 0;
-		}
-		return realPart.length;
+	if (isEmpty()) {
+	    return 0;
+	}
+	return realPart.length;
+    }
+
+    public int getWidth() {
+	if (isEmpty()) {
+	    return 0;
+	}
+	return realPart[0].length;
+    }
+
+    public String toString() {
+	StringBuffer result = new StringBuffer();
+	if (isEmpty()) {
+	    result.append("[]");
+	    return result.toString();
 	}
 
-	public int getWidth() {
-		if (isEmpty()) {
-			return 0;
+	result.append("[");
+	for (int i = 0 ; i < getHeight() ; ++i) {
+	    for (int j = 0 ; j < getWidth() ; ++j) {
+		if(isReal()) {
+		    result.append(getRealPart()[i][j]);
 		}
-		return realPart[0].length;
+		else {
+		    result.append(getRealPart()[i][j]+" + "+getImaginaryPart()[i][j]+" %i");
+		}
+		if (j != getWidth() - 1) {
+		    result.append(", ");
+		}
+	    }
+	    if (i != getHeight() - 1) {
+		result.append(" ; ");
+	    }
 	}
+	result.append("]");
+	return result.toString();
+    }
+
 }
