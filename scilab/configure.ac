@@ -702,18 +702,17 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				GLUEGEN_RT=$PACKAGE_JAR_FILE
 				AC_SUBST(GLUEGEN_RT)
 
-
-				LDFLAGS_save=$LDFLAGS
-				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				if test "$MACOSX" = 1; then
-				   symbol="Java_com_sun_gluegen_runtime_MacOSXDynamicLinkerImpl_dlclose__J"
+				   echo "Check of the presence of libjogl.jnilib, libjogl_awt.jnilib and libgluegen-rt.jnilib disabled"
 				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
+				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   LDFLAGS=$LDFLAGS_save
 				fi
-				AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-				  [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
-				LDFLAGS=$LDFLAGS_save
 
 				# Jhall
 				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
@@ -1039,13 +1038,18 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
-   LDFLAGS_save=$LDFLAGS
+
+   if test "$MACOSX" = 1; then
+   	  echo "Check of the presence of libjhdf5.jnilib disabled"
+   else
+      LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
-   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread"
+   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread"
    # -lpthread because of packaging bug in jhdf5
-   AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
-     [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
-   LDFLAGS=$LDFLAGS_save
+      AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
+   	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+      LDFLAGS=$LDFLAGS_save
+   fi
 
 #################
 ## ocaml which only called when using Scicos
