@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XPAD -->
+// <-- TEST WITH EDITOR -->
 //
 // <-- Non-regression test for bug 4876 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    The cancel button of the "Goto Line" window doesn't work. The original position is forgotten.
 
-xpad SCI/modules/atoms/macros/atomsInstall.sci
+editor SCI/modules/atoms/macros/atomsInstall.sci
 <ctlr+G>
 // Enter a line number, it doesn't matter what.
 // Press the cancel buttonm, it doesn't return to original position

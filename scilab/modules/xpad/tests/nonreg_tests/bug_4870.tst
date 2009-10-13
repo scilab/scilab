@@ -17,6 +17,6 @@
 // CTRL+T is more and more used as "open a new tab" (exemple: Firefox or Internet Explorer)
 // selected, if the edition zone is focused, "Menu→Edit→Comment Region" should comment
 
-xpad()
+editor()
 // <CTRL+D>
 // <CTRL+SHIFT+D>

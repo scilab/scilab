@@ -93,7 +93,7 @@ The option is "disableUnderMode" and can be:
 	<load on="graphics_mathml_textrendering"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.1.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-0.2.jar" load="onUse">
 	<load on="graphics_latex_textrendering"/>
 </path>
 
