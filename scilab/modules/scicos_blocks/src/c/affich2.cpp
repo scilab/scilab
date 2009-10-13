@@ -69,10 +69,15 @@ extern "C" void affich2(scicos_block *block,int flag)
 				double dblScale	= pow((double)10, iPrec);
 				double dblTemp = pdblReal[i] * dblScale;
 				double dblValue = C2F(sciround)(&dblTemp) / dblScale; 
+				char pstFormat[10];
+
 
 #if _MSC_VER
-				sprintf_s(pstConv, 128, "%0.2f", dblValue);
+//"%0.2f"
+				sprintf_s(pstFormat, 10, "%%0.%df", iPrec);
+				sprintf_s(pstConv, 128, pstFormat, dblValue);
 #else
+				sprintf(pstFormat, "%%0.%df", iPrec);
 				sprintf(pstConv, "%0.2f", dblValue);
 #endif
 				pstValue[i] = strdup(pstConv);
