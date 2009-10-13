@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -27,16 +28,24 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.CopyAction;
+import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DeleteAction;
+import org.scilab.modules.graph.actions.PasteAction;
+import org.scilab.modules.graph.actions.ZoomInAction;
+import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -264,6 +273,39 @@ public class XcosDiagram extends ScilabGraph {
 					if(cell != null) {
 						System.err.println("[DEBUG] NbEdges : "+((mxCell) cell).getEdgeCount());
 						System.err.println("[DEBUG] NbChildren : "+((mxCell) cell).getChildCount());
+					}
+				}
+				
+				// Context menu
+				if (arg0.getClickCount() == 1 && arg0.getButton() == MouseEvent.BUTTON3) {
+					
+					if (cell == null) {
+						// Display diagram context menu
+						ContextMenu menu = ScilabContextMenu.createContextMenu();
+						
+						menu.add(CutAction.cutMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(CopyAction.copyMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(DeleteAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(RegionToSuperblockAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+
+						menu.setVisible(true);
+						
+						((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+						
+					} else {
+						// Display object context menu
+						if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+							BasicBlock block = (BasicBlock) cell;
+							block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+							getAsComponent().doLayout();
+						}
 					}
 				}
 			}
