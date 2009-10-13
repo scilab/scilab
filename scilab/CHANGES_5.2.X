@@ -527,6 +527,8 @@ Bug fixes:
 
 * bug 4606 fixed - example of 'link' in help does not work
 
+* bug 4707 fixed - Fail to build with ./configure --without-gui
+
 * bug 4608 fixed - get_function_path returns a non-consistent path.
 
 * bug 4611 fixed - what function doesn't returns a complete list of functions.
@@ -560,6 +562,8 @@ Bug fixes:
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
 * bug 4702 fixed - on some case, dos(cmd) does not return results
+
+* bug 4707 fixed - Can not save a Scicos diagram to a non existing file under MacOS
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 

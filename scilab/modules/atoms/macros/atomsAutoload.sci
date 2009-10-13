@@ -13,6 +13,8 @@
 
 function result = atomsAutoload()
 	
+	result = [];
+	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
@@ -29,6 +31,12 @@ function result = atomsAutoload()
 	// Get the list of packages to load
 	// =========================================================================
 	packages = atomsGetAutoload();
+	
+	// If the list is empty, quit the function
+	// =========================================================================
+	if isempty(packages) then
+		return;
+	end
 	
 	// Libraries to resume
 	// =========================================================================
