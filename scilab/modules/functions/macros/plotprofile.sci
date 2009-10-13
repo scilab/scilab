@@ -98,15 +98,10 @@ function plotprofile(fun)
   
   xinfo(gettext("Click to get corresponding line, move with a-z."))
 
-  if with_module('xpad') then
-    profpath = TMPDIR+"/profiled.sci"
-    mputl(txt,profpath);
-    // TODO : add xpad hilite here
-    xpad(profpath);
-  else //ouput text in a graphic window
-    messagebox(_('Please install xpad module.'));
-  end
-
+  profpath = TMPDIR+"/profiled.sci"
+  mputl(txt,profpath);
+  editor_highlightline(profpath, 1);
+  
   k=1
   while %t
     if ~or(winsid()==win) then break,end
@@ -160,12 +155,8 @@ function plotprofile(fun)
       else
         msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), kstr, ncallsstr, tcpustr) + txt(k);
       end
-   // show source code in another window
-      if withpad then
-        scipad_hiliteline(k)
-      else
-        [h,M]=dispfuntxt(txt,k,h,M)
-      end
+      
+      editor_highlightline(profpath,k)
     end
     for i=1:3
       d=marker(i).data; 
@@ -182,3 +173,4 @@ function endprof()
   if or(winsid()==(win+1)) then xdel(win+1);end
   if or(winsid()==(win)) then xdel(win);end
 endfunction
+

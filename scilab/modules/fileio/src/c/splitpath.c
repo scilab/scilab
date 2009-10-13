@@ -134,7 +134,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 /*--------------------------------------------------------------------------*/ 
 void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext)
 {
-	wchar_t *wcpath = to_wide_string(path);
+	wchar_t *wcpath = to_wide_string((char*)path);
 	wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
 	wchar_t *wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
 	wchar_t *wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));

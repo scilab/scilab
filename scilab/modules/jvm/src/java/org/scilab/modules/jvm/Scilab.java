@@ -106,14 +106,13 @@ public class Scilab {
 			/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 			try {
 
-				/** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
-				System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
-
 				String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
 				if (isWindowsPlateform()) {
 					scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 				} else if (System.getProperty(OSNAME).toLowerCase().indexOf(MACOS) != -1) {
+                                        /** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
+                                        System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
 					scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
 				} else {
 					scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";

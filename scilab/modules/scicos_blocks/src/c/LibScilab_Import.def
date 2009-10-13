@@ -5,6 +5,7 @@ EXPORTS
 ;
 ; core
 namstr_
+freeArrayOfString
 
 ;
 ; elementary_functions

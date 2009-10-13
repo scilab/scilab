@@ -13,7 +13,9 @@ function [fontId,fontSize]=getfont(S,v1)
   fontId=[];fontSize=[];
   
   if exists('S','local')==0 then S="a";end
-  if type(S)<>10 then error('Argument must be a character string'),end
+  if type(S)<>10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "getfont", 1));
+  end
   S=part(S(1),1)
   
   win=max(winsid()+1);

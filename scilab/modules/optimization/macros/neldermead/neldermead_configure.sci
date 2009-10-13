@@ -59,18 +59,6 @@ function this = neldermead_configure (this,key,value)
     this.gamma = value;
   case "-sigma" then
     this.sigma = value;
-  case "-tolfstdeviation" then
-    this.tolfstdeviation = value;
-  case "-tolfstdeviationmethod" then
-    select value
-    case %t then
-      this.tolfstdeviationmethod = value;
-    case %f then
-      this.tolfstdeviationmethod = value;
-    else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfstdeviationmethod option"),"neldermead_configure", value);
-      error(errmsg);
-    end
   case "-tolsimplexizeabsolute" then
     this.tolsimplexizeabsolute = value;
   case "-tolsimplexizerelative" then
@@ -115,10 +103,6 @@ function this = neldermead_configure (this,key,value)
     this.restartdetection = value;
   case "-restartsimplexmethod" then
     this.restartsimplexmethod = value;
-  case "-boxnbpoints" then
-    this.boxnbpoints = value;
-  case "-ineqscaling" then
-    this.ineqscaling = value;
   case "-checkcostfunction" then
     select value
     case %f then
@@ -129,8 +113,12 @@ function this = neldermead_configure (this,key,value)
       errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
       error(errmsg);
     end
-  case "-scalingmethod" then
-    this.scalingmethod = value;
+  case "-boxnbpoints" then
+    this.boxnbpoints = value;
+  case "-boxineqscaling" then
+    this.boxineqscaling = value;
+  case "-scalingsimplex0" then
+    this.scalingsimplex0 = value;
   case "-guinalphamin" then
     if ( value <=0.0 ) then 
       errmsg = msprintf(gettext("%s: Unexpected negative value %s for -guinalphamin option"),"neldermead_configure", value);
@@ -161,6 +149,12 @@ function this = neldermead_configure (this,key,value)
       errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
       error(errmsg);
     end
+  case "-tolvarianceflag" then
+    this.tolvarianceflag = value
+  case "-tolabsolutevariance" then
+    this.tolabsolutevariance = value
+  case "-tolrelativevariance" then
+    this.tolrelativevariance = value
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );

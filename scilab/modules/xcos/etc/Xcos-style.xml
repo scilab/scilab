@@ -14,6 +14,10 @@
 	</add>
 	<add as="Const" extend="block">
 	</add>
+	<add as="Gain" extend="block">
+		<add as="shape" value="triangle"/>
+		<add as="perimeter" value="trianglePerimeter"/>
+	</add>
 	<add as="Icon" extend="block">
 		<add as="shape" value="image"/>
 	</add>

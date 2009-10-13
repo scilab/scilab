@@ -122,10 +122,21 @@ function ilib_gen_Make_unix(names,   ..
 			filesMatching = ls(filename+".*");
 			// The user provided the real filename
 			if filesMatching == [] then
-				if ( ilib_verbose() <> 0 ) then
-					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
+
+				pathFrom=fileparts(x); // Retrieve the path of the file
+				if length(pathFrom) == 0 then // Empty => it should be PWD
+				  pathFrom=pwd();
 				end
-				copyfile(x, linkBuildDir);
+
+				if pathFrom <> linkBuildDir then
+				  if ( ilib_verbose() <> 0 ) then
+					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
+				  end
+				  copyfile(x, linkBuildDir);
+				else
+					mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"lib_gen_Make",x,pathFrom);
+				end
+
 				filelist = filelist + " " + x ;
 			else
 				// Or copy the file matching to what we were looking for (this stuff

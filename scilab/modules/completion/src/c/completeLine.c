@@ -36,7 +36,7 @@ static char * strrstr(char *string, char *find)
 		}
 		else
 		{ 
-			int len = strlen(find + 1);
+			int len = (int)strlen(find + 1);
 
 			do 
 			{  
@@ -82,12 +82,12 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 	if (postCaretLine == NULL)
 	{
 		stringToAddAtTheEnd = strdup("");
-		lenstringToAddAtTheEnd = strlen(stringToAddAtTheEnd);
+		lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
 	}
 	else
 	{
 		stringToAddAtTheEnd = strdup(postCaretLine);
-		lenstringToAddAtTheEnd = strlen(stringToAddAtTheEnd);
+		lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
 	}
 
 	if ( (stringToAdd == NULL)  || (strcmp(stringToAdd, "") == 0) )
