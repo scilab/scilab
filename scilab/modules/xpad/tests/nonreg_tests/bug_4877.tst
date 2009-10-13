@@ -16,7 +16,7 @@
 // When commenting several lines :
 // Even if the first one isn't completely selected, the comment should be added at the begginning of it.
 
-xpad SCI/modules/atoms/macros/atomsInstall.sci
+editor SCI/modules/atoms/macros/atomsInstall.sci
 // Put the cursor in the middle of a line
 // Select several lines
 // <Ctlr+D>

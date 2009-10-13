@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4892
 //
 // <-- Short Description -->
-// Xpad under MacOSX :
+// scilab editor under MacOSX :
 // 
 // Shortcuts are not managed at all. They should use the Command key ("Apple key").
 // 
@@ -25,5 +25,5 @@
 // etc.
 
 
-xpad()
+editor()
 // Just type Command+N

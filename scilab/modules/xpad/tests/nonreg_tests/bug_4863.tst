@@ -16,5 +16,5 @@
 // If there is no more action to undo, Ctrl+Z delete lines after lines at end of the file.
 
 
-xpad SCI/modules/atoms/macros/atomsInstall.sci
+editor SCI/modules/atoms/macros/atomsInstall.sci
 // <CTRL+Z>

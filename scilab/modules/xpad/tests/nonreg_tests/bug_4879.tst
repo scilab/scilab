@@ -16,7 +16,7 @@
 // Even if no text is selected, if the edition zone is focused, "Menu→Edit→Comment Region" should comment
 // the current line.
 
-xpad()
+editor()
 // Type some Scilab code
 // Put the cursor wherever you want
 // "Menu→Edit→Comment Region"

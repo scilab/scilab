@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>edit_error</refname>
-    <refpurpose> opens in xpad the source of the last recorded error</refpurpose>
+    <refpurpose> opens in scilab editor the source of the last recorded error</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -34,7 +34,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       This function opens in xpad the source of the function which caused the last recorded
+       This function opens in scilab editor the source of the function which caused the last recorded
        error.</para>
       <!-- , and highlights the offending line -->
     <para>
