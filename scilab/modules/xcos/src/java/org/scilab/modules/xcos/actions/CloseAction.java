@@ -23,17 +23,36 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+/**
+ * Diagram closing management
+ * @author Vincent COUVERT
+ */
 public class CloseAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated diagram
+	 */
 	public CloseAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.CLOSE, scilabGraph);
 	}
 
+	/**
+	 * Menu for diagram menubar
+	 * @param scilabGraph associated diagram
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.CLOSE, null, new CloseAction(scilabGraph),
 				KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
 		((XcosDiagram) getGraph(null)).closeDiagram();
 	}
