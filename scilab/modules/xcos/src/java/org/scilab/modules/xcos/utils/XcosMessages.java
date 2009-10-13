@@ -79,6 +79,12 @@ public final class XcosMessages {
     public static final String STOP = Messages.gettext("Stop");
     public static final String SET_CONTEXT = Messages.gettext("Set Context");
 
+    /** Format menu */
+    public static final String FORMAT = Messages.gettext("Format");
+    public static final String RESIZE = Messages.gettext("Resize");
+    public static final String ROTATE = Messages.gettext("Rotate");
+    public static final String FLIP = Messages.gettext("Flip");
+    
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
@@ -123,6 +129,7 @@ public final class XcosMessages {
 	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
+    public static final String FAIL_SAVING_DIAGRAM = Messages.gettext("Could not save diagram.");
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");

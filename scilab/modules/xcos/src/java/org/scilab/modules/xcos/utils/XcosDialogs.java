@@ -38,6 +38,30 @@ public final class XcosDialogs {
 		messageBox.setModal(true);
 		messageBox.setIcon("error");
 		messageBox.displayAndWait();
+	}
 
+	/**
+	 * Dialog displayed when saving failed
+	 */
+	public static void couldNotSaveFile() {
+		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+		messageBox.setTitle(XcosMessages.XCOS_ERROR);
+		messageBox.setMessage(XcosMessages.FAIL_SAVING_DIAGRAM);
+		messageBox.setModal(true);
+		messageBox.setIcon("error");
+		messageBox.displayAndWait();
+
+	}
+	
+	/**
+	 * Dialog displayed when loading failed
+	 */
+	public static void couldNotLoadFile() {
+		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+		messageBox.setTitle(XcosMessages.XCOS_ERROR);
+		messageBox.setMessage(XcosMessages.FAIL_LOADING_DIAGRAM);
+		messageBox.setModal(true);
+		messageBox.setIcon("error");
+		messageBox.displayAndWait();
 	}
 }

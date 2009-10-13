@@ -54,6 +54,7 @@ Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

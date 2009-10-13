@@ -116,8 +116,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@BUILD_HELP_TRUE@libscihelptools_la_DEPENDENCIES =  \
-@BUILD_HELP_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES = $(top_builddir)/modules/jvm/libscijvm.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
 	sci_gateway/c/gw_helptools.c src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp sci_gateway/cpp/sci_buildDoc.cpp
@@ -408,6 +407,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+@BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 @BUILD_HELP_TRUE@@GUI_TRUE@HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/GiwsException.cpp
 
@@ -416,6 +416,7 @@ top_srcdir = @top_srcdir@
 @GUI_FALSE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 @BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 @BUILD_HELP_TRUE@@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
 libscihelptools_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -436,7 +437,6 @@ libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
-@BUILD_HELP_TRUE@libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 #### Target ######
 modulename = helptools
@@ -592,7 +592,6 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-@BUILD_HELP_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

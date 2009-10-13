@@ -20,6 +20,9 @@ Source: libs\dynamiclibrary\includes\*.h; DestDir: {app}\libs\dynamiclibrary\inc
 ;
 ; doublylinkedlist directory
 Source: libs\doublylinkedlist\includes\*.h; DestDir: {app}\libs\doublylinkedlist\includes; Components: {#COMPN_SCILAB}
+
+; hashtable directory
+Source: libs\hashtable\*.h; DestDir: {app}\libs\hashtable\includes; Components: {#COMPN_SCILAB}
 ;
 ; intl used by localization
 Source: libs\intl\*.h; DestDir: {app}\libs\intl; Components: {#COMPN_SCILAB}

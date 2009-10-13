@@ -236,8 +236,8 @@
     <programlisting role="example"><![CDATA[
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
-    if with_module('xpad')
-      xpad(path)
+    if isdef('editor') then
+      editor(path)
     end
   ]]></programlisting>
   </refsection>
