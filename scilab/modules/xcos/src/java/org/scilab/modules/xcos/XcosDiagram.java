@@ -19,6 +19,8 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,9 @@ import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.graph.actions.PasteAction;
+import org.scilab.modules.graph.actions.RedoAction;
+import org.scilab.modules.graph.actions.SelectAllAction;
+import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -45,6 +50,8 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.SetContextAction;
+import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
@@ -156,8 +163,18 @@ public class XcosDiagram extends ScilabGraph {
 		super();
 		keyboardHandler = new XcosShortCut(this);
 		mxCodec codec = new mxCodec();
-		Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
-		codec.decode(doc.getDocumentElement(), getStylesheet());
+
+		try {
+			File uri = new File(System.getenv("SCI"));
+			String xml = mxUtils.readFile(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
+			xml = xml.replaceAll("\\$SCILAB", uri.toURI().toURL().toString());
+			Document doc = mxUtils.parse(xml);
+			codec.decode(doc.getDocumentElement(), getStylesheet());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		getAsComponent().setToolTips(true);
 
@@ -282,16 +299,23 @@ public class XcosDiagram extends ScilabGraph {
 						// Display diagram context menu
 						ContextMenu menu = ScilabContextMenu.createContextMenu();
 						
-						menu.add(CutAction.cutMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.add(CopyAction.copyMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
 						menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.add(DeleteAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
 						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
+						menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
+						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
 						menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
 						menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+						/*---*/
 						menu.getAsSimpleContextMenu().addSeparator();
-						menu.add(RegionToSuperblockAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-						menu.getAsSimpleContextMenu().addSeparator();
+						/*---*/
 						menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
 						menu.setVisible(true);

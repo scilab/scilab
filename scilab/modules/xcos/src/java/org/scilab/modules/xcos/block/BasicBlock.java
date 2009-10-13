@@ -20,9 +20,14 @@ import java.util.List;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.CopyAction;
+import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -31,14 +36,21 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
+import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosMessages;
+
+import sun.font.CreatedFontTracker;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -830,9 +842,33 @@ public class BasicBlock extends mxCell {
     public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
 		
-		menu.add(RotateAction.createMenu(graph));
-		menu.add(FlipAction.createMenu(graph));
+		menu.add(BlockParametersAction.createMenu(graph));
+		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(CutAction.cutMenu(graph));
+		menu.add(CopyAction.copyMenu(graph));
+		menu.add(DeleteAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(RegionToSuperblockAction.createMenu(graph));
+		Menu mask = ScilabMenu.createMenu();
+		mask.setText(XcosMessages.SUPERBLOCK_MASK);
+		menu.add(mask);
+		mask.add(SuperblockMaskCreateAction.createMenu(graph));
+		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		Menu format = ScilabMenu.createMenu();
+		format.setText(XcosMessages.FORMAT);
+		menu.add(format);
+		format.add(RotateAction.createMenu(graph));
+		format.add(FlipAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
 		menu.setVisible(true);
