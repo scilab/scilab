@@ -23,8 +23,6 @@ libscixcos_la_etcdir = $(mydatadir)/etc
 libscixcos_la_etc_DATA = etc/xcos.quit \
 etc/xcos.start
 
-include $(top_srcdir)/Makefile.incl.am
-
 XCOS_C_SOURCES = 
 
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
@@ -109,3 +107,6 @@ if HDF5
 USEANT=1
 endif
 endif
+
+include $(top_srcdir)/Makefile.incl.am
+
