@@ -154,7 +154,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				/** Create SOURCES palette */
 				String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
 						"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
-						"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c"};
+						"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB"};
 				allpalettes.addTab(XcosMessages.SOURCES_PAL, createPalette(sourcesBlocksNames));
 
 				palette.setVisible(true);
