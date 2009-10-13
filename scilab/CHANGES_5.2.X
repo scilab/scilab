@@ -473,6 +473,8 @@ Bug fixes:
 
 * bug 4474 fixed - addinter help has no example.
 
+* bug 4483 fixed - Handle FreeBSD java detection
+
 * bug 4489 fixed - oldsave and oldload removed.
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
