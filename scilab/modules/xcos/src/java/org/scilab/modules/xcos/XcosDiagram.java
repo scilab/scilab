@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -68,10 +69,7 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 
 	// Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-	
-    	// wpar is never modified so it's useless
-    	// cf. BlockWriter.getDiagramProps
-    	//private double[][] wpar = {{600,450,0,0,600,450}}; 
+	private double[][] wpar = {{600,450,0,0,600,450}}; 
 	private String title = XcosMessages.UNTITLED;
 	private double finalIntegrationTime = 100000;
 	private double integratorAbsoluteTolerance = 1e-4;
@@ -501,6 +499,7 @@ public class XcosDiagram extends ScilabGraph {
 		// Choose a filename
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 		fc.setTitle(XcosMessages.SAVE_AS);
+		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
 		fc.displayAndWait();
 
@@ -526,6 +525,10 @@ public class XcosDiagram extends ScilabGraph {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public double[][] getWpar() {
+		return wpar;
 	}
 
 	public void setContext(String context){
@@ -734,19 +737,18 @@ public class XcosDiagram extends ScilabGraph {
 			return;
 		}
 		
-		String blockResult = "";
-		
-		for(int i = 0 ; i < iRows ; i++){
-			for(int j = 0 ; j < iCols ; j++){
-				if(iCols != 0){
-					blockResult += "  ";
-				}
-				blockResult += blockValue[j * iRows + i];
-			}
-			blockResult += System.getProperty("line.separator");
-		}
-		block.setValue(blockResult);
-		System.err.println("blockResult : \n" + blockResult);
+		block.setValue(blockValue[0]);
+//		mxCell currentObject = (mxCell)getModel().getChildAt(getDefaultParent(), blockID);
+//		if(currentObject != null){
+//			String value = "";
+//			for(int i = 0 ; i < iRows ; i++){
+//				for(int j = 0 ; j < iCols ; j++){
+//					//blockValue[i]
+//				}
+//			}
+			//TODO format value string with itemS
+//		}
+//	currentObject.setValue(blockValue[0]);
 	}
 }
 
