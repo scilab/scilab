@@ -395,7 +395,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-@HDF5_TRUE@USEANT = 1
+
+# No GUI. Disable the Java build
+@GUI_TRUE@@HDF5_TRUE@USEANT = 1
 @HDF5_FALSE@HDF5_SOURCES = 
 @HDF5_TRUE@HDF5_SOURCES = src/c/h5_fileManagement.c \
 @HDF5_TRUE@src/c/h5_writeDataToFile.c \
