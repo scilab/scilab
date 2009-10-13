@@ -612,3 +612,5 @@ Bug fixes:
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
 
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
+
+* bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
