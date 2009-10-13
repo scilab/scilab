@@ -49,4 +49,35 @@ public class ScilabBoolean implements ScilabType {
     }
 
     private boolean[][] data;
+
+    public boolean isEmpty(){
+    	return (data == null);
+    }
+    
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		if (isEmpty()) {
+			result.append("[]");
+			return result.toString();
+		}
+
+		result.append("[");
+		for (int i = 0 ; i < getHeight() ; ++i) {
+			for (int j = 0 ; j < getWidth() ; ++j) {
+				if (getData()[i][j] == true){
+					result.append("%t");
+				}else{
+					result.append("%f");
+				}
+				if (j != getWidth() - 1) {
+					result.append(", ");
+				}
+			}
+			if (i != getHeight() - 1) {
+				result.append(" ; ");
+			}
+		}
+		result.append("]");
+		return result.toString();
+	}
 }
