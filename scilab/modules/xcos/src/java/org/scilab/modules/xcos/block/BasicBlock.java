@@ -125,6 +125,7 @@ public class BasicBlock extends mxCell {
 	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
 	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
 	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
+	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
 	else { return new BasicBlock(label); }
     }
 
