@@ -19,6 +19,14 @@ Xpad:
 
 TODO: add an explanation about xpad
 
+Graphics:
+=========
+
+Thanks to Calixte Denizet, it is now possible to annotate Scilab's graphics
+in MathML or Latex.
+See demos => Graphics => LaTeX/MathML
+
+
 Introduction of new binaries:
 =============================
 
@@ -117,6 +125,15 @@ bits archs). Note that if Scilab is built on a 64 bits and triggers a
 seg fault on startup, uncomment the related line in 
 libs/MALLOC/Makefile.am and launch autoreconf.
 
+Mac OS X:
+=========
+
+* Support of Snow Leopard
+
+* Docking system enabled
+
+* bug 4087 fixed - Under Mac OS X, a Apple + C shortcut (Ctrl + C) didn't work from the console.
+
 toolbox_skeleton:
 =================
 
@@ -201,6 +218,9 @@ Dynamic link:
   SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
 
 * ilib_gen_loader now generates loaders which can be executed outside the loader's directory
+
+* bug 4919 fixed - If the source file was stored in TMPDIR, the dynamic link
+  was removing the content of this file.
 
 Online Help :
 =============
@@ -291,6 +311,8 @@ char encoding bugs :
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+* bug 4660 fixed - Error in the French localization (Edit instead of Edition)
+
 * bug 4758 fixed - embedded version of autoconf libs.m4 were causing some issues
 
 * bug 4768 fixed - strsplit returns strange results with accened characters
@@ -371,7 +393,6 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
-* bug 4087 fixed - Under Mac OS X, a Apple + C shortcut (Ctrl + C) didn't work from the console.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
