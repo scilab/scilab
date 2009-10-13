@@ -335,11 +335,17 @@ Java/Scilab API:
 
 Optimization:
 =============
+* New features
  - Created neldermead component for simplex-based direct search optimization
+ - Created nmplot component for fast plots of neldermead optimization
  - Created optimbase component to build optimization algorithms
  - Created optimsimplex component to build direct search algorithms
  - Created fminsearch optimization function
- - Added examples in the help for optim
+ - Created optimget/optimset to configure fminsearch
+ - Created optimplotfunccount, optimplotfval, optimplotx as plotting functions for fminsearch
+* Improvements
+ - Added examples in the help of optim for logging feature and optimization
+   based on numerical derivatives
  
 Linear algebra:
 ===============
