@@ -690,12 +690,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
 
-				LDFLAGS_save=$LDFLAGS
-				# Provide known paths where distribs/OS can store JNI libs
-				LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
-				AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
-				  [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
-				LDFLAGS=$LDFLAGS_save
+				if test "$MACOSX" = 1; then
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled"
+				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
+				   [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   LDFLAGS=$LDFLAGS_save
+				fi
 
 				# JoGL Native <=> Java connector
 				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
@@ -703,7 +707,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(GLUEGEN_RT)
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libjogl.jnilib, libjogl_awt.jnilib and libgluegen-rt.jnilib disabled"
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
