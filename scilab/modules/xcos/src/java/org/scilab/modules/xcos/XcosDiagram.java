@@ -16,7 +16,6 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -344,7 +343,24 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellMovable(Object cell) {
-		return !(cell instanceof BasicPort) && super.isCellMovable(cell);
+		if(cell instanceof BasicPort){
+			return false;
+		}
+		
+		boolean movable = false;
+		Object[] cells =  this.getSelectionCells();
+		
+		//don't move if selection is only links
+		for(int i = 0 ; i < cells.length ; i++){
+			if(!(cells[i] instanceof BasicLink)){
+				movable = true;
+				break;
+			}else{
+				break;
+			}
+		}
+		
+		return movable && super.isCellMovable(cell);
 	}
 
 	public boolean isCellResizable(Object cell) {
@@ -736,7 +752,7 @@ public class XcosDiagram extends ScilabGraph {
 			if (extension.equals("cosf")) {
 				final File tempOutput;
 				try {
-					tempOutput = File.createTempFile("xcos",".hdf5");
+					tempOutput = File.createTempFile("xcos",".h5");
 					String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
 					cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 					cmd += "xcosNotify(\"" +tempOutput.getAbsolutePath()+ "\");";
@@ -756,7 +772,7 @@ public class XcosDiagram extends ScilabGraph {
 			} else if (extension.equals("cos")) {
 				final File tempOutput;
 				try {
-					tempOutput = File.createTempFile("xcos",".hdf5");
+					tempOutput = File.createTempFile("xcos",".h5");
 					String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
 					cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 					cmd += "xcosNotify(\"" +tempOutput.getAbsolutePath()+ "\");";
@@ -847,18 +863,18 @@ public class XcosDiagram extends ScilabGraph {
 			return;
 		}
 		
-		block.setValue(blockValue[0]);
-//		mxCell currentObject = (mxCell)getModel().getChildAt(getDefaultParent(), blockID);
-//		if(currentObject != null){
-//			String value = "";
-//			for(int i = 0 ; i < iRows ; i++){
-//				for(int j = 0 ; j < iCols ; j++){
-//					//blockValue[i]
-//				}
-//			}
-			//TODO format value string with itemS
-//		}
-//	currentObject.setValue(blockValue[0]);
+		String blockResult = "";
+		for(int i = 0 ; i < iRows ; i++){
+			for(int j = 0 ; j < iCols ; j++){
+				if(iCols != 0){
+					blockResult += "  ";
+				}
+				blockResult += blockValue[j * iRows + i];
+			}
+			blockResult += System.getProperty("line.separator");
+		}
+		block.setValue(blockResult);
+		System.err.println("blockResult : \n" + blockResult);
 	}
 }
 
