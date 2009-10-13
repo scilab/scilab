@@ -333,15 +333,14 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     public static XcosPalette createPalette(String[] blocksNames) {
  
-    	String blocksPath = System.getenv("SCI")+ "/modules/scicos_blocks/blocks/";
-    	String imagesPath = System.getenv("SCI")+ "/modules/xcos/images/blocks/";
-    	String palImagesPath = System.getenv("SCI")+ "/modules/scicos/help/images/";
+    	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+    	String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
+    	String palImagesPath = System.getenv("SCI") + "/modules/scicos/help/images/";
 
     	XcosPalette palette = new XcosPalette();
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-    		try{
     		// Search the bloc in global hashmap
     		theBloc = allBlocks.get(blocksNames[kBlock]);
     		
@@ -353,16 +352,11 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     		File tmp = new File(imagesPath + blocksNames[kBlock] + ".gif");
     		if (tmp.exists() && theBloc.getStyle().compareTo("block") == 0) {
-    			theBloc.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
     			theBloc.setStyle(theBloc.getInterfaceFunctionName());
     			theBloc.setValue("");
     		}
     		
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
-    		}catch(MalformedURLException e){
-    			System.err.println(" Fail reading Block " + (kBlock + 1));
-    			e.printStackTrace();    			
-    		}
     	}
 
     	return palette;
