@@ -31,8 +31,8 @@ function manedit(manitem)
 	end
 	
 	if path <> [] then
-	  if with_module('xpad') then
-		  xpad(path);
+	  if isdef('editor') then
+		  editor(path);
 		end
 	end
 	

@@ -151,7 +151,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					if (getTextPane().getName() != null) {
 						path  =  " ( " + getTextPane().getName() + ")";
 					}
-					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - Xpad");
+					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
 					updateUI();
 				}
 			}
