@@ -457,6 +457,8 @@ Bug fixes:
 
 * bug 4421 fixed - completion fails on some relative path.
 
+* bug 4430 fixed - incorrect description of the margins property in the axes_properties help page.
+
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
 * bug 4438 fixed - completion does not support insert mode.
