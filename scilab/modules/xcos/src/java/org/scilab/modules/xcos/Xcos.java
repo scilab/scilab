@@ -14,12 +14,10 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -536,7 +534,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	super(XcosMessages.XCOS);
 	
 	this.setCallback(new CloseAction(diagram));
-	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
+	this.setContentPane(diagram.getAsComponent());
 	
     }
     
