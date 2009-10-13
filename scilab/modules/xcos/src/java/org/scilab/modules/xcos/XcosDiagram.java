@@ -163,7 +163,6 @@ public class XcosDiagram extends ScilabGraph {
 			File uri = new File(System.getenv("SCI"));
 			String xml = mxUtils.readFile(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 			xml = xml.replaceAll("\\$SCILAB", uri.toURI().toURL().toString());
-			System.out.println(xml);
 			Document doc = mxUtils.parse(xml);
 			codec.decode(doc.getDocumentElement(), getStylesheet());
 		} catch (IOException e) {
