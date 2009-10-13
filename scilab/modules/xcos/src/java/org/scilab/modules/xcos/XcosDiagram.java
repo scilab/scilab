@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -55,6 +56,8 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosCodec;
+import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
@@ -501,19 +504,49 @@ public class XcosDiagram extends ScilabGraph {
 		fc.setTitle(XcosMessages.SAVE_AS);
 		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
+		String[] mask = {".xcos"};
+		String[] maskDesc = {"Xcos file (XML)"};  
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
 		fc.displayAndWait();
 
 		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return isSuccess;
 		}
 		fileName = fc.getSelection()[0];
+		
+		/* Extension checks */
+		String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+		if (extension.equals(fileName)) {
+			/* No extension given --> .xcos added */
+			fileName += ".xcos";
+		}
+		
+		XcosCodec codec = new XcosCodec();
+		String xml = mxUtils.getXml(codec.encode(this));
+		
 		System.out.println("Saving to file : {" + fileName + "}");
+		
+		/* Test if file already exists */
+		if (new File(fileName).exists()
+				&& JOptionPane.showConfirmDialog(this.getAsComponent(),
+						XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
+			return false;
+		}
 
-		isSuccess = BlockWriter.writeDiagramToFile(fileName, this);
+		try {
+			mxUtils.writeFile(xml, fileName);
+			isSuccess = true;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			isSuccess = false;
+		}
 
 		if (isSuccess) {
 			this.setTitle(fileName);
 			this.getParentTab().setName(fileName);
+		} else {
+			XcosDialogs.couldNotSaveFile();
 		}
 
 		return isSuccess;
