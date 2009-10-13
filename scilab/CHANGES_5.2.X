@@ -521,6 +521,8 @@ Bug fixes:
 
 * bug 4606 fixed - example of 'link' in help does not work
 
+* bug 4707 fixed - Fail to build with ./configure --without-gui
+
 * bug 4608 fixed - get_function_path returns a non-consistent path.
 
 * bug 4611 fixed - what function doesn't returns a complete list of functions.
