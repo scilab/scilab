@@ -189,6 +189,17 @@ function result = atomsRemove(packages,allusers)
 		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
 		this_package_directory = this_package_insdet(4);
 		
+		// Add the package to list of package to remove
+		atomsToremoveRegister(this_package_name,this_package_version,allusers);
+		
+		// Check if the package is loaded or not
+		if atomsIsLoaded(this_package_name,this_package_version) then
+			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
+			continue;
+		end
+		
+		
+		
 		atomsDisp(msprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version ));
 		
 		// Check if this_package_directory start with SCI or SCIHOME
@@ -261,6 +272,10 @@ function result = atomsRemove(packages,allusers)
 			end
 			
 		end
+		
+		// Del the package from the list of package to remove
+		// =====================================================================
+		atomsToremoveUnregister(this_package_name,this_package_version,allusers);
 		
 		// Fill the result matrix
 		// =====================================================================
