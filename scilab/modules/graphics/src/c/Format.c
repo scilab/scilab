@@ -4,6 +4,7 @@
  * Copyright (C) 2001 - INRIA - François Delebecque
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -981,6 +982,12 @@ int GradLog( double   _min   ,
   log_max =  (int) ceil(_max);
   log_min =  (int) floor(_min);
 
+  /* If _min == _max, enlarge the interval*/
+  if(log_max == log_min)
+  {
+    log_max++;
+    log_min--;
+  }
 
   size = log_max - log_min +1;
 
