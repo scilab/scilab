@@ -13,11 +13,16 @@
 package org.scilab.modules.xcos.block;
 
 
+import java.awt.MouseInfo;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -25,6 +30,9 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.FlipAction;
+import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -71,6 +79,8 @@ public class BasicBlock extends mxCell {
     private String blockType = "c";
 
     private int ordering = 0;
+    
+    private boolean locked = false;
 
     public enum SimulationFunctionType {
 	DEFAULT,
@@ -300,6 +310,14 @@ public class BasicBlock extends mxCell {
 
     public void setEquations(ScilabType equations) {
 	this.equations = equations;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     protected List<InputPort> getAllInputPorts() {
@@ -756,9 +774,11 @@ public class BasicBlock extends mxCell {
 		    updateBlockSettings(modifiedBlock);
 		    //tempOutput.delete();
 		    //tempInput.delete();
+		    setLocked(false);
 		}
 	    };
 	    launchMe.start();
+	    setLocked(true);
 
 	} catch (Exception e) {
 	    // TODO Auto-generated catch block
@@ -807,4 +827,16 @@ public class BasicBlock extends mxCell {
 	return result.toString();
     }
 
+    public void openContextMenu(ScilabGraph graph) {
+		ContextMenu menu = ScilabContextMenu.createContextMenu();
+		
+		menu.add(RotateAction.createMenu(graph));
+		menu.add(FlipAction.createMenu(graph));
+		menu.getAsSimpleContextMenu().addSeparator();
+		menu.add(BlockDocumentationAction.createMenu(graph));
+
+		menu.setVisible(true);
+		
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+    }
 }

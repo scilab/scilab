@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
@@ -23,19 +24,29 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.CopyAction;
+import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DeleteAction;
+import org.scilab.modules.graph.actions.PasteAction;
+import org.scilab.modules.graph.actions.ZoomInAction;
+import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -55,6 +66,8 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosCodec;
+import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
@@ -69,10 +82,6 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 
 	// Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-	
-    	// wpar is never modified so it's useless
-    	// cf. BlockWriter.getDiagramProps
-    	//private double[][] wpar = {{600,450,0,0,600,450}}; 
 	private String title = XcosMessages.UNTITLED;
 	private double finalIntegrationTime = 100000;
 	private double integratorAbsoluteTolerance = 1e-4;
@@ -266,6 +275,39 @@ public class XcosDiagram extends ScilabGraph {
 						System.err.println("[DEBUG] NbChildren : "+((mxCell) cell).getChildCount());
 					}
 				}
+				
+				// Context menu
+				if (arg0.getClickCount() == 1 && arg0.getButton() == MouseEvent.BUTTON3) {
+					
+					if (cell == null) {
+						// Display diagram context menu
+						ContextMenu menu = ScilabContextMenu.createContextMenu();
+						
+						menu.add(CutAction.cutMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(CopyAction.copyMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(DeleteAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(RegionToSuperblockAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+						menu.getAsSimpleContextMenu().addSeparator();
+						menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+
+						menu.setVisible(true);
+						
+						((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+						
+					} else {
+						// Display object context menu
+						if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+							BasicBlock block = (BasicBlock) cell;
+							block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+							getAsComponent().doLayout();
+						}
+					}
+				}
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
@@ -302,7 +344,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellMovable(Object cell) {
-		return !(cell instanceof BasicLink) && !(cell instanceof BasicPort) && super.isCellMovable(cell);
+		return !(cell instanceof BasicPort) && super.isCellMovable(cell);
 	}
 
 	public boolean isCellResizable(Object cell) {
@@ -310,8 +352,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean isCellDeletable(Object cell) {
-		return !(cell instanceof BasicPort)
-		&& super.isCellDeletable(cell);
+	    if (cell instanceof BasicBlock && !(((BasicBlock) cell).isLocked())) {
+		return true;
+	    }
+	    return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
 	}
 
 	public boolean isCellEditable(Object cell) {
@@ -502,20 +546,53 @@ public class XcosDiagram extends ScilabGraph {
 		// Choose a filename
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 		fc.setTitle(XcosMessages.SAVE_AS);
+		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
+		String[] mask = {"*.xcos"};
+		String[] maskDesc = {"Xcos file (XML)"};  
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
 		fc.displayAndWait();
 
 		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return isSuccess;
 		}
 		fileName = fc.getSelection()[0];
+		
+		/* Extension checks */
+		String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+		if (extension.equals(fileName)) {
+			/* No extension given --> .xcos added */
+			fileName += ".xcos";
+		} else if (!extension.equals(".xcos")) {
+			XcosDialogs.couldNotSaveFile();
+			return false;
+		}
+		
+		XcosCodec codec = new XcosCodec();
+		String xml = mxUtils.getXml(codec.encode(this));
+		
 		System.out.println("Saving to file : {" + fileName + "}");
+		
+		/* Test if file already exists */
+		if (new File(fileName).exists()
+				&& JOptionPane.showConfirmDialog(this.getAsComponent(),
+						XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
+			return false;
+		}
 
-		isSuccess = BlockWriter.writeDiagramToFile(fileName, this);
+		try {
+			mxUtils.writeFile(xml, fileName);
+			isSuccess = true;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			isSuccess = false;
+		}
 
 		if (isSuccess) {
 			this.setTitle(fileName);
-			this.getParentTab().setName(fileName);
+		} else {
+			XcosDialogs.couldNotSaveFile();
 		}
 
 		return isSuccess;
@@ -523,6 +600,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	public void setTitle(String title) {
 		this.title = title;
+		parentTab.setName(title);
 	}
 
 	public String getTitle() {
@@ -574,18 +652,12 @@ public class XcosDiagram extends ScilabGraph {
 		if (diagramm != null) {
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
 				loadDiagram(diagramm);
-			}
-			else {
+			} else {
 				XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
 				xcosDiagram.loadDiagram(diagramm);
 			}
-		}
-		else {
-			MessageBox messageBox = ScilabMessageBox.createMessageBox();
-			messageBox.setTitle(XcosMessages.FAIL_LOADING_DIAGRAM);
-			String[] message = {"An error Occured while loading diagram", "Aborting..."};
-			messageBox.setMessage(message);
-			messageBox.displayAndWait();
+		} else {
+			XcosDialogs.couldNotLoadFile();
 		}
 	}
 
@@ -698,8 +770,37 @@ public class XcosDiagram extends ScilabGraph {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else  if (extension.equals("xcos")) {
+				Document document = null;
+				try {
+				    document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
+				} catch (IOException e1) {
+				    // TODO Auto-generated catch block
+				    e1.printStackTrace();
+				}
+
+				XcosCodec codec = new XcosCodec(document);
+				
+				if (getModel().getChildCount(getDefaultParent()) == 0) {
+					codec.decode(document.getDocumentElement(), this);
+					if (getModel().getChildCount(getDefaultParent()) == 0) {
+						XcosDialogs.couldNotLoadFile();
+					} else {
+						setTitle(theFile.getAbsolutePath());
+					}
+				} else {
+					XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+					codec.decode(document.getDocumentElement(), xcosDiagram);
+					if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
+						XcosDialogs.couldNotLoadFile();
+					} else {
+						setTitle(theFile.getAbsolutePath());
+					}
+				}
+				
 			} else {
 				openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+				XcosDialogs.couldNotLoadFile();
 			}
 
 		} else {
@@ -742,19 +843,18 @@ public class XcosDiagram extends ScilabGraph {
 			return;
 		}
 		
-		String blockResult = "";
-		
-		for(int i = 0 ; i < iRows ; i++){
-			for(int j = 0 ; j < iCols ; j++){
-				if(iCols != 0){
-					blockResult += "  ";
-				}
-				blockResult += blockValue[j * iRows + i];
-			}
-			blockResult += System.getProperty("line.separator");
-		}
-		block.setValue(blockResult);
-		System.err.println("blockResult : \n" + blockResult);
+		block.setValue(blockValue[0]);
+//		mxCell currentObject = (mxCell)getModel().getChildAt(getDefaultParent(), blockID);
+//		if(currentObject != null){
+//			String value = "";
+//			for(int i = 0 ; i < iRows ; i++){
+//				for(int j = 0 ; j < iCols ; j++){
+//					//blockValue[i]
+//				}
+//			}
+			//TODO format value string with itemS
+//		}
+//	currentObject.setValue(blockValue[0]);
 	}
 }
 

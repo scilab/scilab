@@ -48,7 +48,7 @@ function  atomsSaveInstalled(installed_struct,allusers)
 		mkdir(atoms_directory);
 	end
 	
-	// Define the path of the file that will record the change according 
+	// Define the path of the file that will record the change 
 	// =========================================================================
 	installed_txt = atoms_directory+"installed.txt";
 	installed_bin = atoms_directory+"installed.bin";

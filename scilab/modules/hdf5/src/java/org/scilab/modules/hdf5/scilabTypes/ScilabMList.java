@@ -40,4 +40,26 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 		}
 		return size();
 	}
+	
+	@Override
+	public String toString() {
+		
+		StringBuffer result = new StringBuffer();
+		if (isEmpty()) {
+			result.append("[]");
+			return result.toString();
+		}
+
+		result.append("[");
+		for (int i = 0 ; i < size() ; i++){
+			result.append(get(i).toString());
+			if (i != size() - 1) {
+				result.append(", ");
+			}
+			
+		}
+		result.append("]");
+	
+		return result.toString();
+	}
 }

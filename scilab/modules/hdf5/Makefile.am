@@ -9,7 +9,10 @@
 
 if HDF5
 
+if GUI
+# No GUI. Disable the Java build
 USEANT=1
+endif
 
 HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \

@@ -29,15 +29,40 @@ public class XcosCodec extends mxCodec {
      * Register usefull codecs and packages for encoding/decoding diagrams
      */
     static {
+	// Add all xcos packages
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
+//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
+//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
-	//mxObjectCodec constBlockCodec = new TextBlockCodec(BasicBlock.createBlock("CONST_m"));
-	String[] ignore = {"exprs", "realParameters", "integerParameters", "nbZerosCrossing", "nmode", "state", "dState", "oDState",
-		"simulationFunctionType", "SimulationFunctionType"};
+
+	// Add some hdf5 packages to have all scilab types known
+//	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
+	
+	
+	String[] ignore = {"exprs",
+		"realParameters",
+		"integerParameters",
+		"objectsParameters",
+		"nbZerosCrossing",
+		"nmode",
+		"state",
+		"dState",
+		"oDState",
+		"equations",
+		"dependsOnU",
+		"dependsOnT",
+		"blockType",
+		"ordering",
+		"interfaceFunctionName",
+		"simulationFunctionName",
+		"simulationFunctionType",
+		"SimulationFunctionType"};
+
 	String[] refs = {"parent", "source", "target"};
 
 	// Blocks
@@ -52,7 +77,7 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "wpar", "multiplicities"};
+	String[] diagramIgnore = {"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
 	mxObjectCodec diagramCodec = new mxObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 

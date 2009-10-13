@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XPAD -->
+// <-- TEST WITH EDITOR -->
 //
 // <-- Non-regression test for bug 4881 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    In the "Menu→Search→find/replace" dialog window, check the radio box "Selected lines" has no effect : The whole file is always processed.
 
-xpad (SCI/modules/atoms/macros/atomsInstall.sci)
+editor (SCI/modules/atoms/macros/atomsInstall.sci)
 
 //"Menu→Search→Find/Replace"
 //Find    : " "

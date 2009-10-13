@@ -154,7 +154,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				/** Create SOURCES palette */
 				String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
 						"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
-						"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c"};
+						"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB"};
 				allpalettes.addTab(XcosMessages.SOURCES_PAL, createPalette(sourcesBlocksNames));
 
 				palette.setVisible(true);
@@ -387,8 +387,6 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsAction.createMenu(scilabGraph));
 		fileMenu.add(ExportAction.createMenu(scilabGraph));
-		fileMenu.add(ExportToXMLAction.createMenu(scilabGraph));
-		fileMenu.add(ImportFromXMLAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
@@ -399,6 +397,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.addSeparator();
 		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
 		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
+		fileMenu.add(ExportToXMLAction.createMenu(scilabGraph));
+		fileMenu.add(ImportFromXMLAction.createMenu(scilabGraph));
 		
 		menuBar.add(fileMenu);
 	
