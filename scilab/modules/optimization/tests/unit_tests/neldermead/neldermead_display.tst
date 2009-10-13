@@ -38,6 +38,6 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_display(nm);
+neldermead_display(nm);
 nm = neldermead_destroy(nm);
 

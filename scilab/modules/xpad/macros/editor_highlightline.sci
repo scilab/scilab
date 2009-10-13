@@ -1,6 +1,6 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009 - DIGITEO - Vincent COUVERT
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,10 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 
-function editor()
+function editor_highlightline(filename, linenumber)
 if getscilabmode() <> "NWNI" then
   if with_module("xpad") then
-    xpad();
+    xpad_highlightline(filename, linenumber);
   else
     messagebox(_("Please install xpad module."), _("No text editor available."), "error");
   end

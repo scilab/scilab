@@ -33,6 +33,10 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
 		return
 	end
 
+  if rhs<3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "genfac3d", 3));
+  end
+
 [nr,nc]=size(zmat)
 indy=(ones(1,nc-1).*.[0;1;1;0]+(1:nc-1).*.[1;1;1;1]).*.ones(1,nr-1);
 indx=ones(1,nc-1).*.(ones(1,nr-1).*.[0;0;1;1]+(1:nr-1).*.[1;1;1;1]);

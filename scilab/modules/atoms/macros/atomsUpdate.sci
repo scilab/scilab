@@ -28,9 +28,9 @@ function result = atomsUpdate(name,allusers)
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
-		VERBOSE = %T;
+		ATOMSVERBOSE = %T;
 	else
-		VERBOSE = %F;
+		ATOMSVERBOSE = %F;
 	end
 	
 	// Check input parameters
@@ -124,10 +124,7 @@ function result = atomsUpdate(name,allusers)
 		if (this_package_MRV_ava == -1) | ..
 				( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
 			// The installed version is already the Most Recent Version Available
-			if VERBOSE then
-				mprintf("\t%s (%s) : The most recent version is already installed\n",name(i),this_package_MRV_ins);
-			end
-			
+			atomsDisp(msprintf("\t%s (%s) : The most recent version is already installed\n",name(i),this_package_MRV_ins));
 			continue;
 		end
 		

@@ -42,7 +42,8 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
+sci_gateway/cpp/sci_xpad_highlightline.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

@@ -44,8 +44,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 namespace org_scilab_modules_xpad {
 
 class Xpad {
@@ -56,6 +54,7 @@ jobject instance;
 jclass instanceClass; // cache class
 jmethodID voidxpadID; // cache method id
 jmethodID voidxpadjstringID; // cache method id
+jmethodID voidxpadHighlightLinejstringjintID; // cache method id
 
 
 /**
@@ -100,6 +99,8 @@ void endSynchronize();
 static void xpad(JavaVM * jvm_);
 
 static void xpad(JavaVM * jvm_, char * fileName);
+
+static void xpadHighlightLine(JavaVM * jvm_, char * fileName, int lineNumber);
 
 
                         /**

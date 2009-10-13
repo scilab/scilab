@@ -48,11 +48,11 @@ endfunction
 
 
 
-function [ this , terminate , status ] = mystoppingrule ( this , somplex )
+function [ this , terminate , status ] = mystoppingrule ( this , simplex )
   ssize = optimsimplex_size ( simplex , "sigmaplus" );
   if ( ssize < 1.e-4 ) then
-        terminate = %t;
-        status = "mysize";
+    terminate = %t;
+    status = "mysize";
   end
 
 endfunction

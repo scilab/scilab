@@ -128,6 +128,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private XpadLineNumberPanel xln;
 	private Menu recentsMenu;
 	private int numberOfUntitled;
+	
+	private Object synchro = new Object();
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
@@ -184,8 +186,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFile(f);
+	}
 
-
+	/**
+	 * Launch Xpad with a file name to open and a line to highlight
+	 * @param filePath the name of the file to open
+	 * @param lineNumber the line to highlight
+	 */
+	public static void xpadHighlightLine(String filePath, int lineNumber) {
+		Xpad editorInstance = launchXpad();
+		File f = new File(filePath);
+		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
+		editorInstance.updateRecentOpenedFilesMenu();
+		editorInstance.readFileAndWait(f);
+		editorInstance.getXln().highlightLine(lineNumber);
 	}
 
 	/**
@@ -647,6 +661,23 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
+	 * Load a file inside Xpad
+	 * @param f the file to open
+	 */
+	public void readFileAndWait(File f) {
+		ReadFileThread myReadThread = new ReadFileThread(f);
+		myReadThread.start();
+		synchronized (synchro) {
+			try {
+				synchro.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
 	 * Get current text component
 	 * @return the text component
 	 */
@@ -907,7 +938,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 				}	
 			}
-			
+			synchronized (synchro) {
+				synchro.notify();
+			}
 		}
 
 	}

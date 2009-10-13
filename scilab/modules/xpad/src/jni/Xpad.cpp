@@ -68,7 +68,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 localClass = curEnv->FindClass( this->className().c_str() ) ;
 if (localClass == NULL) {
-  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+std::cerr << "Could not get the Class " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
@@ -77,23 +79,31 @@ this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
 curEnv->DeleteLocalRef(localClass);
 
 if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not instantiate the object " << this->className() << " with the constructor : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
  
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 /* localInstance not needed anymore */
 curEnv->DeleteLocalRef(localInstance);
@@ -101,6 +111,7 @@ curEnv->DeleteLocalRef(localInstance);
                 /* Methods ID set to NULL */
 voidxpadID=NULL; 
 voidxpadjstringID=NULL; 
+voidxpadHighlightLinejstringjintID=NULL; 
 
 
 }
@@ -115,16 +126,23 @@ jclass localClass = curEnv->GetObjectClass(JObj);
         curEnv->DeleteLocalRef(localClass);
 
         if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
         if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
         voidxpadID=NULL; 
 voidxpadjstringID=NULL; 
+voidxpadHighlightLinejstringjintID=NULL; 
 
 
 }
@@ -133,13 +151,17 @@ voidxpadjstringID=NULL;
 
 void Xpad::synchronize() {
 if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "Xpad");
+std::cerr << "Fail to enter monitor." << std::endl;
+exit(EXIT_FAILURE);
+
 }
 }
 
 void Xpad::endSynchronize() {
 if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "Xpad");
+
+std::cerr << "Fail to exit monitor." << std::endl;
+exit(EXIT_FAILURE);
 }
 }
 // Method(s)
@@ -152,13 +174,17 @@ jclass cls = curEnv->FindClass( className().c_str() );
 
 jmethodID voidxpadID = curEnv->GetStaticMethodID(cls, "xpad", "()V" ) ;
 if (voidxpadID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "xpad");
+std::cerr << "Could not access to the method " << "xpad" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidxpadID );
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void Xpad::xpad (JavaVM * jvm_, char * fileName){
@@ -169,15 +195,42 @@ jclass cls = curEnv->FindClass( className().c_str() );
 
 jmethodID voidxpadjstringID = curEnv->GetStaticMethodID(cls, "xpad", "(Ljava/lang/String;)V" ) ;
 if (voidxpadjstringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "xpad");
+std::cerr << "Could not access to the method " << "xpad" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 jstring fileName_ = curEnv->NewStringUTF( fileName );
 
                          curEnv->CallStaticVoidMethod(cls, voidxpadjstringID ,fileName_);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
+}
+
+void Xpad::xpadHighlightLine (JavaVM * jvm_, char * fileName, int lineNumber){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidxpadHighlightLinejstringjintID = curEnv->GetStaticMethodID(cls, "xpadHighlightLine", "(Ljava/lang/String;I)V" ) ;
+if (voidxpadHighlightLinejstringjintID == NULL) {
+std::cerr << "Could not access to the method " << "xpadHighlightLine" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+jstring fileName_ = curEnv->NewStringUTF( fileName );
+
+                         curEnv->CallStaticVoidMethod(cls, voidxpadHighlightLinejstringjintID ,fileName_, lineNumber);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
 }
 
 }

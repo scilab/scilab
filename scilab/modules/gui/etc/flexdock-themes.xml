@@ -47,10 +47,10 @@
         </view-ui>
 	
         <titlebar-ui name="scilab-macos" extends="scilab">
-	  <property name="painter" value="defaultPainter" handler="paint"/>
+	  <property name="painter" value="scilabMacosPainter" handler="paint"/>
         </titlebar-ui>
 
-	<painter-resource name="defaultPainter">
+	<painter-resource name="scilabMacosPainter">
 	  <property name="classname" value="org.flexdock.plaf.resources.paint.DefaultPainter"/>
 	  <property name="bgcolor.active" value="#000000" handler="color"/>
 	</painter-resource>
