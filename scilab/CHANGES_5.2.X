@@ -219,6 +219,10 @@ Dynamic link:
 
 * ilib_gen_loader now generates loaders which can be executed outside the loader's directory
 
+* bug 4726 fixed - Under !Windows, when the link dynamic was copying the files,
+  in some cases, it was going to copy backup files (for example, sci_luinc.c.bak
+  instead of sci_luinc.c)
+
 * bug 4919 fixed - If the source file was stored in TMPDIR, the dynamic link
   was removing the content of this file.
 
