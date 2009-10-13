@@ -105,5 +105,7 @@ includes/dynlib_xcos.h \
 includes/callxcos.h
 
 if GUI
+if HDF5
 USEANT=1
+endif
 endif
