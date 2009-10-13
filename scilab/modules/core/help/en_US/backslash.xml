@@ -43,6 +43,24 @@ A=rand(3,2);b=[1;1;1]; x=A\b; y=pinv(A)*b;  x-y
 A=rand(2,3);b=[1;1]; x=A\b; y=pinv(A)*b; x-y, A*x-b, A*y-b
 A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
 A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b 
+
+// A benchmark of several linear solvers
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -62,6 +80,12 @@ A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
       </member>
       <member>
         <link linkend="ieee">ieee</link>
+      </member>
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+      <member>
+        <link linkend="umfpack">umfpack</link>
       </member>
     </simplelist>
   </refsection>
