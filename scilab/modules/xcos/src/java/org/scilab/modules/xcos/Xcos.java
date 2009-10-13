@@ -59,6 +59,7 @@ import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -86,6 +87,7 @@ import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
+import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -102,6 +104,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static final long serialVersionUID = 1L;
 	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
 	private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
+	private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
+
 	private static Tab palette;
 	private static Thread paletteThread;
 	private static boolean paletteLoaded;
@@ -112,7 +116,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 			public void run() {
 				// Add a default Java bloc in HashMap
 				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
-
+				
 				Window palWin = ScilabWindow.createWindow();
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
@@ -257,6 +261,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 		paletteThread.start();
 	}
 
+	public static HashMap<Integer, AfficheBlock> getAfficheBlocks() {
+		return afficheBlocks;
+	}
     
     /**
      * @param args
@@ -343,7 +350,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     		}
 
     		File tmp = new File(imagesPath + blocksNames[kBlock] + ".gif");
-    		if (tmp.exists()) {
+    		if (tmp.exists() && theBloc.getStyle().compareTo("block") == 0) {
     			theBloc.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
     			theBloc.setValue("");
     		}
@@ -374,19 +381,20 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(newMenu);
 
 		fileMenu.add(OpenAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsAction.createMenu(scilabGraph));
 		fileMenu.add(ExportAction.createMenu(scilabGraph));
 		fileMenu.add(ExportToXMLAction.createMenu(scilabGraph));
+		fileMenu.add(ImportFromXMLAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(CloseAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(QuitAction.createMenu(scilabGraph));
-    	fileMenu.addSeparator();
+		fileMenu.addSeparator();
 		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
 		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
 		

@@ -20,4 +20,5 @@ public interface ScilabType extends Serializable, Cloneable {
 	
 	public int getHeight();
 	
+	public String toString();
 }

@@ -49,10 +49,9 @@ function newobj = neldermead_new ()
     "startupflag"
     "boxnbpoints"
     "boxnbpointseff"
-    "nbineqloops"
-    "ineqscaling"
+    "boxineqscaling"
     "checkcostfunction"
-    "scalingmethod"
+    "scalingsimplex0"
     "guinalphamin"
     "boxboundsalpha"
     "boxtermination"
@@ -148,17 +147,17 @@ function newobj = neldermead_new ()
   newobj.boxnbpointseff = 0
   // The scaling coefficient in nonlinear inequality constraints
   // in Box method, in (0,1) range
-  newobj.ineqscaling = 0.5
+  newobj.boxineqscaling = 0.5
   // Set to %f to disable the checking of the connection of the cost function
   newobj.checkcostfunction = %t;
   // The scaling algorithm : "tox0", "tocentroid"
-  newobj.scalingmethod = "tox0";
+  newobj.scalingsimplex0 = "tox0";
   // Minimum alpha for constraints scaling
   newobj.guinalphamin = 1.e-5;
   // Box's alpha coefficient for bounds constraints.
-  // The value used in Box's paper was 0.000001 (delta in
+  // The value used in Box's paper was 1.e-6 (delta in
   // Richardson and Kuester's algorithm 454)
-  newobj.boxboundsalpha = 0.000001
+  newobj.boxboundsalpha = 1.e-6
   // Set to 1 to enable Box termination criteria
   newobj.boxtermination = 0
   // The absolute tolerance on function value in Box termination criteria (beta in

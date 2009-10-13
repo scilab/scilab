@@ -1,53 +1,39 @@
 package org.scilab.modules.xcos.actions;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.beans.XMLEncoder;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-
+import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosCodec;
+import org.scilab.modules.xcos.utils.XcosMessages;
+
+import com.mxgraph.util.mxUtils;
 
 public class ExportToXMLAction extends DefaultAction {
 
-	private static final long serialVersionUID = 1L;
-	private XcosDiagram diagram;
-	
-	public ExportToXMLAction(ScilabGraph scilabGraph) {
-		super("Export to XML",scilabGraph);
-	}
-	
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu("Export to XML", null, new ExportToXMLAction(scilabGraph), null);
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		diagram = (XcosDiagram)getGraph(e);
-		String[] properties = { "label" };
+    private static final long serialVersionUID = 1L;
 
-		//GraphToXml.writeDiagramToXML("/home/allan/Bureau/testexport.xml", diagram);
-		XMLEncoder encoder;;
-		//XML
-		
-		try {
+    public ExportToXMLAction(ScilabGraph scilabGraph) {
+	super(XcosMessages.EXPORT_TO_XML,scilabGraph);
+    }
 
-			encoder = new XMLEncoder(new BufferedOutputStream(
-					new FileOutputStream(("/home/allan/Bureau/testexport.xml"))));
-			//configureEncoder(encoder);
-			encoder.writeObject(diagram);
-			encoder.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			//JOptionPane.showMessageDialog(diagram, e1.getMessage(), "Error",
-					//JOptionPane.ERROR_MESSAGE);
-		}
-	
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+	return createMenu(XcosMessages.EXPORT_TO_XML, null, new ExportToXMLAction(scilabGraph), null);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+	XcosCodec codec = new XcosCodec();
+	String xml = mxUtils.getXml(codec.encode(getGraph(e)));
+
+	try {
+	    mxUtils.writeFile(xml, "/tmp/testexport.xml");
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
 	}
-	
+    }
+
 }

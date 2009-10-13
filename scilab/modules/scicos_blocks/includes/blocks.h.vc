@@ -58,7 +58,6 @@ extern void F2C(tcslti)(ARGS_scicos);
 extern void F2C(tcsltj)(ARGS_scicos);
 extern void F2C(integr)(ARGS_scicos);
 extern void F2C(readf)(ARGS_scicos);
-extern void F2C(affich2)(ARGS_scicos);
 extern void F2C(affich)(ARGS_scicos);
 extern void F2C(intpol)(ARGS_scicos);
 extern void F2C(intplt)(ARGS_scicos);
@@ -79,6 +78,7 @@ extern void F2C(fsv)(ARGS_scicos);
 extern void F2C(memo)(ARGS_scicos);
 extern void F2C(diffblk)(ARGS_scicos);
 extern void F2C(constraint)(ARGS_scicos);
+extern void affich2(ARGS_scicos);
 extern void absblk(ARGS_scicos);
 extern void andlog(ARGS_scicos);
 extern void bidon(ARGS_scicos);
@@ -384,7 +384,7 @@ OpTab tabsim[] ={
 {"absolute_value",(ScicosF) absolute_value},
 {"acos_blk",(ScicosF) acos_blk},
 {"acosh_blk",(ScicosF) acosh_blk},
-{"affich2",(ScicosF) F2C(affich2)},
+{"affich2",(ScicosF4) affich2},
 {"affich",(ScicosF) F2C(affich)},
 {"andlog",(ScicosF) andlog},
 {"asin_blk",(ScicosF) asin_blk},

@@ -274,6 +274,8 @@ public class BlockReader {
     private static PortType getPortType(int type, int io) throws WrongTypeException {
 	if (type == 1 && io == 0) { return PortType.OUTPUT; }
 	if (type == 1 && io == 1) { return PortType.INPUT; }
+	if (type == 2 && io == 0) { return PortType.OUTPUT; }
+	if (type == 2 && io == 1) { return PortType.INPUT; }
 	if (type == -1 && io == 0) { return PortType.COMMAND; }
 	if (type == -1 && io == 1) { return PortType.CONTROL; }
 

@@ -17,6 +17,12 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 public class ConstBlock extends BasicBlock {
 
+    public ConstBlock() {
+	super();
+	setVertex(false);
+	setVisible(false);
+    }
+    
     protected ConstBlock(String label) {
 	super(label);
 	setStyle("Const");

@@ -457,12 +457,12 @@ endfunction
 //     "maxfuneval"
 //     "tolf"
 //     "tolx"
-//     "tolfstdev"
 //     "tolsize"
 //     "tolsizedeltafv"
 //     "kelleystagnation"
 //     "tolboxf"
 //     "tolvariance"
+//     or the user-defined termination status
 // Notes
 //   Use the function average on the simplex instead of the best function value.
 //   This is because the function average changes at each iteration.
@@ -480,21 +480,6 @@ function [this , terminate , status ] = neldermead_termination (this , ...
   //
   [ this.optbase , terminate , status] = optimbase_terminate ( this.optbase , ...
     fvinitial , newfvmean , previousxopt , currentxopt );
-  //
-  // Criteria #5 : standard deviation of function values
-  //
-  if ( ~terminate ) then
-    if this.tolfstdeviationmethod == "enabled" then
-      fv = optimsimplex_getallfv ( simplex )
-      sd = st_deviation(fv);
-      this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > st_deviation(fv)=%e < tolfstdeviation=%e",...
-        sd, this.tolfstdeviation));
-      if sd < this.tolfstdeviation then
-        terminate = %t;
-        status = "tolfstdev";
-      end
-    end
-  end
   //
   // Criteria #6 : simplex absolute + relative size
   //
@@ -788,18 +773,18 @@ function this = neldermead_startup (this)
     error(errmsg);
   end
   //
-  // 3. Scale the simplex into the bounds and the nonlinear inequality constraints, if any
+  // 3. Scale the initial simplex into the bounds and the nonlinear inequality constraints, if any
   //
   [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
   if ( hasbounds | hasnlcons ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));
-    select this.scalingmethod
+    select this.scalingsimplex0
     case "tox0" then
       [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 );
     case "tocenter" then
       [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 );
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -scalingmethod option"),"neldermead_startup", this.scalingmethod );
+      errmsg = msprintf(gettext("%s: Unknown value %s for -scalingsimplex0 option"),"neldermead_startup", this.scalingsimplex0 );
       error(errmsg);
     end
   end
@@ -989,7 +974,7 @@ function [ this , isscaled , p ] = _scaleinconstraints ( this , x , xref )
         isscaled = %T;
         break;
       end
-      alpha = alpha / 2.0
+      alpha = alpha * this.boxineqscaling
       this = neldermead_log (this,sprintf("Scaling inequality constraint with alpha = %e", ...
         alpha));
       p = ( 1.0 - alpha ) * xref + alpha * p0;
@@ -1178,7 +1163,7 @@ endfunction
         status = %t;
         break
       end
-      alpha = alpha / 2.0;
+      alpha = alpha * this.boxineqscaling;
       this = neldermead_log (this, sprintf ( "Scaling for f with alpha=%e" , alpha ) );
       xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
       this = neldermead_log (this, sprintf ( "> xr = %s" , _strvec ( xr ) ) );
@@ -1241,7 +1226,7 @@ endfunction
           status = %t;
           break
         end
-        alpha = alpha / 2.0;
+        alpha = alpha * this.boxineqscaling;
         this = neldermead_log (this, sprintf ( "Scaling for nonlinear/linear inequality constraints with alpha=%e from xbar=[%s] toward [%s]" , ...
           alpha , _strvec(xbar) , _strvec(xr0) ));
         xr = ( 1.0 - alpha ) * xbar + alpha * xr0;

@@ -31,9 +31,7 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx \
-			src/jni/XcosDiagram.cpp \
-			src/jni/XcosDiagram.hxx
+			src/jni/Signal.hxx
 
 GIWS_WRAPPERS = Xcos.giws.xml \
 XcosUtils.giws.xml
@@ -46,15 +44,14 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp \
-sci_gateway/cpp/sci_setBlockTextValue.cpp
+sci_gateway/cpp/sci_xcosNotify.cpp 
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes	
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -64,6 +61,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
+                        -I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 # Without the xcos module 

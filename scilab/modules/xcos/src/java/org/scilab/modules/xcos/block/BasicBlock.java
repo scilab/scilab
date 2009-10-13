@@ -125,16 +125,16 @@ public class BasicBlock extends mxCell {
 	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
 	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
 	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
+	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
 	else { return new BasicBlock(label); }
     }
 
-    protected BasicBlock() {
+    public BasicBlock() {
 	super();
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,80,80));
+	setVertex(false);
+	setVisible(false);
     }
-    
+
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
@@ -166,7 +166,7 @@ public class BasicBlock extends mxCell {
 	updateControlPortsPositions();
     }
 
-    protected void setInterfaceFunctionName(String interfaceFunctionName) {
+    public void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
     }
 
@@ -696,7 +696,7 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllInputPorts().get(i));
 	    }
 	}
-	
+
 	// Check if new output port have been added
 	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
 	    for(int i = getAllOutputPorts().size() - 1 ; i < modifiedBlock.getAllOutputPorts().size() ; ++i)
@@ -720,8 +720,6 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllControlPorts().get(i));
 	    }
 	}
-
-    
     }
 
     public void openBlockSettings(String context) {
@@ -739,12 +737,12 @@ public class BasicBlock extends mxCell {
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", getAsScilabObj());
 	    H5Write.closeFile(file_id);
-	    
+
 	    // Write context
 	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
 	    H5Write.closeFile(context_file_id);
-	    
+
 	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
 		    ", \""+tempInput.getAbsolutePath()+"\""+
 		    ", "+getInterfaceFunctionName()+
@@ -776,6 +774,35 @@ public class BasicBlock extends mxCell {
 	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
 	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
 	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
+	//exprs
+	if (getExprs() != null) {
+	    result.append("Exprs : "+getExprs().toString()+"<br>");
+	}
+	else {
+	    result.append("Exprs : (null)<br>");
+	}
+	//ipar
+	if (getIntegerParameters() != null ) {
+	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Ipar : (null)<br>");
+	}
+	//rpar
+	if (getRealParameters() != null) {
+	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Rpar : (null)<br>");
+	}
+	//opar
+	if (getObjectsParameters() != null) {
+	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
+	}
+	else {
+	    result.append("Opar : (null)<br>");
+	}
+	
 	result.append("</html>");
 	return result.toString();
     }
