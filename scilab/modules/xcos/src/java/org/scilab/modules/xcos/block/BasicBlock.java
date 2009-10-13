@@ -50,8 +50,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import sun.font.CreatedFontTracker;
-
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 

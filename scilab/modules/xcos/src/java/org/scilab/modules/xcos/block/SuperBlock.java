@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 
 public class SuperBlock extends BasicBlock {
@@ -22,9 +21,27 @@ public class SuperBlock extends BasicBlock {
 	super(label);
     }
 
-    public void openBlockSettings() {
-	XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+    public void openBlockSettings(String context) {
+	this.setLocked(true);	
+	XcosDiagram xcosDiagram = new XcosDiagram() {
+	    
+	};
 	xcosDiagram.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+	
+
+    }
+    
+    public String getToolTipText() {
+	StringBuffer result = new StringBuffer();
+	result.append("<html>");
+	result.append("SUPER BLOCK"+"<br>");
+	result.append("Input ports : "+getAllInputPorts().size()+"<br>");
+	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
+	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
+	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
+	result.append("isLocked : "+isLocked()+"<br>");
+	result.append("</html>");
+	return result.toString();
     }
     
 }

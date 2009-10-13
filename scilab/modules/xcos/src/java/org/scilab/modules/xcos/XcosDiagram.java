@@ -27,6 +27,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
@@ -256,7 +257,7 @@ public class XcosDiagram extends ScilabGraph {
 				Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
 
 				// Double Click within empty diagram Area
-				if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell == null) {
+				if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell == null) {
 					TextBlock textBlock = new TextBlock("Edit me !!!");
 					textBlock.getGeometry().setX(arg0.getX() - textBlock.getGeometry().getWidth() / 2.0);
 					textBlock.getGeometry().setY(arg0.getY() - textBlock.getGeometry().getWidth() / 2.0);
@@ -265,7 +266,7 @@ public class XcosDiagram extends ScilabGraph {
 				}
 
 				// Double Click within some component
-				if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON1 && cell != null)
+				if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
 				{
 					getModel().beginUpdate();
 					if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
@@ -281,7 +282,7 @@ public class XcosDiagram extends ScilabGraph {
 				}
 
 				// Ctrl + Shift + Right Double Click : for debug !!
-				if (arg0.getClickCount() >= 2 && arg0.getButton() == MouseEvent.BUTTON3
+				if (arg0.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(arg0)
 						&& arg0.isShiftDown() && arg0.isControlDown())
 				{
 					System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
@@ -293,7 +294,7 @@ public class XcosDiagram extends ScilabGraph {
 				}
 				
 				// Context menu
-				if (arg0.getClickCount() == 1 && arg0.getButton() == MouseEvent.BUTTON3) {
+				if (arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) {
 					
 					if (cell == null) {
 						// Display diagram context menu
@@ -692,7 +693,7 @@ public class XcosDiagram extends ScilabGraph {
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
 				loadDiagram(diagramm);
 			} else {
-				XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 				xcosDiagram.loadDiagram(diagramm);
 			}
 		} else {
@@ -831,7 +832,7 @@ public class XcosDiagram extends ScilabGraph {
 						setTitle(theFile.getAbsolutePath());
 					}
 				} else {
-					XcosDiagram xcosDiagram = Xcos.CreateAndShowGui();
+					XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 					codec.decode(document.getDocumentElement(), xcosDiagram);
 					if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
 						XcosDialogs.couldNotLoadFile();
