@@ -368,6 +368,8 @@ Bug fixes:
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
+* bug 1451 fixed - set theta, alpha, leg, flags as optional named arguments for hist3d
+
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
