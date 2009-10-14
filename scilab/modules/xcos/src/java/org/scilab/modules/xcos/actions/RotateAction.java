@@ -56,11 +56,6 @@ public class RotateAction extends DefaultAction {
 	 */
 	public void doAction() {
 		BasicBlock block = (BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell();
-		int oldAngle = block.getAngle();
-		int newAngle = oldAngle + 90;
-		if (newAngle == 360) {
-			newAngle = 0;
-		}
-		block.setRotation(newAngle);
+		block.setRotation(90);
 	}
 }
