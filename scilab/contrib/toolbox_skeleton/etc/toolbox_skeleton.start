@@ -33,7 +33,7 @@ if or(getscilabmode() == ["NW";"STD"]) then
 	mprintf("\tLoad help\n");
 	path_addchapter = pathconvert(root_tlbx+"/jar");
 	if ( isdir(path_addchapter) <> [] ) then
-		add_help_chapter("NISP Toolbox", path_addchapter, %F);
+		add_help_chapter("Toolbox skeleton", path_addchapter, %F);
 		clear add_help_chapter;
 	end
 	clear path_addchapter;

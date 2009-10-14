@@ -662,6 +662,15 @@ a.view = '2d';
       </imageobject>
     </mediaobject>
 
+    <para> How to set manually some ticks </para>
+
+    <programlisting role = "example"><![CDATA[ 
+plot3d();
+h = gca();
+h.x_ticks = tlist(['ticks','locations','labels'],[-2,-1,0,1,2],['-2','-1','0','1','2']);
+h.y_ticks = tlist(['ticks','locations','labels'],[-4,-3-2,-1,0,1,2,3,4],['-4','-3','-2','-1','0','1','2','3','4']);
+h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','Point 3']);
+ ]]></programlisting>
     <para></para>
   </refsection>
 
@@ -688,6 +697,8 @@ a.view = '2d';
       <member><link linkend="xdel">xdel</link></member>
 
       <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
     </simplelist>
   </refsection>
 

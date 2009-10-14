@@ -34,7 +34,7 @@ public class ImportFromXMLAction extends DefaultAction {
 
 	XcosCodec codec2 = new XcosCodec(document);
 	
-	XcosDiagram diagram = Xcos.CreateAndShowGui();
+	XcosDiagram diagram = Xcos.createEmptyDiagram();
 	//diagram.getModel().beginUpdate();
 	codec2.decode(document.getDocumentElement(), diagram);
 	//diagram.getModel().endUpdate();

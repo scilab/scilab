@@ -434,8 +434,11 @@
             <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
             specifying the margins portion for this axes. This vector is
             composed of numbers between [0 1] with default: [0.125 0.125 0.125
-            0.125] (these numbers are ratio relatives to the corresponding
-            figure <literal>figure_size</literal> property values).</para>
+            0.125]. These numbers are ratios relative to associated values of the
+            <literal>axes_bounds</literal> property, which are <literal>width</literal> for
+            <literal>margin_left</literal> and <literal>margin_right</literal>, and
+            <literal>height</literal> for <literal>margin_top</literal> and
+            <literal>margin_bottom</literal>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>

@@ -12,49 +12,42 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
-
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Diagram closing management
+ * Grid visibility management 
  * @author Vincent COUVERT
  */
-public class CloseAction extends DefaultAction {
-
+public final class ViewGridAction extends DefaultAction {
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor
-	 * @param scilabGraph associated diagram
+	 * @param scilabGraph associated Scilab Graph
 	 */
-	public CloseAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CLOSE, scilabGraph);
+	private ViewGridAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.GRID, scilabGraph);
 	}
 
 	/**
-	 * Menu for diagram menubar
-	 * @param scilabGraph associated diagram
+	 * Create checkbox menu for the graph menu bar
+	 * @param scilabGraph associated Scilab Graph
 	 * @return the menu
 	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CLOSE, null, new CloseAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
+		return  createCheckBoxMenu(XcosMessages.GRID, null, new ViewGridAction(scilabGraph), null);
 	}
-
+	
 	/**
-	 * Action !!
+	 * Action !
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((XcosDiagram) getGraph(null)).closeDiagram();
+		((XcosDiagram) getGraph(null)).setGridVisible(!((XcosDiagram) getGraph(null)).getAsComponent().isGridVisible());
 	}
-
 }

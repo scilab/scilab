@@ -14,12 +14,10 @@ package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -50,6 +48,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
@@ -84,6 +83,7 @@ import org.scilab.modules.xcos.actions.ViewBrowserAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGetinfosAction;
+import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
@@ -273,18 +273,18 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
-		CreateAndShowGui();
+		createEmptyDiagram();
 	    }
 	});
     }
 
     public static void xcos() {
-    	CreateAndShowGui();
+    	createEmptyDiagram();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     }
     
     public static void xcos(String fileName) {
-    	XcosDiagram diagram = CreateAndShowGui();
+    	XcosDiagram diagram = createEmptyDiagram();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	synchronized(paletteThread) {
     		try {
@@ -333,15 +333,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     public static XcosPalette createPalette(String[] blocksNames) {
  
-    	String blocksPath = System.getenv("SCI")+ "/modules/scicos_blocks/blocks/";
-    	String imagesPath = System.getenv("SCI")+ "/modules/xcos/images/blocks/";
-    	String palImagesPath = System.getenv("SCI")+ "/modules/scicos/help/images/";
+    	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+    	String palImagesPath = System.getenv("SCI") + "/modules/scicos/help/images/";
 
     	XcosPalette palette = new XcosPalette();
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-    		try{
     		// Search the bloc in global hashmap
     		theBloc = allBlocks.get(blocksNames[kBlock]);
     		
@@ -351,17 +349,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     			allBlocks.put(blocksNames[kBlock], theBloc);
     		}
 
-    		File tmp = new File(imagesPath + blocksNames[kBlock] + ".gif");
-    		if (tmp.exists() && theBloc.getStyle().compareTo("block") == 0) {
-    			theBloc.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
-    			theBloc.setValue("");
-    		}
+   			theBloc.setStyle(theBloc.getInterfaceFunctionName());
+   			theBloc.setValue(theBloc.getInterfaceFunctionName());
     		
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
-    		}catch(MalformedURLException e){
-    			System.err.println(" Fail reading Block " + (kBlock + 1));
-    			e.printStackTrace();    			
-    		}
     	}
 
     	return palette;
@@ -419,6 +410,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		edit.add(SelectAllAction.createMenu(scilabGraph));
 		edit.add(InvertSelectionAction.createMenu(scilabGraph));
 		edit.addSeparator();
+		edit.add(BlockParametersAction.createMenu(scilabGraph));
+		edit.addSeparator();
 		edit.add(RegionToSuperblockAction.createMenu(scilabGraph));
 		Menu superblockMask = ScilabMenu.createMenu();
 		superblockMask.setText(XcosMessages.SUPERBLOCK_MASK);
@@ -468,6 +461,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		format.add(RotateAction.createMenu(scilabGraph));
 		format.add(FlipAction.createMenu(scilabGraph));
+		
+		format.addSeparator();
+		
+		//format.add(DiagramBackgroundAction.createMenu(scilabGraph));
+		CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(scilabGraph);
+		format.add(gridMenu);
+		((XcosDiagram) scilabGraph).setGridMenuItem(menu);
 		
 		/** Tools menu */
 		Menu tools = ScilabMenu.createMenu();
@@ -538,7 +538,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	super(XcosMessages.XCOS);
 	
 	this.setCallback(new CloseAction(diagram));
-	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
+	this.setContentPane(diagram.getAsComponent());
 	
     }
     
@@ -549,45 +549,48 @@ public class Xcos extends SwingScilabTab implements Tab {
     	}
     }
     
-    public static XcosDiagram CreateAndShowGui() {
+    
+    
+    public static XcosDiagram createEmptyDiagram() {
+	XcosDiagram xcosDiagramm = new XcosDiagram();
+	showDiagram(xcosDiagramm);
+	return xcosDiagramm;
+    }
+    
+    public static void showDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
 	
-	XcosDiagram xcosDiagramm = new XcosDiagram();
-
-	diagrams.add(xcosDiagramm);
+	diagrams.add(xcosDiagram);
 	
-	Tab tab = new Xcos(xcosDiagramm);
+	Tab tab = new Xcos(xcosDiagram);
 	tab.setName(XcosMessages.UNTITLED);
-	xcosDiagramm.setParentTab(tab);
+	xcosDiagram.setParentTab(tab);
 	main.setVisible(true);
 	main.addTab(tab);
 	/*
 	 * MENU BAR
 	 */
-	MenuBar menuBar = createMenuBar(xcosDiagramm);
+	MenuBar menuBar = createMenuBar(xcosDiagram);
 	tab.addMenuBar(menuBar);
 
 	/*
 	 * TOOL BAR
 	 */
-	ToolBar toolBar = createToolBar(xcosDiagramm);
+	ToolBar toolBar = createToolBar(xcosDiagram);
 	tab.addToolBar(toolBar);
 
 	/*
 	 * VIEW PORT
 	 */
-	createViewPort(xcosDiagramm);
+	createViewPort(xcosDiagram);
 	
 
 	/*
 	 * INFO BAR
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
-	
-	return xcosDiagramm;
-
     }
 
     public SimpleTab getAsSimpleTab() {

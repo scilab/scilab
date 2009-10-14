@@ -20,9 +20,14 @@ import java.util.List;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.CopyAction;
+import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -30,19 +35,25 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
+import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosEvent;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxPoint;
 
 public class BasicBlock extends mxCell {
 
@@ -716,7 +727,20 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllInputPorts().get(i));
 	    }
 	}
-
+	// Check if input ports have been removed
+	else if (modifiedBlock.getAllInputPorts().size() < getAllInputPorts().size()) {
+	    List<InputPort> removedPorts = new ArrayList<InputPort>();
+	    for(int i = modifiedBlock.getAllInputPorts().size() ; i < getAllInputPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllInputPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllInputPorts().remove(removedPorts.get(i));
+		updateInputPortsPositions();
+	    }
+	}
+	
 	// Check if new output port have been added
 	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
 	    for(int i = getAllOutputPorts().size() - 1 ; i < modifiedBlock.getAllOutputPorts().size() ; ++i)
@@ -724,6 +748,20 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllOutputPorts().get(i));
 	    }
 	}
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllOutputPorts().size() < getAllOutputPorts().size()) {
+	    List<OutputPort> removedPorts = new ArrayList<OutputPort>();
+	    for(int i = modifiedBlock.getAllOutputPorts().size() ; i < getAllOutputPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllOutputPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllOutputPorts().remove(removedPorts.get(i));
+		updateOutputPortsPositions();
+	    }
+	}
+	
 
 	// Check if new command port have been added
 	if (modifiedBlock.getAllCommandPorts().size() > getAllCommandPorts().size()) {
@@ -732,7 +770,20 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllCommandPorts().get(i));
 	    }
 	}
-
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllCommandPorts().size() < getAllCommandPorts().size()) {
+	    List<CommandPort> removedPorts = new ArrayList<CommandPort>();
+	    for(int i = modifiedBlock.getAllCommandPorts().size() ; i < getAllCommandPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllCommandPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllCommandPorts().remove(removedPorts.get(i));
+		updateCommandPortsPositions();
+	    }
+	}
+	
 	// Check if new control port have been added
 	if (modifiedBlock.getAllControlPorts().size() > getAllControlPorts().size()) {
 	    for(int i = getAllControlPorts().size() - 1 ; i < modifiedBlock.getAllControlPorts().size() ; ++i)
@@ -740,12 +791,26 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllControlPorts().get(i));
 	    }
 	}
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllControlPorts().size() < getAllControlPorts().size()) {
+	    List<ControlPort> removedPorts = new ArrayList<ControlPort>();
+	    for(int i = modifiedBlock.getAllControlPorts().size() ; i < getAllControlPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllControlPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllControlPorts().remove(removedPorts.get(i));
+		updateControlPortsPositions();
+	    }
+	}
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context, XcosDiagram diagram) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
+	final XcosDiagram parent = diagram;
 	try {
 	    tempOutput = File.createTempFile("xcos",".hdf5");
 	    tempInput = File.createTempFile("xcos",".hdf5");
@@ -774,6 +839,7 @@ public class BasicBlock extends mxCell {
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
+		    parent.fireEvent(XcosEvent.ADD_PORTS);
 		    //tempOutput.delete();
 		    //tempInput.delete();
 		    setLocked(false);
@@ -832,9 +898,33 @@ public class BasicBlock extends mxCell {
     public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
 		
-		menu.add(RotateAction.createMenu(graph));
-		menu.add(FlipAction.createMenu(graph));
+		menu.add(BlockParametersAction.createMenu(graph));
+		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(CutAction.cutMenu(graph));
+		menu.add(CopyAction.copyMenu(graph));
+		menu.add(DeleteAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(RegionToSuperblockAction.createMenu(graph));
+		Menu mask = ScilabMenu.createMenu();
+		mask.setText(XcosMessages.SUPERBLOCK_MASK);
+		menu.add(mask);
+		mask.add(SuperblockMaskCreateAction.createMenu(graph));
+		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		Menu format = ScilabMenu.createMenu();
+		format.setText(XcosMessages.FORMAT);
+		menu.add(format);
+		format.add(RotateAction.createMenu(graph));
+		format.add(FlipAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
 		menu.setVisible(true);

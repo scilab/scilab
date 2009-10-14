@@ -1,0 +1,54 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- NO CHECK REF -->
+// <-- Non-regression test for bug 4925 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4925
+//
+// <-- Short Description -->
+// this example with optim crashs 'optim' on windows
+// 
+// =============================================================================
+xref=[1;2;3];
+x0=[1;-1;1];
+function [f,g,ind] = cost(x,ind)
+  f=0.5*norm(x-xref)^2;
+  g=x-xref;
+endfunction
+[f,xopt]=optim(cost,x0,imp=3)
+
+***** enters -qn code- (without bound cstr)
+dimension=         3, epsq=  0.2220446049250313E-15, verbosity level: imp=         3
+max number of iterations allowed: iter=       100
+max number of calls to costf allowed: nap=       100
+------------------------------------------------
+ iter num    1, nb calls=   1, f= 6.500
+ linear search: initial derivative=-3.606
+                step length=0.1000E-01, df=-.4261    , derivative=-3.485
+                step length=0.1000    , df=-3.611    , derivative=-2.404
+ iter num    2, nb calls=   3, f= 2.889
+ linear search: initial derivative=-2.404
+                step length= 1.000    , df=-2.889    , derivative=0.3695E-15
+ iter num    3, nb calls=   4, f=0.9861E-30
+ linear search: initial derivative=-.1380E-14
+                step length= 1.000    , df=0.4142E-29, derivative=0.3192E-14
+                step length=0.2996    , df=-.9861E-30, derivative=0.0000E+00
+ iter num    4, nb calls=   6, f=0.0000E+00
+***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+ xopt  =
+ 
+    1.  
+    2.  
+    3.  
+ f  =
+ 
+    0.  
+// =============================================================================

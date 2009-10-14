@@ -46,22 +46,26 @@ public class TriangleMarkDrawer extends MarkDrawingStrategy {
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
 
 		// inside
-		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
-		gl.glBegin(GL.GL_TRIANGLES);
-		gl.glVertex3d(UP_POINT[0], UP_POINT[1], 0.0);
-		gl.glVertex3d(BOTTOM_LEFT[0], BOTTOM_LEFT[1], 0.0);
-		gl.glVertex3d(BOTTOM_RIGHT[0], BOTTOM_RIGHT[1], 0.0);
-		gl.glEnd();
-		
-		// outline
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_LINE_LOOP);
-		gl.glVertex3d(UP_POINT[0], UP_POINT[1], 0.0);
-		gl.glVertex3d(BOTTOM_LEFT[0], BOTTOM_LEFT[1], 0.0);
-		gl.glVertex3d(BOTTOM_RIGHT[0], BOTTOM_RIGHT[1], 0.0);
-		gl.glEnd();
-		
+    if(!isBackTransparent)
+    {
+		  gl.glColor3d(backColor[0], backColor[1], backColor[2]);
+		  gl.glBegin(GL.GL_TRIANGLES);
+		  gl.glVertex3d(UP_POINT[0], UP_POINT[1], 0.0);
+		  gl.glVertex3d(BOTTOM_LEFT[0], BOTTOM_LEFT[1], 0.0);
+		  gl.glVertex3d(BOTTOM_RIGHT[0], BOTTOM_RIGHT[1], 0.0);
+		  gl.glEnd();
+    }
 
+		// outline		
+    if(!isFrontTransparent)
+    {
+		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		  gl.glBegin(GL.GL_LINE_LOOP);
+		  gl.glVertex3d(UP_POINT[0], UP_POINT[1], 0.0);
+		  gl.glVertex3d(BOTTOM_LEFT[0], BOTTOM_LEFT[1], 0.0);
+		  gl.glVertex3d(BOTTOM_RIGHT[0], BOTTOM_RIGHT[1], 0.0);
+		  gl.glEnd();
+    }
 	}
 
 }

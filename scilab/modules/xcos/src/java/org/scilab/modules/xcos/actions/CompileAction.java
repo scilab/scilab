@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,32 +19,45 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-
+/**
+ * Diagram compilation management
+ * @author Allan SIMON
+ */
 public class CompileAction extends DefaultAction {
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated diagram
+	 */
 	public CompileAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.COMPILE,scilabGraph);
+		super(XcosMessages.COMPILE, scilabGraph);
 	}
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.COMPILE, null, new CompileAction(scilabGraph));
-	}
-
+	/**
+	 * Create associated menu
+	 * @param scilabGraph associated diagram
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.COMPILE, null, new CompileAction(scilabGraph), null);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
 		File temp;
 		try {
-			temp = File.createTempFile("xcos",".hdf5");
+			temp = File.createTempFile("xcos", ".hdf5");
 			temp.delete();
-			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");xcos_compile(scs_m);");
+			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
+			InterpreterManagement.requestScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");xcos_compile(scs_m);");
 			temp.deleteOnExit();
 		} catch (IOException e1) {
 			e1.printStackTrace();

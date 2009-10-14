@@ -93,7 +93,7 @@ public final class FindAction extends DefaultAction {
 
 
 	private FindAction(Xpad editor) {
-		super(XpadMessages.FIND_REPLACE +  "...", editor);
+		super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
 	}
 
 	public void doAction() {
@@ -104,11 +104,12 @@ public final class FindAction extends DefaultAction {
 	}
 
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.FIND_REPLACE +  "...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.FIND_REPLACE + XpadMessages.DOTS, null, new FindAction(editor),
+				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 	 
 	 public static PushButton createButton(Xpad editor) {
-	     return createButton(XpadMessages.FIND_REPLACE +  "...", "edit -find -replace.png", new FindAction(editor));
+	     return createButton(XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
 	 }
 	
 	 

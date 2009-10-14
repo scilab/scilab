@@ -53,6 +53,7 @@ public final class XcosMessages {
 
     /** Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");
+    public static final String BLOCK_PARAMETERS = Messages.gettext("Block Parameters") + DOTS;
     public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
@@ -84,6 +85,7 @@ public final class XcosMessages {
     public static final String RESIZE = Messages.gettext("Resize");
     public static final String ROTATE = Messages.gettext("Rotate");
     public static final String FLIP = Messages.gettext("Flip");
+    public static final String GRID = Messages.gettext("Grid");
     
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
@@ -139,5 +141,6 @@ public final class XcosMessages {
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
+    
 
 }

@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graph;
 
+import org.scilab.modules.localization.Messages;
+
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
@@ -28,16 +30,22 @@ public class ScilabGraph extends mxGraph {
     protected mxGraphOutline graphOutline = null;
     protected mxKeyboardHandler keyboardHandler = null;
     protected mxGraphComponent component = null;
-    
+
+    private String title = Messages.gettext("Untitled");
+    private boolean modified = false;
+
     public ScilabGraph() {
 	// Undo / Redo capabilities
 	getModel().addListener(mxEvent.UNDO, undoHandler);
 	getView().addListener(mxEvent.UNDO, undoHandler);
-	
+
 	component = new mxGraphComponent(this);
-	
+
 	// Adds rubberband selection
 	new mxRubberband(component);
+
+	// Modified property change
+	getModel().addListener(mxEvent.CHANGE, changeTracker);
 
 	//addKeyListener(new XcosShortCut());
 	//setMarqueeHandler(new XcosPortAction());
@@ -52,6 +60,17 @@ public class ScilabGraph extends mxGraph {
 	//this.setInvokesStopCellEditing(true);
     }
 
+    /**
+     * 
+     */
+    protected mxIEventListener changeTracker = new mxIEventListener()
+    {
+	public void invoke(Object source, mxEventObject evt)
+	{
+	    setModified(true);
+	}
+    };   
+
     protected mxIEventListener undoHandler = new mxIEventListener()
     {
 	public void invoke(Object source, mxEventObject evt)
@@ -59,6 +78,25 @@ public class ScilabGraph extends mxGraph {
 	    undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
 	}
     };
+
+    public boolean isModified() {
+	return modified;
+    }
+
+    public void setModified(boolean modified) {
+	boolean oldValue = this.modified;
+	this.modified = modified;
+
+	getAsComponent().firePropertyChange("modified", oldValue, modified);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
 
     public mxGraphComponent getAsComponent() {
 	return component;
