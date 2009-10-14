@@ -70,7 +70,7 @@ hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
           <para>This represents a sequence of statements <literal>key1=value1,
           key2=value2</literal>,... where <literal>key1</literal>,
           <literal>key2,...</literal> can be one of the following: theta,
-          alpha,leg,flag,ebox <link linkend="plot3d">plot3d</link>.</para>
+          alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.</para>
         </listitem>
       </varlistentry>
 

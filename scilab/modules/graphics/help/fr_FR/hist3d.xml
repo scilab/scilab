@@ -20,8 +20,10 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
-hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
+    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
+hist3d(f,&lt;opt_args&gt;)
+hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
+hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -51,10 +53,20 @@ hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
       </varlistentry>
 
       <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>Représente une séquence de la forme <literal>clé1=valeur1,
+          clé2=valeur2</literal>,... où <literal>clé1,
+          clé2,...</literal> peut être n'importe quel paramètre optionnel de <link linkend="plot3d">plot3d</link> 
+          (<literal>theta,alpha,leg,flag,ebox</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>theta,alpha,leg,flag,ebox</term>
 
         <listitem>
-          <para>voir <literal>plot3d</literal>.</para>
+          <para>voir <link linkend="plot3d">plot3d</link>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
