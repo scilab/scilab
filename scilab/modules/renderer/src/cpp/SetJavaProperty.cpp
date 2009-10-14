@@ -98,20 +98,18 @@ void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
 	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
-BOOL sciSetJavaTitle( sciPointObj * pFigure, const char * title )
+void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
 {
-  try {
-	  getFigureDrawer(pFigure)->setTitle(title);
-	  return TRUE;
+	try {
+		getFigureDrawer(pFigure)->setTitle(title);
 	} catch (const GiwsException::JniException& e)
 	{
- 		Scierror(999, "A native error occurred during the creation of the window.\nDescription: %s\nException Name: %s\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+		Scierror(999, "A native error occurred during the creation of the window.\nDescription: %s\nException Name: %s\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
 	} catch (const std::exception& e)
 	{
 		sciprint("Error: %s\n",e.what());
 		Scierror(999, "An error occurred during the creation of the window.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
-  }
-  return FALSE;
+	}
 }
 /*---------------------------------------------------------------------------------*/
 void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)

@@ -374,6 +374,8 @@ Bug fixes:
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
+* bug 1451 fixed - set theta, alpha, leg, flags as optional named arguments for hist3d
+
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
@@ -423,6 +425,8 @@ Bug fixes:
 * bug 4217 fixed - gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
 * bug 4262 fixed - lines returns incorrect values.
+
+* bug 4263 fixed - completion cleans current input line.
 
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
