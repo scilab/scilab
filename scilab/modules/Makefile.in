@@ -59,10 +59,9 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@SCICOS_TRUE@am__append_3 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@GUI_TRUE@am__append_4 = $(GUI_LIBS)
-@GUI_FALSE@am__append_5 = $(NO_GUI_LIBS)
-@ENABLE_STATIC_TRUE@am__append_6 = $(ALL_LIBS)
+@GUI_TRUE@am__append_3 = $(GUI_LIBS)
+@GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
+@ENABLE_STATIC_TRUE@am__append_5 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -109,16 +108,15 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
-	$(OTHER_LIBS) $(EXTERNAL_LIBS)
+	$(EXTERNAL_LIBS)
 am_libscilab_cli_la_OBJECTS =
 libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
 libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 am__DEPENDENCIES_1 =
-libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_4) $(am__append_5) \
-	$(am__DEPENDENCIES_1)
+libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(EXTERNAL_LIBS) \
+	$(am__append_3) $(am__append_4) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -499,33 +497,38 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la
 
-OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
+ENGINE_LIBS_DYNAMIC_LOAD = \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_3)
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
+
+
+#THER_LIBS += 
 
 # Dev in progress
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(am__append_4) $(am__append_5) $(am__append_6)
+	$(am__append_3) $(am__append_4) $(am__append_5)
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
