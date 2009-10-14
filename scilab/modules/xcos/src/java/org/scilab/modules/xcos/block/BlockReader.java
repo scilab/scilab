@@ -13,9 +13,6 @@
 
 package org.scilab.modules.xcos.block;
 
-import java.awt.geom.Point2D;
-import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

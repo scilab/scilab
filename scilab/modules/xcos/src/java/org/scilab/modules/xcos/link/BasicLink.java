@@ -12,7 +12,8 @@
 
 package org.scilab.modules.xcos.link;
 
-import java.awt.geom.*;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
