@@ -329,7 +329,6 @@ src/c/affich.c
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
 src/fortran/affich.f \
-src/fortran/constraint.f \
 src/fortran/csslti.f \
 src/fortran/cstblk.f \
 src/fortran/delay.f \

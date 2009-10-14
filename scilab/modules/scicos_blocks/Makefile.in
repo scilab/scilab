@@ -236,10 +236,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/time_delay.c src/c/tows_c.c src/c/variable_delay.c \
 	src/c/writeau.c src/c/writec.c src/c/zcross2.c \
 	src/fortran/affich2.f src/fortran/affich.f \
-	src/fortran/constraint.f src/fortran/csslti.f \
-	src/fortran/cstblk.f src/fortran/delay.f src/fortran/delayv.f \
-	src/fortran/demux.f src/fortran/diffblk.f src/fortran/dlradp.f \
-	src/fortran/dollar.f src/fortran/dsslti.f \
+	src/fortran/csslti.f src/fortran/cstblk.f src/fortran/delay.f \
+	src/fortran/delayv.f src/fortran/demux.f src/fortran/diffblk.f \
+	src/fortran/dlradp.f src/fortran/dollar.f src/fortran/dsslti.f \
 	src/fortran/eselect.f src/fortran/evtdly.f \
 	src/fortran/expblk.f src/fortran/forblk.f src/fortran/fsv.f \
 	src/fortran/gensin.f src/fortran/gensqr.f src/fortran/hltblk.f \
@@ -557,19 +556,19 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writeau.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writec.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-zcross2.lo
-@SCICOS_TRUE@am__objects_2 = affich2.lo affich.lo constraint.lo \
-@SCICOS_TRUE@	csslti.lo cstblk.lo delay.lo delayv.lo demux.lo \
-@SCICOS_TRUE@	diffblk.lo dlradp.lo dollar.lo dsslti.lo \
-@SCICOS_TRUE@	eselect.lo evtdly.lo expblk.lo forblk.lo fsv.lo \
-@SCICOS_TRUE@	gensin.lo gensqr.lo hltblk.lo ifthel.lo integr.lo \
-@SCICOS_TRUE@	intplt.lo intpol.lo intrp2.lo intrpl.lo invblk.lo \
-@SCICOS_TRUE@	iocopy.lo logblk.lo lookup.lo lsplit.lo lusat.lo \
-@SCICOS_TRUE@	maxblk.lo memo.lo mfclck.lo minblk.lo mux.lo \
-@SCICOS_TRUE@	pload.lo powblk.lo qzcel.lo qzflr.lo qzrnd.lo \
-@SCICOS_TRUE@	qztrn.lo readf.lo rndblk.lo samphold.lo sawtth.lo \
-@SCICOS_TRUE@	sciblk.lo selblk.lo sinblk.lo sqrblk.lo sum2.lo \
-@SCICOS_TRUE@	sum3.lo tanblk.lo tcslti.lo tcsltj.lo timblk.lo \
-@SCICOS_TRUE@	trash.lo writef.lo zcross.lo
+@SCICOS_TRUE@am__objects_2 = affich2.lo affich.lo csslti.lo cstblk.lo \
+@SCICOS_TRUE@	delay.lo delayv.lo demux.lo diffblk.lo dlradp.lo \
+@SCICOS_TRUE@	dollar.lo dsslti.lo eselect.lo evtdly.lo \
+@SCICOS_TRUE@	expblk.lo forblk.lo fsv.lo gensin.lo gensqr.lo \
+@SCICOS_TRUE@	hltblk.lo ifthel.lo integr.lo intplt.lo intpol.lo \
+@SCICOS_TRUE@	intrp2.lo intrpl.lo invblk.lo iocopy.lo logblk.lo \
+@SCICOS_TRUE@	lookup.lo lsplit.lo lusat.lo maxblk.lo memo.lo \
+@SCICOS_TRUE@	mfclck.lo minblk.lo mux.lo pload.lo powblk.lo \
+@SCICOS_TRUE@	qzcel.lo qzflr.lo qzrnd.lo qztrn.lo readf.lo \
+@SCICOS_TRUE@	rndblk.lo samphold.lo sawtth.lo sciblk.lo \
+@SCICOS_TRUE@	selblk.lo sinblk.lo sqrblk.lo sum2.lo sum3.lo \
+@SCICOS_TRUE@	tanblk.lo tcslti.lo tcsltj.lo timblk.lo trash.lo \
+@SCICOS_TRUE@	writef.lo zcross.lo
 @SCICOS_TRUE@am__objects_3 = libsciscicos_blocks_la-scoGetProperty.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoSetProperty.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoMisc.lo \
@@ -1226,7 +1225,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 @SCICOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
 @SCICOS_TRUE@src/fortran/affich.f \
-@SCICOS_TRUE@src/fortran/constraint.f \
 @SCICOS_TRUE@src/fortran/csslti.f \
 @SCICOS_TRUE@src/fortran/cstblk.f \
 @SCICOS_TRUE@src/fortran/delay.f \
@@ -3903,9 +3901,6 @@ affich2.lo: src/fortran/affich2.f
 
 affich.lo: src/fortran/affich.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o affich.lo `test -f 'src/fortran/affich.f' || echo '$(srcdir)/'`src/fortran/affich.f
-
-constraint.lo: src/fortran/constraint.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o constraint.lo `test -f 'src/fortran/constraint.f' || echo '$(srcdir)/'`src/fortran/constraint.f
 
 csslti.lo: src/fortran/csslti.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o csslti.lo `test -f 'src/fortran/csslti.f' || echo '$(srcdir)/'`src/fortran/csslti.f
