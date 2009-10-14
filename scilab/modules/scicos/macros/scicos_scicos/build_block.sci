@@ -25,7 +25,6 @@ function [model, ok] = build_block(o)
 
   model    = o.model;
   graphics = o.graphics;
-
   if model.sim(1)=='scifunc' then
     if model.ipar==0 then
       messagebox(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"),"modal","error");
@@ -43,7 +42,7 @@ function [model, ok] = build_block(o)
       end
     elseif int(modsim/1000) == 2 then   //  C Block
       [model,ok]=recur_scicos_block_link(o,'c')
-   elseif model.sim(2) == 30004 then //modelica generic file type 30004
+    elseif model.sim(2) == 30004 then //modelica generic file type 30004
       //funam = model.sim(1); tt = graphics.exprs(2);
       if type(graphics.exprs) == 15 then // compatibility
         funam = model.sim(1);

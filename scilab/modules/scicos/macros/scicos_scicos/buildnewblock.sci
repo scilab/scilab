@@ -65,7 +65,8 @@ function ok = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
   if rhs <= 6 then ldflags  = '', end
   if rhs <= 7 then cflags   = '', end
 
-
+debugprint files rpat filestan filesint
+pause
   //## define a variable to know if with use
   //## a scilab interfacing function for the standalone
   with_int = %f;
@@ -91,9 +92,9 @@ function ok = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
   ierr = execstr(instr,'errcatch');
   chdir(oldpath);
   if ierr<>0 then
-    messagebox([_('Sorry problem encountered\n'+..
+    messagebox([msprintf(_('Sorry problem encountered\n'+..
 	       '   when trying to build the block simulation function\n'+..
-	       '   dynamic library\n\n');
+	       '   dynamic library\n\n'));
 	     lasterror()],"modal","error")
     return;
   end
@@ -132,9 +133,9 @@ function ok = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
 
      ierr = execstr(instr,'errcatch');
      if ierr<>0 then
-       messagebox([_('sorry problem encountered\n'+..
+       messagebox([msprintf(_('sorry problem encountered\n'+..
 		  '   when trying to build the standalone simulator gateway\n'+..
-		  '   dynamic library\n\n');
+		  '   dynamic library\n\n'));
 		lasterror()],"modal","error");
        return;
      end

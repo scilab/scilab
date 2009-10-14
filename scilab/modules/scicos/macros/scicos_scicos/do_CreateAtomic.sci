@@ -41,7 +41,6 @@ if freof <> [] then
   messagebox(_("An Atomic Superblock cannot contain sample clocks"),'modal')
   return
 end
-
 //**quick fix for sblock that contains scope
 gh_curwin=scf(curwin)
 o.model.sim=list('asuper',2004);

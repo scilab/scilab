@@ -27,6 +27,7 @@ if or(o.model.sim(1)==['super','csuper','asuper']) then
   for i=1:size(obj.objs)
     o1=obj.objs(i);
     if typeof(o1)=='Block'
+
       if (or(o1.model.sim(1)==['super','csuper','asuper'])) then
 	[model,ok,libsvector]=recur_scicos_block_link(o1,flag)
 	if ~ok then return; end
