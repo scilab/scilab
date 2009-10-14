@@ -457,6 +457,8 @@ Bug fixes:
 
 * bug 4421 fixed - completion fails on some relative path.
 
+* bug 4430 fixed - incorrect description of the margins property in the axes_properties help page.
+
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
 * bug 4438 fixed - completion does not support insert mode.
@@ -470,6 +472,8 @@ Bug fixes:
 * bug 4474 fixed - help of 'fort' is obsolete.
 
 * bug 4474 fixed - addinter help has no example.
+
+* bug 4483 fixed - Handle FreeBSD java detection
 
 * bug 4489 fixed - oldsave and oldload removed.
 
@@ -620,3 +624,7 @@ Bug fixes:
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
 
 * bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
+
+* bug 4925 fixed - verbose option of the optim function crashs on Windows.
+
+* bug 4929 fixed - Add transparency to markdrawing.

@@ -56,8 +56,8 @@ public final class OpenAction extends DefaultAction {
 		if (initialDirectoryPath == null ){
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
 		}
-		System.out.println(initialDirectoryPath);
-		String[] mask = new String[]{"*.sce",  "*.sc*", "*.cos*", "*.sci"}; 
+
+		String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"}; 
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 		fileChooser.setInitialDirectory(initialDirectoryPath);
@@ -70,8 +70,8 @@ public final class OpenAction extends DefaultAction {
 			File f = fileChooser.getSelectedFile();
 			ConfigManager.saveLastOpenedDirectory(f.getPath());
 			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-			System.out.println("save to config finished");
-			getEditor().setTitle(f.getPath() + " - Xpad");
+
+			getEditor().setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 			getEditor().updateRecentOpenedFilesMenu();
 			getEditor().readFile(f);
 
