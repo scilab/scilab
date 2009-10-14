@@ -321,8 +321,8 @@
 	<add as="NEGTOPOS_f" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NEGTOPOS_f.gif"/>
 	</add>
-	<add as="MUX" extend="Icon">
-		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX.gif"/>
+	<add as="MUX" extend="blockWithLabel">
+		    <add as="verticalLabelPosition" value="bottom"/>
 	</add>
 	<add as="MUX_f" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
@@ -376,9 +376,7 @@
 	<add as="MATPINV" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATPINV.gif"/>
 	</add>
-	<add as="MATMUL" extend="Icon">
-		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATMUL.gif"/>
-	</add>
+	<add as="MATMUL" extend="blockWithLabel"/>
 	<add as="MATMAGPHI" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATMAGPHI.gif"/>
 	</add>
@@ -598,8 +596,8 @@
 	<add as="DERIV" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DERIV.gif"/>
 	</add>
-	<add as="DEMUX" extend="Icon">
-		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEMUX.gif"/>
+	<add as="DEMUX" extend="blockWithLabel">
+		    <add as="verticalLabelPosition" value="bottom"/>
 	</add>
 	<add as="DEMUX_f" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEMUX_f.gif"/>
