@@ -698,7 +698,9 @@ public class XcosDiagram extends ScilabGraph {
 
     public void updateTabTitle() {
 	String tabTitle = !isModified() ? getTitle() : "* "+getTitle();
-	parentTab.setName(tabTitle);
+	if (parentTab != null) {
+	    parentTab.setName(tabTitle);
+	}
     }
 
     public void setContext(String context){
