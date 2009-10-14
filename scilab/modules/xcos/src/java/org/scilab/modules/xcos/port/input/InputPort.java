@@ -24,7 +24,6 @@ public abstract class InputPort extends BasicPort {
 
 	public void updateStyle(int angle){
 		
-		System.err.println("updateStyle");
 		switch(angle){
 		case 0 :
 			setStyle("ExplicitInputPort180");

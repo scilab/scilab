@@ -36,7 +36,6 @@ public class CommandPort extends BasicPort {
 
 	public void updateStyle(int angle){
 		
-		System.err.println("updateStyle CommandPort");
 		switch(angle){
 		case 0 :
 			setStyle("CommandPort90");

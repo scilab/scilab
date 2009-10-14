@@ -57,5 +57,6 @@ public class RotateAction extends DefaultAction {
 	public void doAction() {
 		BasicBlock block = (BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell();
 		block.setRotation(90);
+		((XcosDiagram) getGraph(null)).refresh();
 	}
 }

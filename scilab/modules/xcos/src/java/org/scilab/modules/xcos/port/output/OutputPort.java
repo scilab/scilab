@@ -22,7 +22,6 @@ public abstract class OutputPort extends BasicPort {
     
 	public void updateStyle(int angle){
 		
-		System.err.println("updateStyle ExplicitOutputPort");
 		switch(angle){
 		case 0 :
 			super.setStyle("ExplicitOutputPort");

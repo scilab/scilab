@@ -26,7 +26,6 @@ public class ControlPort extends BasicPort {
     
 	public void updateStyle(int angle){
 		
-		System.err.println("updateStyle ControlPort");
 		switch(angle){
 		case 0 :
 			setStyle("ControlPort270");

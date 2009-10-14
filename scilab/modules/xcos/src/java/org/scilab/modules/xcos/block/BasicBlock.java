@@ -393,14 +393,10 @@ public class BasicBlock extends mxCell {
     }
 
     private void updateInputPortsPositions() {
-	List<InputPort> allInputPorts = getAllInputPorts();
-	for (int i = 0 ; i < allInputPorts.size() ; ++i) {
-	    mxGeometry portGeometry = allInputPorts.get(i).getGeometry();
-	    allInputPorts.get(i).setGeometry(new mxGeometry(-portGeometry.getWidth(), 
-		    (i + 1.0) / (getAllInputPorts().size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
-		    portGeometry.getWidth(),
-		    portGeometry.getHeight()));
-	}
+	   	int inputAngle = (getAngle() + 180) % 360;
+    	System.err.println("updateInputPortsPositions : " + inputAngle);
+    	List<BasicPort> allInputPorts = (List)getAllInputPorts();
+    	rotatePorts(allInputPorts, inputAngle);
     }
 
     public void addPort(OutputPort port) {
@@ -410,14 +406,10 @@ public class BasicBlock extends mxCell {
     }
 
     private void updateOutputPortsPositions() {
-	List<OutputPort> allOutputPorts = getAllOutputPorts();
-	for (int i = 0 ; i < allOutputPorts.size() ; ++i) {
-	    mxGeometry portGeometry = allOutputPorts.get(i).getGeometry();
-	    allOutputPorts.get(i).setGeometry(new mxGeometry(getGeometry().getWidth(), 
-		    (i + 1.0) / (getAllOutputPorts().size() + 1.0) * getGeometry().getHeight() - portGeometry.getHeight() / 2.0,
-		    portGeometry.getWidth(),
-		    portGeometry.getHeight()));
-	}
+	   	int outputAngle = getAngle();
+    	System.err.println("updateOutputPortsPositions : " + outputAngle);
+    	List<BasicPort> allOutputPorts = (List)getAllOutputPorts();
+    	rotatePorts(allOutputPorts, outputAngle);
     }
 
     public void addPort(CommandPort port) {
@@ -427,14 +419,10 @@ public class BasicBlock extends mxCell {
     }
 
     private void updateCommandPortsPositions() {
-	List<CommandPort> allCommandPorts = getAllCommandPorts();
-	for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
-	    mxGeometry portGeometry = allCommandPorts.get(i).getGeometry();
-	    allCommandPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (getAllCommandPorts().size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
-		    getGeometry().getHeight(),
-		    portGeometry.getWidth(),
-		    portGeometry.getHeight()));
-	}
+	   	int commandAngle = (getAngle() + 270) % 360;
+    	System.err.println("updateCommandPortsPositions : " + commandAngle);
+    	List<BasicPort> allCommandPorts = (List)getAllCommandPorts();
+    	rotatePorts(allCommandPorts, commandAngle);
     }
 
     public void addPort(ControlPort port) {
@@ -444,14 +432,10 @@ public class BasicBlock extends mxCell {
     }
 
     private void updateControlPortsPositions() {
-	List<ControlPort> allControlPorts = getAllControlPorts();
-	for (int i = 0 ; i < allControlPorts.size() ; ++i) {
-	    mxGeometry portGeometry = allControlPorts.get(i).getGeometry();
-	    allControlPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (getAllControlPorts().size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
-		    - portGeometry.getHeight(),
-		    portGeometry.getWidth(),
-		    portGeometry.getHeight()));
-	}
+    int controlAngle = (getAngle() + 90) % 360;
+	System.err.println("updateControlPortsPositions : " + controlAngle);
+	List<BasicPort> allControlPorts = (List)getAllControlPorts();
+	rotatePorts(allControlPorts, controlAngle);
     }
 
 
@@ -706,6 +690,7 @@ public class BasicBlock extends mxCell {
     }
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
+    	System.err.println("updateBlockSettings");
 	this.setDependsOnT(modifiedBlock.dependsOnT());
 	this.setDependsOnU(modifiedBlock.dependsOnU());
 	this.setExprs(modifiedBlock.getExprs());
@@ -943,7 +928,6 @@ public class BasicBlock extends mxCell {
 		List<InputPort> inputs = getAllInputPorts();
 		List<OutputPort> outputs = getAllOutputPorts();
 
-		System.err.println("flip : " + (flip ? "true" : "false"));
     	if(flip){//change coordinate to flip I/O ports
     		for(int i = 0 ; i < inputs.size() ; i++){
     			InputPort input = inputs.get(i);
@@ -980,42 +964,24 @@ public class BasicBlock extends mxCell {
     }
     
     public void setRotation(int angle){
-    	
-    	int localAngle = (360 + (this.angle + angle)) % 360;
+    	System.err.println("Angle : " + angle);
+		this.angle = (360 + (this.angle + angle)) % 360;
 
-    	int localAngleInputs = (localAngle + 180) % 360;
-    	
-    	System.err.println("Current angle : " + this.angle);
-    	System.err.println("Add angle : " + angle);
-    	System.err.println("Final angle : " + localAngle);
-    	
-		//Input
-		List<BasicPort> inputs = (List)getAllInputPorts();
-		//Command
-		List<BasicPort> commands = (List)getAllCommandPorts();
-
-		//Output
-		List<BasicPort> outputs = (List)getAllOutputPorts();
+		updateInputPortsPositions();
+		updateOutputPortsPositions();
+		updateCommandPortsPositions();
+		updateControlPortsPositions();
 		
-		//Control
-		List<BasicPort> controls = (List)getAllControlPorts();
-
-	   	int outputAngle = localAngle;
-	   	int controlAngle = (localAngle + 90) % 360;
-	   	int inputAngle = (localAngle + 180) % 360;
-	   	int commandAngle = (localAngle + 270) % 360;
-
-	   	rotatePorts(outputs, outputAngle);
-	   	rotatePorts(controls, controlAngle);
-	   	rotatePorts(inputs, inputAngle);
-	   	rotatePorts(commands, commandAngle);
-	   	
-		
-		this.angle = localAngle;
+    	System.err.println("New angle : " + this.angle);
     }
     
-    protected void rotatePorts(List<BasicPort> ports , int angle){
-		mxGeometry blockGeom = getGeometry();
+    private void rotatePorts(List<BasicPort> ports , int angle){
+    	
+ 		mxGeometry blockGeom = getGeometry();
+		if(blockGeom == null){
+			System.err.println("blockGeom is null !");
+			return;
+		}
 		switch(angle){
     	case 0 :
     	{
