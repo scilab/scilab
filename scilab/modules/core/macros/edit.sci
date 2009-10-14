@@ -14,7 +14,7 @@ function edit(macroname,ueditor)
 // ueditor : external command : no more supported
 //
   
-  if ~isdef('editor')  then
+  if (~isdef('editor') & (funptr('editor')==0))  then
     warning(sprintf(gettext("%s: Requires scilab editor.\n"),"edit"));
     return
   end
