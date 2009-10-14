@@ -1295,6 +1295,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/string/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos/includes \
 @SCICOS_TRUE@            -I$(top_srcdir)/modules/elementary_functions/includes
 

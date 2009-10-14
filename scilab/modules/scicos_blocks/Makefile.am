@@ -403,6 +403,8 @@ libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/scicos/includes \
             -I$(top_srcdir)/modules/elementary_functions/includes
 
