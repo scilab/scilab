@@ -495,7 +495,9 @@ public class BlockReader {
 		diagramProperties.put("finalIntegrationTime", ((ScilabDouble) params.get(4)).getRealPart()[0][0]);
 
 		//context
-		if(!(params.get(5) instanceof ScilabString)) { throw new WrongTypeException(); }
+		if (!(params.get(5) instanceof ScilabString) && !isEmptyField(params.get(5))) {
+			throw new WrongTypeException();
+		}
 		String context = "";
 		if( params.get(5).getHeight() >= params.get(5).getWidth()) {
 			for (int i = 0; i < params.get(5).getHeight(); i++) {
