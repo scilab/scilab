@@ -24,32 +24,42 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.util.mxEvent;
-
 public class SuperBlock extends BasicBlock {
+
+    private XcosDiagram child = null;
 
     public SuperBlock(String label) {
 	super(label);
+	setStyle("SUPER_f");
     }
 
     public void openBlockSettings(String context, XcosDiagram diagram) {
-	this.setLocked(true);	
-	XcosDiagram xcosDiagram = new SuperBlockDiagram(this);
-	Xcos.showDiagram(xcosDiagram);
-	xcosDiagram.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
-	String innerContext = xcosDiagram.getContext();
-	if(!innerContext.contains(context)) {
-	    innerContext = innerContext + ";" + context;
-	    xcosDiagram.setContext(innerContext);
-	}
-	xcosDiagram.getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
-
-	    public void propertyChange(PropertyChangeEvent arg0) {
-		if(arg0.getPropertyName().compareTo("modified") == 0) {
-		    //diagram.fireEvent(mxEvent.NOTIFY);
-		}
+	this.setLocked(true);
+	if (child == null) {
+	    child = new SuperBlockDiagram(this);
+	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+	    String innerContext = child.getContext();
+	    
+	    if(!innerContext.contains(context)) {
+		innerContext = innerContext + ";" + context;
+		child.setContext(innerContext);
 	    }
-	});
+
+	    child.getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
+		public void propertyChange(PropertyChangeEvent arg0) {
+		    if(arg0.getPropertyName().compareTo("modified") == 0) {
+			//diagram.fireEvent(mxEvent.NOTIFY);
+		    }
+		}
+	    });
+	}
+
+	// FIXME : Should work like this !!!
+	//Xcos.showDiagram(child);
+	
+	XcosDiagram dg = Xcos.createEmptyDiagram();
+	dg.setModel(child.getModel());
+	child = dg;
     }
 
     public String getToolTipText() {
@@ -94,9 +104,9 @@ public class SuperBlock extends BasicBlock {
 	    if (wantToClose) {
 		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentTab().getParentWindowId());
 		xcosWindow.removeTab(getParentTab());
-		//palette.getAsSimpleWindow().close();
 		getViewPort().close();
 		Xcos.closeDiagram(this);
+		this.removeListener(null);
 		container.setLocked(false);
 	    }
 	}
