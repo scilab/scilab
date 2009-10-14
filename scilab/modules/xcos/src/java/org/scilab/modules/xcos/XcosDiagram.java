@@ -16,6 +16,8 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,7 +91,6 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 
 	// Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-	private String title = XcosMessages.UNTITLED;
 	private double finalIntegrationTime = 100000;
 	private double integratorAbsoluteTolerance = 1e-4;
 	private double integratorRelativeTolerance = 1e-6;
@@ -107,7 +108,7 @@ public class XcosDiagram extends ScilabGraph {
 	private Tab viewPort;
 
 	private CheckBoxMenuItem viewPortMenu;
-
+	
 	public Object addEdge(Object edge, Object parent, Object source,
 			Object target, Integer index)
 	{	
@@ -179,6 +180,17 @@ public class XcosDiagram extends ScilabGraph {
 
 		getAsComponent().setToolTips(true);
 
+		getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
+		    public void propertyChange(PropertyChangeEvent arg0) {
+			if (arg0.getPropertyName().compareTo("modified") == 0) {
+			    if ((Boolean) arg0.getOldValue() != (Boolean) arg0.getNewValue()) {
+				System.err.println("modified : "+arg0.getOldValue().toString()+"->"+arg0.getNewValue().toString());
+				updateTabTitle();
+			    }
+			}
+		    }
+		});
+		
 		// Forbid disconnecting cells once it is connected.
 		//setCellsDisconnectable(false);
 
@@ -545,7 +557,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		boolean wantToClose = true;
 
-		if (this.undoManager.canUndo()) {
+		if (isModified()) {
 			// The diagram has been modified
 			// Ask the user want he want to do !
 			int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);
@@ -570,12 +582,19 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public boolean saveDiagram() {
-
-		if (title.equals(XcosMessages.UNTITLED)) {
-			return saveDiagramAs();
-		} else {
-			return BlockWriter.writeDiagramToFile(title, this);
-		}
+	    boolean isSuccess = false;
+	    if (getTitle().equals(XcosMessages.UNTITLED)) {
+		isSuccess = saveDiagramAs();
+	    } 
+	    else {
+		isSuccess = BlockWriter.writeDiagramToFile(getTitle(), this);
+	    }
+	    
+	    if(isSuccess) {
+		setModified(false);
+	    }
+	    
+	    return isSuccess;
 	}
 
 	public boolean saveDiagramAs() {
@@ -631,6 +650,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		if (isSuccess) {
 			this.setTitle(fileName);
+			setModified(false);
 		} else {
 			XcosDialogs.couldNotSaveFile();
 		}
@@ -639,12 +659,13 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
-		parentTab.setName(title);
+	    super.setTitle(title);
+	    updateTabTitle();
 	}
-
-	public String getTitle() {
-		return title;
+	
+	public void updateTabTitle() {
+	    String tabTitle = !isModified() ? getTitle() : "* "+getTitle();
+	    parentTab.setName(tabTitle);
 	}
 
 	public void setContext(String context){
@@ -749,7 +770,7 @@ public class XcosDiagram extends ScilabGraph {
 		//this.getParentTab().setName(fileToLoad);
 
 		setTitle((String) properties.get("title"));
-		getParentTab().setName((String) properties.get("title"));
+		//getParentTab().setName((String) properties.get("title"));
 
 		// Clear all undo events in Undo Manager
 		undoManager.reset();
