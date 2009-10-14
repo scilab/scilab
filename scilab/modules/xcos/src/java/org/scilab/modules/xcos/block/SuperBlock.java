@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -21,13 +24,15 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.util.mxEvent;
+
 public class SuperBlock extends BasicBlock {
 
     public SuperBlock(String label) {
 	super(label);
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context, XcosDiagram diagram) {
 	this.setLocked(true);	
 	XcosDiagram xcosDiagram = new SuperBlockDiagram(this);
 	Xcos.showDiagram(xcosDiagram);
@@ -37,6 +42,14 @@ public class SuperBlock extends BasicBlock {
 	    innerContext = innerContext + ";" + context;
 	    xcosDiagram.setContext(innerContext);
 	}
+	xcosDiagram.getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
+
+	    public void propertyChange(PropertyChangeEvent arg0) {
+		if(arg0.getPropertyName().compareTo("modified") == 0) {
+		    //diagram.fireEvent(mxEvent.NOTIFY);
+		}
+	    }
+	});
     }
 
     public String getToolTipText() {
@@ -54,16 +67,16 @@ public class SuperBlock extends BasicBlock {
 
     private class SuperBlockDiagram extends XcosDiagram {
 	private SuperBlock container = null;
-	
+
 	public SuperBlockDiagram(SuperBlock superBlock) {
 	    super();
 	    this.container = superBlock;
 	}
-	
+
 	public void closeDiagram() {
 	    boolean wantToClose = true;
 
-	    if (this.undoManager.canUndo()) {
+	    if (isModified()) {
 		// The diagram has been modified
 		// Ask the user want he want to do !
 		int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);

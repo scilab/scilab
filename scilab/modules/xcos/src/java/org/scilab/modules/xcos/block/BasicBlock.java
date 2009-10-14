@@ -35,6 +35,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
@@ -48,10 +49,12 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxEvent;
 
 public class BasicBlock extends mxCell {
 
@@ -750,10 +753,11 @@ public class BasicBlock extends mxCell {
 	}
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context, XcosDiagram diagram) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
+	final XcosDiagram parent = diagram;
 	try {
 	    tempOutput = File.createTempFile("xcos",".hdf5");
 	    tempInput = File.createTempFile("xcos",".hdf5");
@@ -782,6 +786,7 @@ public class BasicBlock extends mxCell {
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
+		    parent.fireEvent(XcosEvent.ADD_PORTS);
 		    //tempOutput.delete();
 		    //tempInput.delete();
 		    setLocked(false);
