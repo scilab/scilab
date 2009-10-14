@@ -79,7 +79,6 @@ import org.w3c.dom.Document;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
@@ -254,7 +253,7 @@ public class XcosDiagram extends ScilabGraph {
 	//	multiplicities[2] = new mxMultiplicity(false, "Source", null, null, 0,
 	//			"0", null, "Source Must Have No Incoming Edge", null, true);
 	setMultiplicities(multiplicities);
-	getModel().addListener(mxEvent.CHANGE, new mxIEventListener()
+	getModel().addListener(XcosEvent.CHANGE, new mxIEventListener()
 	{
 	    public void invoke(Object sender, mxEventObject evt)
 	    {
@@ -262,7 +261,7 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
 
-	addListener(mxEvent.CELLS_ADDED, new mxIEventListener() {
+	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		Object[] cells = (Object[]) evt.getArgs()[0];
 		
