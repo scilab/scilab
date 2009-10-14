@@ -488,8 +488,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser .setAcceptAllFileFilterUsed(true);
 		fileChooser .setInitialDirectory(initialDirectoryPath);
 		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
-		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(scxFilter);
+		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
 
 		int retval = fileChooser.showSaveDialog(this);

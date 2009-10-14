@@ -41,13 +41,15 @@ public class DiamondPlusMarkDrawer extends DiamondMarkDrawer {
 		super.drawMark(gl, backColor, frontColor);
 		
 		// draw cross
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_LINES);
-		gl.glVertex3d(-1.0,  0.0, 0.0);
-		gl.glVertex3d(1.0 ,  0.0, 0.0);
-		gl.glVertex3d(0.0 , -1.0, 0.0);
-		gl.glVertex3d(0.0 ,  1.0, 0.0);
-		gl.glEnd();
-		
+    if(!isFrontTransparent)
+    {
+		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		  gl.glBegin(GL.GL_LINES);
+		  gl.glVertex3d(-1.0,  0.0, 0.0);
+		  gl.glVertex3d(1.0 ,  0.0, 0.0);
+		  gl.glVertex3d(0.0 , -1.0, 0.0);
+		  gl.glVertex3d(0.0 ,  1.0, 0.0);
+		  gl.glEnd();
+		}
 	}
 }

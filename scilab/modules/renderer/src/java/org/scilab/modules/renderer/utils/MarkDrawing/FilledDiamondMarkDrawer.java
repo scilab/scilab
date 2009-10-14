@@ -36,14 +36,16 @@ public class FilledDiamondMarkDrawer extends MarkDrawingStrategy {
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_QUADS);
-		gl.glVertex3d(-1.0,  0.0, 0.0);
-		gl.glVertex3d(0.0 ,  1.0, 0.0);
-		gl.glVertex3d(1.0 ,  0.0, 0.0);
-		gl.glVertex3d(0.0 , -1.0, 0.0);
-		gl.glEnd();
-
+    if(!isFrontTransparent)
+    {
+		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		  gl.glBegin(GL.GL_QUADS);
+		  gl.glVertex3d(-1.0,  0.0, 0.0);
+		  gl.glVertex3d(0.0 ,  1.0, 0.0);
+		  gl.glVertex3d(1.0 ,  0.0, 0.0);
+		  gl.glVertex3d(0.0 , -1.0, 0.0);
+		  gl.glEnd();
+    }
 	}
 
 }

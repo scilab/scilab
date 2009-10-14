@@ -692,7 +692,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markforeground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -726,7 +726,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markbackground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
