@@ -83,6 +83,7 @@ import org.scilab.modules.xcos.actions.ViewBrowserAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGetinfosAction;
+import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
@@ -464,6 +465,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		format.add(RotateAction.createMenu(scilabGraph));
 		format.add(FlipAction.createMenu(scilabGraph));
+		
+		format.addSeparator();
+		
+		//format.add(DiagramBackgroundAction.createMenu(scilabGraph));
+		CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(scilabGraph);
+		format.add(gridMenu);
+		((XcosDiagram) scilabGraph).setGridMenuItem(menu);
 		
 		/** Tools menu */
 		Menu tools = ScilabMenu.createMenu();

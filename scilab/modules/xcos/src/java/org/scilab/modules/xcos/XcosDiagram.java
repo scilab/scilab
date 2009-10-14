@@ -107,6 +107,7 @@ public class XcosDiagram extends ScilabGraph {
 	private Tab viewPort;
 
 	private CheckBoxMenuItem viewPortMenu;
+	private CheckBoxMenuItem gridMenu;
 
 	public Object addEdge(Object edge, Object parent, Object source,
 			Object target, Integer index)
@@ -538,6 +539,28 @@ public class XcosDiagram extends ScilabGraph {
 	public void setViewPortMenuItem(CheckBoxMenuItem menu) {
 		this.viewPortMenu = menu;
 	}
+	
+	/**
+	 * Manage the visibility of the grid and the associated menu
+	 * @param status new status
+	 */
+	public void setGridVisible(boolean status) {
+		setGridEnabled(true);
+		getAsComponent().setGridVisible(status);
+		getAsComponent().repaint();
+
+		// (Un)Check the corresponding menu
+		gridMenu.setChecked(status);
+	}
+	
+	/**
+	 * Set menu used to manage Grid visibility
+	 * @param menu the menu
+	 */
+	public void setGridMenuItem(CheckBoxMenuItem menu) {
+		this.gridMenu = menu;
+	}
+	
 	/**
 	 * Close Xcos instance including all tabs
 	 */

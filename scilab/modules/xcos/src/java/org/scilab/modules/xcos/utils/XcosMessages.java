@@ -85,6 +85,7 @@ public final class XcosMessages {
     public static final String RESIZE = Messages.gettext("Resize");
     public static final String ROTATE = Messages.gettext("Rotate");
     public static final String FLIP = Messages.gettext("Flip");
+    public static final String GRID = Messages.gettext("Grid");
     
     /** Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
