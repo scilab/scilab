@@ -671,10 +671,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
-		} else {
-			synchronized (synchro) {
-				synchro.notify();
-			}
 		}
 	}
 
@@ -683,13 +679,27 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param f the file to open
 	 */
 	public void readFileAndWait(File f) {
-		readFile(f);
-		synchronized (synchro) {
-			try {
-				synchro.wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		/** Is this file already opened */
+		boolean alreadyOpened = false;
+		for (int i = 0; i < tabPane.getTabCount(); i++) {
+			JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(i)).getViewport().getComponent(0);
+			if (f.getAbsolutePath().equals(textPaneAt.getName())) {
+				/* File is already opnened */
+				tabPane.setSelectedIndex(i);
+				alreadyOpened = true;
+				break;
+			}
+		}
+		if (!alreadyOpened) {
+			ReadFileThread myReadThread = new ReadFileThread(f);
+			myReadThread.start();
+			synchronized (synchro) {
+				try {
+					synchro.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}

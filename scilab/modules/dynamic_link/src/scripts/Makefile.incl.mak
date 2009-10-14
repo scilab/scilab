@@ -46,7 +46,9 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
+-I"$(SCIDIR)/modules/windows_tools/includes" \
 -I"$(SCIDIR)/libs/f2c" \
+-I"$(SCIDIR)/libs/hashtable" \
 -I"$(SCIDIR)/libs/intl"
 #==================================================
 CC_LDFLAGS = 
@@ -104,7 +106,8 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
 "$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
 "$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib" \
-"$(SCIDIR1)/bin/api_scilab.lib"
+"$(SCIDIR1)/bin/api_scilab.lib" "$(SCIDIR1)/bin/hashtable.lib" \
+"$(SCIDIR1)/bin/scilab_windows.lib" 
 #==================================================
 # default rules for Fortran 77 & 90 Compilation 
 #==================================================

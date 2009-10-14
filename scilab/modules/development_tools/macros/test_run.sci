@@ -261,7 +261,7 @@ function test_run(varargin)
 		
 		// It's an error
 		else
-			error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i)));
+			error(sprintf(gettext("%s is not an installed module or toolbox"),module.items(1)));
 		end
 		
 		for i=1:size(test_mat,"*")
