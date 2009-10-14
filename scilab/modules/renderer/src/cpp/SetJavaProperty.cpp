@@ -16,6 +16,12 @@
 #include "getHandleDrawer.h"
 #include "figureDrawing/DrawableFigure.h"
 #include "subwinDrawing/DrawableSubwin.h"
+#include "GiwsException.hxx"
+
+extern "C"{
+#include "Scierror.h"
+#include "sciprint.h"
+}
 
 using namespace sciGraphics ;
 
@@ -92,9 +98,20 @@ void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
 	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
+BOOL sciSetJavaTitle( sciPointObj * pFigure, const char * title )
 {
-  getFigureDrawer(pFigure)->setTitle(title);
+  try {
+	  getFigureDrawer(pFigure)->setTitle(title);
+	  return TRUE;
+	} catch (const GiwsException::JniException& e)
+	{
+ 		Scierror(999, "A native error occurred during the creation of the window.\nDescription: %s\nException Name: %s\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+	} catch (const std::exception& e)
+	{
+		sciprint("Error: %s\n",e.what());
+		Scierror(999, "An error occurred during the creation of the window.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
+  }
+  return FALSE;
 }
 /*---------------------------------------------------------------------------------*/
 void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)
