@@ -98,8 +98,8 @@
     <programlisting role="example"><![CDATA[ 
 function [y,z]=foo(a,b),y=a+b,z=1,endfunction
 p=help_skeleton('foo',TMPDIR)
-if isdef('editor')
-  editor(p)
+if (isdef('editor') | (funptr('editor')<>0)) then
+  editor(p);
 end
  ]]></programlisting>
   </refsection>

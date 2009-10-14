@@ -273,7 +273,7 @@
     <programlisting role="example">
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
-    if isdef('editor') then
+    if (isdef('editor') | (funptr('editor')<>0)) then
       editor(path)
     end
   </programlisting>

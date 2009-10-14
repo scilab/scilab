@@ -11,7 +11,7 @@
 
 function demo_viewCode(this_script)
 	
-	if ~isdef('editor') then
+	if (~isdef('editor') & (funptr('editor')==0)) then
 	  return
 	end
 	
