@@ -22,5 +22,4 @@ public class ExplicitOutputPort extends OutputPort {
     public Type getType() {
 	return Type.EXPLICIT;
     }
-    
-}
+   }

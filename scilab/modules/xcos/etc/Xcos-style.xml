@@ -1,95 +1,145 @@
 <mxStylesheet>
-	
-	<!-- BLOCK DEFINITION -->
-	<add as="block" extend="defaultVertex">
-		<add as="shape" value="rectangle"/>
-		<add as="perimeter" value="rectanglePerimeter"/>
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="white"/>
-	</add>
-	<add as="Affiche" extend="block">
-	</add>
-	<add as="Label" extend="block">
-		<add as="strokeColor" value="white"/>
-	</add>
-	<add as="Const" extend="block">
-	</add>
-	<add as="Gain" extend="block">
-		<add as="shape" value="triangle"/>
-		<add as="perimeter" value="trianglePerimeter"/>
-	</add>
-	<add as="Icon" extend="block">
-		<add as="shape" value="image"/>
-	</add>
 
-	
-	<!-- PORT DEFINITION -->
-	<add as="Port" extend="defaultVertex">
-		<add as="shape" value="triangle"/>
-		<add as="perimeter" value="trianglePerimeter"/>
-	</add>
-	<add as="CommandPort" extend="Port">
-		<!--
+    <!-- BLOCK DEFINITION -->
+    <add as="block" extend="defaultVertex">
+        <add as="shape" value="rectangle"/>
+        <add as="perimeter" value="rectanglePerimeter"/>
+        <add as="strokeColor" value="black"/>
+        <add as="fillColor" value="white"/>
+    </add>
+    <add as="Affiche" extend="block">
+    </add>
+    <add as="Label" extend="block">
+        <add as="strokeColor" value="white"/>
+    </add>
+    <add as="Const" extend="block">
+    </add>
+    <add as="Gain" extend="block">
+        <add as="shape" value="triangle"/>
+        <add as="perimeter" value="trianglePerimeter"/>
+        <add as="direction" value="east"/>
+    </add>
+    <add as="Gain90" extend="Gain">
+        <add as="direction" value="north"/>
+    </add>
+    <add as="Gain180" extend="Gain">
+        <add as="direction" value="west"/>
+    </add>
+    <add as="Gain270" extend="Gain">
+        <add as="direction" value="south"/>
+    </add>
+    <add as="Icon" extend="block">
+        <add as="shape" value="image"/>
+    </add>
+
+
+    <!-- PORT DEFINITION -->
+    <add as="Port" extend="defaultVertex">
+        <add as="shape" value="triangle"/>
+        <add as="perimeter" value="trianglePerimeter"/>
+    </add>
+    <add as="CommandPort" extend="Port">
+        <!--
 		<add as="shape" value="ellipse"/>
 		<add as="perimeter" value="ellipsePerimeter"/>
 		-->
-		<add as="strokeColor" value="red"/>
-		<add as="fillColor" value="red"/>
-		<add as="direction" value="south"/>
-		<add as="type" value="Command"/>
-	</add>
-	<add as="ControlPort" extend="Port">
-		<add as="strokeColor" value="red"/>
-		<add as="fillColor" value="red"/>
-		<add as="direction" value="south"/>
-		<add as="type" value="Control"/>
-	</add>
-	<add as="ExplicitInputPort" extend="Port">
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="black"/>
-		<add as="direction" value="east"/>
-	</add>
-	<add as="ExplicitOutputPort" extend="Port">
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="black"/>
-		<add as="direction" value="east"/>
-	</add>
-	<add as="ImplicitInputPort" extend="Port">
-		<add as="shape" value="rectangle"/>
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="black"/>
-	</add>
-	<add as="ImplicitOutputPort" extend="Port">
-		<add as="shape" value="rectangle"/>
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="white"/>
-	</add>
+        <add as="strokeColor" value="red"/>
+        <add as="fillColor" value="red"/>
+        <add as="direction" value="south"/>
+        <add as="type" value="Command"/>
+    </add>
+    <add as="CommandPort90" extend="CommandPort">
+        <add as="direction" value="east"/>
+    </add>
+    <add as="CommandPort180" extend="CommandPort">
+        <add as="direction" value="north"/>
+    </add>
+    <add as="CommandPort270" extend="CommandPort">
+        <add as="direction" value="west"/>
+    </add>
+    
+    <add as="ControlPort" extend="Port">
+        <add as="strokeColor" value="red"/>
+        <add as="fillColor" value="red"/>
+        <add as="direction" value="south"/>
+        <add as="type" value="Control"/>
+    </add>
+    <add as="ControlPort90" extend="ControlPort">
+        <add as="direction" value="east"/>
+    </add>
+    <add as="ControlPort180" extend="ControlPort">
+        <add as="direction" value="north"/>
+    </add>
+    <add as="ControlPort270" extend="ControlPort">
+        <add as="direction" value="west"/>
+    </add>
 
-	
-	<!-- LINK definition -->
-	<add as="defaultEdge">
-		<!--<add as="edgeStyle" value="entityRelationEdgeStyle"/>-->
-		<add as="labelBackgroundColor" value="white"/>
-		<!-- To have rounded links -->
-		<!-- <add as="rounded" value="1"/> -->
-		<!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
-		<add as="shape" value="connector"/>
-		<add as="labelBackgroundColor" value="white"/>
-		<add as="endArrow" value="classicnone"/>
-		<add as="fontSize" value="10"/>
-		<add as="align" value="center"/>
-		<add as="verticalAlign" value="middle"/>
-		<add as="strokeColor" value="black"/>
-	</add>
-	<add as="CommandControlLink" extend="defaultEdge">
-		<add as="strokeColor" value="red"/>
-		<add as="elbow" value="vertical"/>
-	</add>
-	<add as="ExplicitLink" extend="defaultEdge">
-		<add as="strokeColor" value="blue"/>
-	</add>
-	<add as="ImplicitLink" extend="defaultEdge">
-		<add as="strokeColor" value="green"/>
-	</add>
+    <add as="ExplicitInputPort" extend="Port">
+        <add as="strokeColor" value="black"/>
+        <add as="fillColor" value="black"/>
+        <add as="direction" value="east"/>
+    </add>
+    <add as="ExplicitInputPort90" extend="ExplicitInputPort">
+        <add as="direction" value="north"/>
+    </add>
+    <add as="ExplicitInputPort180" extend="ExplicitInputPort">
+        <add as="direction" value="west"/>
+    </add>
+    <add as="ExplicitInputPort270" extend="ExplicitInputPort">
+        <add as="direction" value="south"/>
+    </add>
+
+    <add as="ExplicitOutputPort" extend="Port">
+        <add as="strokeColor" value="black"/>
+        <add as="fillColor" value="black"/>
+        <add as="direction" value="east"/>
+    </add>
+    <add as="ExplicitOutputPort90" extend="ExplicitOutputPort">
+        <add as="direction" value="north"/>
+    </add>
+    <add as="ExplicitOutputPort180" extend="ExplicitOutputPort">
+        <add as="direction" value="west"/>
+    </add>
+    <add as="ExplicitOutputPort270" extend="ExplicitOutputPort">
+        <add as="direction" value="south"/>
+    </add>
+
+    <add as="ImplicitInputPort" extend="Port">
+        <add as="shape" value="rectangle"/>
+        <add as="strokeColor" value="black"/>
+        <add as="fillColor" value="black"/>
+    </add>
+    <add as="ImplicitOutputPort" extend="Port">
+        <add as="shape" value="rectangle"/>
+        <add as="strokeColor" value="black"/>
+        <add as="fillColor" value="white"/>
+    </add>
+
+
+    <!-- LINK definition -->
+    <add as="defaultEdge">
+        <!--<add as="edgeStyle" value="entityRelationEdgeStyle"/>-->
+        <add as="labelBackgroundColor" value="white"/>
+        <!-- To have rounded links -->
+        <!-- <add as="rounded" value="1"/> -->
+        <!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
+        <add as="shape" value="connector"/>
+        <add as="labelBackgroundColor" value="white"/>
+        <add as="endArrow" value="classicnone"/>
+        <add as="fontSize" value="10"/>
+        <add as="align" value="center"/>
+        <add as="verticalAlign" value="middle"/>
+        <add as="strokeColor" value="black"/>
+    </add>
+    <add as="CommandControlLink" extend="defaultEdge">
+        <add as="strokeColor" value="red"/>
+        <add as="elbow" value="vertical"/>
+    </add>
+    <add as="ExplicitLink" extend="defaultEdge">
+        <add as="strokeColor" value="blue"/>
+    </add>
+    <add as="ImplicitLink" extend="defaultEdge">
+        <add as="strokeColor" value="green"/>
+    </add>
 
 </mxStylesheet>

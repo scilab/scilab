@@ -34,4 +34,13 @@ public class GainBlock extends BasicBlock {
 	setValue(((ScilabString) getExprs()).getData()[0][0]);
     }
     
+    public void toggleFlip(){
+    	super.toggleFlip();
+    	System.err.println("Gain flip : " + (flip ? "true" : "false"));
+    	if(flip){
+    		setStyle("Gain180");
+    	}else{
+    		setStyle("Gain90");
+    	}
+    }
 }

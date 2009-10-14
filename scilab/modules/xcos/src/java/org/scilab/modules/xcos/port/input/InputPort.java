@@ -12,12 +12,32 @@
 
 package org.scilab.modules.xcos.port.input;
 
+import java.util.List;
+
 import org.scilab.modules.xcos.port.BasicPort;
 
 public abstract class InputPort extends BasicPort {
 
-    protected InputPort(String type) {
-	super(type);
-    }
-    
+	protected InputPort(String type) {
+		super(type);
+	}
+
+	public void updateStyle(int angle){
+		
+		System.err.println("updateStyle");
+		switch(angle){
+		case 0 :
+			setStyle("ExplicitInputPort180");
+			break;
+		case 90 :
+			setStyle("ExplicitInputPort270");
+			break;
+		case 180 :
+			setStyle("ExplicitInputPort");
+			break;
+		case 270 :
+			setStyle("ExplicitInputPort90");
+			break;
+		}
+	}
 }
