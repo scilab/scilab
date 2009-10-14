@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -41,7 +46,8 @@ public class RotateAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph), null);
+		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**
