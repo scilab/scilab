@@ -35,6 +35,10 @@
         <term>str</term>
         <listitem>
           <para>matrix of strings.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,14 +64,17 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-str=["Scilab" "is";"not" "elisaB"];
+str=["Scilab" "is";"$\sqrt{not}$" "elisaB"]; // LaTeX rendering (>= Scilab 5.2)
 plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
+
 r=[0,0,1,0.5];
 xstringb(r(1),r(2),str,r(3),r(4),"fill");
-xrect(r(1),r(2)+r(4),r(3),r(4))
+xrect(r(1),r(2)+r(4),r(3),r(4));
+
 r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
 xrect(r(1),r(2)+r(4),r(3),r(4))
 xstringb(r(1),r(2),str,r(3),r(4),"fill");
+
 r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
 xrect(r(1),r(2)+r(4),r(3),r(4))
 xstringb(r(1),r(2),str,r(3),r(4),"fill");

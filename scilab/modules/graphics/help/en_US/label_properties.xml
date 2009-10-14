@@ -53,6 +53,10 @@
         <listitem>
           <para>The matrix containing the strings of the object. The rows of the
         matrix are displayed horizontally and the columns vertically.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -172,14 +176,19 @@ xtitle("My title","my x axis label", "Volume","Month")
 
 t=a.title;
 t.foreground=9;
-t.font_size=5;
+t.font_size=4;
 t.font_style=5;
 t.text="SCILAB";
-   
+
 x_label=a.x_label;
 x_label.text=" Weight"
 x_label.font_style= 5;
 a.y_label.foreground = 12;
+   
+// Starting with Scilab 5.2, it is now possible to write LaTeX or MathML:
+t.text="$\sqrt{SCILAB}$";
+x_label.font_size= 5;
+x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""><mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
  ]]></programlisting>
   </refsection>
   <refsection>
