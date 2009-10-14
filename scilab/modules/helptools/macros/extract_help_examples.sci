@@ -510,14 +510,14 @@ function r=xbasc_build(w)
       %wins_ref=ghdl2tree(scf(k));save(%U,%wins_ref);
     end
     
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_ref=xget('window');
     save(%U,ids_ref)
     %wins_ref=ghdl2tree(gcf());
     save(%U,%wins_ref)
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   
@@ -549,7 +549,7 @@ function r=xbasc_run(w)
       load(%U,'%wins_ref');
       if %CMP(%wins_, %wins_ref) then r=%t,return,end
     end
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_=xget('window');
@@ -558,7 +558,7 @@ function r=xbasc_run(w)
     %wins_=ghdl2tree(gcf());
     load(%U,'%wins_ref');
     if %CMP(%wins_, %wins_ref) then r=%t,return,end
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   
