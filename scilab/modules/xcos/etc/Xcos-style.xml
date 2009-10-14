@@ -393,6 +393,7 @@
   </add>
   <add as="MUX" extend="blockWithLabel">
     <add as="verticalLabelPosition" value="bottom"/>
+    <add as="verticalAlign" value="top"/>
   </add>
   <add as="MUX_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
@@ -666,6 +667,7 @@
   </add>
   <add as="DEMUX" extend="blockWithLabel">
     <add as="verticalLabelPosition" value="bottom"/>
+    <add as="verticalAlign" value="top"/>
   </add>
   <add as="DEMUX_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEMUX_f.gif"/>
