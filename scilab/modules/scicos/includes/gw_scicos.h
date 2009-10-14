@@ -25,41 +25,50 @@
 #ifndef __GW_SCICOS__
 #define __GW_SCICOS__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_scicos.h"
 #include "machine.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_scicos(void);
+SCICOS_IMPEXP int gw_scicos(void);
 /*--------------------------------------------------------------------------*/
 /* interface for the previous function Table */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_var2vec)(char *fname,unsigned long fname_len);
-int C2F(sci_vec2var)(char *fname,unsigned long fname_len);
-int C2F(sci_getblocklabel)(char *fname,unsigned long fname_len);
-int C2F(sci_scicos_debug)(char *fname,unsigned long fname_len);
-int C2F(sci_scicos_debug_count)(char *fname,unsigned long fname_len);
-int C2F(sci_sctree)(char *fname,unsigned long fname_len);
-int C2F(sci_sci_tree2)(char *fname,unsigned long fname_len);
-int C2F(sci_sci_tree3)(char *fname,unsigned long fname_len);
-int C2F(sci_sci_tree4)(char *fname,unsigned long fname_len);
-int C2F(sci_curblock)(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_var2vec(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_vec2var(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_getblocklabel(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_scicos_debug(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_scicos_debug_count(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_sctree(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ftree2(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ftree3(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ftree4(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_curblock(char *fname,unsigned long fname_len);
 
-int C2F(sci_scicos_time)(char *fname,unsigned long fname_len);
-int C2F(sci_duplicate)(char *fname,unsigned long fname_len);
-int C2F(sci_diffobjs)(char *fname,unsigned long fname_len);
-int C2F(sci_pointer_xproperty)(char *fname,unsigned long fname_len);
-int C2F(sci_phase_simulation)(char *fname,unsigned long fname_len);
-int C2F(sci_set_xproperty)(char *fname,unsigned long fname_len);
-int C2F(sci_set_blockerror)(char *fname,unsigned long fname_len);
-int C2F(sci_ctree2)(char *fname,unsigned long fname_len);
-int C2F(sci_ctree3)(char *fname,unsigned long fname_len);
-int C2F(sci_ctree4)(char *fname,unsigned long fname_len);
-int C2F(sci_scicosim)(char *fname,unsigned long fname_len);
-int C2F(sci_getscicosvars)(char *fname,unsigned long fname_len);
-int C2F(sci_curblockc)(char *fname,unsigned long fname_len);
-int C2F(sci_buildouttb)(char *fname,unsigned long fname_len);
-int C2F(sci_permutobj)(char *fname,unsigned long fname_len);
-int C2F(sci_end_scicosim)(char *fname,unsigned long fname_len);
-int sci_haltscicos(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_scicos_time(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_duplicate(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_diffobjs(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_pointer_xproperty(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_phase_simulation(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_set_xproperty(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_set_blockerror(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ctree2(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ctree3(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_ctree4(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_scicosim(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_getscicosvars(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_curblockc(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_buildouttb(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_permutobj(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_end_scicosim(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_haltscicos(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_coserror(char *fname, unsigned long fname_len);
+
+/* it was in a separate gateway */
+SCICOS_IMPEXP int sci_data2sig(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_sig2data(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_model2blk(char *fname,unsigned long fname_len);
+SCICOS_IMPEXP int sci_callblk(char *fname,unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/
