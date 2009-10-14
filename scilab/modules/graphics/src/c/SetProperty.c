@@ -38,6 +38,7 @@
 
 #include "SetProperty.h"
 #include "GetProperty.h"
+#include "GetJavaProperty.h"
 #include "InitObjects.h"
 #include "BuildObjects.h"
 #include "math_graphics.h"
@@ -692,7 +693,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markforeground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -726,7 +727,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markbackground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -2037,6 +2038,12 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
     {
       int size[2] = {newWidth, newHeight} ;
       sciSetJavaWindowSize(pobj, size) ;
+      //Check the new size
+      sciGetJavaWindowSize(pobj, size);
+      if(size[0]!=newWidth || size[1]!=newHeight)
+      {
+        sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"));
+      }
     }
     break;
   default:
