@@ -15,6 +15,7 @@
 	</add>
 	<add as="Label" extend="block">
 		<add as="strokeColor" value="white"/>
+		<add as="noLabel" value="0"/>
 	</add>
 	<add as="Const" extend="block">
 	</add>
@@ -143,6 +144,9 @@
 	</add>
 	<add as="TIME_DELAY" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_DELAY.gif"/>
+	</add>
+	<add as="TEXT_f" extend="blockWithLabel">
+		<add as="strokeColor" value="white"/>
 	</add>
 	<add as="TCLSS" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TCLSS.gif"/>
@@ -770,7 +774,5 @@
 	<add as="GENSQR_f" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GENSQR_f.gif"/>
 	</add>
-	<add as="CONST_m" extend="Icon">
-		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONST_m.gif"/>
-	</add>
+	<add as="CONST_m" extend="blockWithLabel"/>
 </mxStylesheet>
