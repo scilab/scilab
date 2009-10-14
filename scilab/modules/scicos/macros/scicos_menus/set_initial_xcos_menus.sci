@@ -280,12 +280,11 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
       'XcosMenuIdentification',        _("Click on an object to set or get identification");
       'XcosMenuResize',                _("Click block to resize");
       'XcosMenuBlockDoc',              _("Click on a block to set or get it''s documentation");
-      'XcosMenuCreateMask',            _("Click on a block");
-      'XcosMenuRemoveMask',            _("Click on a block")
-      'XcosMenuCustomizeMask',         _("Click on a block")
-      'XcosMenuCreateAtomic',            _("Click on a block");
-      'XcosMenuRemoveAtomic',            _("Click on a block")
-
+      'XcosMenuCreateMask',            _("Click on a super block");
+      'XcosMenuRemoveMask',            _("Click on a super block")
+      'XcosMenuCustomizeMask',         _("Click on a super block")
+      'XcosMenuCreateAtomic',          _("Click on a super block");
+      'XcosMenuRemoveAtomic',          _("Click on a super block")
 		      ];
 
   CmenuTypeOneVector=stripblanks(CmenuTypeOneVector)
