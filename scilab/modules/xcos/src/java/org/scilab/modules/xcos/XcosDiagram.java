@@ -47,6 +47,7 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
@@ -340,6 +341,10 @@ public class XcosDiagram extends ScilabGraph {
 		    /*---*/
 		    menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
 		    menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+		    /*---*/
+		    menu.getAsSimpleContextMenu().addSeparator();
+		    /*---*/
+		    menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 		    /*---*/
 		    menu.getAsSimpleContextMenu().addSeparator();
 		    /*---*/
