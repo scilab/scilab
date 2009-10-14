@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsShow">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsShow</refname>
     <refpurpose>Show the caracteristics of a module</refpurpose>
@@ -37,18 +34,18 @@
         <term>name</term>
         <listitem>
           <para>
-			Character string : External module's technical name
-		  </para>
+						Character string : External module's technical name
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>version</term>
         <listitem>
           <para>
-			Character string : External module's version. This is an
-			optional parameter. If it's not defined, the most recent version
-			of the module is used.
-		  </para>
+						Character string : External module's version. This is an
+						optional parameter. If not defined, the most recent version
+						of the module is used.
+					</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,7 +56,7 @@
   <refsection>
     <title>Description</title>
     <para>
-	  Show the caracteristics of a module
+			Show the caracteristics of a module
 	</para>
   </refsection>
   <!-- ===================================================================== -->
@@ -67,10 +64,11 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+<![CDATA[ 
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsShow("toolbox_5");
- ]]></programlisting>
+]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

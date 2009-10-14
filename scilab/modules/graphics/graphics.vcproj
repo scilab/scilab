@@ -1013,6 +1013,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\loadTextRenderingAPI.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
 				<FileConfiguration

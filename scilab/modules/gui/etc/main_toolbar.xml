@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <toolbar>
-    <!-- Scipad -->
-    <button icon="accessories-text-editor.png" tooltiptext="Launch Scipad">
-        <callback instruction="scipad();" type="0"/>
+    <!-- xpad -->
+    <button icon="accessories-text-editor.png" tooltiptext="Launch Scilab text editor">
+        <callback 
+        instruction='editor()' type="0"/>
     </button>
     <!-- Open File -->
     <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction='
-          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scipad"));
-          if ~isempty(%fileToOpen) then 
-            scipad(%fileToOpen);
+          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scilab text editor"));
+          if ~(%fileToOpen == "") then
+            editor(%fileToOpen);
           end
-          clear %fileToOpen isempty'
-        type="0"/>
+          clear("%fileToOpen");' type="0"/>
     </button> 
 
     <separator/>
@@ -37,10 +37,10 @@
         <callback 
         instruction='
           %newDir = uigetdir(pwd(), gettext("Select a directory"));
-          if ~isempty(%newDir) then 
+          if ~(%newDir == "") then 
             cd(%newDir);
           end
-          clear %newDir isempty'
+          clear("%newDir");'
         type="0"/>
     </button> 
 

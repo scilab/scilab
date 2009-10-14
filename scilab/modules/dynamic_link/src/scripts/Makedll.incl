@@ -10,7 +10,7 @@ $(LIBRARY).dll: $(OBJS_WITH_PATH)
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $(OBJS_WITH_PATH)
 	@$(LINKER) $(LINKER_FLAGS) $(OBJS_WITH_PATH) $(OTHERLIBS) \
-$(SCIIMPLIB) $(FORTRAN_RUNTIME_LIBRARIES) $(SCILAB_LIBS) \
+$(SCIIMPLIB) $(SCILAB_LIBS) $(CPP_RUNTIME_LIBRARIES) $(FORTRAN_RUNTIME_LIBRARIES) \
 $(EXTRA_LDFLAGS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def"
 
 clean	::

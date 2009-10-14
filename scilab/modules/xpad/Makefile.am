@@ -20,7 +20,7 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
-libscixpad_la_etc_DATA = 	etc/configuration_xpad.xml \
+libscixpad_la_etc_DATA = 	etc/xpadConfiguration.xml \
 				etc/xpad.quit \
 				etc/xpad.start
 
@@ -33,7 +33,7 @@ XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
 
-GIWS_WRAPPERS = Xpad.giws.xml
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -42,7 +42,8 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
+sci_gateway/cpp/sci_xpad_highlightline.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -103,13 +104,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### xpad : gateway declaration ####
 libscixpad_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
-
-
-#### xpad : include files ####
-libscixpad_la_includedir=$(pkgincludedir)
-libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h \
-includes/callxpad.h
 
 if GUI
 USEANT=1

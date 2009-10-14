@@ -1,0 +1,13 @@
+LIBRARY    time.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; time explicit export (SEP 35)
+; --------------------------------------- 
+ scilab_timer
+ timer_
+ realtimeinit_
+ realtime_
+; --------------------------------------- 
+ 

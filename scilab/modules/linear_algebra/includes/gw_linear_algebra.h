@@ -15,7 +15,7 @@
 #define __GW_LINEAR_ALGEBRA__
 #include "dynlib_linear_algebra.h"
 #include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 #define SCI_DOUBLE 1
 #define STRING  10

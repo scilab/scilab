@@ -97,7 +97,7 @@ int sci_get_absolute_file_path(char *fname,unsigned long fname_len)
 
 				if (!absolute_file_path) /* file not found in list of files opened by scilab */
 				{
-					Scierror(999,_("%s: The file %s does not exist.\n"),fname,filename);
+					Scierror(999,_("%s: The file %s is not opened in scilab.\n"),fname,filename);
 					freeArrayOfString(parametersIN,m1*n1);
 					return 0;
 				}

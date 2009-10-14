@@ -365,7 +365,6 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-USEANT=1
 
 if GIWS
 BUILT_SOURCES=giws
@@ -382,6 +381,7 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 pkglib_LTLIBRARIES =  libscirenderer-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscirenderer.la
 endif
 
@@ -390,21 +390,5 @@ libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 #libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
-
-#### renderer : include files ####
-libscirenderer_la_includedir=$(pkgincludedir)
-libscirenderer_la_include_HEADERS = includes/gw_renderer.h \
-includes/BuildDrawingObserver.h \
-includes/DrawingBridge.h \
-includes/GetJavaProperty.h \
-includes/GraphicSynchronizerInterface.h \
-includes/SetJavaProperty.h \
-includes/JavaInteraction.h \
-includes/RendererFontManager.h \
-includes/rendererBasicAlgos.h \
-includes/dynlib_renderer.h
-
-
-
 
 include $(top_srcdir)/Makefile.incl.am

@@ -15,16 +15,18 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class CloseAction extends DefaultAction {
     
     private CloseAction(Xpad editor) {
-        super("Close", editor);
+        super(XpadMessages.CLOSE, editor);
     }
     
     public void doAction() {
@@ -32,6 +34,6 @@ public class CloseAction extends DefaultAction {
     }
     
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Close", null, new CloseAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+	return createMenu(XpadMessages.CLOSE, null, new CloseAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 }

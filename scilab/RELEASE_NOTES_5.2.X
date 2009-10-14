@@ -12,3 +12,11 @@ Known incompatibilities:
 - 'sort' is obsolete. see 'gsort'.
 
 - 'getf' is obsolete. see 'exec'.
+
+- Removed functions, previously declared obsoletes:
+   'mtlb_eig' to replace by 'spec'.
+   'set_posfig_dim' to replace by 'figure_size' property.
+   'xclip' to replace by 'clip_state' and 'clip_box' properties.
+   'xgetfile' to replace by 'uigetfile'.
+   'tk_getfile' to replace by 'uigetfile'.
+   'x_message' to replace by 'messagebox'.

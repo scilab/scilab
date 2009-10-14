@@ -44,7 +44,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -113,7 +113,7 @@ myobj.myarg = 12;
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock2 ( x , mydata )
+function [ y , index , mydata ] = rosenbrock2 ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -135,12 +135,12 @@ nbvar = optimbase_cget(opt,"-numberofvariables");
 assert_equal ( nbvar , 2 );
 // Check cost function without additionnal argument
 opt = optimbase_configure(opt,"-function",rosenbrock);
-[this,f] = optimbase_function ( opt , [0.0 0.0] );
+[this,f , index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_close ( f , 1.0 , %eps );
 // Check cost function with additionnal argument
 opt = optimbase_configure(opt,"-function",rosenbrock2);
 opt = optimbase_configure(opt,"-costfargument",mystuff);
-[this,f] = optimbase_function ( opt , [0.0 0.0] );
+[this,f, index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_close ( f , 144.0 , %eps );
 // Check initial guess
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0]');
@@ -333,7 +333,7 @@ computed = lasterror();
 expected = "optimbase_get: History disabled ; enable -storehistory option.";
 assert_equal ( computed , expected );
 // Test optimbase_function when there is no function
-cmd = "optimbase_function ( opt , [] , 1 )";
+cmd = "[ opt , f , index ] = optimbase_function ( opt , [] , 1 )";
 execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "optimbase_function: Empty function (use -function option).";
@@ -354,7 +354,4 @@ assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);
 
-//
-// Test optimbase_function when there is no function
-//
 

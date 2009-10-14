@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsInstalled">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsIsInstalled</refname>
-    <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
+    <refpurpose>Determines whether the module is installed. Returns true if the module is installed, false otherwise.</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -37,32 +34,31 @@
         <term>name</term>
         <listitem>
           <para>
-			Matrix of strings : Names of modules to test
-		  </para>
+						Matrix of strings : External module's technical name
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>version</term>
         <listitem>
           <para>
-			Matrix of strings : Versions of modules to test
-		  </para>
+						Matrix of strings : External module's version
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>allusers</term>
         <listitem>
           <para>
-			A boolean
-		  </para>
+						A boolean : If this parameter is False, the  
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>res</term>
         <listitem>
           <para>
-			
-		  </para>
+					</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -81,8 +77,17 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
- ]]></programlisting>
+    <programlisting role="example">
+<![CDATA[
+atomsSetConfig("Verbose","True");
+atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+atomsInstall("toolbox_5");
+atomsIsInstalled(["toolbox_5" "toolbox_4"])
+atomsIsInstalled(["toolbox_5" "toolbox_4"],["1.0" "1.0"])
+atomsIsInstalled("toolbox_5");
+atomsRemove("toolbox_5");
+]]>
+		</programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

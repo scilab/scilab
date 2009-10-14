@@ -32,7 +32,7 @@
 \begin{center}
 %% Comment for DVI
 \includegraphics[height=40mm]{scilab_logo}
-\vskip5cm
+\vskip2cm
 
 %% Empty space between the box and the text
 \fboxsep6mm
@@ -42,23 +42,49 @@
 $$\fbox{$
   \begin{array}{c}
   \textbf{Nelder-Mead}\\
-  \textbf{Toolbox Manual}
+  \textbf{User's Manual}
   \end{array}
   $}
 $$
 \end{center}
-\vskip8cm
 
-\normalsize
+\vskip1cm
+
+\begin{center}
+\begin{large}
+Micha\"el BAUDIN
+\end{large}
+\end{center}
+
+\vskip2cm
+
+\textbf{Abstract}
+
+In this document, we present the Nelder-Mead component provided in Scilab.
+The introduction gives a brief overview of the optimization features of the 
+component and present an introductory example. Then we present some theory 
+associated with the simplex, a geometric concept which is central in
+the Nelder-Mead algorithm. We present several method to compute an
+initial simplex. Then we present Spendley's et al. fixed shape unconstrained 
+optimization algorithm. Several numerical experiments are provided, which 
+shows how this algorithm performs on well-scaled and badly scaled quadratics. 
+In the final section, we present the Nelder-Mead variable shape 
+unconstrained optimization algorithm. Several numerical experiments are presented,
+where some of these are counter examples, that is cases where the algorithms 
+fails to converge on a stationnary point. In the appendix of this document,
+the interested reader will find a bibliography of simplex-based algorithms,
+along with an analysis of the various implementations which are available 
+in several programming languages.
+
+\vskip1cm
+
 
 \begin{flushright}
-Version 0.2 \\
+Version 0.3 \\
 September 2009
 \end{flushright}
 
-\begin{flushright}
-Micha\"el BAUDIN
-\end{flushright}
+
 
 \clearpage
 
@@ -69,33 +95,30 @@ Micha\"el BAUDIN
 
 \renewcommand{\baselinestretch}{1.18}\small \normalsize
 
+\include{chapter-notations}
 \include{introduction}
-
-\include{overview}
-
 \include{section-simplex}
-
 \include{method-spendley}
-
 \include{method-neldermead}
-
+\include{fminsearch}
 \include{conclusion}
-
 \include{acknowledgments}
 
 \clearpage
 
 %% Appendix
 \appendix
-\include{nmbibliography}
 
+\include{nmbibliography}
 \include{implementations}
 
 %% Bibliography
-
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{plain}
 \bibliography{neldermead}
+
+% Index
+\printindex
 
 \end{document}
 

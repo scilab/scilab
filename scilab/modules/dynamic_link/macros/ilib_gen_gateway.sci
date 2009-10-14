@@ -68,6 +68,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
     [gate,names] = new_names(table); 
     t = [ '#include <mex.h> ';
           '#include <sci_gateway.h>';
+          '#include <api_scilab.h>';
           'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
           'extern Gatefunc ' + names(:) + ';';
           'static GenericTable Tab[]={';
@@ -77,7 +78,11 @@ function gateway_filename = ilib_gen_gateway(name,tables)
           'int C2F(' + tname + ')()';
           '{';
           '  Rhs = Max(0, Rhs);';
-          '  if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+          '  if (*(Tab[Fin-1].f) != NULL) '
+          '  {';
+          '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
+          '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+          '  }';
           '  return 0;';
           '}'];
 

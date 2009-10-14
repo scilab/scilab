@@ -14,15 +14,16 @@ package org.scilab.modules.xpad.actions;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class ASCIIEncodingAction extends DefaultCheckAction {
 
     private ASCIIEncodingAction(Xpad editor) {
-	super("ASCII Encoding", editor);
+	super(XpadMessages.ASCII_ENCODING, editor);
     }
     
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("ASCII Encoding", null, new ASCIIEncodingAction(editor), null);
+	return createCheckBoxMenu(XpadMessages.ASCII_ENCODING , null, new ASCIIEncodingAction(editor), null);
     }
     
 }

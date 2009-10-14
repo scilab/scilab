@@ -39,6 +39,9 @@
 
 	<path id="checkstyle.classpath">
 		<pathelement location="${checkstyle.jar}"/>
+                <pathelement location="${commons-logging.jar}"/>
+                <pathelement location="${commons-beanutils.jar}"/>
+                <pathelement location="${antlr.jar}"/>
 	</path>
 	
 	<path id="compile.classpath">
@@ -81,6 +84,8 @@
 		<pathelement location="${fop.jar}"/>
 
 		<pathelement location="${jeuclid-core.jar}"/>
+
+		<pathelement location="${jlatexmath.jar}"/>
 	</path>
 
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>

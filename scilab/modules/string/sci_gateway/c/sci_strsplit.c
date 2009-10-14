@@ -19,19 +19,20 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"
-#include "api_common.h"
-#include "api_double.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "strsplitfunction.h"
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int lw = 0;
-
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
 	int lenStVarOne = 0;
 	int m = 0, n = 0;
+	int iType1		= 0;
+	int iType2		= 0;
+	int iType3		= 0;
 
 	/* Check Input & Output parameters */
 	CheckRhs(1,3);
@@ -44,15 +45,34 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 		int *piAddressVarTwo = NULL;
 
-		getVarAddressFromPosition(3, &piAddressVarThree);
+		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if (getVarType(piAddressVarThree) != sci_matrix)
+
+		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType3 != sci_matrix)
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 3);
 			return 0;
 		}
 
-		getVarDimension(piAddressVarThree, &m, &n);
+		strErr = getVarDimension(pvApiCtx, piAddressVarThree, &m, &n);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m != n) && (n != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 3);
@@ -60,7 +80,13 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		}
 
 		// get value of third argument
-		getMatrixOfDouble(piAddressVarThree, &m, &n, &pdVarThree);
+		strErr = getMatrixOfDouble(pvApiCtx, piAddressVarThree, &m, &n, &pdVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 
 		if ( ((int)pdVarThree[0] < 1) && ((int)pdVarThree[0] != -1) )
 		{
@@ -68,20 +94,50 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if (getVarType(piAddressVarTwo) != sci_strings) 
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2 != sci_strings) 
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-
-	if (getVarType(piAddressVarOne) == sci_matrix)
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
 	{
-		getVarDimension(piAddressVarOne, &m, &n);
+		printError(&strErr, 0);
+		return 0;
+	}
+		
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType1 == sci_matrix)
+	{
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m != n) && (n != 0) ) 
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
@@ -90,13 +146,19 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 		// strsplit([], ...) returns []
 
-		createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		LhsVar(1) = Rhs + 1;
 		C2F(putlhsvar)();
 		return 0;
 	}
 
-	if (getVarType(piAddressVarOne) != sci_strings)
+	if (iType1 != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
@@ -112,9 +174,21 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarTwo = NULL;
 
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if (getVarType(piAddressVarTwo) == sci_matrix)
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2 == sci_matrix)
 		{
 			int m2 = 0, n2 = 0;
 			double *pdVarTwo = NULL;
@@ -132,10 +206,21 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				return 0;
 			}
-			getMatrixOfWideString(piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			
+			strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			// get value of second argument
-			getMatrixOfDouble(piAddressVarTwo, &m2, &n2, &pdVarTwo);
+			strErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 
 			if ( (m2 == 1) || (n2 == 1) ) 
 			{
@@ -152,7 +237,12 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 						m_out = (m2 * n2) + 1;
 						n_out = 1;
 
-						createMatrixOfWideString(Rhs + 1, m_out, n_out, results);
+						strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, results);
+						if(strErr.iErr)
+						{
+							printError(&strErr, 0);
+							return 0;
+						}
 
 						LhsVar(1) = Rhs + 1;
 						C2F(putlhsvar)();
@@ -191,7 +281,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 			return 0;
 		}
-		else if (getVarType(piAddressVarTwo) != sci_strings)
+		else if (iType2 != sci_strings)
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
 			return 0;
@@ -199,17 +289,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		else /* sci_strings */
 		{
 			int m = 0, n = 0;
-			int *piAddressVarTwo = NULL;
 
-			getVarAddressFromPosition(2, &piAddressVarTwo);
-
-			if (getVarType(piAddressVarTwo) != sci_strings)
+			strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m, &n);
+			if(strErr.iErr)
 			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: strings expected.\n"), fname, 2);
+				printError(&strErr, 0);
 				return 0;
 			}
 
-			getVarDimension(piAddressVarTwo, &m, &n);
 			if ( (m != n) && ((m * n) != 1) )
 			{
 				int k = 0;
@@ -222,7 +309,13 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					Scierror(999,_("%s : Memory allocation error.\n"), fname);
 					return 0;
 				}
-				getMatrixOfWideString(piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				
+				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
 
 				pStVarTwo = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m * n));
 				if (pStVarTwo== NULL)
@@ -232,7 +325,12 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					return 0;
 				}
 
-				getMatrixOfWideString(piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
 
 				/* checks that 2nd parameter is not a array of regexp pattern */
 				if (pStVarTwo)

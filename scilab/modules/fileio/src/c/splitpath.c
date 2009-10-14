@@ -135,12 +135,17 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext)
 {
 	wchar_t *wcpath = to_wide_string((char*)path);
-	wchar_t *wcdrv = to_wide_string((char*)path);
-	wchar_t *wcdir = to_wide_string((char*)path);
-	wchar_t *wcname = to_wide_string((char*)path);
-	wchar_t *wcext = to_wide_string((char*)path);
+	wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+	wchar_t *wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+	wchar_t *wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+	wchar_t *wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
 
 	char *buffer = NULL;
+
+	if (drv) strcpy(drv, "");
+	if (dir) strcpy(dir, "");
+	if (name) strcpy(name, "");
+	if (ext) strcpy(ext, "");
 
 	splitpathW(wcpath, bExpand, wcdrv, wcdir, wcname, wcext);
 

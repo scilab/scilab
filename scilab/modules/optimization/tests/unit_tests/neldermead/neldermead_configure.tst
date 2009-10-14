@@ -48,7 +48,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -80,7 +80,8 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
+//nm = neldermead_configure(nm,"-verbose",0);
+//nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
@@ -104,15 +105,6 @@ cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "neldermead_configure: Unknown value foo for -simplex0method option";
-assert_equal ( computed , expected );
-nm = neldermead_destroy(nm);
-
-// Wrong -tolfstdeviationmethod flag
-nm = neldermead_new ();
-cmd = "nm = neldermead_configure(nm,''-tolfstdeviationmethod'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -tolfstdeviationmethod option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 

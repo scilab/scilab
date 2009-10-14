@@ -24,7 +24,7 @@ typedef enum {
 	INITIALIZATION_EXEC_MODE = 2,
 	SILENT_EXEC_MODE = -1,
 	ECHO_EXEC_MODE = 1
-} exec_mode;
+} execMode;
 
 
 /**
@@ -32,13 +32,13 @@ typedef enum {
 * @param[in] mode
 * @return TRUE if mode is modified
 */
-BOOL setExecMode(exec_mode _mode);
+BOOL setExecMode(execMode _mode);
 
 /**
 * get mode in exec file
 * @return current mode
 */
-exec_mode getExecMode(void);
+execMode getExecMode(void);
 
 #endif /* __MODE_EXEC_H__ */
 /*--------------------------------------------------------------------------*/ 

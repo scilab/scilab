@@ -16,13 +16,13 @@
 #include "getPartLine.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile)
+char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile, char *postCaretLine)
 {
 	char *assembledLine = NULL;
 	char *patternFile = getFilePartLevel(currentLine);
 	char *patternLine = getPartLevel(currentLine);
 
-	assembledLine = completeLine(currentLine,stringToAdd,patternFile,patternLine,isFile);
+	assembledLine = completeLine(currentLine,stringToAdd,patternFile,patternLine,isFile, postCaretLine);
 	if (patternFile) {FREE(patternFile); patternFile = NULL;}
 	if (patternLine) {FREE(patternLine); patternLine = NULL;}
 

@@ -12,23 +12,62 @@
 //   Creates a new Nelder-Mead object.
 //
 function newobj = neldermead_new ()
-  newobj = tlist(["T_NELDERMEAD",...
-    "optbase","method",...
-    "simplex0","simplex0method","simplex0length",...
-    "rho","chi","gamma","sigma",...
-    "tolfstdeviation","tolfstdeviationmethod",...
-    "tolsimplexizeabsolute","tolsimplexizerelative","tolsimplexizemethod", "simplexsize0", ...
-    "toldeltafv","tolssizedeltafvmethod",...
-    "historysimplex", ...
-    "coords0",...
-    "simplex0deltausual","simplex0deltazero", ...
-    "restartsimplexmethod",...
-    "simplexopt","restartmax" , "restarteps", ...
-    "restartstep","kelleystagnationflag",...
-    "kelleynormalizationflag","kelleystagnationalpha0", ...
-    "kelleyalpha","restartnb","restartflag","restartdetection" , ...
-    "startupflag" , ...
-    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" ]);
+  newobj = tlist(["T_NELDERMEAD" 
+    "optbase" 
+    "method"
+    "simplex0"
+    "simplex0method"
+    "simplex0length"
+    "rho"
+    "chi"
+    "gamma"
+    "sigma"
+    "tolfstdeviation"
+    "tolfstdeviationmethod"
+    "tolsimplexizeabsolute"
+    "tolsimplexizerelative"
+    "tolsimplexizemethod"
+    "simplexsize0"
+    "toldeltafv"
+    "tolssizedeltafvmethod"
+    "historysimplex"
+    "coords0"
+    "simplex0deltausual"
+    "simplex0deltazero"
+    "restartsimplexmethod"
+    "simplexopt"
+    "restartmax"
+    "restarteps"
+    "restartstep"
+    "kelleystagnationflag"
+    "kelleynormalizationflag"
+    "kelleystagnationalpha0"
+    "kelleyalpha"
+    "restartnb"
+    "restartflag"
+    "restartdetection"
+    "startupflag"
+    "boxnbpoints"
+    "boxnbpointseff"
+    "boxineqscaling"
+    "checkcostfunction"
+    "scalingsimplex0"
+    "guinalphamin"
+    "boxboundsalpha"
+    "boxtermination"
+    "boxtolf"
+    "boxnbmatch"
+    "boxkount"
+    "boxreflect"
+    "tolvarianceflag"
+    "tolabsolutevariance"
+    "tolrelativevariance"
+    "variancesimplex0"
+    "mymethod"
+    "myterminate"
+    "myterminateflag"
+    ]);
+
   newobj.optbase = optimbase_new();
   // Possible values "variable", "fixed".
   newobj.method = "variable";
@@ -46,21 +85,20 @@ function newobj = neldermead_new ()
   newobj.sigma = .5;
   // The tolerance for the standard deviation
   newobj.tolfstdeviation = 0.0;
-  // Possible values : "disabled", "enabled"
-  newobj.tolfstdeviationmethod = "disabled";
+  // Possible values : %t, %f
+  newobj.tolfstdeviationmethod = %f;
   // The absolute tolerance for the simplex size
   newobj.tolsimplexizeabsolute = 0.0;
   // The relative tolerance for the simplex size
   newobj.tolsimplexizerelative = %eps;
-  // Possible values : "disabled", "enabled"
-  // TODO : turn this on by default. 
+  // Possible values : %t, %f
   // Note :
   //   If the simplex method converges, the simplex size is near zero.
-  newobj.tolsimplexizemethod = "enabled";
+  newobj.tolsimplexizemethod = %t;
   // The tolerance for the function value delta
   newobj.toldeltafv = %eps;
-  // Possible values : "disabled", "enabled"
-  newobj.tolssizedeltafvmethod = "disabled";
+  // Possible values : %t, %f
+  newobj.tolssizedeltafvmethod = %f;
   // The value used in Pfeffer method initial simplex computation for non-zero parameters
   newobj.simplex0deltausual = 0.05;
   // The value used in Pfeffer method initial simplex computation for zero parameters
@@ -69,7 +107,7 @@ function newobj = neldermead_new ()
   newobj.coords0 = [];
   // The Kelley stagnation detection in termination criteria :  0/1
   // (i.e. sufficient decrease of function value)
-  newobj.kelleystagnationflag = 0
+  newobj.kelleystagnationflag = %f
   // The Kelley stagnation detection parameter
   newobj.kelleystagnationalpha0 = 1.e-4
   // The Kelley stagnation detection can be normalized or not.
@@ -80,7 +118,7 @@ function newobj = neldermead_new ()
   // Results are slightly changed, as indicated in the book/paper (the modification is 
   // not mentioned, but the iteration number when the restart is performed
   // is modified).
-  newobj.kelleynormalizationflag = 1
+  newobj.kelleynormalizationflag = %t
   // The current value of Kelley's alpha, after normalization, if required
   newobj.kelleyalpha = 1.e-4;
   // The optimum simplex, after one optimization process
@@ -93,25 +131,58 @@ function newobj = neldermead_new ()
   newobj.restartstep = 1.0;
   // Possible values : "oriented", "axes", "spendley", "pfeffer" 
   newobj.restartsimplexmethod = "oriented";
-  // Possible values : 0/1
-  newobj.restartflag = 0;
+  // Possible values : %t, %f
+  newobj.restartflag = %f;
   // Number of restarts performed
   newobj.restartnb = 0;
   // Type of restart detection method : "kelley", "oneill"
   newobj.restartdetection = "oneill";
-  // Set to 1 when the startup has been performed
-  newobj.startupflag = 0;
+  // Set to %t when the startup has been performed
+  newobj.startupflag = %f;
   // Initial size of the simplex, for the tolerance on the simplex size
   newobj.simplexsize0 = 0.0
   // Number of points required in the simplex (for Box method)
   newobj.boxnbpoints = "2n"
   // Effective number of points required in the simplex (for Box method)
   newobj.boxnbpointseff = 0
-  // Number of loops performed to satisfy nonlinear
-  // inequality constraints (for Box method)
-  newobj.nbineqloops = 10
   // The scaling coefficient in nonlinear inequality constraints
   // in Box method, in (0,1) range
-  newobj.ineqscaling = 0.5
+  newobj.boxineqscaling = 0.5
+  // Set to %f to disable the checking of the connection of the cost function
+  newobj.checkcostfunction = %t;
+  // The scaling algorithm : "tox0", "tocentroid"
+  newobj.scalingsimplex0 = "tox0";
+  // Minimum alpha for constraints scaling
+  newobj.guinalphamin = 1.e-5;
+  // Box's alpha coefficient for bounds constraints.
+  // The value used in Box's paper was 1.e-6 (delta in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxboundsalpha = 1.e-6
+  // Set to 1 to enable Box termination criteria
+  newobj.boxtermination = 0
+  // The absolute tolerance on function value in Box termination criteria (beta in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxtolf = 1.e-5
+  // The number of consecutive match in Box termination criteria (gamma in
+  // Richardson and Kuester's algorithm 454)
+  newobj.boxnbmatch = 5
+  // Current number of consecutive match
+  newobj.boxkount = 0
+  // Box reflection/expansion factor
+  newobj.boxreflect = 1.3
+  // Set to %t to enable tolerance on variance
+  newobj.tolvarianceflag = %f;
+  // Absolute tolerance on variance
+  newobj.tolabsolutevariance = 0.0;
+  // Relative tolerance on variance
+  newobj.tolrelativevariance = %eps;
+  // The variance of the initial simplex
+  newobj.variancesimplex0 = 0.0;
+  // User-defined algorithm
+  newobj.mymethod = []
+  // User-defined terimination criteria
+  newobj.myterminate = []
+  // Flag to enable the user-defined terimination criteria
+  newobj.myterminateflag = %f
 endfunction
 

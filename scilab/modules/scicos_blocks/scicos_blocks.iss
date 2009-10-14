@@ -25,7 +25,10 @@ Source: modules\{#SCICOS_BLOCKS}\changelog.txt; DestDir: {app}\modules\{#SCICOS_
 Source: modules\{#SCICOS_BLOCKS}\etc\{#SCICOS_BLOCKS}.quit; DestDir: {app}\modules\{#SCICOS_BLOCKS}\etc; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS_BLOCKS}\etc\{#SCICOS_BLOCKS}.start; DestDir: {app}\modules\{#SCICOS_BLOCKS}\etc; Components: {#COMPN_SCICOS}
 ;
-Source: modules\{#SCICOS_BLOCKS}\includes\*.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS_BLOCKS}\includes\*.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS_BLOCKS}\includes\blocks.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS_BLOCKS}\includes\scicos_block.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_SCICOS}
+Source: modules\{#SCICOS_BLOCKS}\includes\scicos_block4.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\macros\lib; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\names; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}

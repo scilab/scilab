@@ -1,0 +1,80 @@
+# Localization of the module special_functions
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 17:16+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/erfinv.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数が想定されます。\n"
+
+#
+# File: sci_gateway/c/sci_beta.c, line: 53
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: No complex input argument expected.\n"
+msgstr "%s: 入力引数 #%d または #%d で不正な型: 入り組んでない入力引数を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_beta.c, line: 61
+#, c-format
+msgid "%s: Wrong value for input arguments: Must be > %d.\n"
+msgstr "%s: 入力引数で不正な値: > %d の必要があります。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 60
+#, c-format
+msgid "%s: Wrong type for first input argument.\n"
+msgstr "%s: 最初の入力引数で不正な型です。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 68
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 75
+#, c-format
+msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
+msgstr "%s: arg１とarg２の唯一のものは、ベクトルかもしれません。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 82
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 91
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列要素で、(%d,%d) を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 127
+#, c-format
+msgid "%s: overflow or underflow of an extended range number\n"
+msgstr " %s: 拡張された範囲番号のオーバーフロー、またはアンダーフロー\n"
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 129
+#, c-format
+msgid "%s: error number %d\n"
+msgstr "%s: エラー番号 %d\n"
+

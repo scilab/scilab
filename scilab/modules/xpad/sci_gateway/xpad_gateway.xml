@@ -24,4 +24,7 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="63" primitiveId="1" primitiveName="xpad" />
+<PRIMITIVE gatewayId="63" primitiveId="2" primitiveName="xpad_highlightline" />
+<PRIMITIVE gatewayId="63" primitiveId="3" primitiveName="editor" />
+<PRIMITIVE gatewayId="63" primitiveId="4" primitiveName="editor_highlightline" />
 </GATEWAY>

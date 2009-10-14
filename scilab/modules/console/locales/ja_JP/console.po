@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-10-03 17:11+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 58
+msgid "File or Directory"
+msgstr "ファイルまたはディレクトリ"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 65
+msgid "Scilab Command"
+msgstr "Scilabコマンド"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
+msgid "Scilab Function"
+msgstr "Scilab関数"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
+msgid "Graphics handle field"
+msgstr "グラフィック・ハンドル障害"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
+msgid "Scilab Macro"
+msgstr "Scilabマクロ"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
+msgid "Scilab Variable"
+msgstr "Scilab変数"
+
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 108
+msgid "No help"
+msgstr "ヘルプ無し"
+
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 276
+msgid "Out of Screen"
+msgstr "スクリーンを抜ける"
+
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 490
+msgid "Could not change the Console Font."
+msgstr "コンソールフォントの変更ができません。"
+
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 551
+msgid "Could not change the Console Foreground."
+msgstr "コンソール前面に変更できません。"
+

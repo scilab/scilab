@@ -531,6 +531,16 @@ case "$CC" in
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+	 case "$host" in
+	      i386-apple-darwin*)
+		CC=" $CC -arch i386 "
+		CXX=" $CXX -arch i386 "
+		;;
+	      x86_64-apple-darwin*)
+                CC=" $CC -arch x86_64 "
+                CXX=" $CXX -arch x86_64 "
+                ;;
+	esac
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -713,9 +723,30 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
+                                # JLaTeXMath
+                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                                JLATEXMATH=$PACKAGE_JAR_FILE
+                                AC_SUBST(JLATEXMATH)
+
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
 		fi
+
+		# Checkstyle (code checking)
+		AC_JAVA_CHECK_PACKAGE([checkstyle],[com.puppycrawl.tools.checkstyle.CheckStyleTask],[Checkstyle - code checking],"yes")
+		CHECKSTYLE=$PACKAGE_JAR_FILE
+		AC_SUBST(CHECKSTYLE)
+
+		# Commons beanutils (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([commons-beanutils],[org.apache.commons.beanutils.Converter],[Bean utility],"yes")
+		COMMONS_BEANUTILS=$PACKAGE_JAR_FILE
+		AC_SUBST(COMMONS_BEANUTILS)
+
+		# antlr (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
+		ANTLR=$PACKAGE_JAR_FILE
+		AC_SUBST(ANTLR)
+
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -1061,7 +1092,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1133,7 +1164,10 @@ AC_PCRE()
 
 WITH_TKSCI=no
 if test "$with_tk" != no; then
-
+   if test "$MACOSX" = "1"; then
+      AC_MSG_ERROR([Due to technical constraints, Tcl/Tk must be disabled under Mac OS X (--without-tk)])
+   fi
+   
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
@@ -1284,18 +1318,6 @@ fi
 AC_SUBST(JAVASCI_ENABLE)
 
 ##############################################################
-## Scipad module
-##############################################################
-
-SCIPAD_ENABLE=yes
-
-if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
-   SCIPAD_ENABLE=no
-fi
-
-AC_SUBST(SCIPAD_ENABLE)
-
-##############################################################
 ## demo_tools module
 ##############################################################
 
@@ -1350,6 +1372,11 @@ AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = xxxx)
 AC_C_CONST()
 AC_C_INLINE()
 
+
+########## 
+##### Code quality
+##########
+AC_PATH_PROG(SPLINT, splint, no)
 
 #######################
 ###### Creation of the header file (machine.h)
@@ -1455,7 +1482,6 @@ modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
-modules/scipad/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1561,25 +1587,25 @@ echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warn
 
 echo ""
 echo "Compiler Configuration:"
-echo "Intel (--with-intelcompilers) .... =		$with_intelcompilers"
-echo "GNU gcc (--with-gcc) ............. =		$with_gcc"
-echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
-echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
+echo "  Intel (--with-intelcompilers) .... =		$with_intelcompilers"
+echo "  GNU gcc (--with-gcc) ............. =		$with_gcc"
+echo "  GNU Fortran 77 (--with-g77) ...... =		$with_g77"
+echo "  GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--without-pvm) .......................... = $with_pvm"
-echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
-echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
-echo "Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
-echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
-echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
-echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
-echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
-echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
-echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
-echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Use FFTW (--without-fftw) ........................ = $with_fftw"
-echo "Use MATIO (--without-matio) ...................... = $with_matio"
+echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
+echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
+echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "  Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
+echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
+echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
+echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
+echo "  TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
+echo "  TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
+echo "  Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
+echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
+echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
+echo "  Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
@@ -1590,9 +1616,9 @@ if test $SCICOS_ENABLE = yes; then
    echo ""
 if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
-   echo "OCAMLC ............. = $OCAMLC"
-   echo "OCAMLOPT ........... = $OCAMLOPT"
-   echo "OCAMLDEP ........... = $OCAMLDEP"
+   echo "  OCAMLC ............. = $OCAMLC"
+   echo "  OCAMLOPT ........... = $OCAMLOPT"
+   echo "  OCAMLDEP ........... = $OCAMLDEP"
 else
 	echo "Will not build Modelica compiler"
 fi
@@ -1604,9 +1630,9 @@ fi
 echo ""
 if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
-   echo "PVM Architecture ... = $PVM_ARCH"
-   echo "PVM INCLUDE ........ = $PVM_INCLUDE"
-   echo "PVM LIBS ........... = $PVM_LIB"
+   echo "  PVM Architecture ... = $PVM_ARCH"
+   echo "  PVM INCLUDE ........ = $PVM_INCLUDE"
+   echo "  PVM LIBS ........... = $PVM_LIB"
 else
    echo "Not using PVM"
 fi
@@ -1614,8 +1640,8 @@ fi
 echo ""
 if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
-   echo "FFTW LIBS .......... = $FFTW3_LIB"
-   echo "FFTW CFLAGS ........ = $FFTW3_CFLAGS"
+   echo "  FFTW LIBS .......... = $FFTW3_LIB"
+   echo "  FFTW CFLAGS ........ = $FFTW3_CFLAGS"
 else
    echo "Not using FFTW"
 fi
@@ -1623,8 +1649,8 @@ fi
 echo ""
 if test $MATIO_ENABLE = yes;  then
    echo "MATIO Configuration:"
-   echo "MATIO LIBS .......... = $MATIO_LIBS"
-   echo "MATIO CFLAGS ........ = $MATIO_CFLAGS"
+   echo "  MATIO LIBS .......... = $MATIO_LIBS"
+   echo "  MATIO CFLAGS ........ = $MATIO_CFLAGS"
 else
    echo "Not using MATIO"
 fi
@@ -1632,12 +1658,12 @@ fi
 echo ""
 if test $UMFPACK_ENABLE = yes;  then
    echo "UMFPACK Configuration:"
-   echo "UMFPACK LIBS ....... = $UMFPACK_LIB"
-   echo "UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
+   echo "  UMFPACK LIBS ....... = $UMFPACK_LIB"
+   echo "  UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
    if test $SUITESPARSE = yes; then
-      echo "UMFPACK SUITESPARSE  = Yes"
+      echo "  UMFPACK SUITESPARSE  = Yes"
    else
-      echo "UMFPACK SUITESPARSE  = No"
+      echo "  UMFPACK SUITESPARSE  = No"
    fi
 else
    echo "Not using UMFPACK"
@@ -1646,28 +1672,28 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-echo "BLAS LIBS ............. = $BLAS_LIBS"
-echo "BLAS TYPE ............. = $BLAS_TYPE"
-echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-echo "LAPACK TYPE ........... = $LAPACK_TYPE"
+echo "  BLAS LIBS ............. = $BLAS_LIBS"
+echo "  BLAS TYPE ............. = $BLAS_TYPE"
+echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 
 #if test "$with_mpi" = yes; then
 #   echo "MPI Configuration:"
-#   echo "MPI LIBS ........... = $MPILIBS"
-#   echo "MPI C Compiler ..... = $MPICC"
-#   echo "MPI C++ Compiler ... = $MPICXX"
-#   echo "MPI F77 Compiler ... = $MPIF77"
+#   echo "  MPI LIBS ........... = $MPILIBS"
+#   echo "  MPI C Compiler ..... = $MPICC"
+#   echo "  MPI C++ Compiler ... = $MPICXX"
+#   echo "  MPI F77 Compiler ... = $MPIF77"
 #else
 #   echo "Not using MPI"
 #fi
 
 #if test "$with_openmpi" != "no"; then
 #   echo "OpenMPI Configuration:"
-#   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "OpenMPI F77 Compiler ... = $MPIF77"
+#   echo "  OpenMPI LIBS ........... = $OPENMPI_LIBS"
+#   echo "  OpenMPI C Compiler ..... = $OPENMPI_CC"
+#   echo "  OpenMPI F77 Compiler ... = $MPIF77"
 #else
 #   echo "Not using MPI"
 #fi
@@ -1675,24 +1701,25 @@ echo ""
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then
    echo "Gettext/localization configuration:"
-   echo "xgettext ............... = $XGETTEXT"
-   echo "msgfmt  ................ = $MSGFMT"
-   echo "msgfmt_opts ............ = $MSGFMT_OPTS"
-   echo "msgcat  ................ = $MSGCAT"
+   echo "  xgettext ............... = $XGETTEXT"
+   echo "  msgfmt  ................ = $MSGFMT"
+   echo "  msgfmt_opts ............ = $MSGFMT_OPTS"
+   echo "  msgcat  ................ = $MSGCAT"
 else
    echo "Won't generate localization files"
 fi
 
 echo ""
 if test $HELP_ENABLE = yes; then
-   echo "Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "Batik (SVG) ............ = $BATIK"
-   echo "Saxon XSLT ............. = $SAXON"
-   echo "FOP (XML => PDF) ....... = $FOP"
-   echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
-   echo "Commons I/O ............ = $COMMONS_IO"
-   echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
-   echo "XML commons external ... = $XML_APIS_EXT"
+   echo "Documentation building configuration:"
+   echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
+   echo "  Batik (SVG) ............ = $BATIK"
+   echo "  Saxon XSLT ............. = $SAXON"
+   echo "  FOP (XML => PDF) ....... = $FOP"
+   echo "  Jeuclid (MathML) ....... = $JEUCLID_CORE"
+   echo "  Commons I/O ............ = $COMMONS_IO"
+   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi
@@ -1727,6 +1754,13 @@ echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 fi
+
+echo ""
+echo "Code quality (optional):"
+echo "  Checkstyle .......... = $CHECKSTYLE"
+echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
+echo "  Antlr ............... = $ANTLR"
+echo "  splint .............. = $SPLINT"
 
 echo "" 
 echo "TCL/TK configuration:"

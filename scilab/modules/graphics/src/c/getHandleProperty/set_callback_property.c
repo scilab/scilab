@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,7 +33,7 @@ int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
       if ( (!isParameterStringMatrix( valueType )) && (valueType != sci_list) )
         {
-          Scierror(999, _("Incompatible type for property %s.\n"),"callback") ;
+          Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "callback");
           return SET_PROPERTY_ERROR ;
         }
       return SetUiobjectCallback(pobj, stackPointer, valueType, nbRow, nbCol);
@@ -41,7 +42,7 @@ int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
       if ( !isParameterStringMatrix( valueType ) )
         {
-          Scierror(999, _("Incompatible type for property %s.\n"),"callback") ;
+          Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "callback");
           return SET_PROPERTY_ERROR ;
         }
      return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;

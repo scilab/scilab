@@ -9,47 +9,47 @@
             <callback
             instruction='
               %fileToExec = uigetfile("*.sc*", pwd(), gettext("Select a file to execute"));
-              if ~isempty(%fileToExec) then
+              if ~(%fileToExec == "") then
                 exec(%fileToExec);
                 disp(msprintf(gettext("Execution done.\n")));
               end
-              clear %fileToExec isempty'
+              clear("%fileToExec");'
             type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scipad"));
-              if ~isempty(%fileToOpen) then
-                scipad(%fileToOpen);
+              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scilab text editor"));
+              if ~(%fileToOpen == "") then
+                editor(%fileToOpen);
               end
-              clear %fileToOpen isempty'
+              clear("%fileToOpen");'
             type="0"/>
         </submenu>
         <submenu label="&amp;Load environment...">
             <callback
             instruction='
               %fileToLoad = uigetfile("*.sav", pwd(), gettext("Select a file to load"));
-              if ~isempty(%fileToLoad) then
+              if ~(%fileToLoad == "") then
                 load(%fileToLoad);
                 disp(msprintf(gettext("Environment loaded.\n")));
               end
-              clear %fileToLoad isempty'
+              clear("%fileToLoad");'
             type="0"/>
         </submenu>
         <submenu label="&amp;Save environment...">
             <callback
             instruction='
               %fileToSave = uiputfile("*.sav", pwd(), gettext("Select a file to write"));
-              if ~isempty(%fileToSave) then
-                if isempty(fileparts(%fileToSave, "extension")) then
+              if ~(%fileToSave == "") then
+                if (fileparts(%fileToSave, "extension") == "") then
                   %fileToSave = %fileToSave + ".sav";
                 end
                 save(%fileToSave);
                 disp(msprintf(gettext("Environment saved.\n")));
               end
-              clear %fileToSave isempty fileparts'
+              clear("%fileToSave");'
             type="0"/>
         </submenu>
         <separator/>
@@ -57,10 +57,10 @@
             <callback
             instruction='
               %newDir = uigetdir(pwd(), gettext("Select a directory"));
-              if ~isempty(%newDir) then
+              if ~(%newDir == "") then
                 cd(%newDir);
               end
-              clear %newDir isempty'
+              clear("%newDir");'
             type="0"/>
         </submenu>
         <submenu label="&amp;Display current directory">
@@ -148,7 +148,7 @@
     <!-- Applications menu -->
     <menu label="&amp;Applications" enabled="false">
         <submenu label="&amp;Editor">
-            <callback instruction='scipad();' type="0"/>
+            <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Scicos">

@@ -15,6 +15,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -26,11 +27,12 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class ExitAction extends DefaultAction {
 
     private ExitAction(Xpad editor) {
-	super("Exit", editor);
+	super(XpadMessages.EXIT, editor);
     }
 
     public void doAction() {
@@ -42,7 +44,7 @@ public class ExitAction extends DefaultAction {
 	JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(i)).getViewport().getComponent(0) ;
 		
 		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
-			int choice = JOptionPane.showConfirmDialog(getEditor(),getEditor().getTabPane().getTitleAt(i) + " has been modified since last save\nsave it?");
+			int choice = JOptionPane.showConfirmDialog(getEditor(),getEditor().getTabPane().getTitleAt(i) + XpadMessages.MODIFIED);
 			
 			if (choice == 0){// ok choose
 				getEditor().save(textPane);
@@ -62,6 +64,6 @@ public class ExitAction extends DefaultAction {
     }
     
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Exit", null, new ExitAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 }

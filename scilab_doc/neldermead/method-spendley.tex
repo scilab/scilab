@@ -1,84 +1,77 @@
 \chapter{Spendley's et al. method}
 
-\section{Analysis}
+In this chapter, we present Spendley's et al. algorithm \cite{Spendley1962} for 
+unconstrained optimization.
 
-The simplex algorithms are based on the iterative update of 
-a \emph{simplex} made of $n+1$ points $S={x_i}_{i=1,n+1}$. Each point 
+We begin by presenting a global overview of the algorithm. 
+Then we present various geometric situations which might occur
+during the algorithm. In the second section, we present several 
+numerical experiments which allow to get some insight in the behavior 
+of the algorithm on some simple situations. The two first cases 
+are involving only 2 variables and are based on a quadratic function.
+The last numerical experiment explores the behavior of the algorithm 
+when the number of variables increases.
+
+\section{Introduction}
+
+In this section, we present Spendley's et al algorithm for unconstrained optimization.
+This algorithm is based on the iterative update of a simplex. 
+At each iteration, either a reflection of a shrink step is performed, so that
+the shape of the simplex does not change during the iterations.
+Then we present various geometric situations which might occur
+during the algorithm. This allows to understand when exactly a reflection 
+or a shrink is performed in practice.
+
+\subsection{Overview}
+
+The goal of Spendley's et al. algorithm is to solve the 
+following unconstrained optimization problem
+\begin{eqnarray}
+\min f(\bx)
+\end{eqnarray}
+where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+function $f:\RR^n\rightarrow \RR$.
+
+This algorithms is based on the iterative update of 
+a \emph{simplex} made of $n+1$ points $S=\{\bv_i\}_{i=1,n+1}$. Each point 
 in the simplex is called a \emph{vertex} and is associated with 
-a function value $f_i=f(x_i), i=1,n+1$.
+a function value $f_i=f(\bv_i)$ for $i=1,n+1$.
 
 The vertices are sorted by increasing function values so that the 
 \emph{best} vertex has index 1 and the \emph{worst} vertex 
 has index $n+1$
-
 \begin{eqnarray}
 \label{sorted-vertices-fv}
 f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
-The \emph{next-to-worst} vertex with index $n$ has a 
-special role in simplex algorithms.
+The $\bv_1$ vertex (resp. the $\bv_{n+1}$ vertex) is called the \emph{best} 
+vertex (resp. \emph{worst}), because it is associated with the lowest (resp. highest)
+function value. As we are going to see, the \emph{next-to-worst} vertex $\bv_n$ has a 
+special role in this algorithm.
 
-The centroid of the simplex is the center of the vertices
-where the vertex with index $j=1,n+1$ has been 
-excluded 
-
+The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
+where the vertex $\bv_j$ has been 
+excluded. This centroid is 
 \begin{eqnarray}
 \label{centroid-generalized}
-\overline{x} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j}x_i
+\overline{\bx} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bv_i.
 \end{eqnarray}
-
-The first move of the algorithm is based on the centroid 
-where the worst vertex with index $j=n+1$ has been excluded 
-
-\begin{eqnarray}
-\label{centroid-worst}
-\overline{x} (n+1) = \frac{1}{n} \sum_{i=1,n}x_i
-\end{eqnarray}
-
-The algorithm attemps to replace one vertex 
-$x_j$ by a new point $x(\mu,j)$ between the centroid 
-$\overline{x}$ and the vertex $x_j$ and defined by 
+The algorithm makes use
+of one coefficient $\rho>0$, called the reflection factor. The standard
+value of this coefficient is $\rho=1$.
+The algorithm attempts to replace some vertex 
+$\bv_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bv_j$
+to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
 \begin{eqnarray}
 \label{interpolate-generalized}
-x(\mu,j) = (1+\mu)\overline{x}(j) - \mu x_j
+\bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bv_j.
 \end{eqnarray}
 
-The Spendley et al. \cite{Spendley1962} algorithm makes use
-of one coefficient, the reflection $\rho>0$. The standard
-value of this coefficient is $\rho=1$.
+\subsection{Algorithm}
 
-The first move of the algorithm is based on the reflection
-with respect to the worst point $x_{n+1}$ so that the reflection point is 
-computed by 
-
-\begin{eqnarray}
-\label{interpolate-worst}
-x(\rho,n+1) = (1+\rho)\overline{x}(n+1) - \rho x_{n+1}
-\end{eqnarray}
-
-The algorithm first computes the reflection point 
-with respect to the worst point excluded with $x_r=x(\rho,n+1)$
-and evaluates the function value of the reflection
-point $f_r=f(x_r)$. If that value $f_r$ is better than the worst function
-value $f_{n+1}$, the worst point $x_{n+1}$ is rejected from the 
-simplex and the reflection point $x_r$ is accepted. If the reflection point 
-does not improves, the next-to-worst point $x_n$ is reflected and the 
-function is evaluated at the new reflected point. If the function
-value improves over the worst function value $f_{n+1}$, the new reflection point is 
-accepted.
-
-At that point of the algorithm, neither the reflection with respect to 
-$x_{n+1}$ nor the reflection with respect to $x_n$ has improved.
-The algorithm therefore shrinks the simplex toward the best point.
-That last step uses the shrink coefficient $0<\sigma<1$. The standard
-value for this coefficient is $\sigma=\frac{1}{2}$.
-
-Spendley's et al. algorithm is presented in figure \ref{algo-spendley}.
-The figure \ref{fig-spendley-moves} presents the various 
-moves of the Spendley et al. algorithm. It is obvious from the 
-picture that the algorithm explores a pattern which is 
-entirely determined from the initial simplex.
+In this section, we analyze Spendley's et al algorithm, which
+is presented in figure \ref{algo-spendley}.
 
 \begin{figure}[htbp]
 \begin{algorithmic}
@@ -86,47 +79,89 @@ entirely determined from the initial simplex.
 \STATE Sorts the vertices $S_0$ with increasing function values
 \STATE $S\gets S_0$
 \WHILE{$\sigma(S)>tol$}
-  \STATE $\overline{x}\gets \overline{x}(n+1)$
-  \STATE $x_r \gets x(\rho,n+1)$, $f_r \gets f(x_r)$ \COMMENT{Reflect with respect to worst}
+  \STATE $\overline{x}\gets \overline{\bx}(n+1)$ \COMMENT{Compute the centroid}
+  \STATE $\bx_r \gets \bx(\rho,n+1)$ \COMMENT{Reflect with respect to worst}
+  \STATE $f_r \gets f(\bx_r)$ 
   \IF {$f_r<f_{n+1}$}
-    \STATE Accept $x_r$
+    \STATE Accept $\bx_r$
   \ELSE
-    \STATE $\overline{x}\gets \overline{x}(n)$
-    \STATE $x_r \gets x(\rho,n)$, $f_r \gets f(x_r)$ \COMMENT{Reflect with respect to next-to-worst}
-    \IF {$f_r<f_{n+1}$}
-      \STATE Accept $x_r$
+    \STATE $\overline{x}\gets \overline{\bx}(n)$ \COMMENT{Compute the centroid}
+    \STATE $\bx_r^\prime \gets \bx(\rho,n)$ \COMMENT{Reflect with respect to next-to-worst}
+    \STATE $f_r^\prime \gets f(\bx_r^\prime)$ 
+    \IF {$f_r^\prime<f_{n+1}$}
+      \STATE Accept $\bx_r^\prime$
     \ELSE 
-      \STATE Compute the points $x_i=x_1 + \sigma (x_i - x_1)$, $i=2,n+1$ \COMMENT{Shrink}
-      \STATE Compute the function values at the points $x_i, i=2,n+1$
+      \STATE Compute the vertices $\bv_i=\bv_1 + \sigma (\bv_i - \bv_1)$ for $i=2,n+1$ \COMMENT{Shrink}
+      \STATE Compute $f_i = f(\bv_i)$ for $i=2,n+1$
     \ENDIF
   \ENDIF
   \STATE Sort the vertices of $S$ with increasing function values
 \ENDWHILE
 \end{algorithmic}
-\caption{Spendley et al. algorithm}
+\caption{Spendley's et al. algorithm}
 \label{algo-spendley}
 \end{figure}
 
-\section{Geometric analysis}
+At each iteration, we compute the centroid 
+$\overline{\bx} (n+1)$ where the worst vertex $\bv_{n+1}$ 
+has been excluded. This centroid is 
+\begin{eqnarray}
+\label{centroid-worst}
+\overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bv_i.
+\end{eqnarray}
+We perform a reflection with respect to the worst vertex $\bv_{n+1}$,
+which creates the reflected point $\bx_r$ defined by 
+\begin{eqnarray}
+\label{interpolate-worst}
+\bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bv_{n+1}
+\end{eqnarray}
 
-The figure \ref{fig-spendley-moves} presents the various moves of the 
-simplex in the Spendley et al. algorithm.
+We then compute the function value of the reflected
+point as $f_r=f(\bx_r)$. If the function value $f_r$ is better than the worst function
+value $f_{n+1}$, i.e. if $f_r < f_{n+1}$, then the worst vertex $\bv_{n+1}$ is rejected from the 
+simplex and the reflected point $\bx_r$ is accepted. If the reflection point 
+does not improve the function value $f_{n+1}$, we consider the centroid 
+$\overline{\bx} (n)$, i.e. the centroid where the next-to-worst vertex $\bv_n$ has been excluded.
+We then consider the reflected point $\bx_r^\prime$, computed from the 
+next-to-worst vertex $\bv_n$ and the centroid $\overline{\bx} (n)$. 
+We compute the function value $f_r^\prime = f(\bx_r^\prime)$. If the function
+value $f_r^\prime$ improves over the worst function value $f_{n+1}$, then 
+the worst vertex $\bv_{n+1}$ is rejected from the simplex and the new reflection point 
+$\bx_r^\prime$ is accepted.
+
+At that point of the algorithm, neither the reflection with respect to 
+$\bv_{n+1}$ nor the reflection with respect to $\bv_n$ were able to improve over 
+the worst function value $f_{n+1}$.
+Therefore, the algorithm shrinks the simplex toward the best vertex $\bv_1$.
+That last step uses the shrink coefficient $0<\sigma<1$. The standard
+value for this coefficient is $\sigma=\frac{1}{2}$.
+
+\subsection{Geometric analysis}
+
+The figure \ref{fig-spendley-moves} presents the various 
+moves of the Spendley et al. algorithm. It is obvious from the 
+picture that the algorithm explores a pattern which is 
+entirely determined from the initial simplex.
+
+In Spendley's et al. original paper, the authors use a regular 
+simplex, where the edges all have the same length. In practice,
+however, any non degenerate simplex can be used.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{spendley-steps.png}
+\includegraphics[width=8cm]{spendley-steps.pdf}
 \end{center}
 \caption{Spendley et al. simplex moves}
 \label{fig-spendley-moves}
 \end{figure}
 
-The various situations in which these moves are chosen are 
+The various situations in which these moves are performed are 
 presented in figures \ref{fig-spendley-moves-reflect}, \ref{fig-spendley-moves-reflect2}
 and \ref{fig-spendley-moves-shrink}.
 
 The basic move is the reflection step, presented in figure 
 \ref{fig-spendley-moves-reflect} and \ref{fig-spendley-moves-reflect2}. 
-These two figures shows that the Spendley et al.
+These two figures show that Spendley's et al.
 algorithm is based on a discretization of the parameter space. 
 The optimum is searched on that grid, which is based on regular simplices.
 When no move is possible to improve the situation on that grid,
@@ -134,17 +169,17 @@ a shrink step is necessary, as presented in figure \ref{fig-spendley-moves-shrin
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{spendley-steps-reflect.png}
+\includegraphics[width=10cm]{spendley-steps-reflect.pdf}
 \end{center}
-\caption{Spendley et al. simplex moves - reflection with respect to highest point}
+\caption{Spendley et al. simplex moves -- Reflection with respect to highest point}
 \label{fig-spendley-moves-reflect}
 \end{figure}
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{spendley-steps-reflect2.png}
+\includegraphics[width=10cm]{spendley-steps-reflect2.pdf}
 \end{center}
-\caption{Spendley et al. simplex moves - reflection with respect to next-to-highest point. 
+\caption{Spendley et al. simplex moves -- Reflection with respect to next-to-highest point. 
 It may happen that the next iteration is a shrink step.}
 \label{fig-spendley-moves-reflect2}
 \end{figure}
@@ -159,74 +194,144 @@ optimum is searched.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{spendley-steps-shrink.png}
+\includegraphics[width=8cm]{spendley-steps-shrink.pdf}
 \end{center}
-\caption{Spendley et al. simplex moves - shrink.}
+\caption{Spendley et al. simplex moves -- The shrink step is the 
+only possible move.}
 \label{fig-spendley-moves-shrink}
 \end{figure}
 
-\subsection{Termination criteria}
+%%\subsection{Termination criteria}
 
-TODO...
+%%The original paper \cite{Spendley1962}
+
+\subsection{General features of the algorithm}
+
+From the performance point of viewn when a reflection step is performed,
+only 1 or 2 function evaluations are required. Instead, when a shrink
+step is performed, there are $n$ function evaluations required. In practice,
+reflection steps are performed when the simplex is away from the optimum.
+When the simplex is closer to the optimum, or enters in a narrow valley, shrink
+steps are used.
+
+As stated in \cite{Singer:2009}, the main feature 
+of Spendley's et al. algorithm is that the simplex can vary 
+in size, but not in shape. As we are going to see in the numerical 
+experiments, this leads to a slow convergence when a narrow 
+valley is encountered. In that situation, the shrink
+steps are required, which leads to a large number 
+of iterations and function evaluations.
+
+In fact, the Spendley's et al. algorithm is a pattern search 
+algorithm \cite{Torczon98fromevolutionary}. This is a consequence 
+of the fact that the search pattern used in the method is constant.
+Therefore, the design never degenerates. 
+As stated in \cite{Torczon98fromevolutionary}, "under very mild 
+assumptions on $f$, these simple heuristics 
+provide enough structure to guarantee global convergence.
+This is not the case for the Nelder-Mead algorithm, which might
+converge to non-stationnary points \cite{589109, hanNeumann2003, Han2000, Torczon89multi-directionalsearch}. 
+In all cases, the difficulty is that a sequence of simplices produced
+by the Nelder-Mead simplex method can come arbitrarily close to 
+degeneracy.
 
 \section{Numerical experiments}
 
 In this section, we present some numerical experiments 
-with the Spendley et al. algorithm.
+with Spendley's et al. algorithm.
+The first numerical experiments involves one quadratic function
+in 2 dimensions. The second experiment is based on a 
+badly scaled quadratic in 2 dimension. In the third experiment,
+we analyze the behavior of the algorithm with respect to the 
+number of variables.
 
 \subsection{Quadratic function}
 
 The function we try to minimize is the following quadratic 
 in 2 dimensions 
-
 \begin{eqnarray}
-f(x_1,x_2) = x_1^2 + x_2^2 - x_1 x_2
+f(x_1,x_2) = x_1^2 + x_2^2 - x_1 x_2.
 \end{eqnarray}
 
 The stopping criteria is based on the relative size of the simplex 
 with respect to the size of the initial simplex 
-
 \begin{eqnarray}
-\sigma(S) < tol \times \sigma(S_0)
+\sigma_+(S) < tol \times \sigma_+(S_0).
 \end{eqnarray}
+The oriented length $\sigma_+(S)$ is defined by
+\begin{eqnarray}
+\sigma_+(S) = \max_{i=2,n+1} \|\bv_i - \bv_1\|_2
+\end{eqnarray}
+where $\|.\|_2$ is the euclidian norm defined by 
+\begin{eqnarray}
+\|\bx\|_2 = \sum_{i=1,n}x_i^2.
+\end{eqnarray}
+In this experiment, we use $tol=10^{-8}$ as the relative tolerance 
+on simplex size.
 
 The initial simplex is a regular simplex with length unity.
+
+The following Scilab script performs the optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function y = quadratic (x)
+  y = x(1)^2 + x(2)^2 - x(1) * x(2);
+endfunction
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",quadratic);
+nm = neldermead_configure(nm,"-x0",[2.0 2.0]');
+nm = neldermead_configure(nm,"-maxiter",100);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolxmethod","disabled");
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = neldermead_configure(nm,"-simplex0method","spendley");
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
+
 The numerical results are presented in table \ref{fig-spendley-numexp1-table}.
 
 \begin{figure}[htbp]
 \begin{center}
-\begin{tiny}
+%\begin{tiny}
 \begin{tabular}{|l|l|}
 \hline
 Iterations & 49 \\
 Function Evaluations & 132 \\
-$x_0$ & $(2.0,2.0)$ \\
+$\bx_0$ & $(2.0,2.0)$ \\
 Relative tolerance on simplex size & $10^{-8}$ \\
-Exact $x^\star$ & $(0.,0.)$\\
-Computed $x^\star$ & $(2.169e-10, 2.169e-10)$\\
-Computed $f(x^\star)$ & $4.706e-20$\\
+Exact $\bx^\star$ & $(0.,0.)$\\
+Computed $\bx^\star$ & $(2.169e-10, 2.169e-10)$\\
+Exact $f(\b\bx^\star)$ & $0.$\\
+Computed $f(\bx^\star)$ & $4.706e-20$\\
 \hline
 \end{tabular}
-\end{tiny}
+%\end{tiny}
 \end{center}
 \caption{Numerical experiment with Spendley's et al. method on the quadratic function
 $f(x_1,x_2) = x_1^2 + x_2^2 - x_1 x_2$}
 \label{fig-spendley-numexp1-table}
 \end{figure}
 
-
 The various simplices generated during the iterations are 
 presented in figure \ref{fig-spendley-numexp1-historysimplex}.
 The method use reflections in the early iterations. Then there
 is no possible improvement using reflections and shrinking is necessary.
-That behaviour is an illustration of the discretization which has already
+That behavior is an illustration of the discretization which has already
 been discussed.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{quad2bis-spendley-simplexcontours.png}
+\includegraphics[width=15cm]{quad2bis-spendley-simplexcontours.png}
 \end{center}
-\caption{Spendley et al. numerical experiment -- history of simplex}
+\caption{Spendley et al. numerical experiment -- History of simplex}
 \label{fig-spendley-numexp1-historysimplex}
 \end{figure}
 
@@ -238,7 +343,7 @@ corresponds to a shrink in the algorithm.
 \begin{center}
 \includegraphics[width=10cm]{quad2bis-spendley-history-sigma.png}
 \end{center}
-\caption{Spendley et al. numerical experiment -- history of length of simplex}
+\caption{Spendley et al. numerical experiment -- History of logarithm of the size of the simplex}
 \label{fig-spendley-numexp1-sigma}
 \end{figure}
 
@@ -250,7 +355,7 @@ figure \ref{fig-spendley-numexp1-logfopt}.
 \begin{center}
 \includegraphics[width=10cm]{quad2bis-spendley-history-logfopt.png}
 \end{center}
-\caption{Spendley et al. numerical experiment -- history of logarithm of function}
+\caption{Spendley et al. numerical experiment -- History of logarithm of function}
 \label{fig-spendley-numexp1-logfopt}
 \end{figure}
 
@@ -265,66 +370,119 @@ f(x_1,x_2) = a x_1^2 + x_2^2,
 where $a>0$ is a chosen scaling parameter. 
 The more $a$ is large, the more difficult the problem is 
 to solve with the simplex algorithm.
+Indeed, let us compute the Hessian matrix associated with the 
+cost function. We have 
+\begin{eqnarray}
+\bH = \left(
+\begin{array}{cc}
+2 a & 0 \\
+0 & 2
+\end{array}
+\right).
+\end{eqnarray}
+Therefore, the eigenvalues of the Hessian matrix 
+are $2a$ and $2$, which are stricly 
+positive if $a>0$. Hence, the cost function is stricly convex and 
+there is only one global solution, that is $\bx^\star = (0,0,\ldots,0)^T$.
+The ratio between these two eigenvalues is $a$. This leads 
+to an elongated valley, which is extremely narrow when $a$ is large.
+
+The stopping criteria is based on the relative size of the simplex 
+with respect to the size of the initial simplex 
+\begin{eqnarray}
+\sigma_+(S) < tol \times \sigma_+(S_0).
+\end{eqnarray}
+In this experiment, we use $tol=10^{-8}$ as the relative tolerance 
+on simplex size.
 
 We set the maximum number of function evaluations to 400.
 The initial simplex is a regular simplex with length unity.
 
+The following Scilab script uses the neldermead algorithm to perform the 
+optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+a = 100;
+function y = quadratic (x)
+  y = a * x(1)^2 + x(2)^2;
+endfunction
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",quadratic);
+nm = nmplot_configure(nm,"-x0",[10.0 10.0]');
+nm = nmplot_configure(nm,"-maxiter",400);
+nm = nmplot_configure(nm,"-maxfunevals",400);
+nm = nmplot_configure(nm,"-tolxmethod","disabled");
+nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = nmplot_configure(nm,"-simplex0method","spendley");
+nm = nmplot_configure(nm,"-method","fixed");
+nm = nmplot_configure(nm,"-verbose",1);
+nm = nmplot_configure(nm,"-verbosetermination",0);
+nm = nmplot_configure(nm,"-simplexfn","rosenbrock.fixed.history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn","rosenbrock.fixed.history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn","rosenbrock.fixed.history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
+nm = nmplot_search(nm);
+nmplot_display(nm);
+nm = nmplot_destroy(nm);
+\end{lstlisting}
+
+
 The numerical results are presented in table \ref{fig-spendley-numexp1-table},
-where the experiment is presented for $a=100$. One can check that the 
-number of function evaluation is equal to its maximum limit, even if the value of the 
-function at optimum is very inacurate ($f(x^\star) \approx 0.08$).
+where the experiment is presented for $a=100$. We can check that the 
+number of function evaluations is equal to its maximum limit, even if the value of the 
+function at optimum is very inaccurate ($f(\bx^\star) \approx 0.08$).
 
 \begin{figure}[h]
 \begin{center}
-\begin{tiny}
+%\begin{tiny}
 \begin{tabular}{|l|l|}
 \hline
 Iterations & 340 \\
 Function Evaluations & 400 \\
 $a$ & $100.0$ \\
-$x_0$ & $(10.0,10.0)$ \\
+$\bx_0$ & $(10.0,10.0)$ \\
 Relative tolerance on simplex size & $10^{-8}$ \\
-Exact $x^\star$ & $(0.,0.)$\\
-Computed $x^\star$ & $(0.001,0.2)$\\
-Computed $f(x^\star)$ & $0.08$\\
+Exact $\bx^\star$ & $(0.,0.)$\\
+Computed $\bx^\star$ & $(0.001,0.2)$\\
+Computed $f(\bx^\star)$ & $0.08$\\
 \hline
 \end{tabular}
-\end{tiny}
+%\end{tiny}
 \end{center}
 \caption{Numerical experiment with Spendley's et al. method on a badly scaled quadratic function}
 \label{fig-spendley-numexp2-table}
 \end{figure}
 
-
 The various simplices generated during the iterations are 
 presented in figure \ref{fig-spendley-numexp2-historysimplex}.
 The method use reflections in the early iterations. Then there
-is no possible improvment using reflections and shrinking is necessary.
-But the shrinking makes the simplex very small so that a large number of 
-iterations are necessary to improve the function value.
-This is a limitation of the method, which is based on a simplex 
+is no possible improvement using reflections, so that shrinking is necessary.
+But the repeated shrink steps makes the simplex very small, leading to a large number of 
+iterations. This is a limitation of the method, which is based on a simplex 
 which can vary its size, but not its shape.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{quad2-spendley-simplexcontours.png}
+\includegraphics[width=15cm]{quad2-spendley-simplexcontours.png}
 \end{center}
-\caption{Spendley et al. numerical experiment with $f(x_1,x_2) = (a * x_1)^2 + x_2^2$ and $a=100$ -- history of simplex}
+\caption{Spendley et al. numerical experiment with $f(x_1,x_2) = a x_1^2 + x_2^2$ and $a=100$ -- History of simplex}
 \label{fig-spendley-numexp2-historysimplex}
 \end{figure}
 
-In figure \ref{fig-spendley-numexp2-scaling}, we analyse the 
-behaviour of the method with respect to scaling.
+In figure \ref{fig-spendley-numexp2-scaling}, we analyze the 
+behavior of the method with respect to scaling.
 We check that the method behave poorly when the scaling is 
 bad. The convergence speed is slower and slower and impractical 
 when $a>10$
 
 \begin{figure}[htbp]
 \begin{center}
-\begin{tiny}
+%\begin{tiny}
 \begin{tabular}{|l|l|l|}
 \hline
-$a$ & Function evaluations & Computed $f(x^\star)$ \\
+$a$ & Function evaluations & Computed $f(\bx^\star)$ \\
 $1.0$ & 160 & $2.35e-18$ \\
 $10.0$ & 222 & $1.2e-17$ \\
 $100.0$ & 400 & $0.083$ \\
@@ -332,7 +490,7 @@ $1000.0$ & 400 & $30.3$ \\
 $10000.0$ & 400 & $56.08$ \\
 \hline
 \end{tabular}
-\end{tiny}
+%\end{tiny}
 \end{center}
 \caption{Numerical experiment with Spendley's et al. method on a badly scaled quadratic function}
 \label{fig-spendley-numexp2-scaling}
@@ -341,116 +499,218 @@ $10000.0$ & 400 & $56.08$ \\
 \subsection{Sensitivity to dimension}
 
 In this section, we try to study the convergence of the 
-Spendley et al. algorithm with respect to the number of variables.
-The function we try to minimize is the following quadratic 
-in n-dimensions 
+Spendley et al. algorithm with respect to the number of variables,
+as presented by Han \& Neumann in \cite{HanNeumann2006}.
+We emphasize, though, that Han \& Neumann present their numerical 
+experiment with the Nelder-Mead algorithm, while we present 
+in this section the Spendley et al. algorithm.
+The function we try to minimize is the following quadratic function 
+in $n$-dimensions 
 \begin{eqnarray}
 \label{quadratic-sp-function3}
-f(x_1,x_2) = \sum_{i=1,n} x_i^2.
+f(\bx) = \sum_{i=1,n} x_i^2.
 \end{eqnarray}
 
-The initial simplex is a regular simplex with length unity.
-The initial guess is at 0 so that this vertex is never updated 
+The initial guess is the origin $\bx_0 = (0,0,\ldots,0)^T$,
+which is also the global solution of the problem.
+We have $f(\bx_0)=0$ so that this vertex is never updated 
 during the iterations.
+The initial simplex is computed with a random number generator.
+The first vertex of the initial simplex is the origin.
+The other vertices are uniform in the $[-1,1]$ interval.
+An absolute termination criteria on the size of the simplex is used, 
+that is, the algorithm is stopped when the inequality 
+$\sigma_+(S_k) \leq 10^{-8}$ is satisfied.
 
 For this test, we compute the rate of convergence as presented
-in Han \& Neuman. This rate is defined as 
-
+in Han \& Neuman \cite{HanNeumann2006}. This rate is defined as 
 \begin{eqnarray}
 \label{rho-sp-rate-convergence}
 \rho(S_0,n) = \textrm{lim sup}_{k\rightarrow \infty} 
-\left(\sum_{i=0,k-1} \frac{\sigma(S_{i+1}}{\sigma(S_i}\right)^{1/k}
+\left(\prod_{i=0,k-1} \frac{\sigma(S_{i+1})}{\sigma(S_i)}\right)^{1/k},
 \end{eqnarray}
-
+where $k$ is the number of iterations.
 That definition can be viewed as the geometric mean of the ratio of the 
-oriented lengths between successive simplices and the minimizer 0.
+oriented lengths between successive simplices.
 This definition implies 
-
 \begin{eqnarray}
 \label{rho-sp-rate-convergence2}
 \rho(S_0,n) = \textrm{lim sup}_{k\rightarrow \infty} 
-\left( \frac{\sigma(S_{k+1}}{\sigma(S_0}\right)^{1/k}
+\left(\frac{\sigma(S_k)}{\sigma(S_0)}\right)^{1/k},
 \end{eqnarray}
 
-The figure \ref{fig-sp-numexp3-dimension} presents the results of this 
-experiment for $n=1,20$. 
+If $k$ is the number of iterations required to obtain convergence, as 
+indicated by the termination criteria, the rate of convergence is practically computed as 
+\begin{eqnarray}
+\rho(S_0,n,k) = \left( \frac{\sigma(S_{k})}{\sigma(S_0)}\right)^{1/k}.
+\end{eqnarray}
 
-The number and kids of performed steps are presented in figure \ref{fig-sp-numexp3-nbsteps}.
-It must be noticed that reflection step occurs rarely during the iterations : the algorithm mostly performs 
-shrink steps.
+The following Scilab script allows to perform the optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function y = quadratic (x)
+  y = x(:).' * x(:);
+endfunction
+//
+// myoutputcmd --
+//  This command is called back by the Nelder-Mead
+//  algorithm.
+// Arguments
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//  data : the data at the current state
+//    This is a tlist with the following entries:
+//    * x : the optimal vector of parameters
+//    * fval : the minimum function value
+//    * simplex : the simplex, as a simplex object
+//    * iteration : the number of iterations performed
+//    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
+//
+function myoutputcmd ( state , data , step )
+  global STEP_COUNTER
+  STEP_COUNTER(step) = STEP_COUNTER(step) + 1
+endfunction
+
+// OptimizeHanNeumann --
+//   Perform the optimization and returns the object
+// Arguments 
+//   N : the dimension
+function nm = OptimizeHanNeumann ( N )
+  global STEP_COUNTER
+  STEP_COUNTER("init") = 0;
+  STEP_COUNTER("done") = 0;
+  STEP_COUNTER("reflection") = 0;
+  STEP_COUNTER("expansion") = 0;
+  STEP_COUNTER("insidecontraction") = 0;
+  STEP_COUNTER("outsidecontraction") = 0;
+  STEP_COUNTER("expansion") = 0;
+  STEP_COUNTER("shrink") = 0;
+  STEP_COUNTER("reflectionnext") = 0;
+
+  x0 = zeros(N,1);
+  nm = neldermead_new ();
+  nm = neldermead_configure(nm,"-numberofvariables",N);
+  nm = neldermead_configure(nm,"-function",quadratic);
+  nm = neldermead_configure(nm,"-x0",x0);
+  nm = neldermead_configure(nm,"-maxiter",10000);
+  nm = neldermead_configure(nm,"-maxfunevals",10000);
+  nm = neldermead_configure(nm,"-tolxmethod","disabled");
+  nm = neldermead_configure(nm,"-tolsimplexizeabsolute",1.e-8);
+  nm = neldermead_configure(nm,"-tolsimplexizerelative",0);
+  nm = neldermead_configure(nm,"-simplex0method","given");
+  coords0(1,1:N) = zeros(1,N);
+  coords0(2:N+1,1:N) = 2 * rand(N,N) - 1;
+  nm = neldermead_configure(nm,"-coords0",coords0);
+  nm = neldermead_configure(nm,"-method","fixed");
+  nm = neldermead_configure(nm,"-verbose",0);
+  nm = neldermead_configure(nm,"-verbosetermination",0);
+  nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+  //
+  // Perform optimization
+  //
+  nm = neldermead_search(nm);
+endfunction
+
+for N = 1:10
+  nm = OptimizeHanNeumann ( N );
+  niter = neldermead_get ( nm , "-iterations" );
+  funevals = neldermead_get ( nm , "-funevals" );
+  simplex0 = neldermead_get ( nm , "-simplex0" );
+  sigma0 = optimsimplex_size ( simplex0 , "sigmaplus" );
+  simplexopt = neldermead_get ( nm , "-simplexopt" );
+  sigmaopt = optimsimplex_size ( simplexopt , "sigmaplus" );
+  rho = ( sigmaopt / sigma0 ) ^ ( 1 / niter );
+  //mprintf ( "%d %d %d %e\n" , N , funevals , niter , rho );
+  mprintf("%d %s\n",N, strcat(string(STEP_COUNTER)," "))
+  nm = neldermead_destroy(nm);
+end
+
+\end{lstlisting}
+
+The figure \ref{fig-sp-numexp3-nbsteps} presents the type of 
+steps which are performed for each number of variables.
+We see that the algorithm mostly performs shrink steps.
 
 \begin{figure}[htbp]
 \begin{center}
-\begin{tiny}
-\begin{tabular}{|l|l|l|l|}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-$n$ & \# Reflections & \# Reflection & \#Shrink\\
- & / High & / Next to High & \\
+$n$ & \#Iterations & \# Reflections & \# Reflection & \#Shrink\\
+ & & / High & / Next to High & \\
 \hline
-1 & 0 & 0 & 27\\
-2 & 0 & 0 & 27\\
-3 & 1 & 0 & 27\\
-4 & 5 & 1 & 27\\
-5 & 0 & 0 & 27\\
-6 & 6 & 0 & 27\\
-7 & 4 & 0 & 27\\
-8 & 0 & 0 & 27\\
-9 & 12 & 1 & 27\\
-10 & 0 & 0 & 27\\
-11 & 0 & 0 & 27\\
-12 & 14 & 0 & 27\\
-13 & 0 & 0 & 27\\
-14 & 24 & 3 & 27\\
-15 & 0 & 0 & 27\\
-16 & 0 & 0 & 27\\
-17 & 21 & 0 & 27\\
-18 & 0 & 0 & 27\\
-19 & 28 & 0 & 27\\
+1 & 27 & 0 & 0 & 26\\
+2 & 28 & 0 & 0 & 27\\
+3 & 30 & 2 & 0 & 27\\
+4 & 31 & 1 & 1 & 28\\
+5 & 29 & 0 & 0 & 28\\
+6 & 31 & 2 & 0 & 28\\
+7 & 29 & 0 & 0 & 28\\
+8 & 29 & 0 & 0 & 28\\
+9 & 29 & 0 & 0 & 28\\
+10 & 29 & 0 & 0 & 28\\
+11 & 29 & 0 & 0 & 28\\
+12 & 29 & 0 & 0 & 28\\
+13 & 31 & 0 & 2 & 28\\
+14 & 29 & 0 & 0 & 28\\
+15 & 29 & 0 & 0 & 28\\
+16 & 31 & 0 & 1 & 29\\
+17 & 30 & 0 & 0 & 29\\
+18 & 30 & 0 & 0 & 29\\
+19 & 31 & 0 & 1 & 29\\
+20 & 32 & 2 & 0 & 29\\
 \hline
 \end{tabular}
-\end{tiny}
+%\end{tiny}
 \end{center}
-\caption{Numerical experiment with Spendley et al method on a generalized quadratic function -- number 
-and kinds of steps performed}
+\caption{Numerical experiment with Spendley et al method on a 
+generalized quadratic function -- Number of iterations 
+and types of steps performed}
 \label{fig-sp-numexp3-nbsteps}
 \end{figure}
 
-One can check that the number of function evaluations 
-increases approximately linearily with the dimension of the problem in
-figure \ref{fig-sp-numexp3-fvn}. A rough rule of thumb is that, for $n=1,19$, 
-the number of function evaluations is equal to $30n$.
-This test is in fact the best that we can expect from this algorithm : since 
-most iterations are shrink steps, most iterations improves the function value.
+The figure \ref{fig-sp-numexp3-dimension} presents the number of function 
+evaluations depending on the number of variables.
+We can see that the number of function evaluations 
+increases approximately linearly with the dimension of the problem in
+figure \ref{fig-sp-numexp3-fvn}. A rough rule of thumb is that, for $n=1,20$, 
+the number of function evaluations is equal to $30n$:
+most iterations are shrink steps and approximately 30 iterations are required,
+almost independently of $n$.
 
 \begin{figure}[htbp]
 \begin{center}
-\begin{tiny}
+%\begin{tiny}
 \begin{tabular}{|l|l|l|l|}
 \hline
-$n$ & Function evaluations & Iterations & $\rho(S_0,n)$\\
+$n$ & Function  & Iterations & $\rho(S_0,n)$\\
+    & Evaluations &          & \\
 \hline
-1 & 83 & 28 & 0.5125321059829373\\
-2 & 111 & 28 & 0.5125321059829373\\
-3 & 140 & 29 & 0.52448212766151725\\
-4 & 174 & 34 & 0.57669577295965202\\
-5 & 195 & 28 & 0.5125321059829373\\
-6 & 229 & 34 & 0.57669577295965202\\
-7 & 255 & 32 & 0.55719337129794622\\
-8 & 279 & 28 & 0.5125321059829373\\
-9 & 321 & 41 & 0.63352059021162177\\
-10 & 335 & 28 & 0.5125321059829373\\
-11 & 363 & 28 & 0.5125321059829373\\
-12 & 405 & 42 & 0.64044334488213628\\
-13 & 419 & 28 & 0.5125321059829373\\
-14 & 477 & 55 & 0.71157656804932146\\
-15 & 475 & 28 & 0.5125321059829373\\
-16 & 503 & 28 & 0.5125321059829373\\
-17 & 552 & 49 & 0.68253720379799854\\
-18 & 559 & 28 & 0.5125321059829373\\
-19 & 615 & 56 & 0.71591347660379834\\
+1 & 81 & 27 & 0.513002 \\
+2 & 112 & 28 & 0.512532 \\
+3 & 142 & 29 & 0.524482 \\
+4 & 168 & 28 & 0.512532 \\
+5 & 206 & 31 & 0.534545 \\
+6 & 232 & 29 & 0.512095 \\
+7 & 262 & 30 & 0.523127 \\
+8 & 292 & 30 & 0.523647 \\
+9 & 321 & 30 & 0.523647 \\
+10 & 348 & 29 & 0.512095 \\
+11 & 377 & 29 & 0.512095 \\
+12 & 406 & 29 & 0.512095 \\
+13 & 435 & 29 & 0.512095 \\
+14 & 464 & 29 & 0.512095 \\
+15 & 493 & 29 & 0.512095 \\
+16 & 540 & 30 & 0.511687 \\
+17 & 570 & 30 & 0.511687 \\
+18 & 600 & 30 & 0.511687 \\
+19 & 630 & 30 & 0.511687 \\
+20 & 660 & 30 & 0.511687 \\
 \hline
 \end{tabular}
-\end{tiny}
+%\end{tiny}
 \end{center}
 \caption{Numerical experiment with Spendley et al. method on a generalized quadratic function}
 \label{fig-sp-numexp3-dimension}
@@ -460,26 +720,15 @@ $n$ & Function evaluations & Iterations & $\rho(S_0,n)$\\
 \begin{center}
 \includegraphics[width=10cm]{spendley-dimension-nfevals.png}
 \end{center}
-\caption{Spendley et al. numerical experiment -- number of function evaluations 
+\caption{Spendley et al. numerical experiment -- Number of function evaluations 
 depending on the number of variables}
 \label{fig-sp-numexp3-fvn}
 \end{figure}
 
-The figure \ref{fig-nm-numexp3-rho} presents the rate of convergence 
-depending on the number of variables. The figure shows that 
-the rate of convergence rapidly gets close to 1 when the number 
-of variables increases. That shows that the rate of convergence 
-is slower and slower as the number of variables increases, as 
-explained by Han \& Neuman.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=10cm]{spendley-dimension-rho.png}
-\end{center}
-\caption{Spendley et al. numerical experiment -- rate of convergence 
-depending on the number of variables}
-\label{fig-sp-numexp3-rho}
-\end{figure}
+The table \ref{fig-sp-numexp3-dimension} also shows the interesting 
+fact that the convergence rate is almost constant and 
+very close to $1/2$. This is a consequence of the shrink steps,
+which are dividing the size of the simplex at each iteration by 2.
 
 \section{Conclusion}
 
@@ -492,4 +741,8 @@ This limitation occurs with even moderate badly scaled
 functions and generates a very slow method in these 
 cases.
 
+In the last experiment, we have explored what happens when the number of 
+iterations is increasing. In this experiment, the rate of convergence is close to $1/2$
+and the number of function evaluations is a linear function of the number 
+of variables (approximately $30n$).
 

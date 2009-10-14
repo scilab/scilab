@@ -48,13 +48,13 @@ endfunction
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
-//    * if index=1, or no index, returns the value of the cost
+//    * if index=1, or no index, returns the value of the cost 
 //      function (default case)
-//    * if index=2, returns the value of the nonlinear inequality
+//    * if index=2, returns the value of the nonlinear inequality 
 //      constraints, as a row array
 //    * if index=3, returns an array which contains
-//      at index #0, the value of the cost function
-//      at index #1 to the end is the list of the values of the nonlinear
+//      at index #0, the value of the cost function  
+//      at index #1 to the end is the list of the values of the nonlinear 
 //      constraints
 //  Discussion:
 //    The problem is to minimize a cost function with 4 non linear constraints.
@@ -75,32 +75,18 @@ endfunction
 //    Numerical methods for Nonlinear optimization
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
-function result = gouldnonconvex ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
+function [ f , c , index ] = gouldnonconvex ( x , index )
+  f = []
+  c = []
+  if ( index==2 | index==6 ) then
     f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
   end
-  if ( index==2 | index==3 ) then
+  if ( index==5 | index==6 ) then
     c1 = x(1) - 13.0
     c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
     c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
     c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
+    c = [c1 c2 c3 c4]
   end
 endfunction
 //
@@ -112,7 +98,9 @@ opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_destroy(opt);
 //
@@ -125,13 +113,18 @@ opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 opt = optimbase_configure ( opt , "-x0", [1.0 1.0]' );
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0",[-6.0 1.0]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 Component #1/2 of x is lower than min bound -5.000000e+000
+
 ... initial guess is not feasible.
+
 assert_equal ( isok , %F );
 opt = optimbase_destroy(opt);
 //
@@ -144,16 +137,21 @@ opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.8429636 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
-Computed constraints = 1.095001e+000 2.779266e-007 2.322073e-006 8.429636e-001
-Function Evaluation #1 is [1.0950013 0.0000003 0.0000023 0.8429636] at [14.095001 0.8429636]
+
+Function Evaluation #1 at [14.095001 0.8429636]
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.0 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
-Computed constraints = 1.095001e+000 7.719049e+000 -7.719046e+000 0.000000e+000
-Function Evaluation #1 is [1.0950013 7.7190486 -7.719046 0] at [14.095001 0]
+
+Function Evaluation #2 at [14.095001 0]
+
 Inequality constraint #3/4 is not satisfied for x
+
 ... initial guess is not feasible.
+
 assert_equal ( isok , %F );
 opt = optimbase_destroy(opt);

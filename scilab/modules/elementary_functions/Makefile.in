@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscielementary_functions_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/elementary_functions
@@ -78,7 +76,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -106,8 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_etcdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_rootdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_includedir)"
+	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementary_functions_la_LIBADD =
 am_libdummy_elementary_functions_la_OBJECTS =  \
@@ -518,7 +515,6 @@ DIST_SOURCES = $(libdummy_elementary_functions_la_SOURCES) \
 DATA = $(libscielementary_functions_la_etc_DATA) \
 	$(libscielementary_functions_la_root_DATA) \
 	$(libscielementary_functions_la_sci_gateway_DATA)
-HEADERS = $(libscielementary_functions_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -526,6 +522,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -537,6 +534,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -599,6 +598,7 @@ JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -664,12 +664,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -736,7 +736,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -1176,23 +1175,6 @@ libscielementary_functions_la_etc_DATA = etc/elementary_functions.quit etc/eleme
 #### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
-
-#### elementary_functions : include files ####
-libscielementary_functions_la_includedir = $(pkgincludedir)
-libscielementary_functions_la_include_HEADERS = includes/sci_tools.h \
-includes/gw_elementary_functions.h \
-includes/elementary_functions.h \
-includes/xerhlt.h \
-includes/idmax.h \
-includes/idmin.h \
-includes/int2db.h \
-includes/rea2b.h \
-includes/rea2db.h \
-includes/scidcopy.h \
-includes/unsfdcopy.h \
-includes/finite.h \
-includes/vfinite.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -2861,26 +2843,6 @@ uninstall-libscielementary_functions_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" && rm -f $$files
-install-libscielementary_functions_la_includeHEADERS: $(libscielementary_functions_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscielementary_functions_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_includedir)"
-	@list='$(libscielementary_functions_la_include_HEADERS)'; test -n "$(libscielementary_functions_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscielementary_functions_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscielementary_functions_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscielementary_functions_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscielementary_functions_la_include_HEADERS)'; test -n "$(libscielementary_functions_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscielementary_functions_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscielementary_functions_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -2967,9 +2929,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libscielementary_functions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -3022,7 +2984,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_includeHEADERS \
 	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA
 
@@ -3071,7 +3032,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_includeHEADERS \
 	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -3088,7 +3048,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_includeHEADERS \
 	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am \
@@ -3098,7 +3057,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_includeHEADERS \
 	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -3127,10 +3085,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

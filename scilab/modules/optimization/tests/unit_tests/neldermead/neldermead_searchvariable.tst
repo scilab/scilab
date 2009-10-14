@@ -46,7 +46,7 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -68,7 +68,7 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -117,8 +117,8 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "maxiter" );

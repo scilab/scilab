@@ -13,8 +13,22 @@
 //   numerical experiment presented in Box's paper.
 //
 
-mprintf("Illustrates Box''' algorithm on Box problem A.\n");
+mprintf("Illustrates Box'' algorithm on Box problem A.\n");
 mprintf("Defining Box Problem A function...\n");
+
+//
+//  Reference:
+//
+//   M.J.Box, 
+//   "A new method of constrained optimization 
+//   and a comparison with other methods".
+//   The Computer Journal, Volume 8, Number 1, 1965, 42--52
+//   Problem A
+//
+//   Algorithm 454: the complex method for constrained optimization [E4]
+//   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
+//   Pages: 487 - 489   
+//
 
 //
 // boxproblemA --
@@ -25,22 +39,10 @@ mprintf("Defining Box Problem A function...\n");
 //   x: the point where to compute the function
 //   index : the stuff to compute
 //   data : the parameters of Box cost function
-// Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
-//  The inequality constraints are expected to be positive.
 //
-function result = boxproblemA ( x , index , data )
-  if (~isdef('index','local')) then
-    index = 1
-  end
+function [ f , c , index , data ] = boxproblemA ( x , index , data )
+  f = []
+  c = []
   b = x(2) + 0.01 * x(3)
   x6 = (data.k1 + data.k2 * x(2) ...
             + data.k3 * x(3) + data.k4 * x(4) + data.k5 * x(5)) * x(1)
@@ -56,7 +58,7 @@ function result = boxproblemA ( x , index , data )
   x8 = (data.k26 + data.k27 * x(2) + data.k28 * x(3) ...
             + data.k29 * x(4) ...
             + data.k30 * x(5) ) * x(1) + x6 + x7
-  if ( index==1 | index==3 ) then
+  if ( index == 2 | index == 6 ) then
     f = (data.a2 * y1 + data.a3 * y2 + data.a4 * y3 + data.a5 * y4 ...
              + 7840 * data.a6 - 100000 * data.a0 ...
              - 50800 * b * data.a7 + data.k31 + data.k32 * x(2) + data.k33 * x(3) ...
@@ -64,24 +66,14 @@ function result = boxproblemA ( x , index , data )
              - 24345 + data.a1 * x6
     f = -f
   end
-  if ( index==2 | index==3 ) then
+  if ( index == 5 | index == 6 ) then
       c1 = x6
       c2 = 294000 - x6
       c3 = x7
       c4 = 294000 - x7
       c5 = x8
       c6 = 277200 - x8
-  end
-  select index
-  case 1 then
-    result = f
-  case 2 then
-    result = [c1 c2 c3 c4 c5 c6]
-  case 3 then
-    result = [f c1 c2 c3 c4 c5 c6]
-  else
-    errmsg = sprintf("Unexpected index %d" , index);
-    error(errmsg);
+      c = [c1 c2 c3 c4 c5 c6]
   end
 endfunction
 
@@ -130,18 +122,21 @@ boxparams.k33 = 23.3088196;
 boxparams.k34 = -27097.648;
 boxparams.k35 = -50843.766;
 
-    //
-    // Initialize the random number generator, so that the results are always the
-    // same.
-    //
-    rand("seed" , 0)
+//
+// Initialize the random number generator, so that the results are always the
+// same.
+//
+rand("seed" , 0)
 
 x0 = [2.52 2.0 37.5 9.25 6.8].';
 // Compute f(x0) : should be close to -2351244.0
-fx0 = boxproblemA ( x0 , data = boxparams );
+[ fx0 , c , index , data ] = boxproblemA ( x0 , 2 , boxparams );
+mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -2351244. );
+
 xopt = [4.53743 2.4 60.0 9.3 7.0].';
 // Compute f(xopt) : should be -5280334.0
-fopt = boxproblemA ( xopt , data = boxparams );
+[ fopt , c , index , data ] = boxproblemA ( xopt , 2 , boxparams );
+mprintf("Computed fopt = %e (expected = %e)\n", fopt , -5280334.0 );
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",5);
@@ -152,7 +147,8 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-method","box");
-//nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-logfile" , "boxproblemA.txt" );
 nm = neldermead_configure(nm,"-verbosetermination",1);
 // Configure like Box
 nm = neldermead_configure(nm,"-boundsmin",[0.0 1.2 20.0 9.0 6.0]);
@@ -161,14 +157,14 @@ nm = neldermead_configure(nm,"-simplex0method","randbounds");
 nm = neldermead_configure(nm,"-nbineqconst",6);
 //
 // Check that the cost function is correctly connected.
-// The index must be provided, because the additionnal argument "data"
-// comes after.
 //
-[ nm , result ] = neldermead_function ( nm , x0 , 1 );
+[ nm , f ] = neldermead_function ( nm , x0 );
 //
 // Perform optimization
 //
+mprintf("Searching...\n");
 nm = neldermead_search(nm);
+mprintf("...Done\n");
 neldermead_display(nm);
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
@@ -181,5 +177,4 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-
-
+deletefile ( "boxproblemA.txt" )

@@ -46,7 +46,7 @@ function fcontour(xr,yr,f,nz,teta,alpha,leg,flag,ebox,zlev)
 	end
 
 if rhs<3,
-  error(' I need at least 3 arguments')
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fcontour", 3));
 end
 opts=[]
 if rhs<4,
@@ -58,7 +58,6 @@ else
   if exists('flag' ,'local')==1 then opts=[opts,'flag=flag']  ,end
   if exists('ebox' ,'local')==1 then opts=[opts,'ebox=ebox']  ,end
   if exists('zlev' ,'local')==1 then opts=[opts,'zlev=zlev']  ,end
-  if size(opts,2)<rhs-4 then  error('invalid named arguments'),end
 end;
 
 if type(f)==11 then comp(f),end;

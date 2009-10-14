@@ -12,7 +12,7 @@
 
 #include <hdf5.h>
 #include "stack-c.h"
-#include <malloc.h>
+#include <MALLOC.h>
 #include <math.h>
 #include "h5_writeDataToFile.h"
 #include "h5_attributeConstants.h"
@@ -130,7 +130,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	hid_t       space, dset, group, iCompress;
 	hobj_ref_t  *wdata;
 
-	char	      *groupName = (char *) malloc((strlen(_pstDatasetName) + 3) * sizeof(char));
+	char	      *groupName = (char *) MALLOC((strlen(_pstDatasetName) + 3) * sizeof(char));
 	char        *pstName = NULL;
 	char        *pstPathName = NULL;
 	char				*pstSlash			= NULL;
@@ -138,7 +138,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	int	      i, j = 0;
 
 	//Create ref matrix
-	wdata = (hobj_ref_t *) malloc(_iRows * _iCols * sizeof(hobj_ref_t));
+	wdata = (hobj_ref_t *) MALLOC(_iRows * _iCols * sizeof(hobj_ref_t));
 
 	groupName = createGroupName(_pstDatasetName);
 
@@ -151,11 +151,11 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	{
 		for ( j = 0 ; j < _iCols ; ++j)
 		{
-			pstName = (char*)malloc(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char));
+			pstName = (char*)MALLOC(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char));
 			//1 for null termination, 1 for round value, 2 for '#' characters
 			sprintf(pstName, "#%d#", i + _iRows * j);
 
-			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char));
+			pstPathName = (char*)MALLOC((strlen(groupName) + strlen(pstName) + 2) * sizeof(char));
 			//1 for null termination, 1 for separator, 2 for '#' characters
 			sprintf(pstPathName, "%s/%s", groupName, pstName);
 
@@ -165,8 +165,8 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 			// create the ref
 			status = H5Rcreate (&wdata[i * _iCols + j], _iFile, pstPathName, H5R_OBJECT, -1);
 
-			free(pstName);
-			free(pstPathName);
+			FREE(pstName);
+			FREE(pstPathName);
 		}
 	}
 
@@ -187,7 +187,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	status = H5Dclose (dset);
 	status = H5Sclose (space);
 
-	free(groupName);
+	FREE(groupName);
 
 	return status;
 
@@ -196,7 +196,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 char* createGroupName(char* _pstGroupName)
 {
 	char* pstSlash			= NULL;
-	char* pstGroupName	= (char *)malloc((strlen(_pstGroupName) + 3) * sizeof(char));
+	char* pstGroupName	= (char *)MALLOC((strlen(_pstGroupName) + 3) * sizeof(char));
 	// Generate groupname #<dataSetName>#
 	sprintf(pstGroupName, "#%s#", _pstGroupName);
 	pstSlash						= strstr(pstGroupName, "/");
@@ -213,11 +213,11 @@ char* createPathName(char* _pstGroupName, int _iIndex)
 	char* pstName				= NULL;
 	char* pstPathName		= NULL;
 
-	pstName							= (char*)malloc(((int)log10((double)(_iIndex + 1)) + 3) * sizeof(char));
+	pstName							= (char*)MALLOC(((int)log10((double)(_iIndex + 1)) + 3) * sizeof(char));
 	//1 for null termination, 2 for '#' characters
 	sprintf(pstName, "#%d#", _iIndex);
 
-	pstPathName					= (char*)malloc((strlen(_pstGroupName) + strlen(pstName) + 2) * sizeof(char));
+	pstPathName					= (char*)MALLOC((strlen(_pstGroupName) + strlen(pstName) + 2) * sizeof(char));
 	//1 for null termination, 1 for separator, 2 for '#' characters
 	sprintf(pstPathName, "%s/%s", _pstGroupName, pstName);
 	return pstPathName;
@@ -250,13 +250,16 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 		return 1;
 	}
 
-	__data = (double*)malloc(sizeof(double) * _iRows * _iCols);
-
-	for (i = 0 ; i < _iRows ; ++i)
+	if(_iRows * _iCols)
 	{
-		for (j = 0 ; j < _iCols ; ++j)
+		__data = (double*)MALLOC(sizeof(double) * _iRows * _iCols);
+
+		for (i = 0 ; i < _iRows ; ++i)
 		{
-			__data[i * _iCols + j] = _pdblData[i + _iRows * j];
+			for (j = 0 ; j < _iCols ; ++j)
+			{
+				__data[i * _iCols + j] = _pdblData[i + _iRows * j];
+			}
 		}
 	}
 
@@ -306,9 +309,13 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 	status = H5Dclose (dset);
 	status = H5Sclose (space);
 
-	free(__data);
-	free(pstGroupName);
-	free(pstPathName);
+	if(__data != NULL)
+	{
+		FREE(__data);
+	}
+
+	FREE(pstGroupName);
+	FREE(pstPathName);
 
 
 	return iRef;
@@ -325,6 +332,13 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
 	hobj_ref_t pRef[1] = {0};
 	pRef[0] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _pdblData);
+
+	//don't create reference for empty matrix
+	if(_iRows * _iCols == 0)
+	{
+		return 0;
+	}
+		
 	if(pRef[0] == 0)
 	{
 		return 1;
@@ -429,7 +443,7 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 	int j							= 0;
 	int* piData				= NULL;
 
-	piData = (int*)malloc(sizeof(int) * _iRows * _iCols);
+	piData = (int*)MALLOC(sizeof(int) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -455,7 +469,7 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 	status = H5Dclose (iDataset);
 	status = H5Sclose (iSpace);
 
-	free(piData);
+	FREE(piData);
 
 	return status;
 }
@@ -480,7 +494,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 
 
 	// Create ref matrix
-	pData								= (hobj_ref_t *)malloc(_iRows * _iCols * sizeof(hobj_ref_t));
+	pData								= (hobj_ref_t *)MALLOC(_iRows * _iCols * sizeof(hobj_ref_t));
 
 	// Generate groupname #<dataSetName>#
 	pstGroupName = createGroupName(_pstDatasetName);
@@ -517,8 +531,8 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 				return 1;
 			}
 
-			free(pstName);
-			free(pstPathName);
+			FREE(pstName);
+			FREE(pstPathName);
 		}
 	}
 
@@ -550,7 +564,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 	status							= H5Dclose(dset);
 	status							= H5Sclose(space);
 
-	free(pstGroupName);
+	FREE(pstGroupName);
 
 	return status;
 }
@@ -576,7 +590,7 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
 	int j								= 0;
 	char* pcData				= NULL;
 
-	pcData = (void*)malloc(sizeof(char) * _iRows * _iCols);
+	pcData = (void*)MALLOC(sizeof(char) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -603,7 +617,7 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
 	status = H5Dclose (iDataset);
 	status = H5Sclose (iSpace);
 
-	free(pcData);
+	FREE(pcData);
 
 	return status;
 }
@@ -619,7 +633,7 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	int j								= 0;
 	short* psData				= NULL;
 
-	psData = (void*)malloc(sizeof(short) * _iRows * _iCols);
+	psData = (void*)MALLOC(sizeof(short) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -646,7 +660,7 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	status = H5Dclose (iDataset);
 	status = H5Sclose (iSpace);
 
-	free(psData);
+	FREE(psData);
 
 	return status;
 }
@@ -662,7 +676,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	int j								= 0;
 	int* piData				= NULL;
 
-	piData = (void*)malloc(sizeof(int) * _iRows * _iCols);
+	piData = (void*)MALLOC(sizeof(int) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -689,7 +703,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	status = H5Dclose (iDataset);
 	status = H5Sclose (iSpace);
 
-	free(piData);
+	FREE(piData);
 
 	return status;
 }
@@ -705,7 +719,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	int j								= 0;
 	long long* pllData	= NULL;
 
-	pllData = (void*)malloc(sizeof(char) * _iRows * _iCols);
+	pllData = (void*)MALLOC(sizeof(long long) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -732,7 +746,175 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	status = H5Dclose (iDataset);
 	status = H5Sclose (iSpace);
 
-	free(pllData);
+	FREE(pllData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned char* _pucData)
+{
+	hsize_t piDims[2]					= {_iRows, _iCols};
+	herr_t status							= 0;
+	hid_t iSpace							= 0;
+	hid_t iDataset						= 0;
+	hid_t iCompress						= 0;
+	int	i											= 0;
+	int j											= 0;
+	unsigned char* pucData		= NULL;
+
+	pucData = (void*)MALLOC(sizeof(unsigned char) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pucData[i * _iCols + j] = _pucData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pucData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u8");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pucData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned short* _pusData)
+{
+	hsize_t piDims[2]					= {_iRows, _iCols};
+	herr_t status							= 0;
+	hid_t iSpace							= 0;
+	hid_t iDataset						= 0;
+	hid_t iCompress						= 0;
+	int	i											= 0;
+	int j											= 0;
+	unsigned short* pusData		= NULL;
+
+	pusData = (void*)MALLOC(sizeof(unsigned short) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pusData[i * _iCols + j] = _pusData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pusData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u16");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pusData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned int* _puiData)
+{
+	hsize_t piDims[2]				= {_iRows, _iCols};
+	herr_t status						= 0;
+	hid_t iSpace						= 0;
+	hid_t iDataset					= 0;
+	hid_t iCompress					= 0;
+	int	i										= 0;
+	int j										= 0;
+	unsigned int* puiData		= NULL;
+
+	puiData = (void*)MALLOC(sizeof(unsigned int) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			puiData[i * _iCols + j] = _puiData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,	puiData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u32");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(puiData);
+
+	return status;
+}
+
+HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned long long* _pullData)
+{
+	hsize_t piDims[2]							= {_iRows, _iCols};
+	herr_t status									= 0;
+	hid_t iSpace									= 0;
+	hid_t iDataset								= 0;
+	hid_t iCompress								= 0;
+	int	i													= 0;
+	int j													= 0;
+	unsigned long long * pullData	= NULL;
+
+	pullData = (void*)MALLOC(sizeof(unsigned long long) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)
+		{
+			pullData[i * _iCols + j] = _pullData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,	pullData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "u64");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	FREE(pullData);
 
 	return status;
 }
@@ -762,7 +944,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 
 	// Create ref matrix
 	//3 refs : 1 for data, 1 for Number Item by row ( row size ) and 1 for column position
-	pDataRef						= (hobj_ref_t *)malloc(3 * sizeof(hobj_ref_t));
+	pDataRef						= (hobj_ref_t *)MALLOC(3 * sizeof(hobj_ref_t));
 
 	// Generate groupname #<dataSetName>#
 	pstGroupName = createGroupName(_pstDatasetName);
@@ -818,10 +1000,10 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 		return 1;
 	}
 
-	//free group names
-	free(pstRowPath);
-	free(pstColPath);
-	free(pstDataPath);
+	//FREE group names
+	FREE(pstRowPath);
+	FREE(pstColPath);
+	FREE(pstDataPath);
 
 	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 	space								= H5Screate_simple(1, dims, NULL);
@@ -852,7 +1034,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 	status							= H5Dclose(dset);
 	status							= H5Sclose(space);
 
-	free(pstGroupName);
+	FREE(pstGroupName);
 
 	return status;
 }
@@ -891,7 +1073,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 
 	// Create ref matrix
 	//3 refs : 1 for data, 1 for Number Item by row ( row size ) and 1 for column position
-	pDataRef						= (hobj_ref_t *)malloc(23 * sizeof(hobj_ref_t));
+	pDataRef						= (hobj_ref_t *)MALLOC(23 * sizeof(hobj_ref_t));
 
 	// Generate groupname #<dataSetName>#
 	pstGroupName = createGroupName(_pstDatasetName);
@@ -928,9 +1110,9 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 	}
 
 
-	//free group names
-	free(pstRowPath);
-	free(pstColPath);
+	//FREE group names
+	FREE(pstRowPath);
+	FREE(pstColPath);
 
 	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 	space								= H5Screate_simple(1, dims, NULL);
@@ -954,7 +1136,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 	status							= H5Dclose(dset);
 	status							= H5Sclose(space);
 
-	free(pstGroupName);
+	FREE(pstGroupName);
 
 	return status;
 }
@@ -972,15 +1154,9 @@ void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 	group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
 	status = H5Gclose(group);
 
-	//if(_iNbItem <= 0)
-	//{
-	//	return NULL;
-	//}
-
-	pobjArray = malloc(sizeof(hobj_ref_t) * _iNbItem);
-	if(pobjArray == NULL)
+	if(_iNbItem)
 	{
-		return NULL;
+		pobjArray = MALLOC(sizeof(hobj_ref_t) * _iNbItem);
 	}
 
 	return pobjArray;
@@ -1058,7 +1234,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 	status = H5Dclose (dset);
 	status = H5Sclose (space);
 
-	free(_pvList);
+	FREE(_pvList);
 	return status;
 }
 

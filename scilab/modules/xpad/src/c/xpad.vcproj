@@ -378,11 +378,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\GiwsException.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_xpad.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_xpad.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xpad_highlightline.cpp"
 				>
 			</File>
 			<File
@@ -408,6 +416,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_xpad.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
 				>
 			</File>
 			<File

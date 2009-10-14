@@ -50,6 +50,7 @@
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
+#include "loadTextRenderingAPI.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -597,7 +598,7 @@ int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
 
-  if (linewidth < 0.0)
+  if (linewidth < 0)
     {
       Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;
@@ -691,7 +692,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markforeground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -725,7 +726,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markbackground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -1039,10 +1040,13 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
  * @param int nbCol : the number of col of the text matrix
  * @return  0 if OK, -1 if not
  */
-int
-sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
+int sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol)
 {
-  switch (sciGetEntityType (pobj))
+
+/* Check if we should load LaTex / MathML Java libraries */
+	loadTextRenderingAPI(text, nbRow, nbCol);
+
+	switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
       deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;

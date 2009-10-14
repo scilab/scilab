@@ -16,6 +16,7 @@
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
 #include "GraphicSynchronizerInterface.h"
+#include "GiwsException.hxx"
 
 extern "C"
 {
@@ -25,6 +26,8 @@ extern "C"
 #include "Axes.h"
 #include "axesScale.h"
 #include "HandleManagement.h"
+#include "Scierror.h"
+#include "sciprint.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -39,9 +42,19 @@ void displayFigure(int figureId)
     return ;
   }
 
-  startFigureDataDisplaying(curFig);
- (sciGraphics::getFigureDrawer(curFig))->display() ;
-  endFigureDataDisplaying(curFig);
+  try 
+  {
+	  startFigureDataDisplaying(curFig);
+	  (sciGraphics::getFigureDrawer(curFig))->display() ;
+	  endFigureDataDisplaying(curFig);
+  } catch (const GiwsException::JniException& e)
+  {
+	  Scierror(999, "A native error occurred during the drawing of the figure.\nDescription: %s\nException Name: %s\nScilab's graphic may become unstable.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+  } catch (const std::exception& e)
+  {
+	  sciprint("Error: %s\n",e.what());
+	  Scierror(999, "An error occurred during the drawing of the figure.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
+  }
 }
 /*--------------------------------------------------------------------------*/
 

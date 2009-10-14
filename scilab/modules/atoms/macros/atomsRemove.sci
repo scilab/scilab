@@ -67,9 +67,9 @@ function result = atomsRemove(packages,allusers)
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
-		VERBOSE = %T;
+		ATOMSVERBOSE = %T;
 	else
-		VERBOSE = %F;
+		ATOMSVERBOSE = %F;
 	end
 	
 	// Apply changes for all users or just for me ?
@@ -126,12 +126,10 @@ function result = atomsRemove(packages,allusers)
 			
 			// Print a warning if the package isn't installed
 			
-			if VERBOSE
-				if isempty(package_versions(i)) then
-					mprintf("\t%s isn''t installed\n",package_names(i));
-				else
-					mprintf("\t%s (%s) isn''t installed\n",package_names(i),package_versions(i));
-				end
+			if isempty(package_versions(i)) then
+				atomsDisp(msprintf("\t%s isn''t installed\n",package_names(i)));
+			else
+				atomsDisp(msprintf("\t%s (%s) isn''t installed\n",package_names(i),package_versions(i)));
 			end
 		
 		elseif (~ allusers) & (~ isempty(package_versions(i)) ) then
@@ -165,12 +163,12 @@ function result = atomsRemove(packages,allusers)
 	// Loop on remList to print if a package has to be remove
 	// or not
 	// =========================================================================
-	if VERBOSE 
+	if ATOMSVERBOSE 
 		for i=1:size(remove_package_list(:,1),"*")
 			if remove_package_list(i,1) == "-" then
-				mprintf("\t%s (%s) will be removed\n",remove_package_list(i,3),remove_package_list(i,4));
+				atomsDisp(msprintf("\t%s (%s) will be removed\n",remove_package_list(i,3),remove_package_list(i,4)));
 			elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
-				mprintf("\t%s (%s) cannot be removed and will be broken\n",remove_package_list(i,3),remove_package_list(i,4));
+				atomsDisp(msprintf("\t%s (%s) cannot be removed and will be broken\n",remove_package_list(i,3),remove_package_list(i,4)));
 			end
 		end
 	end
@@ -191,9 +189,18 @@ function result = atomsRemove(packages,allusers)
 		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
 		this_package_directory = this_package_insdet(4);
 		
-		if VERBOSE then
-			mprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version );
+		// Add the package to list of package to remove
+		atomsToremoveRegister(this_package_name,this_package_version,allusers);
+		
+		// Check if the package is loaded or not
+		if atomsIsLoaded(this_package_name,this_package_version) then
+			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
+			continue;
 		end
+		
+		
+		
+		atomsDisp(msprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version ));
 		
 		// Check if this_package_directory start with SCI or SCIHOME
 		
@@ -266,15 +273,17 @@ function result = atomsRemove(packages,allusers)
 			
 		end
 		
+		// Del the package from the list of package to remove
+		// =====================================================================
+		atomsToremoveUnregister(this_package_name,this_package_version,allusers);
+		
 		// Fill the result matrix
 		// =====================================================================
 		result = [ result ; this_package_insdet ];
 		
 		// Sucess message if needed
 		// =====================================================================
-		if VERBOSE then
-			mprintf(" success\n");
-		end
+		atomsDisp(msprintf(" success\n"));
 	end
 	
 	// Go to the initial location

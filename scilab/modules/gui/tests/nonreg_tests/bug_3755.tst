@@ -17,7 +17,7 @@
 // Print doesn't work on some Windows.
 
 // Launch scilab
-// opens a file with scipad
+// opens a file with scilab editor
 // try to print this file
 
 // try to print console

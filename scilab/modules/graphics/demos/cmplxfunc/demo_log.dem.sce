@@ -18,11 +18,11 @@ function demo_log()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_log.dem.sce");
 	
 	PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"log",theta,alpha,[e,R]);
 	
 endfunction
 
 demo_log()
+demo_viewCode("demo_log.dem.sce");
 clear demo_log;

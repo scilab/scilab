@@ -14,37 +14,38 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class IndentAction extends DefaultAction {
 	
 	private static Xpad indent_editor;
 
 	private IndentAction(Xpad editor) {
-		super("Indent", editor);
+		super(XpadMessages.INDENT, editor);
 		indent_editor = editor;
 	}
 
 	public void doAction() {
+		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
-		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-		
-//		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
-//
-//		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-//
-//		getEditor().getTextPane().setCaretPosition(initial_caret_position);
-		
+		try {
+			styleDocument.beautifier(getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Indent", null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+		return createMenu(XpadMessages.INDENT, null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static void getXpadEditor(){

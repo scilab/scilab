@@ -31,8 +31,8 @@ function flag = assert_close ( computed, expected, epsilon )
   if flag <> 1 then pause,end
 endfunction
 
-function y = squarefun (x)
-y = x(1)^2+x(2)^2;
+function [ y , index ] = squarefun ( x , index )
+  y = x(1)^2+x(2)^2;
 endfunction
 //
 // Test simplex regular
@@ -44,7 +44,7 @@ nm = neldermead_configure(nm,"-simplex0method","spendley");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
 1.    2.
@@ -63,7 +63,7 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.    2.  
@@ -83,7 +83,7 @@ nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.                          2.                        
@@ -110,7 +110,7 @@ nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
 1.    1.      
@@ -129,12 +129,38 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",[1.0 2.0]);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.    2.  
     2.    2.  
     1.    4.  
+];
+assert_close ( computed, expected, 10 * %eps );
+nm = neldermead_destroy(nm);
+
+//
+// Test simplex axes when there are bounds constraints
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",squarefun);
+nm = neldermead_configure(nm,"-maxiter",10);
+nm = neldermead_configure(nm,"-x0",[0.0 0.0]');
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-method","box");
+//nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
+nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
+nm = neldermead_configure(nm,"-simplex0length",20.0);
+nm = neldermead_search(nm);
+simplex0 = neldermead_get(nm,"-simplex0");
+computed = optimsimplex_getallx ( simplex0 );
+expected = [
+    0.    0.  
+    10.    0.  
+    0.    10.  
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);

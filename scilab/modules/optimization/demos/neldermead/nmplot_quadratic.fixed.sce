@@ -10,7 +10,7 @@
 
 mprintf("Illustrates that the fixed-shape Spendley et al. algorithm performs well on a quadratic test case.\n");
 mprintf("Defining quadratic function...\n");
-function y = quadratic (x)
+function [ y , index ] = quadratic ( x , index )
   y = x(1)^2 + x(2)^2 - x(1) * x(2);
 endfunction
 
@@ -21,12 +21,12 @@ nm = nmplot_configure(nm,"-function",quadratic);
 nm = nmplot_configure(nm,"-x0",[2.0 2.0]');
 nm = nmplot_configure(nm,"-maxiter",100);
 nm = nmplot_configure(nm,"-maxfunevals",300);
-nm = nmplot_configure(nm,"-tolxmethod","disabled");
+nm = nmplot_configure(nm,"-tolxmethod",%f);
 nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = nmplot_configure(nm,"-simplex0method","spendley");
 nm = nmplot_configure(nm,"-method","fixed");
-nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",0);
+//nm = nmplot_configure(nm,"-verbose",1);
+//nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
@@ -67,7 +67,7 @@ f.children.children(1).children.mark_style = 9;
 // Plot the contours of the cost function and the simplex history
 mprintf("Plotting contour...\n");
 nm = nmplot_configure(nm,"-verbose",0);
-[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 100 , ny = 100 );
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 50 , ny = 50 );
 f = scf();
 drawlater();
 contour ( xdata , ydata , zdata , [0.1 1.0 2.0 5.0 10.0 15.0 20.0] )

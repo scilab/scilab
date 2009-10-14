@@ -10,5 +10,5 @@
 // Delete help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
-//	del_help_chapter("Xpad",%t);
+	del_help_chapter("scilab editor",%t);
 end

@@ -14,18 +14,17 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "pathconvert.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_pathconvert(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t **pStVarOne = NULL;
+	int iType1 = 0;
 	int *lenStVarOne = NULL;
 	int m1 = 0, n1 = 0;
 
@@ -46,17 +45,36 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarFour = NULL;
 		wchar_t *pStVarFour = NULL;
+		int iType4 = 0;
 		int lenStVarFour = 0;
 		int m4 = 0, n4 = 0;
 
-		getVarAddressFromPosition(4, &piAddressVarFour);
-		if (getVarType(piAddressVarFour) != sci_strings)
+		strErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType4 != sci_strings)
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 4);
 			return 0;
 		}
 
-		getVarDimension(piAddressVarFour, &m4, &n4);
+		strErr = getVarDimension(pvApiCtx, piAddressVarFour, &m4, &n4);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		if ( (m4 != n4) && (n4 != 1) ) 
 		{
@@ -64,7 +82,13 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 
 		pStVarFour = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarFour + 1));
 		if (pStVarFour == NULL)
@@ -73,7 +97,13 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 
 		if ( (wcscmp(pStVarFour, L"w") == 0) || (wcscmp(pStVarFour, L"u") == 0) )
 		{
@@ -99,16 +129,36 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarThree = NULL;
 		int *piData = NULL;
+		int iType3	= 0;
 		int m3 = 0, n3 = 0;
 
-		getVarAddressFromPosition(3, &piAddressVarThree);
-		if (getVarType(piAddressVarThree) != sci_boolean)
+		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType3 != sci_boolean)
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
 			return 0;
 		}
 
-		getVarDimension(piAddressVarThree, &m3, &n3);
+		strErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 
 		if ( (m3 != n3) && (n3 != 1) ) 
 		{
@@ -116,7 +166,13 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfBoolean(piAddressVarThree, &m3, &n3,  &piData);
+		strErr = getMatrixOfBoolean(pvApiCtx, piAddressVarThree, &m3, &n3,  &piData);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		flagexpand = piData[0];
 	}
 
@@ -124,16 +180,35 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarTwo = NULL;
 		int *piData = NULL;
+		int iType2	= 0;
 		int m2 = 0, n2 = 0;
 
-		getVarAddressFromPosition(2, &piAddressVarTwo);
-		if (getVarType(piAddressVarTwo) != sci_boolean)
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2 != sci_boolean)
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
 			return 0;
 		}
 
-		getVarDimension(piAddressVarTwo, &m2, &n2);
+		strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
@@ -141,18 +216,48 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfBoolean(piAddressVarTwo, &m2, &n2,  &piData);
+		strErr = getMatrixOfBoolean(pvApiCtx, piAddressVarTwo, &m2, &n2,  &piData);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		flagtrail = piData[0];
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-
-	if (getVarType(piAddressVarOne) == sci_matrix)
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
 	{
-		getVarDimension(piAddressVarOne, &m1, &n1);
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType1 == sci_matrix)
+	{
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m1 == n1) && (m1 == 0) )
 		{
-			createMatrixOfDouble(Rhs + 1, m1, n1, NULL);
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			LhsVar(1) = Rhs + 1;
 			C2F(putlhsvar)();
 		}
@@ -161,9 +266,14 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s: Wrong type for input argument #%d: String array expected.\n"), fname, 1);
 		}
 	}
-	else if (getVarType(piAddressVarOne) == sci_strings)
+	else if (iType1 == sci_strings)
 	{
-		getVarDimension(piAddressVarOne, &m1, &n1);
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 		if (lenStVarOne == NULL)
@@ -190,14 +300,25 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		for( i = 0; i < m1 * n1; i++)
 		{
 			results[i] = pathconvertW(pStVarOne[i], flagtrail, flagexpand, PType);
 		}
 
-		createMatrixOfWideString(Rhs + 1, m1, n1, results);
+		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, results);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		LhsVar(1) = Rhs + 1;
 		C2F(putlhsvar)();
 

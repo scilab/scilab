@@ -29,7 +29,7 @@ Source: modules\{#SPREADSHEET}\VERSION.xml; DestDir: {app}\modules\{#SPREADSHEET
 ;
 Source: modules\{#SPREADSHEET}\sci_gateway\spreadsheet_gateway.xml; DestDir: {app}\modules\{#SPREADSHEET}\sci_gateway; Components: {#COMPN_SPREADSHEET}
 ;
-Source: modules\{#SPREADSHEET}\includes\*.h; DestDir: {app}\modules\{#SPREADSHEET}\includes; Components: {#COMPN_SPREADSHEET}
+;Source: modules\{#SPREADSHEET}\includes\*.h; DestDir: {app}\modules\{#SPREADSHEET}\includes; Components: {#COMPN_SPREADSHEET}
 ;
 Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.quit; DestDir: {app}\modules\{#SPREADSHEET}\etc; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.start; DestDir: {app}\modules\{#SPREADSHEET}\etc; Components: {#COMPN_SPREADSHEET}

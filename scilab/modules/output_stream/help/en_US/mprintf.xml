@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mprintf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv xml:id="mprintf">
+    <refname>mprintf</refname>
+    <refpurpose>converts, formats, and writes data to the main scilab
+    window</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>mprintf(format,a1,...,an);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>a Scilab string describing the format to use to write the
+          remaining operands. The format operand follows, as close as
+          possible, the C printf format operand syntax.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a1,...,an</term>
+
+        <listitem>
+          <para>Specifies the data to be converted and printed according to
+          the format parameter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The <literal>mprintf</literal> function is a interface for C-coded version of
+    <literal>printf</literal> function.</para>
+
+    <para>The <literal>mprintf</literal> function writes formatted operands to
+    the standard Scilab output (i.e the Scilab window). The argument operands
+    are formatted under control of the format operand.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="disp">disp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

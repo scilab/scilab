@@ -160,16 +160,14 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
-#ifdef DO_NOT_BUILD_THIS
-	/* Desactivated since it is breaking Scilab GUI when not launched from a tty */
 
 	/* if not an interactive terminal */
 #ifdef _MSC_VER
 	/* if file descriptor returned is -2 stdin is not associated with an intput stream */
 	/* example : echo plot3d | scilex -nw -e */
-	if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) )
+	if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else
-	if ( !isatty(fileno(stdin)) )
+	if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
 #endif
 	{
 		/* read a line into the buffer, but not too
@@ -183,7 +181,6 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		}
 		return;
 	}
-#endif
 
   if(!initialized)
     {

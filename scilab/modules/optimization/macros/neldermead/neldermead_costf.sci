@@ -14,18 +14,15 @@
 //   This function is given to the simplex class as 
 //   a callback.
 //   Input/Output arguments are swapped w.r.t. 
-//   neldermead_function, so that it matches
+//   optimbase_function, so that it matches
 //   the requirements of simplex methods.
 //
 function [ f , this ] = neldermead_costf ( x , this )
-  nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
-  if ( nbnlc == 0 ) then
-    [this.optbase , f] = optimbase_function ( this.optbase , x );
+  [ this.optbase , hascons ] = optimbase_hasnlcons ( this.optbase );
+  if ( hascons ) then
+    [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , 2 );
   else
-    // Set the index, so that, if an additionnal cost function argument is provided,
-    // it can be appended at the end.
-    index = 1;
-    [this.optbase , f] = optimbase_function ( this.optbase , x , index );
+    [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , 2 );
   end
 endfunction
 

@@ -65,7 +65,7 @@ int gw_integer(void)
 		/* Bug 4123 F2C code (i_prod.f) returns a wrong exception after callFunctionFromGateway */
 		/* and it crashs with release mode */
 		/* workaround disabled callFunctionFromGateway and call function without check */
-		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 	}
 	else
 	#endif

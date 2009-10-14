@@ -70,7 +70,6 @@ overloading \
 maple2scilab \
 m2sci \
 texmacs \
-scipad \
 development_tools \
 compatibility_functions \
 helptools \
@@ -167,34 +166,31 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la
 
-OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
-$(top_builddir)/modules/umfpack/libsciumfpack.la \
-$(top_builddir)/modules/scicos/libsciscicos.la
 
-if SCICOS
-OTHER_LIBS += $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-endif
-
-
-# Dev in progress
+# These libraries are loaded dynamically from Scilab.
+ENGINE_LIBS_DYNAMIC_LOAD = \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(top_builddir)/modules/umfpack/libsciumfpack.la \
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
