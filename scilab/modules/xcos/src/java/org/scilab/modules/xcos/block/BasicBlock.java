@@ -394,7 +394,6 @@ public class BasicBlock extends mxCell {
 
     private void updateInputPortsPositions() {
 	   	int inputAngle = (getAngle() + 180) % 360;
-    	System.err.println("updateInputPortsPositions : " + inputAngle);
     	List<BasicPort> allInputPorts = (List)getAllInputPorts();
     	rotatePorts(allInputPorts, inputAngle);
     }
@@ -407,7 +406,6 @@ public class BasicBlock extends mxCell {
 
     private void updateOutputPortsPositions() {
 	   	int outputAngle = getAngle();
-    	System.err.println("updateOutputPortsPositions : " + outputAngle);
     	List<BasicPort> allOutputPorts = (List)getAllOutputPorts();
     	rotatePorts(allOutputPorts, outputAngle);
     }
@@ -420,7 +418,6 @@ public class BasicBlock extends mxCell {
 
     private void updateCommandPortsPositions() {
 	   	int commandAngle = (getAngle() + 270) % 360;
-    	System.err.println("updateCommandPortsPositions : " + commandAngle);
     	List<BasicPort> allCommandPorts = (List)getAllCommandPorts();
     	rotatePorts(allCommandPorts, commandAngle);
     }
@@ -433,7 +430,6 @@ public class BasicBlock extends mxCell {
 
     private void updateControlPortsPositions() {
     int controlAngle = (getAngle() + 90) % 360;
-	System.err.println("updateControlPortsPositions : " + controlAngle);
 	List<BasicPort> allControlPorts = (List)getAllControlPorts();
 	rotatePorts(allControlPorts, controlAngle);
     }
@@ -964,22 +960,18 @@ public class BasicBlock extends mxCell {
     }
     
     public void setRotation(int angle){
-    	System.err.println("Angle : " + angle);
 		this.angle = (360 + (this.angle + angle)) % 360;
 
 		updateInputPortsPositions();
 		updateOutputPortsPositions();
 		updateCommandPortsPositions();
 		updateControlPortsPositions();
-		
-    	System.err.println("New angle : " + this.angle);
     }
     
     private void rotatePorts(List<BasicPort> ports , int angle){
     	
  		mxGeometry blockGeom = getGeometry();
 		if(blockGeom == null){
-			System.err.println("blockGeom is null !");
 			return;
 		}
 		switch(angle){
