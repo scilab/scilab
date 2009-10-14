@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
@@ -44,7 +47,7 @@ public class XcosCodec extends mxCodec {
 //	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
 	
 	
-	String[] ignore = {"exprs",
+	String[] ignore = {//"exprs",
 		"realParameters",
 		"integerParameters",
 		"objectsParameters",
@@ -66,23 +69,23 @@ public class XcosCodec extends mxCodec {
 	String[] refs = {"parent", "source", "target"};
 
 	// Blocks
-	mxObjectCodec textBlockCodec = new mxObjectCodec(new TextBlock(), ignore, refs, null);
+	XcosObjectCodec textBlockCodec = new XcosObjectCodec(new TextBlock(), ignore, refs, null);
 	mxCodecRegistry.register(textBlockCodec);
-	mxObjectCodec basicBlockCodec = new mxObjectCodec(new BasicBlock(), ignore, refs, null);
+	XcosObjectCodec basicBlockCodec = new XcosObjectCodec(new BasicBlock(), ignore, refs, null);
 	mxCodecRegistry.register(basicBlockCodec);
-	mxObjectCodec constBlockCodec = new mxObjectCodec(new ConstBlock(), ignore, refs, null);
+	XcosObjectCodec constBlockCodec = new XcosObjectCodec(new ConstBlock(), ignore, refs, null);
 	mxCodecRegistry.register(constBlockCodec);
-	mxObjectCodec cellCodec = new mxObjectCodec(new mxCell(), null, refs, null);
+	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);
 	
 	
 	// Diagram
 	String[] diagramIgnore = {"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
-	mxObjectCodec diagramCodec = new mxObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	XcosObjectCodec diagramCodec = new XcosObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 
 	// Ports
-	mxObjectCodec explicitOutputPortCodec = new mxObjectCodec(new ExplicitOutputPort(), null, refs, null);
+	XcosObjectCodec explicitOutputPortCodec = new XcosObjectCodec(new ExplicitOutputPort(), null, refs, null);
 	mxCodecRegistry.register(explicitOutputPortCodec);    
     }
     
@@ -93,5 +96,6 @@ public class XcosCodec extends mxCodec {
     public XcosCodec(Document document) {
 	super(document);
     }
+    
     
 }
