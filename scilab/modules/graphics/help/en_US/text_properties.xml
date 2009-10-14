@@ -56,6 +56,10 @@
         <listitem>
           <para>the matrix containing the strings of the object. The rows of the
         matrix are displayed horizontally and the columns vertically.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -240,12 +244,19 @@ t.font_foreground=6; // change font properties
 t.font_size=5;
 t.font_style=5;
 
+
 t.text=["SCILAB","is";"not","esilaB"] ; // change the text
 t.font_angle=90 ; // turn the strings
 t.text_box = [0,0] ;
 t.text_box_mode = 'centered' ; // the text is now centered on [0.5,0.5].
 t.alignment = 'center' ;
 t.box = 'on' ; // draw a box around the text
+
+// Only valid from Scilab 5.2
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
+
+
  ]]></programlisting>
   </refsection>
   <refsection>
