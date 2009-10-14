@@ -563,7 +563,27 @@ public class XcosDiagram extends ScilabGraph {
     public void setViewPortMenuItem(CheckBoxMenuItem menu) {
 	this.viewPortMenu = menu;
     }
-    /**
+	/**
+	 * Manage the visibility of the grid and the associated menu
+	 * @param status new status
+	 */
+	public void setGridVisible(boolean status) {
+		setGridEnabled(true);
+		getAsComponent().setGridVisible(status);
+		getAsComponent().repaint();
+
+		// (Un)Check the corresponding menu
+		gridMenu.setChecked(status);
+	}
+	
+	/**
+	 * Set menu used to manage Grid visibility
+	 * @param menu the menu
+	 */
+	public void setGridMenuItem(CheckBoxMenuItem menu) {
+		this.gridMenu = menu;
+	}
+   /**
      * Close Xcos instance including all tabs
      */
     public void closeDiagram() {
@@ -640,77 +660,8 @@ public class XcosDiagram extends ScilabGraph {
 	    return false;
 	}
 
-<<<<<<< HEAD:scilab/modules/xcos/src/java/org/scilab/modules/xcos/XcosDiagram.java
-	/**
-	 * Manage the visibility of the associated viewport
-	 * @param status new status
-	 */
-	public void setViewPortVisible(boolean status) {
-		// Hide/Show parent window if the viewport is the only tab
-		if (viewPort.getParentWindow().getNbDockedObjects() == 1) {
-			viewPort.getParentWindow().setVisible(status);
-		}
-		// Hide/Show viewport tab
-		viewPort.setVisible(status);
-
-		// (Un)Check the corresponding menu
-		viewPortMenu.setChecked(status);
-	}
-
-	/**
-	 * Set menu used to manage Viewport visibility
-	 * @param menu the menu
-	 */
-	public void setViewPortMenuItem(CheckBoxMenuItem menu) {
-		this.viewPortMenu = menu;
-	}
-	
-	/**
-	 * Manage the visibility of the grid and the associated menu
-	 * @param status new status
-	 */
-	public void setGridVisible(boolean status) {
-		setGridEnabled(true);
-		getAsComponent().setGridVisible(status);
-		getAsComponent().repaint();
-
-		// (Un)Check the corresponding menu
-		gridMenu.setChecked(status);
-	}
-	
-	/**
-	 * Set menu used to manage Grid visibility
-	 * @param menu the menu
-	 */
-	public void setGridMenuItem(CheckBoxMenuItem menu) {
-		this.gridMenu = menu;
-	}
-	
-	/**
-	 * Close Xcos instance including all tabs
-	 */
-	public void closeDiagram() {
-
-		boolean wantToClose = true;
-
-		if (this.undoManager.canUndo()) {
-			// The diagram has been modified
-			// Ask the user want he want to do !
-			int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);
-			if (choice == 0) {
-				// Save the diagram
-				saveDiagram();
-			} else if (choice == 1) {
-				// The user selects no !
-			} else if (choice == 2) {
-				// The user cancels
-				wantToClose = false;
-			}
-		}
-=======
 	XcosCodec codec = new XcosCodec();
 	String xml = mxUtils.getXml(codec.encode(this));
->>>>>>> f78a4752ccfda90a119d0406b03b3cede9232d8f:scilab/modules/xcos/src/java/org/scilab/modules/xcos/XcosDiagram.java
 
 	System.out.println("Saving to file : {" + fileName + "}");
 
