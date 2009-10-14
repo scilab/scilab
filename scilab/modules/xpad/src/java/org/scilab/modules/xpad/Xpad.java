@@ -916,17 +916,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 					
 					synchronized (styleDocument) {
 						
-						String lineIdented = scanner.nextLine() + eof;
-						//contents.append();
-						//contents.append(System.getProperty("line.separator"));
+						String line = scanner.nextLine() + eof;
 						try {
-							
-							if (styleDocument.getAutoIndent()) {
-								lineIdented = styleDocument.indentLine(lineIdented, "");
-								styleDocument.insertString(styleDocument.getLength(), lineIdented, null);
-							}
+							styleDocument.insertString(styleDocument.getLength(), line, null);
 							if (styleDocument.getColorize()) {
-								styleDocument.colorize(styleDocument.getLength() - lineIdented.length(), styleDocument.getLength());
+								styleDocument.colorize(styleDocument.getLength() - line.length(), styleDocument.getLength());
 							}
 						} catch (BadLocationException e) {
 							System.err.println("");
