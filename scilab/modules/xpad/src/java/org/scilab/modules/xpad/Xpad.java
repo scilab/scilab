@@ -19,6 +19,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -38,6 +42,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
+import javax.swing.text.EditorKit;
+import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -128,6 +134,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private XpadLineNumberPanel xln;
 	private Menu recentsMenu;
 	private int numberOfUntitled;
+	private EditorKit editorKit;
 	
 	private Object synchro = new Object();
 
@@ -143,6 +150,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.parentWindow = parentWindow;
 		recentsMenu = ScilabMenu.createMenu();
 		numberOfUntitled = 0;
+		editorKit = new DefaultEditorKit();
 		tabPane = new JTabbedPane();
 		tabPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -436,16 +444,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 		boolean isSuccess = false;
 		if (textPane.getName() != null) {
 			try {
+// TODO: imho should use File.createTempFile("Sci",".sci") and .renameTo(textPane.getName()) to be safe
 				File newSavedFiled = new File(textPane.getName());
-
 				String doc = textPane.getText();
-
-				FileWriter writer = new FileWriter(newSavedFiled);
-				writer.write(doc);
+				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+				FileWriter writer = new FileWriter(newSavedFiled, false);
+				try {
+					editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
+				} catch (BadLocationException e){
+					System.err.println("");
+			    	e.printStackTrace();
+				}
 				writer.flush();
 				writer.close();
-
-				((ScilabStyleDocument) textPane.getStyledDocument()).setContentModified(false);
+				styledDocument.setContentModified(false);
 
 				int index = getTabPane().getSelectedIndex();
 				getTabPane().setTitleAt(index, newSavedFiled.getName());
@@ -534,9 +546,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 					f = new File(f.getPath() + extension);
 				}
-
+				// TODO factor common code with "Save"
+				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 				FileWriter writer = new FileWriter(f);
-				writer.write(doc);
+				try {
+					editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
+				} catch (BadLocationException e){
+					System.err.println("");
+			    	e.printStackTrace();
+				}
 				writer.flush();
 				writer.close();
 
@@ -546,7 +564,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				updateRecentOpenedFilesMenu();
 
-				((ScilabStyleDocument) textPane.getStyledDocument()).setContentModified(false);
+				styledDocument.setContentModified(false);
 
 				isSuccess = true;
 
@@ -906,41 +924,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 			System.out.println("File = " + f.getAbsolutePath());
 			theTextPane.setName(f.getAbsolutePath());
-			
 			try {
-				Scanner scanner = new Scanner(f);
-
-				
-				styleDocument.disableUpdaters(); 
-				while (scanner.hasNextLine()) {
-					
 					synchronized (styleDocument) {
-						
-						String lineIdented = scanner.nextLine() + eof;
-						//contents.append();
-						//contents.append(System.getProperty("line.separator"));
+						styleDocument.disableUpdaters();
+						boolean indentMode= styleDocument.getAutoIndent();
+						styleDocument.setAutoIndent(false); 
 						try {
-							
-							if (styleDocument.getAutoIndent()) {
-								lineIdented = styleDocument.indentLine(lineIdented, "");
-								styleDocument.insertString(styleDocument.getLength(), lineIdented, null);
-							}
-							if (styleDocument.getColorize()) {
-								styleDocument.colorize(styleDocument.getLength() - lineIdented.length(), styleDocument.getLength());
-							}
+							editorKit.read(new BufferedReader(new FileReader(f)), styleDocument, 0);
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
 						}
-						
+						styleDocument.setAutoIndent(indentMode);
+						styleDocument.disableUpdaters();
 					}
-				}
-				styleDocument.enableUpdaters();
-
-
-
-
-
+					// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
+				styleDocument.colorize(0, styleDocument.getLength());
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");

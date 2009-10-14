@@ -38,6 +38,7 @@
 
 #include "SetProperty.h"
 #include "GetProperty.h"
+#include "GetJavaProperty.h"
 #include "InitObjects.h"
 #include "BuildObjects.h"
 #include "math_graphics.h"
@@ -2037,6 +2038,12 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
     {
       int size[2] = {newWidth, newHeight} ;
       sciSetJavaWindowSize(pobj, size) ;
+      //Check the new size
+      sciGetJavaWindowSize(pobj, size);
+      if(size[0]!=newWidth || size[1]!=newHeight)
+      {
+        sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"));
+      }
     }
     break;
   default:
