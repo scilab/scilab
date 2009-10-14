@@ -81,6 +81,7 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -261,6 +262,24 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
 
+	addListener(mxEvent.CELLS_ADDED, new mxIEventListener() {
+	    public void invoke(Object source, mxEventObject evt) {
+		Object[] cells = (Object[]) evt.getArgs()[0];
+		
+		getModel().beginUpdate();
+		
+		mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
+		mxGeometry cellSize = ((mxCell) cells[0]).getGeometry();
+		
+		((mxCell) cells[0]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+			Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+			Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+		cellsResized(new Object[] { cells[0] }, new mxRectangle[] { ((mxCell) cells[0]).getGeometry() });
+		
+		getModel().endUpdate();
+	    }
+	});
+	
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 	
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
@@ -314,6 +333,7 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 		System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
 		System.err.println("[DEBUG] Click on : "+cell);
+		System.err.println("[DEBUG] Style : "+((mxCell) cell).getStyle());
 		if(cell != null) {
 		    System.err.println("[DEBUG] NbEdges : "+((mxCell) cell).getEdgeCount());
 		    System.err.println("[DEBUG] NbChildren : "+((mxCell) cell).getChildCount());
