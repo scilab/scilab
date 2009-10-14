@@ -26,6 +26,8 @@ Thanks to Calixte Denizet, it is now possible to annotate Scilab's graphics
 in MathML or Latex.
 See demos => Graphics => LaTeX/MathML
 
+* New features
+  - Add transparency to markdrawing.
 
 Introduction of new binaries:
 =============================
