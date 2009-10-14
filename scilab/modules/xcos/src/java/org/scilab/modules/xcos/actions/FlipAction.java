@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.actions;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -41,4 +43,13 @@ public class FlipAction extends DefaultAction {
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.FLIP, null, new FlipAction(scilabGraph), null);
 	}
+	
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		((BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell()).toggleFlip();
+	}
+
 }
