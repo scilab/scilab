@@ -54,6 +54,7 @@ import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
+import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportToXMLAction;
@@ -466,7 +467,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		format.addSeparator();
 		
-		//format.add(DiagramBackgroundAction.createMenu(scilabGraph));
+		format.add(DiagramBackgroundAction.createMenu(scilabGraph));
 		CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(scilabGraph);
 		format.add(gridMenu);
 		((XcosDiagram) scilabGraph).setGridMenuItem(menu);
