@@ -31,6 +31,9 @@
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
 static BOOL isGoodExtension(char *chainefichier,char *ext);
+static BOOL IsAScicosFileCOS(char *chainefichier);
+static BOOL IsAScicosFileCOSF(char *chainefichier);
+static BOOL IsAScicosFileXCOS(char *chainefichier);
 /*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
@@ -85,7 +88,9 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
 {
-	if ( IsAScicosFileCOS(chainefichier) || IsAScicosFileCOSF(chainefichier) ) return TRUE;
+	if ( IsAScicosFileCOS(chainefichier) || 
+		IsAScicosFileCOSF(chainefichier) ||
+		IsAScicosFileXCOS(chainefichier) ) return TRUE;
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -97,6 +102,11 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 BOOL IsAScicosFileCOSF(char *chainefichier)
 {
 	return isGoodExtension(chainefichier,".COSF");
+}
+/*--------------------------------------------------------------------------*/
+BOOL IsAScicosFileXCOS(char *chainefichier)
+{
+	return isGoodExtension(chainefichier,".XCOS");
 }
 /*--------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
@@ -132,6 +142,11 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						}
 						else
 						{
+							if (IsAScicosFileXCOS(fichier) == TRUE)
+							{
+								MessageBox(NULL,"Please install xcos module.","Error",MB_ICONSTOP);
+								exit(0);
+							}
 							wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
 						}
 					}

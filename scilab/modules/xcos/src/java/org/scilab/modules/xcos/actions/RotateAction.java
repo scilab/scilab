@@ -12,9 +12,16 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -39,6 +46,21 @@ public class RotateAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph), null);
+		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph),
+				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	}
+
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		BasicBlock block = (BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell();
+		int oldAngle = block.getAngle();
+		int newAngle = oldAngle + 90;
+		if (newAngle == 360) {
+			newAngle = 0;
+		}
+		block.setRotation(newAngle);
 	}
 }

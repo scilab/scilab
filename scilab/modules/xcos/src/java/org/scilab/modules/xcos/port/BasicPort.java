@@ -111,4 +111,10 @@ public abstract class BasicPort extends mxCell {
 
     public abstract Type getType();
 
+	public abstract void updateStyle(int angle);
+	
+	public void setStyle(String style){
+		super.setStyle(style);
+		System.err.println("port.setStyle");
+	}
 }

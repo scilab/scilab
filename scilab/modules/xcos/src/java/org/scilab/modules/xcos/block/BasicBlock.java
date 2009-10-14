@@ -54,7 +54,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxEvent;
 
 public class BasicBlock extends mxCell {
 
@@ -92,7 +91,8 @@ public class BasicBlock extends mxCell {
     private String blockType = "c";
 
     private int ordering = 0;
-    
+    protected boolean flip = false;
+    protected int angle = 0;    
     private boolean locked = false;
 
     public enum SimulationFunctionType {
@@ -386,7 +386,7 @@ public class BasicBlock extends mxCell {
     }
 
 
-    protected void addPort(InputPort port) {
+    public void addPort(InputPort port) {
 	insert(port);
 	updateInputPortsPositions();
 	port.setOrdering(getAllInputPorts().size());
@@ -403,7 +403,7 @@ public class BasicBlock extends mxCell {
 	}
     }
 
-    protected void addPort(OutputPort port) {
+    public void addPort(OutputPort port) {
 	insert(port);
 	updateOutputPortsPositions();
 	port.setOrdering(getAllOutputPorts().size());
@@ -420,7 +420,7 @@ public class BasicBlock extends mxCell {
 	}
     }
 
-    protected void addPort(CommandPort port) {
+    public void addPort(CommandPort port) {
 	insert(port);
 	updateCommandPortsPositions();
 	port.setOrdering(getAllCommandPorts().size());
@@ -437,7 +437,7 @@ public class BasicBlock extends mxCell {
 	}
     }
 
-    protected void addPort(ControlPort port) {
+    public void addPort(ControlPort port) {
 	insert(port);
 	updateControlPortsPositions();
 	port.setOrdering(getAllControlPorts().size());
@@ -930,5 +930,147 @@ public class BasicBlock extends mxCell {
 		menu.setVisible(true);
 		
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+    }
+    
+    public boolean getFlip(){
+    	return flip;
+    }
+
+    public void toggleFlip(){
+    	flip = !flip;
+    	
+		List<InputPort> inputs = getAllInputPorts();
+		List<OutputPort> outputs = getAllOutputPorts();
+
+		System.err.println("flip : " + (flip ? "true" : "false"));
+    	if(flip){//change coordinate to flip I/O ports
+    		for(int i = 0 ; i < inputs.size() ; i++){
+    			InputPort input = inputs.get(i);
+    			input.getGeometry().setX(input.getGeometry().getX() + (input.getGeometry().getWidth() + getGeometry().getWidth()));
+    			input.setStyle("ExplicitInputPort180");
+    		}
+
+    		for(int i = 0 ; i < outputs.size() ; i++){
+    			OutputPort output = outputs.get(i);
+    			output.getGeometry().setX(output.getGeometry().getX() - (output.getGeometry().getWidth() + getGeometry().getWidth()));
+    			output.setStyle("ExplicitOutputPort180");
+    		}
+    	}else{
+    		for(int i = 0 ; i < inputs.size() ; i++){
+    			InputPort input = inputs.get(i);
+    			input.getGeometry().setX(input.getGeometry().getX() - (input.getGeometry().getWidth() + getGeometry().getWidth()));
+    			input.setStyle("ExplicitInputPort");
+    		}
+
+    		for(int i = 0 ; i < outputs.size() ; i++){
+    			OutputPort output = outputs.get(i);
+    			output.getGeometry().setX(output.getGeometry().getX() + (output.getGeometry().getWidth() + getGeometry().getWidth()));
+    			output.setStyle("ExplicitOutputPort");
+    		}
+    	}
+    }
+    
+    public int getAngle(){
+    	return this.angle;
+    }
+    
+    public void restoreRotation(){
+    	setRotation(-this.angle);
+    }
+    
+    public void setRotation(int angle){
+    	
+    	int localAngle = (360 + (this.angle + angle)) % 360;
+
+    	int localAngleInputs = (localAngle + 180) % 360;
+    	
+    	System.err.println("Current angle : " + this.angle);
+    	System.err.println("Add angle : " + angle);
+    	System.err.println("Final angle : " + localAngle);
+    	
+		//Input
+		List<BasicPort> inputs = (List)getAllInputPorts();
+		//Command
+		List<BasicPort> commands = (List)getAllCommandPorts();
+
+		//Output
+		List<BasicPort> outputs = (List)getAllOutputPorts();
+		
+		//Control
+		List<BasicPort> controls = (List)getAllControlPorts();
+
+	   	int outputAngle = localAngle;
+	   	int controlAngle = (localAngle + 90) % 360;
+	   	int inputAngle = (localAngle + 180) % 360;
+	   	int commandAngle = (localAngle + 270) % 360;
+
+	   	rotatePorts(outputs, outputAngle);
+	   	rotatePorts(controls, controlAngle);
+	   	rotatePorts(inputs, inputAngle);
+	   	rotatePorts(commands, commandAngle);
+	   	
+		
+		this.angle = localAngle;
+    }
+    
+    protected void rotatePorts(List<BasicPort> ports , int angle){
+		mxGeometry blockGeom = getGeometry();
+		switch(angle){
+    	case 0 :
+    	{
+			double offsetY = blockGeom.getHeight() / (ports.size() + 1); 
+    		for(int i = 0 ; i < ports.size() ; i++){
+    			BasicPort port = ports.get(i);
+        		mxGeometry portGeom = port.getGeometry();
+
+        		portGeom.setX(blockGeom.getWidth());
+        		portGeom.setY(offsetY * (i + 1) - (portGeom.getHeight()/2));
+        		port.updateStyle(angle);
+    		}
+    		break;
+    	}
+    	case 90 :
+    	{
+			double offsetX = blockGeom.getWidth() / (ports.size() + 1); 
+    		for(int i = 0 ; i < ports.size() ; i++){
+    			BasicPort port = ports.get(i);
+        		mxGeometry portGeom = port.getGeometry();
+
+        		portGeom.setX(offsetX * (i + 1) - (portGeom.getWidth()/2));
+        		portGeom.setY(- portGeom.getHeight());
+        		port.updateStyle(angle);
+    		}
+    		break;
+    	}
+    	case 180 :
+    	{
+			double offsetY = blockGeom.getHeight() / (ports.size() + 1); 
+    		for(int i = 0 ; i < ports.size() ; i++){
+    			BasicPort port = ports.get(i);
+        		mxGeometry portGeom = port.getGeometry();
+
+        		portGeom.setX(- portGeom.getWidth());
+        		portGeom.setY(offsetY * (i + 1) - (portGeom.getHeight()/2));
+        		port.updateStyle(angle);
+    		}
+    		break;
+    	}
+    	case 270 :
+    	{
+			double offsetX = blockGeom.getWidth() / (ports.size() + 1); 
+    		for(int i = 0 ; i < ports.size() ; i++){
+    			BasicPort port = ports.get(i);
+        		mxGeometry portGeom = port.getGeometry();
+
+        		portGeom.setX(offsetX * (i + 1) - (portGeom.getWidth()/2));
+        		portGeom.setY(blockGeom.getHeight());
+        		port.updateStyle(angle);
+    		}
+    		break;
+    	}
+    	default :
+    		return;
+    	}
+  	
     }
 }
