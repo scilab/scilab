@@ -99,30 +99,10 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 /*--------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 {
-	int Retour=FALSE;
-	char FinalFileName[MAX_PATH];
-	char ShortPath[MAX_PATH];
-	char PathWScilex[MAX_PATH];
-	
-	if (fichier[0]=='\"')
-	{
-		char buffertemp[MAX_PATH];
-		int i=1;
-		
-		while (fichier[i] != '"')
-		{
-			buffertemp[i-1]=fichier[i];
-			i++;
-			if (i> (int)strlen(fichier))
-			{
-				i=(int)strlen(fichier);
-				break;
-			}
-		}
-		buffertemp[i-1]='\0';
-		strcpy(fichier,buffertemp);
-	}
-	if (fichier[strlen(fichier)-1]=='\"') fichier[strlen(fichier)-1]='\0';
+	int Retour = FALSE;
+	char FinalFileName[(MAX_PATH * 2) + 1];
+	char ShortPath[(MAX_PATH * 2) + 1];
+	char PathWScilex[(MAX_PATH * 2) + 1];
 
 	if (IsAFile(fichier))
 	{

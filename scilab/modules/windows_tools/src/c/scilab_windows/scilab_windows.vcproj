@@ -446,6 +446,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TextToPrint.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows_main.c"
 				>
 			</File>
@@ -548,10 +552,6 @@
 			</File>
 			<File
 				RelativePath=".\stristr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\TextToPrint.c"
 				>
 			</File>
 			<File
