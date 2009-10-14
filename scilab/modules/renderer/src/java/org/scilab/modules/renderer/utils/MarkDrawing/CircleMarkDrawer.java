@@ -40,20 +40,24 @@ public class CircleMarkDrawer extends MarkDrawingStrategy {
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
 		// disk
-		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
-		GLU glu = new GLU();
-		glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
-		
+    if(!isBackTransparent)
+    {
+		  gl.glColor3d(backColor[0], backColor[1], backColor[2]);
+		  GLU glu = new GLU();
+		  glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+		}
 		
 		// circle
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_LINE_LOOP);
-		for (int i = 0; i < NB_SLICES; i++) {
-			double angle = 2.0 * Math.PI * i / NB_SLICES;
-			gl.glVertex3d(Math.cos(angle), Math.sin(angle), 0.0);
+    if(!isFrontTransparent)
+    {
+		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		  gl.glBegin(GL.GL_LINE_LOOP);
+		  for (int i = 0; i < NB_SLICES; i++) {
+			  double angle = 2.0 * Math.PI * i / NB_SLICES;
+			  gl.glVertex3d(Math.cos(angle), Math.sin(angle), 0.0);
+		  }
+		  gl.glEnd();
 		}
-		gl.glEnd();
-		
 
 	}
 
