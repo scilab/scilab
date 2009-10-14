@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
