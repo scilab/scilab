@@ -602,7 +602,7 @@
             rectangle, legend, surface, segment and axis objects are using
             this property to specify a foreground (edge) color for their
             marks. Its value should be a color index (relative to the current
-            color_map). Note that the default value is <literal>-1</literal>
+            color_map) or 0 for transparant edge. Note that the default value is <literal>-1</literal>
             (default black) and, even if you change the
             <literal>color_map</literal>, this <literal>-1</literal> value will always
             point onto the default black color.</para>
@@ -616,7 +616,7 @@
             created under this axes. Polyline, rectangle, legend, surface,
             segment and axis objects are using this property to specify a
             background (face) color for their marks. It takes as value an
-            index relative to the current colormap.Note that the default value
+            index relative to the current colormap or 0 for transparant face. Note that the default value
             is <literal>-2</literal> (default white) and, even if you change the
             <literal>color_map</literal>, this <literal>-2</literal> value will always
             point onto the default white color.</para>
