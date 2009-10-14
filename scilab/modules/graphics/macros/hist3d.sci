@@ -7,7 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function hist3d(f,T,A,leg,flags,ebox, void)
+function hist3d(f,T,A,leg,flags,ebox)
 //!
 nep=8
 
