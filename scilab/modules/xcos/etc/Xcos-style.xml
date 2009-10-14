@@ -6,15 +6,19 @@
 		<add as="perimeter" value="rectanglePerimeter"/>
 		<add as="strokeColor" value="black"/>
 		<add as="fillColor" value="white"/>
+		<add as="noLabel" value="1"/>
 	</add>
-	<add as="Affiche" extend="block">
+	<add as="blockWithLabel" extend="block">
+		<add as="noLabel" value="0"/>
+	</add>
+	<add as="Affiche" extend="blockWithLabel">
 	</add>
 	<add as="Label" extend="block">
 		<add as="strokeColor" value="white"/>
 	</add>
 	<add as="Const" extend="block">
 	</add>
-	<add as="Gain" extend="block">
+	<add as="Gain" extend="blockWithLabel">
 		<add as="shape" value="triangle"/>
 		<add as="perimeter" value="trianglePerimeter"/>
 	</add>
@@ -359,9 +363,7 @@
 	<add as="MATZCONJ" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATZCONJ.gif"/>
 	</add>
-	<add as="MATTRAN" extend="Icon">
-		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATTRAN.gif"/>
-	</add>
+	<add as="MATTRAN" extend="blockWithLabel"/>
 	<add as="MATSUM" extend="Icon">
 		    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATSUM.gif"/>
 	</add>

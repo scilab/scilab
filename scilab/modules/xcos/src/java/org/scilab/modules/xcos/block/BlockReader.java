@@ -116,6 +116,7 @@ public class BlockReader {
 					indexedBlock.put(i + 1, currentBlock);
 					String imagesPath = System.getenv("SCI") + "/modules/xcos/images/blocks/";
 					File tmp = new File(imagesPath + currentBlock.getValue() + ".gif");
+					// FIXME
 					if (tmp.exists()) {
 						currentBlock.setStyle("Icon;image=" + tmp.toURI().toURL().toString());
 						currentBlock.setValue("");
