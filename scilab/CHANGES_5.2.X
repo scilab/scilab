@@ -420,6 +420,8 @@ Bug fixes:
 
 * bug 4262 fixed - lines returns incorrect values.
 
+* bug 4263 fixed - completion cleans current input line.
+
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
