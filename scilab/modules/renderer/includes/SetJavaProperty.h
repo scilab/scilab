@@ -104,7 +104,7 @@ RENDERER_IMPEXP void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSi
 /**
  * Set the title of a figure.
  */
-RENDERER_IMPEXP BOOL sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
+RENDERER_IMPEXP void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
 
 /**
  * Update subwin size and scale

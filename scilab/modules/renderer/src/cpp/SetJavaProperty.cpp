@@ -98,7 +98,7 @@ void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
 	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
-BOOL sciSetJavaTitle( sciPointObj * pFigure, const char * title )
+void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
 {
   try {
 	  getFigureDrawer(pFigure)->setTitle(title);
