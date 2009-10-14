@@ -12,9 +12,11 @@
 
 package org.scilab.modules.xcos.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
@@ -44,7 +46,7 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
 
 	// Add some hdf5 packages to have all scilab types known
-//	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
+	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
 	
 	
 	String[] ignore = {//"exprs",
@@ -68,6 +70,13 @@ public class XcosCodec extends mxCodec {
 
 	String[] refs = {"parent", "source", "target"};
 
+	// Types
+	String[] scilabStringIgnore = {"width", "height"};
+	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), scilabStringIgnore,null, null);
+	mxCodecRegistry.register(scilabStringCodec);
+	XcosObjectCodec arrayListStringCodec = new XcosObjectCodec(new ArrayList<ArrayList<String>>());
+	mxCodecRegistry.register(arrayListStringCodec);
+	
 	// Blocks
 	XcosObjectCodec textBlockCodec = new XcosObjectCodec(new TextBlock(), ignore, refs, null);
 	mxCodecRegistry.register(textBlockCodec);
@@ -80,7 +89,7 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
+	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
 	XcosObjectCodec diagramCodec = new XcosObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 
