@@ -727,7 +727,20 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllInputPorts().get(i));
 	    }
 	}
-
+	// Check if input ports have been removed
+	else if (modifiedBlock.getAllInputPorts().size() < getAllInputPorts().size()) {
+	    List<InputPort> removedPorts = new ArrayList<InputPort>();
+	    for(int i = modifiedBlock.getAllInputPorts().size() ; i < getAllInputPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllInputPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllInputPorts().remove(removedPorts.get(i));
+		updateInputPortsPositions();
+	    }
+	}
+	
 	// Check if new output port have been added
 	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
 	    for(int i = getAllOutputPorts().size() - 1 ; i < modifiedBlock.getAllOutputPorts().size() ; ++i)
@@ -735,6 +748,20 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllOutputPorts().get(i));
 	    }
 	}
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllOutputPorts().size() < getAllOutputPorts().size()) {
+	    List<OutputPort> removedPorts = new ArrayList<OutputPort>();
+	    for(int i = modifiedBlock.getAllOutputPorts().size() ; i < getAllOutputPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllOutputPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllOutputPorts().remove(removedPorts.get(i));
+		updateOutputPortsPositions();
+	    }
+	}
+	
 
 	// Check if new command port have been added
 	if (modifiedBlock.getAllCommandPorts().size() > getAllCommandPorts().size()) {
@@ -743,12 +770,38 @@ public class BasicBlock extends mxCell {
 		addPort(modifiedBlock.getAllCommandPorts().get(i));
 	    }
 	}
-
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllCommandPorts().size() < getAllCommandPorts().size()) {
+	    List<CommandPort> removedPorts = new ArrayList<CommandPort>();
+	    for(int i = modifiedBlock.getAllCommandPorts().size() ; i < getAllCommandPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllCommandPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllCommandPorts().remove(removedPorts.get(i));
+		updateCommandPortsPositions();
+	    }
+	}
+	
 	// Check if new control port have been added
 	if (modifiedBlock.getAllControlPorts().size() > getAllControlPorts().size()) {
 	    for(int i = getAllControlPorts().size() - 1 ; i < modifiedBlock.getAllControlPorts().size() ; ++i)
 	    {
 		addPort(modifiedBlock.getAllControlPorts().get(i));
+	    }
+	}
+	// Check if output ports have been removed
+	else if (modifiedBlock.getAllControlPorts().size() < getAllControlPorts().size()) {
+	    List<ControlPort> removedPorts = new ArrayList<ControlPort>();
+	    for(int i = modifiedBlock.getAllControlPorts().size() ; i < getAllControlPorts().size() ; ++i)
+	    {
+		removedPorts.add(getAllControlPorts().get(i));
+	    }
+	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
+		remove(removedPorts.get(i));
+		getAllControlPorts().remove(removedPorts.get(i));
+		updateControlPortsPositions();
 	    }
 	}
     }
