@@ -349,8 +349,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     			allBlocks.put(blocksNames[kBlock], theBloc);
     		}
 
-   			theBloc.setStyle(theBloc.getInterfaceFunctionName());
-   			theBloc.setValue(theBloc.getInterfaceFunctionName());
+    		if (theBloc.getStyle().compareTo("") == 0) {
+    		    theBloc.setStyle(theBloc.getInterfaceFunctionName());
+    		    theBloc.setValue(theBloc.getInterfaceFunctionName());
+    		}
     		
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
     	}

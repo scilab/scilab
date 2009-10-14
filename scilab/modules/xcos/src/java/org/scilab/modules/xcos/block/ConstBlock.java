@@ -25,8 +25,9 @@ public class ConstBlock extends BasicBlock {
     
     protected ConstBlock(String label) {
 	super(label);
-	setStyle("Const");
 	setInterfaceFunctionName("CONST_m");
+	setStyle("CONST_m");
+	setValue("1");
     }
     
     public void setExprs(ScilabType exprs) {

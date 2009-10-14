@@ -161,7 +161,7 @@ public class BasicBlock extends mxCell {
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
-	setStyle("block");
+	setStyle("");
 	setVertex(true);
 	setConnectable(false);
 	setGeometry(new mxGeometry(0,0,80,80));
@@ -858,6 +858,7 @@ public class BasicBlock extends mxCell {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
 	result.append("Block Name : "+getInterfaceFunctionName()+"<br>");
+	result.append("Block Style : "+getStyle()+"<br>");
 	result.append("Input ports : "+getAllInputPorts().size()+"<br>");
 	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
 	result.append("Control ports : "+getAllControlPorts().size()+"<br>");

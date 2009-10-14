@@ -24,7 +24,7 @@
   <add as="Const" extend="block"/>
 
   <!-- Gain -->
-  <add as="Gain" extend="block">
+  <add as="Gain" extend="blockWithLabel">
     <add as="shape" value="triangle"/>
     <add as="perimeter" value="trianglePerimeter"/>
     <add as="direction" value="east"/>
@@ -570,9 +570,7 @@
   <add as="GAINBLK" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GAINBLK.gif"/>
   </add>
-  <add as="GAINBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GAINBLK_f.gif"/>
-  </add>
+  <add as="GAINBLK_f" extend="Gain"/>
   <add as="FROMWSB" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMWSB.gif"/>
   </add>
