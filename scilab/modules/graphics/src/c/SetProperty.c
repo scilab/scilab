@@ -2042,7 +2042,7 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
       sciGetJavaWindowSize(pobj, size);
       if(size[0]!=newWidth || size[1]!=newHeight)
       {
-        sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"), size[0], size[1]);
+        sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"));
       }
     }
     break;
