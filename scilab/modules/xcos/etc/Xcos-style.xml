@@ -230,8 +230,8 @@
   <add as="SampleCLK" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif"/>
   </add>
-  <add as="TKSCALE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TKSCALE.gif"/>
+  <add as="TKSCALE" extend="blockWithLabel">
+    <add as="displayedLabel" value="TK Scale"/>
   </add>
   <add as="FROMWSB" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMWSB.gif"/>
@@ -302,7 +302,7 @@
 
   <!-- SIGNAL PROCESSING -->
   <add as="MCLOCK_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="2freq clock&lt;br&gt;f/n  f"/>
+    <add as="displayedLabel" value="2freq clock&lt;br&gt;f/n f"/>
   </add>
   <add as="QUANT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.gif"/>
@@ -478,7 +478,7 @@
   </add>
   <!-- MATDIV -->
   <add as="MATZCONJ" extend="blockWithLabel">
-    <add as="displayedLabel" value=">CONJ"/>
+    <add as="displayedLabel" value="CONJ"/>
   </add>
   <!-- MATMAGPHI -->
   <add as="EXTRACT" extend="blockWithLabel"/>
@@ -612,7 +612,7 @@
   </add>
   <add as="ANDBLK" extend="blockWithLabel"/>
   <add as="HALT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="HALT"/>
+    <add as="displayedLabel" value="STOP"/>
   </add>
   <add as="freq_div" extend="blockWithLabel">
     <add as="displayedLabel" value="Frequency&lt;br&gt;Division"/>
@@ -650,7 +650,9 @@
   <add as="SWITCH_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH_f.gif"/>
   </add>
-  <add as="SWITCH2_m" extend="blockWithLabel"/>
+  <add as="SWITCH2_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="SWITCH"/>
+  </add>
   <add as="NRMSOM_f" extend="blockWithLabel">
     <add as="displayedLabel" value=""/>
   </add>
@@ -711,24 +713,24 @@
   <!-- USER-DEFINED FUNCTIONS -->
   <add as="PDE" extend="blockWithLabel"/>
   <add as="fortran_block" extend="blockWithLabel">
-    <add as="displayedLabel" value="Fortran&lt;br&gt;block"/>
+    <add as="displayedLabel" value="Fortran"/>
   </add>
   <!-- MBLOCK -->
   <add as="EXPRESSION" extend="blockWithLabel">
     <add as="displayedLabel" value="Mathematical&lt;br&gt;Expression"/>
   </add>
   <add as="scifunc_block_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="Scilab&lt;br&gt;function"/>
+    <add as="displayedLabel" value="Scifunc"/>
   </add>
   <add as="CBLOCK" extend="blockWithLabel">
-    <add as="displayedLabel" value="C&lt;br&gt;block&lt;br&gt;2"/>
+    <add as="displayedLabel" value="C block 2"/>
   </add>
   <add as="generic_block3" extend="blockWithLabel">
     <add as="displayedLabel" value="GENERIC"/>
   </add>
   <!-- TEXT_f -->
   <add as="c_block" extend="blockWithLabel">
-    <add as="displayedLabel" value="C&lt;br&gt;block"/>
+    <add as="displayedLabel" value="C block"/>
   </add>
   <add as="SUPER_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
