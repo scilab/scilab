@@ -184,7 +184,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 
 				/** Create MATH OPERATIONS palette */
 				String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
-						"MATDIV", "EXPBLK_m", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
+						"MATDIV", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
 						"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
 				allpalettes.addTab(XcosMessages.MATHSOPS_PAL, createPalette(mathsBlocksNames));
 
