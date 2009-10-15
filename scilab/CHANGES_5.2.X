@@ -614,6 +614,8 @@ Bug fixes:
 
 * bug 4812 fixed - xs2... function doesn't work if the first argument is a handle
 
+* bug 4816 fixed - plot doesn't manage autoclear correctly.
+
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
 
 * bug 4828 fixed - completion clears the content of some completed path.
