@@ -49,7 +49,16 @@ public class FlipAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell()).toggleFlip();
+	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+		
+		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
+		
+		for (int i = 0 ; i < allCells.length ; ++i) {
+		    if (allCells[i] instanceof BasicBlock) {
+			((BasicBlock) allCells[i]).toggleFlip((XcosDiagram) getGraph(null));
+		    }
+		}
+	    }
 	}
 
 }

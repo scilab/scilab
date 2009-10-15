@@ -55,6 +55,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxUtils;
 
 public class BasicBlock extends mxCell {
 
@@ -919,35 +921,43 @@ public class BasicBlock extends mxCell {
     	return flip;
     }
 
-    public void toggleFlip(){
-    	flip = !flip;
-    	
-		List<InputPort> inputs = getAllInputPorts();
-		List<OutputPort> outputs = getAllOutputPorts();
+    public void toggleFlip(XcosDiagram graph) {
+
+	flip = !flip;
+	
+	if(flip){
+    	    mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_WEST);
+	}
+	else {
+	    mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+	}
+	
+	List<InputPort> inputs = getAllInputPorts();
+	List<OutputPort> outputs = getAllOutputPorts();
 
     	if(flip){//change coordinate to flip I/O ports
     		for(int i = 0 ; i < inputs.size() ; i++){
     			InputPort input = inputs.get(i);
     			input.getGeometry().setX(input.getGeometry().getX() + (input.getGeometry().getWidth() + getGeometry().getWidth()));
-    			input.setStyle("ExplicitInputPort180");
+    			mxUtils.setCellStyles(graph.getModel(), new Object[] {input}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_WEST);
     		}
 
     		for(int i = 0 ; i < outputs.size() ; i++){
     			OutputPort output = outputs.get(i);
     			output.getGeometry().setX(output.getGeometry().getX() - (output.getGeometry().getWidth() + getGeometry().getWidth()));
-    			output.setStyle("ExplicitOutputPort180");
+    			mxUtils.setCellStyles(graph.getModel(), new Object[] {output}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_WEST);
     		}
     	}else{
     		for(int i = 0 ; i < inputs.size() ; i++){
     			InputPort input = inputs.get(i);
     			input.getGeometry().setX(input.getGeometry().getX() - (input.getGeometry().getWidth() + getGeometry().getWidth()));
-    			input.setStyle("ExplicitInputPort");
+    			mxUtils.setCellStyles(graph.getModel(), new Object[] {input}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
     		}
 
     		for(int i = 0 ; i < outputs.size() ; i++){
     			OutputPort output = outputs.get(i);
     			output.getGeometry().setX(output.getGeometry().getX() + (output.getGeometry().getWidth() + getGeometry().getWidth()));
-    			output.setStyle("ExplicitOutputPort");
+    			mxUtils.setCellStyles(graph.getModel(), new Object[] {output}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
     		}
     	}
     }
