@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the z_ticks field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -33,6 +33,7 @@
 #include "loadTextRenderingAPI.h"
 
 /*------------------------------------------------------------------------*/
+/* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   AssignedList * tlist     = NULL ;
