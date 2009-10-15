@@ -104,7 +104,7 @@ public class XcosDiagram extends ScilabGraph {
     private Tab viewPort;
 
     private CheckBoxMenuItem viewPortMenu;
-	private CheckBoxMenuItem gridMenu;
+    private CheckBoxMenuItem gridMenu;
 
     public Object addEdge(Object edge, Object parent, Object source,
 	    Object target, Integer index)
@@ -264,23 +264,25 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		Object[] cells = (Object[]) evt.getArgs()[0];
-		
-		getModel().beginUpdate();
-		
-		mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
-		mxGeometry cellSize = ((mxCell) cells[0]).getGeometry();
-		
-		((mxCell) cells[0]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-			Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-			Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-		cellsResized(new Object[] { cells[0] }, new mxRectangle[] { ((mxCell) cells[0]).getGeometry() });
-		
-		getModel().endUpdate();
+
+		if (cells[0] instanceof BasicBlock) {
+		    getModel().beginUpdate();
+
+		    mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
+		    mxGeometry cellSize = ((mxCell) cells[0]).getGeometry();
+
+		    ((mxCell) cells[0]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+			    Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+			    Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+		    cellsResized(new Object[] { cells[0] }, new mxRectangle[] { ((mxCell) cells[0]).getGeometry() });
+
+		    getModel().endUpdate();
+		}
 	    }
 	});
-	
+
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
-	
+
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		refresh();
@@ -587,27 +589,27 @@ public class XcosDiagram extends ScilabGraph {
     public void setViewPortMenuItem(CheckBoxMenuItem menu) {
 	this.viewPortMenu = menu;
     }
-	/**
-	 * Manage the visibility of the grid and the associated menu
-	 * @param status new status
-	 */
-	public void setGridVisible(boolean status) {
-		setGridEnabled(true);
-		getAsComponent().setGridVisible(status);
-		getAsComponent().repaint();
+    /**
+     * Manage the visibility of the grid and the associated menu
+     * @param status new status
+     */
+    public void setGridVisible(boolean status) {
+	setGridEnabled(true);
+	getAsComponent().setGridVisible(status);
+	getAsComponent().repaint();
 
-		// (Un)Check the corresponding menu
-		gridMenu.setChecked(status);
-	}
-	
-	/**
-	 * Set menu used to manage Grid visibility
-	 * @param menu the menu
-	 */
-	public void setGridMenuItem(CheckBoxMenuItem menu) {
-		this.gridMenu = menu;
-	}
-   /**
+	// (Un)Check the corresponding menu
+	gridMenu.setChecked(status);
+    }
+
+    /**
+     * Set menu used to manage Grid visibility
+     * @param menu the menu
+     */
+    public void setGridMenuItem(CheckBoxMenuItem menu) {
+	this.gridMenu = menu;
+    }
+    /**
      * Close Xcos instance including all tabs
      */
     public void closeDiagram() {
