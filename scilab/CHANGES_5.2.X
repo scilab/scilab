@@ -609,6 +609,8 @@ Bug fixes:
 
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
 
+* bug 4812 fixed - xs2... function doesn't work if the first argument is a handle
+
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
 
 * bug 4828 fixed - completion clears the content of some completed path.
