@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - Digiteo - Pierre Lando
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK ERROR OUTPUT -->
+
+// <-- Non-regression test for bug 4812 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4812
+//
+// <-- Short Description -->
+// xs2... function doesn't work if the first argument is a handle
+// 
+
+//scf(0);
+plot3d();
+hd=gcf();
+//PNG export for exemple
+xs2png(0,TMPDIR+'/nonreg_test_bug4812a.png');
+xs2png(hd,TMPDIR+'/nonreg_test_bug4812b.png'); // this now work ....
+
