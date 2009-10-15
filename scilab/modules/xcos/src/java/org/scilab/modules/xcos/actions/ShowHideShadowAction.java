@@ -12,10 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
+import java.util.Hashtable;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -24,11 +21,15 @@ import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxUtils;
+import com.mxgraph.view.mxCellState;
+
 /**
- * Block flip handling
+ * Block shadow handling
  * @author Vincent COUVERT
  */
-public class FlipAction extends DefaultAction {
+public class ShowHideShadowAction extends DefaultAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,8 +37,8 @@ public class FlipAction extends DefaultAction {
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
-	public FlipAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.FLIP, scilabGraph);
+	public ShowHideShadowAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.SHOWHIDE_SHADOW, scilabGraph);
 	}
 
 	/**
@@ -46,8 +47,7 @@ public class FlipAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.FLIP, null, new FlipAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.SHOWHIDE_SHADOW, null, new ShowHideShadowAction(scilabGraph), null);
 	}
 	
 	/**
@@ -61,7 +61,15 @@ public class FlipAction extends DefaultAction {
 		
 		for (int i = 0 ; i < allCells.length ; ++i) {
 		    if (allCells[i] instanceof BasicBlock) {
-			((BasicBlock) allCells[i]).toggleFlip((XcosDiagram) getGraph(null));
+			//((BasicBlock) allCells[i])
+				mxCellState state = getGraph(null).getView().getState(allCells[i]);
+				Hashtable style = (state != null) ? state.getStyle() : getGraph(null).getCellStyle(allCells[i]);
+
+				if (style != null)
+				{
+					String value = (mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false)) ? "0" : "1";
+					getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW, value, new Object[] { allCells[i] });
+				}
 		    }
 		}
 	    }

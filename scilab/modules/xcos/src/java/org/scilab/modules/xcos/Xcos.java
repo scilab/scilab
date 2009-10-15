@@ -73,6 +73,7 @@ import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
+import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
@@ -463,6 +464,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		format.add(RotateAction.createMenu(scilabGraph));
 		format.add(FlipAction.createMenu(scilabGraph));
+		format.add(ShowHideShadowAction.createMenu(scilabGraph));
 		
 		format.addSeparator();
 		

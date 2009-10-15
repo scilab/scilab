@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
+import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -907,6 +908,7 @@ public class BasicBlock extends mxCell {
 		menu.add(format);
 		format.add(RotateAction.createMenu(graph));
 		format.add(FlipAction.createMenu(graph));
+		format.add(ShowHideShadowAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
