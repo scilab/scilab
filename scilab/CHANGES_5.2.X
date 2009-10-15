@@ -415,6 +415,7 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
+* bug 4054 fixed - load into scilab a file with editor can crash scilab.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
@@ -443,6 +444,8 @@ Bug fixes:
 * bug 4307 fixed - %io has no help file.                   
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
+
+* bug 4351 fixed - test about 'exit' does not work on linux.
 
 * bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work
 
@@ -614,6 +617,8 @@ Bug fixes:
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
+
+* bug 4812 fixed - xs2... function doesn't work if the first argument is a handle
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
 

@@ -58,7 +58,7 @@ function ilib_gen_Make_unix(names,   ..
 		
 	originPath  = pwd();
 	linkBuildDir    = TMPDIR;
-	commandpath = SCI+"/modules/dynamic_link/src/scripts/";
+	commandpath = SCI+"/modules/dynamic_link/src/scripts";
 	[fd,ierr] = mopen(commandpath+"/write.test","w+");
 
 	if (ierr<>0) then
@@ -89,9 +89,9 @@ function ilib_gen_Make_unix(names,   ..
 						"Makefile.am", ..
 						"Makefile.in", ..
 						"config.sub", ..
-					    "libtool", ..
+						"libtool", ..
 						"config.guess", ..
-					    "config.status", ..
+						"config.status", ..
 						"depcomp", ..
 						"install-sh", ..
 						"ltmain.sh", ..
@@ -209,7 +209,7 @@ function ilib_gen_Make_unix(names,   ..
 		mprintf(gettext("   %s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make");
 	end
 	
-	cmd=commandpath + "scicompile.sh " + libname + " " + filelist
+	cmd=commandpath + "/scicompile.sh " + libname + " " + filelist
 
 	[msg,ierr, stderr] = unix_g(cmd);
 
