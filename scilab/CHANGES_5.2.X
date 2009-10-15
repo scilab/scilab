@@ -409,6 +409,7 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
+* bug 4054 fixed - load into scilab a file with editor can crash scilab.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
