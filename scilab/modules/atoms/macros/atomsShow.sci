@@ -67,6 +67,7 @@ function atomsShow(name,version)
 	fields_map = [ fields_map ; "Version"        gettext("Version")        ];
 	fields_map = [ fields_map ; "Depends"        gettext("Depend")         ];
 	fields_map = [ fields_map ; "Category"       gettext("Category(ies)")  ];
+	fields_map = [ fields_map ; "Author"         gettext("Author(s)")      ];
 	fields_map = [ fields_map ; "Maintainer"     gettext("Maintainer(s)")  ];
 	fields_map = [ fields_map ; "Entity"         gettext("Entity")         ];
 	fields_map = [ fields_map ; "WebSite"        gettext("WebSite")        ];
