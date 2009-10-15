@@ -438,6 +438,8 @@ Bug fixes:
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
+* bug 4351 fixed - test about 'exit' does not work on linux.
+
 * bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work
 
 * bug 4360 fixed - The reference of bug_3954.tst was missing.
