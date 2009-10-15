@@ -332,11 +332,13 @@ public final class FindAction extends DefaultAction {
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();
-				String text = new String();
+				String text = null;
 				
 				boolean wholeWordSelected  = wholeWord.isSelected() &&  wholeWord.isEnabled();
 				boolean regexpSelected  = regularExp.isSelected();
 				
+				// save current caret position to restore it at the end
+				int currentCaretPos = xpadTextPane.getCaretPosition();
 				
 				if (buttonSelection.isSelected()) {
 					text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
@@ -377,7 +379,7 @@ public final class FindAction extends DefaultAction {
 				}
 					
 				
-				
+				xpadTextPane.setCaretPosition(currentCaretPos);
 			}
 		});
 
