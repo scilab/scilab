@@ -146,6 +146,11 @@ int sci_x_mdialog(char *fname,unsigned long fname_len)
     {
       userValue = getMessageBoxValue(messageBoxID);
       nbCol = 1;
+      nbRowDefaultValues = nbColLineLabels*nbRowLineLabels;
+      nbColDefaultValues = 1;
+      if (Rhs == 4) {
+        nbColDefaultValues = nbColColumnLabels*nbRowColumnLabels; 
+      }
       CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
       /* TO DO : delete of userValue */
     }
