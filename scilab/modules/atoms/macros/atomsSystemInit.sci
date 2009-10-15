@@ -28,8 +28,4 @@ function atomsSystemInit()
 	// =========================================================================
 	atomsToremoveProcess(allusers);
 	
-	// Autoload process
-	// =========================================================================
-	atomsAutoload();
-	
 endfunction
