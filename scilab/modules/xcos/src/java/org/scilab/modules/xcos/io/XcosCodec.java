@@ -71,8 +71,7 @@ public class XcosCodec extends mxCodec {
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
-	String[] scilabStringIgnore = {"width", "height"};
-	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), scilabStringIgnore,null, null);
+	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
 	XcosObjectCodec arrayListStringCodec = new XcosObjectCodec(new ArrayList<ArrayList<String>>());
 	mxCodecRegistry.register(arrayListStringCodec);
