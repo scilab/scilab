@@ -164,464 +164,695 @@
     <add as="strokeColor" value="green"/>
   </add>
 
-  <!-- GENERATED BLOCKS -->
-  <add as="ZCROSS_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ZCROSS_f.gif"/>
-  </add>
-  <add as="WRITEC_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/WRITEC_f.gif"/>
-  </add>
-  <add as="WRITEAU_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/WRITEAU_f.gif"/>
-  </add>
-  <add as="WFILE_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/WFILE_f.gif"/>
-  </add>
-  <add as="VVsourceAC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VVsourceAC.gif"/>
-  </add>
-  <add as="VsourceAC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VsourceAC.gif"/>
-  </add>
-  <add as="VoltageSensor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.gif"/>
-  </add>
-  <add as="VariableResistor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif"/>
-  </add>
-  <add as="VARIABLE_DELAY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VARIABLE_DELAY.gif"/>
-  </add>
-  <add as="VanneReglante" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VanneReglante.gif"/>
-  </add>
-  <add as="TrigFun" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TrigFun.gif"/>
-  </add>
-  <add as="TRASH_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TRASH_f.gif"/>
-  </add>
-  <add as="TOWS_c" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TOWS_c.gif"/>
-  </add>
-  <add as="TKSCALE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TKSCALE.gif"/>
-  </add>
-  <add as="TIME_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_f.gif"/>
-  </add>
-  <add as="TIME_DELAY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_DELAY.gif"/>
-  </add>
-  <add as="TEXT_f" extend="Label"/>
-  <add as="TCLSS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TCLSS.gif"/>
-  </add>
-  <add as="TANBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TANBLK_f.gif"/>
-  </add>
-  <add as="Switch" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.gif"/>
-  </add>
-  <add as="SWITCH_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH_f.gif"/>
-  </add>
-  <add as="SWITCH2_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH2_m.gif"/>
-  </add>
-  <add as="SUPER_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
-  </add>
-  <add as="SUMMATION" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUMMATION.gif"/>
-  </add>
-  <add as="SUM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.gif"/>
-  </add>
-  <add as="SUBMAT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUBMAT.gif"/>
-  </add>
-  <add as="STEP_FUNCTION" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.gif"/>
-  </add>
-  <add as="SRFLIPFLOP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SRFLIPFLOP.gif"/>
-  </add>
-  <add as="SQRT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SQRT.gif"/>
-  </add>
-  <add as="SPLIT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SPLIT_f.gif"/>
-  </add>
-  <add as="SourceP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.gif"/>
-  </add>
-  <add as="SineVoltage" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SineVoltage.gif"/>
-  </add>
-  <add as="SINBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SINBLK_f.gif"/>
-  </add>
-  <add as="SIGNUM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SIGNUM.gif"/>
-  </add>
-  <add as="Sigbuilder" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Sigbuilder.gif"/>
-  </add>
-  <add as="SHIFT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SHIFT.gif"/>
-  </add>
-  <add as="SELECT_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SELECT_m.gif"/>
-  </add>
-  <add as="scifunc_block_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/scifunc_block_m.gif"/>
-  </add>
-  <add as="SCALAR2VECTOR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALAR2VECTOR.gif"/>
-  </add>
-  <add as="SAWTOOTH_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SAWTOOTH_f.gif"/>
-  </add>
-  <add as="SATURATION" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SATURATION.gif"/>
-  </add>
-  <add as="SAT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SAT_f.gif"/>
-  </add>
-  <add as="SampleCLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif"/>
-  </add>
-  <add as="SAMPHOLD_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SAMPHOLD_m.gif"/>
-  </add>
-  <add as="ROOTCOEF" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ROOTCOEF.gif"/>
-  </add>
-  <add as="RICC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RICC.gif"/>
-  </add>
-  <add as="RFILE_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RFILE_f.gif"/>
-  </add>
-  <add as="Resistor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif"/>
-  </add>
-  <add as="RELAY_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELAY_f.gif"/>
-  </add>
-  <add as="RELATIONALOP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif"/>
-  </add>
-  <add as="REGISTER" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/REGISTER.gif"/>
-  </add>
-  <add as="READC_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/READC_f.gif"/>
-  </add>
-  <add as="READAU_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/READAU_f.gif"/>
-  </add>
-  <add as="RATELIMITER" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RATELIMITER.gif"/>
-  </add>
-  <add as="RAND_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAND_m.gif"/>
-  </add>
-  <add as="RAND_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAND_f.gif"/>
+  <!-- SOURCES -->
+  <add as="CONST_m" extend="blockWithLabel"/>
+  <add as="GENSQR_f" extend="blockWithLabel">
+      <add as="displayedLabel" value="Square wave&lt;br&gt;generator"/>
   </add>
   <add as="RAMP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.gif"/>
   </add>
-  <add as="QUANT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.gif"/>
+  <add as="RAND_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="Random&lt;br&gt;generator"/>
   </add>
-  <add as="PuitsP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.gif"/>
+  <add as="RFILE_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Read from&lt;br&gt;input file"/>
   </add>
-  <add as="PRODUCT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.gif"/>
+  <add as="CLKINV_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKINV_f.gif"/>
   </add>
-  <add as="PROD_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.gif"/>
-  </add>
-  <add as="POWBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/POWBLK_f.gif"/>
-  </add>
-  <add as="PotentialSensor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.gif"/>
-  </add>
-  <add as="POSTONEG_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/POSTONEG_f.gif"/>
-  </add>
-  <add as="PNP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.gif"/>
-  </add>
-  <add as="PMOS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.gif"/>
-  </add>
-  <add as="PID" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PID.gif"/>
-  </add>
-  <add as="PerteDP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.gif"/>
-  </add>
-  <add as="PDE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PDE.gif"/>
-  </add>
-  <add as="OUTIMPL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUTIMPL_f.gif"/>
-  </add>
-  <add as="OUT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUT_f.gif"/>
-  </add>
-  <add as="OpAmp" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OpAmp.gif"/>
-  </add>
-  <add as="NRMSOM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NRMSOM_f.gif"/>
-  </add>
-  <add as="NPN" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.gif"/>
-  </add>
-  <add as="NMOS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.gif"/>
-  </add>
-  <add as="NEGTOPOS_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NEGTOPOS_f.gif"/>
-  </add>
-  <add as="MUX" extend="blockWithLabel">
-    <add as="verticalLabelPosition" value="bottom"/>
-    <add as="verticalAlign" value="top"/>
-  </add>
-  <add as="MUX_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
-  </add>
-  <add as="M_SWITCH" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/M_SWITCH.gif"/>
-  </add>
-  <add as="Modulo_Count" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Modulo_Count.gif"/>
-  </add>
-  <add as="MIN_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MIN_f.gif"/>
-  </add>
-  <add as="M_freq" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/M_freq.gif"/>
-  </add>
-  <add as="MFCLCK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MFCLCK_f.gif"/>
-  </add>
-  <add as="MEMORY_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MEMORY_f.gif"/>
-  </add>
-  <add as="MCLOCK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MCLOCK_f.gif"/>
-  </add>
-  <add as="MBLOCK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MBLOCK.gif"/>
-  </add>
-  <add as="MAXMIN" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MAXMIN.gif"/>
-  </add>
-  <add as="MAX_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MAX_f.gif"/>
-  </add>
-  <add as="MATZREIM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATZREIM.gif"/>
-  </add>
-  <add as="MATZCONJ" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATZCONJ.gif"/>
-  </add>
-  <add as="MATTRAN" extend="blockWithLabel"/>
-  <add as="MATSUM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATSUM.gif"/>
-  </add>
-  <add as="MATSING" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATSING.gif"/>
-  </add>
-  <add as="MATRESH" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATRESH.gif"/>
-  </add>
-  <add as="MATPINV" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATPINV.gif"/>
-  </add>
-  <add as="MATMUL" extend="blockWithLabel"/>
-  <add as="MATMAGPHI" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATMAGPHI.gif"/>
-  </add>
-  <add as="MATLU" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATLU.gif"/>
-  </add>
-  <add as="MATINV" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATINV.gif"/>
-  </add>
-  <add as="MATEXPM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATEXPM.gif"/>
-  </add>
-  <add as="MATEIG" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATEIG.gif"/>
-  </add>
-  <add as="MATDIV" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATDIV.gif"/>
-  </add>
-  <add as="MATDIAG" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATDIAG.gif"/>
-  </add>
-  <add as="MATDET" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATDET.gif"/>
-  </add>
-  <add as="MATCATV" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATCATV.gif"/>
-  </add>
-  <add as="MATCATH" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATCATH.gif"/>
-  </add>
-  <add as="MATBKSL" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MATBKSL.gif"/>
-  </add>
-  <add as="LOOKUP_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif"/>
-  </add>
-  <add as="LOGIC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOGIC.gif"/>
-  </add>
-  <add as="LOGICAL_OP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOGICAL_OP.gif"/>
-  </add>
-  <add as="LOGBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOGBLK_f.gif"/>
-  </add>
-  <add as="JKFLIPFLOP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/JKFLIPFLOP.gif"/>
-  </add>
-  <add as="ISELECT_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ISELECT_m.gif"/>
-  </add>
-  <add as="INVBLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INVBLK.gif"/>
-  </add>
-  <add as="INTRPLBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTRPLBLK_f.gif"/>
-  </add>
-  <add as="INTRP2BLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTRP2BLK_f.gif"/>
-  </add>
-  <add as="INTMUL" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTMUL.gif"/>
-  </add>
-  <add as="INTEGRAL_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_m.gif"/>
-  </add>
-  <add as="INTEGRAL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_f.gif"/>
+  <add as="CURV_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
   </add>
   <add as="INIMPL_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/INIMPL_f.gif"/>
   </add>
+  <add as="READAU_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Read from .au&lt;br&gt;sound file"/>
+  </add>
+  <add as="SAWTOOTH_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Sawtooth&lt;br&gt;generator"/>
+  </add>
+  <add as="STEP_FUNCTION" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.gif"/>
+  </add>
+  <add as="CLOCK_c" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.gif"/>
+  </add>
+  <add as="GENSIN_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Sinusoid&lt;br&gt;generator"/>
+  </add>
   <add as="IN_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/IN_f.gif"/>
   </add>
-  <add as="Inductor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif"/>
+  <add as="READC_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Read from&lt;br&gt;C binary file"/>
   </add>
-  <add as="IFTHEL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/IFTHEL_f.gif"/>
+  <add as="TIME_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_f.gif"/>
   </add>
-  <add as="IdealTransformer" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.gif"/>
+  <add as="Modulo_Count" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Modulo_Count.gif"/>
+  </add>
+  <add as="Sigbuilder" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Sigbuilder.gif"/>
+  </add>
+  <add as="Counter" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Counter.gif"/>
+  </add>
+  <add as="SampleCLK" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif"/>
+  </add>
+  <add as="TKSCALE" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TKSCALE.gif"/>
+  </add>
+  <add as="FROMWSB" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMWSB.gif"/>
+  </add>
+
+  <!-- CONTINUOUS -->
+  <add as="DERIV" extend="blockWithLabel">
+    <add as="displayedLabel" value="du / dt"/>
+  </add>
+  <add as="INTEGRAL_m" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_m.gif"/>
+  </add>
+  <add as="CLSS" extend="blockWithLabel">
+    <add as="displayedLabel" value="xd=Ax+Bu&lt;br&gt;y=Cx+Du"/>
+  </add>
+  <add as="CLR" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLR.gif"/>
+  </add>
+  <add as="TIME_DELAY" extend="blockWithLabel">
+    <add as="displayedLabel" value="Continuous&lt;br&gt;Fix delay"/>
+  </add>
+  <add as="TCLSS" extend="blockWithLabel">
+    <add as="displayedLabel" value="Jump&lt;br&gt;(A,B,C,D)"/>
+  </add>
+  <add as="VARIABLE_DELAY" extend="blockWithLabel">
+    <add as="displayedLabel" value="Variable&lt;br&gt;delay"/>
+  </add>
+  <add as="PID" extend="blockWithLabel">
+    <add as="displayedLabel" value="PID"/>
+  </add>
+  <add as="INTEGRAL_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="1/s"/>
+  </add>
+
+  <!-- DISCONTINUOUS -->
+  <add as="SATURATION" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SATURATION.gif"/>
+  </add>
+  <add as="DEADBAND" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif"/>
   </add>
   <add as="HYSTHERESIS" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/HYSTHERESIS.gif"/>
   </add>
-  <add as="HALT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/HALT_f.gif"/>
+  <add as="BACKLASH" extend="blockWithLabel">
+    <add as="displayedLabel" value="Backlash"/>
   </add>
-  <add as="Gyrator" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.gif"/>
+  <add as="RATELIMITER" extend="blockWithLabel">
+    <add as="displayedLabel" value="Rate limiter"/>
   </add>
-  <add as="Ground" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.gif"/>
+  <add as="REGISTER" extend="blockWithLabel">
+    <add as="displayedLabel" value="Shift&lt;br&gt;register"/>
   </add>
-  <add as="GotoTagVisibilityMO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
+  <add as="DELAYV_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Variable&lt;br&gt;delay"/>
   </add>
-  <add as="GotoTagVisibility" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibility.gif"/>
+
+  <!-- LOOKUP TABLES -->
+  <add as="LOOKUP_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif"/>
   </add>
-  <add as="GOTOMO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTOMO.gif"/>
+  <add as="INTRP2BLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Interp2"/>
   </add>
-  <add as="GOTO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTO.gif"/>
+  <add as="INTRPLBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Interp"/>
   </add>
-  <add as="GENSIN_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GENSIN_f.gif"/>
+
+  <!-- SIGNAL PROCESSING -->
+  <add as="MCLOCK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="2freq clock&lt;br&gt;f/n  f"/>
   </add>
-  <add as="generic_block" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/generic_block.gif"/>
+  <add as="QUANT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.gif"/>
   </add>
-  <add as="generic_block3" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/generic_block3.gif"/>
+  <add as="MFCLCK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="M. freq&lt;br&gt;clock"/>
   </add>
-  <add as="GENERAL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GENERAL_f.gif"/>
+  <add as="SAMPHOLD_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="S/H"/>
   </add>
-  <add as="GAINBLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GAINBLK.gif"/>
+
+  <!-- THRESHOLD -->
+  <add as="NEGTOPOS_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="- to +"/>
   </add>
+  <add as="POSTONEG_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="+ to -"/>
+  </add>
+  <add as="ZCROSS_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Zcross"/>
+  </add>
+  <add as="GENERAL_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="GENERAL"/>
+  </add>
+  <add as="CLINDUMMY_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="DUMMY&lt;br&gt;CLSS"/>
+  </add>
+
+  <!-- MATH OPERATIONS -->
+  <add as="MAX_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="MAX"/>
+  </add>
+  <add as="MIN_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="MIN"/>
+  </add>
+  <add as="BIGSOM_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.gif"/>
+  </add>
+  <add as="POWBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="u^a"/>
+  </add>
+  <add as="INVBLK" extend="blockWithLabel">
+    <add as="displayedLabel" value="1/u"/>
+  </add>
+  <add as="SINBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="SIN"/>
+  </add>
+  <add as="COSBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="COS"/>
+  </add>
+  <add as="TANBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="TAN"/>
+  </add>
+  <add as="MATDIV" extend="blockWithLabel">
+    <add as="displayedLabel" value="A/B"/>
+  </add>
+  <add as="EXPBLK_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="a^u"/>
+  </add>
+  <add as="PROD_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.gif"/>
+  </add>
+  <add as="MATZREIM" extend="blockWithLabel">
+    <add as="displayedLabel" value="Re &amp; Im"/>
+  </add>
+  <add as="MATMAGPHI" extend="blockWithLabel">
+    <add as="displayedLabel" value="Mag &amp; Phi"/>
+  </add>
+  <add as="SQRT" extend="blockWithLabel"/>
   <add as="GAINBLK_f" extend="Gain"/>
-  <add as="FROMWSB" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMWSB.gif"/>
+  <add as="LOGBLK_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="LOG"/>
+  </add>
+  <add as="SUMMATION" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUMMATION.gif"/>
+  </add>
+  <add as="TrigFun" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TrigFun.gif"/>
+  </add>
+  <add as="PRODUCT" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.gif"/>
+  </add>
+  <add as="MAXMIN" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MAXMIN.gif"/>
+  </add>
+  <add as="ABS_VALUE" extend="blockWithLabel">
+    <add as="displayedLabel" value="ABS"/>
+  </add>
+  <add as="SIGNUM" extend="blockWithLabel">
+    <add as="displayedLabel" value="SIGN"/>
+  </add>
+  <add as="SUM_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.gif"/>
+  </add>
+  <add as="CONSTRAINT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONSTRAINT_f.gif"/>
+  </add>
+
+  <!-- MODELICA -->
+  <add as="MBLOCK" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MBLOCK.gif"/>
   </add>
   <add as="FROMMO" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMMO.gif"/>
   </add>
-  <add as="FROM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROM.gif"/>
+  <add as="GOTOMO" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTOMO.gif"/>
   </add>
-  <add as="freq_div" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/freq_div.gif"/>
+  <add as="GotoTagVisibilityMO" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
   </add>
-  <add as="fortran_block" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/fortran_block.gif"/>
+  <add as="OUTIMPL_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUTIMPL_f.gif"/>
   </add>
-  <add as="EXTTRI" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTTRI.gif"/>
+  
+  <!-- INTEGER -->
+  <add as="BITCLEAR" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITCLEAR.gif"/>
   </add>
-  <add as="EXTRACTOR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTRACTOR.gif"/>
+  <add as="BITSET" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITSET.gif"/>
   </add>
-  <add as="EXTRACT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTRACT.gif"/>
+  <add as="CONVERT" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONVERT.gif"/>
   </add>
   <add as="EXTRACTBITS" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTRACTBITS.gif"/>
   </add>
-  <add as="Extract_Activation" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Extract_Activation.gif"/>
+  <add as="INTMUL" extend="blockWithLabel"/>
+  <add as="SHIFT" extend="blockWithLabel">
+    <add as="displayedLabel" value="Arithmetic&lt;br&gt;Shift"/>
   </add>
-  <add as="EXPRESSION" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXPRESSION.gif"/>
+  <add as="LOGIC" extend="blockWithLabel"/>
+  <add as="DLATCH" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLATCH.gif"/>
   </add>
-  <add as="EXPBLK_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXPBLK_m.gif"/>
+  <add as="DFLIPFLOP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DFLIPFLOP.gif"/>
   </add>
-  <add as="EVTVARDLY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTVARDLY.gif"/>
+  <add as="JKFLIPFLOP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/JKFLIPFLOP.gif"/>
   </add>
+  <add as="SRFLIPFLOP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SRFLIPFLOP.gif"/>
+  </add>
+  
+  <!-- MATRIX -->
+  <add as="CUMSUM" extend="blockWithLabel"/>
+  <!-- SQRT -->
+  <!-- MATZREIM -->
+  <add as="SUBMAT" extend="blockWithLabel"/>
+  <add as="MATBKSL" extend="blockWithLabel">
+    <add as="displayedLabel" value="A\B"/>
+  </add>
+  <add as="MATINV" extend="blockWithLabel">
+    <add as="displayedLabel" value="INV"/>
+  </add>
+  <add as="MATCATV" extend="blockWithLabel">
+    <add as="displayedLabel" value="Vert&lt;br&gt;Cat"/>
+  </add>
+  <add as="MATSUM" extend="blockWithLabel"/>
+  <add as="RICC" extend="blockWithLabel"/>
+  <add as="ROOTCOEF" extend="blockWithLabel">
+    <add as="displayedLabel" value="ROOT/COEF"/>
+  </add>
+  <add as="MATCATH" extend="blockWithLabel">
+    <add as="displayedLabel" value="Horiz&lt;br&gt;Cat"/>
+  </add>
+  <add as="MATLU" extend="blockWithLabel">
+    <add as="displayedLabel" value="LU"/>
+  </add>
+  <!-- MATDIV -->
+  <add as="MATZCONJ" extend="blockWithLabel">
+    <add as="displayedLabel" value=">CONJ"/>
+  </add>
+  <!-- MATMAGPHI -->
+  <add as="EXTRACT" extend="blockWithLabel"/>
+  <add as="MATEXPM" extend="blockWithLabel">
+    <add as="displayedLabel" value="EXPM"/>
+  </add>
+  <add as="MATDET" extend="blockWithLabel">
+    <add as="displayedLabel" value="DET"/>
+  </add>
+  <add as="MATPINV" extend="blockWithLabel">
+    <add as="displayedLabel" value="PINV"/>
+  </add>
+  <add as="EXTTRI" extend="blockWithLabel">
+    <add as="displayedLabel" value="Tri/Diag&lt;br&gt;Extraction"/>
+  </add>
+  <add as="MATMUL" extend="blockWithLabel"/>
+  <add as="MATTRAN" extend="blockWithLabel"/>
+  <add as="MATSING" extend="blockWithLabel">
+    <add as="displayedLabel" value="SVD"/>
+  </add>
+  <add as="MATRESH" extend="blockWithLabel">
+    <add as="displayedLabel" value="RESHAPE"/>
+  </add>
+  <add as="MATDIAG" extend="blockWithLabel">
+    <add as="displayedLabel" value="DIAG"/>
+  </add>
+  <add as="MATEIG" extend="blockWithLabel">
+    <add as="displayedLabel" value="EIG"/>
+  </add>
+
+  <!-- SINKS -->
+  <add as="CFSCOPE" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CFSCOPE.gif"/>
+  </add>
+  <add as="CANIMXY" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CANIMXY.gif"/>
+  </add>
+  <add as="CSCOPE" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPE.gif"/>
+  </add>
+  <add as="CSCOPXY" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.gif"/>
+  </add>
+  <add as="TOWS_c" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TOWS_c.gif"/>
+  </add>
+  <add as="CMAT3D" extend="blockWithLabel">
+    <add as="displayedLabel" value="Mat. 3D"/>
+  </add>
+  <add as="CSCOPXY3D" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY3D.gif"/>
+  </add>
+  <add as="CANIMXY3D" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CANIMXY3D.gif"/>
+  </add>
+  <add as="CMATVIEW" extend="blockWithLabel">
+    <add as="displayedLabel" value="Mat. View"/>
+  </add>
+  <add as="CMSCOPE" extend="blockWithLabel">
+    <add as="displayedLabel" value="MScope"/>
+  </add>
+  <add as="AFFICH_m" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/AFFICH_m.gif"/>
+  </add>
+  <add as="TRASH_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Trash"/>
+  </add>
+
+  <!-- PORT ACTION -->
+  <add as="Extract_Activation" extend="blockWithLabel">
+    <add as="displayedLabel" value="Extract&lt;br&gt;Activation"/>
+  </add>
+  <add as="IFTHEL_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="if in&gt;0&lt;br&gt;then else"/>
+  </add>
+  <add as="ESELECT_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Event select"/>
+  </add>
+  <add as="EDGE_TRIGGER" extend="blockWithLabel">
+    <add as="displayedLabel" value="Edge&lt;br&gt;Trigger"/>
+  </add>
+
+  <!-- DISCRETE -->
+  <add as="DLRADAPT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLRADAPT_f.gif"/>
+  </add>
+  <add as="DLR" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLR.gif"/>
+  </add>
+  <add as="DLSS" extend="blockWithLabel">
+    <add as="displayedLabel" value="x+=Ax+Bu&lt;br&gt;y=Cx+Du"/>
+  </add>
+  <add as="DELAY_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Delay"/>
+  </add>
+  <add as="DOLLAR_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="1/z"/>
+  </add>
+  <!-- DELAYV_f -->
+
+  <!-- EVENTS -->
+  <add as="CLKFROM" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKFROM.gif"/>
+  </add>
+  <add as="CLKGOTO" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGOTO.gif"/>
+  </add>
+  <add as="CLKGotoTagVisibility" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGotoTagVisibility.gif"/>
+  </add>
+  <!-- SampleCLK -->
+  <add as="CLKOUTV_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKOUTV_f.gif"/>
+  </add>
+  <!-- ESELECT -->
+  <add as="CLKSOMV_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif"/>
+  </add>
+  <!-- CLOCK_c -->
   <add as="EVTGEN_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTGEN_f.gif"/>
   </add>
-  <add as="EVTDLY_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_f.gif"/>
+  <add as="EVTVARDLY" extend="blockWithLabel">
+    <add as="displayedLabel" value="Event&lt;br&gt;Delay"/>
+  </add>
+  <add as="M_freq" extend="blockWithLabel">
+    <add as="displayedLabel" value="Multiple&lt;br&gt;Frequency"/>
+  </add>
+  <add as="ANDBLK" extend="blockWithLabel"/>
+  <add as="HALT_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="HALT"/>
+  </add>
+  <add as="freq_div" extend="blockWithLabel">
+    <add as="displayedLabel" value="Frequency&lt;br&gt;Division"/>
+  </add>
+  <add as="ANDLOG_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="LOGICAL&lt;br&gt;AND"/>
   </add>
   <add as="EVTDLY_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_c.gif"/>
   </add>
-  <add as="ESELECT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ESELECT_f.gif"/>
+  <!-- ITTHEL_f -->
+  <add as="CEVENTSCOPE" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CEVENTSCOPE.gif"/>
+  </add>
+
+  <!-- SIGNAL ROUTING -->
+  <add as="ISELECT_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="Selector"/>
+  </add>
+  <add as="RELAY_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Relay"/>
+  </add>
+  <add as="WRITEAU_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Write AU to&lt;br&gt;/dev/audio"/>
+  </add>
+  <add as="SELECT_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="Selector"/>
+  </add>
+  <add as="EXTRACTOR" extend="blockWithLabel">
+    <add as="displayedLabel" value="Extractor"/>
+  </add>
+  <add as="M_SWITCH" extend="blockWithLabel">
+    <add as="displayedLabel" value="Control&lt;br&gt;M_Port&lt;br&gt;Switch"/>
+  </add>
+  <add as="SWITCH_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH_f.gif"/>
+  </add>
+  <add as="SWITCH2_m" extend="blockWithLabel"/>
+  <add as="NRMSOM_f" extend="blockWithLabel">
+    <add as="displayedLabel" value=""/>
+  </add>
+  <!-- READC_f -->
+  <add as="WRITEC_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Write to&lt;br&gt;C binary file"/>
+  </add>
+  <add as="GOTO" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTO.gif"/>
+  </add>
+  <add as="GotoTagVisibility" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibility.gif"/>
+  </add>
+  <add as="FROM" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROM.gif"/>
+  </add>
+  <!-- RFILE_f -->
+  <add as="WFILE_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Write to&lt;br&gt;output file"/>
+  </add>
+  <!-- ANDBLK -->
+  <add as="MUX" extend="blockWithLabel">
+    <add as="verticalLabelPosition" value="bottom"/>
+    <add as="verticalAlign" value="top"/>
+  </add>
+  <add as="DEMUX" extend="blockWithLabel">
+    <add as="verticalLabelPosition" value="bottom"/>
+    <add as="verticalAlign" value="top"/>
+  </add>
+  
+  <!-- COMMONLY USED BLOCKS -->
+  <!-- MUX -->
+  <!-- DEMUX -->
+  <!-- NRMSOM_f -->
+  <add as="OUT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUT_f.gif"/>
+  </add>
+  <!-- IN_f -->
+  <add as="RELATIONALOP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif"/>
+  </add>
+  <!-- PRODUCT -->
+  <!-- BUGSUM -->
+  <!-- DOLLAR_f -->
+  <!-- INTEGRAL_f -->
+  <!-- CONST_m -->
+  <!-- SATURATION -->
+  <!-- CMSCOPE -->
+  <!-- CSCOPXY -->
+  <!-- ANDBLK -->
+  <!-- LOGICAL_OP -->
+  <!-- SWITCH2_m -->
+  <!-- CONVERT -->
+  <add as="TEXT_f" extend="Label"/>
+  
+  <!-- USER-DEFINED FUNCTIONS -->
+  <add as="PDE" extend="blockWithLabel"/>
+  <add as="fortran_block" extend="blockWithLabel">
+    <add as="displayedLabel" value="Fortran&lt;br&gt;block"/>
+  </add>
+  <!-- MBLOCK -->
+  <add as="EXPRESSION" extend="blockWithLabel">
+    <add as="displayedLabel" value="Mathematical&lt;br&gt;Expression"/>
+  </add>
+  <add as="scifunc_block_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="Scilab&lt;br&gt;function"/>
+  </add>
+  <add as="CBLOCK" extend="blockWithLabel">
+    <add as="displayedLabel" value="C&lt;br&gt;block&lt;br&gt;2"/>
+  </add>
+  <add as="generic_block3" extend="blockWithLabel">
+    <add as="displayedLabel" value="GENERIC"/>
+  </add>
+  <!-- TEXT_f -->
+  <add as="c_block" extend="blockWithLabel">
+    <add as="displayedLabel" value="C&lt;br&gt;block"/>
+  </add>
+  <add as="SUPER_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
+  </add>
+  
+  <!-- ELECTRICAL -->
+  <add as="Capacitor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.gif"/>
+  </add>
+  <add as="Ground" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.gif"/>
+  </add>
+  <add as="VVsourceAC" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VVsourceAC.gif"/>
+  </add>
+  <add as="ConstantVoltage" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.gif"/>
+  </add>
+  <add as="Inductor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif"/>
+  </add>
+  <add as="PotentialSensor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.gif"/>
+  </add>
+  <add as="VariableResistor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif"/>
+  </add>
+  <add as="CurrentSensor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.gif"/>
+  </add>
+  <add as="Resistor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif"/>
+  </add>
+  <add as="VoltageSensor" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.gif"/>
+  </add>
+  <add as="Diode" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif"/>
+  </add>
+  <add as="VsourceAC" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VsourceAC.gif"/>
+  </add>
+  <add as="NPN" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.gif"/>
+  </add>
+  <add as="PNP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.gif"/>
+  </add>
+  <add as="SineVoltage" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SineVoltage.gif"/>
+  </add>
+  <add as="Switch" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.gif"/>
+  </add>
+  <add as="OpAmp" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OpAmp.gif"/>
+  </add>
+  <add as="PMOS" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.gif"/>
+  </add>
+  <add as="NMOS" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.gif"/>
+  </add>
+  <add as="CCS" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.gif"/>
+  </add>
+  <add as="CVS" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.gif"/>
+  </add>
+  <add as="IdealTransformer" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.gif"/>
+  </add>
+  <add as="Gyrator" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.gif"/>
+  </add>
+
+  <!-- THERMO-HYDRAULICS -->
+  <add as="Bache" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Bache.gif"/>
+  </add>
+  <add as="VanneReglante" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VanneReglante.gif"/>
+  </add>
+  <add as="PerteDP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.gif"/>
+  </add>
+  <add as="PuitsP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.gif"/>
+  </add>
+  <add as="SourceP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.gif"/>
+  </add>
+
+  <!-- DEMONSTRATION BLOCKS -->
+  <add as="BOUNCE" extend="blockWithLabel">
+    <add as="displayedLabel" value="Bouncing&lt;br&gt;balls"/>
+  </add>
+  <add as="BOUNCEXY" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BOUNCEXY.gif"/>
+  </add>
+  <add as="BPLATFORM" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.gif"/>
+  </add>
+  <add as="AUTOMAT" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/AUTOMAT.gif"/>
+  </add>
+  <!-- PDE -->
+
+  <!-- GENERATED BLOCKS -->
+  <add as="SPLIT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SPLIT_f.gif"/>
+  </add>
+  <add as="SCALAR2VECTOR" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALAR2VECTOR.gif"/>
+  </add>
+  <add as="SAT_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SAT_f.gif"/>
+  </add>
+  <add as="RAND_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAND_f.gif"/>
+  </add>
+  <add as="MUX_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
+  </add>
+  <add as="MEMORY_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MEMORY_f.gif"/>
+  </add>
+  <add as="LOGICAL_OP" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOGICAL_OP.gif"/>
+  </add>
+  <add as="generic_block" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/generic_block.gif"/>
+  </add>
+  <add as="GAINBLK" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GAINBLK.gif"/>
+  </add>
+  <add as="EVTDLY_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_f.gif"/>
   </add>
   <add as="END_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/END_c.gif"/>
@@ -632,51 +863,14 @@
   <add as="EDGETRIGGER" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EDGETRIGGER.gif"/>
   </add>
-  <add as="EDGE_TRIGGER" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EDGE_TRIGGER.gif"/>
-  </add>
   <add as="DOLLAR_m" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DOLLAR_m.gif"/>
-  </add>
-  <add as="DOLLAR_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DOLLAR_f.gif"/>
-  </add>
-  <add as="DLSS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLSS.gif"/>
-  </add>
-  <add as="DLR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLR.gif"/>
-  </add>
-  <add as="DLRADAPT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLRADAPT_f.gif"/>
-  </add>
-  <add as="DLATCH" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLATCH.gif"/>
-  </add>
-  <add as="Diode" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif"/>
   </add>
   <add as="DIFF_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DIFF_f.gif"/>
   </add>
-  <add as="DFLIPFLOP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DFLIPFLOP.gif"/>
-  </add>
-  <add as="DERIV" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DERIV.gif"/>
-  </add>
-  <add as="DEMUX" extend="blockWithLabel">
-    <add as="verticalLabelPosition" value="bottom"/>
-    <add as="verticalAlign" value="top"/>
-  </add>
   <add as="DEMUX_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEMUX_f.gif"/>
-  </add>
-  <add as="DELAYV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DELAYV_f.gif"/>
-  </add>
-  <add as="DELAY_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DELAY_f.gif"/>
   </add>
   <add as="DEBUG_SCICOS" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEBUG_SCICOS.gif"/>
@@ -684,161 +878,22 @@
   <add as="DEADBAND" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif"/>
   </add>
-  <add as="CVS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.gif"/>
-  </add>
-  <add as="CURV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
-  </add>
-  <add as="CurrentSensor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.gif"/>
-  </add>
-  <add as="CUMSUM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CUMSUM.gif"/>
-  </add>
-  <add as="CSCOPXY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.gif"/>
-  </add>
-  <add as="CSCOPXY3D" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY3D.gif"/>
-  </add>
-  <add as="CSCOPE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPE.gif"/>
-  </add>
   <add as="Counter" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Counter.gif"/>
-  </add>
-  <add as="COSBLK_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/COSBLK_f.gif"/>
-  </add>
-  <add as="CONVERT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONVERT.gif"/>
-  </add>
-  <add as="CONSTRAINT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONSTRAINT_f.gif"/>
-  </add>
-  <add as="ConstantVoltage" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.gif"/>
-  </add>
-  <add as="CMSCOPE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CMSCOPE.gif"/>
-  </add>
-  <add as="CMATVIEW" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CMATVIEW.gif"/>
-  </add>
-  <add as="CMAT3D" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CMAT3D.gif"/>
-  </add>
-  <add as="CLSS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLSS.gif"/>
-  </add>
-  <add as="CLR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLR.gif"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>
   </add>
-  <add as="CLOCK_c" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.gif"/>
-  </add>
   <add as="CLKSPLIT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSPLIT_f.gif"/>
-  </add>
-  <add as="CLKSOMV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif"/>
   </add>
   <add as="CLKSOM_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOM_f.gif"/>
   </add>
-  <add as="CLKOUTV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKOUTV_f.gif"/>
-  </add>
   <add as="CLKOUT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKOUT_f.gif"/>
-  </add>
-  <add as="CLKINV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKINV_f.gif"/>
-  </add>
-  <add as="CLKGotoTagVisibility" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGotoTagVisibility.gif"/>
-  </add>
-  <add as="CLKGOTO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGOTO.gif"/>
-  </add>
-  <add as="CLKFROM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKFROM.gif"/>
-  </add>
-  <add as="CLINDUMMY_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLINDUMMY_f.gif"/>
-  </add>
-  <add as="CFSCOPE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CFSCOPE.gif"/>
-  </add>
-  <add as="CEVENTSCOPE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CEVENTSCOPE.gif"/>
-  </add>
-  <add as="CCS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.gif"/>
-  </add>
-  <add as="CBLOCK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CBLOCK.gif"/>
-  </add>
-  <add as="c_block" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/c_block.gif"/>
-  </add>
-  <add as="Capacitor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.gif"/>
-  </add>
-  <add as="CANIMXY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CANIMXY.gif"/>
-  </add>
-  <add as="CANIMXY3D" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CANIMXY3D.gif"/>
-  </add>
-  <add as="BPLATFORM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.gif"/>
-  </add>
-  <add as="BOUNCEXY" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BOUNCEXY.gif"/>
-  </add>
-  <add as="BOUNCE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BOUNCE.gif"/>
-  </add>
-  <add as="BITSET" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITSET.gif"/>
-  </add>
-  <add as="BITCLEAR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITCLEAR.gif"/>
-  </add>
-  <add as="BIGSOM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.gif"/>
-  </add>
-  <add as="BACKLASH" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BACKLASH.gif"/>
-  </add>
-  <add as="Bache" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Bache.gif"/>
-  </add>
-  <add as="AUTOMAT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/AUTOMAT.gif"/>
-  </add>
-  <add as="ANDLOG_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDLOG_f.gif"/>
-  </add>
-  <add as="ANDBLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.gif"/>
-  </add>
-  <add as="AFFICH_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/AFFICH_m.gif"/>
-  </add>
-  <add as="ABS_VALUE" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ABS_VALUE.gif"/>
   </add>
   <add as="ABSBLK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ABSBLK_f.gif"/>
   </add>
-  <add as="GENSQR_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GENSQR_f.gif"/>
-  </add>
-  <add as="CONST_m" extend="blockWithLabel"/>
 </mxStylesheet>

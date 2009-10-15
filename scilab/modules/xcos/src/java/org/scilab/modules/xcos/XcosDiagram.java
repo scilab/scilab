@@ -203,6 +203,9 @@ public class XcosDiagram extends ScilabGraph {
 	// force auto resize cell
 	setAutoSizeCells(true);
 
+	/* Labels use HTML if not equal to interface function name */
+	setHtmlLabels(true);
+	
 	// Override isCellEditable to filter what the user can edit
 	setCellsEditable(true);
 	// This enable stop editing cells when pressing Enter.
@@ -268,7 +271,11 @@ public class XcosDiagram extends ScilabGraph {
 		if (cells[0] instanceof BasicBlock) {
 		    getModel().beginUpdate();
 
-		    mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
+			if (getCellStyle(cells[0]).get("displayedLabel") != null) {
+				((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[0]).get("displayedLabel")+" </body></html>");
+			}
+
+			mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
 		    mxGeometry cellSize = ((mxCell) cells[0]).getGeometry();
 
 		    ((mxCell) cells[0]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
