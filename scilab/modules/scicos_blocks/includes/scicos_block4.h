@@ -34,7 +34,6 @@
 #define NULL 0
 #endif
 
-#include "dynlib_scicos_blocks.h"
 #include "scicos_math.h"
 
 typedef void (*voidg)();

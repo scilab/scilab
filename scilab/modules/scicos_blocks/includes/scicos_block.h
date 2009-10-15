@@ -22,7 +22,6 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
-#include "dynlib_scicos_blocks.h"
 
 typedef void (*voidg)();
 

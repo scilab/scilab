@@ -22,7 +22,6 @@
 #define __SCICOS_H 
 
 #include "machine.h"
-#include "dynlib_scicos.h"
 #include "scicos_block4.h"
 
 /* maximum value for sum of number of inputs and outputs ports of a given 
@@ -88,51 +87,51 @@ typedef  struct  {
 /**
 *
 */
-SCICOS_IMPEXP int C2F(scicos)();
+int C2F(scicos)();
 
 /**
 *
 */
-SCICOS_IMPEXP void callf(double *t, scicos_block *block, int *flag);
+void callf(double *t, scicos_block *block, int *flag);
 
 /**
 *
 */
-SCICOS_IMPEXP int get_phase_simulation(void);
+int get_phase_simulation(void);
 
 /**
 *
 */
-SCICOS_IMPEXP void set_block_error(int err);
+void set_block_error(int err);
 
 /**
 *
 */
-SCICOS_IMPEXP double get_scicos_time(void);
+double get_scicos_time(void);
 
 /**
 *
 */
-SCICOS_IMPEXP void set_pointer_xproperty(int* pointer);
+void set_pointer_xproperty(int* pointer);
 
 /**
 *
 */
-SCICOS_IMPEXP void do_cold_restart(void);
+void do_cold_restart(void);
 
 /**
 *
 */
-SCICOS_IMPEXP int get_block_number(void);
+int get_block_number(void);
 
 /**
 *
 */
-SCICOS_IMPEXP void end_scicos_sim(void);
+void end_scicos_sim(void);
 
 /**
 *
 */
-SCICOS_IMPEXP void Coserror(char *fmt, ...);
+void Coserror(char *fmt, ...);
 
 #endif 
