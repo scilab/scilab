@@ -288,6 +288,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
 
+	// Track when resizing a cell.
+	addListener(XcosEvent.CELLS_RESIZED, new cellResizedTracker());
+
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
@@ -296,7 +299,27 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
     }
+    
+    
+    /**
+     * cellResizedTracker
+     * Called when mxEvents.CELLS_RESIZED if fired. 
+     */
+    private class cellResizedTracker implements mxIEventListener {
+	public void invoke(Object source, mxEventObject evt) {
+	    Object[] cells = (Object[]) evt.getArgs()[0];
 
+	    for (int i = 0 ; i < cells.length ; ++i) {
+		if (cells[i] instanceof BasicBlock) {
+		    getModel().beginUpdate();
+		    ((BasicBlock) cells[i]).updateBlockView((XcosDiagram) source);
+		    getModel().endUpdate();
+		}
+	    }
+	}
+    }
+    
+    
     /**
      * MouseListener inner class
      */

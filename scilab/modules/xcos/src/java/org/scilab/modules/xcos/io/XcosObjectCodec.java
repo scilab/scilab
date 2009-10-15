@@ -32,7 +32,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 	 */
 	public void setFieldValue(Object obj, String fieldname, Object value)
 	{
-		System.out.println("my set field value :" + fieldname);
+		System.err.println("my set field value :" + fieldname);
 		Field field = null;
 
 		try
@@ -65,10 +65,10 @@ public class XcosObjectCodec extends mxObjectCodec {
 						value = coll.toArray((Object[]) Array.newInstance(
 							type.getComponentType(), coll.size()));
 					}
-					System.out.println("------");
-					System.out.println("method : " + method.toGenericString() );
-					System.out.println("value : "+value);
-					System.out.println("------");
+					System.err.println("------");
+					System.err.println("method : " + method.toGenericString() );
+					System.err.println("value : "+value);
+					System.err.println("------");
 					method.invoke(obj, new Object[] { value });
 				}
 				catch (Exception e2)
@@ -91,6 +91,56 @@ public class XcosObjectCodec extends mxObjectCodec {
 	}
 	
 	/**
+	 * Returns the value of the field with the specified name in the specified
+	 * object instance.
+	 */
+	public Object getFieldValue(Object obj, String fieldname)
+	{
+		Object value = null;
+
+		if (obj != null && fieldname != null)
+		{
+			Field field = getField(obj, fieldname);
+
+			try
+			{
+				if (field != null)
+				{
+					value = field.get(obj);
+				}
+			}
+			catch (IllegalAccessException e1)
+			{
+				if (field != null)
+				{
+					try
+					{
+						Method method = getAccessor(obj, field, true);
+						value = method.invoke(obj, (Object[]) null);
+					}
+					catch (Exception e2)
+					{
+						// ignore
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				// ignore
+			}
+		}
+		System.err.println("[DEBUG] getFieldValue ("+obj.toString()+" , "+fieldname+")");
+		if (value != null) { 
+		System.err.println("[DEBUG] value = "+value.toString());
+		}
+		else {
+			System.err.println("[DEBUG] value = (null)");
+		}
+		return value;
+	}
+	
+	
+	/**
 	 * Reads the specified child into the given object.
 	 */
 	public void decodeChild(mxCodec dec, Node child, Object obj)
@@ -101,7 +151,8 @@ public class XcosObjectCodec extends mxObjectCodec {
 		{
 			Object value = null;
 			Object template = getFieldValue(obj, fieldname);
-			//System.err.println("template == "+template.getClass().getName());
+			System.err.println("template == "+template);
+			System.err.println("child == "+child);
 			if (child.getNodeName().equals("add"))
 			{
 				value = ((Element) child).getAttribute("value");
@@ -126,8 +177,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 				}
 				
 				value = dec.decode(child, template);
-				// System.out.println("Decoded " + child.getNodeName() + "."
-				// + fieldname + "=" + value);
+				System.err.println("Decoded " + child.getNodeName() + "." + fieldname + "=" + value);
 			}
 			
 			if (value != null && !value.equals(template))
@@ -149,5 +199,23 @@ public class XcosObjectCodec extends mxObjectCodec {
 			}
 		}
 	}
-	
+
+	/**
+	 * Decodec all children of the given node using decodeChild.
+	 */
+	public void decodeChildren(mxCodec dec, Node node, Object obj)
+	{
+		Node child = node.getFirstChild();
+		while (child != null)
+		{
+		    System.err.println("------> [DEBUG] child = "+child);
+		    if (child.getNodeType() == Node.ELEMENT_NODE
+					&& !this.processInclude(dec, child, obj))
+			{
+				decodeChild(dec, child, obj);
+			}
+
+			child = child.getNextSibling();
+		}
+	}	
 }

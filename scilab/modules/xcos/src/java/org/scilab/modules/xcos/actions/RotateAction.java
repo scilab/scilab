@@ -55,8 +55,15 @@ public class RotateAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		BasicBlock block = (BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell();
-		block.setRotation(90);
-		((XcosDiagram) getGraph(null)).refresh();
+	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+		
+		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
+		
+		for (int i = 0 ; i < allCells.length ; ++i) {
+		    if (allCells[i] instanceof BasicBlock) {
+			((BasicBlock) allCells[i]).toggleAntiClockwiseRotation((XcosDiagram) getGraph(null));
+		    }
+		}
+	    }
 	}
 }
