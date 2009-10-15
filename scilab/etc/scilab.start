@@ -129,8 +129,11 @@ if fileinfo(SCI+'/contrib/loader.sce') <> [] then
 end
 
 // ATOMS ===============================================================
-atomsSystemInit();
-atomsAutoload();
+if with_module('atoms') then
+  atomsSystemInit();
+  atomsAutoload();
+  clear atomsSystemInit atomsAutoload
+end
 
 // calling user initialization =========================================
 
