@@ -15,6 +15,9 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
+#include <sys/wait.h>
+#endif
 #include "MALLOC.h" /* MALLOC */
 #include "PATH_MAX.h"
 #include "systemc.h"
@@ -45,8 +48,9 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		status=system(command);
-		*stat=(int) status;
+		status = system(command);
+		/* provide exit value of the child */
+		*stat = WEXITSTATUS(status);
 	}
 #endif
 

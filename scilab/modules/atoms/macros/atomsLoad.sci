@@ -234,6 +234,10 @@ function result = atomsLoad(name,version)
 	// =========================================================================
 	libs_resume = [];
 	
+	if ~ isempty(mandatory_packages_mat) then
+		mprintf("\n");
+	end
+	
 	for i=1:size(mandatory_packages_mat(:,1),"*")
 		
 		this_package_name    = mandatory_packages_mat(i,1);
@@ -254,6 +258,7 @@ function result = atomsLoad(name,version)
 		end
 		
 		exec( loader_file );
+		mprintf("\n");
 		
 		// Get the list of libraries (macros)
 		// =====================================================================

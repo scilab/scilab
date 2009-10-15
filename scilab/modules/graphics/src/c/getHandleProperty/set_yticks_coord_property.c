@@ -18,6 +18,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -30,6 +31,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
+/* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 

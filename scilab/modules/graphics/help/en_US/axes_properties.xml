@@ -250,6 +250,11 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> x_ticks.locations</literal> real vector too.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -260,6 +265,11 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> y_ticks.locations</literal> real vector too.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -270,6 +280,11 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> z_ticks.locations</literal> real vector too.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -813,6 +828,19 @@ da.foreground = 7;
 x=(0:0.1:2*%pi)';
 plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
 sda() // back to default axes model
+
+
+// Example with LaTeX / MathML ticks:
+plot2d();
+a=gca();
+
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+// Only LaTeX expression
+a.x_ticks.labels=["0";"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+
+// Mixed expression: MathML and LaTex
+a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
+
  ]]></programlisting>
   </refsection>
   <refsection>

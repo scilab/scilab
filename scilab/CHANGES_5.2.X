@@ -409,6 +409,7 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
+* bug 4054 fixed - load into scilab a file with editor can crash scilab.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
@@ -437,6 +438,8 @@ Bug fixes:
 * bug 4307 fixed - %io has no help file.                   
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
+
+* bug 4351 fixed - test about 'exit' does not work on linux.
 
 * bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work
 
