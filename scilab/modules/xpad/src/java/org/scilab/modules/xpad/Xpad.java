@@ -935,11 +935,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 							System.err.println("");
 							e.printStackTrace();
 						}
+						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
+						styleDocument.colorize(0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
-						styleDocument.disableUpdaters();
+						styleDocument.enableUpdaters();
 					}
-					// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-				styleDocument.colorize(0, styleDocument.getLength());
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
