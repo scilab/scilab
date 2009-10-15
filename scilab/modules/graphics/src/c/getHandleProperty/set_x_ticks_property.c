@@ -30,6 +30,7 @@
 #include "BasicAlgos.h"
 #include "DrawObjects.h"
 #include "freeArrayOfString.h"
+#include "loadTextRenderingAPI.h"
 
 /*------------------------------------------------------------------------*/
 int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -97,6 +98,10 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   labels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
   if( nbTicsCol * nbTicsRow )
   {
+
+/* Check if we should load LaTex / MathML Java libraries */
+	  loadTextRenderingAPI(labels, nbTicsCol, nbTicsRow);
+
     ppSubWin->axes.u_xlabels = createStringArrayCopy( labels,  nbTicsCol * nbTicsRow );
   }
   else
