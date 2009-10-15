@@ -5,17 +5,26 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK ERROR OUTPUT -->
 // <-- Non-regression test for bug 4812 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4812
 //
 // <-- Short Description -->
-// xs2### function doesn't work if the first argument is 
+// xs2... function doesn't work if the first argument is a handle
 // 
 //scf(0);
 plot3d();
 hd=gcf();
+file_a=pathconvert(TMPDIR+'/nonreg_test_bug4812a.png',%f)
+ file_a  =
+ 
+ TMPDIR/nonreg_test_bug4812a.png   
+file_b=pathconvert(TMPDIR+'/nonreg_test_bug4812b.png',%f)
+ file_b  =
+ 
+ TMPDIR/nonreg_test_bug4812b.png   
 //PNG export for exemple
-xs2png(0,TMPDIR+'/nonreg_test_bug4812a.png');
-xs2png(hd,TMPDIR+'/nonreg_test_bug4812b.png'); // this now work ....
+xs2png(0,file_a);
+xs2png(hd,file_b); // this now work ....
