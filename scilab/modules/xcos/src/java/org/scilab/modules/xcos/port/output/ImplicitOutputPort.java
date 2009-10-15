@@ -24,6 +24,5 @@ public class ImplicitOutputPort extends OutputPort {
     }
     
 	public void updateStyle(int angle){
-		System.err.println("updateStyle ImplicitOutputPort");		
 	}
 }

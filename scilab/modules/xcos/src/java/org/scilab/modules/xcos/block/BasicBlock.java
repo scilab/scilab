@@ -58,12 +58,13 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
 public class BasicBlock extends mxCell {
 
-    private String interfaceFunctionName = "xcos_block";
+	private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
 
@@ -154,6 +155,8 @@ public class BasicBlock extends mxCell {
 	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
 	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
 	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
+	if(label.compareTo("IN_f") == 0) { return new InBlock(label); }
+	if(label.compareTo("OUT_f") == 0) { return new OutBlock(label); }
 	else { return new BasicBlock(label); }
     }
 
@@ -788,6 +791,10 @@ public class BasicBlock extends mxCell {
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
 		    parent.fireEvent(XcosEvent.ADD_PORTS);
+		    
+		    if(modifiedBlock instanceof InBlock || modifiedBlock instanceof OutBlock){
+			    parent.fireEvent(XcosEvent.VALUE_UPDATED, new mxEventObject(new Object[]{this,modifiedBlock}));
+		    }
 		    //tempOutput.delete();
 		    //tempInput.delete();
 		    setLocked(false);

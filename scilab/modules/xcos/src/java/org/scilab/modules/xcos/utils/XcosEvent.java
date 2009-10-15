@@ -16,5 +16,5 @@ import com.mxgraph.util.mxEvent;
 
 public class XcosEvent extends mxEvent {
     public static final String ADD_PORTS = "addPorts";
-    
+    public static final String VALUE_UPDATED = "valueUpdated";
 }

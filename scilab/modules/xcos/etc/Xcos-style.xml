@@ -202,10 +202,12 @@
   <add as="GENSIN_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Sinusoid&lt;br&gt;generator"/>
   </add>
-  <add as="IN_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/IN_f.gif"/>
-  </add>
-  <add as="READC_f" extend="blockWithLabel">
+	<add as="IN_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
+	</add>
+	<add as="READC_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Read from&lt;br&gt;C binary file"/>
   </add>
   <add as="TIME_f" extend="Icon">
@@ -673,10 +675,11 @@
   <!-- MUX -->
   <!-- DEMUX -->
   <!-- NRMSOM_f -->
-  <add as="OUT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUT_f.gif"/>
-  </add>
-  <!-- IN_f -->
+	<add as="OUT_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+	</add>
+	<!-- IN_f -->
   <add as="RELATIONALOP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif"/>
   </add>
