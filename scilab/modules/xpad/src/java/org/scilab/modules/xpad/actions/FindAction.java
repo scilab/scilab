@@ -332,11 +332,13 @@ public final class FindAction extends DefaultAction {
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();
-				String text = new String();
+				String text = null;
 				
 				boolean wholeWordSelected  = wholeWord.isSelected() &&  wholeWord.isEnabled();
 				boolean regexpSelected  = regularExp.isSelected();
 				
+				// save current caret position to restore it at the end
+				int currentCaretPos = xpadTextPane.getCaretPosition();
 				
 				if (buttonSelection.isSelected()) {
 					text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
@@ -368,16 +370,16 @@ public final class FindAction extends DefaultAction {
 				}
 				
 	            Matcher matcher = pattern.matcher(text);
-	            try {
-	            	System.out.println(matcher.replaceAll(newWord));
-					((ScilabStyleDocument) xpadTextPane.getStyledDocument()).replace(startSelectedLines, text.length(), matcher.replaceAll(newWord), null);
-				} catch (BadLocationException e1) {
-					// TODO Auto -generated catch block
-					e1.printStackTrace();
-				}
-					
-				
-				
+	            String replacedText = matcher.replaceAll(newWord);
+	            if (!replacedText.equals(text)) {// only touch document if any replacement took place
+	            	try {
+	            		((ScilabStyleDocument) xpadTextPane.getStyledDocument()).replace(startSelectedLines, text.length(), replacedText, null);
+	            	} catch (BadLocationException e1) {
+	            		// TODO Auto -generated catch block
+	            		e1.printStackTrace();
+	            	}
+	            }
+				xpadTextPane.setCaretPosition(currentCaretPos);
 			}
 		});
 

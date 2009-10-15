@@ -52,6 +52,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 #include "loadTextRenderingAPI.h"
+#include "sciprint.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
