@@ -15,6 +15,14 @@ package org.scilab.modules.xcos.utils;
 import com.mxgraph.util.mxEvent;
 
 public class XcosEvent extends mxEvent {
-    public static final String ADD_PORTS = "addPorts";
-    public static final String VALUE_UPDATED = "valueUpdated";
+    public static final String ADD_PORTS 					= "addPorts";
+    
+    public static final String IN_EXPLICIT_VALUE_UPDATED 	= "InExplicitValueUpdated";
+    public static final String OUT_EXPLICIT_VALUE_UPDATED 	= "OutExplicitValueUpdated";
+
+    public static final String IN_IMPLICIT_VALUE_UPDATED 	= "InImplicitValueUpdated";
+    public static final String OUT_IMPLICIT_VALUE_UPDATED 	= "OutImplicitValueUpdated";
+    
+    public static final String IN_EVENT_VALUE_UPDATED 		= "InEventValueUpdated";
+    public static final String OUT_EVENT_VALUE_UPDATED		= "OutEventValueUpdated";
 }

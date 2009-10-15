@@ -178,15 +178,20 @@
   <add as="RFILE_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Read from&lt;br&gt;input file"/>
   </add>
-  <add as="CLKINV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKINV_f.gif"/>
-  </add>
+  <add as="CLKINV_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
+		<add as="strokeColor" value="red"/>
+	</add>
   <add as="CURV_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
   </add>
-  <add as="INIMPL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INIMPL_f.gif"/>
-  </add>
+  <add as="INIMPL_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
+	</add>
   <add as="READAU_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Read from .au&lt;br&gt;sound file"/>
   </add>
@@ -409,9 +414,11 @@
   <add as="GotoTagVisibilityMO" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
   </add>
-  <add as="OUTIMPL_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OUTIMPL_f.gif"/>
-  </add>
+  <add as="OUTIMPL_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
+	</add>
   
   <!-- INTEGER -->
   <add as="BITCLEAR" extend="Icon">
@@ -583,9 +590,12 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGotoTagVisibility.gif"/>
   </add>
   <!-- SampleCLK -->
-  <add as="CLKOUTV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKOUTV_f.gif"/>
-  </add>
+  <add as="CLKOUTV_f" extend="blockWithLabel">
+		<add as="shape" value="rectangle"/>
+		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
+		<add as="strokeColor" value="red"/>
+	</add>
   <!-- ESELECT -->
   <add as="CLKSOMV_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif"/>
@@ -678,6 +688,7 @@
 	<add as="OUT_f" extend="blockWithLabel">
 		<add as="shape" value="rectangle"/>
 		<add as="rounded" value="1"/>
+		<add as="fillColor" value="white"/>
 	</add>
 	<!-- IN_f -->
   <add as="RELATIONALOP" extend="Icon">

@@ -150,14 +150,20 @@ public class BasicBlock extends mxCell {
     };
 
     public static BasicBlock createBlock(String label) {
-	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
-	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
-	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
-	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
-	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
-	if(label.compareTo("IN_f") == 0) { return new InBlock(label); }
-	if(label.compareTo("OUT_f") == 0) { return new OutBlock(label); }
-	else { return new BasicBlock(label); }
+    	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
+    	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
+    	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
+    	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
+    	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
+    	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
+    	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
+    	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
+    	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
+    	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
+    	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
+    	else { 
+    		return new BasicBlock(label); 
+    	}
     }
 
     public BasicBlock() {
@@ -659,8 +665,9 @@ public class BasicBlock extends mxCell {
 	return new ScilabString(data);
     }
 
-    public void updateBlockSettings(BasicBlock modifiedBlock) {
+    public void updateBlockSettings(XcosDiagram diagram, BasicBlock modifiedBlock) {
     	System.err.println("updateBlockSettings");
+    	
 	this.setDependsOnT(modifiedBlock.dependsOnT());
 	this.setDependsOnU(modifiedBlock.dependsOnU());
 	this.setExprs(modifiedBlock.getExprs());
@@ -755,6 +762,7 @@ public class BasicBlock extends mxCell {
 		getAllControlPorts().remove(removedPorts.get(i));
 	    }
 	}
+	
     }
 
     public void openBlockSettings(String context, XcosDiagram diagram) {
@@ -789,12 +797,9 @@ public class BasicBlock extends mxCell {
 		    Signal.wait(tempInput.getAbsolutePath());
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-		    updateBlockSettings(modifiedBlock);
+		    updateBlockSettings(parent,modifiedBlock);
 		    parent.fireEvent(XcosEvent.ADD_PORTS);
 		    
-		    if(modifiedBlock instanceof InBlock || modifiedBlock instanceof OutBlock){
-			    parent.fireEvent(XcosEvent.VALUE_UPDATED, new mxEventObject(new Object[]{this,modifiedBlock}));
-		    }
 		    //tempOutput.delete();
 		    //tempInput.delete();
 		    setLocked(false);
