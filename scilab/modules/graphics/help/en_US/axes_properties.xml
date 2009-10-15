@@ -796,6 +796,7 @@ da.title.foreground = 12;
 da.title.font_size = 4;
 // x labels default
 da.x_label.text="x";
+da.x_label.text="x"; // Latex or MathML can be used here also
 da.x_label.font_style = 8;
 da.x_label.font_size = 2;
 da.x_label.foreground = 5;

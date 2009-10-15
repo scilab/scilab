@@ -375,6 +375,8 @@ Bug fixes:
 
 * bug 1776 fixed - funcprot accepts non-integer arguments
 
+* bug 1809 fixed - Add a warning message (figure_size) after an invalid graphical script
+
 * bug 2238 fixed - function returns a wrong error
 
 * bug 2275 fixed - add the isvector help page

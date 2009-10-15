@@ -168,12 +168,59 @@
   </refsection>
 
   <refsection>
+    <title>Performances</title>
+
+<para>
+If the problem is correctly scaled, increasing the accuracy reduces 
+the total error but requires more function evaluations.
+The following list presents the number of function evaluations required to 
+compute the Jacobian depending on the order of the formula and the dimension of <literal>x</literal>, 
+denoted by <literal>n</literal>:
+<itemizedlist>
+<listitem>
+<para>
+<literal>order=1</literal>, the number of function evaluations is <literal>n+1</literal>,
+</para>
+</listitem>
+<listitem>
+<para>
+<literal>order=2</literal>, the number of function evaluations is <literal>2n</literal>,
+</para>
+</listitem>
+<listitem>
+<para>
+<literal>order=4</literal>, the number of function evaluations is <literal>4n</literal>.
+</para>
+</listitem>
+</itemizedlist>
+Computing the Hessian matrix requires square the number of function evaluations,
+as detailed in the following list.
+<itemizedlist>
+<listitem>
+<para>
+<literal>order=1</literal>, the number of function evaluations is <literal>(n+1)^2</literal>,
+</para>
+</listitem>
+<listitem>
+<para>
+<literal>order=2</literal>, the number of function evaluations is <literal>4n^2</literal>,
+</para>
+</listitem>
+<listitem>
+<para>
+<literal>order=4</literal>, the number of function evaluations is <literal>16n^2</literal>.
+</para>
+</listitem>
+</itemizedlist>
+</para>
+  </refsection>
+
+  <refsection>
     <title>Remarks</title>
 
-    <para>Numerical approximation of derivatives is generally an unstable
-    process. The step size h must be small to get a low error but if it is too
+    <para>The step size h must be small to get a low error but if it is too
     small floating point errors will dominate by cancellation. As a rule of
-    thumb don't change the default step size. To work around numerical
+    thumb, do not change the default step size. To work around numerical
     difficulties one may also change the order and/or choose different
     orthogonal matrices Q (the default is eye(n,n)), especially if the
     approximate derivatives are used in optimization routines. All the
@@ -198,20 +245,25 @@ function y=G(x,p)
   y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
 endfunction
 
-x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat')
+x=[1;2;3];
+[J,H]=derivative(F,x,H_form='blockmat')
 
 n=3;
 // form an orthogonal matrix :   
-nu=0; while nu<n, [Q,nu]=colcomp(rand(n,n)); end  
+Q = qr(rand(n,n))
+// Test order 1, 2 and 4 formulas.
 for i=[1,2,4]
   [J,H]=derivative(F,x,order=i,H_form='blockmat',Q=Q);
   mprintf("order= %d \n",i);
   H,
 end
 
-p=1;h=1e-3;
-[J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');H
-[J,H]=derivative(list(G,p),x,h,4,Q=Q);H
+p=1;
+h=1e-3;
+[J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');
+H
+[J,H]=derivative(list(G,p),x,h,4,Q=Q);
+H
 
 // Taylor series example:
 dx=1e-3*[1;1;-1];
@@ -222,9 +274,13 @@ F(x+dx)-F(x)-J*dx
 F(x+dx)-F(x)-J*dx-1/2*H*(dx .*. dx)
 
 // A trivial example
-function y=f(x,A,p,w), y=x'*A*x+p'*x+w; endfunction
+function y=f(x,A,p,w)
+  y=x'*A*x+p'*x+w; 
+endfunction
 // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
-A = rand(3,3); p = rand(3,1); w = 1;
+A = rand(3,3); 
+p = rand(3,1); 
+w = 1;
 x = rand(3,1);
 [J,H]=derivative(list(f,A,p,w),x,h=1,H_form='blockmat')
 
@@ -237,6 +293,63 @@ He = A+A'
 clean(Je - J)
 clean(He - H)
  ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Accuracy issues</title>
+
+<para>
+The <literal>derivative</literal> function uses the same step <literal>h</literal>
+whatever the direction and whatever the norm of <literal>x</literal>. 
+This may lead to a poor scaling with respect to <literal>x</literal>. 
+An accurate scaling of the step is not possible without many evaluations 
+of the function. Still, the user has the possibility to compare the results 
+produced by the <literal>derivative</literal> and the <literal>numdiff</literal>
+functions. Indeed, the <literal>numdiff</literal> function scales the 
+step depending on the absolute value of <literal>x</literal>.
+This scaling may produce more accurate results, especially if 
+the magnitude of <literal>x</literal> is large.
+</para>
+
+<para>
+In the following Scilab script, we compute the derivative of an 
+univariate quadratic function. The exact derivative can be 
+computed analytically and the relative error is computed.
+In this rather extreme case, the <literal>derivative</literal> function 
+produces no significant digits, while the <literal>numdiff</literal>
+function produces 6 significant digits.
+</para>
+
+    <programlisting role="example"><![CDATA[ 
+ // Difference between derivative and numdiff when x is large
+function y = myfunction (x)
+  y = x*x;
+endfunction
+x = 1.e100;
+fe = 2.0 * x;
+fp = derivative(myfunction,x);
+e = abs(fp-fe)/fe;
+mprintf("Relative error with derivative: %e\n",e)
+fp = numdiff(myfunction,x);
+e = abs(fp-fe)/fe;
+mprintf("Relative error with numdiff: %e\n",e)
+]]></programlisting>
+
+<para>
+The previous script produces the following output.
+</para>
+
+    <programlisting role="example"><![CDATA[ 
+Relative error with derivative: 1.000000e+000
+Relative error with numdiff: 7.140672e-006
+]]></programlisting>
+
+<para>
+In a practical situation, we may not know what is the correct numerical 
+derivative. Still, we are warned that the numerical derivatives 
+should be used with caution in this specific case.
+</para>
+
   </refsection>
 
   <refsection>
