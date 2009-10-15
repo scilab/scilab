@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.utils.XcosCodec;
+import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxUtils;

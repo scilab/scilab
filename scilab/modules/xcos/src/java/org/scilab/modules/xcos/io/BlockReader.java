@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +30,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -318,7 +319,7 @@ public class BlockReader {
 
 	public static BasicBlock readBlockFromFile( String hdf5file ) {
 		ScilabMList data = new ScilabMList();
-		BasicBlock newBlock = new BasicBlock("FAILED !!");
+		BasicBlock newBlock = BasicBlock.createBlock("FAILED !!");
 
 		try {
 			int fileId = H5Read.openFile(hdf5file);

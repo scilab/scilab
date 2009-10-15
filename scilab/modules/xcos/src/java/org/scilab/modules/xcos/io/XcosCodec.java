@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
 import java.util.HashMap;

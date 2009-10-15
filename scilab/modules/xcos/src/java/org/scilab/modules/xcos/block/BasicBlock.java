@@ -43,6 +43,7 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -333,7 +334,7 @@ public class BasicBlock extends mxCell {
         this.locked = locked;
     }
 
-    protected List<InputPort> getAllInputPorts() {
+    public List<InputPort> getAllInputPorts() {
 	List<InputPort> data = new ArrayList<InputPort>();
 	int childrenCount = getChildCount();
 
@@ -346,7 +347,7 @@ public class BasicBlock extends mxCell {
 	return data;
     }
 
-    protected List<OutputPort> getAllOutputPorts() {
+    public List<OutputPort> getAllOutputPorts() {
 	List<OutputPort> data = new ArrayList<OutputPort>();
 	int childrenCount = getChildCount();
 
@@ -359,7 +360,7 @@ public class BasicBlock extends mxCell {
 	return data;
     }
 
-    protected List<CommandPort> getAllCommandPorts() {
+    public List<CommandPort> getAllCommandPorts() {
 	List<CommandPort> data = new ArrayList<CommandPort>();
 	int childrenCount = getChildCount();
 
@@ -372,7 +373,7 @@ public class BasicBlock extends mxCell {
 	return data;
     }
 
-    protected List<ControlPort> getAllControlPorts() {
+    public List<ControlPort> getAllControlPorts() {
 	List<ControlPort> data = new ArrayList<ControlPort>();
 	int childrenCount = getChildCount();
 

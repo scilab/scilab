@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**

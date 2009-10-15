@@ -30,13 +30,9 @@ public class ConstBlock extends BasicBlock {
 	setValue("1");
     }
     
-//    public void setExprs(ScilabType exprs) {
-//	super.setExprs(exprs);
-//	setValue(((ScilabString) getExprs()).getData()[0][0]);
-//    }
-   
-    public void setExprs(ScilabString exprs) {
+    public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
 	setValue(((ScilabString) getExprs()).getData()[0][0]);
-    } 
+    }
+    
 }

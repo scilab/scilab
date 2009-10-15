@@ -1,4 +1,4 @@
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.xcos.io;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

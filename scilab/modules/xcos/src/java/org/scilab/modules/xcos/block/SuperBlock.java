@@ -22,6 +22,8 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class SuperBlock extends BasicBlock {
