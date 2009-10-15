@@ -329,8 +329,8 @@ public class BlockReader {
 			newBlock = fillBlockStructure(data);
 			newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 					newBlock.getGeometry().getY(),
-					newBlock.getGeometry().getWidth() * 2,
-					newBlock.getGeometry().getHeight() * 2));
+					newBlock.getGeometry().getWidth(),
+					newBlock.getGeometry().getHeight()));
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -635,8 +635,8 @@ public class BlockReader {
 		}
 
 		// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
-		newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 20));
-		newBlock.getGeometry().setHeight(Math.max(sizeFactor * height, 20));
+		newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 40));
+		newBlock.getGeometry().setHeight(Math.max(sizeFactor * height, 40));
 
 		// Adjust block cause Scilab(0,0) is bottom left
 		newBlock.getGeometry().setY(newBlock.getGeometry().getY() - newBlock.getGeometry().getHeight()); 
