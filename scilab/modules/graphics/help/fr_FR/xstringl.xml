@@ -24,7 +24,7 @@
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>scalaires réels, coordonnées du point en bas à   
+          <para>scalaires réels, coordonnées du point en bas à
           gauche des chaînes de caractères.</para>
         </listitem>
       </varlistentry>
@@ -32,6 +32,10 @@
         <term>str</term>
         <listitem>
           <para>matrice de chaînes de caractères.</para>
+          <para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions LaTeX ou MathML.</para>
+          <para>Une expression LaTeX doit commencer et se terminer par un $ (dollar).</para>
+          <para>Une expression MathML doit commencer par &lt;, se terminer par &gt; et être syntaxiquement valide.</para>
+          <para>A la première utilisation, le moteur MathML est plus long à charger que celui LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,17 +55,17 @@
   <refsection>
     <title>Description</title>
     <para><literal>xstringl</literal> renvoie dans <literal>rect=[x,y,w,h]</literal> (point
-    en haut à    gauche, largeur, hauteur) les dimensions d'un
+    en haut à gauche, largeur, hauteur) les dimensions d'un
     rectangle dans l'échelle graphique courante entourant les chaînes de
-    caractères <literal>str</literal> dessinées à    la position
-    <literal>x,y</literal> (point en bas à    gauche).</para>
+    caractères <literal>str</literal> dessinées à la position
+    <literal>x,y</literal> (point en bas à gauche).</para>
     <para>Le résultat est approximatif avec le pilote PostScript.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
-str=["Scilab" "n''est ";"pas" "Matlab"];
+str=["Scilab" "n''est ";"$\varinjlim pas$" "Matlab"]; // LaTeX rendering (>= Scilab 5.2)
 r=xstringl(0.5,0.5,str)
 xrects([r(1) r(2)+r(4) r(3) r(4)]')
 xstring(r(1),r(2),str)
