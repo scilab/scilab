@@ -54,7 +54,7 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	mxCodec.setAttribute(node, HEIGHT, scilabString.getHeight());
 
 	for(int i = 0 ; i < scilabString.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabString.getHeight() ; ++j) {
+	    for(int j = 0 ; j < scilabString.getWidth() ; ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);

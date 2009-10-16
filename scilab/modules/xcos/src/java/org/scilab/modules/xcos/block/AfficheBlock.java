@@ -21,6 +21,13 @@ import org.scilab.modules.xcos.Xcos;
 public class AfficheBlock extends BasicBlock {
 
 	private int hashCode = 0;
+	
+	public AfficheBlock() {
+		super();
+		setVertex(false);
+		setVisible(false);
+	}
+	
 	protected AfficheBlock(String label) {
 		super(label);
 		setStyle("Affiche");

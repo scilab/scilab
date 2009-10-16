@@ -77,9 +77,10 @@ public class ScilabDouble implements ScilabType {
 	}
 
 	public int getWidth() {
-		if (isEmpty()) {
+		if (isEmpty()|| realPart.length  == 0 ) {
 			return 0;
 		}
+		
 		return realPart[0].length;
 	}
 

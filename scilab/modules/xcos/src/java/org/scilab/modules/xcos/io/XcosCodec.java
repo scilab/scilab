@@ -16,8 +16,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -50,21 +54,21 @@ public class XcosCodec extends mxCodec {
 	
 	
 	String[] ignore = {//"exprs",
-		"realParameters",
-		"integerParameters",
-		"objectsParameters",
-		"nbZerosCrossing",
-		"nmode",
-		"state",
-		"dState",
-		"oDState",
-		"equations",
-		"dependsOnU",
-		"dependsOnT",
-		"blockType",
-		"ordering",
-		"interfaceFunctionName",
-		"simulationFunctionName",
+		//"realParameters",
+		//"integerParameters",
+		//"objectsParameters",
+		//"nbZerosCrossing",
+		//"nmode",
+		//"state",
+		//"dState",
+		//"oDState",
+		//"equations",
+		//"dependsOnU",
+		//"dependsOnT",
+		//"blockType",
+		//"ordering",
+		//"interfaceFunctionName",
+		//"simulationFunctionName",
 		"simulationFunctionType",
 		"SimulationFunctionType"};
 
@@ -73,6 +77,12 @@ public class XcosCodec extends mxCodec {
 	// Types
 	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
+	XcosObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+	mxCodecRegistry.register(scilabDoubleCodec);
+	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+	mxCodecRegistry.register(scilabIntegerCodec);
+	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), null, null, null);
+	mxCodecRegistry.register(scilabListCodec);
 	XcosObjectCodec arrayListStringCodec = new XcosObjectCodec(new ArrayList<ArrayList<String>>());
 	mxCodecRegistry.register(arrayListStringCodec);
 	
@@ -83,6 +93,8 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(basicBlockCodec);
 	XcosObjectCodec constBlockCodec = new XcosObjectCodec(new ConstBlock(), ignore, refs, null);
 	mxCodecRegistry.register(constBlockCodec);
+	XcosObjectCodec afficheBlockCodec = new XcosObjectCodec(new AfficheBlock(), ignore, refs, null);
+	mxCodecRegistry.register(afficheBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);
 	
