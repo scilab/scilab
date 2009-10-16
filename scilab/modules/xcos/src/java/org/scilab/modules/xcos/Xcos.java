@@ -626,4 +626,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static Tab getPalettes() {
     	return palette;
     }
+    
+    public static ArrayList<XcosDiagram> getDiagrams() {
+    	return diagrams;
+    }
 }
