@@ -26,7 +26,6 @@ public class ConstBlock extends BasicBlock {
     protected ConstBlock(String label) {
 	super(label);
 	setInterfaceFunctionName("CONST_m");
-	setStyle("CONST_m");
 	setValue("1");
     }
     

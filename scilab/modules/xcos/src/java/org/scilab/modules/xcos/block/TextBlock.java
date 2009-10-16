@@ -22,7 +22,6 @@ public class TextBlock extends BasicBlock {
 
     public TextBlock(String label) {
 	super(label);
-	setStyle("Label");
 	setInterfaceFunctionName("TEXT_f");
     }
 

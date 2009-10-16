@@ -25,7 +25,6 @@ public class GainBlock extends BasicBlock {
     
     protected GainBlock(String label) {
 	super(label);
-	setStyle("Gain");
 	setInterfaceFunctionName("GAINBLK_f");
     }
     
