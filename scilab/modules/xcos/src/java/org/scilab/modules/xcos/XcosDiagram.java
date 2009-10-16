@@ -54,6 +54,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -264,7 +265,18 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
 
-	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
+	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new mxIEventListener()
+	{
+	    public void invoke(Object sender, mxEventObject evt)
+	    {
+	    	if(evt.getArgs()[0] instanceof SuperBlock){
+	    		System.err.println("Super block ask refresh");
+	    		refresh();
+	    	}
+	    }
+	});
+
+	    	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		Object[] cells = (Object[]) evt.getArgs()[0];
 
@@ -960,7 +972,8 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	} else {
-	    int choice = JOptionPane.showConfirmDialog(this.getAsComponent(), XcosMessages.FILE_DOESNT_EXIST);
+	    int choice = JOptionPane.showConfirmDialog(this.getAsComponent()
+	    		, String.format(XcosMessages.FILE_DOESNT_EXIST,theFile.getAbsolutePath()) );
 	    if (choice  == 0) {
 		try {
 		    FileWriter writer = new FileWriter(diagramFileName);

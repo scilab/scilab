@@ -104,15 +104,15 @@ public class XpadMessages {
     public static final String REGULAR_EXPRESSIONS = Messages.gettext("Regular expressions");
     public static final String REPLACE = Messages.gettext("Replace");
     public static final String REPLACE_ALL = Messages.gettext("Replace All");
-    public static final String INVALID_REGEXP = Messages.gettext("Invalid regular expression");
+    public static final String INVALID_REGEXP = Messages.gettext("Invalid regular expression : %s");
     public static final String END_OF_DOCUMENT = Messages.gettext("You have reached the end of the document");
-    public static final String STRING_NOT_FOUND = Messages.gettext("String not found");
+    public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("This file doesn't exist\n Do you want to create it?");
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
     public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
-    public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program !\n Overwrite it?");
+    public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program !\n Overwrite it ?");
     public static final String REPLACE_FILE_TITLE = Messages.gettext("Replace File?");
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");
