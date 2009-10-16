@@ -115,33 +115,6 @@ TODO: talk about call scilab based on api_scilab
 
 TODO: add the information about the doxygen doc generation if we do it.
 
-Source reorganisation:
-======================
-
-* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
-  SCI/modules/src/scripts
-  
-* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
-
-* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
-
-* printf, msprintf, mprintf, print moved in output_stream module.
-
-* disp moved in output_stream module.
-
-* bug 3668 fixed - lib, deff, getf, exec, execstr moved in functions module.
-
-* oldsave, oldload functions (only used with macros of scilab 2.4) are removed
-  Replaces oldsave, oldload by save and load in your code.
-  
-* bug 3669 fixed - integrate, intc and intl moved in Differential equations
-  interp1, interp2d and splin2d  moved in the Interpolation module.
-
-* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
-bits archs). Note that if Scilab is built on a 64 bits and triggers a 
-seg fault on startup, uncomment the related line in 
-libs/MALLOC/Makefile.am and launch autoreconf.
-
 Mac OS X:
 =========
 
@@ -262,6 +235,34 @@ call_scilab module :
    see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
  
 * CallScilab.h renamed call_scilab.h (See SEP #34)
+
+
+Source reorganisation:
+======================
+
+* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
+  SCI/modules/src/scripts
+  
+* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
+
+* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
+
+* printf, msprintf, mprintf, print moved in output_stream module.
+
+* disp moved in output_stream module.
+
+* bug 3668 fixed - lib, deff, getf, exec, execstr moved in functions module.
+
+* oldsave, oldload functions (only used with macros of scilab 2.4) are removed
+  Replaces oldsave, oldload by save and load in your code.
+  
+* bug 3669 fixed - integrate, intc and intl moved in Differential equations
+  interp1, interp2d and splin2d  moved in the Interpolation module.
+
+* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
+bits archs). Note that if Scilab is built on a 64 bits and triggers a 
+seg fault on startup, uncomment the related line in 
+libs/MALLOC/Makefile.am and launch autoreconf.
 
 
 Compilation:
