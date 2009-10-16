@@ -293,27 +293,28 @@ public class XcosDiagram extends ScilabGraph {
 	    public void invoke(Object source, mxEventObject evt) {
 		System.err.println("[DEBUG] CELLS_ADDED");
 		Object[] cells = (Object[]) evt.getArgs()[0];
+		for (int i = 0 ; i < cells.length ; ++i) {
+		    if (cells[0] instanceof BasicBlock) {
+			getModel().beginUpdate();
 
-		if (cells[0] instanceof BasicBlock) {
-		    getModel().beginUpdate();
+			if (getCellStyle(cells[i]).get("displayedLabel") != null) {
+			    ((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
+			}
 
-		    if (getCellStyle(cells[0]).get("displayedLabel") != null) {
-			((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[0]).get("displayedLabel")+" </body></html>");
+			mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
+			mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
+
+			((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+				Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+				Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+			cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
+			getModel().endUpdate();
+			getModel().beginUpdate();
+			fireEvent(mxEvent.CELLS_RESIZED, new mxEventObject(
+				new Object[] { cells, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() } } ));
+			refresh();
+			getModel().endUpdate();
 		    }
-
-		    mxRectangle preferedSize = getPreferredSizeForCell(cells[0]);
-		    mxGeometry cellSize = ((mxCell) cells[0]).getGeometry();
-
-		    ((mxCell) cells[0]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-			    Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-			    Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-		    cellsResized(new Object[] { cells[0] }, new mxRectangle[] { ((mxCell) cells[0]).getGeometry() });
-		    getModel().endUpdate();
-		    getModel().beginUpdate();
-		    fireEvent(mxEvent.CELLS_RESIZED, new mxEventObject(
-			    new Object[] { cells, new mxRectangle[] { ((mxCell) cells[0]).getGeometry() } } ));
-		    refresh();
-		    getModel().endUpdate();
 		}
 	    }
 	});

@@ -330,6 +330,7 @@ public class BlockReader {
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
 			newBlock = fillBlockStructure(data);
+			newBlock.setStyle(newBlock.getInterfaceFunctionName()+newBlock.getStyle());
 			newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 					newBlock.getGeometry().getY(),
 					newBlock.getGeometry().getWidth(),

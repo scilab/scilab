@@ -43,10 +43,9 @@ public class SuperBlock extends BasicBlock {
     private SuperBlockDiagram child = null;
 
     public SuperBlock(){
-    super();
-    setVertex(false);
-    setVisible(false);
-    
+	super();
+	setVertex(false);
+	setVisible(false);
     }
 
     public SuperBlock(String label) {

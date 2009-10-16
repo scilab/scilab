@@ -557,6 +557,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static XcosDiagram createEmptyDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
+	xcosDiagramm.installListeners();
 	showDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
