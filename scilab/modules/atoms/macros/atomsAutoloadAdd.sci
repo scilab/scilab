@@ -97,7 +97,20 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 		autoloaded = mgetl(atoms_directory+"autoloaded");
 	end
 	
-	// Loop on each URL specified as input argument
+	// Check if all input modules are installed
+	// =========================================================================
+	
+	if ~ and(atomsIsInstalled(name,version)) then
+		mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
+		for i=1:size(name,"*")
+			if ~ atomsIsInstalled(name(i),version(i)) then
+				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
+			end
+		end
+		error("");
+	end
+	
+	// Loop on each module specified as input argument
 	// =========================================================================
 	
 	for i=1:size(name,"*")
