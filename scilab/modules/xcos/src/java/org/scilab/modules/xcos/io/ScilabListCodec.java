@@ -1,16 +1,15 @@
 package org.scilab.modules.xcos.io;
 
+import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.io.mxCodecRegistry;
 
 public class ScilabListCodec  extends XcosObjectCodec {
 
@@ -21,6 +20,8 @@ public class ScilabListCodec  extends XcosObjectCodec {
     private static final String DATA = "data";
     private static final String HEIGHT = "height";
     private final static String WIDTH = "width";
+    private final static String LENGTH = "length";
+    private final static String SCILAB_CLASS = "scilabClass";
     
     public ScilabListCodec(Object template) {
 	super(template);
@@ -33,93 +34,46 @@ public class ScilabListCodec  extends XcosObjectCodec {
 
     }
 
-    public Node encode(mxCodec enc, Object obj)
-    {
-	String name = mxCodecRegistry.getName(obj.getClass());
-	Node node = enc.getDocument().createElement(name);
-
-	ScilabList scilabList = (ScilabList) obj;
-	mxCodec.setAttribute(node, WIDTH, scilabList.getWidth());
-	mxCodec.setAttribute(node, HEIGHT, scilabList.getHeight());
-	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	for(int i = 0 ; i < scilabList.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabList.getWidth() ; ++j) {
-
-	    	System.out.println("scilab list class" + i +" : "+ scilabList.get(i).getClass() );
-	    	/*
-		Node data = enc.getDocument().createElement(DATA);
-		mxCodec.setAttribute(data, LINE, i);
-		mxCodec.setAttribute(data, COLUMN, j);
-		mxCodec.setAttribute(data, VALUE, scilabString.getData()[i][j]);
-		node.appendChild(data);
-		*/
-	    }
+	public Object beforeEncode(mxCodec enc, Object obj, Node node)
+	{
+		mxCodec.setAttribute(node, SCILAB_CLASS, obj.getClass().getSimpleName());
+		
+		return obj;
 	}
-	return node;
-    }
-
-    public Object decode(mxCodec dec, Node node, Object into)
-    {
-	Object obj = null;
-	try {
-	    System.err.println("\n\n\n\n@@@ SPECIAL DECODE ***");
-	    System.err.println("*** node = "+node);
-	    if (!(node instanceof Element)) { return null; }
-	    obj = cloneTemplate(node);
-
-	    System.err.println("*** clone Template = "+obj);
-
-	    // attrs = {"as", "height", "width"}
-	    NamedNodeMap attrs = node.getAttributes();
-	    int heightXMLPosition = -1;
-	    int widthXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++)
-	    {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
-		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
-	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-
-	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
-	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
-
-	    String[][] data = new String[height][width];
-	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0 ; i < allValues.getLength() ; ++i) {
-		int lineXMLPosition = -1;
-		int columnXMLPosition = -1;
-		int valueXMLPosition = -1;
-		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-		for (int j = 0; j < dataAttributes.getLength(); j++)
-		{
-		    Node attr = dataAttributes.item(j);
-		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
+	
+	public Object afterDecode(mxCodec dec, Node node, Object obj)
+	{
+		return obj;
+	}
+	
+	public Node beforeDecode(mxCodec dec, Node node, Object obj)
+	{
+		return node;
+	}
+	
+	public Object cloneTemplate(Node node)
+	{
+		Object obj = null;
+		if ( node.getAttributes().getNamedItem(SCILAB_CLASS) != null){
+			System.out.println(node.getAttributes().getNamedItem(SCILAB_CLASS).getNodeValue());
+			String scilabClass = node.getAttributes().getNamedItem(SCILAB_CLASS).getNodeValue();
+			if ( scilabClass.equalsIgnoreCase("ScilabMList")){
+				obj = new ScilabMList() ;
+			}
+			if ( scilabClass.equalsIgnoreCase("ScilabTList")){
+				obj = new ScilabTList() ;
+			}
+			if ( scilabClass.equalsIgnoreCase("ScilabList")){
+				obj = new ScilabList() ;
+			}
+			
+		} else {
+			
 		}
 
-		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
-		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
-	    }
-
-	    ((ScilabString) obj).setData(data);
+		return obj;
 	}
-	catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
-	}
-	finally {
-	    return obj;
-	}
-
-    }
-
+	
     private class UnrecognizeFormatException extends Exception {}
 
 }

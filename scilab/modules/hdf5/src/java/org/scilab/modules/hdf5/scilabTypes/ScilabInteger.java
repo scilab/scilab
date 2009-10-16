@@ -130,6 +130,57 @@ public class ScilabInteger implements ScilabType {
 		return data[0].length;
 	}
 
+	// int32(X), int8(x) , int16([x,x,x;x,x,x])
+//	 uint32(X), uint8(x) , uint16([x,x,x;x,x,x])
+	
+    public boolean isEmpty(){
+    	return (data == null);
+    }
+	
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		
+		
+		if (isEmpty()) {
+			result.append("int()");
+			return result.toString();
+		}
+		
+		if (isUnsigned() ){
+			result.append("u");
+		}
+		result.append("int");
+		if (getPrec() == IntegerType.TYPE8){
+			result.append("8");
+		} else if (getPrec() == IntegerType.TYPE16){
+			result.append("16");		
+		} else if (getPrec() == IntegerType.TYPE32){
+			result.append("32");
+		} else if (getPrec() == IntegerType.TYPE64){
+			result.append("64");
+		}
+
+		result.append("(");
+		for (int i = 0 ; i < getHeight() ; ++i) {
+			for (int j = 0 ; j < getWidth() ; ++j) {
+
+				result.append(getData()[i][j]);
+				
+				
+				if (j != getWidth() - 1) {
+					result.append(", ");
+				}
+			}
+			if (i != getHeight() - 1) {
+				result.append(" ; ");
+			}
+		}
+		result.append(")");
+	
+		return result.toString();
+	}
+	
+	
 	private Long[][] data;
 	private IntegerType prec;
 	private boolean bUnsigned;

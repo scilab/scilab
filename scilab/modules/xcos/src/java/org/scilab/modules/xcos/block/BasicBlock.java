@@ -78,9 +78,9 @@ public class BasicBlock extends mxCell {
     //private List<String> exprs = new ArrayList<String>();
     private ScilabType exprs = null;
     //private List<Double> realParameters = new ArrayList<Double>();
-    private ScilabType realParameters = new ScilabDouble();
+    private ScilabType realParameters = null;
     //private List<Integer> integerParameters = new ArrayList<Integer>();
-    private ScilabType integerParameters = new ScilabDouble();
+    private ScilabType integerParameters = null;
     //private List objectsParameters = new ArrayList();
     private ScilabType objectsParameters = new ScilabList();
 

@@ -13,20 +13,24 @@
 package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
@@ -77,14 +81,19 @@ public class XcosCodec extends mxCodec {
 	// Types
 	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
+	XcosObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+	mxCodecRegistry.register(scilabBooleanCodec);
 	XcosObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
 	mxCodecRegistry.register(scilabDoubleCodec);
 	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
 	mxCodecRegistry.register(scilabIntegerCodec);
-	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), null, null, null);
+
+		//
+
+	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
-	XcosObjectCodec arrayListStringCodec = new XcosObjectCodec(new ArrayList<ArrayList<String>>());
-	mxCodecRegistry.register(arrayListStringCodec);
+
+
 	
 	// Blocks
 	XcosObjectCodec textBlockCodec = new XcosObjectCodec(new TextBlock(), ignore, refs, null);
@@ -95,6 +104,8 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(constBlockCodec);
 	XcosObjectCodec afficheBlockCodec = new XcosObjectCodec(new AfficheBlock(), ignore, refs, null);
 	mxCodecRegistry.register(afficheBlockCodec);
+	XcosObjectCodec superBlockCodec = new XcosObjectCodec(new SuperBlock(), ignore, refs, null);
+	mxCodecRegistry.register(superBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);
 	
@@ -117,5 +128,48 @@ public class XcosCodec extends mxCodec {
 	super(document);
     }
     
+	public Object decode(Node node, Object into)
+	{
+		Object obj = null;
+
+		if (node != null && node.getNodeType() == Node.ELEMENT_NODE)
+		{
+			
+			if ( node.getAttributes().getNamedItem("scilabClass") != null){
+				System.out.println(node.getAttributes().getNamedItem("scilabClass").getNodeValue());
+				String scilabClass = node.getAttributes().getNamedItem("scilabClass").getNodeValue();
+				if ( scilabClass.equalsIgnoreCase("ScilabMList")){
+					obj =  obj ;
+				}
+				
+			} else {
+				
+			}
+			
+			
+			mxObjectCodec codec = mxCodecRegistry.getCodec(node.getNodeName());
+
+			try
+			{
+				if (codec != null)
+				{
+					obj = codec.decode(this, node, into);
+				}
+				else
+				{
+					obj = node.cloneNode(true);
+					((Element) obj).removeAttribute("as");
+				}
+			}
+			catch (Exception e)
+			{
+				System.err.println("Cannot decode " + node.getNodeName() + ": "
+						+ e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
+		return obj;
+	}
     
 }
