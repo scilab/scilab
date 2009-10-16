@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -76,8 +77,10 @@ public class SuperBlock extends BasicBlock {
 		StringBuffer result = new StringBuffer();
 		result.append("<html>");
 		result.append("SUPER BLOCK"+"<br>");
-		result.append("Input ports : "+getAllInputPorts().size()+"<br>");
-		result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
+		result.append("Explicit input ports : "+getAllExplicitInputPorts().size()+"<br>");
+		result.append("Implicit input ports : "+getAllImplicitInputPorts().size()+"<br>");
+		result.append("Explicit output ports : "+getAllExplicitOutputPorts().size()+"<br>");
+		result.append("Implicit output ports : "+getAllImplicitOutputPorts().size()+"<br>");
 		result.append("Control ports : "+getAllControlPorts().size()+"<br>");
 		result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
 		result.append("isLocked : "+isLocked()+"<br>");
@@ -102,7 +105,7 @@ public class SuperBlock extends BasicBlock {
 							List<mxCell> inputs = getAllExplicitInBlock();
 							int count = getBlocksWithValueCount(inputs, (String)block.getValue());
 							if(count == 1){//1 for Me
-								//container.addPort(new ExplicitInputPort());
+								container.addPort(new ExplicitInputPort());
 							}else{
 								mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
 							}
@@ -299,9 +302,16 @@ public class SuperBlock extends BasicBlock {
 			if(count != 0){
 				List<mxCell> list = getBlocksWithValue(blocks, checkValue);
 				mxUtils.setCellStyles(getModel(), new Object[] {list.get(0)}, mxConstants.STYLE_FILLCOLOR, "white");
+				
+				Object[] objs = new Object[list.size() - 1];
 				for(int j = 1 ; j < list.size() ; j++){
-					mxUtils.setCellStyles(getModel(), new Object[] {list.get(j)}, mxConstants.STYLE_FILLCOLOR, "red");
+					objs[j-1] = list.get(j);
 				}
+				mxUtils.setCellStyles(getModel(), objs, mxConstants.STYLE_FILLCOLOR, "red");
+
+//				for(int j = 1 ; j < list.size() ; j++){
+//					mxUtils.setCellStyles(getModel(), new Object[]{list.get(j)}, mxConstants.STYLE_FILLCOLOR, "red");
+//				}
 			}
 		}
 		
