@@ -145,5 +145,6 @@ public final class XcosMessages {
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
     
     public static final String ADDTO = Messages.gettext("Add to");
+    public static final String ADDTO_NEW_DIAGRAM = Messages.gettext("Add to new diagram");
     
 }

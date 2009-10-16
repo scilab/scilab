@@ -346,24 +346,45 @@ public class XcosPalette extends JScrollPane {
 						
 						ContextMenu menu = ScilabContextMenu.createContextMenu();
 						
-						Menu addto = ScilabMenu.createMenu();
-						addto.setText(XcosMessages.ADDTO);
-						
 						final ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-
+						
 						if (allDiagrams.size() == 0) {
 							// No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
-							MenuItem newDiagram = ScilabMenuItem.createMenuItem();
-							newDiagram.setText(XcosMessages.NEW_DIAGRAM);
-							newDiagram.setCallback(new CallBack(name) {
+							MenuItem addTo = ScilabMenuItem.createMenuItem();
+							
+							addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
+							addTo.setCallback(new CallBack(name) {
 								private static final long serialVersionUID = 1185879440137756636L;
 
 								public void callBack() {
 									Xcos.createEmptyDiagram().addCell(cellToAdd);
 								}
 							});
-							addto.add(newDiagram);
+							
+							menu.add(addTo);
+							
+						} else if (allDiagrams.size() == 1) {
+							// A single diagram opened: add to this diagram
+							MenuItem addTo = ScilabMenuItem.createMenuItem();
+
+							addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
+							final XcosDiagram theDiagram = allDiagrams.get(0);
+							addTo.setCallback(new CallBack(name) {
+								private static final long serialVersionUID = 1185879440137756636L;
+
+								public void callBack() {
+									theDiagram.addCell(cellToAdd);
+								}
+							});
+							
+							menu.add(addTo);
+
 						} else {
+							// The user has to choose
+							Menu addTo = ScilabMenu.createMenu();
+
+							addTo.setText(XcosMessages.ADDTO);
+							
 							for (int i = 0; i < allDiagrams.size(); i++) {
 								MenuItem diagram = ScilabMenuItem.createMenuItem();
 								final XcosDiagram theDiagram = allDiagrams.get(i);
@@ -375,12 +396,12 @@ public class XcosPalette extends JScrollPane {
 										theDiagram.addCell(cellToAdd);
 									}
 								});
-								addto.add(diagram);
+								addTo.add(diagram);
 							}
+
+							menu.add(addTo);
 						}
 						
-						
-						menu.add(addto);
 						
 						menu.getAsSimpleContextMenu().addSeparator();
 						
