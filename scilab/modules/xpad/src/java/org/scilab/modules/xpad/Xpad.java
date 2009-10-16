@@ -461,7 +461,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 				int index = getTabPane().getSelectedIndex();
 				getTabPane().setTitleAt(index, newSavedFiled.getName());
-
+				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
 
 			} catch (IOException ioex) {
@@ -562,6 +562,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 				textPane.setName(f.getPath());
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				updateRecentOpenedFilesMenu();
 
 				styledDocument.setContentModified(false);

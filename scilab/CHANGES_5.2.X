@@ -14,16 +14,16 @@ ATOMS:
 TODO: add an explanation about atoms
 
 
-Xpad:
-=====
+Text Editor:
+============
 
-TODO: add an explanation about xpad
+TODO: add an explanation about the text editor
 
 Graphics:
 =========
 
 Thanks to Calixte Denizet, it is now possible to annotate Scilab's graphics
-in MathML or Latex.
+in MathML or LaTeX.
 See demos => Graphics => LaTeX/MathML
 
 * New features
@@ -63,6 +63,21 @@ in different environnements and use cases.
 	returns 99
 
 
+Optimization:
+=============
+* New features
+ - Created neldermead component for simplex-based direct search optimization
+ - Created nmplot component for fast plots of neldermead optimization
+ - Created optimbase component to build optimization algorithms
+ - Created optimsimplex component to build direct search algorithms
+ - Created fminsearch optimization function
+ - Created optimget/optimset to configure fminsearch
+ - Created optimplotfunccount, optimplotfval, optimplotx as plotting functions for fminsearch
+* Improvements
+ - Added examples in the help of optim for logging feature and optimization
+   based on numerical derivatives
+
+
 Extension capabilities of Scilab :
 ==================================
 
@@ -100,32 +115,12 @@ TODO: talk about call scilab based on api_scilab
 
 TODO: add the information about the doxygen doc generation if we do it.
 
-Source reorganisation:
-======================
+Option configuration:
+=====================
 
-* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
-  SCI/modules/src/scripts
-  
-* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
+* The file jvm_options.xml has been moved into etc/jvm_options.xml in order to
+facilitate the use of this configuration file.
 
-* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
-
-* printf, msprintf, mprintf, print moved in output_stream module.
-
-* disp moved in output_stream module.
-
-* bug 3668 fixed - lib, deff, getf, exec, execstr moved in functions module.
-
-* oldsave, oldload functions (only used with macros of scilab 2.4) are removed
-  Replaces oldsave, oldload by save and load in your code.
-  
-* bug 3669 fixed - integrate, intc and intl moved in Differential equations
-  interp1, interp2d and splin2d  moved in the Interpolation module.
-
-* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
-bits archs). Note that if Scilab is built on a 64 bits and triggers a 
-seg fault on startup, uncomment the related line in 
-libs/MALLOC/Makefile.am and launch autoreconf.
 
 Mac OS X:
 =========
@@ -249,6 +244,34 @@ call_scilab module :
 * CallScilab.h renamed call_scilab.h (See SEP #34)
 
 
+Source reorganisation:
+======================
+
+* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
+  SCI/modules/src/scripts
+  
+* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
+
+* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
+
+* printf, msprintf, mprintf, print moved in output_stream module.
+
+* disp moved in output_stream module.
+
+* bug 3668 fixed - lib, deff, getf, exec, execstr moved in functions module.
+
+* oldsave, oldload functions (only used with macros of scilab 2.4) are removed
+  Replaces oldsave, oldload by save and load in your code.
+  
+* bug 3669 fixed - integrate, intc and intl moved in Differential equations
+  interp1, interp2d and splin2d  moved in the Interpolation module.
+
+* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
+bits archs). Note that if Scilab is built on a 64 bits and triggers a 
+seg fault on startup, uncomment the related line in 
+libs/MALLOC/Makefile.am and launch autoreconf.
+
+
 Compilation:
 ============
 
@@ -339,20 +362,6 @@ Java/Scilab API:
  - SciInteger class added  
 
 
-Optimization:
-=============
-* New features
- - Created neldermead component for simplex-based direct search optimization
- - Created nmplot component for fast plots of neldermead optimization
- - Created optimbase component to build optimization algorithms
- - Created optimsimplex component to build direct search algorithms
- - Created fminsearch optimization function
- - Created optimget/optimset to configure fminsearch
- - Created optimplotfunccount, optimplotfval, optimplotx as plotting functions for fminsearch
-* Improvements
- - Added examples in the help of optim for logging feature and optimization
-   based on numerical derivatives
- 
 Linear algebra:
 ===============
  - Clarified documentation for lu function.
@@ -393,6 +402,8 @@ Bug fixes:
 * bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
 
 * bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
+
+* bug 3660 fixed - font_angle was lost on the axis label when exporting through xs2pdf - Thanks to Paul Griffiths for the patch
 
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
 
@@ -489,6 +500,8 @@ Bug fixes:
 * bug 4489 fixed - oldsave and oldload removed.
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
+
+* bug 4495 fixed - exec does not check second and third input arguments.
 
 * bug 4496 fixed - in tbx_build_gateway help page, ismex parameter is not documented.
 
@@ -641,3 +654,6 @@ Bug fixes:
 * bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
 
 * bug 4925 fixed - verbose option of the optim function crashs on Windows.
+
+* bug 4943 fixed - execstr does not check input arguments.
+
