@@ -48,7 +48,11 @@ import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -56,9 +60,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
@@ -351,6 +353,30 @@ public class BasicBlock extends mxCell {
 	return data;
     }
 
+    public List<ExplicitInputPort> getAllExplicitInputPorts() {
+    	List<ExplicitInputPort> data = new ArrayList<ExplicitInputPort>();
+    	int childrenCount = getChildCount();
+
+    	for (int i = 0 ; i < childrenCount ; ++i) {
+    		if(getChildAt(i) instanceof ExplicitInputPort) {
+    			data.add((ExplicitInputPort) getChildAt(i));
+    		}
+    	}
+    	return data;
+    }
+
+    public List<ImplicitInputPort> getAllImplicitInputPorts() {
+    	List<ImplicitInputPort> data = new ArrayList<ImplicitInputPort>();
+    	int childrenCount = getChildCount();
+
+    	for (int i = 0 ; i < childrenCount ; ++i) {
+    		if(getChildAt(i) instanceof ImplicitInputPort) {
+    			data.add((ImplicitInputPort) getChildAt(i));
+    		}
+    	}
+    	return data;
+    }
+
     public List<OutputPort> getAllOutputPorts() {
 	List<OutputPort> data = new ArrayList<OutputPort>();
 	int childrenCount = getChildCount();
@@ -362,6 +388,30 @@ public class BasicBlock extends mxCell {
 	}
 
 	return data;
+    }
+
+    public List<ExplicitOutputPort> getAllExplicitOutputPorts() {
+    	List<ExplicitOutputPort> data = new ArrayList<ExplicitOutputPort>();
+    	int childrenCount = getChildCount();
+
+    	for (int i = 0 ; i < childrenCount ; ++i) {
+    		if(getChildAt(i) instanceof ExplicitOutputPort) {
+    			data.add((ExplicitOutputPort) getChildAt(i));
+    		}
+    	}
+    	return data;
+    }
+
+    public List<ImplicitOutputPort> getAllImplicitOutputPorts() {
+    	List<ImplicitOutputPort> data = new ArrayList<ImplicitOutputPort>();
+    	int childrenCount = getChildCount();
+
+    	for (int i = 0 ; i < childrenCount ; ++i) {
+    		if(getChildAt(i) instanceof ImplicitOutputPort) {
+    			data.add((ImplicitOutputPort) getChildAt(i));
+    		}
+    	}
+    	return data;
     }
 
     public List<CommandPort> getAllCommandPorts() {
