@@ -124,7 +124,7 @@ public final class XcosMessages {
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
 
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save\nsave it?");
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("This file doesn't exist\n Do you want to create it?");    
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
 
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");

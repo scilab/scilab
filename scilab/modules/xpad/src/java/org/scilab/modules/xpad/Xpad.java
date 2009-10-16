@@ -962,7 +962,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				
 			} catch (IOException ioex) {
 
-				int choice = JOptionPane.showConfirmDialog(editor, XpadMessages.FILE_DOESNT_EXIST);
+				int choice = JOptionPane.showConfirmDialog(editor, String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()));
 				if (choice  == 0) {
 					try {
 						FileWriter writer = new FileWriter(f);

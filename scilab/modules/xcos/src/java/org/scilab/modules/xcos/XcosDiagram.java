@@ -972,7 +972,8 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	} else {
-	    int choice = JOptionPane.showConfirmDialog(this.getAsComponent(), XcosMessages.FILE_DOESNT_EXIST);
+	    int choice = JOptionPane.showConfirmDialog(this.getAsComponent()
+	    		, String.format(XcosMessages.FILE_DOESNT_EXIST,theFile.getAbsolutePath()) );
 	    if (choice  == 0) {
 		try {
 		    FileWriter writer = new FileWriter(diagramFileName);
