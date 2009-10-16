@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.xcos">
+  <object name="Xcos">  
+    <method name="xcos" returnType="void" modifier="static"/>	
+    <method name="xcos" returnType="void" modifier="static">
+      <parameter name="fileName" type="String"/>
+    </method>
+  </object>
+</package>
