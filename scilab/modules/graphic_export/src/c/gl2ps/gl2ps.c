@@ -4516,6 +4516,7 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
 {
   int x, y;
   float r, g, b, a;
+  char shift = (sizeof(unsigned long) - 1) * 8;
 
   if(im->format != joglGL_RGBA() && gray)
     return 0;
@@ -4529,12 +4530,12 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
     for(x = 0; x < im->width; ++x){
       a = gl2psGetRGB(im, x, y, &r, &g, &b);
       if(im->format == joglGL_RGBA() && gray){
-        (*action)((unsigned long)(a*255) << 24, gray);
+        (*action)((unsigned long)(a*255) << shift, gray);
       }
       else{
-        (*action)((unsigned long)(r*255) << 24, 1);
-        (*action)((unsigned long)(g*255) << 24, 1);
-        (*action)((unsigned long)(b*255) << 24, 1);
+        (*action)((unsigned long)(r*255) << shift, 1);
+        (*action)((unsigned long)(g*255) << shift, 1);
+        (*action)((unsigned long)(b*255) << shift, 1);
       }
     }
   }
