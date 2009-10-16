@@ -43,6 +43,8 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxUtils;
 
 public class BlockReader {
 
@@ -113,7 +115,8 @@ public class BlockReader {
 					currentBlock.setOrdering(i);
 					indexedBlock.put(i + 1, currentBlock);
 
-					currentBlock.setStyle(currentBlock.getInterfaceFunctionName());
+					//tips to set block direction at load "BLOCK_f;direction=east" 
+					currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
 					currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 					blocks.add(currentBlock);
@@ -641,11 +644,38 @@ public class BlockReader {
 		// Adjust block cause Scilab(0,0) is bottom left
 		newBlock.getGeometry().setY(newBlock.getGeometry().getY() - newBlock.getGeometry().getHeight()); 
 
-		if (!((graphicsStructure.get(3) instanceof ScilabBoolean )&&// flip
-				(graphicsStructure.get(4) instanceof ScilabDouble))) {// theta 
+		if (!(graphicsStructure.get(3) instanceof ScilabBoolean)){// flip
+			throw new WrongTypeException();
+		}
+		
+		if(((ScilabBoolean)graphicsStructure.get(3)).getData()[0][0] == true){
+			System.out.println("flip = true");
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+		}else{
+			System.out.println("flip = false");
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+		}
+		
+		if (!(graphicsStructure.get(4) instanceof ScilabDouble)){// theta
 			throw new WrongTypeException();
 		}
 
+//		int theta = (int)((ScilabDouble)graphicsStructure.get(4)).getRealPart()[0][0];
+		
+//		//convert negative value
+//		theta += 360;
+//		theta %= 360;
+//		System.out.println("theta : " + theta);
+//		if(theta > 45 && theta <= 135){
+//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+//		}else if(theta > 45 && theta <= 135){
+//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
+//		}else if(theta > 135 && theta <= 225){
+//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+//		}else if(theta > 225 && theta <= 315){
+//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
+//		} 
+		
 		// exprs 
 		if (!(graphicsStructure.get(5) instanceof ScilabString) 
 				&& !(graphicsStructure.get(5) instanceof ScilabList)
