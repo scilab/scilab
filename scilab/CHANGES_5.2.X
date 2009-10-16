@@ -394,6 +394,8 @@ Bug fixes:
 
 * bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
 
+* bug 3660 fixed - font_angle was lost on the axis label when exporting through xs2pdf - Thanks to Paul Griffiths for the patch
+
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
 
 * bug 3773 fixed - 'ans' was protected with predef('all').
