@@ -3,7 +3,6 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -38,16 +37,16 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	String name = mxCodecRegistry.getName(obj.getClass());
 	Node node = enc.getDocument().createElement(name);
 
-	ScilabString scilabString = (ScilabString) obj;
-	mxCodec.setAttribute(node, WIDTH, scilabString.getWidth());
-	mxCodec.setAttribute(node, HEIGHT, scilabString.getHeight());
+	ScilabBoolean scilabBoolean = (ScilabBoolean) obj;
+	mxCodec.setAttribute(node, WIDTH, scilabBoolean.getWidth());
+	mxCodec.setAttribute(node, HEIGHT, scilabBoolean.getHeight());
 
-	for(int i = 0 ; i < scilabString.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabString.getHeight() ; ++j) {
+	for(int i = 0 ; i < scilabBoolean.getHeight() ; ++i) {
+	    for(int j = 0 ; j < scilabBoolean.getHeight() ; ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
-		mxCodec.setAttribute(data, VALUE, scilabString.getData()[i][j]);
+		mxCodec.setAttribute(data, VALUE, scilabBoolean.getData()[i][j]);
 		node.appendChild(data);
 	    }
 	}
@@ -58,7 +57,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     {
 	Object obj = null;
 	try {
-	    System.err.println("*** SPECIAL DECODE ***");
+	    System.err.println("*** SCIBOOLEAN DECODE ***");
 	    System.err.println("*** node = "+node);
 	    if (!(node instanceof Element)) { return null; }
 	    obj = cloneTemplate(node);

@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -32,7 +33,6 @@ public class XcosObjectCodec extends mxObjectCodec {
 	 */
 	public void setFieldValue(Object obj, String fieldname, Object value)
 	{
-		System.err.println("my set field value :" + fieldname);
 		Field field = null;
 
 		try
@@ -65,10 +65,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 						value = coll.toArray((Object[]) Array.newInstance(
 							type.getComponentType(), coll.size()));
 					}
-					System.err.println("------");
-					System.err.println("method : " + method.toGenericString() );
-					System.err.println("value : "+value);
-					System.err.println("------");
+
 					method.invoke(obj, new Object[] { value });
 				}
 				catch (Exception e2)
@@ -129,13 +126,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 				// ignore
 			}
 		}
-		System.err.println("[DEBUG] getFieldValue ("+obj.toString()+" , "+fieldname+")");
-		if (value != null) { 
-		System.err.println("[DEBUG] value = "+value.toString());
-		}
-		else {
-			System.err.println("[DEBUG] value = (null)");
-		}
+
 		return value;
 	}
 	
@@ -150,9 +141,11 @@ public class XcosObjectCodec extends mxObjectCodec {
 		if (fieldname == null || !isExcluded(obj, fieldname, child, false))
 		{
 			Object value = null;
+			
+
+			
 			Object template = getFieldValue(obj, fieldname);
-			System.err.println("template == "+template);
-			System.err.println("child == "+child);
+
 			if (child.getNodeName().equals("add"))
 			{
 				value = ((Element) child).getAttribute("value");
@@ -177,7 +170,6 @@ public class XcosObjectCodec extends mxObjectCodec {
 				}
 				
 				value = dec.decode(child, template);
-				System.err.println("Decoded " + child.getNodeName() + "." + fieldname + "=" + value);
 			}
 			
 			if (value != null && !value.equals(template))
@@ -208,7 +200,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 		Node child = node.getFirstChild();
 		while (child != null)
 		{
-		    System.err.println("------> [DEBUG] child = "+child);
+		    
 		    if (child.getNodeType() == Node.ELEMENT_NODE
 					&& !this.processInclude(dec, child, obj))
 			{
@@ -218,4 +210,6 @@ public class XcosObjectCodec extends mxObjectCodec {
 			child = child.getNextSibling();
 		}
 	}	
+	
+	
 }

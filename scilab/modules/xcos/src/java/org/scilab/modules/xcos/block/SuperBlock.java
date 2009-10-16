@@ -43,7 +43,13 @@ import com.mxgraph.util.mxUtils;
 public class SuperBlock extends BasicBlock {
 
 	private XcosDiagram child = null;
-
+	
+	public SuperBlock() {
+		super();
+		setVertex(false);
+		setVisible(false);
+    }
+	
 	public SuperBlock(String label) {
 		super(label);
 		setStyle("SUPER_f");
