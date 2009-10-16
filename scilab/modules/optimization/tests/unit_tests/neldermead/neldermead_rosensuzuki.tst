@@ -178,7 +178,7 @@ status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with Box algorithm and randomized bounds simplex.
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -199,7 +199,6 @@ nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
-nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
@@ -226,7 +225,7 @@ nm = neldermead_destroy(nm);
 
 
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with Box algorithm and randomized bounds simplex.
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is computed with Box randomized bounds method
@@ -244,7 +243,6 @@ nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
-nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
@@ -270,7 +268,7 @@ nbve = optimsimplex_getnbve ( simplexopt );
 assert_equal ( nbve , 6 );
 nm = neldermead_destroy(nm);
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with Box algorithm and given simplex.
 // Add bounds and simplex initial length so that there is a need 
 // for variable projection.
 // Here the initial simplex is user-defined.
@@ -284,7 +282,6 @@ nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
-nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 //nm = neldermead_configure(nm,"-verbose",1);
@@ -319,9 +316,10 @@ assert_equal ( nbve , 7 );
 nm = neldermead_destroy(nm);
 
 //
-// Test with Box algorithm and default axes initial simplex
+// Test with Box algorithm and randomized bounds simplex.
 // Test that verbose mode works fine.
 //
+rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -329,7 +327,6 @@ nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",5);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
-nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-verbose",1);
