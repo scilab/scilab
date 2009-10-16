@@ -14,16 +14,16 @@ ATOMS:
 TODO: add an explanation about atoms
 
 
-Xpad:
-=====
+Text Editor:
+============
 
-TODO: add an explanation about xpad
+TODO: add an explanation about the text editor
 
 Graphics:
 =========
 
 Thanks to Calixte Denizet, it is now possible to annotate Scilab's graphics
-in MathML or Latex.
+in MathML or LaTeX.
 See demos => Graphics => LaTeX/MathML
 
 * New features
