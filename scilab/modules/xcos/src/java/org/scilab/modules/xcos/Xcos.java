@@ -348,6 +348,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     		if (theBloc == null) {
     			theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
     			allBlocks.put(blocksNames[kBlock], theBloc);
+    			
     		}
 
     		if (theBloc.getStyle().compareTo("") == 0) {
@@ -557,6 +558,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static XcosDiagram createEmptyDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
+	xcosDiagramm.installListeners();
 	showDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
@@ -564,7 +566,6 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void showDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
-
 	
 	diagrams.add(xcosDiagram);
 	
