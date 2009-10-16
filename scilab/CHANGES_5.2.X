@@ -115,6 +115,13 @@ TODO: talk about call scilab based on api_scilab
 
 TODO: add the information about the doxygen doc generation if we do it.
 
+Option configuration:
+=====================
+
+* The file jvm_options.xml has been moved into etc/jvm_options.xml in order to
+facilitate the use of this configuration file.
+
+
 Mac OS X:
 =========
 
