@@ -42,6 +42,9 @@ int C2F(sci_exec)(char *fname,unsigned long fname_len)
 		int *piAddressVarTwo = NULL;
 		int *piAddressVarThree = NULL;
 
+		CheckRhs(1,3);
+		CheckLhs(0,1);
+
 		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)
 		{

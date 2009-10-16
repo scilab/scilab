@@ -645,3 +645,6 @@ Bug fixes:
 * bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
 
 * bug 4925 fixed - verbose option of the optim function crashs on Windows.
+
+* bug 4943 fixed - execstr does not check input arguments.
+
