@@ -110,6 +110,19 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 		error("");
 	end
 	
+	// A module installed in the user section cannot be add in the "autoload" list 
+	// of all users
+	
+	if allusers & (rhs>=3) & (~ atomsIsInstalled(name,version,"allusers")) then
+		mprintf(gettext("%s: The following modules are installed in the user section, you cannot add them in the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
+		for i=1:size(name,"*")
+			if ~ atomsIsInstalled(name(i),version(i),"allusers") then
+				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
+			end
+		end
+		error("");
+	end
+	
 	// Loop on each module specified as input argument
 	// =========================================================================
 	
