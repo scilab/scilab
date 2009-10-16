@@ -135,7 +135,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private Menu recentsMenu;
 	private int numberOfUntitled;
 	private EditorKit editorKit;
-	
+	private long lastKnownSavedState;
 	private Object synchro = new Object();
 
 	private Vector<Integer> tabList = new Vector<Integer>();
@@ -151,6 +151,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		recentsMenu = ScilabMenu.createMenu();
 		numberOfUntitled = 0;
 		editorKit = new DefaultEditorKit();
+		lastKnownSavedState = 0;
 		tabPane = new JTabbedPane();
 		tabPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -194,6 +195,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFile(f);
+		editorInstance.lastKnownSavedState = System.currentTimeMillis();
 	}
 
 	/**
@@ -208,6 +210,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFileAndWait(f);
 		editorInstance.getXln().highlightLine(lineNumber);
+		editorInstance.lastKnownSavedState= System.currentTimeMillis();
 	}
 
 	/**
@@ -446,6 +449,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 			try {
 // TODO: imho should use File.createTempFile("Sci",".sci") and .renameTo(textPane.getName()) to be safe
 				File newSavedFiled = new File(textPane.getName());
+				if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
+					int actionDialog = JOptionPane.showConfirmDialog(this
+						, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath())
+								 ,XpadMessages.REPLACE_FILE_TITLE, JOptionPane.YES_NO_OPTION);
+					if (actionDialog == JOptionPane.NO_OPTION) {
+						return this.saveAs(this.getTextPane());
+					}
+				}
 				String doc = textPane.getText();
 				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 				FileWriter writer = new FileWriter(newSavedFiled, false);
@@ -471,7 +482,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			isSuccess = saveAs(textPane); 
 
 		}
-
+		lastKnownSavedState = System.currentTimeMillis();
 		return isSuccess;
 	}
 
@@ -513,8 +524,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				int actionDialog = JOptionPane.showConfirmDialog(this, XpadMessages.REPLACE_FILE_TITLE, 
 						XpadMessages.FILE_ALREADY_EXIST, JOptionPane.YES_NO_OPTION);
 				if (actionDialog == JOptionPane.NO_OPTION) {
-					this.saveAs(this.getTextPane());
-					return true;
+					return this.saveAs(this.getTextPane());
 				}
 
 			}
@@ -546,6 +556,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 					f = new File(f.getPath() + extension);
 				}
+								
 				// TODO factor common code with "Save"
 				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 				FileWriter writer = new FileWriter(f);
@@ -566,7 +577,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				updateRecentOpenedFilesMenu();
 
 				styledDocument.setContentModified(false);
-
+				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
 
 			} catch (IOException ioex) {
