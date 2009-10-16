@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.datatransfer.DataFlavor;
@@ -17,16 +18,30 @@ import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -38,6 +53,7 @@ import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.view.mxGraph;
 
 public class XcosPalette extends JScrollPane {
 
@@ -256,6 +272,10 @@ public class XcosPalette extends JScrollPane {
 			mxRectangle bounds = (mxGeometry) cell.getGeometry().clone();
 			final mxGraphTransferable t = new mxGraphTransferable(
 					new Object[] { cell }, bounds);
+			
+			final mxCell cellToAdd = cell; /* Used in mouse listener */
+			cellToAdd.getGeometry().setX(10);
+			cellToAdd.getGeometry().setY(10);
 
 			// Scales the image if it's too large for the library
 			if (icon != null)
@@ -321,8 +341,86 @@ public class XcosPalette extends JScrollPane {
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 				 */
-				public void mouseClicked(MouseEvent e)
-				{
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) {
+						
+						ContextMenu menu = ScilabContextMenu.createContextMenu();
+						
+						final ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+						
+						if (allDiagrams.size() == 0) {
+							// No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
+							MenuItem addTo = ScilabMenuItem.createMenuItem();
+							
+							addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
+							addTo.setCallback(new CallBack(name) {
+								private static final long serialVersionUID = 1185879440137756636L;
+
+								public void callBack() {
+									Xcos.createEmptyDiagram().addCell(cellToAdd);
+								}
+							});
+							
+							menu.add(addTo);
+							
+						} else if (allDiagrams.size() == 1) {
+							// A single diagram opened: add to this diagram
+							MenuItem addTo = ScilabMenuItem.createMenuItem();
+
+							addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
+							final XcosDiagram theDiagram = allDiagrams.get(0);
+							addTo.setCallback(new CallBack(name) {
+								private static final long serialVersionUID = 1185879440137756636L;
+
+								public void callBack() {
+									theDiagram.addCell(cellToAdd);
+								}
+							});
+							
+							menu.add(addTo);
+
+						} else {
+							// The user has to choose
+							Menu addTo = ScilabMenu.createMenu();
+
+							addTo.setText(XcosMessages.ADDTO);
+							
+							for (int i = 0; i < allDiagrams.size(); i++) {
+								MenuItem diagram = ScilabMenuItem.createMenuItem();
+								final XcosDiagram theDiagram = allDiagrams.get(i);
+								diagram.setText(allDiagrams.get(i).getParentTab().getName());
+								diagram.setCallback(new CallBack(name) {
+									private static final long serialVersionUID = -3138430622029406470L;
+
+									public void callBack() {
+										theDiagram.addCell(cellToAdd);
+									}
+								});
+								addTo.add(diagram);
+							}
+
+							menu.add(addTo);
+						}
+						
+						
+						menu.getAsSimpleContextMenu().addSeparator();
+						
+						MenuItem help = ScilabMenuItem.createMenuItem();
+						help.setText("Block help");
+						help.setCallback(new CallBack(name) {
+							private static final long serialVersionUID = -8720228686621887887L;
+
+							public void callBack() {
+								InterpreterManagement.requestScilabExec("help " + name);
+							}
+						});
+						menu.add(help);
+					    
+						menu.setVisible(true);
+
+					    ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+					    		MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+					}
 				}
 
 				/*

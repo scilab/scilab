@@ -1540,7 +1540,7 @@ Makefile
 scilab.pc
 etc/modules.xml
 etc/classpath.xml
-modules/jvm/etc/jvm_options.xml
+etc/jvm_options.xml
 scilab-lib.properties
 scilab-lib-doc.properties
 ])
