@@ -41,6 +41,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
@@ -53,7 +54,6 @@ import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
-import com.mxgraph.view.mxGraph;
 
 public class XcosPalette extends JScrollPane {
 
@@ -61,7 +61,7 @@ public class XcosPalette extends JScrollPane {
 	private static final int BLOCK_HEIGHT = 150;
 	private static final int HMARGIN = 5;
 	private static final int VMARGIN = 5;
-	private static final int DEFAULT_NB_COLS = 4;
+	private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
 	
 	private JPanel panel;
 
@@ -273,10 +273,8 @@ public class XcosPalette extends JScrollPane {
 			final mxGraphTransferable t = new mxGraphTransferable(
 					new Object[] { cell }, bounds);
 			
-			final mxCell cellToAdd = cell; /* Used in mouse listener */
-			cellToAdd.getGeometry().setX(10);
-			cellToAdd.getGeometry().setY(10);
-
+			final BasicBlock cloneMe = (BasicBlock) cell;
+			
 			// Scales the image if it's too large for the library
 			if (icon != null)
 			{
@@ -357,7 +355,7 @@ public class XcosPalette extends JScrollPane {
 								private static final long serialVersionUID = 1185879440137756636L;
 
 								public void callBack() {
-									Xcos.createEmptyDiagram().addCell(cellToAdd);
+									Xcos.createEmptyDiagram().addCell(cloneMe.createClone());
 								}
 							});
 							
@@ -373,7 +371,7 @@ public class XcosPalette extends JScrollPane {
 								private static final long serialVersionUID = 1185879440137756636L;
 
 								public void callBack() {
-									theDiagram.addCell(cellToAdd);
+									theDiagram.addCell(cloneMe.createClone());
 								}
 							});
 							
@@ -393,7 +391,7 @@ public class XcosPalette extends JScrollPane {
 									private static final long serialVersionUID = -3138430622029406470L;
 
 									public void callBack() {
-										theDiagram.addCell(cellToAdd);
+										theDiagram.addCell(cloneMe.createClone());
 									}
 								});
 								addTo.add(diagram);
@@ -522,5 +520,4 @@ public class XcosPalette extends JScrollPane {
 		{
 			eventSource.setEventsEnabled(eventsEnabled);
 		}
-
 	}

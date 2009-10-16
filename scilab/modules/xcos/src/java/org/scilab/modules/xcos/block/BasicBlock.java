@@ -1155,4 +1155,35 @@ public class BasicBlock extends mxCell {
 	    rotatePorts(graph, getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
 	}
     }
+    
+    /**
+     * Create a clone for block added by context menu in palette
+     * @return the clone
+     */
+    public Object createClone() {
+    	try {
+    		BasicBlock clone = (BasicBlock) clone();
+
+    		/* Clone children */
+    		for (int i = 0; i < getChildCount(); i++) {
+    			if (getChildAt(i) instanceof InputPort) {
+    				clone.addPort((InputPort) getChildAt(i).clone());
+    			} else if (getChildAt(i) instanceof OutputPort) {
+    				clone.addPort((OutputPort) getChildAt(i).clone());
+    			} else if (getChildAt(i) instanceof CommandPort) {
+    				clone.addPort((CommandPort) getChildAt(i).clone());
+    			} else if (getChildAt(i) instanceof ControlPort) {
+    				clone.addPort((ControlPort) getChildAt(i).clone());
+    			}
+    		}
+
+    		/* Make the block appear into the diagram */
+    		clone.getGeometry().setX(10);
+    		clone.getGeometry().setY(10);
+    		return clone;
+    	} catch (CloneNotSupportedException e) {
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
 }

@@ -11,9 +11,16 @@
 // This function has an impact on the following files :
 //  -> ATOMSDIR/autoloaded
 
-// Internal function
+// End-User function
 
-function nbDel = atomsDelAutoload(name,version,allusers)
+function nbDel = atomsAutoloadDel(name,version,allusers)
+	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	
 	rhs   = argn(2);
 	nbDel = 0;
@@ -22,25 +29,25 @@ function nbDel = atomsDelAutoload(name,version,allusers)
 	// =========================================================================
 	
 	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDelAutoload",2,3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadDel",2,3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsDelAutoload",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadDel",1));
 	end
 	
 	if type(version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsDelAutoload",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadDel",2));
 	end
 	
 	// name and version must have the same size
 	// =========================================================================
 	
 	if or( size(name) <> size(version) ) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsDelAutoload",1,2));
+		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAutoloadDel",1,2));
 	end
 	
 	// Apply changes for all users or just for me ?
@@ -58,12 +65,12 @@ function nbDel = atomsDelAutoload(name,version,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsDelAutoload",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsAutoloadDel",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsDelAutoload",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadDel",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	

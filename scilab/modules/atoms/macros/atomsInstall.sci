@@ -343,7 +343,7 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
 		if ~ (atomsGetConfig("autoload") == "False") then
-			atomsAddAutoload(this_package_name,this_package_version,allusers);
+			atomsAutoloadAdd(this_package_name,this_package_version,allusers);
 		end
 		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory

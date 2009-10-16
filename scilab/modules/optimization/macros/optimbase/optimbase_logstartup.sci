@@ -15,7 +15,7 @@
 //   open that log file to append messages.
 //
 function this = optimbase_logstartup ( this )
-  if this.logstartup then
+  if ( this.logstartup ) then
     error ( gettext ( "%s: Logging already started." , "optimbase_logstartup" ) )
   else
     this.logstartup = %t;
