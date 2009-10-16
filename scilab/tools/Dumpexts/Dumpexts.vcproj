@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -496,7 +496,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\jvm\etc\jvm_options.xml.vc"
+				RelativePath="..\..\etc\jvm_options.xml.vc"
 				>
 			</File>
 			<File
