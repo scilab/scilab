@@ -25,6 +25,9 @@ Scilab a better software.
 * Arnaud Dessein
 	- French localization
 
+* Calixte Denizet 
+	- LaTeX and MathML rendering capabilities in the Scilab Graphic
+
 * Markus Dittrich 
 	- Misc patches for Gentoo
 
@@ -39,6 +42,9 @@ Scilab a better software.
 
 * Aurélien Gérôme
 	- Misc patches for Debian & Ubuntu
+
+* Paul Griffiths
+	- Misc patches for the Scilab Graphic exports
 
 * Gerard Henry
 	- Misc patches for Solaris/Opensolaris
@@ -84,6 +90,14 @@ Scilab a better software.
 
 * Jean-Sebastien Roy 
 	- Misc patches for FreeBSD
+
+* Daniel de Souza Grilo 
+	- Traduction of the help into Portugues do Brazil
+	- Portugues do Brazil localization
+
+* Hiroshi Saito
+	- Japanese localization
+	- Misc patches on localization issues
 
 * Enrico Segre
 	- Scipad

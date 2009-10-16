@@ -1625,14 +1625,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
 
+		for (int i = 0; i < macros.length; i++) {
+			keywords.put("macro", macros);
+		}
 		for (int i = 0; i < commands.length; i++) {
 			keywords.put("command", commands);
 		}
 		for (int i = 0; i < functions.length; i++) {
 			keywords.put("function", functions);
-		}
-		for (int i = 0; i < macros.length; i++) {
-			keywords.put("macro", macros);
 		}
 		return keywords;
 	}
@@ -1655,8 +1655,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		commandsBoundaries = findBoundaries(commands, start, this.getText(start, end - start));
 		commentsBoundaries = findBoundaries(comments, start, this.getText(start, end - start));
 		functionsBoundaries = findBoundaries(functions, start, this.getText(start, end - start));
-		//macrosBoundaries = findBoundaries(macros, singleLine, start, this.getText(start, end - start));
-		macrosBoundaries = new ArrayList<Integer>();
+		macrosBoundaries = findBoundaries(macros, start, this.getText(start, end - start));
+		//macrosBoundaries = new ArrayList<Integer>();
 		operatorsBoundaries = findBoundaries(operators, start, this.getText(start, end - start));
 		quotationsBoundaries = findBoundaries(quotations, start, this.getText(start, end - start));	
 

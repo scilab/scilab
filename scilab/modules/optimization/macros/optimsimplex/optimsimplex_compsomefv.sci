@@ -8,17 +8,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// optimsimplex_computefv --
-//   Set the values of the function at vertices points.
+// optimsimplex_compsomefv --
+//   Set the values of the function at given vertices.
 // Arguments
 //   fun : the function to compute at vertices
+//   indices : the indices of the vertices to compute
 //   data : user-defined data
 //
-function [ this , data ] = optimsimplex_computefv ( this , fun , data )
-  if (~isdef('data','local')) then
-    this = optimsimplex_compsomefv ( this , fun , 1 : this.nbve )
-  else
-    [ this , data ] = optimsimplex_compsomefv ( this , fun , 1 : this.nbve , data )
+function [ this , data ] = optimsimplex_compsomefv ( this , fun , indices , data )
+  for j = indices;
+    if (~isdef('data','local')) then
+      this.fv(j)  = fun (this.x(j,:));
+    else
+      [ this.fv(j) , data ]  = fun (this.x(j,:) , data );
+    end
   end
 endfunction
 
