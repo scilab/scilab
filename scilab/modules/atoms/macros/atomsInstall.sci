@@ -109,23 +109,6 @@ function result = atomsInstall(packages,allusers)
 		end
 	end
 	
-	// Define the "archives" directory path
-	// Create it if it's not exist
-	// =========================================================================
-	
-	if allusers then
-		archives_directory = pathconvert(SCI+"/contrib/archives");
-	else
-		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
-	end
-	
-	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
-		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-			"atomsInstall", ..
-			archives_directory));
-	end
-	
 	// Create needed directories
 	// =========================================================================
 	
@@ -139,14 +122,31 @@ function result = atomsInstall(packages,allusers)
 	
 	if ~ isdir( atoms_directory ) & (mkdir( atoms_directory ) <> 1) then
 		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
 			atoms_directory));
 	end
 	
 	if ~ isdir(atoms_tmp_directory) & (mkdir(atoms_tmp_directory) <> 1) then
 		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
 			atoms_tmp_directory));
+	end
+	
+	// Define the "archives" directory path
+	// Create it if it's not exist
+	// =========================================================================
+	
+	if allusers then
+		archives_directory = pathconvert(SCI+"/contrib/archives");
+	else
+		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
+	end
+	
+	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
+			"atomsInstall", ..
+			archives_directory));
 	end
 	
 	// "Archive" installation
