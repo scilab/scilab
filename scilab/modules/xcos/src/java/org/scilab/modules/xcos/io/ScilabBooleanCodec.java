@@ -2,6 +2,7 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -107,7 +108,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
 	    }
 
-	    ((ScilabString) obj).setData(data);
+	    ((ScilabBoolean) obj).setData(data);
 	}
 	catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
