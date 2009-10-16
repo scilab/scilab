@@ -490,6 +490,8 @@ Bug fixes:
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
 
+* bug 4495 fixed - exec does not check second and third input arguments.
+
 * bug 4496 fixed - in tbx_build_gateway help page, ismex parameter is not documented.
 
 * bug 4497 fixed - xmltoformat gets stuck in directories beginning with '.'.
@@ -581,6 +583,8 @@ Bug fixes:
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
 * bug 4702 fixed - on some case, dos(cmd) does not return results
+
+* bug 4707 fixed - Can not save a Scicos diagram to a non existing file under MacOS
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 

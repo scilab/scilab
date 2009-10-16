@@ -50,7 +50,7 @@ case 'set' then
   
   while %t do
     [ln,fun]=where();  
-    if (fun(3) == "clickin") then // cas standard    
+    if ~or(fun == "do_eval") then // cas standard    
       [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
        CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,..
        a6,b6,a7,b7,k,mesures,params_pde]=IHM_EDP(params_pde);

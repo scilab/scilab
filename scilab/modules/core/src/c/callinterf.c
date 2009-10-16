@@ -96,9 +96,9 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 59  */ {gw_dynamic_matio},
 	/* 60  */ {gw_dynamic_helptools},
 	/* 61  */ {gw_call_scilab},
-	/* 62  */ {gw_hdf5},
+	/* 62  */ {gw_dynamic_hdf5},
 	/* 63  */ {gw_dynamic_xpad},
-	/* 64  */ {gw_user} /* xcos (to replace by "{gw_dynamic_xcos}," )*/
+	/* 64  */ {gw_dynamic_xcos}
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;

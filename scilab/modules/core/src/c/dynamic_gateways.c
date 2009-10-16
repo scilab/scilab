@@ -13,6 +13,7 @@
 #include "dynamic_gateways.h"
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* optimization module */
 #define HELPTOOLS_MODULE_NAME "helptools"
@@ -254,6 +255,22 @@ int gw_dynamic_functions(void)
 		&ptr_gw_functions);
 }
 /*--------------------------------------------------------------------------*/
+/* xcos module */
+#define XCOS_MODULE_NAME "xcos"
+static DynLibHandle hXcosLib = NULL;
+static PROC_GATEWAY ptr_gw_xcos = NULL;
+static char* dynlibname_xcos = NULL;
+static char* gatewayname_xcos = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_xcos(void)
+{
+	return gw_dynamic_generic(XCOS_MODULE_NAME,
+		&dynlibname_xcos,
+		&gatewayname_xcos,
+		&hXcosLib,
+		&ptr_gw_xcos);
+}
+/*--------------------------------------------------------------------------*/
 /* xpad module */
 #define XPAD_MODULE_NAME "xpad"
 static DynLibHandle hXpadLib = NULL;
@@ -270,3 +287,27 @@ int gw_dynamic_xpad(void)
 		&ptr_gw_xpad);
 }
 /*--------------------------------------------------------------------------*/
+/* hdf5 module */
+#define HDF5_MODULE_NAME "hdf5"
+static DynLibHandle hHdf5Lib = NULL;
+static PROC_GATEWAY ptr_gw_hdf5 = NULL;
+static char* dynlibname_hdf5 = NULL;
+static char* gatewayname_hdf5 = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_hdf5(void)
+{
+	int r = gw_dynamic_generic(HDF5_MODULE_NAME,
+		&dynlibname_hdf5,
+		&gatewayname_hdf5,
+		&hHdf5Lib,
+		&ptr_gw_hdf5);
+
+	if (hHdf5Lib) {FreeDynLibrary(hHdf5Lib); hHdf5Lib = NULL;}
+	if (ptr_gw_hdf5) ptr_gw_hdf5 = NULL;
+	if (dynlibname_hdf5) {FREE(dynlibname_hdf5); dynlibname_hdf5 = NULL;}
+	if (gatewayname_hdf5) {FREE(gatewayname_hdf5); gatewayname_hdf5 = NULL;}
+
+	return r;
+}
+/*--------------------------------------------------------------------------*/
+

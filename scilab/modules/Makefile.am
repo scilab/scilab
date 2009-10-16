@@ -82,6 +82,7 @@ parameters \
 matio \
 atoms \
 hdf5 \
+xcos \
 xpad
 
 #umfpack
@@ -128,7 +129,9 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/xpad/libscixpad.la
+
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
@@ -136,6 +139,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \

@@ -31,11 +31,13 @@ public class H5ReadScilabString {
 	
 	H5.H5Dread(dataSetId, HDF5Constants.H5T_STD_REF_OBJ,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataRefs);
+	
 	for( int i = 0 ; i < rows ; ++i) {
 	    for( int j = 0 ; j < cols ; ++j) {
 		data.getData()[i][j] = getString(H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, dataRefs[i * cols +j]));
 	    }
 	}
+	H5.H5Dclose(dataSetId);
     }
     
     private static String getString(int dataSetId) throws HDF5LibraryException {
@@ -43,7 +45,10 @@ public class H5ReadScilabString {
 	byte[] data = new byte[stringLength];
 	H5.H5Dread(dataSetId, H5.H5Dget_type(dataSetId),
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, data);
-	return new String(data, 0, stringLength).trim();
+	String result = new String(data, 0, stringLength).trim();
+	H5.H5Dclose(dataSetId);
+	
+	return result;
     }
 
 }

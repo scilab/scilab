@@ -320,6 +320,8 @@ src/c/writeau.c \
 src/c/writec.c \
 src/c/zcross2.c
 
+SCICOS_BLOCK_CPP_SOURCES = src/jni/XcosDiagram.cpp
+
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
 src/c/scoSetProperty.c \
 src/c/scoMisc.c \
@@ -406,10 +408,20 @@ libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/includes \
             -I$(top_srcdir)/modules/elementary_functions/includes
 
+libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/jni/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/c/ \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
 $(SCICOS_BLOCKS_FORTRAN_SOURCES) \
-$(NON_BLOCK_C_SOURCES)
+$(NON_BLOCK_C_SOURCES) \
+$(SCICOS_BLOCK_CPP_SOURCES)
 
 
 # For the code check (splint)
