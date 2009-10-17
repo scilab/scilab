@@ -50,27 +50,48 @@ function nbDel = atomsAutoloadDel(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAutoloadDel",1,2));
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Allusers/user management
+	//   - If Allusers is equal to "all", module(s) will removed from both "user"
+	//     and "allusers" list
+	//       → SCI/.atoms/autoloaded
+	//       → SCIHOME/atoms/autoloaded
+	//   - If Allusers is equal to "allusers", module(s) will removed from the
+	//     "allusers" list
+	//       → SCI/.atoms/autoloaded
+	//   - If Allusers is equal to "user", module(s) will removed from the
+	//     "user" list
+	//       → SCIHOME/atoms/autoloaded
 	// =========================================================================
 	
-	if rhs == 2 then
-		// By default, add the repository for all users (if we have write access
-		// of course !)
+	if rhs <= 2 then
+		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			allusers = "all"; 
 		else
-			allusers = %F;
+			allusers = "user";
 		end
 	
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsAutoloadDel",2));
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadDel",3));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadDel",3));
+		end
+		
+		if allusers == %T then
+			allusers = "all";
+		elseif allusers == %F then
+			allusers = "user";
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadDel",2,pathconvert(SCI+"/.atoms")));
+		if or(allusers==["all","allusers"]) & ~ atomsAUWriteAccess() then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
@@ -78,20 +99,26 @@ function nbDel = atomsAutoloadDel(name,version,allusers)
 	// the "allusers" value and the existence of the latter
 	// =========================================================================
 	
-	atoms_files = [];
+	if allusers=="all" then
+		atoms_files = [ pathconvert(SCI+"/.atoms/autoloaded",%F) ; ..
+	                    pathconvert(SCIHOME+"/atoms/autoloaded",%F) ];
 	
-	if fileinfo( pathconvert(SCIHOME+"/atoms/autoloaded",%F) )<> [] then
-		atoms_files = [ atoms_files ; pathconvert(SCIHOME+"/atoms/autoloaded",%F) ];
-	end
+	elseif allusers=="allusers" then
+		atoms_files = [ pathconvert(SCI+"/.atoms/autoloaded",%F) ];
 	
-	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/autoloaded",%F) )<>[]) then
-		atoms_files = [ atoms_files ; pathconvert(SCI+"/.atoms/autoloaded",%F) ];
+	elseif allusers=="user" then
+		atoms_files = [  pathconvert(SCIHOME+"/atoms/autoloaded",%F) ];
+	
 	end
 	
 	// Loop on each installed file specified as first input argument
 	// =========================================================================
 	
 	for i=1:size(atoms_files,"*")
+		
+		if fileinfo(atoms_files(i))==[] then
+			continue;
+		end
 		
 		// Get the installed package list in this file
 		autoloaded = mgetl(atoms_files(i));

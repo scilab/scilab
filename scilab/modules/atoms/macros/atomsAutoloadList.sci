@@ -9,7 +9,7 @@
 
 // get the list of repositories
 
-function modules = atomsAutoloadList(level)
+function modules = atomsAutoloadList(allusers)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -24,28 +24,36 @@ function modules = atomsAutoloadList(level)
 	// =========================================================================
 	
 	if rhs > 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadList",0,1));
+		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsAutoloadList",1));
 	end
 	
-	// Check input argument type (if any)
+	// Allusers/user management
+	//   - If Allusers is equal to "all", display both "user" and "allusers" autoload list
+	//       → SCI/.atoms/autoloaded
+	//       → SCIHOME/atoms/autoloaded
+	//   - If Allusers is equal to "allusers",display only "allusers" autoload list
+	//       → SCI/.atoms/autoloaded
+	//   - If Allusers is equal to "user",display only "user" autoload list
+	//       → SCIHOME/atoms/autoloaded
 	// =========================================================================
 	
-	if (rhs==1) & (type(level) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
-	end
+	if rhs < 1 then
+		allusers = "all";
 	
-	// Check input argument dimension (if any)
-	// =========================================================================
-	
-	if (rhs==1) & (size(level,"*")<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
-	end
-	
-	// Check input argument values (if any)
-	// =========================================================================
-	
-	if (rhs==1) & (and(level<>["user","allusers"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsAutoloadList",1));
+	else
+		
+		if type(allusers) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
+		end
+		
+		if size(allusers,"*")<>1 then
+			error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
+		end
+		
+		if and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadList",1));
+		end
+		
 	end
 	
 	// Define the needed paths
@@ -57,7 +65,7 @@ function modules = atomsAutoloadList(level)
 	// All users autoload
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "allusers")) then
+	if or(allusers==["all";"allusers"]) then
 		if fileinfo(allusers_autoload) <> [] then
 			module_list = mgetl(allusers_autoload);
 			for i=1:size(module_list,"*")
@@ -69,7 +77,7 @@ function modules = atomsAutoloadList(level)
 	// User repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "user")) then
+	if or(allusers==["all";"user"]) then
 		if fileinfo(user_autoload) <> [] then
 			module_list = mgetl(user_autoload);
 			for i=1:size(module_list,"*")
