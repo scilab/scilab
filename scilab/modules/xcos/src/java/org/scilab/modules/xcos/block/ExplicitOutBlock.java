@@ -30,7 +30,6 @@ public class ExplicitOutBlock extends BasicBlock {
 	public ExplicitOutBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("OUT_f");
-		setStyle("OUT_f");
 		setValue("1");
 	}
 
