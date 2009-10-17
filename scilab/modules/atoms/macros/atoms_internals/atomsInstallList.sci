@@ -34,7 +34,7 @@
 //                   toolbox_2 - 1.3: [1x1 struct]
 //                   toolbox_1 - 1.9: [1x1 struct]
 
-function [insList,depTree] = atomsInstallList(packages)
+function [insList,depTree] = atomsInstallList(packages,allusers)
 	
 	insList = [];
 	depTree = struct();
@@ -52,15 +52,49 @@ function [insList,depTree] = atomsInstallList(packages)
 	
 	rhs = argn(2);
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsInstallList",1))
+	if rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: at most %d expected.\n"),"atomsInstallList",2))
 	end
+	
+	// 1st input argument
 	
 	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallList",1));
 	end
 	
 	packages = stripblanks(packages);
+	
+	// 2nd input input argument, allusers management :
+	//   - 1st case: allusers is not specified or is equal to "all", module 
+	//               is searched in both "user" and "allusers" section
+	//   - 2nd case: allusers is equal to "user", module is only searched in
+	//               the "user" section"
+	//   - 3rd case: allusers is equal to "allusers", module is only searched
+	//               in the "allusers" section"
+	
+	if rhs < 2 then
+		allusers = "all";
+	
+	else
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			chdir(initialpath);
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsInstallList",2));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			chdir(initialpath);
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallList",2));
+		end
+		
+		if allusers == %T then
+			allusers = "allusers";
+		
+		elseif allusers == %F then
+			allusers = "user";
+		end
+		
+	end
 	
 	// Loop on packages and to build the dependency tree
 	// =========================================================================
@@ -132,6 +166,7 @@ function [insList,depTree] = atomsInstallList(packages)
 	mandatory_packages(1:2) = [];
 	
 	for i=1:size(mandatory_packages,"*")
+		
 		this_package_details = depTree(mandatory_packages(i));
 		
 		this_package_name    = this_package_details("Toolbox");
@@ -145,8 +180,16 @@ function [insList,depTree] = atomsInstallList(packages)
 		
 		to_install = %F;
 		
-		if atomsIsInstalled(this_package_name) then
-			vers = atomsGetInstalledVers(this_package_name);
+		// Now, it's time to check if the module is installed or not :
+		//   - 1st case: allusers is not specified or is equal to "all", module 
+		//               is searched in both "user" and "allusers" section
+		//   - 2nd case: allusers is equal to "user", module is only searched in
+		//               the "user" section"
+		//   - 3rd case: allusers is equal to "allusers", module is only searched
+		//               in the "allusers" section"
+		
+		if atomsIsInstalled(this_package_name,[],allusers) then
+			vers = atomsGetInstalledVers(this_package_name,allusers);
 			if find( vers == this_package_version ) == [] then
 				to_install = %T;
 			end
