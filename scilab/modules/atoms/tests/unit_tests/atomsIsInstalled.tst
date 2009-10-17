@@ -12,6 +12,10 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 // Load the 2nd scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
 
+// Do not use the autoload system
+config_autoload = atomsGetConfig("autoload");
+atomsSetConfig("autoload","False");
+
 // Install toolbox N°2
 atomsInstall("toolbox_2 2.0");
 atomsInstall("toolbox_2 2.1");
@@ -33,3 +37,11 @@ if ~ atomsIsInstalled("toolbox_2","2.1") then pause, end
 if or( atomsIsInstalled(["toolbox_1" "toolbox_2" "toolbox_2" "toolbox_99"],["1.0" "0.0" "2.1" "1.0"] ) <> [%T %F %T %F] )  then pause, end
 if or( atomsIsInstalled(["toolbox_1" "toolbox_2";"toolbox_2" "toolbox_99"],["1.0" "0.0";"2.1" "1.0"] ) <> [%T %F;%T %F] )  then pause, end
 if or( atomsIsInstalled(["toolbox_1";"toolbox_2";"toolbox_2";"toolbox_99"],["1.0";"0.0";"2.1";"1.0"] ) <> [%T;%F;%T;%F] )  then pause, end
+
+// remove test toolboxes
+atomsRemove("toolbox_2 2.0");
+atomsRemove("toolbox_2 2.1");
+
+// Restore original values
+atomsSetConfig("autoload",config_autoload);
+atomsRepositorySetOfl("http://atoms.scilab.org");
