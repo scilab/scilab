@@ -30,7 +30,6 @@ public class ExplicitInBlock extends BasicBlock {
 	public ExplicitInBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("IN_f");
-		setStyle("IN_f");
 		setValue("1");
 	}
 

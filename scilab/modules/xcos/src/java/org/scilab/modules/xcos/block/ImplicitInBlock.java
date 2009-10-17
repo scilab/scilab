@@ -30,7 +30,6 @@ public class ImplicitInBlock extends BasicBlock {
 	public ImplicitInBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("INIMPL_f");
-		setStyle("INIMPL_f");
 		setValue("1");
 	}
 
