@@ -19,7 +19,7 @@ function atomsToremoveUnregister(name,version,allusers)
 	// =========================================================================
 	
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToremoveUnregister",3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsToremoveUnregister",3));
 	end
 	
 	// Check input parameters type
@@ -33,8 +33,26 @@ function atomsToremoveUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsToremoveUnregister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveUnregister",3));
+	// Allusers/user management
+	// =========================================================================
+	
+	if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveUnregister",3));
+	end
+	
+	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveUnregister",3));
+	end
+	
+	if allusers == "user" then
+		allusers = %F;
+	elseif allusers == "allusers" then
+		allusers = %T;
+	end
+	
+	// Check if we have the write access
+	if allusers & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveUnregister",3,pathconvert(SCI+"/.atoms")));
 	end
 	
 	// name and version must have the same size
