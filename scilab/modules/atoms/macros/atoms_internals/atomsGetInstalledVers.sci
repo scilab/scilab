@@ -43,12 +43,10 @@ function res = atomsGetInstalledVers(name,allusers)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if (type(allusers) <> 4) & (type(allusers) <> 10) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledVers",2));
 		end
 		
 		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledVers",2));
 		end
 		
