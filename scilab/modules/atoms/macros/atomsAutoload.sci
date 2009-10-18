@@ -30,7 +30,7 @@ function result = atomsAutoload()
 	
 	// Get the list of packages to load
 	// =========================================================================
-	packages = atomsGetAutoload();
+	packages = atomsAutoloadGet();
 	
 	// If the list is empty, quit the function
 	// =========================================================================
