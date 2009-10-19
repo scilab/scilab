@@ -995,8 +995,6 @@ public class BasicBlock extends mxCell {
     	mxCellState state = getParentDiagram().getView().getState(this);
     	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
 
-    	System.err.println("Flip Current  : " + currentBlockDirection);
-    	System.err.println("Flip Next  : " + getNextFlipDirection(currentBlockDirection));
     	updatePortsPosition(getNextFlipDirection(currentBlockDirection));
     	updateBlockDirection(getNextFlipDirection(currentBlockDirection));
     }
@@ -1006,8 +1004,6 @@ public class BasicBlock extends mxCell {
     	mxCellState state = graph.getView().getState(this);
     	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
 
-    	System.err.println("Rotate Current  : " + currentBlockDirection);
-    	System.err.println("Rotate Next  : " + getNextFlipDirection(currentBlockDirection));
     	updatePortsPosition(getNextAntiClockwiseDirection(currentBlockDirection));
     	updateBlockDirection(getNextAntiClockwiseDirection(currentBlockDirection));
     }
@@ -1139,13 +1135,11 @@ public class BasicBlock extends mxCell {
     	// East <=> Out / North <=> Control / West <=> In / South <=> Command
     	if (blockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) {
     		if(flip){
-    			System.err.println("EAST FLIP");
     			updateEastPortsPosition(getAllOutputPorts());
     			updateSouthPortsPosition(getAllControlPorts());
     			updateWestPortsPosition(getAllInputPorts());
     			updateNorthPortsPosition(getAllCommandPorts());
     		}else{
-    			System.err.println("EAST");
     			updateEastPortsPosition(getAllOutputPorts());
     			updateNorthPortsPosition(getAllControlPorts());
     			updateWestPortsPosition(getAllInputPorts());
@@ -1156,13 +1150,11 @@ public class BasicBlock extends mxCell {
     	// East <=> Command / North <=> Out / West <=> Control / South <=> In
     	if (blockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) {
     		if(flip){
-    			System.err.println("NORTH FLIP");
     			updateWestPortsPosition(getAllCommandPorts());
     			updateNorthPortsPosition(getAllOutputPorts());
     			updateEastPortsPosition(getAllControlPorts());
     			updateSouthPortsPosition(getAllInputPorts());
     		}else{
-    			System.err.println("NORTH");
     			updateEastPortsPosition(getAllCommandPorts());
     			updateNorthPortsPosition(getAllOutputPorts());
     			updateWestPortsPosition(getAllControlPorts());
@@ -1173,13 +1165,11 @@ public class BasicBlock extends mxCell {
     	// East <=> In / North <=> Command / West <=> Out / South <=> Control
     	if (blockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) {
     		if(flip){
-    			System.err.println("WEST FLIP");
     			updateEastPortsPosition(getAllInputPorts());
     			updateSouthPortsPosition(getAllCommandPorts());
     			updateWestPortsPosition(getAllOutputPorts());
     			updateNorthPortsPosition(getAllControlPorts());
     		}else{
-    			System.err.println("WEST");
     			updateEastPortsPosition(getAllInputPorts());
     			updateNorthPortsPosition(getAllCommandPorts());
     			updateWestPortsPosition(getAllOutputPorts());
@@ -1190,13 +1180,11 @@ public class BasicBlock extends mxCell {
     	// East <=> Control / North <=> In / West <=> Command / South <=> Out
     	if (blockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) {
     		if(flip){
-    			System.err.println("SOUTH FLIP");
     			updateWestPortsPosition(getAllControlPorts());
     			updateNorthPortsPosition(getAllInputPorts());
     			updateEastPortsPosition(getAllCommandPorts());
     			updateSouthPortsPosition(getAllOutputPorts());
     		}else{
-    			System.err.println("SOUTH");
     			updateEastPortsPosition(getAllControlPorts());
     			updateNorthPortsPosition(getAllInputPorts());
     			updateWestPortsPosition(getAllCommandPorts());
