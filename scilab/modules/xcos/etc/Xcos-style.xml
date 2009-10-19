@@ -152,6 +152,7 @@
     <add as="align" value="center"/>
     <add as="verticalAlign" value="middle"/>
     <add as="strokeColor" value="black"/>
+    <add as="perimeter" value="null"/>
   </add>
   <add as="CommandControlLink" extend="defaultEdge">
     <add as="strokeColor" value="red"/>

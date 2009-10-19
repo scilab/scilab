@@ -14,11 +14,29 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3228
 //
 // <-- Short Description -->
-// ascii('é') returns a incorrect value
+// ascii('Ã©') returns a incorrect value
 
+// UTF-8 encoding
+if ascii('Ã ') <> [195 160] then pause,end
+if ascii('Ã§') <> [195 167] then pause,end
+if ascii('Ã¨') <> [195 168] then pause,end
+if ascii('Ã©') <> [195 169] then pause,end
+if ascii('Ã¹') <> [195 185] then pause,end
 
-if ascii('à') <> 224 then pause,end
-if ascii('ç') <> 231 then pause,end
-if ascii('è') <> 232 then pause,end
-if ascii('é') <> 233 then pause,end
-if ascii('ù') <> 249 then pause,end
+if ascii([195 160]) <> 'Ã ' then pause,end
+if ascii([195 167]) <> 'Ã§' then pause,end
+if ascii([195 168]) <> 'Ã¨' then pause,end
+if ascii([195 169]) <> 'Ã©' then pause,end
+if ascii([195 185]) <> 'Ã¹' then pause,end
+
+if msprintf("%s", ascii(224)) <> ascii(224) then pause,end
+if msprintf("%s", ascii([195 160])) <> ascii([195 160]) then pause,end
+if msprintf("%s", ascii(231)) <> ascii(231) then pause,end
+if msprintf("%s", ascii([195 167])) <> ascii([195 167]) then pause,end
+if msprintf("%s", ascii(232)) <> ascii(232) then pause,end
+if msprintf("%s", ascii([195 168])) <> ascii([195 168]) then pause,end
+if msprintf("%s", ascii(233)) <> ascii(233) then pause,end
+if msprintf("%s", ascii([195 169])) <> ascii([195 169]) then pause,end
+if msprintf("%s", ascii(249)) <> ascii(249) then pause,end
+if msprintf("%s", ascii([195 185])) <> ascii([195 185]) then pause,end
+ 

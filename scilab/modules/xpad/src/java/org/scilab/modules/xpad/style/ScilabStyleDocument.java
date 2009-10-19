@@ -358,37 +358,25 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void beautifier(int startPosition, int endPosition)throws BadLocationException{
 		
+		int currentStartOffset = getParagraphElement(startPosition).getStartOffset();
 		
-		int startOffset = this.getParagraphElement(startPosition).getStartOffset();
-		int endOfFirstLine = this.getParagraphElement(startPosition).getEndOffset();
-		int endOffset = this.getParagraphElement(endPosition).getEndOffset();
-		
-		if (   endOfFirstLine - startOffset <= 1){
+		int endOfFirstLine = getParagraphElement(startPosition).getEndOffset();
+		/*if (   endOfFirstLine - currentStartOffset <= 1){// prevented intending regions starting with an empty line.
 			return;
-		}
-		
-		String firtstLine =  getText(startOffset, this.getParagraphElement(startPosition).getEndOffset());
-		String selectedText = getSelectedDocumentLines(startOffset, endOffset);
-		
-
+		}*/
+		String firtstLine =  getText(currentStartOffset, endOfFirstLine-currentStartOffset-1);
 		Matcher matcherSpace = patternSpace.matcher(firtstLine);
 		// set the reference for indent
-		String baseSpaces = "";
+		String baseSpaces = matcherSpace.find() ? matcherSpace.group() :"";
+		Element currentElement = null, lastElement = getParagraphElement(endPosition);
 		
-		if ( matcherSpace.find()){
-			baseSpaces =  matcherSpace.group();
-		}
-		String[] allLines =   selectedText.split(System.getProperty("line.separator"));
-		
-		// indent line by line 
-		for (int i = 0; i < allLines.length; i++){
-			
-			 int lineLength =  allLines[i].length();
-			
-			 String indentedLine =  indentLine( allLines[i] , baseSpaces  );
-			 this.replace(startOffset,lineLength  , indentedLine, null);
-			 startOffset += indentedLine.length()+(System.getProperty("line.separator").length());
-		}
+		do{
+			currentElement = getParagraphElement(currentStartOffset);
+			String toIndent= getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset-1);//-1 to remove \n			
+			String indented = indentLine(toIndent, baseSpaces);
+			replace(currentStartOffset, toIndent.length(), indented, null);
+			currentStartOffset+= indented.length()+1;
+		}while(currentElement!=lastElement);
 		currentStringIndent = "";
 		currentLevelIdent = 0;
 	}
@@ -433,9 +421,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 		}
 
-		/*regexp to find open / middle / close keywords */	
-		String nextLineContent = this.getText(getParagraphElement(endPosition).getStartOffset(), getParagraphElement(endPosition).getEndOffset()-getParagraphElement(endPosition).getStartOffset()-1);
-
+		/*regexp to find open / middle / close keywords */
+		String nextLineContent = null;
+		{
+			int start = getParagraphElement(endPosition).getStartOffset();
+			int length = getParagraphElement(endPosition).getEndOffset() - start;
+			nextLineContent = this.getText(start, length-1);
+		}
 		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent	
 		Pattern patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
 		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
@@ -1087,7 +1079,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		try
 		{
 			// Get the text line
-			String text     = this.getText(position_start,position_end);
+			String text     = this.getText(position_start,position_end-position_start);
 			Matcher matcher = pattern.matcher(text);
 			
 			if(matcher.find())
@@ -1194,7 +1186,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		try
 		{
 			// Get the text line
-			String text     = this.getText(position,position+1);
+			String text     = this.getText(position,1);
 			Matcher matcher = pattern.matcher(text);
 			
 			if(matcher.find())
