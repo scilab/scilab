@@ -39,7 +39,7 @@ int set_bar_width_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"bar_width") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_width") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;

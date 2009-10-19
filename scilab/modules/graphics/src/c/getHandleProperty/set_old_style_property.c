@@ -27,27 +27,17 @@
 /*------------------------------------------------------------------------*/
 int set_old_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  getStringFromStack( stackPointer ) ;
+  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "old_style");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"old_style") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return SET_PROPERTY_UNCHANGED ;
-  }
-  else if ( isStringParamEqual( stackPointer, "on" ) )
+  if(b)
   {
     Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
     return SET_PROPERTY_ERROR ;
   }
   else
   {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_UNCHANGED ;
   }
 }
 /*------------------------------------------------------------------------*/

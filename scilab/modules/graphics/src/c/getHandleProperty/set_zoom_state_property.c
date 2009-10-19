@@ -30,42 +30,34 @@
 /*------------------------------------------------------------------------*/
 int set_zoom_state_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"zoom_state") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"zoom_state") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+  if(b)
   { 
-    if ( ! sciGetZooming(pobj) )
+    if(sciGetZooming(pobj))
     {
-      Scierror(999, "Object is already zoomed.\n") ;
-      return SET_PROPERTY_ERROR ;
+      Scierror(999, "Object is already zoomed.\n");
+      return SET_PROPERTY_ERROR;
     }
     else
     {
-      Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n") ;
-      return SET_PROPERTY_ERROR ;
+      Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n");
+      return SET_PROPERTY_ERROR;
     }
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) ) 
+  else
   { 
     unzoom();
-    return sciSetZooming( pobj, FALSE ) ;
+    return sciSetZooming(pobj, FALSE);
   }
-  else
-  {
-    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_zoom_state_property","on","off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+
+  return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
