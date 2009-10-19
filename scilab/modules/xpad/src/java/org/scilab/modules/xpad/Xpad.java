@@ -649,13 +649,21 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * Undo last modification
 	 */
 	public void undo() {
-		UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
+		UndoManager undo = doc.getUndoManager();
 
 		if (undo.canUndo()) {
 			try {
 				System.out.println(undo.canUndo());
 				System.err.println("Will undo " + undo.getUndoPresentationName());
 				undo.undo();
+				if(!undo.canUndo()){ // remove "*" prefix from tab name
+					JTabbedPane current = getTabPane();
+					int index = current.getSelectedIndex();
+					String namePrefixedByStar = current.getTitleAt(index);
+					current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
+					doc.setContentModified(false);
+				}			
 				repaint();
 
 			} catch (CannotUndoException ex) {
