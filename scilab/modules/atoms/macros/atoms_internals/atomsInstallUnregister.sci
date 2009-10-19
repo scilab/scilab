@@ -34,8 +34,20 @@ function atomsInstallUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallUnregister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallUnregister",3));
+	if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		chdir(initialpath);
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsInstallUnregister",2));
+	end
+	
+	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		chdir(initialpath);
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallUnregister",2));
+	end
+	
+	if allusers == "user" then
+		allusers = %F;
+	elseif allusers == "allusers" then
+		allusers = %T;
 	end
 	
 	// name and version must have the same size

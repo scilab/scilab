@@ -17,7 +17,7 @@
 /* desc : function to retrieve in Scilab the format_n field of            */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <stdlib.h>
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
