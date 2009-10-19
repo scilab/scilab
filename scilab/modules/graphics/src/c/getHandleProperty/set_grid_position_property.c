@@ -30,13 +30,13 @@ int set_grid_position_property( sciPointObj * pobj, size_t stackPointer, int val
 
 	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"grid_position") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"grid_position") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "grid_position");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -50,7 +50,7 @@ int set_grid_position_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"foreground","background") ;
+    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "grid_position", "foreground", "background");
     return SET_PROPERTY_ERROR ;
   }
 

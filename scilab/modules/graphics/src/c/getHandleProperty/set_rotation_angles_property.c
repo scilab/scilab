@@ -33,14 +33,14 @@ int set_rotation_angles_property( sciPointObj * pobj, size_t stackPointer, int v
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"rotation_angles") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
     return SET_PROPERTY_ERROR ;
   }
 
   /* DJ.A 2003 */
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"rotation_angles") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles") ;
     return SET_PROPERTY_ERROR ;
   }
 

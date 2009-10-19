@@ -38,7 +38,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"position") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "position");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -66,7 +66,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     }
   else
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "position") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"position");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

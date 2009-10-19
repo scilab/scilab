@@ -32,13 +32,13 @@ int set_text_box_mode_property( sciPointObj * pobj, size_t stackPointer, int val
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"text_box_mode") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "text_box_mode");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_TEXT )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"text_box_mode") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -62,7 +62,7 @@ int set_text_box_mode_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-    Scierror(999, _("%s: Wrong value for input argument: '%s', '%s' or '%s' expected.\n"),"set_text_box_mode_property","off", "centered","filled");
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "text_box_mode", "off, centered, filled");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;
