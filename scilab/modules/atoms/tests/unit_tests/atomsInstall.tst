@@ -19,8 +19,60 @@ atomsSetConfig("autoload","False");
 // Install the toolbox 5
 atomsInstall("toolbox_5");
 
-// Remove the toolbox 5
+// Check if the module is really installed
+if ~atomsIsInstalled("toolbox_5") then pause, end
+if ~atomsIsInstalled("toolbox_4") then pause, end
+if ~atomsIsInstalled("toolbox_2") then pause, end
+if ~atomsIsInstalled("toolbox_1") then pause, end
+
+// Remove the module
 atomsRemove("toolbox_5");
+
+// Install the toolbox 5 (user zone)
+
+atomsInstall("toolbox_5","user");
+if ~atomsIsInstalled("toolbox_5",[],"user") then pause, end
+if ~atomsIsInstalled("toolbox_4",[],"user") then pause, end
+if ~atomsIsInstalled("toolbox_2",[],"user") then pause, end
+if ~atomsIsInstalled("toolbox_1",[],"user") then pause, end
+if atomsIsInstalled("toolbox_5",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_4",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_2",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_1",[],"allusers") then pause, end
+atomsRemove("toolbox_5","user");
+if atomsIsInstalled("toolbox_5",[],"user") then pause, end
+if atomsIsInstalled("toolbox_4",[],"user") then pause, end
+if atomsIsInstalled("toolbox_2",[],"user") then pause, end
+if atomsIsInstalled("toolbox_1",[],"user") then pause, end
+
+
+// Install the toolbox 5 (allusers zone)
+atomsInstall("toolbox_5","allusers");
+if ~atomsIsInstalled("toolbox_5",[],"allusers") then pause, end
+if ~atomsIsInstalled("toolbox_4",[],"allusers") then pause, end
+if ~atomsIsInstalled("toolbox_2",[],"allusers") then pause, end
+if ~atomsIsInstalled("toolbox_1",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_5",[],"user") then pause, end
+if atomsIsInstalled("toolbox_4",[],"user") then pause, end
+if atomsIsInstalled("toolbox_2",[],"user") then pause, end
+if atomsIsInstalled("toolbox_1",[],"user") then pause, end
+atomsRemove("toolbox_5","allusers");
+if atomsIsInstalled("toolbox_5",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_4",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_2",[],"allusers") then pause, end
+if atomsIsInstalled("toolbox_1",[],"allusers") then pause, end
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Restore original values
 atomsSetConfig("autoload",config_autoload);
