@@ -38,7 +38,7 @@ int set_arrow_size_factor_property( sciPointObj * pobj, size_t stackPointer, int
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"arrow_size_factor");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size_factor");
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;

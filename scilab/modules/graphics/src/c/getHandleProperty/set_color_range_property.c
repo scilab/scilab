@@ -40,7 +40,7 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_range") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range") ;
     return SET_PROPERTY_ERROR ;
   }
 

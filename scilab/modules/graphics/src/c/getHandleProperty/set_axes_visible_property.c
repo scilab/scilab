@@ -42,7 +42,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_visible") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible") ;
     return SET_PROPERTY_ERROR ;
   }
 
