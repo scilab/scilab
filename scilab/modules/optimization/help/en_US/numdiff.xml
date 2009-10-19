@@ -83,7 +83,7 @@
     <literal>g</literal> such as</para>
 
     <programlisting role = ""><![CDATA[ 
-[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]
+g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
 
     <para>using finite difference methods.</para>
