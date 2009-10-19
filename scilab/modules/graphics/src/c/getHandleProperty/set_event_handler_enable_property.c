@@ -38,6 +38,6 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
 	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "event_handler_enable");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	return sciSetNoRedrawStatus(sciSetIsEventHandlerEnable(pobj, b));
+	return (int)sciSetNoRedrawStatus((SetPropertyStatus)sciSetIsEventHandlerEnable(pobj, b));
 }
 /*------------------------------------------------------------------------*/
