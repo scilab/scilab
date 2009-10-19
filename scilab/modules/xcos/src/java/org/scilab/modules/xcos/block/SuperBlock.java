@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,9 @@ import com.mxgraph.util.mxUtils;
 public class SuperBlock extends BasicBlock {
 
     private SuperBlockDiagram child = null;
+    private XcosDiagram parentDiagram = null;
 
+ 
     public SuperBlock(){
 	super();
 	setVertex(false);
@@ -51,6 +54,14 @@ public class SuperBlock extends BasicBlock {
     public SuperBlock(String label) {
 	super(label);
 	setStyle("SUPER_f");
+    }
+    
+    public XcosDiagram getParentDiagram() {
+        return parentDiagram;
+    }
+
+    public void setParentDiagram(XcosDiagram parentDiagram) {
+        this.parentDiagram = parentDiagram;
     }
 
     public void openBlockSettings(String context, XcosDiagram diagram) {
@@ -67,7 +78,14 @@ public class SuperBlock extends BasicBlock {
 	Xcos.showDiagram(child);
 	child.installListeners();
     }
-
+    
+    public ScilabMList getAsScilabObj() {
+	if (child != null) {
+	    setRealParameters(BlockWriter.convertDiagramToMList(child));
+	}
+	return super.getAsScilabObj();
+    }
+    
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
@@ -83,7 +101,7 @@ public class SuperBlock extends BasicBlock {
 	return result.toString();
     }
 
-    private class SuperBlockDiagram extends XcosDiagram {
+    private class SuperBlockDiagram extends XcosDiagram implements Serializable {
 	private SuperBlock container = null;
 
 	public SuperBlockDiagram(SuperBlock superBlock) {
@@ -481,7 +499,7 @@ public class SuperBlock extends BasicBlock {
 	updateExportedExplicitOutputPort();
 	updateExportedImplicitOutputPort();
 	updateExportedEventOutputPort();
-	child.fireEvent(XcosEvent.SUPER_BLOCK_UPDATED, new mxEventObject(new Object[] {this}));
+	getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED, new mxEventObject(new Object[] {this}));
     }
 
     private void updateExportedExplicitInputPort(){
