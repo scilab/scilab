@@ -663,3 +663,5 @@ Bug fixes:
 
 * bug 4943 fixed - execstr does not check input arguments.
 
+* bug 4964 fixed - set or get 'format_n' property from an axes crash scilab.
+
