@@ -107,7 +107,9 @@ GRAPHICS_IMPEXP BOOL isStringParamEqual( size_t stackPointer, const char * str )
  *         NOT_A_BOOLEAN_VALUE otherwise
  */
 GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(size_t stackPointer, int valueType, int nbRow, int nbCol, char* propertyName);
-static int NOT_A_BOOLEAN_VALUE = 2*FALSE - TRUE;    // with that we are sure to be nether equal to TRUE nor FALSE
+// with that we are sure to be nether equal to TRUE nor FALSE
+#define NOT_A_BOOLEAN_VALUE (2*FALSE) - TRUE
+
 /*------------------------------------------------------------------------------*/
 /* Tlist */
 typedef struct 

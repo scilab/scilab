@@ -29,16 +29,17 @@
 /*------------------------------------------------------------------------*/
 int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s property undefined for this object.\n"), "immediate_drawing") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "immediate_drawing");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+	int b =  (int)FALSE;
+	if ( sciGetEntityType (pobj) != SCI_FIGURE )
+	{
+		Scierror(999, _("%s property undefined for this object.\n"), "immediate_drawing") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  sciSetImmediateDrawingMode(pobj, b);
-  return SET_PROPERTY_SUCCEED ;  
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "immediate_drawing");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	sciSetImmediateDrawingMode(pobj, b);
+	return SET_PROPERTY_SUCCEED ;  
 }
 /*------------------------------------------------------------------------*/
