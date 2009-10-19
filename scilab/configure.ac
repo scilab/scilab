@@ -1048,12 +1048,12 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    else
       LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
-   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread"
+   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
    # -lpthread because of packaging bug in jhdf5
       AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
    	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
       LDFLAGS=$LDFLAGS_save
-   fi
+    fi
 
 #################
 ## ocaml which only called when using Scicos
