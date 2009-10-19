@@ -27,17 +27,21 @@
 //     status = "tolf"
 //     status = "tolx"
 //
-function [this , terminate , status] = optimbase_terminate (this , ...
+function [ this , terminate , status ] = optimbase_terminate (this , ...
   previousfopt , currentfopt , previousxopt , currentxopt )
   terminate = %f;
   status = "continue";
+  if ( this.verbose == 1 ) then
   this = optimbase_stoplog (this,sprintf("  > Termination ?"));
+  end
   //
   // Criteria #1 : maximum number of iterations
   //
   if ( ~terminate ) then 
-    this = optimbase_stoplog (this,sprintf("  > iterations=%d >= maxiter=%d",this.iterations, this.maxiter));
-    if this.iterations >= this.maxiter then
+    if ( this.verbose == 1 ) then
+      this = optimbase_stoplog (this,sprintf("  > iterations=%d >= maxiter=%d",this.iterations, this.maxiter));
+    end
+    if ( this.iterations >= this.maxiter ) then
       terminate = %t;
       status = "maxiter";
     end
@@ -46,8 +50,10 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   // Criteria #2 : maximum number of call to function
   //
   if ( ~terminate ) then 
-    this = optimbase_stoplog (this,sprintf("  > funevals=%d >= maxfunevals=%d",this.funevals, this.maxfunevals));
-    if this.funevals >= this.maxfunevals then
+    if ( this.verbose == 1 ) then
+      this = optimbase_stoplog (this,sprintf("  > funevals=%d >= maxfunevals=%d",this.funevals, this.maxfunevals));
+    end
+    if ( this.funevals >= this.maxfunevals ) then
       terminate = %t;
       status = "maxfuneval";
     end
@@ -66,9 +72,15 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //
   if ( ~terminate ) then
     if ( this.tolfunmethod )
-      this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
-        abs(currentfopt), this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute));
-      if abs(currentfopt) < this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute then
+      tolfr = this.tolfunrelative;
+      tolfa = this.tolfunabsolute;
+      acfopt = abs(currentfopt);
+      apfopt = abs(previousfopt);
+      if ( this.verbose == 1 ) then
+        this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
+          acfopt, tolfr * apfopt + tolfa));
+      end
+      if ( acfopt < tolfr * apfopt + tolfa ) then
         terminate = %t;
         status = "tolf";
       end
@@ -85,15 +97,23 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //
   if ( ~terminate ) then
     if ( this.tolxmethod ) then
-      this = optimbase_stoplog (this,sprintf("  > e(x)=%e < tolxrelative = %e * %e + %e",...
-        norm(currentxopt - previousxopt), this.tolxrelative , norm(currentxopt) , this.tolxabsolute ));
-      if norm(currentxopt - previousxopt) < this.tolxrelative * norm(currentxopt) + this.tolxabsolute then
+      normdelta = norm(currentxopt - previousxopt);
+      normold = norm(currentxopt);
+      tolxr = this.tolxrelative;
+      tolxa = this.tolxabsolute;
+      if ( this.verbose == 1 ) then
+        this = optimbase_stoplog (this,sprintf("  > e(x)=%e < %e * %e + %e",...
+          normdelta, tolxr , normold , tolxa ));
+      end
+      if ( normdelta < tolxr * normold + tolxa ) then
         terminate = %t;
         status = "tolx";
       end
     end
   end
-  this = optimbase_stoplog (this,sprintf("  > Terminate = %s, status = %s",...
-    string(terminate) , status ));
+  if ( this.verbose == 1 ) then
+    this = optimbase_stoplog (this,sprintf("  > Terminate = %s, status = %s",...
+      string(terminate) , status ));
+  end
 endfunction
 

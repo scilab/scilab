@@ -135,6 +135,9 @@
 #define GL2PS_DRAW_PIXELS_TOKEN    14
 #define GL2PS_TEXT_TOKEN           15
 
+#define PI_OVER_180  0.01745329251994329576913914624236578987393
+#define DEG2RAD(x) ((x) * PI_OVER_180  )
+
 typedef enum {
   T_UNDEFINED    = -1,
   T_CONST_COLOR  = 1,
@@ -3413,13 +3416,31 @@ static int gl2psPrintPDFLineWidth(float lw)
 
 static void gl2psPutPDFText(GL2PSstring *text, int cnt, float x, float y)
 {
-  gl2ps->streamlength += 
-    gl2psPrintf("BT\n"
+  if( text->angle == 0 )
+  {
+    gl2ps->streamlength += 
+	   gl2psPrintf("BT\n"
+				"/F%d %d Tf\n"
+				"%f %f Td\n"
+				"(%s) Tj\n"
+				"ET\n", 
+				cnt, text->fontsize, x, y, text->str);
+  } 
+  else {
+    /* Handle rotated text */
+    float cos_ang = (float)cos(-DEG2RAD(text->angle)); /* compute sine and cosine values just once */
+    float sin_ang = (float)sin(-DEG2RAD(text->angle));
+
+    gl2ps->streamlength += 
+      gl2psPrintf("BT\n"
                 "/F%d %d Tf\n"
-                "%f %f Td\n"
+                "%f %f %f %f %f %f Tm\n"
                 "(%s) Tj\n"
                 "ET\n", 
-                cnt, text->fontsize, x, y, text->str);  
+                cnt, text->fontsize, 
+				cos_ang, -sin_ang, sin_ang, cos_ang,
+				x, y, text->str);  
+  }
 }
 
 static void gl2psPutPDFImage(GL2PSimage *image, int cnt, float x, float y)
@@ -4495,6 +4516,7 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
 {
   int x, y;
   float r, g, b, a;
+  char shift = (sizeof(unsigned long) - 1) * 8;
 
   if(im->format != joglGL_RGBA() && gray)
     return 0;
@@ -4508,12 +4530,12 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
     for(x = 0; x < im->width; ++x){
       a = gl2psGetRGB(im, x, y, &r, &g, &b);
       if(im->format == joglGL_RGBA() && gray){
-        (*action)((unsigned long)(a*255) << 24, gray);
+        (*action)((unsigned long)(a*255) << shift, gray);
       }
       else{
-        (*action)((unsigned long)(r*255) << 24, 1);
-        (*action)((unsigned long)(g*255) << 24, 1);
-        (*action)((unsigned long)(b*255) << 24, 1);
+        (*action)((unsigned long)(r*255) << shift, 1);
+        (*action)((unsigned long)(g*255) << shift, 1);
+        (*action)((unsigned long)(b*255) << shift, 1);
       }
     }
   }

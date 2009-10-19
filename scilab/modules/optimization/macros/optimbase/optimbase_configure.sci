@@ -17,6 +17,12 @@ function this = optimbase_configure (this,key,value)
     this.verbose = value;
   case "-verbosetermination" then
     this.verbosetermination = value;
+  case "-logfile" then
+    if ( this.logstartup ) then
+      this = optimbase_logshutdown ( this )
+    end
+    this.logfile = value;
+    this = optimbase_logstartup ( this );
   case "-x0" then
     [n,m] = size(value);
     if m<>1 then
@@ -78,8 +84,6 @@ function this = optimbase_configure (this,key,value)
     this.boundsmax = value;
   case "-nbineqconst" then
     this.nbineqconst = value;
-  case "-logfile" then
-    this.logfile = value;
   case "-withderivatives" then
     if ( value ) then
       this.withderivatives = %t;

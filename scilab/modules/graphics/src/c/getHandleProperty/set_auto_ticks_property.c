@@ -45,7 +45,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"auto_ticks") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 

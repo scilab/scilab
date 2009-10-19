@@ -45,7 +45,7 @@ function libn = ilib_for_link(names, ..
   // bug 4515 - unlink previous function with same name
   n = size(names,'*');
   for i = 1:n
-    execstr("[bOK,ilib] = c_link(''" + names(i) + "'');if (bOK) then ulink(ilib),end", names(i));
+    execstr("[bOK,ilib] = c_link(''" + names(i) + "'');if (bOK) then ulink(ilib),end");
   end
   
   // generate a Makefile

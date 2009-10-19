@@ -659,6 +659,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
 		if test "$with_gui" != no; then
 
+				# jgraphx
+				AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
+				JGRAPHX=$PACKAGE_JAR_FILE
+				AC_SUBST(JGRAPHX)
+
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				FLEXDOCK=$PACKAGE_JAR_FILE
@@ -685,6 +690,34 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
 
+				if test "$MACOSX" = 1; then
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled"
+				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
+				   [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   LDFLAGS=$LDFLAGS_save
+				fi
+
+				# JoGL Native <=> Java connector
+				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+				GLUEGEN_RT=$PACKAGE_JAR_FILE
+				AC_SUBST(GLUEGEN_RT)
+
+				if test "$MACOSX" = 1; then
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled"
+				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
+				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   LDFLAGS=$LDFLAGS_save
+				fi
+
 				# Jhall
 				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
@@ -695,11 +728,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 					JHALL=$PACKAGE_JAR_FILE
 				fi
 				AC_SUBST(JHALL)
-
-				# JoGL Native <=> Java connector
-				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-				GLUEGEN_RT=$PACKAGE_JAR_FILE
-				AC_SUBST(GLUEGEN_RT)
 
 				# Console API
 				AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
@@ -1014,8 +1042,21 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
+
+   if test "$MACOSX" = 1; then
+   	  echo "Check of the presence of libjhdf5.jnilib disabled"
+   else
+      LDFLAGS_save=$LDFLAGS
+   # Provide known paths where distribs/OS can store JNI libs
+   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread"
+   # -lpthread because of packaging bug in jhdf5
+      AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
+   	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+      LDFLAGS=$LDFLAGS_save
+   fi
+
 #################
-## ocaml which only called with using Scicos
+## ocaml which only called when using Scicos
 #################
 
 		if test "$with_ocaml" != no; then
@@ -1105,8 +1146,8 @@ if test "$enable_build_localization" != no; then
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
-   AC_PATH_PROG(MSGFMT, msgfmt, no)
-   AC_PATH_PROG(XGETTEXT, xgettext, no)
+#   AC_PATH_PROG(MSGFMT, msgfmt, no)
+#   AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
 	  AC_ERROR([The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
@@ -1491,6 +1532,7 @@ modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile
+modules/xcos/Makefile
 modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
@@ -1498,7 +1540,7 @@ Makefile
 scilab.pc
 etc/modules.xml
 etc/classpath.xml
-modules/jvm/etc/jvm_options.xml
+etc/jvm_options.xml
 scilab-lib.properties
 scilab-lib-doc.properties
 ])
@@ -1748,11 +1790,14 @@ echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
 echo "  JOGL ................ = $JOGL"
-echo "  Jhall  .............. = $JHALL"
+echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
+echo "  JGraph X ............ = $JGRAPHX"
 fi
 
 echo ""
@@ -1782,6 +1827,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
    echo "  HDF5 Java ........... = $JHDF5"
+   echo "  JHDF5 LIBS (JNI) .... = $JHDF5_LIBS"
 else
    echo "Not using HDF5"
 fi

@@ -85,7 +85,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
   }
 	
 
-	Scierror(999, _("%s property does not exist for this handle.\n"),"box") ;
+	Scierror(999, _("'%s' property does not exist for this handle.\n"),"box") ;
   return SET_PROPERTY_ERROR ;
 
 }

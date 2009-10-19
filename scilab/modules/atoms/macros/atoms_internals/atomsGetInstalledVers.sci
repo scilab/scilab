@@ -31,11 +31,31 @@ function res = atomsGetInstalledVers(name,allusers)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsGetInstalledVers",1));
 	end
 	
-	// allusers management
+	// Allusers/user management
 	// =========================================================================
 	
-	if rhs < 2 then
-		allusers = %T;
+	if rhs <= 1 then
+		allusers = "all";
+	
+	else
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledVers",2));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledVers",2));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
+		end
+		
 	end
 	
 	// Get the list of installed packages

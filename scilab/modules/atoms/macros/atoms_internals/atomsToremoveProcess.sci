@@ -22,26 +22,50 @@ function atomsToremoveProcess(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsToremoveProcess",1));
 	end
 	
-	// Process only the "user" list or both "user" and "allusers" list
+	// Allusers/user management
+	//   - If allusers is equal to "all" or to True, packages located in both 
+	//     "allusers" and "user" sections will removed.
+	//   - If allusers is equal to "allusers", only packages located in the
+	//     "allusers" section will be removed.
+	//   - If allusers is equal to "user" or to False, only packages located in 
+	//     the "user" will be removed
 	// =========================================================================
 	
-	if rhs < 1 then
-		// By default, install for all users (if we have write access of course !)
+	if rhs <= 1 then
+		
+		// By default: 
+		//  → Remove packages located in both "allusers" and "user" sections if
+		//    we have the write access to SCI directory
+		//  → Remove only package located in the "user" sections otherwise
+		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			allusers = "all"; 
 		else
-			allusers = %F;
+			allusers = "user";
 		end
-	
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveProcess",1));
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveProcess",1));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsToremoveProcess",1));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveProcess",2,pathconvert(SCI+"/.atoms")));
+		if or(allusers==["all","allusers"]) & ~ atomsAUWriteAccess() then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveProcess",1,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	

@@ -100,7 +100,8 @@ $(top_srcdir)/etc/scilab.quit \
 $(top_srcdir)/etc/modules.xml \
 $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
-$(top_srcdir)/etc/toolboxes.xml
+$(top_srcdir)/etc/toolboxes.xml \
+$(top_srcdir)/etc/jvm_options.xml
 
 
 infofilesdir=$(pkgdatadir)/

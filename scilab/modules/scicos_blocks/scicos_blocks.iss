@@ -38,6 +38,8 @@ Source: modules\{#SCICOS_BLOCKS}\macros\*.sce; DestDir: {app}\modules\{#SCICOS_B
 Source: modules\{#SCICOS_BLOCKS}\macros\*.mo; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.moc; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
+Source: modules\{#SCICOS_BLOCKS}\blocks\*.h5; DestDir: {app}\modules\{#SCICOS_BLOCKS}\blocks; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
+;
 Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\src\scripts\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\src\scripts; Components: {#COMPN_SCICOS}

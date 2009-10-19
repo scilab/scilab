@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{70F677F1-B535-4D0F-A16F-5093B799A540}"
 	RootNamespace="scicos_blocks"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -213,7 +214,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -239,7 +240,6 @@
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="scicos_blocks.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -303,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -329,7 +329,6 @@
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="scicos_blocks.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -390,6 +389,10 @@
 			</File>
 			<File
 				RelativePath=".\affich.c"
+				>
+			</File>
+			<File
+				RelativePath=".\affich2.cpp"
 				>
 			</File>
 			<File
@@ -1589,6 +1592,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\XcosDiagram.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\zcross2.c"
 				>
 			</File>
@@ -1635,6 +1642,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scoWindowScope.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\XcosDiagram.hxx"
 				>
 			</File>
 		</Filter>

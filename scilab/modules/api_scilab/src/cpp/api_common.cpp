@@ -74,7 +74,6 @@ StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
-	int iRet				= 0;
 	int* piAddr				= NULL;
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
@@ -187,7 +186,6 @@ StrErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 StrErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 {
 	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
-	int iRet				= 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
@@ -454,9 +452,6 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	else if(iType == sci_ints)
 	{
 		int iPrec			= 0;
-		int iYType		= 4;
-		int iXInc			= 1;
-		int iYInc			= 1;
 
 		strErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
 		if(strErr.iErr)

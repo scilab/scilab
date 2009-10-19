@@ -54,8 +54,21 @@ function remList = atomsRemoveList(packages,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRemoveList",1));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemoveList",2));
+	// Process the 2nd input argument : allusers
+	// Allusers can be a boolean or equal to "user" or "allusers"
+	
+	if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsRemoveList",2));
+	end
+	
+	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsRemoveList",2));
+	end
+	
+	if allusers == "user" then
+		allusers = %F;
+	elseif allusers == "allusers" then
+		allusers = %T;
 	end
 	
 	// Loop on packages and to build the list of package to uninstall
@@ -120,7 +133,7 @@ function remList = atomsRemoveList(packages,allusers)
 			// Check if we have the right to remove this package
 			// If not, tag it as Broken (for later)
 			if ~allusers then
-				details = atomsGetInstalledDetails(this_parent_name,this_parent_version);
+				details = atomsGetInstalledDetails(this_parent_name,this_parent_version,allusers);
 				if details(3) == "allusers" then
 					remList = [ remList ; "~" "B" this_parent_name this_parent_version ]; // B stands for "Broken"
 					continue
@@ -147,7 +160,7 @@ function remList = atomsRemoveList(packages,allusers)
 			// Check if we have the right to remove this package
 			// If not, Do not add it to the list
 			if ~allusers then
-				details = atomsGetInstalledDetails(this_child_name,this_child_version);
+				details = atomsGetInstalledDetails(this_child_name,this_child_version,allusers);
 				if details(3) == "allusers" then
 					continue
 				end
@@ -183,7 +196,7 @@ function remList = atomsRemoveList(packages,allusers)
 		// => Do not install it
 		// ----------------------------------------------
 		
-		if atomsGetInstalledStatus(this_package_name,this_package_version) == "I" then
+		if atomsGetInstalledStatus(this_package_name,this_package_version,allusers) == "I" then
 			remList(i,1) = "~";
 		end
 		

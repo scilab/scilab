@@ -37,7 +37,7 @@ int set_alignment_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( sciGetEntityType( pobj ) != SCI_TEXT )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"alignment");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"alignment");
     return SET_PROPERTY_ERROR ;
   }
 

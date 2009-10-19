@@ -422,7 +422,7 @@ public final class FindAction extends DefaultAction {
                     	buttonReplaceAll.setEnabled(true);
                     } catch (PatternSyntaxException pse) {
                     	
-                    	statusBar.setText(XpadMessages.INVALID_REGEXP);
+                    	statusBar.setText(String.format(XpadMessages.INVALID_REGEXP, text));
                     	
                     	buttonFind.setEnabled(false);
                     	buttonReplaceAll.setEnabled(false);
@@ -653,7 +653,7 @@ public final class FindAction extends DefaultAction {
 				});
 			}
 		} else { // nothing has been found
-			statusBar.setText(XpadMessages.STRING_NOT_FOUND);
+			statusBar.setText(String.format(XpadMessages.STRING_NOT_FOUND, wordToFind));
 			
 			startFindSelection = -1;
 			endFindSelection = -1;
