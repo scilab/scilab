@@ -288,38 +288,11 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	});
 
-	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		System.err.println("[DEBUG] CELLS_ADDED");
-		Object[] cells = (Object[]) evt.getArgs()[0];
-		for (int i = 0 ; i < cells.length ; ++i) {
-		    if (cells[0] instanceof BasicBlock) {
-			getModel().beginUpdate();
-
-			if (getCellStyle(cells[i]).get("displayedLabel") != null) {
-			    ((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
-			}
-
-			mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
-			mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
-
-			((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-				Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-				Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-			cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
-			getModel().endUpdate();
-			getModel().beginUpdate();
-			fireEvent(mxEvent.CELLS_RESIZED, new mxEventObject(
-				new Object[] { cells, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() } } ));
-			refresh();
-			getModel().endUpdate();
-		    }
-		}
-	    }
-	});
-
+	// Track when cells are added.
+	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
+		
 	// Track when resizing a cell.
-	addListener(XcosEvent.CELLS_RESIZED, new cellResizedTracker());
+	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
 
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
@@ -366,10 +339,49 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * cellResizedTracker
-     * Called when mxEvents.CELLS_RESIZED if fired. 
+     * cellAddedTracker
+     * Called when mxEvents.CELLS_ADDED is fired.
      */
-    private class cellResizedTracker implements mxIEventListener {
+    private class CellAddedTracker implements mxIEventListener {
+	private XcosDiagram diagram = null;
+	
+	public CellAddedTracker(XcosDiagram diagram) {
+	    this.diagram = diagram;
+	}
+	
+	public void invoke(Object source, mxEventObject evt) {
+		System.err.println("[DEBUG] CELLS_ADDED");
+		Object[] cells = (Object[]) evt.getArgs()[0];
+		for (int i = 0 ; i < cells.length ; ++i) {
+		    if (cells[i] instanceof SuperBlock) {
+			((SuperBlock) cells[i]).setParentDiagram(diagram);
+		    }
+		    else if (cells[i] instanceof BasicBlock) {
+			getModel().beginUpdate();
+
+			if (getCellStyle(cells[i]).get("displayedLabel") != null) {
+			    ((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
+			}
+
+			mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
+			mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
+
+			((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+				Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+				Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+			cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
+			refresh();
+			getModel().endUpdate();
+		    }
+		}
+	    }
+    }
+    
+    /**
+     * cellResizedTracker
+     * Called when mxEvents.CELLS_RESIZED is fired. 
+     */
+    private class CellResizedTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    Object[] cells = (Object[]) evt.getArgs()[0];
 
