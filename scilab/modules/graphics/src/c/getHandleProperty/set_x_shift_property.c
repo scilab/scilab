@@ -35,25 +35,25 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"x_shift") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "x_shift");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    Scierror(999, _("This handle has no %s property.\n"),"x_shift") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_shift");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow > 1 && nbCol > 1 )
   {
-    Scierror(999, _("Bad input, %s should be a row or column vector.\n"),"x_shift") ;
+    Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "x_shift", "0x0, 1xn, nx1");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbElement != 0 && nbElement != pPOLYLINE_FEATURE (pobj)->n1 ) /* we can specify [] (null vector) to reset to default */
   {
-    Scierror(999, _("Wrong size for input vector.\n"));
+    Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "x_shift", 0, pPOLYLINE_FEATURE (pobj)->n1);
     return SET_PROPERTY_ERROR ;
   }
 

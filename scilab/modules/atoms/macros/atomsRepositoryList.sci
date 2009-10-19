@@ -9,7 +9,7 @@
 
 // get the list of repositories
 
-function repositories = atomsRepositoryList(level)
+function repositories = atomsRepositoryList(section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -30,22 +30,29 @@ function repositories = atomsRepositoryList(level)
 	// Check input argument type (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (type(level) <> 10) then
+	if (rhs==1) & (type(section) <> 10) then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument dimension (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (size(level,"*")<>1) then
+	if (rhs==1) & (size(section,"*")<>1) then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument values (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (and(level<>["user","allusers","official"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositoryList",1));
+	if (rhs==1) & (and(section<>["all","user","allusers","official"])) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositoryList",1));
+	end
+	
+	// Default value of section
+	// =========================================================================
+	
+	if rhs==0 then
+		section = "all";
 	end
 	
 	// Define the needed paths
@@ -58,7 +65,7 @@ function repositories = atomsRepositoryList(level)
 	// official repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "official")) then
+	if or(section == ["all";"official"]) then
 		if fileinfo(official_repositories) <> [] then
 			url_list = mgetl(official_repositories);
 			for i=1:size(url_list,"*")
@@ -70,7 +77,7 @@ function repositories = atomsRepositoryList(level)
 	// All users repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "allusers")) then
+	if or(section == ["all";"allusers"]) then
 		if fileinfo(allusers_repositories) <> [] then
 			url_list = mgetl(allusers_repositories);
 			for i=1:size(url_list,"*")
@@ -82,7 +89,7 @@ function repositories = atomsRepositoryList(level)
 	// User repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "user")) then
+	if or(section == ["all";"user"]) then
 		if fileinfo(user_repositories) <> [] then
 			url_list = mgetl(user_repositories);
 			for i=1:size(url_list,"*")

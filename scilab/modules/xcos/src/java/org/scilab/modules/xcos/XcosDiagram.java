@@ -211,8 +211,8 @@ public class XcosDiagram extends ScilabGraph {
 	mxMultiplicity[] multiplicities = new mxMultiplicity[2];
 
 	// Command Port as source can only go to Control Port
-	multiplicities[0] = new PortCheck(new ExplicitOutputPort(), new ExplicitInputPort(), "Data Output must be connected to Data Input");
-	multiplicities[1] = new PortCheck(new ExplicitInputPort(), new ExplicitOutputPort(), "Data Input must be connected to Data Output");
+	multiplicities[0] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, "Data Output must be connected to Data Input");
+	multiplicities[1] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort()}, "Data Input must be connected to Data Output");
 	// Control Port must be connected !
 //	multiplicities[1] = new PortCheck(false, "controlPort", null, null, 1,
 //				"n", Arrays.asList(new Object[] {"commandPort"}),

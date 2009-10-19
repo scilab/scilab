@@ -174,83 +174,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//			Object[] cells = (Object[]) evt.getArgs()[0];
-//		    for(int i = 0 ; i < cells.length ; i++){
-//		    	BasicBlock block = (BasicBlock)cells[i];
-//		    	if(block instanceof ExplicitInBlock){
-//		    		List<mxCell> inputs = getAllExplicitInBlock();
-//		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(inputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new ExplicitInputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}else if(block instanceof ImplicitInBlock){
-//		    		List<mxCell> inputs = getAllImplicitInBlock();
-//		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(inputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new ImplicitInputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//						mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}else if(block instanceof EventInBlock){
-//		    		List<mxCell> inputs = getAllEventInBlock();
-//		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(inputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new EventIntputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}else if(block instanceof ExplicitOutBlock){
-//		    		List<mxCell> outputs = getAllExplicitOutBlock();
-//		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(outputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new ImplicitInputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}else if(block instanceof ImplicitOutBlock){
-//		    		List<mxCell> outputs = getAllImplicitOutBlock();
-//		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(outputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new ImplicitOutputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//						mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}else if(block instanceof EventOutBlock){
-//		    		List<mxCell> outputs = getAllEventOutBlock();
-//		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-//		    		int countUnique = getBlocksConsecutiveUniqueValueCount(outputs);
-//		    		
-//		    		if(count == 1 && countUnique >= Integer.parseInt((String)block.getValue())){//1 for Me
-//		    			//container.addPort(new EventOuttputPort());
-//		    		}else{
-//						//getAsComponent().setCellWarning(block, "ta mere en short");
-//		    			System.err.println("orange : CELLS_ADDED");
-//						mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "orange");
-//		    		}
-//		    	}
-//		    }
 		    updateExportedPort();
 		}
 	    });
@@ -258,34 +181,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.CELLS_REMOVED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//			Object[] cells = (Object[]) evt.getArgs()[0];
-//		    for(int i = 0 ; i < cells.length ; i++){
-//    	    	child.getAsComponent().setCellWarning(cells[i], null);
-//		    }
-
-//
-//		    for(int i = 0 ; i < cells.length ; i++){
-//	    	BasicBlock block = (BasicBlock)cells[i];
-//		    	if(block instanceof ExplicitInBlock){
-//		    		blocks = getAllExplicitInBlock();
-//		    	}else if(block instanceof ImplicitInBlock){
-//		    		blocks = getAllImplicitInBlock();
-//		    	}else if(block instanceof EventInBlock){
-//		    		blocks = getAllEventInBlock();
-//		    	}else if(block instanceof ExplicitOutBlock){
-//		    		blocks = getAllExplicitOutBlock();
-//		    	}else if(block instanceof ImplicitOutBlock){
-//		    		blocks = getAllImplicitOutBlock();
-//		    	}else if(block instanceof EventOutBlock){
-//		    		blocks = getAllEventOutBlock();
-//		    	}
-//		    	else{
-//		    		continue;
-//		    	}
-//
-//		    	updateBlockWithValue(blocks, (String)block.getValue());
-//		    }
-//
 		    updateExportedPort();
 		}
 	    });

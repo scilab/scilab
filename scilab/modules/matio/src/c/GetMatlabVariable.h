@@ -60,10 +60,12 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version);
  * @param stkPos position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
+ * @param fieldNames structure fields names including "st" and "dims"
+ * @param nbFields number of fields including "st" and "dims"
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version);
+matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, char **fieldNames, int nbFields);
 
 /*
  * Get a Matlab Cell variable from stack

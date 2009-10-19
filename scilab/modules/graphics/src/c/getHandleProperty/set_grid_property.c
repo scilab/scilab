@@ -35,19 +35,19 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"grid") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "grid");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"grid") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 || nbCol > 3 )
   {
-    Scierror(999, _("Wrong size for argument: %s or %s expected.\n"),"1x2","1x3");
+    Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "grid", "1x2, 1x3");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -58,7 +58,7 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     int curValue = (int) values[i];
     if ( values[i] < -1 || !sciCheckColorIndex(pobj, curValue) )
     {
-      Scierror(999, _("Wrong value for argument: %d (no grid) or number of color expected.\n"),-1);
+      Scierror(999, _("Wrong value for '%s' property: Must be -1 or a valid color index.\n"), "grid");
       return SET_PROPERTY_ERROR ;
     }
     gridStyles[i] = curValue ;

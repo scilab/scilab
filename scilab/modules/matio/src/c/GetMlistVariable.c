@@ -30,6 +30,11 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       newStkPos = stkPos + Top - Rhs; 
       
       ilStruct = iadr(*Lstk(newStkPos));
+      if (*istk(ilStruct) < 0) /* Reference */
+        {
+          ilStruct = iadr(*istk(ilStruct + 1));
+        }
+
       nbFields = *istk(ilStruct+1);
   
       pointerSave = *Lstk(newStkPos);
@@ -37,7 +42,7 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
  
       /* FIRST LIST ENTRY: fieldnames */
       GetRhsVar(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, &fieldNames);
-      
+
       if (strcmp(fieldNames[0], "ce")==0)
         {
           *Lstk(newStkPos) = pointerSave;
@@ -47,8 +52,7 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       else if (strcmp(fieldNames[0], "st")==0)
         {
           *Lstk(newStkPos) = pointerSave;
-          freeArrayOfString(fieldNames, nbRow * nbFields);
-          return GetStructVariable(stkPos, name, matfile_version);
+          return GetStructVariable(stkPos, name, matfile_version, fieldNames, nbFields);
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {

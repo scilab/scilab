@@ -33,13 +33,13 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"rotation_style") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "rotation_style");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
-    Scierror(999, _("%s undefined for this object.\n"), "rotation_style") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -55,7 +55,8 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"unary","multiple");
+
+    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "rotation_style", "'unary'", "'multiple'");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

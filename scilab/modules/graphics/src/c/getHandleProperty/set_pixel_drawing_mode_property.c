@@ -34,20 +34,20 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, size_t stackPointer, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"pixel_drawing_mode") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "pixel_drawing_mode");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-	  Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+	  Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
 	  return SET_PROPERTY_ERROR ;
   }
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )
   {
-	  Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "pixel_drawing_mode", "and, andReverse, andInverted, clear, copy, copyInverted, equiv, invert, noop, nor, nand, or, orReverse, orInverted, set, xor");
 	  return SET_PROPERTY_ERROR ;
   }
 

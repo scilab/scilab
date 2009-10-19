@@ -13,11 +13,10 @@
 #include "GetMatlabVariable.h"
 #include "freeArrayOfString.h"
 
-matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
+matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, char **fieldNames, int nbFields)
 {
   int newStkPos = 0;
   int ilStruct = 0;
-  int nbFields = 0;
   int firstItemAdr = 0;
   int fieldIndex = 0;
   int firstValueAdr = 0, valueIndex = 0;
@@ -31,8 +30,6 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
   matvar_t *dimensionsVariable = NULL;
   matvar_t **structEntries = NULL;
 
-  char **fieldNames = NULL;
-
   newStkPos = stkPos + Top - Rhs; 
   
   ilStruct = iadr(*Lstk(newStkPos));
@@ -41,13 +38,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
       ilStruct = iadr(*istk(ilStruct + 1));
     }
 
-  nbFields = *istk(ilStruct+1);
-  
   firstItemAdr = sadr(ilStruct+2+nbFields+1);
-  
-  /* FIRST LIST ENTRY: fieldnames */
-  *Lstk(stkPos) = firstItemAdr;
-  GetRhsVar(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, &fieldNames);
   
   /* SECOND LIST ENTRY: dimensions */
   *Lstk(newStkPos) = firstItemAdr + *istk(ilStruct + 3) - 1; /* Address of the second list entry */
@@ -60,11 +51,15 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
     }
 
   /* OTHERS LIST ENTRIES: ALL STRUCT VALUES */
-  if ((structEntries = (matvar_t **) MALLOC (sizeof(matvar_t*)*(prodDims*nbFields+1))) == NULL)
+  if ((structEntries = (matvar_t **) MALLOC (sizeof(matvar_t*)*(prodDims*(nbFields-2)+1))) == NULL)
     {
       freeArrayOfString(fieldNames, nbRow * nbFields);
       Scierror(999, _("%s: No more memory.\n"), "GetStructVariable");
       return NULL;
+    }
+  for (K = 0; K < prodDims*(nbFields-2)+1; K++)
+    {
+      structEntries[K] = NULL;
     }
 
   if (prodDims == 1) /* Scalar struct array */
@@ -92,8 +87,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
             }
         }
     }
-  structEntries[prodDims*nbFields] = NULL;
 
-  freeArrayOfString(fieldNames, nbRow * nbFields);
+  //freeArrayOfString(fieldNames, nbRow * nbFields);
   return Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, dimensionsVariable->rank, dimensionsVariable->data, structEntries, 0);
 }
