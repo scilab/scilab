@@ -271,17 +271,6 @@ public class XcosDiagram extends ScilabGraph {
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker(this));
 
-	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new mxIEventListener()
-	{
-	    public void invoke(Object sender, mxEventObject evt)
-	    {
-		if(evt.getArgs()[0] instanceof SuperBlock){
-		    System.err.println("Super block ask refresh");
-		    refresh();
-		}
-	    }
-	});
-
 	addListener(XcosEvent.UPDATE_CELL_SIZE, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		System.err.println("[DEBUG] update cell size");
@@ -343,40 +332,44 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CELLS_ADDED is fired.
      */
     private class CellAddedTracker implements mxIEventListener {
-	private XcosDiagram diagram = null;
-	
-	public CellAddedTracker(XcosDiagram diagram) {
-	    this.diagram = diagram;
-	}
-	
-	public void invoke(Object source, mxEventObject evt) {
-		System.err.println("[DEBUG] CELLS_ADDED");
-		Object[] cells = (Object[]) evt.getArgs()[0];
-		for (int i = 0 ; i < cells.length ; ++i) {
-		    if (cells[i] instanceof SuperBlock) {
-			((SuperBlock) cells[i]).setParentDiagram(diagram);
-		    }
-		    else if (cells[i] instanceof BasicBlock) {
-			getModel().beginUpdate();
+    	private XcosDiagram diagram = null;
 
-			if (getCellStyle(cells[i]).get("displayedLabel") != null) {
-			    ((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
-			}
+    	public CellAddedTracker(XcosDiagram diagram) {
+    		this.diagram = diagram;
+    	}
 
-			mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
-			mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
+    	public void invoke(Object source, mxEventObject evt) {
+    		System.err.println("[DEBUG] CELLS_ADDED");
+    		Object[] cells = (Object[]) evt.getArgs()[0];
+    		for (int i = 0 ; i < cells.length ; ++i) {
+    			if (cells[i] instanceof BasicBlock) {
+    				if(cells[i] instanceof AfficheBlock){
+    					AfficheBlock affich = (AfficheBlock)cells[i];
+    					Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+    				}
+    				
+    				((BasicBlock) cells[i]).setParentDiagram(diagram);
 
-			((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-				Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-				Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-			cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
-			refresh();
-			getModel().endUpdate();
-		    }
-		}
-	    }
+    				getModel().beginUpdate();
+
+    				if (getCellStyle(cells[i]).get("displayedLabel") != null) {
+    					((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
+    				}
+
+    				mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
+    				mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
+
+    				((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+    						Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+    						Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+    				cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
+    				refresh();
+    				getModel().endUpdate();
+    			}
+    		}
+    	}
     }
-    
+
     /**
      * cellResizedTracker
      * Called when mxEvents.CELLS_RESIZED is fired. 
@@ -388,7 +381,7 @@ public class XcosDiagram extends ScilabGraph {
 	    for (int i = 0 ; i < cells.length ; ++i) {
 		if (cells[i] instanceof BasicBlock) {
 		    getModel().beginUpdate();
-		    ((BasicBlock) cells[i]).updateBlockView((XcosDiagram) source);
+		    ((BasicBlock) cells[i]).updateBlockView();
 		    getModel().endUpdate();
 		}
 	    }
@@ -426,7 +419,7 @@ public class XcosDiagram extends ScilabGraph {
 			&& !(cell instanceof TextBlock)) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
-		    block.openBlockSettings(getContext(), diagram);
+		    block.openBlockSettings(getContext());
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
@@ -1066,29 +1059,26 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols){
-//	System.err.println("block = " + blockID);
-//	System.err.println("blockValue = " + blockValue[0]);
-//	System.err.println("Row = " + iRows);
-//	System.err.println("Col = " + iCols);
-	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
+    	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
 
-	if(block == null){
-	    System.err.println("block == null");
-	    return;
-	}
+    	if(block == null){
+    		System.err.println("block == null");
+    		return;
+    	}
 
-	String blockResult = "";
-	for(int i = 0 ; i < iRows ; i++){
-	    for(int j = 0 ; j < iCols ; j++){
-		if(iCols != 0){
-		    blockResult += "  ";
-		}
-		blockResult += blockValue[j * iRows + i];
-	    }
-	    blockResult += System.getProperty("line.separator");
-	}
-	block.setValue(blockResult);
-//	System.err.println("blockResult : \n" + blockResult);
+    	String blockResult = "";
+    	for(int i = 0 ; i < iRows ; i++){
+    		for(int j = 0 ; j < iCols ; j++){
+    			if(iCols != 0){
+    				blockResult += "  ";
+    			}
+    			blockResult += blockValue[j * iRows + i];
+    		}
+    		blockResult += System.getProperty("line.separator");
+    	}
+    	
+    	block.setValue(blockResult);
+    	block.getParentDiagram().refresh();
     }
 }
 

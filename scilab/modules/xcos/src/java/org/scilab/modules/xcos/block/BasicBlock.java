@@ -69,6 +69,7 @@ public class BasicBlock extends mxCell {
 	private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
+    private transient XcosDiagram parentDiagram = null;
 
     // TODO :
     // Must make this types evolve, but for now keep a strong link to Scilab
@@ -192,6 +193,15 @@ public class BasicBlock extends mxCell {
 	setGeometry(new mxGeometry(0,0,40,40));
     }
 
+    public XcosDiagram getParentDiagram() {
+        return parentDiagram;
+    }
+
+    public void setParentDiagram(XcosDiagram parentDiagram) {
+        this.parentDiagram = parentDiagram;
+    }
+
+    
     public String getInterfaceFunctionName() {
 	return interfaceFunctionName;
     }
@@ -441,6 +451,22 @@ public class BasicBlock extends mxCell {
     }
 
 
+    public void removePort(InputPort port){
+    	remove(port);
+    }
+    
+    public void removePort(OutputPort port){
+    	remove(port);
+    }
+    
+    public void removePort(CommandPort port){
+    	remove(port);
+    }
+    
+    public void removePort(ControlPort port){
+    	remove(port);
+    }
+
     public void addPort(InputPort port) {
 	insert(port);
 	updatePortsPosition(mxConstants.DIRECTION_EAST);
@@ -489,7 +515,24 @@ public class BasicBlock extends mxCell {
 	graphics.add(new ScilabDouble(sz)); // sz
 
 	graphics.add(new ScilabBoolean(true)); // flip
-
+	
+//	graphics.add(new ScilabBoolean(flip)); // flip
+//
+//	mxCellState state = getParentDiagram().getView().getState(this);
+//	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+//
+//	double theta = 0;
+//	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
+//		theta = 0;
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
+//		theta = 90;
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
+//		theta = 180;
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
+//		theta = 270;
+//	}
+//	graphics.add(new ScilabDouble(theta)); // theta
+	
 	graphics.add(new ScilabDouble(0)); // theta
 
 	graphics.add(getAllExprs()); // exprs
@@ -815,11 +858,10 @@ public class BasicBlock extends mxCell {
 	
     }
 
-    public void openBlockSettings(String context, XcosDiagram diagram) {
+    public void openBlockSettings(String context) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
-	final XcosDiagram parent = diagram;
 	try {
 	    tempOutput = File.createTempFile("xcos",".hdf5");
 	    tempInput = File.createTempFile("xcos",".hdf5");
@@ -847,8 +889,8 @@ public class BasicBlock extends mxCell {
 		    Signal.wait(tempInput.getAbsolutePath());
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-		    updateBlockSettings(parent,modifiedBlock);
-		    parent.fireEvent(XcosEvent.ADD_PORTS);
+		    updateBlockSettings(getParentDiagram(),modifiedBlock);
+		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS);
 		    
 		    //tempOutput.delete();
 		    //tempInput.delete();
@@ -867,12 +909,14 @@ public class BasicBlock extends mxCell {
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
-	result.append("Block Name : "+getInterfaceFunctionName()+"<br>");
-	result.append("Block Style : "+getStyle()+"<br>");
-	result.append("Input ports : "+getAllInputPorts().size()+"<br>");
-	result.append("Output ports : "+getAllOutputPorts().size()+"<br>");
-	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
-	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
+	result.append("Block Address : " + this + "<br>");
+	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
+	result.append("Block Style : " + getStyle() + "<br>");
+	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
+	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
+	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
+	result.append("Command ports : " + getAllCommandPorts().size() + "<br>");
+	result.append("Diagram : " + getParentDiagram() + "<br>");
 	//exprs
 	if (getExprs() != null) {
 	    result.append("Exprs : "+getExprs().toString()+"<br>");
@@ -950,17 +994,17 @@ public class BasicBlock extends mxCell {
 
     public void toggleFlip(XcosDiagram graph) {
 
-	flip = !flip;
-	
-	if(flip){
-    	    mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_WEST);
-	}
-	else {
-	    mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-	}
-	
-	List<InputPort> inputs = getAllInputPorts();
-	List<OutputPort> outputs = getAllOutputPorts();
+    	flip = !flip;
+
+    	if(flip){
+    		mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_WEST);
+    	}
+    	else {
+    		mxUtils.setCellStyles(graph.getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+    	}
+
+    	List<InputPort> inputs = getAllInputPorts();
+    	List<OutputPort> outputs = getAllOutputPorts();
 
     	if(flip){//change coordinate to flip I/O ports
     		for(int i = 0 ; i < inputs.size() ; i++){
@@ -988,7 +1032,7 @@ public class BasicBlock extends mxCell {
     		}
     	}
     }
-    
+
     
     public void toggleAntiClockwiseRotation(XcosDiagram graph) {
 	mxCellState state = graph.getView().getState(this);
@@ -1143,16 +1187,16 @@ public class BasicBlock extends mxCell {
 	}
     }
 
-    public void updateBlockView(XcosDiagram graph) {
-	if (graph.getView() != null && graph.getView().getState(this) != null) {
-	    mxCellState state = graph.getView().getState(this);
+    public void updateBlockView() {
+	if (getParentDiagram().getView() != null && getParentDiagram().getView().getState(this) != null) {
+	    mxCellState state = getParentDiagram().getView().getState(this);
 	    String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
 	    currentBlockDirection = mxConstants.DIRECTION_EAST;
 	    updatePortsPosition(currentBlockDirection);
-	    rotatePorts(graph, getAllInputPorts(), getDataPortsDirection(currentBlockDirection));
-	    rotatePorts(graph, getAllOutputPorts(), getDataPortsDirection(currentBlockDirection));
-	    rotatePorts(graph, getAllCommandPorts(), getEventPortsDirection(currentBlockDirection));
-	    rotatePorts(graph, getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
+	    rotatePorts(getParentDiagram(), getAllInputPorts(), getDataPortsDirection(currentBlockDirection));
+	    rotatePorts(getParentDiagram(), getAllOutputPorts(), getDataPortsDirection(currentBlockDirection));
+	    rotatePorts(getParentDiagram(), getAllCommandPorts(), getEventPortsDirection(currentBlockDirection));
+	    rotatePorts(getParentDiagram(), getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
 	}
     }
     

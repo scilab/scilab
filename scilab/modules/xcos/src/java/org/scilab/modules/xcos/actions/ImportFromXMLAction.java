@@ -25,8 +25,11 @@ public class ImportFromXMLAction extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	Document document = null;
+
+	String sci = System.getenv("SCI");
+
 	try {
-	    document = mxUtils.parse(mxUtils.readFile("/tmp/testexport.xml"));
+	    document = mxUtils.parse(mxUtils.readFile( sci + "/testexport.xml"));
 	} catch (IOException e1) {
 	    // TODO Auto-generated catch block
 	    e1.printStackTrace();

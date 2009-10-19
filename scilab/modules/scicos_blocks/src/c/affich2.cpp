@@ -56,7 +56,6 @@ extern "C" void affich2(scicos_block *block,int flag)
 
 	pstValue = (char**)MALLOC(sizeof(char*) * iRowsIn * iColsIn);
 
-	fprintf(stderr, "flag = %d\nblock = %d\nvalue = %f\n\n", flag, iBlock, pdblReal[0]);
 	//functions
 	switch(flag)
 	{
