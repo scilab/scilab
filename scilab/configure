@@ -15941,7 +15941,7 @@ fi
    else
       LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
-   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread"
+   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
    # -lpthread because of packaging bug in jhdf5
       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for h5JNIFatalError in -ljhdf5" >&5
 $as_echo_n "checking for h5JNIFatalError in -ljhdf5... " >&6; }
@@ -15986,7 +15986,7 @@ else
 fi
 
       LDFLAGS=$LDFLAGS_save
-   fi
+    fi
 
 #################
 ## ocaml which only called when using Scicos
