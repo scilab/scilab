@@ -28,7 +28,7 @@ function [scicos_ver]=find_scicos_version(scs_m)
 //** 21/08/07: Alan, inital revision
 //**
 
-scicos_ver = "scicos4.2"
+scicos_ver = "scicos2.2"
 
 if type(scs_m)==17 then
   //case for diagrams >= 4.2
