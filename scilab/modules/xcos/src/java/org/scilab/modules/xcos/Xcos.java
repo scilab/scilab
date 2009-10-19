@@ -96,6 +96,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 import com.mxgraph.swing.mxGraphOutline;
 
@@ -115,6 +116,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 
 	/** Palette creation */
 	static {
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		
 		paletteThread = new Thread() {
 			public void run() {
 				// Add a default Java bloc in HashMap

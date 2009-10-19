@@ -657,6 +657,8 @@ Bug fixes:
 
 * bug 4925 fixed - verbose option of the optim function crashs on Windows.
 
+* bug 4926 fixed - Can not save a structure in a MAT-file using savematfile.
+
 * bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
 
 * bug 4928 fixed -  x_mdialog crashes when more default values than labels.
@@ -665,3 +667,4 @@ Bug fixes:
 
 * bug 4964 fixed - set or get 'format_n' property from an axes crash scilab.
 
+* bug 4966 fixed - execstr([]) should return [].

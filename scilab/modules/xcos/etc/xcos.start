@@ -10,20 +10,13 @@
 // Load  functions libraries
 // =============================================================================
 load('SCI/modules/xcos/macros/lib');
-
-load('SCI/modules/scicos/macros/scicos_scicos/lib');
-
-for theLib=scicos_pal_libs
-  load("SCI/modules/scicos_blocks/macros/" + theLib + "/lib");
-end
-clear thLib
-
+// =============================================================================
 // Add help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
 	//add_module_help_chapter("XCos");
 end
-
+// =============================================================================
 // Add demos
 // =============================================================================
 if WITH_DEMOS then
@@ -31,3 +24,4 @@ if WITH_DEMOS then
 	//add_demo(gettext('XCos'),pathdemos);
 	//clear pathdemos;
 end
+// =============================================================================

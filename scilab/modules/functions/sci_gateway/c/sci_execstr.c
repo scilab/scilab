@@ -23,7 +23,6 @@
 extern int C2F(intexecstr)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 #define ERRCATCH_KEYWORD "errcatch"
-#define ERRCATCH_KEYWORD "errcatch"
 #define MESSAGE_KEYWORD "m"
 #define MESSAGE_DEFAULT_KEYWORD "n"
 /*--------------------------------------------------------------------------*/
@@ -55,6 +54,39 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 		{
 			printError(&strErr, 0);
 			return 0;
+		}
+
+		/* execstr([])*/
+		if (iType1 == sci_matrix)
+		{
+			int m1 = 0, n1 = 0;
+
+			strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			if ((m1 == n1) && (m1 == 0)) /* [] */
+			{
+				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
+
+				LhsVar(1) = Rhs + 1;
+
+				C2F(putlhsvar)();
+				return 0;
+			}
+			else
+			{
+				Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+				return 0;
+			}
 		}
 
 		if (iType1 != sci_strings)

@@ -32,7 +32,7 @@ int set_isoview_property( sciPointObj * pobj, size_t stackPointer, int valueType
 	int b =  (int)FALSE;
 	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
 	{
-		Scierror(999, _("%s property does not exist for this handle.\n"),"isoview") ;
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview") ;
 		return SET_PROPERTY_ERROR ;
 	}
 
