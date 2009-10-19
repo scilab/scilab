@@ -88,7 +88,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private final String IN = "IN";
 	private final String OUT = "OUT";
-	private final String TABULATION = "  ";
 	private final int BOOLS = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
@@ -99,7 +98,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	private int currentLevelIdent = 0;
 	private String currentStringIndent = "";
-	
+	private String tabulation = "  ";
 	
 	
 	
@@ -278,6 +277,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * DOCUMENT COLORISATION END
 	 */
 
+	public String getTabulation(){ return tabulation ; }
 
 	/**
 	 * DOCUMENT INDENTATION START
@@ -327,13 +327,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		// if it's a middle keyword we remove a tab only for this line and then return to normal indent
 		if ( matcherInOut.find(0)){
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
-			currentStringIndent += TABULATION;
+			currentStringIndent += getTabulation();
 			
 		// if close keyword we remove a tab 
 		}else if (matcherOut.find(0)) {
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
 		}else {
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
@@ -342,10 +342,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// we make the difference of open/close keywords of the line we've just indent to know
 		// how to indent the next one 
 		while (matcherIn.find()){
-			currentStringIndent += TABULATION;
+			currentStringIndent += getTabulation();
 		}
 		while (matcherOut.find()){
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 		}
 		//System.out.println(lineToIndent);
 		//System.out.println(indentLevel);
@@ -472,23 +472,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 			if (!matcherPrevIn.find(0)){
 			
-				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(TABULATION, "") , null);
-				endPosition -= (currentSpace.length() - previousSpace.replaceFirst(TABULATION, "").length() );
-				currentSpace += TABULATION;
+				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+				endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
+				currentSpace += getTabulation();
 			}else{
-				if ( currentSpace.replaceFirst(TABULATION, "").length() ==   previousSpace.length())  {
+				if ( currentSpace.replaceFirst(getTabulation(), "").length() ==   previousSpace.length())  {
 					this.replace(currentLineStart, currentSpace.length(),previousSpace , null);
 					endPosition -= (currentSpace.length() - previousSpace.length() );
 					
 				}
-					previousSpace +=TABULATION;
+					previousSpace += getTabulation();
 			}
 			
 			
 			/* strcuture keyword which are supposed to close a structure (end, endfunction ...  ) */
 		}else if (  matcherOut.find(0) ){
-			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(TABULATION, "") , null);
-			endPosition -= (currentSpace.length() - previousSpace.replaceFirst(TABULATION, "").length() );
+			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+			endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
 			currentLevelIdent --;
 			
 		}else {
@@ -502,13 +502,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// more open keywords than close ones
 		if ( i > 0 ){
 			for (int j =0; j < i; j++){
-				tabToAdd += TABULATION;
+				tabToAdd += getTabulation();
 			}
 			this.insertString(endPosition, tabToAdd + currentSpace , null);
 		// less open keywords than close ones	
 		}else if (i < 0 ) {
 			for (int j =  0; j > i; j--){
-				previousSpace =  previousSpace.replaceFirst(TABULATION, "");
+				previousSpace =  previousSpace.replaceFirst(getTabulation(), "");
 			}
 			this.insertString(endPosition, previousSpace , null);
 		// no open/close keyword
