@@ -208,18 +208,16 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[1];
+	mxMultiplicity[] multiplicities = new mxMultiplicity[2];
 
 	// Command Port as source can only go to Control Port
-	multiplicities[0] = new PortCheck(true, "commandPort", "type", "Command", 1,
-		"1", Arrays.asList(new Object[] { "Control" }),
-		"Command Port Must Have 1 Control Port",
-		"Control Port Must Connect to Command Port", true);
+	multiplicities[0] = new PortCheck(new ExplicitOutputPort(), new ExplicitInputPort(), "Data Output must be connected to Data Input");
+	multiplicities[1] = new PortCheck(new ExplicitInputPort(), new ExplicitOutputPort(), "Data Input must be connected to Data Output");
 	// Control Port must be connected !
-	//	multiplicities[1] = new mxMultiplicity(false, "controlPort", null, null, 1,
-	//			"n", Arrays.asList(new Object[] {"commandPort"}),
-	//			"Block Should be controled",
-	//			"Command port should connect to Control", true);
+//	multiplicities[1] = new PortCheck(false, "controlPort", null, null, 1,
+//				"n", Arrays.asList(new Object[] {"commandPort"}),
+//				"Block Should be controled",
+//				"Command port should connect to Control", true);
 
 
 	//	// Source nodes needs 1..2 connected Targets
@@ -248,6 +246,7 @@ public class XcosDiagram extends ScilabGraph {
 	//	multiplicities[2] = new mxMultiplicity(false, "Source", null, null, 0,
 	//			"0", null, "Source Must Have No Incoming Edge", null, true);
 	setMultiplicities(multiplicities);
+	getAsComponent().validateGraph();
 
     }
 
@@ -270,7 +269,7 @@ public class XcosDiagram extends ScilabGraph {
 	});
 
 	// Add a listener to track when model is changed
-	// getModel().addListener(XcosEvent.CHANGE, new ModelTracker(this));
+	getModel().addListener(XcosEvent.CHANGE, new ModelTracker(this));
 
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new mxIEventListener()
 	{
@@ -337,15 +336,15 @@ public class XcosDiagram extends ScilabGraph {
      * modelTracker
      * Called when mxEvents.CHANGE occurs on a model
      */
-//    private class ModelTracker implements mxIEventListener {
-//	private XcosDiagram graph = null;
-//
-//	public ModelTracker(XcosDiagram graph) {
-//	    this.graph = graph;
-//	}
-//
-//	public void invoke(Object source, mxEventObject evt) {
-//	    System.err.println("[DEBUG] Model just changed");
+    private class ModelTracker implements mxIEventListener {
+	private XcosDiagram graph = null;
+
+	public ModelTracker(XcosDiagram graph) {
+	    this.graph = graph;
+	}
+
+	public void invoke(Object source, mxEventObject evt) {
+	    System.err.println("[DEBUG] Model just changed");
 //	    List changes = (List) evt.getArgAt(0);
 //	    for (int i = 0 ; i < changes.size() ; ++i) {
 //		System.err.println("args[" + i + "] = " + changes.get(i));
@@ -362,9 +361,9 @@ public class XcosDiagram extends ScilabGraph {
 //		    }
 //		}
 //	    }
-//	    getAsComponent().validateGraph();
-//	}
-//    }
+	    getAsComponent().validateGraph();
+	}
+    }
 
     /**
      * cellResizedTracker
