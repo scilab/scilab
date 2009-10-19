@@ -28,21 +28,22 @@
 /*------------------------------------------------------------------------*/
 int set_fractional_font_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if (   sciGetEntityType(pobj) != SCI_SUBWIN
-      && sciGetEntityType(pobj) != SCI_TEXT
-      && sciGetEntityType(pobj) != SCI_LABEL
-      && sciGetEntityType(pobj) != SCI_AXES
-      && sciGetEntityType(pobj) != SCI_LEGEND)
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"fractional_font");
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if (   sciGetEntityType(pobj) != SCI_SUBWIN
+		&& sciGetEntityType(pobj) != SCI_TEXT
+		&& sciGetEntityType(pobj) != SCI_LABEL
+		&& sciGetEntityType(pobj) != SCI_AXES
+		&& sciGetEntityType(pobj) != SCI_LEGEND)
+	{
+		Scierror(999, _("%s property does not exist for this handle.\n"),"fractional_font");
+		return SET_PROPERTY_ERROR ;
+	}
 
-  int b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "fractional_font");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
-  
-  sciSetIsUsingFractionalMetrics(pobj, b);
+	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "fractional_font");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  return SET_PROPERTY_SUCCEED;
+	sciSetIsUsingFractionalMetrics(pobj, b);
+
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

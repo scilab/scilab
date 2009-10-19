@@ -23,7 +23,7 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 BOOL isParameterHandle( int type )
 {

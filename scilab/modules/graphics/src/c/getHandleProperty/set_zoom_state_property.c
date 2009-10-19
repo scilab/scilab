@@ -26,38 +26,39 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "PloEch.h"
-
+#include "BOOL.h"
 /*------------------------------------------------------------------------*/
 int set_zoom_state_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	int b = (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if(b)
-  { 
-    if(sciGetZooming(pobj))
-    {
-      Scierror(999, "Object is already zoomed.\n");
-      return SET_PROPERTY_ERROR;
-    }
-    else
-    {
-      Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n");
-      return SET_PROPERTY_ERROR;
-    }
-  }
-  else
-  { 
-    unzoom();
-    return sciSetZooming(pobj, FALSE);
-  }
+	if(b)
+	{ 
+		if(sciGetZooming(pobj))
+		{
+			Scierror(999, "Object is already zoomed.\n");
+			return SET_PROPERTY_ERROR;
+		}
+		else
+		{
+			Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n");
+			return SET_PROPERTY_ERROR;
+		}
+	}
+	else
+	{ 
+		unzoom();
+		return sciSetZooming(pobj, FALSE);
+	}
 
-  return SET_PROPERTY_SUCCEED;
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

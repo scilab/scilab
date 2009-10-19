@@ -31,17 +31,20 @@
 /*------------------------------------------------------------------------*/
 int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	int b =  (int)FALSE;
 	if (pobj == NULL)
 	{
 		pobj = sciGetCurrentSubWin();
 	}
 
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_clear");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_clear");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if(b==TRUE)
-    return sciSetAddPlot(pobj, FALSE);
-  return sciSetAddPlot(pobj, TRUE);
+	if(b==TRUE)
+	{
+		return sciSetAddPlot(pobj, FALSE);
+	}
+	return sciSetAddPlot(pobj, TRUE);
 }
 /*------------------------------------------------------------------------*/
 
