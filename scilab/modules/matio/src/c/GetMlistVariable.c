@@ -30,6 +30,11 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       newStkPos = stkPos + Top - Rhs; 
       
       ilStruct = iadr(*Lstk(newStkPos));
+      if (*istk(ilStruct) < 0) /* Reference */
+        {
+          ilStruct = iadr(*istk(ilStruct + 1));
+        }
+
       nbFields = *istk(ilStruct+1);
   
       pointerSave = *Lstk(newStkPos);
