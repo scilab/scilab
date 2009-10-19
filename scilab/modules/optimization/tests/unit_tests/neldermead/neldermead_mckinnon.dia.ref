@@ -6,6 +6,13 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- ENGLISH IMPOSED -->
+// There is a Warning message in the .dia of this test,
+// with respect to the conditionning of the direction matrix.
+// This is an expected message, because the simplex is degenerated
+// after the first optimization, which has failed.
+// The restart allows to compute a new simplex and makes the 
+// optimization converge toward the good point.
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -174,9 +181,9 @@ nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 nm = neldermead_restart ( nm );
-Attention:
-la matrice est presque singulière ou mal conditionnée. rcond =    6.6651D-13
-calcul de la solution des moindres carrés. (voir lsq).
+Warning :
+matrix is close to singular or badly scaled. rcond =    6.6651D-13
+computing least squares solution. (see lsq).
 
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -269,9 +276,9 @@ nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-restartflag",1);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_search(nm);
-Attention:
-la matrice est presque singulière ou mal conditionnée. rcond =    6.6651D-13
-calcul de la solution des moindres carrés. (voir lsq).
+Warning :
+matrix is close to singular or badly scaled. rcond =    6.6651D-13
+computing least squares solution. (see lsq).
 
 // Check status
 status = neldermead_get(nm,"-status");
