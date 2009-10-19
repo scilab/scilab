@@ -1,0 +1,43 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - pierre.lando@scilab.org
+//
+//// This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+//
+// <-- Non-regression test for bug 4964 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4964
+//
+// <-- Short Description -->
+//   set or get 'format_n' property from an axes crash scilab.
+plot2d(1:10,1:10,1,"020")
+drawaxis(x=2:7,y=4,dir='u',tics='v')
+e=gce();
+e.format_n
+ ans  =
+ 
+    
+e.format_n='%0.0fcm'
+ e  =
+ 
+Handle of type "Axis" with properties:
+======================================
+parent: Axes
+visible = "on"
+tics_direction = "top"
+xtics_coord = [2,3,4,5,6,7]
+ytics_coord = 4
+tics_color = -1
+tics_segment = "on"
+tics_style = "v"
+sub_tics = 2
+tics_labels = ["2cm","3cm","4cm","5cm","6cm","7cm"]
+labels_font_size = 0
+labels_font_color = -1
+fractional_font = "off"
+clip_state = "off"
+clip_box = []
+user_data = []
