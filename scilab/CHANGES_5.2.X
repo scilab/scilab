@@ -665,3 +665,4 @@ Bug fixes:
 
 * bug 4964 fixed - set or get 'format_n' property from an axes crash scilab.
 
+* bug 4966 fixed - execstr([]) should return [].
