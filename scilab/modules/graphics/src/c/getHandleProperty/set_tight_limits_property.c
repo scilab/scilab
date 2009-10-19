@@ -29,17 +29,18 @@
 /*------------------------------------------------------------------------*/
 int set_tight_limits_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tight_limits");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
-  
-  pSUBWIN_FEATURE (pobj)->tight_limits=b;
-  return SET_PROPERTY_SUCCEED ;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tight_limits");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	pSUBWIN_FEATURE (pobj)->tight_limits = b;
+	return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
 

@@ -55,7 +55,7 @@ function options = optimset (varargin)
   end
   // Set ivar : index of input variable.
   // The variable ivar allows to make a loop over input arguments.
-  if modulo(rhs,2)<>0 then
+  if ( modulo(rhs,2)<>0 ) then
     ivar = 1;
   else
     ivar = 0;
@@ -68,7 +68,14 @@ function options = optimset (varargin)
     ivar = ivar + 1;
     key = varargin(ivar);
     ivar = ivar + 1;
+    // Use funcprot to enable the set of a function into the variable "value".
+    // If not, a warning message is triggered, when a double value 
+    // is stored into "value" after a function has already been 
+    // stored in it.
+    prot = funcprot();
+    funcprot(0);
     value = varargin(ivar);
+    funcprot(prot);
     options = optimset_configure (options,key,value);
   end
 endfunction

@@ -613,6 +613,10 @@ Bug fixes:
 
 * bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
 
+* bug 4780 fixed - The insertion point goes to the end of the document at each newly entered char.
+		   Once unchecked The Document/Colorize menu item is impossible to check again.
+		   If there is no selected line and one execute the Execute/EvaluateSelection menu a java exeception is reported
+
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
 * bug 4792 fixed - macro name too long

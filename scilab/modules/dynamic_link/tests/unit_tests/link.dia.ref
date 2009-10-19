@@ -27,21 +27,21 @@ if ~isdir(TMP_DIR) then bugmes();quit;end;
     '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
-mputl(f1,TMP_DIR+filesep()+'fooc.c');
+mputl(f1, TMP_DIR + filesep() + 'fooc.c');
 cur_dir = pwd();
 chdir(TMP_DIR);
-//creating the shared library: a Makefile and a loader are
+//creating the shared library: a Makefile and a loader are 
 //generated, the code is compiled and a shared library built.
-ilib_for_link('fooc','fooc.c',[],"c");
-// load the shared library
-exec loader.sce;
+ilib_for_link('fooc', 'fooc.c', [], "c"); 
+// load the shared library 
 link('show');
 // call the new linked entry point
-a=linspace(0,%pi,10);b=5;
-y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d');
+a = linspace(0, %pi, 10);
+b = 5;
+y1 = call('fooc', a, 2, 'd', b, 3, 'd', size(a,1), 4, 'i', size(a,2), 5, 'i', 'out', size(a), 1, 'd');
 // check
-r = y1-(sin(a)+b);
-if or( r <> zeros(1,10) ) then bugmes();quit;end
+r = y1 - ( sin(a) + b );
+if (or(abs(r - zeros(1,10))> %eps * 10)) then bugmes();quit;end
 // ulink() all libraries
 ulink();
 //remove TMP_DIR

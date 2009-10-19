@@ -212,15 +212,15 @@ close();
 //
 // Use several output functions
 //
-function outfun ( x , optimValues , state )
+function outfun2 ( x , optimValues , state )
   scf ( fig1 );
   plot( x(1),x(2),'.');
 endfunction
-function outfun2 ( x , optimValues , state )
+function outfun3 ( x , optimValues , state )
   scf ( fig2 );
   plot( x(1),x(2),'o');
 endfunction
-myfunctions = list ( outfun , outfun2 );
+myfunctions = list ( outfun2 , outfun3 );
 fig1 = scf(1000);
 fig2 = scf(1001);
 opt = optimset ( "OutputFcn" , myfunctions );
@@ -252,15 +252,15 @@ close();
 //
 // Use several plot functions
 //
-function plotfun ( x , optimValues , state )
+function plotfun2 ( x , optimValues , state )
   scf ( fig1 );
   plot( x(1),x(2),'.');
 endfunction
-function plotfun2 ( x , optimValues , state )
+function plotfun3 ( x , optimValues , state )
   scf ( fig2 );
   plot( x(1),x(2),'o');
 endfunction
-myfunctions = list ( plotfun , plotfun2 );
+myfunctions = list ( plotfun2 , plotfun3 );
 fig1 = scf(1000);
 fig2 = scf(1001);
 opt = optimset ( "PlotFcns" , myfunctions );
