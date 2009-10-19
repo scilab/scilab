@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -30,10 +29,9 @@ public class EvaluateSelectionAction extends DefaultAction {
 		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
 		String selection = getEditor().getTextPane().getSelectedText();
 		if (selection == null) {
-			SwingScilabMessageBox msgBox = new SwingScilabMessageBox();
-			msgBox.setMessage("Selection is empty, please select text to be evaluated.");
-			msgBox.displayAndWait();
+			this.setEnabled(false);
 		} else {
+			this.setEnabled(true);
 			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 		}
 	}
