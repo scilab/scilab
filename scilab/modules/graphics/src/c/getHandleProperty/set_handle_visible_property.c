@@ -29,16 +29,17 @@
 /*------------------------------------------------------------------------*/
 int set_handle_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if (sciGetEntityType (pobj) != SCI_UIMENU)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"handle_visible") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if (sciGetEntityType (pobj) != SCI_UIMENU)
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"handle_visible") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  pUIMENU_FEATURE(pobj)->handle_visible = b;
-  return SET_PROPERTY_SUCCEED;
+	pUIMENU_FEATURE(pobj)->handle_visible = b;
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
