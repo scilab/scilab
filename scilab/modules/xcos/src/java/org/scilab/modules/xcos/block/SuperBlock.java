@@ -42,8 +42,6 @@ import com.mxgraph.util.mxUtils;
 public class SuperBlock extends BasicBlock {
 
     private transient SuperBlockDiagram child = null;
-    private transient XcosDiagram parentDiagram = null;
-
  
     public SuperBlock(){
 	super();
@@ -56,19 +54,19 @@ public class SuperBlock extends BasicBlock {
 	setStyle("SUPER_f");
     }
     
-    public XcosDiagram getParentDiagram() {
-        return parentDiagram;
-    }
-
-    public void setParentDiagram(XcosDiagram parentDiagram) {
-        this.parentDiagram = parentDiagram;
-    }
-
-    public void openBlockSettings(String context, XcosDiagram diagram) {
+    public void openBlockSettings(String context) {
 	this.setLocked(true);
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
 	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+		int blockCount = child.getModel().getChildCount(child.getDefaultParent());
+	    for(int i = 0 ; i < blockCount ; i++){
+		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
+		    if(cell instanceof BasicBlock){
+		    	BasicBlock block = (BasicBlock)cell;
+		    	block.setParentDiagram(child);
+		    }
+	    }
 	}
 	else {
 	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
@@ -101,7 +99,7 @@ public class SuperBlock extends BasicBlock {
 	return result.toString();
     }
 
-    private class SuperBlockDiagram extends XcosDiagram implements Serializable {
+    private class SuperBlockDiagram extends XcosDiagram {
 	private SuperBlock container = null;
 
 	public SuperBlockDiagram(SuperBlock superBlock) {
@@ -156,58 +154,57 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 		    Object[] cells = (Object[]) evt.getArgs()[0];
-
 		    for(int i = 0 ; i < cells.length ; i++){
-			BasicBlock block = (BasicBlock)cells[i];
-			if(block instanceof ExplicitInBlock){
-			    List<mxCell> inputs = getAllExplicitInBlock();
-			    int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				container.addPort(new ExplicitInputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}else if(block instanceof ImplicitInBlock){
-			    List<mxCell> inputs = getAllImplicitInBlock();
-			    int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				//container.addPort(new ImplicitInputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}else if(block instanceof EventInBlock){
-			    List<mxCell> inputs = getAllEventInBlock();
-			    int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				//container.addPort(new EventIntputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}else if(block instanceof ExplicitOutBlock){
-			    List<mxCell> outputs = getAllExplicitOutBlock();
-			    int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				//container.addPort(new ImplicitInputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}else if(block instanceof ImplicitOutBlock){
-			    List<mxCell> outputs = getAllImplicitOutBlock();
-			    int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				//container.addPort(new ImplicitOutputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}else if(block instanceof EventOutBlock){
-			    List<mxCell> outputs = getAllEventOutBlock();
-			    int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-			    if(count == 1){//1 for Me
-				//container.addPort(new EventOuttputPort());
-			    }else{
-				mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-			    }
-			}
+		    	BasicBlock block = (BasicBlock)cells[i];
+		    	if(block instanceof ExplicitInBlock){
+		    		List<mxCell> inputs = getAllExplicitInBlock();
+		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			container.addPort(new ExplicitInputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}else if(block instanceof ImplicitInBlock){
+		    		List<mxCell> inputs = getAllImplicitInBlock();
+		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			//container.addPort(new ImplicitInputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}else if(block instanceof EventInBlock){
+		    		List<mxCell> inputs = getAllEventInBlock();
+		    		int count = getBlocksWithValueCount(inputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			//container.addPort(new EventIntputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}else if(block instanceof ExplicitOutBlock){
+		    		List<mxCell> outputs = getAllExplicitOutBlock();
+		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			//container.addPort(new ImplicitInputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}else if(block instanceof ImplicitOutBlock){
+		    		List<mxCell> outputs = getAllImplicitOutBlock();
+		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			//container.addPort(new ImplicitOutputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}else if(block instanceof EventOutBlock){
+		    		List<mxCell> outputs = getAllEventOutBlock();
+		    		int count = getBlocksWithValueCount(outputs, (String)block.getValue());
+		    		if(count == 1){//1 for Me
+		    			//container.addPort(new EventOuttputPort());
+		    		}else{
+		    			mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
+		    		}
+		    	}
 		    }
 		    updateExportedPort();
 		}
@@ -503,104 +500,104 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedExplicitInputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllExplicitInBlock());
-	List<ExplicitInputPort> ports = getAllExplicitInputPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllExplicitInBlock());
+    	List<ExplicitInputPort> ports = getAllExplicitInputPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new ExplicitInputPort());
-	portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new ExplicitInputPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 
     private void updateExportedImplicitInputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllImplicitInBlock());
-	List<ImplicitInputPort> ports = getAllImplicitInputPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllImplicitInBlock());
+    	List<ImplicitInputPort> ports = getAllImplicitInputPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new ImplicitInputPort());
-	    portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new ImplicitInputPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	    portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 
     private void updateExportedEventInputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllEventInBlock());
-	List<ControlPort> ports = getAllControlPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllEventInBlock());
+    	List<ControlPort> ports = getAllControlPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new ControlPort());
-	    portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new ControlPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	    portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 
     private void updateExportedExplicitOutputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllExplicitOutBlock());
-	List<ExplicitOutputPort> ports = getAllExplicitOutputPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllExplicitOutBlock());
+    	List<ExplicitOutputPort> ports = getAllExplicitOutputPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new ExplicitOutputPort());
-	    portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new ExplicitOutputPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	    portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 
     private void updateExportedImplicitOutputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllImplicitOutBlock());
-	List<ImplicitOutputPort> ports = getAllImplicitOutputPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllImplicitOutBlock());
+    	List<ImplicitOutputPort> ports = getAllImplicitOutputPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new ImplicitOutputPort());
-	    portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new ImplicitOutputPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	    portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 
     private void updateExportedEventOutputPort(){
-	int blockCount = getBlocksUniqueValueCount(getAllEventOutBlock());
-	List<CommandPort> ports = getAllCommandPorts();
+    	int blockCount = getBlocksUniqueValueCount(getAllEventOutBlock());
+    	List<CommandPort> ports = getAllCommandPorts();
 
-	int portCount = ports.size();
+    	int portCount = ports.size();
 
-	while(blockCount > portCount){ //add if required
-	    addPort(new CommandPort());
-	    portCount++;
-	}
+    	while(blockCount > portCount){ //add if required
+    		addPort(new CommandPort());
+    		portCount++;
+    	}
 
-	while(portCount > blockCount){ //remove if required
-	    ports.remove(ports.size() - 1);
-	    portCount = ports.size();
-	}
+    	while(portCount > blockCount){ //remove if required
+    		removePort(ports.get(portCount - 1));
+    		portCount--;
+    	}
     }
 }

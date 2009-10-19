@@ -28,8 +28,9 @@ public class ExportToXMLAction extends DefaultAction {
 	XcosCodec codec = new XcosCodec();
 	String xml = mxUtils.getXml(codec.encode(getGraph(e)));
 
+	String sci = System.getenv("SCI");
 	try {
-	    mxUtils.writeFile(xml, "/tmp/testexport.xml");
+	    mxUtils.writeFile(xml, sci + "/testexport.xml");
 	} catch (IOException e1) {
 	    // TODO Auto-generated catch block
 	    e1.printStackTrace();

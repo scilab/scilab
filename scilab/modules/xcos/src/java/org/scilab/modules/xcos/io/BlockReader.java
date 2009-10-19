@@ -121,7 +121,7 @@ public class BlockReader {
 
 					blocks.add(currentBlock);
 					minX = Math.min(minX, currentBlock.getGeometry().getX());
-					minY = Math.min(minY, currentBlock.getGeometry().getY());
+					minY = Math.min(minY, currentBlock.getGeometry().getY()/* - currentBlock.getGeometry().getHeight()*/);
 				}
 			} catch (BlockReaderException e) {
 				WARNING(" Fail reading Block " + (i + 1));
@@ -129,9 +129,16 @@ public class BlockReader {
 				return null;
 			}
 		}
+		
+		double offsetX = 0;
+		offsetX = -minX + 20;
+
+		double offsetY = 0;
+		offsetY = -minY + 20;
+		
 		for (int i = 0; i < blocks.size(); ++i) {
-			blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX + 20));
-			blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY + 20));
+			blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
+			blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + offsetY);
 		}
 		result.put("Blocks", blocks);
 
@@ -195,10 +202,8 @@ public class BlockReader {
 						double[][] linkPoint = new double[link.get(1).getHeight() - 2][2]; 
 						for(int point = 0 ; point < link.get(1).getHeight() - 2 ; point++){
 							linkPoint[point] = getLinkPoint(link, point);
-							System.err.println("Read point :(" + linkPoint[point][0] + "," + linkPoint[point][1] + ")");
 							linkPoint[point][0] += Math.abs(minX + 20);
 							linkPoint[point][1] += Math.abs(minY + 20);
-							System.err.println("Read replaced point :(" + linkPoint[point][0] + "," + linkPoint[point][1] + ")");
 						}
 						linkPoints.add(linkPoint);
 					}
@@ -256,7 +261,6 @@ public class BlockReader {
 
 
 		if(index < link.get(1).getHeight() - 2){
-			System.err.println("Construct point :(" + ((ScilabDouble)link.get(1)).getRealPart()[index + 1][0] + "," + ((ScilabDouble)link.get(2)).getRealPart()[index + 1][0] + ")");
 
 			double[] ret = new double[2];
 			ret[0] = ((ScilabDouble)link.get(1)).getRealPart()[index + 1][0];
@@ -649,11 +653,12 @@ public class BlockReader {
 			throw new WrongTypeException();
 		}
 		
-		if(((ScilabBoolean)graphicsStructure.get(3)).getData()[0][0] == true){
-			System.out.println("flip = true");
+		boolean flip;
+		if(((ScilabBoolean)graphicsStructure.get(3)).getData()[0][0] == false){
+			flip = true;
 			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
 		}else{
-			System.out.println("flip = false");
+			flip = false;
 			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
 		}
 		
@@ -661,21 +666,21 @@ public class BlockReader {
 			throw new WrongTypeException();
 		}
 
-//		int theta = (int)((ScilabDouble)graphicsStructure.get(4)).getRealPart()[0][0];
+		int theta = (int)((ScilabDouble)graphicsStructure.get(4)).getRealPart()[0][0];
 		
-//		//convert negative value
-//		theta += 360;
-//		theta %= 360;
-//		System.out.println("theta : " + theta);
-//		if(theta > 45 && theta <= 135){
-//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
-//		}else if(theta > 45 && theta <= 135){
-//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
-//		}else if(theta > 135 && theta <= 225){
-//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
-//		}else if(theta > 225 && theta <= 315){
-//			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
-//		} 
+		//convert negative value
+		theta += 360;
+		theta %= 360;
+		
+		if(theta > 45 && theta <= 135){
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+		}else if(theta > 45 && theta <= 135){
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
+		}else if(theta > 135 && theta <= 225){
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+		}else if(theta > 225 && theta <= 315){
+			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
+		} 
 		
 		// exprs 
 		if (!(graphicsStructure.get(5) instanceof ScilabString) 
