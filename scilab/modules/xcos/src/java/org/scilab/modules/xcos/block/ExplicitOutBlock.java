@@ -42,7 +42,7 @@ public class ExplicitOutBlock extends BasicBlock {
 			BasicBlock modifiedBlock) {
 
 		String oldValue = (String)getValue();
-   		super.updateBlockSettings(diagram, modifiedBlock);
+   		super.updateBlockSettings(modifiedBlock);
 		String newValue = (String)getValue();
    		
 		if(oldValue.compareTo(newValue) != 0){
