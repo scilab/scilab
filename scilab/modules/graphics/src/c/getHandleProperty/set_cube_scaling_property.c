@@ -31,33 +31,16 @@
 /*------------------------------------------------------------------------*/
 int set_cube_scaling_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "cube_scaling");
-    return SET_PROPERTY_ERROR ;
-  }
-
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"cube_scaling") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"cube_scaling") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( isStringParamEqual(stackPointer, "on" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->cube_scaling = TRUE ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off") )
-  {
-    pSUBWIN_FEATURE (pobj)->cube_scaling = FALSE ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "cube_scaling", "on", "off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
-
+  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "cube_scaling");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+  
+  pSUBWIN_FEATURE (pobj)->cube_scaling = b;
+  return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

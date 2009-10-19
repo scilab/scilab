@@ -132,6 +132,10 @@ int sci_set(char *fname, unsigned long fname_len)
 			{
 				GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
+			else if ( valueType == sci_boolean )
+			{
+				GetRhsVar(3,MATRIX_OF_BOOLEAN_DATATYPE,&numrow3,&numcol3,&l3);
+			}
 			else  if ( valueType == sci_handles )
 			{
 				GetRhsVar(3,GRAPHICAL_HANDLE_DATATYPE,&numrow3,&numcol3,&l3);

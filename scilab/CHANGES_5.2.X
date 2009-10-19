@@ -651,9 +651,11 @@ Bug fixes:
 
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
 
+* bug 4925 fixed - verbose option of the optim function crashs on Windows.
+
 * bug 4927 fixed - When the user try to plot some data in semilogx or semilogy, a blank plot windows is displayed.
 
-* bug 4925 fixed - verbose option of the optim function crashs on Windows.
+* bug 4928 fixed -  x_mdialog crashes when more default values than labels.
 
 * bug 4943 fixed - execstr does not check input arguments.
 

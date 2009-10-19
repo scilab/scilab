@@ -28,7 +28,6 @@
 /*------------------------------------------------------------------------*/
 int set_fractional_font_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-
   if (   sciGetEntityType(pobj) != SCI_SUBWIN
       && sciGetEntityType(pobj) != SCI_TEXT
       && sciGetEntityType(pobj) != SCI_LABEL
@@ -39,25 +38,11 @@ int set_fractional_font_property( sciPointObj * pobj, size_t stackPointer, int v
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "fractional_font");
-    return SET_PROPERTY_ERROR ;
-  }
+  int b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "fractional_font");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+  
+  sciSetIsUsingFractionalMetrics(pobj, b);
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    sciSetIsUsingFractionalMetrics(pobj, TRUE);
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    sciSetIsUsingFractionalMetrics(pobj, FALSE);
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "fractional_font", "on", "off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
+  return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
