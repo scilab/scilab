@@ -41,8 +41,8 @@ import com.mxgraph.util.mxUtils;
 
 public class SuperBlock extends BasicBlock {
 
-    private SuperBlockDiagram child = null;
-    private XcosDiagram parentDiagram = null;
+    private transient SuperBlockDiagram child = null;
+    private transient XcosDiagram parentDiagram = null;
 
  
     public SuperBlock(){
