@@ -29,19 +29,19 @@
 /*------------------------------------------------------------------------*/
 int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int nblegends=pLEGEND_FEATURE(pobj)->nblegends;
+  int nblegends;
   int i;
   if ( sciGetEntityType(pobj) != SCI_LEGEND )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "Legend") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"links");
     return SET_PROPERTY_ERROR ;
   }
+  nblegends=pLEGEND_FEATURE(pobj)->nblegends;
   if (nbRow*nbCol != nblegends) {
-    Scierror(999, _("%s Invalid dimension of the assigned handle, expected dimension is %d.\n"), "links",nblegends) ;
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "links", nblegends);
     return SET_PROPERTY_ERROR ;
   }
 
-  sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
   for (i=0; i<nblegends; i++) {
     pLEGEND_FEATURE(pobj)->tabofhandles[i]=getHandleFromStack( stackPointer+i );
   }

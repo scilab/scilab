@@ -31,7 +31,7 @@ int set_mark_foreground_property( sciPointObj * pobj, size_t stackPointer, int v
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"mark_foreground") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_foreground");
     return SET_PROPERTY_ERROR ;
   }
 

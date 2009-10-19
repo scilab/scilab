@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.block;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,17 +107,38 @@ public class SuperBlock extends BasicBlock {
 	}
 
 	protected void updateBlockWithValue(List<mxCell> blocks, String checkValue){
-	    int count = getBlocksWithValueCount(blocks, checkValue);
-	    if(count != 0){
-		List<mxCell> list = getBlocksWithValue(blocks, checkValue);
-		mxUtils.setCellStyles(getModel(), new Object[] {list.get(0)}, mxConstants.STYLE_FILLCOLOR, "white");
-
-		Object[] objs = new Object[list.size() - 1];
-		for(int j = 1 ; j < list.size() ; j++){
-		    objs[j-1] = list.get(j);
-		}
-		mxUtils.setCellStyles(getModel(), objs, mxConstants.STYLE_FILLCOLOR, "red");
-	    }
+		
+		updateAllBlocksColor();
+//		//block with same value
+//		int count = getBlocksWithValueCount(blocks, checkValue);
+//		if(count != 0){
+//			List<mxCell> list = getBlocksWithValue(blocks, checkValue);
+//			System.err.println("white : updateBlockWithValue");
+//			mxUtils.setCellStyles(getModel(), new Object[] {list.get(0)}, mxConstants.STYLE_FILLCOLOR, "white");
+//
+//			Object[] objs = new Object[list.size() - 1];
+//			for(int j = 1 ; j < list.size() ; j++){
+//				getParentDiagram().getAsComponent().setCellWarning(list.get(j), "ta mere en short");
+//				objs[j-1] = list.get(j);
+//				System.err.println("orange : updateBlockWithValue");
+//			}
+//			mxUtils.setCellStyles(getModel(), objs, mxConstants.STYLE_FILLCOLOR, "orange");
+//		}else{ //count == 0
+//			//block with bigger value
+//			int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
+//			int val = Integer.parseInt(checkValue);
+//			
+//			if(countUnique < val){
+//				for(int j = 1 ; j < blocks.size() ; j++){
+//					int val2 = Integer.parseInt((String)((BasicBlock)blocks.get(j)).getValue());
+//					if(val2 > val){
+//						System.err.println("orange : updateBlockWithValue");
+//						mxUtils.setCellStyles(getModel(), new Object[]{blocks.get(j)}, mxConstants.STYLE_FILLCOLOR, "orange");
+//					}
+//				}
+//			}
+//		}
+		refresh();
 	}
 
 	public void closeDiagram() {
@@ -153,190 +173,56 @@ public class SuperBlock extends BasicBlock {
 	    super.installListeners();
 	    addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-		    Object[] cells = (Object[]) evt.getArgs()[0];
-		    for(int i = 0 ; i < cells.length ; i++){
-			if(cells[i] instanceof BasicBlock) {
-			    BasicBlock block = (BasicBlock)cells[i];
-			    if(block instanceof ExplicitInBlock){
-				List<mxCell> inputs = getAllExplicitInBlock();
-				int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    container.addPort(new ExplicitInputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }else if(block instanceof ImplicitInBlock){
-				List<mxCell> inputs = getAllImplicitInBlock();
-				int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    //container.addPort(new ImplicitInputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }else if(block instanceof EventInBlock){
-				List<mxCell> inputs = getAllEventInBlock();
-				int count = getBlocksWithValueCount(inputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    //container.addPort(new EventIntputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }else if(block instanceof ExplicitOutBlock){
-				List<mxCell> outputs = getAllExplicitOutBlock();
-				int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    //container.addPort(new ImplicitInputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }else if(block instanceof ImplicitOutBlock){
-				List<mxCell> outputs = getAllImplicitOutBlock();
-				int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    //container.addPort(new ImplicitOutputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }else if(block instanceof EventOutBlock){
-				List<mxCell> outputs = getAllEventOutBlock();
-				int count = getBlocksWithValueCount(outputs, (String)block.getValue());
-				if(count == 1){//1 for Me
-				    //container.addPort(new EventOuttputPort());
-				}else{
-				    mxUtils.setCellStyles(getModel(), new Object[] {block}, mxConstants.STYLE_FILLCOLOR, "red");
-				}
-			    }
-			}
-		    }
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.CELLS_REMOVED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-		    Object[] cells = (Object[]) evt.getArgs()[0];
-		    List<mxCell> blocks = null;
-
-		    for(int i = 0 ; i < cells.length ; i++){
-			if (cells[i] instanceof BasicBlock) {
-			    BasicBlock block = (BasicBlock)cells[i];
-			    if(block instanceof ExplicitInBlock){
-				blocks = getAllExplicitInBlock();
-			    }else if(block instanceof ImplicitInBlock){
-				blocks = getAllImplicitInBlock();
-			    }else if(block instanceof EventInBlock){
-				blocks = getAllEventInBlock();
-			    }else if(block instanceof ExplicitOutBlock){
-				blocks = getAllExplicitOutBlock();
-			    }else if(block instanceof ImplicitOutBlock){
-				blocks = getAllImplicitOutBlock();
-			    }else if(block instanceof EventOutBlock){
-				blocks = getAllEventOutBlock();
-			    }
-			    else{
-				continue;
-			    }
-
-			    updateBlockWithValue(blocks, (String)block.getValue());
-			}
-		    }
-
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> inputs = getAllExplicitInBlock();
-
-		    updateBlockWithValue(inputs, oldVal);
-		    updateBlockWithValue(inputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> inputs = getAllImplicitInBlock();
-
-		    updateBlockWithValue(inputs, oldVal);
-		    updateBlockWithValue(inputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> inputs = getAllEventInBlock();
-
-		    updateBlockWithValue(inputs, oldVal);
-		    updateBlockWithValue(inputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> outputs = getAllExplicitOutBlock();
-
-		    updateBlockWithValue(outputs, oldVal);
-		    updateBlockWithValue(outputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> outputs = getAllImplicitOutBlock();
-
-		    updateBlockWithValue(outputs, oldVal);
-		    updateBlockWithValue(outputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
 
 	    addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-		    Object[] cells = (Object[]) evt.getArgs();
-
-		    String oldVal = (String)cells[0]; 
-		    String newVal = (String)cells[1];
-
-		    List<mxCell> outputs = getAllEventOutBlock();
-
-		    updateBlockWithValue(outputs, oldVal);
-		    updateBlockWithValue(outputs, newVal);
+			updateAllBlocksColor();
 		    updateExportedPort();
 		}
 	    });
@@ -464,47 +350,98 @@ public class SuperBlock extends BasicBlock {
 	return list;
     }
 
-    protected int getBlocksUniqueValueCount(List<mxCell> blocks){
-	if(blocks == null){
-	    return 0;
-	}
+    protected int getBlocksConsecutiveUniqueValueCount(List<mxCell> blocks){
+    	if(blocks == null){
+    		return 0;
+    	}
 
-	int count = 0;
-	List<String> list = new ArrayList<String>();
+    	int count = blocks.size();
+    	int[] array = new int[blocks.size()];
 
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    boolean find = false;
-	    String value = ((String)((BasicBlock)blocks.get(i)).getValue());
-	    for(int j = 0 ; j < list.size() ; j++){
-		if(list.get(j).compareTo(value) == 0){
-		    find = true;
-		    break;
-		}
-	    }
-	    if(find == false){
-		list.add(value);
-		count++;
-	    }
-	}
-	return count;
+    	//initialize
+    	for(int i = 0 ; i < array.length; i++){
+    		array[i] = 0;
+   		}
+    	
+    	//populate
+    	for(int i = 0 ; i < array.length; i++){
+    		int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    		if(index <= array.length){
+    			array[index - 1] = 1;	
+    		}
+    	}
+    	
+    	//parse
+    	for(int i = 0 ; i < array.length; i++){
+    		if(array[i] == 0){
+    			count = i;
+    			break;
+    		}
+    	}
+    	
+    	return count;
+    }
+
+    private void updateAllBlocksColor(){
+    	updateBlocksColor(getAllExplicitInBlock());
+    	updateBlocksColor(getAllImplicitInBlock());
+    	updateBlocksColor(getAllEventInBlock());
+
+    	updateBlocksColor(getAllExplicitOutBlock());
+    	updateBlocksColor(getAllImplicitOutBlock());
+    	updateBlocksColor(getAllEventOutBlock());
+    }
+    
+    private void updateBlocksColor(List<mxCell> blocks){
+
+    	try{
+    		child.getModel().beginUpdate();
+    		if(blocks == null || blocks.size() == 0){
+    			return;
+    		}
+
+    		int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
+    		System.err.println("countUnique : " + countUnique);
+    		boolean isDone[] = new boolean[countUnique];
+
+    		//Initialize
+    		for(int i = 0 ; i < countUnique ; i++){
+    			isDone[i] = false;
+    		}
+
+
+    		for(int i = 0 ; i < blocks.size() ; i++){
+    			int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    			System.err.println("index : " + index);
+    			if(index > countUnique || isDone[index - 1] == true){
+    				child.getAsComponent().setCellWarning(blocks.get(i), "ta mere en short");
+    			}else{
+    				isDone[index - 1] = true;
+    				child.getAsComponent().setCellWarning(blocks.get(i), null);
+    			}
+    		}
+    	}finally{
+    		child.getModel().endUpdate();
+    	}
     }
 
     private void updateExportedPort(){
-	if(child == null){
-	    return;
-	}
+    	if(child == null){
+    		return;
+    	}
 
-	updateExportedExplicitInputPort();
-	updateExportedImplicitInputPort();
-	updateExportedEventInputPort();
-	updateExportedExplicitOutputPort();
-	updateExportedImplicitOutputPort();
-	updateExportedEventOutputPort();
-	getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED, new mxEventObject(new Object[] {this}));
+    	updateExportedExplicitInputPort();
+    	updateExportedImplicitInputPort();
+    	updateExportedEventInputPort();
+    	updateExportedExplicitOutputPort();
+    	updateExportedImplicitOutputPort();
+    	updateExportedEventOutputPort();
+    	getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED, new mxEventObject(new Object[] {this}));
     }
 
+
     private void updateExportedExplicitInputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllExplicitInBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
     	List<ExplicitInputPort> ports = getAllExplicitInputPorts();
 
     	int portCount = ports.size();
@@ -521,7 +458,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedImplicitInputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllImplicitInBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
     	List<ImplicitInputPort> ports = getAllImplicitInputPorts();
 
     	int portCount = ports.size();
@@ -538,7 +475,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedEventInputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllEventInBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
     	List<ControlPort> ports = getAllControlPorts();
 
     	int portCount = ports.size();
@@ -555,7 +492,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedExplicitOutputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllExplicitOutBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
     	List<ExplicitOutputPort> ports = getAllExplicitOutputPorts();
 
     	int portCount = ports.size();
@@ -572,7 +509,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedImplicitOutputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllImplicitOutBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
     	List<ImplicitOutputPort> ports = getAllImplicitOutputPorts();
 
     	int portCount = ports.size();
@@ -589,7 +526,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     private void updateExportedEventOutputPort(){
-    	int blockCount = getBlocksUniqueValueCount(getAllEventOutBlock());
+    	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
     	List<CommandPort> ports = getAllCommandPorts();
 
     	int portCount = ports.size();
