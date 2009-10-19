@@ -210,20 +210,19 @@ function result = atomsRemove(packages,allusers)
 		
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
+		this_package_section   = remove_package_list(i,5);
 		this_package_details   = atomsToolboxDetails(this_package_name,this_package_version);
 		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version,allusers);
 		this_package_directory = this_package_insdet(4);
 		
 		// Add the package to list of package to remove
-		atomsToremoveRegister(this_package_name,this_package_version,allusers);
+		atomsToremoveRegister(this_package_name,this_package_version,this_package_section);
 		
 		// Check if the package is loaded or not
 		if atomsIsLoaded(this_package_name,this_package_version) then
 			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
 			continue;
 		end
-		
-		
 		
 		atomsDisp(msprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version ));
 		
@@ -272,8 +271,7 @@ function result = atomsRemove(packages,allusers)
 		
 		// Remove this toolbox from the list of installed packages
 		// =====================================================================
-		this_package_allusers = (this_package_insdet(3) == "allusers");
-		atomsInstallUnregister(this_package_name,this_package_version,this_package_allusers);
+		atomsInstallUnregister(this_package_name,this_package_version,this_package_section);
 		
 		// Remove this toolbox from the list of autoloaded packages
 		// =====================================================================
@@ -300,7 +298,7 @@ function result = atomsRemove(packages,allusers)
 		
 		// Del the package from the list of package to remove
 		// =====================================================================
-		atomsToremoveUnregister(this_package_name,this_package_version,allusers);
+		atomsToremoveUnregister(this_package_name,this_package_version,this_package_section);
 		
 		// Fill the result matrix
 		// =====================================================================
