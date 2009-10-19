@@ -30,7 +30,6 @@ public class EventInBlock extends BasicBlock {
 	public EventInBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("CLKINV_f");
-		setStyle("CLKINV_f");
 		setValue("1");
 	}
 

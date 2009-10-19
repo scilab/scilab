@@ -72,27 +72,51 @@ function result = atomsRemove(packages,allusers)
 		ATOMSVERBOSE = %F;
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Allusers/user management
+	//   - If allusers is equal to "all" or to True, packages located in both 
+	//     "allusers" and "user" sections will removed.
+	//   - If allusers is equal to "allusers", only packages located in the
+	//     "allusers" section will be removed.
+	//   - If allusers is equal to "user" or to False, only packages located in 
+	//     the "user" will be removed
 	// =========================================================================
 	
-	if rhs == 1 then
-		// By default, uninstall the package (if we have write access
-		// of course !)
+	if rhs <= 1 then
+		
+		// By default: 
+		//  → Remove packages located in both "allusers" and "user" sections if
+		//    we have the write access to SCI directory
+		//  → Remove only package located in the "user" sections otherwise
+		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			allusers = "all"; 
 		else
-			allusers = %F;
+			allusers = "user";
 		end
-	
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemove",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsRemove",2));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			chdir(initialpath);
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",1));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
+		if or(allusers==["all","allusers"]) & ~ atomsAUWriteAccess() then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,pathconvert(SCI+"/.atoms")));
 		end
@@ -122,7 +146,7 @@ function result = atomsRemove(packages,allusers)
 		
 		// Check if this package is installed
 		
-		if ~ atomsIsInstalled(package_names(i),package_versions(i),%T) then
+		if ~ atomsIsInstalled(package_names(i),package_versions(i),allusers) then
 			
 			// Print a warning if the package isn't installed
 			
@@ -132,18 +156,18 @@ function result = atomsRemove(packages,allusers)
 				atomsDisp(msprintf("\t%s (%s) isn''t installed\n",package_names(i),package_versions(i)));
 			end
 		
-		elseif (~ allusers) & (~ isempty(package_versions(i)) ) then
+		elseif (allusers=="user") & (~ isempty(package_versions(i)) ) then
 			
 			// The package is installed, now check if we have the right to
 			// uninstall it
 			
-			installed_details = atomsGetInstalledDetails(package_names(i),package_versions(i));
+			installed_details = atomsGetInstalledDetails(package_names(i),package_versions(i),allusers);
 			
 			if installed_details(3) == "allusers" then
 				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
 			end
 		
-		elseif (~ allusers) & isempty(package_versions(i)) then
+		elseif (allusers=="user") & isempty(package_versions(i)) then
 			
 			// Check if we have the right to remove at least one of the version
 			// of the package
@@ -157,6 +181,7 @@ function result = atomsRemove(packages,allusers)
 	
 	// Build the list of package to Uninstall
 	// =========================================================================
+	
 	remove_package_list = atomsRemoveList(packages,allusers);
 	
 	
@@ -186,7 +211,7 @@ function result = atomsRemove(packages,allusers)
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
 		this_package_details   = atomsToolboxDetails(this_package_name,this_package_version);
-		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
+		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version,allusers);
 		this_package_directory = this_package_insdet(4);
 		
 		// Add the package to list of package to remove

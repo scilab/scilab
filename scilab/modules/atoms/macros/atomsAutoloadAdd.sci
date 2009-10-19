@@ -50,26 +50,50 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAutoloadAdd",1,2));
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Allusers/user management
+	//   - If Allusers is True, module(s) will added to the "autoload" list of the 
+	//     "allusers" section :
+	//       → SCI/.atoms/autoloaded
+	//   - Otherwise, module(s) will added to the "autoload" list of the "user"
+	//     section
+	//       → SCIHOME/atoms/autoloaded
 	// =========================================================================
 	
-	if rhs == 2 then
-		// By default, The toolbox is autoloaded for all users (if we have write access of course !)
+	if rhs <= 2 then
+		
+		// By default: 
+		//  → Add the module to the "autoload" list of the "allusers" section
+		//    if we have the write access to SCI directory
+		//  → Add the module to the "autoload" list of the "user" section otherwise
+		
 		if atomsAUWriteAccess() then
 			allusers = %T; 
 		else
 			allusers = %F;
 		end
-	
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsAutoloadAdd",2));
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadAdd",3));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsAutoloadAdd",3));
+		end
+		
+		if allusers == "user" then
+			allusers = %F;
+		elseif allusers == "allusers" then
+			allusers = %T;
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
@@ -104,6 +128,19 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 		mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
 		for i=1:size(name,"*")
 			if ~ atomsIsInstalled(name(i),version(i)) then
+				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
+			end
+		end
+		error("");
+	end
+	
+	// A module installed in the user section cannot be add in the "autoload" list 
+	// of all users
+	
+	if allusers & (rhs>=3) & (~ atomsIsInstalled(name,version,"allusers")) then
+		mprintf(gettext("%s: The following modules are installed in the user section, you cannot add them in the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
+		for i=1:size(name,"*")
+			if ~ atomsIsInstalled(name(i),version(i),"allusers") then
 				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
 			end
 		end

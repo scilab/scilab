@@ -30,7 +30,6 @@ public class EventOutBlock extends BasicBlock {
 	public EventOutBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("CLKOUTV_f");
-		setStyle("CLKOUTV_f");
 		setValue("1");
 	}
 

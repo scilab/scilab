@@ -91,12 +91,6 @@ function result = atomsUpdate(name,allusers)
 	// =========================================================================
 	sciversion = strcat(string(getversion('scilab')) + ".");
 	
-	
-	// List all installed packages (needed for later)
-	// =========================================================================
-	package_installed = atomsGetInstalled();
-	
-	
 	// If name isn't defined or empty, get the full list of installed packages
 	// =========================================================================
 	

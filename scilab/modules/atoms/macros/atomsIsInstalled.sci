@@ -63,11 +63,20 @@ function res = atomsIsInstalled(name,version,allusers)
 		version = [];
 	end
 	
-	// allusers management
+	// "all", "user" section or "allusers" section packages ?
 	// =========================================================================
 	
 	if rhs < 3 then
 		allusers = %T;
+	else
+		// Just check if it's a boolean
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsIsInstalled",1));
+		end
+	end
+	
+	if (rhs>=3) & (type(allusers) == 10) & (and(allusers<>["user","allusers","all"])) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsIsInstalled",1));
 	end
 	
 	// Get the list of installed packages

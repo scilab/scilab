@@ -35,27 +35,44 @@ function packages = atomsGetInstalled(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsGetInstalled",1));
 	end
 	
-	// Load all packages, or just user packages ?
+	// Load all packages, "user" section or "allusers" section packages ?
 	// =========================================================================
 	
 	if rhs == 0 then
 		allusers = %T;
 	else
 		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetInstalled",1));
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalled",1));
 		end
+	end
+	
+	if (rhs>=1) & (type(allusers) == 10) & (and(allusers<>["user","allusers","all"])) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsGetInstalled",1));
 	end
 	
 	// Call atomsLoadInstalledMat
 	// =========================================================================
 	
-	if allusers then
-		// all packages
+	// all packages
+	// ------------------------------------
+	if ((type(allusers)==4) & allusers) | ..
+			((type(allusers)==10) & (allusers=="all")) then
 		packages = atomsLoadInstalledMat("all");
-	else
-		// user packages
+	
+	
+	// just "user" section packages
+	// ------------------------------------
+	elseif ((type(allusers)==4) & ~allusers) | ..
+			((type(allusers)==10) & (allusers=="user")) then
 		packages = atomsLoadInstalledMat(%F);
+	
+	
+	// just "user" section packages
+	// ------------------------------------
+	elseif (type(allusers)==10) & (allusers=="allusers") then
+		// just "allusers" section packages
+		packages = atomsLoadInstalledMat(%T);
 	end
 	
 endfunction

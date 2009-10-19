@@ -40,11 +40,31 @@ function res = atomsGetInstalledPath(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetInstalledPath",1,2));
 	end
 	
-	// allusers management
+	// Allusers/user management
 	// =========================================================================
 	
 	if rhs < 3 then
-		allusers = %T;
+		allusers = "all";
+	
+	else
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledPath",3));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledPath",3));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
+		end
+		
 	end
 	
 	// Get the list of installed packages
@@ -72,7 +92,7 @@ function res = atomsGetInstalledPath(name,version,allusers)
 			continue;
 		end
 		
-		res(i) = this_packages(4);
+		res(i) = this_packages(1,4);
 	end
 	
 	// Reshape the matrix

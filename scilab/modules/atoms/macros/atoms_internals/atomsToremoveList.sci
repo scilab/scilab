@@ -23,36 +23,62 @@ function toremove = atomsToremoveList(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsToremoveList",1));
 	end
 	
-	// Get only the "user" list or both "user" and "allusers" list
+	// Allusers/user management
+	//   - If allusers is equal to "all" or to True, packages located in both 
+	//     "allusers" and "user" sections will removed.
+	//   - If allusers is equal to "allusers", only packages located in the
+	//     "allusers" section will be removed.
+	//   - If allusers is equal to "user" or to False, only packages located in 
+	//     the "user" will be removed
 	// =========================================================================
 	
-	if rhs < 1 then
-		// By default, install for all users (if we have write access of course !)
+	if rhs <= 1 then
+		
+		// By default: 
+		//  → Remove packages located in both "allusers" and "user" sections if
+		//    we have the write access to SCI directory
+		//  → Remove only package located in the "user" sections otherwise
+		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			allusers = "all"; 
 		else
-			allusers = %F;
-		end
-	
-	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveList",1));
+			allusers = "user";
 		end
 		
-		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveList",2,pathconvert(SCI+"/.atoms")));
+	else
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveList",1));
 		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsToremoveList",1));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
+		end
+		
 	end
 	
 	// Define the path of the file that will record the change according to
 	// the "allusers" value
 	// =========================================================================
-	atoms_directories =  pathconvert(SCIHOME+"/atoms");
 	
-	if allusers then
-		atoms_directories = [ atoms_directories ; pathconvert(SCI+"/.atoms") ];
+	if allusers == "user" then
+		atoms_directories =  pathconvert(SCIHOME+"/atoms");
+	
+	elseif allusers == "allusers" then
+		atoms_directories =  pathconvert(SCI+"/.atoms");
+	
+	elseif allusers == "all" then
+		atoms_directories =  [ pathconvert(SCIHOME+"/atoms") ; pathconvert(SCI+"/.atoms") ];
+		
 	end
 	
 	// Get the toremove matrix
