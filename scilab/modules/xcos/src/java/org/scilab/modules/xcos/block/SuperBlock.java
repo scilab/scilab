@@ -188,16 +188,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//
-//			Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> inputs = getAllExplicitInBlock();
-//
-//		    updateBlockWithValue(inputs, oldVal);
-//		    updateBlockWithValue(inputs, newVal);
 		    updateExportedPort();
 		}
 	    });
@@ -205,16 +195,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//		    
-//			Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> inputs = getAllImplicitInBlock();
-//
-//		    updateBlockWithValue(inputs, oldVal);
-//		    updateBlockWithValue(inputs, newVal);
 		    updateExportedPort();
 		}
 	    });
@@ -222,16 +202,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//
-//			Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> inputs = getAllEventInBlock();
-//
-//		    updateBlockWithValue(inputs, oldVal);
-//		    updateBlockWithValue(inputs, newVal);
 		    updateExportedPort();
 		}
 	    });
@@ -239,16 +209,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//
-//		    Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> outputs = getAllExplicitOutBlock();
-//
-//		    updateBlockWithValue(outputs, oldVal);
-//		    updateBlockWithValue(outputs, newVal);
 		    updateExportedPort();
 		}
 	    });
@@ -256,16 +216,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//
-//		    Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> outputs = getAllImplicitOutBlock();
-//
-//		    updateBlockWithValue(outputs, oldVal);
-//		    updateBlockWithValue(outputs, newVal);
 		    updateExportedPort();
 		}
 	    });
@@ -273,16 +223,6 @@ public class SuperBlock extends BasicBlock {
 	    addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
-//
-//		    Object[] cells = (Object[]) evt.getArgs();
-//
-//		    String oldVal = (String)cells[0]; 
-//		    String newVal = (String)cells[1];
-//
-//		    List<mxCell> outputs = getAllEventOutBlock();
-//
-//		    updateBlockWithValue(outputs, oldVal);
-//		    updateBlockWithValue(outputs, newVal);
 		    updateExportedPort();
 		}
 	    });
