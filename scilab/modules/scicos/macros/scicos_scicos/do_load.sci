@@ -40,7 +40,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   scicos_debug(0); // set debug level to 0 for new diagram loaded
 
   current_version = get_scicos_version() ;
-  scicos_ver = "scicos2.2" //** default version,
+  scicos_ver = "scicos4.2" //** default version,
                            //** for latter version scicos_ver is stored in files
   
   if %scicos_demo_mode==1 then 
@@ -126,7 +126,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
         end
       end
     end
-    if scicos_ver=="scicos2.2" then
+    if scicos_ver=="scicos4.2" then
       if scs_m==[] then scs_m=x,end // for compatibility
     end
     if scicos_ver<>current_version then
