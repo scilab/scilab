@@ -20,7 +20,7 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 	// =========================================================================
 	
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToremoveRegister",3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsToremoveRegister",3));
 	end
 	
 	// Check input parameters type
@@ -34,15 +34,33 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsToremoveRegister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveRegister",3));
-	end
-	
 	// name and version must have the same size
 	// =========================================================================
 	
 	if or( size(name) <> size(version) ) then
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsToremoveRegister",1,2));
+	end
+	
+	// Allusers/user management
+	// =========================================================================
+	
+	if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveRegister",3));
+	end
+	
+	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveRegister",3));
+	end
+	
+	if allusers == "user" then
+		allusers = %F;
+	elseif allusers == "allusers" then
+		allusers = %T;
+	end
+	
+	// Check if we have the write access
+	if allusers & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveRegister",3,pathconvert(SCI+"/.atoms")));
 	end
 	
 	// Define the path of the file that will record the change according to

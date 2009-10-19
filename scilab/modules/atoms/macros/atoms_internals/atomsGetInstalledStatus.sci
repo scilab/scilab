@@ -9,14 +9,14 @@
 
 // Liste des versions installée de la toolbox "name"
 
-function res = atomsGetInstalledStatus(name,version)
+function res = atomsGetInstalledStatus(name,version,allusers)
 	
 	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 3 then
+	if rhs < 2 | rhs > 3 then
 		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledStatus",2,3));
 	end
 	
@@ -38,9 +38,36 @@ function res = atomsGetInstalledStatus(name,version)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetInstalledStatus",1,2));
 	end
 	
+	// Allusers/user management
+	// =========================================================================
+	
+	if rhs < 3 then
+		allusers = "all";
+	
+	else
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledDetails",3));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledDetails",3));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
+		end
+		
+	end
+	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled();
+	packages = atomsGetInstalled(allusers);
 	
 	// Loop on name
 	// =========================================================================
@@ -51,10 +78,10 @@ function res = atomsGetInstalledStatus(name,version)
 		packages_filtered = packages( find(packages(:,1) == name(i)) , : );
 		
 		// Filter on versions
-		packages_filtered = packages_filtered( find(packages_filtered(:,2) == version(i)) , 5 );
+		packages_filtered = packages_filtered( find(packages_filtered(:,2) == version(i)) , : );
 		
 		if ~ isempty(packages_filtered) then
-			res(i) = packages_filtered(1);
+			res(i) = packages_filtered(1,5);
 		else
 			res(i) = "";
 		end

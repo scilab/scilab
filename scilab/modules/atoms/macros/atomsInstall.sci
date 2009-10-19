@@ -84,22 +84,46 @@ function result = atomsInstall(packages,allusers)
 		ATOMSVERBOSE = %F;
 	end
 	
-	// Install for all users or just for me ?
+	// Allusers/user management
+	//   - If Allusers is True, packages will installed in the "allusers" section :
+	//       → SCI/contrib : location of the modules
+	//       → SCI/.atoms  : ATOMS system files
+	//   - Otherwise, packages will installed in the "user" section :
+	//       → SCIHOME/atoms : location of the modules & ATOMS system files
 	// =========================================================================
 	
-	if rhs == 1 then
-		// By default, install for all users (if we have write access of course !)
+	if rhs <= 1 then
+		
+		// By default: 
+		//  → Install in the "allusers" section if we have the write access to
+		//    SCI directory
+		//  → Install in the "user" otherwise
+		
 		if atomsAUWriteAccess() then
 			allusers = %T; 
 		else
 			allusers = %F;
 		end
-	
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstall",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsInstall",2));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+			chdir(initialpath);
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstall",2));
+		end
+		
+		if allusers == "user" then
+			allusers = %F;
+		elseif allusers == "allusers" then
+			allusers = %T;
 		end
 		
 		// Check if we have the write access
@@ -107,23 +131,6 @@ function result = atomsInstall(packages,allusers)
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
 		end
-	end
-	
-	// Define the "archives" directory path
-	// Create it if it's not exist
-	// =========================================================================
-	
-	if allusers then
-		archives_directory = pathconvert(SCI+"/contrib/archives");
-	else
-		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
-	end
-	
-	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
-		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-			"atomsInstall", ..
-			archives_directory));
 	end
 	
 	// Create needed directories
@@ -139,14 +146,31 @@ function result = atomsInstall(packages,allusers)
 	
 	if ~ isdir( atoms_directory ) & (mkdir( atoms_directory ) <> 1) then
 		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
 			atoms_directory));
 	end
 	
 	if ~ isdir(atoms_tmp_directory) & (mkdir(atoms_tmp_directory) <> 1) then
 		error(msprintf( ..
-			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
 			atoms_tmp_directory));
+	end
+	
+	// Define the "archives" directory path
+	// Create it if it's not exist
+	// =========================================================================
+	
+	if allusers then
+		archives_directory = pathconvert(SCI+"/contrib/archives");
+	else
+		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
+	end
+	
+	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
+			"atomsInstall", ..
+			archives_directory));
 	end
 	
 	// "Archive" installation
@@ -231,7 +255,7 @@ function result = atomsInstall(packages,allusers)
 	
 	// Get the install list
 	// =========================================================================
-	[install_package_list,dependency_tree] = atomsInstallList(packages);
+	[install_package_list,dependency_tree] = atomsInstallList(packages,allusers);
 	
 	// Loop on install_package_list to print if a package has to be installed
 	// or not
@@ -278,7 +302,6 @@ function result = atomsInstall(packages,allusers)
 				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
 				this_package_directory));
 		end
-		
 		
 		// "Repository" installation ; Download and Extract
 		// =====================================================================

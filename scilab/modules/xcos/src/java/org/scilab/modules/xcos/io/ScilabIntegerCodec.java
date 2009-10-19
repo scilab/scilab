@@ -79,11 +79,11 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
 		if (attr.getNodeName().compareToIgnoreCase(BUNSIGNED) == 0) { bUnsignedXMLPosition = i; }
 	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1 || bUnsignedXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+	    if (heightXMLPosition == -1 || widthXMLPosition == -1 ) { throw new UnrecognizeFormatException(); }
 
 	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
-	    boolean bUnsigned = Boolean.parseBoolean(attrs.item(widthXMLPosition).getNodeValue());
+	    boolean bUnsigned  = false; 
 
 	    long[][] data = new long[height][width];
 	    NodeList allValues = node.getChildNodes();
@@ -105,7 +105,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
 		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
 		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-		
+		bUnsigned  = Boolean.parseBoolean(dataAttributes.item(widthXMLPosition).getNodeValue());
 		data[line][column] = Long.parseLong(dataAttributes.item(valueXMLPosition).getNodeValue());
 		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
 	    }

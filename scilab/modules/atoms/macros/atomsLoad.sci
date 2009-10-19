@@ -9,7 +9,7 @@
 
 // Load one or several toolboxes
 
-function result = atomsLoad(name,version)
+function result = atomsLoad(name,version,alluser)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -24,8 +24,9 @@ function result = atomsLoad(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	rhs = argn(2);
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsLoad",1,2));
+	
+	if rhs < 1 | rhs > 3 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsLoad",1,3));
 	end
 	
 	// Check input parameters type
@@ -46,13 +47,41 @@ function result = atomsLoad(name,version)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsLoad",1,2));
 	end
 	
+	// Allusers/user management
+	// =========================================================================
+	
+	if rhs < 3 then
+		allusers = "all";
+	
+	else
+		
+		// Process the 2nd input argument : allusers
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsLoad",3));
+		end
+		
+		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsLoad",3));
+		end
+		
+		if allusers == %F then
+			allusers = "user";
+		elseif allusers == %T then
+			allusers = "all";
+		end
+		
+	end
+	
 	// If only one input argument, define the version (The Most Recent Version)
 	// =========================================================================
 	
-	if rhs<2 then
+	if (rhs<2) | (rhs>=2 & isempty(version)) then
+		
 		for i=1:size(name,"*")
 			
-			this_module_versions = atomsGetInstalledVers(name(i));
+			this_module_versions = atomsGetInstalledVers(name(i),allusers);
 			
 			if isempty(this_module_versions) then
 				error(msprintf(gettext("%s: No version of the module ''%s'' is installed.\n"),"atomsLoad",name(i)));
@@ -67,9 +96,9 @@ function result = atomsLoad(name,version)
 	// Check if the packages to load are installed
 	// =========================================================================
 	
-		if or( ~ atomsIsInstalled(name,version) ) then
+		if or( ~ atomsIsInstalled(name,version,allusers) ) then
 			for i=1:size(name,"*")
-				if ~atomsIsInstalled(name(i),version(i)) then
+				if ~atomsIsInstalled(name(i),version(i),allusers) then
 					error(msprintf(gettext("%s: the module ''%s - %s'' is not installed.\n"),"atomsLoad",name(i),version(i)));
 				end
 			end
@@ -225,7 +254,7 @@ function result = atomsLoad(name,version)
 			
 			mandatory_packages(childs(j,1)+" - "+childs(j,2)) = name(i)+" - "+version(i);
 			mandatory_packages_name(childs(j,1)) = childs(j,2);
-			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,1),childs(j,2)) ];
+			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,1),childs(j,2),allusers) ];
 			
 		end
 	end

@@ -30,7 +30,6 @@ public class ImplicitOutBlock extends BasicBlock {
 	public ImplicitOutBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("OUTIMPL_f");
-		setStyle("OUTIMPL_f");
 		setValue("1");
 	}
 

@@ -49,21 +49,30 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		// File totally read : register the latest toolbox
 		if i == (size(lines_in,"*")+1) then
 			
-			// Just check if this version is compatible with the current
-			// scilab version
-			
-			if isfield(current_toolbox,"ScilabVersion") then
-				if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-					this_toolbox(current_toolbox("Version")) = current_toolbox;
+			if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+				
+				if  ~ isfield(description_out,current_toolbox("Toolbox")) then
+					// Il s'agit de la première version de la toolbox trouvée
+					this_toolbox = struct();
+				else
+					// On récupère la liste des versions de cette toolbox
+					this_toolbox = description_out(current_toolbox("Toolbox"));
 				end
-			else
-				error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
-					"atomsDESCRIPTIONread",..
-					file_in,current_toolbox("Toolbox"),..
-					current_toolbox("Version")));
+				
+				if isfield(current_toolbox,"ScilabVersion") then
+					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					end
+				else
+					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+						"atomsDESCRIPTIONread",..
+						file_in,current_toolbox("Toolbox"),..
+						current_toolbox("Version")));
+				end
+				
+				description_out(current_toolbox("Toolbox")) = this_toolbox;
 			end
 			
-			description_out(current_toolbox("Toolbox")) = this_toolbox;
 			break;
 		end
 		

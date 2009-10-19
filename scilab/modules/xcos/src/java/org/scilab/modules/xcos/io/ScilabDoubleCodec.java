@@ -3,7 +3,6 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -37,7 +36,6 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 		String name = mxCodecRegistry.getName(obj.getClass());
 		Node node = enc.getDocument().createElement(name);
 
-		System.out.println("double to encode");
 		ScilabDouble scilabDouble = (ScilabDouble) obj;
 		mxCodec.setAttribute(node, WIDTH, scilabDouble.getWidth());
 		mxCodec.setAttribute(node, HEIGHT, scilabDouble.getHeight());
@@ -64,8 +62,6 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 		Object obj = null;
 		boolean isRealOnly = true ;
 		try {
-			System.err.println("*** SPECIAL DECODE ***");
-			System.err.println("*** node = "+node);
 			if (!(node instanceof Element)) { return null; }
 			obj = cloneTemplate(node);
 
@@ -113,9 +109,8 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 					isRealOnly = false ;
 					imgData[line][column] = Double.parseDouble(dataAttributes.item(imaginaryPartXMLPosition).getNodeValue());
 				}
-			//	System.err.println("&&&&&&&&&&&&&& I saw : "+realData[line][column]);
 			}
-			System.err.println("real data length " + realData.length);
+
 			((ScilabDouble) obj).setRealPart(realData);
 			if (!isRealOnly){
 				((ScilabDouble) obj).setImaginaryPart(imgData);
