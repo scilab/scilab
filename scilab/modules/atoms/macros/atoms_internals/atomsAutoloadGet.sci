@@ -9,7 +9,7 @@
 
 // Internal function
 
-function packages = atomsAutoloadGet(allusers)
+function packages = atomsAutoloadGet(section)
 	
 	rhs      = argn(2);
 	packages = [];
@@ -32,19 +32,19 @@ function packages = atomsAutoloadGet(allusers)
 	// =========================================================================
 	
 	if rhs < 1 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
-		if type(allusers) <> 10 then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadGet",1));
 		end
 		
-		if size(allusers,"*")<>1 then
+		if size(section,"*")<>1 then
 			error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsAutoloadGet",1));
 		end
 		
-		if and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadGet",1));
 		end
 		
@@ -53,14 +53,14 @@ function packages = atomsAutoloadGet(allusers)
 	// Define the needed paths
 	// =========================================================================
 	
-	allusers_autoload = pathconvert(SCI+"/.atoms/autoloaded",%F);
-	user_autoload     = pathconvert(SCIHOME+"/atoms/autoloaded",%F);
+	allusers_autoload = atomsPath("system","allusers") + "autoloaded";
+	user_autoload     = atomsPath("system","user") + "autoloaded";
 	autoloaded_files  = [];
 	
 	// All users autoload
 	// =========================================================================
 	
-	if or(allusers==["all";"allusers"]) then
+	if or(section==["all";"allusers"]) then
 		if fileinfo(allusers_autoload) <> [] then
 			autoloaded_files = [ autoloaded_files ; allusers_autoload "allusers" ];
 		end
@@ -69,7 +69,7 @@ function packages = atomsAutoloadGet(allusers)
 	// User repositories
 	// =========================================================================
 	
-	if or(allusers==["all";"user"]) then
+	if or(section==["all";"user"]) then
 		if fileinfo(user_autoload) <> [] then
 			autoloaded_files = [ autoloaded_files ; user_autoload "user" ];
 		end
@@ -89,12 +89,10 @@ function packages = atomsAutoloadGet(allusers)
 			current_name         = part(autoloaded(j),1:current_name_length-1);
 			current_version      = part(autoloaded(j),current_name_length+3:length(autoloaded(j)));
 			
-			if autoloaded_files(i,2) == "user" then
-				// user
-				current_path  = pathconvert(SCIHOME+"/atoms/"+current_name+"/"+current_version,%F); 
+			if atomsIsInstalled(current_name,current_version,"user") then
+				current_path = pathconvert(atomsPath("install","user")+current_name+"/"+current_version,%F);
 			else
-				// all users
-				current_path = pathconvert(SCI+"/contrib/"+current_name+"/"+current_version,%F);
+				current_path = pathconvert(atomsPath("install","allusers")+current_name+"/"+current_version,%F);
 			end
 			
 			packages = [ packages ; current_name current_version autoloaded_files(i,2) current_path];

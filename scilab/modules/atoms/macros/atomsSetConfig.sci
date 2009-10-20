@@ -49,7 +49,7 @@ function nbChanges = atomsSetConfig(field,value)
 	
 	// Define the path of the file that will record the change
 	// =========================================================================
-	atoms_directory =  pathconvert(SCIHOME+"/atoms");
+	atoms_directory =  atomsPath("system","user");
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

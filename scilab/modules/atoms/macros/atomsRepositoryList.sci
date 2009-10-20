@@ -59,8 +59,8 @@ function repositories = atomsRepositoryList(section)
 	// =========================================================================
 	
 	official_repositories = pathconvert(SCI+"/modules/atoms/etc/repositories",%F);
-	allusers_repositories = pathconvert(SCI+"/.atoms/repositories",%F);
-	user_repositories     = pathconvert(SCIHOME+"/atoms/repositories",%F);
+	allusers_repositories = atomsPath("system","allusers") + "repositories";
+	user_repositories     = atomsPath("system","user")     + "repositories";
 	
 	// official repositories
 	// =========================================================================

@@ -82,11 +82,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 	// the "section" value
 	// =========================================================================
 	
-	if section=="allusers" then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

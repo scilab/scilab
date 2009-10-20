@@ -33,7 +33,7 @@
 // C  : The package is a child of one package
 // B  : The package will be broken (It's a parent but cannot be uninstall)
 
-function remList = atomsRemoveList(packages,allusers)
+function remList = atomsRemoveList(packages,section)
 	
 	remList = [];
 	
@@ -54,23 +54,15 @@ function remList = atomsRemoveList(packages,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRemoveList",1));
 	end
 	
-	// Process the 2nd input argument : allusers
+	// Process the 2nd input argument : section
 	// Allusers can be a boolean or equal to "user" or "allusers"
 	
-	if (type(allusers) <> 4) & (type(allusers) <> 10) then
+	if type(section) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsRemoveList",2));
 	end
 	
-	if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+	if and(section<>["user","allusers","all"]) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsRemoveList",2));
-	end
-	
-	
-	
-	if allusers == %F then
-		allusers = "user";
-	elseif allusers == %T then
-		allusers = "allusers";
 	end
 	
 	// Loop on packages and to build the list of package to uninstall
@@ -100,7 +92,7 @@ function remList = atomsRemoveList(packages,allusers)
 		if isempty(package_versions(i)) then
 			// uninstall all version of this toolbox (if we have the right, of
 			// course)
-			this_package_versions = atomsGetInstalledVers(package_names(i),allusers);
+			this_package_versions = atomsGetInstalledVers(package_names(i),section);
 		else
 			// Just uninstall the specified version
 			this_package_versions = package_versions(i);
@@ -108,7 +100,7 @@ function remList = atomsRemoveList(packages,allusers)
 		
 		for j=1:size(this_package_versions,"*")
 			
-			if allusers == "all" then
+			if section == "all" then
 				if atomsIsInstalled(package_names(i),this_package_versions(j),"allusers") then
 					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "allusers" ];
 				end
@@ -116,7 +108,7 @@ function remList = atomsRemoveList(packages,allusers)
 					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "user" ];
 				end
 			else
-				remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) allusers ];
+				remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) section ];
 			end
 		end
 		
@@ -145,8 +137,8 @@ function remList = atomsRemoveList(packages,allusers)
 			
 			// Check if we have the right to remove this package
 			// If not, tag it as Broken (for later)
-			if allusers=="user" then
-				details = atomsGetInstalledDetails(this_parent_name,this_parent_version,allusers);
+			if section=="user" then
+				details = atomsGetInstalledDetails(this_parent_name,this_parent_version,section);
 				if details(1,3) == "allusers" then
 					remList = [ remList ; "~" "B" this_parent_name this_parent_version ]; // B stands for "Broken"
 					continue
@@ -172,8 +164,8 @@ function remList = atomsRemoveList(packages,allusers)
 			
 			// Check if we have the right to remove this package
 			// If not, Do not add it to the list
-			if allusers=="user" then
-				details = atomsGetInstalledDetails(this_child_name,this_child_version,allusers);
+			if section=="user" then
+				details = atomsGetInstalledDetails(this_child_name,this_child_version,section);
 				if details(3) == "allusers" then
 					continue
 				end
@@ -209,7 +201,7 @@ function remList = atomsRemoveList(packages,allusers)
 		// => Do not install it
 		// ----------------------------------------------
 		
-		if atomsGetInstalledStatus(this_package_name,this_package_version,allusers) == "I" then
+		if atomsGetInstalledStatus(this_package_name,this_package_version,section) == "I" then
 			remList(i,1) = "~";
 		end
 		

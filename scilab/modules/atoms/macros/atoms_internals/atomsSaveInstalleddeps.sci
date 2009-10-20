@@ -29,7 +29,7 @@
 //              . boolean 
 //              . optionnal
 
-function  atomsSaveInstalleddeps(child_deps,allusers)
+function  atomsSaveInstalleddeps(child_deps,section)
 	
 	rhs = argn(2);
 	
@@ -47,19 +47,22 @@ function  atomsSaveInstalleddeps(child_deps,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A struct expected.\n"),"atomsSaveInstalleddeps",1));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsSaveInstalleddeps",2));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsSaveInstalleddeps",2));
+	end
+	
+	if size(section,"*")<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsSaveInstalleddeps",2));
+	end
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsSaveInstalleddeps",2));
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

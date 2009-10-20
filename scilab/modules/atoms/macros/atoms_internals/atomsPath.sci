@@ -39,8 +39,8 @@ function path = atomsPath(whataction,section)
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"),"atomsPath",1));
 	end
 	
-	if and(section<>["all","allusers","user"]) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'',''allusers'' or ''user'' expected.\n"),"atomsPath",2));
+	if and(section<>["all","allusers","user","session"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or ''session'' expected.\n"),"atomsPath",2));
 	end
 	
 	// Check input argument value
@@ -54,6 +54,10 @@ function path = atomsPath(whataction,section)
 		
 		if or( section == ["all","user"]) then
 			path = [ path ; pathconvert(SCIHOME+"/.atoms") ];
+		end
+		
+		if or( section == ["session"]) then
+			path = [ path ; pathconvert(TMPDIR+"/.atoms") ];
 		end
 		
 	elseif (whataction=="install") then

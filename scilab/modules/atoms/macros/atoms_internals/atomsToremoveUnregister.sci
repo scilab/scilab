@@ -11,7 +11,7 @@
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function atomsToremoveUnregister(name,version,allusers)
+function atomsToremoveUnregister(name,version,section)
 	
 	rhs = argn(2);
 	
@@ -36,23 +36,17 @@ function atomsToremoveUnregister(name,version,allusers)
 	// Allusers/user management
 	// =========================================================================
 	
-	if (type(allusers) <> 4) & (type(allusers) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveUnregister",3));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsToremoveUnregister",3));
 	end
 	
-	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+	if and(section<>["user","allusers"]) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveUnregister",3));
 	end
 	
-	if allusers == "user" then
-		allusers = %F;
-	elseif allusers == "allusers" then
-		allusers = %T;
-	end
-	
 	// Check if we have the write access
-	if allusers & ~ atomsAUWriteAccess() then
-		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveUnregister",3,pathconvert(SCI+"/.atoms")));
+	if section=="allusers" & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveUnregister",3,atomsPath("system","allusers")));
 	end
 	
 	// name and version must have the same size
@@ -62,27 +56,10 @@ function atomsToremoveUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsToremoveUnregister",1,2));
 	end
 	
-	// Define the path of the file that will record the change according to
-	// the "allusers" value
-	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
-	
-	// Does the atoms_directory exist, Nothing to unregister : quit the function
-	// =========================================================================
-	
-	if ~ isdir(atoms_directory) then
-		return;
-	end
-	
 	// Define the path of the file that will record the change 
 	// =========================================================================
 	
-	toremove_bin = atoms_directory+"toremove.bin";
+	toremove_bin = atomsPath("system",section)+"toremove.bin";
 	
 	// Get the toremove matrix
 	// =========================================================================

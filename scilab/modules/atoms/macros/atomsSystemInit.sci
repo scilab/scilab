@@ -19,13 +19,14 @@ function atomsSystemInit()
 	
 	// Check if we have the write access
 	// =========================================================================
-	allusers = %F;
 	if atomsAUWriteAccess() then
-		allusers = %T;
+		section = "all";
+	else
+		section = "user";
 	end
 	
 	// Toremove process
 	// =========================================================================
-	atomsToremoveProcess(allusers);
+	atomsToremoveProcess(section);
 	
 endfunction
