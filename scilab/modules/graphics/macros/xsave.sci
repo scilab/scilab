@@ -7,6 +7,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xsave(fil,num)
+  if argn(2)<1 then
+   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "xsave", 1));
+  end
   if argn(2)<2 then
     f=gcf()
     preservecur=%f
