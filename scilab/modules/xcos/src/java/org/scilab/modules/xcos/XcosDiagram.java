@@ -224,43 +224,8 @@ public class XcosDiagram extends ScilabGraph {
 	//Command port
 	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
-	//
-	// Command Port as source can only go to Control Port
-
-	// Control Port must be connected !
-//	multiplicities[1] = new PortCheck(false, "controlPort", null, null, 1,
-//				"n", Arrays.asList(new Object[] {"commandPort"}),
-//				"Block Should be controled",
-//				"Command port should connect to Control", true);
-
-
-	//	// Source nodes needs 1..2 connected Targets
-	//	multiplicities[0] = new mxMultiplicity(true, "Source", null, null, 1,
-	//			"2", Arrays.asList(new Object[] { "Target" }),
-	//			"Source Must Have 1 or 2 Targets",
-	//			"Source Must Connect to Target", true);
-	//
-	//	// Output Port as source can only go to Input Port
-	//	multiplicities[1] = new mxMultiplicity(true, "outputPort", "PortType", "input", 1,
-	//			"n", Arrays.asList(new Object[] { "inputPort" }),
-	//			"Input Port Must Have 1 Output Port",
-	//			"Output Port Must Connect to Input Port", true);
-	//	
-	//	// Command Port as source can only go to Control Port
-	//	multiplicities[3] = new mxMultiplicity(true, "commandPort", null, null, 1,
-	//			"1", Arrays.asList(new Object[] { "controlPort" }),
-	//			"Command Port Must Have 1 Control Port",
-	//			"Control Port Must Connect to Command Port", true);
-	//	// Control Port must be connected !
-	//	multiplicities[4] = new mxMultiplicity(false, "controlPort", null, null, 1,
-	//			"1", Arrays.asList(new Object[] {"commandPort"}),
-	//			"Block Should be controled",
-	//			"Command port should connect to Control", true);
-	//	// Source node does not want any incoming connections
-	//	multiplicities[2] = new mxMultiplicity(false, "Source", null, null, 0,
-	//			"0", null, "Source Must Have No Incoming Edge", null, true);
 	setMultiplicities(multiplicities);
-	getAsComponent().validateGraph();
+//	getAsComponent().validateGraph();
 
     }
 
@@ -290,6 +255,22 @@ public class XcosDiagram extends ScilabGraph {
 		System.err.println("[DEBUG] update cell size");
 	    }
 	});
+	
+	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new mxIEventListener()
+	{
+		public void invoke(Object sender, mxEventObject evt)
+		{
+			if(evt.getArgs()[0] instanceof SuperBlock){
+				System.err.println("Super block ask refresh");
+				refresh();
+			}
+		}
+	});
+
+
+	
+	// Track when superblock ask a parent refresh.
+	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
 
 	// Track when cells are added.
 	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
@@ -337,8 +318,19 @@ public class XcosDiagram extends ScilabGraph {
 //		    }
 //		}
 //	    }
-	    getAsComponent().validateGraph();
+	    //getAsComponent().validateGraph();
 	}
+    }
+
+    private class SuperBlockUpdateTracker implements mxIEventListener {
+
+    	public SuperBlockUpdateTracker() {
+    	}
+
+    	public void invoke(Object source, mxEventObject evt) {
+    		System.err.println("[DEBUG] SUPERBLOCK UPDATE");
+    		refresh();
+    	}
     }
 
     /**
@@ -434,6 +426,7 @@ public class XcosDiagram extends ScilabGraph {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(getContext());
+		    //getAsComponent().setCellWarning(block, "truc a la con");
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
