@@ -21,7 +21,6 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -81,8 +80,6 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
-import com.mxgraph.model.mxGraphModel.mxGeometryChange;
-import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
@@ -248,7 +245,7 @@ public class XcosDiagram extends ScilabGraph {
 	});
 
 	// Add a listener to track when model is changed
-	getModel().addListener(XcosEvent.CHANGE, new ModelTracker(this));
+	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 
 	addListener(XcosEvent.UPDATE_CELL_SIZE, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
@@ -294,31 +291,34 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CHANGE occurs on a model
      */
     private class ModelTracker implements mxIEventListener {
-	private XcosDiagram graph = null;
-
-	public ModelTracker(XcosDiagram graph) {
-	    this.graph = graph;
-	}
-
 	public void invoke(Object source, mxEventObject evt) {
-	    System.err.println("[DEBUG] Model just changed");
-//	    List changes = (List) evt.getArgAt(0);
-//	    for (int i = 0 ; i < changes.size() ; ++i) {
-//		System.err.println("args[" + i + "] = " + changes.get(i));
-//		if (changes.get(i) instanceof mxGeometryChange) {
-//		    System.err.println("Change cell = "+((mxGeometryChange) changes.get(i)).getCell().toString());
-//		    if (((mxGeometryChange) changes.get(i)).getCell() instanceof BasicBlock) {
-//			((BasicBlock) ((mxGeometryChange) changes.get(i)).getCell()).updateBlockView(graph);
-//		    }
-//		}
-//		if (changes.get(i) instanceof mxChildChange) {
-//		    System.err.println("Change cell = "+((mxChildChange) changes.get(i)).getChild().toString());
-//		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
-//			((BasicBlock) ((mxChildChange) changes.get(i)).getChild()).updateBlockView(graph);
-//		    }
-//		}
-//	    }
-	    //getAsComponent().validateGraph();
+	    //System.err.println("[DEBUG] Model just changed");
+	    List changes = (List) evt.getArgAt(0);
+	    for (int i = 0 ; i < changes.size() ; ++i) {
+		//System.err.println("args[" + i + "] = " + changes.get(i));
+		if (changes.get(i) instanceof mxChildChange) {
+		    //System.err.println("Change cell = "+((mxChildChange) changes.get(i)).getChild().toString());
+		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
+			BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes.get(i)).getChild();
+			getModel().beginUpdate();
+
+			if (getCellStyle(currentCell).get("displayedLabel") != null) {
+				((mxCell) currentCell).setValue("<html><body> "+getCellStyle(currentCell).get("displayedLabel")+" </body></html>");
+			}
+
+			mxRectangle preferedSize = getPreferredSizeForCell(currentCell);
+			mxGeometry cellSize = ((mxCell) currentCell).getGeometry();
+
+			((mxCell) currentCell).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+					Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+					Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+			cellsResized(new Object[] { currentCell }, new mxRectangle[] { ((mxCell) currentCell).getGeometry() });
+			refresh();
+			getModel().endUpdate();
+			//((BasicBlock) ((mxGeometryChange) changes.get(i)).getCell()).updateBlockView();
+		    }
+		}
+	    }
 	}
     }
 
