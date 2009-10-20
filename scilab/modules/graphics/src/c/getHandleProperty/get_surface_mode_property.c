@@ -42,7 +42,7 @@ int get_surface_mode_property( sciPointObj * pobj )
   }
   else
   {
-		Scierror(999, _("%s property does not exist for this handle.\n"),"surface_mode") ;
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_mode") ;
     return -1;
   }
 }

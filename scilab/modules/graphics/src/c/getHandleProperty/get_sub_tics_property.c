@@ -54,7 +54,7 @@ int get_sub_tics_property( sciPointObj * pobj )
   }
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"sub_ticks") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks") ;
     return -1 ;
   }
 }

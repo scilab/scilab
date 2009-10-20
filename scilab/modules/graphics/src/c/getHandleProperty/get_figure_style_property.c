@@ -31,7 +31,7 @@ int get_figure_style_property( sciPointObj * pobj )
 	/* might be get("figure_style") or f.figure_style */
 	if ( pobj != NULL && sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "figure_style") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_style");
     return -1;
   }
 
