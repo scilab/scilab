@@ -75,7 +75,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     //** adjust path and name of object files
     //** to include in the building process
     if (libs ~= emptystr()) then
-      libs = pathconvert(libs,%f,%t)
+      libs = pathconvert(libs,%t,%t)
     end
 
     //** def make file name
@@ -121,7 +121,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     end
 
     //** link scicos generated code in scilab
-    libn = pathconvert(libn,%f,%t)
+    libn = pathconvert(libn,%t,%t)
     ierr = execstr('libnumber=link(libn)','errcatch')
     ierr = execstr('link(libnumber,blknam,''c'')','errcatch')
     if ierr<>0 then
