@@ -57,6 +57,7 @@ public class SuperBlock extends BasicBlock {
 	this.setLocked(true);
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
+	    child.installListeners();
 	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
 		int blockCount = child.getModel().getChildCount(child.getDefaultParent());
 	    for(int i = 0 ; i < blockCount ; i++){
@@ -69,11 +70,11 @@ public class SuperBlock extends BasicBlock {
 	}
 	else {
 	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
+	    newChild.installListeners();
 	    newChild.setModel(child.getModel());
 	    child = newChild;
 	}
 	Xcos.showDiagram(child);
-	child.installListeners();
     }
     
     public ScilabMList getAsScilabObj() {
