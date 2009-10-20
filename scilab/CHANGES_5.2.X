@@ -450,6 +450,9 @@ Bug fixes:
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
+* bug 4347 fixed - messagebox(): buttons are displayed in reverse order with 
+                   respect to their order in the vector specifying them (Windows).
+
 * bug 4351 fixed - test about 'exit' does not work on linux.
 
 * bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work

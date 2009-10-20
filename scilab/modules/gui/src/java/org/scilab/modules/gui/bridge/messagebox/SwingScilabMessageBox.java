@@ -479,7 +479,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				for (int buttonNb = 0; buttonNb < buttonsLabels.length; buttonNb++) {
 					JButton currentButton = new JButton(buttonsLabels[buttonNb]);
 					currentButton.addActionListener(this);
-					buttons[buttonsLabels.length - buttonNb - 1] = currentButton;
+					/* Test added for bug 4347 fix */
+					if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+						/* Windows */
+						buttons[buttonNb] = currentButton;
+					} else { 
+						/* Linux - MacOS */
+						buttons[buttonsLabels.length - buttonNb - 1] = currentButton;
+					}
 				}
 			}
 		}
