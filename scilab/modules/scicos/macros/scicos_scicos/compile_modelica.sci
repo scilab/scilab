@@ -89,7 +89,6 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
       OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
     else
       OUTM = execstr('unix_s(instr);', 'errcatch') <> 0
-      pause
     end
 
     if OUTM then // if_modelicac_fails_then_use_translator
