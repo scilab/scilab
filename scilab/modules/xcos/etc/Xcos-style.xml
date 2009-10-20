@@ -873,9 +873,7 @@
   <add as="generic_block" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/generic_block.gif"/>
   </add>
-  <add as="GAINBLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GAINBLK.gif"/>
-  </add>
+  <add as="GAINBLK" extend="Gain"/>
   <add as="EVTDLY_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_f.gif"/>
   </add>
