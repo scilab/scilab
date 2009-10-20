@@ -350,7 +350,11 @@ function result = atomsInstall(packages,section)
 		// =====================================================================
 		
 		if ~ (atomsGetConfig("autoload") == "False") then
-			atomsAutoloadAdd(this_package_name,this_package_version,section);
+			// Add a package to the autoload list only if it's intentionnaly
+			// installed
+			if this_package_status=="I" then
+				atomsAutoloadAdd(this_package_name,this_package_version,section);
+			end
 		end
 		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory
