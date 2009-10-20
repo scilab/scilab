@@ -487,6 +487,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param indexTab the index of the tab
 	 */
 	public void closeTabAt(int indexTab) {
+		
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 
 		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
@@ -513,6 +514,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 			tabPane.remove(tabPane.getSelectedComponent());
 		}
+
 	}
 
 

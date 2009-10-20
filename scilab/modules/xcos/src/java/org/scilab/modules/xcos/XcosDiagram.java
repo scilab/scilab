@@ -1020,6 +1020,11 @@ public class XcosDiagram extends ScilabGraph {
 		    } else {
 			setTitle(theFile.getAbsolutePath());
 		    }
+		    for (int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++){
+		    	if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock){
+		    		((BasicBlock)getModel().getChildAt(getDefaultParent(),i)).setParentDiagram(this);
+		    	}
+		    }
 		} else {
 		    XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 		    codec.decode(document.getDocumentElement(), xcosDiagram);
@@ -1027,6 +1032,11 @@ public class XcosDiagram extends ScilabGraph {
 			XcosDialogs.couldNotLoadFile();
 		    } else {
 			setTitle(theFile.getAbsolutePath());
+		    }
+		    for (int i = 0 ; i < xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) ; i++){
+		    	if (xcosDiagram.getModel().getChildAt(xcosDiagram.getDefaultParent(), i) instanceof BasicBlock){
+		    		((BasicBlock)xcosDiagram.getModel().getChildAt(xcosDiagram.getDefaultParent(),i)).setParentDiagram(xcosDiagram);
+		    	}
 		    }
 		}
 

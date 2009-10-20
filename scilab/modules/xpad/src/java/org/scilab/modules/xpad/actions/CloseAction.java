@@ -13,9 +13,8 @@
 package org.scilab.modules.xpad.actions;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
@@ -30,7 +29,12 @@ public class CloseAction extends DefaultAction {
     }
     
     public void doAction() {
-	getEditor().closeCurrentTab();
+    	getEditor().closeCurrentTab();
+    	
+    	// Close the last opened file create a new file named "Untitled 1"
+    	if (getEditor().getTabPane().getTabCount() == 0) {
+    		getEditor().addEmptyTab();
+    	}
     }
     
     public static MenuItem createMenu(Xpad editor) {

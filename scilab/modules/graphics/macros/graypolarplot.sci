@@ -24,6 +24,10 @@ if rhs<=0 then
   return
 end
 
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graypolarplot", 3));
+end
+
 
 R=max(rho)
 nv=size(varargin)
