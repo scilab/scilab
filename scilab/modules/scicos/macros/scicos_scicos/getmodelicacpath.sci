@@ -15,7 +15,7 @@ if MSDOS then
   // --- WINDOWS ---
   defaultPath = SCI + "/bin/";
   
-  if isfile(defaultpath + "modelicac.exe") then
+  if isfile(defaultPath + "modelicac.exe") then
     compilerpath = defaultPath;
   else
     compilerpath = "";
