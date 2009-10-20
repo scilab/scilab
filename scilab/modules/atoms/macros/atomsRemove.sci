@@ -145,9 +145,9 @@ function result = atomsRemove(packages,section)
 			// Print a warning if the package isn't installed
 			
 			if isempty(package_versions(i)) then
-				atomsDisp(msprintf("\t%s isn''t installed\n",package_names(i)));
+				atomsDisp(msprintf("\t%s isn''t installed\n\n",package_names(i)));
 			else
-				atomsDisp(msprintf("\t%s (%s) isn''t installed\n",package_names(i),package_versions(i)));
+				atomsDisp(msprintf("\t%s (%s) isn''t installed\n\n",package_names(i),package_versions(i)));
 			end
 		
 		elseif (section=="user") & (~ isempty(package_versions(i)) ) then
@@ -185,9 +185,9 @@ function result = atomsRemove(packages,section)
 	if ATOMSVERBOSE 
 		for i=1:size(remove_package_list(:,1),"*")
 			if remove_package_list(i,1) == "-" then
-				atomsDisp(msprintf("\t%s (%s) will be removed\n",remove_package_list(i,3),remove_package_list(i,4)));
+				atomsDisp(msprintf("\t%s (%s) will be removed\n\n",remove_package_list(i,3),remove_package_list(i,4)));
 			elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
-				atomsDisp(msprintf("\t%s (%s) cannot be removed and will be broken\n",remove_package_list(i,3),remove_package_list(i,4)));
+				atomsDisp(msprintf("\t%s (%s) cannot be removed and will be broken\n\n",remove_package_list(i,3),remove_package_list(i,4)));
 			end
 		end
 	end
@@ -214,7 +214,7 @@ function result = atomsRemove(packages,section)
 		
 		// Check if the package is loaded or not
 		if atomsIsLoaded(this_package_name,this_package_version) then
-			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
+			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n\n" , this_package_name , this_package_version );
 			continue;
 		end
 		
@@ -296,7 +296,7 @@ function result = atomsRemove(packages,section)
 		
 		// Sucess message if needed
 		// =====================================================================
-		atomsDisp(msprintf(" success\n"));
+		atomsDisp(msprintf(" success\n\n"));
 	end
 	
 	// Go to the initial location
