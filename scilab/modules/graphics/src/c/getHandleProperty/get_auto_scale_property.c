@@ -23,7 +23,7 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 int get_auto_scale_property( sciPointObj * pobj )
 {
