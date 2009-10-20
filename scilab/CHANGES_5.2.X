@@ -450,6 +450,9 @@ Bug fixes:
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
+* bug 4347 fixed - messagebox(): buttons are displayed in reverse order with 
+                   respect to their order in the vector specifying them (Windows).
+
 * bug 4351 fixed - test about 'exit' does not work on linux.
 
 * bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work
@@ -496,6 +499,9 @@ Bug fixes:
 * bug 4474 fixed - addinter help has no example.
 
 * bug 4483 fixed - Handle FreeBSD java detection
+
+* bug 4486 fixed - When a file has been opened for execution with "File/Execute..."
+                   menu, its pathname is lost.
 
 * bug 4489 fixed - oldsave and oldload removed.
 
@@ -614,6 +620,8 @@ Bug fixes:
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
 
 * bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
+
+* bug 4759 fixed - We should provide a better error message in nlev when called with no input argument.
 
 * bug 4780 fixed - The insertion point goes to the end of the document at each newly entered char.
 		   Once unchecked The Document/Colorize menu item is impossible to check again.
