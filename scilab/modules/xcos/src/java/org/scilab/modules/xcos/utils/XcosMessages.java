@@ -147,4 +147,10 @@ public final class XcosMessages {
     public static final String ADDTO = Messages.gettext("Add to");
     public static final String ADDTO_NEW_DIAGRAM = Messages.gettext("Add to new diagram");
     
+    public static final String LINK_ERROR_EXPLICIT_IN = Messages.gettext("Explicit data input port must be connected to explicit data output port");
+    public static final String LINK_ERROR_IMPLICIT_IN = Messages.gettext("Implicit data input port must be connected to implicit data output port");
+    public static final String LINK_ERROR_EXPLICIT_OUT = Messages.gettext("Explicit data output port must be connected to explicit data input port");
+    public static final String LINK_ERROR_IMPLICIT_OUT = Messages.gettext("Implicit data output port must be connected to implicit data input port");
+    public static final String LINK_ERROR_EVENT_IN = Messages.gettext("Command port must be connected to control port");
+    public static final String LINK_ERROR_EVENT_OUT = Messages.gettext("control port must be connected to command port");
 }

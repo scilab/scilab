@@ -19,7 +19,7 @@ function[m,den]=nlev(a,z,rmax)
 //
 
 [rhs,lhs]=argn();
-if rhs < 2 then
+if lhs < 2 then
   error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"nlev",2,3));
 end
 
