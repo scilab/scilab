@@ -327,8 +327,15 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			buttons = new Object[2];
 			btnOK.addActionListener(this);
 			btnCancel.addActionListener(this);
-			buttons[0] = btnCancel;
-			buttons[1] = btnOK;
+			/* Test added for bug 4347 fix */
+			if (isWindows()) {
+				buttons[0] = btnOK;
+				buttons[1] = btnCancel;
+				
+			} else {
+				buttons[0] = btnCancel;
+				buttons[1] = btnOK;
+			}
 		} else if (scilabDialogType == X_MDIALOG_TYPE) {
 			// Create a MessageBox for Scilab x_mdialog
 
@@ -340,15 +347,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			objs[0] = messageScrollPane;
 
 			int numberOfColumns = 0;
-			int numberOfLines = 0;
 			if (columnLabels == null) {
 				numberOfColumns = 2;
-				numberOfLines = lineLabels.length;
 			} else {
 				numberOfColumns = columnLabels.length + 1;
-				numberOfLines = lineLabels.length + 1;
 			}
-			//JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
 			GridBagLayout layout = new GridBagLayout();
 			JPanel panel = new JPanel(layout);
 			GridBagConstraints constraints = new GridBagConstraints();
@@ -408,9 +411,15 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			buttons = new Object[2];
 			btnOK.addActionListener(this);
 			btnCancel.addActionListener(this);
-			buttons[0] = btnCancel;
-			buttons[1] = btnOK;
-
+			/* Test added for bug 4347 fix */
+			if (isWindows()) {
+				buttons[0] = btnOK;
+				buttons[1] = btnCancel;
+				
+			} else {
+				buttons[0] = btnCancel;
+				buttons[1] = btnOK;
+			}
 		} else if (scilabDialogType == X_CHOOSE_TYPE) {
 			// Create a MessageBox for Scilab x_choose
 			
@@ -456,8 +465,15 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			buttons = new Object[2];
 			btnOK.addActionListener(this);
 			btnCancel.addActionListener(this);
-			buttons[0] = btnCancel;
-			buttons[1] = btnOK;
+			/* Test added for bug 4347 fix */
+			if (isWindows()) {
+				buttons[0] = btnOK;
+				buttons[1] = btnCancel;
+				
+			} else {
+				buttons[0] = btnCancel;
+				buttons[1] = btnOK;
+			}
 		} else {
 			// Create a MessageBox for Scilab x_message
 
@@ -480,11 +496,9 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					JButton currentButton = new JButton(buttonsLabels[buttonNb]);
 					currentButton.addActionListener(this);
 					/* Test added for bug 4347 fix */
-					if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-						/* Windows */
+					if (isWindows()) {
 						buttons[buttonNb] = currentButton;
 					} else { 
-						/* Linux - MacOS */
 						buttons[buttonsLabels.length - buttonNb - 1] = currentButton;
 					}
 				}
@@ -757,6 +771,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		} else {
 			messageIcon = scilabIcon;
 		}
+	}
+	
+	private boolean isWindows() {
+		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
 
 }
