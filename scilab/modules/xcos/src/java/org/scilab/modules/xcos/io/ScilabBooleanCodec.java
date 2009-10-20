@@ -57,12 +57,10 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     {
 	Object obj = null;
 	try {
-	    System.err.println("*** SCIBOOLEAN DECODE ***");
-	    System.err.println("*** node = "+node);
+
 	    if (!(node instanceof Element)) { return null; }
 	    obj = cloneTemplate(node);
 
-	    System.err.println("*** clone Template = "+obj);
 
 	    // attrs = {"as", "height", "width"}
 	    NamedNodeMap attrs = node.getAttributes();
@@ -104,7 +102,6 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 			data[line][column] = false;
 		}
 		
-		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
 	    }
 
 	    ((ScilabBoolean) obj).setData(data);
