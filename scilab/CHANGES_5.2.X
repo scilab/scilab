@@ -500,6 +500,9 @@ Bug fixes:
 
 * bug 4483 fixed - Handle FreeBSD java detection
 
+* bug 4486 fixed - When a file has been opened for execution with "File/Execute..."
+                   menu, its pathname is lost.
+
 * bug 4489 fixed - oldsave and oldload removed.
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.

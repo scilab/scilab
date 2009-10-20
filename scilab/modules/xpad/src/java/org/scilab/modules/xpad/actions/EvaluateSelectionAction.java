@@ -19,7 +19,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 
 
 public class EvaluateSelectionAction extends DefaultAction {
-
+	
 	private EvaluateSelectionAction(Xpad editor) {
 		super(XpadMessages.EVALUATE_SELECTION, editor);
 	}
@@ -28,12 +28,7 @@ public class EvaluateSelectionAction extends DefaultAction {
 		/* Will do the job as if it was copy / paste in scilab Console */
 		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
 		String selection = getEditor().getTextPane().getSelectedText();
-		if (selection == null) {
-			this.setEnabled(false);
-		} else {
-			this.setEnabled(true);
-			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
-		}
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
