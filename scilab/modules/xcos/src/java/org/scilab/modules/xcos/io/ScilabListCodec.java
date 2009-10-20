@@ -1,7 +1,18 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.io;
 
-import java.util.Collection;
-import java.util.Hashtable;
+
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -14,13 +25,6 @@ import com.mxgraph.io.mxCodec;
 public class ScilabListCodec  extends XcosObjectCodec {
 
     
-    private static final String VALUE = "value";
-    private static final String COLUMN = "column";
-    private static final String LINE = "line";
-    private static final String DATA = "data";
-    private static final String HEIGHT = "height";
-    private final static String WIDTH = "width";
-    private final static String LENGTH = "length";
     private final static String SCILAB_CLASS = "scilabClass";
     
     public ScilabListCodec(Object template) {
@@ -55,25 +59,23 @@ public class ScilabListCodec  extends XcosObjectCodec {
 	{
 		Object obj = null;
 		if ( node.getAttributes().getNamedItem(SCILAB_CLASS) != null){
-			System.out.println(node.getAttributes().getNamedItem(SCILAB_CLASS).getNodeValue());
 			String scilabClass = node.getAttributes().getNamedItem(SCILAB_CLASS).getNodeValue();
 			if ( scilabClass.equalsIgnoreCase("ScilabMList")){
 				obj = new ScilabMList() ;
-			}
-			if ( scilabClass.equalsIgnoreCase("ScilabTList")){
+			} else if ( scilabClass.equalsIgnoreCase("ScilabTList")){
 				obj = new ScilabTList() ;
-			}
-			if ( scilabClass.equalsIgnoreCase("ScilabList")){
+			} else if ( scilabClass.equalsIgnoreCase("ScilabList")){
 				obj = new ScilabList() ;
+			} else {
+				
+				obj = super.cloneTemplate(node);
 			}
 			
 		} else {
-			
+			obj = super.cloneTemplate(node);
 		}
 
 		return obj;
 	}
 	
-    private class UnrecognizeFormatException extends Exception {}
-
 }

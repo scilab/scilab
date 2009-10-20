@@ -69,12 +69,9 @@ public class ScilabStringCodec extends XcosObjectCodec {
     {
 	Object obj = null;
 	try {
-	    System.err.println("*** SPECIAL DECODE ***");
-	    System.err.println("*** node = "+node);
 	    if (!(node instanceof Element)) { return null; }
 	    obj = cloneTemplate(node);
 
-	    System.err.println("*** clone Template = "+obj);
 
 	    // attrs = {"as", "height", "width"}
 	    NamedNodeMap attrs = node.getAttributes();
@@ -110,7 +107,6 @@ public class ScilabStringCodec extends XcosObjectCodec {
 		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
 		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
 		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
-		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
 	    }
 
 	    ((ScilabString) obj).setData(data);
