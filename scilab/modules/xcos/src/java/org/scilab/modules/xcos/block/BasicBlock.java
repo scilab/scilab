@@ -514,20 +514,36 @@ public class BasicBlock extends mxCell {
 	double[][] sz = {{getGeometry().getWidth(), getGeometry().getHeight()}};
 	graphics.add(new ScilabDouble(sz)); // sz
 
-	graphics.add(new ScilabBoolean(flip)); // flip
+	graphics.add(new ScilabBoolean(!flip)); // flip
 
 	mxCellState state = getParentDiagram().getView().getState(this);
 	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
 
 	double theta = 0;
 	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
-		theta = 0;
+		if(flip){
+			theta = 180;	
+		}else{
+			theta = 0;
+		}
 	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
-		theta = 90;
+		if(flip){
+			theta = 270;	
+		}else{
+			theta = 90;
+		}
 	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
-		theta = 180;
+		if(flip){
+			theta = 0;	
+		}else{
+			theta = 180;
+		}
 	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
-		theta = 270;
+		if(flip){
+			theta = 90;	
+		}else{
+			theta = 270;
+		}
 	}
 	graphics.add(new ScilabDouble(theta)); // theta
 
