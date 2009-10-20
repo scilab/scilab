@@ -618,6 +618,8 @@ Bug fixes:
 
 * bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
 
+* bug 4759 fixed - We should provide a better error message in nlev when called with no input argument.
+
 * bug 4780 fixed - The insertion point goes to the end of the document at each newly entered char.
 		   Once unchecked The Document/Colorize menu item is impossible to check again.
 		   If there is no selected line and one execute the Execute/EvaluateSelection menu a java exeception is reported
