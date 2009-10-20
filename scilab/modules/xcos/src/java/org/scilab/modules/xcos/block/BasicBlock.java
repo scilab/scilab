@@ -258,6 +258,10 @@ public class BasicBlock extends mxCell {
 	this.dependsOnU = dependsOnU;
     }
 
+    public boolean isDependsOnU() {
+    	return this.dependsOnU;
+       }
+    
     public boolean dependsOnU() {
 	return dependsOnU;
     }
@@ -266,6 +270,9 @@ public class BasicBlock extends mxCell {
 	this.dependsOnT = dependsOnT;
     }
 
+    public boolean isDependsOnT() {
+    	return this.dependsOnT;
+       }
     public boolean dependsOnT() {
 	return dependsOnT;
     }
