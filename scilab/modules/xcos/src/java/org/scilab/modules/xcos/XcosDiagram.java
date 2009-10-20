@@ -208,11 +208,25 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[2];
+	mxMultiplicity[] multiplicities = new mxMultiplicity[6];
 
+	// Input data port
+	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
+	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
+
+	//Output data port
+	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
+	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+
+	//Control
+	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort()}, XcosMessages.LINK_ERROR_EVENT_IN);
+
+	//Command port
+	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	//
 	// Command Port as source can only go to Control Port
-	multiplicities[0] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, "Data Output must be connected to Data Input");
-	multiplicities[1] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort()}, "Data Input must be connected to Data Output");
+
 	// Control Port must be connected !
 //	multiplicities[1] = new PortCheck(false, "controlPort", null, null, 1,
 //				"n", Arrays.asList(new Object[] {"commandPort"}),
