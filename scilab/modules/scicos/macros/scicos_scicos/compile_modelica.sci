@@ -52,14 +52,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
     //++ Define some platform-dependent variables and filenames
     if MSDOS
-      modelicac      = 'modelicac.exe'
-      translator_bin = 'translator.exe'
+      modelicac      = getmodelicacpath() + 'modelicac.exe'
+      translator_bin = getmodelicacpath() + 'translator.exe'
       modelicac_err  = 'Wmodelicac.err'
       translator_err = 'Wtranslator.err'
       unix_err       = 'Wunix.err'
     else
-      modelicac      = 'modelicac'
-      translator_bin = 'translator'
+      modelicac      = getmodelicacpath() + 'modelicac'
+      translator_bin = getmodelicacpath() + 'translator'
       modelicac_err  = 'Lmodelicac.err'
       translator_err = 'Ltranslator.err'
       unix_err       = 'Lunix.err'
