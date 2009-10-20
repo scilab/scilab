@@ -14,46 +14,386 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: etc/optimization.start, line: 13
-msgid "Optimization and Simulation"
-msgstr ""
-#
-# File: macros/bvodeS.sci, line: 76
-# File: macros/bvodeS.sci, line: 121
+# File: macros/lmisolver.sci, line: 169
 #, c-format
-msgid "%s: Wrong type for input argument.\n"
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
 msgstr ""
 #
-# File: macros/derivative.sci, line: 37
+# File: macros/neldermead/neldermead_get.sci, line: 21
+# File: macros/optimbase/optimbase_histget.sci, line: 21
+# File: macros/optimbase/optimbase_histset.sci, line: 22
+# File: macros/optimbase/optimbase_set.sci, line: 26
+# File: macros/optimbase/optimbase_set.sci, line: 33
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
 #
-# File: macros/derivative.sci, line: 40
+# File: macros/neldermead/neldermead_updatesimp.sci, line: 42
+# File: macros/neldermead/neldermead_search.sci, line: 844
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 #
-# File: macros/derivative.sci, line: 44
+# File: macros/neldermead/neldermead_updatesimp.sci, line: 50
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgid "%s: Unknown restart simplex method %s"
 msgstr ""
 #
-# File: macros/derivative.sci, line: 49
+# File: macros/neldermead/neldermead_updatesimp.sci, line: 80
 #, c-format
-msgid "%s: Order must be 1, 2 or 4.\n"
+msgid ""
+"Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
 #
-# File: macros/derivative.sci, line: 135
+# File: macros/neldermead/neldermead_search.sci, line: 42
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgid ""
+"%s: The -withderivatives option is true but all algorithms in neldermead are "
+"derivative-free."
 msgstr ""
 #
+# File: macros/neldermead/neldermead_search.sci, line: 72
+#, c-format
+msgid "%s: Unknown -method %s"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 111
+#, c-format
+msgid "%s: Problem has constraints, but variable algorithm ignores them."
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 121
+#, c-format
+msgid "%s: The number of variable is zero."
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 336
+#, c-format
+msgid "%s: Problem has constraints, but fixed algorithm ignores them."
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 728
+#, c-format
+msgid "%s: Unknown restart detection %s"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 818
+#, c-format
+msgid "%s: %s"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 850
+#, c-format
+msgid "%s: Unknown -simplex0method : %s"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 865
+#, c-format
+msgid "%s: Unknown value %s for -scalingsimplex0 option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 905
+# File: macros/neldermead/neldermead_search.sci, line: 949
+#, c-format
+msgid ""
+"%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_search.sci, line: 1077
+#, c-format
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgstr ""
+#
+# File: macros/neldermead/optimget.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of arguments : %d expected while %d given"
+msgstr ""
+#
+# File: macros/neldermead/optimget.sci, line: 47
+#, c-format
+msgid "%s: Ambiguous property name %s matches several fields : %s"
+msgstr ""
+#
+# File: macros/neldermead/nmplot_contour.sci, line: 23
+#, c-format
+msgid ""
+"%s: Unexpected number of variables %d. Cannot draw contour plot for "
+"functions which do not have two parameters."
+msgstr ""
+#
+# File: macros/neldermead/optimset.sci, line: 47
+#, c-format
+msgid ""
+"%s: Odd number of arguments : the first argument is expected to be a struct, "
+"but is a %s"
+msgstr ""
+#
+# File: macros/neldermead/optimset.sci, line: 101
+#, c-format
+msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
+msgstr ""
+#
+# File: macros/neldermead/optimset.sci, line: 119
+#, c-format
+msgid "%s: Unrecognized parameter name ''%s''."
+msgstr ""
+#
+# File: macros/neldermead/optimset.sci, line: 156
+#, c-format
+msgid ""
+"%s: No default options available: the function ''%s'' does not exist on the "
+"path."
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 26
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
+"expected."
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 55
+#, c-format
+msgid "%s: Unexpected maximum number of iterations %s."
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 65
+#, c-format
+msgid "%s: Unexpected maximum number of function evaluations %s."
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 116
+msgid "Exiting: Maximum number of iterations has been exceeded\n"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 117
+msgid "         - increase MaxIter option.\n"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 118
+# File: macros/neldermead/fminsearch.sci, line: 125
+#, c-format
+msgid "         Current function value: %s\n"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 123
+msgid "Exiting: Maximum number of function evaluations has been exceeded\n"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 124
+msgid "         - increase MaxFunEvals option.\n"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 131
+#, c-format
+msgid "%s: Unknown status %s"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 199
+#, c-format
+msgid "%s: Unknown step %s"
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 227
+#, c-format
+msgid ""
+"%s: The output function associated with ''OutputFcn'' option is neither a "
+"function nor a list."
+msgstr ""
+#
+# File: macros/neldermead/fminsearch.sci, line: 243
+#, c-format
+msgid ""
+"%s: The output function associated with ''PlotFcns'' option is neither a "
+"function nor a list."
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 27
+#, c-format
+msgid "%s: Unknown value %s for -method option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 45
+#, c-format
+msgid "%s: Unknown value %s for -simplex0method option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 73
+#, c-format
+msgid "%s: Unknown value %s for -tolsimplexizemethod option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 85
+#, c-format
+msgid "%s: Unknown value %s for -tolssizedeltafvmethod option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 113
+#, c-format
+msgid "%s: Unknown value %s for -checkcostfunction option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 124
+#, c-format
+msgid "%s: Unexpected negative value %s for -guinalphamin option"
+msgstr ""
+#
+# File: macros/neldermead/neldermead_configure.sci, line: 149
+#, c-format
+msgid "%s: Unknown value %s for -myterminateflag option"
+msgstr ""
+#
+# File: macros/neldermead/nmplot_configure.sci, line: 25
+# File: macros/optimbase/optimbase_histget.sci, line: 34
+# File: macros/optimbase/optimbase_histset.sci, line: 35
+# File: macros/optimbase/optimbase_get.sci, line: 49
+# File: macros/optimbase/optimbase_configure.sci, line: 94
+# File: macros/optimbase/optimbase_cget.sci, line: 65
+# File: macros/optimbase/optimbase_set.sci, line: 43
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 193
+#, c-format
+msgid "%s: Unknown key %s"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_histget.sci, line: 25
+#, c-format
+msgid "%s: Negative iteration index %d is not allowed."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_histset.sci, line: 26
+#, c-format
+msgid "%s: Negative iteration index are not allowed."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_get.sci, line: 30
+# File: macros/optimbase/optimbase_get.sci, line: 37
+#, c-format
+msgid "%s: History disabled ; enable -storehistory option."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 29
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
+"x %d"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 52
+#, c-format
+msgid "%s: Unknown value %s for -tolxmethod option"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 62
+#, c-format
+msgid "%s: Unknown value %s for -tolfunmethod"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_logstartup.sci, line: 19
+#, c-format
+msgid "%s: Logging already started."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_logstartup.sci, line: 24
+#, c-format
+msgid ""
+"%s: Logging not started up, log file not empty but log file handle non zero."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_logshutdown.sci, line: 18
+#, c-format
+msgid "%s: Logging not started."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_function.sci, line: 84
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 are expected."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_function.sci, line: 88
+#, c-format
+msgid ""
+"%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_function.sci, line: 92
+#, c-format
+msgid "%s: Empty function (use -function option)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 18
+#, c-format
+msgid "%s: Cannot check cost function when x0 is empty"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 30
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 71
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 93
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,1)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 38
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 79
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 101
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,2)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 47
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,5)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 56
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 110
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,3)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 119
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,4)."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 135
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 139
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_outstruct.sci, line: 19
+#, c-format
+msgid "%s: No output command is defined."
+msgstr ""
+#
+# File: macros/bvodeS.sci, line: 30
 # File: macros/fit_dat.sci, line: 78
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+#
+# File: macros/bvodeS.sci, line: 34
+#, c-format
+msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
+msgstr ""
+#
+# File: macros/bvodeS.sci, line: 42
+# File: macros/bvodeS.sci, line: 51
+# File: macros/bvodeS.sci, line: 59
+#, c-format
+msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 #
 # File: macros/fit_dat.sci, line: 81
@@ -64,6 +404,31 @@ msgstr ""
 # File: macros/fit_dat.sci, line: 100
 #, c-format
 msgid "%s: Initial guess not feasible.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 38
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 45
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 50
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 173
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 #
 # File: macros/karmarkar.sci, line: 28
@@ -83,9 +448,172 @@ msgstr ""
 msgid "%s: Unbounded problem!"
 msgstr ""
 #
-# File: macros/lmisolver.sci, line: 135
+# File: macros/optimsimplex/optimsimplex_xbar.sci, line: 26
 #, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgid "%s: The exclusion index vector has %d instead of 1."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_setallfv.sci, line: 21
+#, c-format
+msgid ""
+"%s: The number of rows in the function value array is %d, while expected %d."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_setallfv.sci, line: 25
+#, c-format
+msgid ""
+"%s: The number of columns in the function value array is %d, while expected "
+"1."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 54
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 72
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 97
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 126
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 156
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 178
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 201
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
+"expected."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 245
+#, c-format
+msgid ""
+"%s: The numbers of columns of coords is %d but is expected to be at least %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 277
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 332
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 391
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 404
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 453
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x %"
+"d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 288
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a row matrix, but current shape is %d x "
+"%d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 342
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 457
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 461
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 503
+#, c-format
+msgid ""
+"%s: The oriented simplex can be computed only with a simplex made of n+1 "
+"points, but the dimension is %d and the number of vertices is %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_gradientfv.sci, line: 20
+#, c-format
+msgid ""
+"%s: The gradient can be applied only with a simplex made of n+1 points, but "
+"the dimension is %d and the number of vertices is %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_gradientfv.sci, line: 36
+#, c-format
+msgid "%s: Unknown method %s"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_size.sci, line: 59
+#, c-format
+msgid "%s: Unknown simplex size method %s"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_setall.sci, line: 25
+#, c-format
+msgid ""
+"%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
+"than the number of columns %d (i.e. n+1)."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_check.sci, line: 22
+#, c-format
+msgid ""
+"%s: Number of rows of x is %d is different from number of vertices = %d."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_check.sci, line: 25
+#, c-format
+msgid "%s: Number of columns of x is %d is different from dimension = %d."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_check.sci, line: 30
+#, c-format
+msgid ""
+"%s: Number of rows of fv is %d is different from number of vertices = %d."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_check.sci, line: 33
+#, c-format
+msgid "%s: Number of columns of fv is %d is different from 1."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_setallx.sci, line: 21
+#, c-format
+msgid "%s: The number of rows is %d, while expected %d."
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_setallx.sci, line: 25
+#, c-format
+msgid "%s: The number of columns is %d, while expected %d."
 msgstr ""
 #
 # File: sci_gateway/c/sci_qld.c, line: 62
@@ -135,82 +663,86 @@ msgstr ""
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 266
+# File: src/c/sp.c, line: 288
 msgid "m must be at least one.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 271
+# File: src/c/sp.c, line: 293
 msgid "L must be at least one.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 276
+# File: src/c/sp.c, line: 298
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 281
+# File: src/c/sp.c, line: 303
 msgid "nu must be at least 1.0.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 302
+# File: src/c/sp.c, line: 324
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 316
+# File: src/c/sp.c, line: 338
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 351
+# File: src/c/sp.c, line: 373
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 406
-# File: src/c/sp.c, line: 591
+# File: src/c/sp.c, line: 428
+# File: src/c/sp.c, line: 613
 #, c-format
 msgid "Error in dspgv, info = %d.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 408
+# File: src/c/sp.c, line: 430
 msgid "x0 is not strictly primal feasible.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 421
+# File: src/c/sp.c, line: 443
 msgid "Z0 is not positive definite.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 424
+# File: src/c/sp.c, line: 446
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 446
+# File: src/c/sp.c, line: 468
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 504
+# File: src/c/sp.c, line: 526
 #, c-format
 msgid "Error in dgels, info = %d.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 516
+# File: src/c/sp.c, line: 538
 #, c-format
 msgid "Error in dtrcon, info = %d.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 520
+# File: src/c/sp.c, line: 542
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 564
+# File: src/c/sp.c, line: 586
 #, c-format
 msgid "Error in dspst, info = %d.\n"
 msgstr ""
 #
-# File: src/c/sp.c, line: 572
+# File: src/c/sp.c, line: 594
 #, c-format
 msgid "Error in dspev, info = %d.\n"
+msgstr ""
+#
+# File: etc/optimization.start, line: 27
+msgid "Optimization and Simulation"
 msgstr ""

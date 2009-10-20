@@ -14,98 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: etc/scilab.start, line: 56
-msgid "Startup execution:"
-msgstr ""
-#
-# File: etc/scilab.start, line: 63
-msgid "  loading initial environment"
-msgstr ""
-#
-# File: etc/scilab.start, line: 175
-msgid "&File"
-msgstr ""
-#
-# File: etc/scilab.start, line: 176
-msgid "&Edit"
-msgstr ""
-#
-# File: etc/scilab.start, line: 177
-msgid "&Preferences"
-msgstr ""
-#
-# File: etc/scilab.start, line: 178
-msgid "&Control"
-msgstr ""
-#
-# File: etc/scilab.start, line: 179
-# File: etc/scilab.start, line: 181
-# File: etc/scilab.start, line: 184
-# File: etc/scilab.start, line: 187
-# File: etc/scilab.start, line: 190
-# File: etc/scilab.start, line: 193
-msgid "&Applications"
-msgstr ""
-#
-# File: etc/scilab.start, line: 195
-msgid "&?"
-msgstr ""
-#
-# File: etc/scilab.start, line: 196
-# File: macros/toolboxes.sci, line: 127
-# File: macros/toolboxes.sci, line: 128
-# File: macros/toolboxes.sci, line: 132
-msgid "&Toolboxes"
-msgstr ""
-#
-# File: includes/stack-c.h, line: 315
-#, c-format
-msgid " results may be inaccurate. rcond = %s1\n"
-msgstr ""
-#
-# File: macros/add_demo.sci, line: 13
-# File: sci_gateway/c/sci_getmd5.c, line: 82
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr ""
-#
-# File: macros/add_demo.sci, line: 15
-#, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-#
-# File: macros/check_versions.sci, line: 18
-#, c-format
-msgid "Checking: %s\n"
-msgstr ""
-#
-# File: macros/check_versions.sci, line: 28
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr ""
-#
-# File: macros/check_versions.sci, line: 31
-#, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr ""
-#
-# File: macros/edit.sci, line: 18
-#, c-format
-msgid "%s: Requires Scipad.\n"
-msgstr ""
-#
-# File: macros/edit.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-#
-# File: macros/edit.sci, line: 34
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr ""
-#
 # File: macros/perl.sci, line: 19
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -141,44 +51,59 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 14
-msgid "Error(s) : see help powershell'';''verify your script without scilab."
-msgstr ""
-#
-# File: macros/powershell.sci, line: 20
-msgid "Only for Microsoft Windows."
-msgstr ""
-#
-# File: macros/powershell.sci, line: 27
-msgid "Powershell not found."
-msgstr ""
-#
-# File: macros/powershell.sci, line: 42
-# File: macros/powershell.sci, line: 45
-# File: sci_gateway/c/sci_chdir.c, line: 59
-# File: sci_gateway/c/sci_clearfun.c, line: 65
-# File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_getmd5.c, line: 138
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 59
-# File: sci_gateway/c/sci_getversion.c, line: 239
-# File: sci_gateway/c/sci_readgateway.c, line: 124
-# File: sci_gateway/c/sci_warning.c, line: 98
-# File: sci_gateway/c/sci_with_module.c, line: 47
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: macros/sethomedirectory.sci, line: 17
-msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
-msgstr ""
-#
-# File: macros/toolboxes.sci, line: 120
-msgid " is already compiled.\n"
-msgstr ""
-#
 # File: macros/typeof.sci, line: 12
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+#
+# File: macros/whos.sci, line: 16
+# File: sci_gateway/c/sci_typename.c, line: 38
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+#
+# File: macros/whos.sci, line: 20
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/check_versions.sci, line: 18
+#, c-format
+msgid "Checking: %s\n"
+msgstr ""
+#
+# File: macros/check_versions.sci, line: 28
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr ""
+#
+# File: macros/check_versions.sci, line: 31
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr ""
+#
+# File: macros/who_user.sci, line: 45
+msgid "User variables are:"
+msgstr ""
+#
+# File: macros/who_user.sci, line: 49
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr ""
+#
+# File: macros/edit.sci, line: 18
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr ""
+#
+# File: macros/edit.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+#
+# File: macros/edit.sci, line: 34
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
 #
 # File: macros/whereami.sci, line: 20
@@ -201,135 +126,255 @@ msgstr ""
 msgid "%s called at line %s of macro %s"
 msgstr ""
 #
-# File: macros/who_user.sci, line: 45
-msgid "User variables are:"
-msgstr ""
-#
-# File: macros/who_user.sci, line: 49
+# File: macros/add_demo.sci, line: 21
+# File: sci_gateway/c/sci_getmd5.c, line: 70
+# File: sci_gateway/c/sci_getmd5.c, line: 90
 #, c-format
-msgid "Using %s elements ouf of %s"
+msgid "%s: The file %s does not exist.\n"
 msgstr ""
 #
-# File: macros/whos.sci, line: 16
+# File: macros/add_demo.sci, line: 25
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 #
-# File: macros/whos.sci, line: 20
+# File: macros/toolboxes.sci, line: 49
+# File: macros/toolboxes.sci, line: 50
+# File: macros/toolboxes.sci, line: 54
+msgid "&Toolboxes"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 78
+# File: sci_gateway/c/sci_typename.c, line: 90
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 58
-# File: sci_gateway/c/sci_error.c, line: 135
-# File: sci_gateway/c/sci_error.c, line: 198
+# File: sci_gateway/c/sci_newfun.c, line: 84
+# File: sci_gateway/c/sci_funcprot.c, line: 70
+# File: sci_gateway/c/sci_typename.c, line: 96
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 97
+# File: sci_gateway/c/sci_error.c, line: 59
+# File: sci_gateway/c/sci_error.c, line: 137
+# File: sci_gateway/c/sci_error.c, line: 200
+# File: sci_gateway/c/sci_typename.c, line: 122
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 78
+# File: sci_gateway/c/sci_newfun.c, line: 110
+# File: sci_gateway/c/sci_funcprot.c, line: 85
+# File: sci_gateway/c/sci_error.c, line: 88
+# File: sci_gateway/c/sci_error.c, line: 131
+# File: sci_gateway/c/sci_error.c, line: 166
+# File: sci_gateway/c/sci_error.c, line: 171
+# File: sci_gateway/c/sci_error.c, line: 206
+# File: sci_gateway/c/sci_typename.c, line: 109
+# File: sci_gateway/c/sci_predef.c, line: 65
+# File: sci_gateway/c/sci_exit.c, line: 68
+# File: sci_gateway/c/sci_mode.c, line: 64
+# File: sci_gateway/c/sci_mode.c, line: 70
+# File: sci_gateway/c/sci_format.c, line: 151
+# File: sci_gateway/c/sci_format.c, line: 271
+# File: sci_gateway/c/sci_format.c, line: 291
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 48
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 66
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 117
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 133
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 173
+#, c-format
+msgid "%s: Invalid '%s' value.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 185
+#, c-format
+msgid "%s: function-name is incorrect.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_newfun.c, line: 191
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_warning.c, line: 78
+#, c-format
+msgid "WARNING: %s"
+msgstr ""
+#
+# File: sci_gateway/c/sci_warning.c, line: 91
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_warning.c, line: 100
+# File: sci_gateway/c/sci_readgateway.c, line: 124
+# File: sci_gateway/c/sci_funptr.c, line: 49
+# File: sci_gateway/c/sci_getversion.c, line: 239
+# File: sci_gateway/c/sci_with_module.c, line: 47
+# File: sci_gateway/c/sci_clearfun.c, line: 65
+# File: sci_gateway/c/sci_getmd5.c, line: 147
+# File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_funcprot.c, line: 94
+# File: sci_gateway/c/sci_funcprot.c, line: 100
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 107
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 116
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 139
+# File: sci_gateway/c/sci_getversion.c, line: 319
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 176
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 186
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
+"argument #%d must be '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 237
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 238
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 314
+msgid "Your variables are:"
+msgstr ""
+#
+# File: sci_gateway/c/sci_who.c, line: 321
+msgid "Your global variables are:"
+msgstr ""
+#
+# File: sci_gateway/c/sci_readgateway.c, line: 114
+#, c-format
+msgid "%s: Impossible to read %s gateway.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_readgateway.c, line: 119
+#, c-format
+msgid "%s: Invalid module name : %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_error.c, line: 79
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 87
-# File: sci_gateway/c/sci_error.c, line: 130
-# File: sci_gateway/c/sci_error.c, line: 164
-# File: sci_gateway/c/sci_error.c, line: 169
-# File: sci_gateway/c/sci_error.c, line: 203
-# File: sci_gateway/c/sci_format.c, line: 152
-# File: sci_gateway/c/sci_format.c, line: 272
-# File: sci_gateway/c/sci_format.c, line: 292
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_error.c, line: 95
+# File: sci_gateway/c/sci_error.c, line: 96
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 209
+# File: sci_gateway/c/sci_error.c, line: 212
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_format.c, line: 135
-# File: sci_gateway/c/sci_format.c, line: 330
+# File: sci_gateway/c/sci_typename.c, line: 150
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: '%s' already exists.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_format.c, line: 161
-# File: sci_gateway/c/sci_format.c, line: 280
-# File: sci_gateway/c/sci_format.c, line: 300
+# File: sci_gateway/c/sci_typename.c, line: 168
 #, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
+msgid "%s: Unknown Error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_format.c, line: 167
+# File: sci_gateway/c/sci_typename.c, line: 176
+# File: sci_gateway/c/sci_getos.c, line: 49
+# File: sci_gateway/c/sci_getos.c, line: 57
+# File: src/c/stack1.c, line: 2239
+# File: src/c/stack1.c, line: 2321
+# File: src/c/stack1.c, line: 2352
+# File: src/c/stack2.c, line: 1881
+# File: src/c/stack2.c, line: 2145
+# File: src/c/intmacr2tree.c, line: 114
+# File: src/c/intmacr2tree.c, line: 169
+# File: src/c/intmacr2tree.c, line: 367
+# File: src/c/intmacr2tree.c, line: 372
+# File: src/c/intmacr2tree.c, line: 451
+# File: src/c/intmacr2tree.c, line: 456
+# File: src/c/intmacr2tree.c, line: 722
+# File: src/c/intmacr2tree.c, line: 727
+# File: src/c/intmacr2tree.c, line: 1029
+# File: src/c/intmacr2tree.c, line: 1034
+# File: src/c/intmacr2tree.c, line: 1039
+# File: src/c/intmacr2tree.c, line: 1064
+# File: src/c/intmacr2tree.c, line: 1069
+# File: src/c/intmacr2tree.c, line: 1088
+# File: src/c/intmacr2tree.c, line: 1164
+# File: src/c/intmacr2tree.c, line: 1169
+# File: src/c/intmacr2tree.c, line: 1174
+# File: src/c/intmacr2tree.c, line: 1209
+# File: src/c/intmacr2tree.c, line: 1228
+# File: src/c/intmacr2tree.c, line: 1235
+# File: src/c/intmacr2tree.c, line: 1241
+# File: src/c/intmacr2tree.c, line: 1332
+# File: src/c/intmacr2tree.c, line: 1337
+# File: src/c/intmacr2tree.c, line: 1472
+# File: src/c/intmacr2tree.c, line: 1477
+# File: src/c/intmacr2tree.c, line: 1653
+# File: src/c/intmacr2tree.c, line: 1658
+# File: src/c/intmacr2tree.c, line: 1665
+# File: src/c/intmacr2tree.c, line: 1670
+# File: src/c/intmacr2tree.c, line: 1699
+# File: src/c/intmacr2tree.c, line: 1704
+# File: src/c/intmacr2tree.c, line: 1714
+# File: src/c/intmacr2tree.c, line: 1719
+# File: src/c/intmacr2tree.c, line: 1729
+# File: src/c/intmacr2tree.c, line: 1734
+# File: src/c/intmacr2tree.c, line: 1829
+# File: src/c/intmacr2tree.c, line: 1834
+# File: src/c/intmacr2tree.c, line: 1872
+# File: src/c/intmacr2tree.c, line: 1877
+# File: src/c/intmacr2tree.c, line: 1905
+# File: src/c/intmacr2tree.c, line: 1910
+# File: src/c/intmacr2tree.c, line: 1963
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 187
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 215
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 221
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 227
-# File: sci_gateway/c/sci_format.c, line: 312
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 247
-#, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_format.c, line: 335
-#, c-format
-msgid "%s: Wrong type for inputs arguments.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getcwd.c, line: 34
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 95
-# File: sci_gateway/c/sci_libraryinfo.c, line: 92
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 143
-#, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getmodules.c, line: 29
-#, c-format
-msgid "Warning: Problems with %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 53
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: No more memory.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getversion.c, line: 181
@@ -355,15 +400,72 @@ msgstr ""
 msgid "%s: Wrong file VERSION in %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getversion.c, line: 319
-# File: sci_gateway/c/sci_who.c, line: 138
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_getversion.c, line: 325
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 129
+#, c-format
+msgid ""
+"%s: Cannot allocate more memory.\n"
+"Try stacksize('max').\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 144
+# File: sci_gateway/c/sci_stacksize.c, line: 150
+# File: sci_gateway/c/sci_gstacksize.c, line: 121
+#, c-format
+msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 156
+# File: sci_gateway/c/sci_stacksize.c, line: 281
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 287
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_where.c, line: 23
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getmodules.c, line: 29
+#, c-format
+msgid "Warning: Problems with %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_predef.c, line: 57
+# File: sci_gateway/c/sci_exit.c, line: 62
+# File: sci_gateway/c/sci_mode.c, line: 48
+# File: sci_gateway/c/sci_format.c, line: 220
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_predef.c, line: 90
+# File: sci_gateway/c/sci_getvariablesonstack.c, line: 54
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_predef.c, line: 97
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_what.c, line: 82
+msgid "Internal Functions:\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_what.c, line: 99
+msgid "Commands:\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 106
@@ -371,13 +473,6 @@ msgstr ""
 msgid ""
 "%s: Cannot alloc more memory.\n"
 "Try gstacksize('max').\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 121
-# File: sci_gateway/c/sci_stacksize.c, line: 115
-# File: sci_gateway/c/sci_stacksize.c, line: 121
-#, c-format
-msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 128
@@ -391,137 +486,777 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_libraryinfo.c, line: 87
+# File: sci_gateway/c/sci_getmd5.c, line: 103
 #, c-format
-msgid "%s: Invalid library %s.\n"
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 77
+# File: sci_gateway/c/sci_getmd5.c, line: 152
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 86
+# File: sci_gateway/c/sci_format.c, line: 134
+# File: sci_gateway/c/sci_format.c, line: 329
 #, c-format
-msgid "%s: function-name is incorrect.\n"
+msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 92
+# File: sci_gateway/c/sci_format.c, line: 160
+# File: sci_gateway/c/sci_format.c, line: 279
+# File: sci_gateway/c/sci_format.c, line: 299
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgid "%s: Wrong values for input argument #%d: A int expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 98
-#, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_readgateway.c, line: 114
-#, c-format
-msgid "%s: Impossible to read %s gateway.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_readgateway.c, line: 119
-#, c-format
-msgid "%s: Invalid module name : %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 100
+# File: sci_gateway/c/sci_format.c, line: 166
 #, c-format
 msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
+"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 127
-# File: sci_gateway/c/sci_stacksize.c, line: 224
+# File: sci_gateway/c/sci_format.c, line: 186
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 214
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 226
+# File: sci_gateway/c/sci_format.c, line: 311
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 230
+# File: sci_gateway/c/sci_format.c, line: 246
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
+msgid "%s: Wrong size for inputs arguments.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_warning.c, line: 76
+# File: sci_gateway/c/sci_format.c, line: 334
 #, c-format
-msgid "WARNING: %s"
+msgid "%s: Wrong type for inputs arguments.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_warning.c, line: 89
+# File: src/c/stack3.c, line: 88
+# File: src/c/stack3.c, line: 137
+# File: src/c/stack3.c, line: 274
+# File: src/c/stack3.c, line: 331
+# File: src/c/stack3.c, line: 430
+# File: src/c/stack3.c, line: 482
+# File: src/c/stack3.c, line: 528
+# File: src/c/stack3.c, line: 558
+# File: src/c/stack3.c, line: 595
+# File: src/c/stack3.c, line: 676
+# File: src/c/stack3.c, line: 722
 #, c-format
-msgid "WARNING: %s\n"
+msgid "Undefined variable %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_what.c, line: 87
-msgid "Internal Functions:\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_what.c, line: 104
-msgid "Commands:\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_where.c, line: 23
+# File: src/c/stack3.c, line: 284
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
+msgid "%s: argument must be a string.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 106
+# File: src/c/stack1.c, line: 84
+#, c-format
+msgid "%s: argument %d should be a list of size at least %d.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 120
+# File: src/c/stack1.c, line: 137
+# File: src/c/stack1.c, line: 801
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 156
+# File: src/c/stack1.c, line: 607
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 173
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 115
+# File: src/c/stack1.c, line: 175
+# File: src/c/stack1.c, line: 459
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 175
+# File: src/c/stack1.c, line: 235
+# File: src/c/stack1.c, line: 514
+# File: src/c/stack1.c, line: 685
+# File: src/c/stack1.c, line: 705
+# File: src/c/stack1.c, line: 883
+# File: src/c/stack1.c, line: 1280
+# File: src/c/stack1.c, line: 1306
+# File: src/c/stack1.c, line: 1330
+# File: src/c/stack1.c, line: 1359
+# File: src/c/stack1.c, line: 1384
+# File: src/c/stack1.c, line: 1544
+# File: src/c/stack1.c, line: 1621
+# File: src/c/stack1.c, line: 1774
+# File: src/c/stack1.c, line: 1923
+# File: src/c/stack1.c, line: 2079
+# File: src/c/stack1.c, line: 2146
+# File: src/c/stack1.c, line: 2175
+# File: src/c/stack1.c, line: 2270
+# File: src/c/stack1.c, line: 2561
+# File: src/c/stack1.c, line: 2688
+# File: src/c/stack1.c, line: 3029
+# File: src/c/stack1.c, line: 3118
+# File: src/c/stack2.c, line: 1961
+# File: src/c/stack2.c, line: 2197
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
+msgid "%s: Too many names.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 185
+# File: src/c/stack1.c, line: 271
+# File: src/c/stack1.c, line: 536
+# File: src/c/stack1.c, line: 725
+# File: src/c/stack1.c, line: 907
+# File: src/c/stack1.c, line: 1394
+# File: src/c/stack1.c, line: 1439
+# File: src/c/stack1.c, line: 1497
+# File: src/c/stack1.c, line: 1589
+# File: src/c/stack1.c, line: 1714
+# File: src/c/stack1.c, line: 1793
+# File: src/c/stack1.c, line: 2104
+# File: src/c/stack1.c, line: 2181
+# File: src/c/stack1.c, line: 2290
+# File: src/c/stack1.c, line: 2572
+# File: src/c/stack1.c, line: 2693
+# File: src/c/stack1.c, line: 3035
+# File: src/c/stack1.c, line: 3060
+# File: src/c/intmacr2tree.c, line: 195
+#, c-format
+msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 423
+#, c-format
+msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 457
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
-"argument #%d must be '%s'.\n"
+"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 236
+# File: src/c/stack1.c, line: 572
+# File: src/c/stack1.c, line: 766
+# File: src/c/stack1.c, line: 1032
+# File: src/c/stack1.c, line: 1101
+# File: src/c/stack1.c, line: 1163
+# File: src/c/stack1.c, line: 2373
+# File: src/c/stack1.c, line: 2430
+# File: src/c/stack1.c, line: 2486
+# File: src/c/stack1.c, line: 2522
+# File: src/c/stack1.c, line: 3148
 #, c-format
-msgid " using %10d elements out of  %10d.\n"
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 237
+# File: src/c/stack1.c, line: 626
 #, c-format
-msgid " and   %10d variables out of %10d.\n"
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_who.c, line: 313
-msgid "Your variables are:"
-msgstr ""
-#
-# File: sci_gateway/c/sci_who.c, line: 320
-msgid "Your global variables are:"
-msgstr ""
-#
-# File: src/c/CallScilab.c, line: 51
-# File: src/c/tmpdir.c, line: 63
-# File: src/c/tmpdir.c, line: 84
-msgid "Error"
-msgstr ""
-#
-# File: src/c/InitializeCore.c, line: 35
-msgid "Fatal Error: Can't create table for scilab functions.\n"
-msgstr ""
-#
-# File: src/c/SetScilabEnvironment.c, line: 37
+# File: src/c/stack1.c, line: 628
 #, c-format
-msgid "Error: Impossible to define %s environment variable.\n"
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 820
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 822
+#, c-format
+msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 947
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 971
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 988
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1008
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1042
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1066
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1192
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1194
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1215
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1217
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 1969
+# File: src/c/stack2.c, line: 1483
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2011
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2052
+#, c-format
+msgid "%s: Wrong type for argument %d : Polygon expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2211
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2381
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2412
+#, c-format
+msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2438
+#, c-format
+msgid "%s: argument %d >(%d) should be a column vector.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2470
+#, c-format
+msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2540
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2542
+#, c-format
+msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2858
+# File: src/c/stack2.c, line: 1190
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2942
+#, c-format
+msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2948
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2962
+#, c-format
+msgid "%s: Incompatible sizes.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2983
+#, c-format
+msgid "%s: Optional argument %d not given and default value %s not found.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 3011
+#, c-format
+msgid "%f: No more space to store string arguments.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 3182
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 3184
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 84
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 86
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 102
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 104
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 331
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 346
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 388
+msgid "Optional argument list is empty.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 391
+msgid "Optional arguments list: \n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 397
+#, c-format
+msgid "and %s.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 415
+# File: src/c/stack2.c, line: 452
+# File: src/c/stack2.c, line: 568
+# File: src/c/stack2.c, line: 614
+# File: src/c/stack2.c, line: 647
+# File: src/c/stack2.c, line: 731
+# File: src/c/stack2.c, line: 1129
+# File: src/c/stack2.c, line: 1158
+# File: src/c/stack2.c, line: 1182
+# File: src/c/stack2.c, line: 1227
+# File: src/c/stack2.c, line: 1429
+# File: src/c/stack2.c, line: 1526
+# File: src/c/stack2.c, line: 1647
+# File: src/c/stack2.c, line: 2779
+# File: src/c/stack2.c, line: 3081
+#, c-format
+msgid "%s: bad call to %s! (1rst argument).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 446
+# File: src/c/stack2.c, line: 562
+# File: src/c/stack2.c, line: 608
+# File: src/c/stack2.c, line: 641
+# File: src/c/stack2.c, line: 724
+# File: src/c/stack2.c, line: 790
+# File: src/c/stack2.c, line: 894
+# File: src/c/stack2.c, line: 964
+# File: src/c/stack2.c, line: 1069
+# File: src/c/stack2.c, line: 1123
+# File: src/c/stack2.c, line: 1152
+# File: src/c/stack2.c, line: 1235
+# File: src/c/stack2.c, line: 1433
+# File: src/c/stack2.c, line: 1530
+# File: src/c/stack2.c, line: 1651
+# File: src/c/stack2.c, line: 3075
+#, c-format
+msgid ""
+"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 873
+# File: src/c/stack2.c, line: 933
+# File: src/c/stack2.c, line: 1038
+# File: src/c/stack2.c, line: 1104
+# File: src/c/stack2.c, line: 1675
+#, c-format
+msgid "%s: (%s) bad third argument!\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1274
+#, c-format
+msgid "%s: Wrong type for argument: Complex expected.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1474
+#, c-format
+msgid "%s: bad call to %s!\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1570
+#, c-format
+msgid "%s: argument %d > (%d) should be a complex matrix.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1626
+#, c-format
+msgid "%s: bad call to %s (third argument %c).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1743
+# File: src/c/stack2.c, line: 1791
+#, c-format
+msgid "%s: (%s) bad second argument!\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1765
+#, c-format
+msgid ""
+"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 1957
+# File: src/c/stack2.c, line: 1976
+# File: src/c/stack2.c, line: 2193
+# File: src/c/stack2.c, line: 2212
+#, c-format
+msgid "%s: Recursion problems. Sorry ...\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2081
+#, c-format
+msgid "%s: %s is not a Scilab function.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2193
+# File: src/c/stack2.c, line: 2212
+msgid "built in"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2365
+# File: src/c/stack2.c, line: 2375
+msgid "Invalid time domain.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2381
+msgid "Invalid system.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2391
+msgid "A non square matrix!\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2395
+# File: src/c/stack2.c, line: 2399
+# File: src/c/stack2.c, line: 2403
+# File: src/c/stack2.c, line: 2407
+#, c-format
+msgid "Invalid %c,%c matrices.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2423
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2579
+#, c-format
+msgid "%s: intersiz is too small.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2865
+#, c-format
+msgid "%s argument"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2867
+#, c-format
+msgid "argument number %d"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2877
+#, c-format
+msgid "%s and %s arguments"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2879
+# File: src/c/stack2.c, line: 2884
+#, c-format
+msgid "%s argument and argument %d"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2886
+#, c-format
+msgid "arguments %d and %d"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2948
+msgid "should be square"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2953
+msgid "should be a vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2958
+msgid "should be a row vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2963
+msgid "should be a column vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2968
+msgid "should be a scalar"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2975
+#, c-format
+msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2985
+#, c-format
+msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2985
+# File: src/c/stack2.c, line: 3058
+msgid "first"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2985
+# File: src/c/stack2.c, line: 3058
+msgid "second"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 2995
+#, c-format
+msgid "%s: %s has wrong length %d, expecting (%d).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3004
+#, c-format
+msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3012
+#, c-format
+msgid "%s: %s have incompatible dimensions.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3023
+#, c-format
+msgid "%s: %s should be a list with %d-element being %s.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3031
+msgid "square"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3036
+msgid "a vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3041
+msgid "a row vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3046
+msgid "a column vector"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3051
+msgid "a scalar"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3058
+#, c-format
+msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3171
+#, c-format
+msgid "GetDataFromName: variable %s not found.\n"
+msgstr ""
+#
+# File: src/c/stack2.c, line: 3223
+#, c-format
+msgid "%s: Variable %s not found.\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 135
+msgid "SIGSTP: aborting current computation\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 149
+#, c-format
+msgid "Error: Not a valid gateway ID %d.\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 175
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 176
+msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr ""
+#
+# File: src/c/returnPropertyList.c, line: 31
+msgid "Error returning tlist, memory full.\n"
+msgstr ""
+#
+# File: src/c/returnPropertyList.c, line: 53
+msgid "tlist not completely filled.\n"
+msgstr ""
+#
+# File: src/c/returnPropertyList.c, line: 68
+# File: src/c/returnPropertyList.c, line: 85
+# File: src/c/returnPropertyList.c, line: 101
+# File: src/c/returnPropertyList.c, line: 118
+msgid "List full.\n"
+msgstr ""
+#
+# File: src/c/loadversion.c, line: 84
+#, c-format
+msgid "Error: Could not parse file %s\n"
+msgstr ""
+#
+# File: src/c/loadversion.c, line: 140
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgstr ""
+#
+# File: src/c/loadversion.c, line: 149
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+#
+# File: src/c/inisci-c.c, line: 82
+# File: src/c/inisci-c.c, line: 84
+msgid "SCI environment variable not defined.\n"
+msgstr ""
+#
+# File: src/c/inisci-c.c, line: 82
+# File: src/c/inisci-c.c, line: 135
+# File: src/c/inisci-c.c, line: 165
+msgid "Warning"
+msgstr ""
+#
+# File: src/c/inisci-c.c, line: 135
+# File: src/c/inisci-c.c, line: 137
+msgid "SCIHOME not defined.\n"
+msgstr ""
+#
+# File: src/c/inisci-c.c, line: 165
+# File: src/c/inisci-c.c, line: 167
+msgid "TMPDIR not defined.\n"
+msgstr ""
+#
+# File: src/c/scimem.c, line: 54
+# File: src/c/scimem.c, line: 86
+# File: src/c/scimem64.c, line: 113
+msgid "No space to allocate Scilab stack.\n"
+msgstr ""
+#
+# File: src/c/version.c, line: 24
+# File: src/c/version.c, line: 36
+#, c-format
+msgid "Scilab version \"%d.%d.%d.%d\"\n"
+msgstr ""
+#
+# File: src/c/version.c, line: 32
+#, c-format
+msgid ""
+"Scilab version \"%d.%d.%d.%d\"\n"
+"%s\n"
+msgstr ""
+#
+# File: src/c/version.c, line: 33
+msgid "Scilab Version Info."
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 106
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 114
+#, c-format
+msgid "Error: Memory allocation.\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 213
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 222
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+#
+# File: src/c/callFunctionFromGateway.c, line: 26
+#, c-format
+msgid "Error: Not a valid primitive ID %d.\n"
 msgstr ""
 #
 # File: src/c/banier.c, line: 36
@@ -542,115 +1277,23 @@ msgid ""
 "doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr ""
 #
-# File: src/c/callDynamicGateway.c, line: 128
+# File: src/c/SetScilabEnvironment.c, line: 37
 #, c-format
-msgid "Impossible to load %s library: %s\n"
+msgid "Error: Impossible to define %s environment variable.\n"
 msgstr ""
 #
-# File: src/c/callDynamicGateway.c, line: 131
+# File: src/c/tmpdir.c, line: 53
+msgid "Cannot find Windows temporary directory (1)."
+msgstr ""
+#
+# File: src/c/tmpdir.c, line: 53
+# File: src/c/tmpdir.c, line: 75
+msgid "Error"
+msgstr ""
+#
+# File: src/c/tmpdir.c, line: 74
 #, c-format
-msgid "Impossible to load %s function in %s library: %s\n"
-msgstr ""
-#
-# File: src/c/callDynamicGateway.c, line: 134
-#, c-format
-msgid "Impossible to call %s in %s library: %s\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 149
-msgid "SIGSTP: aborting current computation\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 176
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 177
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 49
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 59
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 69
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 79
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 89
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 99
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 109
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 119
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 128
-msgid "Operating System: "
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 190
-#, c-format
-msgid "Number of processors: %d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 198
-#, c-format
-msgid "Video card: %s"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 205
-#, c-format
-msgid "Video card driver version: %s"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 300
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 303
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 83
-# File: src/c/getmodules.c, line: 118
-msgid "The SCI environment variable is not set.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 100
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 162
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 213
-#, c-format
-msgid "%s module not found.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 232
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
+msgid "Impossible to create : %s"
 msgstr ""
 #
 # File: src/c/getstaticDebugInfo_Windows.c, line: 39
@@ -721,217 +1364,6 @@ msgstr ""
 msgid "PCRE Version: %d.%d"
 msgstr ""
 #
-# File: src/c/inisci-c.c, line: 82
-# File: src/c/inisci-c.c, line: 84
-msgid "SCI environment variable not defined.\n"
-msgstr ""
-#
-# File: src/c/inisci-c.c, line: 82
-# File: src/c/inisci-c.c, line: 135
-# File: src/c/inisci-c.c, line: 165
-msgid "Warning"
-msgstr ""
-#
-# File: src/c/inisci-c.c, line: 135
-# File: src/c/inisci-c.c, line: 137
-msgid "SCIHOME not defined.\n"
-msgstr ""
-#
-# File: src/c/inisci-c.c, line: 165
-# File: src/c/inisci-c.c, line: 167
-msgid "TMPDIR not defined.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 89
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 100
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 107
-# File: src/c/intmacr2tree.c, line: 162
-# File: src/c/intmacr2tree.c, line: 330
-# File: src/c/intmacr2tree.c, line: 335
-# File: src/c/intmacr2tree.c, line: 417
-# File: src/c/intmacr2tree.c, line: 422
-# File: src/c/intmacr2tree.c, line: 683
-# File: src/c/intmacr2tree.c, line: 688
-# File: src/c/intmacr2tree.c, line: 992
-# File: src/c/intmacr2tree.c, line: 997
-# File: src/c/intmacr2tree.c, line: 1002
-# File: src/c/intmacr2tree.c, line: 1030
-# File: src/c/intmacr2tree.c, line: 1035
-# File: src/c/intmacr2tree.c, line: 1058
-# File: src/c/intmacr2tree.c, line: 1136
-# File: src/c/intmacr2tree.c, line: 1141
-# File: src/c/intmacr2tree.c, line: 1268
-# File: src/c/intmacr2tree.c, line: 1273
-# File: src/c/intmacr2tree.c, line: 1434
-# File: src/c/intmacr2tree.c, line: 1439
-# File: src/c/intmacr2tree.c, line: 1446
-# File: src/c/intmacr2tree.c, line: 1451
-# File: src/c/intmacr2tree.c, line: 1480
-# File: src/c/intmacr2tree.c, line: 1485
-# File: src/c/intmacr2tree.c, line: 1495
-# File: src/c/intmacr2tree.c, line: 1500
-# File: src/c/intmacr2tree.c, line: 1510
-# File: src/c/intmacr2tree.c, line: 1515
-# File: src/c/intmacr2tree.c, line: 1609
-# File: src/c/intmacr2tree.c, line: 1614
-# File: src/c/intmacr2tree.c, line: 1652
-# File: src/c/intmacr2tree.c, line: 1657
-# File: src/c/intmacr2tree.c, line: 1685
-# File: src/c/intmacr2tree.c, line: 1690
-# File: src/c/intmacr2tree.c, line: 1752
-# File: src/c/stack1.c, line: 2238
-# File: src/c/stack1.c, line: 2320
-# File: src/c/stack1.c, line: 2351
-# File: src/c/stack2.c, line: 1877
-# File: src/c/stack2.c, line: 2130
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 112
-# File: src/c/intmacr2tree.c, line: 240
-#, c-format
-msgid "%s: Out of code.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 188
-# File: src/c/stack1.c, line: 270
-# File: src/c/stack1.c, line: 535
-# File: src/c/stack1.c, line: 724
-# File: src/c/stack1.c, line: 906
-# File: src/c/stack1.c, line: 1393
-# File: src/c/stack1.c, line: 1438
-# File: src/c/stack1.c, line: 1496
-# File: src/c/stack1.c, line: 1588
-# File: src/c/stack1.c, line: 1713
-# File: src/c/stack1.c, line: 1792
-# File: src/c/stack1.c, line: 2103
-# File: src/c/stack1.c, line: 2180
-# File: src/c/stack1.c, line: 2289
-# File: src/c/stack1.c, line: 2571
-# File: src/c/stack1.c, line: 2692
-# File: src/c/stack1.c, line: 3034
-# File: src/c/stack1.c, line: 3059
-#, c-format
-msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 255
-#, c-format
-msgid "%s: Wrong %s value %d instead of %d.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 553
-# File: src/c/intmacr2tree.c, line: 560
-# File: src/c/intmacr2tree.c, line: 563
-#, c-format
-msgid "%s: code %d not yet implemented.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 594
-#, c-format
-msgid "%s: Unknown code %d at index2 %d.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 783
-#, c-format
-msgid "%s: Old version of if and while not implemented.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 1091
-#, c-format
-msgid "%s: Wrong type value.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 1167
-#, c-format
-msgid "%s: Unknown operator %d.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 1345
-# File: src/c/intmacr2tree.c, line: 1706
-#, c-format
-msgid "%s: Wrong fromwhat value %s.\n"
-msgstr ""
-#
-# File: src/c/intmacr2tree.c, line: 1990
-#, c-format
-msgid "%s: wrong code %d.\n"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 74
-#, c-format
-msgid "Error: Could not parse file %s\n"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 130
-#, c-format
-msgid ""
-"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 143
-#, c-format
-msgid ""
-"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-#
-# File: src/c/prompt.c, line: 38
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 95
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 103
-#, c-format
-msgid "Error: Memory allocation.\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 202
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
-"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 216
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-#
-# File: src/c/returnPropertyList.c, line: 31
-msgid "Error returning tlist, memory full.\n"
-msgstr ""
-#
-# File: src/c/returnPropertyList.c, line: 53
-msgid "tlist not completely filled.\n"
-msgstr ""
-#
-# File: src/c/returnPropertyList.c, line: 68
-# File: src/c/returnPropertyList.c, line: 85
-# File: src/c/returnPropertyList.c, line: 101
-# File: src/c/returnPropertyList.c, line: 118
-msgid "List full.\n"
-msgstr ""
-#
 # File: src/c/run.c, line: 351
 # File: src/c/run.c, line: 359
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
@@ -941,623 +1373,183 @@ msgstr ""
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 #
-# File: src/c/scicurdir.c, line: 42
-# File: src/c/scicurdir.c, line: 51
+# File: src/c/intmacr2tree.c, line: 96
 #, c-format
-msgid "Can't go to directory %s.\n"
+msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
 msgstr ""
 #
-# File: src/c/scicurdir.c, line: 54
-msgid "Invalid buffer.\n"
-msgstr ""
-#
-# File: src/c/scicurdir.c, line: 57
-msgid "Unknown error.\n"
-msgstr ""
-#
-# File: src/c/scicurdir.c, line: 74
-msgid "Can't get current directory.\n"
-msgstr ""
-#
-# File: src/c/scimem.c, line: 51
-# File: src/c/scimem.c, line: 82
-# File: src/c/scimem64.c, line: 113
-msgid "No space to allocate Scilab stack.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 83
+# File: src/c/intmacr2tree.c, line: 107
 #, c-format
-msgid "%s: argument %d should be a list of size at least %d.\n"
+msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 119
-# File: src/c/stack1.c, line: 136
-# File: src/c/stack1.c, line: 800
+# File: src/c/intmacr2tree.c, line: 119
+# File: src/c/intmacr2tree.c, line: 265
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Out of code.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 155
-# File: src/c/stack1.c, line: 606
+# File: src/c/intmacr2tree.c, line: 278
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 172
+# File: src/c/intmacr2tree.c, line: 594
+# File: src/c/intmacr2tree.c, line: 605
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
-"expected.\n"
+msgid "%s: code %d not yet implemented.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 174
-# File: src/c/stack1.c, line: 458
+# File: src/c/intmacr2tree.c, line: 636
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Unknown code %d at index2 %d.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 234
-# File: src/c/stack1.c, line: 513
-# File: src/c/stack1.c, line: 684
-# File: src/c/stack1.c, line: 704
-# File: src/c/stack1.c, line: 882
-# File: src/c/stack1.c, line: 1279
-# File: src/c/stack1.c, line: 1305
-# File: src/c/stack1.c, line: 1329
-# File: src/c/stack1.c, line: 1358
-# File: src/c/stack1.c, line: 1383
-# File: src/c/stack1.c, line: 1543
-# File: src/c/stack1.c, line: 1620
-# File: src/c/stack1.c, line: 1773
-# File: src/c/stack1.c, line: 1922
-# File: src/c/stack1.c, line: 2078
-# File: src/c/stack1.c, line: 2145
-# File: src/c/stack1.c, line: 2174
-# File: src/c/stack1.c, line: 2269
-# File: src/c/stack1.c, line: 2560
-# File: src/c/stack1.c, line: 2687
-# File: src/c/stack1.c, line: 3028
-# File: src/c/stack1.c, line: 3117
-# File: src/c/stack2.c, line: 1946
-# File: src/c/stack2.c, line: 2186
+# File: src/c/intmacr2tree.c, line: 819
 #, c-format
-msgid "%s: Too many names.\n"
+msgid "%s: Old version of if and while not implemented.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 422
+# File: src/c/intmacr2tree.c, line: 1120
 #, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgid "%s: Wrong type value.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 456
+# File: src/c/intmacr2tree.c, line: 1363
+#, c-format
+msgid "%s: Unknown operator %d.\n"
+msgstr ""
+#
+# File: src/c/intmacr2tree.c, line: 1549
+# File: src/c/intmacr2tree.c, line: 1926
+#, c-format
+msgid "%s: Wrong fromwhat value %s.\n"
+msgstr ""
+#
+# File: src/c/intmacr2tree.c, line: 2212
+#, c-format
+msgid "%s: wrong code %d.\n"
+msgstr ""
+#
+# File: src/c/InitializeCore.c, line: 35
+msgid "Fatal Error: Can't create table for scilab functions.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 84
+# File: src/c/getmodules.c, line: 119
+msgid "The SCI environment variable is not set.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 101
+#, c-format
+msgid "Cannot load the module declaration file: %s.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 171
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 222
+#, c-format
+msgid "%s module not found.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 238
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 571
-# File: src/c/stack1.c, line: 765
-# File: src/c/stack1.c, line: 1031
-# File: src/c/stack1.c, line: 1100
-# File: src/c/stack1.c, line: 1162
-# File: src/c/stack1.c, line: 2372
-# File: src/c/stack1.c, line: 2429
-# File: src/c/stack1.c, line: 2485
-# File: src/c/stack1.c, line: 2521
-# File: src/c/stack1.c, line: 3147
+# File: src/c/callDynamicGateway.c, line: 138
 #, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgid "Impossible to load %s library: %s\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 625
+# File: src/c/callDynamicGateway.c, line: 141
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+msgid "Impossible to load %s function in %s library: %s\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 627
+# File: src/c/callDynamicGateway.c, line: 144
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "Impossible to call %s in %s library: %s\n"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 819
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 52
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgid "Memory in use: %*ld %%"
 msgstr ""
 #
-# File: src/c/stack1.c, line: 821
-#, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 946
-#, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 970
-#, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 987
-#, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1007
-#, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1041
-#, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1065
-#, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1191
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
-"expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1193
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1214
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1216
-#, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 1968
-# File: src/c/stack2.c, line: 1479
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2010
-#, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2051
-#, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2210
-#, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2380
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2411
-#, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2437
-#, c-format
-msgid "%s: argument %d >(%d) should be a column vector.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2469
-#, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2539
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2541
-#, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2857
-# File: src/c/stack2.c, line: 1186
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2941
-#, c-format
-msgid "%s: entry point %s not found in predefined tables or link table.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2947
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
-"expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2961
-#, c-format
-msgid "%s: Incompatible sizes.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 2982
-#, c-format
-msgid "%s: Optional argument %d not given and default value %s not found.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 3010
-#, c-format
-msgid "%f: No more space to store string arguments.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 3181
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
-"expected.\n"
-msgstr ""
-#
-# File: src/c/stack1.c, line: 3183
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 80
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 82
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 98
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 100
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 327
-#, c-format
-msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 342
-#, c-format
-msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 384
-msgid "Optional argument list is empty.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 387
-msgid "Optional arguments list: \n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 393
-#, c-format
-msgid "and %s.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 411
-# File: src/c/stack2.c, line: 448
-# File: src/c/stack2.c, line: 564
-# File: src/c/stack2.c, line: 610
-# File: src/c/stack2.c, line: 643
-# File: src/c/stack2.c, line: 727
-# File: src/c/stack2.c, line: 1125
-# File: src/c/stack2.c, line: 1154
-# File: src/c/stack2.c, line: 1178
-# File: src/c/stack2.c, line: 1223
-# File: src/c/stack2.c, line: 1425
-# File: src/c/stack2.c, line: 1522
-# File: src/c/stack2.c, line: 1643
-# File: src/c/stack2.c, line: 2768
-# File: src/c/stack2.c, line: 3070
-#, c-format
-msgid "%s: bad call to %s! (1rst argument).\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 442
-# File: src/c/stack2.c, line: 558
-# File: src/c/stack2.c, line: 604
-# File: src/c/stack2.c, line: 637
-# File: src/c/stack2.c, line: 720
-# File: src/c/stack2.c, line: 786
-# File: src/c/stack2.c, line: 890
-# File: src/c/stack2.c, line: 960
-# File: src/c/stack2.c, line: 1065
-# File: src/c/stack2.c, line: 1119
-# File: src/c/stack2.c, line: 1148
-# File: src/c/stack2.c, line: 1231
-# File: src/c/stack2.c, line: 1429
-# File: src/c/stack2.c, line: 1526
-# File: src/c/stack2.c, line: 1647
-# File: src/c/stack2.c, line: 3064
-#, c-format
-msgid ""
-"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 869
-# File: src/c/stack2.c, line: 929
-# File: src/c/stack2.c, line: 1034
-# File: src/c/stack2.c, line: 1100
-# File: src/c/stack2.c, line: 1671
-#, c-format
-msgid "%s: (%s) bad third argument!\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1270
-#, c-format
-msgid "%s: Wrong type for argument: Complex expected.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1470
-#, c-format
-msgid "%s: bad call to %s!\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1566
-#, c-format
-msgid "%s: argument %d > (%d) should be a complex matrix.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1622
-#, c-format
-msgid "%s: bad call to %s (third argument %c).\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1739
-# File: src/c/stack2.c, line: 1787
-#, c-format
-msgid "%s: (%s) bad second argument!\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1761
-#, c-format
-msgid ""
-"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 1942
-# File: src/c/stack2.c, line: 1961
-# File: src/c/stack2.c, line: 2182
-# File: src/c/stack2.c, line: 2201
-#, c-format
-msgid "%s: Recursion problems. Sorry ...\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2066
-#, c-format
-msgid "%s: %s is not a Scilab function.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2182
-# File: src/c/stack2.c, line: 2201
-msgid "built in"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2354
-# File: src/c/stack2.c, line: 2364
-msgid "Invalid time domain.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2370
-msgid "Invalid system.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2380
-msgid "A non square matrix!\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2384
-# File: src/c/stack2.c, line: 2388
-# File: src/c/stack2.c, line: 2392
-# File: src/c/stack2.c, line: 2396
-#, c-format
-msgid "Invalid %c,%c matrices.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2412
-#, c-format
-msgid "%s: internal error, info=%d.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2568
-#, c-format
-msgid "%s: intersiz is too small.\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2854
-#, c-format
-msgid "%s argument"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2856
-#, c-format
-msgid "argument number %d"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2866
-#, c-format
-msgid "%s and %s arguments"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2868
-# File: src/c/stack2.c, line: 2873
-#, c-format
-msgid "%s argument and argument %d"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2875
-#, c-format
-msgid "arguments %d and %d"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2937
-msgid "should be square"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2942
-msgid "should be a vector"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2947
-msgid "should be a row vector"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2952
-msgid "should be a column vector"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2957
-msgid "should be a scalar"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2964
-#, c-format
-msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2974
-#, c-format
-msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2974
-# File: src/c/stack2.c, line: 3047
-msgid "first"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2974
-# File: src/c/stack2.c, line: 3047
-msgid "second"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 62
+msgid "Total Physical Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2984
-#, c-format
-msgid "%s: %s has wrong length %d, expecting (%d).\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 2993
-#, c-format
-msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr ""
-#
-# File: src/c/stack2.c, line: 3001
-#, c-format
-msgid "%s: %s have incompatible dimensions.\n"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 72
+msgid "Free Physical Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3012
-#, c-format
-msgid "%s: %s should be a list with %d-element being %s.\n"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 82
+msgid "Total Paging File (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3020
-msgid "square"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 92
+msgid "Free Paging File (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3025
-msgid "a vector"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 102
+msgid "Total Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3030
-msgid "a row vector"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 112
+msgid "Free Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3035
-msgid "a column vector"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 122
+msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3040
-msgid "a scalar"
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 133
+msgid "Operating System: "
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3047
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 159
 #, c-format
-msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
+msgid "Number of processors: %d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3160
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 167
 #, c-format
-msgid "GetDataFromName: variable %s not found.\n"
+msgid "Video card: %s"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3212
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 174
 #, c-format
-msgid "%s: Variable %s not found.\n"
+msgid "Video card driver version: %s"
 msgstr ""
 #
-# File: src/c/stack3.c, line: 85
-# File: src/c/stack3.c, line: 134
-# File: src/c/stack3.c, line: 273
-# File: src/c/stack3.c, line: 330
-# File: src/c/stack3.c, line: 429
-# File: src/c/stack3.c, line: 481
-# File: src/c/stack3.c, line: 527
-# File: src/c/stack3.c, line: 557
-# File: src/c/stack3.c, line: 594
-# File: src/c/stack3.c, line: 675
-# File: src/c/stack3.c, line: 721
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 270
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 273
 #, c-format
-msgid "Undefined variable %s.\n"
+msgid "Screen size: %d x %d %d bits"
 msgstr ""
 #
-# File: src/c/stack3.c, line: 283
+# File: includes/stack-c.h, line: 308
 #, c-format
-msgid "%s: argument must be a string.\n"
-msgstr ""
-#
-# File: src/c/tmpdir.c, line: 63
-msgid "Cannot find Windows temporary directory."
+msgid " results may be inaccurate. rcond = %s1\n"
 msgstr ""
 #
-# File: src/c/tmpdir.c, line: 83
-#, c-format
-msgid "Impossible to create : %s"
+# File: etc/core.start, line: 27
+msgid "Introduction"
 msgstr ""
 #
-# File: src/c/version.c, line: 24
-# File: src/c/version.c, line: 36
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
 #, c-format
-msgid "Scilab version \"%d.%d.%d.%d\"\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 #
-# File: src/c/version.c, line: 32
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
 #, c-format
-msgid ""
-"Scilab version \"%d.%d.%d.%d\"\n"
-"%s\n"
-msgstr ""
-#
-# File: src/c/version.c, line: 33
-msgid "Scilab Version Info."
+msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
 msgstr ""

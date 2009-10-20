@@ -14,8 +14,634 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:47+0100\n"
 
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 135
+# File: sci_gateway/cpp/sci_diary.cpp, line: 179
+# File: sci_gateway/cpp/sci_diary.cpp, line: 626
+# File: sci_gateway/cpp/sci_diary.cpp, line: 631
+# File: sci_gateway/cpp/sci_diary.cpp, line: 739
+# File: sci_gateway/cpp/sci_diary.cpp, line: 754
+# File: sci_gateway/cpp/sci_diary.cpp, line: 834
+# File: sci_gateway/cpp/sci_diary.cpp, line: 892
+# File: sci_gateway/cpp/sci_diary.cpp, line: 907
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1162
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1205
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 228
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 248
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1257
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1330
+#, c-format
+msgid "%s: error can not create diary: %s.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 253
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1262
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1335
+#, c-format
+msgid "%s: error can not create diary.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 291
+#, c-format
+msgid "%s: error can not close diary.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 304
+# File: sci_gateway/cpp/sci_diary.cpp, line: 731
+# File: sci_gateway/cpp/sci_diary.cpp, line: 884
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 309
+# File: sci_gateway/cpp/sci_diary.cpp, line: 372
+# File: sci_gateway/cpp/sci_diary.cpp, line: 397
+# File: sci_gateway/cpp/sci_diary.cpp, line: 422
+# File: sci_gateway/cpp/sci_diary.cpp, line: 444
+# File: sci_gateway/cpp/sci_diary.cpp, line: 466
+# File: sci_gateway/cpp/sci_diary.cpp, line: 490
+# File: sci_gateway/cpp/sci_diary.cpp, line: 592
+# File: sci_gateway/cpp/sci_diary.cpp, line: 613
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 349
+# File: sci_gateway/cpp/sci_diary.cpp, line: 496
+# File: sci_gateway/cpp/sci_diary.cpp, line: 502
+# File: sci_gateway/cpp/sci_diary.cpp, line: 557
+# File: sci_gateway/cpp/sci_diary.cpp, line: 620
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 681
+# File: sci_gateway/cpp/sci_diary.cpp, line: 772
+# File: sci_gateway/cpp/sci_diary.cpp, line: 925
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 687
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 778
+# File: sci_gateway/cpp/sci_diary.cpp, line: 841
+# File: sci_gateway/cpp/sci_diary.cpp, line: 931
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 820
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1303
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1371
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 945
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 962
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 992
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1026
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1055
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1082
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1112
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1140
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 41
+# File: sci_gateway/c/sci_mprintf.c, line: 35
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 71
+# File: sci_gateway/c/sci_mprintf.c, line: 66
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 88
+# File: sci_gateway/c/sci_mprintf.c, line: 93
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 106
+#, c-format
+msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 125
+# File: sci_gateway/c/sci_msprintf.c, line: 130
+# File: sci_gateway/c/sci_msprintf.c, line: 140
+# File: sci_gateway/c/sci_msprintf.c, line: 164
+# File: sci_gateway/c/sci_msprintf.c, line: 171
+# File: sci_gateway/c/sci_msprintf.c, line: 178
+# File: sci_gateway/c/sci_msprintf.c, line: 189
+# File: src/c/sciprint_full.c, line: 50
+# File: src/c/sciprint_full.c, line: 60
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 511
+# File: src/c/msgs.c, line: 522
+# File: src/c/msgs.c, line: 534
+# File: src/c/msgs.c, line: 554
+# File: src/c/msgs.c, line: 569
+# File: src/c/msgs.c, line: 796
+msgid "Warning :\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 512
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 515
+# File: src/c/msgs.c, line: 740
+# File: src/c/msgs.c, line: 748
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 523
+# File: src/c/msgs.c, line: 535
+msgid "Non convergence in QR steps.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 527
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 538
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 545
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 555
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 559
+msgid "computing least squares solution. (see lsq).\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 570
+msgid "eigenvectors are badly conditioned.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 571
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 577
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 584
+msgid "Warning: obsolete use of eye rand or ones.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 591
+#, c-format
+msgid "Rank defficient. rank = %d\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 603
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 616
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 626
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 632
+msgid "Optimization stops because too small variations for x.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 638
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 644
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 650
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 656
+msgid "Stop during calculation of descent direction.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 662
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 668
+msgid "End of optimization.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 674
+msgid "End of optimization (linear search fails).\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 682
+#, c-format
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 688
+msgid "Help file inconsistent...\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 699
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 720
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 729
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 754
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 761
+msgid "Warning: stack problem..., cleared.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 781
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 797
+#, c-format
+msgid "The identifier : %s\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 799
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 806
+msgid "Real part\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 812
+msgid "Imaginary part\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 818
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 829
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 835
+msgid "Your variables are:\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 847
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 851
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 857
+msgid "System functions:\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 863
+msgid "Commands:\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 879
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 906
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 913
+msgid "Not enough memory to perform simplification.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 919
+msgid "Your global variables are...\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 955
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 961
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 967
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 973
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1015
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1024
+# File: src/c/msgs.c, line: 1397
+msgid "Warning:\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1025
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1031
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1037
+msgid "Warning : division by zero...\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1043
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1081
+#, c-format
+msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1087
+msgid "stepsize not significant in rkqc.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1093
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1099
+msgid "Warning: integration up to tcrit.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1105
+msgid ""
+"Warning: integration not completed! check tolerance parameters or step "
+"size.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1111
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used!,  see %ODEOPTIONS(6).\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1117
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1123
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1129
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1141
+msgid "Warning: function is already compiled.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1147
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1153
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1159
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1165
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1171
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1201
+msgid "Too many input/output ports for hilited block.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1207
+msgid "Too many input/output entries for hilited block.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1261
+msgid "Undefined display for this data type.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1279
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1280
+# File: src/c/msgs.c, line: 1300
+msgid "Rebuild your function libraries.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1299
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1308
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1314
+msgid "Formal variable name has been truncated.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1323
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1330
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1336
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1344
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most %"
+"s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1350
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1356
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1362
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1368
+# File: src/c/msgs.c, line: 1374
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1380
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 1386
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr ""
+#
 # File: src/c/errmsg.c, line: 66
 msgid "Incorrect assignment.\n"
 msgstr ""
@@ -286,11 +912,11 @@ msgid "Problem with comparison symbol...\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 433
-msgid "Function has no input argument...\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 437
-msgid "Wrong number of arguments in function call...\n"
+msgid "Wrong number of input arguments:\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 438
@@ -299,11 +925,12 @@ msgid "Arguments are :\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 449
-msgid "Function has no output.\n"
+msgid ""
+"Wrong number of output arguments: This function has no output argument.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 453
-msgid "Incorrect # of outputs in the function\n"
+msgid "Wrong number of output arguments\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 462
@@ -334,7 +961,7 @@ msgid "%d: logical unit already used.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 492
-msgid "No more logical units available!\n"
+msgid "Too many files opened!\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 497
@@ -1063,466 +1690,17 @@ msgstr ""
 msgid "Too many commands defined.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1535
+# File: src/c/errmsg.c, line: 1537
 #, c-format
 msgid "%s: Input arguments should have the same formal variable name.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1645
+# File: src/c/errmsg.c, line: 1541
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1651
 msgid "\"unknown data\""
-msgstr ""
-#
-# File: src/c/msgs.c, line: 511
-# File: src/c/msgs.c, line: 522
-# File: src/c/msgs.c, line: 534
-# File: src/c/msgs.c, line: 554
-# File: src/c/msgs.c, line: 569
-# File: src/c/msgs.c, line: 796
-msgid "Warning :\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 512
-msgid "Non convergence in the QZ algorithm.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 515
-# File: src/c/msgs.c, line: 740
-# File: src/c/msgs.c, line: 748
-#, c-format
-msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 523
-# File: src/c/msgs.c, line: 535
-msgid "Non convergence in QR steps.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 527
-#, c-format
-msgid "The top %d x %d block may not be in Schur form.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 538
-#, c-format
-msgid "The first %d singular values may be incorrect.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 545
-msgid "Warning:  Result may be inaccurate.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 555
-#, c-format
-msgid "matrix is close to singular or badly scaled. rcond = %s\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 559
-msgid "computing least squares solution. (see lsq).\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 570
-msgid "eigenvectors are badly conditioned.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 571
-#, c-format
-msgid "results may be inaccurate. rcond = %s\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 577
-msgid "Warning: obsolete use of '=' instead of '=='.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 584
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 591
-#, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 603
-msgid "Quapro encounters cycles on degenerate point.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 616
-#, c-format
-msgid "Norm of projected gradient lower than %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 626
-#, c-format
-msgid "at last iteration f decreases by less than %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 632
-msgid "Optimization stops because too small variations for x.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 638
-msgid "Optim stops: maximum number of calls to f is reached.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 644
-msgid "Optim stops: maximum number of iterations is reached.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 650
-msgid "Optim stops: too small variations in gradient direction.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 656
-msgid "Stop during calculation of descent direction.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 662
-msgid "Stop during calculation of estimated hessian.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 668
-msgid "End of optimization.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 674
-msgid "End of optimization (linear search fails).\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 682
-#, c-format
-msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 688
-msgid "Help file inconsistent...\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 699
-#, c-format
-msgid "Functions files location : %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 720
-msgid "Pause mode: enter empty lines to continue.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 729
-#, c-format
-msgid "Breakpoints of function : %s\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 754
-msgid "Warning: recursion problem..., cleared.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 761
-msgid "Warning: stack problem..., cleared.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 781
-#, c-format
-msgid "Stop after row %s in function %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 797
-#, c-format
-msgid "The identifier : %s\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 799
-#, c-format
-msgid " has been truncated to: %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 806
-msgid "Real part\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 812
-msgid "Imaginary part\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 818
-#, c-format
-msgid "Maximum size of buffer : %d characters.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 829
-#, c-format
-msgid "Rank deficient : rank = %s  - tol = %s .\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 835
-msgid "Your variables are:\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 847
-#, c-format
-msgid "Using %s elements out of %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 851
-#, c-format
-msgid " and %s variables out of %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 857
-msgid "System functions:\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 863
-msgid "Commands:\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 879
-#, c-format
-msgid ""
-"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 906
-#, c-format
-msgid "       inside function: %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 913
-msgid "Not enough memory to perform simplification.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 919
-msgid "Your global variables are...\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 955
-#, c-format
-msgid "%s: Loop on two orders detected.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 961
-#, c-format
-msgid ""
-"%s: Impossible to reach required order.\n"
-"   previous order computed solution returned.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 967
-#, c-format
-msgid ""
-"%s: Failure when looking for the intersection with domains boundaries.\n"
-"   previous order computed solution returned.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 973
-#, c-format
-msgid ""
-"%s: Too many solutions found.\n"
-"   previous order computed solution returned.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1015
-msgid ""
-"Warning: loaded file has been created with a previous version of Scilab\n"
-"or you are trying to load a file saved on a different architecture.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1024
-# File: src/c/msgs.c, line: 1404
-msgid "Warning:\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1025
-#, c-format
-msgid "Impossible to load variable %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1031
-msgid ""
-"Warning: Use of standard list to define typed structures\n"
-"          is obsolete. Use tlist.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1037
-msgid "Warning : division by zero...\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1043
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1081
-#, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1087
-msgid "stepsize not significant in rkqc.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1093
-#, c-format
-msgid "Warning: variable %%ODEOPTIONS not found.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1099
-msgid "Warning: integration up to tcrit.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1105
-msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
-"size.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1111
-msgid ""
-"Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1117
-msgid ""
-"Warning: No Jacobian external given but\n"
-" one is required by %ODEOPTIONS(6) value !\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1123
-msgid ""
-"itask=2,3 or 5: At most one value of t\n"
-" is allowed, the last element of t is used.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1129
-msgid ""
-"Warning: odedc forces itask=4 and handles\n"
-" tcrit.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1141
-msgid "Warning: function is already compiled.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1147
-#, c-format
-msgid "%s: termination for lack of space to divide triangle.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1153
-#, c-format
-msgid "%s: termination because of roundoff noise.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1159
-#, c-format
-msgid "%s: termination for relative error < (5.0*%eps).\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1165
-#, c-format
-msgid "%s: termination: function evaluations > MEVALS.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1171
-#, c-format
-msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1201
-msgid "Too many input/output ports for hilited block.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1207
-msgid "Too many input/output entries for hilited block.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1261
-msgid "Undefined display for this data type.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1279
-#, c-format
-msgid "Warning: primitive function %s has moved.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1280
-# File: src/c/msgs.c, line: 1300
-msgid "Rebuild your function libraries.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1299
-#, c-format
-msgid "Warning: primitive function %s is now a Scilab function.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1308
-msgid ""
-"Roundoff errors make leading eigenvalues\n"
-" in the Schur form no longer satisfy criterion.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1314
-msgid "Formal variable name has been truncated.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1323
-#, c-format
-msgid "Unknown key <%s> ignored.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1330
-#, c-format
-msgid "%s: window dimensions have been set less than 2^16.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1336
-msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1344
-#, c-format
-msgid ""
-"%s: both actual and predicted relative reductions in the criterion at most %"
-"s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1350
-#, c-format
-msgid "%s: relative error between two consecutive iterates is at most %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1356
-#, c-format
-msgid ""
-"%s: the cosine of the angle between %s and any column of the jacobian is at "
-"most %s in absolute value.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1363
-#, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1369
-# File: src/c/msgs.c, line: 1376
-#, c-format
-msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1383
-#, c-format
-msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
-"machine precision.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1389
-msgid "poly: variable name must be lesser than 5 characters long.\n"
-msgstr ""
-#
-# File: src/c/sciprint_full.c, line: 50
-# File: src/c/sciprint_full.c, line: 60
-#, c-format
-msgid "%s: No more memory.\n"
 msgstr ""
 #
 # File: src/c/sciprint_full.c, line: 96
@@ -1533,4 +1711,40 @@ msgstr ""
 # File: src/c/sciprint_full.c, line: 100
 #, c-format
 msgid "     (end) %s\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 58
+#, c-format
+msgid "%s: Not enough arguments.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 258
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 449
+# File: src/c/do_xxprintf.c, line: 454
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 258
+msgid "Buffer too small."
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 363
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 367
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 454
+msgid "Bad conversion."
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 449
+msgid "'o' format not allowed."
 msgstr ""

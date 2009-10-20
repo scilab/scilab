@@ -14,49 +14,64 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
+# File: macros/isfield.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+#
+# File: macros/isfield.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+#
+# File: macros/isfield.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/struct.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected."
+msgstr ""
+#
 # File: macros/iscellstr.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr ""
 #
-# File: macros/struct.sci, line: 25
-#, c-format
-msgid "%s: Wrong number of input argument(s)."
+# File: src/c/stcreate.c, line: 43
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 #
-# File: src/c/hmops.c, line: 657
+# File: src/c/hmops.c, line: 651
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 663
+# File: src/c/hmops.c, line: 657
 msgid " Argument is not an hypermatrix. "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 676
+# File: src/c/hmops.c, line: 670
 msgid " Incompatible hypermatrix extraction. "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 702
+# File: src/c/hmops.c, line: 696
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 831
+# File: src/c/hmops.c, line: 825
 msgid " An hypermatrix insertion must have at least 3 arguments "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 838
+# File: src/c/hmops.c, line: 832
 msgid " Argument is not an hypermatrix "
 msgstr ""
 #
-# File: src/c/hmops.c, line: 894
-# File: src/c/hmops.c, line: 909
-# File: src/c/hmops.c, line: 919
+# File: src/c/hmops.c, line: 888
+# File: src/c/hmops.c, line: 903
+# File: src/c/hmops.c, line: 913
 msgid " Bad hypermatrix insertion. "
-msgstr ""
-#
-# File: src/c/stcreate.c, line: 43
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
