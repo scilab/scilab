@@ -9,7 +9,7 @@
 
 // Update the dependencies with the installation of this new package
 
-function packages_out = atomsUpdateDeps(name,version,allusers)
+function packages_out = atomsUpdateDeps(name,version,section)
 	
 	rhs          = argn(2);
 	packages_out = [];
@@ -46,13 +46,23 @@ function packages_out = atomsUpdateDeps(name,version,allusers)
 	// All user management
 	// =========================================================================
 	
-	if rhs == 2 then
-		allusers = %T;
+	if rhs < 3 then
+		section = "all";
+	
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsUpdateDeps",3));
+	
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",3));
 		end
+		
+		if size(section,"*")<>1 then
+			error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",3));
+		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsUpdateDeps",3));
+		end
+		
 	end
 	
 	// The package designed by "name - version" must be installed
@@ -65,11 +75,10 @@ function packages_out = atomsUpdateDeps(name,version,allusers)
 	// If alluser, process the 2 list (allusers and user)
 	// =========================================================================
 	
-	allusers_mat = [%F];
+	allusers_mat = ["user"];
 	
-	if allusers then
-		// all packages
-		allusers_mat = [ allusers_mat ; %T ];
+	if or(section == ["all","allusers"]) then
+		allusers_mat = [ allusers_mat ; "allusers" ];
 	end
 	
 	for i=1:size(allusers_mat,"*")

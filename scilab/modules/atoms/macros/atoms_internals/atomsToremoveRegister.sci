@@ -11,7 +11,7 @@
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function nbAdd = atomsToremoveRegister(name,version,allusers)
+function nbAdd = atomsToremoveRegister(name,version,section)
 	
 	rhs            = argn(2);
 	nbAdd          = 0;
@@ -44,34 +44,23 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 	// Allusers/user management
 	// =========================================================================
 	
-	if (type(allusers) <> 4) & (type(allusers) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveRegister",3));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsToremoveRegister",3));
 	end
 	
-	if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+	if and(section<>["user","allusers"]) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveRegister",3));
 	end
 	
-	if allusers == "user" then
-		allusers = %F;
-	elseif allusers == "allusers" then
-		allusers = %T;
-	end
-	
 	// Check if we have the write access
-	if allusers & ~ atomsAUWriteAccess() then
-		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveRegister",3,pathconvert(SCI+"/.atoms")));
+	if section=="allusers" & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveRegister",3,atomsPath("system","allusers")));
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

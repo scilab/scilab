@@ -9,7 +9,7 @@
 
 // Load one or several toolboxes
 
-function result = atomsLoad(name,version,alluser)
+function result = atomsLoad(name,version,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -51,25 +51,19 @@ function result = atomsLoad(name,version,alluser)
 	// =========================================================================
 	
 	if rhs < 3 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
 		// Process the 2nd input argument : allusers
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsLoad",3));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsLoad",3));
-		end
-		
-		if allusers == %F then
-			allusers = "user";
-		elseif allusers == %T then
-			allusers = "all";
 		end
 		
 	end
@@ -81,7 +75,7 @@ function result = atomsLoad(name,version,alluser)
 		
 		for i=1:size(name,"*")
 			
-			this_module_versions = atomsGetInstalledVers(name(i),allusers);
+			this_module_versions = atomsGetInstalledVers(name(i),section);
 			
 			if isempty(this_module_versions) then
 				error(msprintf(gettext("%s: No version of the module ''%s'' is installed.\n"),"atomsLoad",name(i)));
@@ -96,9 +90,9 @@ function result = atomsLoad(name,version,alluser)
 	// Check if the packages to load are installed
 	// =========================================================================
 	
-		if or( ~ atomsIsInstalled(name,version,allusers) ) then
+		if or( ~ atomsIsInstalled(name,version,section) ) then
 			for i=1:size(name,"*")
-				if ~atomsIsInstalled(name(i),version(i),allusers) then
+				if ~atomsIsInstalled(name(i),version(i),section) then
 					error(msprintf(gettext("%s: the module ''%s - %s'' is not installed.\n"),"atomsLoad",name(i),version(i)));
 				end
 			end
@@ -254,7 +248,7 @@ function result = atomsLoad(name,version,alluser)
 			
 			mandatory_packages(childs(j,1)+" - "+childs(j,2)) = name(i)+" - "+version(i);
 			mandatory_packages_name(childs(j,1)) = childs(j,2);
-			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,1),childs(j,2),allusers) ];
+			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,1),childs(j,2),section) ];
 			
 		end
 	end

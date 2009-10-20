@@ -45,7 +45,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterTlist( valueType ) )
   {
-    Scierror(999, _("Wrong type for '%s' property: TList expected.\n"), "y_ticks");
+    Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "y_ticks");
     return SET_PROPERTY_ERROR ;
   }
 

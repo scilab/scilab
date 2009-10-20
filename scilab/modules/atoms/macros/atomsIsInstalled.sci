@@ -19,7 +19,7 @@
 // Output parameters :
 //   res      : matrix of boolean
 
-function res = atomsIsInstalled(name,version,allusers)
+function res = atomsIsInstalled(name,version,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -67,21 +67,21 @@ function res = atomsIsInstalled(name,version,allusers)
 	// =========================================================================
 	
 	if rhs < 3 then
-		allusers = %T;
+		section = "all"
 	else
 		// Just check if it's a boolean
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsIsInstalled",1));
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsIsInstalled",1));
 		end
 	end
 	
-	if (rhs>=3) & (type(allusers) == 10) & (and(allusers<>["user","allusers","all"])) then
+	if (rhs>=3) & (and(section<>["user","allusers","all"])) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsIsInstalled",1));
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled(allusers);
+	packages = atomsGetInstalled(section);
 	
 	// Loop on name
 	// =========================================================================

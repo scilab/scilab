@@ -78,19 +78,7 @@ function nbDel = atomsRepositoryDel(url,section)
 	// Define the path of the files that will record the change according to
 	// the "section" value and the existence of the latter
 	// =========================================================================
-	
-	if section=="all" then
-		atoms_files = [ pathconvert(SCIHOME+"/atoms/repositories",%F) ; pathconvert(SCI+"/.atoms/repositories",%F) ];
-	
-	elseif section=="allusers" then
-		atoms_files = [ pathconvert(SCI+"/.atoms/repositories",%F) ];
-		
-	elseif section=="user" then
-		atoms_files = [ pathconvert(SCIHOME+"/atoms/repositories",%F)  ];
-	
-	else
-		atoms_files = [];
-	end
+	atoms_files = atomsPath("system",section) + "repositories";
 	
 	// Loop on each repositories file specified as first input argument
 	// =========================================================================

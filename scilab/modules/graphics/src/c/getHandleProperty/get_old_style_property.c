@@ -31,7 +31,7 @@ int get_old_style_property( sciPointObj * pobj )
 	if (pobj != NULL)
 	{
 		/* This property should not be called on an handle */
-		Scierror(999, _("%s property does not exist for this handle.\n"), "old_style");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "old_style");
 		return -1;
 	}
 

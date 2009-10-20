@@ -108,7 +108,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         h.info_message = info_message ;
         h.tag = tag ;
       end
-
       h.figure_name=figure_name
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
@@ -141,6 +140,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     load_user_data(fd); // user_data
   case "Axes"
+    newaxes();
     a=gca() ;
     titl=a.title ;
     x_label=a.x_label ;

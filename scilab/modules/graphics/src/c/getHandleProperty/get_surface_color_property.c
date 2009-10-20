@@ -30,7 +30,7 @@ int get_surface_color_property( sciPointObj * pobj )
   sciSurface * ppSurface = NULL ;
   if ( sciGetEntityType (pobj) != SCI_SURFACE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"surface_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_color") ;
     return -1 ;
   }
 

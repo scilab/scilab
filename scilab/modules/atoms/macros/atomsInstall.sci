@@ -11,7 +11,7 @@
 
 // Installation of a toolbox
 
-function result = atomsInstall(packages,allusers)
+function result = atomsInstall(packages,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -100,34 +100,28 @@ function result = atomsInstall(packages,allusers)
 		//  → Install in the "user" otherwise
 		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			section = "allusers"; 
 		else
-			allusers = %F;
+			section = "user";
 		end
 		
 	else
 		
-		// Process the 2nd input argument : allusers
+		// Process the 2nd input argument : section
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if type(section) <> 10 then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsInstall",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		if and(section<>["user","allusers"]) then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstall",2));
 		end
 		
-		if allusers == "user" then
-			allusers = %F;
-		elseif allusers == "allusers" then
-			allusers = %T;
-		end
-		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ atomsAUWriteAccess() then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
 		end
@@ -135,19 +129,20 @@ function result = atomsInstall(packages,allusers)
 	
 	// Create needed directories
 	// =========================================================================
+	atoms_system_directory  = atomsPath("system" ,section);
+	atoms_install_directory = atomsPath("install",section);
+	atoms_tmp_directory     = atomsPath("system" ,"session");
 	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
-	
-	atoms_tmp_directory = pathconvert(TMPDIR+"/atoms");
-	
-	if ~ isdir( atoms_directory ) & (mkdir( atoms_directory ) <> 1) then
+	if ~ isdir( atoms_system_directory ) & (mkdir( atoms_system_directory ) <> 1) then
 		error(msprintf( ..
 			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-			atoms_directory));
+			atoms_system_directory));
+	end
+	
+	if ~ isdir( atoms_install_directory ) & (mkdir( atoms_install_directory ) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
+			atoms_install_directory));
 	end
 	
 	if ~ isdir(atoms_tmp_directory) & (mkdir(atoms_tmp_directory) <> 1) then
@@ -159,12 +154,7 @@ function result = atomsInstall(packages,allusers)
 	// Define the "archives" directory path
 	// Create it if it's not exist
 	// =========================================================================
-	
-	if allusers then
-		archives_directory = pathconvert(SCI+"/contrib/archives");
-	else
-		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
-	end
+	archives_directory = atoms_install_directory + "archives";
 	
 	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
 		error(msprintf( ..
@@ -255,7 +245,7 @@ function result = atomsInstall(packages,allusers)
 	
 	// Get the install list
 	// =========================================================================
-	[install_package_list,dependency_tree] = atomsInstallList(packages,allusers);
+	[install_package_list,dependency_tree] = atomsInstallList(packages,section);
 	
 	// Loop on install_package_list to print if a package has to be installed
 	// or not
@@ -286,12 +276,7 @@ function result = atomsInstall(packages,allusers)
 		
 		// Define the path of the directory where will be installed this toolbox
 		// =====================================================================
-		
-		if allusers then
-			this_package_directory = pathconvert(SCI+"/contrib/"+this_package_name);
-		else
-			this_package_directory = pathconvert(SCIHOME+"/atoms/"+this_package_name);
-		end
+		this_package_directory = atomsPath("install",section) + this_package_name + filesep();
 		
 		// Create the parent directory of this toolbox if it's not already exist
 		// =====================================================================
@@ -327,7 +312,7 @@ function result = atomsInstall(packages,allusers)
 			
 			// unarchive it
 			// =================================================================
-			this_package_details("extractedDirectory") = this_package_directory+atomsExtract(fileout,this_package_directory);
+			this_package_details("extractedDirectory") = this_package_directory + atomsExtract(fileout,this_package_directory);
 		end
 		
 		// Rename the created directory
@@ -338,8 +323,6 @@ function result = atomsInstall(packages,allusers)
 		else
 			rename_cmd = "mv """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
 		end
-		
-		
 		
 		[rep,stat]=unix_g(rename_cmd)
 		
@@ -360,13 +343,13 @@ function result = atomsInstall(packages,allusers)
 			this_package_status = "A";
 		end
 		
-		atomsInstallRegister(this_package_name,this_package_version,this_package_status,allusers);
+		atomsInstallRegister(this_package_name,this_package_version,this_package_status,section);
 		
 		// Autoload the toolbox unless precised
 		// =====================================================================
 		
 		if ~ (atomsGetConfig("autoload") == "False") then
-			atomsAutoloadAdd(this_package_name,this_package_version,allusers);
+			atomsAutoloadAdd(this_package_name,this_package_version,section);
 		end
 		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory
@@ -419,8 +402,8 @@ function result = atomsInstall(packages,allusers)
 	// The TMPDIR DESCRIPTION_archives is no more needed
 	// =========================================================================
 	
-	if ~ isempty(fileinfo(pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives",%F))) then
-		mdelete(pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives",%F));
+	if ~ isempty(fileinfo(atoms_tmp_directory + "DESCRIPTION_archives")) then
+		mdelete(atoms_tmp_directory + "DESCRIPTION_archives");
 	end
 	
 	// Update the dependencies of packages that use another version of packages
@@ -429,7 +412,7 @@ function result = atomsInstall(packages,allusers)
 	
 	for i=1:size( result(:,1) , "*" )
 		
-		packages_out = atomsUpdateDeps(result(i,1),result(i,2),allusers);
+		packages_out = atomsUpdateDeps(result(i,1),result(i,2),section);
 		
 		if ATOMSVERBOSE then
 			for j=1:size(packages_out(:,1),"*")
@@ -442,7 +425,7 @@ function result = atomsInstall(packages,allusers)
 	// Remove orphan packages
 	// =========================================================================
 	
-	orphan_list = atomsOrphanList(allusers);
+	orphan_list = atomsOrphanList(section);
 	for i=1:size( orphan_list(:,1) , "*" )
 		atomsRemove( orphan_list(i,1) + " " + orphan_list(i,2) );
 	end

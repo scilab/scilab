@@ -11,7 +11,7 @@
 
 // update of a toolbox
 
-function result = atomsUpdate(name,allusers)
+function result = atomsUpdate(name,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -52,22 +52,22 @@ function result = atomsUpdate(name,allusers)
 	if rhs < 2 then
 		// By default, install for all users (if we have write access of course !)
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			section = "all";
 		else
-			allusers = %F;
+			section = "user";
 		end
 	
 	else
 		// Just check if it's a boolean
-		if type(allusers) <> 4 then
+		if type(section) <> 10 then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstall",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ atomsAUWriteAccess() then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,atomsPath("system","allusers")));
 		end
 	end
 	
@@ -97,7 +97,7 @@ function result = atomsUpdate(name,allusers)
 	if (rhs==0) | isempty(name) then
 		
 		name               = [];
-		package_installed = atomsGetInstalled(allusers);
+		package_installed = atomsGetInstalled(section);
 		
 		for i=1:size(package_installed(:,1),"*")
 			if find( name == package_installed(i,1) ) == [] then
@@ -111,7 +111,7 @@ function result = atomsUpdate(name,allusers)
 	
 	for i=1:size(name,"*")
 		
-		this_package_versions = atomsGetInstalledVers(name(i),allusers);
+		this_package_versions = atomsGetInstalledVers(name(i),section);
 		this_package_MRV_ins  = this_package_versions(1);   // Most Recent Version Installed
 		this_package_MRV_ava  = atomsGetMRVersion(name(i)); // Most Recent Version Available
 		
@@ -123,7 +123,7 @@ function result = atomsUpdate(name,allusers)
 		end
 		
 		// Install the new toolbox
-		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
+		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,section);
 		
 		// Fill the output argument
 		result = [ result ; this_result ];

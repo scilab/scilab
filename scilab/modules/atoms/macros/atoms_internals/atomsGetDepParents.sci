@@ -9,7 +9,7 @@
 
 // Give the list of packages that use this package (identified by its name and version)
 
-function packages = atomsGetDepParents(name,version,allusers)
+function packages = atomsGetDepParents(name,version,section)
 	
 	rhs      = argn(2);
 	packages = [];
@@ -46,25 +46,24 @@ function packages = atomsGetDepParents(name,version,allusers)
 	// All user management
 	// =========================================================================
 	
-	if rhs == 2 then
-		allusers = %T;
+	if rhs <= 1 then
+		section = "all"; 
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetDepParents",3));
+		// Process the 2nd input argument : section
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsGetDepParents",3));
+		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetDepParents",3));
 		end
 	end
 	
 	// Load the installed_deps struct
 	// =========================================================================
-	
-	if allusers then
-		// all packages
-		[ child_deps,parent_deps ] = atomsLoadInstalleddeps("all");
-	else
-		// user packages
-		[ child_deps,parent_deps ] = atomsLoadInstalleddeps(%F);
-	end
+	[ child_deps,parent_deps ] = atomsLoadInstalleddeps(section);
 	
 	// If name - version is not a field of the struct, the job is done
 	// =========================================================================

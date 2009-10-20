@@ -34,7 +34,7 @@
 //                   toolbox_2 - 1.3: [1x1 struct]
 //                   toolbox_1 - 1.9: [1x1 struct]
 
-function [insList,depTree] = atomsInstallList(packages,allusers)
+function [insList,depTree] = atomsInstallList(packages,section)
 	
 	insList = [];
 	depTree = struct();
@@ -64,34 +64,27 @@ function [insList,depTree] = atomsInstallList(packages,allusers)
 	
 	packages = stripblanks(packages);
 	
-	// 2nd input input argument, allusers management :
-	//   - 1st case: allusers is not specified or is equal to "all", module 
+	// 2nd input input argument, section management :
+	//   - 1st case: section is not specified or is equal to "all", module 
 	//               is searched in both "user" and "allusers" section
-	//   - 2nd case: allusers is equal to "user", module is only searched in
+	//   - 2nd case: section is equal to "user", module is only searched in
 	//               the "user" section"
-	//   - 3rd case: allusers is equal to "allusers", module is only searched
+	//   - 3rd case: section is equal to "allusers", module is only searched
 	//               in the "allusers" section"
 	
 	if rhs < 2 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if type(section) <> 10 then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsInstallList",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallList",2));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallList",2));
-		end
-		
-		if allusers == %T then
-			allusers = "allusers";
-		
-		elseif allusers == %F then
-			allusers = "user";
 		end
 		
 	end
@@ -181,15 +174,15 @@ function [insList,depTree] = atomsInstallList(packages,allusers)
 		to_install = %F;
 		
 		// Now, it's time to check if the module is installed or not :
-		//   - 1st case: allusers is not specified or is equal to "all", module 
+		//   - 1st case: section is not specified or is equal to "all", module 
 		//               is searched in both "user" and "allusers" section
-		//   - 2nd case: allusers is equal to "user", module is only searched in
+		//   - 2nd case: section is equal to "user", module is only searched in
 		//               the "user" section"
-		//   - 3rd case: allusers is equal to "allusers", module is only searched
+		//   - 3rd case: section is equal to "allusers", module is only searched
 		//               in the "allusers" section"
 		
-		if atomsIsInstalled(this_package_name,[],allusers) then
-			vers = atomsGetInstalledVers(this_package_name,allusers);
+		if atomsIsInstalled(this_package_name,[],section) then
+			vers = atomsGetInstalledVers(this_package_name,section);
 			if find( vers == this_package_version ) == [] then
 				to_install = %T;
 			end
