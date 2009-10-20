@@ -386,6 +386,8 @@ Bug fixes:
 
 * bug 1809 fixed - Add a warning message (figure_size) after an invalid graphical script
 
+* bug 2043 fixed - The function copy applied to an axes handle does not work
+
 * bug 2238 fixed - function returns a wrong error
 
 * bug 2275 fixed - add the isvector help page
@@ -640,6 +642,8 @@ Bug fixes:
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
+
+* bug 4811 fixed - for some figures, it is not possible to save and load the handle of the figure.
 
 * bug 4812 fixed - xs2... function doesn't work if the first argument is a handle
 
