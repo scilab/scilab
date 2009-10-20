@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 #, c-format
@@ -37,52 +37,64 @@ msgstr ""
 msgid "%s: Not implemented in this mode.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_prompt.c, line: 58
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_prompt.c, line: 66
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_prompt.c, line: 77
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_lines.c, line: 56
 # File: sci_gateway/c/sci_lines.c, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_prompt.c, line: 47
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+# File: src/c/windows/TermCompletion.c, line: 60
+# File: src/c/others/zzledt.c, line: 807
+msgid "File or Directory"
 msgstr ""
 #
-# File: sci_gateway/c/sci_prompt.c, line: 55
+# File: src/c/windows/TermCompletion.c, line: 198
+# File: src/c/others/zzledt.c, line: 963
+msgid "Scilab Function"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 199
+# File: src/c/others/zzledt.c, line: 964
+msgid "Scilab Command"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 200
+# File: src/c/others/zzledt.c, line: 965
+msgid "Scilab Macro"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 201
+# File: src/c/others/zzledt.c, line: 966
+msgid "Scilab Variable"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 202
+# File: src/c/others/zzledt.c, line: 967
+msgid "Graphics handle field"
+msgstr ""
+#
+# File: src/c/prompt.c, line: 42
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
 msgstr ""
 #
 # File: src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 806
-# File: src/c/windows/TermCompletion.c, line: 80
-msgid "File or Directory"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 940
-# File: src/c/windows/TermCompletion.c, line: 222
-msgid "Scilab Function"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 941
-# File: src/c/windows/TermCompletion.c, line: 223
-msgid "Scilab Command"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 942
-# File: src/c/windows/TermCompletion.c, line: 224
-msgid "Scilab Macro"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 943
-# File: src/c/windows/TermCompletion.c, line: 225
-msgid "Scilab Variable"
-msgstr ""
-#
-# File: src/c/others/zzledt.c, line: 944
-# File: src/c/windows/TermCompletion.c, line: 226
-msgid "Graphics handle field"
 msgstr ""

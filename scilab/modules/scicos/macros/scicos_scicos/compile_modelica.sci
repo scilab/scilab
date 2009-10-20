@@ -32,7 +32,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   ng    = 0
   fil   = pathconvert(fil, %f, %t)
-  mlibs = pathconvert(modelica_libs, %f, %t)
+  mlibs = pathconvert(modelica_libs, %t, %t)
 
   name = basename(fil)
   path = strsubst(stripblanks(fil), name + '.mo', '')
@@ -94,7 +94,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     if OUTM then // if_modelicac_fails_then_use_translator
       MSG1 = mgetl(TMPDIR + filesep() + modelicac_err)
       if fileinfo(fullfile(SCI, 'bin', translator_bin)) <> [] then // if_translator_exists
-        translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %f, %t)
+        translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %t, %t)
         ext = filesep() + '*.mo'
         molibs = []
         for k = 1:size(mlibs,'*')

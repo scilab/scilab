@@ -14,15 +14,63 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: macros/apropos.sci, line: 13
+# File: macros/xmltopdf.sci, line: 28
+# File: macros/xmltojar.sci, line: 28
+# File: macros/xmltops.sci, line: 28
+# File: macros/xmltochm.sci, line: 42
+# File: macros/xmltohtml.sci, line: 28
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+#
+# File: macros/manedit.sci, line: 16
+# File: macros/xmltoformat.sci, line: 887
+# File: macros/xmltoformat.sci, line: 1296
+# File: macros/xmltoformat.sci, line: 1342
+# File: macros/xmltoformat.sci, line: 1487
+# File: macros/xmltoformat.sci, line: 1598
+# File: macros/xmltoformat.sci, line: 1685
+# File: macros/xmltoformat.sci, line: 1821
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+#
+# File: macros/add_help_chapter.sci, line: 38
+# File: macros/xmltoformat.sci, line: 1015
+# File: macros/xmltoformat.sci, line: 1090
+# File: macros/xmltoformat.sci, line: 1160
+# File: macros/xmltoformat.sci, line: 1230
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/add_help_chapter.sci, line: 45
+# File: macros/add_help_chapter.sci, line: 49
+# File: macros/xmltoformat.sci, line: 1696
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+#
+# File: macros/add_help_chapter.sci, line: 53
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+#
+# File: macros/add_help_chapter.sci, line: 60
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+#
+# File: macros/add_help_chapter.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
 msgstr ""
 #
 # File: macros/clean_help.sci, line: 44
-# File: macros/xmltoformat.sci, line: 60
+# File: macros/xmltoformat.sci, line: 58
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -30,15 +78,18 @@ msgstr ""
 # File: macros/clean_help.sci, line: 72
 # File: macros/clean_help.sci, line: 87
 # File: macros/clean_help.sci, line: 100
-# File: macros/xmltoformat.sci, line: 228
+# File: macros/xmltoformat.sci, line: 226
 # File: macros/xmltoformat.sci, line: 243
 # File: macros/xmltoformat.sci, line: 256
-# File: macros/xmltoformat.sci, line: 483
-# File: macros/xmltoformat.sci, line: 510
-# File: macros/xmltoformat.sci, line: 564
-# File: macros/xmltoformat.sci, line: 591
-# File: macros/xmltoformat.sci, line: 659
-# File: macros/xmltoformat.sci, line: 686
+# File: macros/xmltoformat.sci, line: 519
+# File: macros/xmltoformat.sci, line: 548
+# File: macros/xmltoformat.sci, line: 574
+# File: macros/xmltoformat.sci, line: 580
+# File: macros/xmltoformat.sci, line: 622
+# File: macros/xmltoformat.sci, line: 651
+# File: macros/xmltoformat.sci, line: 697
+# File: macros/xmltoformat.sci, line: 741
+# File: macros/xmltoformat.sci, line: 770
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr ""
@@ -47,9 +98,193 @@ msgstr ""
 msgid "-- Deleting help files --\n"
 msgstr ""
 #
-# File: macros/formatman.sci, line: 84
+# File: macros/help_from_sci.sci, line: 107
+msgid "Scilab 5.0 or more is required."
+msgstr ""
+#
+# File: macros/help_from_sci.sci, line: 162
+msgid "...demodir must be a directory."
+msgstr ""
+#
+# File: macros/xmltochm.sci, line: 16
 #, c-format
-msgid "Processing %s to %s"
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr ""
+#
+# File: macros/xmltochm.sci, line: 81
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr ""
+#
+# File: macros/xmltochm.sci, line: 84
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 155
+msgid "Help chapter"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 376
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 394
+# File: macros/xmltoformat.sci, line: 421
+msgid ""
+"\n"
+"Building master documents:\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 398
+# File: macros/xmltoformat.sci, line: 425
+msgid ""
+"\n"
+"Building the master document:\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 401
+# File: macros/xmltoformat.sci, line: 428
+# File: macros/xmltoformat.sci, line: 682
+#, c-format
+msgid "\t%s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 467
+msgid "Building the scilab manual file ["
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 527
+# File: macros/xmltoformat.sci, line: 630
+# File: macros/xmltoformat.sci, line: 749
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 537
+# File: macros/xmltoformat.sci, line: 640
+# File: macros/xmltoformat.sci, line: 759
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 562
+# File: macros/xmltoformat.sci, line: 684
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"a while)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 679
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take a "
+"while)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 894
+# File: macros/xmltoformat.sci, line: 1022
+# File: macros/xmltoformat.sci, line: 1097
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 898
+# File: macros/xmltoformat.sci, line: 1498
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 905
+# File: macros/xmltoformat.sci, line: 1029
+# File: macros/xmltoformat.sci, line: 1104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 909
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 916
+# File: macros/xmltoformat.sci, line: 1036
+# File: macros/xmltoformat.sci, line: 1111
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1167
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1174
+# File: macros/xmltoformat.sci, line: 1244
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1208
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1237
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1261
+# File: macros/xmltoformat.sci, line: 1274
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1303
+# File: macros/xmltoformat.sci, line: 1307
+# File: macros/xmltoformat.sci, line: 1349
+# File: macros/xmltoformat.sci, line: 1494
+# File: macros/xmltoformat.sci, line: 1605
+# File: macros/xmltoformat.sci, line: 1609
+# File: macros/xmltoformat.sci, line: 1692
+# File: macros/xmltoformat.sci, line: 1828
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1317
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr ""
+#
+# File: macros/apropos.sci, line: 13
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: macros/xmlfiletohtml.sci, line: 66
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr ""
+#
+# File: macros/xmlfiletohtml.sci, line: 99
+#, c-format
+msgid "Warning %s does not follow the dtd"
 msgstr ""
 #
 # File: macros/help.sci, line: 24
@@ -67,294 +302,9 @@ msgstr ""
 msgid "%s: help module is not installed.\n"
 msgstr ""
 #
-# File: macros/help_from_sci.sci, line: 107
-msgid "Scilab 5.0 or more is required."
-msgstr ""
-#
-# File: macros/help_from_sci.sci, line: 160
-msgid "...demodir must be a directory."
-msgstr ""
-#
-# File: macros/manedit.sci, line: 16
+# File: sci_gateway/nogui/nogui.c, line: 20
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
-#
-# File: macros/xmltochm.sci, line: 13
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr ""
-#
-# File: macros/xmltochm.sci, line: 33
-# File: macros/xmltohtml.sci, line: 28
-# File: macros/xmltojar.sci, line: 28
-# File: macros/xmltopdf.sci, line: 28
-# File: macros/xmltops.sci, line: 28
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 157
-msgid "Help chapter"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 302
-#, c-format
-msgid "%s: The %s files are up-to-date."
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 324
-msgid ""
-"\n"
-"Copying missing help files copied from the default language\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 327
-# File: macros/xmltoformat.sci, line: 342
-# File: macros/xmltoformat.sci, line: 363
-# File: macros/xmltoformat.sci, line: 411
-# File: macros/xmltoformat.sci, line: 615
-# File: macros/xmltoformat.sci, line: 714
-# File: macros/xmltoformat.sci, line: 729
-# File: macros/xmltoformat.sci, line: 748
-#, c-format
-msgid "\t%s\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 339
-# File: macros/xmltoformat.sci, line: 360
-msgid ""
-"\n"
-"Copying missing files copied from\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 344
-# File: macros/xmltoformat.sci, line: 365
-#, c-format
-msgid ""
-"\n"
-"Copying missing from %s\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 383
-#, c-format
-msgid ""
-"\n"
-"Building the Scilab manual master document for %s.\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 391
-#, c-format
-msgid ""
-"\n"
-"Building the master document: %s\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 408
-#, c-format
-msgid ""
-"\n"
-"Building the master document for %s.\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 413
-#, c-format
-msgid ""
-"\n"
-"Building the master document in %s\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 439
-msgid ""
-"\n"
-"Building the scilab manual file ["
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 491
-# File: macros/xmltoformat.sci, line: 572
-# File: macros/xmltoformat.sci, line: 667
-#, c-format
-msgid "%s: %s has not been generated."
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 499
-# File: macros/xmltoformat.sci, line: 580
-# File: macros/xmltoformat.sci, line: 675
-#, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 523
-# File: macros/xmltoformat.sci, line: 617
-#, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s. (Please wait building ... this can take "
-"a while)\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 612
-#, c-format
-msgid ""
-"\n"
-"Building the manual file [%s]. (Please wait building ... this can take a "
-"while)\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 711
-# File: macros/xmltoformat.sci, line: 726
-# File: macros/xmltoformat.sci, line: 745
-#, c-format
-msgid ""
-"\n"
-"Deleting files copied from\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 731
-# File: macros/xmltoformat.sci, line: 750
-#, c-format
-msgid ""
-"\n"
-"Deleting files copied from %s\n"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1044
-msgid "Scilab manual"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1347
-msgid "About Scicos"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1348
-msgid "Scicos Manual"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1488
-msgid "Batch functions"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1488
-msgid "Editor"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1488
-msgid "Sources Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1489
-msgid "Linear Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1489
-msgid "Non-linear Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1489
-msgid "Branching Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1489
-msgid "Others Palettes"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1490
-msgid "Threshold Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1490
-msgid "Sinks Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1490
-msgid "Events Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1490
-msgid "Electrical Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1491
-msgid "Thermohydraulics Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1491
-msgid "Matrix Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1491
-msgid "Integer Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1491
-msgid "Demoblocks Palette"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1492
-msgid "ABCD Blocks"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1492
-msgid "C Computational Functions"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1492
-msgid "Scilab Computational Functions"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1493
-msgid "Utilities Functions"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1493
-msgid "Programming Scicos Blocks"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1493
-msgid "Scilab Utilities Functions"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Diagram"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Blocks"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Links"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Compilation/Simulation"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Scilab Data Structures"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Palettes"
-msgstr ""
-#
-# File: macros/xmltoformat.sci, line: 1494
-msgid "Old Blocks Palette"
-msgstr ""
-#
-# File: macros/xmlfiletohtml.sci, line: 66
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr ""
-#
-# File: macros/xmlfiletohtml.sci, line: 99
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr ""
-#
-# File: sci_gateway/c/gw_helptools.c, line: 38
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
@@ -378,7 +328,12 @@ msgstr ""
 msgid "%s: Error while building documentation: %s.\n"
 msgstr ""
 #
-# File: sci_gateway/nogui/nogui.c, line: 20
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 178
 #, c-format
-msgid "Scilab '%s' module not installed.\n"
+msgid "%s: Execution Java stack %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/gw_helptools.c, line: 37
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
 msgstr ""

@@ -14,98 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: macros/PlotSparse.sci, line: 74
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
-#
-# File: macros/PlotSparse.sci, line: 81
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr ""
-#
-# File: macros/PlotSparse.sci, line: 88
-# File: macros/ReadHBSparse.sci, line: 81
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 77
-msgid "Choose a sparse matrix"
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 78
-msgid "   then click on OK   "
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 84
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 110
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 120
-#, c-format
-msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-msgstr ""
-#
-# File: macros/ReadHBSparse.sci, line: 148
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 75
-msgid ""
-"\n"
-" approximate (lM,vM) with the iterative power method \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 76
-msgid " ----------------------------------------------------- \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 84
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 94
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 95
-# File: macros/cond2sp.sci, line: 126
-#, c-format
-msgid "           don''t reached after %d iterations (got only %e) \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 107
-msgid ""
-"\n"
-" approximate (lm,vm) with the inverse iterative power method \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 108
-msgid " ------------------------------------------------------------\n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 116
-#, c-format
-msgid " iteration %3d : lm = %e  \n"
-msgstr ""
-#
-# File: macros/cond2sp.sci, line: 125
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr ""
-#
 # File: macros/condestsp.sci, line: 71
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -173,118 +83,103 @@ msgstr ""
 msgid "Click to choose a demo"
 msgstr ""
 #
-# File: sci_gateway/c/sci_res_with_prec.c, line: 63
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_taucs_chdel.c, line: 98
-#, c-format
+# File: macros/cond2sp.sci, line: 75
 msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors.\n"
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
+# File: macros/cond2sp.sci, line: 76
+msgid " ----------------------------------------------------- \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 84
 #, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 94
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 95
+# File: macros/cond2sp.sci, line: 126
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 107
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symetric positive definite"
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 98
-# File: sci_gateway/c/sci_taucs_chget.c, line: 86
-# File: sci_gateway/c/sci_umf_luget.c, line: 210
-# File: src/c/taucs_scilab.c, line: 256
-# File: src/c/taucs_scilab.c, line: 2122
+# File: macros/cond2sp.sci, line: 108
+msgid " ------------------------------------------------------------\n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 116
 #, c-format
-msgid "%s: No more memory.\n"
+msgid " iteration %3d : lm = %e  \n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
-# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+# File: macros/cond2sp.sci, line: 125
 #, c-format
-msgid "%s: An error occurred: %s\n"
+msgid " Warning : for lm convergence at rtol = %e \n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
-msgid "factorization"
+# File: macros/ReadHBSparse.sci, line: 77
+msgid "Choose a sparse matrix"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chget.c, line: 79
+# File: macros/ReadHBSparse.sci, line: 78
+msgid "   then click on OK   "
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 81
+# File: macros/PlotSparse.sci, line: 88
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chget.c, line: 107
-# File: sci_gateway/c/sci_umf_luget.c, line: 218
+# File: macros/ReadHBSparse.sci, line: 84
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
+# File: macros/ReadHBSparse.sci, line: 110
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors"
+msgid "%s: The file contains a rhs but it will not be read !"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
-# File: sci_gateway/c/sci_umf_lufact.c, line: 89
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 118
-# File: sci_gateway/c/sci_umfpack.c, line: 116
-# File: sci_gateway/c/sci_umfpack.c, line: 123
+# File: macros/ReadHBSparse.sci, line: 120
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
+# File: macros/ReadHBSparse.sci, line: 148
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
+# File: macros/PlotSparse.sci, line: 74
 #, c-format
-msgid "%s: not enough memory.\n"
+msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 #
+# File: macros/PlotSparse.sci, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 93
 # File: sci_gateway/c/sci_umf_ludel.c, line: 100
 # File: sci_gateway/c/sci_umf_luget.c, line: 95
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 93
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 103
-# File: sci_gateway/c/sci_umf_lufact.c, line: 120
-# File: sci_gateway/c/sci_umfpack.c, line: 160
-# File: sci_gateway/c/sci_umfpack.c, line: 192
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 103
-# File: sci_gateway/c/sci_umf_lufact.c, line: 120
-# File: sci_gateway/c/sci_umfpack.c, line: 160
-msgid "symbolic factorization"
-msgstr ""
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 128
-msgid "Warning"
-msgstr ""
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 128
-msgid "The (square) matrix appears to be singular."
-msgstr ""
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 146
-msgid "no place to store the LU pointer in ListNumeric."
 msgstr ""
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 105
@@ -299,6 +194,15 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 110
 msgid "This is a factorisation of a singular matrix"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 118
+# File: sci_gateway/c/sci_umfpack.c, line: 116
+# File: sci_gateway/c/sci_umfpack.c, line: 123
+# File: sci_gateway/c/sci_umf_lufact.c, line: 89
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 146
@@ -316,24 +220,108 @@ msgstr ""
 msgid "Matrix is not compatible with the given LU factors"
 msgstr ""
 #
+# File: sci_gateway/c/sci_taucs_chdel.c, line: 98
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 86
+# File: sci_gateway/c/sci_umf_luget.c, line: 210
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 98
+# File: src/c/taucs_scilab.c, line: 256
+# File: src/c/taucs_scilab.c, line: 2122
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 107
+# File: sci_gateway/c/sci_umf_luget.c, line: 218
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+# File: sci_gateway/c/sci_umfpack.c, line: 192
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+msgid "symbolic factorization"
+msgstr ""
+#
 # File: sci_gateway/c/sci_umfpack.c, line: 192
 msgid "numeric factorization"
 msgstr ""
 #
-# File: src/c/common_umfpack.c, line: 201
-msgid "singular matrix"
+# File: sci_gateway/c/sci_res_with_prec.c, line: 63
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 #
-# File: src/c/common_umfpack.c, line: 202
-msgid "not enough memory"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symetric positive definite"
 msgstr ""
 #
-# File: src/c/common_umfpack.c, line: 203
-msgid "internal error"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+#, c-format
+msgid "%s: An error occurred: %s\n"
 msgstr ""
 #
-# File: src/c/common_umfpack.c, line: 204
-msgid "invalid matrix"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+msgid "factorization"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "Warning"
+msgstr ""
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "The (square) matrix appears to be singular."
+msgstr ""
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr ""
+#
+# File: src/noumfpack/noumfpack.c, line: 19
+msgid "Scilab UMFPACK module not installed.\n"
 msgstr ""
 #
 # File: src/c/taucs_scilab.c, line: 128
@@ -358,6 +346,18 @@ msgstr ""
 msgid "                        nonpositive pivot in column %d\n"
 msgstr ""
 #
-# File: src/noumfpack/noumfpack.c, line: 19
-msgid "Scilab UMFPACK module not installed.\n"
+# File: src/c/common_umfpack.c, line: 201
+msgid "singular matrix"
+msgstr ""
+#
+# File: src/c/common_umfpack.c, line: 202
+msgid "not enough memory"
+msgstr ""
+#
+# File: src/c/common_umfpack.c, line: 203
+msgid "internal error"
+msgstr ""
+#
+# File: src/c/common_umfpack.c, line: 204
+msgid "invalid matrix"
 msgstr ""

@@ -127,6 +127,7 @@ jintget_GL_BLEND_SRCID=NULL;
 jintget_GL_BLEND_DSTID=NULL; 
 jintget_GL_3D_COLORID=NULL; 
 jintget_GL_FLOATID=NULL; 
+jintget_GL_UNSIGNED_BYTEID=NULL; 
 jintget_GL_POINTSID=NULL; 
 jintget_GL_POLYGON_OFFSET_FACTORID=NULL; 
 jintget_GL_POLYGON_OFFSET_UNITSID=NULL; 
@@ -182,6 +183,7 @@ jintget_GL_BLEND_SRCID=NULL;
 jintget_GL_BLEND_DSTID=NULL; 
 jintget_GL_3D_COLORID=NULL; 
 jintget_GL_FLOATID=NULL; 
+jintget_GL_UNSIGNED_BYTEID=NULL; 
 jintget_GL_POINTSID=NULL; 
 jintget_GL_POLYGON_OFFSET_FACTORID=NULL; 
 jintget_GL_POLYGON_OFFSET_UNITSID=NULL; 
@@ -731,6 +733,25 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "get_GL_FLOAT");
 }
 
                         jint res =  (jint) curEnv->CallStaticIntMethod(cls, jintget_GL_FLOATID );
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int JOGLConstant::get_GL_UNSIGNED_BYTE (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintget_GL_UNSIGNED_BYTEID = curEnv->GetStaticMethodID(cls, "get_GL_UNSIGNED_BYTE", "()I" ) ;
+if (jintget_GL_UNSIGNED_BYTEID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "get_GL_UNSIGNED_BYTE");
+}
+
+                        jint res =  (jint) curEnv->CallStaticIntMethod(cls, jintget_GL_UNSIGNED_BYTEID );
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

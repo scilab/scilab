@@ -8,6 +8,10 @@
 
 function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode)
 
+  if argn(2)<>3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "getSurfPropertyName", 3));
+  end
+
 //conversion to lower format
 str = convstr(PropertyName);
 

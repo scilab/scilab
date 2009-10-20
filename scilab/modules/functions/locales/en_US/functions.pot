@@ -14,133 +14,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: macros/bytecode.sci, line: 29
+# File: macros/getd.sci, line: 42
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr ""
+#
+# File: macros/getd.sci, line: 52
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
 msgstr ""
 #
 # File: macros/bytecodewalk.sci, line: 59
 # File: macros/bytecodewalk.sci, line: 98
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
-msgstr ""
-#
-# File: macros/check_gateways.sci, line: 18
-#, c-format
-msgid "Checking: %s.\n"
-msgstr ""
-#
-# File: macros/check_gateways.sci, line: 28
-#, c-format
-msgid "%s: Please check: %s\n"
-msgstr ""
-#
-# File: macros/check_gateways.sci, line: 31
-#, c-format
-msgid "%s: File %s doesn''t exist.\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 23
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 80
-# File: macros/genlib_old.sci, line: 52
-#, c-format
-msgid "%s: No files with extension %s found in %s\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 102
-# File: macros/genlib_old.sci, line: 72
-#, c-format
-msgid "%s: %s file compilation forced\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 126
-# File: macros/genlib_old.sci, line: 93
-#, c-format
-msgid "%s: Processing file: %s\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 139
-# File: macros/genlib_old.sci, line: 104
-#, c-format
-msgid "%s: Regenerate names and lib\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 151
-# File: macros/genlib_old.sci, line: 114
-#, c-format
-msgid "%s: %s file cannot be created\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 161
-# File: macros/genlib_old.sci, line: 123
-#, c-format
-msgid ""
-"Library file %s has been updated,\n"
-"but cannot be loaded into Scilab because %s is a protected variable.\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 182
-# File: macros/genlib_old.sci, line: 139
-#, c-format
-msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 204
-# File: macros/genlib_old.sci, line: 153
-#, c-format
-msgid "%s: Impossible to open file %s for writing\n"
-msgstr ""
-#
-# File: macros/genlib.sci, line: 212
-# File: macros/genlib_old.sci, line: 159
-#, c-format
-msgid "%s: File %s does not contain any function.\n"
-msgstr ""
-#
-# File: macros/get_function_path.sci, line: 22
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-#
-# File: macros/getd.sci, line: 45
-#, c-format
-msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
-#
-# File: macros/getd.sci, line: 55
-#, c-format
-msgid "%s: Incorrect function in file %s.\n"
-msgstr ""
-#
-# File: macros/head_comments.sci, line: 13
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
-#
-# File: macros/head_comments.sci, line: 17
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr ""
-#
-# File: macros/head_comments.sci, line: 22
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-#
-# File: macros/head_comments.sci, line: 34
-msgid "No comment available.\n"
-msgstr ""
-#
-# File: macros/macrovar.sci, line: 22
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
 #
 # File: macros/plotprofile.sci, line: 44
@@ -152,80 +41,67 @@ msgstr ""
 msgid "Complexity"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 93
-# File: macros/plotprofile.sci, line: 232
-msgid "3D Rot."
+# File: macros/plotprofile.sci, line: 92
+msgid "Tools"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 94
-# File: macros/plotprofile.sci, line: 235
+# File: macros/plotprofile.sci, line: 93
 msgid "Edit"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 95
-msgid "Editer"
+# File: macros/plotprofile.sci, line: 94
+msgid "?"
 msgstr ""
 #
 # File: macros/plotprofile.sci, line: 96
-# File: macros/plotprofile.sci, line: 237
-msgid "Insert"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 98
-msgid "3D &Rot."
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 99
-# File: macros/plotprofile.sci, line: 242
-msgid "&Edit"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 100
-# File: macros/plotprofile.sci, line: 244
-msgid "&Insert"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 102
 msgid "Exit"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 104
+# File: macros/plotprofile.sci, line: 99
 msgid "Click to get corresponding line, move with a-z."
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 153
+# File: macros/plotprofile.sci, line: 154
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 155
+# File: macros/plotprofile.sci, line: 156
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 233
-msgid "UnZoom"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 234
-msgid "Zoom"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 236
-msgid "File"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 241
-msgid "&File"
-msgstr ""
-#
-# File: macros/plotprofile.sci, line: 243
-msgid "&Tools"
+# File: macros/macrovar.sci, line: 22
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
 #
 # File: macros/profile.sci, line: 17
 #, c-format
 msgid "%s: The function has not been built for profiling"
+msgstr ""
+#
+# File: macros/get_function_path.sci, line: 14
+# File: sci_gateway/c/sci_execstr.c, line: 87
+# File: sci_gateway/c/sci_execstr.c, line: 94
+# File: sci_gateway/c/sci_execstr.c, line: 122
+# File: sci_gateway/c/sci_execstr.c, line: 191
+# File: sci_gateway/c/sci_lib.c, line: 58
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/get_function_path.sci, line: 18
+# File: sci_gateway/c/sci_execstr.c, line: 135
+# File: sci_gateway/c/sci_execstr.c, line: 204
+# File: sci_gateway/c/sci_whereis.c, line: 89
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/get_function_path.sci, line: 34
+#, c-format
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
 msgstr ""
 #
 # File: macros/recompilefunction.sci, line: 14
@@ -267,4 +143,186 @@ msgstr ""
 # File: macros/warnobsolete.sci, line: 27
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+#
+# File: macros/bytecode.sci, line: 29
+# File: sci_gateway/c/sci_whereis.c, line: 143
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 13
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 17
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 22
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 34
+msgid "No comment available.\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 18
+#, c-format
+msgid "Checking: %s.\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 28
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 31
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 28
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 77
+# File: macros/genlib_old.sci, line: 52
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 101
+# File: macros/genlib_old.sci, line: 72
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 125
+# File: macros/genlib_old.sci, line: 93
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 145
+# File: macros/genlib_old.sci, line: 104
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 158
+# File: macros/genlib_old.sci, line: 114
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 168
+# File: macros/genlib_old.sci, line: 123
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 189
+# File: macros/genlib_old.sci, line: 139
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 211
+# File: macros/genlib_old.sci, line: 153
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 220
+# File: macros/genlib_old.sci, line: 159
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 112
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 121
+# File: sci_gateway/c/sci_exec.c, line: 200
+# File: sci_gateway/c/sci_exec.c, line: 288
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 141
+# File: sci_gateway/c/sci_exec.c, line: 220
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 148
+# File: sci_gateway/c/sci_exec.c, line: 227
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 177
+# File: sci_gateway/c/sci_exec.c, line: 256
+# File: sci_gateway/c/sci_execstr.c, line: 151
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 188
+# File: sci_gateway/c/sci_exec.c, line: 267
+# File: sci_gateway/c/sci_execstr.c, line: 162
+# File: sci_gateway/c/sci_execstr.c, line: 231
+# File: sci_gateway/c/sci_whereis.c, line: 96
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 278
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_execstr.c, line: 220
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getf.c, line: 27
+#, c-format
+msgid "WARNING: Function %s is obsolete.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getf.c, line: 28
+#, c-format
+msgid "WARNING: Please use %s instead.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getf.c, line: 29
+#, c-format
+msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 75
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 80
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_whereis.c, line: 64
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
 msgstr ""

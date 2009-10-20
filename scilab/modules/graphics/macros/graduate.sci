@@ -40,6 +40,9 @@ kadm=[1,2,5];nadm=prod(size(kadm))
 // ----
 //
 [lhs,rhs]=argn(0)
+if rhs <2 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graduate", 2));
+end
 if rhs <4 then
   n1=3
   n2=10

@@ -14,9 +14,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 288
+msgid "Out of Screen"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 502
+msgid "Could not change the Console Font."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 563
+msgid "Could not change the Console Foreground."
+msgstr ""
+#
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 58
+# File: src/java/org/scilab/modules/console/SciCompletionWindow.java, line: 316
+# File: src/java/org/scilab/modules/console/SciCompletionWindow.java, line: 446
+# File: src/java/org/scilab/modules/console/CompletionAction.java, line: 64
 msgid "File or Directory"
 msgstr ""
 #
@@ -42,16 +57,4 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 108
 msgid "No help"
-msgstr ""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 276
-msgid "Out of Screen"
-msgstr ""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 490
-msgid "Could not change the Console Font."
-msgstr ""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 551
-msgid "Could not change the Console Foreground."
 msgstr ""
