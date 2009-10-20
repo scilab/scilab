@@ -29,7 +29,7 @@ int get_viewport_property( sciPointObj * pobj )
 
   if( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "viewport") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "viewport") ;
     return -1 ;
   }
 

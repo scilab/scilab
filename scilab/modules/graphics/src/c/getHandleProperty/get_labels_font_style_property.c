@@ -29,7 +29,7 @@ int get_labels_font_style_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN && sciGetEntityType( pobj ) != SCI_FIGURE )
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "labels_font_style property") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style");
     return -1 ;
   }
 

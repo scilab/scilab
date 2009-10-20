@@ -30,7 +30,7 @@ int get_log_flags_property( sciPointObj * pobj )
   char logFlagsString[4];
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"log_flag") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag") ;
     return -1 ;
   }
 
