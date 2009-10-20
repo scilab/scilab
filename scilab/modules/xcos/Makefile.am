@@ -31,8 +31,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Signal.cpp \
 			src/jni/Signal.hxx
 
-GIWS_WRAPPERS = Xcos.giws.xml \
-XcosUtils.giws.xml
+GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
+src/jni/XcosUtils.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
