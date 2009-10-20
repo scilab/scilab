@@ -30,7 +30,7 @@ int set_font_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"font_size") ;
+    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "font_size");
     return SET_PROPERTY_ERROR ;
   }
 

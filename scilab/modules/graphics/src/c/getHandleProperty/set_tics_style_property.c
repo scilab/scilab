@@ -38,13 +38,13 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"tics_style") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_style");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_style") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -52,7 +52,7 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
        && !isStringParamEqual( stackPointer, "r" )
        && !isStringParamEqual( stackPointer, "i" ) )
   {
-    Scierror(999, _("Wrong value for %s: '%s' or '%s' or '%s' expected.\n"),"tics","v","r","i") ;
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "tics_style", "v, r, i");
     return SET_PROPERTY_ERROR ;
   }
 

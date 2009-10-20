@@ -113,31 +113,33 @@ char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads,
 /*------------------------------------------------------------------------*/
 int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  char * flags = getStringFromStack( stackPointer ) ;
+  char * flags;
   sciSubWindow * ppSubWin = NULL ;
   char curLogFlags[4] = "nnn";
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"log_flags") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "log_flags");
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"log_flags") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
   
   if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
-    Scierror(999, _("%s: Wrong size for argument: %d or %d expected.\n"),"log_flags",2,3) ;
+    Scierror(999, _("Wrong size for '%s' property: Must be %s or %s.\n"), "log_flags", "2", "3");
     return SET_PROPERTY_ERROR ;
   }
 
+  flags = getStringFromStack(stackPointer);
+
   /* flags must be 'n' or 'l' */
   if (   (flags[0] != 'n' && flags[0] != 'l')
-      || (flags[1] != 'n' && flags[1] != 'l') )
+      || (flags[1] != 'n' && flags[1] != 'l'))
   {
     Scierror(999, _("%s: Wrong value for argument: '%s' or '%s' expected.\n"),"flags","n","l");
     return SET_PROPERTY_ERROR ;

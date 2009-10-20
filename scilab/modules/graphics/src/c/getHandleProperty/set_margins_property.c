@@ -32,19 +32,19 @@ int set_margins_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"margins") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "margins");
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"margins") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"margins") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 4 )
   {
-    Scierror(999, _("Wrong size for argument #%d: %d elements expected.\n"),2,4);
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "margins", 4);
     return SET_PROPERTY_ERROR ;
   }
 

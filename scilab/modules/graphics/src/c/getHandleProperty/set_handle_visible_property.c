@@ -36,7 +36,7 @@ int set_handle_visible_property( sciPointObj * pobj, size_t stackPointer, int va
 		return SET_PROPERTY_ERROR ;
 	}
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "handle_visible");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
 	pUIMENU_FEATURE(pobj)->handle_visible = b;
