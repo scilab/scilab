@@ -35,6 +35,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -140,6 +142,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
+	
+	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelection;
+	
 
 	/**
 	 * Create Xpad instance inside parent Window
@@ -161,6 +166,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 						path  =  " ( " + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
+					
+					// This listener is for 'evaluate selection' of the Execute menu
+					// it enable the menuItem only if something is selected
+					textPane.addCaretListener(new CaretListener() {
+						public void caretUpdate(CaretEvent e) {
+						    int dot = e.getDot();
+						    int mark = e.getMark();
+						    if (dot == mark) {  // no selection
+						    	evaluateSelection.setEnabled(false);
+						     } else if (dot < mark) {
+						    	 evaluateSelection.setEnabled(true);
+						     } else {
+						    	 evaluateSelection.setEnabled(true);
+						     }
+						}
+					});
 					updateUI();
 				}
 			}
@@ -353,7 +374,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.setText(XpadMessages.EXECUTE);
 		executeMenu.setMnemonic('e');
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
-		executeMenu.add(EvaluateSelectionAction.createMenu(editorInstance));
+		evaluateSelection = EvaluateSelectionAction.createMenu(editorInstance);
+		executeMenu.add(evaluateSelection);
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
