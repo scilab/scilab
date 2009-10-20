@@ -11,7 +11,7 @@
 // <-- Non-regression test for bug 4867 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4864
+// http://bugzilla.scilab.org/show_bug.cgi?id=4867
 //
 // <-- Short Description -->
 //    Close the last opened file should close Xpad or create a blank file named "untitled xx".
