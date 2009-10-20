@@ -18,8 +18,8 @@ function[m,den]=nlev(a,z,rmax)
 //      fonction bdiag)
 //
 
-[rhs,lhs]=argn();
-if lhs < 2 then
+rhs=argn(2);
+if rhs < 2 then
   error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"nlev",2,3));
 end
 
