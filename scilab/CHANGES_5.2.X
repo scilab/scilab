@@ -663,6 +663,8 @@ Bug fixes:
 
 * bug 4855 fixed - Use standard error messages when setting/getting values from graphics handles.
 
+* bug 4867 fixed - Close the last opened file should close Xpad or create a blank file named "untitled xx".
+
 * bug 4892 fixed - Xpad : Command+X shortcuts was not managed
 
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
