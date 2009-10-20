@@ -16,6 +16,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,6 +45,8 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.undo.CannotRedoException;
@@ -84,6 +92,7 @@ import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.IndentAction;
 import org.scilab.modules.xpad.actions.LineNumbersAction;
 import org.scilab.modules.xpad.actions.LoadIntoScilabAction;
+import org.scilab.modules.xpad.actions.ExecuteIntoScilabAction;
 import org.scilab.modules.xpad.actions.NewAction;
 import org.scilab.modules.xpad.actions.OpenAction;
 import org.scilab.modules.xpad.actions.PageSetupAction;
@@ -128,6 +137,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private static final int BUTTON_SIZE = 17;
 	
 	private static Xpad editor;
+	private static ToolBar toolBar;
 
 	private final Window parentWindow;
 	private JTabbedPane tabPane;
@@ -143,7 +153,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
 	
-	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelection;
+	private String fileFullPath = "";
+	
+	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
+	
+	//private static org.scilab.modules.gui.pushbutton.PushButton saveButton; 
+	//private static org.scilab.modules.gui.menuitem.MenuItem undoMenuItem;
+	//private UndoManager undoManager;
+	//private static org.scilab.modules.gui.pushbutton.PushButton undoButton;
+	//private static org.scilab.modules.gui.pushbutton.PushButton redoButton;
+	//private String documentFirstState;
 	
 
 	/**
@@ -167,6 +186,33 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
 					
+					
+//					textPane.addKeyListener(new KeyListener() {
+//						public void keyPressed(KeyEvent arg0) {}
+//						public void keyReleased(KeyEvent arg0) {}
+//						public void keyTyped(KeyEvent arg0) {
+//							saveButton.setEnabled(true);
+//						}
+//					});
+					
+					
+					
+					//
+//					try {
+//						documentFirstState = textPane.getDocument().getText(0, textPane.getDocument().getLength());
+//					} catch (BadLocationException e1) {
+//						e1.printStackTrace();
+//					}
+//					undoManager = new UndoManager();
+//					textPane.getDocument().addUndoableEditListener(new UndoableEditListener() {
+//						public void undoableEditHappened(UndoableEditEvent e) {
+//							undoManager.addEdit(e.getEdit());
+//							undoButton.setEnabled(undoManager.canUndo());
+//							redoButton.setEnabled(undoManager.canRedo());
+//						}
+//					});
+					
+					
 					// This listener is for 'evaluate selection' of the Execute menu
 					// it enable the menuItem only if something is selected
 					textPane.addCaretListener(new CaretListener() {
@@ -174,12 +220,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 						    int dot = e.getDot();
 						    int mark = e.getMark();
 						    if (dot == mark) {  // no selection
-						    	evaluateSelection.setEnabled(false);
-						     } else if (dot < mark) {
-						    	 evaluateSelection.setEnabled(true);
-						     } else {
-						    	 evaluateSelection.setEnabled(true);
-						     }
+						    	evaluateSelectionMenuItem.setEnabled(false);
+						    } else if (dot < mark) {
+						    	evaluateSelectionMenuItem.setEnabled(true);
+						    } else {
+						    	evaluateSelectionMenuItem.setEnabled(true);
+						    }
 						}
 					});
 					updateUI();
@@ -309,6 +355,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Menu editMenu = ScilabMenu.createMenu();
 		editMenu.setText(XpadMessages.EDIT); 
 		editMenu.setMnemonic('E');
+//		undoMenuItem = UndoAction.createMenu(editorInstance);
+//		editMenu.add(undoMenuItem);
 		editMenu.add(UndoAction.createMenu(editorInstance));
 		editMenu.add(RedoAction.createMenu(editorInstance));
 		editMenu.addSeparator(); 
@@ -374,8 +422,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.setText(XpadMessages.EXECUTE);
 		executeMenu.setMnemonic('e');
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
-		evaluateSelection = EvaluateSelectionAction.createMenu(editorInstance);
-		executeMenu.add(evaluateSelection);
+		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
+		executeMenu.add(evaluateSelectionMenuItem);
+		executeMenu.add(ExecuteIntoScilabAction.createMenu(editorInstance));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -386,18 +435,26 @@ public class Xpad extends SwingScilabTab implements Tab {
 		menuBar.add(helpMenu);
 
 		// Create TOOLBAR
-		ToolBar toolBar = ScilabToolBar.createToolBar();
+		toolBar = ScilabToolBar.createToolBar();
 		toolBar.add(NewAction.createButton(editorInstance)); // NEW
 		toolBar.add(OpenAction.createButton(editorInstance)); // OPEN
 		toolBar.addSeparator();
+//		saveButton = SaveAction.createButton(editorInstance);
+//		toolBar.add(saveButton); // SAVE
 		toolBar.add(SaveAction.createButton(editorInstance)); // SAVE
-		//toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
+		toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
 		toolBar.addSeparator();
 		//toolBar.add(PrintPreviewAction.createButton(editorInstance)); // PRINT PREVIEW
 		toolBar.add(PrintAction.createButton(editorInstance)); // PRINT
 		toolBar.addSeparator();
-		toolBar.add(UndoAction.createButton(editorInstance)); // UNDO
-		toolBar.add(RedoAction.createButton(editorInstance)); // REDO
+//		undoButton = UndoAction.createButton(editorInstance);
+//		toolBar.add(undoButton); // UNDO
+//		redoButton = RedoAction.createButton(editorInstance);
+//		toolBar.add(redoButton); // REDO
+		
+		toolBar.add(UndoAction.createButton(editorInstance));
+		toolBar.add(RedoAction.createButton(editorInstance));
+		
 		toolBar.addSeparator();
 		toolBar.add(CutAction.createButton(editorInstance)); // CUT
 		toolBar.add(CopyAction.createButton(editorInstance)); // COPY
@@ -496,13 +553,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(index, newSavedFiled.getName());
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
+				
+				// Get current file path for Execute into Scilab
+				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
 				JOptionPane.showMessageDialog(this, ioex);
 			}
 		} else {
 			isSuccess = saveAs(textPane); 
-
+			//saveButton.setEnabled(isSuccess);
 		}
 		lastKnownSavedState = System.currentTimeMillis();
 		return isSuccess;
@@ -601,6 +661,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 				styledDocument.setContentModified(false);
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
+				
+				// Get current file path for Execute into Scilab
+				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {
 				ioex.printStackTrace();
@@ -674,25 +737,32 @@ public class Xpad extends SwingScilabTab implements Tab {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
 		UndoManager undo = doc.getUndoManager();
 
-		if (undo.canUndo()) {
-			try {
-				System.out.println(undo.canUndo());
-				System.err.println("Will undo " + undo.getUndoPresentationName());
-				undo.undo();
-				if(!undo.canUndo()){ // remove "*" prefix from tab name
-					JTabbedPane current = getTabPane();
-					int index = current.getSelectedIndex();
-					String namePrefixedByStar = current.getTitleAt(index);
-					current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
-					doc.setContentModified(false);
-				}			
-				repaint();
+		String documentState = textPane.getText();
 
-			} catch (CannotUndoException ex) {
-				System.out.println("Unable to undo: " + ex);
-				ex.printStackTrace();
-			}
-		}
+		//if (!(documentFirstState.equals(documentState))) {
+			//undoButton.setEnabled(true);
+			if (undo.canUndo()) {
+				try {
+					System.out.println(undo.canUndo());
+					System.err.println("Will undo " + undo.getUndoPresentationName());
+					undo.undo();
+					if(!undo.canUndo()){ // remove "*" prefix from tab name
+						JTabbedPane current = getTabPane();
+						int index = current.getSelectedIndex();
+						String namePrefixedByStar = current.getTitleAt(index);
+						current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
+						doc.setContentModified(false);
+					}			
+					repaint();
+
+				} catch (CannotUndoException ex) {
+					System.out.println("Unable to undo: " + ex);
+					ex.printStackTrace();
+				}
+			} 
+//		} else {
+//			undoButton.setEnabled(false);
+//		}
 	}
 
 	/**
@@ -700,15 +770,23 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public void redo() {
 		UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		if (redo.canRedo()) {
-			try {
-				System.err.println("Will redo " + redo.getRedoPresentationName());
-				redo.redo();
-			} catch (CannotRedoException ex) {
-				System.out.println("Unable to redo: " + ex);
-				ex.printStackTrace();
+		
+		String documentState = textPane.getText();
+
+//		if (!(documentFirstState.equals(documentState))) {
+//			redoButton.setEnabled(true);
+			if (redo.canRedo()) {
+				try {
+					System.err.println("Will redo " + redo.getRedoPresentationName());
+					redo.redo();
+				} catch (CannotRedoException ex) {
+					System.out.println("Unable to redo: " + ex);
+					ex.printStackTrace();
+				}
 			}
-		}
+//		} else {
+//			redoButton.setEnabled(false);
+//		}
 	}
 
 	/**
@@ -1012,5 +1090,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
-	
+
+	public String getFileFullPath() {
+		return fileFullPath;
+	}
+
 }
