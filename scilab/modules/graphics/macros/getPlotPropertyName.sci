@@ -10,7 +10,7 @@
 function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode)
 
 //conversion to lower format
-err = execstr('str = convstr(PropertyName);','m');
+err = execstr("str = convstr(PropertyName);", "errcatch", "m");
 
 if err <> 0
   mprintf("plot syntax error (help plot for info)\n");

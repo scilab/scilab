@@ -110,6 +110,7 @@ function remList = atomsRemoveList(packages,section)
 			else
 				remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) section ];
 			end
+			
 		end
 		
 	end
@@ -140,14 +141,14 @@ function remList = atomsRemoveList(packages,section)
 			if section=="user" then
 				details = atomsGetInstalledDetails(this_parent_name,this_parent_version,section);
 				if details(1,3) == "allusers" then
-					remList = [ remList ; "~" "B" this_parent_name this_parent_version ]; // B stands for "Broken"
+					remList = [ remList ; "~" "B" this_parent_name this_parent_version this_package_section ]; // B stands for "Broken"
 					continue
 				end
 			end
 			
 			// Add this parent to the list
 			if find(remList(:,3)+" - "+remList(:,4) == this_parent_name+" - "+this_parent_version) == [] then
-				remList = [ remList ; "-" "P" this_parent_name this_parent_version ];  // P stands for "Parent"
+				remList = [ remList ; "-" "P" this_parent_name this_parent_version this_package_section ];  // P stands for "Parent"
 			end
 			
 		end
