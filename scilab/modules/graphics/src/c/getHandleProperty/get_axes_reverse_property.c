@@ -35,7 +35,7 @@ int get_axes_reverse_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_reverse") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_reverse") ;
     return -1 ;
   }
 
