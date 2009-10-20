@@ -45,7 +45,7 @@ int set_text_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "ext_box", 2);
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "text_box", 2);
     return SET_PROPERTY_ERROR ;
   }
   return sciSetUserSize( pobj, values[0], values[1] ) ;

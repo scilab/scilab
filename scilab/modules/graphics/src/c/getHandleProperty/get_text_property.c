@@ -35,7 +35,7 @@ int get_text_property( sciPointObj * pobj )
 
   if ( nbRow < 0 || nbCol < 0 )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"text") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"text") ;
     return -1;
   }
 

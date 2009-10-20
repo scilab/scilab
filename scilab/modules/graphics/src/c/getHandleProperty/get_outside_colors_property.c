@@ -29,7 +29,7 @@ int get_outside_colors_property( sciPointObj * pobj )
   int colors[2];
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"outside_colors") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors") ;
     return -1 ;
   }
 

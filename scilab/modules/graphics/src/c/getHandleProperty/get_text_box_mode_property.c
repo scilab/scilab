@@ -45,7 +45,7 @@ int get_text_box_mode_property( sciPointObj * pobj )
       return sciReturnString( "filled" ) ;
     }
   }
-  Scierror(999, _("%s property does not exist for this handle.\n"),"text_box_mode");
+  Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode");
   return -1;
 }
 /*------------------------------------------------------------------------*/

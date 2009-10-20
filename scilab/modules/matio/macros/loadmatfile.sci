@@ -78,7 +78,7 @@ if bin then // Uses MATIO interface
   Matrices=list()
   
   //-- Try to open the file
-  fd = matfile_open(fil, "r");
+  fd = matfile_open(pathconvert(fil, %F, %T), "r");
   if fd==-1 then
     error(msprintf(gettext("%s: Cannot open file %s.\n"),"loadmatfile",fil));
   end

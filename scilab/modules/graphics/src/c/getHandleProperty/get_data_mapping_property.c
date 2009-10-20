@@ -29,7 +29,7 @@ int get_data_mapping_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_GRAYPLOT)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"data_mapping");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping");
     return -1;
   }
 
