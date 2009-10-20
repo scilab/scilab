@@ -51,8 +51,8 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	end
 	
 	// Allusers/user management
-	//   - If Allusers is True, module(s) will added to the "autoload" list of the 
-	//     "allusers" section :
+	//   - If section is equal to "allusers", module(s) will added to the 
+	//     "autoload" list of the "allusers" section :
 	//       → SCI/.atoms/autoloaded
 	//   - Otherwise, module(s) will added to the "autoload" list of the "user"
 	//     section
@@ -75,7 +75,7 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	else
 		
 		// Process the 2nd input argument : allusers
-		// Allusers can be a boolean or equal to "user" or "allusers"
+		// Allusers can be equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsAutoloadAdd",3));

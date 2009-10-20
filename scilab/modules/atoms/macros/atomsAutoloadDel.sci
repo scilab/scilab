@@ -72,7 +72,7 @@ function nbDel = atomsAutoloadDel(name,version,section)
 	
 	else
 		// Process the 2nd input argument : allusers
-		// Allusers can be a boolean or equal to "user" or "allusers"
+		// Allusers can equal to "user","allusers" or "all"
 		
 		if (type(section) <> 4) & (type(section) <> 10) then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadDel",3));

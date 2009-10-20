@@ -49,7 +49,7 @@ function res = atomsGetInstalledPath(name,version,section)
 	else
 		
 		// Process the 2nd input argument : section
-		// Allusers can be a boolean or equal to "user" or "allusers"
+		// Allusers can be equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledPath",3));

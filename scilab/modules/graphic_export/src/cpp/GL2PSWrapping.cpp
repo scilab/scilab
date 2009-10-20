@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "GL2PSWrapping.hxx"
+#include "JoGLInterface.h"
 
 #include "gl2ps/gl2ps.h"
 
@@ -115,3 +116,22 @@ const char * sci_gl2psGetFileExtension(int format){
 const char * sci_gl2psGetFormatDescription(int format){
 	return gl2psGetFormatDescription(format);
 };
+
+/* Added by Calixte */
+int sci_gl2psDrawPixels(int w, int h, int format, int type, const void * buffer){
+  if (type == joglGL_UNSIGNED_BYTE())
+    {
+      type = joglGL_FLOAT();
+      char pix = (format == joglGL_RGBA()) ? 4 : 3;
+      float *arrf = (float*)MALLOC(w * h * sizeof(float) * pix);
+      int i;
+      for (i = 0; i < w * h * pix; i++) 
+	arrf[i] = (float)(((unsigned char*)buffer)[i]) / 255.0f;
+	
+      int ret = gl2psDrawPixels(w, h, 0, 0, format, type, arrf);
+      free(arrf);
+      return ret;
+    }
+  return gl2psDrawPixels(w, h, 0, 0, format, type, buffer);
+};
+/* End */
