@@ -59,7 +59,7 @@ in different environnements and use cases.
 
 * Add error code capability to exit (SEP #19 and request 505).
   Example:
-	echo "if 1<>2 then exit(99) end"|./bin/scilab -nwni; echo $?
+	echo "if 1<>2 then exit(99) end"|scilab -nwni; echo $?
 	returns 99
 
 
