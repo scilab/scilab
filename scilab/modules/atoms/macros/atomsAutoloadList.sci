@@ -9,7 +9,7 @@
 
 // get the list of repositories
 
-function modules = atomsAutoloadList(allusers)
+function modules = atomsAutoloadList(section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -38,36 +38,31 @@ function modules = atomsAutoloadList(allusers)
 	// =========================================================================
 	
 	if rhs < 1 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
-		if type(allusers) <> 10 then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
 		end
 		
-		if size(allusers,"*")<>1 then
+		if size(section,"*")<>1 then
 			error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
 		end
 		
-		if and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadList",1));
 		end
 		
 	end
 	
-	// Define the needed paths
-	// =========================================================================
-	
-	allusers_autoload = pathconvert(SCI+"/.atoms/autoloaded",%F);
-	user_autoload     = pathconvert(SCIHOME+"/atoms/autoloaded",%F);
-	
 	// All users autoload
 	// =========================================================================
 	
-	if or(allusers==["all";"allusers"]) then
-		if fileinfo(allusers_autoload) <> [] then
-			module_list = mgetl(allusers_autoload);
+	if or(section==["all";"allusers"]) then
+		autoloaded_file = atomsPath("system","allusers") + "autoloaded";
+		if fileinfo(autoloaded_file) <> [] then
+			module_list = mgetl(autoloaded_file);
 			for i=1:size(module_list,"*")
 				modules = [ modules ; module_list(i)  "allusers" ];
 			end
@@ -77,9 +72,10 @@ function modules = atomsAutoloadList(allusers)
 	// User repositories
 	// =========================================================================
 	
-	if or(allusers==["all";"user"]) then
-		if fileinfo(user_autoload) <> [] then
-			module_list = mgetl(user_autoload);
+	if or(section==["all";"user"]) then
+		autoloaded_file = atomsPath("system","user") + "autoloaded";
+		if fileinfo(autoloaded_file) <> [] then
+			module_list = mgetl(autoloaded_file);
 			for i=1:size(module_list,"*")
 				modules = [ modules ; module_list(i)  "user" ];
 			end
