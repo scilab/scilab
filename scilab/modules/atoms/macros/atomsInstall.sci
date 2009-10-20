@@ -85,11 +85,12 @@ function result = atomsInstall(packages,section)
 	end
 	
 	// Allusers/user management
-	//   - If Allusers is True, packages will installed in the "allusers" section :
-	//       → SCI/contrib : location of the modules
-	//       → SCI/.atoms  : ATOMS system files
+	//   - If Allusers is equal to "allusers", packages will installed in the "allusers" section :
+	//       → SCI/contrib    : location of the modules
+	//       → SCI/.atoms     : ATOMS system files
 	//   - Otherwise, packages will installed in the "user" section :
-	//       → SCIHOME/atoms : location of the modules & ATOMS system files
+	//       → SCIHOME/atoms  : location of the modules
+	//       → SCIHOME/.atoms : location of the modules & ATOMS system files
 	// =========================================================================
 	
 	if rhs <= 1 then
