@@ -32,7 +32,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   ng    = 0
   fil   = pathconvert(fil, %f, %t)
-  mlibs = pathconvert(modelica_libs, %t, %t)
+  mlibs = pathconvert(modelica_libs, %f, %t)
 
   name = basename(fil)
   path = strsubst(stripblanks(fil), name + '.mo', '')
