@@ -22,7 +22,6 @@ public class SplitBlock extends BasicBlock {
 	
 	protected SplitBlock(String label) {
 		super(label);
-		setStyle("SPLIT_f");
 		setInterfaceFunctionName("SPLIT_f");
 		getGeometry().setWidth(0);
 		getGeometry().setHeight(0);
