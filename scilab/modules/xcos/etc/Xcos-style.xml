@@ -21,25 +21,13 @@
   </add>
 
   <!-- Const -->
-  <add as="Const" extend="block"/>
+	<add as="Const" extend="block"/>
 
-  <!-- Gain -->
+	<!-- Gain -->
   <add as="Gain" extend="blockWithLabel">
     <add as="shape" value="triangle"/>
     <add as="perimeter" value="trianglePerimeter"/>
     <add as="direction" value="east"/>
-  </add>
-
-  <add as="Gain90" extend="Gain">
-    <add as="direction" value="north"/>
-  </add>
-
-  <add as="Gain180" extend="Gain">
-    <add as="direction" value="west"/>
-  </add>
-
-  <add as="Gain270" extend="Gain">
-    <add as="direction" value="south"/>
   </add>
 
   <!-- Icon -->
@@ -55,23 +43,10 @@
 
   <!-- Command Port -->
   <add as="CommandPort" extend="Port">
-    <!--
-	<add as="shape" value="ellipse"/>
-	<add as="perimeter" value="ellipsePerimeter"/>
-	-->
     <add as="strokeColor" value="red"/>
     <add as="fillColor" value="red"/>
     <add as="direction" value="south"/>
     <add as="type" value="Command"/>
-  </add>
-  <add as="CommandPort90" extend="CommandPort">
-    <add as="direction" value="east"/>
-  </add>
-  <add as="CommandPort180" extend="CommandPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="CommandPort270" extend="CommandPort">
-    <add as="direction" value="west"/>
   </add>
 
   <!-- Control Port -->
@@ -81,15 +56,6 @@
     <add as="direction" value="south"/>
     <add as="type" value="Control"/>
   </add>
-  <add as="ControlPort90" extend="ControlPort">
-    <add as="direction" value="east"/>
-  </add>
-  <add as="ControlPort180" extend="ControlPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ControlPort270" extend="ControlPort">
-    <add as="direction" value="west"/>
-  </add>
 
   <!-- Explicit Input -->
   <add as="ExplicitInputPort" extend="Port">
@@ -97,30 +63,12 @@
     <add as="fillColor" value="black"/>
     <add as="direction" value="east"/>
   </add>
-  <add as="ExplicitInputPort90" extend="ExplicitInputPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ExplicitInputPort180" extend="ExplicitInputPort">
-    <add as="direction" value="west"/>
-  </add>
-  <add as="ExplicitInputPort270" extend="ExplicitInputPort">
-    <add as="direction" value="south"/>
-  </add>
 
   <!-- Explicit Output -->
   <add as="ExplicitOutputPort" extend="Port">
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="black"/>
     <add as="direction" value="east"/>
-  </add>
-  <add as="ExplicitOutputPort90" extend="ExplicitOutputPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ExplicitOutputPort180" extend="ExplicitOutputPort">
-    <add as="direction" value="west"/>
-  </add>
-  <add as="ExplicitOutputPort270" extend="ExplicitOutputPort">
-    <add as="direction" value="south"/>
   </add>
 
   <!-- Implicit Input -->

@@ -28,6 +28,8 @@ function xcos_simulate(scs_m)
   %tcur       = 0;
   %cpr.state  = %state0;
   tf          = scs_m.props.tf;
+  %zoom       = 1.4;
+  Select      = [];
   
   //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
