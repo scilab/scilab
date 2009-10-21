@@ -15,6 +15,8 @@ function xcos_simulate(scs_m)
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
   solver = tolerances(6) ; 
+  //** initialize a "scicos_debug_gr" variable
+  %scicos_debug_gr = %f;
 
   ////////////////////////////////////////////////////////////////
   // Add global environment variable so that scicos is not lost //
