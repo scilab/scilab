@@ -63,7 +63,15 @@ function [model, ok] = build_block(o)
         tt    = graphics.exprs.funtxt;
       end
       [dirF, nameF, extF] = fileparts(funam);
-      tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %t, %t);
+      
+      // MODELICAC on windows does not support '\' at the end of path
+      // TO DO: Fix MODELICAC
+      if MSDOS then
+        tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
+      else
+        tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %t, %t);
+      end
+
       if (extF == '') then
         funam = fullfile(tarpath, nameF + '.mo');
         mputl(tt, funam);

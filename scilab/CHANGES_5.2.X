@@ -395,6 +395,8 @@ Bug fixes:
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
                    first argument is -1 (any number of lines)
 
+* bug 2537 fixed - improve xstring feature
+
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
 * bug 2649 fixed - diary() function cannot be nested.
@@ -666,6 +668,8 @@ Bug fixes:
 * bug 4867 fixed - Close the last opened file should close Xpad or create a blank file named "untitled xx".
 
 * bug 4892 fixed - Xpad : Command+X shortcuts was not managed
+
+* bug 4903 fixed - In Xpad, closing the last tab + another closing tab action generates an exception in the console.
 
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
 

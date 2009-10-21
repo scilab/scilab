@@ -507,18 +507,19 @@ public class BlockReader {
 		if (!(params.get(5) instanceof ScilabString) && !isEmptyField(params.get(5))) {
 			throw new WrongTypeException();
 		}
-		String context = "";
+		ArrayList<String> context =  new ArrayList<String>();
 		if( params.get(5).getHeight() >= params.get(5).getWidth()) {
 			for (int i = 0; i < params.get(5).getHeight(); i++) {
-				context += ((ScilabString) params.get(5)).getData()[i][0] + ";";
+				context.add(((ScilabString) params.get(5)).getData()[i][0] + ";");
 			}
 		} else {
 			for (int i = 0; i < params.get(5).getWidth(); i++) {
-				context += ((ScilabString) params.get(5)).getData()[0][i] + ";";
+				context.add(((ScilabString) params.get(5)).getData()[0][i] + ";");
 			}
+
 		}
 		System.out.println(context);
-		diagramProperties.put("context", context);
+		diagramProperties.put("context", context.toArray( new String[context.size()] ));
 
 		//void1
 		if(!isEmptyField(params.get(6))) { throw new WrongTypeException(); }

@@ -96,7 +96,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
-    private String context = "";
+    private String[] context = new String[]{};
     private List doc = null;
     private String version = "scicos4.2";
 
@@ -836,11 +836,11 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
-    public void setContext(String context){
+    public void setContext(String[] context){
 	this.context = context;
     }
 
-    public String getContext() {
+    public String[] getContext() {
 	return context;
     }
 
@@ -908,7 +908,7 @@ public class XcosDiagram extends ScilabGraph {
 	setRealTimeScaling((Double) properties.get("realTimeScaling"));
 	setSolver((Double) properties.get("solver"));
 	setMaximumStepSize((Double) properties.get("maximumStepSize"));
-	setContext((String) properties.get("context"));
+	setContext( (String[]) properties.get("context"));
 
 	List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
 	List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");
