@@ -422,7 +422,6 @@ public class XcosDiagram extends ScilabGraph {
     				}
     				
     				((BasicBlock) cells[i]).setParentDiagram(diagram);
-    				System.err.println("setParentDiagram : " + diagram);
 
     				getModel().beginUpdate();
 
