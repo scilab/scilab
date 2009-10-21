@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("bounce.dem.sce");
-scicos_demostration(thispath+"/bounce.cosf");
+// scicos_demostration(thispath+"/bounce.cosf");
+
+//Open the cosf file with xcos
+xcos(thispath+"/bounce.cosf"); 
+
 clear thispath;

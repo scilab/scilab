@@ -401,6 +401,8 @@ Bug fixes:
 
 * bug 2649 fixed - diary() function cannot be nested.
 
+* bug 3184 fixed - ticks of colorbar have disappeared
+
 * bug 3201 fixed - add the help page for the function del_help_chapter
 
 * bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
@@ -475,6 +477,9 @@ Bug fixes:
 * bug 4380 fixed - help page of the printf command has a problem.
 
 * bug 4380 fixed - merror error codes not documented.
+
+* bug 4395 fixed - incorrect descriptions of the axesflag and nax parameters
+                   in the plot2d help page.
 
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
