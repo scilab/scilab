@@ -46,9 +46,9 @@ void AxisPositioner::setTicksDirectionLength(double ticksDir[3], sciPointObj * p
   camera->getViewingArea(&xPos, &yPos, &width, &height);
 		
   // compute sizes wich would apply if axes where along X or Y axis
-  // and use at least 2 pixels
-  double xSize = Max(width * TICKS_PIXEL_LENGTH, 2);
-  double ySize = Max(height * TICKS_PIXEL_LENGTH, 2);
+  // and use at least 3 pixels
+  double xSize = Max(width * TICKS_PIXEL_LENGTH, 3);
+  double ySize = Max(height * TICKS_PIXEL_LENGTH, 3);
 		
   // compute angle between ticks direction and x axis in pixel coordinates, pixDir[0]
   double angle = acos(Abs(pixDir[0]));
