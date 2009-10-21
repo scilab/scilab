@@ -34,9 +34,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxUtils;
 
 public class SuperBlock extends BasicBlock {
 
@@ -64,8 +62,9 @@ public class SuperBlock extends BasicBlock {
 	this.setLocked(true);
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
-	    child.installListeners();
 	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+	    child.installListeners();
+	    updateAllBlocksColor();
 		int blockCount = child.getModel().getChildCount(child.getDefaultParent());
 	    for(int i = 0 ; i < blockCount ; i++){
 		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
@@ -77,9 +76,11 @@ public class SuperBlock extends BasicBlock {
 	}
 	else {
 	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-	    newChild.installListeners();
 	    newChild.setModel(child.getModel());
 	    child = newChild;
+	    
+	    child.installListeners();
+	    updateAllBlocksColor();
 	}
 	Xcos.showDiagram(child);
     }
@@ -112,41 +113,6 @@ public class SuperBlock extends BasicBlock {
 	public SuperBlockDiagram(SuperBlock superBlock) {
 	    super();
 	    this.container = superBlock;
-	}
-
-	protected void updateBlockWithValue(List<mxCell> blocks, String checkValue){
-		
-		updateAllBlocksColor();
-//		//block with same value
-//		int count = getBlocksWithValueCount(blocks, checkValue);
-//		if(count != 0){
-//			List<mxCell> list = getBlocksWithValue(blocks, checkValue);
-//			System.err.println("white : updateBlockWithValue");
-//			mxUtils.setCellStyles(getModel(), new Object[] {list.get(0)}, mxConstants.STYLE_FILLCOLOR, "white");
-//
-//			Object[] objs = new Object[list.size() - 1];
-//			for(int j = 1 ; j < list.size() ; j++){
-//				getParentDiagram().getAsComponent().setCellWarning(list.get(j), "ta mere en short");
-//				objs[j-1] = list.get(j);
-//				System.err.println("orange : updateBlockWithValue");
-//			}
-//			mxUtils.setCellStyles(getModel(), objs, mxConstants.STYLE_FILLCOLOR, "orange");
-//		}else{ //count == 0
-//			//block with bigger value
-//			int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
-//			int val = Integer.parseInt(checkValue);
-//			
-//			if(countUnique < val){
-//				for(int j = 1 ; j < blocks.size() ; j++){
-//					int val2 = Integer.parseInt((String)((BasicBlock)blocks.get(j)).getValue());
-//					if(val2 > val){
-//						System.err.println("orange : updateBlockWithValue");
-//						mxUtils.setCellStyles(getModel(), new Object[]{blocks.get(j)}, mxConstants.STYLE_FILLCOLOR, "orange");
-//					}
-//				}
-//			}
-//		}
-		refresh();
 	}
 
 	public void closeDiagram() {
@@ -409,7 +375,6 @@ public class SuperBlock extends BasicBlock {
     		}
 
     		int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
-    		System.err.println("countUnique : " + countUnique);
     		boolean isDone[] = new boolean[countUnique];
 
     		//Initialize
@@ -420,9 +385,8 @@ public class SuperBlock extends BasicBlock {
 
     		for(int i = 0 ; i < blocks.size() ; i++){
     			int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
-    			System.err.println("index : " + index);
     			if(index > countUnique || isDone[index - 1] == true){
-    				child.getAsComponent().setCellWarning(blocks.get(i), "ta mere en short");
+    				child.getAsComponent().setCellWarning(blocks.get(i), "Wrong port number");
     			}else{
     				isDone[index - 1] = true;
     				child.getAsComponent().setCellWarning(blocks.get(i), null);

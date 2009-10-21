@@ -117,7 +117,7 @@ public class BlockReader {
 
 					//tips to set block direction at load "BLOCK_f;direction=east" 
 					currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
-					currentBlock.setValue(currentBlock.getInterfaceFunctionName());
+					//currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 					blocks.add(currentBlock);
 					minX = Math.min(minX, currentBlock.getGeometry().getX());
@@ -202,8 +202,8 @@ public class BlockReader {
 						double[][] linkPoint = new double[link.get(1).getHeight() - 2][2]; 
 						for(int point = 0 ; point < link.get(1).getHeight() - 2 ; point++){
 							linkPoint[point] = getLinkPoint(link, point);
-							linkPoint[point][0] += Math.abs(minX + 20);
-							linkPoint[point][1] += Math.abs(minY + 20);
+							linkPoint[point][0] += offsetX;
+							linkPoint[point][1] += offsetY;
 						}
 						linkPoints.add(linkPoint);
 					}
