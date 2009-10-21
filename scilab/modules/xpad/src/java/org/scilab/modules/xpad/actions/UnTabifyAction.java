@@ -35,14 +35,7 @@ public class UnTabifyAction extends DefaultAction {
 		
 		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
 		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if(position_start == position_end)
-		{
-			// No selection : Delete a Tab in the middle of the line, just before the caret position
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).deleteTab(position_start-1);
-		}
-		
-		else if( line_start == line_end )
+		 if( line_start == line_end )
 		{
 			// A part of the line is selected : Delete a Tab at the beginning of the line
 			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLine(line_start);

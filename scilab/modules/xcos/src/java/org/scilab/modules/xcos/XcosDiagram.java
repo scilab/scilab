@@ -96,7 +96,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
-    private String[] context = new String[]{};
+    private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
 
@@ -313,7 +313,7 @@ public class XcosDiagram extends ScilabGraph {
 					Math.max(preferedSize.getWidth(), cellSize.getWidth()),
 					Math.max(preferedSize.getHeight(), cellSize.getHeight())));
 			cellsResized(new Object[] { currentCell }, new mxRectangle[] { ((mxCell) currentCell).getGeometry() });
-			refresh();
+			//refresh();
 			getModel().endUpdate();
 			//((BasicBlock) ((mxGeometryChange) changes.get(i)).getCell()).updateBlockView();
 		    }

@@ -27,21 +27,14 @@ public class TabifyAction extends DefaultAction {
 		super(XpadMessages.TABIFY_SELECTION, editor);
 	}
 	
-	public void doAction()
+	public synchronized void doAction()
 	{
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
 		
 		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
 		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if(position_start == position_end)
-		{
-			// No selection : Insert a Tab in the middle of the line
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertTab(position_start);
-		}
-		
-		else if( line_start == line_end )
+		if( line_start == line_end )
 		{
 			// A part of the line is selected : Insert a Tab at the beginning of the line
 			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).tabifyLine(line_start);
