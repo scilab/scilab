@@ -21,8 +21,12 @@
 //
 
 function r = with_modelica_compiler()
-  // check if modelica compiler exists in current $PATH
+  
+  if exists('scicos_scicoslib') == 0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+  end
 
+  // check if modelica compiler exists in current $PATH
   r = ~isempty(getmodelicacpath());
 endfunction
 
