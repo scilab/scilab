@@ -70,7 +70,9 @@ function hilite_obj(k,win)
    //** set red color for foreground mark property
    gh_blk.children(1).mark_foreground = 5;
    //** bigger thickness (+3)
-   gh_blk.children(1).thickness = gh_blk.children(1).thickness + 3;
+   //DEBUG YC: les blocs ne sont plus des dessins scilab, mais des images.
+   //            ou alors problems d'ordre dans les blocs.
+   ////gh_blk.children(1).thickness = gh_blk.children(1).thickness + 3;
    //** activate the selection markers
    gh_blk.children(1).mark_mode = "on";
  end

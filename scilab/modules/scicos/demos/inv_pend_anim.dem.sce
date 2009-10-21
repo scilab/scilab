@@ -8,5 +8,9 @@
 thispath = get_absolute_file_path("inv_pend_anim.dem.sce");
 exec(thispath+"/PENDULUM_ANIM.sci");
 exec(thispath+"/anim_pen.sci");
-scicos_demostration(thispath+"/pendulum_anim5.cosf");
-clear th
+
+//scicos_demostration(thispath+"/pendulum_anim5.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/pendulum_anim5.cosf");
+clear thispath;
