@@ -42,6 +42,10 @@ public class AfficheBlock extends BasicBlock {
 		}
 		return hashCode;
 	}
+	
+	public void setHashCode(int hashcode){
+		this.hashCode = hashcode;
+	}
 
 	public ScilabType getObjectsParameters() {
 		ScilabList list = new ScilabList();
