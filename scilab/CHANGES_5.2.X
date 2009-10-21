@@ -395,6 +395,8 @@ Bug fixes:
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
                    first argument is -1 (any number of lines)
 
+* bug 2537 fixed - improve xstring feature
+
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
 * bug 2649 fixed - diary() function cannot be nested.
