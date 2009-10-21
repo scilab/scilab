@@ -795,9 +795,9 @@
 
   <!-- GENERATED BLOCKS -->
   <add as="SPLIT_f" extend="block">
-    <add as="shape" value="triangle"/>
-    <add as="strokeColor" value="yellow"/>
-    <add as="fillColor" value="yellow"/>
+    <add as="shape" value="rectangle"/>
+    <add as="strokeColor" value="black"/>
+		<add as="fillColor" value="orange"/>
   </add>
   <add as="SCALAR2VECTOR" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALAR2VECTOR.gif"/>

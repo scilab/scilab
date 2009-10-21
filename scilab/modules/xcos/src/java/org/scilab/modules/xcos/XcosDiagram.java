@@ -53,6 +53,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -184,12 +185,15 @@ public class XcosDiagram extends ScilabGraph {
     			double offsetX = geomTarget.getCenterX() -  geomSource.getCenterX();
     			double offsetY = geomTarget.getCenterY() -  geomSource.getCenterY();
 
-    			BasicBlock splitBlock = BasicBlock.createBlock("a");
-    			splitBlock.getGeometry().setX(geomSource.getCenterX() + offsetX / 2);
-    			splitBlock.getGeometry().setY(geomSource.getCenterY() + offsetY / 2);
-    			splitBlock.getGeometry().setWidth(1);
-    			splitBlock.getGeometry().setHeight(1);
+    			BasicBlock splitBlock = BasicBlock.createBlock("SPLIT_f");
+    			splitBlock.setStyle("SPLIT_f");
     			addCell(splitBlock);
+    			mxRectangle splitRect = new mxRectangle();
+    			splitRect.setX(geomSource.getCenterX() + offsetX / 2);
+    			splitRect.setY(geomSource.getCenterY() + offsetY / 2);
+    			splitRect.setWidth(6);
+    			splitRect.setHeight(6);
+    			cellsResized(new Object[]{splitBlock}, new mxRectangle[]{splitRect});
 
     			//remove old link
     			removeCells(new Object[]{link});
@@ -247,7 +251,7 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().setToolTips(true);
 
 	// Forbid disconnecting cells once it is connected.
-	//setCellsDisconnectable(false);
+	setCellsDisconnectable(false);
 
 	// Forbid pending edges.
 	setAllowDanglingEdges(false);
@@ -270,7 +274,8 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().setEnterStopsCellEditing(false);
 
 	setConnectableEdges(true);
-
+	getAsComponent().setTolerance(1);
+	
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
@@ -366,7 +371,11 @@ public class XcosDiagram extends ScilabGraph {
 		//System.err.println("args[" + i + "] = " + changes.get(i));
 		if (changes.get(i) instanceof mxChildChange) {
 		    //System.err.println("Change cell = "+((mxChildChange) changes.get(i)).getChild().toString());
-		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
+		    if (((mxChildChange) changes.get(i)).getChild() instanceof SplitBlock) {
+		    	continue;
+		    }
+		
+		if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
 			BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes.get(i)).getChild();
 			getModel().beginUpdate();
 
@@ -593,7 +602,15 @@ public class XcosDiagram extends ScilabGraph {
 	return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
     }
 
-    public boolean isCellMovable(Object cell) {
+	public boolean isCellSelectable(Object cell)
+	{
+//		if(cell instanceof BasicLink){
+//			return false;
+//		}
+		return super.isCellSelectable(cell);
+	}
+
+	public boolean isCellMovable(Object cell) {
 	if(cell instanceof BasicPort){
 	    return false;
 	}
@@ -613,6 +630,9 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public boolean isCellResizable(Object cell) {
+    	if(cell instanceof SplitBlock){
+    		return false;
+    	}
 	return (cell instanceof BasicBlock) && super.isCellResizable(cell);
     }
 
