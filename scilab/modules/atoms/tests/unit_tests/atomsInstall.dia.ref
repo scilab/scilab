@@ -24,66 +24,66 @@ atomsRemove("toolbox_5");
 // Install the toolbox 5 (user section)
 // =============================================================================
 atomsInstall("toolbox_5","user");
-if ~atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 atomsRemove("toolbox_5","user");
-if atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 // Install the toolbox 5 (allusers section)
 // =============================================================================
 atomsInstall("toolbox_5","allusers");
-if ~atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
-if atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 // Install the toolbox 5 (Both section)
 // =============================================================================
 atomsInstall("toolbox_5","allusers");
 atomsInstall("toolbox_5","user");
-if ~atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
-if atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsInstall("toolbox_5","allusers");
 atomsRemove("toolbox_5","user");
-if atomsIsInstalled("toolbox_5",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_4",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_2",[],"user") then bugmes();quit;end
-if atomsIsInstalled("toolbox_1",[],"user") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_5",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_4",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_2",[],"allusers") then bugmes();quit;end
-if ~atomsIsInstalled("toolbox_1",[],"allusers") then bugmes();quit;end
+if atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
+if atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
+if ~atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
 // Restore original values
 atomsSetConfig("autoload",config_autoload);
