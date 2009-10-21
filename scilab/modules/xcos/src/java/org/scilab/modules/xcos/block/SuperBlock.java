@@ -53,7 +53,14 @@ public class SuperBlock extends BasicBlock {
 	setStyle("SUPER_f");
     }
     
-    public void openBlockSettings(String context) {
+    /**
+     * openBlockSettings
+     * this method is called when a double click occured on a super block
+     * /!\ WARNING /!\ this method must have the same signature as BasicBlock.openBlockSettings
+     * @see BasicBlock.openBlockSettings
+     * 
+     */
+    public void openBlockSettings(String[] context) {
 	this.setLocked(true);
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
