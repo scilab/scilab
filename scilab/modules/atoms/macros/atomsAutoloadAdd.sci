@@ -114,10 +114,10 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	// Check if all input modules are installed
 	// =========================================================================
 	
-	if ~ and(atomsIsInstalled(name,version)) then
+	if ~ and(atomsIsInstalled([name version])) then
 		mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
 		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i)) then
+			if ~ atomsIsInstalled([name(i) version(i)]) then
 				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
 			end
 		end
@@ -127,10 +127,10 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	// A module installed in the user section cannot be add in the "autoload" list 
 	// of all users
 	
-	if (rhs>=3) & (section=="allusers") & (~ atomsIsInstalled(name,version,"allusers")) then
+	if (rhs>=3) & (section=="allusers") & (~ atomsIsInstalled([name version],"allusers")) then
 		mprintf(gettext("%s: The following modules are installed in the user section, you cannot add them in the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
 		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i),"allusers") then
+			if ~ atomsIsInstalled([name(i) version(i)],"allusers") then
 				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
 			end
 		end

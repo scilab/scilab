@@ -70,8 +70,8 @@ function atomsToremoveProcess(section)
 	// And now action
 	// =========================================================================
 	for i=1:size(toremove,:)
-		if atomsIsInstalled(toremove(i,1),toremove(i,2)) then
-			atomsRemove(toremove(i,1)+" "+toremove(i,2),section);
+		if atomsIsInstalled([toremove(i,1) toremove(i,2)]) then
+			atomsRemove([toremove(i,1) toremove(i,2)],section);
 		end
 	end
 	

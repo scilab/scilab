@@ -97,7 +97,8 @@ function result = atomsUpdate(name,section)
 	if (rhs==0) | isempty(name) then
 		
 		name               = [];
-		package_installed = atomsGetInstalled(section);
+		package_installed  = atomsGetInstalled(section);
+		package_installed  = package_installed( find( package_installed(:,5) == "I") , : );
 		
 		for i=1:size(package_installed(:,1),"*")
 			if find( name == package_installed(i,1) ) == [] then
@@ -111,22 +112,39 @@ function result = atomsUpdate(name,section)
 	
 	for i=1:size(name,"*")
 		
-		this_package_versions = atomsGetInstalledVers(name(i),section);
-		this_package_MRV_ins  = this_package_versions(1);   // Most Recent Version Installed
-		this_package_MRV_ava  = atomsGetMRVersion(name(i)); // Most Recent Version Available
+		this_package_versions    = atomsGetInstalledVers(name(i),section);
+		this_package_MRV_ins     = this_package_versions(1);   // Most Recent Version Installed
+		this_package_MRV_ava     = atomsGetMRVersion(name(i)); // Most Recent Version Available
+		this_package_ins_details = atomsGetInstalledDetails([name(i) this_package_MRV_ins],section);
+		this_package_ins_section = this_package_ins_details(3);
 		
 		if (this_package_MRV_ava == -1) | ..
 				( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
 			// The installed version is already the Most Recent Version Available
 			atomsDisp(msprintf("\t%s (%s) : The most recent version is already installed\n\n",name(i),this_package_MRV_ins));
-			continue;
+		else
+			// Install the new toolbox
+			this_result = atomsInstall([name(i) this_package_MRV_ava],this_package_ins_section);
+			
+			// Fill the output argument
+			result = [ result ; this_result ];
 		end
 		
-		// Install the new toolbox
-		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,section);
+		// Now check if it's dependencies are up-to-date
+		dependencies = atomsInstallList([name(i) this_package_MRV_ins],this_package_ins_section);
 		
-		// Fill the output argument
-		result = [ result ; this_result ];
+		for j=1:size(dependencies(:,1),"*")
+			
+			if ~atomsIsInstalled([dependencies(j,3) dependencies(j,4)],this_package_ins_section) then
+				// Install the new toolbox
+				this_result = atomsInstall([dependencies(j,3) dependencies(j,4)],this_package_ins_section);
+				
+				// Fill the output argument
+				result = [ result ; this_result ];
+			end
+			
+		end
+		
 	end
 	
 	// Go to the initial location

@@ -19,7 +19,7 @@
 // Output parameters :
 //   res      : matrix of boolean
 
-function res = atomsIsInstalled(name,version,section)
+function res = atomsIsInstalled(packages,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -34,76 +34,70 @@ function res = atomsIsInstalled(name,version,section)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsInstalled",1,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsInstalled",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",1));
 	end
 	
-	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",2));
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsInstalled",1));
 	end
 	
-	// name and version must have the same size
+	// Remove leadind & trailing whitespaces
 	// =========================================================================
+	packages = stripblanks(packages);
 	
-	if rhs>1 & version<>[] & or(size(name)<>size(version)) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsInstalled",1,2));
-	end
-	
-	// Value of version if not precised
+	// If packages is mx1 matrix, add a 2nd column with empty versions
 	// =========================================================================
-	
-	if rhs < 2 then
-		version = [];
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
 	// "all", "user" section or "allusers" section packages ?
 	// =========================================================================
 	
-	if rhs < 3 then
+	if rhs < 2 then
 		section = "all"
+		
 	else
 		// Just check if it's a boolean
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsIsInstalled",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsIsInstalled",2));
 		end
-	end
-	
-	if (rhs>=3) & (and(section<>["user","allusers","all"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsIsInstalled",1));
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsIsInstalled",2));
+		end
+		
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled(section);
+	installedpackages = atomsGetInstalled(section);
 	
-	// Loop on name
+	// Loop on packages
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		if isempty(version) then
+		if isempty(packages(i,2)) then
 			// Just check the name
-			res(i) = or(packages(:,1) == name(i));
+			res(i) = or(packages(i,1) == installedpackages(:,1));
 		
 		else
 			// Filter on names
-			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
+			packages_version = installedpackages( find(packages(i,1) == installedpackages(:,1)) , 2 );
 			
 			// Check if the wnated version is present$
-			res(i) = or(packages_version == version(i) );
+			res(i) = or(packages_version == packages(i,2));
 		end
 		
 	end
-	
-	// Reshape the matrix
-	// =========================================================================
-	res = matrix(res,size(name) );
 	
 endfunction

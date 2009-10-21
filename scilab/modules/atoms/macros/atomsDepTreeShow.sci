@@ -21,7 +21,7 @@
 
 // Output arguments :
 
-function atomsDepTreeShow(name,version)
+function atomsDepTreeShow(package)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -29,45 +29,33 @@ function atomsDepTreeShow(name,version)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	lhs = argn(1);
 	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if (rhs < 1) | (rhs > 2) then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDepTreeShow",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
+	if type(package) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
-	if (rhs>=2) & (type(version) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",2));
-	end
-	
-	// Check input parameters dimensions
-	// =========================================================================
-	
-	if size(name) <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
-	end
-	
-	if (rhs>=2) & (size(name)<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
+	if size(package(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
 	// Get the dependency tree
 	// =========================================================================
 	
-	if rhs>1 then
-		tree = atomsDepTreeExt(name,version)
+	if size(package(1,:),"*") == 2 then
+		tree = atomsDepTreeExt(package(1),package(2));
 	else
-		tree = atomsDepTreeExt(name)
+		tree = atomsDepTreeExt(package(1));
 	end
 	
 	situation = struct();
