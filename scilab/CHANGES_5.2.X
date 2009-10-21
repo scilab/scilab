@@ -667,6 +667,8 @@ Bug fixes:
 
 * bug 4892 fixed - Xpad : Command+X shortcuts was not managed
 
+* bug 4903 fixed - In Xpad, closing the last tab + another closing tab action generates an exception in the console.
+
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
 
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
