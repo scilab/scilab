@@ -877,7 +877,7 @@ public class BasicBlock extends mxCell {
 	
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context[]) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;

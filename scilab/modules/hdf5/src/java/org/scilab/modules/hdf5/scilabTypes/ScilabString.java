@@ -22,6 +22,11 @@ public class ScilabString implements ScilabType {
 	this.data = data;
     }
     
+    public ScilabString(String[] data) {
+    	this.data = new String[1][data.length];
+    	this.data[0] = data ;
+    }
+    
     public ScilabString(String string) {
 	this.data = new String[1][1];
 	this.data[0][0] = string;
