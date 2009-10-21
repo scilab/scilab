@@ -10,7 +10,7 @@ scs_m=scicos_diagram(..
             "if scs_m.objs(5).gui==''SUPER_f'' then";
             "  scs_m=scs_m.objs(5).model.rpar;";
             "else";
-            "  scs_m=scs_m.objs(6).model.rpar;";
+            "  scs_m=scs_m.objs(4).model.rpar;";
             "end";
             "[X,U,Y,XP]=steadycos(scs_m,[],[],[],[],1,1:$);";
             "sys= lincos(scs_m,X,U);";
