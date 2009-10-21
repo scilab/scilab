@@ -48,7 +48,7 @@ function result = atomsAutoload()
 	
 	// Load the wanted packages
 	// =========================================================================
-	result = atomsLoad(packages(:,1),packages(:,2));
+	result = atomsLoad([packages(:,1) packages(:,2)]);
 	
 	// Get the list of lib [after]
 	// =====================================================================

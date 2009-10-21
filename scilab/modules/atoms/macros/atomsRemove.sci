@@ -42,7 +42,17 @@ function result = atomsRemove(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRemove",1));
 	end
 	
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsInstall",1));
+	end
+	
 	packages = stripblanks(packages);
+	
+	// If mx1 matrix, add a 2nd column with empty versions
+	// =========================================================================
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
 	
 	// Operating system detection
 	// =========================================================================
@@ -119,28 +129,13 @@ function result = atomsRemove(packages,section)
 	// Some checking on packages variable
 	// =========================================================================
 	
-	for i=1:size(packages,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		package = packages(i);
-		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: package name must contain at most one space (to split name and version).\n"),"atomsRemove",1));
-		end
-		
-		if size(regexp(package,"/\s/") ,"*" ) == 0 then
-			// Just the toolbox name is specified
-			package_names(i)    = package;
-			package_versions(i) = "";
-		else
-			// A version is specified
-			space               = regexp(package,"/\s/");
-			package_names(i)    = part(package,[1:space-1]);
-			package_versions(i) = part(package,[space+1:length(package)]);
-		end
+		package_names(i)    = packages(i,1);
+		package_versions(i) = packages(i,2);
 		
 		// Check if this package is installed
-		
-		if ~ atomsIsInstalled(package_names(i),package_versions(i),section) then
+		if ~ atomsIsInstalled([package_names(i) package_versions(i)],section) then
 			
 			// Print a warning if the package isn't installed
 			
@@ -155,7 +150,7 @@ function result = atomsRemove(packages,section)
 			// The package is installed, now check if we have the right to
 			// uninstall it
 			
-			installed_details = atomsGetInstalledDetails(package_names(i),package_versions(i),section);
+			installed_details = atomsGetInstalledDetails(packages(i,:),section);
 			
 			if installed_details(3) == "allusers" then
 				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
@@ -175,9 +170,7 @@ function result = atomsRemove(packages,section)
 	
 	// Build the list of package to Uninstall
 	// =========================================================================
-	
 	remove_package_list = atomsRemoveList(packages,section);
-	
 	
 	// Loop on remList to print if a package has to be remove
 	// or not
@@ -205,15 +198,15 @@ function result = atomsRemove(packages,section)
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
 		this_package_section   = remove_package_list(i,5);
-		this_package_details   = atomsToolboxDetails(this_package_name,this_package_version);
-		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version,section);
+		this_package_details   = atomsToolboxDetails([this_package_name this_package_version]);
+		this_package_insdet    = atomsGetInstalledDetails([this_package_name this_package_version],section);
 		this_package_directory = this_package_insdet(4);
 		
 		// Add the package to list of package to remove
 		atomsToremoveRegister(this_package_name,this_package_version,this_package_section);
 		
 		// Check if the package is loaded or not
-		if atomsIsLoaded(this_package_name,this_package_version) then
+		if atomsIsLoaded([this_package_name this_package_version]) then
 			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n\n" , this_package_name , this_package_version );
 			continue;
 		end

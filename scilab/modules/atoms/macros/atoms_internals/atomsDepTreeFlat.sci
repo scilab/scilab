@@ -98,7 +98,7 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	
 	for i=1:size(version,"*")
 		
-		this_package_details = atomsToolboxDetails(name,version(i));
+		this_package_details = atomsToolboxDetails([name,version(i)]);
 		tree_out(name+" - "+version(i)) = this_package_details;
 		
 		if lhs>1 then

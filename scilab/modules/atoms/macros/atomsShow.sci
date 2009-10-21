@@ -9,7 +9,7 @@
 
 // Show information on a package
 
-function atomsShow(name,version)
+function atomsShow(package)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -22,43 +22,44 @@ function atomsShow(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsShow",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsShow",1));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShow",1));
+	if type(package) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsShow",1));
 	end
 	
-	if (rhs>1) & (type(version)<>10)  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShow",2));
+	if size(package(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"),"atomsShow",1));
 	end
 	
-	// Check input parameters dimensions
+	// Remove leading and trailing parameters
 	// =========================================================================
-	
-	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShow",1));
-	end
-	
-	if (rhs>1) & (size(version,"*") <> 1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShow",2));
-	end
-	
+	package = stripblanks(package);
 	
 	// If version is not defined, the Most Recent Version is used
 	// =========================================================================
-	if rhs<2 then
-		version = atomsGetMRVersion(name);
+	if size(package(1,:),"*") == 1 then
+		package(1,2) = atomsGetMRVersion(package(1));
 	end
+	
+	
+	// Check if it's a valid package
+	// =========================================================================
+	if size(package(1,:),"*") == 1 then
+		package(1,2) = atomsGetMRVersion(package(1));
+	end
+	
+	
 	
 	// Get the details of this package
 	// =========================================================================
 	
-	details = atomsToolboxDetails(name,version);
+	details = atomsToolboxDetails(package);
 	
 	fields_map = [];
 	fields_map = [ fields_map ; "Toolbox"        gettext("Package")        ];
@@ -76,7 +77,7 @@ function atomsShow(name,version)
 	
 	fields_map = [ fields_map ; "Status"         gettext("Status")         ];
 	
-	if atomsIsInstalled(name,version) then
+	if atomsIsInstalled(package) then
 		fields_map = [ fields_map ; "InstallAutomaticaly" gettext("Automaticaly Installed")];
 		fields_map = [ fields_map ; "installPath"         gettext("Install Directory")];
 	end
@@ -97,7 +98,7 @@ function atomsShow(name,version)
 		// 
 		
 		if fields_map(i,1)=="Status" then
-			if atomsIsInstalled(name,version) then
+			if atomsIsInstalled(package) then
 				value = "Installed";
 			else
 				value = "Not installed";
@@ -109,7 +110,7 @@ function atomsShow(name,version)
 		// 
 		
 		if fields_map(i,1)=="InstallAutomaticaly" then
-			if atomsGetInstalledStatus(name,version) == "A" then
+			if atomsGetInstalledStatus(package) == "A" then
 				value = "yes";
 			else
 				value = "no";

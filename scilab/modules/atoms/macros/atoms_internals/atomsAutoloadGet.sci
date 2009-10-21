@@ -89,7 +89,7 @@ function packages = atomsAutoloadGet(section)
 			current_name         = part(autoloaded(j),1:current_name_length-1);
 			current_version      = part(autoloaded(j),current_name_length+3:length(autoloaded(j)));
 			
-			if atomsIsInstalled(current_name,current_version,"user") then
+			if atomsIsInstalled([current_name current_version],"user") then
 				current_path = pathconvert(atomsPath("install","user")+current_name+"/"+current_version,%F);
 			else
 				current_path = pathconvert(atomsPath("install","allusers")+current_name+"/"+current_version,%F);

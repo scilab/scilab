@@ -16,7 +16,7 @@ function result = atomsInstall(packages,section)
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
-		load("SCI/modules/atoms/macros/atoms_internals/lib");
+		load("SCI/packages/atoms/macros/atoms_internals/lib");
 	end
 	
 	result = [];
@@ -42,6 +42,12 @@ function result = atomsInstall(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstall",1));
 	end
 	
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsInstall",1));
+	end
+	
+	// Remove leading and trailing whitespace
+	// =========================================================================
 	packages = stripblanks(packages);
 	
 	// Operating system detection
@@ -86,11 +92,11 @@ function result = atomsInstall(packages,section)
 	
 	// Allusers/user management
 	//   - If Allusers is equal to "allusers", packages will installed in the "allusers" section :
-	//       → SCI/contrib    : location of the modules
+	//       → SCI/contrib    : location of the packages
 	//       → SCI/.atoms     : ATOMS system files
 	//   - Otherwise, packages will installed in the "user" section :
-	//       → SCIHOME/atoms  : location of the modules
-	//       → SCIHOME/.atoms : location of the modules & ATOMS system files
+	//       → SCIHOME/atoms  : location of the packages
+	//       → SCIHOME/.atoms : location of the packages & ATOMS system files
 	// =========================================================================
 	
 	if rhs <= 1 then
@@ -167,9 +173,9 @@ function result = atomsInstall(packages,section)
 	// "Archive" installation
 	// =========================================================================
 	
-	for i=1:size(packages,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		this_package = packages(i);
+		this_package = packages(i,1);
 		
 		if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
 			
@@ -233,8 +239,7 @@ function result = atomsInstall(packages,section)
 			
 			// change the packages var
 			// -----------------------------------------------------------------
-			packages(i) = this_package_name+" "+this_package_version;
-			
+			packages(i,:) = [ this_package_name this_package_version ];
 			
 		end
 		
@@ -377,7 +382,7 @@ function result = atomsInstall(packages,section)
 		
 		// Fill the result matrix
 		// =====================================================================
-		result = [ result ; atomsGetInstalledDetails(this_package_name,this_package_version) ];
+		result = [ result ; atomsGetInstalledDetails([this_package_name this_package_version]) ];
 		
 		// "archive" installation : Save the description
 		// =====================================================================
@@ -417,7 +422,7 @@ function result = atomsInstall(packages,section)
 	
 	for i=1:size( result(:,1) , "*" )
 		
-		packages_out = atomsUpdateDeps(result(i,1),result(i,2),section);
+		packages_out = atomsUpdateDeps([result(i,1) result(i,2)],section);
 		
 		if ATOMSVERBOSE then
 			for j=1:size(packages_out(:,1),"*")
@@ -431,8 +436,8 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	
 	orphan_list = atomsOrphanList(section);
-	for i=1:size( orphan_list(:,1) , "*" )
-		atomsRemove( orphan_list(i,1) + " " + orphan_list(i,2) );
+	if ~ isempty(orphan_list) then
+		atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] );
 	end
 	
 	// Go to the initial location
