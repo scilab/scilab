@@ -21,25 +21,13 @@
   </add>
 
   <!-- Const -->
-  <add as="Const" extend="block"/>
+	<add as="Const" extend="block"/>
 
-  <!-- Gain -->
+	<!-- Gain -->
   <add as="Gain" extend="blockWithLabel">
     <add as="shape" value="triangle"/>
     <add as="perimeter" value="trianglePerimeter"/>
     <add as="direction" value="east"/>
-  </add>
-
-  <add as="Gain90" extend="Gain">
-    <add as="direction" value="north"/>
-  </add>
-
-  <add as="Gain180" extend="Gain">
-    <add as="direction" value="west"/>
-  </add>
-
-  <add as="Gain270" extend="Gain">
-    <add as="direction" value="south"/>
   </add>
 
   <!-- Icon -->
@@ -55,23 +43,10 @@
 
   <!-- Command Port -->
   <add as="CommandPort" extend="Port">
-    <!--
-	<add as="shape" value="ellipse"/>
-	<add as="perimeter" value="ellipsePerimeter"/>
-	-->
     <add as="strokeColor" value="red"/>
     <add as="fillColor" value="red"/>
     <add as="direction" value="south"/>
     <add as="type" value="Command"/>
-  </add>
-  <add as="CommandPort90" extend="CommandPort">
-    <add as="direction" value="east"/>
-  </add>
-  <add as="CommandPort180" extend="CommandPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="CommandPort270" extend="CommandPort">
-    <add as="direction" value="west"/>
   </add>
 
   <!-- Control Port -->
@@ -81,15 +56,6 @@
     <add as="direction" value="south"/>
     <add as="type" value="Control"/>
   </add>
-  <add as="ControlPort90" extend="ControlPort">
-    <add as="direction" value="east"/>
-  </add>
-  <add as="ControlPort180" extend="ControlPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ControlPort270" extend="ControlPort">
-    <add as="direction" value="west"/>
-  </add>
 
   <!-- Explicit Input -->
   <add as="ExplicitInputPort" extend="Port">
@@ -97,30 +63,12 @@
     <add as="fillColor" value="black"/>
     <add as="direction" value="east"/>
   </add>
-  <add as="ExplicitInputPort90" extend="ExplicitInputPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ExplicitInputPort180" extend="ExplicitInputPort">
-    <add as="direction" value="west"/>
-  </add>
-  <add as="ExplicitInputPort270" extend="ExplicitInputPort">
-    <add as="direction" value="south"/>
-  </add>
 
   <!-- Explicit Output -->
   <add as="ExplicitOutputPort" extend="Port">
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="black"/>
     <add as="direction" value="east"/>
-  </add>
-  <add as="ExplicitOutputPort90" extend="ExplicitOutputPort">
-    <add as="direction" value="north"/>
-  </add>
-  <add as="ExplicitOutputPort180" extend="ExplicitOutputPort">
-    <add as="direction" value="west"/>
-  </add>
-  <add as="ExplicitOutputPort270" extend="ExplicitOutputPort">
-    <add as="direction" value="south"/>
   </add>
 
   <!-- Implicit Input -->
@@ -235,21 +183,22 @@
     <add as="displayedLabel" value="TK Scale"/>
   </add>
   <add as="FROMWSB" extend="blockWithLabel">
-    <add as="displayedLabel" value="From Workspace"/>
+    <add as="displayedLabel" value="From workspace"/>
   </add>
 
   <!-- CONTINUOUS -->
   <add as="DERIV" extend="blockWithLabel">
     <add as="displayedLabel" value="du / dt"/>
   </add>
-  <add as="INTEGRAL_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_m.gif"/>
+  <add as="INTEGRAL_m" extend="blockWithLabel">
+    <add as="displayedLabel" value="&#8747;"/>
   </add>
   <add as="CLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="xd=Ax+Bu&lt;br&gt;y=Cx+Du"/>
   </add>
-  <add as="CLR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLR.gif"/>
+  <add as="CLR" extend="blockWithLabel">
+    <!-- <add as="displayedLabel" value="num(s)&lt;br&gt;&lt;hr&gt;&lt;br&gt;den(s)"/> -->
+    <add as="displayedLabel" value="num(s)&lt;br&gt;&lt;hr&gt;den(s)"/>
   </add>
   <add as="TIME_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Continuous&lt;br&gt;Fix delay"/>
@@ -339,8 +288,8 @@
   <add as="MIN_f" extend="blockWithLabel">
     <add as="displayedLabel" value="MIN"/>
   </add>
-  <add as="BIGSOM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.gif"/>
+  <add as="BIGSOM_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="++&#8721;"/>
   </add>
   <add as="POWBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="u^a"/>
@@ -364,10 +313,9 @@
     <add as="displayedLabel" value="a^u"/>
   </add>
   <add as="PROD_f" extend="blockWithLabel">
-    <!--<add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.gif"/>-->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="X"/>
+    <add as="displayedLabel" value="&#xD7;"/>
   </add>
   <add as="MATZREIM" extend="blockWithLabel">
     <add as="displayedLabel" value="Re &amp; Im"/>
@@ -380,18 +328,16 @@
   <add as="LOGBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="LOG"/>
   </add>
-  <add as="SUMMATION" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUMMATION.gif"/>
+  <add as="SUMMATION" extend="blockWithLabel">
+    <add as="displayedLabel" value="+-&#8721;"/>
   </add>
   <add as="TrigFun" extend="blockWithLabel">
-    <!--<add as="image" value="$SCILAB/modules/xcos/images/blocks/TrigFun.gif"/>-->
     <add as="displayedLabel" value="Trig function"/>
   </add>
-  <add as="PRODUCT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.gif"/>
+  <add as="PRODUCT" extend="blockWithLabel">
+    <add as="displayedLabel" value="*/&#8719;"/>
   </add>
   <add as="MAXMIN" extend="blockWithLabel">
-    <!--<add as="image" value="$SCILAB/modules/xcos/images/blocks/MAXMIN.gif"/>-->
     <add as="displayedLabel" value="MIN / MAX"/>
   </add>
   <add as="ABS_VALUE" extend="blockWithLabel">
@@ -401,7 +347,6 @@
     <add as="displayedLabel" value="SIGN"/>
   </add>
   <add as="SUM_f" extend="blockWithLabel">
-    <!--<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.gif"/>-->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="displayedLabel" value="+"/>
@@ -424,10 +369,10 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
   </add>
   <add as="OUTIMPL_f" extend="blockWithLabel">
-		<add as="shape" value="rectangle"/>
-		<add as="rounded" value="1"/>
-		<add as="fillColor" value="white"/>
-	</add>
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+  </add>
 
   <!-- INTEGER -->
   <add as="BITCLEAR" extend="Icon">
@@ -436,8 +381,8 @@
   <add as="BITSET" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITSET.gif"/>
   </add>
-  <add as="CONVERT" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONVERT.gif"/>
+  <add as="CONVERT" extend="blockWithLabel">
+    <add as="displayedLabel" value="convert to"/>
   </add>
   <add as="EXTRACTBITS" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTRACTBITS.gif"/>
@@ -696,12 +641,12 @@
   <!-- MUX -->
   <!-- DEMUX -->
   <!-- NRMSOM_f -->
-	<add as="OUT_f" extend="blockWithLabel">
-		<add as="shape" value="rectangle"/>
-		<add as="rounded" value="1"/>
-		<add as="fillColor" value="white"/>
-	</add>
-	<!-- IN_f -->
+  <add as="OUT_f" extend="blockWithLabel">
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+  </add>
+  <!-- IN_f -->
   <add as="RELATIONALOP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif"/>
   </add>
@@ -849,8 +794,10 @@
   <!-- PDE -->
 
   <!-- GENERATED BLOCKS -->
-  <add as="SPLIT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SPLIT_f.gif"/>
+  <add as="SPLIT_f" extend="block">
+    <add as="shape" value="rectangle"/>
+    <add as="strokeColor" value="black"/>
+		<add as="fillColor" value="orange"/>
   </add>
   <add as="SCALAR2VECTOR" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALAR2VECTOR.gif"/>
@@ -901,8 +848,8 @@
   <add as="DEADBAND" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif"/>
   </add>
-  <add as="Counter" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Counter.gif"/>
+  <add as="Counter" extend="blockWithLabel">
+    <add as="displayedLabel" value="Counter"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>

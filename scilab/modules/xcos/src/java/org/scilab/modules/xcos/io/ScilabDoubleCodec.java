@@ -81,39 +81,40 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 
 			int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 			int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
-
-			double[][] realData = new double[height][width];
-			double[][] imgData = new double[height][width];
-			NodeList allValues = node.getChildNodes();
-			for (int i = 0 ; i < allValues.getLength() ; ++i) {
-				int lineXMLPosition = -1;
-				int columnXMLPosition = -1;
-				int realPartXMLPosition = -1;
-				int imaginaryPartXMLPosition = -1;
-				NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-				for (int j = 0; j < dataAttributes.getLength(); j++)
-				{
-					Node attr = dataAttributes.item(j);
-					if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-					if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-					if (attr.getNodeName().compareToIgnoreCase(REALPART) == 0) { realPartXMLPosition = j; }
-					if (attr.getNodeName().compareToIgnoreCase(IMGPART) == 0) { imaginaryPartXMLPosition = j; }
+			if (height != 0 && width != 0  ){ 
+				double[][] realData = new double[height][width];
+				double[][] imgData = new double[height][width];
+				NodeList allValues = node.getChildNodes();
+				for (int i = 0 ; i < allValues.getLength() ; ++i) {
+					int lineXMLPosition = -1;
+					int columnXMLPosition = -1;
+					int realPartXMLPosition = -1;
+					int imaginaryPartXMLPosition = -1;
+					NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
+					for (int j = 0; j < dataAttributes.getLength(); j++)
+					{
+						Node attr = dataAttributes.item(j);
+						if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
+						if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
+						if (attr.getNodeName().compareToIgnoreCase(REALPART) == 0) { realPartXMLPosition = j; }
+						if (attr.getNodeName().compareToIgnoreCase(IMGPART) == 0) { imaginaryPartXMLPosition = j; }
+					}
+	
+					if (lineXMLPosition == -1 || columnXMLPosition == -1 || realPartXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+					int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
+					int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
+	
+					realData[line][column] = Double.parseDouble(dataAttributes.item(realPartXMLPosition).getNodeValue());
+					if (imaginaryPartXMLPosition != -1){
+						isRealOnly = false ;
+						imgData[line][column] = Double.parseDouble(dataAttributes.item(imaginaryPartXMLPosition).getNodeValue());
+					}
 				}
-
-				if (lineXMLPosition == -1 || columnXMLPosition == -1 || realPartXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-				int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-				int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-
-				realData[line][column] = Double.parseDouble(dataAttributes.item(realPartXMLPosition).getNodeValue());
-				if (imaginaryPartXMLPosition != -1){
-					isRealOnly = false ;
-					imgData[line][column] = Double.parseDouble(dataAttributes.item(imaginaryPartXMLPosition).getNodeValue());
+	
+				((ScilabDouble) obj).setRealPart(realData);
+				if (!isRealOnly){
+					((ScilabDouble) obj).setImaginaryPart(imgData);
 				}
-			}
-
-			((ScilabDouble) obj).setRealPart(realData);
-			if (!isRealOnly){
-				((ScilabDouble) obj).setImaginaryPart(imgData);
 			}
 
 		}

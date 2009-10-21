@@ -53,7 +53,6 @@ public class XcosCodec extends mxCodec {
 	// Add some hdf5 packages to have all scilab types known
 	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
 	
-	
 	String[] ignore = {//"exprs",
 		//"realParameters",
 		//"integerParameters",
@@ -74,6 +73,7 @@ public class XcosCodec extends mxCodec {
 		"SimulationFunctionType"
 			};
 
+	
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
@@ -87,8 +87,8 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(scilabIntegerCodec);
 
 
-		//
-    
+
+    //
 	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
 
@@ -111,7 +111,7 @@ public class XcosCodec extends mxCodec {
 	
 	// Diagram
 	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
-	XcosObjectCodec diagramCodec = new XcosObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 
 	//Link 

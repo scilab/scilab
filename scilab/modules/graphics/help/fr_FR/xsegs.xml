@@ -10,15 +10,18 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>xsegs(xv,yv,[style])</synopsis>
+    <synopsis>
+      xsegs(xv,yv,[style])
+      xsegs(xv,yv,zv,[style])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>xv,yv</term>
+        <term>xv,yv,zv</term>
         <listitem>
-          <para>matrices de la même taille.</para>
+          <para>matrices de la même taille. Si <literal>zv</literal> n'est pas spécifié, un vecteur de 0 est utilisé.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -36,19 +39,20 @@
   <refsection>
     <title>Description</title>
     <para><literal>xsegs</literal> dessine un ensemble de segments déconnectés donnés
-    par <literal>xv</literal> et <literal>yv</literal>. Si <literal>xv</literal> et
-    <literal>yv</literal> sont des matrices elles sont considérées comme des
+    par <literal>xv</literal>,<literal>yv</literal> et <literal>zv</literal>. Si <literal>xv</literal>, <literal>yv</literal> et
+    <literal>zv</literal> sont des matrices elles sont considérées comme des
     vecteurs (par concaténation de leurs colonnes). Les coordonnées des deux
     points définissant un segment sont données par les valeurs consécutives
-    des termes de <literal>xv</literal> et <literal>yv</literal>:</para>
-    <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
+    des termes de <literal>xv</literal>, <literal>yv</literal> et <literal>zv</literal>:</para>
+    <para><literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.</para>
     <para>Par exemple, en utilisant des matrices de taille (2,n) :</para>
     <programlisting><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
 yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
+zv=[zi_1 zi_2 ...; zf_1 zf_2 ...]
  ]]></programlisting>
     <para>le segment numéro k est défini par :
-    <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+    <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -58,6 +62,25 @@ xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs(xv,yv,1:10)
+
+// 3D example
+clf();
+a=gca();
+a.view="3d";
+f=gcf();
+f.color_map=rainbowcolormap(120);
+alpha=2*%pi*(0:119)/40;
+xv=[sin(alpha)/2;sin(alpha)/3];
+yv=[cos(alpha)/2;cos(alpha)/3];
+zv=[alpha/8;alpha/8];
+xsegs(xv,yv,zv,1:120);
+// Now adjust the data_bounds
+a.data_bounds = [min(xv) min(yv) min(zv); ...
+                 max(xv) max(yv) max(zv)];
+// We can add an arrow to each segs
+e = gce();
+e.arrow_size = 0.4;
+
  ]]></programlisting>
   </refsection>
   <refsection>

@@ -19,6 +19,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -29,6 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -70,8 +75,15 @@ public class SetContextAction extends DefaultAction {
         mainFrame.setLayout(new GridBagLayout());
 
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
+        StringBuilder contextBuilder = new StringBuilder();
+        for (int i = 0 ; i < diagram.getContext().length ; i++){
+        	//System.out.println();
+        	contextBuilder.append(diagram.getContext()[i]);
+        	contextBuilder.append(System.getProperty("line.separator"));
+        }
         
-        contextArea = new JTextArea(diagram.getContext());
+        contextArea = new JTextArea(contextBuilder.toString());
+      
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         															 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
@@ -123,7 +135,26 @@ public class SetContextAction extends DefaultAction {
 		okButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				diagram.setContext(contextArea.getText());
+				ArrayList<String> contextList = new ArrayList<String>();
+				int i = 0 ;
+				try
+				{
+					StringReader stringReader = new StringReader(contextArea.getText());
+					BufferedReader bufferReader = new BufferedReader(stringReader);
+					String nextLine = "";
+
+					while ((nextLine = bufferReader.readLine()) != null){
+						contextList.add(nextLine) ;
+						i++;
+					}
+
+				}
+				catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				
+				diagram.setContext(contextList.toArray(new String[i]));
 				mainFrame.dispose();
 			}
 		});

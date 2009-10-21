@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("kalman.dem.sce");
-scicos_demostration(thispath+"/Kalman.cosf");
+// scicos_demostration(thispath+"/Kalman.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/Kalman.cosf");
+
 clear thispath;

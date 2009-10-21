@@ -164,6 +164,7 @@ public class BasicBlock extends mxCell {
     	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
     	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
     	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
+    	if(label.compareTo("SPLIT_f") == 0) { return new SplitBlock(label); }
     	else { 
     		return new BasicBlock(label); 
     	}
@@ -521,38 +522,41 @@ public class BasicBlock extends mxCell {
 	double[][] sz = {{getGeometry().getWidth(), getGeometry().getHeight()}};
 	graphics.add(new ScilabDouble(sz)); // sz
 
-	graphics.add(new ScilabBoolean(!flip)); // flip
+//	graphics.add(new ScilabBoolean(!flip)); // flip
+	graphics.add(new ScilabBoolean(true)); // flip
 
-	mxCellState state = getParentDiagram().getView().getState(this);
-	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
-	double theta = 0;
-	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
-		if(flip){
-			theta = 180;	
-		}else{
-			theta = 0;
-		}
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
-		if(flip){
-			theta = 270;	
-		}else{
-			theta = 90;
-		}
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
-		if(flip){
-			theta = 0;	
-		}else{
-			theta = 180;
-		}
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
-		if(flip){
-			theta = 90;	
-		}else{
-			theta = 270;
-		}
-	}
-	graphics.add(new ScilabDouble(theta)); // theta
+//	mxCellState state = getParentDiagram().getView().getState(this);
+//	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+//
+//	double theta = 0;
+//	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
+//		if(flip){
+//			theta = 180;	
+//		}else{
+//			theta = 0;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
+//		if(flip){
+//			theta = 270;	
+//		}else{
+//			theta = 90;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
+//		if(flip){
+//			theta = 0;	
+//		}else{
+//			theta = 180;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
+//		if(flip){
+//			theta = 90;	
+//		}else{
+//			theta = 270;
+//		}
+//	}
+//	graphics.add(new ScilabDouble(theta)); // theta
+	
+	graphics.add(new ScilabDouble(0)); // theta
 
 	graphics.add(getAllExprs()); // exprs
 
@@ -877,7 +881,7 @@ public class BasicBlock extends mxCell {
 	
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context[]) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
