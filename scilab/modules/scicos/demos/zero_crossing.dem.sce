@@ -6,5 +6,8 @@
 //
 
 thispath = get_absolute_file_path("zero_crossing.dem.sce");
-scicos_demostration(thispath+"/Threshold_ZeroCrossing.cosf");
+// scicos_demostration(thispath+"/Threshold_ZeroCrossing.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/Threshold_ZeroCrossing.cosf");
 clear thispath;

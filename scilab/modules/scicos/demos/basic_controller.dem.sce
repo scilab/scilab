@@ -6,5 +6,8 @@
 //
 
 thispath = get_absolute_file_path("basic_controller.dem.sce");
-scicos_demostration(thispath+"/Controller.cosf");
+//scicos_demostration(thispath+"/Controller.cosf");
+
+//Open the cosf file with xcos
+xcos(thispath+"/Controller.cosf");
 clear thispath;
