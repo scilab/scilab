@@ -116,16 +116,19 @@
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
-      <add as="displayedLabel" value="Square wave&lt;br&gt;generator"/>
+      <add as="displayedLabel" value="Square wave&lt;BR&gt;
+				      generator"/>
   </add>
   <add as="RAMP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.gif"/>
   </add>
   <add as="RAND_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="Random&lt;br&gt;generator"/>
+    <add as="displayedLabel" value="Random&lt;BR&gt;
+				    generator"/>
   </add>
   <add as="RFILE_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Read from&lt;br&gt;input file"/>
+    <add as="displayedLabel" value="Read from&lt;BR&gt;
+				    input file"/>
   </add>
   <add as="CLKINV_f" extend="blockWithLabel">
 		<add as="shape" value="rectangle"/>
@@ -134,6 +137,7 @@
 		<add as="strokeColor" value="red"/>
 	</add>
   <add as="CURV_f" extend="Icon">
+    <!-- FIXME : Generate a fixed image for this one -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
@@ -142,10 +146,12 @@
 		<add as="fillColor" value="white"/>
 	</add>
   <add as="READAU_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Read from .au&lt;br&gt;sound file"/>
+    <add as="displayedLabel" value="Read from .au&lt;BR&gt;
+				    sound file"/>
   </add>
   <add as="SAWTOOTH_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Sawtooth&lt;br&gt;generator"/>
+    <add as="displayedLabel" value="Sawtooth&lt;BR&gt;
+				    generator"/>
   </add>
   <add as="STEP_FUNCTION" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.gif"/>
@@ -154,29 +160,34 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.gif"/>
   </add>
   <add as="GENSIN_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Sinusoid&lt;br&gt;generator"/>
+    <add as="displayedLabel" value="Sinusoid&lt;BR&gt;
+				    generator"/>
   </add>
-	<add as="IN_f" extend="blockWithLabel">
-		<add as="shape" value="rectangle"/>
-		<add as="rounded" value="1"/>
-		<add as="fillColor" value="white"/>
-	</add>
-	<add as="READC_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Read from&lt;br&gt;C binary file"/>
+  <add as="IN_f" extend="blockWithLabel">
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+  </add>
+  <add as="READC_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Read from&lt;BR&gt;
+				    C binary file"/>
   </add>
   <add as="TIME_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_f.gif"/>
   </add>
   <add as="Modulo_Count" extend="blockWithLabel">
-    <add as="displayedLabel" value="Counter&lt;br&gt;Modulo"/>
+    <add as="displayedLabel" value="Counter&lt;BR&gt;
+				    Modulo"/>
   </add>
   <add as="Sigbuilder" extend="Icon">
+    <!-- FIXME : Generate a fixed image for this one -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Sigbuilder.gif"/>
   </add>
   <add as="Counter" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Counter.gif"/>
   </add>
   <add as="SampleCLK" extend="Icon">
+    <!-- FIXME : Regenerate this image without any stroke -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif"/>
   </add>
   <add as="TKSCALE" extend="blockWithLabel">
@@ -194,20 +205,25 @@
     <add as="displayedLabel" value="&#8747;"/>
   </add>
   <add as="CLSS" extend="blockWithLabel">
-    <add as="displayedLabel" value="xd=Ax+Bu&lt;br&gt;y=Cx+Du"/>
+    <add as="displayedLabel" value="xd=Ax+Bu&lt;BR&gt;
+				    y=Cx+Du"/>
   </add>
   <add as="CLR" extend="blockWithLabel">
-    <!-- <add as="displayedLabel" value="num(s)&lt;br&gt;&lt;hr&gt;&lt;br&gt;den(s)"/> -->
-    <add as="displayedLabel" value="num(s)&lt;br&gt;&lt;hr&gt;den(s)"/>
+    <add as="displayedLabel" value="num(s)&lt;BR&gt;
+				    &lt;hr&gt;
+				    den(s)"/>
   </add>
   <add as="TIME_DELAY" extend="blockWithLabel">
-    <add as="displayedLabel" value="Continuous&lt;br&gt;Fix delay"/>
+    <add as="displayedLabel" value="Continuous&lt;BR&gt;
+				    Fix delay"/>
   </add>
   <add as="TCLSS" extend="blockWithLabel">
-    <add as="displayedLabel" value="Jump&lt;br&gt;(A,B,C,D)"/>
+    <add as="displayedLabel" value="Jump&lt;BR&gt;
+				    (A,B,C,D)"/>
   </add>
   <add as="VARIABLE_DELAY" extend="blockWithLabel">
-    <add as="displayedLabel" value="Variable&lt;br&gt;delay"/>
+    <add as="displayedLabel" value="Variable&lt;BR&gt;
+				    delay"/>
   </add>
   <add as="PID" extend="blockWithLabel">
     <add as="displayedLabel" value="PID"/>
@@ -233,14 +249,17 @@
     <add as="displayedLabel" value="Rate limiter"/>
   </add>
   <add as="REGISTER" extend="blockWithLabel">
-    <add as="displayedLabel" value="Shift&lt;br&gt;register"/>
+    <add as="displayedLabel" value="Shift&lt;BR&gt;
+				    register"/>
   </add>
   <add as="DELAYV_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Variable&lt;br&gt;delay"/>
+    <add as="displayedLabel" value="Variable&lt;BR&gt;
+				    delay"/>
   </add>
 
   <!-- LOOKUP TABLES -->
   <add as="LOOKUP_f" extend="Icon">
+    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif"/>
   </add>
   <add as="INTRP2BLK_f" extend="blockWithLabel">
@@ -252,13 +271,15 @@
 
   <!-- SIGNAL PROCESSING -->
   <add as="MCLOCK_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="2freq clock&lt;br&gt;f/n f"/>
+    <add as="displayedLabel" value="2freq clock&lt;BR&gt;
+				    f/n f"/>
   </add>
   <add as="QUANT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.gif"/>
   </add>
   <add as="MFCLCK_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="M. freq&lt;br&gt;clock"/>
+    <add as="displayedLabel" value="M. freq&lt;BR&gt;
+				    clock"/>
   </add>
   <add as="SAMPHOLD_m" extend="blockWithLabel">
     <add as="displayedLabel" value="S/H"/>
@@ -278,7 +299,8 @@
     <add as="displayedLabel" value="GENERAL"/>
   </add>
   <add as="CLINDUMMY_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="DUMMY&lt;br&gt;CLSS"/>
+    <add as="displayedLabel" value="DUMMY&lt;BR&gt;
+				    CLSS"/>
   </add>
 
   <!-- MATH OPERATIONS -->
@@ -289,7 +311,19 @@
     <add as="displayedLabel" value="MIN"/>
   </add>
   <add as="BIGSOM_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="++&#8721;"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;+&lt;/TD&gt;
+				    &lt;TD ROWSPAN=&quot;2&quot;&gt;
+				    &lt;FONT SIZE=&quot;6&quot;&gt;
+				    &#8721;
+				    &lt;/FONT&gt;
+				    &lt;TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;+&lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="POWBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="u^a"/>
@@ -329,16 +363,40 @@
     <add as="displayedLabel" value="LOG"/>
   </add>
   <add as="SUMMATION" extend="blockWithLabel">
-    <add as="displayedLabel" value="+-&#8721;"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;+&lt;/TD&gt;
+				    &lt;TD ROWSPAN=&quot;2&quot;&gt;
+				    &lt;FONT SIZE=&quot;6&quot;&gt;
+				    &#8721;
+				    &lt;/FONT&gt;
+				    &lt;TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;-&lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="TrigFun" extend="blockWithLabel">
     <add as="displayedLabel" value="Trig function"/>
   </add>
   <add as="PRODUCT" extend="blockWithLabel">
-    <add as="displayedLabel" value="*/&#8719;"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;*&lt;/TD&gt;
+				    &lt;TD ROWSPAN=&quot;2&quot;&gt;
+				    &lt;FONT SIZE=&quot;6&quot;&gt;
+				    &#8719;
+				    &lt;/FONT&gt;
+				    &lt;TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;/&lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="MAXMIN" extend="blockWithLabel">
-    <add as="displayedLabel" value="MIN / MAX"/>
+    <add as="displayedLabel" value="Min / Max"/>
   </add>
   <add as="ABS_VALUE" extend="blockWithLabel">
     <add as="displayedLabel" value="ABS"/>
@@ -351,13 +409,14 @@
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="displayedLabel" value="+"/>
   </add>
-  <add as="CONSTRAINT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CONSTRAINT_f.gif"/>
+  <add as="CONSTRAINT_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="=0 ?"/>
   </add>
 
   <!-- MODELICA -->
-  <add as="MBLOCK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MBLOCK.gif"/>
+  <add as="MBLOCK" extend="blockWithLabel">
+    <add as="displayedLabel" value="Modelica&lt;BR;&gt;
+				    Generic"/>
   </add>
   <add as="FROMMO" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMMO.gif"/>
@@ -366,6 +425,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTOMO.gif"/>
   </add>
   <add as="GotoTagVisibilityMO" extend="Icon">
+    <!-- FIXME : Regenerate this image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
   </add>
   <add as="OUTIMPL_f" extend="blockWithLabel">
@@ -375,23 +435,28 @@
   </add>
 
   <!-- INTEGER -->
-  <add as="BITCLEAR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITCLEAR.gif"/>
+  <add as="BITCLEAR" extend="blockWithLabel">
+    <add as="displayedLabel" value="Clear Bit"/>
   </add>
-  <add as="BITSET" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BITSET.gif"/>
+  <add as="BITSET" extend="blockWithLabel">
+    <add as="displayedLabel" value="Set Bit"/>
   </add>
   <add as="CONVERT" extend="blockWithLabel">
-    <add as="displayedLabel" value="convert to"/>
+    <add as="displayedLabel" value="Convert to"/>
   </add>
-  <add as="EXTRACTBITS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EXTRACTBITS.gif"/>
+  <add as="EXTRACTBITS" extend="blockWithLabel">
+    <add as="displayedLabel" value="Extract Bits"/>
   </add>
-  <add as="INTMUL" extend="blockWithLabel"/>
+  <add as="INTMUL" extend="blockWithLabel">
+    <add as="displayedLabel" value="INTMUL"/>
+  </add>
   <add as="SHIFT" extend="blockWithLabel">
-    <add as="displayedLabel" value="Arithmetic&lt;br&gt;Shift"/>
+    <add as="displayedLabel" value="Arithmetic&lt;BR&gt;
+				    Shift"/>
   </add>
-  <add as="LOGIC" extend="blockWithLabel"/>
+  <add as="LOGIC" extend="blockWithLabel">
+    <add as="displayedLabel" value="LOGIC"/>
+  </add>
   <add as="DLATCH" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLATCH.gif"/>
   </add>
@@ -417,7 +482,7 @@
     <add as="displayedLabel" value="INV"/>
   </add>
   <add as="MATCATV" extend="blockWithLabel">
-    <add as="displayedLabel" value="Vert&lt;br&gt;Cat"/>
+    <add as="displayedLabel" value="Vert&lt;BR&gt;Cat"/>
   </add>
   <add as="MATSUM" extend="blockWithLabel"/>
   <add as="RICC" extend="blockWithLabel"/>
@@ -425,7 +490,7 @@
     <add as="displayedLabel" value="ROOT/COEF"/>
   </add>
   <add as="MATCATH" extend="blockWithLabel">
-    <add as="displayedLabel" value="Horiz&lt;br&gt;Cat"/>
+    <add as="displayedLabel" value="Horiz&lt;BR&gt;Cat"/>
   </add>
   <add as="MATLU" extend="blockWithLabel">
     <add as="displayedLabel" value="LU"/>
@@ -446,7 +511,7 @@
     <add as="displayedLabel" value="PINV"/>
   </add>
   <add as="EXTTRI" extend="blockWithLabel">
-    <add as="displayedLabel" value="Tri/Diag&lt;br&gt;Extraction"/>
+    <add as="displayedLabel" value="Tri/Diag&lt;BR&gt;Extraction"/>
   </add>
   <add as="MATMUL" extend="blockWithLabel"/>
   <add as="MATTRAN" extend="blockWithLabel"/>
@@ -503,16 +568,16 @@
 
   <!-- PORT ACTION -->
   <add as="Extract_Activation" extend="blockWithLabel">
-    <add as="displayedLabel" value="Extract&lt;br&gt;Activation"/>
+    <add as="displayedLabel" value="Extract&lt;BR&gt;Activation"/>
   </add>
   <add as="IFTHEL_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="if in&gt;0&lt;br&gt;then else"/>
+    <add as="displayedLabel" value="if in&gt;0&lt;BR&gt;then else"/>
   </add>
   <add as="ESELECT_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Event select"/>
   </add>
   <add as="EDGE_TRIGGER" extend="blockWithLabel">
-    <add as="displayedLabel" value="Edge&lt;br&gt;Trigger"/>
+    <add as="displayedLabel" value="Edge&lt;BR&gt;Trigger"/>
   </add>
 
   <!-- DISCRETE -->
@@ -523,7 +588,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLR.gif"/>
   </add>
   <add as="DLSS" extend="blockWithLabel">
-    <add as="displayedLabel" value="x+=Ax+Bu&lt;br&gt;y=Cx+Du"/>
+    <add as="displayedLabel" value="x+=Ax+Bu&lt;BR&gt;y=Cx+Du"/>
   </add>
   <add as="DELAY_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Delay"/>
@@ -559,20 +624,20 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTGEN_f.gif"/>
   </add>
   <add as="EVTVARDLY" extend="blockWithLabel">
-    <add as="displayedLabel" value="Event&lt;br&gt;Delay"/>
+    <add as="displayedLabel" value="Event&lt;BR&gt;Delay"/>
   </add>
   <add as="M_freq" extend="blockWithLabel">
-    <add as="displayedLabel" value="Multiple&lt;br&gt;Frequency"/>
+    <add as="displayedLabel" value="Multiple&lt;BR&gt;Frequency"/>
   </add>
   <add as="ANDBLK" extend="blockWithLabel"/>
   <add as="HALT_f" extend="blockWithLabel">
     <add as="displayedLabel" value="STOP"/>
   </add>
   <add as="freq_div" extend="blockWithLabel">
-    <add as="displayedLabel" value="Frequency&lt;br&gt;Division"/>
+    <add as="displayedLabel" value="Frequency&lt;BR&gt;Division"/>
   </add>
   <add as="ANDLOG_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="LOGICAL&lt;br&gt;AND"/>
+    <add as="displayedLabel" value="LOGICAL&lt;BR&gt;AND"/>
   </add>
   <add as="EVTDLY_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_c.gif"/>
@@ -590,7 +655,7 @@
     <add as="displayedLabel" value="Relay"/>
   </add>
   <add as="WRITEAU_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Write AU to&lt;br&gt;/dev/audio"/>
+    <add as="displayedLabel" value="Write AU to&lt;BR&gt;/dev/audio"/>
   </add>
   <add as="SELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
@@ -599,7 +664,7 @@
     <add as="displayedLabel" value="Extractor"/>
   </add>
   <add as="M_SWITCH" extend="blockWithLabel">
-    <add as="displayedLabel" value="Control&lt;br&gt;M_Port&lt;br&gt;Switch"/>
+    <add as="displayedLabel" value="Control&lt;BR&gt;M_Port&lt;BR&gt;Switch"/>
   </add>
   <add as="SWITCH_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH_f.gif"/>
@@ -612,7 +677,7 @@
   </add>
   <!-- READC_f -->
   <add as="WRITEC_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Write to&lt;br&gt;C binary file"/>
+    <add as="displayedLabel" value="Write to&lt;BR&gt;C binary file"/>
   </add>
   <add as="GOTO" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTO.gif"/>
@@ -625,7 +690,7 @@
   </add>
   <!-- RFILE_f -->
   <add as="WFILE_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Write to&lt;br&gt;output file"/>
+    <add as="displayedLabel" value="Write to&lt;BR&gt;output file"/>
   </add>
   <!-- ANDBLK -->
   <add as="MUX" extend="blockWithLabel">
@@ -671,7 +736,7 @@
   </add>
   <!-- MBLOCK -->
   <add as="EXPRESSION" extend="blockWithLabel">
-    <add as="displayedLabel" value="Mathematical&lt;br&gt;Expression"/>
+    <add as="displayedLabel" value="Mathematical&lt;BR&gt;Expression"/>
   </add>
   <add as="scifunc_block_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Scifunc"/>
@@ -780,7 +845,7 @@
 
   <!-- DEMONSTRATION BLOCKS -->
   <add as="BOUNCE" extend="blockWithLabel">
-    <add as="displayedLabel" value="Bouncing&lt;br&gt;balls"/>
+    <add as="displayedLabel" value="Bouncing&lt;BR&gt;balls"/>
   </add>
   <add as="BOUNCEXY" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/BOUNCEXY.gif"/>
