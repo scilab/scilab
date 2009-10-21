@@ -476,6 +476,9 @@ Bug fixes:
 
 * bug 4380 fixed - merror error codes not documented.
 
+* bug 4395 fixed - incorrect descriptions of the axesflag and nax parameters
+                   in the plot2d help page.
+
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
