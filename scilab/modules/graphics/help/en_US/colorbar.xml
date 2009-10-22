@@ -61,9 +61,7 @@
     </para>
     <para>
      For the 2 optional arguments you can use the syntax
-     <literal>keyword=value</literal> which is useful to give the
-     format without giving  <literal>colminmax</literal> (see the
-     last example).
+     <literal>keyword=value</literal> (see the last example).
     </para>
   </refsection>
   <refsection>
@@ -116,7 +114,7 @@ nb_col = 64;
 clf()
 xset("colormap",hotcolormap(nb_col))
 drawlater() ;
-colorbar(zzm,zzM,fmt="%.1f")
+colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
 nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])

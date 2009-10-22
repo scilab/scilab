@@ -43,13 +43,13 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterTlist( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"x_ticks") ;
+    Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "x_ticks");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"x_ticks") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 

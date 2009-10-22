@@ -12,7 +12,7 @@
 //  -> ATOMSDIR/installed.txt, ATOMSDIR/installed.bin
 //  -> ATOMSDIR/installed_deps.txt, ATOMSDIR/installed_deps.bin
 
-function nbAdd = atomsInstallRegister(name,version,status,allusers)
+function nbAdd = atomsInstallRegister(name,version,status,section)
 	
 	rhs            = argn(2);
 	nbAdd          = 0;
@@ -39,8 +39,8 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallRegister",3));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallRegister",4));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallRegister",4));
 	end
 	
 	// status is a letter
@@ -61,13 +61,25 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsInstallRegister",1,3));
 	end
 	
+	// Check section argument
+	// =========================================================================
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallRegister",4));
+	end
+	
+	// Check if we have the write access
+	if (section=="allusers") & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstallRegister",2,atomsPath("system","allusers")));
+	end
+	
 	// load installed packages (a struct)
 	// =========================================================================
-	installed = atomsLoadInstalledStruct(allusers);
+	installed = atomsLoadInstalledStruct(section);
 	
 	// Load the installed_deps (a struct)
 	// =========================================================================
-	installed_deps = atomsLoadInstalleddeps(allusers);
+	installed_deps = atomsLoadInstalleddeps(section);
 	
 	// Loop on each URL specified as input argument
 	// =========================================================================
@@ -85,21 +97,14 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 		// ---------------------------------------------------------------------
 		
 		// Build the matrix
-		
-		if allusers then
-			this_package_path    = pathconvert(SCI+"/contrib/"+name(i)+"/"+version(i),%F);
-			this_package_uservar = "allusers";
-		else
-			this_package_path    = pathconvert(SCIHOME+"/atoms/"+name(i)+"/"+version(i),%F);
-			this_package_uservar = "user";
-		end
+		this_package_path = pathconvert(atomsPath("install",section) + name(i)+"/"+version(i),%F);
 		
 		// Add this package to the struct
 		installed(name(i)+" - "+version(i)) = [ .. 
 			name(i)              ; .. // name
 			version(i)           ; .. // version
 			this_package_path    ; .. // path
-			this_package_uservar ; .. // allusers / user
+			section              ; .. // allusers / user
 			status(i)            ];   // I / A
 		
 		// installed_deps file
@@ -117,8 +122,8 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	// =========================================================================
 	
 	if nbAdd > 0 then
-		atomsSaveInstalled(installed,allusers);
-		atomsSaveInstalleddeps(installed_deps,allusers);
+		atomsSaveInstalled(installed,section);
+		atomsSaveInstalleddeps(installed_deps,section);
 	end
 	
 endfunction

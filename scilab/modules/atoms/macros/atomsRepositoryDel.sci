@@ -9,7 +9,7 @@
 
 // Remove an URL to the list of repositories, and returns
 
-function nbDel = atomsRepositoryDel(url,allusers)
+function nbDel = atomsRepositoryDel(url,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -34,48 +34,60 @@ function nbDel = atomsRepositoryDel(url,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRepositoryDel",1));
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Allusers/user management
+	//
+	//   - If section is equal to "all", The repository to remove is searched in 
+	//     both "user" and "allusers" sections
+	//       → SCI/.atoms
+	//       → SCIHOME/atoms
+	//
+	//   - If section is equal to "allusers", The repository to remove is searched
+	//     only in the "allusers" section
+	//       → SCI/.atoms
+	//
+	//   - If section is equal to "user", The repository to remove is searched
+	//     only in the "user" section
+	//        → SCIHOME/atoms
 	// =========================================================================
 	
 	if rhs == 1 then
 		// By default, add the repository for all users (if we have write access
 		// of course !)
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			section = "all"; 
 		else
-			allusers = %F;
+			section = "user";
 		end
 	
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRepositoryDel",2));
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsRepositoryDel",2));
+		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRepositoryDel",2));
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",2,pathconvert(SCI+"/.atoms")));
+		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",pathconvert(SCI+"/.atoms")));
 		end
+		
 	end
 	
 	// Define the path of the files that will record the change according to
-	// the "allusers" value and the existence of the latter
+	// the "section" value and the existence of the latter
 	// =========================================================================
-	
-	atoms_files = [];
-	
-	if fileinfo( pathconvert(SCIHOME+"/atoms/repositories",%F) )<> [] then
-		atoms_files = [ atoms_files ; pathconvert(SCIHOME+"/atoms/repositories",%F) ];
-	end
-	
-	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/repositories",%F) )<>[]) then
-		atoms_files = [ atoms_files ; pathconvert(SCI+"/.atoms/repositories",%F) ];
-	end
+	atoms_files = atomsPath("system",section) + "repositories";
 	
 	// Loop on each repositories file specified as first input argument
 	// =========================================================================
 	
 	for i=1:size(atoms_files,"*")
+		
+		if fileinfo(atoms_files(i)) == [] then
+			continue;
+		end
 		
 		// Get the URLs list in this file
 		repositories = mgetl(atoms_files(i));

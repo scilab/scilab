@@ -14,37 +14,42 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: etc/polynomials.start, line: 26
-msgid "Polynomials"
+# File: macros/htrianr.sci, line: 20
+# File: macros/polfact.sci, line: 22
+# File: macros/hermit.sci, line: 18
+#, c-format
+msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
 #
 # File: macros/coffg.sci, line: 23
 # File: macros/coffg.sci, line: 36
 # File: macros/determ.sci, line: 25
+# File: macros/hermit.sci, line: 22
 # File: macros/detr.sci, line: 19
 # File: macros/detr.sci, line: 32
-# File: macros/hermit.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
 #
 # File: macros/coffg.sci, line: 47
-# File: macros/denom.sci, line: 27
-# File: macros/derivat.sci, line: 42
-# File: macros/determ.sci, line: 22
-# File: macros/detr.sci, line: 43
-# File: macros/invr.sci, line: 92
 # File: macros/numer.sci, line: 23
+# File: macros/denom.sci, line: 27
+# File: macros/invr.sci, line: 92
+# File: macros/determ.sci, line: 22
+# File: macros/derivat.sci, line: 42
+# File: macros/detr.sci, line: 43
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
 #
-# File: macros/determ.sci, line: 58
-msgid "Computing determinant: Be patient...\n"
+# File: macros/invr.sci, line: 56
+# File: macros/invr.sci, line: 88
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 #
 # File: macros/factors.sci, line: 22
@@ -72,11 +77,13 @@ msgid ""
 "array expected.\n"
 msgstr ""
 #
-# File: macros/hermit.sci, line: 18
-# File: macros/htrianr.sci, line: 20
-# File: macros/polfact.sci, line: 22
+# File: macros/polfact.sci, line: 29
 #, c-format
-msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
+msgid "%s: Input argument #%d must be real.\n"
+msgstr ""
+#
+# File: macros/determ.sci, line: 58
+msgid "Computing determinant: Be patient...\n"
 msgstr ""
 #
 # File: macros/horner.sci, line: 24
@@ -89,23 +96,16 @@ msgstr ""
 msgid "%s: Unexpected type for input argument #%d.\n"
 msgstr ""
 #
-# File: macros/hrmt.sci, line: 18
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
-#
 # File: macros/inv_coeff.sci, line: 24
 #, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
 msgstr ""
 #
-# File: macros/invr.sci, line: 56
-# File: macros/invr.sci, line: 88
+# File: macros/hrmt.sci, line: 18
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
 #
-# File: macros/polfact.sci, line: 29
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
+# File: etc/polynomials.start, line: 30
+msgid "Polynomials"
 msgstr ""

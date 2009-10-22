@@ -14,10 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: etc/scicos.start, line: 22
-msgid "Scicos"
+# File: macros/scicos_auto/scicos_simulate.sci, line: 181
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 #
 # File: macros/scicos_auto/lincos.sci, line: 115
@@ -47,62 +48,12 @@ msgid ""
 "'),"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 181
-#, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr ""
-#
-# File: macros/scicos_scicos/MODCOM.sci, line: 83
+# File: macros/scicos_scicos/genmoc.sci, line: 32
 # File: macros/scicos_scicos/build_block.sci, line: 75
+# File: macros/scicos_scicos/MODCOM.sci, line: 83
 # File: macros/scicos_scicos/compile_modelica.sci, line: 28
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr ""
-#
-# File: macros/scicos_scicos/MODCOM.sci, line: 91
-#, c-format
-msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr ""
-#
-# File: macros/scicos_scicos/build_block.sci, line: 31
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr ""
-#
-# File: macros/scicos_scicos/build_block.sci, line: 92
-#, c-format
-msgid "%s: Error : the following command line failed to execute: %s.\n"
-msgstr ""
-#
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
-msgid "Only one block can be selected in current window for this operation."
-msgstr ""
-#
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 67
-msgid "The current icon depends on block parameter\n"
-msgstr ""
-#
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 52
-# File: macros/scicos_scicos/do_palettes.sci, line: 90
-# File: macros/scicos_scicos/menu_stuff.sci, line: 26
-msgid "&Edit"
-msgstr ""
-#
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 53
-# File: macros/scicos_scicos/do_palettes.sci, line: 91
-# File: macros/scicos_scicos/menu_stuff.sci, line: 27
-msgid "&Tools"
-msgstr ""
-#
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
-# File: macros/scicos_scicos/do_palettes.sci, line: 92
-# File: macros/scicos_scicos/menu_stuff.sci, line: 28
-msgid "&?"
-msgstr ""
-#
-# File: macros/scicos_scicos/genmoc.sci, line: 32
-#, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
 msgstr ""
 #
 # File: macros/scicos_scicos/genmoc.sci, line: 45
@@ -130,8 +81,45 @@ msgstr ""
 msgid "Problem while building library %s\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/menu_stuff.sci, line: 25
-msgid "&File"
+# File: macros/scicos_scicos/build_block.sci, line: 31
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr ""
+#
+# File: macros/scicos_scicos/build_block.sci, line: 92
+#, c-format
+msgid "%s: Error : the following command line failed to execute: %s.\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 67
+msgid "The current icon depends on block parameter\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 52
+# File: macros/scicos_scicos/menu_stuff.sci, line: 26
+# File: macros/scicos_scicos/do_palettes.sci, line: 90
+msgid "&Edit"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 53
+# File: macros/scicos_scicos/menu_stuff.sci, line: 27
+# File: macros/scicos_scicos/do_palettes.sci, line: 91
+msgid "&Tools"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
+# File: macros/scicos_scicos/menu_stuff.sci, line: 28
+# File: macros/scicos_scicos/do_palettes.sci, line: 92
+msgid "&?"
+msgstr ""
+#
+# File: macros/scicos_scicos/MODCOM.sci, line: 91
+#, c-format
+msgid "%s: An error occurred during the compilation of the Modelica block."
 msgstr ""
 #
 # File: macros/scicos_scicos/xgetcolor.sci, line: 29
@@ -162,4 +150,12 @@ msgstr ""
 # File: macros/scicos_scicos/xgetcolor.sci, line: 46
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/menu_stuff.sci, line: 25
+msgid "&File"
+msgstr ""
+#
+# File: etc/scicos.start, line: 28
+msgid "Scicos"
 msgstr ""

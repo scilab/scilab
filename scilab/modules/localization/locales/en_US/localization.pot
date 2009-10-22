@@ -14,10 +14,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: sci_gateway/c/sci_gettext.c, line: 81
+# File: sci_gateway/c/sci_setlanguage.c, line: 48
+# File: sci_gateway/c/sci_setlanguage.c, line: 52
+#, c-format
+msgid "%s: Unsupported language '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_setlanguage.c, line: 91
+# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 62
+#, c-format
+msgid "Unsupported language '%s'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_setlanguage.c, line: 92
+#, c-format
+msgid "Switching to default language : '%s'.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_setlanguage.c, line: 104
+# File: sci_gateway/c/sci_gettext.c, line: 80
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -25,12 +42,6 @@ msgstr ""
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 41
 #, c-format
 msgid "%s: This feature is only used on Windows.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_setdefaultlanguage.c, line: 62
-# File: sci_gateway/c/sci_setlanguage.c, line: 91
-#, c-format
-msgid "Unsupported language '%s'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 105
@@ -44,15 +55,4 @@ msgstr ""
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 125
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_setlanguage.c, line: 48
-# File: sci_gateway/c/sci_setlanguage.c, line: 52
-#, c-format
-msgid "%s: Unsupported language '%s'.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_setlanguage.c, line: 92
-#, c-format
-msgid "Switching to default language : '%s'.\n"
 msgstr ""

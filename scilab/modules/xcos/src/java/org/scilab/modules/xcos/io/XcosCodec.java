@@ -12,21 +12,19 @@
 
 package org.scilab.modules.xcos.io;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.link.explicit.ExplicitLink;
+import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -45,17 +43,15 @@ public class XcosCodec extends mxCodec {
 	// Add all xcos packages
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
-//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
-//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
-//	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
-
 	// Add some hdf5 packages to have all scilab types known
 	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
-	
 	
 	String[] ignore = {//"exprs",
 		//"realParameters",
@@ -74,8 +70,10 @@ public class XcosCodec extends mxCodec {
 		//"interfaceFunctionName",
 		//"simulationFunctionName",
 		"simulationFunctionType",
-		"SimulationFunctionType"};
+		"SimulationFunctionType"
+			};
 
+	
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
@@ -88,23 +86,24 @@ public class XcosCodec extends mxCodec {
 	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
 	mxCodecRegistry.register(scilabIntegerCodec);
 
-		//
 
+
+    //
 	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
 
 
 	
 	// Blocks
-	XcosObjectCodec textBlockCodec = new XcosObjectCodec(new TextBlock(), ignore, refs, null);
+	XcosObjectCodec textBlockCodec = new BasicBlockCodec(new TextBlock(), ignore, refs, null);
 	mxCodecRegistry.register(textBlockCodec);
-	XcosObjectCodec basicBlockCodec = new XcosObjectCodec(new BasicBlock(), ignore, refs, null);
+	XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(), ignore, refs, null);
 	mxCodecRegistry.register(basicBlockCodec);
-	XcosObjectCodec constBlockCodec = new XcosObjectCodec(new ConstBlock(), ignore, refs, null);
+	XcosObjectCodec constBlockCodec = new  BasicBlockCodec(new ConstBlock(), ignore, refs, null);
 	mxCodecRegistry.register(constBlockCodec);
-	XcosObjectCodec afficheBlockCodec = new XcosObjectCodec(new AfficheBlock(), ignore, refs, null);
+	XcosObjectCodec afficheBlockCodec = new BasicBlockCodec(new AfficheBlock(), ignore, refs, null);
 	mxCodecRegistry.register(afficheBlockCodec);
-	XcosObjectCodec superBlockCodec = new XcosObjectCodec(new SuperBlock(), ignore, refs, null);
+	XcosObjectCodec superBlockCodec = new BasicBlockCodec(new SuperBlock(), ignore, refs, null);
 	mxCodecRegistry.register(superBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);
@@ -112,9 +111,15 @@ public class XcosCodec extends mxCodec {
 	
 	// Diagram
 	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
-	XcosObjectCodec diagramCodec = new XcosObjectCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 
+	//Link 
+	
+	XcosObjectCodec ExplicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null ,null);
+	mxCodecRegistry.register(ExplicitlinkCodec);
+	XcosObjectCodec ImplicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null ,null);
+	mxCodecRegistry.register(ImplicitlinkCodec);
 	// Ports
 	XcosObjectCodec explicitOutputPortCodec = new XcosObjectCodec(new ExplicitOutputPort(), null, refs, null);
 	mxCodecRegistry.register(explicitOutputPortCodec);    
@@ -134,18 +139,6 @@ public class XcosCodec extends mxCodec {
 
 		if (node != null && node.getNodeType() == Node.ELEMENT_NODE)
 		{
-			
-			if ( node.getAttributes().getNamedItem("scilabClass") != null){
-				System.out.println(node.getAttributes().getNamedItem("scilabClass").getNodeValue());
-				String scilabClass = node.getAttributes().getNamedItem("scilabClass").getNodeValue();
-				if ( scilabClass.equalsIgnoreCase("ScilabMList")){
-					obj =  obj ;
-				}
-				
-			} else {
-				
-			}
-			
 			
 			mxObjectCodec codec = mxCodecRegistry.getCodec(node.getNodeName());
 

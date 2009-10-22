@@ -14,51 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2009-10-20 13:46+0100\n"
 
-# File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
-# File: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp, line: 59
-# File: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp, line: 57
-# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 68
-# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 89
-# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 69
-# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 86
-# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 90
-# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 113
-# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 73
-# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 91
-# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 66
-# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 82
-# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 82
-# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 106
-# File: src/cpp/segsDrawing/ConcreteDrawableSegs.cpp, line: 126
-# File: src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp, line: 68
-# File: src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp, line: 57
-# File: src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp, line: 61
-# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 72
-# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 105
-# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 72
-# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 103
-# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 71
-# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 105
-# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 84
-# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 238
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-#
-# File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
-msgid "Unable to render polyline, memory full.\n"
-msgstr ""
-#
-# File: src/cpp/rendererBasicAlgos.cpp, line: 41
-#, c-format
-msgid ""
-"Warning !!!\n"
-"Scilab has found a critical error (%s).\n"
-"Save your data and restart Scilab.\n"
-msgstr ""
-#
 # File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
 msgid ""
 "Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
@@ -70,4 +27,48 @@ msgstr ""
 #
 # File: src/norenderer/norenderer.c, line: 19
 msgid "Scilab Renderer module not installed.\n"
+msgstr ""
+#
+# File: src/cpp/DrawableObjectJoGL.cpp, line: 53
+# File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
+# File: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp, line: 57
+# File: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp, line: 59
+# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 69
+# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 118
+# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 68
+# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 89
+# File: src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp, line: 68
+# File: src/cpp/segsDrawing/ConcreteDrawableSegs.cpp, line: 126
+# File: src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp, line: 57
+# File: src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp, line: 61
+# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 69
+# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 86
+# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 90
+# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 113
+# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 73
+# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 91
+# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 82
+# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 106
+# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 66
+# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 82
+# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 72
+# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 103
+# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 71
+# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 105
+# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 72
+# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 105
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/cpp/rendererBasicAlgos.cpp, line: 43
+#, c-format
+msgid ""
+"Warning !!!\n"
+"Scilab has found a critical error (%s).\n"
+"Save your data and restart Scilab.\n"
+msgstr ""
+#
+# File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
+msgid "Unable to render polyline, memory full.\n"
 msgstr ""

@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -20,7 +19,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 
 
 public class EvaluateSelectionAction extends DefaultAction {
-
+	
 	private EvaluateSelectionAction(Xpad editor) {
 		super(XpadMessages.EVALUATE_SELECTION, editor);
 	}
@@ -29,13 +28,7 @@ public class EvaluateSelectionAction extends DefaultAction {
 		/* Will do the job as if it was copy / paste in scilab Console */
 		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
 		String selection = getEditor().getTextPane().getSelectedText();
-		if (selection == null) {
-			SwingScilabMessageBox msgBox = new SwingScilabMessageBox();
-			msgBox.setMessage("Selection is empty, please select text to be evaluated.");
-			msgBox.displayAndWait();
-		} else {
-			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
-		}
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 	}
 
 	public static MenuItem createMenu(Xpad editor) {

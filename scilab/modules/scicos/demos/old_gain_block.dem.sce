@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("old_gain_block.dem.sce");
-scicos_demostration(thispath+"/OldGainTest.cosf");
+// scicos_demostration(thispath+"/OldGainTest.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/OldGainTest.cosf");
+
 clear thispath;

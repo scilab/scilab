@@ -34,7 +34,7 @@ int get_color_map_property( sciPointObj * pobj )
   int status        = -1   ;
   if ( sciGetEntityType( pobj ) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_map");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
     return -1;
   }
 

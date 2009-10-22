@@ -7,6 +7,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function txt=sd2sci(sd,zoom,orig)
+if rhs<1 then
+   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "sd2sci", 1));
+end
 [l,mac]=where()
 scsmode=find(mac=='scicos')<>[]
 [lhs,rhs]=argn(0)
@@ -15,7 +18,9 @@ thick=1
 fnt=[2 1]
 dash=33
 symb=[0 0]
-if sd(1)<>'sd' then error('first argument has incorrect data type'),end
+if sd(1)<>'sd' then
+   error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "sd2sci", 1));
+end
 if rhs<3 then orig=['0';'0'],end
 if type(orig)==1 then orig=string(orig),end
 if rhs<2 then zoom=['1';'1'],end

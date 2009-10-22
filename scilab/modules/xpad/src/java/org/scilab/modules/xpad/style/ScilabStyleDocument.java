@@ -28,6 +28,8 @@ import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AttributeSet;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
@@ -59,11 +61,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent         = true;
-	private boolean autoColorize       = true;
-	private boolean colorizeInprogress = false;
-	private boolean indentInprogress   = false;
-	private boolean updaterDisabled    = false;
+	private volatile boolean autoIndent         = true;
+	private volatile boolean autoColorize       = true;
+	private volatile boolean colorizeInprogress = false;
+	private volatile boolean indentInprogress   = false;
+	private volatile boolean updaterDisabled    = false;
 
 	private String EventType;
 	
@@ -88,7 +90,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private final String IN = "IN";
 	private final String OUT = "OUT";
-	private final String TABULATION = "  ";
 	private final int BOOLS = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
@@ -99,7 +100,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	private int currentLevelIdent = 0;
 	private String currentStringIndent = "";
-	
+	private String tabulation = "  ";
 	
 	
 	
@@ -190,6 +191,46 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 			   }
 		});
+		setDocumentFilter( new DocumentFilter(){
+			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLine(getDefaultRootElement().getElementIndex(offset));
+					}
+				}
+				else
+				{
+					fb.insertString(offset, text, attr);
+				}
+			}
+			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+				String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLines(getDefaultRootElement().getElementIndex(offset)
+								, getDefaultRootElement().getElementIndex(offset+length));
+					}
+				}
+				else
+				{
+					fb.replace(offset, length, text, attr);
+				}
+			}
+		});
 	}
 
 
@@ -278,6 +319,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * DOCUMENT COLORISATION END
 	 */
 
+	public String getTabulation(){ return tabulation ; }
 
 	/**
 	 * DOCUMENT INDENTATION START
@@ -327,13 +369,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		// if it's a middle keyword we remove a tab only for this line and then return to normal indent
 		if ( matcherInOut.find(0)){
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
-			currentStringIndent += TABULATION;
+			currentStringIndent += getTabulation();
 			
 		// if close keyword we remove a tab 
 		}else if (matcherOut.find(0)) {
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
 		}else {
 			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
@@ -342,10 +384,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// we make the difference of open/close keywords of the line we've just indent to know
 		// how to indent the next one 
 		while (matcherIn.find()){
-			currentStringIndent += TABULATION;
+			currentStringIndent += getTabulation();
 		}
 		while (matcherOut.find()){
-			currentStringIndent = currentStringIndent.replaceFirst(TABULATION, "");
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 		}
 		//System.out.println(lineToIndent);
 		//System.out.println(indentLevel);
@@ -358,44 +400,32 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void beautifier(int startPosition, int endPosition)throws BadLocationException{
 		
+		int currentStartOffset = getParagraphElement(startPosition).getStartOffset();
 		
-		int startOffset = this.getParagraphElement(startPosition).getStartOffset();
-		int endOfFirstLine = this.getParagraphElement(startPosition).getEndOffset();
-		int endOffset = this.getParagraphElement(endPosition).getEndOffset();
-		
-		if (   endOfFirstLine - startOffset <= 1){
+		int endOfFirstLine = getParagraphElement(startPosition).getEndOffset();
+		/*if (   endOfFirstLine - currentStartOffset <= 1){// prevented intending regions starting with an empty line.
 			return;
-		}
-		
-		String firtstLine =  getText(startOffset, this.getParagraphElement(startPosition).getEndOffset());
-		String selectedText = getSelectedDocumentLines(startOffset, endOffset);
-		
-
+		}*/
+		String firtstLine =  getText(currentStartOffset, endOfFirstLine-currentStartOffset-1);
 		Matcher matcherSpace = patternSpace.matcher(firtstLine);
 		// set the reference for indent
-		String baseSpaces = "";
+		String baseSpaces = matcherSpace.find() ? matcherSpace.group() :"";
+		Element currentElement = null, lastElement = getParagraphElement(endPosition);
 		
-		if ( matcherSpace.find()){
-			baseSpaces =  matcherSpace.group();
-		}
-		String[] allLines =   selectedText.split(System.getProperty("line.separator"));
-		
-		// indent line by line 
-		for (int i = 0; i < allLines.length; i++){
-			
-			 int lineLength =  allLines[i].length();
-			
-			 String indentedLine =  indentLine( allLines[i] , baseSpaces  );
-			 this.replace(startOffset,lineLength  , indentedLine, null);
-			 startOffset += indentedLine.length()+(System.getProperty("line.separator").length());
-		}
+		do{
+			currentElement = getParagraphElement(currentStartOffset);
+			String toIndent= getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset-1);//-1 to remove \n			
+			String indented = indentLine(toIndent, baseSpaces);
+			replace(currentStartOffset, toIndent.length(), indented, null);
+			currentStartOffset+= indented.length()+1;
+		}while(currentElement!=lastElement);
 		currentStringIndent = "";
 		currentLevelIdent = 0;
 	}
 	
 
 
-	public void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
+	public synchronized void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
 		
 		//System.out.println(startPosition);
 		//System.out.println(endPosition);
@@ -433,9 +463,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 		}
 
-		/*regexp to find open / middle / close keywords */	
-		String nextLineContent = this.getText(getParagraphElement(endPosition).getStartOffset(), getParagraphElement(endPosition).getEndOffset()-getParagraphElement(endPosition).getStartOffset()-1);
-
+		/*regexp to find open / middle / close keywords */
+		String nextLineContent = null;
+		{
+			int start = getParagraphElement(endPosition).getStartOffset();
+			int length = getParagraphElement(endPosition).getEndOffset() - start;
+			nextLineContent = this.getText(start, length-1);
+		}
 		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent	
 		Pattern patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
 		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
@@ -480,23 +514,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 			if (!matcherPrevIn.find(0)){
 			
-				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(TABULATION, "") , null);
-				endPosition -= (currentSpace.length() - previousSpace.replaceFirst(TABULATION, "").length() );
-				currentSpace += TABULATION;
+				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+				endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
+				currentSpace += getTabulation();
 			}else{
-				if ( currentSpace.replaceFirst(TABULATION, "").length() ==   previousSpace.length())  {
+				if ( currentSpace.replaceFirst(getTabulation(), "").length() ==   previousSpace.length())  {
 					this.replace(currentLineStart, currentSpace.length(),previousSpace , null);
 					endPosition -= (currentSpace.length() - previousSpace.length() );
 					
 				}
-					previousSpace +=TABULATION;
+					previousSpace += getTabulation();
 			}
 			
 			
 			/* strcuture keyword which are supposed to close a structure (end, endfunction ...  ) */
 		}else if (  matcherOut.find(0) ){
-			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(TABULATION, "") , null);
-			endPosition -= (currentSpace.length() - previousSpace.replaceFirst(TABULATION, "").length() );
+			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+			endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
 			currentLevelIdent --;
 			
 		}else {
@@ -510,13 +544,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// more open keywords than close ones
 		if ( i > 0 ){
 			for (int j =0; j < i; j++){
-				tabToAdd += TABULATION;
+				tabToAdd += getTabulation();
 			}
 			this.insertString(endPosition, tabToAdd + currentSpace , null);
 		// less open keywords than close ones	
 		}else if (i < 0 ) {
 			for (int j =  0; j > i; j--){
-				previousSpace =  previousSpace.replaceFirst(TABULATION, "");
+				previousSpace =  previousSpace.replaceFirst(getTabulation(), "");
 			}
 			this.insertString(endPosition, previousSpace , null);
 		// no open/close keyword
@@ -1087,7 +1121,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		try
 		{
 			// Get the text line
-			String text     = this.getText(position_start,position_end);
+			String text     = this.getText(position_start,position_end-position_start);
 			Matcher matcher = pattern.matcher(text);
 			
 			if(matcher.find())
@@ -1117,13 +1151,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Insert a tab just after the caret position
 	 */
 	
-	public void insertTab(int position)
+	public synchronized void insertTab(int position)
 	{
-		String tab = "\t";
-		
 		try
 		{
-			this.replace(position, 0, tab, null);
+			this.replace(position, 0, getTabulation(), null);
 		}
 		catch (BadLocationException e)
 		{
@@ -1135,49 +1167,27 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Tabify a line
 	 */
 	
-	public int tabifyLine(int line)
+	public synchronized int tabifyLine(int line)
 	{
-		String tab = "\t";
-		int offset = tab.length();
-		int start  = this.getDefaultRootElement().getElement(line).getStartOffset();
-		
-		try
-		{
-			this.replace(start, 0, tab, null);
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		insertTab(getDefaultRootElement().getElement(line).getStartOffset());	
+		return getTabulation().length();
 	}
 	
 	/*
 	 * Tabify several lines
 	 */
 	
-	public int tabifyLines(int line_start, int line_end)
+	public synchronized int tabifyLines(int line_start, int line_end)
 	{
-		String tab      = "\t";
-		int offset      = tab.length();
-		
-		int start       = this.getDefaultRootElement().getElement(line_start).getStartOffset();
-		int end         = this.getDefaultRootElement().getElement(line_end).getEndOffset();
-		
-		try{
-			Pattern pattern = Pattern.compile("^",Pattern.MULTILINE);
-			Matcher matcher = pattern.matcher(this.getText(start,end-start));
-			this.replace(start,end-start,matcher.replaceAll(tab), null);	
+		boolean indentMode= getAutoIndent();
+		setAutoIndent(false);
+		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+			tabifyLine(currentLine);
 		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		setAutoIndent(indentMode);
+		return getTabulation().length();
 	}
-	
-	
-	
+		
 	/**
 	 * DOCUMENT UNTABIFY ACTION
 	 */
@@ -1186,21 +1196,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Delete a tab just before the caret position
 	 */
 	
-	public int deleteTab(int position)
+	public synchronized int deleteTab(int position)
 	{
-		Pattern pattern = Pattern.compile("^\t");
-		int offset      = 0;
-		
-		try
-		{
-			// Get the text line
-			String text     = this.getText(position,position+1);
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
-				this.replace(position,1,"", null);
-				offset = 1;
+		String tab = getTabulation(); 
+		int tabLength = tab.length();
+		try{
+			String nextChars = getText(position, tabLength);
+			if(nextChars.equals(tab)){
+				remove(position, tabLength);
 			}
 		}
 		catch (BadLocationException e)
@@ -1208,70 +1211,54 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			e.printStackTrace();
 		}
 		
-		return offset;
+		return tabLength;
 	}
 	
 	/*
 	 * Delete a tab at the beginning of the line "line"
 	 */
 	
-	public int untabifyLine(int line)
+	public synchronized int untabifyLine(int line)
 	{
-		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
-		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
-		int offset  = 0;
-		
-		try
-		{
-			String text     = this.getText(start, end-start);
-			Pattern pattern = Pattern.compile("^\t");
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
-				this.replace(start+matcher.end()-1, 1, "", null);
-				offset = 1;
-			}
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		deleteTab(getDefaultRootElement().getElement(line).getStartOffset());
+		return getTabulation().length();
 	}
 	
 	/*
 	 * Delete tabs at the beginning of several lines
 	 */
-	
-	public int untabifyLines(int line_start, int line_end)
+	public boolean canUntabifyLines(int line_start, int line_end)
 	{
-		Pattern pattern = Pattern.compile("^\t");
-		int offset      = 0;
-		
-		for (int i = line_start; i <= line_end; i++)
-		{
-			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
-			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
-			
-			try
+		boolean result = true;
+		String tab = getTabulation();
+		int tabLength = tab.length();
+		try {
+			for (int i = line_start; result && (i <= line_end); i++)
 			{
-				// Get the text line
-				String text     = this.getText(start, end-start);
-				Matcher matcher = pattern.matcher(text);
-				
-				if(matcher.find())
-				{
-					this.replace(start+matcher.end()-1, 1, "", null);
-					offset = 1;
-				}
-			}
-			catch (BadLocationException e){
-				e.printStackTrace();
+				result = result && (tab.equals(getText(getDefaultRootElement().getElement(i).getStartOffset(), tabLength)));
 			}
 		}
-		
-		return offset;
+		catch( javax.swing.text.BadLocationException e){
+			System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
+		}
+		return result;
+	}
+	
+	public synchronized int untabifyLines(int line_start, int line_end)
+	{	
+		int res=0;
+		if(canUntabifyLines(line_start, line_end))
+		{
+			boolean indentMode= getAutoIndent();
+			setAutoIndent(false);
+			for (int i = line_start; i <= line_end; i++)
+			{
+				untabifyLine(i);
+			}
+			setAutoIndent(indentMode);
+			res= getTabulation().length();
+		}
+		return res;
 	}
 	
 	/**

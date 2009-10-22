@@ -32,7 +32,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int
 	int b =  (int)FALSE;
 	if ( sciGetEntityType (pobj) != SCI_FIGURE )
 	{
-		Scierror(999, _("%s property undefined for this object.\n"), "immediate_drawing") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing");
 		return SET_PROPERTY_ERROR ;
 	}
 

@@ -287,6 +287,12 @@ int joglGL_FLOAT(void)
   return JOGLConstant::get_GL_FLOAT(getScilabJavaVM());
 }
 /*---------------------------------------------------------------------------------*/
+/* Calixte */
+int joglGL_UNSIGNED_BYTE(void)
+{
+  return JOGLConstant::get_GL_UNSIGNED_BYTE(getScilabJavaVM());
+}
+/*---------------------------------------------------------------------------------*/
 int joglGL_POINTS(void)
 {
   return JOGLConstant::get_GL_POINTS(getScilabJavaVM());

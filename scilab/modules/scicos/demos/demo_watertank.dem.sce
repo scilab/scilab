@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("demo_watertank.dem.sce");
-scicos_demostration(thispath+"/demo_watertank.cosf");
+// scicos_demostration(thispath+"/demo_watertank.cosf");
+
+//Open the cosf file with xcos
+xcos(thispath+"/demo_watertank.cosf");
+
 clear thispath;

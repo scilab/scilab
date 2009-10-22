@@ -16,16 +16,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-
-
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -35,15 +34,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.EditorKit;
+import javax.swing.text.ChangedCharSetException;
+
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
-import javax.swing.text.EditorKit;
-import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -74,6 +77,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
+import org.scilab.modules.xpad.actions.ExecuteIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -102,8 +106,8 @@ import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UTF8EncodingAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
-import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
+import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
@@ -140,6 +144,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
+	
+	private String fileFullPath = "";
+	
+	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
+	
 
 	/**
 	 * Create Xpad instance inside parent Window
@@ -161,6 +170,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 						path  =  " ( " + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
+					
+					// This listener is for 'evaluate selection' of the Execute menu
+					// it enable the menuItem only if something is selected
+					textPane.addCaretListener(new CaretListener() {
+						public void caretUpdate(CaretEvent e) {
+						    int dot = e.getDot();
+						    int mark = e.getMark();
+						    if (dot == mark) {  // no selection
+						    	evaluateSelectionMenuItem.setEnabled(false);
+						    } else if (dot < mark) {
+						    	evaluateSelectionMenuItem.setEnabled(true);
+						    } else {
+						    	evaluateSelectionMenuItem.setEnabled(true);
+						    }
+						}
+					});
 					updateUI();
 				}
 			}
@@ -353,7 +378,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.setText(XpadMessages.EXECUTE);
 		executeMenu.setMnemonic('e');
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
-		executeMenu.add(EvaluateSelectionAction.createMenu(editorInstance));
+		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
+		executeMenu.add(evaluateSelectionMenuItem);
+		executeMenu.add(ExecuteIntoScilabAction.createMenu(editorInstance));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -369,13 +396,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 		toolBar.add(OpenAction.createButton(editorInstance)); // OPEN
 		toolBar.addSeparator();
 		toolBar.add(SaveAction.createButton(editorInstance)); // SAVE
-		//toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
+		toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
 		toolBar.addSeparator();
 		//toolBar.add(PrintPreviewAction.createButton(editorInstance)); // PRINT PREVIEW
 		toolBar.add(PrintAction.createButton(editorInstance)); // PRINT
 		toolBar.addSeparator();
-		toolBar.add(UndoAction.createButton(editorInstance)); // UNDO
-		toolBar.add(RedoAction.createButton(editorInstance)); // REDO
+		toolBar.add(UndoAction.createButton(editorInstance));
+		toolBar.add(RedoAction.createButton(editorInstance));
 		toolBar.addSeparator();
 		toolBar.add(CutAction.createButton(editorInstance)); // CUT
 		toolBar.add(CopyAction.createButton(editorInstance)); // COPY
@@ -383,9 +410,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		toolBar.addSeparator();
 		toolBar.add(FindAction.createButton(editorInstance)); // FIND / REPLACE
 
-
 		TextBox infoBar = ScilabTextBox.createTextBox();
-
 
 		editorInstance.setMenuBar(menuBar);
 		editorInstance.setToolBar(toolBar);
@@ -408,6 +433,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param indexTab the index of the tab
 	 */
 	public void closeTabAt(int indexTab) {
+		
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 
 		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
@@ -434,6 +460,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 			tabPane.remove(tabPane.getSelectedComponent());
 		}
+
 	}
 
 
@@ -474,13 +501,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(index, newSavedFiled.getName());
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
+				
+				// Get current file path for Execute into Scilab
+				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
 				JOptionPane.showMessageDialog(this, ioex);
 			}
 		} else {
 			isSuccess = saveAs(textPane); 
-
 		}
 		lastKnownSavedState = System.currentTimeMillis();
 		return isSuccess;
@@ -579,6 +608,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 				styledDocument.setContentModified(false);
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
+				
+				// Get current file path for Execute into Scilab
+				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {
 				ioex.printStackTrace();
@@ -649,15 +681,21 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * Undo last modification
 	 */
 	public void undo() {
-		UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-
+		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
+		UndoManager undo = doc.getUndoManager();
 		if (undo.canUndo()) {
 			try {
 				System.out.println(undo.canUndo());
 				System.err.println("Will undo " + undo.getUndoPresentationName());
 				undo.undo();
+				if(!undo.canUndo()){ // remove "*" prefix from tab name
+					JTabbedPane current = getTabPane();
+					int index = current.getSelectedIndex();
+					String namePrefixedByStar = current.getTitleAt(index);
+					current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
+					doc.setContentModified(false);
+				}			
 				repaint();
-
 			} catch (CannotUndoException ex) {
 				System.out.println("Unable to undo: " + ex);
 				ex.printStackTrace();
@@ -942,7 +980,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 						boolean indentMode= styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
-							editorKit.read(new BufferedReader(new FileReader(f)), styleDocument, 0);
+							try {
+									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
+								} catch(ChangedCharSetException e) {
+									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+								}
+							
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
@@ -982,5 +1025,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
-	
+
+	public String getFileFullPath() {
+		return fileFullPath;
+	}
+
 }

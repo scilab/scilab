@@ -33,15 +33,23 @@ public class AfficheBlock extends BasicBlock {
 		setStyle("Affiche");
 		setInterfaceFunctionName("AFFICH_m");
 		setValue("0.00");
+	}
+
+	public int getHashCode(){
 		//generate UID
-		hashCode = UUID.randomUUID().hashCode();
-		Xcos.getAfficheBlocks().put(hashCode, this);
+		if(hashCode == 0){
+			hashCode = UUID.randomUUID().hashCode();			
+		}
+		return hashCode;
+	}
+	
+	public void setHashCode(int hashcode){
+		this.hashCode = hashcode;
 	}
 
 	public ScilabType getObjectsParameters() {
 		ScilabList list = new ScilabList();
 		if(this.getId() != null){
-			System.err.println(this.getId());
 			list.add(new ScilabDouble(hashCode));
 		}
 		return list;

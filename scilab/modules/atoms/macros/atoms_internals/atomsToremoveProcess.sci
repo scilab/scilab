@@ -11,7 +11,7 @@
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function atomsToremoveProcess(allusers)
+function atomsToremoveProcess(section)
 	
 	rhs = argn(2);
 	
@@ -23,11 +23,11 @@ function atomsToremoveProcess(allusers)
 	end
 	
 	// Allusers/user management
-	//   - If allusers is equal to "all" or to True, packages located in both 
+	//   - If section is equal to "all" or to True, packages located in both 
 	//     "allusers" and "user" sections will removed.
-	//   - If allusers is equal to "allusers", only packages located in the
+	//   - If section is equal to "allusers", only packages located in the
 	//     "allusers" section will be removed.
-	//   - If allusers is equal to "user" or to False, only packages located in 
+	//   - If section is equal to "user" or to False, only packages located in 
 	//     the "user" will be removed
 	// =========================================================================
 	
@@ -39,45 +39,39 @@ function atomsToremoveProcess(allusers)
 		//  → Remove only package located in the "user" sections otherwise
 		
 		if atomsAUWriteAccess() then
-			allusers = "all"; 
+			section = "all"; 
 		else
-			allusers = "user";
+			section = "user";
 		end
 		
 	else
 		
-		// Process the 2nd input argument : allusers
+		// Process the 2nd input argument : section
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveProcess",1));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsToremoveProcess",1));
 		end
 		
-		if allusers == %F then
-			allusers = "user";
-		elseif allusers == %T then
-			allusers = "all";
-		end
-		
 		// Check if we have the write access
-		if or(allusers==["all","allusers"]) & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveProcess",1,pathconvert(SCI+"/.atoms")));
+		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveProcess",1,atomsPath("system","allusers")));
 		end
 	end
 	
 	// Get the toremove matrix
 	// =========================================================================
-	toremove = atomsToremoveList(allusers)
+	toremove = atomsToremoveList(section)
 	
 	// And now action
 	// =========================================================================
 	for i=1:size(toremove,:)
-		if atomsIsInstalled(toremove(i,1),toremove(i,2)) then
-			atomsRemove(toremove(i,1)+" "+toremove(i,2),allusers);
+		if atomsIsInstalled([toremove(i,1) toremove(i,2)]) then
+			atomsRemove([toremove(i,1) toremove(i,2)],section);
 		end
 	end
 	

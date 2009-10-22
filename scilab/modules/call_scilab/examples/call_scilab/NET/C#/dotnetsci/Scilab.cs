@@ -43,10 +43,6 @@ namespace DotNetScilab
         sci_intrinsic_function = 130
     };
 
-    /* Enables COM interoperability */
-    [ClassInterface(ClassInterfaceType.AutoDual)]
-    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfaceattribute(VS.80).aspx
-    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfacetype(VS.80).aspx
     public sealed class Scilab
     {
         //=============================================================================

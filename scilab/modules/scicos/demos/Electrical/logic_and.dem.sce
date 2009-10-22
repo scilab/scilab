@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("logic_and.dem.sce");
-scicos_demostration(thispath+"/AND_Gate.cosf");
+xcos(thispath+"/AND_Gate.cosf");
 clear thispath;

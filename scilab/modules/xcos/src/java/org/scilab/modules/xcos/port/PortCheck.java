@@ -14,13 +14,14 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
 public class PortCheck extends mxMultiplicity {
 
-    private BasicPort sourceTemplate = null;
-    private BasicPort targetTemplate = null;
+    private mxCell sourceTemplate = null;
+    private mxCell[] targetTemplate = null;
     private String errorMessage = null;
 
     public PortCheck(boolean source, String type, String attr, String value,
@@ -30,7 +31,7 @@ public class PortCheck extends mxMultiplicity {
 		typeError, validNeighborsAllowed); 
     }
 
-    public PortCheck(BasicPort sourceTemplate, BasicPort targetTemplate, String errorMessage) {
+    public PortCheck(mxCell sourceTemplate, mxCell[] targetTemplate, String errorMessage) {
 	// We complitely override mxMultiplicity
 	super(true, null, null, null, 0, null, null, null, null, false);
 	this.sourceTemplate = sourceTemplate;
@@ -42,7 +43,6 @@ public class PortCheck extends mxMultiplicity {
 
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
     {
-	//System.err.println("errorMessage : "+errorMessage);
 	//System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
 	//System.err.println("Versus : "+sourceTemplate.getClass().getSimpleName()+" -> "+targetTemplate.getClass().getSimpleName());
 	if (isTypeCompatible(source, target)) { return null; }
@@ -50,37 +50,17 @@ public class PortCheck extends mxMultiplicity {
 	return errorMessage;
     }
 
-    //    public boolean checkType(mxGraph graph, Object value, String type)
-    //    {
-    //	System.err.println("Calling checkType (3)");
-    //	return false;
-    //    }
-    //
-    //    public boolean checkType(mxGraph graph, Object value, String type,
-    //	    String attr, String attrValue)
-    //    {
-    //	System.err.println("Calling checktype(5)");
-    //	return false;
-    //    }
-    //    public boolean isUnlimited() {
-    //	System.err.println("Calling isunlimited()");
-    //	return false;
-    //    }
-    //    public int getMaxValue() {
-    //	System.err.println("Calling getMaxValue()");
-    //	return 2;
-    //    }
-
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
-	// Source template is the same as the one given.
-	if (this.sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    if (targetTemplate.getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) != 0) {
-		return false;
+	
+	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
+	    for (int i = 0 ; i < targetTemplate.length ; ++i) {
+		if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
+		    // We found something compatible !!
+		    return true;
+		}
 	    }
-	    else {
-		// This rule is not applicable so we want it to be silent.
-		return true;
-	    }
+	    //Nothin compatible was found ... Sorry ...
+	    return false;
 	}
 
 	// This rule is not applicable so we want it to be silent.

@@ -39,7 +39,7 @@ int get_callback_type_property( sciPointObj * pobj )
 	}
 	else
 	{
-		Scierror(999, _("%s property does not exist for this handle.\n"),"callback_type");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"callback_type");
 		return -1;
 		}
 

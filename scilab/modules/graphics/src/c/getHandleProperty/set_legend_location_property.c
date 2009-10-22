@@ -33,13 +33,13 @@ int set_legend_location_property( sciPointObj * pobj, size_t stackPointer, int v
 	sciLegendPlace position;
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"legend_location") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "legend_location");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_LEGEND )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"legend_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -47,11 +47,7 @@ int set_legend_location_property( sciPointObj * pobj, size_t stackPointer, int v
 
 	if (position == SCI_LEGEND_POSITION_UNSPECIFIED)
 	{
-		Scierror(999, _("Wrong value for property '%s': '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),
-						 "legend_location",
-						 "in_upper_right","in_upper_left","in_lower_right","in_lower_left",
-						 "out_upper_right","out_upper_left","out_lower_right","out_lower_left",
-						 "upper_caption","lower_caption","by_coordinates") ;
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "legend_location", "in_upper_right, in_upper_left, in_lower_right, in_lower_left, out_upper_right, out_upper_left, out_lower_right, out_lower_left, upper_caption, lower_caption, by_coordinates");
     return SET_PROPERTY_ERROR ;
 	}
 

@@ -55,7 +55,6 @@ double \
 pvm \
 io \
 intersci \
-metanet \
 signal_processing \
 core \
 call_scilab \
@@ -180,7 +179,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/symbolic/libscisymbolic.la \

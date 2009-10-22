@@ -30,11 +30,7 @@ models=stripblanks(models);
 
 // modelicac is defined in PATH environment variable
 
-if MSDOS then
-  compilername = 'modelicac.exe';
-else
-  compilername = 'modelicac';
-end
+compilername = getmodelicacpath() + "modelicac";
 
 for k=1:size(models,1)
   M=models(k)

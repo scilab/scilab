@@ -9,7 +9,7 @@
 
 // Add an URL to the list of repositories, and returns
 
-function nbAdd = atomsRepositoryAdd(url,allusers)
+function nbAdd = atomsRepositoryAdd(url,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -44,39 +44,45 @@ function nbAdd = atomsRepositoryAdd(url,allusers)
 		end
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Allusers/user management
+	//   - If section is equal to "allusers", The repository will added for all users
+	//       → SCI/.atoms  : ATOMS system files
+	//   -  If section is equal to "user", The repository will added only for the current user
+	//       → SCIHOME/atoms : location of the modules & ATOMS system files
 	// =========================================================================
 	
-	if rhs == 1 then
-		// By default, add the repository for all users (if we have write access
-		// of course !)
+	if rhs <= 1 then
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			section = "allusers"; 
 		else
-			allusers = %F;
+			section = "user";
 		end
-	
+		
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRepositoryDel",2));
+		
+		// Process the 2nd input argument : section
+		// Allusers can be equal to "user" or "allusers"
+		
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsRepositoryAdd",2));
+		end
+		
+		if and(section<>["user","allusers"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsRepositoryAdd",2));
 		end
 		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",2,pathconvert(SCI+"/.atoms")));
+		if (section=="allusers") & ~atomsAUWriteAccess() then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryAdd",2,pathconvert(SCI+"/.atoms")));
 		end
+		
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
 	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

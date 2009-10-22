@@ -3,7 +3,6 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -60,12 +59,9 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
     {
 	Object obj = null;
 	try {
-	    System.err.println("*** SPECIAL DECODE ***");
-	    System.err.println("*** node = "+node);
 	    if (!(node instanceof Element)) { return null; }
 	    obj = cloneTemplate(node);
 
-	    System.err.println("*** clone Template = "+obj);
 
 	    // attrs = {"as", "height", "width"}
 	    NamedNodeMap attrs = node.getAttributes();
@@ -107,7 +103,6 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
 		bUnsigned  = Boolean.parseBoolean(dataAttributes.item(widthXMLPosition).getNodeValue());
 		data[line][column] = Long.parseLong(dataAttributes.item(valueXMLPosition).getNodeValue());
-		System.err.println("&&&&&&&&&&&&&& I saw : "+data[line][column]);
 	    }
 
 	    ((ScilabInteger) obj).setData(data,bUnsigned);

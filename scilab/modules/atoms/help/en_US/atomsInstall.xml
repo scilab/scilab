@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(module[,allusers]])
+	  result = atomsInstall(module[,section]])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -33,30 +33,49 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
+      
+			<varlistentry>
         <term>module</term>
         <listitem>
           <para>
-						Matrix of strings : External module name
+						Matrix of strings : External module name. this argument has to respect
+						the following format "name version". the version is not mandatory.
 					</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>allusers</term>
+      
+			<varlistentry>
+        <term>section</term>
+				
         <listitem>
           <para>
-						A boolean : if this parameter is equal to TRUE (%T), the external module
-						is installed for all users of the computer and is located in
-						SCI/contrib ("allusers zone").
-						
-						If allusers is set to TRUE (%T) and the directory SCI/contrib/ is not
-						write accessible, atomsInstall returns an error.
-						
-						if this parameter is equal to FALSE (%F), the external module is only
-						installed for the current user and is located in SCIHOME/atoms ("user zone").
+						This argument controls where the external module is installed.
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: the external module
+								is installed for all users of the computer and is located in
+								SCI/contrib ("allusers zone").
+							</para>
+            </listitem>
+            <listitem>
+              <para><literal>"user"</literal>: the external module is only
+								installed for the current user and is located in SCIHOME/atoms
+								("user zone").
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						If SCI/contrib is write accessible, "allusers" is the default value.
+						Otherwise, the default value is "user".
 					</para>
         </listitem>
-      </varlistentry>
+			</varlistentry>
+			
       <varlistentry>
         <term>result</term>
         <listitem>
@@ -91,6 +110,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
+	
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
@@ -98,6 +118,7 @@
     <title>Description</title>
     <para><literal>atomsInstall</literal> install one or more external modules.
 	</para>
+	
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -108,8 +129,10 @@
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 
-atomsInstall("toolbox_5 1.0");
-atomsInstall("toolbox_6");
+atomsInstall(["toolbox_5 1.0"]);
+atomsInstall("toolbox_6","user");
+
+atomsGetInstalled();
 
 atomsRemove("toolbox_5");
 atomsRemove("toolbox_6");

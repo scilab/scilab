@@ -22,7 +22,8 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-
+#include "Scierror.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 int get_box_property( sciPointObj * pobj )
 {
@@ -44,7 +45,7 @@ int get_box_property( sciPointObj * pobj )
       break ;
     }
   }
-  else
+  else if (sciGetEntityType( pobj ) == SCI_TEXT)
   {
     if ( sciGetIsBoxed(pobj) )
     {
@@ -55,6 +56,7 @@ int get_box_property( sciPointObj * pobj )
       return sciReturnString( "off" ) ;  
     }
   }
+	Scierror(999, _("'%s' property does not exist for this handle.\n"),"box") ;
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

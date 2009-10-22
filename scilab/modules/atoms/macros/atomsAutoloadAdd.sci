@@ -13,7 +13,7 @@
 
 // End-User function
 
-function nbAdd = atomsAutoloadAdd(name,version,allusers)
+function nbAdd = atomsAutoloadAdd(name,version,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -51,8 +51,8 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 	end
 	
 	// Allusers/user management
-	//   - If Allusers is True, module(s) will added to the "autoload" list of the 
-	//     "allusers" section :
+	//   - If section is equal to "allusers", module(s) will added to the 
+	//     "autoload" list of the "allusers" section :
 	//       → SCI/.atoms/autoloaded
 	//   - Otherwise, module(s) will added to the "autoload" list of the "user"
 	//     section
@@ -67,45 +67,35 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 		//  → Add the module to the "autoload" list of the "user" section otherwise
 		
 		if atomsAUWriteAccess() then
-			allusers = %T; 
+			section = "allusers"; 
 		else
-			allusers = %F;
+			section = "user";
 		end
 		
 	else
 		
 		// Process the 2nd input argument : allusers
-		// Allusers can be a boolean or equal to "user" or "allusers"
+		// Allusers can be equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadAdd",3));
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsAutoloadAdd",3));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers"]) then
+		if and(section<>["user","allusers"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsAutoloadAdd",3));
 		end
 		
-		if allusers == "user" then
-			allusers = %F;
-		elseif allusers == "allusers" then
-			allusers = %T;
-		end
-		
 		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ atomsAUWriteAccess() then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
 		end
+		
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================
@@ -124,10 +114,10 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 	// Check if all input modules are installed
 	// =========================================================================
 	
-	if ~ and(atomsIsInstalled(name,version)) then
+	if ~ and(atomsIsInstalled([name version])) then
 		mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
 		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i)) then
+			if ~ atomsIsInstalled([name(i) version(i)]) then
 				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
 			end
 		end
@@ -137,10 +127,10 @@ function nbAdd = atomsAutoloadAdd(name,version,allusers)
 	// A module installed in the user section cannot be add in the "autoload" list 
 	// of all users
 	
-	if allusers & (rhs>=3) & (~ atomsIsInstalled(name,version,"allusers")) then
+	if (rhs>=3) & (section=="allusers") & (~ atomsIsInstalled([name version],"allusers")) then
 		mprintf(gettext("%s: The following modules are installed in the user section, you cannot add them in the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
 		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i),"allusers") then
+			if ~ atomsIsInstalled([name(i) version(i)],"allusers") then
 				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
 			end
 		end

@@ -13,14 +13,13 @@
 
 // End-User function
 
-function nbDel = atomsAutoloadDel(name,version,allusers)
+function nbDel = atomsAutoloadDel(name,version,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
-	
 	
 	rhs   = argn(2);
 	nbDel = 0;
@@ -66,31 +65,25 @@ function nbDel = atomsAutoloadDel(name,version,allusers)
 	if rhs <= 2 then
 		
 		if atomsAUWriteAccess() then
-			allusers = "all"; 
+			section = "all"; 
 		else
-			allusers = "user";
+			section = "user";
 		end
 	
 	else
 		// Process the 2nd input argument : allusers
-		// Allusers can be a boolean or equal to "user" or "allusers"
+		// Allusers can equal to "user","allusers" or "all"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if (type(section) <> 4) & (type(section) <> 10) then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadDel",3));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if (type(section) == 10) & and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadDel",3));
 		end
 		
-		if allusers == %T then
-			allusers = "all";
-		elseif allusers == %F then
-			allusers = "user";
-		end
-		
 		// Check if we have the write access
-		if or(allusers==["all","allusers"]) & ~ atomsAUWriteAccess() then
+		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
 		end
 	end
@@ -98,18 +91,7 @@ function nbDel = atomsAutoloadDel(name,version,allusers)
 	// Define the path of the files that will record the change according to
 	// the "allusers" value and the existence of the latter
 	// =========================================================================
-	
-	if allusers=="all" then
-		atoms_files = [ pathconvert(SCI+"/.atoms/autoloaded",%F) ; ..
-	                    pathconvert(SCIHOME+"/atoms/autoloaded",%F) ];
-	
-	elseif allusers=="allusers" then
-		atoms_files = [ pathconvert(SCI+"/.atoms/autoloaded",%F) ];
-	
-	elseif allusers=="user" then
-		atoms_files = [  pathconvert(SCIHOME+"/atoms/autoloaded",%F) ];
-	
-	end
+	atoms_files = atomsPath("system","all") + "autoloaded";
 	
 	// Loop on each installed file specified as first input argument
 	// =========================================================================

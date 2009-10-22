@@ -38,15 +38,14 @@ public class EventInBlock extends BasicBlock {
 		setValue(((ScilabString) getExprs()).getData()[0][0]);
 	}
 
-	public void updateBlockSettings(XcosDiagram diagram,
-			BasicBlock modifiedBlock) {
+	public void updateBlockSettings(BasicBlock modifiedBlock) {
 
 		String oldValue = (String)getValue();
-   		super.updateBlockSettings(diagram, modifiedBlock);
+   		super.updateBlockSettings(modifiedBlock);
 		String newValue = (String)getValue();
    		
 		if(oldValue.compareTo(newValue) != 0){
-			diagram.fireEvent(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+			getParentDiagram().fireEvent(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 		}
    		
 	}
