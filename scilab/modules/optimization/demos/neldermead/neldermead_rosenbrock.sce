@@ -68,4 +68,10 @@ my_handle.children.children(1).children.mark_foreground = 5;
 nm = neldermead_destroy(nm);
 clear nm;
 
+//
+// Load this script into the editor
+//
+filename = 'neldermead_rosenbrock.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 
