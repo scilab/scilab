@@ -369,10 +369,17 @@ public class XcosDiagram extends ScilabGraph {
 
 		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
 			BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes.get(i)).getChild();
-			fireEvent(XcosEvent.FORCE_CELL_RESHAPE, new mxEventObject(new Object[] {currentCell}));
-			fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {currentCell}));
+			objects.add(currentCell);
 		    }
 		}
+	    }
+	    if (!objects.isEmpty()) {
+		Object[] firedCells = new Object[objects.size()];
+		for (int j = 0 ;  j < objects.size() ; ++j) {
+		    firedCells[j] = objects.get(j);
+		}
+		//fireEvent(XcosEvent.FORCE_CELL_RESHAPE, new mxEventObject(new Object[] {firedCells}));
+		fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {firedCells}));
 	    }
 	    getModel().endUpdate();
 	}
@@ -383,7 +390,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ForceCellValueUpdate implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells = (Object[]) evt.getArgs();
+	    Object[] cells = (Object[]) evt.getArgs()[0];
 
 	    getModel().beginUpdate();
 
@@ -417,17 +424,16 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ForceCellReshapeTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells =  (Object[]) evt.getArgs();
+	    Object[] cells =  (Object[]) evt.getArgs()[0];
+	    getModel().beginUpdate();
 	    for (int i = 0 ; i <  cells.length ; ++i) {
 		Object cell = cells[i];
 		System.err.println("[DEBUG] Force Cell reshape on "+cell);
 		if (cell instanceof BasicBlock) {
-		    getModel().beginUpdate();
 		    ((BasicBlock) cell).updateBlockView();
-		    refresh();
-		    getModel().endUpdate();
 		}
 	    }
+	    getModel().endUpdate();
 	}
     }
     
@@ -466,7 +472,6 @@ public class XcosDiagram extends ScilabGraph {
     			}
     			// Update parent on cell addition
     			((BasicBlock) cells[i]).setParentDiagram(diagram);
-    			//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] { cells[i] }));
     		    }
     		}
     		getModel().endUpdate();
