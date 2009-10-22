@@ -1271,7 +1271,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public synchronized int untabifyLines(int line_start, int line_end)
 	{	
 		int res=0;
-		if(canUntabifyLines(line_start, line_end))
+		if(true || canUntabifyLines(line_start, line_end)) // always untabify as much lines as possible from a selection
 		{
 			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 			setAutoIndent(false);
