@@ -151,12 +151,12 @@
                 the right of the axes rectangle.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"middle"</literal>. In this case the x axis is drawn
+                    <para><literal>"middle"</literal>. In this case the y axis is drawn
                 at the centered position.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"origin"</literal>. In this case the x axis is drawn
-                at the position nearest to the 0 y coordinates.</para>
+                    <para><literal>"origin"</literal>. In this case the y axis is drawn
+                at the position nearest to the 0 x coordinates.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>

@@ -346,7 +346,6 @@ function this = neldermead_fixed (this)
   // Sort function values and x points by increasing function value order
   this = neldermead_log (this,sprintf("Sort"));
   simplex = optimsimplex_sort ( simplex );
-  neldermead_outputcmd ( this, "init" , simplex , "init" )
   //
   // Compute center of simplex
   //
