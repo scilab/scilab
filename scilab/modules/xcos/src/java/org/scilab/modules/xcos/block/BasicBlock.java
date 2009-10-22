@@ -83,7 +83,7 @@ public class BasicBlock extends mxCell {
     //private List<Integer> integerParameters = new ArrayList<Integer>();
     private ScilabType integerParameters = null;
     //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters = new ScilabList();
+    private ScilabType objectsParameters = null;
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
 

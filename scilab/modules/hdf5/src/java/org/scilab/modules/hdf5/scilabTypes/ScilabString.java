@@ -24,7 +24,10 @@ public class ScilabString implements ScilabType {
     
     public ScilabString(String[] data) {
     	this.data = new String[1][data.length];
-    	this.data[0] = data ;
+    	for (int i = 0 ; i < data.length ; i++){
+        	this.data[0][i] = data[i] ;
+    	}
+
     }
     
     public ScilabString(String string) {
