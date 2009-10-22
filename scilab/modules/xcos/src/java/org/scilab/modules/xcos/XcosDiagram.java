@@ -102,7 +102,6 @@ public class XcosDiagram extends ScilabGraph {
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
-    private mxPoint startSplit = new mxPoint(0,0);
     private Tab parentTab;
     //private Window palette;
     private Tab viewPort;
@@ -176,58 +175,56 @@ public class XcosDiagram extends ScilabGraph {
     	// ExplicitLink -> ExplicitInputPort
     	if (source instanceof ExplicitLink) {
     		if(target instanceof ExplicitInputPort) {
-
-    			BasicLink link = (BasicLink)source;
-    			BasicPort linkSource =  (BasicPort)link.getSource();
-    			BasicPort linkTarget =  (BasicPort)link.getTarget();
-
-    			mxGeometry geomSource = linkSource.getParent().getGeometry();
-    			mxGeometry geomTarget = linkTarget.getParent().getGeometry();
-
-    			double offsetX = geomTarget.getCenterX() -  geomSource.getCenterX();
-    			double offsetY = geomTarget.getCenterY() -  geomSource.getCenterY();
-
-    			SplitBlock splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort)target);
-    			splitBlock.setStyle("SPLIT_f");
-    			addCell(splitBlock);
-    			mxRectangle splitRect = new mxRectangle();
-    			System.err.println("startSplit (" + startSplit.getX() + "," + startSplit.getY() + ")");
-    			splitRect.setX(startSplit.getX());
-    			splitRect.setY(startSplit.getY());
-    			splitRect.setWidth(6);
-    			splitRect.setHeight(6);
-    			cellsResized(new Object[]{splitBlock}, new mxRectangle[]{splitRect});
-
-    			//remove old link
-    			removeCells(new Object[]{link});
-    			
-    		    BasicLink newLink1 = new ExplicitLink();
-    		    newLink1.setGeometry(new mxGeometry(0,0,80,80));
-    		    newLink1.setSource(linkSource);
-    		    newLink1.setTarget(splitBlock.getIn());
-    		    addCell(newLink1);
-
-    		    BasicLink newLink2 = new ExplicitLink();
-    		    newLink2.setGeometry(new mxGeometry(0,0,80,80));
-    		    newLink2.setSource(splitBlock.getOut1());
-    		    newLink2.setTarget(linkTarget);
-    		    addCell(newLink2);
-
-    		    BasicLink newLink3 = new ExplicitLink();
-    		    newLink3.setGeometry(new mxGeometry(0,0,80,80));
-    		    newLink3.setSource(splitBlock.getOut2());
-    		    newLink3.setTarget((mxCell)target);
-    		    addCell(newLink3);
-
-    		    return newLink3;
+    			return addSplitEdge((BasicLink)source, (BasicPort)target);
     		}
     	}
-    	// ImplicitOutput -> ExpliciLink
+    	// ExplicitOutput -> ExpliciLink
     	// Switch source and target !
     	if(target instanceof ExplicitLink) {
     		if (source instanceof ExplicitInputPort) {
-    			System.err.println("Input vers Link");
-    			//return super.addEdge(new ImplicitLink(), parent, target, source, index);
+    			return addSplitEdge((BasicLink)target, (BasicPort)source);
+    		}
+    	}
+
+    	// ImplicitLink -> ImplicitInputPort
+    	if (source instanceof ImplicitLink) {
+    		if(target instanceof ImplicitInputPort) {
+    			return addSplitEdge((BasicLink)source, (BasicPort)target);
+    		}
+    	}
+    	// ImplicitInputPort -> ImplicitLink
+    	// Switch source and target !
+    	if(target instanceof ImplicitLink) {
+    		if (source instanceof ImplicitInputPort) {
+    			return addSplitEdge((BasicLink)target, (BasicPort)source);
+    		}
+    	}
+    	
+    	// ImplicitLink -> ImplicitOutputPort
+    	if (source instanceof ImplicitLink) {
+    		if(target instanceof ImplicitOutputPort) {
+    			return addSplitEdge((BasicLink)source, (BasicPort)target);
+    		}
+    	}
+    	// ImplicitOutputPort -> ImplicitLink
+    	// Switch source and target !
+    	if(target instanceof ImplicitLink) {
+    		if (source instanceof ImplicitOutputPort) {
+    			return addSplitEdge((BasicLink)target, (BasicPort)source);
+    		}
+    	}
+
+    	// CommandControlLink -> ControlPort
+    	if (source instanceof CommandControlLink) {
+    		if(target instanceof ControlPort) {
+    			return addSplitEdge((BasicLink)source, (BasicPort)target);
+    		}
+    	}
+    	// ControlPort -> CommandControlLink
+    	// Switch source and target !
+    	if(target instanceof CommandControlLink) {
+    		if (source instanceof ControlPort) {
+    			return addSplitEdge((BasicLink)target, (BasicPort)source);
     		}
     	}
 
@@ -235,6 +232,66 @@ public class XcosDiagram extends ScilabGraph {
     	return null;
     }
 
+    private Object addSplitEdge(BasicLink link, BasicPort target){
+    	BasicPort linkSource =  (BasicPort)link.getSource();
+    	BasicPort linkTarget =  (BasicPort)link.getTarget();
+
+    	mxPoint splitPosition = new mxPoint();
+    	//check splitPosition values
+		double srcX = linkSource.getParent().getGeometry().getX() + linkSource.getGeometry().getCenterX();
+		double tgtX = linkTarget.getParent().getGeometry().getX() + linkTarget.getGeometry().getCenterX();
+		double srcY = linkSource.getParent().getGeometry().getY() + linkSource.getGeometry().getCenterY();
+		double tgtY = linkTarget.getParent().getGeometry().getY() + linkTarget.getGeometry().getCenterY();
+
+		System.err.println("srcX : " + srcX);
+		System.err.println("tgtX : " + tgtX);
+		System.err.println("srcY : " + srcY);
+		System.err.println("tgtY : " + tgtY);
+		
+		double offsetX = (tgtX - srcX) / 2;
+		double offsetY = (tgtY - srcY) / 2;
+		System.err.println("offsetX : " + offsetX);
+		System.err.println("offsetY : " + offsetY);
+		splitPosition.setX(srcX + offsetX);
+		splitPosition.setY(srcY + offsetY);
+    	
+    	SplitBlock splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort)target);
+    	splitBlock.setStyle("SPLIT_f");
+    	addCell(splitBlock);
+    	mxRectangle splitRect = new mxRectangle();
+    	System.err.println("splitPosition (" + splitPosition.getX() + "," + splitPosition.getY() + ")");
+    	splitRect.setX(splitPosition.getX()-3);//-3 for splitRect size
+    	splitRect.setY(splitPosition.getY()-3);//-3 for splitRect size
+    	splitRect.setWidth(6);
+    	splitRect.setHeight(6);
+    	cellsResized(new Object[]{splitBlock}, new mxRectangle[]{splitRect});
+
+    	//remove old link
+    	removeCells(new Object[]{link});
+
+    	BasicLink newLink1 = createLinkFromPorts(linkSource, splitBlock.getIn());
+    	newLink1.setGeometry(new mxGeometry(0,0,80,80));
+    	newLink1.setSource(linkSource);
+    	newLink1.setTarget(splitBlock.getIn());
+    	addCell(newLink1);
+
+    	BasicLink newLink2 = createLinkFromPorts(splitBlock.getOut1(), linkTarget);
+    	newLink2.setGeometry(new mxGeometry(0,0,80,80));
+    	newLink2.setSource(splitBlock.getOut1());
+    	newLink2.setTarget(linkTarget);
+    	addCell(newLink2);
+
+    	BasicLink newLink3 = createLinkFromPorts(splitBlock.getOut2(), (BasicPort)target);
+    	newLink3.setGeometry(new mxGeometry(0,0,80,80));
+    	newLink3.setSource(splitBlock.getOut2());
+    	newLink3.setTarget((mxCell)target);
+    	addCell(newLink3);
+
+    	splitPosition.setX(0);
+    	splitPosition.setY(0);
+    	return splitBlock;
+    }
+    
     public XcosDiagram() {
 	super();
 	keyboardHandler = new XcosShortCut(this);
@@ -282,21 +339,30 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[6];
+	mxMultiplicity[] multiplicities = new mxMultiplicity[9];
 
 	// Input data port
-	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
-	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort(), new ImplicitInputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
+	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort(), new ExplicitLink()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
+	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort(), new ImplicitInputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
 
 	//Output data port
 	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
 	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
 
-	//Control
-	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort()}, XcosMessages.LINK_ERROR_EVENT_IN);
+	//Control port
+	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort(), new CommandControlLink()}, XcosMessages.LINK_ERROR_EVENT_IN);
 
 	//Command port
 	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	//ExplicitLink connections
+	multiplicities[6] = new PortCheck(new ExplicitLink(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	//ImplicitLink connections
+	multiplicities[7] = new PortCheck(new ImplicitLink(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	//CommandControlLink connections
+	multiplicities[8] = new PortCheck(new CommandControlLink(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	setMultiplicities(multiplicities);
 	
@@ -596,19 +662,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void mousePressed(MouseEvent arg0) {
-	    Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
-		if(cell instanceof BasicLink){
-			startSplit.setX(arg0.getX());
-			startSplit.setY(arg0.getY());
-		}else{
-			startSplit.setX(0);
-			startSplit.setY(0);
-		}
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
-
 	}
     }
   
@@ -894,6 +950,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	/* Extension checks */
 	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+	System.err.println("extension : " + extension);
 	if (extension.equals(fileName)) {
 	    /* No extension given --> .xcos added */
 	    fileName += ".xcos";
