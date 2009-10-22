@@ -112,7 +112,7 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index)
     {	
-    	System.err.println("[DEBUG] AddEdge :");
+    	System.err.println("[System] AddEdge :");
     	System.err.println("[DEBUG] AddEdge : source "+source.toString());
     	System.err.println("[DEBUG] AddEdge : target "+target.toString());
     	// Command -> Control
@@ -297,6 +297,9 @@ public class XcosDiagram extends ScilabGraph {
 	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	setMultiplicities(multiplicities);
+	
+	// Add a listener to track when model is changed
+	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
     }
 
     /**
@@ -304,8 +307,6 @@ public class XcosDiagram extends ScilabGraph {
      */
     public void installListeners() {
 
-    	System.err.println("installListeners");
-	//
 	// Property change Listener
 	// Will say if a diagram has been modified or not.
 	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
@@ -317,9 +318,6 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	});
-
-	// Add a listener to track when model is changed
-	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 
 	// Track when superblock ask a parent refresh.
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
@@ -354,15 +352,11 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ModelTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    //System.err.println("[DEBUG] Model just changed");
-
 	    List changes = (List) evt.getArgAt(0);
 	    List<Object> objects = new ArrayList<Object>();
 	    getModel().beginUpdate();
 	    for (int i = 0 ; i < changes.size() ; ++i) {
-		//System.err.println("args[" + i + "] = " + changes.get(i));
 		if (changes.get(i) instanceof mxChildChange) {
-		    //System.err.println("Change cell = "+((mxChildChange) changes.get(i)).getChild().toString());
 		    if (((mxChildChange) changes.get(i)).getChild() instanceof SplitBlock) {
 			continue;
 		    }
@@ -399,7 +393,6 @@ public class XcosDiagram extends ScilabGraph {
 		Object cell = cells[i];
 		
 		if(cell instanceof BasicBlock) {
-		    System.err.println("[DEBUG] Force Value Updated. cell = "+cell.toString());
 		    if (getCellStyle(cell).get("displayedLabel") != null) {
 			((mxCell) cell).setValue("<html><body> "+getCellStyle(cell).get("displayedLabel")+" </body></html>");
 		    }
@@ -428,7 +421,6 @@ public class XcosDiagram extends ScilabGraph {
 	    getModel().beginUpdate();
 	    for (int i = 0 ; i <  cells.length ; ++i) {
 		Object cell = cells[i];
-		System.err.println("[DEBUG] Force Cell reshape on "+cell);
 		if (cell instanceof BasicBlock) {
 		    ((BasicBlock) cell).updateBlockView();
 		}
@@ -460,7 +452,6 @@ public class XcosDiagram extends ScilabGraph {
     	}
 
     	public void invoke(Object source, mxEventObject evt) {
-    		System.err.println("[DEBUG] CELLS_ADDED");
     		Object[] cells = (Object[]) evt.getArgs()[0];
     		getModel().beginUpdate();
     		for (int i = 0 ; i < cells.length ; ++i) {
@@ -474,6 +465,7 @@ public class XcosDiagram extends ScilabGraph {
     			((BasicBlock) cells[i]).setParentDiagram(diagram);
     		    }
     		}
+    		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
     		getModel().endUpdate();
     	}
     }
@@ -485,7 +477,6 @@ public class XcosDiagram extends ScilabGraph {
     private class CellResizedTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    Object[] cells = (Object[]) evt.getArgs()[0];
-	    System.err.println("[DEBUG] Cells Resized ...");
 	    getModel().beginUpdate();
 	    for (int i = 0 ; i < cells.length ; ++i) {
 		if (cells[i] instanceof BasicBlock) {
@@ -1002,7 +993,6 @@ public class XcosDiagram extends ScilabGraph {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		loadDiagram(diagramm);
 	    } else {
-		System.err.println("openDiagram");
 		XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 	    }
