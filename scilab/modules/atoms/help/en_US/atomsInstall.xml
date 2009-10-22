@@ -125,18 +125,37 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
+
+// Display some additionnal informations
 atomsSetConfig("Verbose","True");
+
+// Load the test repository
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 
-atomsInstall(["toolbox_5 1.0"]);
-atomsInstall("toolbox_6","user");
+// Install a module
+atomsInstall("toolbox_1");
 
-atomsGetInstalled();
+// Install a specific version
+atomsInstall(["toolbox_2" "2.0"]);
 
-atomsRemove("toolbox_5");
-atomsRemove("toolbox_6");
- ]]></programlisting>
+// Install several modules
+atomsInstall(["toolbox_4" "1.0" ; "toolbox_2" "1.0"]);
+
+// Install a module in the user section
+atomsInstall(["toolbox_5"],"user");
+
+// Install a module in the allusers section
+// (write access on SCI directory is needed):
+atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"],"allusers");
+
+// Get the list of installed modules:
+disp( atomsGetInstalled() );
+
+// Cleaning :)
+atomsRemove(["toolbox_1";"toolbox_2";"toolbox_3";"toolbox_4";"toolbox_5";"toolbox_6"]);
+
+]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->
