@@ -253,7 +253,7 @@ $ ./myExample
       linkend="StartScilab">StartScilab</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="SendScilabJobs">SendScilabJobs</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="DoubleManagement_callscilab">Double Management</link>, <link
       linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
       linkend="ComplexManagement_callscilab">Complex Management</link>, <link
       linkend="StringManagement_callscilab">String Management</link></member>
