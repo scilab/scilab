@@ -61,10 +61,11 @@ public class SuperBlock extends BasicBlock {
 	this.setLocked(true);
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
-	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
 	    child.installListeners();
+	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+	    child.installSuperBlockListeners();
 	    updateAllBlocksColor();
-		int blockCount = child.getModel().getChildCount(child.getDefaultParent());
+	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
 	    for(int i = 0 ; i < blockCount ; i++){
 		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
 		    if(cell instanceof BasicBlock){
@@ -75,10 +76,11 @@ public class SuperBlock extends BasicBlock {
 	}
 	else {
 	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
+	    newChild.installListeners();
 	    newChild.setModel(child.getModel());
 	    child = newChild;
 	    
-	    child.installListeners();
+	    child.installSuperBlockListeners();
 	    updateAllBlocksColor();
 	}
 	Xcos.showDiagram(child);
@@ -142,8 +144,7 @@ public class SuperBlock extends BasicBlock {
 	    }
 	}
 
-	public void installListeners() {
-	    super.installListeners();
+	public void installSuperBlockListeners() {
 	    addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			updateAllBlocksColor();
