@@ -85,6 +85,8 @@ Extension capabilities of Scilab:
 
 In the previous versions of Scilab, there were no clear and easy way to extend
 Scilab or to use as an embedded application. 
+Knowing these drawbacks, Scilab 5.2 tackles all the issues by prodiving a new
+consitent, documented and easy to use API. 
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
@@ -99,6 +101,8 @@ Scilab or to use as an embedded application.
   Note that all other Scilab API (straight access to the Scilab stack, stack1,
   stack2 and stack3) will be maintained in the Scilab 5.X family but most of
   them will be dropped in the 6 family.
+  Do not hesitate to submit a bug report if you would like to see new features
+  and functions in API Scilab.
 
 * In the enum sci_types which list all Scilab datatypes, the type 
   "sci_lufact_pointer" has been renamed to "sci_pointer".
@@ -112,11 +116,60 @@ TODO: talk about call scilab based on api_scilab
 * Under all operating systems but Windows, all headers are not installed in a single directory in order to simplify the use
   of Scilab features in the dynamic link. See SEP #32 for more information
 
-* From this version of Scilab, only a defined and documented number of header files are installed. 
-  Thanks to this change, a toolbox developer knows exactly what are the available functions provided by Scilab.
-  See SEP #35.
+* From this version of Scilab, only a defined and documented number of headers
+  are installed. 
+  Thanks to this change, a module/toolbox developer knows exactly what are the
+  available functions provided by Scilab.
+  See SEP #35. 
+  Do not hesitate to contact us if you have been using a header Scilab from
+  Scilab which had been removed from Scilab 5.2.
+
 
 TODO: add the information about the doxygen doc generation if we do it.
+
+call_scilab module:
+===================
+
+Call Scilab is the API which allows Scilab to be called as computing engine or
+embedded into a thirdparty application.
+From this version, Call Scilab is based on API Scilab and handles all Scilab
+datatypes (in previous versions, Double, Boolean, Complex Matrixes and String 
+elements were managed).
+The Call Scilab function have the same profile as API Scilab with 'Named' into 
+the function name.
+ 
+* CallScilab.h renamed to call_scilab.h (See SEP #34). CallScilab.h is still 
+  available and points to call_scilab.h
+
+* Documentation and examples about call_scilab (BooleanManagement call_scilab
+  compile_and_run_call_scilab DisableInteractiveMode GetLastJob DoubleManagement
+  ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement
+  TerminateScilab) added
+
+* Some function profiles in stack3.h provided to manage named named variable
+  have been moved in CallScilab.h (please note that we haven't changed the ABI
+  and the symbols remain in the core library)
+  The goal of this modification is to separate functions dealing with the
+  call_scilab API and the internal API used in the gateways.
+  Note that all the moved functions are considered as obsolete.
+
+* In call_scilab, all previous functions available to read/write data from/to
+  the Scilab engine are now obsolete but supported until Scilab 6:
+
+  TODO  list all depecreated functions
+
+  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
+  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead
+    (same profile)
+  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+
+* "make check" now builds also call_scilab examples
+
+* A example to call scilab from C# added.
+   see SCI/modules/call_scilab/examples/call_scilab/NET/C# directory
+
+* A example to call scilab from VB.NET added.
+   see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
 
 Option configuration:
 =====================
@@ -133,6 +186,9 @@ Mac OS X:
 * Docking system enabled
 
 * bug 4087 fixed - Under Mac OS X, a Apple + C shortcut (Ctrl + C) didn't work from the console.
+
+* bug 4508 fixed - Can't create a file when saving/exporting a figure under
+                   Mac OS X.
 
 toolbox_skeleton:
 =================
@@ -245,36 +301,6 @@ Online Help:
 
 * Online help XML files have been converted into UTF-8
  
-call_scilab module:
-===================
-
-* A example to call scilab from C# added.
-   see SCI/modules/call_scilab/examples/call_scilab/NET/C# directory
-
-* A example to call scilab from VB.NET added.
-   see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
- 
-* CallScilab.h renamed call_scilab.h (See SEP #34)
-
-* Documentation and examples about call_scilab (BooleanManagement call_scilab
-  compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
-  cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement
-  ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement
-  TerminateScilab) added
-
-* Some function profiles in stack3.h provided to manage named named variable
-  have been moved in CallScilab.h (please note that we haven't changed the ABI
-  and the symbols remain in the core library)
-  The goal of this modification is to separate functions dealing with the
-  call_scilab API and the internal API used in the gateways.
-
-* In call_scilab:
-  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
-  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead
-    (same profile)
-  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
-
-* "make check" now builds also call_scilab examples
 
 Source reorganisation:
 ======================
@@ -329,7 +355,7 @@ Compilation:
 * automake updated to version 1.11
 
 * libtool updated from version 1.5.26 to 2.2.7a (Closes bug #4279) with some
-  patches for Mac OS X support
+  patches for Mac OS X/Darwin support
 
 * --enable-debug-java add two options to the JVM args (-verbose:jni and
   -Xcheck:jni) in order to provide more feedbacks on debug
@@ -717,9 +743,6 @@ Bug fixes:
 
 * bug 4507 fixed - Depending on the fortran runtime libraries a dummy main
                    definition may be needed.
-
-* bug 4508 fixed - Can't create a file when saving/exporting a figure under
-                   MacOSX.
 
 * bug 4514 fixed - valgrind.supp wasn't installed
 
