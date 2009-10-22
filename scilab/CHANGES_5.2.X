@@ -83,7 +83,8 @@ Optimization:
 Extension capabilities of Scilab:
 =================================
 
-TODO: write an introduction about all that
+In the previous versions of Scilab, there were no clear and easy way to extend
+Scilab or to use as an embedded application. 
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
@@ -112,7 +113,7 @@ TODO: talk about call scilab based on api_scilab
   of Scilab features in the dynamic link. See SEP #32 for more information
 
 * From this version of Scilab, only a defined and documented number of header files are installed. 
-  Thanks to this change, a toolbox developer knows exactly what are the available functions. 
+  Thanks to this change, a toolbox developer knows exactly what are the available functions provided by Scilab.
   See SEP #35.
 
 TODO: add the information about the doxygen doc generation if we do it.
