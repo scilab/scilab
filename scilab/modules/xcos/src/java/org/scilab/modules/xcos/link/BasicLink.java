@@ -68,14 +68,10 @@ public abstract class BasicLink extends mxCell {
 			for(int i = 0 ; i < getGeometry().getPoints().size(); i++){
 				mxPoint oldPoint = (mxPoint)getGeometry().getPoints().get(i);
 				mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
-				System.err.println("point (" + point.getX() + "," + point.getY() + ")");
-				System.err.println("rect (" + rect.getX() + "," + rect.getY() + ")");
 				if(rect.contains(point.getX(), point.getY())){
-					System.err.println("Oui " + (i+1));
 					getGeometry().getPoints().remove(i);
 					return;
 				}else{
-					System.err.println("Non " + (i+1));
 				}
 			}			
 
@@ -113,11 +109,6 @@ public abstract class BasicLink extends mxCell {
 						newPos = i;
 					}
 				}
-
-				System.err.println("saveDist : " + saveDist);
-				System.err.println("New Point : " + addPoint.toString());
-				System.err.println("newPos : " + newPos);
-
 			}	
 			getGeometry().getPoints().add(newPos, point);
 		}
