@@ -11,6 +11,9 @@
  */
 package org.scilab.modules.xcos.block;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -38,8 +41,16 @@ public class SplitBlock extends BasicBlock {
 		setInterfaceFunctionName("SPLIT_f");
 		getGeometry().setWidth(0);
 		getGeometry().setHeight(0);
+		setRealParameters(new ScilabDouble());
+		setIntegerParameters(new ScilabDouble());
+		setObjectsParameters(new ScilabList());
+		setExprs(new ScilabDouble());
 	}
 
+	// SPLIT_f <-> lsplit
+	// CLKSPLIT_f <-> split
+	// IMPSPLIT_F <-> limpsplit
+	
 	public SplitBlock(String label, BasicPort source, BasicPort target1,
 			BasicPort target2) {
 		this(label);
@@ -101,4 +112,5 @@ public class SplitBlock extends BasicBlock {
 	public BasicPort getOut2(){
 		return out2;
 	}
+	
 }

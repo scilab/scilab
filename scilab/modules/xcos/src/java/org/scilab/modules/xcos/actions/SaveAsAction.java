@@ -65,6 +65,6 @@ public final class SaveAsAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((XcosDiagram) getGraph(null)).saveDiagramAs();
+		((XcosDiagram) getGraph(null)).saveDiagramAs(null);
 	}
 }

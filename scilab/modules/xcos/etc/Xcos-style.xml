@@ -5,6 +5,7 @@
     <add as="perimeter" value="rectanglePerimeter"/>
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="white"/>
+    <add as="fontColor" value="black"/>
     <add as="noLabel" value="1"/>
   </add>
 
