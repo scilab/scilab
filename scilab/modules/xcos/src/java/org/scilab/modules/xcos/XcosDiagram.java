@@ -1188,19 +1188,13 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     private void setChildrenParentDiagram(XcosDiagram diagram){
-    	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
-    		mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-    		if (cell instanceof SuperBlock){
-    			System.err.println("superblock children update diagram");
-    			SuperBlock block = (SuperBlock)cell;
-    			XcosDiagram superDiagram = block.getParentDiagram();
-    			setChildrenParentDiagram(superDiagram);
-    			System.err.println("superblock children update diagram END");
-    		}else if (diagram.getModel().getChildAt(diagram.getDefaultParent(), i) instanceof BasicBlock){
-        		BasicBlock block = (BasicBlock)cell; 
-    			block.setParentDiagram(diagram);
-    		}
-    	}
+	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
+	    mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
+	    if (cell instanceof BasicBlock){
+		BasicBlock block = (BasicBlock)cell; 
+		block.setParentDiagram(diagram);
+	    }
+	}
     }
 /**
      * Returns the tooltip to be used for the given cell.
