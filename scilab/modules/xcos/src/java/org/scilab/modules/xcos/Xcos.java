@@ -339,7 +339,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static XcosPalette createPalette(String[] blocksNames) {
  
     	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
-    	String palImagesPath = System.getenv("SCI") + "/modules/scicos/help/images/";
+    	String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
 
     	XcosPalette palette = new XcosPalette();
  	
@@ -359,7 +359,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     		    theBloc.setValue(theBloc.getInterfaceFunctionName());
     		}
     		
-    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
+    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"), theBloc);
     	}
 
     	return palette;
