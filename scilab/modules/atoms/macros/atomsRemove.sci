@@ -187,7 +187,7 @@ function result = atomsRemove(packages,section)
 	
 	// Now we have the list of package that have to be uninstalled
 	// =========================================================================
-	
+	pause
 	for i=1:size(remove_package_list(:,1),"*")
 		
 		// If the package must be keeped, the job is done
