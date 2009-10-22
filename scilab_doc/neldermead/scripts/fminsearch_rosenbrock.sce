@@ -32,6 +32,11 @@ opt = optimset ( "Display" , "iter" );
 // Check that the output functions are OK
 function outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
+  fc = optimValues.funccount;
+  fv = optimValues.fval;
+  it = optimValues.iteration;
+  pr = optimValues.procedure;
+  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
 endfunction
 opt = optimset ( "OutputFcn" , outfun );
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );

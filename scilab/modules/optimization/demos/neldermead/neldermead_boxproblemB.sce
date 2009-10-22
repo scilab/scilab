@@ -13,7 +13,7 @@
 //   numerical experiment presented in Box's paper.
 //
 
-mprintf("Illustrates Box'' algorithm on Box problem A.\n");
+mprintf("Illustrates Box'' algorithm on Box problem B.\n");
 mprintf("Defining Box Problem A function...\n");
 
 //
@@ -135,4 +135,10 @@ shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
 deletefile ( "boxproblemB.txt" )
+//
+// Load this script into the editor
+//
+filename = 'neldermead_boxproblemB.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 
