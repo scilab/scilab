@@ -205,12 +205,23 @@ function remList = atomsRemoveList(packages,section)
 		this_package_name    = remList(i,3);
 		this_package_version = remList(i,4);
 		
-		// The package has been intentionnaly installed :
-		// => Do not install it
+		// The package (A child) has been intentionnaly installed :
+		// => Do not remove it (it and it's childs)
 		// ----------------------------------------------
 		
 		if atomsGetInstalledStatus([this_package_name this_package_version],section) == "I" then
+			
+			// It
 			remList(i,1) = "~";
+			
+			// It's Childs
+			this_package_childs     = atomsGetDepChilds([this_package_name this_package_version],section);
+			remList_mod             = remList(:,3) + " - " +  remList(:,4);
+			
+			for j=1:size(this_package_childs(:,1),"*")
+				remList( find(remList_mod == this_package_childs(j,1) + " - " + this_package_childs(j,2) , 1 )) = "~";
+			end
+			
 		end
 		
 		// Get the parents of this toolbox
