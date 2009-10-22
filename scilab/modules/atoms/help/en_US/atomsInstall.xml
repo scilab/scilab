@@ -38,9 +38,25 @@
         <term>module</term>
         <listitem>
           <para>
-						Matrix of strings : External module name. this argument has to respect
-						the following format "name version". the version is not mandatory.
+						mx1 or mx2 Matrix of strings:
 					</para>
+					
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"1st column" (mandatory)</literal>: devoted to module's
+								technical name.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"2nd column" (optional)</literal>: devoted to module's
+								version. If this field is empty or is not present, the most recent
+								version is installed.
+							</para>
+            </listitem>
+          </itemizedlist>
+					
         </listitem>
       </varlistentry>
       
