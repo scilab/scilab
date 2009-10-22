@@ -53,6 +53,9 @@ if or( atomsIsInstalled(["toolbox_1","1.0";"toolbox_2","0.0";"toolbox_2","2.1";"
 // =============================================================================
 atomsRemove("toolbox_2","user");
 
+// no module should be installed
+if ~isempty( atomsGetInstalled() ) then pause, end
+
 // Restore original values
 // =============================================================================
 atomsSetConfig("autoload",config_autoload);
