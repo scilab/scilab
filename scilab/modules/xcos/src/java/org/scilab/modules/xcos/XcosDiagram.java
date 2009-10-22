@@ -860,45 +860,44 @@ public class XcosDiagram extends ScilabGraph {
     public boolean saveDiagram() {
 	boolean isSuccess = false;
 	if (getTitle().equals(XcosMessages.UNTITLED)) {
-	    isSuccess = saveDiagramAs();
-	} 
-	else {
-	    isSuccess = BlockWriter.writeDiagramToFile(getTitle(), this);
+	    isSuccess = saveDiagramAs(null);
+	} else {
+	    isSuccess = saveDiagramAs(getTitle());
 	}
 
-	if(isSuccess) {
+	if (isSuccess) {
 	    setModified(false);
 	}
 
 	return isSuccess;
     }
 
-    public boolean saveDiagramAs() {
+    public boolean saveDiagramAs(String fileName) {
 
 	boolean isSuccess = false;
-	String fileName;
 
-	// Choose a filename
-	FileChooser fc = ScilabFileChooser.createFileChooser();
-	fc.setTitle(XcosMessages.SAVE_AS);
-	fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
-	fc.setMultipleSelection(false);
-	String[] mask = {"*.xcos"};
-	String[] maskDesc = {"Xcos file (XML)"};  
-	((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
-	fc.displayAndWait();
+	if (fileName == null) {
+		// Choose a filename
+		FileChooser fc = ScilabFileChooser.createFileChooser();
+		fc.setTitle(XcosMessages.SAVE_AS);
+		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
+		fc.setMultipleSelection(false);
+		String[] mask = {"*.xcos"};
+		String[] maskDesc = {"Xcos file (XML)"};  
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
+		fc.displayAndWait();
 
-	if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-	    return isSuccess;
+		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
+			return isSuccess;
+		}
+		fileName = fc.getSelection()[0];
 	}
-	fileName = fc.getSelection()[0];
-
 	/* Extension checks */
 	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
 	if (extension.equals(fileName)) {
 	    /* No extension given --> .xcos added */
 	    fileName += ".xcos";
-	} else if (!extension.equals(".xcos")) {
+	} else if (!extension.equals("xcos")) {
 	    XcosDialogs.couldNotSaveFile();
 	    return false;
 	}
