@@ -240,8 +240,11 @@ Since no initial simplex clearly improves on the others, in practice,
 it may be convenient to try different approaches.
 
 \subsection{Spendley's et al regular simplex}
+\index{Spendley, W.}
+\index{Hext, G. R.}
+\index{Himsworth, F. R.}
 
-In their paper \cite{Spendley1962}, Spendley et al. use a regular 
+In their paper \cite{Spendley1962}, Spendley, Hext and Himsworth use a regular 
 simplex with given size $\ell>0$. We define the parameters $p,q>0$ as 
 \begin{eqnarray}
 p &=& \frac{1}{n\sqrt{2}} \left(n-1 + \sqrt{n+1}\right), \\
@@ -365,6 +368,7 @@ The other vertices are defined by
 for vertices $i=2,n+1$ and components $j=1,n$.
 
 \subsection{Pfeffer's method}
+\index{Pfeffer, L.}
 
 This initial simplex is used in the function \scifunction{fminsearch}
 and presented in \cite{Fan2002}. According to \cite{Fan2002}, this simplex is due to L. Pfeffer at Stanford.
@@ -407,6 +411,8 @@ of simplex directions. We derive the forward
 simplex gradient.
 
 \subsection{Matrix of simplex directions}
+\index{matrix of simplex directions}
+\index{simplex condition}
 
 We consider here simplices made of $m=n+1$ vertices only.
 This allows to define the matrix of simplex directions as presented
@@ -677,6 +683,7 @@ which concludes the proof.
 
 \subsection{Forward difference simplex gradient}
 \label{simplex-section-forwardgradient}
+\index{simplex gradient}
 
 Finite difference formulas are a common tool to compute 
 the numerical derivative of a function. In this section, we 
@@ -952,6 +959,7 @@ condition number $\kappa(S)$ is increasing.
 \end{example}
 
 \section{References and notes}
+\index{Kelley, C. T.}
 
 The section \ref{simplex-section-forwardgradient} and some 
 elements of the section \ref{section-simplexsize}
