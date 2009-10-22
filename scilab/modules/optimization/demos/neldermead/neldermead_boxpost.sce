@@ -8,12 +8,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// nmplot_boxproblemA.sce --
+// nmplot_boxpost.sce --
 //   Show that the Box algorithm is able to reproduce the 
-//   numerical experiment presented in Box's paper.
+//   numerical experiment presented in Richardson and Kuester's paper.
+//   Rosenbrock's Post Office
 //
 
-mprintf("Illustrates Box'' algorithm on Box problem B.\n");
+mprintf("Illustrates Box'' algorithm on Box problem A.\n");
 mprintf("Defining Box Problem A function...\n");
 
 //
@@ -52,10 +53,22 @@ mprintf("Defining Box Problem A function...\n");
 //   x: the point where to compute the function
 //   index : the stuff to compute
 //   data : the parameters of Box cost function
+// Note
+//  The following protocol is used
+//  * if index=1, or no index, returns the value of the cost 
+//    function (default case)
+//  * if index=2, returns the value of the nonlinear inequality 
+//    constraints, as a row array
+//  * if index=3, returns an array which contains
+//    at index #0, the value of the cost function  
+//    at index #1 to the end is the list of the values of the nonlinear 
+//    constraints
+//  The inequality constraints are expected to be positive.
 //
 function [ f , c , index ] = boxproblemB ( x , index )
-  f = []
-  c = []
+  if (~isdef('index','local')) then
+    index = 1
+  end
   x3 = x(1) + sqrt(3.0) * x(2)
   if ( index==1 | index==3 ) then
     f = -(9.0 - (x(1) - 3.0) ^ 2) * x(2) ^ 3 / 27.0 / sqrt(3.0)
@@ -77,7 +90,7 @@ rand("seed" , 0)
 
 x0 = [1.0 0.5].';
 // Compute f(x0) : should be close to -0.0133645895646
-fx0 = boxproblemB ( x0 );
+[ fx0 , c, index ] = boxproblemB ( x0 , 1 );
 mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -0.0133645895646 );
 result = boxproblemB ( x0 , 2 );
 mprintf("Computed Constraints(x0) = [%e %e %e]\n", ...
@@ -99,7 +112,7 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "boxproblemB.txt" );
+nm = neldermead_configure(nm,"-logfile" , "postoffice.txt" );
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
 nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
@@ -134,11 +147,11 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-deletefile ( "boxproblemB.txt" )
+deletefile ( "postoffice.txt" )
 //
 // Load this script into the editor
 //
-filename = 'neldermead_boxproblemB.sce';
+filename = 'neldermead_boxpost.sce';
 dname = get_absolute_file_path(filename);
 editor ( dname + filename );
 

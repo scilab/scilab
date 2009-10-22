@@ -66,6 +66,7 @@ nmplot_display(nm);
 //
 // Plot
 //
+mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.5 , ymax = 1.5 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
@@ -76,4 +77,10 @@ drawnow();
 deletefile("han2-history-simplex.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_han2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 
