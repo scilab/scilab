@@ -21,9 +21,9 @@
   </add>
 
   <!-- Const -->
-	<add as="Const" extend="block"/>
+  <add as="Const" extend="block"/>
 
-	<!-- Gain -->
+  <!-- Gain -->
   <add as="Gain" extend="blockWithLabel">
     <add as="shape" value="triangle"/>
     <add as="perimeter" value="trianglePerimeter"/>
@@ -116,8 +116,8 @@
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
-      <add as="displayedLabel" value="Square wave&lt;BR&gt;
-				      generator"/>
+    <add as="displayedLabel" value="Square wave&lt;BR&gt;
+				    generator"/>
   </add>
   <add as="RAMP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.gif"/>
@@ -131,20 +131,20 @@
 				    input file"/>
   </add>
   <add as="CLKINV_f" extend="blockWithLabel">
-		<add as="shape" value="rectangle"/>
-		<add as="rounded" value="1"/>
-		<add as="fillColor" value="white"/>
-		<add as="strokeColor" value="red"/>
-	</add>
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+    <add as="strokeColor" value="red"/>
+  </add>
   <add as="CURV_f" extend="Icon">
     <!-- FIXME : Generate a fixed image for this one -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
-		<add as="shape" value="rectangle"/>
-		<add as="rounded" value="1"/>
-		<add as="fillColor" value="white"/>
-	</add>
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+  </add>
   <add as="READAU_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Read from .au&lt;BR&gt;
 				    sound file"/>
@@ -479,71 +479,71 @@
   </add>
   <add as="DFLIPFLOP" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		J
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD/&gt;
-		&lt;TD&gt;
-		Q
-		&lt;/TD&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		clk
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD/&gt;
-		&lt;TD&gt;
-		!Q
-		&lt;/TD&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		en
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;/TABLE&gt;"/>
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    J
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD/&gt;
+				    &lt;TD&gt;
+				    Q
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    clk
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD/&gt;
+				    &lt;TD&gt;
+				    !Q
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    en
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="JKFLIPFLOP" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		J
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD/&gt;
-		&lt;TD&gt;
-		Q
-		&lt;/TD&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		clk
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD/&gt;
-		&lt;TD&gt;
-		!Q
-		&lt;/TD&gt;
-		&lt;/TR&gt;
-                &lt;TR&gt;
-		&lt;TD&gt;
-		K
-		&lt;/TD&gt;
-		&lt;TD/&gt;
-		&lt;/TR&gt;
-                &lt;/TABLE&gt;"/>
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    J
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD/&gt;
+				    &lt;TD&gt;
+				    Q
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    clk
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD/&gt;
+				    &lt;TD&gt;
+				    !Q
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    K
+				    &lt;/TD&gt;
+				    &lt;TD/&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="SRFLIPFLOP" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
@@ -985,9 +985,8 @@
   <add as="SAT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SAT_f.gif"/>
   </add>
-  <add as="RAND_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAND_f.gif"/>
-  </add>
+  <!-- RAND_f and RAND_m looks exactly the same -->
+  <add as="RAND_f" extend="RAND_m"/>
   <add as="MUX_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
   </add>
