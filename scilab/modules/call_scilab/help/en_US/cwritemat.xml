@@ -22,11 +22,11 @@
   </info>
 
   <refnamediv>
-    <refname>cwritemat</refname>
+    <refname>cwritemat (obsolete)</refname>
 
     <refpurpose>Write a single double or a matrix of double into Scilab memory
     using call_scilab. Note that it is the default datatype in
-    Scilab.</refpurpose>
+    Scilab.Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_writing_API">API_Scilab: Double writing</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

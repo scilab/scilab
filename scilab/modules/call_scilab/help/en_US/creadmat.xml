@@ -22,11 +22,11 @@
   </info>
 
   <refnamediv>
-    <refname>creadmat</refname>
+    <refname>creadmat (obsolete)</refname>
 
     <refpurpose>Read a single double or a matrix of double from Scilab memory
     using call_scilab. Note that it is the default datatype in
-    Scilab.</refpurpose>
+    Scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_reading_API">API_Scilab: Double reading</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
