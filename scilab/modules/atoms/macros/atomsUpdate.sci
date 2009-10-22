@@ -74,7 +74,7 @@ function result = atomsUpdate(name,section)
 	// Check if all specified toolboxes are effectively installed
 	// =========================================================================
 	
-	if rhs>0 & ( ~ isempty(name)) then
+	if (rhs>0) &  ~isempty(name) then
 		
 		// Remove leading and trealing whitespaces
 		name = stripblanks(name);
@@ -89,7 +89,7 @@ function result = atomsUpdate(name,section)
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
-	sciversion = strcat(string(getversion('scilab')) + ".");
+	sciversion = strcat(string(getversion("scilab")) + ".");
 	
 	// If name isn't defined or empty, get the full list of installed packages
 	// =========================================================================
@@ -107,16 +107,40 @@ function result = atomsUpdate(name,section)
 		end
 	end
 	
-	// Loop on name
+	// Build the list of explicit packages to update (i.e without dependencies)
 	// =========================================================================
+	
+	package_main_list = [];
 	
 	for i=1:size(name,"*")
 		
-		this_package_versions    = atomsGetInstalledVers(name(i),section);
-		this_package_MRV_ins     = this_package_versions(1);   // Most Recent Version Installed
+		if section=="all" then
+			sections = ["user";"allusers"];
+		else
+			sections = section;
+		end
+		
+		for j=1:size(sections,"*")
+			
+			if ~atomsIsInstalled(name(i),sections(j)) then
+				continue;
+			end
+			
+			this_package_versions    = atomsGetInstalledVers(name(i),sections(j));
+			package_main_list        = [ package_main_list ; atomsGetInstalledDetails([name(i) this_package_versions(1)],sections(j)) ];
+			
+		end
+		
+	end
+	
+	// Install the Most Recent Version of all items of "name" array
+	// =========================================================================
+	
+	for i=1:size(package_main_list(:,1),"*")
+		
+		this_package_MRV_ins     = package_main_list(i,2);     // Most Recent Version Installed
 		this_package_MRV_ava     = atomsGetMRVersion(name(i)); // Most Recent Version Available
-		this_package_ins_details = atomsGetInstalledDetails([name(i) this_package_MRV_ins],section);
-		this_package_ins_section = this_package_ins_details(3);
+		this_package_ins_section = package_main_list(i,3);
 		
 		if (this_package_MRV_ava == -1) | ..
 				( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
@@ -130,17 +154,56 @@ function result = atomsUpdate(name,section)
 			result = [ result ; this_result ];
 		end
 		
+	end
+	
+	// Loop on name to update dependencies
+	// =========================================================================
+	
+	for i=1:size(package_main_list(:,1),"*")
+		
+		this_package_MRV_ins     = package_main_list(i,2);     // Most Recent Version Installed
+		this_package_MRV_ava     = atomsGetMRVersion(name(i)); // Most Recent Version Available
+		this_package_ins_section = package_main_list(i,3);
+		
 		// Now check if it's dependencies are up-to-date
 		dependencies = atomsInstallList([name(i) this_package_MRV_ins],this_package_ins_section);
 		
 		for j=1:size(dependencies(:,1),"*")
 			
 			if ~atomsIsInstalled([dependencies(j,3) dependencies(j,4)],this_package_ins_section) then
+				
 				// Install the new toolbox
 				this_result = atomsInstall([dependencies(j,3) dependencies(j,4)],this_package_ins_section);
 				
+				// It's just a dependency
+				atomsInstallUnregister(dependencies(j,3),dependencies(j,4),this_package_ins_section);
+				atomsInstallRegister(dependencies(j,3),dependencies(j,4),"A",this_package_ins_section);
+				
 				// Fill the output argument
 				result = [ result ; this_result ];
+			end
+			
+		end
+		
+	end
+	
+	// Remove older version of all items of "name" array
+	// =========================================================================
+	
+	for i=1:size(package_main_list(:,1),"*")
+		
+		this_package_name        = package_main_list(i,1);
+		this_package_ins_section = package_main_list(i,3);
+		this_package_versions    = atomsGetInstalledVers(this_package_name,this_package_ins_section);
+		this_package_versions(1) = []; // Don't remove the most recent version
+		
+		for j=1:size(this_package_versions,"*")
+			
+			this_package_version = this_package_versions(j);
+			
+			// Check if this package is a child of another installed package
+			if isempty( atomsGetDepParents([this_package_name this_package_version],this_package_ins_section) ) then
+				atomsRemove([this_package_name this_package_version],this_package_ins_section);
 			end
 			
 		end

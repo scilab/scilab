@@ -131,12 +131,11 @@ function remList = atomsRemoveList(packages,section)
 		this_package_name    = packages(i,3);
 		this_package_version = packages(i,4);
 		this_package_section = packages(i,5);
-	
+		
 		// Get the parents of this toolbox
 		// (inevitably removed, unless we have not the right)
 		// ----------------------------------------------------
-		
-		this_package_parents = atomsGetDepParents([this_package_name this_package_version]);
+		this_package_parents = atomsGetDepParents([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_parents(:,1),"*")
 			
@@ -163,7 +162,7 @@ function remList = atomsRemoveList(packages,section)
 		// Get the childs of this toolbox
 		// ----------------------------------------------
 		
-		this_package_childs = atomsGetDepChilds([this_package_name this_package_version]);
+		this_package_childs = atomsGetDepChilds([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_childs(:,1),"*")
 			
@@ -187,7 +186,7 @@ function remList = atomsRemoveList(packages,section)
 		
 	end
 	
-	// Third Step : Loop on childs check if we uninstall it or not
+	// Third Step : Loop on childs check if we can remove it or not
 	// =========================================================================
 	
 	packages = remList(find(remList(:,2)=="C"),:);
@@ -227,7 +226,7 @@ function remList = atomsRemoveList(packages,section)
 		// Get the parents of this toolbox
 		// ----------------------------------------------
 		
-		this_package_parents = atomsGetDepParents([this_package_name this_package_version]);
+		this_package_parents = atomsGetDepParents([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_parents(:,1),"*")
 			

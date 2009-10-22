@@ -83,6 +83,7 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxMultiplicity;
@@ -101,7 +102,7 @@ public class XcosDiagram extends ScilabGraph {
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
-
+    private mxPoint startSplit = new mxPoint(0,0);
     private Tab parentTab;
     //private Window palette;
     private Tab viewPort;
@@ -177,8 +178,8 @@ public class XcosDiagram extends ScilabGraph {
     		if(target instanceof ExplicitInputPort) {
 
     			BasicLink link = (BasicLink)source;
-    			mxCell linkSource =  (mxCell)link.getSource();
-    			mxCell linkTarget =  (mxCell)link.getTarget();
+    			BasicPort linkSource =  (BasicPort)link.getSource();
+    			BasicPort linkTarget =  (BasicPort)link.getTarget();
 
     			mxGeometry geomSource = linkSource.getParent().getGeometry();
     			mxGeometry geomTarget = linkTarget.getParent().getGeometry();
@@ -186,12 +187,13 @@ public class XcosDiagram extends ScilabGraph {
     			double offsetX = geomTarget.getCenterX() -  geomSource.getCenterX();
     			double offsetY = geomTarget.getCenterY() -  geomSource.getCenterY();
 
-    			BasicBlock splitBlock = BasicBlock.createBlock("SPLIT_f");
+    			SplitBlock splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort)target);
     			splitBlock.setStyle("SPLIT_f");
     			addCell(splitBlock);
     			mxRectangle splitRect = new mxRectangle();
-    			splitRect.setX(geomSource.getCenterX() + offsetX / 2);
-    			splitRect.setY(geomSource.getCenterY() + offsetY / 2);
+    			System.err.println("startSplit (" + startSplit.getX() + "," + startSplit.getY() + ")");
+    			splitRect.setX(startSplit.getX());
+    			splitRect.setY(startSplit.getY());
     			splitRect.setWidth(6);
     			splitRect.setHeight(6);
     			cellsResized(new Object[]{splitBlock}, new mxRectangle[]{splitRect});
@@ -202,18 +204,18 @@ public class XcosDiagram extends ScilabGraph {
     		    BasicLink newLink1 = new ExplicitLink();
     		    newLink1.setGeometry(new mxGeometry(0,0,80,80));
     		    newLink1.setSource(linkSource);
-    		    newLink1.setTarget(splitBlock);
+    		    newLink1.setTarget(splitBlock.getIn());
     		    addCell(newLink1);
 
     		    BasicLink newLink2 = new ExplicitLink();
     		    newLink2.setGeometry(new mxGeometry(0,0,80,80));
-    		    newLink2.setSource(splitBlock);
+    		    newLink2.setSource(splitBlock.getOut1());
     		    newLink2.setTarget(linkTarget);
     		    addCell(newLink2);
 
     		    BasicLink newLink3 = new ExplicitLink();
     		    newLink3.setGeometry(new mxGeometry(0,0,80,80));
-    		    newLink3.setSource(splitBlock);
+    		    newLink3.setSource(splitBlock.getOut2());
     		    newLink3.setTarget((mxCell)target);
     		    addCell(newLink3);
 
@@ -594,8 +596,14 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void mousePressed(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
-
+	    Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
+		if(cell instanceof BasicLink){
+			startSplit.setX(arg0.getX());
+			startSplit.setY(arg0.getY());
+		}else{
+			startSplit.setX(0);
+			startSplit.setY(0);
+		}
 	}
 
 	public void mouseReleased(MouseEvent arg0) {

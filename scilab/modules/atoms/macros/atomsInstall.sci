@@ -16,7 +16,7 @@ function result = atomsInstall(packages,section)
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
-		load("SCI/packages/atoms/macros/atoms_internals/lib");
+		load("SCI/atoms/macros/atoms_internals/lib");
 	end
 	
 	result = [];
@@ -435,9 +435,20 @@ function result = atomsInstall(packages,section)
 	// Remove orphan packages
 	// =========================================================================
 	
-	orphan_list = atomsOrphanList(section);
-	if ~ isempty(orphan_list) then
-		atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] );
+	if section=="all" then
+		sections = ["user";"allusers"];
+	else
+		sections = section;
+	end
+	
+	for i=1:size(sections,"*")
+		
+		orphan_list = atomsOrphanList(sections(i));
+		
+		if ~ isempty(orphan_list) then
+			atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] , sections(i) );
+		end
+		
 	end
 	
 	// Go to the initial location
