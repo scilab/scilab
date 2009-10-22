@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -296,8 +297,6 @@ public class XcosDiagram extends ScilabGraph {
 	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	setMultiplicities(multiplicities);
-//	getAsComponent().validateGraph();
-
     }
 
     /**
@@ -322,23 +321,6 @@ public class XcosDiagram extends ScilabGraph {
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 
-	addListener(XcosEvent.UPDATE_CELL_SIZE, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-	    }
-	});
-	
-	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new mxIEventListener()
-	{
-		public void invoke(Object sender, mxEventObject evt)
-		{
-			if(evt.getArgs()[0] instanceof SuperBlock){
-				refresh();
-			}
-		}
-	});
-
-
-	
 	// Track when superblock ask a parent refresh.
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
 
@@ -348,6 +330,12 @@ public class XcosDiagram extends ScilabGraph {
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
 
+	// Track when we have to force a Block to reshape
+	addListener(XcosEvent.FORCE_CELL_RESHAPE, new ForceCellReshapeTracker());
+	
+	// Track when we have to force a Block value
+	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
+	
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
@@ -357,6 +345,7 @@ public class XcosDiagram extends ScilabGraph {
 		getModel().endUpdate();
 	    }
 	});	
+	
     }
 
     /**
@@ -366,51 +355,95 @@ public class XcosDiagram extends ScilabGraph {
     private class ModelTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    //System.err.println("[DEBUG] Model just changed");
+
 	    List changes = (List) evt.getArgAt(0);
+	    List<Object> objects = new ArrayList<Object>();
+	    getModel().beginUpdate();
 	    for (int i = 0 ; i < changes.size() ; ++i) {
 		//System.err.println("args[" + i + "] = " + changes.get(i));
 		if (changes.get(i) instanceof mxChildChange) {
 		    //System.err.println("Change cell = "+((mxChildChange) changes.get(i)).getChild().toString());
 		    if (((mxChildChange) changes.get(i)).getChild() instanceof SplitBlock) {
-		    	continue;
+			continue;
 		    }
-		
-		if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
+
+		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
 			BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes.get(i)).getChild();
-			getModel().beginUpdate();
-
-			if (getCellStyle(currentCell).get("displayedLabel") != null) {
-				((mxCell) currentCell).setValue("<html><body> "+getCellStyle(currentCell).get("displayedLabel")+" </body></html>");
-			}
-
-			mxRectangle preferedSize = getPreferredSizeForCell(currentCell);
-			mxGeometry cellSize = ((mxCell) currentCell).getGeometry();
-
-			((mxCell) currentCell).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-					Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-					Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-			cellsResized(new Object[] { currentCell }, new mxRectangle[] { ((mxCell) currentCell).getGeometry() });
-			//refresh();
-			getModel().endUpdate();
-			//((BasicBlock) ((mxGeometryChange) changes.get(i)).getCell()).updateBlockView();
+			fireEvent(XcosEvent.FORCE_CELL_RESHAPE, new mxEventObject(new Object[] {currentCell}));
+			fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {currentCell}));
 		    }
+		}
+	    }
+	    getModel().endUpdate();
+	}
+    }
+    /**
+     * ForceCellValueUpdate
+     * Called when we want a block content to update.
+     */
+    private class ForceCellValueUpdate implements mxIEventListener {
+	public void invoke(Object source, mxEventObject evt) {
+	    Object[] cells = (Object[]) evt.getArgs();
+
+	    getModel().beginUpdate();
+
+	    for (int i = 0 ; i < cells.length ; ++i) {
+		
+		Object cell = cells[i];
+		
+		if(cell instanceof BasicBlock) {
+		    System.err.println("[DEBUG] Force Value Updated. cell = "+cell.toString());
+		    if (getCellStyle(cell).get("displayedLabel") != null) {
+			((mxCell) cell).setValue("<html><body> "+getCellStyle(cell).get("displayedLabel")+" </body></html>");
+		    }
+
+		    mxRectangle preferedSize = getPreferredSizeForCell(cell);
+		    mxGeometry cellSize = ((mxCell) cell).getGeometry();
+
+		    ((mxCell) cell).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
+			    Math.max(preferedSize.getWidth(), cellSize.getWidth()),
+			    Math.max(preferedSize.getHeight(), cellSize.getHeight())));
+		    cellsResized(new Object[] { cell }, new mxRectangle[] { ((mxCell) cell).getGeometry() });
+		}
+	    }
+	    getModel().endUpdate();
+	    refresh();
+	}
+    }
+    
+    /**
+     *  ForceCellReshapeTracker
+     *  Called when we want a Block to reshape for it's ports positions.
+     */
+    private class ForceCellReshapeTracker implements mxIEventListener {
+	public void invoke(Object source, mxEventObject evt) {
+	    Object[] cells =  (Object[]) evt.getArgs();
+	    for (int i = 0 ; i <  cells.length ; ++i) {
+		Object cell = cells[i];
+		System.err.println("[DEBUG] Force Cell reshape on "+cell);
+		if (cell instanceof BasicBlock) {
+		    getModel().beginUpdate();
+		    ((BasicBlock) cell).updateBlockView();
+		    refresh();
+		    getModel().endUpdate();
 		}
 	    }
 	}
     }
-
+    
+    /**
+     *  SuperBlockUpdateTracker
+     *  Called when adding some port in a SuperBlock diagram
+     *  to update current sub-diagram (i.e SuperBlock) representation.
+     */
     private class SuperBlockUpdateTracker implements mxIEventListener {
-
-    	public SuperBlockUpdateTracker() {
-    	}
-
     	public void invoke(Object source, mxEventObject evt) {
     		refresh();
     	}
     }
 
     /**
-     * cellAddedTracker
+     * CellAddedTracker
      * Called when mxEvents.CELLS_ADDED is fired.
      */
     private class CellAddedTracker implements mxIEventListener {
@@ -423,51 +456,38 @@ public class XcosDiagram extends ScilabGraph {
     	public void invoke(Object source, mxEventObject evt) {
     		System.err.println("[DEBUG] CELLS_ADDED");
     		Object[] cells = (Object[]) evt.getArgs()[0];
+    		getModel().beginUpdate();
     		for (int i = 0 ; i < cells.length ; ++i) {
-    			if (cells[i] instanceof BasicBlock) {
-    				if(cells[i] instanceof AfficheBlock){
-    					AfficheBlock affich = (AfficheBlock)cells[i];
-    					Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
-    				}
-    				
-    				((BasicBlock) cells[i]).setParentDiagram(diagram);
-
-    				getModel().beginUpdate();
-
-    				if (getCellStyle(cells[i]).get("displayedLabel") != null) {
-    					((mxCell) cells[0]).setValue("<html><body> "+getCellStyle(cells[i]).get("displayedLabel")+" </body></html>");
-    				}
-
-    				mxRectangle preferedSize = getPreferredSizeForCell(cells[i]);
-    				mxGeometry cellSize = ((mxCell) cells[i]).getGeometry();
-
-    				((mxCell) cells[i]).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-    						Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-    						Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-    				cellsResized(new Object[] { cells[i] }, new mxRectangle[] { ((mxCell) cells[i]).getGeometry() });
-    				refresh();
-    				getModel().endUpdate();
+    		    if (cells[i] instanceof BasicBlock) {
+    			// Store all AfficheBlocks in a dedicated HasMap
+    			if(cells[i] instanceof AfficheBlock){
+    			    AfficheBlock affich = (AfficheBlock)cells[i];
+    			    Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
     			}
+    			// Update parent on cell addition
+    			((BasicBlock) cells[i]).setParentDiagram(diagram);
+    			//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] { cells[i] }));
+    		    }
     		}
-    		System.err.println("[DEBUG] CELLS_ADDED END");
+    		getModel().endUpdate();
     	}
     }
 
     /**
-     * cellResizedTracker
+     * CellResizedTracker
      * Called when mxEvents.CELLS_RESIZED is fired. 
      */
     private class CellResizedTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    Object[] cells = (Object[]) evt.getArgs()[0];
-
+	    System.err.println("[DEBUG] Cells Resized ...");
+	    getModel().beginUpdate();
 	    for (int i = 0 ; i < cells.length ; ++i) {
 		if (cells[i] instanceof BasicBlock) {
-		    getModel().beginUpdate();
 		    ((BasicBlock) cells[i]).updateBlockView();
-		    getModel().endUpdate();
 		}
 	    }
+	    getModel().endUpdate();
 	}
     }
 
@@ -503,7 +523,6 @@ public class XcosDiagram extends ScilabGraph {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(getContext());
-		    //getAsComponent().setCellWarning(block, "truc a la con");
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
@@ -588,8 +607,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	}
     }
-
-
+  
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
      * and a (+) to expand them.
