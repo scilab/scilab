@@ -13,11 +13,11 @@
 // <-- Short Description -->
 // 
 // 
-path=get_absolute_file_path('bug_4715.tst')
 load(SCI+'/modules/scicos/tests/nonreg_tests/bug_4715.cos');
-%scicos_context.a=0.1;
-%scicos_context.b=0.1;
+%scicos_context.a = 0.1;
+%scicos_context.b = 0.1;
 global AA
-Info=scicos_simulate(scs_m,list(),%scicos_context,'nw');
-res=AA;clearglobal AA
+Info = scicos_simulate(scs_m,list(),%scicos_context,'nw');
+res = AA;
+clearglobal AA;
 if abs(res-1.56012845688924151)>1d-10 then pause,end
