@@ -54,26 +54,36 @@ function packages = atomsGetDepParents(package,section)
 		
 	end
 	
-	// Load the installed_deps struct
-	// =========================================================================
-	[ child_deps,parent_deps ] = atomsLoadInstalleddeps(section);
-	
-	// If name - version is not a field of the struct, the job is done
-	// =========================================================================
-	
-	if ~ isfield(parent_deps,package(1)+" - "+package(2)) then
-		return;
+	if section == "all" then
+		sections = ["user","allusers"];
+	else
+		sections = section;
 	end
 	
-	// Return the matrix associated with the wanted package (name - version)
-	// =========================================================================
-	
-	packages_list = parent_deps(package(1)+" - "+package(2));
-	
-	for i=1:size(packages_list,"*")
-		this_package_name    = part(packages_list(i),1:regexp(packages_list(i),"/\s-\s/","o")-1);
-		this_package_version = part(packages_list(i),length(this_package_name)+4:length(packages_list(i)));
-		packages = [ packages ; this_package_name this_package_version ];
+	for i=1:size(sections,"*")
+		
+		// Load the installed_deps struct
+		// =========================================================================
+		[ child_deps,parent_deps ] = atomsLoadInstalleddeps(sections(i));
+		
+		// If name - version is not a field of the struct, the job is done
+		// =========================================================================
+		
+		if ~ isfield(parent_deps,package(1)+" - "+package(2)) then
+			return;
+		end
+		
+		// Return the matrix associated with the wanted package (name - version)
+		// =========================================================================
+		
+		packages_list = parent_deps(package(1)+" - "+package(2));
+		
+		for j=1:size(packages_list,"*")
+			this_package_name    = part(packages_list(j),1:regexp(packages_list(j),"/\s-\s/","o")-1);
+			this_package_version = part(packages_list(j),length(this_package_name)+4:length(packages_list(j)));
+			packages = [ packages ; this_package_name this_package_version sections(i) ];
+		end
+		
 	end
 	
 endfunction
