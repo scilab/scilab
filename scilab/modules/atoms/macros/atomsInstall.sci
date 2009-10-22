@@ -258,9 +258,9 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	for i=1:size(install_package_list(:,1),"*")
 		if install_package_list(i,1) == "+" then
-			atomsDisp(msprintf("\t%s (%s) will be installed\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		elseif install_package_list(i,1) == "~" then
-			atomsDisp(msprintf("\t%s (%s) is already installed and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		end
 	end
 	
