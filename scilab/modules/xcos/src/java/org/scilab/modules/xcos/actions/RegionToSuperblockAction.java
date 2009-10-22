@@ -57,6 +57,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	    
 	    BasicBlock insertMe = BasicBlock.createBlock("SUPER_f");
+	    insertMe.setStyle("SUPER_f");
 	    insertMe.getGeometry().setX((maxX + minX) / 2.0);
 	    insertMe.getGeometry().setY((maxY + minY) / 2.0);
 	    insertMe.setRealParameters(BlockWriter.convertDiagramToMList(superBlock));

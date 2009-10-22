@@ -48,7 +48,6 @@ public class SuperBlock extends BasicBlock {
 
     public SuperBlock(String label) {
 	super(label);
-	setStyle("SUPER_f");
     }
     
     /**
