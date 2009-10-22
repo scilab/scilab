@@ -28,6 +28,9 @@ import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
+import javax.swing.undo.CompoundEdit;
+
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.AttributeSet;
 
@@ -51,9 +54,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				}
 				*/
 				if (!indentInprogress){ 
-				undo.addEdit(e.getEdit());
-				
-				EventType = "";
+					(shouldMergeEdits ? compoundEdit : this).addEdit(e.getEdit());
+					EventType = "";
 				}
 			}
 
@@ -66,8 +68,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private volatile boolean colorizeInprogress = false;
 	private volatile boolean indentInprogress   = false;
 	private volatile boolean updaterDisabled    = false;
-
+	private volatile boolean shouldMergeEdits    = false;
+	
 	private String EventType;
+	private CompoundEdit compoundEdit = null;
 	
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
 	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
@@ -305,7 +309,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
 		}
 	}
-	
+	public void setShouldMergeEdits(boolean b) {
+		if(shouldMergeEdits){
+			if(!b) { // ending compound editing
+				compoundEdit.end();
+				undo.addEdit(compoundEdit);
+				compoundEdit= null;
+			}
+		} else {
+			if(b) { // starting compound editing
+				compoundEdit= new CompoundEdit();
+			}
+		}
+		shouldMergeEdits = b;
+	}
+	public boolean getShouldMergeEdits() {
+		return shouldMergeEdits;
+	}
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -1179,12 +1199,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public synchronized int tabifyLines(int line_start, int line_end)
 	{
-		boolean indentMode= getAutoIndent();
+		boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 		setAutoIndent(false);
+		setColorize(false);
+		setShouldMergeEdits(true);
 		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
 			tabifyLine(currentLine);
 		}
 		setAutoIndent(indentMode);
+		setColorize(colorizeMode);
+		setShouldMergeEdits(mergeEditsMode);
 		return getTabulation().length();
 	}
 		
@@ -1249,13 +1273,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		int res=0;
 		if(canUntabifyLines(line_start, line_end))
 		{
-			boolean indentMode= getAutoIndent();
+			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 			setAutoIndent(false);
-			for (int i = line_start; i <= line_end; i++)
-			{
-				untabifyLine(i);
+			setColorize(false);
+			setShouldMergeEdits(true);
+			for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+				untabifyLine(currentLine);
 			}
 			setAutoIndent(indentMode);
+			setColorize(colorizeMode);
+			setShouldMergeEdits(mergeEditsMode);
 			res= getTabulation().length();
 		}
 		return res;

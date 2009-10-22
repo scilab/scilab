@@ -28,6 +28,9 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   end
   fun = varargin(1);
   x0 = varargin(2);
+  // Get x0 and change it into a column vector
+  x0t = size(x0,"*");
+  x0 = matrix(x0,x0t,1);
   defaultoptions = optimset ("fminsearch");
   if rhs==2 then
     // No options on the command line
@@ -38,7 +41,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     options = varargin(3);
   end
   // Compute options from the options struct
-  numberofvariables = size(x0,2);
+  numberofvariables = size(x0,"*");
   MaxFunEvals = optimget ( options , "MaxFunEvals" , defaultoptions.MaxFunEvals );
   MaxIter = optimget ( options , "MaxIter" , defaultoptions.MaxIter );
   TolFun = optimget ( options , "TolFun" , defaultoptions.TolFun );
@@ -85,7 +88,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   fmsfundata.Fun = fun
   // Perform Optimization
   nm = neldermead_new ();
-  nm = neldermead_configure(nm,"-x0",x0.');
+  nm = neldermead_configure(nm,"-x0",x0);
   nm = neldermead_configure(nm,"-numberofvariables",numberofvariables);
   nm = neldermead_configure(nm,"-simplex0method","pfeffer");
   nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
@@ -173,45 +176,51 @@ endfunction
 //    * OutputFcn : the array of output functions
 //
 function fminsearch_outputfun ( state , data , fmsdata )
-  if ( fmsdata.Display == "iter" ) then
-    select data.step
-    case "init" then
+  // 
+  // Compute procedure
+  //
+  select data.step
+  case "init" then
       if ( data.iteration == 0 ) then
-        dstep = "";
+        procedure = "";
       else
-        dstep = "initial simplex";
+        procedure = "initial simplex";
       end
-    case "done" then
-      dstep = ""
-    case "reflection" then
-      dstep = "reflect"
-    case "expansion" then
-      dstep = "expand"
-    case "insidecontraction" then
-      dstep = "contract inside"
-    case "outsidecontraction" then
-      dstep = "contract outside"
-    case "reflectionnext" then
-      dstep = "reflectionnext"
-    case "shrink" then
-      dstep = "shrink"
-    else
+  case "done" then
+      procedure = ""
+  case "reflection" then
+      procedure = "reflect"
+  case "expansion" then
+      procedure = "expand"
+  case "insidecontraction" then
+      procedure = "contract inside"
+  case "outsidecontraction" then
+      procedure = "contract outside"
+  case "shrink" then
+      procedure = "shrink"
+  else
       errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
       error(errmsg)
-    end
+  end
+  // 
+  // Display a message
+  //
+  if ( fmsdata.Display == "iter" ) then
     if ( data.step <> "done" ) then
     mprintf ( "%6s        %5s     %12s         %-20s\n", ...
-      string(data.iteration) , string(data.funccount) , string(data.fval) , dstep )
+      string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
     else
       mprintf ( "\n" )
     end
   end
+  //
   // Process output functions
+  //
   optimValues = struct(...
-      "funcCount" ,data.funccount , ...
+      "funccount" ,data.funccount , ...
       "fval" ,data.fval , ...
       "iteration" , data.iteration , ...
-      "procedure" , data.step ...
+      "procedure" , procedure ...
       );
   if ( fmsdata.OutputFcn <> [] ) then
     if ( type ( fmsdata.OutputFcn ) == 13 ) then

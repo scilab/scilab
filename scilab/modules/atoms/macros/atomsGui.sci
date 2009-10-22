@@ -21,13 +21,13 @@ if size(allModules, "*") == 0 then
 end
 
 // Defaults
-margin = 10;
-figwidth = 700;
-figheight = 500;
-buttonHeight = 20;
-widgetHeight = 20;
-defaultFont = "Arial";
-defaultFontSize = 12;
+margin           = 10;
+figwidth         = 800;
+figheight        = 500;
+buttonHeight     = 20;
+widgetHeight     = 20;
+defaultFont      = "Arial";
+defaultFontSize  = 12;
 
 // Close the window if it already exists
 oldFig = findobj("tag", "atomsFigure");
@@ -68,6 +68,8 @@ for k=1:size(modulesNames, "*")
 end
 
 // List of modules
+// =============================================================================
+
 listboxWidth = 200;
 listboxFrameWidth = listboxWidth + 2*margin;
 modulesListboxFrame = uicontrol("Parent", atomsfig,..
@@ -97,6 +99,8 @@ modulesListbox = uicontrol("Parent", atomsfig,..
     "Tag", "modulesListbox")
 
 // Description
+// =============================================================================
+
 descWidth = figwidth - 7*margin - listboxWidth 
 descFrameWidth = descWidth + 2*margin; 
 modulesDescFrame = uicontrol("Parent", atomsfig,..
@@ -114,6 +118,7 @@ modulesDescFrameTitle = uicontrol("Parent", atomsfig,..
     "Background", [1 1 1],..
     "Tag", "modulesDescFrameTitle")
 modulesDesc = uicontrol("Parent", atomsfig,..
+    "VerticalAlignment", "top",..
     "Style", "text",..
     "Position", [listboxFrameWidth+3*margin 3*margin+buttonHeight descWidth figheight-5*margin-buttonHeight],..
     "Background", [1 1 1],..
@@ -123,7 +128,12 @@ modulesDesc = uicontrol("Parent", atomsfig,..
     "Tag", "modulesDesc")
 
 // Buttons
-buttonWidth = (descFrameWidth - 2*margin) / 3;
+// =============================================================================
+
+buttonWidth = (descFrameWidth - 3*margin) / 4;
+
+// "Remove" Button
+
 removeButton = uicontrol("Parent", atomsfig,..
     "Style", "pushbutton",..
     "Position", [listboxFrameWidth+2*margin margin buttonWidth 20],..
@@ -133,6 +143,9 @@ removeButton = uicontrol("Parent", atomsfig,..
     "Callback", "cbAtomsGui", ..
     "Enable", "off",..
     "Tag", "removeButton")
+
+// "Install" Button
+
 installButton = uicontrol("Parent", atomsfig,..
     "Style", "pushbutton",..
     "Position", [listboxFrameWidth+3*margin+buttonWidth margin buttonWidth widgetHeight],..
@@ -142,6 +155,9 @@ installButton = uicontrol("Parent", atomsfig,..
     "Callback", "cbAtomsGui", ..
     "Enable", "off", ..
     "Tag", "installButton")
+
+// "Update" Button
+
 updateButton = uicontrol("Parent", atomsfig,..
     "Style", "pushbutton",..
     "Position", [listboxFrameWidth+4*margin+2*buttonWidth margin buttonWidth widgetHeight],..
@@ -152,6 +168,17 @@ updateButton = uicontrol("Parent", atomsfig,..
     "Enable", "off", ..
     "Tag", "updateButton")
 
+
+// "Update" Button
+
+updateButton = uicontrol("Parent", atomsfig,..
+    "Style", "pushbutton",..
+    "Position", [listboxFrameWidth+5*margin+3*buttonWidth margin buttonWidth widgetHeight],..
+    "FontName", defaultFont,..
+    "FontSize", defaultFontSize,..
+    "String", gettext("Load"),..
+    "Callback", "cbAtomsGui", ..
+    "Enable", "off", ..
+    "Tag", "loadButton")
+
 endfunction
-
-

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -35,7 +36,25 @@ elseif  get(gcbo, "Tag") == "installButton" then // Install selected module
   end
 
   updateAtomsGui();
+ 
+elseif  get(gcbo, "Tag") == "loadButton" then // Install selected module
   
+  disableAtomsGui();
+  
+  set(findobj("Tag", "modulesDesc"), "String", gettext("Installing..."));
+  
+  if execstr("atomsLoad(getSelectedModuleName())", "errcatch")<>0 then
+    
+    messagebox(gettext("Load failed !"), gettext("Atoms error"), "error");
+  
+  else
+  
+    messagebox(gettext("Load done !"), gettext("Atoms"), "info");
+
+  end
+
+  updateAtomsGui();
+ 
 elseif  get(gcbo, "Tag") == "removeButton" then // Remove selected module
 
   disableAtomsGui();
@@ -107,39 +126,65 @@ selected = get(modulesListbox, "Value");
 allModules = get(findobj("Tag", "atomsFigure"), "userdata");
 
 // Update the description
-modulesNames = getfield(1, allModules);
+
+modulesNames       = getfield(1, allModules);
 modulesNames (1:2) = [];
-themodule = allModules(getSelectedModuleName());
-vers = getfield(1, themodule);
-descZone = findobj("tag", "modulesDesc");
-set(descZone, "String", "<HTML><BODY>"+strcat(themodule(vers(3)).Description,"<BR>") + "</BODY></HTML>");
+themodule          = allModules(getSelectedModuleName());
+vers               = getfield(1, themodule);
+descZone           = findobj("tag", "modulesDesc");
+descFrameTitle     = findobj("tag", "modulesDescFrameTitle");
+
+htmlcode           = "<html>" + ..
+                      "<body>" + ..
+                      "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
+                      "  Version" + ..
+                      "</div>" + ..
+                      "<div>" + themodule(vers(3)).Version  + "</div>" + ..
+                      "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
+                      "  Description" + ..
+                      "</div>" + ..  
+                      "<div>" + ..
+                      strcat(themodule(vers(3)).Description,"<br />")  + ..
+                      "</div>" + ..
+                      "</body>" + ..
+                      "</html>";
+
+set(descFrameTitle, "String", themodule(vers(3)).Title);
+set(descZone, "String", htmlcode);
 
 // Tests for update available
 moduleVersion = atomsGetMRVersion(getSelectedModuleName());
 installedVersions = atomsGetInstalledVers(getSelectedModuleName());
-canUpdate = %F;
+canUpdate = "off";
 for k=1:size(installedVersions,"*")
   if atomsCompareVersion(installedVersions(k), moduleVersion)==-1 then
-    canUpdate = %T;
+    canUpdate = "on";
     break
   end
 end
 
-if canUpdate then
-  set(findobj("tag", "installButton"), "Enable", "off");
-  set(findobj("tag", "updateButton"), "Enable", "on");
-  set(findobj("tag", "removeButton"), "Enable", "on");
-elseif atomsIsInstalled(getSelectedModuleName()) then
-  set(findobj("tag", "installButton"), "Enable", "off");
-  set(findobj("tag", "updateButton"), "Enable", "off");
-  set(findobj("tag", "removeButton"), "Enable", "on");
+// Tests for load available
+if atomsIsInstalled(getSelectedModuleName()) & ~ atomsIsLoaded(getSelectedModuleName()) then
+  canLoad = "on";
 else
-  set(findobj("tag", "installButton"), "Enable", "on");
-  set(findobj("tag", "updateButton"), "Enable", "off");
-  set(findobj("tag", "removeButton"), "Enable", "off");
+  canLoad = "off";
 end
 
+if atomsIsInstalled(getSelectedModuleName()) then
+  canRemove = "on";
+else
+  canRemove = "off";
+end
+
+if ~ atomsIsInstalled(getSelectedModuleName()) then
+  canInstall = "on";
+else
+  canInstall = "off";
+end
+
+set(findobj("tag", "installButton"), "Enable", canInstall );
+set(findobj("tag", "updateButton") , "Enable", canUpdate );
+set(findobj("tag", "removeButton") , "Enable", canRemove );
+set(findobj("tag", "loadButton")   , "Enable", canLoad );
+
 endfunction
-
-
-

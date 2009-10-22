@@ -560,8 +560,8 @@ a.y_location ="right";
 clf();
 plot2d(x-4,sin(x),1,leg="sin(x)");
 a=gca(); // Handle on axes entity
-a.x_location = "middle"; 
-a.y_location = "middle"; 
+a.x_location = "origin"; 
+a.y_location = "origin"; 
 // Some operations on entities created by plot2d ...
 a=gca();
 a.isoview='on'; 
