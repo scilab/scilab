@@ -42,7 +42,7 @@ The vertices are sorted by increasing function values so that the
 \emph{best} vertex has index 1 and the \emph{worst} vertex 
 has index $n+1$
 \begin{eqnarray}
-\label{sorted-vertices-fv}
+\label{nm-sorted-vertices-fv}
 f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
@@ -54,7 +54,7 @@ The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
 where the vertex $\bv_j$ has been 
 excluded. This centroid is 
 \begin{eqnarray}
-\label{centroid-generalized}
+\label{nm-centroid-generalized}
 \overline{\bx} (j) = 
 \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bv_i.
 \end{eqnarray}
@@ -65,7 +65,7 @@ The algorithm attempts to replace some vertex
 $\bv_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bv_j$
 to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
 \begin{eqnarray}
-\label{interpolate-generalized}
+\label{nm-interpolate-generalized}
 \bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bv_j.
 \end{eqnarray}
 
@@ -149,13 +149,13 @@ At each iteration, we compute the centroid
 $\overline{\bx} (n+1)$ where the worst vertex $\bv_{n+1}$ 
 has been excluded. This centroid is 
 \begin{eqnarray}
-\label{centroid-worst}
+\label{nm-centroid-worst}
 \overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bv_i.
 \end{eqnarray}
 We perform a reflection with respect to the worst vertex $\bv_{n+1}$,
 which creates the reflected point $\bx_r$ defined by 
 \begin{eqnarray}
-\label{interpolate-worst}
+\label{nm-interpolate-worst}
 \bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bv_{n+1}
 \end{eqnarray}
 We then compute the function value of the reflected
@@ -322,6 +322,9 @@ shrink steps are rare.
 %TODO...
 
 \section{Convergence properties on a quadratic}
+
+\index{Han, Lixing}
+\index{Neumann, Michael}
 
 In this section, we reproduce one result 
 presented by Han and Neumann \cite{HanNeumann2006}, which states 
@@ -752,7 +755,7 @@ coefficients.
 
 \emph{Outside contraction} \\
 If the outside contraction step is repeatedly performed
-with variable $\mu_{oc} \in }0,\mu_r[$, then 
+with variable $\mu_{oc} \in [0,\mu_r[$, then 
 \begin{eqnarray}
 \bv^{(k+n)} &=& \overline{\bold{v}}^{(k)} 
 + \mu_{oc} \left( \overline{\bold{v}}^{(k)} - \bv^{(k)}\right) \\
@@ -1034,6 +1037,8 @@ $10000.0$ & 167 & $3.0e-17$ & $(5.0e-11,-1.0e-10)$ \\
 \end{figure}
 
 \subsection{Sensitivity to dimension}
+\index{Han, Lixing}
+\index{Neumann, Michael}
 
 In this section, we try to reproduce the result 
 presented by Han and Neumann \cite{HanNeumann2006}, which shows that the 
@@ -1204,6 +1209,7 @@ depending on the number of variables}
 \end{figure}
 
 \subsection{O'Neill test cases}
+\index{O'Neill, R.}
 
 In this section, we present the results by O'Neill, who 
 implemented a fortran 77 version of the Nelder-Mead algorithm
@@ -1315,6 +1321,7 @@ Baudin & 4 & 999 & 0 & 5.91 e-9 & 676 & - \\
 
 \subsection{Convergence to a non stationnary point}
 \label{section-mcKinnon}
+\index{Mc Kinnon, K. I. M.}
 
 In this section, we analyze the Mc Kinnon counter example 
 from \cite{589109}. We show the behavior of the 
@@ -1532,6 +1539,7 @@ They also reveal that the Nelder-Mead method can generate simplices which collap
 into a degenerate simplex, by applying repeated inside contractions.
 
 \subsection{Torczon's numerical experiments}
+\index{Torczon, Virginia}
 
 In her Phd Thesis \cite{Torczon89multi-directionalsearch}, Virginia Torczon 
 presents the multi-directional direct search algorithm. In order to analyze the 
