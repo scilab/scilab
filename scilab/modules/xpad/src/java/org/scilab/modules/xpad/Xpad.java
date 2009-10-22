@@ -19,7 +19,9 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +42,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.EditorKit;
+import javax.swing.text.ChangedCharSetException;
+
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -976,7 +980,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 						boolean indentMode= styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
-							editorKit.read(new BufferedReader(new FileReader(f)), styleDocument, 0);
+							try {
+									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
+								} catch(ChangedCharSetException e) {
+									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+								}
+							
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
