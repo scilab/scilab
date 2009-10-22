@@ -144,7 +144,7 @@ htmlcode           = "<html>" + ..
                       "  Description" + ..
                       "</div>" + ..  
                       "<div>" + ..
-                      strcat(themodule(vers(3)).Description,"<br />")  + ..
+                      strcat(themodule(vers(3)).Description,"<br>")  + ..
                       "</div>" + ..
                       "</body>" + ..
                       "</html>";
