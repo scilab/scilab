@@ -86,6 +86,7 @@ public class XpadMessages {
     /** HELP MENU */
     public static final String HELP = Messages.gettext("Scilab editor Help") + DOTS;
     public static final String ABOUT = Messages.gettext("About") + DOTS;
+    public static final String XPAD_VERSION = Messages.gettext("Scilab Editor version 1.0");
     
     /** FIND/REPLACE DIALOG */
     public static final String FIND = Messages.gettext("Find:");
