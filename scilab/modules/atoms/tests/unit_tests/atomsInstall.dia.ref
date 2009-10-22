@@ -14,6 +14,14 @@ atomsSetConfig("autoload","False");
 // Install the toolbox 5
 // =============================================================================
 atomsInstall("toolbox_5");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 // Check if the module is really installed
 if ~atomsIsInstalled("toolbox_5") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_4") then bugmes();quit;end
@@ -21,9 +29,25 @@ if ~atomsIsInstalled("toolbox_2") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_1") then bugmes();quit;end
 // Remove the module
 atomsRemove("toolbox_5");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 // Install the toolbox 5 (user section)
 // =============================================================================
 atomsInstall("toolbox_5","user");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 if ~atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
@@ -33,6 +57,14 @@ if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 atomsRemove("toolbox_5","user");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 if atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
@@ -40,6 +72,14 @@ if atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 // Install the toolbox 5 (allusers section)
 // =============================================================================
 atomsInstall("toolbox_5","allusers");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 if ~atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
@@ -49,6 +89,14 @@ if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 if atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
@@ -56,7 +104,23 @@ if atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 // Install the toolbox 5 (Both section)
 // =============================================================================
 atomsInstall("toolbox_5","allusers");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 atomsInstall("toolbox_5","user");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 if ~atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
@@ -66,6 +130,14 @@ if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 if atomsIsInstalled("toolbox_5","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
@@ -75,7 +147,23 @@ if ~atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_1","user") then bugmes();quit;end
 atomsInstall("toolbox_5","allusers");
+	toolbox_5 (1.0) will be installed
+	toolbox_4 (1.0) will be installed
+	toolbox_2 (1.0) will be installed
+	toolbox_1 (1.0) will be installed
+	Installing toolbox_5 (1.0) ... success
+	Installing toolbox_4 (1.0) ... success
+	Installing toolbox_2 (1.0) ... success
+	Installing toolbox_1 (1.0) ... success
 atomsRemove("toolbox_5","user");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 if atomsIsInstalled("toolbox_5","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_4","user") then bugmes();quit;end
 if atomsIsInstalled("toolbox_2","user") then bugmes();quit;end
@@ -85,6 +173,14 @@ if ~atomsIsInstalled("toolbox_4","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_2","allusers") then bugmes();quit;end
 if ~atomsIsInstalled("toolbox_1","allusers") then bugmes();quit;end
 atomsRemove("toolbox_5","allusers");
+	toolbox_5 (1.0) will be removed
+	toolbox_4 (1.0) will be removed
+	toolbox_2 (1.0) will be removed
+	toolbox_1 (1.0) will be removed
+	Removing toolbox_5 (1.0) ...  success
+	Removing toolbox_4 (1.0) ...  success
+	Removing toolbox_2 (1.0) ...  success
+	Removing toolbox_1 (1.0) ...  success
 // Restore original values
 atomsSetConfig("autoload",config_autoload);
 atomsRepositorySetOfl("http://atoms.scilab.org");
