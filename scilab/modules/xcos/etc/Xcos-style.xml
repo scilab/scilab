@@ -138,7 +138,7 @@
     <add as="strokeColor" value="red"/>
   </add>
   <add as="CURV_f" extend="Icon">
-    <!-- FIXME : Generate a fixed image for this one -->
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
@@ -177,15 +177,13 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_f.gif"/>
   </add>
   <add as="Modulo_Count" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
     <add as="displayedLabel" value="Counter&lt;BR&gt;
-				    Modulo"/>
+				    Modulo 3"/>
   </add>
   <add as="Sigbuilder" extend="Icon">
-    <!-- FIXME : Generate a fixed image for this one -->
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Sigbuilder.gif"/>
-  </add>
-  <add as="Counter" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Counter.gif"/>
   </add>
   <add as="SampleCLK" extend="Icon">
     <!-- FIXME : Regenerate this image without any stroke -->
@@ -206,8 +204,24 @@
     <add as="displayedLabel" value="&#8747;"/>
   </add>
   <add as="CLSS" extend="blockWithLabel">
-    <add as="displayedLabel" value="xd=Ax+Bu&lt;BR&gt;
-				    y=Cx+Du"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;RIGHT&quot;&gt;xd
+				    &lt;/TD&gt;
+				    &lt;TD&gt;=
+				    &lt;/TD&gt;
+				    &lt;TD&gt;Ax+Bu
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;RIGHT&quot;&gt;y
+				    &lt;/TD&gt;
+				    &lt;TD&gt;=
+				    &lt;/TD&gt;
+				    &lt;TD&gt;Cx+Du
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="CLR" extend="blockWithLabel">
     <add as="displayedLabel" value="num(s)&lt;BR&gt;
@@ -216,7 +230,7 @@
   </add>
   <add as="TIME_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Continuous&lt;BR&gt;
-				    Fix delay"/>
+				    fix delay"/>
   </add>
   <add as="TCLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="Jump&lt;BR&gt;
@@ -264,7 +278,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif"/>
   </add>
   <add as="INTRP2BLK_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Interp2"/>
+    <add as="displayedLabel" value="Interp 2"/>
   </add>
   <add as="INTRPLBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Interp"/>
@@ -397,7 +411,7 @@
 				    &lt;/TABLE&gt;"/>
   </add>
   <add as="MAXMIN" extend="blockWithLabel">
-    <add as="displayedLabel" value="Min / Max"/>
+    <add as="displayedLabel" value="MIN / MAX"/>
   </add>
   <add as="ABS_VALUE" extend="blockWithLabel">
     <add as="displayedLabel" value="ABS"/>
@@ -417,17 +431,27 @@
   <!-- MODELICA -->
   <add as="MBLOCK" extend="blockWithLabel">
     <add as="displayedLabel" value="Modelica&lt;BR;&gt;
-				    Generic"/>
+				    generic"/>
   </add>
-  <add as="FROMMO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROMMO.gif"/>
+  <add as="FROMMO" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <!-- FIXME : Show parameters over block  -->
+    <add as="rounded" value="1"/>
+    <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="From"/>
   </add>
-  <add as="GOTOMO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTOMO.gif"/>
+  <add as="GOTOMO" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <!-- FIXME : Show parameters over block  -->
+    <add as="rounded" value="1"/>
+    <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="Goto"/>
   </add>
-  <add as="GotoTagVisibilityMO" extend="Icon">
-    <!-- FIXME : Regenerate this image -->
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibilityMO.gif"/>
+  <add as="GotoTagVisibilityMO" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <add as="displayedLabel" value="{A}"/>
+    <add as="shape" value="ellipse"/>
+    <add as="strokeColor" value="green"/>
   </add>
   <add as="OUTIMPL_f" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
@@ -437,23 +461,27 @@
 
   <!-- INTEGER -->
   <add as="BITCLEAR" extend="blockWithLabel">
-    <add as="displayedLabel" value="Clear Bit"/>
+    <add as="displayedLabel" value="Clear bit"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="BITSET" extend="blockWithLabel">
-    <add as="displayedLabel" value="Set Bit"/>
+    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Set bit"/>
   </add>
   <add as="CONVERT" extend="blockWithLabel">
     <add as="displayedLabel" value="Convert to"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="EXTRACTBITS" extend="blockWithLabel">
     <add as="displayedLabel" value="Extract Bits"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="INTMUL" extend="blockWithLabel">
     <add as="displayedLabel" value="INTMUL"/>
   </add>
   <add as="SHIFT" extend="blockWithLabel">
     <add as="displayedLabel" value="Arithmetic&lt;BR&gt;
-				    Shift"/>
+				    shift"/>
   </add>
   <add as="LOGIC" extend="blockWithLabel">
     <add as="displayedLabel" value="LOGIC"/>
@@ -576,6 +604,7 @@
   <add as="SUBMAT" extend="blockWithLabel"/>
   <add as="MATBKSL" extend="blockWithLabel">
     <add as="displayedLabel" value="A\B"/>
+    <!-- TODO: Verify scicos block text AB ou A\B ? -->
   </add>
   <add as="MATINV" extend="blockWithLabel">
     <add as="displayedLabel" value="INV"/>
@@ -643,8 +672,8 @@
   <add as="CSCOPXY" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.gif"/>
   </add>
-  <add as="TOWS_c" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/TOWS_c.gif"/>
+  <add as="TOWS_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="To workspace"/>
   </add>
   <add as="CMAT3D" extend="blockWithLabel">
     <add as="displayedLabel" value="Mat. 3D"/>
@@ -663,6 +692,7 @@
   </add>
   <add as="AFFICH_m" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/AFFICH_m.gif"/>
+    <!-- TODO: explain how comes the icon is not displayed but text... -->
   </add>
   <add as="TRASH_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Trash"/>
@@ -671,7 +701,7 @@
   <!-- PORT ACTION -->
   <add as="Extract_Activation" extend="blockWithLabel">
     <add as="displayedLabel" value="Extract&lt;BR&gt;
-				    Activation"/>
+				    activation"/>
   </add>
   <add as="IFTHEL_f" extend="blockWithLabel">
     <add as="displayedLabel" value="if in&gt;0&lt;BR&gt;
@@ -682,20 +712,41 @@
   </add>
   <add as="EDGE_TRIGGER" extend="blockWithLabel">
     <add as="displayedLabel" value="Edge&lt;BR&gt;
-				    Trigger"/>
+				    trigger"/>
   </add>
 
   <!-- DISCRETE -->
-  <add as="DLRADAPT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLRADAPT_f.gif"/>
+  <add as="DLRADAPT_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="N(z,p)&lt;BR&gt;
+				    &lt;HR&gt;
+				    D(z,p)"/>
   </add>
-  <add as="DLR" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DLR.gif"/>
+  <add as="DLR" extend="blockWithLabel">
+    <add as="displayedLabel" value="num(z)&lt;BR&gt;
+				    &lt;HR&gt;
+				    den(z)"/>
   </add>
   <add as="DLSS" extend="blockWithLabel">
-    <add as="displayedLabel" value="x+=Ax+Bu&lt;BR&gt;
-				    y=Cx+Du"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;RIGHT&quot;&gt;x
+				    &lt;/TD&gt;
+				    &lt;TD ALIGN=&quot;CENTER&quot;&gt;+=
+				    &lt;/TD&gt;
+				    &lt;TD&gt;Ax+Bu
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;RIGHT&quot;&gt;y
+				    &lt;/TD&gt;
+				    &lt;TD ALIGN=&quot;CENTER&quot;&gt;=
+				    &lt;/TD&gt;
+				    &lt;TD&gt;Cx+Du
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
+
   <add as="DELAY_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Delay"/>
   </add>
@@ -705,14 +756,24 @@
   <!-- DELAYV_f -->
 
   <!-- EVENTS -->
-  <add as="CLKFROM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKFROM.gif"/>
+  <add as="CLKFROM" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="fillColor" value="white"/>
+    <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="From"/>
   </add>
-  <add as="CLKGOTO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGOTO.gif"/>
+  <add as="CLKGOTO" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <add as="shape" value="rectangle"/>
+    <add as="rounded" value="1"/>
+    <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="Goto"/>
   </add>
-  <add as="CLKGotoTagVisibility" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKGotoTagVisibility.gif"/>
+  <add as="CLKGotoTagVisibility" extend="blockWithLabel">
+    <!-- FIXME : Regenerate this image -->
+    <add as="displayedLabel" value="{A}"/>
   </add>
   <!-- SampleCLK -->
   <add as="CLKOUTV_f" extend="blockWithLabel">
@@ -722,20 +783,25 @@
     <add as="strokeColor" value="red"/>
   </add>
   <!-- ESELECT -->
-  <add as="CLKSOMV_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif"/>
+  <add as="CLKSOMV_f" extend="blockWithLabel">
+    <!-- FIXME : Display in red -->
+    <add as="shape" value="ellipse"/>
+    <add as="perimeter" value="ellipsePerimeter"/>
+    <add as="displayedLabel" value="+"/>
   </add>
   <!-- CLOCK_c -->
-  <add as="EVTGEN_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTGEN_f.gif"/>
+  <add as="EVTGEN_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Event at&lt;BR&gt;
+				    time 0"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="EVTVARDLY" extend="blockWithLabel">
     <add as="displayedLabel" value="Event&lt;BR&gt;
-				    Delay"/>
+				    delay"/>
   </add>
   <add as="M_freq" extend="blockWithLabel">
     <add as="displayedLabel" value="Multiple&lt;BR&gt;
-				    Frequency"/>
+				    frequency"/>
   </add>
   <add as="ANDBLK" extend="blockWithLabel"/>
   <add as="HALT_f" extend="blockWithLabel">
@@ -743,7 +809,7 @@
   </add>
   <add as="freq_div" extend="blockWithLabel">
     <add as="displayedLabel" value="Frequency&lt;BR&gt;
-				    Division"/>
+				    division"/>
   </add>
   <add as="ANDLOG_f" extend="blockWithLabel">
     <add as="displayedLabel" value="LOGICAL&lt;BR&gt;
@@ -751,6 +817,10 @@
   </add>
   <add as="EVTDLY_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_c.gif"/>
+  </add>
+  <add as="EVTDLY_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="Delay"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <!-- ITTHEL_f -->
   <add as="CEVENTSCOPE" extend="Icon">
@@ -779,27 +849,37 @@
 				    M_Port&lt;BR&gt;
 				    Switch"/>
   </add>
-  <add as="SWITCH_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH_f.gif"/>
+  <add as="SWITCH_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="SWITCH&lt;BR&gt;
+				    1"/>
+    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="SWITCH2_m" extend="blockWithLabel">
     <add as="displayedLabel" value="SWITCH"/>
   </add>
   <add as="NRMSOM_f" extend="blockWithLabel">
+    <!-- FIXME : Generate a fixed image -->
     <add as="displayedLabel" value=""/>
   </add>
   <!-- READC_f -->
   <add as="WRITEC_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Write to&lt;BR&gt;C binary file"/>
   </add>
-  <add as="GOTO" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GOTO.gif"/>
+  <add as="GOTO" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <add as="rounded" value="1"/>
+    <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="Goto"/>
   </add>
-  <add as="GotoTagVisibility" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/GotoTagVisibility.gif"/>
+  <add as="GotoTagVisibility" extend="blockWithLabel">
+    <!-- FIXME : Regenerate this image -->
+    <add as="displayedLabel" value="{A}"/>
   </add>
-  <add as="FROM" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/FROM.gif"/>
+  <add as="FROM" extend="blockWithLabel">
+    <!-- TODO: icon to be verified -->
+    <add as="rounded" value="1"/>
+    <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="From"/>
   </add>
   <!-- RFILE_f -->
   <add as="WFILE_f" extend="blockWithLabel">
@@ -808,10 +888,12 @@
   </add>
   <!-- ANDBLK -->
   <add as="MUX" extend="blockWithLabel">
+    <!-- FIXME : Generate a fixed image -->
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
   </add>
   <add as="DEMUX" extend="blockWithLabel">
+    <!-- FIXME : Generate a fixed image -->
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
   </add>
@@ -829,6 +911,11 @@
   <add as="RELATIONALOP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif"/>
   </add>
+  <add as="RELATIONALOP" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Relational&lt;BR&gt;
+				    op : &amp;&lt;"/>
+  </add>
   <!-- PRODUCT -->
   <!-- BUGSUM -->
   <!-- DOLLAR_f -->
@@ -841,7 +928,9 @@
   <!-- LOGICAL_OP -->
   <!-- SWITCH2_m -->
   <!-- CONVERT -->
-  <add as="TEXT_f" extend="Label"/>
+  <add as="TEXT_f" extend="Label">
+    <add as="displayedLabel" value="Text"/>
+  </add>
 
   <!-- USER-DEFINED FUNCTIONS -->
   <add as="PDE" extend="blockWithLabel"/>
@@ -851,7 +940,7 @@
   <!-- MBLOCK -->
   <add as="EXPRESSION" extend="blockWithLabel">
     <add as="displayedLabel" value="Mathematical&lt;BR&gt;
-				    Expression"/>
+				    expression"/>
   </add>
   <add as="scifunc_block_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Scifunc"/>
@@ -872,72 +961,155 @@
 
   <!-- ELECTRICAL -->
   <add as="Capacitor" extend="Icon">
+    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.gif"/>
   </add>
   <add as="Ground" extend="Icon">
+    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.gif"/>
   </add>
-  <add as="VVsourceAC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VVsourceAC.gif"/>
+  <add as="VVsourceAC" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="shape" value="ellipse"/>
+    <add as="perimeter" value="ellipsePerimeter"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    50
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;center&quot;&gt;
+				    ~
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="ConstantVoltage" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.gif"/>
   </add>
   <add as="Inductor" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif"/>
   </add>
   <add as="PotentialSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.gif"/>
   </add>
   <add as="VariableResistor" extend="Icon">
+    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif"/>
   </add>
   <add as="CurrentSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.gif"/>
   </add>
   <add as="Resistor" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif"/>
   </add>
   <add as="VoltageSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.gif"/>
   </add>
   <add as="Diode" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif"/>
   </add>
-  <add as="VsourceAC" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/VsourceAC.gif"/>
+  <add as="VsourceAC" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="shape" value="ellipse"/>
+    <add as="perimeter" value="ellipsePerimeter"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    220
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;center&quot;&gt;
+				    ~
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="NPN" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.gif"/>
   </add>
   <add as="PNP" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.gif"/>
   </add>
-  <add as="SineVoltage" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SineVoltage.gif"/>
+  <add as="SineVoltage" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="shape" value="ellipse"/>
+    <add as="perimeter" value="ellipsePerimeter"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    1
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD ALIGN=&quot;center&quot;&gt;
+				    ~
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="Switch" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.gif"/>
   </add>
-  <add as="OpAmp" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/OpAmp.gif"/>
+  <add as="OpAmp" extend="blockWithLabel">
+    <add as="shape" value="triangle"/>
+    <add as="perimeter" value="trianglePerimeter"/>
+    <add as="direction" value="east"/>
+    <add as="displayedLabel" value="&lt;TABLE&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    +
+				    &lt;/TD&gt;
+				    &lt;TD&gt;
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    &lt;/TD&gt;
+				    &lt;TD&gt;
+				    OP
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;TR&gt;
+				    &lt;TD&gt;
+				    -
+				    &lt;/TD&gt;
+				    &lt;TD&gt;
+				    &lt;/TD&gt;
+				    &lt;/TR&gt;
+				    &lt;/TABLE&gt;"/>
   </add>
   <add as="PMOS" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.gif"/>
   </add>
   <add as="NMOS" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.gif"/>
   </add>
   <add as="CCS" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.gif"/>
   </add>
   <add as="CVS" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.gif"/>
   </add>
   <add as="IdealTransformer" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.gif"/>
   </add>
   <add as="Gyrator" extend="Icon">
+    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.gif"/>
   </add>
 
@@ -952,9 +1124,11 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.gif"/>
   </add>
   <add as="PuitsP" extend="Icon">
+    <!-- FIXME : Generate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.gif"/>
   </add>
   <add as="SourceP" extend="Icon">
+    <!-- FIXME : Generate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.gif"/>
   </add>
 
@@ -971,6 +1145,11 @@
   </add>
   <add as="AUTOMAT" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/AUTOMAT.gif"/>
+  </add>
+  <add as="AUTOMAT" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Automaton&lt;BR&gt;
+				    nM=2, nX=1"/>
   </add>
   <!-- PDE -->
 
@@ -994,8 +1173,10 @@
   <add as="MEMORY_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/MEMORY_f.gif"/>
   </add>
-  <add as="LOGICAL_OP" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOGICAL_OP.gif"/>
+  <add as="LOGICAL_OP" extend="blockWithLabel">
+    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Logical op :&lt;BR&gt;
+				    AND"/>
   </add>
   <add as="generic_block" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/generic_block.gif"/>
@@ -1029,7 +1210,9 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif"/>
   </add>
   <add as="Counter" extend="blockWithLabel">
-    <add as="displayedLabel" value="Counter"/>
+    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Counter&lt;BR&gt;
+				    0 &amp;rarr; 2"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>

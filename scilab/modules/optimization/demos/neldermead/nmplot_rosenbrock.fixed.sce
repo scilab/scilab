@@ -67,4 +67,10 @@ deletefile("rosenbrock.fixed.history.fopt.txt");
 deletefile("rosenbrock.fixed.history.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_rosenbrock.fixed.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 
