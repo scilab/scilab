@@ -159,7 +159,10 @@ public class BasicBlock extends mxCell {
     	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
     	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
     	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
-    	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
+    	if(label.compareTo("GAINBLK_f") == 0
+    		|| label.compareTo("GAINBLK") == 0
+    		|| label.compareTo("GAIN_f") == 0)
+    	{ return new GainBlock(label); }
     	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
     	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
     	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
