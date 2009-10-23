@@ -17,6 +17,10 @@ function nbDel = atomsRepositoryDel(url,section)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+// 	// Check write access on allusers zone
+// 	// =========================================================================
+// 	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
 	rhs   = argn(2);
 	nbDel = 0;
 	
@@ -53,7 +57,7 @@ function nbDel = atomsRepositoryDel(url,section)
 	if rhs == 1 then
 		// By default, add the repository for all users (if we have write access
 		// of course !)
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "all"; 
 		else
 			section = "user";
@@ -69,7 +73,7 @@ function nbDel = atomsRepositoryDel(url,section)
 		end
 		
 		// Check if we have the write access
-		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
+		if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",pathconvert(SCI+"/.atoms")));
 		end
 		
