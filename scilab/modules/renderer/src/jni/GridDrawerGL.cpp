@@ -259,7 +259,7 @@ if (firstAxisStart_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( firstAxisStart_, 0, firstAxisStartSize, const_cast<jdouble*>(firstAxisStart) ) ;
+curEnv->SetDoubleArrayRegion( firstAxisStart_, 0, firstAxisStartSize, (jdouble*)(firstAxisStart) ) ;
 
 
 jdoubleArray firstAxisEnd_ = curEnv->NewDoubleArray( firstAxisEndSize ) ;
@@ -270,7 +270,7 @@ if (firstAxisEnd_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( firstAxisEnd_, 0, firstAxisEndSize, const_cast<jdouble*>(firstAxisEnd) ) ;
+curEnv->SetDoubleArrayRegion( firstAxisEnd_, 0, firstAxisEndSize, (jdouble*)(firstAxisEnd) ) ;
 
 
 jdoubleArray secondAxisStart_ = curEnv->NewDoubleArray( secondAxisStartSize ) ;
@@ -281,7 +281,7 @@ if (secondAxisStart_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( secondAxisStart_, 0, secondAxisStartSize, const_cast<jdouble*>(secondAxisStart) ) ;
+curEnv->SetDoubleArrayRegion( secondAxisStart_, 0, secondAxisStartSize, (jdouble*)(secondAxisStart) ) ;
 
 
 jdoubleArray secondAxisEnd_ = curEnv->NewDoubleArray( secondAxisEndSize ) ;
@@ -292,7 +292,7 @@ if (secondAxisEnd_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( secondAxisEnd_, 0, secondAxisEndSize, const_cast<jdouble*>(secondAxisEnd) ) ;
+curEnv->SetDoubleArrayRegion( secondAxisEnd_, 0, secondAxisEndSize, (jdouble*)(secondAxisEnd) ) ;
 
 
 jdoubleArray thirdAxisStart_ = curEnv->NewDoubleArray( thirdAxisStartSize ) ;
@@ -303,7 +303,7 @@ if (thirdAxisStart_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( thirdAxisStart_, 0, thirdAxisStartSize, const_cast<jdouble*>(thirdAxisStart) ) ;
+curEnv->SetDoubleArrayRegion( thirdAxisStart_, 0, thirdAxisStartSize, (jdouble*)(thirdAxisStart) ) ;
 
 
 jdoubleArray thirdAxisEnd_ = curEnv->NewDoubleArray( thirdAxisEndSize ) ;
@@ -314,7 +314,7 @@ if (thirdAxisEnd_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( thirdAxisEnd_, 0, thirdAxisEndSize, const_cast<jdouble*>(thirdAxisEnd) ) ;
+curEnv->SetDoubleArrayRegion( thirdAxisEnd_, 0, thirdAxisEndSize, (jdouble*)(thirdAxisEnd) ) ;
 
 
 jdoubleArray relativeTicksPositions_ = curEnv->NewDoubleArray( relativeTicksPositionsSize ) ;
@@ -325,7 +325,7 @@ if (relativeTicksPositions_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( relativeTicksPositions_, 0, relativeTicksPositionsSize, const_cast<jdouble*>(relativeTicksPositions) ) ;
+curEnv->SetDoubleArrayRegion( relativeTicksPositions_, 0, relativeTicksPositionsSize, (jdouble*)(relativeTicksPositions) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawGridjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,firstAxisStart_, firstAxisEnd_, secondAxisStart_, secondAxisEnd_, thirdAxisStart_, thirdAxisEnd_, relativeTicksPositions_);curEnv->DeleteLocalRef(firstAxisStart_);

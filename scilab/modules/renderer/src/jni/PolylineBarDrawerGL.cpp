@@ -255,7 +255,7 @@ if (left_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( left_, 0, leftSize, const_cast<jdouble*>(left) ) ;
+curEnv->SetDoubleArrayRegion( left_, 0, leftSize, (jdouble*)(left) ) ;
 
 
 jdoubleArray right_ = curEnv->NewDoubleArray( rightSize ) ;
@@ -266,7 +266,7 @@ if (right_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( right_, 0, rightSize, const_cast<jdouble*>(right) ) ;
+curEnv->SetDoubleArrayRegion( right_, 0, rightSize, (jdouble*)(right) ) ;
 
 
 jdoubleArray bottom_ = curEnv->NewDoubleArray( bottomSize ) ;
@@ -277,7 +277,7 @@ if (bottom_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( bottom_, 0, bottomSize, const_cast<jdouble*>(bottom) ) ;
+curEnv->SetDoubleArrayRegion( bottom_, 0, bottomSize, (jdouble*)(bottom) ) ;
 
 
 jdoubleArray top_ = curEnv->NewDoubleArray( topSize ) ;
@@ -288,7 +288,7 @@ if (top_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( top_, 0, topSize, const_cast<jdouble*>(top) ) ;
+curEnv->SetDoubleArrayRegion( top_, 0, topSize, (jdouble*)(top) ) ;
 
 
 jdoubleArray zCoord_ = curEnv->NewDoubleArray( zCoordSize ) ;
@@ -299,7 +299,7 @@ if (zCoord_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( zCoord_, 0, zCoordSize, const_cast<jdouble*>(zCoord) ) ;
+curEnv->SetDoubleArrayRegion( zCoord_, 0, zCoordSize, (jdouble*)(zCoord) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,left_, right_, bottom_, top_, zCoord_);curEnv->DeleteLocalRef(left_);

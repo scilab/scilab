@@ -236,11 +236,10 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/tanh_blk.c src/c/tcslti4.c src/c/tcsltj4.c \
 	src/c/time_delay.c src/c/tows_c.c src/c/variable_delay.c \
 	src/c/writeau.c src/c/writec.c src/c/zcross2.c \
-	src/fortran/affich2.f src/fortran/affich.f \
-	src/fortran/constraint.f src/fortran/csslti.f \
-	src/fortran/cstblk.f src/fortran/delay.f src/fortran/delayv.f \
-	src/fortran/demux.f src/fortran/diffblk.f src/fortran/dlradp.f \
-	src/fortran/dollar.f src/fortran/dsslti.f \
+	src/fortran/affich.f src/fortran/constraint.f \
+	src/fortran/csslti.f src/fortran/cstblk.f src/fortran/delay.f \
+	src/fortran/delayv.f src/fortran/demux.f src/fortran/diffblk.f \
+	src/fortran/dlradp.f src/fortran/dollar.f src/fortran/dsslti.f \
 	src/fortran/eselect.f src/fortran/evtdly.f \
 	src/fortran/expblk.f src/fortran/forblk.f src/fortran/fsv.f \
 	src/fortran/gensin.f src/fortran/gensqr.f src/fortran/hltblk.f \
@@ -260,7 +259,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
 	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c \
-	src/jni/XcosDiagram.cpp
+	src/jni/XcosDiagram.cpp src/cpp/affich2.cpp
 @SCICOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absolute_value.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-absblk.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-andlog.lo \
@@ -559,16 +558,16 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writeau.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writec.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-zcross2.lo
-@SCICOS_TRUE@am__objects_2 = affich2.lo affich.lo constraint.lo \
-@SCICOS_TRUE@	csslti.lo cstblk.lo delay.lo delayv.lo demux.lo \
-@SCICOS_TRUE@	diffblk.lo dlradp.lo dollar.lo dsslti.lo \
-@SCICOS_TRUE@	eselect.lo evtdly.lo expblk.lo forblk.lo fsv.lo \
-@SCICOS_TRUE@	gensin.lo gensqr.lo hltblk.lo ifthel.lo integr.lo \
-@SCICOS_TRUE@	intplt.lo intpol.lo intrp2.lo intrpl.lo invblk.lo \
-@SCICOS_TRUE@	iocopy.lo logblk.lo lookup.lo lsplit.lo lusat.lo \
-@SCICOS_TRUE@	maxblk.lo memo.lo mfclck.lo minblk.lo mux.lo \
-@SCICOS_TRUE@	pload.lo powblk.lo qzcel.lo qzflr.lo qzrnd.lo \
-@SCICOS_TRUE@	qztrn.lo readf.lo rndblk.lo samphold.lo sawtth.lo \
+@SCICOS_TRUE@am__objects_2 = affich.lo constraint.lo csslti.lo \
+@SCICOS_TRUE@	cstblk.lo delay.lo delayv.lo demux.lo diffblk.lo \
+@SCICOS_TRUE@	dlradp.lo dollar.lo dsslti.lo eselect.lo \
+@SCICOS_TRUE@	evtdly.lo expblk.lo forblk.lo fsv.lo gensin.lo \
+@SCICOS_TRUE@	gensqr.lo hltblk.lo ifthel.lo integr.lo intplt.lo \
+@SCICOS_TRUE@	intpol.lo intrp2.lo intrpl.lo invblk.lo iocopy.lo \
+@SCICOS_TRUE@	logblk.lo lookup.lo lsplit.lo lusat.lo maxblk.lo \
+@SCICOS_TRUE@	memo.lo mfclck.lo minblk.lo mux.lo pload.lo \
+@SCICOS_TRUE@	powblk.lo qzcel.lo qzflr.lo qzrnd.lo qztrn.lo \
+@SCICOS_TRUE@	readf.lo rndblk.lo samphold.lo sawtth.lo \
 @SCICOS_TRUE@	sciblk.lo selblk.lo sinblk.lo sqrblk.lo sum2.lo \
 @SCICOS_TRUE@	sum3.lo tanblk.lo tcslti.lo tcsltj.lo timblk.lo \
 @SCICOS_TRUE@	trash.lo writef.lo zcross.lo
@@ -579,9 +578,10 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-affich.lo
 @SCICOS_TRUE@am__objects_4 = libsciscicos_blocks_la-XcosDiagram.lo
+@SCICOS_TRUE@am__objects_5 = libsciscicos_blocks_la-affich2.lo
 @SCICOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @SCICOS_TRUE@	$(am__objects_2) $(am__objects_3) \
-@SCICOS_TRUE@	$(am__objects_4)
+@SCICOS_TRUE@	$(am__objects_4) $(am__objects_5)
 libsciscicos_blocks_la_OBJECTS = $(am_libsciscicos_blocks_la_OBJECTS)
 libsciscicos_blocks_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -1232,7 +1232,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@src/c/writec.c \
 @SCICOS_TRUE@src/c/zcross2.c
 
-@SCICOS_TRUE@SCICOS_BLOCK_CPP_SOURCES = src/jni/XcosDiagram.cpp
+@SCICOS_TRUE@SCICOS_BLOCKS_CPP_SOURCES = \
+@SCICOS_TRUE@src/cpp/affich2.cpp
+
 @SCICOS_TRUE@NON_BLOCK_C_SOURCES = src/c/scoGetProperty.c \
 @SCICOS_TRUE@src/c/scoSetProperty.c \
 @SCICOS_TRUE@src/c/scoMisc.c \
@@ -1240,7 +1242,10 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@src/c/scoWindowScope.c \
 @SCICOS_TRUE@src/c/affich.c
 
-@SCICOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
+@SCICOS_TRUE@NON_BLOCK_CPP_SOURCES = \
+@SCICOS_TRUE@src/jni/XcosDiagram.cpp
+
+@SCICOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = \
 @SCICOS_TRUE@src/fortran/affich.f \
 @SCICOS_TRUE@src/fortran/constraint.f \
 @SCICOS_TRUE@src/fortran/csslti.f \
@@ -1319,6 +1324,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(srcdir)/src/jni/ \
 @SCICOS_TRUE@			-I$(srcdir)/src/cpp/ \
 @SCICOS_TRUE@			-I$(srcdir)/src/c/ \
+@SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/localization/includes \
@@ -1328,7 +1334,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
 @SCICOS_TRUE@$(SCICOS_BLOCKS_FORTRAN_SOURCES) \
 @SCICOS_TRUE@$(NON_BLOCK_C_SOURCES) \
-@SCICOS_TRUE@$(SCICOS_BLOCK_CPP_SOURCES)
+@SCICOS_TRUE@$(NON_BLOCK_CPP_SOURCES) \
+@SCICOS_TRUE@$(SCICOS_BLOCKS_CPP_SOURCES)
 
 
 # For the code check (splint)
@@ -1342,6 +1349,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 @SCICOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
 @SCICOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/build/Fblocknames \
+@SCICOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/build/CPPblocknames \
 @SCICOS_TRUE@	$(srcdir)/macros/Electrical/*.moc \
 @SCICOS_TRUE@    $(srcdir)/macros/*/models \
 @SCICOS_TRUE@	$(srcdir)/macros/Hydraulics/*.moc \
@@ -1697,6 +1705,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acos_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acosh_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-andlog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-asin_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-asinh_blk.Plo@am__quote@
@@ -4174,6 +4183,13 @@ libsciscicos_blocks_la-XcosDiagram.lo: src/jni/XcosDiagram.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-XcosDiagram.lo `test -f 'src/jni/XcosDiagram.cpp' || echo '$(srcdir)/'`src/jni/XcosDiagram.cpp
 
+libsciscicos_blocks_la-affich2.lo: src/cpp/affich2.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-affich2.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-affich2.Tpo -c -o libsciscicos_blocks_la-affich2.lo `test -f 'src/cpp/affich2.cpp' || echo '$(srcdir)/'`src/cpp/affich2.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-affich2.Tpo $(DEPDIR)/libsciscicos_blocks_la-affich2.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/affich2.cpp' object='libsciscicos_blocks_la-affich2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-affich2.lo `test -f 'src/cpp/affich2.cpp' || echo '$(srcdir)/'`src/cpp/affich2.cpp
+
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -4182,9 +4198,6 @@ libsciscicos_blocks_la-XcosDiagram.lo: src/jni/XcosDiagram.cpp
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-affich2.lo: src/fortran/affich2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o affich2.lo `test -f 'src/fortran/affich2.f' || echo '$(srcdir)/'`src/fortran/affich2.f
 
 affich.lo: src/fortran/affich.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o affich.lo `test -f 'src/fortran/affich.f' || echo '$(srcdir)/'`src/fortran/affich.f
@@ -4868,15 +4881,21 @@ distclean-local:
 # Get the filename, strip the extension and put into a file
 @SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 
+@SCICOS_TRUE@build/CPPblocknames:Makefile.am
+@SCICOS_TRUE@	@echo "-- Generates build/CPPblocknames --"
+@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
+# Get the filename, strip the extension and put into a file
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > build/CPPblocknames
+
 @SCICOS_TRUE@build/Fblocknames: Makefile.am
 @SCICOS_TRUE@	@echo "-- Generates build/Fblocknames --"
 @SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
 @SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 
-@SCICOS_TRUE@includes/blocks.h: build/Cblocknames build/Fblocknames
+@SCICOS_TRUE@includes/blocks.h: build/Cblocknames build/Fblocknames build/CPPblocknames
 @SCICOS_TRUE@	@echo "-- Building includes/blocks.h --"
-@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
+@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/CPPblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
 
