@@ -36,9 +36,12 @@
     '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
     '  }'
     '}'];
-mputl(C,TMPDIR+'/rosenc.c');
+cd TMPDIR;
+mkdir('optim_external');    
+cd('optim_external');    
+mputl(C,TMPDIR+'/optim_external/rosenc.c');
 // compile the C code
-l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenc','rosenc.c',[],'c');
 // incremental linking
 link(l,'rosenc','c');
 //solve the problem
@@ -47,7 +50,7 @@ p=100;
 [f,xo,go]=optim('rosenc',x0,'td',p);
 if f <> 1 then pause,end;
 if norm(xo - [-1;1;1]) > 1000*%eps then pause,end;
-//============================================
+// =============================================================================
 // External function written in Fortran (Fortran compiler required)
 // write down the Fortran  code (Rosenbrock problem)
  F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
@@ -76,9 +79,9 @@ if norm(xo - [-1;1;1]) > 1000*%eps then pause,end;
      '      return'
      '      end'];
 
-mputl(F,TMPDIR+'/rosenf.f');
+mputl(F,TMPDIR+'/optim_external/rosenf.f');
 // compile the Fortran code
-l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenf','rosenf.f',[],'f');
 // incremental linking
 link(l,'rosenf','f');
 //solve the problem
@@ -87,4 +90,4 @@ p=100;
 [f,xo,go]=optim('rosenf',x0,'td',p);
 if f <> 1 then pause,end;
 if norm(xo - [-1;1;1]) > 1000*%eps then pause,end;
-//============================================
+// =============================================================================

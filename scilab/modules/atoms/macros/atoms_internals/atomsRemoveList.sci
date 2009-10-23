@@ -76,6 +76,8 @@ function remList = atomsRemoveList(packages,section)
 	
 	if section == "all" then
 		sections = ["allusers","user"];
+	else
+		sections = section;
 	end
 	
 	// Remove leading and trailing whitespace

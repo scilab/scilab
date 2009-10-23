@@ -19,6 +19,10 @@ function result = atomsRemove(packages,section)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
 	result = [];
 	
 	// Save the current path
@@ -98,7 +102,7 @@ function result = atomsRemove(packages,section)
 		//    we have the write access to SCI directory
 		//  → Remove only package located in the "user" sections otherwise
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "all"; 
 		else
 			section = "user";
@@ -120,7 +124,7 @@ function result = atomsRemove(packages,section)
 		end
 		
 		// Check if we have the write access
-		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
+		if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,atomsPath("system","user")));
 		end
