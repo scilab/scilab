@@ -13,7 +13,7 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 config_autoload = atomsGetConfig("autoload");
 config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoload","False");
-atomsSetConfig("Verbose" ,"True");
+atomsSetConfig("Verbose" ,"False");
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 // =============================================================================
