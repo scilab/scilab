@@ -15,15 +15,19 @@
 
 function nbAdd = atomsAutoloadAdd(name,version,section)
 	
+	rhs            = argn(2);
+	nbAdd          = 0;
+	autoloaded     = []; // Column vector that contain autoloaded packages
+	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	rhs            = argn(2);
-	nbAdd          = 0;
-	autoloaded     = []; // Column vector that contain autoloaded packages
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -66,7 +70,7 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 		//    if we have the write access to SCI directory
 		//  → Add the module to the "autoload" list of the "user" section otherwise
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "allusers"; 
 		else
 			section = "user";
@@ -86,7 +90,7 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
 		end
 		

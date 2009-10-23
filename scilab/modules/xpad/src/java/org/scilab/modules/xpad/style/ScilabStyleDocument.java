@@ -1199,12 +1199,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public synchronized int tabifyLines(int line_start, int line_end)
 	{
-		boolean indentMode= getAutoIndent();
+		boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 		setAutoIndent(false);
+		setColorize(false);
+		setShouldMergeEdits(true);
 		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
 			tabifyLine(currentLine);
 		}
 		setAutoIndent(indentMode);
+		setColorize(colorizeMode);
+		setShouldMergeEdits(mergeEditsMode);
 		return getTabulation().length();
 	}
 		
@@ -1267,15 +1271,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public synchronized int untabifyLines(int line_start, int line_end)
 	{	
 		int res=0;
-		if(canUntabifyLines(line_start, line_end))
+		if(true || canUntabifyLines(line_start, line_end)) // always untabify as much lines as possible from a selection
 		{
-			boolean indentMode= getAutoIndent();
+			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 			setAutoIndent(false);
-			for (int i = line_start; i <= line_end; i++)
-			{
-				untabifyLine(i);
+			setColorize(false);
+			setShouldMergeEdits(true);
+			for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+				untabifyLine(currentLine);
 			}
 			setAutoIndent(indentMode);
+			setColorize(colorizeMode);
+			setShouldMergeEdits(mergeEditsMode);
 			res= getTabulation().length();
 		}
 		return res;

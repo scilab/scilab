@@ -30,7 +30,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx
+			src/jni/Signal.hxx \
+			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 src/jni/XcosUtils.giws.xml
@@ -96,12 +97,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 
-
-#### xcos : include files ####
-libscixcos_la_includedir=$(pkgincludedir)/xcos
-libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h \
-includes/callxcos.h
 
 #### xcos : icons files ####
 libscixcos_la_iconsdir=$(mydatadir)/

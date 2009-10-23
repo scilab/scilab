@@ -74,6 +74,12 @@ function remList = atomsRemoveList(packages,section)
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsRemoveList",2));
 	end
 	
+	if section == "all" then
+		sections = ["allusers","user"];
+	else
+		sections = section;
+	end
+	
 	// Remove leading and trailing whitespace
 	// =========================================================================
 	packages = stripblanks(packages);
@@ -106,16 +112,11 @@ function remList = atomsRemoveList(packages,section)
 		end
 		
 		for j=1:size(this_package_versions,"*")
-			
-			if section == "all" then
-				if atomsIsInstalled([package_names(i) this_package_versions(j)],"allusers") then
-					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "allusers" ];
+			for k=1:size(sections,"*")
+				if atomsIsInstalled([package_names(i) this_package_versions(j)],sections(k)) ..
+					& isempty(find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == package_names(i)+" - "+this_package_versions(j)+" - "+sections(k))) then
+						remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) sections(k) ];
 				end
-				if atomsIsInstalled([package_names(i) this_package_versions(j)],"user") then
-					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "user" ];
-				end
-			else
-				remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) section ];
 			end
 			
 		end
@@ -141,11 +142,12 @@ function remList = atomsRemoveList(packages,section)
 			
 			this_parent_name    = this_package_parents(j,1);
 			this_parent_version = this_package_parents(j,2);
+			this_parent_section = this_package_parents(j,3);
 			
 			// Check if we have the right to remove this package
 			// If not, tag it as Broken (for later)
 			if section=="user" then
-				details = atomsGetInstalledDetails(this_package_parents(j,:),section);
+				details = atomsGetInstalledDetails([this_package_parents(j,1) this_package_parents(j,2)],section);
 				if details(1,3) == "allusers" then
 					remList = [ remList ; "~" "B" this_parent_name this_parent_version this_package_section ]; // B stands for "Broken"
 					continue
@@ -153,7 +155,7 @@ function remList = atomsRemoveList(packages,section)
 			end
 			
 			// Add this parent to the list
-			if find(remList(:,3)+" - "+remList(:,4) == this_parent_name+" - "+this_parent_version) == [] then
+			if find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == this_parent_name+" - "+this_parent_version+" - "+this_parent_section ) == [] then
 				remList = [ remList ; "-" "P" this_parent_name this_parent_version this_package_section ];  // P stands for "Parent"
 			end
 			

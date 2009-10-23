@@ -13,13 +13,17 @@
 
 function result = atomsInstall(packages,section)
 	
+	result = [];
+	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
-		load("SCI/atoms/macros/atoms_internals/lib");
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	result = [];
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	// Save the initial path
 	// =========================================================================
@@ -106,7 +110,7 @@ function result = atomsInstall(packages,section)
 		//    SCI directory
 		//  → Install in the "user" otherwise
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "allusers"; 
 		else
 			section = "user";
@@ -128,9 +132,9 @@ function result = atomsInstall(packages,section)
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
@@ -258,9 +262,9 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	for i=1:size(install_package_list(:,1),"*")
 		if install_package_list(i,1) == "+" then
-			atomsDisp(msprintf("\t%s (%s) will be installed\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		elseif install_package_list(i,1) == "~" then
-			atomsDisp(msprintf("\t%s (%s) is already installed and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		end
 	end
 	

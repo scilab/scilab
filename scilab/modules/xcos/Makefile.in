@@ -43,7 +43,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -64,8 +63,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = libscixcos.la 
-DIST_COMMON = $(libscixcos_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/xcos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -113,8 +112,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixcos_la_etcdir)" \
 	"$(DESTDIR)$(libscixcos_la_rootdir)" \
 	"$(DESTDIR)$(libscixcos_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscixcos_la_iconsdir)" \
-	"$(DESTDIR)$(libscixcos_la_includedir)"
+	"$(DESTDIR)$(libscixcos_la_iconsdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscixcos_disable_la_LIBADD =
 am__objects_1 = libscixcos_disable_la-noxcos.lo
@@ -133,7 +131,7 @@ am__objects_3 = libscixcos_la-gw_xcos.lo
 am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosNotify.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
-	libscixcos_la-Signal.lo
+	libscixcos_la-Signal.lo libscixcos_la-GiwsException.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
@@ -169,7 +167,6 @@ DIST_SOURCES = $(libscixcos_disable_la_SOURCES) \
 DATA = $(libscixcos_la_etc_DATA) $(libscixcos_la_root_DATA) \
 	$(libscixcos_la_sci_gateway_DATA) \
 	$(nobase_libscixcos_la_icons_DATA)
-HEADERS = $(libscixcos_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -426,7 +423,8 @@ XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx
+			src/jni/Signal.hxx \
+			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 src/jni/XcosUtils.giws.xml
@@ -477,13 +475,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
-
-#### xcos : include files ####
-libscixcos_la_includedir = $(pkgincludedir)/xcos
-libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h \
-includes/callxcos.h
-
 
 #### xcos : icons files ####
 libscixcos_la_iconsdir = $(mydatadir)/
@@ -814,6 +805,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-callxcos.Plo@am__quote@
@@ -912,6 +904,13 @@ libscixcos_la-Signal.lo: src/jni/Signal.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
 
+libscixcos_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-GiwsException.Tpo -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-GiwsException.Tpo $(DEPDIR)/libscixcos_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscixcos_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1000,26 +999,6 @@ uninstall-nobase_libscixcos_la_iconsDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscixcos_la_iconsdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscixcos_la_iconsdir)" && rm -f $$files
-install-libscixcos_la_includeHEADERS: $(libscixcos_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscixcos_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscixcos_la_includedir)"
-	@list='$(libscixcos_la_include_HEADERS)'; test -n "$(libscixcos_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscixcos_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscixcos_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscixcos_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscixcos_la_include_HEADERS)'; test -n "$(libscixcos_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscixcos_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscixcos_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1107,9 +1086,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixcos_la_etcdir)" "$(DESTDIR)$(libscixcos_la_rootdir)" "$(DESTDIR)$(libscixcos_la_sci_gatewaydir)" "$(DESTDIR)$(libscixcos_la_iconsdir)" "$(DESTDIR)$(libscixcos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixcos_la_etcdir)" "$(DESTDIR)$(libscixcos_la_rootdir)" "$(DESTDIR)$(libscixcos_la_sci_gatewaydir)" "$(DESTDIR)$(libscixcos_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1163,7 +1142,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscixcos_la_etcDATA \
-	install-libscixcos_la_includeHEADERS \
 	install-libscixcos_la_rootDATA \
 	install-libscixcos_la_sci_gatewayDATA \
 	install-nobase_libscixcos_la_iconsDATA
@@ -1213,7 +1191,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscixcos_la_etcDATA \
-	uninstall-libscixcos_la_includeHEADERS \
 	uninstall-libscixcos_la_rootDATA \
 	uninstall-libscixcos_la_sci_gatewayDATA \
 	uninstall-nobase_libscixcos_la_iconsDATA \
@@ -1230,9 +1207,7 @@ uninstall-am: uninstall-libscixcos_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscixcos_la_etcDATA \
-	install-libscixcos_la_includeHEADERS \
-	install-libscixcos_la_rootDATA \
+	install-libscixcos_la_etcDATA install-libscixcos_la_rootDATA \
 	install-libscixcos_la_sci_gatewayDATA install-man \
 	install-nobase_libscixcos_la_iconsDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -1241,7 +1216,6 @@ uninstall-am: uninstall-libscixcos_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscixcos_la_etcDATA \
-	uninstall-libscixcos_la_includeHEADERS \
 	uninstall-libscixcos_la_rootDATA \
 	uninstall-libscixcos_la_sci_gatewayDATA \
 	uninstall-nobase_libscixcos_la_iconsDATA \

@@ -99,6 +99,10 @@ public class SplitBlock extends BasicBlock {
 			out2 = tmp;
 			addPort(tmp);
 		}
+
+		in.setVisible(false);
+		out1.setVisible(false);
+		out2.setVisible(false);
 	}
 	
 	public BasicPort getIn(){

@@ -33,6 +33,10 @@ function result = atomsUpdate(name,section)
 		ATOMSVERBOSE = %F;
 	end
 	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -51,7 +55,7 @@ function result = atomsUpdate(name,section)
 	
 	if rhs < 2 then
 		// By default, install for all users (if we have write access of course !)
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "all";
 		else
 			section = "user";
@@ -65,7 +69,7 @@ function result = atomsUpdate(name,section)
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~ atomsAUWriteAccess() then
+		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,atomsPath("system","allusers")));
 		end
