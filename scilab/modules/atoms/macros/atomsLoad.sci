@@ -73,7 +73,6 @@ function result = atomsLoad(packages,section)
 	// If only one input argument, define the version (The Most Recent Version)
 	// =========================================================================
 	
-	
 	for i=1:size(packages(:,1),"*")
 		
 		if isempty(packages(i,2)) then
