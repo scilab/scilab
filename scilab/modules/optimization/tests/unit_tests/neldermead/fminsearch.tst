@@ -196,7 +196,7 @@ assert_equal ( output.funcCount , 21 );
 // Arguments, input
 //   x : the current point
 //   optimValues : a tlist which contains the following fields
-//     funcCount" : the number of function evaluations
+//     funccount : the number of function evaluations
 //     fval : the current function value
 //     iteration : the current iteration
 //     procedure : a string containing the current type of step
@@ -205,6 +205,40 @@ assert_equal ( output.funcCount , 21 );
 //
 function outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
+  // Unload all fields and check consistent values
+  fc = optimValues.funccount;
+  fv = optimValues.fval;
+  it = optimValues.iteration;
+  pr = optimValues.procedure;
+  select pr
+  case "initial simplex"
+    // OK
+  case "expand"
+    // OK
+  case "reflect"
+    // OK
+  case "shrink"
+    // OK
+  case "contract inside"
+    // OK
+  case "contract outside"
+    // OK
+  case ""
+    // OK
+  else
+    error ( sprintf ( "Unknown procedure %s." , pr ) )
+  end
+  select state
+  case "init"
+    // OK
+  case "iter"
+    // OK
+  case "done"
+    // OK
+  else
+    error ( sprintf ( "Unknown state %s." , state ) )
+  end
+  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
@@ -286,4 +320,17 @@ opt = optimset ( "PlotFcns" , optimplotfunccount );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
 close();
 
+//
+// Use all 3 plot functions
+//
+myfunctions = list ( optimplotfval , optimplotx , optimplotfunccount );
+opt = optimset ( "PlotFcns" , myfunctions );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+
+//
+// Test basic use with column x0
+//
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1].' );
+assert_close ( x , [1.0   1.0], 1e-4 );
 

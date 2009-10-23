@@ -541,13 +541,20 @@ endfunction
 
 // Use the 'derivative' function to compute the partial
 // derivatives of the previous problem
-deff('y=my_f(x)','y=0.5*norm(x-xref)^2');
-deff('y=my_df(x)','y=derivative(my_f,x)');
-deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
-                              g=my_df(x)');
+function y=my_f(x)
+  y=0.5*norm(x-xref)^2
+endfunction
+function y=my_df(x)
+  y=derivative(my_f,x)
+endfunction
+function [f,g,ind]=cost(x,ind)
+  f=my_f(x);
+  g=my_df(x);
+endfunction
 
 // Simplest call
-xref=[1;2;3];x0=[1;-1;1]
+xref=[1;2;3];
+x0=[1;-1;1]
 [f,xopt]=optim(cost,x0)
  ]]></programlisting>
   </refsection>
@@ -804,6 +811,7 @@ function [f,g,ind] = cost(x,ind)
     g=x-xref;
   end
   if ( ind == 1 ) then
+    mprintf("===========\n")
     mprintf("x = %s\n", strcat(string(x)," "))
     mprintf("f = %e\n", f)
     g=x-xref;
@@ -814,7 +822,31 @@ endfunction
 ]]>
   </programlisting>
 
-    <para>In the following example, we solve the Rosenbrock test case.
+    <para>
+    The previous script produces the following output.
+    </para>
+
+<programlisting role="example">
+===========
+x = 1 -1 1
+f = 6.500000e+000
+g = 0 -3 -2
+===========
+x = 1 0 1.6666667
+f = 2.888889e+000
+g = 0 -2 -1.3333333
+===========
+x = 1 2 3
+f = 9.860761e-031
+g = 0 -4.441D-16 1.332D-15
+===========
+x = 1 2 3
+f = 0.000000e+000
+g = 0 0 0
+  </programlisting>
+
+    <para>
+    In the following example, we solve the Rosenbrock test case.
     For each iteration of the algorithm, we plot the current value of x
     into a 2D graph containing the contours of Rosenbrock's function.
     This allows to see the progress of the algorithm while the 

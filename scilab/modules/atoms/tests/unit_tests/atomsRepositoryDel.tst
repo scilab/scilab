@@ -29,4 +29,5 @@ if isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) the
 	if or(atomsRepositoryList("allusers") <> []) then pause, end
 	if atomsRepositoryDel([rep1;rep2],"user") <> 2 then pause, end
 	
+	if ~isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) then pause, end
 end

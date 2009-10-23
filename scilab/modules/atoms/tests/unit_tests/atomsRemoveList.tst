@@ -13,7 +13,7 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 config_autoload = atomsGetConfig("autoload");
 config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoload","False");
-atomsSetConfig("Verbose" ,"True");
+atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 // =============================================================================
@@ -81,6 +81,9 @@ if or(atomsRemoveList(["toolbox_2";"toolbox_4"],"user")<>ref) then pause, end
 // =============================================================================
 atomsRemove("toolbox_5","user");
 atomsRemove("toolbox_3","user");
+
+// no module should be installed
+if ~isempty( atomsGetInstalled() ) then pause, end 
 
 // Restore original values
 // =============================================================================

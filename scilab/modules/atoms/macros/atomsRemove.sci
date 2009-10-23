@@ -178,9 +178,9 @@ function result = atomsRemove(packages,section)
 	if ATOMSVERBOSE 
 		for i=1:size(remove_package_list(:,1),"*")
 			if remove_package_list(i,1) == "-" then
-				atomsDisp(msprintf("\t%s (%s) will be removed\n\n",remove_package_list(i,3),remove_package_list(i,4)));
+				atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section\n\n",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
 			elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
-				atomsDisp(msprintf("\t%s (%s) cannot be removed and will be broken\n\n",remove_package_list(i,3),remove_package_list(i,4)));
+				atomsDisp(msprintf("\t%s (%s) cannot be removed from the ''%s'' section and will be broken\n\n",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
 			end
 		end
 	end
@@ -211,7 +211,7 @@ function result = atomsRemove(packages,section)
 			continue;
 		end
 		
-		atomsDisp(msprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version ));
+		atomsDisp(msprintf( "\tRemoving %s (%s)(%s) ... " , this_package_name , this_package_version , this_package_section));
 		
 		// Check if this_package_directory start with SCI or SCIHOME
 		

@@ -15,9 +15,9 @@ if or(isascii(255:300)) <> %F then bugmes();quit;end
 // =============================================================================
 if or(isascii('This is a sentence')) <> %T then bugmes();quit;end
 // =============================================================================
-if isascii(code2str(300)) <> %F then bugmes();quit;end
+if isascii(code2str(120)) <> %T then bugmes();quit;end
 // =============================================================================
-if or(isascii(code2str(300:350))) <> %F then bugmes();quit;end
+if or(isascii(code2str(120:150))) <> %T then bugmes();quit;end
 // =============================================================================
 tab_ref = [
 "世界A您好",

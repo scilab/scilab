@@ -16,7 +16,7 @@ function result = atomsInstall(packages,section)
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
-		load("SCI/packages/atoms/macros/atoms_internals/lib");
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
 	result = [];
@@ -258,9 +258,9 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	for i=1:size(install_package_list(:,1),"*")
 		if install_package_list(i,1) == "+" then
-			atomsDisp(msprintf("\t%s (%s) will be installed\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		elseif install_package_list(i,1) == "~" then
-			atomsDisp(msprintf("\t%s (%s) is already installed and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		end
 	end
 	
@@ -435,9 +435,20 @@ function result = atomsInstall(packages,section)
 	// Remove orphan packages
 	// =========================================================================
 	
-	orphan_list = atomsOrphanList(section);
-	if ~ isempty(orphan_list) then
-		atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] );
+	if section=="all" then
+		sections = ["user";"allusers"];
+	else
+		sections = section;
+	end
+	
+	for i=1:size(sections,"*")
+		
+		orphan_list = atomsOrphanList(sections(i));
+		
+		if ~ isempty(orphan_list) then
+			atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] , sections(i) );
+		end
+		
 	end
 	
 	// Go to the initial location

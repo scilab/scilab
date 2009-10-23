@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxRectangle;
 
 public abstract class BasicLink extends mxCell {
 
@@ -63,6 +64,16 @@ public abstract class BasicLink extends mxCell {
 			double endX = (getTarget().getParent().getGeometry().getX() + getTarget().getGeometry().getX());
 			double endY = (getTarget().getParent().getGeometry().getY() + getTarget().getGeometry().getY());
 
+			//check to delete an old point before try to insert
+			for(int i = 0 ; i < getGeometry().getPoints().size(); i++){
+				mxPoint oldPoint = (mxPoint)getGeometry().getPoints().get(i);
+				mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
+				if(rect.contains(point.getX(), point.getY())){
+					getGeometry().getPoints().remove(i);
+					return;
+				}else{
+				}
+			}			
 
 			//increase placement window
 			double saveDist = -1;
@@ -98,11 +109,6 @@ public abstract class BasicLink extends mxCell {
 						newPos = i;
 					}
 				}
-
-				System.err.println("saveDist : " + saveDist);
-				System.err.println("New Point : " + addPoint.toString());
-				System.err.println("newPos : " + newPos);
-
 			}	
 			getGeometry().getPoints().add(newPos, point);
 		}

@@ -80,7 +80,29 @@ function atomsDownload(url_in,file_out,md5sum)
 		
 		proxy_host_arg = "";
 		proxy_user_arg = "";
+		timeout_arg    = "";
 		
+		// Timeout configuration
+		
+		if MSDOS | MACOSX then
+			// Curl
+			timeout_arg = " --connect-timeout ";
+		else
+			// wget
+			timeout_arg = " --timeout=";
+		end
+		
+		timeout = string(strtod(atomsGetConfig("timeout")));
+		
+		if timeout<> "0" then
+			timeout_arg = timeout_arg + timeout;
+		else
+			timeout_arg = timeout_arg + "5";
+		end
+		
+		timeout_arg = timeout_arg + " ";
+		
+		// Proxy configuration
 		if (atomsGetConfig("useProxy") == "True") & (atomsGetConfig("proxyHost") <> "") then
 			
 			// Host
@@ -114,11 +136,11 @@ function atomsDownload(url_in,file_out,md5sum)
 		end
 		
 		if MSDOS then
-			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+" -s "+url_in + " -o " + file_out;
+			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
 		elseif MACOSX then
-			download_cmd = "curl "+proxy_host_arg+proxy_user_arg+" -s "+url_in + " -o " + file_out;
+			download_cmd = "curl "+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
 		else
-			download_cmd = proxy_host_arg+"wget"+proxy_user_arg+" "+url_in + " -O " + file_out;
+			download_cmd = proxy_host_arg+"wget"+proxy_user_arg+timeout_arg+" "+url_in + " -O " + file_out;
 		end
 		
 		[rep,stat,err] = unix_g(download_cmd);
