@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -121,7 +122,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public class Xpad extends SwingScilabTab implements Tab { 
 
 	private static final long serialVersionUID = -6410183357490518676L;
-
+	
 	private static final String XPAD = "Xpad";
 	private static final String SCI_EXTENSION = ".sci";
 	private static final String SCE_EXTENSION = ".sce";
@@ -724,10 +725,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param f the file to open
 	 */
 	public void readFile(File f) {
+
 		/** Is this file already opened */
 		boolean alreadyOpened = false;
 		for (int i = 0; i < tabPane.getTabCount(); i++) {
-			JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(i)).getViewport().getComponent(0);
+			JTextPane  textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(i)).getViewport().getComponent(0);
 			if (f.getAbsolutePath().equals(textPaneAt.getName())) {
 				/* File is already opnened */
 				tabPane.setSelectedIndex(i);
@@ -740,8 +742,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
 		}
+		
+		// If the file is a binary one, editor is in read-only mode
+		boolean binary;
+		binary = isBinaryFile(f);
+		if (binary == true) {
+			this.textPane.setEditable(false);
+		}
 	}
-
+	
 	/**
 	 * Load a file inside Xpad
 	 * @param f the file to open
@@ -770,6 +779,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 			}
 		}
+		
+		// If the file is a binary one, editor is in read-only mode
+		boolean binary;
+		binary = isBinaryFile(f);
+		if (binary == true) {
+			this.textPane.setEditable(false);
+		} 
 	}
 
 	/**
@@ -904,6 +920,51 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
+	
+	public String getFileFullPath() {
+		return fileFullPath;
+	}
+	
+	/**
+	 * Tells if input file is binary or not 
+	 * @param file
+	 * @return boolean if the file is an binary file or not
+	 */
+	public boolean isBinaryFile(File file) {
+
+		byte[] byte_buffer = new byte[(int) file.length()];
+		FileInputStream fis = null;
+
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			return false;
+		}
+
+		try {
+			int file_bytes = (int) file.length();
+			try {
+				file_bytes = fis.read(byte_buffer, 0, file_bytes);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (file_bytes == -1)
+				return false;
+			for (int i = 0; i != file_bytes; i++) {
+				if (byte_buffer[i] < 0)
+					return true;
+			}
+			return false;
+		} finally {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 	/**
 	 * Button displayed on top of tabs
@@ -1025,9 +1086,4 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
-
-	public String getFileFullPath() {
-		return fileFullPath;
-	}
-
 }

@@ -9,9 +9,9 @@
 
 // End user function
 
-// Load one or several toolboxes
+// Installation of a toolbox
 
-function atomsSystemInit()
+function atomsSystemUpdate()
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -21,18 +21,6 @@ function atomsSystemInit()
 	
 	// Check write access on allusers zone
 	// =========================================================================
-	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
-	
-	// Check if we have the write access
-	// =========================================================================
-	if ATOMSALLUSERSWRITEACCESS then
-		section = "all";
-	else
-		section = "user";
-	end
-	
-	// Toremove process
-	// =========================================================================
-	atomsToremoveProcess(section);
+	atomsGetTOOLBOXES(%T);
 	
 endfunction

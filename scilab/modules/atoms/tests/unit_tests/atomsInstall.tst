@@ -14,8 +14,9 @@ atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
 
 // Do not use the autoload system
 config_autoload = atomsGetConfig("autoload");
+config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoload","False");
-
+atomsSetConfig("Verbose" ,"False");
 
 // Install the toolbox 5
 // =============================================================================
@@ -118,5 +119,7 @@ if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
 atomsRemove("toolbox_5","allusers");
 
 // Restore original values
+// =============================================================================
 atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");

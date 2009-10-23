@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Remove an URL to the list of repositories, and returns
 
 function nbDel = atomsRepositoryDel(url,section)
@@ -17,9 +19,9 @@ function nbDel = atomsRepositoryDel(url,section)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-// 	// Check write access on allusers zone
-// 	// =========================================================================
-// 	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	rhs   = argn(2);
 	nbDel = 0;

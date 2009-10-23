@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 function cbAtomsGui()
 
 // Load Atoms Internals lib if it's not already loaded
@@ -157,7 +159,7 @@ moduleVersion = atomsGetMRVersion(getSelectedModuleName());
 installedVersions = atomsGetInstalledVers(getSelectedModuleName());
 canUpdate = "off";
 for k=1:size(installedVersions,"*")
-  if atomsCompareVersion(installedVersions(k), moduleVersion)==-1 then
+  if atomsVersionCompare(installedVersions(k), moduleVersion)==-1 then
     canUpdate = "on";
     break
   end

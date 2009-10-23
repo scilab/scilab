@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of installed packages
 // This function has an impact on the following files :
 //  -> ATOMSDIR/installed.txt, ATOMSDIR/installed.bin
