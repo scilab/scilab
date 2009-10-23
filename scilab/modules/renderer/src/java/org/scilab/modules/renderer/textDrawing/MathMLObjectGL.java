@@ -55,11 +55,11 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param fontSize the size of the font
      */
     public MathMLObjectGL(String content, Color color, float fontSize) {
-	this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
-	this.parameters.setParameter(Parameter.MATHCOLOR, color);
-	this.parameters.setParameter(Parameter.MATHSIZE, fontSize);
-	this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
-	makeImage();
+	        this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
+		this.parameters.setParameter(Parameter.MATHCOLOR, color);
+		this.parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
+		this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
+		makeImage();
     }
         
     /**
@@ -67,10 +67,10 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param color the color of the content
      */
     public void setColor(Color color) {
-	if (!parameters.getParameter(Parameter.MATHCOLOR).equals(color)) {
-	    parameters.setParameter(Parameter.MATHCOLOR, color);
-	    update();
-	}
+	        if (!parameters.getParameter(Parameter.MATHCOLOR).equals(color)) {
+		    parameters.setParameter(Parameter.MATHCOLOR, color);
+		    update();
+		}
     }
     
     /**
@@ -78,64 +78,61 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param fontSize the font size of the content
      */
     public void setFontSize(float fontSize) {
-	if ((Float) parameters.getParameter(Parameter.MATHSIZE) != fontSize) {
-	    parameters.setParameter(Parameter.MATHSIZE, fontSize);
-	    update();
-	}
+	        if ((Float) parameters.getParameter(Parameter.MATHSIZE) != fontSize + 4) {
+		    parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
+		    update();
+		}
     }
     
-/**
- * Update the current graphic
- */
+    /**
+     * Update the current graphic
+     */
     private void update() {
-	this.jev = new JEuclidView((Node) doc, parameters, TEMPGRAPHIC);
-	makeImage();
+	        this.jev = new JEuclidView((Node) doc, parameters, TEMPGRAPHIC);
+		makeImage();
     }
     
 
-/**
- * Convert the content to a document
- *
- * @param content The content when want to transform
- * @return the document
- */
+    /**
+     * Convert the content to a document
+     *
+     * @param content The content when want to transform
+     * @return the document
+     */
     private Document contentToDocument(final String content) {
-	try {
-	    doc = MathMLParserSupport.parseString(content);
-	} catch (final SAXException e) {
-	    throw new RuntimeException(e);
-	} catch (final ParserConfigurationException e) {
-	    throw new RuntimeException(e);
-	} catch (final IOException e) {
-	    throw new RuntimeException(e);
-	}
-	return doc;
+	        try {
+		    doc = MathMLParserSupport.parseString(content);
+		} catch (final SAXException e) {
+		    throw new RuntimeException(e);
+		} catch (final ParserConfigurationException e) {
+		    throw new RuntimeException(e);
+		} catch (final IOException e) {
+		    throw new RuntimeException(e);
+		}
+		return doc;
     }
+    
 
-
-/**
- * Render the image
- */
-    private void makeImage() {
-	this.width = (int) Math.ceil(jev.getWidth()) + 2;
-        final int ascent = (int) Math.ceil(jev.getAscentHeight());
-        this.height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
-	
-	BufferedImage bimg = new BufferedImage((int) this.width, (int) this.height, BufferedImage.TYPE_INT_ARGB);
-	
-	Graphics2D g2d = bimg.createGraphics();
-	
-	AffineTransform gt = new AffineTransform();
-	gt.translate(0, this.height);
-	gt.scale(1, -1d);
-	g2d.transform(gt);
-	
-	g2d.setColor(new Color(255, 255, 255, 0));
-	g2d.fillRect(0, 0, (int) this.width, (int) this.height);
-	
-	jev.draw(g2d, 0, ascent);
-	
-	int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
-	buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
+    public void makeImage() {
+	        this.width = (int) Math.ceil(jev.getWidth()) + 2;
+		final int ascent = (int) Math.ceil(jev.getAscentHeight());
+		this.height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
+		
+		BufferedImage bimg = new BufferedImage((int) this.width, (int) this.height, BufferedImage.TYPE_INT_ARGB);
+		
+		Graphics2D g2d = bimg.createGraphics();
+		
+		AffineTransform gt = new AffineTransform();
+		gt.translate(0, this.height);
+		gt.scale(1, -1d);
+		g2d.transform(gt);
+		
+		g2d.setColor(new Color(255, 255, 255, 0));
+		g2d.fillRect(0, 0, (int) this.width, (int) this.height);
+		
+		jev.draw(g2d, 0, ascent);
+		
+		int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
+		buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
     }
 }
