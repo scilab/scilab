@@ -31,7 +31,10 @@ XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
-XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp \
+	src/cpp/callxpad.cpp \
+	src/jni/GiwsException.cpp
+
 
 GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
