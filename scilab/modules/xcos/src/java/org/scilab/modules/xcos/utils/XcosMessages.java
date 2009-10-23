@@ -161,5 +161,7 @@ public final class XcosMessages {
     public static final String ALIGN_TOP = Messages.gettext("Top");
     public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
     public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
+    
+    public static final String LINE_COLOR = Messages.gettext("Line Color");
 
 }

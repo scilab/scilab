@@ -40,6 +40,7 @@ import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
+import org.scilab.modules.xcos.actions.LineColorAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
@@ -1023,6 +1024,10 @@ public class BasicBlock extends mxCell {
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
 		format.add(alignMenu);
 		/*--- */
+		format.addSeparator();
+		/*--- */
+		format.add(LineColorAction.createMenu(graph));
+		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
 		menu.add(ViewDetailsAction.createMenu(graph));
@@ -1031,9 +1036,9 @@ public class BasicBlock extends mxCell {
 		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
-		menu.setVisible(true);
-		
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+		
+		menu.setVisible(true);
     }
     
     public boolean getFlip(){
