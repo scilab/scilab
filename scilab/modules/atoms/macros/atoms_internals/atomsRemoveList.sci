@@ -147,7 +147,7 @@ function remList = atomsRemoveList(packages,section)
 			// Check if we have the right to remove this package
 			// If not, tag it as Broken (for later)
 			if section=="user" then
-				details = atomsGetInstalledDetails(this_package_parents(j,:),section);
+				details = atomsGetInstalledDetails([this_package_parents(j,1) this_package_parents(j,2)],section);
 				if details(1,3) == "allusers" then
 					remList = [ remList ; "~" "B" this_parent_name this_parent_version this_package_section ]; // B stands for "Broken"
 					continue
