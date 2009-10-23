@@ -24,6 +24,8 @@ import java.awt.geom.AffineTransform;
 
 import java.nio.ByteBuffer;
 
+import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
+
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
@@ -38,6 +40,8 @@ public class TeXObjectGL extends SpecialTextObjectGL {
     private final static Component COMPONENT = (Component) new Canvas();
     private TeXIcon texi;
     private TeXFormula formula;
+    private Color color;
+    private float fontSize;
 
     /** 
      * Default constructor.
@@ -45,18 +49,20 @@ public class TeXObjectGL extends SpecialTextObjectGL {
      * @param color the color of the content
      * @param fontSize the size of the font
      */
-    public TeXObjectGL(String content, Color color, float fontSize) throws RuntimeException {
+    public TeXObjectGL(String content, Color color, float fontSize) throws SpecialTextException {
 		if (content.endsWith("$"))
 			content = content.substring(1, content.length()-1);
 		else
-			throw new RuntimeException();
+			throw new SpecialTextException("Not a LaTeX expression");
 	
 		try {
 			formula = new TeXFormula(content);
 		} catch (ParseException e) {
-			throw new RuntimeException();
+			throw new SpecialTextException("Not a LaTeX expression");
 		}
  
+		this.fontSize = fontSize;
+		this.color = color;
 		formula.setBackground(new Color(255, 255, 255, 0));
 		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
 		COMPONENT.setForeground(color);
@@ -66,17 +72,33 @@ public class TeXObjectGL extends SpecialTextObjectGL {
     /**
      * Set the color of the content
      * @param color the color of the content
+     * @return true if the color changed
      */
-    public void setColor(Color color) {
-		COMPONENT.setForeground(color);
+    public boolean setColor(Color color) {
+	        if (!color.equals(this.color)) {
+		    this.color = color;
+		    COMPONENT.setForeground(color);
+		    makeImage();
+		    return true;
+		}
+		
+		return false;
     }
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
+     * @return true if the font size changed
      */
-    public void setFontSize(float fontSize) {
-		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
+    public boolean setFontSize(float fontSize) {
+	        if (this.fontSize != fontSize) {
+		    this.fontSize = fontSize;
+		    this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
+		    makeImage();
+		    return true;
+		}
+		
+		return false;
     }
     
     public void makeImage() {
@@ -105,5 +127,6 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 	
 		int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
 		buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
+		g2d.dispose();
     }
 }

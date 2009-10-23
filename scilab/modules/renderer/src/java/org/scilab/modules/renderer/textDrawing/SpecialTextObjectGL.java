@@ -38,19 +38,13 @@ public abstract class SpecialTextObjectGL {
      * Return the height of the content
      */
     public float getHeight() {
-	        if (buffer != null)
-		    return height;
-		makeImage();
-		return height;
+	        return height;
     }
     
     /**
      * Return the width of the content
      */
     public float getWidth() {
-		if (buffer != null)
-		    return width;
-		makeImage();
 		return width;
     }
     
@@ -75,20 +69,23 @@ public abstract class SpecialTextObjectGL {
     /**
      * Set the color of the content
      * @param color the color of the content
+     * Return true if the color changed
      */
-    public abstract void setColor(Color color);
+    public abstract boolean setColor(Color color);
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
+     * Return true if the font size changed
      */
-    public abstract void setFontSize(float fontSize);
+    public abstract boolean setFontSize(float fontSize);
 
     /**
      * Render the label and set the pixels buffer
      */
     public abstract void makeImage();
 
+    /* Convert an ARGB pixmap into RGBA pixmap */
     protected static byte[] ARGBtoRGBA(int[] pix) {
                 byte[] bytes = new byte[pix.length * 4];
                 int p, r, g, b, a;
