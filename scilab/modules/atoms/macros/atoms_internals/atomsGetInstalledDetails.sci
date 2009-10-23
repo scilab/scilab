@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Renvoie les détails sur l'installation d'un package.
 
 function res = atomsGetInstalledDetails(packages,section)

@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Liste des versions installée de la toolbox "name"
 
 function res = atomsGetInstalledStatus(packages,section)
