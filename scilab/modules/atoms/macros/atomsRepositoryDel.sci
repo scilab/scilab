@@ -19,9 +19,9 @@ function nbDel = atomsRepositoryDel(url,section)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-// 	// Check write access on allusers zone
-// 	// =========================================================================
-// 	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	rhs   = argn(2);
 	nbDel = 0;
