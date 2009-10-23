@@ -78,20 +78,21 @@ endfunction
 //   Performs an optimization with automatic restart
 //
 function this = neldermead_autorestart ( this )
-  for irestart = 1: this.restartmax
-    this = neldermead_log (this,sprintf("Restart #%d/%d", irestart,this.restartmax));
+  restartmax = this.restartmax;
+  for iloop = 1: restartmax + 1
+    this = neldermead_log (this,sprintf("Restart #%d/%d", iloop - 1,restartmax));
     this = neldermead_algo ( this );
     [ this , istorestart ] = neldermead_istorestart ( this );
-    if istorestart==0 then
+    if ( ~istorestart ) then
       this = neldermead_log (this,"Must not restart");
-      this.restartnb  = irestart
+      this.restartnb  = iloop - 1
       break
     else
       this = neldermead_log (this,"Must restart");
     end
-    if ( irestart == this.restartmax ) then
+    if ( iloop == restartmax ) then
       this = neldermead_log (this,"Stopping after all restarts performed");
-      this.restartnb  = irestart
+      this.restartnb  = iloop
       this.optbase = optimbase_set ( this.optbase , "-status" , "maxrestart" );
     else
       this = neldermead_updatesimp ( this );
@@ -128,6 +129,7 @@ function this = neldermead_variable ( this )
   currentcenter = optimsimplex_center ( simplex );
   currentxopt = optimbase_cget ( this.optbase , "-x0" );
   newfvmean = optimsimplex_fvmean ( simplex );
+  greedy = this.greedy;
   //
   // Initialize
   //
@@ -225,18 +227,34 @@ function this = neldermead_variable ( this )
       if ( verbose == 1 ) then
         this = neldermead_log (this,sprintf("xe="+strcat(string(xe)," ")+", f(xe)=%f",fe));
       end
-      if (fe < fr) then
-        if ( verbose == 1 ) then
-          this = neldermead_log (this,sprintf("  > Perform Expansion"));
+      if ( greedy ) then
+        if ( fe < flow ) then
+          if ( verbose == 1 ) then
+            this = neldermead_log (this,sprintf("  > Perform Greedy Expansion"));
+          end
+          simplex = optimsimplex_setve ( simplex , n+1 , fe , xe )
+          step = "expansion";
+        else
+          if ( verbose == 1 ) then
+            this = neldermead_log (this,sprintf("  > Perform Greedy Reflection"));
+          end
+          simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
+          step = "reflection";
         end
-        simplex = optimsimplex_setve ( simplex , n+1 , fe , xe )
-        step = "expansion";
       else
-        if ( verbose == 1 ) then
-          this = neldermead_log (this,sprintf("  > Perform reflection"));
+        if ( fe < fr ) then
+          if ( verbose == 1 ) then
+            this = neldermead_log (this,sprintf("  > Perform Expansion"));
+          end
+          simplex = optimsimplex_setve ( simplex , n+1 , fe , xe )
+          step = "expansion";
+        else
+          if ( verbose == 1 ) then
+            this = neldermead_log (this,sprintf("  > Perform Reflection"));
+          end
+          simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
+          step = "reflection";
         end
-        simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
-        step = "reflection";
       end
     elseif ( fr >= fn & fr < fhigh ) then
       // Outside contraction
@@ -715,9 +733,14 @@ endfunction
 // neldermead_istorestart --
 //   Returns 1 if the optimization is to restart.
 // Arguments
-//   istorestart : 1 of the the optimization is to restart.
+//   istorestart : %t of the the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_istorestart ( this )
+  status = optimbase_get ( this.optbase , "-status" );
+  if ( status =="maxfuneval" ) then
+    istorestart = %f
+    return
+  end
   select this.restartdetection
   case "oneill"
     [ this , istorestart ] = neldermead_isroneill ( this )
@@ -733,14 +756,14 @@ endfunction
 //   Returns 1 if the optimization is to restart.
 //   Use kelleystagnation as a criteria for restart.
 // Arguments
-//   istorestart : 1 of the the optimization is to restart.
+//   istorestart : %t of the the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_isrkelley ( this )
-  istorestart = 0
+  istorestart = %f
   if ( this.kelleystagnationflag ) then
     status = optimbase_get ( this.optbase , "-status" );
     if ( status =="kelleystagnation" ) then
-       istorestart = 1
+       istorestart = %t
     end
   end
 endfunction
@@ -755,7 +778,7 @@ endfunction
 //   eps : a small value
 //   step : a list of n values, representing
 //     the "size" of each parameter
-//   istorestart : 1 of the the optimization is to restart.
+//   istorestart : %t if the the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_isroneill ( this )
   n = optimbase_cget ( this.optbase , "-numberofvariables" );
@@ -769,31 +792,39 @@ function [ this , istorestart ] = neldermead_isroneill ( this )
   else
     step = defaultstep;
   end
+  restarteps = this.restarteps;
 
-  xopt = optimbase_get ( this.optbase , "-xopt" );
+  x = optimbase_get ( this.optbase , "-xopt" );
   fopt = optimbase_get ( this.optbase , "-fopt" );
+  verbose = optimbase_cget ( this.optbase , "-verbose" )
 
-    istorestart = 0
+    istorestart = %f
     for ix = 1:n
       stepix = step ( ix )
-      del = stepix * this.restarteps
+      del = stepix * restarteps
       if ( del==0.0 ) then
          del = eps
       end
-      xoptix =  xopt ( ix )
-      xopt ( ix ) = xoptix + del
-      [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xopt , 2 )
+      xix =  x ( ix )
+      x ( ix ) = xix + del
+      [ this.optbase , fv , index ] = optimbase_function ( this.optbase , x , 2 )
       if ( fv < fopt ) then
-        istorestart = 1
+        istorestart = %t
+        if ( verbose ) then
+          this = neldermead_log (this, sprintf ( "Must restart because fv=%e at [%s] is lower than fopt=%e" , fv , _strvec(x) , fopt) );
+        end
         break
       end
-      xopt ( ix ) = xoptix - del
-      [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xopt , 2 )
+      x ( ix ) = xix - del
+      [ this.optbase , fv , index ] = optimbase_function ( this.optbase , x , 2 )
       if ( fv < fopt ) then
-        istorestart = 1
+        istorestart = %t
+        if ( verbose ) then
+          this = neldermead_log (this, sprintf( "Must restart because fv=%e at [%s] is lower than fopt=%e" , fv , _strvec(x) , fopt) );
+        end
         break
       end
-      xopt ( ix ) = xoptix
+      x ( ix ) = xix
     end
 endfunction
 
