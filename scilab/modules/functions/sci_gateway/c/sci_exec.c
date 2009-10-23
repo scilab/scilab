@@ -93,12 +93,12 @@ int C2F(sci_exec)(char *fname,unsigned long fname_len)
 			}
 		}
 
-		if ((iType1 == sci_matrix) || (iType1 == sci_strings) || (iType1 == sci_c_function))
+		if ((iType1 == sci_matrix) || (iType1 == sci_strings) || (iType1 == sci_c_function) |  (iType1 == sci_u_function))
 		{
 			int m1 = 0, n1 = 0;
 
-			/*  sci_c_function not managed by getVarDimension */
-			if (iType1 != sci_c_function)
+			/*  sci_c_function, sci_u_function not managed by getVarDimension */
+			if ( (iType1 != sci_c_function) && (iType1 != sci_u_function) )
 			{
 				strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 				if(strErr.iErr)
