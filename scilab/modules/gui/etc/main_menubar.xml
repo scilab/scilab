@@ -151,8 +151,8 @@
             <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Scicos">
-            <callback instruction='scicos();' type="0"/>
+        <submenu label="&amp;Xcos">
+            <callback instruction='xcos();' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Matlab to Scilab translator">

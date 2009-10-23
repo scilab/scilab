@@ -157,4 +157,10 @@ deletefile("mckinnon.history.restart.fopt.txt");
 deletefile("mckinnon.history.restart.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

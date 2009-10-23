@@ -156,50 +156,50 @@ public final class BlockWriter {
      * @return the TList
      */
     private static ScilabList getDiagramObjs(XcosDiagram diagram) {
-	ScilabList data = new ScilabList();
+    	ScilabList data = new ScilabList();
 
-	int nbObjs = diagram.getModel().getChildCount(diagram.getDefaultParent());
+    	int nbObjs = diagram.getModel().getChildCount(diagram.getDefaultParent());
 
 
-	List<BasicBlock> blockList = new ArrayList<BasicBlock>();
-	List<BasicLink> linkList = new ArrayList<BasicLink>();
-	for (int i = 0; i < nbObjs; ++i) {
-	    Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-	    if (currentObject instanceof BasicBlock) {
-		blockList.add((BasicBlock) currentObject);
-		//
-		// Look inside a Block to see if there is no "AutoLink"
-		// Jgraphx will store this link as block's child  
-		//
-		for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
-		    if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
-			linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
-		    }
-		}
-	    } else if (currentObject instanceof BasicLink) {
-		linkList.add((BasicLink) currentObject);
-	    } else {
-		System.out.println("Not a BasicBlock nor BasicLink");
-	    }
-	}
+    	List<BasicBlock> blockList = new ArrayList<BasicBlock>();
+    	List<BasicLink> linkList = new ArrayList<BasicLink>();
+    	for (int i = 0; i < nbObjs; ++i) {
+    		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
+    		if (currentObject instanceof BasicBlock) {
+    			blockList.add((BasicBlock) currentObject);
+    			//
+    			// Look inside a Block to see if there is no "AutoLink"
+    			// Jgraphx will store this link as block's child  
+    			//
+    			for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
+    				if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
+    					linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
+    				}
+    			}
+    		} else if (currentObject instanceof BasicLink) {
+    			linkList.add((BasicLink) currentObject);
+    		} else {
+    			System.out.println("Not a BasicBlock nor BasicLink");
+    		}
+    	}
 
-	// Go over all list to set ID
-	for (int i = 0; i < linkList.size(); ++i) {
-	    linkList.get(i).setOrdering(i + blockList.size() + 1);
-	}
+    	// Go over all list to set ID
+    	for (int i = 0; i < linkList.size(); ++i) {
+    		linkList.get(i).setOrdering(i + blockList.size() + 1);
+    	}
 
-	// Go over all blocks to dump it inside Scilab Structure
-	for (int i = 0; i < blockList.size(); ++i) {
-	    blockList.get(i).setOrdering(i + 1);
-	    data.add(blockList.get(i).getAsScilabObj());
-	}
+    	// Go over all blocks to dump it inside Scilab Structure
+    	for (int i = 0; i < blockList.size(); ++i) {
+    		blockList.get(i).setOrdering(i + 1);
+    		data.add(blockList.get(i).getAsScilabObj());
+    	}
 
-	// Go over all link to dump it inside Scilab Structure
-	for (int i = 0; i < linkList.size(); ++i) {
-	    data.add(linkList.get(i).getAsScilabObj());
-	}
+    	// Go over all link to dump it inside Scilab Structure
+    	for (int i = 0; i < linkList.size(); ++i) {
+    		data.add(linkList.get(i).getAsScilabObj());
+    	}
 
-	return data;
+    	return data;
     }
 
     /**

@@ -42,7 +42,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	mxCodec.setAttribute(node, HEIGHT, scilabBoolean.getHeight());
 
 	for(int i = 0 ; i < scilabBoolean.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabBoolean.getHeight() ; ++j) {
+	    for(int j = 0 ; j < scilabBoolean.getWidth() ; ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
@@ -52,6 +52,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	}
 	return node;
     }
+    
 
     public Object decode(mxCodec dec, Node node, Object into)
     {
@@ -80,28 +81,28 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    boolean[][] data = new boolean[height][width];
 	    NodeList allValues = node.getChildNodes();
 	    for (int i = 0 ; i < allValues.getLength() ; ++i) {
-		int lineXMLPosition = -1;
-		int columnXMLPosition = -1;
-		int valueXMLPosition = -1;
-		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-		for (int j = 0; j < dataAttributes.getLength(); j++)
-		{
-		    Node attr = dataAttributes.item(j);
-		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
-		}
+	    	int lineXMLPosition = -1;
+	    	int columnXMLPosition = -1;
+	    	int valueXMLPosition = -1;
+	    	NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
+	    	for (int j = 0; j < dataAttributes.getLength(); j++)
+	    	{
+	    		Node attr = dataAttributes.item(j);
+	    		if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
+	    		if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
+	    		if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
+	    	}
 
-		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-		
-		if(dataAttributes.item(valueXMLPosition).getNodeValue() == "0"){
-			data[line][column] = true;
-		} else {
-			data[line][column] = false;
-		}
-		
+	    	if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+	    	int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
+	    	int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
+	    	
+	    	if(dataAttributes.item(valueXMLPosition).getNodeValue().compareToIgnoreCase("false") == 0){
+	    		data[line][column] = false;
+	    	} else {
+	    		data[line][column] = true;
+	    	}
+
 	    }
 
 	    ((ScilabBoolean) obj).setData(data);

@@ -83,4 +83,10 @@ deletefile("han1-history-fopt.txt");
 deletefile("han1-history-sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_han1.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

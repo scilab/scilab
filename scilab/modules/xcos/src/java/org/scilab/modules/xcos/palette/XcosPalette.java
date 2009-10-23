@@ -57,8 +57,8 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends JScrollPane {
 
-	private static final int BLOCK_WIDTH = 150;
-	private static final int BLOCK_HEIGHT = 150;
+	private static final int BLOCK_WIDTH = 100;
+	private static final int BLOCK_HEIGHT = 100;
 	private static final int HMARGIN = 5;
 	private static final int VMARGIN = 5;
 	private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
@@ -276,15 +276,15 @@ public class XcosPalette extends JScrollPane {
 			final BasicBlock cloneMe = (BasicBlock) cell;
 			
 			// Scales the image if it's too large for the library
-			if (icon != null)
-			{
-				if (icon.getIconWidth() > 128) {
-					icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
-				}
-				if (icon.getIconHeight() > 128) {
-					icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
-				}
-			}
+			//if (icon != null)
+			//{
+			//	if (icon.getIconWidth() > 128) {
+			//		icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
+			//	}
+			//	if (icon.getIconHeight() > 128) {
+			//		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
+			//	}
+			//}
 
 			final JLabel entry = new JLabel(icon)
 			{
@@ -314,11 +314,11 @@ public class XcosPalette extends JScrollPane {
 
 			entry.setPreferredSize(new Dimension(BLOCK_WIDTH, BLOCK_HEIGHT));
 			entry.setBackground(XcosPalette.this.getBackground().brighter());
-			entry.setFont(new Font(entry.getFont().getFamily(), 0, 14));
+			entry.setFont(new Font(entry.getFont().getFamily(), 0, 12));
 
 			entry.setVerticalTextPosition(JLabel.BOTTOM);
 			entry.setHorizontalTextPosition(JLabel.CENTER);
-			entry.setIconTextGap(0);
+			entry.setIconTextGap(5);
 
 			entry.setToolTipText(name);
 			entry.setText(name);

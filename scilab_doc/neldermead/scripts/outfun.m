@@ -12,5 +12,10 @@ function stop = outfun(x, optimValues, state)
 stop = false;
 hold on;
 plot(x(1),x(2),'.');
+fc = optimValues.funccount;
+fv = optimValues.fval;
+it = optimValues.iteration;
+pr = optimValues.procedure;
+disp(sprintf ( '%d %e %d -%s- %s\n' , fc , fv , it , pr , state ))
 drawnow
 

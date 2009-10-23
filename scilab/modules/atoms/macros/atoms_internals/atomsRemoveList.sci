@@ -74,6 +74,10 @@ function remList = atomsRemoveList(packages,section)
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsRemoveList",2));
 	end
 	
+	if section == "all" then
+		sections = ["allusers","user"];
+	end
+	
 	// Remove leading and trailing whitespace
 	// =========================================================================
 	packages = stripblanks(packages);
@@ -106,16 +110,11 @@ function remList = atomsRemoveList(packages,section)
 		end
 		
 		for j=1:size(this_package_versions,"*")
-			
-			if section == "all" then
-				if atomsIsInstalled([package_names(i) this_package_versions(j)],"allusers") then
-					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "allusers" ];
+			for k=1:size(sections,"*")
+				if atomsIsInstalled([package_names(i) this_package_versions(j)],sections(k)) ..
+					& isempty(find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == package_names(i)+" - "+this_package_versions(j)+" - "+sections(k))) then
+						remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) sections(k) ];
 				end
-				if atomsIsInstalled([package_names(i) this_package_versions(j)],"user") then
-					remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) "user" ];
-				end
-			else
-				remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) section ];
 			end
 			
 		end
@@ -131,17 +130,17 @@ function remList = atomsRemoveList(packages,section)
 		this_package_name    = packages(i,3);
 		this_package_version = packages(i,4);
 		this_package_section = packages(i,5);
-	
+		
 		// Get the parents of this toolbox
 		// (inevitably removed, unless we have not the right)
 		// ----------------------------------------------------
-		
-		this_package_parents = atomsGetDepParents([this_package_name this_package_version]);
+		this_package_parents = atomsGetDepParents([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_parents(:,1),"*")
 			
 			this_parent_name    = this_package_parents(j,1);
 			this_parent_version = this_package_parents(j,2);
+			this_parent_section = this_package_parents(j,3);
 			
 			// Check if we have the right to remove this package
 			// If not, tag it as Broken (for later)
@@ -154,7 +153,7 @@ function remList = atomsRemoveList(packages,section)
 			end
 			
 			// Add this parent to the list
-			if find(remList(:,3)+" - "+remList(:,4) == this_parent_name+" - "+this_parent_version) == [] then
+			if find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == this_parent_name+" - "+this_parent_version+" - "+this_parent_section ) == [] then
 				remList = [ remList ; "-" "P" this_parent_name this_parent_version this_package_section ];  // P stands for "Parent"
 			end
 			
@@ -163,7 +162,7 @@ function remList = atomsRemoveList(packages,section)
 		// Get the childs of this toolbox
 		// ----------------------------------------------
 		
-		this_package_childs = atomsGetDepChilds([this_package_name this_package_version]);
+		this_package_childs = atomsGetDepChilds([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_childs(:,1),"*")
 			
@@ -187,7 +186,7 @@ function remList = atomsRemoveList(packages,section)
 		
 	end
 	
-	// Third Step : Loop on childs check if we uninstall it or not
+	// Third Step : Loop on childs check if we can remove it or not
 	// =========================================================================
 	
 	packages = remList(find(remList(:,2)=="C"),:);
@@ -205,18 +204,29 @@ function remList = atomsRemoveList(packages,section)
 		this_package_name    = remList(i,3);
 		this_package_version = remList(i,4);
 		
-		// The package has been intentionnaly installed :
-		// => Do not install it
+		// The package (A child) has been intentionnaly installed :
+		// => Do not remove it (it and it's childs)
 		// ----------------------------------------------
 		
 		if atomsGetInstalledStatus([this_package_name this_package_version],section) == "I" then
+			
+			// It
 			remList(i,1) = "~";
+			
+			// It's Childs
+			this_package_childs     = atomsGetDepChilds([this_package_name this_package_version],section);
+			remList_mod             = remList(:,3) + " - " +  remList(:,4);
+			
+			for j=1:size(this_package_childs(:,1),"*")
+				remList( find(remList_mod == this_package_childs(j,1) + " - " + this_package_childs(j,2) , 1 )) = "~";
+			end
+			
 		end
 		
 		// Get the parents of this toolbox
 		// ----------------------------------------------
 		
-		this_package_parents = atomsGetDepParents([this_package_name this_package_version]);
+		this_package_parents = atomsGetDepParents([this_package_name this_package_version],section);
 		
 		for j=1:size(this_package_parents(:,1),"*")
 			

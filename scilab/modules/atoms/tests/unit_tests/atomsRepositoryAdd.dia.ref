@@ -27,4 +27,5 @@ if isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) the
 	if or(atomsRepositoryList("allusers") <> []) then bugmes();quit;end
 	if atomsRepositoryDel([rep1;rep2],"user") <> 2 then bugmes();quit;end
 	
+	if ~isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) then bugmes();quit;end
 end
