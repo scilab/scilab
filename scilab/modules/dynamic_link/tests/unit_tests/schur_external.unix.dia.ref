@@ -26,14 +26,6 @@ lp=ilib_for_link('mytest','mytest.c',[],'c');
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy mytest.c to TMPDIR
- 
- x   
- 
- mytest.c   
- 
- linkBuildDir   
- 
- TMPDIR   
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
