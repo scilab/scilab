@@ -1092,7 +1092,7 @@ public class XcosDiagram extends ScilabGraph {
 	if (isSuccess) {
 	    this.setSavedFile(fileName);
 	    File theFile = new File(fileName);
-	    setTitle(theFile.getName());
+	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile();

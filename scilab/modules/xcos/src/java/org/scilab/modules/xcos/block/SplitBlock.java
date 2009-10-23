@@ -148,7 +148,6 @@ public class SplitBlock extends BasicBlock {
 	}
 
 	public void setGeometry(mxGeometry geometry) {
-		System.err.println("setGeometry in SplitBlock");
 		if(geometry != null){
 			geometry.setWidth(6);
 			geometry.setHeight(6);
