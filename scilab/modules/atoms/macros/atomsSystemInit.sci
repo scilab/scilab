@@ -17,9 +17,13 @@ function atomsSystemInit()
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
 	// Check if we have the write access
 	// =========================================================================
-	if atomsAUWriteAccess() then
+	if ATOMSALLUSERSWRITEACCESS then
 		section = "all";
 	else
 		section = "user";

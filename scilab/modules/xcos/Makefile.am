@@ -97,12 +97,6 @@ libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 
 
-#### xcos : include files ####
-libscixcos_la_includedir=$(pkgincludedir)/xcos
-libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h \
-includes/callxcos.h
-
 #### xcos : icons files ####
 libscixcos_la_iconsdir=$(mydatadir)/
 nobase_libscixcos_la_icons_DATA = images/icons/document-new.png \

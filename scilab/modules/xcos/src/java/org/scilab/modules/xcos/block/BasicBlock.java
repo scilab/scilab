@@ -36,6 +36,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
@@ -44,6 +45,7 @@ import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -987,11 +989,11 @@ public class BasicBlock extends mxCell {
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
 		menu.add(RegionToSuperblockAction.createMenu(graph));
-		Menu mask = ScilabMenu.createMenu();
-		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-		menu.add(mask);
-		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
+//		Menu mask = ScilabMenu.createMenu();
+//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
+//		menu.add(mask);
+//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
+//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -1001,6 +1003,23 @@ public class BasicBlock extends mxCell {
 		format.add(RotateAction.createMenu(graph));
 		format.add(FlipAction.createMenu(graph));
 		format.add(ShowHideShadowAction.createMenu(graph));
+		/*--- */
+		format.addSeparator();
+		/*--- */
+		Menu alignMenu = ScilabMenu.createMenu();
+		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
+		alignMenu.addSeparator();
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
+		format.add(alignMenu);
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(ViewDetailsAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */

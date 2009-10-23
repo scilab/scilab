@@ -153,4 +153,13 @@ public final class XcosMessages {
     public static final String LINK_ERROR_IMPLICIT_OUT = Messages.gettext("Implicit data output port must be connected to implicit data input port");
     public static final String LINK_ERROR_EVENT_IN = Messages.gettext("Command port must be connected to control port");
     public static final String LINK_ERROR_EVENT_OUT = Messages.gettext("control port must be connected to command port");
+
+    public static final String ALIGN_BLOCKS = Messages.gettext("Align Blocks");
+    public static final String ALIGN_LEFT = Messages.gettext("Left");
+    public static final String ALIGN_RIGHT = Messages.gettext("Right");
+    public static final String ALIGN_CENTER = Messages.gettext("Center");
+    public static final String ALIGN_TOP = Messages.gettext("Top");
+    public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
+    public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
+
 }
