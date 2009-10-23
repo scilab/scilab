@@ -89,7 +89,7 @@ function packages = atomsGetTOOLBOXES(update)
 		for i=1:size(repositories,"*")
 			
 			// Building url & file_out
-			// ----------------------------------------			
+			// ----------------------------------------
 			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME+".gz";
 			file_out       = pathconvert(atoms_tmp_directory+"TOOLBOXES.gz",%f);
 			
@@ -110,7 +110,7 @@ function packages = atomsGetTOOLBOXES(update)
 				extract_cmd = "gunzip "+ file_out;
 				
 			else
-				extract_cmd = getshortpathname(pathconvert(SCI+"/tools/gunzip/gunzip.exe",%F)) + " """ + file_out + """";
+				extract_cmd = getshortpathname(pathconvert(SCI+"/tools/gzip/gzip.exe",%F)) + " -d """ + file_out + """";
 			end
 			
 			[rep,stat,err] = unix_g(extract_cmd);
