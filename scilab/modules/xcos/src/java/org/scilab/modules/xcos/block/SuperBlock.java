@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
@@ -48,6 +50,10 @@ public class SuperBlock extends BasicBlock {
 
     public SuperBlock(String label) {
 	super(label);
+	setRealParameters(new ScilabDouble());
+	setIntegerParameters(new ScilabDouble());
+	setObjectsParameters(new ScilabList());
+	setExprs(new ScilabDouble());
     }
     
     /**
