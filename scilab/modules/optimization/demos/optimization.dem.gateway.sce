@@ -12,7 +12,7 @@ subdemolist = [
 "optim/Output"                    "optim/optim_output.sce"       
 "optim/Plot"                      "optim/optim_plot.sce"       
 "optim/Derivative"                "optim/optim_withderivative.sce"       
-"fminsearch/Rosenbrock"           "neldermead/fminsearch_rosenbrock.sce.sce"       
+"fminsearch/Rosenbrock"           "neldermead/fminsearch_rosenbrock.sce"       
 "fminsearch/tolx"                 "neldermead/fminsearch_tolx.sce"   
 "fminsearch/Output Function"      "neldermead/fminsearch_outputfunction.sce"   
 "fminsearch/Option Display"       "neldermead/fminsearch_display.sce"   

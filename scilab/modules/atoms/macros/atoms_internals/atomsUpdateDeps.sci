@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Update the dependencies with the installation of this new package
 
 function packages_out = atomsUpdateDeps(package,section)

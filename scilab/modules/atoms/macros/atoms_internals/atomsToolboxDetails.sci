@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Return the mlist associated with the wanted toolbox
 
 function details = atomsToolboxDetails(package,field)
