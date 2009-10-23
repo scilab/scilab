@@ -128,7 +128,7 @@ Termination on Kelley's Stagnation, Alpha0 : 0.0001
 
 Termination on Kelley's Stagnation, Alpha : 0.0001
 
-Termination by Box : 0
+Termination by Box : F
 
 Termination by Box, Absolute Tolerance on Function: 0.00001
 
