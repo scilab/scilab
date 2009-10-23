@@ -750,7 +750,7 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		    if (cell instanceof BasicLink) {
 			BasicLink link = (BasicLink) cell;
-			//link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+			link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
 		}
 	    }
