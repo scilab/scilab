@@ -747,7 +747,10 @@ public class XcosDiagram extends ScilabGraph {
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-			getAsComponent().doLayout();
+		    }
+		    if (cell instanceof BasicLink) {
+			BasicLink link = (BasicLink) cell;
+			//link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
 		}
 	    }
@@ -1022,10 +1025,10 @@ public class XcosDiagram extends ScilabGraph {
 
     public boolean saveDiagram() {
 	boolean isSuccess = false;
-	if (getTitle().equals(XcosMessages.UNTITLED)) {
+	if (getSavedFile() == null) {
 	    isSuccess = saveDiagramAs(null);
 	} else {
-	    isSuccess = saveDiagramAs(getTitle());
+	    isSuccess = saveDiagramAs(getSavedFile());
 	}
 
 	if (isSuccess) {
@@ -1087,7 +1090,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	if (isSuccess) {
-	    this.setTitle(fileName);
+	    this.setSavedFile(fileName);
+	    File theFile = new File(fileName);
+	    setTitle(theFile.getName());
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile();
