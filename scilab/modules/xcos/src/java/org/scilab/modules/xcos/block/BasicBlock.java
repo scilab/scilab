@@ -44,6 +44,7 @@ import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -987,11 +988,11 @@ public class BasicBlock extends mxCell {
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
 		menu.add(RegionToSuperblockAction.createMenu(graph));
-		Menu mask = ScilabMenu.createMenu();
-		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-		menu.add(mask);
-		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
+//		Menu mask = ScilabMenu.createMenu();
+//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
+//		menu.add(mask);
+//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
+//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -1001,6 +1002,10 @@ public class BasicBlock extends mxCell {
 		format.add(RotateAction.createMenu(graph));
 		format.add(FlipAction.createMenu(graph));
 		format.add(ShowHideShadowAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(ViewDetailsAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
