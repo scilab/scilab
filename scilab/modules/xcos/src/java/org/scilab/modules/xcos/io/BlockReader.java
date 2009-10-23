@@ -122,6 +122,8 @@ public class BlockReader {
 					blocks.add(currentBlock);
 					minX = Math.min(minX, currentBlock.getGeometry().getX());
 					minY = Math.min(minY, currentBlock.getGeometry().getY()/* - currentBlock.getGeometry().getHeight()*/);
+				}else{
+					//for minX and minY
 				}
 			} catch (BlockReaderException e) {
 				WARNING(" Fail reading Block " + (i + 1));
@@ -644,8 +646,10 @@ public class BlockReader {
 		}
 
 		// Multiply size by 2 and fix 20 as minimal size so I can see "hidden" blocks
-		newBlock.getGeometry().setWidth(Math.max(sizeFactor * width, 40));
-		newBlock.getGeometry().setHeight(Math.max(sizeFactor * height, 40));
+		mxGeometry geom = newBlock.getGeometry();
+		geom.setWidth(Math.max(sizeFactor * width, 40));
+		geom.setHeight(Math.max(sizeFactor * height, 40));
+		newBlock.setGeometry(geom);
 
 		// Adjust block cause Scilab(0,0) is bottom left
 		newBlock.getGeometry().setY(newBlock.getGeometry().getY() - newBlock.getGeometry().getHeight()); 

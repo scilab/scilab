@@ -30,7 +30,6 @@ public class AfficheBlock extends BasicBlock {
 	
 	protected AfficheBlock(String label) {
 		super(label);
-		setStyle("Affiche");
 		setInterfaceFunctionName("AFFICH_m");
 		setValue("0.00");
 	}
