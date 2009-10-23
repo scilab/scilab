@@ -169,7 +169,10 @@ public class BasicBlock extends mxCell {
     	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
     	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
     	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
-    	if(label.compareTo("SPLIT_f") == 0) { return new SplitBlock(label); }
+    	if(label.compareTo("SPLIT_f") == 0 || 
+    			label.compareTo("IMPSPLIT_f") == 0 ||
+    			label.compareTo("CLKSPLIT_f") == 0) 
+    	{ return new SplitBlock(label); }
     	else { 
     		return new BasicBlock(label); 
     	}
