@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "scicos_block4.h"
 #include "core_math.h"
 #include "getScilabJavaVM.h"
@@ -40,6 +41,7 @@ extern "C" void affich2(scicos_block *block,int flag)
 	//get xcos object ID
 	int iBlock		= 0;
 	int type = GetOparType(block, 1);
+	
 	if(type == 10)//SCSREAL_N
 	{
 		iBlock = (int)*(double*)GetOparPtrs(block,1);
@@ -77,7 +79,7 @@ extern "C" void affich2(scicos_block *block,int flag)
 				sprintf_s(pstConv, 128, pstFormat, dblValue);
 #else
 				sprintf(pstFormat, "%%0.%df", iPrec);
-				sprintf(pstConv, "%0.2f", dblValue);
+				sprintf(pstConv, pstFormat, dblValue);
 #endif
 				pstValue[i] = strdup(pstConv);
 			}
@@ -89,9 +91,9 @@ extern "C" void affich2(scicos_block *block,int flag)
 		for(i = 0 ; i < iRowsIn * iColsIn ; i++)
 		{
 #if _MSC_VER
-			sprintf_s(pstConv, 128, "%0.2f", 0);
+			sprintf_s(pstConv, 128, "%0.2f", 0.0);
 #else
-			sprintf(pstConv, "%0.2f", 0);
+			sprintf(pstConv, "%0.2f", 0.0);
 #endif
 			pstValue[i] = strdup(pstConv);
 		}
