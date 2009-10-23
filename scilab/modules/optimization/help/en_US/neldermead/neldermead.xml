@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="neldermead" xml:lang="fr"
+<refentry 
+          version="5.0-subset Scilab" 
+	  xml:id="neldermead" 
+	  xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -1563,6 +1566,10 @@ function outputcmd(state, data, myobj)
       </listitem>
 
       <listitem>
+        <para>-tolxmethod.</para>
+      </listitem>
+
+      <listitem>
         <para>-tolsimplexizemethod.</para>
       </listitem>
     </itemizedlist>
@@ -1636,10 +1643,16 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>
+	The relative termination criteria on the function value works
         well if the function value at optimum is near zero. In that case, the
         function value at initial guess fx0 may be used as
-        <literal>/previousfopt</literal>.</para>
+        <literal>previousfopt</literal>.
+	</para>
+	<para>
+	This criteria is sensitive to the <literal>-tolfunrelative</literal> 
+	and <literal>-tolfunabsolute</literal> options.
+	</para>
 
         <para>The absolute termination criteria on the function value works if
         the user has an accurate idea of the optimum function value.</para>
@@ -1668,11 +1681,19 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
 norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
  </programlisting>
 
-              <para>is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
-              set to %t.</para>
+              <para>
+	      is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
+              set to %t.
+	      </para>
+
             </listitem>
           </varlistentry>
         </variablelist>
+
+      	<para>
+	This criteria is sensitive to the <literal>-tolxrelative</literal> 
+	and <literal>-tolxabsolute</literal> options.
+	</para>
 
         <para>The relative termination criteria on x works well if x at
         optimum is different from zero. In that case, the condition measures
@@ -1685,7 +1706,7 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
       </listitem>
 
       <listitem>
-        <para>The absolute tolerance on simplex size is examined depending on
+        <para>The tolerance on simplex size is examined depending on
         the value of the <literal>-tolsimplexizemethod</literal> option.</para>
 
         <variablelist>
@@ -1707,16 +1728,26 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
 ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
  </programlisting>
 
-              <para>is true where <literal>simplexsize0</literal> is the size of the simplex at
+              <para>
+	      is true where <literal>simplexsize0</literal> is the size of the simplex at
               iteration 0, then the <literal>status</literal> is set to <literal>"tolsize"</literal> 
-	      and <literal>terminate</literal>
-              is set to %t.</para>
+	      and <literal>terminate</literal> is set to %t.
+	      </para>
+              <para>
+	      The size of the simplex is computed from the "sigmaplus" method of the 
+	      <literal>optimsimplex</literal> component.
+	      This criteria is sensitive to the <literal>-tolsimplexizeabsolute</literal> and 
+	      the <literal>-tolsimplexizerelative</literal> options.
+	      </para>
             </listitem>
+	    
+	      
           </varlistentry>
         </variablelist>
       </listitem>
 
-      <listitem>
+
+	<listitem>
         <para>The absolute tolerance on simplex size and absolute difference
         of function value is examined depending on the value of the
         -tolssizedeltafvmethod option.</para>
