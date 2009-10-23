@@ -335,7 +335,7 @@ if (xGrid_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( xGrid_, 0, xGridSize, const_cast<jdouble*>(xGrid) ) ;
+curEnv->SetDoubleArrayRegion( xGrid_, 0, xGridSize, (jdouble*)(xGrid) ) ;
 
 
 jdoubleArray yGrid_ = curEnv->NewDoubleArray( yGridSize ) ;
@@ -346,7 +346,7 @@ if (yGrid_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( yGrid_, 0, yGridSize, const_cast<jdouble*>(yGrid) ) ;
+curEnv->SetDoubleArrayRegion( yGrid_, 0, yGridSize, (jdouble*)(yGrid) ) ;
 
 
 jintArray colors_ = curEnv->NewIntArray( colorsSize ) ;
@@ -357,7 +357,7 @@ if (colors_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( colors_, 0, colorsSize, const_cast<jint*>(colors) ) ;
+curEnv->SetIntArrayRegion( colors_, 0, colorsSize, (jint*)(colors) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawGrayplotjdoubleArrayjdoubleArrayjdoublejintArrayID ,xGrid_, yGrid_, zCoord, colors_);curEnv->DeleteLocalRef(xGrid_);

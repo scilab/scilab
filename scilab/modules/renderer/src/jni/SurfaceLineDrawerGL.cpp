@@ -271,7 +271,7 @@ if (xCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, const_cast<jdouble*>(xCoords) ) ;
+curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, (jdouble*)(xCoords) ) ;
 
 
 jdoubleArray yCoords_ = curEnv->NewDoubleArray( yCoordsSize ) ;
@@ -282,7 +282,7 @@ if (yCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, const_cast<jdouble*>(yCoords) ) ;
+curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, (jdouble*)(yCoords) ) ;
 
 
 jdoubleArray zCoords_ = curEnv->NewDoubleArray( zCoordsSize ) ;
@@ -293,7 +293,7 @@ if (zCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( zCoords_, 0, zCoordsSize, const_cast<jdouble*>(zCoords) ) ;
+curEnv->SetDoubleArrayRegion( zCoords_, 0, zCoordsSize, (jdouble*)(zCoords) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawSurfacejdoubleArrayjdoubleArrayjdoubleArrayjintID ,xCoords_, yCoords_, zCoords_, nbFacets);curEnv->DeleteLocalRef(xCoords_);

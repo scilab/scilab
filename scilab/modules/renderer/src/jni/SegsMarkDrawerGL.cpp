@@ -257,7 +257,7 @@ if (startXCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( startXCoords_, 0, startXCoordsSize, const_cast<jdouble*>(startXCoords) ) ;
+curEnv->SetDoubleArrayRegion( startXCoords_, 0, startXCoordsSize, (jdouble*)(startXCoords) ) ;
 
 
 jdoubleArray endXCoords_ = curEnv->NewDoubleArray( endXCoordsSize ) ;
@@ -268,7 +268,7 @@ if (endXCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( endXCoords_, 0, endXCoordsSize, const_cast<jdouble*>(endXCoords) ) ;
+curEnv->SetDoubleArrayRegion( endXCoords_, 0, endXCoordsSize, (jdouble*)(endXCoords) ) ;
 
 
 jdoubleArray startYCoords_ = curEnv->NewDoubleArray( startYCoordsSize ) ;
@@ -279,7 +279,7 @@ if (startYCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( startYCoords_, 0, startYCoordsSize, const_cast<jdouble*>(startYCoords) ) ;
+curEnv->SetDoubleArrayRegion( startYCoords_, 0, startYCoordsSize, (jdouble*)(startYCoords) ) ;
 
 
 jdoubleArray endYCoords_ = curEnv->NewDoubleArray( endYCoordsSize ) ;
@@ -290,7 +290,7 @@ if (endYCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( endYCoords_, 0, endYCoordsSize, const_cast<jdouble*>(endYCoords) ) ;
+curEnv->SetDoubleArrayRegion( endYCoords_, 0, endYCoordsSize, (jdouble*)(endYCoords) ) ;
 
 
 jdoubleArray startZCoords_ = curEnv->NewDoubleArray( startZCoordsSize ) ;
@@ -301,7 +301,7 @@ if (startZCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( startZCoords_, 0, startZCoordsSize, const_cast<jdouble*>(startZCoords) ) ;
+curEnv->SetDoubleArrayRegion( startZCoords_, 0, startZCoordsSize, (jdouble*)(startZCoords) ) ;
 
 
 jdoubleArray endZCoords_ = curEnv->NewDoubleArray( endZCoordsSize ) ;
@@ -312,7 +312,7 @@ if (endZCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( endZCoords_, 0, endZCoordsSize, const_cast<jdouble*>(endZCoords) ) ;
+curEnv->SetDoubleArrayRegion( endZCoords_, 0, endZCoordsSize, (jdouble*)(endZCoords) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,startXCoords_, endXCoords_, startYCoords_, endYCoords_, startZCoords_, endZCoords_);curEnv->DeleteLocalRef(startXCoords_);

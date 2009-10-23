@@ -239,7 +239,7 @@ if (xCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, const_cast<jdouble*>(xCoords) ) ;
+curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, (jdouble*)(xCoords) ) ;
 
 
 jdoubleArray yCoords_ = curEnv->NewDoubleArray( yCoordsSize ) ;
@@ -250,7 +250,7 @@ if (yCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, const_cast<jdouble*>(yCoords) ) ;
+curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, (jdouble*)(yCoords) ) ;
 
 
 jdoubleArray zCoords_ = curEnv->NewDoubleArray( zCoordsSize ) ;
@@ -261,7 +261,7 @@ if (zCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( zCoords_, 0, zCoordsSize, const_cast<jdouble*>(zCoords) ) ;
+curEnv->SetDoubleArrayRegion( zCoords_, 0, zCoordsSize, (jdouble*)(zCoords) ) ;
 
 
 jintArray colors_ = curEnv->NewIntArray( colorsSize ) ;
@@ -272,7 +272,7 @@ if (colors_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( colors_, 0, colorsSize, const_cast<jint*>(colors) ) ;
+curEnv->SetIntArrayRegion( colors_, 0, colorsSize, (jint*)(colors) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjintArrayID ,xCoords_, yCoords_, zCoords_, colors_);curEnv->DeleteLocalRef(xCoords_);

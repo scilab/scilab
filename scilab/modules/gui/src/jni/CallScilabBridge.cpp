@@ -1930,7 +1930,7 @@ if (indices_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( indices_, 0, indicesSize, const_cast<jint*>(indices) ) ;
+curEnv->SetIntArrayRegion( indices_, 0, indicesSize, (jint*)(indices) ) ;
 
 
                          curEnv->CallStaticVoidMethod(cls, voidsetListBoxSelectedIndicesjintjintArrayID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
@@ -2831,7 +2831,7 @@ if (index_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( index_, 0, indexSize, const_cast<jint*>(index) ) ;
+curEnv->SetIntArrayRegion( index_, 0, indexSize, (jint*)(index) ) ;
 
 
                          curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID ,id, index_);curEnv->DeleteLocalRef(index_);
@@ -3760,7 +3760,7 @@ if (rgb_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( rgb_, 0, rgbSize, const_cast<jint*>(rgb) ) ;
+curEnv->SetIntArrayRegion( rgb_, 0, rgbSize, (jint*)(rgb) ) ;
 
 
                          curEnv->CallStaticVoidMethod(cls, voidsetColorChooserDefaultColorjintjintArrayID ,objID, rgb_);curEnv->DeleteLocalRef(rgb_);

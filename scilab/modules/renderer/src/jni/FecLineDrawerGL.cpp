@@ -255,7 +255,7 @@ if (xCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, const_cast<jdouble*>(xCoords) ) ;
+curEnv->SetDoubleArrayRegion( xCoords_, 0, xCoordsSize, (jdouble*)(xCoords) ) ;
 
 
 jdoubleArray yCoords_ = curEnv->NewDoubleArray( yCoordsSize ) ;
@@ -266,7 +266,7 @@ if (yCoords_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, const_cast<jdouble*>(yCoords) ) ;
+curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, (jdouble*)(yCoords) ) ;
 
 
 jdoubleArray values_ = curEnv->NewDoubleArray( valuesSize ) ;
@@ -277,7 +277,7 @@ if (values_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( values_, 0, valuesSize, const_cast<jdouble*>(values) ) ;
+curEnv->SetDoubleArrayRegion( values_, 0, valuesSize, (jdouble*)(values) ) ;
 
 
 jintArray fristPoints_ = curEnv->NewIntArray( fristPointsSize ) ;
@@ -288,7 +288,7 @@ if (fristPoints_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( fristPoints_, 0, fristPointsSize, const_cast<jint*>(fristPoints) ) ;
+curEnv->SetIntArrayRegion( fristPoints_, 0, fristPointsSize, (jint*)(fristPoints) ) ;
 
 
 jintArray secondPoints_ = curEnv->NewIntArray( secondPointsSize ) ;
@@ -299,7 +299,7 @@ if (secondPoints_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( secondPoints_, 0, secondPointsSize, const_cast<jint*>(secondPoints) ) ;
+curEnv->SetIntArrayRegion( secondPoints_, 0, secondPointsSize, (jint*)(secondPoints) ) ;
 
 
 jintArray thirdPoints_ = curEnv->NewIntArray( thirdPointsSize ) ;
@@ -310,7 +310,7 @@ if (thirdPoints_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( thirdPoints_, 0, thirdPointsSize, const_cast<jint*>(thirdPoints) ) ;
+curEnv->SetIntArrayRegion( thirdPoints_, 0, thirdPointsSize, (jint*)(thirdPoints) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voiddrawFecjdoubleArrayjdoubleArrayjdoubleArrayjintArrayjintArrayjintArrayID ,xCoords_, yCoords_, values_, fristPoints_, secondPoints_, thirdPoints_);curEnv->DeleteLocalRef(xCoords_);
