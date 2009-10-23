@@ -6,11 +6,14 @@
  *
  * This example shows how to read / write a matrix of boolean from Scilab
  * engine
+ * 
+ * This example works from Scilab 5.2
+ * but the previous way of doing is also described as comment
  */
 #include <math.h>
 #include <stdio.h> 
 #include <stdlib.h> /* malloc */
-#include <string.h> 
+#include "api_scilab.h"
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
 #include "CallScilab.h" /* Provide functions to call Scilab engine */
 
@@ -39,7 +42,14 @@ int main(void)
 			int rowA=1, colA=4; /* Size of the matrix */
 			char variableName[]="A";
 
-			C2F(cwritebmat)(variableName, &rowA, &colA, A,strlen(variableName)); /* Write it into Scilab's memory */
+			/*
+			 Write it into Scilab's memory
+			 */
+			createNamedMatrixOfBoolean(pvApiCtx, variableName, rowA, colA, A);
+			/*
+			 * Prior to Scilab 5.2:
+			 * C2F(cwritebmat)(variableName, &rowA, &colA, A,strlen(variableName)); 
+			 */
 
 			printf("Display from Scilab of A:\n");
 			SendScilabJob("disp(A);"); /* Display A */
@@ -55,7 +65,15 @@ int main(void)
 			int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 			int rowB=2, colB=4; /* Size of the matrix */
 			char variableNameB[] = "B";
-			C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+
+			/* Write it into Scilab's memory */
+			createNamedMatrixOfBoolean(pvApiCtx, variableNameB, rowB, colB, B);
+			/*
+			 * Prior to Scilab 5.2:
+			 * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); 
+			 */
+
+
 			printf("\n");
 			printf("Display from Scilab of B:\n");
 			SendScilabJob("disp(B);"); /* Display B */
@@ -70,15 +88,23 @@ int main(void)
 			int *matrixOfBoolean = NULL; /* Int instead of double */
 
 			char variableToBeRetrieved[] = "A";
-
+		
 			/* First, retrieve the size of the matrix */
-			C2F(cmatbptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
+			readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL);
+			/* 
+			 * Prior to Scilab 5.2:
+			 * C2F(cmatbptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
+			 */						
 
 			/* Alloc the memory */
 			matrixOfBoolean=(int*)malloc((rowA_*colA_)*sizeof(int));
 
 			/* Load the matrix */
-			C2F(creadbmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfBoolean,strlen(variableToBeRetrieved) );
+			readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfBoolean);
+			/* 
+			 * Prior to Scilab 5.2:
+			 * C2F(creadbmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfBoolean,strlen(variableToBeRetrieved) );
+			 */
 
 			printf("\n");
 			printf("Display from A (size: %d, %d):\n", rowA_, colA_);
@@ -103,13 +129,22 @@ int main(void)
 			char variableToBeRetrievedB[] = "B";
 
 			/* First, retrieve the size of the matrix */
-			C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+			readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+			/*
+			 * Prior to Scilab 5.2:
+			 * C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+			 */
 
 			/* Alloc the memory */
 			matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
 			/* Load the matrix */
-			C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+			readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfBooleanB);
+
+			/*
+			 * Prior to Scilab 5.2:
+			 * C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+			 */
 
 			printf("\n");
 			printf("Display from B raw (size: %d, %d):\n",rowB_, colB_);
