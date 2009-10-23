@@ -44,14 +44,6 @@ l=ilib_for_link('rosenc','rosenc.c',[],'c');
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy rosenc.c to TMPDIR
- 
- x   
- 
- rosenc.c   
- 
- linkBuildDir   
- 
- TMPDIR   
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
@@ -100,14 +92,6 @@ l=ilib_for_link('rosenf','rosenf.f',[],'f');
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy rosenf.f to TMPDIR
- 
- x   
- 
- rosenf.f   
- 
- linkBuildDir   
- 
- TMPDIR   
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
