@@ -89,9 +89,9 @@ function packages = atomsGetTOOLBOXES(update)
 		for i=1:size(repositories,"*")
 			
 			// Building url & file_out
-			// ----------------------------------------
-			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
-			file_out       = pathconvert(atoms_tmp_directory+"TOOLBOXES",%f);
+			// ----------------------------------------			
+			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME+".gz";
+			file_out       = pathconvert(atoms_tmp_directory+"TOOLBOXES.gz",%f);
 			
 			// Remove the existing file
 			// ----------------------------------------
@@ -102,6 +102,24 @@ function packages = atomsGetTOOLBOXES(update)
 			// Launch the download
 			// ----------------------------------------
 			atomsDownload(url,file_out);
+			
+			// Extract It
+			// ----------------------------------------
+			
+			if LINUX | MACOSX then
+				extract_cmd = "gunzip "+ file_out;
+				
+			else
+				extract_cmd = getshortpathname(pathconvert(SCI+"/tools/gunzip/gunzip.exe",%F)) + " """ + file_out + """";
+			end
+			
+			[rep,stat,err] = unix_g(extract_cmd);
+			
+			if stat ~= 0 then
+				error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsGetTOOLBOXES",file_out));
+			end
+			
+			file_out = strsubst(file_out,"/\.gz$/","","r");
 			
 			// Read the download description file
 			// ----------------------------------------
