@@ -375,7 +375,7 @@ if (rgbmat_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( rgbmat_, 0, rgbmatSize, const_cast<jdouble*>(rgbmat) ) ;
+curEnv->SetDoubleArrayRegion( rgbmat_, 0, rgbmatSize, (jdouble*)(rgbmat) ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voidsetColorMapDatajdoubleArrayID ,rgbmat_);curEnv->DeleteLocalRef(rgbmat_);
@@ -710,7 +710,7 @@ if (initialRect_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, const_cast<jint*>(initialRect) ) ;
+curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, (jint*)(initialRect) ) ;
 
 
                         jintArray res =  static_cast<jintArray>( curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjintArrayID ,isClick_, initialRect_));if (curEnv->ExceptionCheck()) {

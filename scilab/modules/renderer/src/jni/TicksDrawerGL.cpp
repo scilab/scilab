@@ -259,7 +259,7 @@ if (axisSegmentStart_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( axisSegmentStart_, 0, axisSegmentStartSize, const_cast<jdouble*>(axisSegmentStart) ) ;
+curEnv->SetDoubleArrayRegion( axisSegmentStart_, 0, axisSegmentStartSize, (jdouble*)(axisSegmentStart) ) ;
 
 
 jdoubleArray axisSegmentEnd_ = curEnv->NewDoubleArray( axisSegmentEndSize ) ;
@@ -270,7 +270,7 @@ if (axisSegmentEnd_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( axisSegmentEnd_, 0, axisSegmentEndSize, const_cast<jdouble*>(axisSegmentEnd) ) ;
+curEnv->SetDoubleArrayRegion( axisSegmentEnd_, 0, axisSegmentEndSize, (jdouble*)(axisSegmentEnd) ) ;
 
 
 jdoubleArray ticksDir_ = curEnv->NewDoubleArray( ticksDirSize ) ;
@@ -281,7 +281,7 @@ if (ticksDir_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( ticksDir_, 0, ticksDirSize, const_cast<jdouble*>(ticksDir) ) ;
+curEnv->SetDoubleArrayRegion( ticksDir_, 0, ticksDirSize, (jdouble*)(ticksDir) ) ;
 
 
 jdoubleArray relativeTicksPos_ = curEnv->NewDoubleArray( relativeTicksPosSize ) ;
@@ -292,7 +292,7 @@ if (relativeTicksPos_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( relativeTicksPos_, 0, relativeTicksPosSize, const_cast<jdouble*>(relativeTicksPos) ) ;
+curEnv->SetDoubleArrayRegion( relativeTicksPos_, 0, relativeTicksPosSize, (jdouble*)(relativeTicksPos) ) ;
 
 
 jdoubleArray relativeSubticksPos_ = curEnv->NewDoubleArray( relativeSubticksPosSize ) ;
@@ -303,7 +303,7 @@ if (relativeSubticksPos_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( relativeSubticksPos_, 0, relativeSubticksPosSize, const_cast<jdouble*>(relativeSubticksPos) ) ;
+curEnv->SetDoubleArrayRegion( relativeSubticksPos_, 0, relativeSubticksPosSize, (jdouble*)(relativeSubticksPos) ) ;
 
 jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 
@@ -359,7 +359,7 @@ if (axisSegmentStart_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( axisSegmentStart_, 0, axisSegmentStartSize, const_cast<jdouble*>(axisSegmentStart) ) ;
+curEnv->SetDoubleArrayRegion( axisSegmentStart_, 0, axisSegmentStartSize, (jdouble*)(axisSegmentStart) ) ;
 
 
 jdoubleArray axisSegmentEnd_ = curEnv->NewDoubleArray( axisSegmentEndSize ) ;
@@ -370,7 +370,7 @@ if (axisSegmentEnd_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( axisSegmentEnd_, 0, axisSegmentEndSize, const_cast<jdouble*>(axisSegmentEnd) ) ;
+curEnv->SetDoubleArrayRegion( axisSegmentEnd_, 0, axisSegmentEndSize, (jdouble*)(axisSegmentEnd) ) ;
 
 
 jdoubleArray ticksDir_ = curEnv->NewDoubleArray( ticksDirSize ) ;
@@ -381,7 +381,7 @@ if (ticksDir_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( ticksDir_, 0, ticksDirSize, const_cast<jdouble*>(ticksDir) ) ;
+curEnv->SetDoubleArrayRegion( ticksDir_, 0, ticksDirSize, (jdouble*)(ticksDir) ) ;
 
 
 jdoubleArray relativeTicksPos_ = curEnv->NewDoubleArray( relativeTicksPosSize ) ;
@@ -392,7 +392,7 @@ if (relativeTicksPos_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( relativeTicksPos_, 0, relativeTicksPosSize, const_cast<jdouble*>(relativeTicksPos) ) ;
+curEnv->SetDoubleArrayRegion( relativeTicksPos_, 0, relativeTicksPosSize, (jdouble*)(relativeTicksPos) ) ;
 
 
 jdoubleArray relativeSubticksPos_ = curEnv->NewDoubleArray( relativeSubticksPosSize ) ;
@@ -403,7 +403,7 @@ if (relativeSubticksPos_ == NULL)
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
-curEnv->SetDoubleArrayRegion( relativeSubticksPos_, 0, relativeSubticksPosSize, const_cast<jdouble*>(relativeSubticksPos) ) ;
+curEnv->SetDoubleArrayRegion( relativeSubticksPos_, 0, relativeSubticksPosSize, (jdouble*)(relativeSubticksPos) ) ;
 
 jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 
