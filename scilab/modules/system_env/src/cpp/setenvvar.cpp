@@ -21,7 +21,6 @@
 #endif
 
 #include "setenvvar.hxx"
-
 #include "configvariable.hxx"
 
 using namespace std;
@@ -43,7 +42,7 @@ void SetScilabEnvironment(void)
 #ifdef _MSC_VER
 	SciEnvForWindows();
 #else
-	SetSci();
+	SciEnvForOthers();
 #endif
 	if(!setSCIHOME())
 	{
@@ -412,7 +411,7 @@ bool setSCIHOME(void)
 			}
 		}
 		#else /* Linux */
-			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
+			getenvc(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
 			if (ierr) return false;
 		#endif
 
@@ -645,4 +644,27 @@ bool isDrive(const char *strname)
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
+#else
+int SciEnvForOthers(void)
+{
+	int ierr,iflag=0;
+	int lbuf=PATH_MAX;
+	char *buf = new char[PATH_MAX];
+	if (buf)
+	{
+		getenvc(&ierr,"SCI",buf,&lbuf,&iflag);
+
+		if ( ierr== 1) 
+		{
+			cerr << "SCI environment variable not defined." << endl;
+			exit(1);
+		}
+		setSCIpath(buf);
+		delete buf;
+		buf = NULL;
+	}
+	
+	return 0;
+}
+
 #endif

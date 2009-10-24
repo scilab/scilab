@@ -31,3 +31,4 @@ public :
 	bool		set(string _szVar, string _szVal);
 
 };
+

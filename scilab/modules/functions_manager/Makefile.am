@@ -21,6 +21,7 @@ libscifunctions_manager_la_SOURCES 	= $(FUNCTION_MANAGER_CPP_SOURCES)
 
 libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ \
 						-I$(top_builddir)/modules/core/includes/ \
+						-I$(top_builddir)/modules/string/includes/ \
 						-Iincludes/ \
 						-Isrc/cpp \
 						$(XML_FLAGS)
