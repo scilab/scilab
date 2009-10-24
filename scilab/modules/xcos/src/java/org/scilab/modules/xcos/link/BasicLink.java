@@ -12,17 +12,27 @@
 
 package org.scilab.modules.xcos.link;
 
+import java.awt.MouseInfo;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.DeleteAction;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.xcos.actions.LineColorAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxPoint;
@@ -160,5 +170,22 @@ public abstract class BasicLink extends mxCell {
 	}
 
 	public abstract double[][] getColorAndType();
+
+	public void openContextMenu(ScilabGraph graph) {
+		ContextMenu menu = ScilabContextMenu.createContextMenu();
+		menu.add(DeleteAction.createMenu(graph));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		Menu format = ScilabMenu.createMenu();
+		format.setText(XcosMessages.FORMAT);
+		menu.add(format);
+		format.add(LineColorAction.createMenu(graph));
+		/*--- */
+
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);		
+
+		menu.setVisible(true);
+	}
 
 }

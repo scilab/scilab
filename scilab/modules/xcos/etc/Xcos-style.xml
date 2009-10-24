@@ -16,6 +16,13 @@
   <!-- Affiche -->
   <add as="Affiche" extend="blockWithLabel"/>
 
+	<add as="Split" extend="block">
+		<add as="shape" value="rectangle"/>
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="orange"/>
+	</add>
+
+	
   <!-- Label -->
   <add as="Label" extend="blockWithLabel">
     <add as="strokeColor" value="white"/>
@@ -193,6 +200,7 @@
     <add as="displayedLabel" value="TK Scale"/>
   </add>
   <add as="FROMWSB" extend="blockWithLabel">
+    <!-- FIXME : Show workspace under block  -->
     <add as="displayedLabel" value="From workspace"/>
   </add>
 
@@ -201,7 +209,9 @@
     <add as="displayedLabel" value="du / dt"/>
   </add>
   <add as="INTEGRAL_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="&#8747;"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
+				    &#8747;
+				    &lt;/FONT&gt;"/>
   </add>
   <add as="CLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
@@ -362,9 +372,10 @@
     <add as="displayedLabel" value="a^u"/>
   </add>
   <add as="PROD_f" extend="blockWithLabel">
+    <!-- FIXME : Cross sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="&#xD7;"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;&#xD7;&lt;/FONT&gt;"/>
   </add>
   <add as="MATZREIM" extend="blockWithLabel">
     <add as="displayedLabel" value="Re &amp; Im"/>
@@ -420,9 +431,10 @@
     <add as="displayedLabel" value="SIGN"/>
   </add>
   <add as="SUM_f" extend="blockWithLabel">
+    <!-- FIXME : Plus sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="+"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;+&lt;/FONT&gt;"/>
   </add>
   <add as="CONSTRAINT_f" extend="blockWithLabel">
     <add as="displayedLabel" value="=0 ?"/>
@@ -449,7 +461,7 @@
   </add>
   <add as="GotoTagVisibilityMO" extend="blockWithLabel">
     <!-- TODO: icon to be verified -->
-    <add as="displayedLabel" value="{A}"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
     <add as="shape" value="ellipse"/>
     <add as="strokeColor" value="green"/>
   </add>
@@ -673,6 +685,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.gif"/>
   </add>
   <add as="TOWS_c" extend="blockWithLabel">
+    <!-- FIXME : Show workspace under block  -->
     <add as="displayedLabel" value="To workspace"/>
   </add>
   <add as="CMAT3D" extend="blockWithLabel">
@@ -690,9 +703,7 @@
   <add as="CMSCOPE" extend="blockWithLabel">
     <add as="displayedLabel" value="MScope"/>
   </add>
-  <add as="AFFICH_m" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/AFFICH_m.gif"/>
-    <!-- TODO: explain how comes the icon is not displayed but text... -->
+  <add as="AFFICH_m" extend="Affiche">
   </add>
   <add as="TRASH_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Trash"/>
@@ -773,7 +784,9 @@
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
     <!-- FIXME : Regenerate this image -->
-    <add as="displayedLabel" value="{A}"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
+    <add as="shape" value="ellipse"/>
+    <add as="strokeColor" value="red"/>
   </add>
   <!-- SampleCLK -->
   <add as="CLKOUTV_f" extend="blockWithLabel">
@@ -784,10 +797,11 @@
   </add>
   <!-- ESELECT -->
   <add as="CLKSOMV_f" extend="blockWithLabel">
-    <!-- FIXME : Display in red -->
+    <!-- FIXME : Plus sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
+    <add as="strokeColor" value="red"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="+"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot; COLOR=&quot;red&quot;&gt;+&lt;/FONT&gt;"/>
   </add>
   <!-- CLOCK_c -->
   <add as="EVTGEN_f" extend="blockWithLabel">
@@ -873,7 +887,7 @@
   </add>
   <add as="GotoTagVisibility" extend="blockWithLabel">
     <!-- FIXME : Regenerate this image -->
-    <add as="displayedLabel" value="{A}"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
   </add>
   <add as="FROM" extend="blockWithLabel">
     <!-- TODO: icon to be verified -->
@@ -1154,11 +1168,7 @@
   <!-- PDE -->
 
   <!-- GENERATED BLOCKS -->
-  <add as="SPLIT_f" extend="block">
-    <add as="shape" value="rectangle"/>
-    <add as="strokeColor" value="black"/>
-    <add as="fillColor" value="orange"/>
-  </add>
+  <add as="SPLIT_f" extend="Split"/>
   <add as="SCALAR2VECTOR" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALAR2VECTOR.gif"/>
   </add>
@@ -1218,10 +1228,9 @@
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>
   </add>
-  <add as="CLKSPLIT_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSPLIT_f.gif"/>
-  </add>
-  <add as="CLKSOM_f" extend="Icon">
+	<add as="CLKSPLIT_f" extend="Split"/>
+	<add as="IMPSPLIT_f" extend="Split"/>
+	<add as="CLKSOM_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOM_f.gif"/>
   </add>
   <add as="CLKOUT_f" extend="Icon">

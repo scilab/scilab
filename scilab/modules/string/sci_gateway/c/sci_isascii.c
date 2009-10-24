@@ -99,7 +99,7 @@ static int isasciiMatrix(char *fname,int *piAddressVarOne)
 			int i = 0;
 			for (i = 0; i < nbElems; i++)
 			{
-				int iVal = pdVarOne[i];
+				int iVal = (int)pdVarOne[i];
 
 				if (isascii(iVal)) bOutputMatrix[i] = (int)TRUE;
 				else bOutputMatrix[i] = (int)FALSE;

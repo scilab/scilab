@@ -113,7 +113,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolsimplexizemethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -tolsimplexizemethod option";
+expected = "assert_typeboolean: Expected boolean but got string instead";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -122,7 +122,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolssizedeltafvmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -tolssizedeltafvmethod option";
+expected = "assert_typeboolean: Expected boolean but got string instead";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 

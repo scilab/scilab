@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// End user function
+// Internal function
 
 // display of the available toolboxes
 

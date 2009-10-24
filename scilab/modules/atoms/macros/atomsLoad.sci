@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Load one or several toolboxes
 
 function result = atomsLoad(packages,section)
@@ -70,7 +72,6 @@ function result = atomsLoad(packages,section)
 	
 	// If only one input argument, define the version (The Most Recent Version)
 	// =========================================================================
-	
 	
 	for i=1:size(packages(:,1),"*")
 		

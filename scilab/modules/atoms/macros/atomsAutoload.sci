@@ -43,8 +43,30 @@ function result = atomsAutoload()
 	libs_resume = [];
 	
 	// Get the list of lib [before]
-	// =====================================================================
+	// =========================================================================
 	libs_before = librarieslist();
+	
+	// This case can happen : A administrator install a package, User add it to 
+	// its autoload list. Then administrator remove it
+	// =========================================================================
+	if or( ~ atomsIsInstalled( [packages(:,1) packages(:,2)] )) then
+		
+		// One or more package are not installed : Remove them from the autoload
+		// list
+		
+		if atomsAUWriteAccess() then
+			section = "all";
+		else
+			section = "user";
+		end
+		
+		for i=1:size(packages(:,1),"*")
+			if ~ atomsIsInstalled([packages(i,1) packages(i,2)]) then
+				atomsAutoloadDel(packages(i,1),packages(i,2),section);
+			end
+		end
+		
+	end
 	
 	// Load the wanted packages
 	// =========================================================================

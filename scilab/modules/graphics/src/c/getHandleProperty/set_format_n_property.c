@@ -51,7 +51,7 @@ int set_format_n_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     FREE(pAXES_FEATURE(pobj)->format);
 
   format = getStringFromStack(stackPointer);
-  formatLength = strlen(format);
+  formatLength = (int)strlen(format);
 
   if(formatLength <= 1)
   {

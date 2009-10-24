@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Give the list of packages needed by this package (identified by its name and version)
 
 function packages = atomsGetDepChilds(package,section)

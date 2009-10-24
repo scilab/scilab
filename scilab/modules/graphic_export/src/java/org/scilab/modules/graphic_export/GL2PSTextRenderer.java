@@ -56,19 +56,19 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		GL2PS gl2ps = new GL2PS();
 		gl.glRasterPos3d(x, y, z);
 		/* Modified by Calixte to handle LaTeX and MathML labels */
-		if (str != null && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
-		    SpecialTextObjectGL spe = getSpeRenderer().getContent(str);
-		    if (spe == null) {
-			gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
-				           (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
-				           (float) Math.toDegrees(angle));
-		    } else {
-			ByteBuffer buf = ByteBuffer.allocateDirect(spe.getBuffer().capacity());
-			buf.put((ByteBuffer)spe.getBuffer());
-			gl2ps.gl2psDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, buf);
-		    }
+		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
+		        SpecialTextObjectGL spe = getSpeRenderer().getContent(str);
+			if (spe == null) {
+			        gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
+						   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
+						   (float) Math.toDegrees(angle));
+			} else {
+			        ByteBuffer buf = ByteBuffer.allocateDirect(spe.getBuffer().capacity());
+				buf.put((ByteBuffer)spe.getBuffer());
+				gl2ps.gl2psDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, buf);
+			}
 		    
-		    return;
+			return;
 		}
 		
 		gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),

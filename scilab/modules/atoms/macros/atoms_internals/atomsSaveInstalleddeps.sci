@@ -9,7 +9,6 @@
 
 // Internal function
 
-
 // Save two trees :
 //   - package -> childs : give the list of packages needed by "package"
 //   - package -> parents : give the list of packages used by "package"
