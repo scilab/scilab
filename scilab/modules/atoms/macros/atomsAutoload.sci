@@ -46,9 +46,12 @@ function result = atomsAutoload()
 	// =========================================================================
 	libs_before = librarieslist();
 	
-	// This case can happen : A administrator install a package, User add it to 
-	// its autoload list. Then administrator remove it
+	// This case can happen : 
+	//  → Administrator install a package
+	//  → User add it to its autoload list.
+	//  → Then administrator remove the package
 	// =========================================================================
+	
 	if or( ~ atomsIsInstalled( [packages(:,1) packages(:,2)] )) then
 		
 		// One or more package are not installed : Remove them from the autoload
@@ -61,8 +64,8 @@ function result = atomsAutoload()
 		end
 		
 		for i=1:size(packages(:,1),"*")
-			if ~ atomsIsInstalled([packages(i,1) packages(i,2)]) then
-				atomsAutoloadDel(packages(i,1),packages(i,2),section);
+			if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
+				atomsAutoloadDel(packages(i,:),section);
 			end
 		end
 		

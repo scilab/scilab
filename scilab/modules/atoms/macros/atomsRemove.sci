@@ -266,7 +266,7 @@ function result = atomsRemove(packages,section)
 		
 		// Remove this toolbox from the list of autoloaded packages
 		// =====================================================================
-		atomsAutoloadDel(this_package_name,this_package_version);
+		atomsAutoloadDel([this_package_name this_package_version this_package_section]);
 		
 		// "Archive" installation
 		// =====================================================================

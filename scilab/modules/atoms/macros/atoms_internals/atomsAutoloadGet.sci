@@ -85,17 +85,14 @@ function packages = atomsAutoloadGet(section)
 		
 		// Loop on each URL specified as first input argument
 		for j=1:size(autoloaded,"*")
-			current_name_length  = regexp(autoloaded(j),"/\s-\s/","o");
-			current_name         = part(autoloaded(j),1:current_name_length-1);
-			current_version      = part(autoloaded(j),current_name_length+3:length(autoloaded(j)));
 			
-			if atomsIsInstalled([current_name current_version],"user") then
-				current_path = pathconvert(atomsPath("install","user")+current_name+"/"+current_version,%F);
-			else
-				current_path = pathconvert(atomsPath("install","allusers")+current_name+"/"+current_version,%F);
-			end
+			rep_index              = regexp(autoloaded(j),"/\s-\s/");
 			
-			packages = [ packages ; current_name current_version autoloaded_files(i,2) current_path];
+			current_name           = part(autoloaded(j),1:rep_index(1)-1);
+			current_version        = part(autoloaded(j),rep_index(1)+3:rep_index(2)-1);
+			current_section        = part(autoloaded(j),rep_index(2)+3:length(autoloaded(j)));
+			
+			packages = [ packages ; current_name current_version current_section];
 		end
 	end
 	

@@ -362,7 +362,7 @@ function result = atomsInstall(packages,section)
 			// Add a package to the autoload list only if it's intentionnaly
 			// installed
 			if this_package_status=="I" then
-				atomsAutoloadAdd(this_package_name,this_package_version,section);
+				atomsAutoloadAdd([this_package_name this_package_version section],section);
 			end
 		end
 		
