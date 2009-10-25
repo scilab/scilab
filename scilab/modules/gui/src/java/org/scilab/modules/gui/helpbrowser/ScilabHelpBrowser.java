@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.helpbrowser;
 
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
@@ -60,7 +61,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			
 			instance = new ScilabHelpBrowser(helps, language);
 			
-			helpTab = ScilabTab.createTab("Help Browser");
+			helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"));
 			helpTab.addMember(instance);
 			 /* Action when the Browser tab is closed */
 			helpTab.setCallback(ScilabCallBack
