@@ -456,6 +456,9 @@ Bugs:
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+* bug 4617 fixed - Some items (Console pull down menu and help browser item) 
+  	  	   		   were not translatable
+
 * bug 4660 fixed - Error in the French localization (Edit instead of Edition)
 
 * bug 4758 fixed - embedded version of autoconf libs.m4 were causing some issues
