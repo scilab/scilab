@@ -17,3 +17,9 @@ if atomsVersionCompare("5.1.0","5.1.2") <> -1 then pause, end
 if atomsVersionCompare("5.1.2","5.1.0") <>  1 then pause, end
 
 if atomsVersionCompare("10.0","2.6.9") <> 1 then pause, end
+
+A = ["5.1";"5.1.0";"5.1.00000";"5.1.0.0";"05.1"];
+B = [0 ; 0 ; 0 ; 0 ; 0 ];
+
+if or( atomsVersionCompare(A,"5.1")<>B ) then pause, end
+
