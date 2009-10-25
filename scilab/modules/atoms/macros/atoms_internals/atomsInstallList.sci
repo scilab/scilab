@@ -39,10 +39,6 @@ function [insList,depTree] = atomsInstallList(packages,section)
 	insList = [];
 	depTree = struct();
 	
-	// Save the initial path
-	// =========================================================================
-	initialpath = pwd();
-	
 	// Get scilab version (needed for later)
 	// =========================================================================
 	sciversion = strcat(string(getversion("scilab")) + ".");
@@ -82,12 +78,10 @@ function [insList,depTree] = atomsInstallList(packages,section)
 	else
 		
 		if type(section) <> 10 then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallList",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallList",2));
 		end
 		
@@ -114,16 +108,16 @@ function [insList,depTree] = atomsInstallList(packages,section)
 			else
 				module_full_name = this_package_name+" - "+this_package_version;
 			end
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
+			atomsError("error", ..
+				msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
 		end
 		
 		// Build the depencency tree
 		[tree,version_out]  = atomsDepTreeFlat(this_package_name,this_package_version);
 		
 		if (type(tree) == 4) & (~ tree) then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
+			atomsError("error", ..
+				msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
 		end
 		
 		// Update the  package_versions(i) with the version returned by
@@ -192,9 +186,5 @@ function [insList,depTree] = atomsInstallList(packages,section)
 		end
 		
 	end
-	
-	// Go to the initial location
-	// =========================================================================
-	chdir(initialpath);
 	
 endfunction

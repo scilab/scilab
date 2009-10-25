@@ -37,10 +37,6 @@ function remList = atomsRemoveList(packages,section)
 	
 	remList = [];
 	
-	// Save the initial path
-	// =========================================================================
-	initialpath = pwd();
-	
 	// Check input parameters
 	// =========================================================================
 	rhs = argn(2);

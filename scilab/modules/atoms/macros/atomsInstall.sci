@@ -27,7 +27,7 @@ function result = atomsInstall(packages,section)
 	
 	// Save the initial path
 	// =========================================================================
-	initialpath = pwd();
+	ATOMSINITIALPATH = pwd();
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
@@ -122,18 +122,15 @@ function result = atomsInstall(packages,section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
 		end
 		
 		if and(section<>["user","allusers"]) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
 		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",pathconvert(SCI+"/.atoms")));
 		end
 	end
@@ -292,10 +289,8 @@ function result = atomsInstall(packages,section)
 		// =====================================================================
 		
 		if ~isdir(this_package_directory) & (mkdir(this_package_directory)<>1) then
-			chdir(initialpath);
-			error(msprintf( ..
-				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-				this_package_directory));
+			atomsError("error", ..
+				msprintf( gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),this_package_directory));
 		end
 		
 		// "Repository" installation ; Download and Extract
@@ -337,9 +332,8 @@ function result = atomsInstall(packages,section)
 		[rep,stat]=unix_g(rename_cmd)
 		
 		if stat <> 0 then
-			disp(rename_cmd);
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+			atomsError("error", ..
+				msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
 		end
 		
 		// Register the successfully installed package
@@ -376,8 +370,8 @@ function result = atomsInstall(packages,section)
 		end
 		
 		if copyfile( this_package_archive , archives_directory ) <> 1 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
+			atomsError("error", ..
+				msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
 		end
 		
 		if this_package_details("fromRepository")=="1" then
@@ -408,7 +402,6 @@ function result = atomsInstall(packages,section)
 		
 		// Sucess message if needed
 		// =====================================================================
-		
 		atomsDisp(msprintf(" success\n\n"));
 		
 	end
@@ -457,6 +450,6 @@ function result = atomsInstall(packages,section)
 	
 	// Go to the initial location
 	// =========================================================================
-	chdir(initialpath);
+	chdir(ATOMSINITIALPATH);
 	
 endfunction

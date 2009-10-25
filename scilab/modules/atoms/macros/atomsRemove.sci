@@ -13,6 +13,8 @@
 
 function result = atomsRemove(packages,section)
 	
+	result = [];
+	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
@@ -23,11 +25,9 @@ function result = atomsRemove(packages,section)
 	// =========================================================================
 	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
-	result = [];
-	
-	// Save the current path
+	// Save the initial path
 	// =========================================================================
-	initialpath = pwd();
+	ATOMSINITIALPATH = pwd();
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
@@ -114,18 +114,15 @@ function result = atomsRemove(packages,section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsRemove",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",1));
 		end
 		
 		// Check if we have the write access
 		if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,atomsPath("system","user")));
 		end
 	end
@@ -222,8 +219,8 @@ function result = atomsRemove(packages,section)
 		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",this_package_name,this_package_version));
+			atomsError("error", ..
+				msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",this_package_name,this_package_version));
 		end
 		
 		if isdir(this_package_directory) then
@@ -231,13 +228,13 @@ function result = atomsRemove(packages,section)
 			uninstall_status = rmdir(this_package_directory,"s");
 			
 			if uninstall_status<>1 then
-				chdir(initialpath);
-				error(msprintf( ..
-					gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
-					"atomsRemove", ..
-					this_package_name, ..
-					this_package_version, ..
-					this_package_directory));
+				atomsError("error", ..
+					msprintf( ..
+						gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+						"atomsRemove", ..
+						this_package_name, ..
+						this_package_version, ..
+						this_package_directory));
 			end
 			
 		end
@@ -250,13 +247,13 @@ function result = atomsRemove(packages,section)
 		if isdir(this_package_root_dir) & listfiles(this_package_root_dir)==[] then
 			stat = rmdir(this_package_root_dir);
 			if stat<>1 then
-				chdir(initialpath);
-				error(msprintf( ..
-					gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
-					"atomsRemove", ..
-					this_package_name, ..
-					this_package_version, ..
-					this_package_root_dir));
+				atomsError("error", ..
+					msprintf( ..
+						gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+						"atomsRemove", ..
+						this_package_name, ..
+						this_package_version, ..
+						this_package_root_dir));
 			end
 		end
 		
@@ -297,6 +294,6 @@ function result = atomsRemove(packages,section)
 	end
 	
 	// Go to the initial location
-	chdir(initialpath);
+	chdir(ATOMSINITIALPATH);
 	
 endfunction
