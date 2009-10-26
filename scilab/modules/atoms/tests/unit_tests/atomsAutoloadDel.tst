@@ -15,9 +15,9 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Set some parameters for the test
 // =============================================================================
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
@@ -132,6 +132,6 @@ if ~isempty( atomsAutoloadList() ) then pause, end
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");

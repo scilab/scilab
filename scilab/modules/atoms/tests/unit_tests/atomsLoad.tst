@@ -16,9 +16,9 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Set some parameters for the test
 // =============================================================================
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // 1st test-case : Just install the toolbox 5
@@ -61,6 +61,6 @@ atomsRemove("toolbox_5");
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");
