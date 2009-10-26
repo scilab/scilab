@@ -352,7 +352,7 @@ public class BasicBlock extends mxCell {
     }
 
     public ScilabType getEquations() {
-	return equations;
+	return (equations != null ? equations : new ScilabList());
     }
 
     public void setEquations(ScilabType equations) {
