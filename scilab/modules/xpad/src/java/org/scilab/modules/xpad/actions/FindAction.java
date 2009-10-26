@@ -26,6 +26,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.Toolkit;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -77,7 +78,6 @@ public final class FindAction extends DefaultAction {
 	private JButton buttonReplaceAll;
 	private JButton buttonClose;
 	private JLabel statusBar;
-
 	private String oldWord;
 	private String newWord;
 	private String wordToFind;
@@ -146,9 +146,15 @@ public final class FindAction extends DefaultAction {
 		textfieldFind = new JTextField();
 		textfieldFind.setPreferredSize(new Dimension(150, 25));
 		textfieldFind.setMinimumSize(new Dimension(100, 25));
+				
 		textfieldReplace = new JTextField();
 		textfieldReplace.setPreferredSize(new Dimension(150, 25));
 		textfieldReplace.setMinimumSize(new Dimension(100, 25));
+
+		Font font = new Font("Times", Font.PLAIN, 12);
+		
+		textfieldFind.setFont(font);
+		textfieldReplace.setFont(font);
 
 		panel.add(labelFind, gbc);
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
