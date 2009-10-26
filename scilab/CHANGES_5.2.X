@@ -979,3 +979,5 @@ Bug fixes:
 * bug 4974 fixed - exec('') crashs scilab.
 
 * bug 4983 fixed - when scilab is started in nw mode, the addmenu examples are failing with a wierd error message.
+
+* bug 4991 fixed - No check if there is modification when doing "Execute Into Scilab" in the editor.
