@@ -48,9 +48,7 @@ public class AfficheBlock extends BasicBlock {
 
 	public ScilabType getObjectsParameters() {
 		ScilabList list = new ScilabList();
-		if(this.getId() != null){
-			list.add(new ScilabDouble(hashCode));
-		}
+		list.add(new ScilabDouble(getHashCode()));
 		return list;
 	}
 
