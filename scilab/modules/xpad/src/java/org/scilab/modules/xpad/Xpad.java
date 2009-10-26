@@ -503,7 +503,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
 				
-				// Get current file path for Execute file into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -610,7 +610,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
 				
-				// Get current file path for Execute file into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {

@@ -44,7 +44,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 		Xpad editor = getEditor();
 		JTextPane currentPane = getEditor().getTextPane();
 		
-		String filePath = "";
+		String filePath = ""; 
 
 		if (msgBox.getSelectedButton() == CANCEL) {
 			msgBox.dispose();
