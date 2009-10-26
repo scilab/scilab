@@ -132,7 +132,7 @@ public class SplitBlock extends BasicBlock {
 
 	public void unlinkAndClean() {
 	
-		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2)});
+		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicLink){
 				((BasicLink)objs[i]).setSource(null);
@@ -149,8 +149,8 @@ public class SplitBlock extends BasicBlock {
 
 	public void setGeometry(mxGeometry geometry) {
 		if(geometry != null){
-			geometry.setWidth(6);
-			geometry.setHeight(6);
+			geometry.setWidth(7);
+			geometry.setHeight(7);
 		}
 		super.setGeometry(geometry);
 	}
