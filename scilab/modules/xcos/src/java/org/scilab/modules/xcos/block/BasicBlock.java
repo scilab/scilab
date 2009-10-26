@@ -96,7 +96,7 @@ public class BasicBlock extends mxCell {
     private ScilabType dState = new ScilabDouble();
     private ScilabType oDState = new ScilabDouble();
 
-    private ScilabType equations = new ScilabList();
+    private ScilabType equations = null;
 
     private boolean dependsOnU = false;
     private boolean dependsOnT = false;
