@@ -977,3 +977,5 @@ Bug fixes:
 * bug 4966 fixed - execstr([]) should return [].
 
 * bug 4974 fixed - exec('') crashs scilab.
+
+* bug 4983 fixed - when scilab is started in nw mode, the addmenu examples are failing with a wierd error message.
