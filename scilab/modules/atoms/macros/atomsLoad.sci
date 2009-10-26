@@ -23,6 +23,12 @@ function result = atomsLoad(packages,section)
 	// =========================================================================
 	result = [];
 	
+	// Check ATOMSAUTOLOAD variable
+	// =========================================================================
+	if ~isdef("ATOMSAUTOLOAD") | (ATOMSAUTOLOAD<>%T) then
+		ATOMSAUTOLOAD = %F;
+	end
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -80,16 +86,28 @@ function result = atomsLoad(packages,section)
 			this_module_versions = atomsGetInstalledVers(packages(i,1),section);
 			
 			if isempty(this_module_versions) then
-				error(msprintf(gettext("%s: No version of the module ''%s'' is installed.\n"),"atomsLoad",packages(i,1)));
+				error_str = msprintf(gettext("%s: Module ''%s'' is not installed.\n"),"atomsLoad",packages(i,1));
+				if ATOMSAUTOLOAD then
+					mprintf(error_str+"\n");
+					return;
+				else
+					error(error_str);
+				end
 			else
 				packages(i,2) = this_module_versions(1);
 			end
 		
 		else
 			if ~atomsIsInstalled([packages(i,1) packages(i,2)],section) then
-				error(msprintf(gettext("%s: the module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+				error_str = msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2));
+				if ATOMSAUTOLOAD then
+					mprintf(error_str+"\n");
+					return;
+				else
+					error(error_str);
+				end
 			end
-		
+			
 		end
 		
 	end
@@ -103,10 +121,16 @@ function result = atomsLoad(packages,section)
 	if ~ isdir(TMPDIR+"/atoms") then
 		status = mkdir( TMPDIR+"/atoms" );
 		if status <> 1 then
-			error(msprintf( ..
-				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
-				"atomsLoad", ..
-				TMPDIR+"/atoms"));
+			error_str = msprintf( ..
+							gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
+							"atomsLoad", ..
+							TMPDIR+"/atoms");
+			if ATOMSAUTOLOAD then
+				mprintf(error_str+"\n");
+				return;
+			else
+				error(error_str);
+			end
 		end
 	end
 	
@@ -155,7 +179,12 @@ function result = atomsLoad(packages,section)
 					mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),this_package_name,this_versions(1));
 					mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),this_package_name,this_versions(j));
 					mprintf("\n");
-					error("");
+					
+					if ATOMSAUTOLOAD then
+						return;
+					else
+						error("");
+					end
 				end
 			end
 		end
@@ -171,7 +200,12 @@ function result = atomsLoad(packages,section)
 		// =====================================================================
 		[is_loaded,loaded_version] =  atomsIsLoaded(this_package_name);
 		if is_loaded then
-			error(msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",this_package_name,loaded_version));
+			error_str = msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",this_package_name,loaded_version);
+			if ATOMSAUTOLOAD then
+				mprintf(error_str+"\n");
+			else
+				error(error_str);
+			end
 			continue;
 		end
 		
@@ -204,7 +238,12 @@ function result = atomsLoad(packages,section)
 				mprintf(gettext("\t - ''%s - %s'' is already loaded\n"),childs(j,1),loaded_version);
 				mprintf(gettext("\t - ''%s - %s'' is needed by ''%s - %s''\n"),childs(j,1),childs(j,2),packages(i,1),packages(i,2));
 				mprintf("\n");
-				error("");
+				
+				if ATOMSAUTOLOAD then
+					return;
+				else
+					error("");
+				end
 			end
 			
 			// Check if it is already in the list
@@ -237,7 +276,11 @@ function result = atomsLoad(packages,section)
 					end
 					
 					mprintf("\n");
-					error("");
+					if ATOMSAUTOLOAD then
+						return;
+					else
+						error("");
+					end
 				end
 			end
 			
@@ -276,7 +319,13 @@ function result = atomsLoad(packages,section)
 		loader_file = pathconvert(this_package_path) + "loader.sce";
 		
 		if fileinfo(loader_file)==[] then
-			error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file));
+			error_str = msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file);
+			if ATOMSAUTOLOAD then
+				mprintf(error_str+"\n");
+				return;
+			else
+				error("");
+			end
 		end
 		
 		exec( loader_file );
