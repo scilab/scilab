@@ -55,6 +55,7 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -111,6 +112,9 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index)
     {	
+    	System.err.println("[System] AddEdge :");
+    	System.err.println("[DEBUG] AddEdge : source "+source.toString());
+    	System.err.println("[DEBUG] AddEdge : target "+target.toString());
     	// Command -> Control
     	if(source instanceof CommandPort) {
     		if (target instanceof ControlPort) {
@@ -224,6 +228,7 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	}
 
+    	System.err.println("************** link error **************");
     	return null;
     }
 
@@ -238,24 +243,38 @@ public class XcosDiagram extends ScilabGraph {
 		double srcY = linkSource.getParent().getGeometry().getY() + linkSource.getGeometry().getCenterY();
 		double tgtY = linkTarget.getParent().getGeometry().getY() + linkTarget.getGeometry().getCenterY();
 
+		System.err.println("srcX : " + srcX);
+		System.err.println("tgtX : " + tgtX);
+		System.err.println("srcY : " + srcY);
+		System.err.println("tgtY : " + tgtY);
+		
 		double offsetX = (tgtX - srcX) / 2;
 		double offsetY = (tgtY - srcY) / 2;
+		System.err.println("offsetX : " + offsetX);
+		System.err.println("offsetY : " + offsetY);
 		splitPosition.setX(srcX + offsetX);
 		splitPosition.setY(srcY + offsetY);
     	
     	SplitBlock splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort)target);
     	splitBlock.setStyle("SPLIT_f");
     	addCell(splitBlock);
-    	mxGeometry geom = splitBlock.getGeometry();
-    	geom.setX(splitPosition.getX()-3);//-3 for splitRect size
-    	geom.setY(splitPosition.getY()-3);//-3 for splitRect size
-    	splitBlock.setGeometry(geom);
-    	
-    	
-    	//Update old link
-    	link.setTarget(splitBlock.getIn());
-    	addCell(link);
-    	
+    	mxRectangle splitRect = new mxRectangle();
+    	System.err.println("splitPosition (" + splitPosition.getX() + "," + splitPosition.getY() + ")");
+    	splitRect.setX(splitPosition.getX()-3);//-3 for splitRect size
+    	splitRect.setY(splitPosition.getY()-3);//-3 for splitRect size
+    	splitRect.setWidth(6);
+    	splitRect.setHeight(6);
+    	cellsResized(new Object[]{splitBlock}, new mxRectangle[]{splitRect});
+
+    	//remove old link
+    	removeCells(new Object[]{link});
+
+    	BasicLink newLink1 = createLinkFromPorts(linkSource, splitBlock.getIn());
+    	newLink1.setGeometry(new mxGeometry(0,0,80,80));
+    	newLink1.setSource(linkSource);
+    	newLink1.setTarget(splitBlock.getIn());
+    	addCell(newLink1);
+
     	BasicLink newLink2 = createLinkFromPorts(splitBlock.getOut1(), linkTarget);
     	newLink2.setGeometry(new mxGeometry(0,0,80,80));
     	newLink2.setSource(splitBlock.getOut1());
@@ -349,10 +368,6 @@ public class XcosDiagram extends ScilabGraph {
 	
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
-	
-	setGridEnabled(true);
-	getAsComponent().setGridVisible(true);
-	
     }
 
     /**
@@ -377,9 +392,6 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Track when cells are added.
 	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
-
-	// Track when cells are deleted.
-	addListener(XcosEvent.REMOVE_CELLS, new CellRemovedTracker(this)); 
 		
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
@@ -509,7 +521,7 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void invoke(Object source, mxEventObject evt) {
     		Object[] cells = (Object[]) evt.getArgs()[0];
-    		diagram.getModel().beginUpdate();
+    		getModel().beginUpdate();
     		for (int i = 0 ; i < cells.length ; ++i) {
     		    if (cells[i] instanceof BasicBlock) {
     			// Store all AfficheBlocks in a dedicated HasMap
@@ -522,122 +534,10 @@ public class XcosDiagram extends ScilabGraph {
     		    }
     		}
     		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
-    		diagram.getModel().endUpdate();
+    		getModel().endUpdate();
     	}
     }
 
-    /**
-     * CellRemovedTracker
-     * Called when mxEvents.CELLS_REMOVED is fired.
-     */
-    private class CellRemovedTracker implements mxIEventListener {
-    	private XcosDiagram diagram = null;
-
-    	public CellRemovedTracker(XcosDiagram diagram) {
-    		this.diagram = diagram;
-    	}
-
-    	public void invoke(Object source, mxEventObject evt) {
-    		Object[] cells = (Object[]) evt.getArgs()[0];
-    		for(int i = 0 ; i < cells.length ; i++){
-    			if(cells[i] instanceof BasicLink){
-    				BasicLink link = (BasicLink)cells[i];
-    				BasicPort portSource = (BasicPort)link.getSource();
-    				BasicPort portTarget = (BasicPort)link.getTarget();
-    				
-    				SplitBlock split = null;
-    				BasicPort saveSource = null;
-    				BasicPort saveTarget = null;
-    				
-    				if(portSource == null){continue;}
-    				if(portTarget == null){continue;}
-    				//have to remove splitBlock and link other ports directly
-       				if(portTarget.getParent() instanceof SplitBlock){
-    					split = (SplitBlock)portTarget.getParent();
-    					
-    					//remove out1, so link between in.source and out2.target
-    					if(split.getOut1() == portTarget){
-    						//find source and out2 and build new link
-    						//save source and target ports 
-    						saveSource = getOppositePort(split.getIn());
-    						saveTarget = getOppositePort(split.getOut2());
-    					}else if(split.getOut2() == portTarget){
-    						//find source and out1 and build new link
-    						//save source and target ports 
-    						saveSource = getOppositePort(split.getIn());
-    						saveTarget = getOppositePort(split.getOut1());
-    					}
-    				}
-
-    				if(saveSource != null && saveTarget != null){
-						//create new link
-    					BasicLink newLink = createLinkFromPorts(saveSource, saveTarget);
-				    	newLink.setGeometry(new mxGeometry(0,0,80,80));
-				    	newLink.setSource(saveSource);
-				    	newLink.setTarget(saveTarget);
-				    	addCell(newLink);
-    				}
-    				
-			    	//Finally delete split and old associated links
-    				if(split != null){
-    					removeCells(new Object[]{split});
-    				}
-
-       				//reset variables
-    				split = null;
-    				saveSource = null;
-    				saveTarget = null;
-    				
-    				if(portSource.getParent() instanceof SplitBlock){
-    					split = (SplitBlock)portSource.getParent();
-    					
-    					//remove out1, so link between in.source and out2.target
-    					if(split.getOut1() == portSource){
-    						//find source and out2 and build new link
-    						//save source and target ports 
-    						saveSource = getOppositePort(split.getIn());
-    						saveTarget = getOppositePort(split.getOut2());
-    					}else if(split.getOut2() == portSource){
-    						//find source and out1 and build new link
-    						//save source and target ports 
-    						saveSource = getOppositePort(split.getIn());
-    						saveTarget = getOppositePort(split.getOut1());
-    					}
-    				}
-
-       				if(saveSource != null && saveTarget != null){
-						//create new link
-    					BasicLink newLink = createLinkFromPorts(saveSource, saveTarget);
-				    	newLink.setGeometry(new mxGeometry(0,0,80,80));
-				    	newLink.setSource(saveSource);
-				    	newLink.setTarget(saveTarget);
-				    	addCell(newLink);
-				    	
-				    	//unlink split and delete unlinked links
-				    	split.unlinkAndClean();
-    				}
-       				
-       				if(split != null){
-       					removeCells(new Object[]{split});
-    				}
-    			}
-    		}
-    	}
-    }
-
-    private BasicPort getOppositePort(BasicPort source){
-    	Object[] objs = getAllEdges(new Object[]{source});
-    	if(objs.length == 0 || objs.length > 1){
-    		return null;
-    	}
-    	
-    	BasicLink link = (BasicLink)objs[0];
-    	if(link.getSource() == source){
-    		return (BasicPort)link.getTarget();
-    	}else{
-    		return (BasicPort)link.getSource();
-    	}
-    }
     /**
      * CellResizedTracker
      * Called when mxEvents.CELLS_RESIZED is fired. 
@@ -747,10 +647,7 @@ public class XcosDiagram extends ScilabGraph {
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-		    }
-		    if (cell instanceof BasicLink) {
-			BasicLink link = (BasicLink) cell;
-			link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+			getAsComponent().doLayout();
 		    }
 		}
 	    }
@@ -970,22 +867,15 @@ public class XcosDiagram extends ScilabGraph {
      * @param status new status
      */
     public void setGridVisible(boolean status) {
-    	setGridEnabled(status);
-    	getAsComponent().setGridVisible(status);
-    	getAsComponent().repaint();
+	setGridEnabled(true);
+	getAsComponent().setGridVisible(status);
+	getAsComponent().repaint();
 
-    	// (Un)Check the corresponding menu
-    	gridMenu.setChecked(status);
+	// (Un)Check the corresponding menu
+	gridMenu.setChecked(status);
     }
 
-//	public mxRectangle getCellBounds(Object cell, boolean includeEdges,
-//			boolean includeDescendants, boolean boundingBox) {
-//    	//mxRectangle rect = super.getCellBounds(cell, includeEdges, includeDescendants, boundingBox);
-//		mxRectangle rect = super.getCellBounds(cell, includeEdges, false, boundingBox);
-//		return rect;
-//	}
-
-	/**
+    /**
      * Set menu used to manage Grid visibility
      * @param menu the menu
      */
@@ -1025,10 +915,10 @@ public class XcosDiagram extends ScilabGraph {
 
     public boolean saveDiagram() {
 	boolean isSuccess = false;
-	if (getSavedFile() == null) {
+	if (getTitle().equals(XcosMessages.UNTITLED)) {
 	    isSuccess = saveDiagramAs(null);
 	} else {
-	    isSuccess = saveDiagramAs(getSavedFile());
+	    isSuccess = saveDiagramAs(getTitle());
 	}
 
 	if (isSuccess) {
@@ -1060,6 +950,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	/* Extension checks */
 	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+	System.err.println("extension : " + extension);
 	if (extension.equals(fileName)) {
 	    /* No extension given --> .xcos added */
 	    fileName += ".xcos";
@@ -1071,15 +962,6 @@ public class XcosDiagram extends ScilabGraph {
 	XcosCodec codec = new XcosCodec();
 	String xml = mxUtils.getXml(codec.encode(this));
 
-	System.out.println("Saving to file : {" + fileName + "}");
-
-	/* Test if file already exists */
-	if (new File(fileName).exists()
-		&& JOptionPane.showConfirmDialog(this.getAsComponent(),
-			XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
-	    return false;
-	}
-
 	try {
 	    mxUtils.writeFile(xml, fileName);
 	    isSuccess = true;
@@ -1090,9 +972,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	if (isSuccess) {
-	    this.setSavedFile(fileName);
-	    File theFile = new File(fileName);
-	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+	    this.setTitle(fileName);
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile();
@@ -1203,6 +1083,8 @@ public class XcosDiagram extends ScilabGraph {
 	getModel().beginUpdate();
 	for (int i = 0; i < allBlocks.size(); ++i) {
 		objs[i] = allBlocks.get(i);
+		System.err.println("Load Blocks : " + (i+1) + "/" + allBlocks.size());
+//	    addCell(allBlocks.get(i));
 	}
 
 	for (int i = 0; i < linkPorts.size(); ++i) {
@@ -1217,7 +1099,9 @@ public class XcosDiagram extends ScilabGraph {
 		    link.addPoint(points[point][0], points[point][1]);
 		}
 	    }
+		System.err.println("Load Links : " + (i+1) + "/" + linkPorts.size());
 	    objs[i + allBlocks.size()] = link;
+	    //addCell(link);
 	}
 	
 	addCells(objs);
