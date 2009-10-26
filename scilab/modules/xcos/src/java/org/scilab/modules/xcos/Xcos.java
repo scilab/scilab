@@ -515,7 +515,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Help menu */
 		Menu help = ScilabMenu.createMenu();
 		help.setText(XcosMessages.HELP);
-		help.setMnemonic('H');
+		help.setMnemonic('?');
 		menuBar.add(help);
 		
 		help.add(XcosDocumentationAction.createMenu(scilabGraph));
