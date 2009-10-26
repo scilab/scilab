@@ -1071,15 +1071,6 @@ public class XcosDiagram extends ScilabGraph {
 	XcosCodec codec = new XcosCodec();
 	String xml = mxUtils.getXml(codec.encode(this));
 
-	System.out.println("Saving to file : {" + fileName + "}");
-
-	/* Test if file already exists */
-	if (new File(fileName).exists()
-		&& JOptionPane.showConfirmDialog(this.getAsComponent(),
-			XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
-	    return false;
-	}
-
 	try {
 	    mxUtils.writeFile(xml, fileName);
 	    isSuccess = true;
