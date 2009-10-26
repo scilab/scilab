@@ -215,6 +215,7 @@
 				    &#8747;
 				    &lt;/FONT&gt;"/>
   </add>
+  <add as="INTEGRAL" extend="INTEGRAL_m"/>
   <add as="CLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -241,6 +242,7 @@
 				    &lt;hr&gt;
 				    den(s)"/>
   </add>
+  <add as="CLR_f" extend="CLR"/>
   <add as="TIME_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Continuous&lt;BR&gt;
 				    fix delay"/>
@@ -744,6 +746,7 @@
 				    &lt;HR&gt;
 				    den(z)"/>
   </add>
+  <add as="DLR_f" extend="DLR"/>
   <add as="DLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -968,6 +971,7 @@
   <add as="scifunc_block_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Scifunc"/>
   </add>
+  <add as="scifunc_block" extend="scifunc_block_m"/>
   <add as="CBLOCK" extend="blockWithLabel">
     <add as="displayedLabel" value="C block 2"/>
   </add>
