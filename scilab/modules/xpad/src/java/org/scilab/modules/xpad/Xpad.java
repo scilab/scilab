@@ -743,6 +743,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			myReadThread.start();
 		}
 		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = f.getAbsolutePath();
+		
 		// If the file is a binary one, editor is in read-only mode
 		boolean binary;
 		binary = isBinaryFile(f);

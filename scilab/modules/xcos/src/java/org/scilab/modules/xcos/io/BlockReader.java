@@ -658,13 +658,11 @@ public class BlockReader {
 			throw new WrongTypeException();
 		}
 		
-		boolean flip;
+		newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
 		if(((ScilabBoolean)graphicsStructure.get(3)).getData()[0][0] == false){
-			flip = true;
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+		    newBlock.setFlip(true);
 		}else{
-			flip = false;
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+		    newBlock.setFlip(false);
 		}
 		
 		if (!(graphicsStructure.get(4) instanceof ScilabDouble)){// theta
