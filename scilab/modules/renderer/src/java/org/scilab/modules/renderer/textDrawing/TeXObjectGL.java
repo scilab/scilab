@@ -58,8 +58,8 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 		}
  
 		formula.setBackground(new Color(255, 255, 255, 0));
-		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
-		COMPONENT.setForeground(color);
+		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 2);
+		setColor(color);
 		makeImage();
     }
         
@@ -76,16 +76,22 @@ public class TeXObjectGL extends SpecialTextObjectGL {
      * @param fontSize the font size of the content
      */
     public void setFontSize(float fontSize) {
-		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
+		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 2);
+		makeImage();
     }
-    
-    public void makeImage() {
+        
+/**
+ * @TODO add comment
+ *
+ * @param   
+ */
+    private void makeImage() {
 		texi.setInsets(new Insets(1, 1, 1, 1));
 		width = texi.getIconWidth();
 		height = texi.getIconHeight();
 
 		if (width <= 0 || height <= 0) {
-			formula = new TeXFormula("An\\ error\\ occured,\\ please\\ contact\\ the\\ author\\ of\\ \\JLaTeXMath");
+			formula = new TeXFormula("An\\ error\\ occured,\\ please\\ contact\\ the\\ author\\ of\\ J\\LaTeX Math");
 			this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 10);
 			texi.setInsets(new Insets(1, 1, 1, 1));
 			width = texi.getIconWidth();
