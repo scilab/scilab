@@ -40,7 +40,7 @@ import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
-import org.scilab.modules.xcos.actions.LineColorAction;
+import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
@@ -1026,7 +1026,8 @@ public class BasicBlock extends mxCell {
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(LineColorAction.createMenu(graph));
+		format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
+		format.add(ColorAction.createMenu(graph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
