@@ -234,6 +234,7 @@
 				    &lt;/TR&gt;
 				    &lt;/TABLE&gt;"/>
   </add>
+  <add as="CLSS_f" extend="CLSS"/>
   <add as="CLR" extend="blockWithLabel">
     <add as="displayedLabel" value="num(s)&lt;BR&gt;
 				    &lt;hr&gt;
@@ -247,6 +248,7 @@
     <add as="displayedLabel" value="Jump&lt;BR&gt;
 				    (A,B,C,D)"/>
   </add>
+  <add as="TCLSS_f" extend="TCLSS"/>
   <add as="VARIABLE_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Variable&lt;BR&gt;
 				    delay"/>
@@ -704,8 +706,8 @@
   <add as="CMSCOPE" extend="blockWithLabel">
     <add as="displayedLabel" value="MScope"/>
   </add>
-  <add as="AFFICH_m" extend="Affiche">
-  </add>
+  <add as="AFFICH_m" extend="Affiche"/>
+  <add as="AFFICH_f" extend="Affiche"/>
   <add as="TRASH_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Trash"/>
   </add>
@@ -765,6 +767,7 @@
   <add as="DOLLAR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="1/z"/>
   </add>
+  <add as="DOLLAR" extend="DOLLAR_f"/>
   <!-- DELAYV_f -->
 
   <!-- EVENTS -->
