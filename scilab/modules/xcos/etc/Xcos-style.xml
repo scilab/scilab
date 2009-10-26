@@ -15,12 +15,12 @@
 
   <!-- Affiche -->
   <add as="Affiche" extend="blockWithLabel"/>
-
-	<add as="Split" extend="block">
-		<add as="shape" value="rectangle"/>
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="orange"/>
-	</add>
+  
+  <add as="Split" extend="block">
+    <add as="shape" value="rectangle"/>
+    <add as="strokeColor" value="black"/>
+    <add as="fillColor" value="orange"/>
+  </add>
 
 	
   <!-- Label -->
@@ -123,6 +123,7 @@
 
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
+  <add as="CONST" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Square wave&lt;BR&gt;
 				    generator"/>
