@@ -21,8 +21,6 @@ import java.awt.geom.AffineTransform;
 
 import java.nio.ByteBuffer;
 
-import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sourceforge.jeuclid.MathMLParserSupport;
@@ -56,7 +54,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param color the color of the content
      * @param fontSize the size of the font
      */
-    public MathMLObjectGL(String content, Color color, float fontSize) throws SpecialTextException {
+    public MathMLObjectGL(String content, Color color, float fontSize) {
 	        this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
 		this.parameters.setParameter(Parameter.MATHCOLOR, color);
 		this.parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
@@ -67,34 +65,26 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
     /**
      * Set the color of the content
      * @param color the color of the content
-     * @return true if the color changed
      */
-    public boolean setColor(Color color) {
+    public void setColor(Color color) {
 	        if (!parameters.getParameter(Parameter.MATHCOLOR).equals(color)) {
 		    parameters.setParameter(Parameter.MATHCOLOR, color);
 		    update();
-		    return true;
 		}
-		
-		return false;
     }
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
-     * @return true if the font size changed
      */
-    public boolean setFontSize(float fontSize) {
+    public void setFontSize(float fontSize) {
 	        if ((Float) parameters.getParameter(Parameter.MATHSIZE) != fontSize + 4) {
 		    parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
 		    update();
-		    return true;
 		}
-		
-		return false;
     }
     
-    /*
+    /**
      * Update the current graphic
      */
     private void update() {
@@ -109,15 +99,15 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param content The content when want to transform
      * @return the document
      */
-    private Document contentToDocument(final String content) throws SpecialTextException {
+    private Document contentToDocument(final String content) {
 	        try {
 		    doc = MathMLParserSupport.parseString(content);
 		} catch (final SAXException e) {
-		    throw new SpecialTextException("Not in MathML format");
+		    throw new RuntimeException(e);
 		} catch (final ParserConfigurationException e) {
-		    throw new SpecialTextException("Not in MathML format");
+		    throw new RuntimeException(e);
 		} catch (final IOException e) {
-		    throw new SpecialTextException("Not in MathML format");
+		    throw new RuntimeException(e);
 		}
 		return doc;
     }
@@ -144,6 +134,5 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		
 		int[] intData = ((DataBufferInt) bimg.getRaster().getDataBuffer()).getData();
 		buffer = ByteBuffer.wrap(ARGBtoRGBA(intData));
-		g2d.dispose();
     }
 }
