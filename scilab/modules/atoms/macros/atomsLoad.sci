@@ -80,14 +80,14 @@ function result = atomsLoad(packages,section)
 			this_module_versions = atomsGetInstalledVers(packages(i,1),section);
 			
 			if isempty(this_module_versions) then
-				error(msprintf(gettext("%s: No version of the module ''%s'' is installed.\n"),"atomsLoad",packages(i,1)));
+				error(msprintf(gettext("%s: Module ''%s'' is not installed.\n"),"atomsLoad",packages(i,1)));
 			else
 				packages(i,2) = this_module_versions(1);
 			end
 		
 		else
 			if ~atomsIsInstalled([packages(i,1) packages(i,2)],section) then
-				error(msprintf(gettext("%s: the module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
 			end
 		
 		end
