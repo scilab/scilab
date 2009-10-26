@@ -602,6 +602,8 @@ Bug fixes:
 
 * bug 4217 fixed - gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
+* bug 4222 fixed - fromc and fromjava do not have any documentation page.
+
 * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under
                     PowerPC
 
