@@ -71,7 +71,9 @@ function unhilite_obj(k,win)
    //** set color = -1 as default for foregroung mark property
    gh_blk.children(1).mark_foreground = -1;
    //** smaller thickness (-3)
-   gh_blk.children(1).thickness = gh_blk.children(1).thickness - 3;
+   // DEBUG: YC: les blocs ne sont plus des dessins scilab mais des images.
+   //            ou alors problems d'ordre dans les blocs.
+   ////gh_blk.children(1).thickness = gh_blk.children(1).thickness - 3;
    //** loop to know if it is an already selected objs
    kk=find(Select(:,1)==k(i));
    if kk==[] then

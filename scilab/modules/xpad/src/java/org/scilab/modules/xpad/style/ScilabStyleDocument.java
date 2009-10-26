@@ -18,16 +18,21 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
+import javax.swing.undo.CompoundEdit;
+
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AttributeSet;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
@@ -39,17 +44,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private UndoManager undo = new UndoManager() {
 		public void undoableEditHappened(UndoableEditEvent e) {
 					
-			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) || EventType.equals(DocumentEvent.EventType.REMOVE.toString()) ) && (e.getEdit().canUndo()) ){
+			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+						|| EventType.equals(DocumentEvent.EventType.REMOVE.toString()) )
+				&& (e.getEdit().canUndo()) ){
 				/*
 				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
 					System.out.println("remove");
-					System.out.println(indentInprogress) ;
+					System.out.println(indentInprogress);
 				}
 				*/
 				if (!indentInprogress){ 
-				undo.addEdit(e.getEdit());
-				
-				EventType = "" ;
+					(shouldMergeEdits ? compoundEdit : this).addEdit(e.getEdit());
+					EventType = "";
 				}
 			}
 
@@ -57,16 +63,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = true;
-	private boolean autoColorize = true;
-	private boolean colorizeInprogress = false;
-	private boolean indentInprogress = false;
-	private boolean updaterDisabled = false;
-
-	private String EventType ;
+	private volatile boolean autoIndent         = true;
+	private volatile boolean autoColorize       = true;
+	private volatile boolean colorizeInprogress = false;
+	private volatile boolean indentInprogress   = false;
+	private volatile boolean updaterDisabled    = false;
+	private volatile boolean shouldMergeEdits    = false;
+	
+	private String EventType;
+	private CompoundEdit compoundEdit = null;
 	
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
-	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
+	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f"};
 	private final String[] comments = {"//[^{\n}]*"};
 	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
@@ -75,10 +83,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			"==", "<", ">", "<=", ">=", "~=", "@=",
 			"&", "\\|", "@", "~",
 	"\\.\\.[\\.]*"};
+	
+	private Pattern patternIn;
+	private Pattern patternInOut;
+	private Pattern patternOut;
+	private Pattern patternComment;
+	private Pattern patternQuote;
+	
+	private Pattern patternSpace;
 
 	private final String IN = "IN";
 	private final String OUT = "OUT";
-	private final String TABULATION = "  ";
 	private final int BOOLS = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
@@ -87,8 +102,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private final int OPERATORS = 5;
 	private final int QUOTATIONS = 6;
 	
-	private int currentLevelIdent = 0 ;
-	
+	private int currentLevelIdent = 0;
+	private String currentStringIndent = "";
+	private String tabulation = "  ";
 	
 	
 	
@@ -97,9 +113,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean singleLine = false;
 	private int currentLine;
 	
-	private boolean contentModified ;
+	private boolean contentModified;
 	
-	//private XpadStyles xpadStyles ; 
+	//private XpadStyles xpadStyles; 
 	
 	Hashtable<String, String[]> keywords;
 	String[] commands;
@@ -109,21 +125,30 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	Xpad editor;
 
 	/*if you want to add a new style just add it in the xml*/
-	private ArrayList<String> listStylesName ;
-	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
+	private ArrayList<String> listStylesName;
+	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
 	private Style defaultStyle;
 
 
 	public ScilabStyleDocument(Xpad editor) {
 		super();
+		setAsynchronousLoadPriority(2);
 		EventType = new String();
 		
-		this.editor = editor ;
+		patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
+		patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
+		patternOut = Pattern.compile("\\b(end|endfunction)\\b");
+		patternComment = Pattern.compile("(.*?)//");
+		patternQuote = Pattern.compile("(\"|')[^\\n]*?(\"|')");
+		
+		patternSpace = Pattern.compile("\\s*");
+		
+		this.editor = editor;
 		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
-		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold()  ;
+		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
 
-		//xpadStyles = XpadStyles.getInstance() ;
+		//xpadStyles = XpadStyles.getInstance();
 		addDocumentListener(this);
 		addUndoableEditListener(undo);
 		defaultStyle = this.addStyle("Default", null);
@@ -135,7 +160,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		/* set default style settings*/
 		/*that way if we want to had a new style, we just need to had an element to the xml*/
-		for(int i = 0 ; i < listStylesName.size() ; ++i) {
+		for(int i = 0; i < listStylesName.size(); ++i) {
 			Style otherStyle = this.addStyle(listStylesName.get(i), defaultStyle);
 			StyleConstants.setBold(otherStyle, stylesIsBoldTable.get(listStylesName.get(i)));
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
@@ -146,16 +171,18 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		this.addDocumentListener( new DocumentListener(){
 			
-			 public void changedUpdate(DocumentEvent documentEvent) {
-
-			      }
-			      public void insertUpdate(DocumentEvent documentEvent) {
-			        handleEvent(documentEvent);
-			      }
-			      public void removeUpdate(DocumentEvent documentEvent) {
-			    	  handleEvent(documentEvent);
-			      }
-			      private void handleEvent(DocumentEvent documentEvent) {
+				public void changedUpdate(DocumentEvent documentEvent){
+				}
+			      
+				public void insertUpdate(DocumentEvent documentEvent){
+					handleEvent(documentEvent);
+			    }
+			    
+			    public void removeUpdate(DocumentEvent documentEvent){
+			    	handleEvent(documentEvent);
+			    }
+			    
+			    private void handleEvent(DocumentEvent documentEvent){
 			        DocumentEvent.EventType type = documentEvent.getType();
 			        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
 			         
@@ -166,9 +193,48 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			        	setContentModified(true);
 			        }  
 
-			      }
+			   }
 		});
-		
+		setDocumentFilter( new DocumentFilter(){
+			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLine(getDefaultRootElement().getElementIndex(offset));
+					}
+				}
+				else
+				{
+					fb.insertString(offset, text, attr);
+				}
+			}
+			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+				String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLines(getDefaultRootElement().getElementIndex(offset)
+								, getDefaultRootElement().getElementIndex(offset+length));
+					}
+				}
+				else
+				{
+					fb.replace(offset, length, text, attr);
+				}
+			}
+		});
 	}
 
 
@@ -196,6 +262,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	}
 	
+	
+	
 	public void colorize(int lineStartPosition, int lineEndPosition) {
 	    DEBUG("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
 	    Timer timer = new Timer();
@@ -206,7 +274,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		ArrayList<ArrayList<Integer>> boundaries_list = parse(bools, commands, comments, functions, macros, operators, quotations, lineStartPosition, lineEndPosition);
 		DEBUG("Colorize [after parse] : " + timer.top());
 		if (!colorizeInprogress) {
-			colorizeInprogress = true;
+			//colorizeInprogress = true;
 			this.removeUndoableEditListener(undo);
 			this.addUndoableEditListener(null);
 			resetStyle(lineStartPosition, lineEndPosition);
@@ -223,7 +291,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 			finally {
 				this.addUndoableEditListener(undo);
-				colorizeInprogress = false;
+				//colorizeInprogress = false;
 			}
 		}
 		DEBUG("Colorize [after all applyStyle] : " + timer.top());
@@ -237,11 +305,27 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	
 	private void applyStyle(ArrayList<Integer> boundaries, Style style) throws BadLocationException {
-		for(int i = 0 ; i < boundaries.size() ; i=i+2)	{
+		for(int i = 0; i < boundaries.size(); i=i+2)	{
 			this.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
 		}
 	}
-	
+	public void setShouldMergeEdits(boolean b) {
+		if(shouldMergeEdits){
+			if(!b) { // ending compound editing
+				compoundEdit.end();
+				undo.addEdit(compoundEdit);
+				compoundEdit= null;
+			}
+		} else {
+			if(b) { // starting compound editing
+				compoundEdit= new CompoundEdit();
+			}
+		}
+		shouldMergeEdits = b;
+	}
+	public boolean getShouldMergeEdits() {
+		return shouldMergeEdits;
+	}
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -255,13 +339,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * DOCUMENT COLORISATION END
 	 */
 
+	public String getTabulation(){ return tabulation ; }
 
 	/**
 	 * DOCUMENT INDENTATION START
 	 */
 	public void indent(int startPosition, int endPosition) {
 		if (!indentInprogress) {
-			//disableUpdaters();
+			disableUpdaters();
 			indentInprogress = true;
 			//resetStyle(startPosition, startPosition);
 			try {
@@ -273,104 +358,114 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			//applySelectionIndent();
 			
 			indentInprogress = false;
-			//enableUpdaters();
+			enableUpdaters();
 		}
 	}
 
+	public String indentLine (String lineToIndent , String baseSpaces  ){
+		
+		 int lineLength =  lineToIndent.length();
+		 Matcher matcherSpace = patternSpace.matcher(lineToIndent);
+		 if ( matcherSpace.find()){
+			 lineToIndent = lineToIndent.replaceFirst(matcherSpace.group() , "");
+		 }
+		 
+		 
+		Matcher matcherComment = patternComment.matcher(lineToIndent);
+		String lineWithoutComment = lineToIndent;
+		
+		if (matcherComment.find()){
+			lineWithoutComment = matcherComment.group(1);
+		}
+		Matcher matcherQuote = patternQuote.matcher(lineWithoutComment);
+		
+		while (matcherQuote.find()){
+			lineWithoutComment = matcherQuote.replaceAll("");
+		}
+
+		Matcher matcherIn = patternIn.matcher(lineWithoutComment);
+		Matcher matcherInOut = patternInOut.matcher(lineWithoutComment);	
+		Matcher matcherOut = patternOut.matcher(lineWithoutComment);
+		
+		// if it's a middle keyword we remove a tab only for this line and then return to normal indent
+		if ( matcherInOut.find(0)){
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
+			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
+			currentStringIndent += getTabulation();
+			
+		// if close keyword we remove a tab 
+		}else if (matcherOut.find(0)) {
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
+			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
+		}else {
+			lineToIndent = baseSpaces + currentStringIndent +lineToIndent;
+		}
+
+		// we make the difference of open/close keywords of the line we've just indent to know
+		// how to indent the next one 
+		while (matcherIn.find()){
+			currentStringIndent += getTabulation();
+		}
+		while (matcherOut.find()){
+			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
+		}
+		//System.out.println(lineToIndent);
+		//System.out.println(indentLevel);
+		
+		 //lineToIndent + System.getProperty("line.separator");
+		
+		
+		return lineToIndent;
+	}
+	
 	public void beautifier(int startPosition, int endPosition)throws BadLocationException{
-		int startOffset = this.getParagraphElement(startPosition).getStartOffset();
-		int endOffset = this.getParagraphElement(endPosition).getEndOffset();
-		int indentLevel = 0 ;
-		String selectedText = getseletecDocumentLines(startOffset, endOffset);
 		
-		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
-		Pattern patternInOut = Pattern.compile("\\b(else|elseif)\\b");
-		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
+		int currentStartOffset = getParagraphElement(startPosition).getStartOffset();
 		
-		Pattern patternSpace = Pattern.compile("\\s*"); 
-		Matcher matcherSpace = patternSpace.matcher(selectedText);
-		String baseSpaces = "";
-		String indentTab = "";
+		int endOfFirstLine = getParagraphElement(startPosition).getEndOffset();
+		/*if (   endOfFirstLine - currentStartOffset <= 1){// prevented intending regions starting with an empty line.
+			return;
+		}*/
+		String firtstLine =  getText(currentStartOffset, endOfFirstLine-currentStartOffset-1);
+		Matcher matcherSpace = patternSpace.matcher(firtstLine);
+		// set the reference for indent
+		String baseSpaces = matcherSpace.find() ? matcherSpace.group() :"";
+		Element currentElement = null, lastElement = getParagraphElement(endPosition);
 		
-		
-		
-		if ( matcherSpace.find()){
-			baseSpaces =  matcherSpace.group();
-		}
-		
-
-		
-		String[] allLines =   selectedText.split("\n");
-		//System.out.println("lenght " + allLines.length);
-		
-		selectedText = "" ;
-		for (int i = 0 ; i < allLines.length ; i++){
-			 matcherSpace = patternSpace.matcher(allLines[i]);
-			 if ( matcherSpace.find()){
-				 allLines[i] = allLines[i].replaceFirst(matcherSpace.group() , "");
-			 }
-			 
-			Matcher matcherIn = patternIn.matcher(allLines[i]);
-			Matcher matcherInOut = patternInOut.matcher(allLines[i]);	
-			Matcher matcherOut = patternOut.matcher(allLines[i]);
-			
-			// if it's a middle keyword we remove a tab only for this line and then return to normal indent
-			if ( matcherInOut.find(0)){
-				indentTab = indentTab.replaceFirst("\t", "");
-				allLines[i] = baseSpaces + indentTab +allLines[i];
-				indentTab += "\t";
-				
-			// if close keyword we remove a tab 
-			}else if (matcherOut.find(0)) {
-				indentTab = indentTab.replaceFirst("\t", "");
-				allLines[i] = baseSpaces + indentTab +allLines[i];
-			}else {
-				allLines[i] = baseSpaces + indentTab +allLines[i];
-			}
-
-			// we make the difference of open/close keywords of the line we've just indent to know
-			// how to indent the next one 
-			while (matcherIn.find()){
-				indentLevel++ ;
-				indentTab += "\t";
-			}
-			while (matcherOut.find()){
-				indentLevel--;
-				indentTab = indentTab.replaceFirst("\t", "");
-			}
-			//System.out.println(allLines[i]);
-			//System.out.println(indentLevel);
-			
-			selectedText += allLines[i]+"\n";
-		}
-		
-		this.replace (startOffset, endOffset - startOffset -1, selectedText, null);
-		//System.out.println(selectedText);
-		
+		do{
+			currentElement = getParagraphElement(currentStartOffset);
+			String toIndent= getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset-1);//-1 to remove \n			
+			String indented = indentLine(toIndent, baseSpaces);
+			replace(currentStartOffset, toIndent.length(), indented, null);
+			currentStartOffset+= indented.length()+1;
+		}while(currentElement!=lastElement);
+		currentStringIndent = "";
+		currentLevelIdent = 0;
 	}
+	
 
 
-	public void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
+	public synchronized void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
 		
 		//System.out.println(startPosition);
 		//System.out.println(endPosition);
 		String previousSpace = "";
-		String currentSpace ="" ;
-		String previousLineContent = "" ;
+		String currentSpace ="";
+		String previousLineContent = "";
 		
 		int finalPosition = getEditor().getTextPane().getText().length();
 
 		
-		int currentLineStart = getParagraphElement(startPosition).getStartOffset() ;
-		int currentLineLength =  getParagraphElement(startPosition).getEndOffset()-currentLineStart-1 ;
-		String currentLineContent = this.getText(currentLineStart, currentLineLength) ;
+		int currentLineStart = getParagraphElement(startPosition).getStartOffset();
+		int currentLineLength =  getParagraphElement(startPosition).getEndOffset()-currentLineStart-1;
+		String currentLineContent = this.getText(currentLineStart, currentLineLength);
 		
 		/* compute number of space characters in the previous line */
 		if (startPosition > 1){
-			int previousLineStart = getParagraphElement(startPosition-currentLineLength -1).getStartOffset() ;
-			int previousLineLength =  getParagraphElement(startPosition-currentLineLength - 1).getEndOffset()-previousLineStart-1 ;
+			int previousLineStart = getParagraphElement(startPosition-currentLineLength -1).getStartOffset();
+			int previousLineLength =  getParagraphElement(startPosition-currentLineLength - 1).getEndOffset()-previousLineStart-1;
 			
-			previousLineContent = this.getText(previousLineStart, previousLineLength) ;
+			previousLineContent = this.getText(previousLineStart, previousLineLength);
 			
 			Pattern patternSpace = Pattern.compile("\\s*"); 
 			Matcher matcherSpace = patternSpace.matcher(previousLineContent);
@@ -388,17 +483,29 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 		}
 
-		/*regexp to find open / middle / close keywords */	
-		String nextLineContent = this.getText(getParagraphElement(endPosition).getStartOffset(), getParagraphElement(endPosition).getEndOffset()-getParagraphElement(endPosition).getStartOffset()-1) ;
-
-		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
-		Matcher matcherIn = patternIn.matcher(currentLineContent);
-		
-		Pattern patternInOut = Pattern.compile("\\b(else|elseif)\\b");
-		Matcher matcherInOut = patternInOut.matcher(currentLineContent);	
-		
+		/*regexp to find open / middle / close keywords */
+		String nextLineContent = null;
+		{
+			int start = getParagraphElement(endPosition).getStartOffset();
+			int length = getParagraphElement(endPosition).getEndOffset() - start;
+			nextLineContent = this.getText(start, length-1);
+		}
+		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent	
+		Pattern patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
 		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
-		Matcher matcherOut = patternOut.matcher(currentLineContent);
+		Pattern patternComment = Pattern.compile("(.*?)//");
+		
+		Matcher matcherComment = patternComment.matcher(currentLineContent);
+		String lineWithoutComment = currentLineContent;
+		
+		// we will search for keywords only on the uncomment part
+		if (matcherComment.find()){
+			lineWithoutComment = matcherComment.group(1);
+		}
+		
+		Matcher matcherIn = patternIn.matcher(lineWithoutComment);
+		Matcher matcherInOut = patternInOut.matcher(lineWithoutComment);	
+		Matcher matcherOut = patternOut.matcher(lineWithoutComment);
 			
 		String tabToAdd = "";
 		String tabToRemove = "";
@@ -407,10 +514,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		/*apply change */
 			
 			// i =  number_of_open_keyword -  number_of_close_keyword
-			int i = 0 ;
+			int i = 0;
 			
 			while (matcherIn.find()){
-				i++ ;
+				i++;
 			}
 			while (matcherOut.find()){
 				i--;
@@ -418,7 +525,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		/*update current line*/
 			/* strcuture keyword which are supposed to open a structure (if, function ...  ) */
 		if ( matcherIn.find(0)){
-			currentLevelIdent ++ ;
+			currentLevelIdent ++;
 
 			/* strcuture keyword which are supposed to be inside a structure (else / elseif  ) */
 		}else if (matcherInOut.find()) { 
@@ -427,24 +534,24 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 			if (!matcherPrevIn.find(0)){
 			
-				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst("\t", "") , null);
-				endPosition -= (currentSpace.length() - previousSpace.replaceFirst("\t", "").length() );
-				currentSpace += "\t" ;
+				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+				endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
+				currentSpace += getTabulation();
 			}else{
-				if ( currentSpace.replaceFirst("\t", "").length() ==   previousSpace.length())  {
+				if ( currentSpace.replaceFirst(getTabulation(), "").length() ==   previousSpace.length())  {
 					this.replace(currentLineStart, currentSpace.length(),previousSpace , null);
 					endPosition -= (currentSpace.length() - previousSpace.length() );
 					
 				}
-					previousSpace += "\t" ;
+					previousSpace += getTabulation();
 			}
 			
 			
 			/* strcuture keyword which are supposed to close a structure (end, endfunction ...  ) */
 		}else if (  matcherOut.find(0) ){
-			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst("\t", "") , null);
-			endPosition -= (currentSpace.length() - previousSpace.replaceFirst("\t", "").length() );
-			currentLevelIdent -- ;
+			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst(getTabulation(), "") , null);
+			endPosition -= (currentSpace.length() - previousSpace.replaceFirst(getTabulation(), "").length() );
+			currentLevelIdent --;
 			
 		}else {
 
@@ -456,14 +563,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// update next line
 		// more open keywords than close ones
 		if ( i > 0 ){
-			for (int j =0 ; j < i ; j++){
-				tabToAdd += "\t";
+			for (int j =0; j < i; j++){
+				tabToAdd += getTabulation();
 			}
 			this.insertString(endPosition, tabToAdd + currentSpace , null);
 		// less open keywords than close ones	
 		}else if (i < 0 ) {
-			for (int j =  0; j > i ; j--){
-				previousSpace =  previousSpace.replaceFirst("\t", "");
+			for (int j =  0; j > i; j--){
+				previousSpace =  previousSpace.replaceFirst(getTabulation(), "");
 			}
 			this.insertString(endPosition, previousSpace , null);
 		// no open/close keyword
@@ -892,66 +999,295 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT COMMENT ACTION
 	 */
-	public void commentText(int start_position, int end_position) {
-
-		String text_to_comment = "";
-		try {
-			// Get the document text to comment
-			text_to_comment = this.getText(start_position, end_position-start_position);
-		} catch (BadLocationException e) {
+	
+	/*
+	 * Comment the current line when no selection has been done
+	 */
+	
+	public int commentLine(int line)
+	{
+		// No selection : comment the current line
+		
+		String comment_str = "//";
+		int offset         = comment_str.length();
+		int start          = this.getDefaultRootElement().getElement(line).getStartOffset();
+		
+		try
+		{
+			// Replacement
+			this.replace(start, 0, comment_str, null);
+		}
+		catch (BadLocationException e){
 			e.printStackTrace();
 		}
-
-		ArrayList<Integer> line_break = new ArrayList<Integer>(); // positions of line break
-		ArrayList<String> all_lines = new ArrayList<String>(); // the document line by line
-		String line = "";
-
-		if (start_position != end_position) {
-			for (int i = 0; i < text_to_comment.length(); i++) {
-				line = line.concat(text_to_comment.charAt(i)+"");
-
-				if (text_to_comment.charAt(i)=='\n') {
-					line_break.add(i);
-					all_lines.add(line);
-					line = "";
-				}
-				if (i==text_to_comment.length()-1) {
-					all_lines.add(line);
-					line = "";
-				}
-			}
-
-			String commented_text = "";
-			for (int i = 0; i < all_lines.size(); i++) {
-				String tmp = "";
-				if (!(all_lines.get(i).equals(""))) {
-					if (all_lines.get(i).length() >= 2) {
-						if (all_lines.get(i).substring(0, 2).equals("//")) {
-							tmp = all_lines.get(i).substring(2, all_lines.get(i).length());
-						} else {
-							tmp = "//" + all_lines.get(i);
-						}
-					}
-				}
-				commented_text += tmp;
-			}
-
-			// Display the text commented
-			try {
-				this.replace(start_position, end_position-start_position, commented_text, null);
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-		}
-
-		line_break.clear();
-		all_lines.clear();
+		
+		return offset;
 	}
+	
+	/*
+	 * Comment several lines
+	 */
+	
+	public void commentLines(int line_start, int line_end)
+	{
+		try
+		{
+			String comment_str = "//";
+			int start          = this.getDefaultRootElement().getElement(line_start).getStartOffset();
+			int end            = this.getDefaultRootElement().getElement(line_end).getEndOffset();
+			Pattern pattern    = Pattern.compile("^",Pattern.MULTILINE);
+			Matcher matcher    = pattern.matcher(this.getText(start,end-start));
+			this.replace(start,end-start,matcher.replaceAll(comment_str), null);	
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * Comment a part of a line
+	 */
+	
+	public int commentText(int position_start)
+	{
+		String comment_str = "//";
+		int offset         = comment_str.length();
+		
+		try
+		{
+			// Replacement
+			this.replace(position_start, 0, comment_str, null);
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
 	/**
 	 * DOCUMENT COMMENT ACTION END
 	 */
 
-
+	/**
+	 * DOCUMENT UN-COMMENT ACTION
+	 */
+	
+	public int uncommentLine(int line)
+	{
+		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
+		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
+		int offset  = 0;
+		
+		try
+		{
+			String text     = this.getText(start, end-start);
+			Pattern pattern = Pattern.compile("^(\\s)*//");
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(start+matcher.end()-2, 2, "", null);
+				offset = 2;
+			}
+		}
+		catch (BadLocationException e){
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/*
+	 * Un-Comment several lines
+	 */
+	
+	public void uncommentLines(int line_start, int line_end)
+	{
+		Pattern pattern = Pattern.compile("^(\\s)*//");
+		
+		for (int i = line_start; i <= line_end; i++)
+		{
+			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
+			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
+			
+			try
+			{
+				// Get the text line
+				String text     = this.getText(start, end-start);
+				Matcher matcher = pattern.matcher(text);
+				
+				if(matcher.find())
+				{
+					this.replace(start+matcher.end()-2, 2, "", null);
+				}
+			}
+			catch (BadLocationException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/*
+	 * Un-Comment a part of a line
+	 */
+	
+	public int uncommentText(int position_start, int position_end)
+	{
+		Pattern pattern = Pattern.compile("^//");
+		int offset      = 0;
+		
+		try
+		{
+			// Get the text line
+			String text     = this.getText(position_start,position_end-position_start);
+			Matcher matcher = pattern.matcher(text);
+			
+			if(matcher.find())
+			{
+				this.replace(position_start,2,"", null);
+				offset = 2;
+			}
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return offset;
+	}
+	
+	/**
+	 * DOCUMENT UN-COMMENT ACTION END
+	 */
+	
+	
+	/**
+	 * DOCUMENT TABIFY ACTION
+	 */
+	
+	/*
+	 * Insert a tab just after the caret position
+	 */
+	
+	public synchronized void insertTab(int position)
+	{
+		try
+		{
+			this.replace(position, 0, getTabulation(), null);
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * Tabify a line
+	 */
+	
+	public synchronized int tabifyLine(int line)
+	{
+		insertTab(getDefaultRootElement().getElement(line).getStartOffset());	
+		return getTabulation().length();
+	}
+	
+	/*
+	 * Tabify several lines
+	 */
+	
+	public synchronized int tabifyLines(int line_start, int line_end)
+	{
+		boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
+		setAutoIndent(false);
+		setColorize(false);
+		setShouldMergeEdits(true);
+		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+			tabifyLine(currentLine);
+		}
+		setAutoIndent(indentMode);
+		setColorize(colorizeMode);
+		setShouldMergeEdits(mergeEditsMode);
+		return getTabulation().length();
+	}
+		
+	/**
+	 * DOCUMENT UNTABIFY ACTION
+	 */
+	
+	/*
+	 * Delete a tab just before the caret position
+	 */
+	
+	public synchronized int deleteTab(int position)
+	{
+		String tab = getTabulation(); 
+		int tabLength = tab.length();
+		try{
+			String nextChars = getText(position, tabLength);
+			if(nextChars.equals(tab)){
+				remove(position, tabLength);
+			}
+		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return tabLength;
+	}
+	
+	/*
+	 * Delete a tab at the beginning of the line "line"
+	 */
+	
+	public synchronized int untabifyLine(int line)
+	{
+		deleteTab(getDefaultRootElement().getElement(line).getStartOffset());
+		return getTabulation().length();
+	}
+	
+	/*
+	 * Delete tabs at the beginning of several lines
+	 */
+	public boolean canUntabifyLines(int line_start, int line_end)
+	{
+		boolean result = true;
+		String tab = getTabulation();
+		int tabLength = tab.length();
+		try {
+			for (int i = line_start; result && (i <= line_end); i++)
+			{
+				result = result && (tab.equals(getText(getDefaultRootElement().getElement(i).getStartOffset(), tabLength)));
+			}
+		}
+		catch( javax.swing.text.BadLocationException e){
+			System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
+		}
+		return result;
+	}
+	
+	public synchronized int untabifyLines(int line_start, int line_end)
+	{	
+		int res=0;
+		if(true || canUntabifyLines(line_start, line_end)) // always untabify as much lines as possible from a selection
+		{
+			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
+			setAutoIndent(false);
+			setColorize(false);
+			setShouldMergeEdits(true);
+			for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+				untabifyLine(currentLine);
+			}
+			setAutoIndent(indentMode);
+			setColorize(colorizeMode);
+			setShouldMergeEdits(mergeEditsMode);
+			res= getTabulation().length();
+		}
+		return res;
+	}
+	
 	/**
 	 * FIND AND REPLACE START
 	 */
@@ -965,22 +1301,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		if ( (word != null) && !(word.equals("")) ) {
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
+			}
 
 
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText);
 
@@ -1000,9 +1337,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	
 	public ArrayList<Integer[]> findWord(String word,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
-		String fullText = getseletecDocumentLines(currentSelectStart, currentSelectEnd) ;
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		
-		int offset = this.getParagraphElement(currentSelectStart).getStartOffset() ;
+		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
 		int lastIndex = 0;
 		int wordSize = word.length();;
 		ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
@@ -1011,11 +1348,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		if ( (word != null) && !(word.equals("")) ) {
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
@@ -1027,6 +1364,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText);
 
@@ -1055,30 +1393,29 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 	public int[] findNextWord (String word ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		String fullText = getFullDocument();
-		int index = -1 ;
-		int end = -1 ;
+		int index = -1;
+		int end = -1;
 
 
 
 		if ( (word != null) && (!word.equals(""))  ) {
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-
-
+			}
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
 
@@ -1086,8 +1423,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					index = matcher.start()+currentPos;
 					end = matcher.end()+currentPos;
 				}else{
-					index = -1 ;
-					end  = -1 ;
+					index = -1;
+					end  = -1;
 				}
 
 				// ... for other case
@@ -1097,39 +1434,39 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 		}
 
-			return new int [] {index , end } ;
+			return new int [] {index , end };
 	}
 
 	public int[] findNextWord (String word ,int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		
-		String fullText = getseletecDocumentLines(currentSelectStart, currentSelectEnd) ;
-		int offset = this.getParagraphElement(currentSelectStart).getStartOffset() ;
-		System.out.println(currentPos) ;
-		currentPos -=  offset ;
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
+		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
+		System.out.println(currentPos);
+		currentPos -=  offset;
 		
-		int index = -1 ;
-		int end = -1 ;
+		int index = -1;
+		int end = -1;
 
 
 		if ( (word != null) && (!word.equals(""))  ) {
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-
+			}
 
 			//We find matching words ...
 			// ... for regexp or whole words
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
 
@@ -1137,20 +1474,20 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					index = matcher.start()+currentPos+offset;
 					end = matcher.end()+currentPos+offset;
 				}else{
-					index = -1 ;
-					end  = -1 ;
+					index = -1;
+					end  = -1;
 				}
 
 				// ... for other case
 			}else {
 			
 				index = fullText.indexOf(word,currentPos);
-				if (index != -1) index += offset ;
+				if (index != -1) index += offset;
 				end = index + word.length();
 			}
 		}
 
-			return new int [] {index , end } ;
+			return new int [] {index , end };
 	}
 	
 	
@@ -1165,86 +1502,87 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 	public int[] findPreviousWord (String word , int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		String fullText = getFullDocument();
-		int index = -1 ;
-		int end = -1 ;
+		int index = -1;
+		int end = -1;
 		Pattern pattern;
 
 		if ( (word != null) && (!word.equals(""))  ) {
 
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
-			}		
-
+			}
 
 			//We find matching words ...
 			// ... for regexp or whole words
 
 			if (useRegexp || wholeWord){
+				word = "(?m)" + word;
 				 pattern = Pattern.compile(word);
 			}else{// ... for other case
 				// we use regexp in both case cause of a nasty bug when you have string like 
 				//121212  and you search "121" forward then backward
+				word = "(?m)" + word;
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
 				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
 
-				boolean found = false ;
+				boolean found = false;
 				while (matcher.find()) {
 					index = matcher.start();
 					end = matcher.end();
-					found = true ;
+					found = true;
 				}
 
 				if(!found){
-					index = -1 ;
+					index = -1;
 					end = -1;
 				}
 		}
 
 
 		/*if nothing index and end will both be equal to -1*/
-		return new int [] {index , end } ;
+		return new int [] {index , end };
 
 
 	}
 	
 	
 	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = getseletecDocumentLines(currentSelectStart, currentSelectEnd) ;
-		int offset = this.getParagraphElement(currentSelectStart).getStartOffset() ;
-		System.out.println(currentPos) ;
-		currentPos -=  offset ;
-		int index = -1 ;
-		int end = -1 ;
+		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
+		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
+		System.out.println(currentPos);
+		currentPos -=  offset;
+		int index = -1;
+		int end = -1;
 		Pattern pattern;
 
 		if ( (word != null) && (!word.equals(""))  ) {
 
 			// prepare word for each kind of search
 			if (wholeWord){
-				word = "\\b" + word + "\\b" ;
+				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive){
 				if (useRegexp || wholeWord ){
-					word = "(?i)" + word ;
+					word = "(?i)" + word;
 				}
 				else{
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
 			}		
-
+			word = "(?m)" + word;
 
 			//We find matching words ...
 			// ... for regexp or whole words
@@ -1257,25 +1595,25 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
-				System.out.println(currentPos) ;
+				System.out.println(currentPos);
 				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
 
-				boolean found = false ;
+				boolean found = false;
 				while (matcher.find()) {
 					index = matcher.start() + offset;
 					end = matcher.end() + offset;
-					found = true ;
+					found = true;
 				}
 
 				if(!found){
-					index = -1 ;
+					index = -1;
 					end = -1;
 				}
 		}
 
 
 		/*if nothing index and end will both be equal to -1*/
-		return new int [] {index , end } ;
+		return new int [] {index , end };
 
 
 	}
@@ -1301,14 +1639,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
 
+		for (int i = 0; i < macros.length; i++) {
+			keywords.put("macro", macros);
+		}
 		for (int i = 0; i < commands.length; i++) {
 			keywords.put("command", commands);
 		}
 		for (int i = 0; i < functions.length; i++) {
 			keywords.put("function", functions);
-		}
-		for (int i = 0; i < macros.length; i++) {
-			keywords.put("macro", macros);
 		}
 		return keywords;
 	}
@@ -1331,8 +1669,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		commandsBoundaries = findBoundaries(commands, start, this.getText(start, end - start));
 		commentsBoundaries = findBoundaries(comments, start, this.getText(start, end - start));
 		functionsBoundaries = findBoundaries(functions, start, this.getText(start, end - start));
-		//macrosBoundaries = findBoundaries(macros, singleLine, start, this.getText(start, end - start));
-		macrosBoundaries = new ArrayList<Integer>();
+		macrosBoundaries = findBoundaries(macros, start, this.getText(start, end - start));
+		//macrosBoundaries = new ArrayList<Integer>();
 		operatorsBoundaries = findBoundaries(operators, start, this.getText(start, end - start));
 		quotationsBoundaries = findBoundaries(quotations, start, this.getText(start, end - start));	
 
@@ -1362,7 +1700,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		Pattern pattern;
 		ArrayList<Integer> bound = new ArrayList<Integer>();
 		
-		for(int i = 0 ; i < keyword.length ; i++)	{
+		for(int i = 0; i < keyword.length; i++)	{
 			pattern = Pattern.compile(keyword[i], Pattern.DOTALL);
 			    Matcher matcher = pattern.matcher(text);
 			    while(matcher.find()){
@@ -1487,11 +1825,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	public String getFullDocument() {
+		/*
 		int startOffset;
 		int endOffset;
 		String textLine = "";
-		String text = "";
-
+		StringBuffer text = new StringBuffer();
+		
 		//We read the document and put the document into the String text
 		for (int i = 0; i < this.getLength();) {
 			startOffset = this.getParagraphElement(i).getStartOffset();
@@ -1504,12 +1843,22 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				ex.printStackTrace();
 			}
 			i = endOffset;
-			text += textLine;
+			text.append(textLine);
 		}
-		return text;
+		return text.toString();*/
+		String textLine = "";
+		try {
+			//Get the document line by line
+			textLine = this.getText(0,getLength());
+		} catch (BadLocationException ex) {
+			ex.printStackTrace();
+		}
+		return textLine;
 	}
+	
 
-	public String getseletecDocumentLines(int start , int end ) {
+
+	public String getSelectedDocumentLines(int start , int end ) {
 		int startOffset;
 		int endOffset;
 
@@ -1577,6 +1926,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			ColorizeAction.getXpadEditor();
 			editor = getEditor();
 			
+			lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(event.getOffset()).getStartOffset();
+			lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(event.getOffset()+event.getLength()).getEndOffset()-1;
+			
+			if (lineStartPosition != lineEndPosition) {
+				colorize(lineStartPosition, lineEndPosition);
+			}
+			/*
 			// Get the current line (position of the caret) 
 			int  caretPosition = editor.getTextPane().getCaretPosition();
 			currentLine = editor.getTextPane().getStyledDocument().getDefaultRootElement().getElementIndex(caretPosition);
@@ -1594,28 +1950,28 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			if (lineStartPosition != lineEndPosition) {
 				colorize(lineStartPosition, lineEndPosition);
 			}
+			*/
 	    }
 	}
 	
 	public void insertUpdate(DocumentEvent e) {
-		if (e != null){
-			EventType = e.getType().toString();
 		
-			//Element[] pouet =  e.getChange( this.getParagraphElement(editor.getTextPane().getCaretPosition())).getChildrenAdded();
+		if (e != null)
+		{
+			EventType = e.getType().toString();
 		}
 		
 		DEBUG("--- Calling insertUpdate");
 		if (!updaterDisabled) {
 
 			if (autoColorize) {
-			    DEBUG("--- Calling insertUpdate -> colorize");
+				DEBUG("--- Calling insertUpdate -> colorize");
 			    SwingUtilities.invokeLater(new ColorUpdater(e));
 			}
 			if (autoIndent) {
 			    DEBUG("--- Calling insertUpdate -> indent");
 			    SwingUtilities.invokeLater(new IndentUpdater(e));
 			}
-
 		}
 	}
 	
@@ -1624,7 +1980,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void removeUpdate(DocumentEvent e) {
 		
-		EventType = e.getType().toString() ;
+		EventType = e.getType().toString();
 		//System.err.println("--- Calling ScilabStyleDocument.removeUpdate");
 		if (!updaterDisabled) {
 			if (autoColorize) {
@@ -1635,7 +1991,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	public void changedUpdate(DocumentEvent arg0) {
 		
-		EventType = arg0.getType().toString() ;
+		EventType = arg0.getType().toString();
 		// TODO Auto-generated method stub
 	}
 
@@ -1653,11 +2009,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	
 	public boolean isContentModified(){
-		return contentModified ;
+		return contentModified;
 	}
 	
 	public void setContentModified(boolean contentModified){
-		this.contentModified = contentModified ;
+		this.contentModified = contentModified;
 	}
 
 	public int getLineToColor() {

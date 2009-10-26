@@ -19,7 +19,7 @@ mprintf("Illustrates the 2nd counter example given by Han et al.\n");
 //   2000
 //   Ph.D., The University of Connecticut
 //
-function f = han2 ( x )
+function [ f , index ] = han2 ( x , index )
   if abs(x(2)) <= 1.0 then
     rho = 0.0
   elseif x(2) > 1.0 then
@@ -66,12 +66,21 @@ nmplot_display(nm);
 //
 // Plot
 //
+mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.5 , ymax = 1.5 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
+drawlater();
 contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
 nmplot_simplexhistory ( nm );
+drawnow();
 deletefile("han2-history-simplex.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_han2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

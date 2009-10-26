@@ -48,7 +48,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -128,7 +128,7 @@ clear nm;
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );
@@ -168,8 +168,8 @@ nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-kelleystagnationflag",1);
-nm = neldermead_configure(nm,"-restartflag",1);
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","foo");
 nm = neldermead_configure(nm,"-restartsimplexmethod","spendley");
 nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);

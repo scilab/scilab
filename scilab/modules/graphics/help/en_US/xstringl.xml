@@ -43,6 +43,10 @@
         <term>str</term>
         <listitem>
           <para>matrix of strings.</para>
+         <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -71,7 +75,7 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
-str=["Scilab" "is";"not" "elisaB"];
+str=["$\underleftrightarrow{Scilab}$" "is";"not" "elisaB"]; // Only valid from Scilab 5.2
 r=xstringl(0.5,0.5,str)
 xrects([r(1) r(2)+r(4) r(3) r(4)]')
 xstring(r(1),r(2),str)
@@ -85,6 +89,20 @@ xstring(r2(1),r2(2),str)
 txt2=gce();
 txt2.font_size = 5;
 txt2.font_style = 2;
+
+plot2d([0;1],[0;1],0)
+// Only valid from Scilab 5.2
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+txt2=gce();
+txt2.font_size = 5;
+a=gca(); 
+a.margins=[0,0;0,0];
+str=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
+r2 = xstringl(0.5,0.5,str,2,5)
+xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]')
+xstring(r2(1),r2(2),str)
+
+
  ]]></programlisting>
   </refsection>
   <refsection>

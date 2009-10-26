@@ -163,6 +163,10 @@ if abs(nn(1)-162.57763)>0.004 then pause,end
 
 ilib_verbose(0);
 
+cd TMPDIR;
+mkdir("dae_test1");
+cd("dae_test1");
+
 code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
       '{res[0] = yd[0] - y[1];'
@@ -176,7 +180,7 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}'];
-mputl(code,TMPDIR+'/t22.c') ;
+mputl(code,TMPDIR+'/dae_test1/t22.c') ;
 ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce');
 
@@ -231,6 +235,9 @@ norm(y1-yb1);
 
 //banded  jacobian, C code
 //Residuals computation code
+cd TMPDIR;
+mkdir("dae_test2");
+cd("dae_test2");
 ccode=['#include <math.h>'
        'void myres(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
        '{'
@@ -299,7 +306,7 @@ ccode=['#include <math.h>'
        '  res[48]=-10.0+*cj;'
        '  res[49]=0.0;'                                              
        '}'];
-mputl(ccode,TMPDIR+'/band.c'); //create the C file of myjac
+mputl(ccode,TMPDIR+'/dae_test2/band.c'); //create the C file of myjac
 
 ilib_for_link(['myres','myjac'],'band.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/bandloader.sce');//compile
 exec(TMPDIR+'/bandloader.sce'); //incremental linking

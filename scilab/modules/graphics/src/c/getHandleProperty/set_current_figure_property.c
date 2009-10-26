@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,6 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 
@@ -37,14 +39,14 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
 	if (pobj != NULL)
 	{
 		/* This property should not be called on an handle */
-		Scierror(999, _("%s property does not exist for this handle.\n"), "current_figure");
-		return -1;
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
+		return SET_PROPERTY_ERROR;
 	}
 
   if (nbRow * nbCol != 1)
   {
-    Scierror(999, _("Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
-    return -1 ;
+    Scierror(999, _("Wrong size for '%s' property: A scalar expected.\n"), "current_figure");
+    return SET_PROPERTY_ERROR ;
   }
   
   if ( isParameterHandle( valueType ) )
@@ -55,13 +57,13 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
     if ( curFig == NULL )
     {
       Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
-      return -1 ;
+      return SET_PROPERTY_ERROR ;
     }
 
     if ( sciGetEntityType( curFig ) != SCI_FIGURE )
     {
-      Scierror(999, _("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
-      return -1;
+      Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
+      return SET_PROPERTY_ERROR;
     }
     startGraphicDataReading();
     figNum = sciGetNum( curFig ) ;
@@ -73,8 +75,8 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    Scierror(999, _("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
-    return -1 ;
+    Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
+    return SET_PROPERTY_ERROR ;
   }
 
   /* select the figure num */

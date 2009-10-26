@@ -44,7 +44,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -113,7 +113,7 @@ myobj.myarg = 12;
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock2 ( x , mydata )
+function [ y , index , mydata ] = rosenbrock2 ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -135,12 +135,12 @@ nbvar = optimbase_cget(opt,"-numberofvariables");
 assert_equal ( nbvar , 2 );
 // Check cost function without additionnal argument
 opt = optimbase_configure(opt,"-function",rosenbrock);
-[this,f] = optimbase_function ( opt , [0.0 0.0] );
+[this,f , index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_close ( f , 1.0 , %eps );
 // Check cost function with additionnal argument
 opt = optimbase_configure(opt,"-function",rosenbrock2);
 opt = optimbase_configure(opt,"-costfargument",mystuff);
-[this,f] = optimbase_function ( opt , [0.0 0.0] );
+[this,f, index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_close ( f , 144.0 , %eps );
 // Check initial guess
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0]');
@@ -224,12 +224,12 @@ opt = optimbase_incriter ( opt );
 iter = optimbase_get ( opt , "-iterations");
 assert_equal ( iter , 1 );
 // Check history storing with xopt
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-xopt" , [1.0 1.0]' );
 x0 = optimbase_histget ( opt , 1 , "-xopt" );
 assert_close ( x0 , [1.0 1.0]', %eps );
 // Check history storing with fopt
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-fopt" , 1.0 );
 f0 = optimbase_histget ( opt , 1 , "-fopt" );
 assert_close ( f0 , 1.0, %eps );
@@ -266,7 +266,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimbase_configure: Unknown value foo for -tolxmethod option";
+expected = "assert_typeboolean: Expected boolean but got string instead";
 assert_equal ( computed , expected );
 //
 // Test wrong -tolfunmethod
@@ -274,7 +274,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimbase_configure: Unknown value foo for -tolfunmethod";
+expected = "assert_typeboolean: Expected boolean but got string instead";
 assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);
@@ -333,7 +333,7 @@ computed = lasterror();
 expected = "optimbase_get: History disabled ; enable -storehistory option.";
 assert_equal ( computed , expected );
 // Test optimbase_function when there is no function
-cmd = "optimbase_function ( opt , [] , 1 )";
+cmd = "[ opt , f , index ] = optimbase_function ( opt , [] , %t )";
 execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "optimbase_function: Empty function (use -function option).";
@@ -345,7 +345,7 @@ computed = lasterror();
 expected = "optimbase_histget: History disabled ; turn on -storehistory option.";
 assert_equal ( computed , expected );
 // Test optimbase_histget ( this , iter , key ) with negative iteration
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 cmd = "optimbase_histget ( opt , -1 , ''-xopt'' )";
 execstr(cmd,"errcatch");
 computed = lasterror();
@@ -354,7 +354,4 @@ assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);
 
-//
-// Test optimbase_function when there is no function
-//
 

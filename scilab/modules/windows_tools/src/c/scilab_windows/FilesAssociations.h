@@ -60,20 +60,6 @@ SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraphb(char *chainefichier);
 SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFile(char *chainefichier);
 
 /**
-* check if it is a .cos
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOS(char *chainefichier);
-
-/**
-* check if it is a .cosf
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOSF(char *chainefichier);
-
-/**
 * get command to do by file extension
 * @param[in]
 * @param[in]

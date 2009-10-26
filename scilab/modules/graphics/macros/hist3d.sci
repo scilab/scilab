@@ -7,12 +7,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function hist3d(f,T,A,leg,flags,ebox)
+function hist3d(f,theta,alpha,leg,flags,ebox)
 //!
 nep=8
 
-if ~isdef('T','local') then T = 35; end;
-if ~isdef('A','local') then T = 45; end;
+if ~isdef('theta','local') then theta = 35; end;
+if ~isdef('alpha','local') then alpha = 45; end;
 if ~isdef('leg','local') then leg = 'X@Y@Z'; end;
 if ~isdef('flags','local') then flags = [2 1 4]; end;
   
@@ -65,10 +65,10 @@ zz=matrix(f,1,nl*nc).*.[c,d,b,b,a,a];
 
 select rhs 
 case 1 then plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),bnds) 
-case 2 then plot3d(xx,yy,zz,T,def(2),def(3),def(4),bnds) 
-case 3 then plot3d(xx,yy,zz,T,A,def(3),def(4),bnds) 
-case 4 then plot3d(xx,yy,zz,T,A,leg,def(4),bnds) 
-case 5 then plot3d(xx,yy,zz,T,A,leg,flags,bnds) 
-case 6 then plot3d(xx,yy,zz,T,A,leg,flags,ebox) 
+case 2 then plot3d(xx,yy,zz,theta,def(2),def(3),def(4),bnds) 
+case 3 then plot3d(xx,yy,zz,theta,alpha,def(3),def(4),bnds) 
+case 4 then plot3d(xx,yy,zz,theta,alpha,leg,def(4),bnds) 
+case 5 then plot3d(xx,yy,zz,theta,alpha,leg,flags,bnds) 
+case 6 then plot3d(xx,yy,zz,theta,alpha,leg,flags,ebox) 
 end
 endfunction

@@ -11,6 +11,18 @@
 
 function atomsDownload(url_in,file_out,md5sum)
 	
+	// Operating system detection
+	// =========================================================================
+	
+	if ~MSDOS then
+		OSNAME = unix_g('uname');
+		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+	else
+		MACOSX = %F;
+		LINUX  = %F;
+	end
+	
 	// Check input parameters number
 	// =========================================================================
 	
@@ -66,10 +78,69 @@ function atomsDownload(url_in,file_out,md5sum)
 	
 	if regexp(url_in,"/^(http|ftp):\/\//","o") == 1 then
 		
-		if MSDOS then
-			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url_in + " -o " + file_out;
+		proxy_host_arg = "";
+		proxy_user_arg = "";
+		timeout_arg    = "";
+		
+		// Timeout configuration
+		
+		if MSDOS | MACOSX then
+			// Curl
+			timeout_arg = " --connect-timeout ";
 		else
-			download_cmd = "wget "+url_in + " -O " + file_out;
+			// wget
+			timeout_arg = " --timeout=";
+		end
+		
+		timeout = string(strtod(atomsGetConfig("timeout")));
+		
+		if timeout<> "0" then
+			timeout_arg = timeout_arg + timeout;
+		else
+			timeout_arg = timeout_arg + "5";
+		end
+		
+		timeout_arg = timeout_arg + " ";
+		
+		// Proxy configuration
+		if (atomsGetConfig("useProxy") == "True") & (atomsGetConfig("proxyHost") <> "") then
+			
+			// Host
+			proxy_host = atomsGetConfig("proxyHost");
+			
+			// Port
+			if atomsGetConfig("proxyPort") <> "" then
+				proxy_host =  proxy_host + ":" + atomsGetConfig("proxyPort");
+			end
+			
+			// Host/port Argument
+			if MSDOS | MACOSX then
+				// Curl
+				proxy_host_arg = " --proxy "+ proxy_host;
+			else
+				// wget
+				proxy_host_arg = " http_proxy="""+proxy_host+""" ";
+			end
+			
+			// Username/Password
+			if and([atomsGetConfig("proxyUser");atomsGetConfig("proxyPassword")]<> "") then
+				if MSDOS | MACOSX then
+					// Curl
+					proxy_user_arg = " --proxy-user "+atomsGetConfig("proxyUser")+":"+atomsGetConfig("proxyPassword");
+				else
+					// wget
+					proxy_user_arg = " --proxy-user="""+atomsGetConfig("proxyUser")+""" --proxy-password="""+atomsGetConfig("proxyPassword")+"""";
+				end
+			end
+			
+		end
+		
+		if MSDOS then
+			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
+		elseif MACOSX then
+			download_cmd = "curl "+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
+		else
+			download_cmd = proxy_host_arg+"wget"+proxy_user_arg+timeout_arg+" "+url_in + " -O " + file_out;
 		end
 		
 		[rep,stat,err] = unix_g(download_cmd);

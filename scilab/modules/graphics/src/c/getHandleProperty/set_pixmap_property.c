@@ -24,29 +24,22 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
 int set_pixmap_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s property undefined for this object.\n"), "pixmap") ;
-    return -1;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType (pobj) != SCI_FIGURE )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
+		return SET_PROPERTY_ERROR;
+	}
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    sciSetPixmapMode(pobj, TRUE) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    sciSetPixmapMode(pobj, FALSE);
-  }
-  else
-  {
-	  Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
-    return -1 ;
-  }
-  return 0 ;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "pixmap");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	sciSetPixmapMode(pobj, b);
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

@@ -5,6 +5,8 @@ We present the main features of the \scifunction{neldermead} component, and
 show how to use the component with a simple example.
 
 \section{Overview}
+\index{Torczon, Virginia}
+\index{Wright, Margaret}
 
 The Nelder-Mead simplex algorithm \cite{citeulike:3009487}, published in 1965, is an enormously 
 popular search method for multidimensional unconstrained optimization. 
@@ -32,9 +34,9 @@ vertices.
 The goal of this toolbox is to provide a Nelder-Mead (1965) direct search optimization method to solve the 
 following unconstrained optimization problem
 \begin{eqnarray}
-\min f(x)
+\min f(\bx)
 \end{eqnarray}
-where $x\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
 function $f:\RR^n\rightarrow \RR$.
 In order to solve the unconstrained optimization problem, the Nelder-Mead 
 algorithm uses a variable shape simplex. The toolbox also provide Spendley's et al. 
@@ -43,9 +45,9 @@ by Nelder and Mead was designed as an improvement on Spendley's et al. algorithm
 The Box complex algorithm \cite{Box1965} (1965), which is an extension of Spendley's  et al. algorithm, solves the 
 following constrained problem
 \begin{eqnarray}
-&&\min f(x)\\
+&&\min f(\bx)\\
 &&\ell_i \leq x_i \leq u_i, \qquad i = 1,n\\
-&&g_j(x)\geq 0, \qquad j = 1, m\\
+&&g_j(\bx)\geq 0, \qquad j = 1, m\\
 \end{eqnarray}
 where $m$ is the number of nonlinear, positive constraints and $\ell_i,u_i\in \RR^n$ are the lower 
 and upper bounds of the variables.
@@ -66,7 +68,7 @@ criteria.
 \item The "fminsearch" component provides a Scilab commands which aims 
 at behaving as Matlab's fminsearch. Specific terminations criteria, 
 initial simplex and auxiliary settings are automatically configured so 
-that the behaviour of Matlab's fminsearch is exactly reproduced.
+that the behavior of Matlab's fminsearch is exactly reproduced.
 \item The "optimset" and "optimget" components provide Scilab commands 
 to emulate their Matlab counterparts.
 \item The "nmplot" component provides features to 
@@ -168,10 +170,7 @@ is used, which corresponds to the "variable" value of the "-method" option.
 The verbose mode is enabled so that messages are generated during the algorithm. 
 After the optimization is performed, the optimum is retrieved with quiery features.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -193,10 +192,7 @@ nm = neldermead_destroy(nm);
 
 This produces the following output.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 -->nm = neldermead_search(nm);
 Function Evaluation #1 is [24.2] at [-1.2 1]
@@ -314,10 +310,7 @@ and are presented in figure \ref{fig-intro-demos}.
 The following script shows where the demonstration scripts are 
 available from the Scilab installation directory.
 
-\lstset{language=Scilab}
-\lstset{numbers=left}
-\lstset{basicstyle=\footnotesize}
-\lstset{keywordstyle=\bfseries}
+\lstset{language=scilabscript}
 \begin{lstlisting}
 -->cd SCI/modules/optimization/demos/neldermead
  ans  =
@@ -357,7 +350,6 @@ directory, under the "neldermead", "optimsimplex" and "optimbase" directories.
 Each unit test correspond to a .tst file. These tests are covering most 
 (if not all) the features provided by the components. This is why there are 
 a good source of information on how to use the functions.
-
 
 
 

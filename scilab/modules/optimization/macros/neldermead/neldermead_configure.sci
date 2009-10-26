@@ -14,6 +14,7 @@
 function this = neldermead_configure (this,key,value)
   select key
   case "-method" then
+    assert_typestring ( value );
     select value
     case "fixed" then
       this.method = "fixed";
@@ -21,13 +22,17 @@ function this = neldermead_configure (this,key,value)
       this.method = "variable";
     case "box" then
       this.method = "box";
+    case "mine" then
+      this.method = "mine";
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
       error(errmsg);
     end
   case "-coords0" then
+    assert_typereal ( value );
     this.coords0 = value;
   case "-simplex0method" then
+    assert_typestring ( value );
     select value
     case "given" then
       this.simplex0method = "given";
@@ -44,95 +49,188 @@ function this = neldermead_configure (this,key,value)
       error(errmsg);
     end
   case "-simplex0length" then
+    assert_typereal ( value );
     this.simplex0length = value;
   case "-simplex0deltausual" then
+    assert_typereal ( value );
     this.simplex0deltausual = value;
   case "-simplex0deltazero" then
+    assert_typereal ( value );
     this.simplex0deltazero = value;
   case "-rho" then
+    assert_typereal ( value );
     this.rho = value;
   case "-chi" then
+    assert_typereal ( value );
     this.chi = value;
   case "-gamma" then
+    assert_typereal ( value );
     this.gamma = value;
   case "-sigma" then
+    assert_typereal ( value );
     this.sigma = value;
-  case "-tolfstdeviation" then
-    this.tolfstdeviation = value;
-  case "-tolfstdeviationmethod" then
-    select value
-    case "enabled" then
-      this.tolfstdeviationmethod = value;
-    case "disabled" then
-      this.tolfstdeviationmethod = value;
-    else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfstdeviationmethod option"),"neldermead_configure", value);
-      error(errmsg);
-    end
   case "-tolsimplexizeabsolute" then
+    assert_typereal ( value );
     this.tolsimplexizeabsolute = value;
   case "-tolsimplexizerelative" then
+    assert_typereal ( value );
     this.tolsimplexizerelative = value;
   case "-tolsimplexizemethod" then
+    assert_typeboolean ( value )
     select value
-    case "enabled" then
+    case %t then
       this.tolsimplexizemethod = value;
-    case "disabled" then
+    case %f then
       this.tolsimplexizemethod = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-toldeltafv" then
+    assert_typereal ( value );
     this.toldeltafv = value;
   case "-tolssizedeltafvmethod" then
+    assert_typeboolean ( value )
     select value
-    case "enabled" then
+    case %t then
       this.tolssizedeltafvmethod = value;
-    case "disabled" then
+    case %f then
       this.tolssizedeltafvmethod = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-restartmax" then
+    assert_typereal ( value );
     this.restartmax = value;
   case "-restarteps" then
+    assert_typereal ( value );
     this.restarteps = value;
   case "-restartstep" then
+    assert_typereal ( value );
     this.restartstep = value;
   case "-kelleystagnationflag" then
+    assert_typeboolean ( value )
     this.kelleystagnationflag = value;
   case "-kelleynormalizationflag" then
+    assert_typeboolean ( value )
     this.kelleynormalizationflag = value;
   case "-kelleystagnationalpha0" then
+    assert_typereal ( value );
     this.kelleystagnationalpha0 = value;
   case "-restartflag" then
+    assert_typeboolean ( value )
     this.restartflag = value;
   case "-restartdetection" then
+    assert_typestring ( value )
     this.restartdetection = value;
   case "-restartsimplexmethod" then
+    assert_typestring ( value );
     this.restartsimplexmethod = value;
-  case "-boxnbpoints" then
-    this.boxnbpoints = value;
-  case "-nbineqloops" then
-    this.nbineqloops = value;
-  case "-ineqscaling" then
-    this.ineqscaling = value;
   case "-checkcostfunction" then
+    assert_typeboolean ( value )
     select value
-    case 0 then
+    case %f then
       this.checkcostfunction = value;
-    case 1 then
+    case %t then
       this.checkcostfunction = value;
     else
       errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
       error(errmsg);
     end
-  case "-scalingmethod" then
-    this.scalingmethod = value;
+  case "-boxnbpoints" then
+    assert_typereal ( value );
+    this.boxnbpoints = value;
+  case "-boxineqscaling" then
+    assert_typereal ( value );
+    this.boxineqscaling = value;
+  case "-scalingsimplex0" then
+    assert_typestring ( value );
+    this.scalingsimplex0 = value;
+  case "-guinalphamin" then
+    assert_typereal ( value );
+    if ( value <=0.0 ) then 
+      errmsg = msprintf(gettext("%s: Unexpected negative value %s for -guinalphamin option"),"neldermead_configure", value);
+      error(errmsg);
+    end
+    this.guinalphamin = value;
+  case "-boxboundsalpha" then
+    assert_typereal ( value );
+    this.boxboundsalpha = value
+  case "-boxtermination" then
+    assert_typeboolean ( value );
+    this.boxtermination = value
+  case "-boxtolf" then
+    assert_typereal ( value );
+    this.boxtolf = value
+  case "-boxnbmatch" then
+    assert_typereal ( value );
+    this.boxnbmatch = value
+  case "-boxreflect" then
+    assert_typereal ( value );
+    this.boxreflect = value
+  case "-mymethod" then
+    assert_typefunction ( value );
+    this.mymethod = value
+  case "-myterminate" then
+    assert_typefunction ( value );
+    this.myterminate = value
+  case "-myterminateflag" then
+    assert_typeboolean ( value );
+    select value
+    case %f then
+      this.myterminateflag = value;
+    case %t then
+      this.myterminateflag = value;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
+      error(errmsg);
+    end
+  case "-tolvarianceflag" then
+    assert_typeboolean ( value )
+    this.tolvarianceflag = value
+  case "-tolabsolutevariance" then
+    assert_typereal ( value );
+    this.tolabsolutevariance = value
+  case "-tolrelativevariance" then
+    assert_typereal ( value );
+    this.tolrelativevariance = value
+  case "-greedy" then
+    assert_typeboolean ( value )
+    this.greedy = value
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
   end
 endfunction
+// Generates an error if the given variable is not of type real
+function assert_typereal ( var )
+  if ( type ( var ) <> 1 ) then
+    errmsg = msprintf(gettext("%s: Expected real variable but got %s instead"),"assert_typereal", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type string
+function assert_typestring ( var )
+  if ( type ( var ) <> 10 ) then
+    errmsg = msprintf(gettext("%s: Expected string variable but got %s instead"),"assert_typestring", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type function (macro)
+function assert_typefunction ( var )
+  if ( type ( var ) <> 13 ) then
+    errmsg = msprintf(gettext("%s: Expected function but got %s instead"),"assert_typefunction", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type boolean
+function assert_typeboolean ( var )
+  if ( type ( var ) <> 4 ) then
+    errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+
+
+

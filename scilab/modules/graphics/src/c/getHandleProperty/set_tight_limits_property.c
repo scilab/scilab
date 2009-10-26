@@ -29,33 +29,18 @@
 /*------------------------------------------------------------------------*/
 int set_tight_limits_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"tight_limits") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tight_limits");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"tight_limits") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->tight_limits = TRUE ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->tight_limits = FALSE ;
-  }
-  else
-  {
-    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected."),"set_tight_limits_property",2,"on","off") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
+	pSUBWIN_FEATURE (pobj)->tight_limits = b;
+	return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
 

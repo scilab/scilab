@@ -35,7 +35,7 @@ int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"font_style") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "font_style");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -44,7 +44,7 @@ int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 	/* Check that the wanted value is a correct font */
   if ( value >= nbInstalledFonts || value < 0 )
   {
-    Scierror(999, _("Wrong value for property %s: An Integer between %d and %d expected.\n"), "font_style", 0, nbInstalledFonts - 1) ;
+    Scierror(999, _("Wrong value for '%s' property: An Integer between %d and %d expected.\n"), "font_style", 0, nbInstalledFonts - 1) ;
     return SET_PROPERTY_ERROR ;
   }
   

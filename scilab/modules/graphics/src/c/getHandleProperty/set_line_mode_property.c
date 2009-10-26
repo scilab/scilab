@@ -28,25 +28,9 @@
 /*------------------------------------------------------------------------*/
 int set_line_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"line_mode") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetIsLine( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetIsLine( pobj, FALSE ) ;
-  }
-  else
-  {
-    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_line_mode_property","on","off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "line_mode");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+  
+  return sciSetIsLine(pobj, b);
 }
 /*------------------------------------------------------------------------*/

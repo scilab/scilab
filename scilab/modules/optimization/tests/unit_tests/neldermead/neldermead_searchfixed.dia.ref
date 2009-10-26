@@ -27,7 +27,7 @@ function flag = assert_close ( computed, expected, epsilon )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = squarefun (x)
+function [ y , index ] = squarefun ( x , index )
 y = x(1)^2+x(2)^2;
 endfunction
 nm = neldermead_new ();

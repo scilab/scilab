@@ -11,7 +11,7 @@
 
 function demo_viewCode(this_script)
 	
-	if ~with_tk() then
+	if (~isdef('editor') & (funptr('editor')==0)) then
 	  return
 	end
 	
@@ -24,6 +24,6 @@ function demo_viewCode(this_script)
 	my_menu = uimenu( "parent"          , my_fig                       , ..
 	    "label"           , gettext(" -- View Code -- ") , ..
 	    "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
-	    "callback"        , "scipad("""+path+""")" );
+	    "callback"        , "editor("""+path+""")" );
 	
 endfunction

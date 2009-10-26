@@ -21,7 +21,7 @@ Source: bin\libjvm.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#JVM}\etc\jvm_options.xml; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
+Source: etc\jvm_options.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\jar\org.scilab.modules.jvm.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
 ;

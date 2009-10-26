@@ -7,11 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// End user function
+// Internal function
 
 // display of the available toolboxes
 
-function packages = atomsOrphanList(allusers)
+function packages = atomsOrphanList(section)
 	
 	packages = [];
 	
@@ -27,18 +27,22 @@ function packages = atomsOrphanList(allusers)
 	// Check input argument type
 	// =========================================================================
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsOrphanList",1));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsOrphanList",1));
+	end
+	
+	if and(section<>["user","allusers","all"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsOrphanList",1));
 	end
 	
 	// Loop on installed packages
 	// =========================================================================
 	
-	installed_list = atomsGetInstalled(allusers);
+	installed_list = atomsGetInstalled(section);
 	
 	for i=1:size(installed_list(:,1),"*")
-		if isempty( atomsGetDepParents(installed_list(i,1),installed_list(i,2)) ) ..
-			& (atomsGetInstalledStatus(installed_list(i,1),installed_list(i,2)) == "A") then
+		if isempty( atomsGetDepParents([installed_list(i,1) installed_list(i,2)] , section )) ..
+			& (atomsGetInstalledStatus([installed_list(i,1) installed_list(i,2)],section) == "A") then
 			packages = [ packages ; installed_list(i,:) ];
 		end
 	end

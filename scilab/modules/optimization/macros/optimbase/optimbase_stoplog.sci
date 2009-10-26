@@ -13,9 +13,9 @@
 //   If verbose termination is disabled, does nothing.
 //
 function this = optimbase_stoplog ( this , msg )
-  if this.verbose == 1 then
-  if this.verbosetermination == 1 then
-     mprintf("%s\n",msg);
+  if ( this.verbose == 1 ) then
+  if ( this.verbosetermination == 1 ) then
+    this = optimbase_log ( this , msg )
   end
   end
 endfunction

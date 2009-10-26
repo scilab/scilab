@@ -84,8 +84,6 @@ src/jni/JOGLConstant.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-USEANT=1
-
 if GIWS
 BUILT_SOURCES=giws
 endif
@@ -102,6 +100,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
 endif
 

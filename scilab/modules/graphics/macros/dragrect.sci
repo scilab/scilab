@@ -6,7 +6,14 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [rects,btn]=dragrect(rects)
+function [rects,btn]=dragrect(varargin)
+
+  // Check number of input argument
+  if size(varargin)<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "dragrect", 1));
+  end
+  rects=varargin(1);
+
   if size(rects,1)==1 then rects=rects(:),end
   n=size(rects,2)
   f=gcf();pix=f.pixmap;f.pixmap='on';

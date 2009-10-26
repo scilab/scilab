@@ -103,7 +103,8 @@ function dir_created = atomsExtract(archive_in,dir_out)
 	[rep,stat,err] = unix_g(extract_cmd);
 	
 	if stat ~= 0 then
-		error(msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"),"atomsExtract",archive_in));
+		atomsError("error", ..
+			msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"),"atomsExtract",archive_in));
 	end
 	
 	// Get the list of directories after the extraction

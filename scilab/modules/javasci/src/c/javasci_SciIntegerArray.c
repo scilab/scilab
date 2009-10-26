@@ -11,14 +11,14 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "javasci_SciIntegerArray.h"
-#include "api_common.h"
-#include "api_int.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
 /*--------------------------------------------------------------------------*/
 /*! public native int GetElement(int indr, int indc); */
 JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
+	StrErr strErr;
 	int Value = 0;
 	int j = 0;
 
@@ -41,8 +41,10 @@ JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , job
 
 	int cm = 0, cn = 0;
 
-	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
+	if(strErr.iErr)
 	{
+		fprintf(stderr,"%s", getErrorMessage(strErr));
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (1).\n");
 		return Value;
@@ -77,8 +79,10 @@ JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , job
 
 	for (j = 0; j < cm * cn; j++) icx[j] = (int)cx[j];
 
-	if (readNamedMatrixOfInteger32((char*)cname, &cm, &cn, icx))
+	strErr = readNamedMatrixOfInteger32(pvApiCtx, (char*)cname, &cm, &cn, icx);
+	if(strErr.iErr)
 	{
+		fprintf(stderr,"%s", getErrorMessage(strErr));
 		FREE(icx); icx = NULL;
 		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (5).\n");
 		(*env)->ReleaseIntArrayElements(env, jx, cx, 0);

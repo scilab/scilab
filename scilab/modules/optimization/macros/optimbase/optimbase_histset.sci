@@ -18,7 +18,7 @@
 //   value : the value to store
 //
 function this = optimbase_histset ( this , iter , key , value )
-  if this.storehistory == 0 then
+  if ( ~this.storehistory ) then
     errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option.") , "optimbase_histset" )
     error(errmsg)
   end

@@ -39,12 +39,16 @@
 
 	<path id="checkstyle.classpath">
 		<pathelement location="${checkstyle.jar}"/>
+                <pathelement location="${commons-logging.jar}"/>
+                <pathelement location="${commons-beanutils.jar}"/>
+                <pathelement location="${antlr.jar}"/>
 	</path>
 	
 	<path id="compile.classpath">
 	
-	  <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
-	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
+		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
+		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
+		<pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
 		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
 		<pathelement location="${library.completion.dir}/${library.completion.name}"/>
@@ -71,6 +75,8 @@
 		<pathelement location="${jhdf5.jar}"/>
 		
 		<pathelement location="${jhall.jar}"/>
+		
+		<pathelement location="${jgraphx.jar}"/>
 
 	<!-- Only usefull for the documentation -->	
 		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
@@ -81,6 +87,8 @@
 		<pathelement location="${fop.jar}"/>
 
 		<pathelement location="${jeuclid-core.jar}"/>
+
+		<pathelement location="${jlatexmath.jar}"/>
 	</path>
 
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>

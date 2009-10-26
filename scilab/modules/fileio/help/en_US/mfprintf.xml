@@ -109,7 +109,9 @@ fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);
 mclose(fd);
-xpad(TMPDIR+'/text.txt')
+if (isdef('editor') | (funptr('editor')<>0)) then
+  editor(TMPDIR+'/text.txt')
+end
 mfprintf(0,'stderr output.\n');
 mfprintf(6,'stdout output.\n');
  ]]></programlisting>

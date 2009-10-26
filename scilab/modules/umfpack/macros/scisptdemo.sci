@@ -34,7 +34,7 @@ function [] = scisptdemo()
    mode(-1)
    st = stacksize();
    if st(1) < 3000000 then
-      x_message([gettext(" For this demo the current stack size is not enought ");
+      messagebox([gettext(" For this demo the current stack size is not enought ");
 		 gettext(" enter the following at the scilab prompt :          ");
 		 gettext("                                                     ");
 		 gettext("              stacksize(3000000);                    ");

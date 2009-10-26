@@ -26,34 +26,19 @@
 #include "SetPropertyStatus.h"
 #include "SetUiobjectVisible.h"
 #include "GetProperty.h"
-
+#include "BOOL.h"
 /*------------------------------------------------------------------------*/
 int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	int b = (int)FALSE;
+	if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
+	{
+		return SetUiobjectVisible(pobj, stackPointer, valueType, nbRow, nbCol);
+	}
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"visible") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "visible");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
-    {
-      return SetUiobjectVisible(pobj, stackPointer, valueType, nbRow, nbCol);
-    }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetVisibility( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetVisibility( pobj, FALSE ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value: '%s' or '%s' expected.\n"),"on","off") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	return sciSetVisibility(pobj, b);
 }
 /*------------------------------------------------------------------------*/

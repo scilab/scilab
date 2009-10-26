@@ -24,10 +24,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 #include "getshortpathname.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -38,7 +35,9 @@ static int PrintOuput(char **ouput,int nbrlines);
 /*--------------------------------------------------------------------------*/
 int sci_dos(char *fname,unsigned long l)
 {
+	StrErr strErr;
 	int *piAddressVarOne = NULL;
+	int iType1	= 0;
 	int m1 = 0, n1 = 0;
 	char *pStVarOne = NULL;
 	int lenStVarOne = 0;
@@ -54,18 +53,37 @@ int sci_dos(char *fname,unsigned long l)
 	{
 		int *piAddressVarTwo = NULL;
 		int m2 = 0, n2 = 0;
+		int iType2 = 0;
 		char *pStVarTwo = NULL;
 		int lenStVarTwo = 0;
 
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if ( getVarType(piAddressVarTwo) != sci_strings )
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 
-		getMatrixOfString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
@@ -75,7 +93,13 @@ int sci_dos(char *fname,unsigned long l)
 		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 		if (pStVarTwo)
 		{
-			getMatrixOfString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			if ( strcmp(pStVarTwo, "-echo") )
 			{
 				FREE(pStVarTwo); pStVarTwo = NULL;
@@ -94,15 +118,33 @@ int sci_dos(char *fname,unsigned long l)
 		}
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	if ( getVarType(piAddressVarOne) != sci_strings )
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType1  != sci_strings )
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
-	getMatrixOfString(piAddressVarOne,&m1, &n1, &lenStVarOne, &pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1, &n1, &lenStVarOne, &pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
@@ -116,7 +158,12 @@ int sci_dos(char *fname,unsigned long l)
 		BOOL DetachProcessOption = FALSE;
 		BOOL *StatusExit = NULL;
 
-		getMatrixOfString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
 		DetachProcessOption = DetectDetachProcessInCommandLine(pStVarOne);
 		exitCode = (double)spawncommand(pStVarOne, DetachProcessOption);
@@ -175,7 +222,13 @@ int sci_dos(char *fname,unsigned long l)
 		if (Lhs == 1)
 		{
 			int m_out = 1, n_out = 1;
-			createMatrixOfBoolean(Rhs + 1, m_out, n_out, StatusExit);
+			strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out, n_out, StatusExit);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			LhsVar(1) = Rhs + 1;
 		}
 		else
@@ -187,25 +240,44 @@ int sci_dos(char *fname,unsigned long l)
 			{
 				int m_out1 = numberoflines;
 				int n_out1 = 1;
-				createMatrixOfString(Rhs + 1, m_out1, n_out1, Output);
+				strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out1, n_out1, Output);
 			}
 			else
 			{
+				/* returns [] */
 				int m_out1 = 0;
 				int n_out1 = 0;
-				createMatrixOfString(Rhs + 1, m_out1, n_out1, NULL);
+				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out1, n_out1, NULL);
+			}
+
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
 			}
 
 			LhsVar(1) = Rhs + 1;
 
-			createMatrixOfBoolean(Rhs + 2, m_out2, n_out2, StatusExit);
+			strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 2, m_out2, n_out2, StatusExit);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			LhsVar(2) = Rhs + 2;
 		}
 
 		if (Lhs > 2)
 		{
 			int m_out3 = 1, n_out3 = 1;
-			createMatrixOfDouble(Rhs + 3, m_out3, n_out3, &exitCode); 
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, m_out3, n_out3, &exitCode); 
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			LhsVar(3) = Rhs + 3;
 		}
 

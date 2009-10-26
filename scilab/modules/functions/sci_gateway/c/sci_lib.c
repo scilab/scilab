@@ -13,8 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "gw_functions.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -24,8 +23,10 @@ extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_lib)(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
+	int iType1 = 0;
 	char *pStVarOne = NULL;
 	int lenStVarOne = 0;
 
@@ -38,15 +39,33 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	if ( getVarType(piAddressVarOne) != sci_strings )
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType1  != sci_strings )
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
-	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
 	/* check size */
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
@@ -56,7 +75,12 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	/* get string One */
-	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
 	if ( (pStVarOne[strlen(pStVarOne)-1] != '/') && 
 		(pStVarOne[strlen(pStVarOne)-1] != '\\') )

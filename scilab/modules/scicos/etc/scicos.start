@@ -25,7 +25,7 @@ end
 // =============================================================================
 if WITH_DEMOS then
 	pathdemos = pathconvert(SCI+"/modules/scicos/demos/scicos.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Scicos"),pathdemos);
+	add_demo(gettext("Xcos"),pathdemos);
 	clear pathdemos;
 end
 

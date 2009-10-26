@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Get the configuration of the atoms system
 
 function result = atomsGetConfig(field)
@@ -46,9 +48,8 @@ function result = atomsGetConfig(field)
 	
 	// Define the path of the file that will record the change
 	// =========================================================================
+	atoms_directory = atomsPath("system","user");
 	
-	atoms_directory = pathconvert(SCIHOME+"/atoms");
-		
 	// Does the SCIHOME/atoms/config exist, if yes load it
 	// =========================================================================
 	

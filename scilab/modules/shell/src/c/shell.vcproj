@@ -70,7 +70,7 @@
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
 				OutputFile="../../../../bin/libshell.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -154,7 +154,7 @@
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
 				OutputFile="../../../../bin/libshell.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -240,7 +240,7 @@
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
 				OutputFile="../../../../bin/libshell.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -330,7 +330,7 @@
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
 				OutputFile="../../../../bin/libshell.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -527,6 +527,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\scilines.h"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\TermCommand.h"
 				>
 			</File>
@@ -582,6 +586,10 @@
 				Name="Import"
 				>
 				<File
+					RelativePath=".\fileio_Import.def"
+					>
+				</File>
+				<File
 					RelativePath=".\libjvm_Import.def"
 					>
 				</File>
@@ -603,6 +611,14 @@
 				</File>
 				<File
 					RelativePath=".\Scilab_windows_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\shell_export.def"
 					>
 				</File>
 			</Filter>

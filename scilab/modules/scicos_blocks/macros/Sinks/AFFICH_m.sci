@@ -128,7 +128,7 @@ case "define" then
   in = [1 1]
 
   model = scicos_model();
-  model.sim = 'affich2' ;
+  model.sim = list('affich2',4) ;
   model.in = in(1,1);
   model.in2 = in(1,2);
   model.evtin  = 1 ;

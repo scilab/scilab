@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Add toolboxes to the list of packages that are automaticaly loaded at Scilab start
 // This function has an impact on the following files :
 //  -> ATOMSDIR/config
@@ -49,7 +51,7 @@ function nbChanges = atomsSetConfig(field,value)
 	
 	// Define the path of the file that will record the change
 	// =========================================================================
-	atoms_directory =  pathconvert(SCIHOME+"/atoms");
+	atoms_directory =  atomsPath("system","user");
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

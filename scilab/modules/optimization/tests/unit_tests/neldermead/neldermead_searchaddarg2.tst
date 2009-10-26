@@ -51,7 +51,7 @@ endfunction
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function y = rosenbrock ( x , mydata )
+function [ y , index , mydata ] = rosenbrock ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -66,21 +66,21 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",200);
-nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-maxiter",400);
+nm = neldermead_configure(nm,"-maxfunevals",800);
 nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
 nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
+nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_configure(nm,"-costfargument",mystuff);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [10.294738520749856292014 105.94430388598999570604]', 1e-6 );
+assert_close ( xopt , [12.0 144.0]', 1e-6 );
 nm = neldermead_destroy(nm);
 
 

@@ -70,7 +70,10 @@ c            call error(244)
          call mopen(fd,buf(mn+2:),mode(1:l)//char(0),1,w,ierr)
 
          if(ierr.gt.0) then
-            if(ierr.eq.2) then
+            if (ierr.eq.4) then
+c INVALID_FILENAME            
+               err = 241 
+            elseif(ierr.eq.2) then
                if(mode(1:1).eq.'r') then
                   err=241
                else
@@ -79,10 +82,12 @@ c            call error(244)
             elseif(ierr.eq.1) then
                err=66
             endif
+            
             buf(mn+1:)=' '
             call error(err)
             return
          endif
+         
          opened=.false.
       else
          err=1

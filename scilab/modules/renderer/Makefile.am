@@ -365,7 +365,6 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-USEANT=1
 
 if GIWS
 BUILT_SOURCES=giws
@@ -382,6 +381,7 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 pkglib_LTLIBRARIES =  libscirenderer-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscirenderer.la
 endif
 

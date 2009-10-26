@@ -35,30 +35,40 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jgraphx.jar" load="startup"/>
 
-<!-- Load when needed -->
+
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
-        <load on="hdf5BasedFeature"/>
+         <load on="XCos"/>
 </path>
+
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
+<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+	<load on="XCos"/>
+</path>
+
 <!-- Documentation (not mandatory) -->
 <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -74,12 +84,17 @@ The option is "disableUnderMode" and can be:
 </path>
 <path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 
+<path value="$SCILAB/thirdparty/jlatexmath-0.3.jar" load="onUse">
+	<load on="graphics_latex_textrendering"/>
+</path>
 
 <!-- PDF doc generation -->
 <path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 
 <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">

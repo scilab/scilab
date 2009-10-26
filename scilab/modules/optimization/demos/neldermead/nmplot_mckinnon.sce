@@ -73,7 +73,7 @@ mprintf("Defining McKinnon function...\n");
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );
@@ -136,8 +136,10 @@ mprintf("Plot contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
+drawlater();
 contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
+drawnow();
 f = scf(100002);
 nmplot_historyplot ( nm , "mckinnon.history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
@@ -153,4 +155,10 @@ deletefile("mckinnon.history.fopt.txt");
 deletefile("mckinnon.history.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

@@ -20,7 +20,7 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
-libscixpad_la_etc_DATA = 	etc/configuration_xpad.xml \
+libscixpad_la_etc_DATA = 	etc/xpadConfiguration.xml \
 				etc/xpad.quit \
 				etc/xpad.start
 
@@ -31,9 +31,12 @@ XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
-XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp \
+	src/cpp/callxpad.cpp \
+	src/jni/GiwsException.cpp
 
-GIWS_WRAPPERS = Xpad.giws.xml
+
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -42,7 +45,8 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
+sci_gateway/cpp/sci_xpad_highlightline.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

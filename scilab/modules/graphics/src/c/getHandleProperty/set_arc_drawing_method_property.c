@@ -1,14 +1,15 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
-* 
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at    
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 /*------------------------------------------------------------------------*/
 /* file: set_drawing_method_property.c                                    */
@@ -30,13 +31,13 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
 
   if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"drawing_method") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s: Single character string expected.\n"), "drawing_method") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "arc_drawing_method");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -50,7 +51,7 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
   }
   else
   {
-    Scierror(999, _("Wrong value for property %s: value must be '%s' or '%s'.\n"), "drawing_method","nurbs","lines") ;
+    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "drawing_method", "nurbs", "lines");
     return SET_PROPERTY_ERROR ;
   }
 

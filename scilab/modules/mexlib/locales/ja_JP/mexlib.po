@@ -1,0 +1,143 @@
+# Localization of the module mexlib
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: includes/mex.h, line: 80
+msgid "mexPutFull failed\n"
+msgstr "mexPutFull に失敗しました\n"
+
+#
+# File: src/c/mexlib.c, line: 420
+msgid "No more memory available: increase stacksize"
+msgstr "これ以上メモリを要求できません: スタックサイズの増加"
+
+#
+# File: src/c/mexlib.c, line: 814
+msgid "Routine mxIsSingle not implemented.\n"
+msgstr "mxIsSingle ルーチンは実行できませんでした。\n"
+
+#
+# File: src/c/mexlib.c, line: 864
+msgid "Variable is not logical."
+msgstr "変数は論理的ではありません。"
+
+#
+# File: src/c/mexlib.c, line: 927
+msgid "No more memory available: increase stacksize."
+msgstr "これ以上メモリを要求できません: スタックサイズの増加。"
+
+#
+# File: src/c/mexlib.c, line: 1964
+msgid "Warning: "
+msgstr "警告:"
+
+#
+# File: src/c/mexlib.c, line: 1983
+msgid "mexCallSCILAB: invalid pointer passed to called function."
+msgstr "mexCallSCILAB:呼ばれた機能への無効なポインター。"
+
+#
+# File: src/c/mexlib.c, line: 1998
+msgid "mexCallSCILAB: evaluation failed. "
+msgstr "mexCallSCILAB: 評価は失敗しました。"
+
+#
+# File: src/c/mexlib.c, line: 2092
+msgid "GetElementSize error."
+msgstr "GetElementSize エラー。"
+
+#
+# File: src/c/mexlib.c, line: 2212
+msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
+msgstr "mexPutArray関数は廃れました、mexPutVariableを使ってください!\n"
+
+#
+# File: src/c/mexlib.c, line: 2225
+msgid "Routine mxSetName not implemented !\n"
+msgstr "mxSetName ルーチンは実行できませんでした。\n"
+
+#
+# File: src/c/mexlib.c, line: 2231
+msgid "Routine mxSetData not implemented.\n"
+msgstr "mxSetData ルーチンは実行できませんでした。\n"
+
+#
+# File: src/c/mexlib.c, line: 2252
+# File: src/c/mexlib.c, line: 2263
+# File: src/c/mexlib.c, line: 2287
+# File: src/c/mexlib.c, line: 2298
+msgid "Last warning"
+msgstr "最後の警告"
+
+#
+# File: src/c/mexlib.c, line: 2252
+# File: src/c/mexlib.c, line: 2263
+# File: src/c/mexlib.c, line: 2287
+# File: src/c/mexlib.c, line: 2298
+msgid "Warning"
+msgstr "警告"
+
+#
+# File: src/c/mexlib.c, line: 2264
+#, c-format
+msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr "%s:  mxSetPr は目標を %i バイト上書きしています。\n"
+
+#
+# File: src/c/mexlib.c, line: 2299
+#, c-format
+msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr "%s:  mxSetPi は目標を %i バイト上書きしています。\n"
+
+#
+# File: src/c/mexlib.c, line: 2307
+msgid "Routine mxGetName not implemented.\n"
+msgstr "mxGetName ルーチンは実行できませんでした。\n"
+
+#
+# File: src/c/mexlib.c, line: 2314
+msgid "Routine mxSetDimensions not implemented.\n"
+msgstr "mxSetDimensions ルーチンは実行できませんでした。\n"
+
+#
+# File: src/c/mexlib.c, line: 2432
+msgid "Invalid string matrix (at most one column!)"
+msgstr "無効な文字列行列(最大１列です!)"
+
+#
+# File: src/c/mexlib.c, line: 2439
+msgid "Column length of string matrix must agree!"
+msgstr "文字列行列の列長に合意してください!"
+
+#
+# File: src/c/mexlib.c, line: 2444
+msgid "Use mtlb_sparse(sparse( ))!"
+msgstr "mtlb_sparse(sparse( )) を使ってください!"
+
+#
+# File: src/c/mexlib.c, line: 2455
+msgid "Invalid input"
+msgstr "入力間違いです"
+
+#
+# File: src/c/mexlib.c, line: 2674
+msgid "No more memory"
+msgstr "これ以上メモリがありません"
+

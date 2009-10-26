@@ -44,7 +44,11 @@ endfunction
 function [%ll,%ierr]=getvardef(%txt,%ll)
   %nww='';%ierr=0;  // to make sure %ww does not enter the difference
   %nww=size(who('get'),'*')
-  %ierr=execstr(%txt,'errcatch')
+  if isempty(%txt) then
+    %ierr = 0;
+  else
+    %ierr=execstr(%txt,'errcatch')
+  end
   if %ierr<>0 then 
     return,
   end

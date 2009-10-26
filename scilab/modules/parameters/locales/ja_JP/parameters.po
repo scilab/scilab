@@ -1,0 +1,43 @@
+# Localization of the module parameters
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-06-02 10:00+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/add_param.sci, line: 20
+# File: macros/get_param.sci, line: 35
+# File: macros/is_param.sci, line: 20
+# File: macros/list_param.sci, line: 20
+# File: macros/remove_param.sci, line: 39
+# File: macros/set_param.sci, line: 25
+#, c-format
+msgid "%s: not a plist"
+msgstr "%s: plistではありません"
+
+#
+# File: macros/get_param.sci, line: 28
+#, c-format
+msgid "%s: parameter %s not defined"
+msgstr "%s: パラメータ %s は定義されていません"
+
+#
+# File: macros/set_param.sci, line: 19
+#, c-format
+msgid "%s: parameter doesn''t exist"
+msgstr "%s: パラメーターは存在しません"
+

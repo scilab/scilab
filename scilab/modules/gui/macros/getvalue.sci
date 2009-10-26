@@ -186,13 +186,13 @@ while %t do
     execstr('%'+string(%kk)+'=%vv')
   end
   if %nok>0 then 
-    x_message(msprintf(_("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n"), %labels(%nok), %ssz));
+    messagebox(msprintf(_("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n"), %labels(%nok), %ssz));
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      x_message(msprintf(_("Answer given for %s \n has incorrect type %s.\n"), %labels(-%nok), %typ(-2*%nok-1)));
+      messagebox(msprintf(_("Answer given for %s \n has incorrect type %s.\n"), %labels(-%nok), %typ(-2*%nok-1)));
     else
-      x_message(msprintf(_("Answer given for %s \n is incorrect see error message in scilab window.\n"), %labels(-%nok)));
+      messagebox(msprintf(_("Answer given for %s \n is incorrect see error message in scilab window.\n"), %labels(-%nok)));
     end
     %ini=%str
   else

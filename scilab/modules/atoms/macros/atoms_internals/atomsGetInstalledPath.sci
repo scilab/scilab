@@ -7,9 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add an URL to the list of repositories, and returns
 
-function res = atomsGetInstalledPath(name,version,allusers)
+function res = atomsGetInstalledPath(packages,section)
 	
 	rhs           = argn(2);
 	res           = [];
@@ -18,46 +20,55 @@ function res = atomsGetInstalledPath(name,version,allusers)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledPath",1,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledPath",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetInstalledPath",1));
 	end
 	
-	if type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetInstalledPath",2));
+	if size(packages(1,:),"*") <> 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsGetInstalledPath",1));
 	end
 	
-	// name and version must have the same size
+	packages = stripblanks(packages);
+	
+	// Allusers/user management
 	// =========================================================================
 	
-	if or(size(name)<>size(version)) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetInstalledPath",1,2));
-	end
+	if rhs < 2 then
+		section = "all";
 	
-	// allusers management
-	// =========================================================================
-	
-	if rhs < 3 then
-		allusers = %T;
+	else
+		
+		// Process the 2nd input argument : section
+		// Allusers can be equal to "user" or "allusers"
+		
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledPath",2));
+		end
+		
+		if (type(section) == 10) & and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledPath",2));
+		end
+		
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled(allusers);
+	installedpackages = atomsGetInstalled(section);
 	
 	// Loop on name
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
 		
 		// Filter on names
-		this_packages = packages( find(packages(:,1) == name(i))     ,:);
+		this_packages = installedpackages( find(installedpackages(:,1) == packages(i,1))     ,:);
 		
 		if this_packages == [] then
 			res(i) = "";
@@ -65,18 +76,14 @@ function res = atomsGetInstalledPath(name,version,allusers)
 		end
 		
 		// Filter on versions
-		this_packages = this_packages( find(this_packages(:,2) == version(i)) ,:);
+		this_packages = this_packages( find(this_packages(:,2) == packages(i,2)) ,:);
 		
 		if this_packages == [] then
 			res(i) = "";
 			continue;
 		end
 		
-		res(i) = this_packages(4);
+		res(i) = this_packages(1,4);
 	end
-	
-	// Reshape the matrix
-	// =========================================================================
-	res = matrix(res,size(name) );
 	
 endfunction

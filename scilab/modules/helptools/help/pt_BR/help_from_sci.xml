@@ -151,7 +151,7 @@
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
-help_from_sci()   // abrindo um modelo de código-fonte vazio no editor Scipad.
+help_from_sci()   // abrindo um modelo de código-fonte vazio no editor.
 // salve este modelo como test_fun.sci no diretório corrente antes de executar
 // os próximos comandos do exemplo
 

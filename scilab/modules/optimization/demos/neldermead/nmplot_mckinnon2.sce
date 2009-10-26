@@ -74,7 +74,7 @@ mprintf("Defining McKinnon function...\n");
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );
@@ -116,8 +116,8 @@ nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
 //nm = nmplot_configure(nm,"-verbose",0);
 nm = nmplot_configure(nm,"-verbosetermination",0);
-nm = nmplot_configure(nm,"-kelleystagnationflag",1);
-nm = nmplot_configure(nm,"-restartflag",1);
+nm = nmplot_configure(nm,"-kelleystagnationflag",%t);
+nm = nmplot_configure(nm,"-restartflag",%t);
 nm = nmplot_configure(nm,"-restartdetection","kelley");
 //
 // Setup output files
@@ -135,11 +135,13 @@ nmplot_display(nm);
 // Plot
 //
 mprintf("Plot contour...\n");
-[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf();
 xset("fpf"," ")
+drawlater();
 contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
+drawnow();
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.restart.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
@@ -155,4 +157,10 @@ deletefile("mckinnon.history.restart.fopt.txt");
 deletefile("mckinnon.history.restart.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

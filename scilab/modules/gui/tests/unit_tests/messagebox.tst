@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// unit tests for x_message function
+// unit tests for messagebox function
 // =============================================================================
 
 

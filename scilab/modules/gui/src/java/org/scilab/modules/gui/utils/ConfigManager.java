@@ -64,6 +64,7 @@ public final class ConfigManager {
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
 	private static final String COLORPREFIX = "#";
 	private static final String MAXOUTPUTSIZE = "MaxOutputSize";
+	private static final String LASTOPENEDDIR = "LastOpenedDirectory";
 	
 	private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 	
@@ -311,6 +312,67 @@ public final class ConfigManager {
 	}
 	
 	/**
+	 * Save the Last Opened Directory in Scilab
+	 * @param the directory's path
+	 */
+	
+	public static void saveLastOpenedDirectory(String path ){
+		/* Load file */
+		readDocument();
+		
+		Element racine = document.getDocumentElement();
+		
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
+		Element lastOpenedDir = (Element) allSizeElements.item(0);
+		
+		lastOpenedDir.setAttribute(VALUE, path);
+		
+		writeDocument();
+	}
+	
+	/**
+	 * Get the Last Opened Directory in Scilab
+	 * @return the directory's path
+	 */
+	
+	public static String getLastOpenedDirectory(){
+		/* Load file */
+		/*System.getProperty("user.dir") if no path*/
+		readDocument();
+		String path = new String() ;
+		
+		Element racine = document.getDocumentElement();
+		
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
+		Element lastOpenedDir = (Element) allSizeElements.item(0);
+		
+		if (lastOpenedDir != null){
+		
+			path = lastOpenedDir.getAttribute(VALUE);
+			
+			if (path.length() == 0){
+				path = System.getProperty("user.dir") ;
+			}
+		}else{
+			Element newLastOpenedDir =  document.createElement(LASTOPENEDDIR);
+			path = System.getProperty("user.dir") ;
+			newLastOpenedDir.setAttribute("useCache","true");
+			newLastOpenedDir.setAttribute(VALUE, path);
+			
+			scilabProfile.appendChild(newLastOpenedDir);
+			
+			writeDocument();
+		}
+		return path ;
+	}
+	
+	/**
 	 * Save the console Foreground Color
 	 * @param color the new Color
 	 */
@@ -364,6 +426,8 @@ public final class ConfigManager {
 	private static void readDocument() {
 		File xml = null;
 		DocumentBuilder docBuilder = null;
+		createUserCopy();
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			docBuilder = factory.newDocumentBuilder();

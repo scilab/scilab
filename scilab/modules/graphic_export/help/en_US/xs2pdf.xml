@@ -59,6 +59,7 @@ xs2pdf(fig, file_name [,orientation])</synopsis>
 
         <listitem>
           <para>string, name of the exported file.</para>
+	<para>If the extension is not provided, it is going to be automatically added.</para>
         </listitem>
       </varlistentry>
 
@@ -85,7 +86,7 @@ xs2pdf(fig, file_name [,orientation])</synopsis>
 scf(0);
 plot2d();
 //PDF export
-filename='foo'; // ! no extension
+filename='foo';
 xs2pdf(0,filename);
 xs2pdf(gcf(),filename);
  ]]></programlisting>
@@ -95,7 +96,7 @@ xs2pdf(gcf(),filename);
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="set_posfig_dim">set_posfig_dim</link></member>
+      <member>figure_size property</member>
 
       <member><link linkend="toprint">toprint</link></member>
 

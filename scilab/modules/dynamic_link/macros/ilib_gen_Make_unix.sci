@@ -58,7 +58,7 @@ function ilib_gen_Make_unix(names,   ..
 		
 	originPath  = pwd();
 	linkBuildDir    = TMPDIR;
-	commandpath = SCI+"/modules/dynamic_link/src/scripts/";
+	commandpath = SCI+"/modules/dynamic_link/src/scripts";
 	[fd,ierr] = mopen(commandpath+"/write.test","w+");
 
 	if (ierr<>0) then
@@ -89,9 +89,9 @@ function ilib_gen_Make_unix(names,   ..
 						"Makefile.am", ..
 						"Makefile.in", ..
 						"config.sub", ..
-					    "libtool", ..
+						"libtool", ..
 						"config.guess", ..
-					    "config.status", ..
+						"config.status", ..
 						"depcomp", ..
 						"install-sh", ..
 						"ltmain.sh", ..
@@ -111,31 +111,51 @@ function ilib_gen_Make_unix(names,   ..
 	
 	filelist = "";
 	
-	
 	for x = files(:)' ;
 		// Pre added file in the list ... don't really know why
 		
 		if (x <> "csci") then
 			// Old way: to compile a fun.c file, the user had to provide fun.o
 			filename = strsubst(x,'.o','');
+
 			chdir(originPath); // Switch back to the source dir in order to have only the filename
 			filesMatching = ls(filename+".*");
-			// The user provided the real filename
-			if filesMatching == [] then
-				if ( ilib_verbose() <> 0 ) then
-					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
+			
+			// Two cases here:
+			// * The user provided the real filename. Then, take if straight
+			// * The user provided a file ending by .o (example: myfile.o)
+			// We stripped the ending .o and looked for all files
+			if filesMatching == [] | fileinfo(x) <> [] then
+
+			  pathFrom=fileparts(x); // Retrieve the path of the file
+				if length(pathFrom) == 0 then // Empty => it should be PWD
+				  pathFrom=pwd();
 				end
-				copyfile(x, linkBuildDir);
+
+				if pathFrom <> linkBuildDir then
+				  if ( ilib_verbose() <> 0 ) then
+					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
+				  end
+				  copyfile(x, linkBuildDir);
+				else
+				  if ( ilib_verbose() <> 0 ) then
+					  mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"ilib_gen_Make",x,pathFrom);
+					end
+				end
+
 				filelist = filelist + " " + x ;
+				
 			else
-				// Or copy the file matching to what we were looking for (this stuff
-				// could lead to bug if you have fun.c fun.f or fun.cxx but it was 
-				// already the case before ...
+			  
+				// Or copy the file matching to what we were looking for 
+			    // (this stuff could lead to bug if you have fun.c fun.f
+			    // or fun.cxx but it was already the case before ...
 				
 				// Not that we don't want to copy working files
 				ignoredFileExtension=[".lo",".la",".lai"]
 				for f=filesMatching(:)'
-					if strindex(f,ignoredFileExtension) == [] then
+
+				  if strindex(f,ignoredFileExtension) == [] then
 					  if ( ilib_verbose() <> 0 ) then
 						  mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",f);
 					  end
@@ -191,7 +211,7 @@ function ilib_gen_Make_unix(names,   ..
 		mprintf(gettext("   %s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make");
 	end
 	
-	cmd=commandpath + "scicompile.sh " + libname + " " + filelist
+	cmd=commandpath + "/scicompile.sh " + libname + " " + filelist
 
 	[msg,ierr, stderr] = unix_g(cmd);
 

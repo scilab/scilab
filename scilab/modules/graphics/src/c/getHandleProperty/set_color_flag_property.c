@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,18 +37,18 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"color_flag") ;
+    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "color_flag");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_flag") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag") ;
     return SET_PROPERTY_ERROR ;
   }
   if ( nbRow * nbCol != 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_color_flag_property", 2) ;
+    Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "color_flag");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -55,7 +56,7 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     if ( flagcolor < 0 || flagcolor > 1 )
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: %d or %d expected.\n"), "set_color_flag_property", 2, 0, 1) ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "color_flag", "0", "1");
       return SET_PROPERTY_ERROR ;
     }
     pSURFACE_FEATURE(pobj)->flagcolor = flagcolor ;
@@ -68,8 +69,8 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
     if ( flagcolor < 0 || flagcolor > 4 )
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: %d, %d, %d, %d or %d expected.\n"), "set_color_flag_property",2, 0, 1, 2, 3, 4) ;
-      return -1 ;
+      Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "color_flag", "0, 1, 2, 3, 4");
+      return SET_PROPERTY_ERROR ;
     }
 
 

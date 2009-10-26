@@ -10,7 +10,7 @@
 
 mprintf("Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform well on Rosenbrock test case.\n");
 mprintf("Defining Rosenbrock function...\n");
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -43,10 +43,12 @@ nm = nmplot_search(nm);
 nmplot_display(nm);
 // Plot the contours of the cost function and the simplex history
 mprintf("Plotting contour...\n");
-[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf();
-contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
+drawlater();
+contour ( xdata , ydata , zdata , [2 10 100 500 1000 2000] )
 nmplot_simplexhistory ( nm );
+drawnow();
 mprintf("Plotting history of fbar...\n");
 f = scf();
 nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
@@ -65,4 +67,10 @@ deletefile("rosenbrock.fixed.history.fopt.txt");
 deletefile("rosenbrock.fixed.history.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_rosenbrock.fixed.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

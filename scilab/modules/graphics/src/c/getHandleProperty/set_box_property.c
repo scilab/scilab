@@ -34,7 +34,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"box") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "box");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else if ( isStringParamEqual( stackPointer, "hidden_axis" ) )
     {
-      sciprint(_("WARNING !!!\n%s: for input argument #%d: '%s' is deprecated use '%s' instead.\n"), "set_box_property",2,"hidden_axis", "hidden_axes");
+      sciprint(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
       return sciSetBoxType( pobj, BT_HIDDEN_AXES ) ;
     }
     else if ( isStringParamEqual( stackPointer, "back_half" ) )
@@ -63,7 +63,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axes","back_half") ;
+      Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "box", "on, off, hidden_axes, back_half");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -79,13 +79,13 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_box_property",2,"on","off") ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "box", "on", "off");
       return SET_PROPERTY_SUCCEED ;
     }
   }
 	
 
-	Scierror(999, _("%s property does not exist for this handle.\n"),"box") ;
+	Scierror(999, _("'%s' property does not exist for this handle.\n"),"box") ;
   return SET_PROPERTY_ERROR ;
 
 }

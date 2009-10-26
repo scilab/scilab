@@ -29,7 +29,8 @@ function []=fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
 		fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);
 		return
 	end
- 
+
+  if rhs <= 1,fch_t=0;end
   if rhs <= 2,fch_xr=-1:0.1:1;end
   if rhs <= 3,fch_yr=-1:0.1:1;end
 

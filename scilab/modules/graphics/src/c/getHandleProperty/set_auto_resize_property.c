@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,36 +31,19 @@
 /*------------------------------------------------------------------------*/
 int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status = SET_PROPERTY_ERROR;
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"auto_resize") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
+	int b =  (int)FALSE;
+	int status = 0;
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s undefined for this object.\n"), "auto_resize") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+		return SET_PROPERTY_ERROR ;
+	}
 
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    status = sciSetResize( pobj, TRUE );
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    status = sciSetResize( pobj, FALSE );
-  }
-  else
-  {
-    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_resize_property","on","off");
-    return SET_PROPERTY_ERROR ;
-  }
-  enableFigureSynchronization(pobj);
-  /* return set property unchanged since repaint is not really needed */
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	status = sciSetResize(pobj, b);
+	enableFigureSynchronization(pobj);
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
 }
 /*------------------------------------------------------------------------*/

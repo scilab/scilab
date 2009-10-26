@@ -12,6 +12,7 @@
 #ifndef STACK1_H 
 #define STACK1_H 
 
+#include "machine.h"
 #include "scisparse.h" /* SciSparse */
 
 typedef  void (*S_fp)(char *,int *);

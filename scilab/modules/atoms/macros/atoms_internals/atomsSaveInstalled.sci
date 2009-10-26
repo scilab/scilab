@@ -9,7 +9,7 @@
 
 // Internal function
 
-function  atomsSaveInstalled(installed_struct,allusers)
+function  atomsSaveInstalled(installed_struct,section)
 	
 	rhs = argn(2);
 	
@@ -27,19 +27,26 @@ function  atomsSaveInstalled(installed_struct,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A struct expected.\n"),"atomsSaveInstalled",1));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsSaveInstalled",2));
+	// Process the 2nd input argument : section
+	// Allusers can be equal to "user" or "allusers"
+	
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
+	end
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstall",2));
+	end
+	
+	// Check if we have the write access
+	if (section=="allusers") & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,atomsPath("system","allusers")));
 	end
 	
 	// Define the path of the file that will record the change according to
 	// the "allusers" value
 	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================
@@ -48,7 +55,7 @@ function  atomsSaveInstalled(installed_struct,allusers)
 		mkdir(atoms_directory);
 	end
 	
-	// Define the path of the file that will record the change according 
+	// Define the path of the file that will record the change 
 	// =========================================================================
 	installed_txt = atoms_directory+"installed.txt";
 	installed_bin = atoms_directory+"installed.bin";

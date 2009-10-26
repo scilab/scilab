@@ -12,7 +12,6 @@
 #ifndef __INTERNAL_POINTER_API__
 #define __INTERNAL_POINTER_API__
 
-/* commented already defined in api_pointer.h
-int fillPointer(int *_piAddress, void** _pvPtr);
-*/
+StrErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr);
+
 #endif /* __INTERNAL_POINTER_API__ */

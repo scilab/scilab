@@ -43,10 +43,6 @@ namespace DotNetScilab
         sci_intrinsic_function = 130
     };
 
-    /* Enables COM interoperability */
-    [ClassInterface(ClassInterfaceType.AutoDual)]
-    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfaceattribute(VS.80).aspx
-    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfacetype(VS.80).aspx
     public sealed class Scilab
     {
         //=============================================================================
@@ -142,7 +138,9 @@ namespace DotNetScilab
         /// <returns> if the operation successes (0) or not ( !0 )</returns>
         public int createNamedMatrixOfDouble(string matrixName, int iRows, int iCols, double[] matrixDouble)
         {
-            return Scilab_cs_wrapper.createNamedMatrixOfDouble(matrixName, iRows, iCols, matrixDouble);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.createNamedMatrixOfDouble(ptrEmpty, matrixName, iRows, iCols, matrixDouble);
+            return StrErr.iErr;
         }
         //=============================================================================
         /// <summary>
@@ -155,7 +153,9 @@ namespace DotNetScilab
         /// <returns> if the operation successes (0) or not ( !0 )</returns>
         public int createNamedMatrixOfString(string matrixName, int iRows, int iCols, string[] matrixString)
         {
-            return Scilab_cs_wrapper.createNamedMatrixOfString(matrixName, iRows, iCols, matrixString);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.createNamedMatrixOfString(ptrEmpty, matrixName, iRows, iCols, matrixString);
+            return StrErr.iErr;
         }
         //=============================================================================
         /// <summary>
@@ -180,7 +180,9 @@ namespace DotNetScilab
                     matrixInt[i] = 0;
                 }
             }
-            return Scilab_cs_wrapper.createNamedMatrixOfBoolean(matrixName, iRows, iCols, matrixInt);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.createNamedMatrixOfBoolean(ptrEmpty, matrixName, iRows, iCols, matrixInt);
+            return StrErr.iErr;
         }
         //=============================================================================
         /// <summary>
@@ -192,7 +194,9 @@ namespace DotNetScilab
         /// <param name="matrixInt"> pointer on data</param>
         public int createNamedMatrixOfInt32(string matrixName, int iRows, int iCols, int[] matrixInt)
         {
-            return Scilab_cs_wrapper.createNamedMatrixOfInteger32(matrixName, iRows, iCols, matrixInt);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.createNamedMatrixOfInteger32(ptrEmpty, matrixName, iRows, iCols, matrixInt);
+            return StrErr.iErr;
         }
         //=============================================================================
         /// <summary>
@@ -209,10 +213,12 @@ namespace DotNetScilab
                                                 double[] matrixRealPart,
                                                 double[] matrixImagPart)
         {
-            return Scilab_cs_wrapper.createNamedComplexMatrixOfDouble(matrixName,
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.createNamedComplexMatrixOfDouble(ptrEmpty, matrixName,
                                                     iRows, iCols,
                                                     matrixRealPart,
                                                     matrixImagPart);
+            return StrErr.iErr;
         }
         //=============================================================================
         /// <summary>
@@ -225,19 +231,19 @@ namespace DotNetScilab
             int iRows = 0;
             int iCols = 0;
 
-            Scilab_cs_wrapper.readNamedMatrixOfDouble(matrixName, &iRows, &iCols, null);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedMatrixOfDouble(ptrEmpty, matrixName, &iRows, &iCols, null);
 
             if (iRows * iCols > 0)
             {
                 double[] matrixDouble = new double[iRows * iCols];
 
                 // get values in matrixDouble
-                Scilab_cs_wrapper.readNamedMatrixOfDouble(matrixName, &iRows, &iCols, matrixDouble);
-
+                StrErr = Scilab_cs_wrapper.readNamedMatrixOfDouble(ptrEmpty, matrixName, &iRows, &iCols, matrixDouble);
+                if (StrErr.iErr != 0) return null;
                 return matrixDouble;
             }
             return null;
-
         }
         //=============================================================================
         /// <summary>
@@ -251,7 +257,9 @@ namespace DotNetScilab
             int iRows = 0;
             int iCols = 0;
 
-            if (Scilab_cs_wrapper.getNamedVarDimension(matrixName, &iRows, &iCols) == 0)
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.getNamedVarDimension(ptrEmpty, matrixName, &iRows, &iCols);
+            if (StrErr.iErr == 0)
             {
                 iDim = new int[2];
                 iDim[0] = iRows;
@@ -279,8 +287,10 @@ namespace DotNetScilab
                 // we allocate lengthmatrixString
                 int[] lengthmatrixString = new int[iRows * iCols];
 
+                System.IntPtr ptrEmpty = new System.IntPtr();
+
                 // we get length of strings
-                Scilab_cs_wrapper.readNamedMatrixOfString(matrixName, 
+                Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedMatrixOfString(ptrEmpty, matrixName, 
                                         &iRows, &iCols, 
                                         lengthmatrixString, null);
 
@@ -292,7 +302,7 @@ namespace DotNetScilab
                 }
 
                 // we get strings from scilab
-                Scilab_cs_wrapper.readNamedMatrixOfString(matrixName, 
+                StrErr = Scilab_cs_wrapper.readNamedMatrixOfString(ptrEmpty, matrixName, 
                                                 &iRows, &iCols,
                                                 lengthmatrixString, 
                                                 matrixString);
@@ -316,8 +326,10 @@ namespace DotNetScilab
                 int iCols = iDim[1];
                 int[] matrixInt = new int[iRows * iCols];
 
+                System.IntPtr ptrEmpty = new System.IntPtr();
+
                 // get values in matrixDouble
-                Scilab_cs_wrapper.readNamedMatrixOfBoolean(matrixName, 
+                Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedMatrixOfBoolean(ptrEmpty, matrixName, 
                                                             &iRows, &iCols, 
                                                             matrixInt);
 
@@ -357,7 +369,9 @@ namespace DotNetScilab
                 double[] dImagPart = new double[iRows * iCols];
                 dRealPart = new double[iRows * iCols];
 
-                Scilab_cs_wrapper.readNamedComplexMatrixOfDouble(matrixName,
+                System.IntPtr ptrEmpty = new System.IntPtr();
+
+                Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedComplexMatrixOfDouble(ptrEmpty, matrixName,
                                            &iRows, &iCols,
                                            dRealPart,
                                            dImagPart);
@@ -382,7 +396,9 @@ namespace DotNetScilab
                 double[] dRealPart = new double[iRows * iCols];
                 dImagPart = new double[iRows * iCols];
 
-                Scilab_cs_wrapper.readNamedComplexMatrixOfDouble(matrixName,
+                System.IntPtr ptrEmpty = new System.IntPtr();
+
+                Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedComplexMatrixOfDouble(ptrEmpty, matrixName,
                                            &iRows, &iCols,
                                            dRealPart,
                                            dImagPart);
@@ -407,8 +423,10 @@ namespace DotNetScilab
                 // we allocate matrixInt array
                 matrixInt = new int[iRows * iCols];
 
+                System.IntPtr ptrEmpty = new System.IntPtr();
+
                 // get values in matrixInt
-                Scilab_cs_wrapper.readNamedMatrixOfInteger32(matrixName, &iRows, &iCols, matrixInt);
+                Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.readNamedMatrixOfInteger32(ptrEmpty, matrixName, &iRows, &iCols, matrixInt);
             }
             return matrixInt;
         }
@@ -418,9 +436,14 @@ namespace DotNetScilab
         /// </summary>
         /// <param name="matrixName"> variable name</param>
         /// <returns>scilab type (see enum ScilabType)</returns>
-        public int getNamedVarType(string matrixName)
+        public unsafe int getNamedVarType(string matrixName)
         {
-            return Scilab_cs_wrapper.getNamedVarType(matrixName);
+            int iType = 0;
+            System.IntPtr ptrEmpty = new System.IntPtr();
+
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.getNamedVarType(ptrEmpty, matrixName, &iType);
+            if (StrErr.iErr == 0) return iType;
+            return 0;
         }
         //=============================================================================
         /// <summary>
@@ -431,8 +454,10 @@ namespace DotNetScilab
         public unsafe Boolean existNamedVariable(string matrixName)
         {
             int* piAdress = null;
-            int ierr = Scilab_cs_wrapper.getVarAddressFromName(matrixName, &piAdress);
-            if ((ierr == 1) && (piAdress != null)) return true;
+            System.IntPtr ptrEmpty = new System.IntPtr();
+
+            Scilab_cs_wrapper.api_Err StrErr = Scilab_cs_wrapper.getVarAddressFromName(ptrEmpty, matrixName, &piAdress);
+            if (StrErr.iErr == 0) return true;
             return false;
         }
         //=============================================================================
@@ -481,7 +506,8 @@ namespace DotNetScilab
         /// <returns>scilab type (see enum ScilabType)</returns>
         public int isNamedVarComplex(string matrixName)
         {
-            return Scilab_cs_wrapper.isNamedVarComplex(matrixName);
+            System.IntPtr ptrEmpty = new System.IntPtr();
+            return Scilab_cs_wrapper.isNamedVarComplex(ptrEmpty, matrixName);
         }
         //=============================================================================
     }

@@ -104,7 +104,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 
 	pathextented = expandPathVariable(path);
 	if (path) {FREE(path); path = NULL;}
-	FilesList = findfiles(pathextented, filespec, &sizeListReturned);
+	FilesList = findfiles(pathextented, filespec, &sizeListReturned, FALSE);
 	if (pathextented) {FREE(pathextented); pathextented = NULL;}
 	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
 

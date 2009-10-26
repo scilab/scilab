@@ -28,23 +28,29 @@
       <varlistentry>
         <term>file-name</term>
         <listitem>
-          <para/>
+          <para>
+            a string, the name of the mps file
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bounds</term>
         <listitem>
-          <para>2-vector
-    <literal>[lowbound,upbound]</literal> , default lower ans upper bounds</para>
+          <para>
+            2-vector
+            <literal>[lowbound,upbound]</literal> , default lower and upper bounds
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>maxsizes</term>
         <listitem>
-          <para>3-vector <literal>[maxm,maxn,maxnza]</literal>
-  Maximum number of contraints and variables, maximum number of
-  nonzeros entries in the LP constraint matrix. If omitted readmps
-  reads the file once just to compute these numbers.</para>
+          <para>
+            3-vector <literal>[maxm,maxn,maxnza]</literal>
+            Maximum number of contraints and variables, maximum number of
+            nonzeros entries in the LP constraint matrix. If omitted readmps
+            reads the file once just to compute these numbers.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -91,8 +97,17 @@
             <varlistentry>
               <term>rownames</term>
               <listitem>
-                <para>character string column vector (Name of the rows). 
-          colnames : character string row vector (Name of the columns).</para>
+                <para>
+                  character string column vector (Name of the rows).
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>colnames</term>
+              <listitem>
+                <para>
+                   character string row vector (Name of the columns).
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -136,7 +151,9 @@
             <varlistentry>
               <term>rowcode</term>
               <listitem>
-                <para>real matrix <literal>[hdrowcd,lnkrow]</literal> with</para>
+                <para>
+                  real matrix <literal>[hdrowcd,lnkrow]</literal> with
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>hdrowcd</term>
@@ -156,7 +173,9 @@
             <varlistentry>
               <term>colcode</term>
               <listitem>
-                <para>real matrix <literal>[hdcolcd,lnkcol]</literal> with</para>
+                <para>
+                  real matrix <literal>[hdcolcd,lnkcol]</literal> with
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>hdcolcd</term>
@@ -194,7 +213,7 @@
             <varlistentry>
               <term>rhs</term>
               <listitem>
-                <para>:real vector ( Right hand side of the linear program).</para>
+                <para>real vector ( Right hand side of the linear program).</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -206,7 +225,9 @@
             <varlistentry>
               <term>bounds</term>
               <listitem>
-                <para>real matrix <literal>[lbounds,ubounds]</literal> with</para>
+                <para>
+                  real matrix <literal>[lbounds,ubounds]</literal> with
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>ubounds</term>
@@ -231,7 +252,7 @@
                   <varlistentry>
                     <term>0</term>
                     <listitem>
-                      <para>:standard (non negative) variable</para>
+                      <para>standard (non negative) variable</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -286,21 +307,26 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>readmps</literal>.
-    Utility function: reads a file containing description of an LP problem
-    given  in MPS format. It is an
-    interface with the program <literal>rdmps1.f</literal> of hopdm (J. Gondzio).
-    For a description of the variables, see the file rdmps1.f.</para>
     <para>
-    MPS format is a standard ASCII medium for LP codes.  
-    MPS format is described in more detail in Murtagh's book:</para>
+      Reads a file containing description of an LP problem
+      given  in MPS format and returns a <literal>tlist</literal>
+      which describes the problem. It is an
+      interface with the program <literal>rdmps1.f</literal> of hopdm (J. Gondzio).
+      For a description of the variables, see the file rdmps1.f.
+    </para>
     <para>
-    Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
-    New York, 1981.</para>
+      MPS format is a standard ASCII medium for LP codes.
+      MPS format is described in more detail in Murtagh's book:
+    </para>
+    <para>
+      Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
+      New York, 1981.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+      <![CDATA[ 
 //Let the LP problem:
 //objective:
 //   min     XONE + 4 YTWO + 9 ZTHREE
@@ -338,6 +364,7 @@ mputl(txt,TMPDIR+'/test.mps')
 //Read the MPS file
 P=readmps(TMPDIR+'/test.mps',[0 10^30])
 disp(P)
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
 </refentry>

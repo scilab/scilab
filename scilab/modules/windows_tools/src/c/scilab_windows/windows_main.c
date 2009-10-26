@@ -12,6 +12,7 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <Windows.h>
+#include <shellapi.h>
 #include "windows_main.h"
 #include "core_math.h"
 #include "getcommandlineargs.h"
@@ -33,6 +34,7 @@
 #include "WndThread.h"
 #include "strdup_windows.h"
 #include "InnosetupMutex.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 #define WSCILEX "wscilex.exe"
@@ -46,17 +48,18 @@ extern int sci_show_banner ;
 /*--------------------------------------------------------------------------*/ 
 int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
 {
-	int i=0;
-	BOOL ShortCircuitExec=FALSE;
-	BOOL LaunchAFile=FALSE;
-	BOOL ShowMessageBoxInfo=TRUE;		
-	char FileName[PATH_MAX];
+	BOOL ShortCircuitExec = FALSE;
+	BOOL LaunchAFile = FALSE;
+	char *ScilabDirectory = NULL;
+	wchar_t *pwcFullCmdLineTmp = NULL;
+	BOOL ShowMessageBoxInfo = TRUE;	
+	LPWSTR *szArglist = NULL;
+	char FileName[PATH_MAX * 2];
+	int nArgs = 0;
+	int i = 0;
 	int  argcount = 0, lpath = 0;
 	InitScriptType pathtype = SCILAB_SCRIPT;
 	char *path = NULL;
-	char *ScilabDirectory=NULL;
-	char *pFullCmdLine=NULL;
-	char *pFullCmdLineTmp=NULL;
 
 	forbiddenToUseScilab();
 
@@ -64,64 +67,28 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 
 	CreateScilabHiddenWndThread();
 
-	strcpy(FileName,"Empty");
-
 	ScilabDirectory = getScilabDirectory(FALSE);
 
 	if (ScilabDirectory == NULL)
 	{
 		MessageBox (NULL,"ERROR" , "getScilabDirectory()", MB_ICONSTOP | MB_OK);
 		exit(1);
-	}	
-
-	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
-
-	pFullCmdLineTmp = GetCommandLine();
-
+	}
+	else
 	{
-		char LineCommand[PATH_MAX];
-		char LineCommandBis[PATH_MAX];
-		char ShortPath[PATH_MAX];
-		char *pPathCmdLine=NULL;
-		char PathCmdLineCopy[1024];
-		char StrWscilexToSearch[PATH_MAX];
-
-
-
-		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
-
-		strcpy(LineCommand,pFullCmdLineTmp);
-		LineCommand[strlen(LineCommand)]='\0';
-		strcpy(LineCommandBis,pFullCmdLineTmp);
-		LineCommandBis[strlen(LineCommandBis)]='\0';
-
-		pPathCmdLine=stristr(LineCommand,StrWscilexToSearch);
-
-		if ( (pPathCmdLine != NULL) && ( (strlen(pPathCmdLine)-strlen(StrWscilexToSearch)-1) > 0) ) 
-		{
-			char LINE[1024];
-
-			strcpy(PathCmdLineCopy,pPathCmdLine);	
-			if ( PathCmdLineCopy[strlen(StrWscilexToSearch)-2] == '\"' ) PathCmdLineCopy[strlen(StrWscilexToSearch)-2] = ' ';
-			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
-			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
-
-			GetShortPathName(LINE,ShortPath,PATH_MAX);
-			strcat(ShortPath,PathCmdLineCopy);
-
-			pFullCmdLine = strdup(ShortPath);
-		}
-		else
-		{
-			pFullCmdLine = strdup(LineCommandBis);
-		}
-
+		FREE(ScilabDirectory);
+		ScilabDirectory = NULL;
 	}
 
-	my_argv[++my_argc] = strtok (pFullCmdLine, " ");
-	while (my_argv[my_argc] != NULL)
+	szArglist = CommandLineToArgvW(GetCommandLineW(), &nArgs);
+	if (szArglist)
 	{
-		my_argv[++my_argc] = strtok(NULL, " ");
+		for (i = 0; i < nArgs; i++)
+		{
+			my_argv[i] = wide_string_to_UTF8(szArglist[i]);
+		}
+		my_argc = nArgs;
+		LocalFree(szArglist);
 	}
 
 	setCommandLineArgs(my_argv, my_argc);
@@ -130,14 +97,14 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	{
 		if  ( _stricmp (my_argv[i], "-NB") == 0 )
 		{
-			ShowMessageBoxInfo=FALSE;
+			ShowMessageBoxInfo = FALSE;
 		}
 	}
 
-    // No more needed
+	// No more needed
 	//if (ShowMessageBoxInfo) StartupMessageBox();
 
-	for (i=1;i<my_argc;i++)
+	for (i = 1; i < my_argc; i++)
 	{
 		if  ( (_stricmp (my_argv[i], "-NW") == 0) || (_stricmp (my_argv[i], "-NWI") == 0) || (_stricmp (my_argv[i], "-TEXMACS") == 0) || (_stricmp (my_argv[i], "-NOGUI") == 0) )
 		{
@@ -162,7 +129,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			strcat(Msg,"-e Instruction : execute the scilab instruction given in Instruction argument.\n"); 
 			strcat(Msg,"-f File : execute the scilab script given in File argument.\n"); 
 			strcat(Msg,"  '-e' and '-f' options are mutually exclusive.\n\n"); 
-			strcat(Msg,"-l lang : it fixes the user language.\n  The possible lang values are 'fr' for french and 'en' for english.\n  The default language is english.\n  This default value is fixed the scilab.start file.\n\n" ); 
+			strcat(Msg,"-l lang : it fixes the user language.\n\n" ); 
 			strcat(Msg,"-mem N : set the initial stacksize.\n"); 
 			strcat(Msg,"-ns : if this option is present the startup file scilab.start is not executed.\n"); 
 			strcat(Msg,"-nb : if this option is present then scilab welcome banner is not displayed.\n"); 
@@ -173,51 +140,44 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			strcat(Msg,"-texmacs : reserved for WinTeXMacs.\n"); 
 			strcat(Msg,"-version : print product version and exit.\n"); 
 
-			MessageBox(NULL,Msg,"Help",MB_ICONINFORMATION);
+			MessageBox(NULL, Msg, "Help", MB_ICONINFORMATION);
 			exit(1);
 		}
 	}
-	argcount = my_argc;
 
+	argcount = my_argc;
 	if (argcount > 2)
 	{
 		if ( (_stricmp (my_argv[1], "-X") == 0) ||
 			(_stricmp (my_argv[1], "-O") == 0) ||	
 			(_stricmp (my_argv[1], "-P") == 0) )
 		{
-			char *Commande=NULL;
-			int CodeAction=-1;
-			int j=0;
+			char *Commande = NULL;
+			int CodeAction = -1;
 
-			LaunchAFile=TRUE;
+			LaunchAFile = TRUE;
+			strcpy(FileName, my_argv[2]);
 
-			strcpy(FileName,my_argv[2]);
-			for (j=3;j<argcount;j++)
-			{
-				strcat(FileName," ");
-				strcat(FileName,my_argv[j]);
-			}
-			if (_stricmp (my_argv[1], "-O") == 0) CodeAction=0;
-			if (_stricmp (my_argv[1], "-X") == 0) CodeAction=1; 
-			if (_stricmp (my_argv[1], "-P") == 0) CodeAction=2;
+			if (_stricmp (my_argv[1], "-O") == 0) CodeAction = 0;
+			if (_stricmp (my_argv[1], "-X") == 0) CodeAction = 1; 
+			if (_stricmp (my_argv[1], "-P") == 0) CodeAction = 2;
 
-			Commande=(char*)MALLOC(PATH_MAX*sizeof(char));
-			strcpy(Commande,"empty");
-			CommandByFileExtension(FileName,CodeAction,Commande);
+			Commande = (char*)MALLOC(((PATH_MAX*2)+1)*sizeof(char));
+			strcpy(Commande, "empty");
+			CommandByFileExtension(FileName, CodeAction, Commande);
 
-			if (
-				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction==1) ) ||
-				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction==1) )
+			if (( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
+				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction == 1) )
 				)
 			{
-				my_argc=-1;
-				my_argv[++my_argc]=Commande;
+				my_argc = -1;
+				my_argv[++my_argc] = Commande;
 				argcount = my_argc;
-				ShortCircuitExec=TRUE;
+				ShortCircuitExec = TRUE;
 			}
 			else
 			{
-				my_argc=-1;
+				my_argc = -1;
 				my_argv[++my_argc] = strtok (Commande, " ");
 				while (my_argv[my_argc] != NULL)
 				{
@@ -230,52 +190,51 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 
 	if ( ShortCircuitExec == TRUE)
 	{
-		char PathWScilex[PATH_MAX];
-		int lenPathWScilex=0;
+		char PathWScilex[PATH_MAX*2];
+		int lenPathWScilex = 0;
 		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, PATH_MAX);
 		lenPathWScilex = (int)strlen(PathWScilex);
-		path = my_argv[argcount]+lenPathWScilex+3;
-		lpath = (int)strlen (my_argv[argcount]+lenPathWScilex+3);
-		pathtype=SCILAB_CODE;
-		LaunchAFile=TRUE;
+		path = my_argv[argcount] + lenPathWScilex + 3;
+		lpath = (int)strlen (my_argv[argcount] + lenPathWScilex + 3);
+		pathtype = SCILAB_CODE;
+		LaunchAFile = TRUE;
 	}
-	else
-		while (argcount > 0)
+	else while (argcount > 0)
+	{
+		char ArgTmp[PATH_MAX *2];
+
+		argcount--;
+		strcpy(ArgTmp, my_argv[argcount]);
+
+		if (_stricmp (ArgTmp, "-NS") == 0) startupf = 1;
+		else if ( _stricmp(ArgTmp,"-NB") == 0) { sci_show_banner = 0; }
+		else if (_stricmp (ArgTmp, "-F") == 0 && argcount + 1 < my_argc)
 		{
-			char ArgTmp[PATH_MAX];
-
-			argcount--;
-			strcpy(ArgTmp,my_argv[argcount]);
-
-			if (_stricmp (ArgTmp, "-NS") == 0) startupf = 1;
-			else if ( _stricmp(ArgTmp,"-NB") == 0) { sci_show_banner = 0; }
-			else if (_stricmp (ArgTmp, "-F") == 0 && argcount + 1 < my_argc)
-			{
-				path = my_argv[argcount + 1];
-				lpath = (int)strlen (my_argv[argcount + 1]);
-			}
-			else if (_stricmp (ArgTmp, "-E") == 0 && argcount + 1 < my_argc)
-			{
-				path = my_argv[argcount + 1];
-				lpath = (int)strlen (my_argv[argcount + 1]);
-				pathtype=SCILAB_CODE;
-			}
-			else if ( _stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
-			{
-				memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
-			}
-		}		
+			path = my_argv[argcount + 1];
+			lpath = (int)strlen (my_argv[argcount + 1]);
+		}
+		else if (_stricmp (ArgTmp, "-E") == 0 && argcount + 1 < my_argc)
+		{
+			path = my_argv[argcount + 1];
+			lpath = (int)strlen (my_argv[argcount + 1]);
+			pathtype = SCILAB_CODE;
+		}
+		else if ( _stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
+		{
+			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
+		}
+	}		
 
 #ifndef _DEBUG
-		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
+	if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 #endif
 
-		CreateScilabConsole(sci_show_banner);
-		HideScilex(); /* Cache la fenetre Console */
-	
-		createInnosetupMutex();
-		sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
-		
-		return 0;
+	CreateScilabConsole(sci_show_banner);
+	HideScilex(); /* hide console window */
+
+	createInnosetupMutex();
+	sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
+
+	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

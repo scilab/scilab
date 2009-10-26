@@ -111,6 +111,16 @@ public class GL2PSRenderer extends ExportRenderer {
 				exportOrientation = 0;
 			}						
 			
+			/* Modified by Calixte to enable blending (for alpha channel) when exporting LaTeX or MathML
+			   labels (which are pixmap).
+			   I'm obliged to put the enabling here because, the property g2lps->blending is set in
+			   gl2psBeginPage.
+			   Perhaps, it would be a good idea to modify gl2ps.c to enable blending by default (it's the case for SVG export)...
+			 */
+			GL gl = gLDrawable.getGL();
+			gl.glEnable(gl.GL_BLEND);
+			/* End */
+
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
 					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
@@ -123,7 +133,6 @@ public class GL2PSRenderer extends ExportRenderer {
 				return;
 			}
 
-			GL gl = gLDrawable.getGL();
 			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 			gLDrawable.setGL(newGL);
 
@@ -139,7 +148,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			
 			
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
-
+			
 			gLDrawable.setGL(gl);
 			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
@@ -152,7 +161,7 @@ public class GL2PSRenderer extends ExportRenderer {
 				setExportErrorFromGL2PS(gl2psEndPageStatut);
 				return;
 			}		
-
+			
 			sciRend.init(gLDrawable);
 			sciRend.display(gLDrawable);	
 

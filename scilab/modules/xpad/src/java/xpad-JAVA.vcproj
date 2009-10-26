@@ -28,7 +28,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;call ant"
 				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
@@ -48,7 +48,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;call ant"
 				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;call ant"
 				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;NDEBUG"
@@ -88,7 +88,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;call ant"
 				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;NDEBUG"

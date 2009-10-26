@@ -220,9 +220,13 @@ endfunction
 function [ newobj , data ] = optimsimplex_coords ( coords , fun , data )
   if (~isdef('coords','local')) then
     coords = [];
+  else
+    assert_typereal ( coords );
   end
   if (~isdef('fun','local')) then
     fun = [];
+  else
+    assert_typefunction ( fun );
   end
   newobj = tlist(["T_SIMPLEX",...
     "verbose","x","n","fv","nbve"]);
@@ -249,12 +253,10 @@ function [ newobj , data ] = optimsimplex_coords ( coords , fun , data )
     newobj.nbve = nbve;
     newobj.x(1:nbve,1:n) = coords(1:nbve,1:n);
     if fun<>[] then
-      for j = 1 : nbve
-        if (~isdef('data','local')) then
-          newobj.fv(j)  = fun (newobj.x(j,1:newobj.n));
-        else
-          [ newobj.fv(j) , data ]  = fun (newobj.x(j,1:newobj.n) , data );
-        end
+      if (~isdef('data','local')) then
+        newobj = optimsimplex_computefv ( newobj , fun )
+      else
+        [ newobj , data ] = optimsimplex_computefv ( newobj , fun , data )
       end
     end
   end
@@ -281,32 +283,37 @@ function [ newobj , data ] = optimsimplex_axes ( x0 , fun , len , data )
   end
   if (~isdef('fun','local')) then
     fun = [];
+  else
+  assert_typefunction ( fun );
   end
   if (~isdef('len','local')) then
     len = 1.0;
+  else
+    assert_typereal ( len );
+    xlen1 = size(len,1)
+    if size(x0,1)<>1 then
+      errmsg = msprintf(gettext("%s: The len vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_axes",size(len,1),size(len,2));
+      error(errmsg);
+    end
   end
+  assert_typereal ( x0 );
   n = length(x0);
   newobj.n = n;
   newobj.nbve = n + 1;
   nl=length(len)
   if nl==1 then
-    xlen = len * ones(n,1)
+    xlen = len * ones(1,n)
   else
     xlen = len
   end
   newobj.x = zeros ( newobj.nbve , n )
   newobj.fv = zeros ( newobj.nbve , 1 )
   //
-  // Set 1st point
+  // Set all points
   //
-  newobj.x ( 1 , 1:n ) = x0 (1:n)
-  //
-  // Set points #2 to #n+1
-  //
-  for j = 2 : newobj.nbve
-    newobj.x ( j , 1:n ) = x0 (1:n)
-    newobj.x ( j , j-1 ) = newobj.x ( j , j-1 ) + xlen(j-1)
-  end
+  nv = newobj.nbve;
+  newobj.x ( 1:nv , : ) = x0 (1:n) .*. ones(nv,1);
+  newobj.x ( 2:nv , : ) = newobj.x ( 2:nv , : ) + diag(xlen);
   // Compute Function Value
   if fun <> [] then
     if (~isdef('data','local')) then
@@ -335,10 +342,19 @@ function [ newobj , data ] = optimsimplex_spendley ( x0 , fun , len , data )
   end
   if (~isdef('fun','local')) then
     fun = [];
+  else
+    assert_typefunction ( fun );
   end
   if (~isdef('len','local')) then
    len = 1.0;
+  else
+    assert_typereal ( len );
+    if ( size(len,1)<>1 | size(len,2)<>1 ) then
+      errmsg = msprintf(gettext("%s: The len vector is expected to be a scalar, but current shape is %d x %d"),"optimsimplex_spendley",size(len,1),size(len,2));
+      error(errmsg);
+    end
   end
+  assert_typereal ( x0 );
   n = length(x0);
   newobj.n = n;
   newobj.nbve = n + 1;
@@ -350,18 +366,11 @@ function [ newobj , data ] = optimsimplex_spendley ( x0 , fun , len , data )
   p  = (n - 1.0 + sqrt(n + 1))/(n * sqrt(2.0))
   q = (sqrt(n + 1) - 1.0)/(n * sqrt(2.0))
   //
-  // Set 1st point
+  // Set all points
   //
-  newobj.x ( 1 , 1:n ) = x0 (1:n)
-  //
-  // Set points #2 to #n+1
-  //
-  for j = 2 : newobj.n+1
-    // Note : Vectorize when possible
-    // In order to vectorize, add q everywhere, then substract p just for one diagonal term j-1
-    newobj.x ( j , 1:n ) = x0 (1:n) + len * q * ones(1,n)
-    newobj.x ( j , j-1 ) = newobj.x ( j , j-1 ) - len * q + len * p
-  end
+  nv = newobj.nbve;
+  newobj.x ( 1:nv , : ) = x0 (1:n) .*. ones(nv,1);
+  newobj.x ( 2:nv , : ) = newobj.x ( 2:nv , : ) + diag(ones(n,1)*p) + q*ones(n,n) - diag(ones(n,1)*q);
   // Compute Function Value
   if fun <> [] then
     if (~isdef('data','local')) then
@@ -396,6 +405,8 @@ function [ newobj , data ] = optimsimplex_pfeffer ( x0 , fun , deltausual , delt
   end
   if (~isdef('fun','local')) then
     fun = [];
+  else
+    assert_typefunction ( fun );
   end
    if (~isdef('deltausual','local')) then
     deltausual = 0.05
@@ -403,6 +414,9 @@ function [ newobj , data ] = optimsimplex_pfeffer ( x0 , fun , deltausual , delt
    if (~isdef('deltazero','local')) then
     deltazero = 0.0075
   end
+  assert_typereal ( x0 );
+  assert_typereal ( deltausual );
+  assert_typereal ( deltazero );
   if size(x0,1)<>1 then
     errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_pfeffer",size(x0,1),size(x0,2));
     error(errmsg);
@@ -421,7 +435,7 @@ function [ newobj , data ] = optimsimplex_pfeffer ( x0 , fun , deltausual , delt
   //
   for j = 2 : newobj.n+1
     newobj.x ( j,1:n ) = x0 (1:n)
-    if x0( j-1 ) == 0.0 then
+    if ( x0( j-1 ) == 0.0 ) then
       newobj.x ( j , j-1 ) = deltazero
     else
       newobj.x ( j , j-1 ) = newobj.x ( j , j-1 ) + deltausual * x0( j-1 )
@@ -456,9 +470,23 @@ function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , bo
     errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(x0,1),size(x0,2));
     error(errmsg);
   end
+  if ( size(boundsmin,1)<>1 ) then
+    errmsg = msprintf(gettext("%s: The boundsmin vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(boundsmin,1),size(boundsmin,2));
+    error(errmsg);
+  end
+  if ( size(boundsmax,1)<>1 ) then
+    errmsg = msprintf(gettext("%s: The boundsmax vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(boundsmax,1),size(boundsmax,2));
+    error(errmsg);
+  end
+  assert_typereal ( x0 );
+  assert_typefunction ( fun );
+  assert_typereal ( boundsmin );
+  assert_typereal ( boundsmax );
     n = length ( x0 )
     if (~isdef('nbve','local')) then
       nbve = n + 1;
+    else
+      assert_typereal ( nbve );
     end
     newobj.n = n;
     newobj.nbve = nbve;
@@ -471,16 +499,11 @@ function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , bo
     //
     // Set points #2 to #nbve, by randomizing the bounds
     //
-    for ive = 2 : nbve 
-      //
-      // Compute vertex coordinates, as a random number 
-      // between min and max bounds.
-      //
-      for ix  = 1 : n
-        newobj.x ( ive , ix ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
-      end
-    end
-  // Compute Function Value
+    bminmat = boundsmin( 1,1:n ) .*. ones(nbve-1,1);
+    bmaxmat = boundsmax( 1,1:n ) .*. ones(nbve-1,1);
+    thetas = rand(n,nbve-1);
+    newobj.x ( 2:nbve , 1:n ) = bminmat + (thetas.') .* (bmaxmat - bminmat)
+    // Compute Function Value
     if (~isdef('data','local')) then
       newobj = optimsimplex_computefv ( newobj , fun )
     else
@@ -500,51 +523,73 @@ endfunction
 //
 function [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
   if ( simplex0.nbve <> simplex0.n+1 ) then
-    errmsg = msprintf(gettext ( "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimenewobjion is %d and the number of vertices is %d") , "optimsimplex_oriented", simplex0.n , simplex0.nbve)
+    errmsg = msprintf(gettext ( "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d") , "optimsimplex_oriented", simplex0.n , simplex0.nbve)
     error(errmsg)
   end
   if (~isdef('fun','local')) then
     fun = [];
+  else
+    assert_typefunction ( fun );
   end
   sgrad = optimsimplex_gradientfv ( simplex0 )
   ssize = optimsimplex_size ( simplex0 , "sigmaminus" )
   n = simplex0.n
   // Compute the betas
-  betav = zeros(n,1)
-  for i = 1:n
-    if sgrad(i)==0.0 then
-      betav(i)  = ssize
-    elseif sgrad(i) > 0.0 then
-      betav(i)  = ssize
-    else
-      betav(i)  = -ssize
-    end
-  end
+  ipos = find(sgrad >= 0.0);
+  ineg = find(sgrad < 0.0);
+  betav(ipos) = ssize;
+  betav(ineg) = -ssize;
   betav = -0.5 * betav
   // Prepare a matrix with beta as diagonal terms
-  mid = eye ( n , n )
-  for i = 1:n
-    mid (i,i) = betav(i)
-  end
+  mid = diag(betav);
   // Compute simplex
   newobj = optimsimplex_new()
   newobj.n = simplex0.n
   newobj.nbve = simplex0.n+1
   newobj.x = zeros ( n+1 , n )
   newobj.fv = zeros ( n+1 , 1 )
-  // Store 1st point
-  newobj.x ( 1 , 1:n ) = simplex0.x ( 1 , 1:n )
-  newobj.fv ( 1 ) = simplex0.fv ( 1 )
+  // Store all points
   x1 = simplex0.x ( 1 , 1:n )
-  for i = 2:n+1
-    newobj.x ( i, 1:n ) = mid ( i-1 , 1:n ) + x1 ( 1 , 1:n )
-    if fun <> [] then
-      if (~isdef('data','local')) then
-        newobj.fv(i)  = fun (newobj.x(i,:));
-      else
-        [ newobj.fv(i) , data ]  = fun (newobj.x(i,:) , data );
-      end
+  newobj.x ( 1:n+1, 1:n ) = x1 ( 1 , 1:n ) .*. ones(n+1,1)
+  // Retrieve the function value for the first simplex
+  // This saves one function evaluation
+  newobj.fv ( 1 ) = simplex0.fv ( 1 )
+  newobj.x ( 2:n+1, 1:n ) = mid ( 1:n , 1:n ) + newobj.x ( 2:n+1, 1:n )
+  if fun <> [] then
+    if (~isdef('data','local')) then
+      newobj = optimsimplex_compsomefv ( newobj , fun , 2:n+1 )
+    else
+      [ newobj , data ] = optimsimplex_compsomefv ( newobj , fun , 2:n+1 , data )
     end
   end
 endfunction
+// Generates an error if the given variable is not of type real
+function assert_typereal ( var )
+  if ( type ( var ) <> 1 ) then
+    errmsg = msprintf(gettext("%s: Expected real variable but got %s instead"),"assert_typereal", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type string
+function assert_typestring ( var )
+  if ( type ( var ) <> 10 ) then
+    errmsg = msprintf(gettext("%s: Expected string variable but got %s instead"),"assert_typestring", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type function (macro)
+function assert_typefunction ( var )
+  if ( type ( var ) <> 13 ) then
+    errmsg = msprintf(gettext("%s: Expected function but got %s instead"),"assert_typefunction", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+// Generates an error if the given variable is not of type boolean
+function assert_typeboolean ( var )
+  if ( type ( var ) <> 4 ) then
+    errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
+    error(errmsg);
+  end
+endfunction
+
 

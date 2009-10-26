@@ -7,12 +7,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Delete an atoms package from the list of available package
 // This function has an impact on the following files :
 //  -> ATOMSDIR/installed
 //  -> ATOMSDIR/installed_deps
 
-function atomsInstallUnregister(name,version,allusers)
+function atomsInstallUnregister(name,version,section)
 	
 	rhs = argn(2);
 	
@@ -34,8 +36,12 @@ function atomsInstallUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallUnregister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallUnregister",3));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallUnregister",2));
+	end
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallUnregister",2));
 	end
 	
 	// name and version must have the same size
@@ -47,14 +53,14 @@ function atomsInstallUnregister(name,version,allusers)
 	
 	// Process installed
 	// =========================================================================
-	installed_before = atomsLoadInstalledStruct(allusers);
+	installed_before = atomsLoadInstalledStruct(section);
 	installed_after  = atomsRmfields(installed_before,name+" - "+version);
-	atomsSaveInstalled(installed_after,allusers);
+	atomsSaveInstalled(installed_after,section);
 	
 	// Process installed dependencies
 	// =========================================================================
-	installed_deps_before = atomsLoadInstalleddeps(allusers);
+	installed_deps_before = atomsLoadInstalleddeps(section);
 	installed_deps_after  = atomsRmfields(installed_deps_before,name+" - "+version);
-	atomsSaveInstalleddeps(installed_deps_after,allusers);
+	atomsSaveInstalleddeps(installed_deps_after,section);
 	
 endfunction

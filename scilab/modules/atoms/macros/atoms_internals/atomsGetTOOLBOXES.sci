@@ -64,7 +64,7 @@ function packages = atomsGetTOOLBOXES(update)
 	// packages file path definition
 	// =========================================================================
 	
-	packages_path      = pathconvert(SCIHOME+"/.atoms/packages",%F);
+	packages_path      = atomsPath("system","user") + "packages";
 	packages_path_info = fileinfo(packages_path);
 	
 	// If necessary, rebuild the struct
@@ -80,16 +80,18 @@ function packages = atomsGetTOOLBOXES(update)
 		repositories = atomsRepositoryList();
 		repositories = repositories(:,1);
 		
-		if ~isdir(pathconvert(TMPDIR+"/atoms")) then
-			mkdir(pathconvert(TMPDIR+"/atoms"));
+		atoms_tmp_directory = atomsPath("system","session");
+		
+		if ~isdir(atoms_tmp_directory) then
+			mkdir(atoms_tmp_directory);
 		end
 		
 		for i=1:size(repositories,"*")
 			
 			// Building url & file_out
 			// ----------------------------------------
-			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
-			file_out       = pathconvert(TMPDIR+"/atoms/TOOLBOXES",%f);
+			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME+".gz";
+			file_out       = pathconvert(atoms_tmp_directory+"TOOLBOXES.gz",%f);
 			
 			// Remove the existing file
 			// ----------------------------------------
@@ -100,6 +102,24 @@ function packages = atomsGetTOOLBOXES(update)
 			// Launch the download
 			// ----------------------------------------
 			atomsDownload(url,file_out);
+			
+			// Extract It
+			// ----------------------------------------
+			
+			if LINUX | MACOSX then
+				extract_cmd = "gunzip "+ file_out;
+				
+			else
+				extract_cmd = getshortpathname(pathconvert(SCI+"/tools/gzip/gzip.exe",%F)) + " -d """ + file_out + """";
+			end
+			
+			[rep,stat,err] = unix_g(extract_cmd);
+			
+			if stat ~= 0 then
+				error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsGetTOOLBOXES",file_out));
+			end
+			
+			file_out = strsubst(file_out,"/\.gz$/","","r");
 			
 			// Read the download description file
 			// ----------------------------------------
@@ -125,9 +145,9 @@ function packages = atomsGetTOOLBOXES(update)
 		// =====================================================================
 		
 		description_files = [ ..
-			pathconvert(SCI+"/.atoms/DESCRIPTION_archives"   ,%F) ; ..
-			pathconvert(SCIHOME+"/atoms/DESCRIPTION_archives",%F) ; ..
-			pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives" ,%F) ;  ];
+			atomsPath("system","allusers") + "DESCRIPTION_archives" ; ..
+			atomsPath("system","user")     + "DESCRIPTION_archives" ; ..
+			atomsPath("system","session")  + "DESCRIPTION_archives" ];
 		
 		for i=1:size(description_files,"*")
 			if ~ isempty(fileinfo(description_files(i))) then
@@ -138,8 +158,8 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		// Save the "packages" variable in a file
 		// =====================================================================
-		if ~isdir(pathconvert(SCIHOME+"/.atoms")) then
-			mkdir(pathconvert(SCIHOME+"/.atoms"));
+		if ~isdir(atomsPath("system","user")) then
+			mkdir(atomsPath("system","user"));
 		end
 		
 		save(packages_path,packages)

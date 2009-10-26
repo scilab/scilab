@@ -17,13 +17,13 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int ierr = 0;
 	char *default_env_value = NULL;
 	char *env_value = NULL;
@@ -32,11 +32,13 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
+	int iType1	= 0;
 	char *pStVarOne = NULL;
 	int lenStVarOne = 0;
 
 	int m2 = 0, n2 = 0;
 	int *piAddressVarTwo = NULL;
+	int iType2	= 0;
 	char *pStVarTwo = NULL;
 	int lenStVarTwo = 0;
 
@@ -47,15 +49,33 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 	if (Rhs == 2)
 	{
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 
-		if ( getVarType(piAddressVarTwo) != sci_strings )
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 
-		getMatrixOfString(piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
@@ -65,7 +85,12 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 		if (pStVarTwo)
 		{
-			getMatrixOfString(piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
 		}
 		else
 		{
@@ -74,16 +99,34 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	if ( getVarType(piAddressVarOne) != sci_strings )
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType1  != sci_strings )
 	{
 		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 		return 0;
 	}
 
-	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
@@ -94,7 +137,12 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	if (pStVarOne)
 	{
-		getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
 	}
 	else
 	{
@@ -131,7 +179,13 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 		if (ierr == 0)
 		{
-			createMatrixOfString(Rhs + 1, m_out, n_out, &env_value);
+			strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &env_value);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
 			LhsVar(1) = Rhs + 1;
 			C2F(putlhsvar)();	
 		}
@@ -139,7 +193,13 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		{
 			if (default_env_value)
 			{
-				createMatrixOfString(Rhs + 1, m_out, n_out, &default_env_value);
+				strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
+
 				LhsVar(1) = Rhs + 1;
 				C2F(putlhsvar)();	
 			}

@@ -20,10 +20,6 @@
 //
 function options = optimset (varargin)
   [lhs,rhs]=argn();
-  //mprintf("lhs\n");
-  //disp(lhs);
-  //mprintf("rhs\n");
-  //disp(rhs);
   if rhs == 0 then
     options = optimset_new ();
     return
@@ -59,7 +55,7 @@ function options = optimset (varargin)
   end
   // Set ivar : index of input variable.
   // The variable ivar allows to make a loop over input arguments.
-  if modulo(rhs,2)<>0 then
+  if ( modulo(rhs,2)<>0 ) then
     ivar = 1;
   else
     ivar = 0;
@@ -72,10 +68,14 @@ function options = optimset (varargin)
     ivar = ivar + 1;
     key = varargin(ivar);
     ivar = ivar + 1;
+    // Use funcprot to enable the set of a function into the variable "value".
+    // If not, a warning message is triggered, when a double value 
+    // is stored into "value" after a function has already been 
+    // stored in it.
+    prot = funcprot();
+    funcprot(0);
     value = varargin(ivar);
-    //mprintf("Argument #%d\n",ivar);
-    //mprintf("key = %s\n",key);
-    //mprintf("value = %s\n",string(value)); // One cannot display a function.
+    funcprot(prot);
     options = optimset_configure (options,key,value);
   end
 endfunction
@@ -90,7 +90,17 @@ endfunction
 function options = optimset_configure ( options , key , value )
     select key
     case "Display" then
-      options.Display = value;
+      if ( ...
+      ( value == "off" ) | ...
+      ( value == "iter"  ) | ...
+      ( value == "final" ) | ...
+      ( value == "notify" ) ...
+      ) then
+        options.Display = value;
+      else
+        errmsg = msprintf(gettext("%s: Unrecognized value ''%s'' for ''Display'' option."), "optimset", value )
+        error(errmsg)
+      end
     case "FunValCheck" then
       options.FunValCheck = value;
     case "MaxFunEvals" then

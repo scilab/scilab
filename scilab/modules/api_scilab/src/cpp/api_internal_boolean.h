@@ -17,6 +17,6 @@
 #define __INTERNAL_BOOLEAN_API__
 
 //internal functions
-int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool);
+StrErr fillMatrixOfBoolean(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, int** _piBool);
 
 #endif /* __INTERNAL_BOOLEAN_API__ */

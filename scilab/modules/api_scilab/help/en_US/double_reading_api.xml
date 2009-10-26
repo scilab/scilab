@@ -26,15 +26,16 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-      <title>Calling Sequence</title>
-      <synopsis>
-int getMatrixOfDouble(int* _piAddress _iVar, int* _piRows, int* _piCols, double** _pdblReal)
-int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
-        </synopsis>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>StrErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
+        <synopsis>StrErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>StrErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)</synopsis>
+        <synopsis>StrErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
-
         <variablelist>
             <varlistentry>
                 <term>_piAddress</term>
@@ -44,7 +45,6 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_piRows</term>
                 <listitem>
@@ -53,7 +53,6 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_piCols</term>
                 <listitem>
@@ -62,7 +61,6 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblReal</term>
                 <listitem>
@@ -71,19 +69,13 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblImg</term>
                 <listitem>
-                    <para>
-                        Return address of imaginary data array (size: _iCols * _iRows).
-                    </para>
-			<para>
-				This argument does not exist with getMatrixOfDouble.
-			</para>
+                    <para>Return address of imaginary data array (size: _iCols * _iRows).</para>
+                    <para>This argument does not exist with getMatrixOfDouble.</para>
                 </listitem>
             </varlistentry>
-
         </variablelist>
     </refsection>
     <refsection>

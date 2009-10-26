@@ -29,34 +29,18 @@
 /*------------------------------------------------------------------------*/
 int set_tics_segment_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_AXES )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_segment") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"tics_segment") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tics_segment");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( sciGetEntityType(pobj) != SCI_AXES )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_segment") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    pAXES_FEATURE (pobj)->seg = 1;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    pAXES_FEATURE (pobj)->seg = 0 ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for argument: %s or %s expected.\n"),"on","off");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  return SET_PROPERTY_SUCCEED ;
+	pAXES_FEATURE (pobj)->seg = b;
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
 

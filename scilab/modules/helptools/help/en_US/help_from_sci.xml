@@ -97,7 +97,7 @@ following the References headline.</para></listitem>
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[ 
-help_from_sci()   // Open an empty source code template in the Scipad editor.
+help_from_sci()   // Open an empty source code template in the scilab editor.
 // Save this template as test_fun.sci in the current directory before running
 // the next example commands.
 

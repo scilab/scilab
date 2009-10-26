@@ -29,33 +29,17 @@
 /*------------------------------------------------------------------------*/
 int set_isoview_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"isoview") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "isoview");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"isoview") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->isoview = TRUE ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->isoview = FALSE ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  return SET_PROPERTY_SUCCEED ;
-
+	pSUBWIN_FEATURE (pobj)->isoview = b;
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

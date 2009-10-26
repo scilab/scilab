@@ -89,30 +89,19 @@ function plotprofile(fun)
   
   for i=1:3; axes(i).tight_limits="on"; end
 
-  if ~MSDOS then
-    delmenu(win,gettext("3D Rot."))
-    delmenu(win,gettext("Edit"))
-    delmenu(win,gettext("Editer"))
-    delmenu(win,gettext("Insert"))
-  else
-    delmenu(win,gettext("3D &Rot."))
-    delmenu(win,gettext("&Edit"))
-    delmenu(win,gettext("&Insert"))
-  end   
+  delmenu(win,gettext("Tools"));
+  delmenu(win,gettext("Edit"));
+  delmenu(win,gettext("?"));
+  
   addmenu(win,gettext("Exit"),list(0,"Exit"));
-  str="execstr(Exit_"+string(win)+"(1))"
+  str = "execstr(Exit_"+string(win)+"(1))"
+  
   xinfo(gettext("Click to get corresponding line, move with a-z."))
 
-  withpad=with_scipad()
-  if withpad then
-    profpath=TMPDIR+"/profiled.sci"
-    mputl(txt,profpath);
-    openinscipad(profpath)
-    scipad_hiliteline(1)
-  else //ouput text in a graphic window
-    [h,M]=dispfuntxt(txt,1,0,%f)
-  end
-
+  profpath = TMPDIR+"/profiled.sci"
+  mputl(txt,profpath);
+  editor_highlightline(profpath, 1);
+  
   k=1
   while %t
     if ~or(winsid()==win) then break,end
@@ -166,12 +155,8 @@ function plotprofile(fun)
       else
         msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), kstr, ncallsstr, tcpustr) + txt(k);
       end
-   // show source code in another window
-      if withpad then
-        scipad_hiliteline(k)
-      else
-        [h,M]=dispfuntxt(txt,k,h,M)
-      end
+      
+      editor_highlightline(profpath,k)
     end
     for i=1:3
       d=marker(i).data; 
@@ -187,111 +172,5 @@ endfunction
 function endprof()
   if or(winsid()==(win+1)) then xdel(win+1);end
   if or(winsid()==(win)) then xdel(win);end
-  if withpad then
-    if ~TCL_ExistInterp("scipad") then return,end
-    if ~TCL_ExistVar("pad","scipad") then return,end
-    TCL_EvalStr("scipad eval {showtext $profiled}")
-    TCL_EvalStr("scipad eval {closecur}")
-  end
 endfunction
 
-function scipad_hiliteline(n)
-  if ~TCL_ExistInterp("scipad") then //scipad has never been opened
-     openinscipad(profpath)
-  else
-    if ~TCL_ExistVar("pad","scipad") then //scipad has been closed
-      openinscipad(profpath)
-    end
-  end
-  TCL_EvalStr("scipad eval {showtext $profiled}")
-  TCL_EvalStr("scipad eval {set gotlnCommand "+string(n)+"}")
-  TCL_EvalStr("scipad eval {[gettextareacur] mark set insert ""$gotlnCommand.0""}")
-  //TCL_EvalStr("scipad eval {catch {keyposn [gettextareacur]}}")
-  TCL_EvalStr("scipad eval {[gettextareacur] see insert}")
-  TCL_EvalStr("scipad eval {set i1 [$textareacur index ""insert linestart""]}")
-  TCL_EvalStr("scipad eval {set i2 [$textareacur index ""insert lineend""]}")
-  TCL_EvalStr("scipad eval {$textareacur tag add sel $i1 $i2}")
-  TCL_EvalStr("scipad eval {selectline}")
-
-endfunction
-
-function r=with_scipad()
-  if with_tk() then
-    scipad(),
-    r=%t
-  else
-    r=%f
-  end
-endfunction
-
-function openinscipad(path)
-  scipad(path)
-  TCL_EvalStr("scipad eval {set profiled [lindex $listoftextarea end]}")
-endfunction
-
-function [h,M]=dispfuntxt(txt,k,h,M)
-  //function used to display code in a graphic window
-  lbl=string(1:size(txt,1))';lbl=part(lbl,1:max(length(lbl)));
-  t=lbl+": "+txt;
-  if ~or(winsid()==(win+1)) then
-    
-    xset("window",win+1);
-    set figure_style old;
-    xset("wpdim",400,600);
-    xset("wdim",400,600);xset("wresize",0);
-    curwin=win+1
-    if ~MSDOS then
-      delmenu(curwin,gettext("3D Rot."))
-      delmenu(curwin,gettext("UnZoom"))
-      delmenu(curwin,gettext("Zoom"))
-      delmenu(curwin,gettext("Edit"))
-      delmenu(curwin,gettext("File"))
-      delmenu(curwin,gettext("Insert"))
-    else
-      toolbar(curwin,"off");
-      	// English
-      	delmenu(curwin,gettext("&File"))
-      	delmenu(curwin,gettext("&Edit"))
-      	delmenu(curwin,gettext("&Tools"))
-      	delmenu(curwin,gettext("&Insert"))
-    end     
-    
-    xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])
-    w=xstringl(0,0,t);h=w(4);w=max(400,w(3))
-    if h>600 then
-      xset("wdim",w,h)
-      xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
-      M=%t
-    elseif h<300 then
-      xset("wpdim",400,300)
-      xset("wdim",w,h)
-      xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
-      M=%t
-    else
-      M=%f
-    end
-  else
-    xset("window",win+1);
-  end
-  xclear();
-  x=0;y=h;
-  if k>1 then
-    t1=t(1:k-1);
-    w=xstringl(0,0,t1);w=w(4);
-    y=y-w;xstring(x,y,t1);
-  end
-  xset("dashes",5)
-  w=xstringl(0,0,t(k));w=w(4);
-  y=y-w;xstring(x,y,t(k));
-  yp=y;
-  xset("dashes",33)
-
-  if k<n then
-    t1=t(k+1:$);
-    w=xstringl(0,0,t1);w=w(4);
-    y=y-w;xstring(x,y,t1)
-  end
-  if M then xset("viewport",x,-300+(k*(h/size(txt,1)))),end
-  xset("window",win)
-  xpause(10000)
-endfunction

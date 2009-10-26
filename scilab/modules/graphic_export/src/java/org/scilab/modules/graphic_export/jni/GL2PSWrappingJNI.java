@@ -51,4 +51,8 @@ public class GL2PSWrappingJNI {
   public final static native int sci_gl2psDrawImageMap(int jarg1, int jarg2, float[] jarg3, String jarg4);
   public final static native String sci_gl2psGetFileExtension(int jarg1);
   public final static native String sci_gl2psGetFormatDescription(int jarg1);
+  
+  /* Added by Calixte */
+  public final static native int sci_gl2psDrawPixels(int jarg1, int jarg2, int jarg3, int jarg4, java.nio.Buffer jarg5);
+  /* End */
 }

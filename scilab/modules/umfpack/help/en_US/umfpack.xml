@@ -97,6 +97,24 @@ A = sparse( [ 2+%i  3+2*%i  0      0    0;
               0     4       2-%i   0    1] );
 b = [ 3+13*%i ; 58+32*%i ; -19+13*%i ; 18-12*%i ; 22+16*%i ];
 x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
+
+// A benchmark of several linear solvers
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -116,6 +134,12 @@ x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
       </member>
       <member>
         <link linkend="umf_luget">umf_luget</link>
+      </member>
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
       </member>
     </simplelist>
   </refsection>

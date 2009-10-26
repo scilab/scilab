@@ -9,7 +9,7 @@
 
 // End user function
 
-// Return a 4xn string matrix :
+// Return a 5xn string matrix :
 // 
 // !toolbox2          0.1  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.1  A  !
 // !                                                                                                          !
@@ -17,7 +17,7 @@
 // !                                                                                                          !
 // !toolbox_skeleton  1.3  alluser  /home/pmarecha/work/atoms/scilab/contrib/toolbox_skeleton/1.3          I  !
 
-function packages = atomsGetInstalled(allusers)
+function packages = atomsGetInstalled(section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -35,27 +35,25 @@ function packages = atomsGetInstalled(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsGetInstalled",1));
 	end
 	
-	// Load all packages, or just user packages ?
+	// Load all packages, "user" section or "allusers" section packages ?
 	// =========================================================================
 	
 	if rhs == 0 then
-		allusers = %T;
+		section = "all";
 	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetInstalled",1));
+		
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsGetInstalled",1));
 		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsGetInstalled",1));
+		end
+		
 	end
 	
 	// Call atomsLoadInstalledMat
 	// =========================================================================
-	
-	if allusers then
-		// all packages
-		packages = atomsLoadInstalledMat("all");
-	else
-		// user packages
-		packages = atomsLoadInstalledMat(%F);
-	end
+	packages = atomsLoadInstalledMat(section);
 	
 endfunction

@@ -16,11 +16,12 @@ import java.util.ArrayList;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 
 public class H5ReadScilabMList extends H5ReadScilabCommonList {
 
-    public static void readData(int dataSetId, ScilabTList scilabList) throws NullPointerException, HDF5Exception {
+    public static void readData(int dataSetId, ScilabMList scilabList) throws NullPointerException, HDF5Exception {
 	readData(dataSetId, (ArrayList) scilabList);
     }
 

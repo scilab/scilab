@@ -38,6 +38,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
+src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -504,15 +505,11 @@ libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 pkglib_LTLIBRARIES = libscigraphics-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
-
-
-if GUI
-USEANT=1
-endif
 
 
 include $(top_srcdir)/Makefile.incl.am

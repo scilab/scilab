@@ -14,16 +14,15 @@
 #ifndef __DYNLIB_API_SCILAB_H__
 #define __DYNLIB_API_SCILAB_H__
 
-#ifndef DOXYGEN
 #ifdef _MSC_VER
-	#ifdef API_SCILAB_EXPORTS
-		#define API_SCILAB_IMPEXP __declspec(dllexport)
-	#else
-		#define API_SCILAB_IMPEXP __declspec(dllimport)
-	#endif
+#ifdef API_SCILAB_EXPORTS
+#define API_SCILAB_IMPEXP __declspec(dllexport)
 #else
-	#define API_SCILAB_IMPEXP
+#define API_SCILAB_IMPEXP __declspec(dllimport)
 #endif
+#else
+#define API_SCILAB_IMPEXP
 #endif
+
 #endif /*__DYNLIB_API_SCILAB_H__ */
 /*--------------------------------------------------------------------------*/ 

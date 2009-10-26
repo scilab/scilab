@@ -1,0 +1,344 @@
+# Localization of the module spreadsheet
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-27 16:04+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/sci2excel.sci, line: 23
+#, c-format
+msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d が不正: ''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 81
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr "ファイル %s は存在しません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 89
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: ファイルむ %s はOLE2ファイルではありません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 93
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 102
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s: OLE２ファイル %s に xlsストリームがありません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 124
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: OLE2 ファイルではありません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 129
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: ファイルは、ワークブック・ディレクトリーを持っていません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 134
+# File: sci_gateway/c/sci_xls_read.c, line: 62
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリがありません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 139
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: ダメな不正確なファイルです。\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 144
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: 唯一BIFF８ファイル形式は、処理されます。\n"
+
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 39
+# File: sci_gateway/c/sci_xls_read.c, line: 45
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 66
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr "%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
+
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 70
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s: ファイルの終わり。\n"
+
+#
+# File: src/c/ripole/logger.c, line: 117
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr "LOGGER_set_logfile: エラー - ログファイル '%s' (%s) を開けません"
+
+#
+# File: src/c/ripole/logger.c, line: 119
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgstr "LOGGER_set_logfile: エラー - ログファイル '%s' (%s) を開けません\n"
+
+#
+# File: src/c/ripole/logger.c, line: 342
+#, c-format
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-Default: %s%s"
+
+#
+# File: src/c/ripole/ole.c, line: 101
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
+
+#
+# File: src/c/ripole/ole.c, line: 251
+#, c-format
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d:OLE_set_debug: デバックレベルを %d に設定"
+
+#
+# File: src/c/ripole/ole.c, line: 333
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
+msgstr "%s:%d:OLE_get_block:エラー: ブロックバッファはNULLです"
+
+#
+# File: src/c/ripole/ole.c, line: 347
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
+msgstr "%s:%d:OLE_get_block:エラー: OLEブロックで、%d バイトの割り当てができません"
+
+#
+# File: src/c/ripole/ole.c, line: 362
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr "%s:%d:OLE_get_block:エラー: 位置づけ失敗(ブロック =%d:%d)"
+
+#
+# File: src/c/ripole/ole.c, line: 372
+#, c-format
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr "%s:%d:バイト読み込みが合いません、%d を要求して %d が得られました。\n"
+
+#
+# File: src/c/ripole/ole.c, line: 388
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
+msgstr "%s:%d:OLE_get_block:エラー: OLEファイルは閉じられました。\n"
+
+#
+# File: src/c/ripole/ole.c, line: 978
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d:OLE_load_FAT:エラー: %d バイトを割り当てることが出来ません。\n"
+
+#
+# File: src/c/ripole/ole.c, line: 1032
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat position = 0x%x"
+msgstr "%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、 扇型取り込み = 0x%x, fat 位置 = 0x%x"
+
+#
+# File: src/c/ripole/ole.c, line: 1048
+# File: src/c/ripole/ole.c, line: 1055
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr "%s:%d:OLE_load_FAT:エラー: FATメモリの限界境界を越えました %p>=%p"
+
+#
+# File: src/c/ripole/ole.c, line: 1060
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
+msgstr "%s:%d:OLE_load_FAT:エラー: 扇形要求は、負数(%d)でした"
+
+#
+# File: src/c/ripole/ole.c, line: 1314
+#, c-format
+msgid "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr "%s:%d:OLE_get_miniblock:エラー: miniChainのためのメモリを十分に割り当てることができませんでした"
+
+#
+# File: src/c/ripole/ole.c, line: 1392
+#, c-format
+msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
+msgstr "%s:%d:OLE_load_chain:エラー: Load-chainはメモリ境界を越えました"
+
+#
+# File: src/c/ripole/ole.c, line: 1435
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
+msgstr "%1$s:%2$d:OLE_open_file:エラー: 開いた(%4$s) のファイル '%3$s' を割り当てることができません"
+
+#
+# File: src/c/ripole/ole.c, line: 1450
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
+msgstr "%1$s:%2$d:OLE_open_file:エラー: 読み込み(%4$s)の %3$s を開けません\n"
+
+#
+# File: src/c/ripole/ole.c, line: 1492
+#, c-format
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr "%s:%d:OLE_open_directory:エラー: %s"
+
+#
+# File: src/c/ripole/ole.c, line: 1549
+#, c-format
+msgid "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' and '%s'"
+msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から満足なファイル名文字列を作成できません"
+
+#
+# File: src/c/ripole/ole.c, line: 1557
+#, c-format
+msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
+msgstr "%1$s:%2$d:OLE_store_stream:エラー: 書き込み(%4$s) の %3$s を開けません"
+
+#
+# File: src/c/ripole/ole.c, line: 1566
+#, c-format
+msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
+msgstr "%1$s:%2$d:OLE_store_stream:警告: 単に、ファイル %5$s に、%4$d バイトの %3$d を書きました。"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 156
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%s' and '%s'"
+msgstr "%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字列を作成できません"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 168
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:警告: 単に、ファイル %5$s に、 %4$d バイトの %3$d を書きました。\n"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 175
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み(%4$s)で %3$s を開けません\n"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 281
+#, c-format
+msgid "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: 取り付け %s:%s:%s サイズ=%d\n"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 293
+#, c-format
+msgid "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: ファイル名のレポータの呼び出し"
+
+#
+# File: src/c/ripole/olestream-unwrap.c, line: 334
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr "要素文字列 '%s' ストリームを復号化できません。\n"
+
+#
+# File: src/c/ripole/pldstr.c, line: 500
+#, c-format
+msgid "%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation"
+msgstr "%s:%d:PLD_strreplace:エラー: 置換を行うためのメモリ %d バイトを割り当てることができません"
+
+#
+# File: src/c/ripole/pldstr.c, line: 582
+#, c-format
+msgid "%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' with '%s'"
+msgstr "%1$s:%2$d:PLD_strreplace_general: '%4$s' で '%3$s' の置換の間に割り当てたメモリがなくなりました。"
+
+#
+# File: src/c/ripole/ripole.c, line: 130
+# File: src/c/ripole/ripole.c, line: 139
+#, c-format
+msgid ""
+"Cannot interpret option \"%s\"\n"
+"%s\n"
+msgstr ""
+"オプション \"%s\" を解釈することができません\n"
+"%s\n"
+
+#
+# File: src/c/ripole/ripole.c, line: 206
+#, c-format
+msgid "Decoding filename=%s"
+msgstr "ファイル名の復号化=%s"
+
+#
+# File: src/c/ripole/ripole.c, line: 285
+#, c-format
+msgid "ripOLE requires an input file to decode.\n"
+msgstr "ripOLEは、復号化するべき入力ファイルを必要とします。\n"
+
+#
+# File: src/c/ripole/ripole.c, line: 319
+msgid "ripOLE: Cannot allocate memory for OLE object."
+msgstr "ripOLE: OLDオブジェクトへメモリの割り当てができません。"
+
+#
+# File: src/c/ripole/ripole.c, line: 346
+#, c-format
+msgid "Cannot locate input file '%s'"
+msgstr "入力ファイル '%s' を置くことができません"
+
+#
+# File: src/c/ripole/ripole.c, line: 349
+#, c-format
+msgid "File '%s' is not OLE2 format"
+msgstr "ファイル '%s' は、OLE2フォーマットではありません"
+
+#
+# File: src/c/ripole/ripole.c, line: 352
+#, c-format
+msgid "OLE input file '%s' is insane"
+msgstr "OLE入力ファイル '%s' は、正気ではありません"
+
+#
+# File: src/c/ripole/ripole.c, line: 355
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d\n"
+msgstr "ripOLE: %s の復号化は、間違っています、エラー %d\n"
+
+#
+# File: src/c/ripole/ripole.c, line: 399
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d.\n"
+msgstr "ripOLE: %s の復号化は、間違っています、エラー %d\n"
+
+#
+# File: src/nospreadsheet/nospreadsheet.c, line: 19
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "Scilab スプレッドシート・モジュールはインストールされていません。\n"
+

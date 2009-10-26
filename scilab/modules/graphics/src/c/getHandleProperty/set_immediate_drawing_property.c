@@ -29,34 +29,17 @@
 /*------------------------------------------------------------------------*/
 int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"immediate_drawing") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType (pobj) != SCI_FIGURE )
+	{
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing");
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s property undefined for this object.\n"), "immediate_drawing") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    sciSetImmediateDrawingMode(pobj, TRUE);
-    return SET_PROPERTY_SUCCEED ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    sciSetImmediateDrawingMode(pobj, FALSE);
-    return SET_PROPERTY_SUCCEED ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
-    return SET_PROPERTY_ERROR ;
-  }
-  
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "immediate_drawing");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	sciSetImmediateDrawingMode(pobj, b);
+	return SET_PROPERTY_SUCCEED ;  
 }
 /*------------------------------------------------------------------------*/

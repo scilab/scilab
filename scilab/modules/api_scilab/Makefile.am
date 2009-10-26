@@ -15,7 +15,8 @@ src/cpp/api_list.cpp \
 src/cpp/api_poly.cpp \
 src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
-src/cpp/api_pointer.cpp
+src/cpp/api_pointer.cpp \
+src/cpp/api_error.cpp
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -69,6 +70,7 @@ libsciapi_scilab_la_includedir=$(pkgincludedir)
 libsciapi_scilab_la_include_HEADERS = includes/api_boolean.h \
 includes/api_boolean_sparse.h \
 includes/api_common.h \
+includes/api_error.h \
 includes/api_double.h \
 includes/api_int.h \
 includes/api_list.h \
