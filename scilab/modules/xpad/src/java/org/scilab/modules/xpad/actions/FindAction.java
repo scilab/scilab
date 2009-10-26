@@ -263,9 +263,40 @@ public final class FindAction extends DefaultAction {
 		gbc.anchor = GridBagConstraints.SOUTHWEST;
 		panel.add(statusBar, gbc);
 
+		/* behaviour of textfieldFind */
+		textfieldFind.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+						findText();
+					}
+			    }
+
+			public void keyReleased(KeyEvent e) {
+			    }
+			
+			public void keyTyped(KeyEvent e) {
+			    }
+
+		});
 		
+		/* behaviour of textfieldReplace */
+		textfieldReplace.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+						findText();
+					}
+			    }
+
+			public void keyReleased(KeyEvent e) {
+			    }
+			
+			public void keyTyped(KeyEvent e) {
+			    }
+
+		});
+
 		/*behaviour of buttons*/
-		 buttonSelection.addActionListener(new ActionListener() {
+		buttonSelection.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
 					JTextPane xpadTextPane =  getEditor().getTextPane();		
