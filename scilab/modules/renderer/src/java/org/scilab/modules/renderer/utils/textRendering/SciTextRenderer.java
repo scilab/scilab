@@ -41,7 +41,6 @@ public class SciTextRenderer {
     
 	/**  Object for MathML/LaTex rendering */
 	private SpecialTextRenderer speRenderer;
-	/* End */
 	
 	/** font size of the renderer object */
 	private float scaleFactor;
