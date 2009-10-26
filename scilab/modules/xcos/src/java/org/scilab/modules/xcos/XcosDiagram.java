@@ -56,7 +56,6 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -121,9 +120,6 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index)
     {	
-    	System.err.println("[System] AddEdge :");
-    	System.err.println("[DEBUG] AddEdge : source "+source.toString());
-    	System.err.println("[DEBUG] AddEdge : target "+target.toString());
     	// Command -> Control
     	if(source instanceof CommandPort) {
     		if (target instanceof ControlPort) {
@@ -253,7 +249,6 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	}
 
-    	System.err.println("************** link error **************");
     	return null;
     }
 
@@ -276,7 +271,7 @@ public class XcosDiagram extends ScilabGraph {
             dragPos.setX(srcX + offsetX);
             dragPos.setY(srcY + offsetY);
     	}
-    	
+   	
     	SplitBlock splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort)target);
     	splitBlock.setStyle("SPLIT_f");
     	mxGeometry geom = new mxGeometry();
@@ -432,6 +427,10 @@ public class XcosDiagram extends ScilabGraph {
 	
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
+	
+	setGridEnabled(true);
+	getAsComponent().setGridVisible(true);
+	
     }
 
     /**
@@ -588,7 +587,7 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void invoke(Object source, mxEventObject evt) {
     		Object[] cells = (Object[]) evt.getArgs()[0];
-    		getModel().beginUpdate();
+    		diagram.getModel().beginUpdate();
     		for (int i = 0 ; i < cells.length ; ++i) {
     		    if (cells[i] instanceof BasicBlock) {
     			// Store all AfficheBlocks in a dedicated HasMap
@@ -601,7 +600,7 @@ public class XcosDiagram extends ScilabGraph {
     		    }
     		}
     		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
-    		getModel().endUpdate();
+    		diagram.getModel().endUpdate();
     	}
     }
 
@@ -856,7 +855,10 @@ public class XcosDiagram extends ScilabGraph {
 		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-			getAsComponent().doLayout();
+		    }
+		    if (cell instanceof BasicLink) {
+			BasicLink link = (BasicLink) cell;
+			link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
 		}
 	    }
@@ -1084,15 +1086,22 @@ public class XcosDiagram extends ScilabGraph {
      * @param status new status
      */
     public void setGridVisible(boolean status) {
-	setGridEnabled(true);
-	getAsComponent().setGridVisible(status);
-	getAsComponent().repaint();
+    	setGridEnabled(status);
+    	getAsComponent().setGridVisible(status);
+    	getAsComponent().repaint();
 
-	// (Un)Check the corresponding menu
-	gridMenu.setChecked(status);
+    	// (Un)Check the corresponding menu
+    	gridMenu.setChecked(status);
     }
 
-    /**
+//	public mxRectangle getCellBounds(Object cell, boolean includeEdges,
+//			boolean includeDescendants, boolean boundingBox) {
+//    	//mxRectangle rect = super.getCellBounds(cell, includeEdges, includeDescendants, boundingBox);
+//		mxRectangle rect = super.getCellBounds(cell, includeEdges, false, boundingBox);
+//		return rect;
+//	}
+
+	/**
      * Set menu used to manage Grid visibility
      * @param menu the menu
      */
@@ -1132,10 +1141,10 @@ public class XcosDiagram extends ScilabGraph {
 
     public boolean saveDiagram() {
 	boolean isSuccess = false;
-	if (getTitle().equals(XcosMessages.UNTITLED)) {
+	if (getSavedFile() == null) {
 	    isSuccess = saveDiagramAs(null);
 	} else {
-	    isSuccess = saveDiagramAs(getTitle());
+	    isSuccess = saveDiagramAs(getSavedFile());
 	}
 
 	if (isSuccess) {
@@ -1167,7 +1176,6 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	/* Extension checks */
 	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-	System.err.println("extension : " + extension);
 	if (extension.equals(fileName)) {
 	    /* No extension given --> .xcos added */
 	    fileName += ".xcos";
@@ -1189,7 +1197,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	if (isSuccess) {
-	    this.setTitle(fileName);
+	    this.setSavedFile(fileName);
+	    File theFile = new File(fileName);
+	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile();
@@ -1300,8 +1310,6 @@ public class XcosDiagram extends ScilabGraph {
 	getModel().beginUpdate();
 	for (int i = 0; i < allBlocks.size(); ++i) {
 		objs[i] = allBlocks.get(i);
-		System.err.println("Load Blocks : " + (i+1) + "/" + allBlocks.size());
-//	    addCell(allBlocks.get(i));
 	}
 
 	for (int i = 0; i < linkPorts.size(); ++i) {
@@ -1316,9 +1324,7 @@ public class XcosDiagram extends ScilabGraph {
 		    link.addPoint(points[point][0], points[point][1]);
 		}
 	    }
-		System.err.println("Load Links : " + (i+1) + "/" + linkPorts.size());
 	    objs[i + allBlocks.size()] = link;
-	    //addCell(link);
 	}
 	
 	addCells(objs);
