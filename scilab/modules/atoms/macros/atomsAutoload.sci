@@ -21,6 +21,12 @@ function result = atomsAutoload()
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+	// If the autoload system is disabled, no need to continue
+	// =========================================================================
+	if ~ (atomsGetConfig("autoload") == "False") then
+		return;
+	end
+	
 	// Check write access on allusers zone
 	// =========================================================================
 	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
