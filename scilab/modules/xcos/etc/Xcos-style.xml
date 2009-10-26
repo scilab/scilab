@@ -767,6 +767,7 @@
   <add as="DOLLAR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="1/z"/>
   </add>
+  <add as="DOLLAR" extend="DOLLAR_f"/>
   <!-- DELAYV_f -->
 
   <!-- EVENTS -->
