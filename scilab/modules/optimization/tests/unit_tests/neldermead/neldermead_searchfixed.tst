@@ -30,7 +30,7 @@ function flag = assert_close ( computed, expected, epsilon )
   if flag <> 1 then pause,end
 endfunction
 
-function y = squarefun (x)
+function [ y , index ] = squarefun ( x , index )
 y = x(1)^2+x(2)^2;
 endfunction
 

@@ -5,6 +5,9 @@
 
 if GUI
 if BUILD_HELP
+
+USEANT=1
+
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
@@ -13,6 +16,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+
+libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 if GIWS
 BUILT_SOURCES=giws
@@ -49,9 +54,6 @@ libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWA
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 
-if BUILD_HELP
-libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
-endif
 
 #### Target ######
 modulename=helptools
@@ -65,13 +67,6 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
-
-
-#### helptools : include files ####
-libscihelptools_la_includedir=$(pkgincludedir)/helptools
-libscihelptools_la_include_HEADERS = includes/gw_helptools.h \
-	includes/dynlib_helptools.h
-
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
@@ -159,8 +154,3 @@ libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
 include $(top_srcdir)/Makefile.incl.am
 
-if BUILD_HELP
-
-USEANT=1
-
-endif

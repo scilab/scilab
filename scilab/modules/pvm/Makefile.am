@@ -84,12 +84,6 @@ libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 libscipvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
-#### pvm : include files ####
-libscipvm_la_includedir=$(pkgincludedir)/pvm
-libscipvm_la_include_HEADERS = includes/gw_pvm.h \
-includes/with_pvm.h \
-includes/dynlib_pvm.h
-
 
 include $(top_srcdir)/Makefile.incl.am
 

@@ -4,5 +4,9 @@
     <method name="xpad" returnType="void" modifier="static">
       <parameter name="fileName" type="String"/>
     </method>
+    <method name="xpadHighlightLine" returnType="void" modifier="static">
+      <parameter name="fileName" type="String"/>
+      <parameter name="lineNumber" type="int"/>
+    </method>
   </object>
 </package>

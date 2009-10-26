@@ -31,10 +31,7 @@ sci_gateway/fortran/sci_f_oldbesselj.f \
 sci_gateway/fortran/sci_f_oldbesselk.f \
 sci_gateway/fortran/sci_f_calerf.f
 
-libscispecial_functions_la_includedir=$(pkgincludedir)/special_functions
-
-libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
-includes/gw_special_functions2.h
+libscispecial_functions_la_includedir=$(pkgincludedir)
 
 libscispecial_functions_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \

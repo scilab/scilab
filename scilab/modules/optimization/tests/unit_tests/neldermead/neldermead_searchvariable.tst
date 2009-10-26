@@ -46,9 +46,13 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
+
+//
+// Test on Rosenbrock test case
+//
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
@@ -64,7 +68,7 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -79,7 +83,7 @@ sizefopt = size(historyfopt);
 assert_equal ( [iterations 1], sizefopt );
 // Check number of function evaluations
 funevals = neldermead_get(nm,"-funevals");
-if funevals > 300 then pause,end
+assert_equal ( (funevals < 300) , %T )
 // Check optimum history
 historyxopt = neldermead_get(nm,"-historyxopt");
 sizexopt = size(historyxopt);
@@ -97,4 +101,26 @@ assert_equal ( status , "tolsize" );
 // Cleanup
 nm = neldermead_destroy(nm);
 
+// Check that the verbose mode is functionnal
+// Few iterations are necessary to check this
+// Many iterations costs a lot more in time.
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",5);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
+nm = neldermead_search(nm);
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "maxiter" );
+nm = neldermead_destroy(nm);
 

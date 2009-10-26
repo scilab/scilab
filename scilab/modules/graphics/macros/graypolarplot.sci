@@ -12,7 +12,7 @@ function graypolarplot(theta,rho,z,varargin)
 if rhs<=0 then
   rho=1:0.2:4;theta=(0:0.02:1)*2*%pi;
   z=30+round(theta'*(1+rho^2));
-  xbasc();
+  clf();
   f=gcf();
   f.color_map=hotcolormap(128);
   f.background= 128;
@@ -22,6 +22,10 @@ if rhs<=0 then
   a.foreground=1;
   graypolarplot(theta,rho,z)
   return
+end
+
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graypolarplot", 3));
 end
 
 

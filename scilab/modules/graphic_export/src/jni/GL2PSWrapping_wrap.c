@@ -1100,6 +1100,25 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_graphic_1export_jni_GL2PSWrap
   return jresult;
 }
 
+/* Added by Calixte */
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_jni_GL2PSWrappingJNI_sci_1gl2psDrawPixels(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jint jarg3, jint jarg4, jobject jarg5) {
+  jint jresult = 0 ;
+  int arg1, arg2, arg3, arg4 ;
+  unsigned char * arg5;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1;
+  arg2 = (int)jarg2;
+  arg3 = (int)jarg3;
+  arg4 = (int)jarg4;
+  arg5 = (unsigned char*)(*jenv)->GetDirectBufferAddress(jenv, jarg5);
+  result = (int)sci_gl2psDrawPixels(arg1,arg2,arg3,arg4,arg5);
+  jresult = (jint)result; 
+  return jresult;
+}
+/* End */
 
 #ifdef __cplusplus
 }

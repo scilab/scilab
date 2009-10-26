@@ -77,12 +77,4 @@ libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 libscirandlib_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
 
-#### randlib : include files ####
-libscirandlib_la_includedir=$(pkgincludedir)/randlib
-libscirandlib_la_include_HEADERS = includes/grand.h \
-includes/clcg4.h \
-includes/others_generators.h \
-includes/gw_randlib.h \
-includes/dynlib_randlib.h
-
 include $(top_srcdir)/Makefile.incl.am

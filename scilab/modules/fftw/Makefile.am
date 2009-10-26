@@ -61,12 +61,6 @@ libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			$(FFTW3_CFLAGS)
 
-#### fftw : include files ####
-libscifftw_la_includedir=$(pkgincludedir)/fftw
-libscifftw_la_include_HEADERS = includes/gw_fftw.h \
-includes/dynlib_fftw.h \
-includes/with_fftw.h
-
 else
 
 FFTW_C_SOURCES = src/nofftw/nofftw.c

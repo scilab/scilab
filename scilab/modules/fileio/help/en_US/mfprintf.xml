@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mfprintf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv xml:id="mfprintf">
+    <refname>mfprintf</refname>
+
+    <refpurpose>converts, formats, and writes data to a file</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mfprintf(fd,format,a1,...,an);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>scalar, file descriptor given by <literal>mopen</literal>
+          (it's a positive integer). </para>
+          <para> if fd equals 0 redirection in stderr.</para>
+          <para> if fd equals 6 redirection in stdout.</para>
+
+          <para>OBSOLETE :The value <literal>-1</literal> refers to the
+          default file ( i.e the last opened file).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>a Scilab string describing the format to use to write the
+          remaining operands. The format operand follows, as close as
+          possible, the C printf format operand syntax.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>a character string, string to be scanned.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a1,...,an</term>
+
+        <listitem>
+          <para>Specifies the data to be converted and printed according to
+          the format parameter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The <literal>mfprintf</literal> function is a interface for C-coded version of
+     <literal>fprintf</literal> functions.</para>
+
+    <para>The <literal>mfprintf</literal> function writes formatted operands
+    to the file specified by the file desciptor <literal>fd</literal>. The
+    argument operands are formatted under control of the format
+    operand.</para>
+
+    <para>this function may be used to output column vectors of numbers
+    and string vectors without an explicit loop on the elements. In that case
+    this function iterates on the rows. The shortest vector gives the number
+    of time the format has to be iterated.</para>
+
+    <para>An homogeneous sequence of identical type parameters can be replaced
+    by a matrix</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+
+fd = mopen(TMPDIR+'/text.txt','wt');
+mfprintf(fd,'hello %s %d.\n','world',1);
+mfprintf(fd,'hello %s %d.\n','scilab',2);
+mclose(fd);
+if (isdef('editor') | (funptr('editor')<>0)) then
+  editor(TMPDIR+'/text.txt')
+end
+mfprintf(0,'stderr output.\n');
+mfprintf(6,'stdout output.\n');
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+
+      <member><link linkend="mdelete">mdelete</link></member>
+
+      <member><link
+      linkend="printf_conversion">printf_conversion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

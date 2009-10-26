@@ -335,56 +335,24 @@ libscicore_la_xmldir = $(mydatadir)/xml
 libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
 #### core : include files ####
-libscicore_la_includedir=$(pkgincludedir)/core
+libscicore_la_includedir=$(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/BOOL.h \
-includes/callFunctionFromGateway.h \
-includes/callinter.h \
-includes/callinterf.h \
-includes/commandwords.h \
 includes/core_math.h \
 includes/doublecomplex.h \
-includes/ExceptionMessage.h \
-includes/existfunction.h \
 includes/freeArrayOfString.h \
-includes/Funtab.h \
 includes/getcommandlineargs.h \
-includes/GetExceptionCode.h \
-includes/getfunctionslist.h \
 includes/getmemory.h \
-includes/getmodules.h \
-includes/getvariablesname.h \
-includes/GetXmlFileEncoding.h \
-includes/gw_core.h \
-includes/gw_user.h \
-includes/gw_user2.h \
-includes/inffic.h \
-includes/inisci-c.h \
-includes/InitializeCore.h \
-includes/intmacr2tree.h \
-includes/isanan.h \
-includes/IsAScalar.h \
-includes/islittleendian.h \
-includes/loadversion.h \
+includes/getos.h \
 includes/machine.h \
-includes/machine.h.in \
-includes/machine.h.vc \
-includes/Os_specific.h \
-includes/PARAMS.h \
+includes/mode_exec.h \
 includes/PATH_MAX.h \
-includes/realmain.h \
-includes/returnanan.h \
-includes/returnProperty.h \
-includes/returnPropertyList.h \
 includes/SCIHOME.h \
 includes/scilabDefaults.h \
 includes/scilabmode.h \
-includes/scimem.h \
+includes/scisparse.h \
 includes/sciquit.h \
-includes/scirun.h \
 includes/setgetSCIpath.h \
-includes/SetScilabEnvironment.h \
-includes/sigbas.h \
 includes/stack-c.h \
 includes/stack-def.h \
 includes/stack.h \
@@ -393,22 +361,7 @@ includes/stack2.h \
 includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
-includes/stamp-h1 \
-includes/syncexec.h \
-includes/scisparse.h \
-includes/texmacs.h \
-includes/timerEvents.h \
-includes/tmpdir.h \
 includes/version.h \
-includes/warningmode.h \
-includes/x_main.h \
-includes/xscion.h \
-includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h \
-includes/getos.h \
-includes/mode_exec.h \
-includes/transposeMatrix.h \
-includes/recursionFunction.h
+includes/warningmode.h
 
 include $(top_srcdir)/Makefile.incl.am

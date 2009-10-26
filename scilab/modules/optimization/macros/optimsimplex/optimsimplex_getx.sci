@@ -10,11 +10,11 @@
 //
 // optimsimplex_getx --
 //   Returns the coordinates of the vertex at given index,
-//   as a column vector.
+//   as a row vector.
 // Arguments
 //   ive : vertex index
 //
 function x = optimsimplex_getx ( this , ive )
-  x = this.x ( : , ive )
+  x = this.x ( ive , : )
 endfunction
 

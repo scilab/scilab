@@ -126,9 +126,4 @@ libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_proc
 libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
-####�signal_processing : include files ####
-libscisignal_processing_la_includedir=$(pkgincludedir)/signal_processing
-libscisignal_processing_la_include_HEADERS = includes/gw_signal.h \
-includes/dynlib_signal_processing.h
-
 include $(top_srcdir)/Makefile.incl.am

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,13 +38,13 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"color_mode") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "color_mode");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_mode") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

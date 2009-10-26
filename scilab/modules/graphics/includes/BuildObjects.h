@@ -94,9 +94,9 @@ GRAPHICS_IMPEXP sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 
 				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, int Nbr1, 
-               int Nbr2, double *vfx, double *vfy, int flag, 
-              int *style, double arsize1,  int colored, double arfact, int typeofchamp);  /* BUILD */
+GRAPHICS_IMPEXP sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, double *vz, int Nbr1, 
+               int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, 
+              int *style, double arsize,  int colored, int typeofchamp);  /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 GRAPHICS_IMPEXP sciPointObj *ConstructCompoundSeq (int number); /* BUILD */

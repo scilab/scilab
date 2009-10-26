@@ -193,13 +193,4 @@ libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
 
-#### sparse : include files ####
-libscisparse_la_includedir=$(pkgincludedir)/sparse
-libscisparse_la_include_HEADERS = includes/gw_sparse.h \
-includes/spmalloc.h \
-includes/sp.h \
-includes/spDefs.h \
-includes/spmatrix.h \
-includes/spConfig.h
-
 include $(top_srcdir)/Makefile.incl.am

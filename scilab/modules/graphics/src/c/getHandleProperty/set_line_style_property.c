@@ -30,7 +30,7 @@ int set_line_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"line_style") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "line_style");
     return SET_PROPERTY_ERROR ;
   }
 

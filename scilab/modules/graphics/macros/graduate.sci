@@ -25,10 +25,10 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
 //           n1 <= np <= n2
 //%Exemple
 //  y=0:0.33:145.78
-//  xbasc();plot2d1('enn',0,y)
+//  clf();plot2d1('enn',0,y)
 //  [ymn,ymx,np]=graduate(mini(y),maxi(y))
-//  rect=[1,ymn,prod(size(y),ymx];
-//  xbasc();plot2d1('enn',0,y,-1,'011',' ',rect,[10,3,10,np])
+//  rect=[1,ymn,prod(size(y)),ymx];
+//  clf();plot2d1('enn',0,y,-1,'011',' ',rect,[10,3,10,np])
 
 // Copyright INRIA
 //!
@@ -40,6 +40,9 @@ kadm=[1,2,5];nadm=prod(size(kadm))
 // ----
 //
 [lhs,rhs]=argn(0)
+if rhs <2 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graduate", 2));
+end
 if rhs <4 then
   n1=3
   n2=10

@@ -86,11 +86,4 @@ libscidata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures
 libscidata_structures_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.xml
 
-
-
-#### data_structures : include files ####
-libscidata_structures_la_includedir=$(pkgincludedir)/data_structures
-libscidata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
-includes/gw_data_structures2.h
-
 include $(top_srcdir)/Makefile.incl.am

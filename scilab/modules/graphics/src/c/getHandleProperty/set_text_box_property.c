@@ -33,19 +33,19 @@ int set_text_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"text_box") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "text_box");
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_TEXT)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"text_box");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("%s must be a 2D vector.\n"),"text_box");
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "text_box", 2);
     return SET_PROPERTY_ERROR ;
   }
   return sciSetUserSize( pobj, values[0], values[1] ) ;

@@ -153,6 +153,6 @@ norm(X2-X,1)
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para>See SCIDIR/routines/control/riccpack&gt;</para>
+    <para>See SCI/modules/cacsd/src/slicot/riccpack.f</para>
   </refsection>
 </refentry>

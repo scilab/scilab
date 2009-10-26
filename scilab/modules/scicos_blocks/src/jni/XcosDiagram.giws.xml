@@ -1,0 +1,10 @@
+<package name="org.scilab.modules.xcos">
+    <object name="XcosDiagram">
+        <method name="setBlockTextValue" returnType="void" modifier="static">
+            <parameter name="blockID" type="int"/>
+            <parameter name="blockValue" type="String[]"/>
+            <parameter name="iRows" type="int"/>
+            <parameter name="iCols" type="int"/>
+        </method>
+    </object>
+</package>

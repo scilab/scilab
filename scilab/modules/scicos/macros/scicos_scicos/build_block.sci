@@ -63,7 +63,15 @@ function [model, ok] = build_block(o)
         tt    = graphics.exprs.funtxt;
       end
       [dirF, nameF, extF] = fileparts(funam);
-      tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
+      
+      // MODELICAC on windows does not support '\' at the end of path
+      // TO DO: Fix MODELICAC
+      if MSDOS then
+        tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
+      else
+        tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %t, %t);
+      end
+
       if (extF == '') then
         funam = fullfile(tarpath, nameF + '.mo');
         mputl(tt, funam);
@@ -76,15 +84,7 @@ function [model, ok] = build_block(o)
         ok = %f
       end
 
-      //** OBSOLETE thanks to automatic detection of 'modelicac' location
-      //compilerpath = pathconvert(fullfile(SCI,'bin'), %f, %t);
-      //if MSDOS then
-      //  compilerpath = compilerpath + 'modelicac.exe';
-      //else
-      //  compilerpath = compilerpath + 'modelicac';
-      //end
-
-      compilerpath = 'modelicac' //** thanks to automatic detection
+      compilerpath = getmodelicacpath() + "modelicac"; //** thanks to automatic detection
 
       // build compilation command line, execute it and test for result
       strCmd = compilerpath + ' -c ' + funam + ' -o ' + fullfile(tarpath, nameF + '.moc')

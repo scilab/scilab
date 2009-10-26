@@ -26,15 +26,15 @@ function value = optimbase_get (this,key)
   case "-fopt" then
     value = this.fopt;
   case "-historyxopt" then
-    if this.storehistory == 0 then
-      errmsg = sprintf("History disabled ; turn on -storehistory option.")
+    if ( ~this.storehistory ) then
+      errmsg = msprintf(gettext("%s: History disabled ; enable -storehistory option."),"optimbase_get")
       error(errmsg)
     else
       value = this.historyxopt;
     end
   case "-historyfopt" then
-    if this.storehistory == 0 then
-      errmsg = sprintf("History disabled ; turn on -storehistory option.")
+    if ( ~this.storehistory ) then
+      errmsg = msprintf(gettext("%s: History disabled ; enable -storehistory option."),"optimbase_get")
       error(errmsg)
     else
       value = this.historyfopt;
@@ -43,8 +43,10 @@ function value = optimbase_get (this,key)
     value = this.fx0;
   case "-status" then
     value = this.status;
+  case "-logstartup" then
+    value = this.logstartup;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_get",key)
     error(errmsg)
   end
 endfunction

@@ -7,7 +7,7 @@ HASHTABLE_C_SOURCES = hashtable_utility.c \
 hashtable_itr.c \
 hashtable.c
 
-libscihashtable_la_includedir=$(pkgincludedir)/hashtable
+libscihashtable_la_includedir=$(pkgincludedir)
 
 libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable.h \

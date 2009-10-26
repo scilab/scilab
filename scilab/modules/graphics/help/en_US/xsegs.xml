@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,15 +22,18 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xsegs(xv,yv,[style])</synopsis>
+    <synopsis>
+      xsegs(xv,yv,[style])
+      xsegs(xv,yv,zv,[style])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>xv,yv</term>
+        <term>xv, yv, zv</term>
         <listitem>
-          <para>matrices of the same size.</para>
+          <para>matrices of the same size. If <literal>zv</literal> is not specified, a zero vector is used.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,28 +51,51 @@
   <refsection>
     <title>Description</title>
     <para><literal>xsegs</literal> draws a set of unconnected segments given by
-    <literal>xv</literal> and <literal>yv</literal>. If <literal>xv</literal> and
-    <literal>yv</literal> are matrices they are considered as vectors by
+    <literal>xv</literal>, <literal>yv</literal> and <literal>zv</literal>.
+    If <literal>xv</literal>, <literal>yv</literal> and <literal>zv</literal> are matrices they are considered as vectors by
     concatenating their columns. The coordinates of the two points defining a
-    segment are given by two consecutive values of <literal>xv</literal> and
-    <literal>yv</literal>:</para>
-    <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
+    segment are given by two consecutive values of <literal>xv</literal>, <literal>yv</literal> and
+    <literal>zv</literal>:</para>
+    <para><literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.</para>
     <para>For instance, using matrices of size (2,n), the segments can be defined
     by:</para>
     <programlisting><![CDATA[ 
-xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
-yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
+xv=[xi_1 xi_2 ...; xf_1 xf_2...]
+yv=[yi_1 yi_2 ...; yf_1 yf_2...]
+zv=[zi_1 zi_2 ...; zf_1 zf_2...]
  ]]></programlisting>
-    <para>and the segments are <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+    <para>and the segments are <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
+
+// 2D example
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs(xv,yv,1:10)
+
+// 3D example
+clf();
+a=gca();
+a.view="3d";
+f=gcf();
+f.color_map=rainbowcolormap(120);
+alpha=2*%pi*(0:119)/40;
+xv=[sin(alpha)/2;sin(alpha)/3];
+yv=[cos(alpha)/2;cos(alpha)/3];
+zv=[alpha/8;alpha/8];
+xsegs(xv,yv,zv,1:120);
+// Now adjust the data_bounds
+a.data_bounds = [min(xv) min(yv) min(zv); ...
+                 max(xv) max(yv) max(zv)];
+// We can add an arrow to each segs
+e = gce();
+e.arrow_size = 0.4;
+
+
  ]]></programlisting>
   </refsection>
   <refsection>

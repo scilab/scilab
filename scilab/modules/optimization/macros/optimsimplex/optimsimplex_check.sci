@@ -18,19 +18,19 @@
 function optimsimplex_check ( this )
   nx1 = size(this.x,1)
   nx2 = size(this.x,2)
+  if this.nbve<> 0 & nx1 <> this.nbve then
+    error(msprintf(gettext("%s: Number of rows of x is %d is different from number of vertices = %d."),"optimsimplex_check" , nx1 , this.nbve ));
+  end
+  if this.n<> 0 & nx2 <> this.n then
+    error(msprintf(gettext("%s: Number of columns of x is %d is different from dimension = %d."),"optimsimplex_check" , nx2 , this.n ));
+  end
   nf1 = size(this.fv,1)
   nf2 = size(this.fv,2)
-  if this.n<> 0 & nx1 <> this.n then
-    error(sprintf("Dimension #1 of x is %d is different from dimension = %d\n" , nx1 , this.n ));
+  if this.n<> 0 & nf1 <> this.nbve then
+    error(msprintf(gettext("%s: Number of rows of fv is %d is different from number of vertices = %d."),"optimsimplex_check" , nf1 , this.nbve ));
   end
-  if this.nbve<> 0 & nx2 <> this.nbve then
-    error(sprintf("Dimension #2 of x is %d is different from dimension + 1 = %d\n" , nx2 , this.n + 1));
-  end
-  if this.nbve<> 0 & nf1 <> this.nbve then
-    error(sprintf("Dimension #1 of fv is %d is different from dimension = %d\n" , nf1 , this.n + 1));
-  end
-  if this.n<> 0 & nf2 <> 1 then
-    error(sprintf("Dimension #2 of fv is %d is different from 1\n" , nf2 ));
+  if this.nbve<> 0 & nf2 <> 1 then
+    error(msprintf(gettext("%s: Number of columns of fv is %d is different from 1."),"optimsimplex_check" , nf2 ));
   end
 endfunction
 

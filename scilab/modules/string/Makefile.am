@@ -104,16 +104,4 @@ libscistring_la_etc_DATA = etc/string.quit etc/string.start
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
-#### string : include files ####
-libscistring_la_includedir=$(pkgincludedir)/string
-libscistring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h includes/InitializeString.h \
-includes/cvstr.h includes/getfastcode.h \
-includes/stricmp.h includes/strsubst.h \
-includes/code2str.h \
-includes/NumTokens.h \
-includes/StringConvert.h \
-includes/scistrtostr.h \
-includes/dynlib_string.h
-
 include $(top_srcdir)/Makefile.incl.am

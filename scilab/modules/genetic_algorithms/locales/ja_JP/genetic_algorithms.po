@@ -1,0 +1,81 @@
+# Localization of the module genetic_algorithms
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-06-02 10:00+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/coding_ga_binary.sci, line: 46
+# File: macros/coding_ga_identity.sci, line: 18
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: 不正な方向"
+
+#
+# File: macros/optim_ga.sci, line: 27
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: ga_f は必須です"
+
+#
+# File: macros/optim_ga.sci, line: 54
+# File: macros/optim_moga.sci, line: 48
+# File: macros/optim_nsga.sci, line: 54
+# File: macros/optim_nsga2.sci, line: 46
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: 総数の初期化\n"
+
+#
+# File: macros/optim_ga.sci, line: 86
+# File: macros/optim_moga.sci, line: 87
+# File: macros/optim_nsga.sci, line: 87
+#, c-format
+msgid "%s: iteration %d / %d"
+msgstr "%s: 繰り返し %d / %d"
+
+#
+# File: macros/optim_ga.sci, line: 161
+# File: macros/optim_moga.sci, line: 200
+# File: macros/optim_nsga.sci, line: 220
+#, c-format
+msgid " - min / max value found = %f / %f\n"
+msgstr " - 最小 / 最大 値を見つけました= %f / %f\n"
+
+#
+# File: macros/optim_moga.sci, line: 27
+# File: macros/optim_nsga.sci, line: 27
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: ga_f は必須です"
+
+#
+# File: macros/optim_nsga2.sci, line: 25
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: ga_f は必須です"
+
+#
+# File: macros/optim_nsga2.sci, line: 100
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: 繰り返し %d / %d\n"
+
+#
+# File: macros/pareto_filter.sci, line: 15
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: F_in は必須です"
+

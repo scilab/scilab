@@ -17,86 +17,196 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "getPartLine.h"
+#include "splitpath.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 static char * strrstr(char *string, char *find)
 {
-	size_t stringlen, findlen;
-	char *cp = NULL;
+	char   *cp = NULL;
 
-	findlen = strlen(find);
-	stringlen = strlen(string);
-	if (findlen > stringlen)
-		return NULL;
+	if (string == NULL) return NULL;
 
-	for (cp = string + stringlen - findlen; cp >= string; cp--)
-		if (strncmp(cp, find, findlen) == 0)
-			return cp;
+	cp = string + strlen(string);
+	if (*find != '\0')
+	{
+		if (*string == '\0')
+		{
+			cp = NULL;
+		}
+		else
+		{ 
+			int len = (int)strlen(find + 1);
 
-	return NULL;
+			do 
+			{  
+				while (*--cp != *find && cp > string);
+
+				if (*cp == *find && strncmp(cp+1, find+1, len) == 0) break;
+
+				if (cp == string)
+				{ 
+					cp = NULL;
+					break;
+				}
+			}
+			while (TRUE);
+		}
+	}
+	return cp;
 }
 /*--------------------------------------------------------------------------*/
 char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
-				   char *defaultPattern,BOOL stringToAddIsPath)
+				   char *defaultPattern,BOOL stringToAddIsPath, char *postCaretLine)
 {
 	char *new_line = NULL;
+	int lengthNewLine = 0;
 
-	if (stringToAddIsPath)
+	char *stringToAddAtTheEnd = NULL;
+	int lenstringToAddAtTheEnd = 0;
+
+	char *res = NULL;
+
+	int lencurrentline = 0;
+	int lenstringToAdd = 0;
+
+	int i = 0;
+	int iposInsert = 0;
+
+	if (currentline == NULL) 
 	{
-		char *ptr_strrchar1 = NULL;
+		return  strdup("");
+	}
+	lencurrentline = (int)strlen(currentline);
 
-		ptr_strrchar1 = strstr(stringToAdd, defaultPattern);
-
-		if (ptr_strrchar1) 
-		{
-			char *ptr_strrchar2 = NULL;
-
-			if (strcmp(defaultPattern,"") == 0)
-			{
-				if ( ((filePattern[strlen(filePattern)-1] == '\\') || (filePattern[strlen(filePattern)-1] == '/')) &&  ((int)strlen(filePattern) > 1) )
-				{
-					ptr_strrchar2 = strrstr(currentline, defaultPattern);
-				}
-				else ptr_strrchar2 = strrstr(currentline, filePattern);
-			}
-			else ptr_strrchar2 = strrstr(currentline, defaultPattern);
-
-			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(stringToAdd) + 1));
-
-			if (new_line)
-			{
-				int l = 0;
-
-				if (ptr_strrchar2) l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
-				else l = (int)strlen(currentline);
-
-				if (l < 0) l = 0 - l;
-
-				strncpy(new_line,currentline, l);
-				new_line[l] = '\0';
-
-				/* special case with files begin with a '.' */
-				if (filePattern[0] == '.') strcat(new_line, &(stringToAdd[1]));
-				else strcat(new_line, ptr_strrchar1);
-			}
-		}
+	if (postCaretLine == NULL)
+	{
+		stringToAddAtTheEnd = strdup("");
+		lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
 	}
 	else
 	{
-		if ( (int)strlen(defaultPattern) < (int)strlen(stringToAdd) )
-		{	
-			char *partResult =  &stringToAdd[(int)strlen(defaultPattern)];
-			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
-			if (new_line)
-			{
-				strcpy(new_line, currentline);
-				strcat(new_line, partResult);
-			}
+		stringToAddAtTheEnd = strdup(postCaretLine);
+		lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
+	}
+
+	if ( (stringToAdd == NULL)  || (strcmp(stringToAdd, "") == 0) )
+	{
+		lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
+		new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
+		if (new_line)
+		{
+			strcpy(new_line, currentline);
+			strcat(new_line, stringToAddAtTheEnd);
+		}
+		return new_line;
+	}
+
+	if (stringToAddIsPath == FALSE)
+	{
+		char *filePatternBuf = NULL;
+		BOOL bfilePatternBuf = FALSE;
+
+		if (filePattern != NULL)
+		{
+			filePatternBuf = filePattern;
 		}
 		else
 		{
-			new_line = strdup(currentline);
+			filePatternBuf = getFilePartLevel(currentline);
+			bfilePatternBuf = TRUE;
+		}
+
+		if (filePatternBuf)
+		{
+			char* drv = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* dir = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* name = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+			char* ext = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+
+			splitpath(filePatternBuf,TRUE, drv,dir, name, ext);
+
+			if (bfilePatternBuf)
+			{
+				FREE(filePatternBuf);
+				filePatternBuf = NULL;
+				bfilePatternBuf = FALSE;
+			}
+
+			if ( strcmp(drv,"") || strcmp(dir,"") )
+			{
+				/* bug 4365 */
+				/*cd SCI/modules/arnoldi/nonreg_tes */
+
+				if (drv) {FREE(drv); drv = NULL;}
+				if (dir) {FREE(dir); dir = NULL;}
+				if (name) {FREE(name); name = NULL;}
+				if (ext) {FREE(ext); ext = NULL;}
+
+				lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
+				new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
+				if (new_line)
+				{
+					strcpy(new_line, currentline);
+					strcat(new_line, stringToAddAtTheEnd);
+				}
+				return new_line;
+			}
+
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
 		}
 	}
+
+	lenstringToAdd = (int)strlen(stringToAdd);
+
+	iposInsert = lencurrentline;
+	for(i = 1; i < lenstringToAdd+1;i++)
+	{
+		char *partstringToAdd = strdup(stringToAdd);
+		partstringToAdd[i] = 0;
+
+		res = strrstr(currentline, partstringToAdd);
+		
+		FREE(partstringToAdd);
+		partstringToAdd = NULL;
+
+		if (res)
+		{
+			iposInsert = lencurrentline - (int) strlen(res);
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	res = strstr(stringToAdd,&currentline[iposInsert]);
+	if (res == NULL)
+	{
+		if ((currentline[lencurrentline - 1] == '/') || (currentline[lencurrentline - 1] == '\\'))
+		{
+			iposInsert = lencurrentline;
+		}
+		else
+		{
+			iposInsert = lencurrentline - 1;
+		}
+	}
+
+	lengthNewLine = (int)(strlen(currentline)+ strlen(stringToAdd) + lenstringToAddAtTheEnd);
+	new_line = (char*)MALLOC(sizeof(char)*(lengthNewLine + 1));
+	if (new_line)
+	{
+		strcpy(new_line, currentline);
+		new_line[iposInsert] = 0;
+
+		strcat(new_line, stringToAdd);
+		strcat(new_line, stringToAddAtTheEnd);
+	}
+
 	return new_line;
 }
 /*--------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@ libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 
 
@@ -41,6 +41,7 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 pkglib_LTLIBRARIES = libscijvm-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
 endif
 
@@ -57,19 +58,12 @@ libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
 #### jvm : include files ####
-libscijvm_la_includedir=$(pkgincludedir)/jvm
-libscijvm_la_include_HEADERS = includes/TerminateJVM.h \
-includes/getScilabJavaVM.h \
+libscijvm_la_includedir=$(pkgincludedir)
+libscijvm_la_include_HEADERS = includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \
-includes/InitializeJVM.h \
-includes/gw_jvm.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h \
-includes/catchIfJavaException.h \
-includes/getScilabObject.h \
-includes/loadBackGroundClassPath.h \
-includes/loadOnUseClassPath.h \
-includes/dynlib_jvm.h
+includes/getScilabObject.h
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \
@@ -97,8 +91,6 @@ src/c/loadLibrarypath.c \
 src/c/getLibrarypath.c \
 src/c/addToLibrarypath.c \
 src/c/getJvmOptions.c
-
-USEANT=1
 
 libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
 libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \

@@ -10,8 +10,8 @@
 
 //
 // optimbase_terminate --
-//   Returns 1 if the algorithm terminates.
-//   Returns 0 if the algorithm must continue.
+//   Returns %t if the algorithm terminates.
+//   Returns %f if the algorithm must continue.
 // Arguments, input
 //   this : the current object
 //   previousfopt : the previous value of the objective function
@@ -27,28 +27,34 @@
 //     status = "tolf"
 //     status = "tolx"
 //
-function [this , terminate , status] = optimbase_terminate (this , ...
+function [ this , terminate , status ] = optimbase_terminate (this , ...
   previousfopt , currentfopt , previousxopt , currentxopt )
-  terminate = 0;
+  terminate = %f;
   status = "continue";
+  if ( this.verbose == 1 ) then
   this = optimbase_stoplog (this,sprintf("  > Termination ?"));
+  end
   //
   // Criteria #1 : maximum number of iterations
   //
-  if (terminate == 0) then 
-    this = optimbase_stoplog (this,sprintf("  > iterations=%d >= maxiter=%d",this.iterations, this.maxiter));
-    if this.iterations >= this.maxiter then
-      terminate = 1;
+  if ( ~terminate ) then 
+    if ( this.verbose == 1 ) then
+      this = optimbase_stoplog (this,sprintf("  > iterations=%d >= maxiter=%d",this.iterations, this.maxiter));
+    end
+    if ( this.iterations >= this.maxiter ) then
+      terminate = %t;
       status = "maxiter";
     end
   end
   //
   // Criteria #2 : maximum number of call to function
   //
-  if (terminate == 0) then 
-    this = optimbase_stoplog (this,sprintf("  > funevals=%d >= maxfunevals=%d",this.funevals, this.maxfunevals));
-    if this.funevals >= this.maxfunevals then
-      terminate = 1;
+  if ( ~terminate ) then 
+    if ( this.verbose == 1 ) then
+      this = optimbase_stoplog (this,sprintf("  > funevals=%d >= maxfunevals=%d",this.funevals, this.maxfunevals));
+    end
+    if ( this.funevals >= this.maxfunevals ) then
+      terminate = %t;
       status = "maxfuneval";
     end
   end
@@ -64,49 +70,50 @@ function [this , terminate , status] = optimbase_terminate (this , ...
   //   and the optimum function value is strictly negative (e.g. f(x*)=-10),
   //   that criteria fails miserably.
   //
-  if (terminate == 0) then
-    select this.tolfunmethod
-    case "enabled" then
-      this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
-        abs(currentfopt), this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute));
-      if abs(currentfopt) < this.tolfunrelative * abs(previousfopt) + this.tolfunabsolute then
-        terminate = 1;
+  if ( ~terminate ) then
+    if ( this.tolfunmethod )
+      tolfr = this.tolfunrelative;
+      tolfa = this.tolfunabsolute;
+      acfopt = abs(currentfopt);
+      apfopt = abs(previousfopt);
+      if ( this.verbose == 1 ) then
+        this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
+          acfopt, tolfr * apfopt + tolfa));
+      end
+      if ( acfopt < tolfr * apfopt + tolfa ) then
+        terminate = %t;
         status = "tolf";
       end
-    case "disabled" then
-      // Nothing to do.
-    else
-      errmsg = sprintf("Unknown tolf method %s",this.tolfunmethod);
-      error(errmsg);
     end
   end
   //
   // Criteria #4 : tolerance on x
+  // Note
+  // What means a relative error on x ?
+  // Notes: if xn and xn+1 are very close to xopt and xopt different from 0,
+  // the relative error between xn and xn+1 is small.
+  // But if xopt, xn and xn+1 are close to 0, the relative error may be a
+  // completely wrong criteria. The absolute tolerance should be used in this case.
   //
-  if (terminate == 0) then
-    //
-    // Note
-    // What means a relative error on x ?
-    // Notes: if xn and xn+1 are very close to xopt and xopt different from 0,
-    // the relative error between xn and xn+1 is small.
-    // But if xopt, xn and xn+1 are close to 0, the relative error may be a
-    // completely wrong criteria. The absolute tolerance should be used in this case.
-    //
-    select this.tolxmethod
-    case "enabled" then
-      this = optimbase_stoplog (this,sprintf("  > e(x)=%e < tolxrelative = %e * %e + %e",...
-        norm(currentxopt - previousxopt), this.tolxrelative , norm(currentxopt) , this.tolxabsolute ));
-      if norm(currentxopt - previousxopt) < this.tolxrelative * norm(currentxopt) + this.tolxabsolute then
-        terminate = 1;
+  if ( ~terminate ) then
+    if ( this.tolxmethod ) then
+      normdelta = norm(currentxopt - previousxopt);
+      normold = norm(currentxopt);
+      tolxr = this.tolxrelative;
+      tolxa = this.tolxabsolute;
+      if ( this.verbose == 1 ) then
+        this = optimbase_stoplog (this,sprintf("  > e(x)=%e < %e * %e + %e",...
+          normdelta, tolxr , normold , tolxa ));
+      end
+      if ( normdelta < tolxr * normold + tolxa ) then
+        terminate = %t;
         status = "tolx";
       end
-   case "disabled" then
-      // Nothing to do.
-    else
-      errmsg = sprintf("Unknown tolx method %s",this.tolxmethod);
-      error(errmsg);
     end
   end
+  if ( this.verbose == 1 ) then
+    this = optimbase_stoplog (this,sprintf("  > Terminate = %s, status = %s",...
+      string(terminate) , status ));
+  end
 endfunction
-  
 

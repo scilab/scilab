@@ -12,20 +12,29 @@
 
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class LoadIntoScilabAction extends DefaultAction {
 
 	private LoadIntoScilabAction(Xpad editor) {
-		super("Load Into Scilab", editor);
+		super(XpadMessages.LOAD_INTO_SCILAB, editor);
 	}
 
 	public void doAction() {
 	    /* Will do the job as if it was copy / paste in scilab Console */
-	    //InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
-	    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getText(), true, false);
+	    
+	    try {
+	    	ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getText(), true, false);
+	    } catch (NoClassDefFoundError noClass) {
+	    	InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText().replaceAll("\n", ","));
+	    	
+	    }
+		
+		
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {

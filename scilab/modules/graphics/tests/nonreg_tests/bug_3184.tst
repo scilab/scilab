@@ -17,8 +17,7 @@
  
 colorbar(-200,100)
 
-// Now expand the window to see ticks along the color bar
-// Labels should be in front of them.
+// Labels should be here with ticks
 
 
 

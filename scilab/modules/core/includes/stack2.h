@@ -11,7 +11,8 @@
  */
 #ifndef STACK2_H
 #define  STACK2_H
-/* from sci_tools */
+
+#include "machine.h"
 
 /**
  * Convert an Scilab array of double to a fortran format

@@ -56,15 +56,6 @@ libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
-#### dynamic_link : include files ####
-libscidynamic_link_la_includedir=$(pkgincludedir)/dynamic_link
-libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
-includes/addinter.h \
-includes/dynamic_link.h \
-includes/gw_dynamic_link.h \
-includes/dynlib_dynamic_link.h \
-includes/ilib_verbose.h 
-
 #### dynamic_link : compilation scripts #### 
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \

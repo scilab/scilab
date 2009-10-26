@@ -2,7 +2,7 @@
 <flexview-themes>
 
     <!-- Map the PLAFs to specific themes -->
-    <plaf name="apple.laf.AquaLookAndFeel" ref="scilab" />
+    <plaf name="apple.laf.AquaLookAndFeel" ref="scilab-macos" />
     <plaf name="javax.swing.plaf.metal.MetalLookAndFeel" ref="scilab" />
     <plaf name="com.sun.java.swing.plaf.gtk.GTKLookAndFeel" ref="scilab" />
     <plaf name="com.sun.java.swing.plaf.windows.WindowsLookAndFeel" ref="scilab" />
@@ -18,8 +18,8 @@
         <titlebar-ui name="scilab" extends="default">
             <property name="icon-map" value="scilab" />
         </titlebar-ui>
-
-	<icon-resource name="scilab.undock">
+	
+        <icon-resource name="scilab.undock">
 		<property name="default" value="undock_default.png" />
 		<property name="active" value="undock_active.png" />
 		<property name="tooltip" value="Undock" handler="string" />
@@ -38,5 +38,24 @@
         </icon-map>
     </theme>
     <!-- End Scilab -->
+
+    <!-- Begin Scilab MacOS-->
+    <theme name="scilab-macos" description="Scilab Theme for MacOS" view-ui="scilab-macos" extends="scilab">
+
+        <view-ui name="scilab-macos" extends="scilab">
+            <property name="titlebar-ui" value="scilab-macos"/>
+        </view-ui>
+	
+        <titlebar-ui name="scilab-macos" extends="scilab">
+	  <property name="painter" value="scilabMacosPainter" handler="paint"/>
+        </titlebar-ui>
+
+	<painter-resource name="scilabMacosPainter">
+	  <property name="classname" value="org.flexdock.plaf.resources.paint.DefaultPainter"/>
+	  <property name="bgcolor.active" value="#000000" handler="color"/>
+	</painter-resource>
+        
+    </theme>
+
 
 </flexview-themes>

@@ -92,35 +92,65 @@ function result = atomsVersionCompare( version_1 , version_2 )
 		
 		version_1_mat_size = size(version_1_mat,"*");
 		
-		for j=1:version_1_mat_size
-			
-			if result(i) <> 0 then
-				continue;
-			end
-			
-			if j > version_2_mat_size then
-				if version_1_mat(j) > 0 then
-					// Version_1 is superior than version_2
-					result(i) = 1;
+		if version_1_mat_size>=version_2_mat_size then
+			for j=1:version_1_mat_size
+				
+				if result(i) <> 0 then
+					break;
+				end
+				
+				if j > version_2_mat_size then
+					if version_1_mat(j) > 0 then
+						// Version_1 is superior than version_2
+						result(i) = 1;
+						break;
+					end
 					continue;
 				end
-				continue;
+				
+				if version_1_mat(j) > version_2_mat(j) then
+					// Version_1 is superior than version_2
+					result(i) = 1;
+					break;
+				end
+				
+				if version_2_mat(j) > version_1_mat(j) then
+					// Version_2 is superior than version_1
+					result(i) = -1;
+					break;
+				end
+				
 			end
-			
-			if version_1_mat(j) > version_2_mat(j) then
-				// Version_1 is superior than version_2
-				result(i) = 1;
-				continue;
+		else
+			for j=1:version_2_mat_size
+				
+				if result(i) <> 0 then
+					break;
+				end
+				
+				if j > version_1_mat_size then
+					if version_2_mat(j) > 0 then
+						// Version_2 is superior than version_1
+						result(i) = -1;
+						break;
+					end
+					continue;
+				end
+				
+				if version_2_mat(j) > version_1_mat(j) then
+					// Version_2 is superior than version_1
+					result(i) = -1;
+					break;
+				end
+				
+				if version_1_mat(j) > version_2_mat(j) then
+					// Version_1 is superior than version_2
+					result(i) = 1;
+					break;
+				end
+				
 			end
-			
-			if version_2_mat(j) > version_1_mat(j) then
-				// Version_2 is superior than version_1
-				result(i) = -1;
-				continue;
-			end
-			
 		end
-		
 	end
 	
 endfunction

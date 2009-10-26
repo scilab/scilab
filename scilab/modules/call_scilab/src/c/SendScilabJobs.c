@@ -12,7 +12,7 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
@@ -21,9 +21,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);
@@ -31,10 +29,11 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
 static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
-/* see CallScilab.h more informations*/
+/* see call_scilab.h more informations*/
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
+	StrErr strErr;
 	int retCode = -1;
 	int lencommand = 0;
 	char *command = NULL;
@@ -56,9 +55,10 @@ int SendScilabJob(char *job)
 		SetLastJob(command);
 
 		/* Creation of a temp variable in Scilab which contains the command */
-
-		if (createNamedMatrixOfString("TMP_EXEC_STRING", 1, 1, &command))
+		strErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
+		if(strErr.iErr)
 		{
+			printError(&strErr, 0);
 			/* Problem */
 			fprintf(stderr, "Error : SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
 			retCode = -1;
@@ -69,11 +69,14 @@ int SendScilabJob(char *job)
 			return retCode;
 		}
 
+
+
 		/* Run the command within an execstr */
 		C2F(scirun)(COMMAND_EXECSTR,(long int)strlen(COMMAND_EXECSTR));
-
-		if (getNamedVarDimension("Err_Job", &m, &n))
+		strErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
+		if(strErr.iErr)
 		{
+			printError(&strErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (2) 'Err_Job'.\n");	
 			retCode = -2;
 
@@ -94,8 +97,10 @@ int SendScilabJob(char *job)
 			return retCode;
 		}
 
-		if (readNamedMatrixOfDouble("Err_Job", &m, &n, &Err_Job))
+		strErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
+		if(strErr.iErr)
 		{
+			printError(&strErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (4) 'Err_Job'.\n");	
 			retCode = -4;
 
@@ -104,6 +109,7 @@ int SendScilabJob(char *job)
 
 			return retCode;
 		}
+
 
 		if (command) {FREE(command);command=NULL;}
 		lencommand = 0;

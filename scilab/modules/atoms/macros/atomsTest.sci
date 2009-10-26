@@ -66,9 +66,9 @@ function path = atomsTest(name,version)
 			end
 		end
 	else
-		if ~ and(atomsIsInstalled(name,version)) then
+		if ~ and(atomsIsInstalled([name version])) then
 			for i=1:size(name,"*")
-				if ~ atomsIsInstalled(name(i),version(i)) then
+				if ~ atomsIsInstalled([name(i) version(i)]) then
 					error(msprintf(gettext("%s: The version ''%s'' of The module ''%s'' is not installed.\n"),"atomsTest",version(i),name(i)));
 				end
 			end

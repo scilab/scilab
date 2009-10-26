@@ -238,12 +238,4 @@ libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 libscicacsd_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd_gateway.xml
 
-####�cacsd : include files ####
-libscicacsd_la_includedir=$(pkgincludedir)/cacsd
-libscicacsd_la_include_HEADERS = includes/gw_cacsd0.h \
-includes/gw_cacsd1.h \
-includes/gw_cacsd2.h \
-includes/gw_cacsd3.h \
-includes/gw_slicot.h
-
 include $(top_srcdir)/Makefile.incl.am

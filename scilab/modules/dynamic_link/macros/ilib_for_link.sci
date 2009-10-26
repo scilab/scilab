@@ -22,6 +22,10 @@ function libn = ilib_for_link(names, ..
                               cc)
 
   [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_for_link"));
+    return
+  end
   
   if rhs <= 4 then makename = "Makelib";end
   if rhs <= 5 then loadername = "loader.sce";end
@@ -41,7 +45,7 @@ function libn = ilib_for_link(names, ..
   // bug 4515 - unlink previous function with same name
   n = size(names,'*');
   for i = 1:n
-    execstr("[bOK,ilib] = c_link(''" + names(i) + "'');if (bOK) then ulink(ilib),end", names(i));
+    execstr("[bOK,ilib] = c_link(''" + names(i) + "'');if (bOK) then ulink(ilib),end");
   end
   
   // generate a Makefile
@@ -162,6 +166,8 @@ function ilib_link_gen_Make_msvc(names, ..
   FILES_SRC = '';
   OBJS = '';
   OBJS_WITH_PATH = '';
+  CPP_RUNTIME = '';
+  FORTRAN_RUNTIME = '';
   OTHERLIBS = '';
   CC = cc;
   CFLAGS = cflags;
@@ -212,6 +218,22 @@ function ilib_link_gen_Make_msvc(names, ..
     OBJS_WITH_PATH_MATRIX = [OBJS_WITH_PATH_MATRIX, OBJ_DEST_PATH + path_f + file_f + '.obj'];
   end
   
+  if ( or(fileext(FILES_SRC_MATRIX) == '.cpp') | or(fileext(FILES_SRC_MATRIX) == '.cxx') ) then
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+      CPP_RUNTIME = 'LIBCPMT.LIB';
+    else
+      CPP_RUNTIME = 'LIBCPMTD.LIB';
+    end
+  end
+
+  if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+      FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
+    else
+      FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+    end
+  end
+  
   OBJS = strcat(OBJS_MATRIX, ' ');
   OBJS_WITH_PATH =  strcat(OBJS_WITH_PATH_MATRIX, ' ');
 
@@ -241,6 +263,8 @@ function ilib_link_gen_Make_msvc(names, ..
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FILES_SRC__", FILES_SRC);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS__", OBJS);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS_WITH_PATH__", OBJS_WITH_PATH);
+  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__CPP_RUNTIME__", CPP_RUNTIME);
+  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FORTRAN_RUNTIME__", FORTRAN_RUNTIME);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OTHERSLIBS__", OTHERLIBS);
   
   if CC <> '' then

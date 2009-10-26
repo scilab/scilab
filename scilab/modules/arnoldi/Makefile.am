@@ -100,9 +100,4 @@ libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 libsciarnoldi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
-#### arnoldi : include files ####
-libsciarnoldi_la_includedir=$(pkgincludedir)/arnoldi
-libsciarnoldi_la_include_HEADERS = includes/gw_arnoldi.h \
-	includes/dynlib_arnoldi.h
-
 include $(top_srcdir)/Makefile.incl.am

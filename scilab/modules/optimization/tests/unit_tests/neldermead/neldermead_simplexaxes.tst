@@ -30,7 +30,7 @@ function flag = assert_close ( computed, expected, epsilon )
   if flag <> 1 then pause,end
 endfunction
 
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -41,11 +41,12 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_search(nm);
-simplex = neldermead_cget(nm,"-simplex0");
+simplex = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx( simplex );
 expected = [
-1. 2. 1.
-2. 2. 3.
+    1.    2.  
+    2.    2.  
+    1.    3.  
 ];
 assert_close ( computed , expected, %eps );
 nm = neldermead_destroy(nm);

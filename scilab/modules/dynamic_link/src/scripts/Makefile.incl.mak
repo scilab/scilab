@@ -23,13 +23,11 @@ DWIN=-DWIN32
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 DIR_OBJ=Debug
 LINKER_OPTIMISATION_MODE=/DEBUG -PDB:"$(DIR_OBJ)\$(LIBRARY).pdb"
-# /MDd add a dependency on msvcrtd90.dll
-CC__OPTIMISATION_MODE=-Zi -Od
+CC__OPTIMISATION_MODE=-Zi -Od -MDd
 !ELSE
 DIR_OBJ=Release
 LINKER_OPTIMISATION_MODE=/RELEASE 
-# /MD add a dependency on msvcrt.dll
-CC__OPTIMISATION_MODE=-Z7 -O2
+CC__OPTIMISATION_MODE=-Z7 -O2 -MD
 !ENDIF
 
 CC_COMMON=-D__MSC__ -DFORDLL $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
@@ -46,22 +44,31 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
+-I"$(SCIDIR)/modules/windows_tools/includes" \
 -I"$(SCIDIR)/libs/f2c" \
+-I"$(SCIDIR)/libs/hashtable" \
 -I"$(SCIDIR)/libs/intl"
-
-
+#==================================================
 CC_LDFLAGS = 
 #==================================================
 # Fortran Compiler 
 # default usage is to use f2c 
 #==================================================
-# detect intel fortran compiler 10.x family
-!IF "$(IFORT_COMPILER10)" == ""
 USE_F2C=YES
+# detect intel fortran compiler 9,10,11.x family
+!IF "$(IFORT_COMPILER9)" == ""
 !ELSE
 USE_F2C=NO
 !ENDIF
-
+!IF "$(IFORT_COMPILER10)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
+!IF "$(IFORT_COMPILER11)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
+#==================================================
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 10.x)
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
@@ -73,11 +80,9 @@ FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
 #==================================================
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 FC_OPTIONS=$(FC_OPTIONS_COMMON) /Zi /Od /debug /dbglibs
-FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib /NODEFAULTLIB:LIBCMT.lib
 #==================================================
 !ELSE
 FC_OPTIONS=$(FC_OPTIONS_COMMON)
-FORTRAN_RUNTIME_LIBRARIES = libifcoremd.lib libmmd.lib
 !ENDIF
 #==================================================
 LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple
@@ -99,7 +104,8 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
 "$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
 "$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib" \
-"$(SCIDIR1)/bin/api_scilab.lib"
+"$(SCIDIR1)/bin/api_scilab.lib" "$(SCIDIR1)/bin/hashtable.lib" \
+"$(SCIDIR1)/bin/scilab_windows.lib" 
 #==================================================
 # default rules for Fortran 77 & 90 Compilation 
 #==================================================

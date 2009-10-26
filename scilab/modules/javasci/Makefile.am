@@ -64,18 +64,6 @@ libjavasci_la_LIBADD = \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/libscilab.la
 
-#### javasci : include files ####
-libjavasci_la_includedir=$(pkgincludedir)/javasci
-libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
-includes/javasci_Scilab2.h \
-includes/javasci_globals.h \
-includes/javasci_SciStringArray.h \
-includes/javasci_SciComplexArray.h \
-includes/javasci_SciDoubleArray.h \
-includes/javasci_SciBooleanArray.h \
-includes/javasci_SciIntegerArray.h \
-includes/javasci_SciAbstractArray.h
-
 ### javasci :  images ###
 libsciscipad_la_imagesdir = $(mydatadir)/help/images/
 libsciscipad_la_images_DATA = help/images/ScilabClass.gif \

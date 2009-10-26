@@ -53,7 +53,6 @@
 <module name="statistics" activate="yes"/>
 <module name="arnoldi" activate="yes"/>
 <module name="compatibility_functions" activate="yes"/>
-<module name="metanet" activate="yes"/>
 <module name="javasci" activate="@JAVASCI_ENABLE@"/>
 <module name="maple2scilab" activate="yes"/>
 <module name="m2sci" activate="yes"/>
@@ -61,7 +60,6 @@
 <module name="tclsci" activate="@WITH_TKSCI@"/>
 <module name="texmacs" activate="yes"/>
 <module name="sound" activate="yes"/>
-<module name="scipad" activate="@SCIPAD_ENABLE@"/>
 <module name="randlib" activate="yes"/>
 <module name="development_tools" activate="yes"/>
 <module name="demo_tools" activate="@DEMOTOOLS_ENABLE@"/>
@@ -83,5 +81,6 @@
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
+<module name="xcos" activate="@GUI_ENABLE@"/>
 <module name="xpad" activate="@GUI_ENABLE@"/>
 </modules>

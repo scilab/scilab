@@ -15,6 +15,8 @@ Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Comp
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
+Source: thirdparty\jlatexmath-0.3.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+;
 Source: bin\graphics.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\nographics.dll; DestDir: {app}\bin; DestName: graphics.dll; Components: not ({#COMPN_GRAPHICS})
@@ -26,7 +28,7 @@ Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.start; DestDir: {app}\modules\{#GRAP
 ;
 Source: modules\{#GRAPHICS}\help\addchapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}

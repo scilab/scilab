@@ -17,11 +17,11 @@ function demo_exp()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_exp.dem.sce");
 	
 	PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"exp",theta,alpha,[-R,R]);
 	
 endfunction
 
 demo_exp()
+demo_viewCode("demo_exp.dem.sce");
 clear demo_exp;

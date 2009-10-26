@@ -46,6 +46,8 @@ src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
 src/c/expandPathVariable.c \
+src/c/basename.c \
+src/c/pathconvert.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -89,6 +91,8 @@ sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_copyfile.c \
 sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
+sci_gateway/c/sci_basename.c \
+sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 
@@ -140,35 +144,5 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 #### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
-
-#### fileio : include files ####
-libscifileio_la_includedir=$(pkgincludedir)/fileio
-libscifileio_la_include_HEADERS = includes/FileExist.h \
-includes/gw_fileio.h \
-includes/findfiles.h \
-includes/FindFileExtension.h \
-includes/filesmanagement.h \
-includes/URIFileToFilename.h \
-includes/createdirectory.h \
-includes/isdir.h \
-includes/removedir.h \
-includes/mopen.h \
-includes/mtell.h \
-includes/addfile.h \
-includes/delfile.h \
-includes/getfiledesc.h \
-includes/getfileinfo.h \
-includes/getfiletype.h \
-includes/mclose.h \
-includes/mget.h \
-includes/mput.h \
-includes/mseek.h \
-includes/deleteafile.h \
-includes/readline.h \
-includes/splitpath.h \
-includes/cluni0.h \
-includes/expandPathVariable.h \
-includes/dynlib_fileio.h \
-includes/scicurdir.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -8,8 +8,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
+   width="654.31024"
+   height="376.21381"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
@@ -17,21 +17,22 @@
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="K:\ProjetTclrep\doc\neldermead\nelder-mead-shrink-afterco.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   version="1.0">
   <defs
      id="defs4">
     <marker
        inkscape:stockid="Arrow1Lend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Lend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path3318"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
-         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
     </marker>
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
@@ -49,15 +50,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="347.32716"
-     inkscape:cy="754.37276"
+     inkscape:cx="317.50551"
+     inkscape:cy="148.26215"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
+     inkscape:window-width="1607"
      inkscape:window-height="975"
-     inkscape:window-x="0"
-     inkscape:window-y="22" />
+     inkscape:window-x="1696"
+     inkscape:window-y="14" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -70,9 +71,21 @@
     </rdf:RDF>
   </metadata>
   <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Fond">
+    <path
+       transform="translate(-25.00235,-155.38299)"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 137.85714,339.50504 C 157.79514,255.9702 358.89793,187.83351 384.80311,241.84479 C 410.70829,295.85607 316.65157,321.48552 333.21428,370.57646 C 349.77699,419.6674 404.49026,347.48808 430.35279,367.9416 C 456.4629,388.59093 348.82016,447.28753 282.14286,446.64789 C 215.45488,446.00815 118.00017,422.70044 137.85714,339.50504 z"
+       id="path2546"
+       sodipodi:nodetypes="czzzzz" />
+  </g>
+  <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-25.00235,-155.38299)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
@@ -95,7 +108,7 @@
          x="189.90868"
          y="417.98639" /></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 295.97806,320.75559 L 271.20143,195.83654 L 352.75856,283.27915 L 295.97806,320.75559 z"
        id="path2423"
        sodipodi:nodetypes="cccc" />
@@ -112,13 +125,13 @@
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="247.18446"
-       y="190.23674"
+       x="247.18445"
+       y="202.35857"
        id="text2438"><tspan
          sodipodi:role="line"
          id="tspan2440"
-         x="247.18446"
-         y="190.23674">H</tspan></text>
+         x="247.18445"
+         y="202.35857">H</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
@@ -140,41 +153,36 @@
          x="351.49036"
          y="273.50577">N</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.528, 1.584;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
        d="M 385.46343,418.97454 L 296.27163,320.17152 L 352.97544,283.26076 L 385.46343,418.97454 z"
        id="path2454"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.528, 1.584;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 385.64967,420.21447 L 270.60234,196.65251"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 385.64967,420.21447 L 271.10742,195.8949"
        id="path3226"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.92553139;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.9255314, 3.7021256;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 72.858347,305.04836 C 156.06693,154.52497 273.64335,142.34483 413.88253,141.40991"
-       id="path3292"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="76.58223"
-       y="474.65396"
+       x="24.054296"
+       y="504.95853"
        id="text3306"><tspan
          sodipodi:role="line"
-         x="76.58223"
-         y="474.65396"
+         x="24.054296"
+         y="504.95853"
          id="tspan3334">Shrink After </tspan><tspan
          sodipodi:role="line"
-         x="76.58223"
-         y="501.03458"
+         x="24.054296"
+         y="531.33917"
          id="tspan3336">Outside Contraction</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Lend);stroke-opacity:1"
-       d="M 141.79325,450.69995 L 277.63157,295.44975"
+       d="M 86.23486,476.96392 L 277.63157,295.44975"
        id="path3310"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.528, 1.584;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
        d="M 351.96762,353.27472 L 296.33059,320.63233 L 352.73851,283.61697 L 351.96762,353.27472 z"
        id="path3237"
        sodipodi:nodetypes="cccc" />
@@ -208,75 +216,16 @@
        sodipodi:ry="2.2728431"
        d="M 306.83385,367.98383 A 2.2728431,2.2728431 0 1 1 302.28816,367.98383 A 2.2728431,2.2728431 0 1 1 306.83385,367.98383 z"
        transform="translate(80.812192,51.517787)" />
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.85944"
-       y="259.71985"
-       id="text3238"><tspan
-         sodipodi:role="line"
-         id="tspan3240"
-         x="453.85944"
-         y="259.71985">R = Reflexion</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.82855"
-       y="170.49002"
-       id="text3242"><tspan
-         sodipodi:role="line"
-         id="tspan3244"
-         x="453.82855"
-         y="170.49002">H = Highest</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.97278"
-       y="229.80484"
-       id="text3246"><tspan
-         sodipodi:role="line"
-         id="tspan3248"
-         x="453.97278"
-         y="229.80484">L = Lowest</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="453.91095"
-       y="200.14742"
-       id="text3250"><tspan
-         sodipodi:role="line"
-         id="tspan3252"
-         x="453.91095"
-         y="200.14742">N = Next to highest</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="455.51855"
-       y="289.37723"
-       id="text3259"><tspan
-         sodipodi:role="line"
-         id="tspan3261"
-         x="455.51855"
-         y="289.37723">Co = Contraction </tspan><tspan
-         sodipodi:role="line"
-         x="455.51855"
-         y="315.75784"
-         id="tspan3263">       (outside)</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1,3;stroke-dashoffset:0"
-       d="M 137.85714,339.50504 C 157.79514,255.9702 358.89793,187.83351 384.80311,241.84479 C 410.70829,295.85607 316.65157,321.48552 333.21428,370.57646 C 349.77699,419.6674 404.49026,347.48808 430.35279,367.9416 C 456.4629,388.59093 348.82016,447.28753 282.14286,446.64789 C 215.45488,446.00815 118.00017,422.70044 137.85714,339.50504 z"
-       id="path2546"
-       sodipodi:nodetypes="czzzzz" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
        d="M 191.01092,345.24007 C 204.84205,287.29137 303.94235,244.06508 321.91295,281.53308 C 339.88356,319.00108 292.81851,343.85147 304.30817,377.9062 C 315.79784,411.96092 363.22948,396.37904 367.14814,407.39311 C 371.38734,419.3081 322.71022,427.58567 276.45571,427.14195 C 230.1938,426.69815 177.236,402.95329 191.01092,345.24007 z"
        id="path3324"
        sodipodi:nodetypes="czzzzz" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 228.76919,343.08497 C 236.42536,311.00768 263.50277,308.7982 273.45033,329.53848 C 283.3979,350.27875 273.50766,370.60059 279.86772,389.45146 C 286.22779,408.30233 290.98068,404.25361 291.92412,408.29922 C 292.75549,411.86426 285.00334,414.42598 265.46023,404.07883 C 246.12197,393.84014 221.14413,375.03192 228.76919,343.08497 z"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 238.76919,364.51354 C 243.39603,333.93833 260.58068,330.02168 274.8789,350.96705 C 289.50578,372.39388 292.16585,403.7305 268.69061,409.3304 C 244.96812,414.98928 234.14235,395.08875 238.76919,364.51354 z"
        id="path3326"
-       sodipodi:nodetypes="czzzzz" />
+       sodipodi:nodetypes="czzz" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 296.11063,320.4494 L 281.90813,248.8431 L 328.65844,298.96709 L 296.11063,320.4494 z"
@@ -302,5 +251,84 @@
        sodipodi:ry="2.2728431"
        d="M 306.83385,367.98383 A 2.2728431,2.2728431 0 1 1 302.28816,367.98383 A 2.2728431,2.2728431 0 1 1 306.83385,367.98383 z"
        transform="translate(-23.233519,-119.198)" />
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="499.31631"
+       y="259.71985"
+       id="text3238"><tspan
+         sodipodi:role="line"
+         id="tspan3240"
+         x="499.31631"
+         y="259.71985">R = Reflexion</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="499.2854"
+       y="170.49002"
+       id="text3242"><tspan
+         sodipodi:role="line"
+         id="tspan3244"
+         x="499.2854"
+         y="170.49002">H = Highest</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="499.42966"
+       y="229.80484"
+       id="text3246"><tspan
+         sodipodi:role="line"
+         id="tspan3248"
+         x="499.42966"
+         y="229.80484">L = Lowest</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="499.36783"
+       y="200.14742"
+       id="text3250"><tspan
+         sodipodi:role="line"
+         id="tspan3252"
+         x="499.36783"
+         y="200.14742">N = Next to highest</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="500.9754"
+       y="289.37723"
+       id="text3259"><tspan
+         sodipodi:role="line"
+         id="tspan3261"
+         x="500.9754"
+         y="289.37723">Co = Contraction </tspan><tspan
+         sodipodi:role="line"
+         x="500.9754"
+         y="315.75784"
+         id="tspan3263">       (outside)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="500.7796"
+       y="347.0914"
+       id="text2423"><tspan
+         sodipodi:role="line"
+         x="500.7796"
+         y="347.0914"
+         id="tspan2427">f(N)≤f(R)&lt;f(H)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 99.465307,347.06494 C 100.27186,215.27237 318.06797,123.32086 379.58369,173.15479 C 441.70733,223.4812 403.08955,290.27635 411.98186,318.09494 C 421.16665,346.82849 453.89056,335.09963 463.93889,365.90178 C 474.19759,397.3488 408.85967,463.95857 329.95138,478.77199 C 251.1696,493.56166 98.664937,477.84739 99.465307,347.06494 z"
+       id="path2431"
+       sodipodi:nodetypes="czzzzz" />
+    <text
+       id="text3226"
+       y="378.48697"
+       x="500.7796"
+       style="font-size:21.10450363px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan3228"
+         y="378.48697"
+         x="500.7796"
+         sodipodi:role="line">f(Co)&gt;f(R)</tspan></text>
   </g>
 </svg>

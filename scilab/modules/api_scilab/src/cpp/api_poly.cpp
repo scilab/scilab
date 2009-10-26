@@ -17,28 +17,36 @@
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
 #include "api_poly.h"
+#include "localization.h"
 
 #include "MALLOC.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 extern "C" {
 #include "code2str.h"
 };
 
-int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)
+StrErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
-	int i							= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	char *pstVarName	= NULL;
 
-	pstVarName = (char*)MALLOC(sizeof(char) * 5);
-	if(_piAddress == NULL || _piAddress[0] != sci_poly)
+	if(_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPolyVariableName");
+		return strErr;
+	}
+
+	if(_piAddress[0] != sci_poly)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPolyVariableName", _("polynomial matrix"));
+		return strErr;
 	}
 
 	*_piVarNameLen = 4;
+	pstVarName = (char*)MALLOC(sizeof(char) * 5);
 	code2str(&pstVarName, &_piAddress[4], *_piVarNameLen);
-	for(i = 0 ; i < *_piVarNameLen ; i++)
+	for(int i = 0 ; i < *_piVarNameLen ; i++)
 	{
 		if(pstVarName[i] == ' ')
 		{
@@ -51,60 +59,86 @@ int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 
 	if(_pstVarName == NULL)
 	{
-		return 0;	
+		addErrorMessage(&strErr, API_ERROR_INVALID_VAR_POINTER, _("%s: Unable to get formal variable name"), "getPolyVariableName");
+		return strErr;
 	}
 
 	strcpy(_pstVarName, pstVarName);
 	
-	return 0;
+	return strErr;
 }
 
-int getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+StrErr getMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
-	return getCommonMatrixOfPoly(_piAddress, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+	return getCommonMatrixOfPoly(_pvCtx, _piAddress, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr getComplexMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonMatrixOfPoly(_piAddress, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	return getCommonMatrixOfPoly(_pvCtx, _piAddress, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	int i							= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	int iType					= 0;
 	int iSize					= 0;
 	int *piOffset			= NULL;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	if(	_piAddress == NULL || 
-			getVarType(_piAddress) != sci_poly || 
-			isVarComplex(_piAddress) != _iComplex)
+	if(_piAddress == NULL)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly");
+		return strErr;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
+	strErr = getVarType(_pvCtx, _piAddress, &iType);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", getRhsFromAddress(_pvCtx, _piAddress));
+		return strErr;
+	}
+	
+	if(iType != sci_poly)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", _("polynomial matrix"));
+		return strErr;
+	}
+
+	if(isVarComplex(_pvCtx, _piAddress) != _iComplex)
+	{
+		addErrorMessage(&strErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly");
+		return strErr;
+	}
+
+	strErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_GET_POLY, _("%s: Unable to get argument #%d"), _iComplex ? "getComplexMatrixOfPoly" : "getMatrixOfPoly", getRhsFromAddress(_pvCtx, _piAddress));
+		return strErr;
+	}
+
 	iSize	= *_piRows * *_piCols;
 
 	if(_piNbCoef == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	piOffset = _piAddress + 8; //4 for header and 4 for variable name
-	for(i = 0 ; i < iSize ; i++)
+	for(int i = 0 ; i < iSize ; i++)
 	{
 		_piNbCoef[i]	= piOffset[i + 1] - piOffset[i];
 	}
 
 	if(_pdblReal == NULL)
 	{
-		return 0;
+		return strErr;
 	}
 
 	pdblReal = (double*)(piOffset + iSize + 1 + ((iSize + 1) % 2 == 0 ? 0 : 1 ));
-	for(i = 0 ; i < iSize ; i++)
+	for(int i = 0 ; i < iSize ; i++)
 	{
 		memcpy(_pdblReal[i], pdblReal + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
 	}
@@ -112,49 +146,50 @@ int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _pi
 	if(_iComplex == 1)
 	{
 		pdblImg = pdblReal + piOffset[iSize] - 1;
-		for(i = 0 ; i < iSize ; i++)
+		for(int i = 0 ; i < iSize ; i++)
 		{
 			memcpy(_pdblImg[i], pdblImg + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
 		}
 	}
-	return 0;
+	return strErr;
 }
 
-int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+StrErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
 {
-	return createCommonMatrixOfPoly(_iVar, 0, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonMatrixOfPoly(_pvCtx, _iVar, 0, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return createCommonMatrixOfPoly(_iVar, 1, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonMatrixOfPoly(_pvCtx, _iVar, 1, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int createCommonMatrixOfPoly(int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piAddr				= NULL;
 	int iSize					= _iRows * _iCols;
 	int iNewPos				= Top - Rhs + _iVar;
 	int iAddr					= *Lstk(iNewPos);
 	int iTotalLen			= 0;
 
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet != 0)
+	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	strErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_CREATE_POLY, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
+		return strErr;
 	}
-
-	fillCommonMatrixOfPoly(piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
 
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 4 + 4 + iSize + 1);
 	updateLstk(iNewPos, iAddr + 4 + 4 + iSize + 1, iTotalLen);
 
-	return 0;
+	return strErr;
 }
 
-int fillCommonMatrixOfPoly(int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)
+StrErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)
 {
-	int i							= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piOffset			= NULL;
 	int *piVarName		= NULL;
 	int iSize					= _iRows * _iCols;
@@ -173,7 +208,8 @@ int fillCommonMatrixOfPoly(int* _piAddress, char* _pstVarName, int _iComplex, in
 	piVarName = _piAddress + 4;//4 for header
 	if(strlen(_pstVarName) > 4)//4 characters max
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_TOO_LONG_VAR, _("%s: Formal variable name of polynomial can't exceed 4 characters"));
+		return strErr;
 	}
 
 	//fill variable name with space ( 40 sergescii )
@@ -185,56 +221,63 @@ int fillCommonMatrixOfPoly(int* _piAddress, char* _pstVarName, int _iComplex, in
 
 	piOffset = _piAddress + 8; //4 for header and 4 for variable name
 	piOffset[0] = 1;
-	for(i = 0 ; i < iSize ; i++)
+	for(int i = 0 ; i < iSize ; i++)
 	{
 		piOffset[i + 1] = piOffset[i] + _piNbCoef[i];
 	}
 
 	pdblReal = (double*)(piOffset + iSize + 1 + ((iSize + 1) % 2 == 0 ? 0 : 1 ));
 
-	for(i = 0 ; i < iSize ; i++)
+	for(int i = 0 ; i < iSize ; i++)
 	{
 		memcpy(pdblReal + piOffset[i] - 1, _pdblReal[i], _piNbCoef[i] * sizeof(double));
 	}
+
 	if(_iComplex == 1)
 	{
 		pdblImg = pdblReal + piOffset[iSize] - 1;
-		for(i = 0 ; i < iSize ; i++)
+		for(int i = 0 ; i < iSize ; i++)
 		{
 			memcpy(pdblImg + piOffset[i] - 1, _pdblImg[i], _piNbCoef[i] * sizeof(double));
 		}
 	}
 
 	*_piTotalLen = (piOffset[iSize] - 1) * (_iComplex + 1) * 2;
-	return 0;
+	return strErr;
 }
 
-int createNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+StrErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
 {
-	return createCommonNamedMatrixOfPoly(_pstName, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonNamedMatrixOfPoly(_pvCtx, _pstName, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-int createNamedComplexMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return createCommonNamedMatrixOfPoly(_pstName, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonNamedMatrixOfPoly(_pvCtx, _pstName, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int createCommonNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iRet					= 0;
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
 	C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
-	fillCommonMatrixOfPoly(piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	strErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_CREATE_NAMED_POLY, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexMatrixOfPoly" : "createNamedMatrixOfPoly", _("matrix of double"), _pstName);
+		return strErr;
+	}
+
 
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + 4, iTotalLen);
@@ -246,39 +289,46 @@ int createCommonNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iCompl
 	Top = iSaveTop;
   Rhs = iSaveRhs;
 
-	return 0;
+	return strErr;
 }
 
-int readNamedMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+StrErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
-	return readCommonNamedMatrixOfPoly(_pstName, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+	return readCommonNamedMatrixOfPoly(_pvCtx, _pstName, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-int readNamedComplexMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return readCommonNamedMatrixOfPoly(_pstName, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	return readCommonNamedMatrixOfPoly(_pvCtx, _pstName, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int readCommonNamedMatrixOfPoly(char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+StrErr readCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	int iRet					= 0;
+	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet)
+	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+	if(strErr.iErr)
 	{
-		return 1;
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfPoly" :"readNamedMatrixOfPoly", _pstName);
+		return strErr;
 	}
 	
 	if(_iComplex == 1)
 	{
-		getComplexMatrixOfPoly(piAddr, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+		strErr = getComplexMatrixOfPoly(_pvCtx, piAddr, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 	}
 	else
 	{
-		getMatrixOfPoly(piAddr, _piRows, _piCols, _piNbCoef, _pdblReal);
+		strErr = getMatrixOfPoly(_pvCtx, piAddr, _piRows, _piCols, _piNbCoef, _pdblReal);
 	}
 
-	return 0;
+	if(strErr.iErr)
+	{
+		addErrorMessage(&strErr, API_ERROR_READ_NAMED_POLY, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexMatrixOfPoly" :"readNamedMatrixOfPoly", _pstName);
+		return strErr;
+	}
+
+	return strErr;
 }
 /*--------------------------------------------------------------------------*/

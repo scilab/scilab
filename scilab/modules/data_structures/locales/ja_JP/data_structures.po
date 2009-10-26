@@ -1,0 +1,75 @@
+# Localization of the module data_structures
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/iscellstr.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: 入力引数で不正な数値: %d が想定されます。"
+
+#
+# File: macros/struct.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s)."
+msgstr "%s: 入力引数の不正な数値です。"
+
+#
+# File: src/c/hmops.c, line: 657
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr "多次元配列の抽出は、最低2つの引数が必要です"
+
+#
+# File: src/c/hmops.c, line: 663
+msgid " Argument is not an hypermatrix. "
+msgstr "入力引数は多次元配列ではありません。"
+
+#
+# File: src/c/hmops.c, line: 676
+msgid " Incompatible hypermatrix extraction. "
+msgstr " 互換性がない多次元配列の抽出です。"
+
+#
+# File: src/c/hmops.c, line: 702
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "多次元配列 抽出の　(%d 番目) インデックスが不正"
+
+#
+# File: src/c/hmops.c, line: 831
+msgid " An hypermatrix insertion must have at least 3 arguments "
+msgstr "多次元配列の挿入は、最低３つの引数が必要です"
+
+#
+# File: src/c/hmops.c, line: 838
+msgid " Argument is not an hypermatrix "
+msgstr "入力引数は多次元配列でありません"
+
+#
+# File: src/c/hmops.c, line: 894
+# File: src/c/hmops.c, line: 909
+# File: src/c/hmops.c, line: 919
+msgid " Bad hypermatrix insertion. "
+msgstr "多次元配列の不正な差し込みです。"
+
+#
+# File: src/c/stcreate.c, line: 43
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr "スタックの多すぎる引数です、stack.h の intersiz を大きく編集して下さい。\n"
+

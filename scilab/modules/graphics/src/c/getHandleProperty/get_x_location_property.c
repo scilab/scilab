@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@ int get_x_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property undefined for this handle.\n"), "x_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
     return -1 ;
   }
 
@@ -42,10 +43,13 @@ int get_x_location_property( sciPointObj * pobj )
     return sciReturnString( "bottom" ) ;
     break;
   case 'c': 
+    return sciReturnString( "middle" ) ;
+    break;
+  case 'o': 
     return sciReturnString( "origin" ) ;
     break;
   default : 
-    Scierror(999, _("%s is not correctly defined.\n"), "x_location") ;
+    Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
     break;
   }
   return -1 ;

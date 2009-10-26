@@ -131,7 +131,7 @@ if execstr('[U,S,V,rk]=svd([],'"e'")','errcatch') == 0 then pause,end
 A=rand(3,5);
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
@@ -162,7 +162,7 @@ A=rand(5,3);
 
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
@@ -192,7 +192,7 @@ if rk<>3 then pause,end
 A=rand(3,5)+%i*rand(3,5);
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
@@ -223,7 +223,7 @@ A=rand(5,3)+%i*rand(5,3);
 
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
@@ -255,7 +255,7 @@ if rk<>3 then pause,end
 A=rand(30,50);
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>1000*%eps  then pause,end
@@ -286,7 +286,7 @@ A=rand(50,30);
 
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end
@@ -316,7 +316,7 @@ if rk<>30 then pause,end
 A=rand(30,50)+%i*rand(30,50);
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end
@@ -347,7 +347,7 @@ A=rand(50,30)+%i*rand(50,30);
 
 S=svd(A);
 if or(S<0) then pause,end
-if sort(S)<>S  then pause,end
+if gsort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end

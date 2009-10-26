@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +25,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "Format.h"
-
+#include "SetProperty.h"
 /*--------------------------------------------------------------------------------*/
 static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
 /*--------------------------------------------------------------------------------*/
@@ -65,6 +66,7 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
   int nbtics_y = Nax[3];
   int nbsubtics_x = Nax[0];
   int nbsubtics_y = Nax[2];
+  BOOL autoTicks[3];
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   
@@ -82,40 +84,51 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
   }
   
   /* x graduations */
-  ppsubwin->axes.u_xgrads  = FreeUserGrads (ppsubwin->axes.u_xgrads);
-  ppsubwin->axes.u_xlabels = FreeUserLabels(ppsubwin->axes.u_xlabels,
-					    &ppsubwin->axes.u_nxgrads);
-  
-  ppsubwin->axes.u_nxgrads = nbtics_x;
-  ppsubwin->axes.u_xgrads = AllocUserGrads(ppsubwin->axes.u_xgrads, nbtics_x);
-  
-/*   GraduateWithNax(ppsubwin,xmin,xmax,xoutmin,xoutmax,nbtics_x,nbsubtics_x,  */
-/* 		  ppsubwin->axes.u_xgrads, ppsubwin->axes.u_nxgrads); */
-  
-  GraduateWithNax(ppsubwin,&xmin,&xmax,nbtics_x,ppsubwin->axes.u_xgrads);
+  if(nbtics_x == -1.0)
+  {
+    // if nbtics_x == -1.0 the user whant autoticks
+    sciGetAutoTicks(psubwin, autoTicks);
+    sciSetAutoTicks(psubwin, TRUE, autoTicks[1], autoTicks[2]);
+  }
+  else
+  {
+    ppsubwin->axes.u_xgrads  = FreeUserGrads (ppsubwin->axes.u_xgrads);
+    ppsubwin->axes.u_xlabels = FreeUserLabels(ppsubwin->axes.u_xlabels, &ppsubwin->axes.u_nxgrads);
+    
+    ppsubwin->axes.u_nxgrads = nbtics_x;
+    ppsubwin->axes.u_xgrads = AllocUserGrads(ppsubwin->axes.u_xgrads, nbtics_x);
+    
+    GraduateWithNax(ppsubwin,&xmin,&xmax,nbtics_x,ppsubwin->axes.u_xgrads);
 
-  ppsubwin->axes.u_xlabels = AllocAndSetUserLabels(ppsubwin->axes.u_xlabels, 
-						   ppsubwin->axes.u_xgrads, 
-						   ppsubwin->axes.u_nxgrads, 
-						   ppsubwin->logflags[0]);
-  
+    ppsubwin->axes.u_xlabels = AllocAndSetUserLabels(ppsubwin->axes.u_xlabels, 
+						     ppsubwin->axes.u_xgrads, 
+						     ppsubwin->axes.u_nxgrads, 
+						     ppsubwin->logflags[0]);
+  }
+
   /* y graduations */
-  ppsubwin->axes.u_ygrads  = FreeUserGrads (ppsubwin->axes.u_ygrads);
-  ppsubwin->axes.u_ylabels = FreeUserLabels(ppsubwin->axes.u_ylabels,
-					    &ppsubwin->axes.u_nygrads);
-  
-  ppsubwin->axes.u_nygrads = nbtics_y;
-  ppsubwin->axes.u_ygrads = AllocUserGrads(ppsubwin->axes.u_ygrads, nbtics_y);
-  
-  /*   GraduateWithNax(ppsubwin,ymin,ymax,youtmin,youtmax,nbtics_y,nbsubtics_y,  */
-/* 		  ppsubwin->axes.u_ygrads, ppsubwin->axes.u_nygrads); */
-  
-  GraduateWithNax(ppsubwin,&ymin,&ymax,nbtics_y,ppsubwin->axes.u_ygrads);
-  
-  ppsubwin->axes.u_ylabels = AllocAndSetUserLabels(ppsubwin->axes.u_ylabels, 
-						   ppsubwin->axes.u_ygrads, 
-						   ppsubwin->axes.u_nygrads, 
-						   ppsubwin->logflags[1]);
+  if(nbtics_y == -1.0)
+  {
+    // if nbtics_y == -1.0 the user whant autoticks
+    sciGetAutoTicks(psubwin, autoTicks);
+    sciSetAutoTicks(psubwin, autoTicks[0], TRUE, autoTicks[2]);
+  }
+  else
+  {
+    ppsubwin->axes.u_ygrads  = FreeUserGrads (ppsubwin->axes.u_ygrads);
+    ppsubwin->axes.u_ylabels = FreeUserLabels(ppsubwin->axes.u_ylabels,
+					      &ppsubwin->axes.u_nygrads);
+    
+    ppsubwin->axes.u_nygrads = nbtics_y;
+    ppsubwin->axes.u_ygrads = AllocUserGrads(ppsubwin->axes.u_ygrads, nbtics_y);
+    
+    GraduateWithNax(ppsubwin,&ymin,&ymax,nbtics_y,ppsubwin->axes.u_ygrads);
+    
+    ppsubwin->axes.u_ylabels = AllocAndSetUserLabels(ppsubwin->axes.u_ylabels, 
+						     ppsubwin->axes.u_ygrads, 
+						     ppsubwin->axes.u_nygrads, 
+						     ppsubwin->logflags[1]);
+  }
     
   /* Subtics storage here */
   ppsubwin->axes.nbsubtics[0] = nbsubtics_x;

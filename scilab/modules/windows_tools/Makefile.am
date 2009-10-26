@@ -40,11 +40,6 @@ libsciwindows_tools_la_etc_DATA = etc/windows_tools.quit etc/windows_tools.start
 libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 
-#### windows_tools : include files ####
-libsciwindows_tools_la_includedir=$(pkgincludedir)/windows_tools
-libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h \
-includes/dynlib_windows_tools.h
-
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 include $(top_srcdir)/Makefile.incl.am

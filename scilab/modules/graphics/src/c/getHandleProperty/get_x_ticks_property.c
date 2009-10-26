@@ -34,7 +34,7 @@ int get_x_ticks_property( sciPointObj * pobj )
 
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this label.\n"),"x_ticks") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
     return -1 ;
   }
 

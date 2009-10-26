@@ -13,11 +13,19 @@ gluegen.jar=@GLUEGEN_RT@
 
 jhdf5.jar=@JHDF5@
 
+jgraphx.jar=@JGRAPHX@
+
 jrosetta-API.jar=@JROSETTA_API@
 
 jrosetta-engine.jar=@JROSETTA_ENGINE@
 
-checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+checkstyle.jar=@CHECKSTYLE@
+
+commons-beanutils.jar=@COMMONS_BEANUTILS@
+
+antlr.jar=@ANTLR@
+
+jlatexmath.jar=@JLATEXMATH@
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar
@@ -54,6 +62,9 @@ library.javasci.name=javasci.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
 library.hdf5.name=org.scilab.modules.hdf5.jar
+
+library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
+library.xcos.name=org.scilab.modules.xcos.jar
 
 library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
 library.xpad.name=org.scilab.modules.xpad.jar

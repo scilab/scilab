@@ -3,7 +3,7 @@ Prerequirements:
 ----------------
 
 * Visual Studio C++ .NET 2008 Pro
-* Intel Fortran 10.1.020 (or more)
+* Intel Fortran 11.0.061 (or more)
 
 or 
 

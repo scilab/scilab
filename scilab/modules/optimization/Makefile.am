@@ -150,10 +150,6 @@ libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 ####optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
-####optimization : include files ####
-libscioptimization_la_includedir=$(pkgincludedir)/optimization
-libscioptimization_la_include_HEADERS = includes/gw_optimization.h \
-includes/dynlib_optimization.h \
-includes/spd.h 
+
 
 include $(top_srcdir)/Makefile.incl.am

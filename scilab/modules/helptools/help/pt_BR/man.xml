@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,246 +24,246 @@
   <refnamediv>
     <refname>man</refname>
 
-    <refpurpose>Descrição do formato do arquivo de ajuda XML</refpurpose>
+    <refpurpose>DescriÃ§Ã£o do formato do arquivo de ajuda XML</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Os arquivos-fontes da ajuda Scilab são escritos em formato
+    <para>Os arquivos-fontes da ajuda Scilab sÃ£o escritos em formato
     XML</para>
 
-    <para>Arquivos-fontes (com extensão .xml) podem ser encontrados nos
-    diretórios <literal>&lt;SCIDIR&gt;/man/&lt;language&gt;/*</literal>. O
-    nome do arquivo é geralmente associado à palavra-chave (correspondente a
-    um nome de função na maioria dos casos) que descreve .</para>
+    <para>Arquivos-fontes (com extensÃ£o .xml) podem ser encontrados nos
+    diretÃ³rios <literal>&lt;SCIDIR&gt;/man/&lt;language&gt;/*</literal>. O
+    nome do arquivo Ã© geralmente associado Ã  palavra-chave (correspondente a
+    um nome de funÃ§Ã£o na maioria dos casos) que descreve .</para>
   </refsection>
 
   <refsection>
     <title>Breves palavras sobre XML</title>
 
     <para>Um arquivo XML lembra um arquivo HTML, mas possui uma sintaxe tanto
-    mais rígida quanto mais livre. Livre porque você pode construir os seus
-    próprios tags (marcação): o conjunto de tags, junto com suas regras, deve
+    mais rÃ­gida quanto mais livre. Livre porque vocÃª pode construir os seus
+    prÃ³prios tags (marcaÃ§Ã£o): o conjunto de tags, junto com suas regras, deve
     ser descrito em algum lugar, geralmente em outro arquivo
-    (<literal>&lt;SCIDIR&gt;/man/manrev.dtd</literal> para o Scilab), e rígida
-    porque, uma vez que os tags e regras são definidas (as quais são chamadas
-    Definição de Tipo de Documento (Document Type Definition): DTD) , você
-    deve respeitá-las (em particular, para todos os tags
+    (<literal>&lt;SCIDIR&gt;/man/manrev.dtd</literal> para o Scilab), e rÃ­gida
+    porque, uma vez que os tags e regras sÃ£o definidas (as quais sÃ£o chamadas
+    DefiniÃ§Ã£o de Tipo de Documento (Document Type Definition): DTD) , vocÃª
+    deve respeitÃ¡-las (em particular, para todos os tags
     <literal>&lt;MY_TAG&gt;</literal> abertos, deve corresponder um tag
     fechado <literal>&lt;/MY_TAG&gt;</literal>).</para>
 
-    <para>O DTD manrev.dtd é escrito em SGML e precisa a exata sintaxe
-    requerida por uma página de ajuda XML do Scilab. Então se você conhece
-    esta linguagem, você pode ler este arquivo. O seguinte exemplo anotado
-    (veja a próxima seção) mostra algumas possibilidades oferecidas por este
-    DTD e pode ser suficiente para escrever páginas de ajuda simples.</para>
+    <para>O DTD manrev.dtd Ã© escrito em SGML e precisa a exata sintaxe
+    requerida por uma pÃ¡gina de ajuda XML do Scilab. EntÃ£o se vocÃª conhece
+    esta linguagem, vocÃª pode ler este arquivo. O seguinte exemplo anotado
+    (veja a prÃ³xima seÃ§Ã£o) mostra algumas possibilidades oferecidas por este
+    DTD e pode ser suficiente para escrever pÃ¡ginas de ajuda simples.</para>
 
-    <para>Uma vez que a página XML é escrita e está em conformidade com o DTD,
+    <para>Uma vez que a pÃ¡gina XML Ã© escrita e estÃ¡ em conformidade com o DTD,
     ela pode ser transformada em um HTML para ser lida por algum navegador de
-    internet, ou pelo navegador tcltk do Scilab (ver a seção escolha do
-    navegador nesta página). A tradução XML -&gt; HTML é controlada por um
+    internet, ou pelo navegador tcltk do Scilab (ver a seÃ§Ã£o escolha do
+    navegador nesta pÃ¡gina). A traduÃ§Ã£o XML -&gt; HTML Ã© controlada por um
     conjunto de regras escritas no arquivo (XML)
     <literal>&lt;SCIDIR&gt;/man/language/html.xsl</literal>. Estas regras
-    estão correntemente mais ou menos restritas para se adequarem aos recursos
+    estÃ£o correntemente mais ou menos restritas para se adequarem aos recursos
     do navegador tcltk do Scilab (que pode exibir corretamente apenas HTML
-    básico): Se você utilizar um navegador de HTML e quiser melhorar a
-    aparência, terá que modificar este arquivo.</para>
+    bÃ¡sico): Se vocÃª utilizar um navegador de HTML e quiser melhorar a
+    aparÃªncia, terÃ¡ que modificar este arquivo.</para>
   </refsection>
 
   <refsection>
-    <title>Como escrever uma página de ajuda XML do Scilab simples: a maneira
+    <title>Como escrever uma pÃ¡gina de ajuda XML do Scilab simples: a maneira
     lazzy</title>
 
-    <para>Caso se deseje escrever um arquivo XML associado a uma nova função
-    Scilab, pode-se utilizar a função <link
+    <para>Caso se deseje escrever um arquivo XML associado a uma nova funÃ§Ã£o
+    Scilab, pode-se utilizar a funÃ§Ã£o <link
     linkend="help_skeleton">help_skeleton</link> para produzir o esqueleto do
-    arquivo XML. Na maior parte dos casos, o usuário não precisará saber a
+    arquivo XML. Na maior parte dos casos, o usuÃ¡rio nÃ£o precisarÃ¡ saber a
     sintaxe XML.</para>
   </refsection>
 
   <refsection>
-    <title>Como escrever uma página de ajuda XML do Scilab simples: um
+    <title>Como escrever uma pÃ¡gina de ajuda XML do Scilab simples: um
     exemplo</title>
 
-    <para>Aqui está um exemplo simples de uma página de ajuda XML que descreve
-    uma função do Scilab hipotética chamada "foo". No seguinte, o arquivo XML
-    é exibido em uma <literal>fonte de máquina-de-escrever</literal> e
-    recortado em várias partes, cada parte precedida por algumas explicações
-    associadas. O arquivo XML inteiro <literal>foo.xml</literal> está no
-    diretório <literal>&lt;SCIDIR&gt;/man/eng/utility</literal> e o resultado
-    pode ser exibido clicando-se em <link linkend="foo">foo</link> (você pode
-    encontrar outros exemplos no diretório
+    <para>Aqui estÃ¡ um exemplo simples de uma pÃ¡gina de ajuda XML que descreve
+    uma funÃ§Ã£o do Scilab hipotÃ©tica chamada "foo". No seguinte, o arquivo XML
+    Ã© exibido em uma <literal>fonte de mÃ¡quina-de-escrever</literal> e
+    recortado em vÃ¡rias partes, cada parte precedida por algumas explicaÃ§Ãµes
+    associadas. O arquivo XML inteiro <literal>foo.xml</literal> estÃ¡ no
+    diretÃ³rio <literal>&lt;SCIDIR&gt;/man/eng/utility</literal> e o resultado
+    pode ser exibido clicando-se em <link linkend="foo">foo</link> (vocÃª pode
+    encontrar outros exemplos no diretÃ³rio
     <literal>&lt;SCIDIR&gt;/examples/man-examples-xml</literal>). <emphasis
     role="bold">Finalmente</emphasis> note que alguns pares de tags
     <literal>&lt;TAG&gt;</literal>, <literal>&lt;/TAG&gt;</literal> foram
     renomeados aqui <literal>&lt;ATAG&gt;</literal>,
     <literal>&lt;/ATAG&gt;</literal>. Isto porque alguns scripts do Scilab que
-    realizam trabalhos sobre ou a partir dos arquivos XML não verificam se um
-    tag está dentro de uma entrada <literal>VERBATIM</literal>.</para>
+    realizam trabalhos sobre ou a partir dos arquivos XML nÃ£o verificam se um
+    tag estÃ¡ dentro de uma entrada <literal>VERBATIM</literal>.</para>
 
-    <para>As primeiras três linhas do arquivo são mandatórias, a segunda
-    precisa o endereço para o arquivo DTD e a terceira, formada pelo tag
-    <literal>&lt;MAN&gt;</literal>, inicia a descrição hierárquica (o arquivo
+    <para>As primeiras trÃªs linhas do arquivo sÃ£o mandatÃ³rias, a segunda
+    precisa o endereÃ§o para o arquivo DTD e a terceira, formada pelo tag
+    <literal>&lt;MAN&gt;</literal>, inicia a descriÃ§Ã£o hierÃ¡rquica (o arquivo
     deve terminar com o tag <literal>&lt;/MAN&gt;</literal>). As quatro
     entradas seguintes : <literal>LANGUAGE</literal>,
     <literal>TITLE</literal>, <literal>TYPE</literal> e
-    <literal>DATE</literal>, também são mandatórias (nesta ordem), o texto
-    correspondente a <literal>&lt;TYPE&gt;</literal> sendo geralmente 'função
+    <literal>DATE</literal>, tambÃ©m sÃ£o mandatÃ³rias (nesta ordem), o texto
+    correspondente a <literal>&lt;TYPE&gt;</literal> sendo geralmente 'funÃ§Ã£o
     do Scilab' (na maior parte dos casos), mas pode ser simplesmente
     'palavra-chave do Scilab' ou 'tipo de dados do Scilab', ..., dependendo do
-    que explica a página de ajuda.</para>
+    que explica a pÃ¡gina de ajuda.</para>
 
-    <programlisting role = ""><![CDATA[ 
-<!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
-<MAN>
-   <LANGUAGE>eng</LANGUAGE>
-   <TITLE>foo</TITLE>
-   <TYPE>função do Scilab</TYPE>
-   <DATE>$LastChangedDate$</DATE>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;!DOCTYPE MAN SYSTEM "&lt;SCIDIR&gt;/man/manrev.dtd"&gt;
+&lt;MAN&gt;
+   &lt;LANGUAGE&gt;eng&lt;/LANGUAGE&gt;
+   &lt;TITLE&gt;foo&lt;/TITLE&gt;
+   &lt;TYPE&gt;funÃ§Ã£o do Scilab&lt;/TYPE&gt;
+   &lt;DATE&gt;$LastChangedDate$&lt;/DATE&gt;
+ </programlisting>
 
     <para>A primeira destas duas entradas seguintes
-    (<literal>SHORT_DESCRIPTION</literal>) é mandatória e importante desde que
-    as palavras do texto da descrição curta (short description), são
+    (<literal>SHORT_DESCRIPTION</literal>) Ã© mandatÃ³ria e importante desde que
+    as palavras do texto da descriÃ§Ã£o curta (short description), sÃ£o
     utilizadas pelo comando <link linkend="apropos">apropos</link> para buscar
-    páginas de ajuda a partir de uma palavra-chave: a descrição curta é
+    pÃ¡ginas de ajuda a partir de uma palavra-chave: a descriÃ§Ã£o curta Ã©
     utilizada para construir o arquivo <literal>whatis.html</literal>
     correspondente ao seu toolbox e o comando <literal>apropos
-    keyword</literal> faz uma pesquisa em todos os arquivos whatis e propõe os
-    links para cada página onde a palavra <literal>keyword</literal> se
-    encontra em sua descrição curta (na verdade, os tags reais associados são
+    keyword</literal> faz uma pesquisa em todos os arquivos whatis e propÃµe os
+    links para cada pÃ¡gina onde a palavra <literal>keyword</literal> se
+    encontra em sua descriÃ§Ã£o curta (na verdade, os tags reais associados sÃ£o
     <literal>&lt;SHORT_DESCRIPTION&gt;</literal> e
-    <literal>&lt;/SHORT_DESCRIPTION&gt;</literal> e não
+    <literal>&lt;/SHORT_DESCRIPTION&gt;</literal> e nÃ£o
     <literal>&lt;ASHORT_DESCRIPTION&gt;</literal> e
-    <literal>&lt;/ASHORT_DESCRIPTION&gt;</literal>). A próxima entrada
+    <literal>&lt;/ASHORT_DESCRIPTION&gt;</literal>). A prÃ³xima entrada
     (<literal>CALLING_SEQUENCE</literal>) deve ser utilizada ao se descrever
-    uma função (mas não é estritamente mandatória). Se a sua função possui
-    várias seqüências de chamamento, utilize várias entradas
+    uma funÃ§Ã£o (mas nÃ£o Ã© estritamente mandatÃ³ria). Se a sua funÃ§Ã£o possui
+    vÃ¡rias seqÃ¼Ãªncias de chamamento, utilize vÃ¡rias entradas
     <literal>CALLING_SEQUENCE_ITEM</literal>.</para>
 
-    <programlisting role = ""><![CDATA[ 
-<ASHORT_DESCRIPTION name="foo">descrição curta de foo</ASHORT_DESCRIPTION>
-<CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>
-    </CALLING_SEQUENCE>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;ASHORT_DESCRIPTION name="foo"&gt;descriÃ§Ã£o curta de foo&lt;/ASHORT_DESCRIPTION&gt;
+&lt;CALLING_SEQUENCE&gt;
+    &lt;CALLING_SEQUENCE_ITEM&gt;[y] = foo(x)&lt;/CALLING_SEQUENCE_ITEM&gt;
+    &lt;/CALLING_SEQUENCE&gt;
+ </programlisting>
 
-    <para>A entrada seguinte (<literal>PARAM</literal>) não é estritamente
-    mandatória, mas é a boa para descrever cada parâmetro (de entrada e saída)
-    no caso de uma função.</para>
+    <para>A entrada seguinte (<literal>PARAM</literal>) nÃ£o Ã© estritamente
+    mandatÃ³ria, mas Ã© a boa para descrever cada parÃ¢metro (de entrada e saÃ­da)
+    no caso de uma funÃ§Ã£o.</para>
 
-    <programlisting role = ""><![CDATA[ 
-<PARAM>
-   <PARAM_INDENT>
-      <PARAM_ITEM>
-         <PARAM_NAME>x</PARAM_NAME>
-         <PARAM_DESCRIPTION>
-            <SP>: o que pode ser x</SP>
-         </PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-         <PARAM_NAME>y</PARAM_NAME>
-         <PARAM_DESCRIPTION>
-            <SP>: o que pode ser y</SP>
-         </PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-   </PARAM_INDENT>
-</PARAM>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;PARAM&gt;
+   &lt;PARAM_INDENT&gt;
+      &lt;PARAM_ITEM&gt;
+         &lt;PARAM_NAME&gt;x&lt;/PARAM_NAME&gt;
+         &lt;PARAM_DESCRIPTION&gt;
+            &lt;SP&gt;: o que pode ser x&lt;/SP&gt;
+         &lt;/PARAM_DESCRIPTION&gt; 
+      &lt;/PARAM_ITEM&gt;
+      &lt;PARAM_ITEM&gt;
+         &lt;PARAM_NAME&gt;y&lt;/PARAM_NAME&gt;
+         &lt;PARAM_DESCRIPTION&gt;
+            &lt;SP&gt;: o que pode ser y&lt;/SP&gt;
+         &lt;/PARAM_DESCRIPTION&gt; 
+      &lt;/PARAM_ITEM&gt;
+   &lt;/PARAM_INDENT&gt;
+&lt;/PARAM&gt;
+ </programlisting>
 
-    <para>A entrada <literal>DESCRIPTION</literal> é talvez a mais
-    significativa (mas não é estritamente mandatória) e pode ser mais
-    sofisticada que neste exemplo (por exemplo, você pode ter sub-entradas
-    <literal>DESCRIPTION_ITEM</literal>). Aqui, você vê como escrever vários
-    parágrafos (cada um encerrado pelos tags <literal>&lt;P&gt;</literal> e
-    <literal>&lt;/P&gt;</literal>), como enfatizar uma variável, ou um nome de
-    função (encerrando-os por tags <literal>&lt;VERB&gt;</literal> e
+    <para>A entrada <literal>DESCRIPTION</literal> Ã© talvez a mais
+    significativa (mas nÃ£o Ã© estritamente mandatÃ³ria) e pode ser mais
+    sofisticada que neste exemplo (por exemplo, vocÃª pode ter sub-entradas
+    <literal>DESCRIPTION_ITEM</literal>). Aqui, vocÃª vÃª como escrever vÃ¡rios
+    parÃ¡grafos (cada um encerrado pelos tags <literal>&lt;P&gt;</literal> e
+    <literal>&lt;/P&gt;</literal>), como enfatizar uma variÃ¡vel, ou um nome de
+    funÃ§Ã£o (encerrando-os por tags <literal>&lt;VERB&gt;</literal> e
     <literal>&lt;/VERB&gt;</literal>), como enfatizar uma parte o texto
     (<literal>&lt;EM&gt;</literal> ou <literal>&lt;BD&gt;</literal> e
-    <literal>&lt;TT&gt;</literal> para colocar em fonte de máquina de
-    escrever)), e, finalmente, como colocar um link para outra página de ajuda
-    (na verdade, os tags associados são <literal>&lt;LINK&gt;</literal> e
-    <literal>&lt;/LINK&gt;</literal> e não <literal>&lt;ALINK&gt;</literal> e
+    <literal>&lt;TT&gt;</literal> para colocar em fonte de mÃ¡quina de
+    escrever)), e, finalmente, como colocar um link para outra pÃ¡gina de ajuda
+    (na verdade, os tags associados sÃ£o <literal>&lt;LINK&gt;</literal> e
+    <literal>&lt;/LINK&gt;</literal> e nÃ£o <literal>&lt;ALINK&gt;</literal> e
     <literal>&lt;/ALINK&gt;</literal>).</para>
 
-    <programlisting role = ""><![CDATA[ 
-<DESCRIPTION>
-    <P>
-       Um primeiro parágrafo explica o que a função foo computa.
-       Se você deseja enfatizar um nome de parâmetro, você pode utilizar o segunte
-       tag <VERB>x</VERB>, se você desejar enfatizar parte do texto
-       <EM>encerre-a nestes tags</EM> e use estes
-       <BD>para uma fonte em negrito</BD> e finalmente <TT>para um estilo em máquina de escrever</TT>.
-    </P>
-    <P>
-       Um segundo parágrafo... Aqui vai um exemplo de um link para outra página :
-       <ALINK>man</ALINK>.
-    </P>
-</DESCRIPTION>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;DESCRIPTION&gt;
+    &lt;P&gt;
+       Um primeiro parÃ¡grafo explica o que a funÃ§Ã£o foo computa.
+       Se vocÃª deseja enfatizar um nome de parÃ¢metro, vocÃª pode utilizar o segunte
+       tag &lt;VERB&gt;x&lt;/VERB&gt;, se vocÃª desejar enfatizar parte do texto
+       &lt;EM&gt;encerre-a nestes tags&lt;/EM&gt; e use estes
+       &lt;BD&gt;para uma fonte em negrito&lt;/BD&gt; e finalmente &lt;TT&gt;para um estilo em mÃ¡quina de escrever&lt;/TT&gt;.
+    &lt;/P&gt;
+    &lt;P&gt;
+       Um segundo parÃ¡grafo... Aqui vai um exemplo de um link para outra pÃ¡gina :
+       &lt;ALINK&gt;man&lt;/ALINK&gt;.
+    &lt;/P&gt;
+&lt;/DESCRIPTION&gt;
+ </programlisting>
 
-    <para>Aqui está como escrever a sua própria entrada, por exemplo, para
-    escrever observações e/ou notas sobre a sua maravilhosa função.</para>
+    <para>Aqui estÃ¡ como escrever a sua prÃ³pria entrada, por exemplo, para
+    escrever observaÃ§Ãµes e/ou notas sobre a sua maravilhosa funÃ§Ã£o.</para>
 
-    <programlisting role = ""><![CDATA[ 
-<SECTION label='Notes'>
-    <P>
-       Aqui está uma lista de notas :
-    </P>
-    <ITEM label='first'><SP>blablabla...</SP></ITEM>
-    <ITEM label='second'><SP>toto é o francês de foo...</SP></ITEM>
-</SECTION>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;SECTION label='Notes'&gt;
+    &lt;P&gt;
+       Aqui estÃ¡ uma lista de notas :
+    &lt;/P&gt;
+    &lt;ITEM label='first'&gt;&lt;SP&gt;blablabla...&lt;/SP&gt;&lt;/ITEM&gt;
+    &lt;ITEM label='second'&gt;&lt;SP&gt;toto Ã© o francÃªs de foo...&lt;/SP&gt;&lt;/ITEM&gt;
+&lt;/SECTION&gt;
+ </programlisting>
 
-    <para>Uma entrada importante é <literal>EXAMPLE</literal> que é reservada
-    para mostrar usos no Scilab da sua função (comece com exemplos simples!).
-    Note que você deve fechar esta entrada com
-    <literal>]]&gt;&lt;/EXAMPLE&gt;</literal> , e não como aqui com
-    <literal>}}&gt;&lt;/EXAMPLE&gt;</literal> (mais uma vez, este é um truque
-    ruim para evitar problemas de interpretação).</para>
+    <para>Uma entrada importante Ã© <literal>EXAMPLE</literal> que Ã© reservada
+    para mostrar usos no Scilab da sua funÃ§Ã£o (comece com exemplos simples!).
+    Note que vocÃª deve fechar esta entrada com
+    <literal>]]&gt;&lt;/EXAMPLE&gt;</literal> , e nÃ£o como aqui com
+    <literal>}}&gt;&lt;/EXAMPLE&gt;</literal> (mais uma vez, este Ã© um truque
+    ruim para evitar problemas de interpretaÃ§Ã£o).</para>
 
-    <programlisting role = ""><![CDATA[ 
-<EXAMPLE><![CDATA[
-    deff("y=foo(x)","y=x"); // definindo a função foo como a função identidade
+    <programlisting role=""> 
+&lt;EXAMPLE&gt;&lt;![CDATA[
+    deff("y=foo(x)","y=x"); // definindo a funÃ§Ã£o foo como a funÃ§Ã£o identidade
     foo("toto")
-}}></EXAMPLE>
- ]]></programlisting>
+}}&gt;&lt;/EXAMPLE&gt;
+ </programlisting>
 
-    <para>Esta última parte explica como colocar links para outras páginas de
-    ajuda relacionadas (como já foi dito antes, os bons tags são
-    <literal>&lt;LINK&gt;</literal> e <literal>&lt;/LINK&gt;</literal> e não
+    <para>Esta Ãºltima parte explica como colocar links para outras pÃ¡ginas de
+    ajuda relacionadas (como jÃ¡ foi dito antes, os bons tags sÃ£o
+    <literal>&lt;LINK&gt;</literal> e <literal>&lt;/LINK&gt;</literal> e nÃ£o
     <literal>&lt;ALINK&gt;</literal> e <literal>&lt;/ALINK&gt;</literal> ) e
-    finalmente como revelar o seu nome, se você quiser (utilize uma entrada
-    <literal>AUTHOR_ITEM</literal> por autor). Talvez seja uma boa idéia
-    colocar um endereço de email, se você procura por relatos de bugs !</para>
+    finalmente como revelar o seu nome, se vocÃª quiser (utilize uma entrada
+    <literal>AUTHOR_ITEM</literal> por autor). Talvez seja uma boa idÃ©ia
+    colocar um endereÃ§o de email, se vocÃª procura por relatos de bugs !</para>
 
-    <programlisting role = ""><![CDATA[ 
-<SEE_ALSO>
-  <SEE_ALSO_ITEM> <ALINK>man</ALINK> </SEE_ALSO_ITEM>
-  <SEE_ALSO_ITEM> <ALINK>apropos</ALINK> </SEE_ALSO_ITEM>
-</SEE_ALSO>
- <AUTHOR>
-  <AUTHOR_ITEM>B. P.</AUTHOR_ITEM>
-</AUTHOR>
-</MAN>
- ]]></programlisting>
+    <programlisting role=""> 
+&lt;SEE_ALSO&gt;
+  &lt;SEE_ALSO_ITEM&gt; &lt;ALINK&gt;man&lt;/ALINK&gt; &lt;/SEE_ALSO_ITEM&gt;
+  &lt;SEE_ALSO_ITEM&gt; &lt;ALINK&gt;apropos&lt;/ALINK&gt; &lt;/SEE_ALSO_ITEM&gt;
+&lt;/SEE_ALSO&gt;
+ &lt;AUTHOR&gt;
+  &lt;AUTHOR_ITEM&gt;B. P.&lt;/AUTHOR_ITEM&gt;
+&lt;/AUTHOR&gt;
+&lt;/MAN&gt;
+ </programlisting>
   </refsection>
 
   <refsection>
-    <title>Como criar um capítulo de ajuda</title>
+    <title>Como criar um capÃ­tulo de ajuda</title>
 
-    <para>Crie um diretório e escreva um conjunto de arquivos XML construídos
-    como descrito acima. Então, inicie o Scilab e execute
-    <literal>xmltohtml(dir)</literal>, onde é um <literal>dir</literal> string
-    fornecendo o endereço do diretório (ver <link
+    <para>Crie um diretÃ³rio e escreva um conjunto de arquivos XML construÃ­dos
+    como descrito acima. EntÃ£o, inicie o Scilab e execute
+    <literal>xmltohtml(dir)</literal>, onde Ã© um <literal>dir</literal> string
+    fornecendo o endereÃ§o do diretÃ³rio (ver <link
     linkend="xmltohtml">xmltohtml</link> para mais detalhes) .</para>
   </refsection>
 
   <refsection>
-    <title>Como fazer o Scilab reconhecer um novo capítulo de ajuda</title>
+    <title>Como fazer o Scilab reconhecer um novo capÃ­tulo de ajuda</title>
 
-    <para>Isto pode ser feito através da função <link
+    <para>Isto pode ser feito atravÃ©s da funÃ§Ã£o <link
     linkend="add_help_chapter">add_help_chapter</link>.</para>
   </refsection>
 
@@ -273,12 +273,14 @@
     <programlisting role="example">
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
-    scipad(path)
+    if (isdef('editor') | (funptr('editor')&lt;&gt;0)) then
+      editor(path)
+    end
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="apropos">apropos</link></member>

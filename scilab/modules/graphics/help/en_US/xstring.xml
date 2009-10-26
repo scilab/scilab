@@ -28,49 +28,58 @@
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>real scalars, coordinates of the lower-left point of the strings.</para>
+          <para>real vectors or scalars, coordinates of the lower-left point of the strings.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
           <para>matrix of strings.</para>
+          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>angle</term>
         <listitem>
-          <para>real, clockwise angle in degree; default is 0.</para>
+          <para>real vector or scalar, clockwise angle in degree; default is 0.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>box</term>
         <listitem>
-          <para>integer, default is 0.</para>
+          <para>integer vector or scalar, default is 0.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xstring</literal> draws the matrix of strings <literal>str</literal> at location <literal>x,y</literal>
-    (lower-left point) in the current graphic scale: each row of the matrix
-    stands for a line of text and row elements stand for words separated by a
-    white space.  If <literal>angle</literal> is given, it gives the slope in degree
-    used for drawing the strings. If <literal>box</literal> is 1 and <literal>angle</literal> is 0,
-    a box is drawn around the strings.</para>
+    <para>If <literal>x</literal> is a real scalar, it's regarded as a vector with the size of <literal>y</literal> whose elements are set to <literal>x</literal>.</para>
+    <para>If <literal>y</literal> is a real scalar, it's regarded as a vector with the size of <literal>x</literal> whose elements are set to <literal>y</literal>.</para>
+    <para><literal>xstring</literal> draws n strings at location <literal>(x[i], y[i])</literal> in the current graphic scale.</para>
+    <para>If <literal>str</literal> contain n elements, these n elements are the n drawed strings.</para>
+    <para>Otherwise, each row of the matrix stands for a line of text and row elements stand for words separated by a white space.</para>
+    <para>If <literal>angle</literal> is a real scalar, it's regarded as a vector of size n whose elements are set to <literal>angle</literal>.</para>
+    <para><literal>angle(i)</literal>gives the slope in degree used for drawing the strings at location <literal>(x[i], y[i])</literal>.</para>
+    <para>If <literal>box</literal> is a integer scalar, it's regarded as a vector of size n whose elements are set to <literal>box</literal>.</para>
+    <para>If <literal>box(i)</literal> is 1 and <literal>angle(i)</literal> is 0, a box is drawn around the strings at location <literal>(x[i], y[i])</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
-xstring(0.5,0.5,["Scilab" "is"; "not" "esilaB"])
+xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
+// LaTeX rendering (>= Scilab 5.2)
+
 //Other example
 alphabet=["a" "b" "c" "d" "e" "f" "g" ..
           "h" "i" "j" "k" "l" "m" "n" ..
           "o" "p" "q" "r" "s" "t" "u" ..
           "v" "w" "x" "y" "z"];
-xbasc()
+clf()
 plot2d([0;1],[0;2],0)
 xstring(0.1,1.8,alphabet)     // alphabet
 xstring(0.1,1.6,alphabet,0,1) // alphabet in a box

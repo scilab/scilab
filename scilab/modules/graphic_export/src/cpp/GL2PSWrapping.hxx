@@ -64,6 +64,9 @@ const char * sci_gl2psGetFileExtension(int format);
 
 const char * sci_gl2psGetFormatDescription(int format);
 
+/* Added by Calixte */
+int sci_gl2psDrawPixels(int w, int h, int format, int type, const void * buffer);
+/* End */
 
 #ifdef __cplusplus
 }

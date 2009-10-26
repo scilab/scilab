@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,13 +41,13 @@ int set_current_axes_property( sciPointObj * pobj, size_t stackPointer, int valu
 	if (pobj != NULL)
 	{
 		/* This property should not be called on an handle */
-		Scierror(999, _("%s property does not exist for this handle.\n"), "current_axes");
-		return -1;
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
+		return SET_PROPERTY_ERROR;
 	}
 
   if ( !isParameterHandle( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"current_axes") ;
+    Scierror(999, _("Wrong type for '%s' property: Handle expected.\n"), "current_axes");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,13 +55,13 @@ int set_current_axes_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( curAxes == NULL)
   {
-    Scierror(999, "Object is not valid.\n") ;
-    return -1 ;
+    Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
+    return SET_PROPERTY_ERROR ;
   }
   if ( sciGetEntityType( curAxes ) != SCI_SUBWIN )
   {
-    Scierror(999, "Object is not an Axes Entity.\n") ;
-    return -1 ;
+    Scierror(999, _("Wrong value for '%s' property: Must be a handle on a axes.\n"), "current_axes");
+    return SET_PROPERTY_ERROR ;
   }
 
   status1 = sciSetSelectedSubWin( curAxes ) ;

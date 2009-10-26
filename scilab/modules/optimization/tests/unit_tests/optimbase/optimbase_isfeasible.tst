@@ -77,32 +77,18 @@ endfunction
 //    Numerical methods for Nonlinear optimization
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
-function result = gouldnonconvex ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
+function [ f , c , index ] = gouldnonconvex ( x , index )
+  f = []
+  c = []
+  if ( index==2 | index==6 ) then
     f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
   end
-  if ( index==2 | index==3 ) then
+  if ( index==5 | index==6 ) then
     c1 = x(1) - 13.0
     c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
     c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
     c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
+    c = [c1 c2 c3 c4]
   end
 endfunction
 //
@@ -114,32 +100,18 @@ endfunction
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function result = gouldnonconvex2 ( x , index , mydata )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
+function [ f , c , index , mydata ] = gouldnonconvex2 ( x , index , mydata )
+  f = []
+  c = []
+  if ( index==2 | index==6 ) then
     f = (x(1) - mydata.f1 )^3 + ( x(2) - mydata.f2 ) ^ 3
   end
-  if ( index==2 | index==3 ) then
+  if ( index==5 | index==6 ) then
     c1 = x(1) - mydata.a1
     c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - mydata.a2
     c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + mydata.a3
     c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
+    c = [c1 c2 c3 c4]
   end
 endfunction
 //
@@ -172,12 +144,13 @@ assert_equal ( isfeasible , -1 );
 opt = optimbase_destroy(opt);
 //
 // Test with nonlinear inequality constraints and additionnal argument in cost function
-mystuff = struct()
-mystuff.f1 = 10.0
-mystuff.f2 = 20.0
-mystuff.a1 = 13.0
-mystuff.a2 = 100.0
-mystuff.a3 = 82.81
+// Set verbose to 1 to check that verbose mode is operationnal.
+mystuff = struct();
+mystuff.f1 = 10.0;
+mystuff.f2 = 20.0;
+mystuff.a1 = 13.0;
+mystuff.a2 = 100.0;
+mystuff.a3 = 82.81;
 opt = optimbase_new ();
 opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);

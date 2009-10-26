@@ -30,6 +30,10 @@
         <term>title,x_label,y_label, z_label</term>
         <listitem>
           <para>matrices of strings.</para>
+         <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
+          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
+          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
+          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,6 +70,12 @@ plot3d() ;
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
 // draw a box around the titles
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 );
+
+
+// With LaTeX & MathML:
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+
+xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
  ]]></programlisting>
   </refsection>
   <refsection>

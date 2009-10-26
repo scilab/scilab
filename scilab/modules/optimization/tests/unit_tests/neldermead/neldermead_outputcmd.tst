@@ -44,7 +44,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -63,6 +63,7 @@ endfunction
 //    * simplex : the simplex, as a simplex object
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
 //
 function myoutputcmd ( state , data )
   global _OUTPUCMDFLAG_
@@ -72,6 +73,7 @@ function myoutputcmd ( state , data )
   fval = data.fval
   x = data.x
   simplex = data.simplex
+  step = data.step
   // Simplex is a data structure, which can be managed
   // by the simplex class.
   v = optimsimplex_dirmat ( simplex )
@@ -79,8 +81,8 @@ function myoutputcmd ( state , data )
   _OUTPUCMDFLAG_ = 1
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);

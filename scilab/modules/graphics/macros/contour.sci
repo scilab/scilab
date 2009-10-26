@@ -27,7 +27,9 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 		return
 	end
 	
-  if rhs<4, error('contour requires at least 4 arguments'),end;
+  if rhs<4
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour", 4));
+  end
   levels=[]
 
   opts=[]
@@ -63,7 +65,7 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 
   fig=gcf();
   autoc=fig.auto_clear;
-  if autoc=="on" then, xbasc(),end
+  if autoc=="on" then, clf(),end
   a=gca();
   fg=a.foreground
   v=fig.immediate_drawing;

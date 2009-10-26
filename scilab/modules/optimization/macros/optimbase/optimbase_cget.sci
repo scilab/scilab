@@ -57,8 +57,12 @@ function value = optimbase_cget (this,key)
     value = this.boundsmax;
   case "-nbineqconst" then
     value = this.nbineqconst;
+  case "-logfile" then
+    value = this.logfile;
+  case "-withderivatives" then
+    value = this.withderivatives;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s") , "optimbase_cget" , key)
     error(errmsg)
   end
 endfunction

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - INRIA - Allan SIMON
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<Setting>
+	<!-- XPAD configuration -->
+	<Profile name="xpad">
+
+		<!-- GUI Part -->
+
+		<ScrollableUnitIncrement useCache="true" value="20"/>
+		<ScrollableBlockIncrement useCache="true" value="20"/>
+		<VerticalWrapAllowed useCache="true" value="false"/>
+		<HorizontalWrapAllowed useCache="true" value="false"/>
+
+		<styles>
+		
+		  <FontName default="Monospaced" useCache="true" value="Monospaced.plain"/>			
+		  <FontSize default="14" useCache="true" value="14"/>
+
+		  <MainWindowPosition useCache="true" x="150" y="50"/>
+		  <MainWindowSize height="550" useCache="true" width="650"/>
+		
+		  <style name="Default">
+		    <BackgroundColor default="#FFFFFF" useCache="true" value="#FFFFFF"/>
+		    <ForegroundColor default="#000000" useCache="true" value="#000000"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="Operator">
+		    <ForegroundColor default="#ff0000" useCache="true" value="#ff0000"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="Command">
+		    <ForegroundColor default="#b01813" useCache="true" value="#b01813"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+
+      </style>
+      
+      <style name="String">
+		    <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+      
+      <style name="Bool">
+		    <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+
+      </style>
+      
+      <style name="Comment">
+		    <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+
+      <style name="Function">
+		    <ForegroundColor default="#d550d5" useCache="true" value="#d550d5"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+      
+      <style name="Macro">
+		    <ForegroundColor default="#ff9933" useCache="true" value="#ff9933"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+    </styles>
+
+    <!-- Recent Opened Files Section  -->
+    <recentFiles>
+
+</recentFiles>  
+      
+      
+
+	</Profile>
+</Setting>

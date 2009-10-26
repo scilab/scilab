@@ -12,6 +12,12 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 //------------------------------------
 // generate a Makefile for gateway
 
+  [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_Make"));
+    return
+  end
+
   if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='', cc='';end
   for i=1:size(files,'*') // compatibility scilab 4.x
     [path_f, file_f, ext_f] = fileparts(files(i));
@@ -78,6 +84,8 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   FILES_SRC = '';
   OBJS = '';
   OBJS_WITH_PATH = '';
+  CPP_RUNTIME = '';
+  FORTRAN_RUNTIME = '';
   OTHERLIBS = '';
   CC = '';
   CFLAGS = cflags;
@@ -167,6 +175,22 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   
   OBJS = strcat(OBJS_MATRIX, ' ');
   OBJS_WITH_PATH =  strcat(OBJS_WITH_PATH_MATRIX, ' ');
+
+  if ( or(fileext(FILES_SRC_MATRIX) == '.cpp') | or(fileext(FILES_SRC_MATRIX) == '.cxx') ) then
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+      CPP_RUNTIME = 'LIBCPMT.LIB';
+    else
+      CPP_RUNTIME = 'LIBCPMTD.LIB';
+    end
+  end
+
+  if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+      FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
+    else
+      FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+    end
+  end
   
   for x=libs(:)'
      if OTHERLIBS <> '' then
@@ -188,6 +212,8 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FILES_SRC__", FILES_SRC);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS__", OBJS);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS_WITH_PATH__", OBJS_WITH_PATH);
+  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__CPP_RUNTIME__", CPP_RUNTIME);
+  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FORTRAN_RUNTIME__", FORTRAN_RUNTIME);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OTHERSLIBS__", OTHERLIBS);
   
   if CC <> '' then

@@ -1,0 +1,14 @@
+LIBRARY    output_stream.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; output_stream explicit export (SEP 35)
+; --------------------------------------- 
+Scierror
+sciprint
+scivprint
+error_
+SciError
+SciStoreError
+; --------------------------------------- 

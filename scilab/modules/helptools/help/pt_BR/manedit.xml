@@ -51,10 +51,10 @@
     <title>Descrição</title>
 
     <para><literal>edit(manitem)</literal> abre o arquivo xml associado a
-    <literal>manitem</literal> no editor Scipad.</para>
+    <literal>manitem</literal> no editor.</para>
 
     <para>Se não há arquivo xml associado a <literal>manitem</literal> e
-    <literal>manitem</literal> é o nome de uma função Scilab, o Scipad abre
+    <literal>manitem</literal> é o nome de uma função Scilab, o xpad abre
     com o esqueleto do arquivo xml produzido por <link
     linkend="help_skeleton">help_skeleton</link>. Este arquivo está localizado
     em TMPDIR.</para>

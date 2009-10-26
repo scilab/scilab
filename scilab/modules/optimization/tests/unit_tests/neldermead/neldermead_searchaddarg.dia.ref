@@ -43,10 +43,10 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then bugmes();quit;end
 endfunction
 //
-// The _MYDATA_ variable name is chosen so that
+// The _MYDATA_ variable name is chosen so that 
 // no name conflict can possibly occur.
 //
-function y = rosenbrock ( x , _MYDATA_ )
+function [ y , index ] = rosenbrock ( x , index )
   a = _MYDATA_.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
   _MYDATA_.nb = _MYDATA_.nb + 1
@@ -61,8 +61,8 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",200);
-nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-maxiter",400);
+nm = neldermead_configure(nm,"-maxfunevals",600);
 nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
 nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
@@ -70,11 +70,11 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [10.294738520749856292014 105.94430388598999570604]', 1e-6 );
+assert_close ( xopt , [12.0 144.0]', 1e-6 );
 // Check _MYDATA_.nb
 // The variable is just read, not written and the nb field
 // is not updated.

@@ -1,0 +1,278 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// Here, the cost function is OK
+//
+function [ y , index ] = rosenbrockOk ( x , index )
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
+opt = optimbase_configure(opt,"-function",rosenbrockOk);
+opt = optimbase_checkcostfun(opt);
+opt = optimbase_destroy(opt);
+//
+// Here, the cost function is not callable
+//
+function [ y , index ] = rosenbrock2 ( x , index )
+  y = fdsmklqfjdsf;
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
+opt = optimbase_configure(opt,"-function",rosenbrock2);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: Cannot evaluate cost function from costf(x0,1).";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Here, the cost function is callable, but returns a matrix,
+// instead of a scalar.
+//
+function [ y , index ] = rosenbrock2 ( x , index )
+  y = ones(10,10);
+endfunction
+Attention: redéfinition de la fonction: rosenbrock2             . Utilisez funcprot(0) pour éviter ce message
+
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
+opt = optimbase_configure(opt,"-function",rosenbrock2);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix f from costf(x0,2) has 10 rows, instead of 1.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Test with good non linear constraints
+//
+function [ f , c , index ] = optimtestcase ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3]
+  end
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+opt = optimbase_configure(opt,"-nbineqconst",3);
+opt = optimbase_checkcostfun(opt);
+opt = optimbase_destroy(opt);
+//
+// Test with wrong  non linear constraints f(x0,2) is not a row vector
+//
+function [ f , c , index ] = optimtestcase2 ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3].'
+  end
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase2);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+opt = optimbase_configure(opt,"-nbineqconst",3);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 3 rows, instead of 1.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Test with wrong  non linear constraints f(x0,2) is a row vector with 5 components instead of 3
+//
+function [ f , c , index ] = optimtestcase3 ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3 0.0 0.0]
+  end
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase3);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+opt = optimbase_configure(opt,"-nbineqconst",3);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 5 columns, instead of 3.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Test with wrong  non linear constraints f(x0,3) is a column vector
+//
+function [ f , c , index ] = optimtestcase4 ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3].'
+  end
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase4);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+opt = optimbase_configure(opt,"-nbineqconst",3);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 3 rows, instead of 1.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Test with wrong  non linear constraints f(x0,3) is a row vector with 5 columns instead of 4
+//
+function [ f , c , index ] = optimtestcase5 ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3 0.0]
+  end
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase5);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+opt = optimbase_configure(opt,"-nbineqconst",3);
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 4 columns, instead of 3.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);
+//
+// Test with correct rosenbrock function
+//
+function [ f , g , index ] = rosenbrock ( x , index )
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  g(1,1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+  g(1,2) = 200. * ( x(2) - x(1)**2 )
+endfunction
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-function", rosenbrock );
+opt = optimbase_configure(opt,"-withderivatives",%t);
+opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
+opt = optimbase_checkcostfun(opt);
+opt = optimbase_destroy(opt);
+//
+// Test with not correct rosenbrock function : g is a column vector instead of row vector
+//
+function [ f , g , index ] = rosenbrock2 ( x , index )
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+  g(2) = 200. * ( x(2) - x(1)**2 )
+endfunction
+Attention: redéfinition de la fonction: rosenbrock2             . Utilisez funcprot(0) pour éviter ce message
+
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt,"-function", rosenbrock2 );
+opt = optimbase_configure(opt,"-withderivatives",%t);
+opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
+cmd = "opt = optimbase_checkcostfun(opt);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_checkcostfun: The matrix g from costf(x0,3) has 2 rows, instead of 1.";
+assert_equal ( computed , expected );
+opt = optimbase_destroy(opt);

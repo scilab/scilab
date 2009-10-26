@@ -189,7 +189,11 @@ function check_help(dirs)
 		end
 		
 		if grep(sciargs(),"-nw") == [] then
-			scipad(logfile);
+			if (isdef('editor') | (funptr('editor')<>0)) then
+			  editor(logfile);
+			else
+			  mprintf("\n\tSee %s\n",logfile);
+			end
 		else
 			mprintf("\n\tSee %s\n",logfile);
 		end

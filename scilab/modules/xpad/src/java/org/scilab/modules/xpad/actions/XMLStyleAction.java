@@ -14,14 +14,15 @@ package org.scilab.modules.xpad.actions;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class XMLStyleAction extends DefaultCheckAction {
 
-    private  XMLStyleAction(Xpad editor) {
-	super("XML", editor);
-    }
-    
-    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("XML", null, new XMLStyleAction(editor), null);
-    }
+	private  XMLStyleAction(Xpad editor) {
+		super(XpadMessages.XML_STYLE, editor);
+	}
+
+	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+		return createCheckBoxMenu(XpadMessages.XML_STYLE, null, new XMLStyleAction(editor), null);
+	}
 }

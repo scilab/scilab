@@ -32,7 +32,13 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   ng    = 0
   fil   = pathconvert(fil, %f, %t)
-  mlibs = pathconvert(modelica_libs, %f, %t)
+  // MODELICAC on windows does not support '\' at the end of path
+  // TO DO: Fix MODELICAC
+  if MSDOS then
+    mlibs = pathconvert(modelica_libs, %f, %t);
+  else
+    mlibs = pathconvert(modelica_libs, %t, %t);
+  end
 
   name = basename(fil)
   path = strsubst(stripblanks(fil), name + '.mo', '')
@@ -52,14 +58,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
     //++ Define some platform-dependent variables and filenames
     if MSDOS
-      modelicac      = 'modelicac.exe'
-      translator_bin = 'translator.exe'
+      modelicac      = getmodelicacpath() + 'modelicac.exe'
+      translator_bin = getmodelicacpath() + 'translator.exe'
       modelicac_err  = 'Wmodelicac.err'
       translator_err = 'Wtranslator.err'
       unix_err       = 'Wunix.err'
     else
-      modelicac      = 'modelicac'
-      translator_bin = 'translator'
+      modelicac      = getmodelicacpath() + 'modelicac'
+      translator_bin = getmodelicacpath() + 'translator'
       modelicac_err  = 'Lmodelicac.err'
       translator_err = 'Ltranslator.err'
       unix_err       = 'Lunix.err'
@@ -94,7 +100,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     if OUTM then // if_modelicac_fails_then_use_translator
       MSG1 = mgetl(TMPDIR + filesep() + modelicac_err)
       if fileinfo(fullfile(SCI, 'bin', translator_bin)) <> [] then // if_translator_exists
-        translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %f, %t)
+        translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %t, %t)
         ext = filesep() + '*.mo'
         molibs = []
         for k = 1:size(mlibs,'*')

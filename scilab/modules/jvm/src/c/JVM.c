@@ -123,7 +123,7 @@ BOOL startJVM(char *SCI_PATH)
 			/**
 			* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
 			*/
-			#define JVM_OPTIONS_FILENAME_FORMAT "%s/modules/jvm/etc/jvm_options.xml"
+			#define JVM_OPTIONS_FILENAME_FORMAT "%s/etc/jvm_options.xml"
 			char *jvm_options_filename = NULL;
 
 			long status = 0;

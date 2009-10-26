@@ -38,6 +38,7 @@
 
 #include "SetProperty.h"
 #include "GetProperty.h"
+#include "GetJavaProperty.h"
 #include "InitObjects.h"
 #include "BuildObjects.h"
 #include "math_graphics.h"
@@ -50,6 +51,8 @@
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
+#include "loadTextRenderingAPI.h"
+#include "sciprint.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -597,7 +600,7 @@ int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
 
-  if (linewidth < 0.0)
+  if (linewidth < 0)
     {
       Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;
@@ -691,7 +694,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markforeground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -725,7 +728,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
   if (sciGetGraphicContext(pobj) != NULL)
   {
     sciGetGraphicContext(pobj)->markbackground =
-      Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      Max (-1, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     return 0;
   }
 
@@ -1039,10 +1042,13 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
  * @param int nbCol : the number of col of the text matrix
  * @return  0 if OK, -1 if not
  */
-int
-sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
+int sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol)
 {
-  switch (sciGetEntityType (pobj))
+
+/* Check if we should load LaTex / MathML Java libraries */
+	loadTextRenderingAPI(text, nbRow, nbCol);
+
+	switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
       deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;
@@ -2033,6 +2039,12 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
     {
       int size[2] = {newWidth, newHeight} ;
       sciSetJavaWindowSize(pobj, size) ;
+      //Check the new size
+      sciGetJavaWindowSize(pobj, size);
+      if(size[0]!=newWidth || size[1]!=newHeight)
+      {
+        sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"));
+      }
     }
     break;
   default:
@@ -2733,7 +2745,7 @@ int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type )
         case BT_ON:
           pSUBWIN_FEATURE(pobj)->axes.flag[2] = 4 ;
           break ;
-        case BT_HIDDEN_AXIS:
+        case BT_HIDDEN_AXES:
           pSUBWIN_FEATURE(pobj)->axes.flag[2] = 2 ;
           break ;
         case BT_BACK_HALF:

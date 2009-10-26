@@ -9,7 +9,10 @@
 
 if HDF5
 
+if GUI
+# No GUI. Disable the Java build
 USEANT=1
+endif
 
 HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \
@@ -78,15 +81,5 @@ libscihdf5_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### hdf5 : init scripts ####
 libscihdf5_la_etcdir = $(mydatadir)/etc
 libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
-
-
-#### hdf5 : include files ####
-libscihdf5_la_includedir=$(pkgincludedir)/hdf5
-libscihdf5_la_include_HEADERS = includes/gw_hdf5.h \
-includes/h5_attributeConstants.h \
-includes/h5_fileManagement.h \
-includes/h5_readDataFromFile.h \
-includes/h5_writeDataToFile.h \
-includes/dynlib_hdf5_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

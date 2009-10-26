@@ -49,7 +49,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //  </itemizedlist>
 //
 // Examples
-//  help_from_sci()   // Open an empty source code template in the Scipad editor.
+//  help_from_sci()   // Open an empty source code template in the xpad editor.
 //  // Save this template as test_fun.sci in the current directory before running
 //  // the next example commands.
 //
@@ -149,7 +149,9 @@ if argn(2)==0 then
     'endfunction'
   ];
   f=mopen(TMPDIR+filesep()+'function_template.sci','w'); mfprintf(f,'%s\n',template); mclose(f);
-  scipad(TMPDIR+filesep()+'function_template.sci'); helptxt=[];
+  if (isdef('editor') | (funptr('editor')<>0)) then
+    editor(TMPDIR+filesep()+'function_template.sci'); helptxt=[];
+  end
   return;
 end
 

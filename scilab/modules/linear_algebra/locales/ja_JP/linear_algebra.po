@@ -1,0 +1,175 @@
+# Localization of the module linear_algebra
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
+"PO-Revision-Date: \n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+
+# File: macros/cond.sci, line: 16
+# File: macros/range.sci, line: 21
+# File: macros/trace.sci, line: 17
+# File: macros/trace.sci, line: 23
+# File: macros/trace.sci, line: 31
+# File: macros/trace.sci, line: 41
+# File: macros/trace.sci, line: 50
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/diff.sci, line: 19
+# File: macros/diff.sci, line: 28
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
+
+#
+# File: macros/diff.sci, line: 23
+# File: macros/diff.sci, line: 32
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
+
+#
+# File: macros/givens.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 列ベクトルを想定します。\n"
+
+#
+# File: macros/im_inv.sci, line: 22
+# File: macros/spaninter.sci, line: 26
+# File: macros/spanplus.sci, line: 26
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 小さいサイズを想定します。\n"
+
+#
+# File: macros/kernel.sci, line: 31
+#, c-format
+msgid "%s: SVD and QR not implemented in sparse.\n"
+msgstr "%s: SVD と QR は実行されないかもしれません。\n"
+
+#
+# File: macros/kernel.sci, line: 61
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: この特徴は実行されません。\n"
+
+#
+# File: macros/pbig.sci, line: 30
+# File: macros/psmall.sci, line: 31
+# File: macros/rowcomp.sci, line: 42
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d で不正な値: set {%s} しなければなりません。\n"
+
+#
+# File: macros/randpencil.sci, line: 30
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/range.sci, line: 18
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
+
+#
+# File: macros/rowcomp.sci, line: 33
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でないスカラーを想定します。\n"
+
+#
+# File: macros/sqroot.sci, line: 14
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Symmetric expected"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 対称を想定します。"
+
+#
+# File: macros/sqroot.sci, line: 18
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な半正定ではありません"
+
+#
+# File: macros/squeeze.sci, line: 40
+# File: macros/trace.sci, line: 35
+# File: macros/trace.sci, line: 45
+# File: macros/trace.sci, line: 54
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: macros/sva.sci, line: 22
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Requested rank is greater than matrix dimension."
+msgstr "%s: 入力引数 #%d で不正な値: 要求された列は、行列次元よりも大きいです。"
+
+#
+# File: sci_gateway/c/sci_backslash.c, line: 62
+# File: sci_gateway/c/sci_backslash.c, line: 83
+# File: sci_gateway/c/sci_backslash.c, line: 90
+# File: sci_gateway/c/sci_balanc.c, line: 54
+# File: sci_gateway/c/sci_balanc.c, line: 92
+# File: sci_gateway/c/sci_balanc.c, line: 115
+# File: sci_gateway/c/sci_balanc.c, line: 122
+# File: sci_gateway/c/sci_chol.c, line: 48
+# File: sci_gateway/c/sci_det.c, line: 47
+# File: sci_gateway/c/sci_eig.c, line: 81
+# File: sci_gateway/c/sci_eig.c, line: 118
+# File: sci_gateway/c/sci_eig.c, line: 137
+# File: sci_gateway/c/sci_eig.c, line: 143
+# File: sci_gateway/c/sci_hess.c, line: 47
+# File: sci_gateway/c/sci_inv.c, line: 49
+# File: sci_gateway/c/sci_lsq.c, line: 80
+# File: sci_gateway/c/sci_lsq.c, line: 88
+# File: sci_gateway/c/sci_lu.c, line: 49
+# File: sci_gateway/c/sci_qr.c, line: 65
+# File: sci_gateway/c/sci_qr.c, line: 84
+# File: sci_gateway/c/sci_qr.c, line: 107
+# File: sci_gateway/c/sci_qr.c, line: 114
+# File: sci_gateway/c/sci_qr.c, line: 120
+# File: sci_gateway/c/sci_rcond.c, line: 50
+# File: sci_gateway/c/sci_schur.c, line: 70
+# File: sci_gateway/c/sci_schur.c, line: 90
+# File: sci_gateway/c/sci_schur.c, line: 173
+# File: sci_gateway/c/sci_schur.c, line: 216
+# File: sci_gateway/c/sci_schur.c, line: 231
+# File: sci_gateway/c/sci_schur.c, line: 242
+# File: sci_gateway/c/sci_slash.c, line: 59
+# File: sci_gateway/c/sci_slash.c, line: 80
+# File: sci_gateway/c/sci_slash.c, line: 87
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実数、または、複素行列.を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_bdiag.c, line: 97
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: QRステップの非集合です。\n"
+
+#
+# File: sci_gateway/c/sci_schur.c, line: 109
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
+

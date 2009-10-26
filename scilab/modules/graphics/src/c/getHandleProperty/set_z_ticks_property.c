@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the z_ticks field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -30,8 +30,10 @@
 #include "BasicAlgos.h"
 #include "DrawObjects.h"
 #include "freeArrayOfString.h"
+#include "loadTextRenderingAPI.h"
 
 /*------------------------------------------------------------------------*/
+/* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   AssignedList * tlist     = NULL ;
@@ -42,13 +44,13 @@ int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterTlist( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"z_ticks") ;
+    Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "z_ticks");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"ticks");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_ticks");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -98,6 +100,9 @@ int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   labels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
   if( nbTicsCol * nbTicsRow )
   {
+/* Check if we should load LaTex / MathML Java libraries */
+	  loadTextRenderingAPI(labels, nbTicsCol, nbTicsRow);
+
     ppSubWin->axes.u_zlabels = createStringArrayCopy( labels,  nbTicsCol * nbTicsRow );
   }
   else

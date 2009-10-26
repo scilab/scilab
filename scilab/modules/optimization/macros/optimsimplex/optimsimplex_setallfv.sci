@@ -16,6 +16,14 @@
 //   fv : the array of function values
 //
 function this = optimsimplex_setallfv ( this , fv )
-  this.fv ( 1:this.nbve ) = fv ( 1:this.nbve );
+  fv1 = size ( fv , 1 );
+  if fv1 <> this.nbve then
+    error ( msprintf ( gettext ( "%s: The number of rows in the function value array is %d, while expected %d." ), "optimsimplex_setallfv" , fv1 , this.nbve ))
+  end
+  fv2 = size ( fv , 2 );
+  if fv2 <> 1 then
+    error ( msprintf ( gettext ( "%s: The number of columns in the function value array is %d, while expected 1." ), "optimsimplex_setallfv" , fv2 ))
+  end
+  this.fv ( 1:this.nbve , 1 ) = fv ( 1:this.nbve );
 endfunction
 

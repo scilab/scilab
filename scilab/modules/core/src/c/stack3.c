@@ -21,7 +21,7 @@
 #include <string.h>
 #include "stack-c.h"
 
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"

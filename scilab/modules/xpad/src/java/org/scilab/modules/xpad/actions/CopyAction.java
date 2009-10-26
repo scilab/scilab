@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
@@ -21,11 +22,12 @@ import javax.swing.text.DefaultEditorKit;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class CopyAction extends DefaultAction {
 
     private CopyAction(Xpad editor) {
-	super("Copy", editor);
+	super(XpadMessages.COPY, editor);
     }
     
     public void doAction() {
@@ -33,10 +35,10 @@ public class CopyAction extends DefaultAction {
     }
     
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Copy", null, new CopyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+	return createMenu(XpadMessages.COPY, null, new CopyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
     public static PushButton createButton(Xpad editor) {
-	return createButton("Copy", "edit-copy.png", new CopyAction(editor));
+	return createButton(XpadMessages.COPY, "edit-copy.png", new CopyAction(editor));
     }
 }

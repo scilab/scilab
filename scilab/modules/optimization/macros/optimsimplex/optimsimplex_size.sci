@@ -25,36 +25,38 @@
 //   Chapter 6., section 6.2
 //
 function ssize = optimsimplex_size ( this , method )
-  n = this.n
+  n = this.n;
+  nv = this.nbve;
   if (~isdef('method','local')) then
     method = "sigmaplus";
   end
   select method
   case "Nash" then
-    // TODO : fix the formula and use norm - 1 instead of euclidian norm (check that Nash indeed use norm 1)
-    ssize = 0.0;
-    for iv = 2:this.nbve
-      ssize = ssize + norm(this.x(:,iv) - this.x(:,1));
-    end
+    v1 = this.x(1,:) .*. ones(nv-1,1);
+    edges = this.x(2:nv,:) - v1;
+    abedges = abs(edges);
+    n1 = sum(abedges,"c");
+    ssize = sum ( n1 );
   case "diameter" then
     ssize = 0.0;
-    for i = 1:this.nbve
-      for j = 1:this.nbve
-        ssize = max(ssize , norm(this.x(:,i) - this.x(:,j)));
-      end
+    for i = 1:nv
+      vi = this.x(i,:) .*. ones(nv,1);
+      edges = vi - this.x(1:nv,:);
+      n2 = sqrt ( sum ( edges.^2 , "c" ) );
+      ssize = max ( max( n2 ) , ssize );
     end
   case "sigmaplus" then
-    ssize = 0.0;
-    for j = 2:this.nbve
-      ssize = max(ssize , norm(this.x(:,j) - this.x(:,1)));
-    end
+    v1 = this.x(1,:) .*. ones(nv-1,1);
+    edges = this.x(2:nv,:) - v1;
+    n2 = sqrt ( sum ( edges.^2 , "c" ) );
+    ssize = max ( n2 );
   case "sigmaminus" then
-    ssize = 1.e307;
-    for j = 2:this.nbve
-      ssize = min(ssize , norm(this.x(:,j) - this.x(:,1)));
-    end
+    v1 = this.x(1,:) .*. ones(nv-1,1);
+    edges = this.x(2:nv,:) - v1;
+    n2 = sqrt ( sum ( edges.^2 , "c" ) );
+    ssize = min ( n2 );
   else
-    errmsg = sprintf("Unknown simplex size method %s",method)
+    errmsg = msprintf(gettext ( "%s: Unknown simplex size method %s") , "optimsimplex_size",method)
     error(errmsg)
   end
 endfunction

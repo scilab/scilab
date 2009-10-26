@@ -17,9 +17,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "copyfile.h"
 #include "FileExist.h"
@@ -32,13 +30,16 @@ static void returnCopyFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_copyfile(char *fname,unsigned long fname_len)
 {
+	StrErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
+	int iType1 = 0;
 	int lenStVarOne = 0;
 	int m1 = 0, n1 = 0;
 
 	int *piAddressVarTwo = NULL;
 	wchar_t *pStVarTwo = NULL;
+	int iType2 = 0;
 	int lenStVarTwo = 0;
 	int m2 = 0, n2 = 0;
 
@@ -46,15 +47,27 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,2);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	if (getVarType(piAddressVarOne) != sci_strings)
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if (iType1 != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
-	getVarDimension(piAddressVarOne, &m1, &n1);
+	strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
@@ -68,18 +81,42 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
-	getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	getVarAddressFromPosition(2, &piAddressVarTwo);
+	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
-	if (getVarType(piAddressVarTwo) != sci_strings)
+	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType2 != sci_strings)
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
 		return 0;
 	}
 
-	getVarDimension(piAddressVarTwo, &m2, &n2);
+	strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
 	if ( (m2 != n2) && (n2 != 1) ) 
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
@@ -95,7 +132,13 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
-	getMatrixOfWideString(piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	
+	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
 
 	if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
 	{
@@ -194,7 +237,7 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
 		wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
 		wcfilename = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
 
-		splitpathW(wcFullFilename, wcdrv, wcdir, wcname, wcext);
+		splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
 		wcscpy(wcfilename, wcname);
 		wcscat(wcfilename, wcext);
@@ -283,12 +326,13 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 	}
 #endif
 
-	createMatrixOfDouble(Rhs + 1, m_out, n_out, &dError);
+	createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dError);
+	
 	LhsVar(1) = Rhs + 1;
 
 	if (Lhs == 2)
 	{
-		createMatrixOfWideString(Rhs + 2, m_out, n_out, strError);
+		createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, strError);
 		LhsVar(2) = Rhs + 2;
 	}
 

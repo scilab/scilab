@@ -73,8 +73,10 @@ asech(1)
     <title>Voir aussi</title>
 
     <simplelist type="inline">
-      <member><link linkend="sech">sech</link> <link
-      linkend="csgn">csgn</link></member>
+      <member>
+        <link linkend="sech">sech</link>
+        <!--<link linkend="csgn">csgn</link>-->
+      </member>
     </simplelist>
   </refsection>
 

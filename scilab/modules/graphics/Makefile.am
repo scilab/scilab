@@ -38,6 +38,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
+src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -444,44 +445,6 @@ libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-#### graphics : include files ####
-libscigraphics_la_includedir=$(pkgincludedir)/graphics
-libscigraphics_la_include_HEADERS = includes/GetCommandArg.h \
-includes/DefaultCommandArg.h \
-includes/Axes.h \
-includes/sciMatrix.h \
-includes/graphicModuleLoad.h \
-includes/GetProperty.h \
-includes/SetProperty.h \
-includes/BasicAlgos.h \
-includes/sciCall.h \
-includes/InitObjects.h \
-includes/Format.h \
-includes/Interaction.h \
-includes/HandleManagement.h \
-includes/WindowList.h \
-includes/PloEch.h \
-includes/DrawObjects.h \
-includes/ObjectStructure.h \
-includes/BuildObjects.h \
-includes/CloneObjects.h \
-includes/pixel_mode.h \
-includes/Champ.h \
-includes/StringMatrix.h \
-includes/gw_graphics.h \
-includes/DestroyObjects.h \
-includes/math_graphics.h \
-includes/CurrentObjectsManagement.h \
-includes/ObjectSelection.h \
-includes/axesScale.h \
-includes/Contour.h \
-includes/getDictionaryGetProperties.h \
-includes/getDictionarySetProperties.h \
-includes/GrayPlot.h \
-includes/TerminateGraphics.h \
-includes/Plot2d.h \
-includes/dynlib_graphics.h
-
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)
 nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
@@ -542,15 +505,11 @@ libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 pkglib_LTLIBRARIES = libscigraphics-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
-
-
-if GUI
-USEANT=1
-endif
 
 
 include $(top_srcdir)/Makefile.incl.am

@@ -56,7 +56,7 @@ function atomsList()
 		this_package_version = this_package_versions(1);
 		
 		// Get the details of this toolbox
-		this_package_details = atomsToolboxDetails(this_package_name,this_package_version);
+		this_package_details = atomsToolboxDetails([this_package_name,this_package_version]);
 		this_package_summary = this_package_details("Summary");
 		
 		packages_disp        = [ packages_disp ; this_package_name this_package_summary ];

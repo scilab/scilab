@@ -306,8 +306,8 @@ METH=3;TOL=-1;
 SYS1=syslin(1,A,B,C,D,X0);
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

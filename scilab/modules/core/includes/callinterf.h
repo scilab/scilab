@@ -83,9 +83,9 @@
 /* 59 */						#include "dynamic_gateways.h" /* matio */
 /* 60 */						#include "dynamic_gateways.h" /* helptools */
 /* 61 */						#include "../../call_scilab/includes/gw_call_scilab.h"
-/* 62 */						#include "../../hdf5/includes/gw_hdf5.h"
+/* 62 */						#include "dynamic_gateways.h" /* hdf5 */
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
-/* 64 */						 /* xcos */
+/* 64 */						#include "dynamic_gateways.h" /* xcos */
 
 /*-------------------------------------
  * long jump to stop interface computation

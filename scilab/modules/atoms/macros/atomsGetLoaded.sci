@@ -48,7 +48,7 @@ function packages = atomsGetLoaded()
 		current_name         = part(loaded(i),1:current_name_length-1);
 		current_version      = part(loaded(i),current_name_length+3:length(loaded(i)));
 		
-		packages = [ packages ; atomsGetInstalledDetails(current_name,current_version) ];
+		packages = [ packages ; atomsGetInstalledDetails([current_name current_version]) ];
 	end
 	
 endfunction

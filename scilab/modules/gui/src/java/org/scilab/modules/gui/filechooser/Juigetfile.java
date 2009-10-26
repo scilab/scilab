@@ -23,7 +23,7 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
  */
 public class Juigetfile {
 	
-	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.sci", "*.sc*", "*.cos*"};
+	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.cos*", "*.sci", "*.sc*"};
 	public static final String DEFAULT_INITIAL_DIRECTORY = System.getProperty("user.dir");
 	public static final String DEFAULT_BOX_TITLE_OPEN = "uigetfile";
 	public static final String DEFAULT_BOX_TITLE_SAVE = "uiputfile";

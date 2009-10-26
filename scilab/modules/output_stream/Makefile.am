@@ -108,19 +108,10 @@ libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
-libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
-libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-includes/erro.h \
-includes/do_error_number.h \
-includes/errmds.h \
+libscioutput_stream_la_includedir=$(pkgincludedir)
+libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
-includes/Scierror.h \
-includes/basout.h \
-includes/msgs.h \
-includes/sciprint_full.h \
-includes/do_xxprintf.h \
-includes/gw_output_stream.h \
-includes/dynlib_output_stream.h
+includes/Scierror.h
 
 include $(top_srcdir)/Makefile.incl.am
 

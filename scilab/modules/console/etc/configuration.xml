@@ -19,6 +19,7 @@
 		<!-- GUI Part -->
 		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
 		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
+		<LastOpenedDirectory useCache="true" value=""/>
 		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
 		<BackgroundColor useCache="true" value="#FFFFFF"/>
 		<ForegroundColor useCache="true" value="#000000"/>
@@ -95,4 +96,35 @@
 		</ActionMapping>
 
 	</Profile>
+	
+	<!-- Scilab configuration under MacOSX -->
+	<Profile name="macosx">
+		<!-- Key mapping -->
+		<KeyMapping>
+			<Key name="VK_F1" mask="" action="HELP"/>
+			<Key name="VK_F2" mask="" action="CLEARCONSOLE"/>
+			<Key name="VK_F12" mask="" action="CONSOLEBOX"/>
+			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
+			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
+			<Key name="VK_TAB" mask="" action="COMPLETION"/>
+			<Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
+			<Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
+			<Key name="VK_A" mask="META_MASK" action="LINE_BEGINNING"/>
+			<Key name="VK_B" mask="META_MASK" action="PREVIOUS_CHAR"/>
+			<Key name="VK_C" mask="META_MASK" action="INTERRUPT_SCILAB_WORK_OR_COPY"/>
+			<Key name="VK_D" mask="META_MASK" action="DEL_NEXT_CHAR"/>
+			<Key name="VK_E" mask="META_MASK" action="LINE_END"/>
+			<Key name="VK_F" mask="META_MASK" action="NEXT_CHAR"/>
+			<Key name="VK_H" mask="META_MASK" action="DEL_PREVIOUS_CHAR"/>
+			<Key name="VK_K" mask="META_MASK" action="DEL_END_OF_LINE"/>
+			<Key name="VK_N" mask="META_MASK" action="NEXT_HISTORY_LINE"/>
+			<Key name="VK_P" mask="META_MASK" action="PREVIOUS_HISTORY_LINE"/>
+			<Key name="VK_S" mask="META_MASK" action="SELECTALL"/>
+			<Key name="VK_U" mask="META_MASK" action="DEL_WHOLE_LINE"/>
+			<Key name="VK_ESCAPE" mask="" action="DEL_WHOLE_LINE"/> 
+			<Key name="VK_W" mask="META_MASK" action="DEL_LAST_WORD"/>
+			<Key name="VK_X" mask="META_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
+		</KeyMapping>
+	</Profile>
+	
 </Setting>

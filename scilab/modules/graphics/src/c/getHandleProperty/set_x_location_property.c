@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,13 +33,13 @@ int set_x_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"x_location") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "x_location");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"x_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -50,14 +51,17 @@ int set_x_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     pSUBWIN_FEATURE(pobj)->axes.xdir = 'd' ;
   }
-  else if ( isStringParamEqual( stackPointer, "middle" ) || isStringParamEqual( stackPointer, "origin" ) )
+  else if ( isStringParamEqual( stackPointer, "middle" ) )
   {
-    /* old value middle kept for compatibility with scilab 4 */
     pSUBWIN_FEATURE(pobj)->axes.xdir = 'c' ;
+  }
+  else if ( isStringParamEqual( stackPointer, "origin" ) )
+  {
+    pSUBWIN_FEATURE(pobj)->axes.xdir = 'o' ;
   }
   else  
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_x_location_property",2,"top","bottom","origin") ;
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "x_location", "top, bottom, middle, origin");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

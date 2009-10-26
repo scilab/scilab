@@ -4,6 +4,8 @@ commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
 flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
 
+jgraphx.jar=${thirdparty.dir}/jgraphx.jar
+
 jogl.jar=${thirdparty.dir}/jogl.jar
 
 jhdf5.jar=${thirdparty.dir}/jhdf5.jar
@@ -15,6 +17,8 @@ gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
 jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
+
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.3.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -56,6 +60,9 @@ library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
 library.hdf5.name=org.scilab.modules.hdf5.jar
+
+library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
+library.xcos.name=org.scilab.modules.xcos.jar
 
 library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
 library.xpad.name=org.scilab.modules.xpad.jar

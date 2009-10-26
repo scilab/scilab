@@ -48,6 +48,25 @@ function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
+// With base simplex and no function
+simplex = [...
+24.2 -1.2 1.0
+93.6 -0.2 1.0
+36.2 -1.2 2.0
+];
+s1 = optimsimplex_new();
+s1 = optimsimplex_setall ( s1 , simplex );
+s2 = optimsimplex_new ( "oriented" , s1 );
+computed = optimsimplex_getall ( s2 );
+expected = [...
+24.2 -1.2 1.0
+0.0 -1.7 1.0
+0.0 -1.2 0.5
+];
+assert_close ( computed , expected , %eps );
+s1 = optimsimplex_destroy(s1);
+s2 = optimsimplex_destroy(s2);
+
 // With basic function
 simplex = [...
 24.2 -1.2 1.0
@@ -56,7 +75,7 @@ simplex = [...
 ];
 s1 = optimsimplex_new();
 s1 = optimsimplex_setall ( s1 , simplex );
-s2 = optimsimplex_oriented ( s1 , rosenbrock );
+s2 = optimsimplex_new ( "oriented" , s1 , rosenbrock );
 computed = optimsimplex_getall ( s2 );
 expected = [...
 24.2 -1.2 1.0
@@ -82,7 +101,7 @@ simplex = [...
 ];
 s1 = optimsimplex_new();
 s1 = optimsimplex_setall ( s1 , simplex );
-[s2,myobj] = optimsimplex_oriented ( s1 , mycostf , myobj );
+[s2,myobj] = optimsimplex_new ( "oriented" , s1 , mycostf , myobj );
 computed = optimsimplex_getall ( s2 );
 expected = [...
 24.2 -1.2 1.0

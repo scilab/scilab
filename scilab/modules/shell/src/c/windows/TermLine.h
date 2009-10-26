@@ -22,6 +22,18 @@
 char *getCurrentLine(void);
 
 /**
+* returns line before caret
+* return line
+*/
+char *getLineBeforeCaret(void);
+
+/**
+* returns line after caret
+* return line
+*/
+char *getLineAfterCaret(void);
+
+/**
 * moves to the beginning of the line 
 */ 
 void moveBeginningLine(void);

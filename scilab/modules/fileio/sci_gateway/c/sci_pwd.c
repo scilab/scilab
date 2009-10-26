@@ -19,7 +19,6 @@
 int sci_pwd(char *fname,unsigned long fname_len)
 {
 	int ierr = 0;
-	int lpath = 0;
 	char *path = NULL;
 
 	Rhs = Max(Rhs,0);
@@ -27,10 +26,11 @@ int sci_pwd(char *fname,unsigned long fname_len)
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	scigetcwd(&path,&lpath,&ierr);
+	path = scigetcwd(&ierr);
 
 	if (ierr)
 	{
+		if (path) {FREE(path); path = NULL;}
 		Scierror(998,_("%s: An error occurred.\n"), fname);
 		return 0;
 	}
@@ -43,6 +43,8 @@ int sci_pwd(char *fname,unsigned long fname_len)
 		CreateVarFromPtr(Rhs+1, STRING_DATATYPE, &m1, &n1, &path);
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
+
+		if (path) {FREE(path); path = NULL;}
 	}
 
 	return 0;

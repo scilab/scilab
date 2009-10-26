@@ -13,6 +13,6 @@
 #define __INTERNAL_STRING_API__
 
 //local string functions
-int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
+StrErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
 
 #endif /* __INTERNAL_STRING_API__ */

@@ -134,7 +134,7 @@ h=a.children
 h.data_mapping="direct";
    
 // A 2D ploting of a matrix using colors 
-xbasc()
+clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
   

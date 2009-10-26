@@ -44,7 +44,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -80,8 +80,8 @@ function myoutputcmd ( state , data , myobj )
   _OUTPUCMDFLAG_ = myobj.myarg
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 myobj = tlist(["T_MYSTUFF","myarg"]);
 myobj.myarg = 12;

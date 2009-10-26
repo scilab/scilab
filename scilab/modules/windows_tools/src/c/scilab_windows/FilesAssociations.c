@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2009 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -30,31 +31,32 @@
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
 static BOOL isGoodExtension(char *chainefichier,char *ext);
+static BOOL IsAScicosFileCOS(char *chainefichier);
+static BOOL IsAScicosFileCOSF(char *chainefichier);
+static BOOL IsAScicosFileXCOS(char *chainefichier);
 /*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
+#define MSG_SCIMSG2_XCOS "%s -e xcos(getlongpathname('%s'));"
 #define MSG_SCIMSG3 "%s -e edit_graph(getlongpathname('%s'));"
 #define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
-#define MSG_SCIMSG5_SCIPAD "%s -e scipad(getlongpathname('%s'));"
-#define MSG_SCIMSG5_XPAD "%s -e xpad(getlongpathname('%s'));"
-/* we try to launch scipad */
-#define MSG_SCIMSG6_SCIPAD "execstr('scipad(''%s'');','errcatch');"
-/* we try to launch xpad */
-#define MSG_SCIMSG6_XPAD "execstr('xpad(getlongpathname(''%s''));','errcatch');"
+#define MSG_SCIMSG5_EDITOR "%s -e editor(getlongpathname('%s'));"
+/* we try to launch scilab editor */
+#define MSG_SCIMSG6_EDITOR "execstr('editor(getlongpathname(''%s''));','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
 /*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsAFile(char *chainefichier)
 {
-     WIN32_FIND_DATA FindFileData;
-     HANDLE handle = FindFirstFile (chainefichier, &FindFileData);
-     if (handle != INVALID_HANDLE_VALUE)
-     {
-         FindClose (handle);
-         return TRUE;
-     }
-     return FALSE;
+	WIN32_FIND_DATA FindFileData;
+	HANDLE handle = FindFirstFile (chainefichier, &FindFileData);
+	if (handle != INVALID_HANDLE_VALUE)
+	{
+		FindClose (handle);
+		return TRUE;
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 /* Teste si le fichier a une extension .sav ou .bin*/
@@ -86,7 +88,9 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
 {
-	if ( IsAScicosFileCOS(chainefichier) || IsAScicosFileCOSF(chainefichier) ) return TRUE;
+	if ( IsAScicosFileCOS(chainefichier) || 
+		IsAScicosFileCOSF(chainefichier) ||
+		IsAScicosFileXCOS(chainefichier) ) return TRUE;
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -100,32 +104,17 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 	return isGoodExtension(chainefichier,".COSF");
 }
 /*--------------------------------------------------------------------------*/
+BOOL IsAScicosFileXCOS(char *chainefichier)
+{
+	return isGoodExtension(chainefichier,".XCOS");
+}
+/*--------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 {
-	int Retour=FALSE;
-	char FinalFileName[MAX_PATH];
-	char ShortPath[MAX_PATH];
-	char PathWScilex[MAX_PATH];
-	
-	if (fichier[0]=='\"')
-	{
-		char buffertemp[MAX_PATH];
-		int i=1;
-		
-		while (fichier[i] != '"')
-		{
-			buffertemp[i-1]=fichier[i];
-			i++;
-			if (i> (int)strlen(fichier))
-			{
-				i=(int)strlen(fichier);
-				break;
-			}
-		}
-		buffertemp[i-1]='\0';
-		strcpy(fichier,buffertemp);
-	}
-	if (fichier[strlen(fichier)-1]=='\"') fichier[strlen(fichier)-1]='\0';
+	int Retour = FALSE;
+	char FinalFileName[(MAX_PATH * 2) + 1];
+	char ShortPath[(MAX_PATH * 2) + 1];
+	char PathWScilex[(MAX_PATH * 2) + 1];
 
 	if (IsAFile(fichier))
 	{
@@ -136,7 +125,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 
 		switch (OpenCode)
 		{
-			case 1: /* Execute -X*/
+		case 1: /* Execute -X*/
 			{
 				if ( IsABinOrSavFile(FinalFileName) == TRUE )
 				{
@@ -144,38 +133,46 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					wsprintf(Cmd,MSG_SCIMSG1,PathWScilex,FinalFileName,FinalFileName);
 				}
 				else
-				if  ( IsAScicosFile(fichier) == TRUE )
-				{
-					ExtensionFileIntoLowerCase(FinalFileName);	
-					wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
-				}
-				else
-				if ( IsAGraphFile(fichier) == TRUE )
-				{
-					ExtensionFileIntoLowerCase(FinalFileName);	
-					wsprintf(Cmd,MSG_SCIMSG3,PathWScilex,FinalFileName);
-				}
-				else wsprintf(Cmd,MSG_SCIMSG4,PathWScilex,FinalFileName);
+					if  ( IsAScicosFile(fichier) == TRUE )
+					{
+						ExtensionFileIntoLowerCase(FinalFileName);	
+						if (with_module("xcos"))
+						{
+							wsprintf(Cmd,MSG_SCIMSG2_XCOS,PathWScilex,FinalFileName);
+						}
+						else
+						{
+							if (IsAScicosFileXCOS(fichier) == TRUE)
+							{
+								MessageBox(NULL,"Please install xcos module.","Error",MB_ICONSTOP);
+								exit(0);
+							}
+							wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
+						}
+					}
+					else
+						if ( IsAGraphFile(fichier) == TRUE )
+						{
+							ExtensionFileIntoLowerCase(FinalFileName);	
+							wsprintf(Cmd,MSG_SCIMSG3,PathWScilex,FinalFileName);
+						}
+						else wsprintf(Cmd,MSG_SCIMSG4,PathWScilex,FinalFileName);
 			}
 			break;
-			case 2: /* Print -P*/
+		case 2: /* Print -P*/
 			{
 				PrintFile(fichier);
 				strcpy(Cmd," ");
 				exit(0);
 			}
 			break;
-			case 0:default: /* Open -O*/
+		case 0:default: /* Open -O*/
 			{
 				if ( (!HaveAnotherWindowScilab()) || (haveMutexClosingScilab()) )
 				{
 					if (with_module("xpad"))
 					{
-						wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
-					}
-					else
-					{
-						wsprintf(Cmd,MSG_SCIMSG5_SCIPAD,PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 					}
 				}
 				else
@@ -185,11 +182,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					ScilabDestination = getLastScilabFinded();
 					if (with_module("xpad"))
 					{
-						wsprintf(Cmd,MSG_SCIMSG6_XPAD,FinalFileName);
-					}
-					else
-					{
-						wsprintf(Cmd,MSG_SCIMSG6_SCIPAD,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG6_EDITOR,FinalFileName);
 					}
 
 					if (ScilabDestination)
@@ -202,11 +195,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					{
 						if (with_module("xpad"))
 						{
-							wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
-						}
-						else
-						{
-							wsprintf(Cmd,MSG_SCIMSG5_SCIPAD,PathWScilex,FinalFileName);
+							wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 						}
 					}
 				}
@@ -232,9 +221,9 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	}
 	/* le dernier . permet d'avoir l'extension */
 	ext=_strlwr(lastdot); /* Fichier en Majuscule */
-	
+
 	strcpy(&fichier[strlen(fichier)-strlen(ext)],ext);
-	
+
 	FREE(tmpfile);
 }
 /*--------------------------------------------------------------------------*/

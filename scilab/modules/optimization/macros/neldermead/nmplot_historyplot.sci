@@ -16,6 +16,9 @@
 //  mytitle , myxlabel , myylabel : the parameters of the plot
 //
 function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
+  if (~isdef('datafile','local')) then
+    datafile = this.foptfn;
+  end
   if (~isdef('mytitle','local')) then
     mytitle = "";
   end
@@ -27,10 +30,7 @@ function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
   end
   exec(datafile,-1);
   nbiter = size ( history , 1 )
-  n = neldermead_cget ( this.nmbase , "-numberofvariables" )
-  for iter = 1:nbiter
-    plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
-  end
+  plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
   f = gcf();
   f.children.title.text = mytitle;
   f.children.x_label.text = myxlabel;

@@ -15,6 +15,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
 				                         cc)
 
 
+  [lhs,rhs] = argn(0);
+  if rhs < 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
+    return
+  end
+  
   libn=""; //** init variable 
 
   if ~haveacompiler() then
@@ -76,12 +82,17 @@ function libn = ilib_compile(lib_name,makename,files, ..
     end
    
   else
-    //** ---------- Linux section ---------------------  
-	defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
-	defaultModulesFHeader=[ "core" ];
+    //** ---------- Linux/MacOS/Unix section ---------------------  
 	
+	ScilabTreeFound=%f
+
     // Source tree version
+	// Headers are dispatched in the source tree
 	if isdir(SCI+"/modules/core/includes/") then
+	  defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
+	  defaultModulesFHeader=[ "core" ];
+	  ScilabTreeFound=%t
+
 	  for x = defaultModulesCHeader(:)' 
 	      cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
 	  end
@@ -92,27 +103,22 @@ function libn = ilib_compile(lib_name,makename,files, ..
           end
 	end
 
-	// Add MALLOC since that is this two cases, it is at the same place
-	defaultModulesCHeader=[ defaultModulesCHeader, "malloc" ]; 
-
 	// Binary version
-	if isdir(SCI+"/../../include/scilab/core/") then
-	  for x = defaultModulesCHeader(:)' 
-	  	  cflags="-I"+SCI+"/../../include/scilab/"+ x + "/ " + cflags
-	  end
- 	  for x = defaultModulesFHeader(:)' 
-	  	  fflags="-I"+SCI+"/../../include/scilab/"+x+"/ "+fflags
-	  end
+	if isdir(SCI+"/../../include/scilab/") & ScilabTreeFound then
+  	  cflags="-I"+SCI+"/../../include/scilab/ " + cflags
+  	  fflags="-I"+SCI+"/../../include/scilab/ " + fflags
+	  ScilabTreeFound=%t
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/include/scilab/") then
-	  for x = defaultModulesCHeader(:)' 
-	  	  cflags="-I/usr/include/scilab/"+x+"/ "+cflags
-	  end
- 	  for x = defaultModulesFHeader(:)' 
-	  	  fflags="-I/usr/include/scilab/"+x+"/ "+fflags
-	  end
+	if isdir("/usr/include/scilab/") & ScilabTreeFound then
+	   cflags="-I/usr/include/scilab/ "+cflags
+	   fflags="-I/usr/include/scilab/ "+fflags
+	   ScilabTreeFound=%t
+	end
+
+	if ( ilib_verbose() <> 0 & ScilabTreeFound <> %t) then
+	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
 	end
 
       oldPath = pwd();
@@ -125,8 +131,13 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
     //**          environment where the Makefile are created from a "./configure"  
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
+
+	    if ( ilib_verbose() == 2 ) then
+		   mprintf(gettext("%s: Build command: %s\n"),"ilib_compile",cmd);
+		   mprintf(gettext("Output: %s\n"),msg);
+		   mprintf(gettext("stderr: %s\n"),stderr);
+		end
 	  if ierr <> 0 then
-	    if ( ilib_verbose() <> 0 ) then
 	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
 	      lines(0);
 	      disp(stderr);
@@ -134,7 +145,6 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		    mprintf(gettext("%s: The command was:\n"),"ilib_compile");
 		    mprintf(cmd);
 		    mprintf("\n");
-		  end
 		  chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end

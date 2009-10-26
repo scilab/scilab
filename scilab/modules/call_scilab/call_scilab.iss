@@ -25,7 +25,10 @@ Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODU
 Source: modules\{#MODULE_CALL_SCILAB}\readme.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\version.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\CallScilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\dynlib_call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\call_scilab_gateway.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

@@ -1,52 +1,52 @@
-// ====================================================================
-// Allan CORNET
-// Copyright INRIA 2008
+// Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
+
 // This file is released into the public domain
-// ====================================================================
 
-if isdef('toolbox_skeletonlib') then
-  printf('toolbox_skeleton already loaded.\n');
-  return
+mprintf("Start Toolbox skeleton\n");
+
+if isdef("toolbox_skeletonlib") then
+	warning("Toolbox skeleton library is already loaded");
+	return;
 end
 
-disp('Start Toolbox skeleton');
+etc_tlbx  = get_absolute_file_path("toolbox_skeleton.start");
+etc_tlbx  = getshortpathname(etc_tlbx);
+root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 
-etc_tlbx = get_absolute_file_path('toolbox_skeleton.start');
-etc_tlbx = getshortpathname(etc_tlbx);
-
-root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length('\etc\') );
-
-pathmacros = pathconvert( root_tlbx ) + 'macros'+ filesep();
-
-disp('Load macros');
 //Load  functions library
+// =============================================================================
+mprintf("\tLoad macros\n");
+pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
 toolbox_skeletonlib = lib(pathmacros);
+clear pathmacros;
 
 // load gateways
-disp('Load gateways');
-
+// =============================================================================
+mprintf("\tLoad gateways\n");
 ilib_verbose(0);
-// load gateways
-exec( root_tlbx + '/sci_gateway/loader_gateway.sce' );
+exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
 
-disp('Load help');
-
-//add help chapter
-path_addchapter = root_tlbx + "/jar/";
-if ( fileinfo(path_addchapter) <> [] ) then
-  add_help_chapter('Toolbox Skeleton', path_addchapter, %F);
-  clear add_help_chapter;
+// Load and add help chapter
+// =============================================================================
+if or(getscilabmode() == ["NW";"STD"]) then
+	mprintf("\tLoad help\n");
+	path_addchapter = pathconvert(root_tlbx+"/jar");
+	if ( isdir(path_addchapter) <> [] ) then
+		add_help_chapter("Toolbox skeleton", path_addchapter, %F);
+		clear add_help_chapter;
+	end
+	clear path_addchapter;
 end
-// ====================================================================
-// add demos
-pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce",%f,%t);
-add_demo("Toolbox skeleton",pathdemos);
-clear pathdemos ;
-// ====================================================================
-clear warning_mode;
-clear path_addchapter;
+
+// Load demos
+// =============================================================================
+if or(getscilabmode() == ["NW";"STD"]) then
+	mprintf("\tLoad demos\n");
+	pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce",%F,%T);
+	add_demo("Toolbox skeleton",pathdemos);
+	clear pathdemos add_demo;
+end
+
 clear root_tlbx;
 clear etc_tlbx;
-clear pathmacros;
-clear pathconvert;
-// ====================================================================

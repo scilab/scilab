@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-10-11 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -145,7 +145,7 @@ msgid "3D &Rot."
 msgstr "3D &Rot."
 
 msgid "&Edit"
-msgstr "&Editer"
+msgstr "&Edition"
 
 msgid "&Insert"
 msgstr "&Insérer"

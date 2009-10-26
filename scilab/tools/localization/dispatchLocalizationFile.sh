@@ -29,15 +29,19 @@ fi
 # Workaround because launchpad does not allow to delete a directory
 rm $LAUNCHPAD_DIRECTORY/string-v2*.po 
 
+# Don't know why but launchpad is placing some files in some sub dirs
+cp -i $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
+
 for file in $LAUNCHPAD_DIRECTORY/*.po; do 
 	file=`echo $file|awk -F / '{print $NF}'` # get only the filename
 	LOC=`echo $file|cut -d. -f1|awk -F - '{print $NF}'` # Get the locale (fr_FR, en_US ...)
 
 	if test "$LOC" == "fr"; then LOC="fr_FR"; fi # Retrieve real format
-        if test "$LOC" == "ru"; then LOC="ru_RU"; fi
+	if test "$LOC" == "ru"; then LOC="ru_RU"; fi
 	if test "$LOC" == "de"; then LOC="de_DE"; fi
-        if test "$LOC" == "ca"; then LOC="ca_ES"; fi
-        if test "$LOC" == "es"; then LOC="es_ES"; fi
+	if test "$LOC" == "ca"; then LOC="ca_ES"; fi
+	if test "$LOC" == "es"; then LOC="es_ES"; fi
+	if test "$LOC" == "ja"; then LOC="ja_JP"; fi
 
 	# check that it is the right format
 	echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY

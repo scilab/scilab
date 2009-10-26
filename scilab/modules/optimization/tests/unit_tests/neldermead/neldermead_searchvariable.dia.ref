@@ -42,9 +42,12 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
+//
+// Test on Rosenbrock test case
+//
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
@@ -59,7 +62,7 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-storehistory",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -74,7 +77,10 @@ sizefopt = size(historyfopt);
 assert_equal ( [iterations 1], sizefopt );
 // Check number of function evaluations
 funevals = neldermead_get(nm,"-funevals");
-if funevals > 300 then bugmes();quit;end
+assert_equal ( (funevals < 300) , %T )
+ ans  =
+ 
+    1.  
 // Check optimum history
 historyxopt = neldermead_get(nm,"-historyxopt");
 sizexopt = size(historyxopt);
@@ -90,4 +96,272 @@ assert_close ( fx0 , 24.2 , 10*%eps );
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 // Cleanup
+nm = neldermead_destroy(nm);
+// Check that the verbose mode is functionnal
+// Few iterations are necessary to check this
+// Many iterations costs a lot more in time.
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",5);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-storehistory",%t);
+nm = neldermead_search(nm);
+Function Evaluation #1 at [-1.2 1]
+
+Function Evaluation #2 at [-1.2 1]
+
+Function Evaluation #3 at [-1.2 1]
+
+Function Evaluation #4 at [-0.2 1]
+
+Function Evaluation #5 at [-1.2 2]
+
+Step #1 : order
+
+=================================================================
+
+Iteration #1 (total = 1)
+
+Function Eval #5
+
+Xopt : -1.2 1
+
+Fopt : 2.420000e+001
+
+DeltaFv : 6.940000e+001
+
+Center : -0.8666667 1.3333333
+
+Size : 1.000000e+000
+
+Vertex #1/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #2/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
+
+Vertex #3/3 : fv=9.360000e+001, x=-2.000000e-001 1.000000e+000
+
+Reflect
+
+xbar=-1.2 1.5
+
+Function Evaluation #6 at [-2.2 2]
+
+xr=[-2.2 2], f(xr)=816.800000
+
+Contract - inside
+
+Function Evaluation #7 at [-0.7 1.25]
+
+xc=-0.7 1.25, f(xc)=60.650000
+
+  > Perform Inside Contraction
+
+Sort
+
+=================================================================
+
+Iteration #2 (total = 2)
+
+Function Eval #7
+
+Xopt : -1.2 1
+
+Fopt : 2.420000e+001
+
+DeltaFv : 3.645000e+001
+
+Center : -1.0333333 1.4166667
+
+Size : 1.000000e+000
+
+Vertex #1/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #2/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
+
+Vertex #3/3 : fv=6.065000e+001, x=-7.000000e-001 1.250000e+000
+
+  > Termination ?
+
+  > iterations=2 >= maxiter=5
+
+  > funevals=7 >= maxfunevals=300
+
+  > e(x)=1.863390e-001 < 2.220446e-015 * 1.753489e+000 + 0.000000e+000
+
+  > Terminate = F, status = continue
+
+  > simplex size=1.000000e+000 < 0.000000e+000 + 1.000000e-006 * 1.000000e+000
+
+  > Terminate = F, status = continue
+
+Reflect
+
+xbar=-1.2 1.5
+
+Function Evaluation #8 at [-1.7 1.75]
+
+xr=[-1.7 1.75], f(xr)=137.250000
+
+Contract - inside
+
+Function Evaluation #9 at [-0.95 1.375]
+
+xc=-0.95 1.375, f(xc)=26.128125
+
+  > Perform Inside Contraction
+
+Sort
+
+=================================================================
+
+Iteration #3 (total = 3)
+
+Function Eval #9
+
+Xopt : -1.2 1
+
+Fopt : 2.420000e+001
+
+DeltaFv : 1.200000e+001
+
+Center : -1.1166667 1.4583333
+
+Size : 1.000000e+000
+
+Vertex #1/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #2/3 : fv=2.612813e+001, x=-9.500000e-001 1.375000e+000
+
+Vertex #3/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
+
+  > Termination ?
+
+  > iterations=3 >= maxiter=5
+
+  > funevals=9 >= maxfunevals=300
+
+  > e(x)=9.316950e-002 < 2.220446e-015 * 1.836758e+000 + 0.000000e+000
+
+  > Terminate = F, status = continue
+
+  > simplex size=1.000000e+000 < 0.000000e+000 + 1.000000e-006 * 1.000000e+000
+
+  > Terminate = F, status = continue
+
+Reflect
+
+xbar=-1.075 1.1875
+
+Function Evaluation #10 at [-0.95 0.375]
+
+xr=[-0.95 0.375], f(xr)=31.628125
+
+Contract - outside
+
+Function Evaluation #11 at [-1.0125 0.78125]
+
+xc=-1.0125 0.78125, f(xc)=9.999182
+
+  > Perform Outside Contraction
+
+Sort
+
+=================================================================
+
+Iteration #4 (total = 4)
+
+Function Eval #11
+
+Xopt : -1.0125 0.78125
+
+Fopt : 9.999182e+000
+
+DeltaFv : 1.612894e+001
+
+Center : -1.0541667 1.0520833
+
+Size : 5.970304e-001
+
+Vertex #1/3 : fv=9.999182e+000, x=-1.012500e+000 7.812500e-001
+
+Vertex #2/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #3/3 : fv=2.612813e+001, x=-9.500000e-001 1.375000e+000
+
+  > Termination ?
+
+  > iterations=4 >= maxiter=5
+
+  > funevals=11 >= maxfunevals=300
+
+  > e(x)=4.110296e-001 < 2.220446e-015 * 1.489344e+000 + 0.000000e+000
+
+  > Terminate = F, status = continue
+
+  > simplex size=5.970304e-001 < 0.000000e+000 + 1.000000e-006 * 1.000000e+000
+
+  > Terminate = F, status = continue
+
+Reflect
+
+xbar=-1.10625 0.890625
+
+Function Evaluation #12 at [-1.2625 0.40625]
+
+xr=[-1.2625 0.40625], f(xr)=146.171643
+
+Contract - inside
+
+Function Evaluation #13 at [-1.028125 1.1328125]
+
+xc=-1.028125 1.1328125, f(xc)=4.687423
+
+  > Perform Inside Contraction
+
+Sort
+
+=================================================================
+
+Iteration #5 (total = 5)
+
+Function Eval #13
+
+Xopt : -1.028125 1.1328125
+
+Fopt : 4.687423e+000
+
+DeltaFv : 1.951258e+001
+
+Center : -1.0802083 0.9713542
+
+Size : 3.519096e-001
+
+Vertex #1/3 : fv=4.687423e+000, x=-1.028125e+000 1.132813e+000
+
+Vertex #2/3 : fv=9.999182e+000, x=-1.012500e+000 7.812500e-001
+
+Vertex #3/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+  > Termination ?
+
+  > iterations=5 >= maxiter=5
+
+  > Terminate = T, status = maxiter
+
+  > Terminate = T, status = maxiter
+
+Terminate with status : maxiter
+
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "maxiter" );
 nm = neldermead_destroy(nm);

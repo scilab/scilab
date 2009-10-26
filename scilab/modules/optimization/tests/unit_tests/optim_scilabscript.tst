@@ -7,7 +7,13 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
-
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+//
+// Do not check ref, because imp option create a output messages
+// which contains lots of floating point values which may
+// be slightly different across platforms, without being bugs.
+//
 // optim_script.tst --
 //   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.

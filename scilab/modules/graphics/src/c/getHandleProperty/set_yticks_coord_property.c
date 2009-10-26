@@ -18,6 +18,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -30,6 +31,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
+/* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
@@ -37,27 +39,33 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
   double * vector = NULL;
   char c_format[5];
 
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "ytics_coord");
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "ytics_coord") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "ytics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->ny == 1 && nbCol != 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "ytics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->ny != 1 && nbCol == 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "ytics_coord", 2);
     return SET_PROPERTY_ERROR ;
   }
 
@@ -84,7 +92,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
-    Scierror(999, "error allocating vector.\n");
+    Scierror(999, _("%s: No more memory.\n"),"set_ytics_coord_property");
     return SET_PROPERTY_ERROR ;
   }
 

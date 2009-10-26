@@ -375,6 +375,45 @@ t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo','markstyl','diam')
 
 // --------------------
+// With the plot2d command :
+// --------------------
+function draw_marks(title)
+  a=gca();
+  a.title.text=title;
+  a.mark_size=8;
+  a.data_bounds=[-1.5 1.5 -1.5 1.5];
+
+  theta=(1/15)*(2*%pi)*[0:15];
+  plot2d(cos(theta),sin(theta));
+
+  for i=0:14 do
+    theta=(i/15)*(2*%pi);
+    plot2d(cos(theta),sin(theta),style=-i);
+  end
+endfunction
+
+clf();
+subplot(2,2,1)
+draw_marks("black foreground / white background")
+
+subplot(2,2,2)
+a=gca();
+a.mark_foreground=-1;
+a.mark_background=4;
+draw_marks("black foreground / cyan background")
+
+subplot(2,2,3)
+a=gca();
+a.mark_background=0;
+draw_marks("black foreground / invisible background")
+
+subplot(2,2,4)
+a=gca();
+a.mark_foreground=0;
+a.mark_background=4;
+draw_marks("invisible foreground / cyan background")
+
+// --------------------
 // With the surf command :
 // --------------------
 

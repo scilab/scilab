@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,34 +28,16 @@
 /*------------------------------------------------------------------------*/
 int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	int status;
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"event_handler_enable") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( sciGetEntityType( pobj ) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"event_handler_enable");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    status = sciSetIsEventHandlerEnable( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    status = sciSetIsEventHandlerEnable( pobj, FALSE ) ;
-  }
-	else
+	int b =  (int)FALSE;
+	if ( sciGetEntityType( pobj ) != SCI_FIGURE )
 	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_event_handler_enable_property",2,"on","off");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
 		return SET_PROPERTY_ERROR ;
 	}
 
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "event_handler_enable");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
+	return (int)sciSetNoRedrawStatus((SetPropertyStatus)sciSetIsEventHandlerEnable(pobj, b));
 }
 /*------------------------------------------------------------------------*/

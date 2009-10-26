@@ -15,12 +15,10 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_computefv ( this , fun , data )
-  for j = 1 : this.nbve;
-    if (~isdef('data','local')) then
-       this.fv(j)  = fun (this.x(:,j));
-     else
-       [ this.fv(j) , data ]  = fun (this.x(:,j) , data );
-     end
+  if (~isdef('data','local')) then
+    this = optimsimplex_compsomefv ( this , fun , 1 : this.nbve )
+  else
+    [ this , data ] = optimsimplex_compsomefv ( this , fun , 1 : this.nbve , data )
   end
 endfunction
 

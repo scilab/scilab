@@ -55,10 +55,8 @@ libscitime_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 
 #### time : include files ####
-libscitime_la_includedir=$(pkgincludedir)/time
-libscitime_la_include_HEADERS = includes/gw_time.h \
-includes/dynlib_time.h \
-includes/realtime.h \
+libscitime_la_includedir=$(pkgincludedir)
+libscitime_la_include_HEADERS = includes/realtime.h \
 includes/timer.h
 
 

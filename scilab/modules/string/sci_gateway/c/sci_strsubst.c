@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU , Allan CORNET
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,181 +11,405 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-/* desc : substitute a character string by another in a character string  */
 /*------------------------------------------------------------------------*/
 #include <string.h>
-#include <stdio.h>
 #include "gw_string.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "api_scilab.h"
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "pcre_error.h"
+#include "pcre_private.h"
+#include "BOOL.h"
 /*-------------------------------------------------------------------------------------*/
 #define CHAR_R "r"
 #define CHAR_S "s"
 /*-------------------------------------------------------------------------------------*/
 int sci_strsubst(char *fname,unsigned long fname_len)
 {
-	BOOL bStrsubst_with_pattern = FALSE;
+	StrErr strErr;
+	int *piAddressVarOne	= NULL;
+	int iType							= 0;
+	int mOne	= 0, nOne		= 0;
+
 	CheckRhs(3,4);
 	CheckLhs(1,1);
 
-	switch (VarType(1))
+	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(strErr.iErr)
 	{
-		case sci_matrix :
+		printError(&strErr, 0);
+		return 0;
+	}
+	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(strErr.iErr)
+	{
+		printError(&strErr, 0);
+		return 0;
+	}
+
+	if (iType == sci_strings)
+	{
+		char **pStVarOne			= NULL;
+		int *lenStVarOne			= NULL;
+
+		int *piAddressVarTwo	= NULL;
+		int iType2						= 0;
+		int mTwo = 0, nTwo		= 0;
+		char *pStVarTwo				= NULL;
+		int lenStVarTwo				= 0;
+
+		int *piAddressVarThree = NULL;
+		int mThree = 0, nThree = 0;
+		char *pStVarThree				= NULL;
+		int lenStVarThree				= 0;
+		int iType3							= 0;
+
+		BOOL isRegExp = FALSE;
+
+		if (Rhs == 4)
 		{
-			int m = 0, n = 0 , l = 0;
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-			if ( (m == 0) && (n == 0) ) /* strsubst([],...) */
-			{
-				l = 0;
-				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
-				return 0;
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname);
-				return 0;
-			}
-		}
-		break;
+			int *piAddressVarFour = NULL;
+			int iType4						= 0;
+			int mFour = 0, nFour	= 0;
+			char *pStVarFour			= NULL;
+			int lenStVarFour			= 0;
 
-		case sci_strings:
-		{
-			int m1 = 0 , n1 = 0;
-			int m1n1 = 0; /* m1 * n1 */
-			char **strings_input = NULL;
-			
-			int m2 = 0 , n2 = 0;
-			int m2n2 = 0; /* m2 * n2 */
-			char **string_to_search = NULL;
-			
-			int m3 = 0 , n3 = 0;
-			int m3n3 = 0; /* m2 * n2 */
-			char **replacement_string = NULL;
-			
-			char **Output_StringMatrix = NULL;
-			
-			if ( (VarType(2) != sci_strings) || (VarType(3) != sci_strings))
+			strErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
+			if(strErr.iErr)
 			{
-				if(VarType(2) != sci_strings)
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			strErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			if (iType4  != sci_strings )
+			{
+				Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,4);
+				return 0;
+			}
+
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			if ( (mFour != nFour) && (nFour != 1) ) 
+			{
+				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,4);
+				return 0;
+			}
+
+			pStVarFour = (char*)MALLOC(sizeof(char)*(lenStVarFour + 1));
+			if (pStVarFour)
+			{
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &mFour, &nFour, &lenStVarFour, &pStVarFour);
+				if(strErr.iErr)
 				{
-					Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
-				}
-				else
-				{
-					Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,3);
-				}
-				
-				return 0;
-			}
-			
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&strings_input);
-			m1n1 = m1 * n1 ;
-				
-			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&string_to_search);
-			m2n2 = m2 * n2 ;
-
-			if (m2n2 != 1)
-			{
-				freeArrayOfString(strings_input,m1n1);
-				freeArrayOfString(string_to_search,m2n2);
-				Scierror(36,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname,2);
-				return 0;
-			}
-			GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&replacement_string);
-			m3n3 = m3 * n3 ;
-			if (m3n3 != 1)
-			{
-				freeArrayOfString(strings_input,m1n1);
-				freeArrayOfString(string_to_search,m2n2);
-				freeArrayOfString(replacement_string,m3n3);
-				Scierror(36,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,3);
-				return 0;
-			}
-
-			if (Rhs == 4)
-			{
-				int m4 = 0;
-				int n4 = 0;
-				char **Strings_Input4 = NULL;
-				int m4n4 = 0; /* m4 * n4 */
-
-				if (VarType(4) != sci_strings)
-				{
-					freeArrayOfString(strings_input,m1n1);
-					freeArrayOfString(string_to_search,m2n2);
-					freeArrayOfString(replacement_string,m3n3);
-					Scierror(999,_("%s: Wrong type for input argument #%d: A character expected.\n"),fname,4);
+					printError(&strErr, 0);
 					return 0;
 				}
-				GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&m4,&n4,&Strings_Input4);
-				m4n4 = m4*n4;  
-				
-				if (m4n4 != 1)
+
+				if ( (strcmp(pStVarFour,CHAR_R) == 0) || (strcmp(pStVarFour,CHAR_S) == 0) )
 				{
-					freeArrayOfString(strings_input,m1n1);
-					freeArrayOfString(string_to_search,m2n2);
-					freeArrayOfString(replacement_string,m3n3);
-					freeArrayOfString(Strings_Input4,m4n4);
-					Scierror(999,_("%s: Wrong size for input argument #%d: A character expected.\n"),fname,4);
-					return 0;
-				}
-				
-				if ( (strcmp(Strings_Input4[0],CHAR_R) == 0) || (strcmp(Strings_Input4[0],CHAR_S) == 0) )
-				{
-					if (strcmp(Strings_Input4[0],CHAR_R) == 0)
+					if (strcmp(pStVarFour,CHAR_R) == 0)
 					{
-						bStrsubst_with_pattern = TRUE;
+						isRegExp = TRUE;
 					}
 					else
 					{
-						bStrsubst_with_pattern = FALSE;
+						isRegExp = FALSE;
 					}
-					freeArrayOfString(Strings_Input4,m4n4);
 				}
 				else
 				{
-					freeArrayOfString(strings_input,m1n1);
-					freeArrayOfString(string_to_search,m2n2);
-					freeArrayOfString(replacement_string,m3n3);
-					freeArrayOfString(Strings_Input4,m4n4);
-					Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,4,"s","r");
+					FREE(pStVarFour); pStVarFour = NULL;
+					Scierror(999,_("%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"),fname,4);
 					return 0;
 				}
 			}
-			
-			if (bStrsubst_with_pattern)
+			else
 			{
-				Output_StringMatrix = strsubst_reg(strings_input,m1n1,string_to_search[0],replacement_string[0]);
+				Scierror(999,_("%s: No more memory.\n"),fname);
+				return 0;
+			}
+		}
+
+		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		// checks type 3th input argument
+		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType3  != sci_strings )
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,3);
+			return 0;
+		}
+
+		// checks dimension 3th input argument
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if ( (mThree != nThree) && (nThree != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,3);
+			return 0;
+		}
+
+		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+
+		// checks type 2nd input argument
+		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+			return 0;
+		}
+
+		// checks dimension 2nd input argument
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if ( (mTwo != nTwo) && (nTwo != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+			return 0;
+		}
+
+		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		// checks type 1st input argument
+		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+		if (iType  != sci_strings )
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
+
+		// get length 3th input argument
+		strErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
+		if (pStVarThree)
+		{
+			// get value 3th input argument
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			// get length 2nd input argument
+			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
+			if (pStVarTwo)
+			{
+				// get value 2nd input argument
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
+
+				strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+				if(strErr.iErr)
+				{
+					printError(&strErr, 0);
+					return 0;
+				}
+
+				lenStVarOne = (int *)MALLOC(sizeof(int) * (mOne * nOne));
+				if (lenStVarOne)
+				{
+					strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+					if(strErr.iErr)
+					{
+						printError(&strErr, 0);
+						return 0;
+					}
+
+					pStVarOne = (char **)MALLOC(sizeof(char *) * (mOne * nOne));
+					if (pStVarOne)
+					{
+						char **Output_StringMatrix = NULL;
+
+						int i = 0;
+						for (i = 0; i < mOne * nOne; i++)
+						{
+							pStVarOne[i] = (char*)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
+							if (pStVarOne[i] == NULL)
+							{
+								FREE(pStVarThree); pStVarThree = NULL;
+								FREE(pStVarTwo); pStVarTwo = NULL;
+								FREE(lenStVarOne); lenStVarOne = NULL;
+								freeArrayOfString(pStVarOne, i);
+								Scierror(999,_("%s: No more memory.\n"), fname);
+								return 0;
+							}
+						}
+
+						strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+						if(strErr.iErr)
+						{
+							printError(&strErr, 0);
+							return 0;
+						}
+
+
+						FREE(lenStVarOne); lenStVarOne = NULL;
+
+						if (isRegExp)
+						{
+							int ierr = (int)PCRE_FINISHED_OK;
+							Output_StringMatrix = strsubst_reg(pStVarOne, mOne * nOne, pStVarTwo, pStVarThree, &ierr);
+							if ( (ierr != PCRE_FINISHED_OK) && (ierr != NO_MATCH) && (ierr != PCRE_EXIT) )
+							{
+								FREE(pStVarThree); pStVarThree = NULL;
+								FREE(pStVarTwo); pStVarTwo = NULL;
+								pcre_error(fname, ierr);
+								return 0;
+							}
+						}
+						else
+						{
+							Output_StringMatrix = strsubst(pStVarOne, mOne * nOne, pStVarTwo, pStVarThree);
+						}
+
+						FREE(pStVarThree); pStVarThree = NULL;
+						FREE(pStVarTwo); pStVarTwo = NULL;
+
+						strErr = createMatrixOfString(pvApiCtx, Rhs + 1, mOne, nOne, Output_StringMatrix);
+						if(strErr.iErr)
+						{
+							printError(&strErr, 0);
+							return 0;
+						}
+
+						LhsVar(1) = Rhs + 1 ;
+						C2F(putlhsvar)();
+						return 0;
+					}
+					else
+					{
+						FREE(pStVarThree); pStVarThree = NULL;
+						FREE(pStVarTwo); pStVarTwo = NULL;
+						FREE(lenStVarOne); lenStVarOne = NULL;
+						Scierror(999,_("%s: No more memory.\n"),fname);
+						return 0;
+					}
+				}
+				else
+				{
+					FREE(pStVarThree); pStVarThree = NULL;
+					FREE(pStVarTwo); pStVarTwo = NULL;
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
 			}
 			else
 			{
-				Output_StringMatrix = strsubst(strings_input,m1n1,string_to_search[0],replacement_string[0]);
+				FREE(pStVarThree); pStVarThree = NULL;
+				Scierror(999,_("%s: No more memory.\n"),fname);
+				return 0;
 			}
-			freeArrayOfString(strings_input,m1n1);
-			freeArrayOfString(string_to_search,m2n2);
-			freeArrayOfString(replacement_string,m3n3);
-			
-			/* put on scilab stack */
-			CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1,Output_StringMatrix );
-			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
-			freeArrayOfString(Output_StringMatrix,m1n1);
 		}
-		break;
-
-		default:
+		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
-		break;
+	}
+	else if (iType == sci_matrix)
+	{
+		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &mOne, &nOne);
+		if(strErr.iErr)
+		{
+			printError(&strErr, 0);
+			return 0;
+		}
+
+		if ( (mOne == 0) && (nOne == 0) ) /* strsubst([],...) returns [] */
+		{
+			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, mOne, nOne, NULL);
+			if(strErr.iErr)
+			{
+				printError(&strErr, 0);
+				return 0;
+			}
+
+			LhsVar(1) = Rhs + 1 ;
+			C2F(putlhsvar)();
+			return 0;
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname);
+			return 0;
+		}
+	}
+	else
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+		return 0;
 	}
 	return 0;
 }

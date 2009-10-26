@@ -1,0 +1,20 @@
+LIBRARY    scilocalization.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; localization explicit export (SEP 35)
+; --------------------------------------- 
+to_wide_string
+wide_string_to_UTF8
+wcstat
+setlanguage
+getlanguage
+getlanguagealias
+getcurrentlanguagecode
+getlanguagefromcode
+getcodefromlanguage
+convertlanguagealias
+LanguageIsOK
+needtochangelanguage
+exportLocaleToSystem

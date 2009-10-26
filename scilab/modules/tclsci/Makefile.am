@@ -247,19 +247,5 @@ tcl/TK_Scilab.tcl
 libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
-#### tclsci : include files ####
-libscitclsci_la_includedir=$(pkgincludedir)/tclsci
-libscitclsci_la_include_HEADERS = includes/setenvtcl.h \
-includes/GedManagement.h \
-includes/TCL_Global.h \
-includes/ScilabEval.h \
-includes/gw_tclsci.h \
-includes/InitializeTclTk.h \
-includes/TerminateTclTk.h \
-includes/GlobalTclInterp.h \
-includes/withtk.h \
-includes/dynlib_tclsci.h
-
-
 include $(top_srcdir)/Makefile.incl.am
 

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,13 +33,13 @@ int set_bar_width_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"bar_width") ;
+    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "bar_width");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"bar_width") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_width") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;

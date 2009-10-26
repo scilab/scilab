@@ -10,16 +10,16 @@ Ntest=1
  
     1.  
 // test maxi(A) : A matrix
-// maxi is compared with sort
+// maxi is compared with gsort
 for i=1:Ntest,
 	m=100;n=200;a=rand(m,n);
-	[am,ak]=maxi(a); [a1,ak1]=sort(a);
+	[am,ak]=maxi(a); [a1,ak1]=gsort(a);
 	if norm([am-a1(1,1),(ak(1)+(m)*(ak(2)-1))-ak1(1,1)])> %eps then bugmes();quit;end
 end
 // test maxi(A) : A vector
 for i=1:Ntest,
 	m=100;a=rand(1,m);
-	[am,ak]=maxi(a); [a1,ak1]=sort(a);
+	[am,ak]=maxi(a); [a1,ak1]=gsort(a);
 	if norm([am-a1(1,1),(ak-ak1(1,1))])> %eps then bugmes();quit;end
 end
 // test mini

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -65,11 +66,67 @@
     generates a gateway file used by <literal>addinter</literal>.</para>
 
     <para>if WITHOUT_AUTO_PUTLHSVAR variable is defined and equals to %t,
-    PutLhsVar(); will need to manage PutLhsVar in each interface as internal scilab
-    functions.</para>
+    PutLhsVar(); will need to manage PutLhsVar in each interface as internal
+    scilab functions.</para>
 
     <para>In another case (default, for compatibility with previous version) ,
     PutLhsVar(); is added in each interface.</para>
+
+    <para>You can also see
+    SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (as
+    example about WITHOUT_AUTO_PUTLHSVAR)</para>
+  </refsection>
+
+  <refsection>
+    <title>Example about WITHOUT_AUTO_PUTLHSVAR = %t</title>
+
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR
+WITHOUT_AUTO_PUTLHSVAR = %t;
+name = 'gw_example1';
+table = ['sci_func1', 'func1']
+ilib_gen_gateway(name,table)
+
+// generated gateway
+mgetl(TMPDIR+'/gw_example1.c')
+]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+int sci_func1(char *fname)
+{
+  // ... your C code
+  // you need to add a explicit PutLhsVar();
+  // as internal all gateways of scilab
+  
+  PutLhsVar();
+  return 0;
+}
+]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example about WITHOUT_AUTO_PUTLHSVAR = %f (default)</title>
+
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR
+WITHOUT_AUTO_PUTLHSVAR = %f;
+name = 'gw_example2';
+table = ['sci_func2', 'func2']
+ilib_gen_gateway(name,table)
+
+// generated gateway
+mgetl(TMPDIR+'/gw_example2.c')
+]]></programlisting>
+    <programlisting role="example"><![CDATA[
+int sci_func2(char *fname)
+{
+  // ... your code
+  // you do NOT need to add a explicit PutLhsVar();
+  // added by scilab after call to sci_func2
+  // default mode in scilab 4
+
+  return 0;
+}
+]]></programlisting>
   </refsection>
 
   <refsection>

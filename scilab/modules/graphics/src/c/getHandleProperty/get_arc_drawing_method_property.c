@@ -27,7 +27,7 @@ int get_arc_drawing_method_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"drawing_method") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method") ;
     return -1 ;
   }
   if (sciGetUseNurbs(pobj))

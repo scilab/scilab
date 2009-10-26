@@ -17,7 +17,7 @@ function TitleLabel(varargin)
 
 ListArg = varargin;
 titlelabel = ListArg(1);
-ListArg(1) = null();
+ListArg(1) = null(); // remove this parameter from the list
 
 //detect and set the current axes now:
 if type(ListArg(1)) == 9

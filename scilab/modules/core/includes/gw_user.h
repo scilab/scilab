@@ -13,7 +13,7 @@
 #define __GW_USER_H__
 
 #include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
 
 int gw_user(void);
 

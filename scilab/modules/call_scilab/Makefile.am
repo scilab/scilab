@@ -4,7 +4,7 @@
 ##########
 
 ### SOURCES ###
-CALLSCILAB_C_SOURCES = src/c/CallScilab.c \
+CALLSCILAB_C_SOURCES = src/c/call_scilab.c \
 		src/c/fromc.c \
 		src/c/fromjava.c \
 		src/c/SendScilabJobs.c
@@ -57,9 +57,8 @@ libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
-libscicall_scilab_la_includedir=$(pkgincludedir)/call_scilab
+libscicall_scilab_la_includedir=$(pkgincludedir)
 libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
-	includes/fromjava.h \
-	includes/dynlib_call_scilab.h
+	includes/call_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

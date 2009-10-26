@@ -32,13 +32,13 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"surface_color") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "surface_color");
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_SURFACE)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"surface_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -46,7 +46,7 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
   {
     if (pSURFACE_FEATURE (pobj)->dimzy != nbRow * nbCol )
     {
-      Scierror(999, _("Argument #%d must have %d elements.\n"), 2, pSURFACE_FEATURE (pobj)->dimzy);
+      Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "surface_color", pSURFACE_FEATURE (pobj)->dimzy);
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->zcol, pSURFACE_FEATURE (pobj)->dimzy ) ;
@@ -65,13 +65,14 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
     if ( nbRow * nbCol != N)
     {
       Scierror(999, _("Argument #%d must have %d elements.\n"),2,N) ;
+      Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "surface_color", N);
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE (pobj)->zcol, N ) ;
   }
   else
   {
-    Scierror(999, _("%s cannot be set in this case.\n"),"surface_color") ;
+    Scierror(999, _("%s cannot be set in this case.\n"),"'surface_color'");
     return SET_PROPERTY_ERROR ;
   }
 

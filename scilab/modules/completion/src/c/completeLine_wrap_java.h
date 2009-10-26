@@ -16,7 +16,7 @@
 
 #include "BOOL.h"
 
-char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile);
+char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile, char *postCaretLine);
 
 #endif /* __COMPLETELINE_WRAP_H__ */
 /*--------------------------------------------------------------------------*/

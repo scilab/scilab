@@ -62,7 +62,7 @@ mode(1)
    omeg=exp(log(10)*(-3:0.05:3));
    rep_freq=exp(-tr*omeg*%i*2*%pi).*repfreq(h,omeg);
    bode(omeg,rep_freq);halt()
-   halt();xbasc();
+   halt();clf();
    black(omeg,rep_freq);
    halt()
 //
@@ -100,7 +100,7 @@ mode(1)
 // -------------------------------
    e=100.d-6*ones(1,400);
    [tetae,x]=ddls_sim(ad,bd,c,tr,td,e);
-   xbasc();
+   clf();
    plot2d1("onn",(1:400)'*td,[e;tetae]');
    xtitle(['step  100mrd';'response']);
    halt()
@@ -109,7 +109,7 @@ mode(1)
 // ---------------------------------------------
    s1=1.d-5*sin(200*%pi*(1:600)*td);
    [tetas1,x]=ddls_sim(ad,bd,c,tr,td,s1);
-   xbasc();
+   clf();
    plot2d1("onn",(1:600)'*td,[s1;tetas1]');
    xtitle(['sinusoidale input 10mrd 100hz';'response']);
    halt()
@@ -118,7 +118,7 @@ mode(1)
 // ---------------------------------------------
    s2=3.d-5*sin(600*%pi*(1:600)*td);
    [tetas2,x]=ddls_sim(ad,bd,c,tr,td,s2);
-   xbasc();
+   clf();
    plot2d1("onn",(1:600)'*td,[s2;tetas2]');
    xtitle(['sinus input 3mrd 300hz';'response']);
 //

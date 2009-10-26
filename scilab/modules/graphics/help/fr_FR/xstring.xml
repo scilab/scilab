@@ -15,55 +15,60 @@
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>x,y  </term>
+        <term>x, y</term>
         <listitem>
-          <para>scalaires réels, coordonnées du point en bas à gauche des chaînes de caractères.
-</para>
+          <para>vecteurs ou scalaires réel, coordonnées du point en bas à gauche des chaînes de caractères.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>str  </term>
+        <term>str</term>
         <listitem>
-          <para>matrice de chaînes de caractères.
-</para>
+          <para>matrice de chaînes de caractères.</para>
+          <para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions LaTeX ou MathML.</para>
+          <para>Une expression LaTeX doit commencer et se terminer par un $ (dollar).</para>
+          <para>Une expression MathML doit commencer par &lt;, se terminer par &gt; et être syntaxiquement valide.</para>
+          <para>A la première utilisation, le moteur MathML est plus long à charger que celui LaTeX.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>angle  </term>
         <listitem>
-          <para>réel, angle en degrés dans le sens horaire (0 par défaut).
-</para>
+          <para>vecteur ou scalaire réel, angle en degrés dans le sens horaire (0 par défaut).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>box  </term>
         <listitem>
-          <para>entier, 0 par défaut.
-</para>
+          <para>vecteur ou scalaire entier, 0 par défaut.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xstring</literal> dessine la matrice de chaînes de caractères <literal>str</literal> à la position <literal>x,y</literal>
-    (point en bas à gauche de la chaîne) dans l'échelle graphique courante : chaque ligne de la matrice
-    correspond à une ligne de texte et les éléments d'une ligne sont considérés comme des mots à séparer par un espace.  Si <literal>angle</literal> est donné, il définit l'angle en degrés
-    utilisé pour dessiner les chaînes de caractères. Si <literal>box</literal> vaut 1 et que <literal>angle</literal> vaut 0,
-    une boîte est dessinée autour des chaînes de caractères.
-  </para>
+    <para>Si <literal>x</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>y</literal> dont les éléments ont pour valeur <literal>x</literal>.</para>
+    <para>Si <literal>y</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>x</literal> dont les éléments ont pour valeur <literal>y</literal>.</para>
+    <para><literal>xstring</literal> dessine n chaînes de caractères à la position <literal>(x[i], y[i])</literal> dans l'échelle graphique courante.</para>
+    <para>Si <literal>str</literal> contient n élément, ces n éléments sont les n chaînes de caractères dessinées.</para>
+    <para>Sinon, chaque ligne de la matrice correspond à une ligne de texte et les éléments d'une ligne sont considérés comme des mots à séparer par un espace.</para>
+    <para>Si <literal>angle</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>angle</literal>.</para>
+    <para><literal>angle(i)</literal> définit l'angle en degrés utilisé pour dessiner la chaînes de caractères en position <literal>(x[i], y[i])</literal>.</para>
+    <para>Si <literal>box</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>box</literal>.</para>
+    <para>Si <literal>box(i)</literal> vaut 1 et que <literal>angle(i)</literal> vaut 0, une boîte est dessinée autour de la chaîne de caractères en position <literal>(x[i], y[i])</literal>.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
-xstring(0.5,0.5,["Scilab" "n''est ";"pas" "Matlab"])
+xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
+// Rendu LaTeX (>= Scilab 5.2)
+
 // autre exemple
 alphabet=["a" "b" "c" "d" "e" "f" "g" ..
           "h" "i" "j" "k" "l" "m" "n" ..
           "o" "p" "q" "r" "s" "t" "u" ..
           "v" "w" "x" "y" "z"];
-xbasc()
+clf()
 plot2d([0;1],[0;2],0)
 xstring(0.1,1.8,alphabet)     // alphabet
 xstring(0.1,1.6,alphabet,0,1) // alphabet dans une boîte

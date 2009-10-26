@@ -15,21 +15,23 @@ package org.scilab.modules.xpad.actions;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 
 public class EvaluateSelectionAction extends DefaultAction {
-
+	
 	private EvaluateSelectionAction(Xpad editor) {
-		super("Evaluate Selection", editor);
+		super(XpadMessages.EVALUATE_SELECTION, editor);
 	}
 
 	public void doAction() {
-	    /* Will do the job as if it was copy / paste in scilab Console */
-	    //InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
-	    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getSelectedText(), true, false);
+		/* Will do the job as if it was copy / paste in scilab Console */
+		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
+		String selection = getEditor().getTextPane().getSelectedText();
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 	}
-	
-	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Evaluate Selection", null, new EvaluateSelectionAction(editor), null);
-	 }
+
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.EVALUATE_SELECTION, null, new EvaluateSelectionAction(editor), null);
+	}
 }

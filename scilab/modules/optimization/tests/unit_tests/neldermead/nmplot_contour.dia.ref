@@ -42,11 +42,21 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
+// Use 20 points in X and 20 points in Y
+NP = 20;
+//
+// Test a basic contour plot
+//
 nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",rosenbrock);
-[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
-contour ( xdata , ydata , zdata , 20 )
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = NP , ny = NP );
+f = scf();
+drawlater();
+contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] );
+drawnow();
+close(f);
 nm = nmplot_destroy(nm);

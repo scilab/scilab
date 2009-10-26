@@ -9,6 +9,7 @@
 
 
 function p=tk_savefile(file_mask,path,Title,foo)
+  warnobsolete("uigetfile", "5.2.1");
   if ~with_tk() then error(gettext("Tcl/Tk interface not loaded.")),end
   arg=''
   if exists('file_mask','local')==1 then 

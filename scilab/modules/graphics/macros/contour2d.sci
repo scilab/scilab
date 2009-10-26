@@ -7,6 +7,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function levels=contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
+
+[lhs,rhs]=argn(0)
+if rhs<4 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour2d", 4));
+end
+
 opts=[]
 levels=[]
 if ~exists('style','local')==1 then 
@@ -54,7 +60,7 @@ fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
 fig=gcf();
 autoc=fig.auto_clear;
-if autoc=="on" then, xbasc(),end
+if autoc=="on" then, clf(),end
 a=gca();
 v=fig.immediate_drawing;
 fig.immediate_drawing="off"

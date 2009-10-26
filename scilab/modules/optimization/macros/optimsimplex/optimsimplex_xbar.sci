@@ -22,9 +22,14 @@ function cen = optimsimplex_xbar ( this , iexcl )
    if (~isdef('iexcl','local')) then
     iexcl = this.nbve;
   end
+  if ( size(iexcl,1)<>1 ) then
+    errmsg = msprintf(gettext("%s: The exclusion index vector has %d instead of 1."), ...
+      "optimsimplex_xbar", size(iexcl,1) );
+    error(errmsg);
+  end
   // Vectorize by making the sum of all, substracting only one vector
-  cen = sum(this.x(1:this.n,1:this.nbve),'c')
-  cen = cen - this.x(1:this.n,iexcl)
-  cen = cen / ( this.nbve - 1)
+  cen = sum(this.x(1:this.nbve,1:this.n),'r')
+  cen = cen - sum(this.x(iexcl,1:this.n),'r')
+  nexcl = size(iexcl,2)
+  cen = cen / ( this.nbve - nexcl ) 
 endfunction
-

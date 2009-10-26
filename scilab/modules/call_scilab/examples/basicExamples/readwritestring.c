@@ -10,6 +10,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include <string.h> 
+#include "api_scilab.h"
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
 #include "CallScilab.h" /* Provide functions to call Scilab engine */
 
@@ -33,16 +34,25 @@ int main(void)
 	 * A="my Message";
 	 */
 	{
-		char *myString = "my Message";   /* Declare the string */
+		int row = 2, col = 1; /* Size of the matrix */
+		/* Declare the string */
+		char **myMatrixOfString = (char**)malloc(sizeof(char*) * row * col);
+		myMatrixOfString[0]="my Message";
+		myMatrixOfString[1]="on two lines";
 		char variableName[] = "A";
-		int sizeOfMyString=strlen(myString);
 
-		C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
+		/* Write it into Scilab's memory */
+		createNamedMatrixOfString(pvApiCtx, variableName, row, col, myMatrixOfString);
+		/*
+		 * Prior to Scilab 5.2
+		 * C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); 
+		*/
 
 		printf("Display from Scilab of A:\n");
 		SendScilabJob("disp(A);"); /* Display A */
 	}
 
+	{
 		/* 
 		 * Write a matrix into Scilab
 		 * B=['My' 'Great' ; 
@@ -50,96 +60,112 @@ int main(void)
 		 * Note that it is done column by column
 		 */ 
 		printf("\n");
-		/* 
-		 * @TODO: fill from a char[][] 
-		 */
 
-		SendScilabJob("B=['My' 'Great'; 'and fantastic string',';)'; 'strings' , 'matrix'];"); /* Assign */
+		int row = 2, col = 2; /* Size of the matrix */
+		/* Declare the string */
+		char **myMatrixOfStringB = (char**)malloc(sizeof(char*) * row * col);
+		myMatrixOfStringB[0]="My";
+		myMatrixOfStringB[1]="String";
+		myMatrixOfStringB[2]="Great";
+		myMatrixOfStringB[3]=";)";
+		char variableNameB[] = "B";
+		createNamedMatrixOfString(pvApiCtx, variableNameB, row, col, myMatrixOfStringB);
+
 		printf("\n");
 		printf("Display from Scilab of B:\n");
 		SendScilabJob("disp(B);"); /* Display B */
-		
+	}
 	/******************************** READ ****************************/
 
 		/* Load the previously set variable A */
 		{
-			int sizeA = 0;
-			char myStringFromScilab[bsiz]; /* Static char */
-			int length_myStringFromScilab = bsiz; /* Max size (it is going to be 
-												* changed by creadchain */
-			char variableToBeRetrieved[]="A";
 
-			/* We are loading a single string from Scilab */
-			C2F(creadchain)(variableToBeRetrieved,&length_myStringFromScilab,myStringFromScilab,strlen(variableToBeRetrieved),strlen(myStringFromScilab));
+			char variableToBeRetrieved[]="A";
+			int iRows       = 0;
+			int iCols       = 0;
+			int i,j;
+			int* piAddr     = NULL;
+			int* piLen      = NULL;
+			char** pstData  = NULL;
+
+			//fisrt call to retrieve dimensions
+			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+			//second call to retrieve length of each string
+			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+			for(i = 0 ; i < iRows * iCols ; i++)
+				{
+					pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+				}
+			//third call to retrieve data
+			readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
 
 			printf("\n");
-			printf("Display of A (size %d): %s\n", length_myStringFromScilab, myStringFromScilab);
+			printf("Load and display of A:\n");
+			for(j = 0 ; j < iCols ; j++)
+			{
+				for(i = 0 ; i < iRows ; i++)
+				{
+					/* Display the formated matrix with same scilab indice */
+					printf("[%d,%d] = %s\n",j+1,i+1,pstData[j* iRows + i]);
+				}
+			}
+
+			printf("\n");
+			free(piLen);
+			for(i = 0 ; i < iRows * iCols ; i++)
+				{
+					free(pstData[i]);
+				}
+			free(pstData);
+			
 		}
 
 
 		/* Load an element of a the previously set variable B */
 		{
-			char variableToBeRetrievedB[] = "B";
-			int nlr;
 
-			int indx = 2, indy = 1;
-			char *tmpStr = malloc(sizeof(char)*bsiz);
-			nlr = bsiz;
+			char variableToBeRetrieved[]="B";
+			int iRows       = 0;
+			int iCols       = 0;
+			int i,j;
+			int* piAddr     = NULL;
+			int* piLen      = NULL;
+			char** pstData  = NULL;
 
-			/* Retrieve the element at pos indx / indy */
-			C2F(creadchains)(variableToBeRetrievedB, &indx, &indy, &nlr, tmpStr, (unsigned long)strlen(variableToBeRetrievedB), (unsigned long)strlen(tmpStr));
-
-			printf("\n");
-			printf("The retrieved string(%d,%d) from B: %s\n",indx, indy, tmpStr);
-		}
-
-		/* Load All elements of B  in a (char**) */
-		{
-			char variableToBeRetrievedB[] = "B";
-			int m = 0, n = 0;
-			int i = 0, j = 0;
-			int x = 0, y = 0;
-			char ** variableBfromScilab = NULL;
-
-			int *lengthOfB = GetLengthStringMatrixByName(variableToBeRetrievedB, &m, &n);
-
-			variableBfromScilab = (char **)malloc(sizeof(char*)* (m*n));
-			for (i = 0; i < m * n; i++)
-			{
-				variableBfromScilab[i] = (char*)malloc(sizeof(char)*(lengthOfB[i]));
-			}
-
-			i = 0;
-			for (x = 1; x <= m; x++)
-			{
-				for (y = 1; y <= n; y++)
+			//fisrt call to retrieve dimensions
+			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+			//second call to retrieve length of each string
+			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+			for(i = 0 ; i < iRows * iCols ; i++)
 				{
-					int nlr = lengthOfB[i];
-					char *tmpStr = NULL;
-					tmpStr = variableBfromScilab[i];
-					C2F(creadchains)(variableToBeRetrievedB, &x, &y, &nlr, tmpStr, (unsigned long)strlen(variableToBeRetrievedB), (unsigned long)strlen(tmpStr));
-					i++;
+					pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 				}
-			}
+			//third call to retrieve data
+			readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
 
 			printf("\n");
-			printf("Display from B formated (size: %d, %d) as in scilab :\n\n", m, n);
-			for(j = 0 ; j < m ; j++)
+			printf("Load and display of B:\n");			
+			for(j = 0 ; j < iCols ; j++)
 			{
-				for(i = 0 ; i < n ; i++)
+				for(i = 0 ; i < iRows ; i++)
 				{
 					/* Display the formated matrix with same scilab indice */
-					printf("[%d,%d] = %s\n",j+1,i+1,variableBfromScilab[j* n + i]);
+					printf("[%d,%d] = %s\n",j+1,i+1,pstData[j* iRows + i]);
 				}
 			}
-			printf("\n");
 
-			/* free pointer variableBfromScilab */
-			for (i = 0; i < m * n; i++)
-			{
-				free(variableBfromScilab[i]);
-			}
-			free(variableBfromScilab);
+			printf("\n");
+			free(piLen);
+			for(i = 0 ; i < iRows * iCols ; i++)
+				{
+					free(pstData[i]);
+				}
+			free(pstData);
+
 		}
 		
 	if ( TerminateScilab(NULL) == FALSE ) 

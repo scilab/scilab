@@ -14,8 +14,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "javasci_SciStringArray.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
@@ -23,6 +22,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 /*! public native String GetElement(int indr, int indc); */
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
+	StrErr strErr;
 	int *pLength = NULL;
 	char **pStrings = NULL;
 	int cm = 0, cn = 0;
@@ -44,8 +44,10 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 
 	int dimension[2];
 
-	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
+	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
+	if(strErr.iErr)
 	{
+		fprintf(stderr,"%s", getErrorMessage(strErr));
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciStringArray_GetElement (1).\n");
 		jstrToReturn = (*env)->NewStringUTF(env, "");
@@ -80,8 +82,10 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 		return jstrToReturn;
 	}
 
-	if ( readNamedMatrixOfString((char*)cname, &cm, &cn, pLength, pStrings) )
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &cm, &cn, pLength, pStrings);
+	if(strErr.iErr)
 	{
+		fprintf(stderr,"%s", getErrorMessage(strErr));
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciStringArray_GetElement (5).\n");
 		jstrToReturn = (*env)->NewStringUTF(env, "");
@@ -111,8 +115,10 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 		}
 	}
 
-	if ( readNamedMatrixOfString((char*)cname, &cm, &cn, pLength, pStrings) )
+	strErr = readNamedMatrixOfString(pvApiCtx, (char*)cname, &cm, &cn, pLength, pStrings);
+	if(strErr.iErr)
 	{
+		fprintf(stderr,"%s", getErrorMessage(strErr));
 		if (pLength) {FREE(pLength); pLength = NULL;}
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciStringArray_GetElement (8).\n");

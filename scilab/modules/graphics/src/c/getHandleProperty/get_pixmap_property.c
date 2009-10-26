@@ -29,7 +29,7 @@ int get_pixmap_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"pixmap");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
     return -1;
   }
   if ( sciGetPixmapMode(pobj) )

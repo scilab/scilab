@@ -10,16 +10,26 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot3d">
+<refentry version="5.0-subset Scilab" xml:id="plot3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>plot3d</refname>
+
     <refpurpose>3D plot of a surface</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
 plot3d(x,y,z,&lt;opt_args&gt;)
 
@@ -29,113 +39,144 @@ plot3d(xf,yf,zf,&lt;opt_args&gt;)
 plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
 plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x,y</term>
+
         <listitem>
           <para>row vectors of sizes n1 and n2 (x-axis and y-axis
           coordinates). These coordinates must be monotone.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>z</term>
+
         <listitem>
-          <para>matrix of size (n1,n2). <literal>z(i,j)</literal> is the value of
-          the surface at the point (x(i),y(j)).</para>
+          <para>matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
+          of the surface at the point (x(i),y(j)).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>xf,yf,zf</term>
+
         <listitem>
           <para>matrices of size (nf,n). They define the facets used to draw
           the surface. There are <literal>n</literal> facets. Each facet
-          <literal>i</literal> is defined by a polygon with <literal>nf</literal> points.
-          The x-axis, y-axis and z-axis coordinates of the points of the ith
-          facet are given respectively by <literal>xf(:,i)</literal>,
-          <literal>yf(:,i)</literal> and <literal>zf(:,i)</literal>.</para>
+          <literal>i</literal> is defined by a polygon with
+          <literal>nf</literal> points. The x-axis, y-axis and z-axis
+          coordinates of the points of the ith facet are given respectively by
+          <literal>xf(:,i)</literal>, <literal>yf(:,i)</literal> and
+          <literal>zf(:,i)</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>colors</term>
+
         <listitem>
           <para>a vector of size n giving the color of each facets or a matrix
           of size (nf,n) giving color near each facet boundary (facet color is
           interpolated ).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
+
         <listitem>
           <para>This represents a sequence of statements <literal>key1=value1,
           key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following: theta, alpha
-          ,leg,flag,ebox (see definition below).</para>
+          <literal>key2,...</literal> can be one of the following: theta,
+          alpha ,leg,flag,ebox (see definition below).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>theta, alpha</term>
+
         <listitem>
           <para>real values giving in degree the spherical coordinates of the
           observation point.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>leg</term>
+
         <listitem>
           <para>string defining the labels for each axis with @ as a field
           separator, for example "X@Y@Z".</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>flag</term>
+
         <listitem>
           <para>a real vector of size three.
           <literal>flag=[mode,type,box]</literal>.</para>
+
           <variablelist>
             <varlistentry>
               <term>mode</term>
+
               <listitem>
                 <para>an integer (surface color).</para>
+
                 <variablelist>
                   <varlistentry>
                     <term>mode&gt;0</term>
+
                     <listitem>
                       <para>the surface is painted with color
-                      <literal>"mode"</literal> ; the boundary of the facet is drawn
-                      with current line style and color.</para>
+                      <literal>"mode"</literal> ; the boundary of the facet is
+                      drawn with current line style and color.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>mode=0:</term>
+
                     <listitem>
                       <para>a mesh of the surface is drawn.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>mode&lt;0:</term>
+
                     <listitem>
                       <para>the surface is painted with color
-                      <literal>"-mode"</literal> ; the boundary of the facet is not
-                      drawn.</para>
+                      <literal>"-mode"</literal> ; the boundary of the facet
+                      is not drawn.</para>
+
                       <para>Note that the surface color treatement can be done
                       using <literal>color_mode</literal> and
-                      <literal>color_flag</literal> options through the surface
-                      entity properties (see
-                      <link linkend="surface_properties">surface_properties</link>).</para>
+                      <literal>color_flag</literal> options through the
+                      surface entity properties (see <link
+                      linkend="surface_properties">surface_properties</link>).</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>type</term>
+
               <listitem>
                 <para>an integer (scaling).</para>
+
                 <variablelist>
                   <varlistentry>
                     <term>type=0:</term>
+
                     <listitem>
                       <para>the plot is made using the current 3D scaling (set
                       by a previous call to <literal>param3d</literal>,
@@ -143,96 +184,122 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
                       <literal>plot3d1</literal>).</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=1:</term>
+
                     <listitem>
-                      <para>rescales automatically 3d boxes with extreme aspect
-                      ratios, the boundaries are specified by the value of the
-                      optional argument <literal>ebox</literal>.</para>
+                      <para>rescales automatically 3d boxes with extreme
+                      aspect ratios, the boundaries are specified by the value
+                      of the optional argument <literal>ebox</literal>.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=2:</term>
+
                     <listitem>
-                      <para>rescales automatically 3d boxes with extreme aspect
-                      ratios, the boundaries are computed using the given
-                      data.</para>
+                      <para>rescales automatically 3d boxes with extreme
+                      aspect ratios, the boundaries are computed using the
+                      given data.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=3:</term>
+
                     <listitem>
                       <para>3d isometric with box bounds given by optional
                       <literal>ebox</literal>, similarily to
                       <literal>type=1</literal>.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=4:</term>
+
                     <listitem>
                       <para>3d isometric bounds derived from the data, to
                       similarily<literal>type=2</literal>.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=5:</term>
+
                     <listitem>
                       <para>3d expanded isometric bounds with box bounds given
                       by optional <literal>ebox</literal>, similarily to
                       <literal>type=1</literal>.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>type=6:</term>
+
                     <listitem>
-                      <para>3d expanded isometric bounds derived from the data,
-                      similarily to <literal>type=2</literal>.</para>
-                      <para>Note that axes boundaries can be customized through
-                      the axes entity properties (see
-                      <link linkend="axes_properties">axes_properties</link>).</para>
+                      <para>3d expanded isometric bounds derived from the
+                      data, similarily to <literal>type=2</literal>.</para>
+
+                      <para>Note that axes boundaries can be customized
+                      through the axes entity properties (see <link
+                      linkend="axes_properties">axes_properties</link>).</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>box</term>
+
               <listitem>
                 <para>an integer (frame around the plot).</para>
+
                 <variablelist>
                   <varlistentry>
                     <term>box=0:</term>
+
                     <listitem>
                       <para>nothing is drawn around the plot.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>box=1:</term>
+
                     <listitem>
                       <para>unimplemented (like box=0).</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>box=2:</term>
+
                     <listitem>
                       <para>only the axes behind the surface are drawn.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>box=3:</term>
+
                     <listitem>
-                      <para>a box surrounding the surface is drawn and captions
-                      are added.</para>
+                      <para>a box surrounding the surface is drawn and
+                      captions are added.</para>
                     </listitem>
                   </varlistentry>
+
                   <varlistentry>
                     <term>box=4:</term>
+
                     <listitem>
-                      <para>a box surrounding the surface is drawn, captions and
-                      axes are added.</para>
-                      <para>Note that axes aspect can also be customized through
-                      the axes entity properties (see
-                      <link linkend="axes_properties">axes_properties</link>).</para>
+                      <para>a box surrounding the surface is drawn, captions
+                      and axes are added.</para>
+
+                      <para>Note that axes aspect can also be customized
+                      through the axes entity properties (see <link
+                      linkend="axes_properties">axes_properties</link>).</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -241,74 +308,92 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
           </variablelist>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ebox</term>
+
         <listitem>
           <para>It specifies the boundaries of the plot as the vector
-          <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>. This argument is used
-          together with <literal>type</literal> in <literal>flag</literal> : if it is set
-          to <literal>1</literal>, <literal>3</literal> or <literal>5</literal> (see above to
-          see the corresponding behaviour). If <literal>flag</literal> is missing,
+          <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>. This argument is
+          used together with <literal>type</literal> in
+          <literal>flag</literal> : if it is set to <literal>1</literal>,
+          <literal>3</literal> or <literal>5</literal> (see above to see the
+          corresponding behaviour). If <literal>flag</literal> is missing,
           <literal>ebox</literal> is not taken into acoount.</para>
-          <para>Note that, when specified, the <literal>ebox</literal> argument acts on
-          the <literal>data_bounds</literal> field that can also be reset through
-          the axes entity properties (see <link linkend="axes_properties">axes_properties</link>).</para>
+
+          <para>Note that, when specified, the <literal>ebox</literal>
+          argument acts on the <literal>data_bounds</literal> field that can
+          also be reset through the axes entity properties (see <link
+          linkend="axes_properties">axes_properties</link>).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</literal> draws the
-    parametric surface <literal>z=f(x,y)</literal>.</para>
-    <para><literal>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</literal> draws a
-    surface defined by a set of facets. You can draw multiple plots by
-    replacing <literal>xf</literal>, <literal>yf</literal> and <literal>zf</literal> by multiple
-    matrices assembled by rows as <literal>[xf1 xf2 ...]</literal>, <literal>[yf1 yf2
-    ...]</literal> and <literal>[zf1 zf2 ...]</literal>. Note that data can also be set
-    or get through the surface entity properties (see
-    <link linkend="surface_properties">surface_properties</link>).</para>
-    <para/>
+
+    <para><literal>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</literal> draws
+    the parametric surface <literal>z=f(x,y)</literal>.</para>
+
+    <para><literal>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</literal>
+    draws a surface defined by a set of facets. You can draw multiple plots by
+    replacing <literal>xf</literal>, <literal>yf</literal> and
+    <literal>zf</literal> by multiple matrices assembled by rows as
+    <literal>[xf1 xf2 ...]</literal>, <literal>[yf1 yf2 ...]</literal> and
+    <literal>[zf1 zf2 ...]</literal>. Note that data can also be set or get
+    through the surface entity properties (see <link
+    linkend="surface_properties">surface_properties</link>).</para>
+
+    <para></para>
+
     <para>You can give a specific color for each facet by using
     <literal>list(zf,colors)</literal> instead of <literal>zf</literal>, where
     <literal>colors</literal> is a vector of size <literal>n</literal>. If
     <literal>colors(i)</literal> is positive it gives the color of facet
-    <literal>i</literal> and the boundary of the facet is drawn with current line
-    style and color. If <literal>colors(i)</literal> is negative, color id
-    <literal>-colors(i)</literal> is used and the boundary of the facet is not
-    drawn.</para>
-    <para/>
-    <para>It is also possible to get interpolated color for facets. For that the
-    color argument must be a matrix of size nfxn giving the color near each
-    boundary of each facets. In this case positive values for colors mean that
-    the boundary are not drawn. Note that colors can also be set through the
-    surface entity properties (via <literal>tlist</literal> affectations) and edited
-    using <literal>color_flag</literal> option (see
-    <link linkend="surface_properties">surface_properties</link>).</para>
-    <para/>
-    <para>The optional arguments <literal>theta, alpha, leg ,flag, ebox</literal>, can
-    be passed by a sequence of statements <literal>key1=value1,
-    key2=value2</literal>, ... In this case, the order has no special meaning.
-    Note that all these optional arguments except <literal>flag</literal> can be
-    customized through the axes entity properties (see
-    <link linkend="axes_properties">axes_properties</link>). As described before, the <literal>flag</literal>
-    option deals with surface entity properties for <literal>mode</literal> (see
-    <link linkend="surface_properties">surface_properties</link>) and axes properties for <literal>type</literal>
-    and <literal>box</literal> (see <link linkend="axes_properties">axes_properties</link>).</para>
-    <para/>
-    <para>You can use the function <literal>genfac3d</literal> to compute four sided
-    facets from the surface <literal>z=f(x,y)</literal>. <literal>eval3dp</literal> can
-    also be used.</para>
-    <para/>
+    <literal>i</literal> and the boundary of the facet is drawn with current
+    line style and color. If <literal>colors(i)</literal> is negative, color
+    id <literal>-colors(i)</literal> is used and the boundary of the facet is
+    not drawn.</para>
+
+    <para></para>
+
+    <para>It is also possible to get interpolated color for facets. For that
+    the color argument must be a matrix of size nfxn giving the color near
+    each boundary of each facets. In this case positive values for colors mean
+    that the boundary are not drawn. Note that colors can also be set through
+    the surface entity properties (via <literal>tlist</literal> affectations)
+    and edited using <literal>color_flag</literal> option (see <link
+    linkend="surface_properties">surface_properties</link>).</para>
+
+    <para></para>
+
+    <para>The optional arguments <literal>theta, alpha, leg ,flag,
+    ebox</literal>, can be passed by a sequence of statements
+    <literal>key1=value1, key2=value2</literal>, ... In this case, the order
+    has no special meaning. Note that all these optional arguments except
+    <literal>flag</literal> can be customized through the axes entity
+    properties (see <link linkend="axes_properties">axes_properties</link>).
+    As described before, the <literal>flag</literal> option deals with surface
+    entity properties for <literal>mode</literal> (see <link
+    linkend="surface_properties">surface_properties</link>) and axes
+    properties for <literal>type</literal> and <literal>box</literal> (see
+    <link linkend="axes_properties">axes_properties</link>).</para>
+
+    <para></para>
+
+    <para>You can use the function <literal>genfac3d</literal> to compute four
+    sided facets from the surface <literal>z=f(x,y)</literal>.
+    <literal>eval3dp</literal> can also be used.</para>
+
+    <para></para>
+
     <para>Enter the command <literal>plot3d()</literal> to see a demo.</para>
   </refsection>
-  <refsection>
-    <title>More information</title>
-    <para>To get more information on the plot3d old syntax , use the
-    <link linkend="plot3d_old_version">plot3d_old_version</link> help document.</para>
-  </refsection>
+
   <refsection>
     <title>Examples</title>
+
     <programlisting role="example"><![CDATA[ 
 // simple plot using z=f(x,y) 
 t=[0:0.3:2*%pi]';
@@ -381,10 +466,10 @@ h.data = TL;
 h.color_flag=3; // interpolated shading mode
  ]]></programlisting>
 
-    <para>We can also use the plot3d function to plot a set of patches (triangular, quadrangular, etc). </para>
+    <para>We can use the plot3d function to plot a set of patches (triangular,
+    quadrangular, etc).</para>
 
     <programlisting role="example"><![CDATA[ 
- 
 // The plot3d function to draw patches:
 // patch(x,y,[z])
 // patch(x,y,[list(z,c)])
@@ -499,46 +584,127 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-    <para> The result of the preceding example: </para>
-    <para> <imagedata fileref="../images/plot3d_patch.png" /> </para>
+
+    <para>The result of the preceding example:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/plot3d_patch.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>We can also use the plot3d function to plot a set of patches using
+    vertex and faces.</para>
+
+    <programlisting role = "example"><![CDATA[ 
+// Vertex / Faces example: 3D example
+
+// The vertex list contains the list of unique points composing each patch
+// The points common to 2 patches are not repeated in the vertex list
+
+vertex = [0 1 1;
+          0 2 2;
+          1 2 3;
+          1 1 4];
+
+// The face list indicates which points are composing the patch.        
+face = [1 2 3;
+        1 3 4];
+
+tcolor = [2 3]';
+         
+// The formula used to translate the vertex / face representation into x, y, z lists
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(vertex(face,3),size(face,1),length(vertex(face,1))/size(face,1))';
+
+scf();
+subplot(2,1,1);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 3d');
+
+// 2D test
+// We use the 3D representation with a 0 Z values and then switch to 2D representation
+
+// Vertex / Faces example: 3D example
+
+// The vertex list contains the list of unique points composing each patch
+// The points common to 2 patches are not repeated in the vertex list
+
+vertex = [0 1;
+          0 2;
+          1 2;
+          1 1];
+
+// The face list indicates which points are composing the patch.        
+face = [1 2 3;
+        1 3 4];
+         
+// The formula used to translate the vertex / face representation into x, y, z lists
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(zeros(vertex(face,2)),size(face,1),length(vertex(face,1))/size(face,1))';
+
+subplot(2,1,2);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 2D');
+a = gca();
+a.view = '2d';
+ ]]></programlisting>
+
+    <para>The result of the preceding example:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/plot3d_patch_vertex.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para> How to set manually some ticks </para>
+
+    <programlisting role = "example"><![CDATA[ 
+plot3d();
+h = gca();
+h.x_ticks = tlist(['ticks','locations','labels'],[-2,-1,0,1,2],['-2','-1','0','1','2']);
+h.y_ticks = tlist(['ticks','locations','labels'],[-4,-3-2,-1,0,1,2,3,4],['-4','-3','-2','-1','0','1','2','3','4']);
+h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','Point 3']);
+ ]]></programlisting>
+    <para></para>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="eval3dp">eval3dp</link>
-      </member>
-      <member>
-        <link linkend="genfac3d">genfac3d</link>
-      </member>
-      <member>
-        <link linkend="geom3d">geom3d</link>
-      </member>
-      <member>
-        <link linkend="param3d">param3d</link>
-      </member>
-      <member>
-        <link linkend="plot3d1">plot3d1</link>
-      </member>
-      <member>
-        <link linkend="clf">clf</link>
-      </member>
-      <member>
-        <link linkend="gca">gca</link>
-      </member>
-      <member>
-        <link linkend="gcf">gcf</link>
-      </member>
-      <member>
-        <link linkend="xdel">xdel</link>
-      </member>
-      <member>
-        <link linkend="delete">delete</link>
-      </member>
+      <member><link linkend="eval3dp">eval3dp</link></member>
+
+      <member><link linkend="genfac3d">genfac3d</link></member>
+
+      <member><link linkend="geom3d">geom3d</link></member>
+
+      <member><link linkend="param3d">param3d</link></member>
+
+      <member><link linkend="plot3d1">plot3d1</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="gca">gca</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="xdel">xdel</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>J.Ph.C.</para>
   </refsection>
 </refentry>
