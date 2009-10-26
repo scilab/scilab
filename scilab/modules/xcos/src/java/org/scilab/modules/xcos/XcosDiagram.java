@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -573,6 +575,7 @@ public class XcosDiagram extends ScilabGraph {
     			// Store all AfficheBlocks in a dedicated HasMap
     			if(cells[i] instanceof AfficheBlock){
     			    AfficheBlock affich = (AfficheBlock)cells[i];
+    			    System.err.println("add cell affich : key=" + affich.getHashCode() + " value=" + affich);
     			    Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
     			}
     			// Update parent on cell addition
@@ -1420,13 +1423,17 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     private void setChildrenParentDiagram(XcosDiagram diagram){
-	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
-	    mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-	    if (cell instanceof BasicBlock){
-		BasicBlock block = (BasicBlock)cell; 
-		block.setParentDiagram(diagram);
-	    }
-	}
+    	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
+    		mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
+    		if (cell instanceof BasicBlock){
+    			BasicBlock block = (BasicBlock)cell; 
+    			block.setParentDiagram(diagram);
+    			if(block instanceof AfficheBlock){
+    				AfficheBlock affich = (AfficheBlock)block;
+    				Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+    			}
+    		}
+    	}
     }
 /**
      * Returns the tooltip to be used for the given cell.
@@ -1440,8 +1447,8 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols){
-    	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
 
+       	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
     	if(block == null){
     		System.err.println("block == null");
     		return;

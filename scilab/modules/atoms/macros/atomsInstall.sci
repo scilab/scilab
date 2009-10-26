@@ -352,12 +352,17 @@ function result = atomsInstall(packages,section)
 		// Autoload the toolbox unless precised
 		// =====================================================================
 		
-		if ~ (atomsGetConfig("autoload") == "False") then
+		if ~ (atomsGetConfig("autoloadAddAfterInstall") == "False") then
+			
 			// Add a package to the autoload list only if it's intentionnaly
 			// installed
+			
 			if this_package_status=="I" then
+				// If another version is on the autoload list, remove it
+				atomsAutoloadDel([this_package_name ""                   section],section);
 				atomsAutoloadAdd([this_package_name this_package_version section],section);
 			end
+			
 		end
 		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory

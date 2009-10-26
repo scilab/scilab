@@ -12,9 +12,9 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 if ~isempty( atomsGetInstalled() ) then bugmes();quit;end 
 // Set some parameters for the test
 // =============================================================================
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 // 1st test-case : Just install the toolbox 5
 // =============================================================================
@@ -63,6 +63,6 @@ atomsRemove("toolbox_5");
 	the package toolbox_1 (1.0) is currently loaded, It will removed at next Scilab restart
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");
