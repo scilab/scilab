@@ -55,7 +55,6 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -950,7 +949,6 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	/* Extension checks */
 	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-	System.err.println("extension : " + extension);
 	if (extension.equals(fileName)) {
 	    /* No extension given --> .xcos added */
 	    fileName += ".xcos";
