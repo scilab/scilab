@@ -123,6 +123,7 @@
 
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
+  <add as="CONST_f" extend="blockWithLabel"/>
   <add as="CONST" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Square wave&lt;BR&gt;
@@ -312,6 +313,8 @@
   <add as="SAMPHOLD_m" extend="blockWithLabel">
     <add as="displayedLabel" value="S/H"/>
   </add>
+  <add as="SAMPLEHOLD_f" extend="SAMPHOLD_m"/>
+  
 
   <!-- THRESHOLD -->
   <add as="NEGTOPOS_f" extend="blockWithLabel">
@@ -860,6 +863,7 @@
   <add as="SELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
   </add>
+  <add as="SELECT_f" extend="SELECT_m"/>
   <add as="EXTRACTOR" extend="blockWithLabel">
     <add as="displayedLabel" value="Extractor"/>
   </add>
