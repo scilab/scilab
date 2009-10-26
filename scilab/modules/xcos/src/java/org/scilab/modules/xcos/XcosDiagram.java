@@ -1307,7 +1307,8 @@ public class XcosDiagram extends ScilabGraph {
     				if (getModel().getChildCount(getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
-    					setTitle(theFile.getAbsolutePath());
+    				    	setSavedFile(theFile.getAbsolutePath());
+    					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
     				}
     				setChildrenParentDiagram();
     			} else {
@@ -1316,7 +1317,8 @@ public class XcosDiagram extends ScilabGraph {
     				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
-    					setTitle(theFile.getAbsolutePath());
+    				setSavedFile(theFile.getAbsolutePath());
+					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
     				}
     				setChildrenParentDiagram(xcosDiagram);
     			}
