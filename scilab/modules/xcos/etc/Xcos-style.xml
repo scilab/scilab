@@ -359,6 +359,7 @@
   <add as="INVBLK" extend="blockWithLabel">
     <add as="displayedLabel" value="1/u"/>
   </add>
+  <add as="INVBLK_f" extend="INVBLK"/>
   <add as="SINBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="SIN"/>
   </add>
