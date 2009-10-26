@@ -165,4 +165,9 @@ public final class XcosMessages {
     public static final String BORDER_COLOR = Messages.gettext("Border Color");
     public static final String FILL_COLOR = Messages.gettext("Fill Color");
 
+    public static final String LINK_STYLE = Messages.gettext("Link Style");
+    public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
+    public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
+    public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
+
 }

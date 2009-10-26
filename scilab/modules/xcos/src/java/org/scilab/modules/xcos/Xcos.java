@@ -62,6 +62,7 @@ import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.ColorAction;
+import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -489,6 +490,15 @@ public class Xcos extends SwingScilabTab implements Tab {
 		format.add(ColorAction.createMenu(scilabGraph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
 		format.add(ColorAction.createMenu(scilabGraph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
 		format.addSeparator();
+		
+		Menu linkStyle = ScilabMenu.createMenu();
+		linkStyle.setText(XcosMessages.LINK_STYLE);
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+		format.add(linkStyle);
+		format.addSeparator();	
+		
 		format.add(DiagramBackgroundAction.createMenu(scilabGraph));
 		CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(scilabGraph);
 		format.add(gridMenu);
