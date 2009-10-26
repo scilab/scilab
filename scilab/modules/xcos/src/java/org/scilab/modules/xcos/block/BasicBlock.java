@@ -352,7 +352,7 @@ public class BasicBlock extends mxCell {
     }
 
     public ScilabType getEquations() {
-	return (equations != null ? equations : new ScilabList());
+	return equations;
     }
 
     public void setEquations(ScilabType equations) {
@@ -578,7 +578,7 @@ public class BasicBlock extends mxCell {
 	graphics.add(getAllLinkId(getAllCommandPorts())); // peout
 
 	ScilabList gr_i = new ScilabList();
-	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getValue()+"\",sz(1),sz(2));");
+	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getInterfaceFunctionName()+"\",sz(1),sz(2));");
 	gr_i.add(graphicsInstructions);
 	gr_i.add(new ScilabDouble(8));
 	graphics.add(gr_i); // gr_i
@@ -655,7 +655,12 @@ public class BasicBlock extends mxCell {
 
 	model.add(getNmode()); // nmode
 
-	model.add(getEquations()); // equations
+	if (getEquations() == null) {
+	    model.add(new ScilabList()); // equations
+	}
+	else {
+	    model.add(getEquations()); // equations
+	}
 
 	return model;
     }
