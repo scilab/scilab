@@ -21,9 +21,22 @@ function result = atomsAutoload()
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
+	// Save the initial path
+	// =========================================================================
+	ATOMSINITIALPATH = pwd();
+	
+	// Tell atomsLoad() we are in a atomsAutoload() session
+	// =========================================================================
+	ATOMSAUTOLOAD = %T;
+	
 	// Check input parameters
 	// =========================================================================
 	rhs = argn(2);
+	
 	if rhs > 0 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsAutoload",0))
 	end
@@ -57,7 +70,7 @@ function result = atomsAutoload()
 		// One or more package are not installed : Remove them from the autoload
 		// list
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "all";
 		else
 			section = "user";
@@ -120,5 +133,9 @@ function result = atomsAutoload()
 	// Exec the resume cmd
 	// =========================================================================
 	execstr(resume_cmd,"errcatch");
+	
+	// Go to the initial location
+	// =========================================================================
+	chdir(ATOMSINITIALPATH);
 	
 endfunction
