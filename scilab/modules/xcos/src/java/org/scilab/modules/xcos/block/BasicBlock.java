@@ -158,12 +158,16 @@ public class BasicBlock extends mxCell {
     public static BasicBlock createBlock(String label) {
     	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
     	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
-    	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
+    	if(label.compareTo("CONST_m") == 0
+    		|| label.compareTo("CONST") == 0) {
+    	    return new ConstBlock(label);
+    	}
     	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
     	if(label.compareTo("GAINBLK_f") == 0
     		|| label.compareTo("GAINBLK") == 0
-    		|| label.compareTo("GAIN_f") == 0)
-    	{ return new GainBlock(label); }
+    		|| label.compareTo("GAIN_f") == 0) {
+    	    return new GainBlock(label);
+    	}
     	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
     	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
     	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
@@ -171,9 +175,10 @@ public class BasicBlock extends mxCell {
     	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
     	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
     	if(label.compareTo("SPLIT_f") == 0 || 
-    			label.compareTo("IMPSPLIT_f") == 0 ||
-    			label.compareTo("CLKSPLIT_f") == 0) 
-    	{ return new SplitBlock(label); }
+    		label.compareTo("IMPSPLIT_f") == 0 ||
+    		label.compareTo("CLKSPLIT_f") == 0) {
+    	    return new SplitBlock(label);
+    	}
     	else { 
     		return new BasicBlock(label); 
     	}
@@ -352,7 +357,7 @@ public class BasicBlock extends mxCell {
     }
 
     public ScilabType getEquations() {
-	return (equations != null ? equations : new ScilabList());
+	return equations;
     }
 
     public void setEquations(ScilabType equations) {
@@ -578,7 +583,7 @@ public class BasicBlock extends mxCell {
 	graphics.add(getAllLinkId(getAllCommandPorts())); // peout
 
 	ScilabList gr_i = new ScilabList();
-	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getValue()+"\",sz(1),sz(2));");
+	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getInterfaceFunctionName()+"\",sz(1),sz(2));");
 	gr_i.add(graphicsInstructions);
 	gr_i.add(new ScilabDouble(8));
 	graphics.add(gr_i); // gr_i
@@ -655,7 +660,12 @@ public class BasicBlock extends mxCell {
 
 	model.add(getNmode()); // nmode
 
-	model.add(getEquations()); // equations
+	if (getEquations() == null) {
+	    model.add(new ScilabList()); // equations
+	}
+	else {
+	    model.add(getEquations()); // equations
+	}
 
 	return model;
     }
@@ -941,42 +951,42 @@ public class BasicBlock extends mxCell {
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
-	result.append("Block Address : " + this + "<br>");
+	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
 	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
 	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
 	result.append("Command ports : " + getAllCommandPorts().size() + "<br>");
-	result.append("Diagram : " + getParentDiagram() + "<br>");
-	//exprs
-	if (getExprs() != null) {
-	    result.append("Exprs : "+getExprs().toString()+"<br>");
-	}
-	else {
-	    result.append("Exprs : (null)<br>");
-	}
-	//ipar
-	if (getIntegerParameters() != null ) {
-	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Ipar : (null)<br>");
-	}
-	//rpar
-	if (getRealParameters() != null) {
-	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Rpar : (null)<br>");
-	}
-	//opar
-	if (getObjectsParameters() != null) {
-	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Opar : (null)<br>");
-	}
+//	result.append("Diagram : " + getParentDiagram() + "<br>");
+//	//exprs
+//	if (getExprs() != null) {
+//	    result.append("Exprs : "+getExprs().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Exprs : (null)<br>");
+//	}
+//	//ipar
+//	if (getIntegerParameters() != null ) {
+//	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Ipar : (null)<br>");
+//	}
+//	//rpar
+//	if (getRealParameters() != null) {
+//	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Rpar : (null)<br>");
+//	}
+//	//opar
+//	if (getObjectsParameters() != null) {
+//	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Opar : (null)<br>");
+//	}
 	
 	result.append("</html>");
 	return result.toString();
