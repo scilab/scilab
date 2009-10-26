@@ -13,8 +13,6 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JColorChooser;
 
@@ -22,35 +20,36 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
-public class LineColorAction extends DefaultAction {
+public class ColorAction extends DefaultAction {
 
-    private LineColorAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.LINE_COLOR, scilabGraph);
+    private String key = null;
+    private String title = null;
+    
+    private ColorAction(ScilabGraph scilabGraph, String title, String key) {
+	super(title, scilabGraph);
+	this.key = key;
+	this.title = title;
     }
 
-    public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.LINE_COLOR, null, new LineColorAction(scilabGraph), null);
+    public static MenuItem createMenu(ScilabGraph scilabGraph, String title, String key) {
+	return createMenu(title, null, new ColorAction(scilabGraph, title, key), null);
     }
 
     public void doAction() {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();
-	List<BasicLink> links = new ArrayList<BasicLink>();
 	
 	//if no cells are selected : Do nothing
 	if (selectedCells.length == 0) { return; }
 
-	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), XcosMessages.LINE_COLOR, null);
+	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), title, null);
 
 	if (newColor != null)
 	{
-	    graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(newColor));
+	    graph.setCellStyles(key, mxUtils.hexString(newColor));
     	}
     }
 }

@@ -162,6 +162,7 @@ public final class XcosMessages {
     public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
     public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
     
-    public static final String LINE_COLOR = Messages.gettext("Line Color");
+    public static final String BORDER_COLOR = Messages.gettext("Border Color");
+    public static final String FILL_COLOR = Messages.gettext("Fill Color");
 
 }
