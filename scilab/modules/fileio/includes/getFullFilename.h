@@ -9,19 +9,26 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-#ifndef __CALLXPAD_H__
-#define __CALLXPAD_H__
 /*--------------------------------------------------------------------------*/
+#ifndef __GETFULLFILENAME_H__
+#define __GETFULLFILENAME_H__
+
 #include <wchar.h>
-#include "dynlib_xpad.h"
-/*--------------------------------------------------------------------------*/
+#include "dynlib_fileio.h"
+
 /**
-* call Xpad from C (Wide Char as input filesname)
-* used by Windows for localized files name
-* @param[in] _wcfilenames wide char encoding (filenames to open)
-* @param[in] size of _wcfilenames
-* @return 0
+* get full filename of a file (wide string)
+* @param[in] FilenameInput can be a relative path
+* @return a full filename (path expanded)
 */
-XPAD_IMPEXP int callXpadW(wchar_t **_wcfilenames, int _nbfiles);
+FILEIO_IMPEXP wchar_t *getFullFilenameW(wchar_t* FilenameInput);
+
+/**
+* get full filename of a file
+* @param[in] FilenameInput can be a relative path
+* @return a full filename (path expanded)
+*/
+FILEIO_IMPEXP char *getFullFilename(char* Filename);
+
+#endif /* __GETFULLFILENAME_H__ */
 /*--------------------------------------------------------------------------*/
-#endif /* __CALLXPAD_H__ */

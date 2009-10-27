@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2009 - Calixte Denizet
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,14 +9,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __RETURNANAN_H__
-#define __RETURNANAN_H__
-#include "machine.h"
-/**
- * Returns a "not a number"
- * @return the "nan"
- */
-double C2F(returnanan)(void);
-void C2F(returnananfortran)(double * nan);
 
-#endif /*__RETURNANAN_H__ */
+package org.scilab.modules.renderer.utils.textRendering;
+
+
+/**
+ * Special Text Exception thrown when expression isn't in MathML or LaTeX code
+ * @author Calixte Denizet
+ */
+public class SpecialTextException extends Exception {
+    
+    public SpecialTextException(String msg) {
+	super(msg);
+    }
+}
