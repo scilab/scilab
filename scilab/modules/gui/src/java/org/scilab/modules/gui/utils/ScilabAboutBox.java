@@ -22,6 +22,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
+
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -114,9 +118,8 @@ public class ScilabAboutBox {
 			public void actionPerformed(ActionEvent event) {
 								
 				StringBuilder contents = new StringBuilder();
-			    
 			    try {
-			      BufferedReader input =  new BufferedReader(new FileReader(filename));
+			      BufferedReader input = new BufferedReader( new InputStreamReader(new FileInputStream(filename), "UTF8"));
 			      try {
 			        String line = null;
 			        while (( line = input.readLine()) != null){
