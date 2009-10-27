@@ -20,7 +20,7 @@
 if MSDOS then
   ilib_verbose(0);
   exec SCI/modules/dynamic_link/tests/unit_tests/addinter.tst;
-  r = dllinfo(TMPDIR + '/libintertest.dll','imports');
+  r = dllinfo(TMPDIR + '/addinter/libintertest.dll','imports');
   if (r(1)(1) == 'libmmd.dll') | (r(2)(1) == 'libmmd.dll') then pause,end
 end
 

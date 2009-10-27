@@ -456,30 +456,30 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
 
     <para>
     The <literal>ind</literal> input argument is a message sent from the solver to the
-    cost function so that the cost function knows what to compute.
+    cost function so that the cost function knows what to compute.</para>
     <itemizedlist>
-    <listitem>
-    <para>
-      If <literal>ind=2</literal>, <literal>costf</literal> must provide <literal>f</literal>.
-    </para>
-    </listitem>
-    <listitem>
-    <para>
-      If <literal>ind=3</literal>, <literal>costf</literal> must provide <literal>g</literal>.
-    </para>
-    </listitem>
-    <listitem>
-    <para>
-      If <literal>ind=4</literal>, <literal>costf</literal> must provide <literal>f</literal> and <literal>g</literal>.
-    </para>
-    </listitem>
-    <listitem>
-    <para>
-      If <literal>ind=1</literal>, <literal>costf</literal> can print messages.
-    </para>
-    </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=2</literal>, <literal>costf</literal> must provide <literal>f</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=3</literal>, <literal>costf</literal> must provide <literal>g</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=4</literal>, <literal>costf</literal> must provide <literal>f</literal> and <literal>g</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=1</literal>, <literal>costf</literal> can print messages.
+	</para>
+      </listitem>
     </itemizedlist>
-    When the <literal>imp</literal> option is set to a negative integer value, say
+    <para>When the <literal>imp</literal> option is set to a negative integer value, say
     <literal>m</literal> for example, the cost function is called back every -<literal>m</literal>
     iterations, with the <literal>ind=1</literal> parameter. This can be used to 
     print messages, fill a log file or creating an interactive plot.

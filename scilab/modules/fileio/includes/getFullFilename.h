@@ -16,8 +16,18 @@
 #include <wchar.h>
 #include "dynlib_fileio.h"
 
+/**
+* get full filename of a file (wide string)
+* @param[in] FilenameInput can be a relative path
+* @return a full filename (path expanded)
+*/
 FILEIO_IMPEXP wchar_t *getFullFilenameW(wchar_t* FilenameInput);
 
+/**
+* get full filename of a file
+* @param[in] FilenameInput can be a relative path
+* @return a full filename (path expanded)
+*/
 FILEIO_IMPEXP char *getFullFilename(char* Filename);
 
 #endif /* __GETFULLFILENAME_H__ */

@@ -1337,23 +1337,24 @@ g_i(x) &lt;= 0, i = 1,nbineq
     <para>The cost function can also be used to produce outputs and to
     terminate an optimization algorithm.</para>
 
-    <para>In the following, the variables are <itemizedlist>
-        <listitem>
-          <para>f: scalar, the objective,</para>
-        </listitem>
-
-        <listitem>
-          <para>g: row matrix, the gradient of the objective,</para>
-        </listitem>
-
-        <listitem>
-          <para>c: row matrix, the constraints,</para>
-        </listitem>
-
-        <listitem>
-          <para>gc: matrix, the gradient of the constraints.</para>
-        </listitem>
-      </itemizedlist></para>
+    <para>In the following, the variables are </para>
+    <itemizedlist>
+      <listitem>
+        <para>f: scalar, the objective,</para>
+      </listitem>
+      
+      <listitem>
+        <para>g: row matrix, the gradient of the objective,</para>
+      </listitem>
+      
+      <listitem>
+        <para>c: row matrix, the constraints,</para>
+      </listitem>
+      
+      <listitem>
+        <para>gc: matrix, the gradient of the constraints.</para>
+      </listitem>
+    </itemizedlist>
 
     <para>Each calling sequence of the <literal>optimbase_function</literal>
     function corresponds to a specific calling sequence of the user-provided
@@ -1362,72 +1363,82 @@ g_i(x) &lt;= 0, i = 1,nbineq
     <itemizedlist>
       <listitem>
         <para>If the -withderivatives is false and there is no nonlinear
-        constraint, the calling sequence is <programlisting role="example"> 
+        constraint, the calling sequence is </para>
+	<programlisting role="example"><![CDATA[ 
 [ this , f , index ] = optimbase_function ( this , x , index )
-</programlisting> which corresponds to the cost functions <programlisting
-        role="example"> 
+ ]]></programlisting> 
+	<para>which corresponds to the cost functions</para>
+	<programlisting role="example"><![CDATA[ 
 function [ f , index ] = costf ( x , index ) 
 function [ f , index , data ] = costf ( x , index , data ) // if there is a -costfargument
-</programlisting></para>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is false and there are nonlinear
-        constraints, the calling sequence is <programlisting role="example"> 
+        constraints, the calling sequence is </para>
+	<programlisting role="example"><![CDATA[ 
 [ this , f , c , index ] = optimbase_function ( this , x , index )
-</programlisting> which corresponds to the cost functions <programlisting
-        role="example"> 
+ ]]></programlisting>
+	<para>which corresponds to the cost functions</para>
+	<programlisting role="example"><![CDATA[ 
 function [ f , c , index ] = costf ( x , index ) 
 function [ f , c , index , data ] = costf ( x , index , data ) // if there is a -costfargument
-</programlisting></para>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is true and there is no nonlinear
-        constraint, the calling sequence is <programlisting role="example"> 
+        constraint, the calling sequence is</para>
+	<programlisting role="example"><![CDATA[ 
 [ this , f , g , index ] = optimbase_function ( this , x , index )
-</programlisting> which corresponds to the cost functions <programlisting
-        role="example"> 
+ ]]></programlisting> 
+	<para>which corresponds to the cost functions</para>
+	<programlisting role="example"><![CDATA[ 
 function [ f , g , index ] = costf ( x , index ) 
 function [ f , g , index , data ] = costf ( x , index , data ) // if there is a -costfargument
-</programlisting></para>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is true and there is are nonlinear
-        constraints, the calling sequence is <programlisting role="example"> 
+        constraints, the calling sequence is</para>
+	<programlisting role="example"><![CDATA[ 
 [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
-</programlisting> which corresponds to the cost functions <programlisting
-        role="example"> 
+ ]]></programlisting> 
+	<para>which corresponds to the cost functions</para>
+	<programlisting role="example"><![CDATA[ 
 function [ f , g , c , gc , index ] = costf ( x , index ) 
 function [ f , g , c , gc , index , data ] = costf ( x , index , data ) // if there is a -costfargument
-</programlisting></para>
+ ]]></programlisting>
       </listitem>
     </itemizedlist>
 
     <para>Each calling sequence corresponds to a particular class of
-    algorithms, including for example <itemizedlist>
-        <listitem>
-          <para>unconstrained, derivative-free algorithms,</para>
-        </listitem>
-
-        <listitem>
-          <para>nonlinearily constrained, derivative-free algorithms,</para>
-        </listitem>
-
-        <listitem>
-          <para>unconstrained, derivative-based algorithms,</para>
-        </listitem>
-
-        <listitem>
-          <para>nonlinearilyconstrained, derivative-based algorithms,</para>
-        </listitem>
-
-        <listitem>
-          <para>etc...</para>
-        </listitem>
-      </itemizedlist> The current component is designed in order to be able to
-    handle many situations.</para>
+    algorithms, including for example</para>
+    <itemizedlist>
+      <listitem>
+        <para>unconstrained, derivative-free algorithms,</para>
+      </listitem>
+      
+      <listitem>
+        <para>nonlinearily constrained, derivative-free algorithms,</para>
+      </listitem>
+      
+      <listitem>
+        <para>unconstrained, derivative-based algorithms,</para>
+      </listitem>
+      
+      <listitem>
+        <para>nonlinearilyconstrained, derivative-based algorithms,</para>
+      </listitem>
+      
+      <listitem>
+        <para>etc...</para>
+      </listitem>
+    </itemizedlist>
+    <para> The current component is designed in order to be able to
+      handle many situations.</para>
 
     <para>The index input parameter has the following meaning.</para>
 

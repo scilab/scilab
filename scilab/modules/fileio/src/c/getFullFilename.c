@@ -15,6 +15,9 @@
 #include "MALLOC.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
+#include "scicurdir.h"
+#include "isdir.h"
+#include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 {
@@ -33,6 +36,7 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 		wchar_t wcNameExt[PATH_MAX * 2];
 		wchar_t wcPath[PATH_MAX * 2];
+		wchar_t *wcTmp = NULL;
 
 		splitpathW(FilenameInput, TRUE, wcDrv, wcDir,  wcName, wcExt);
 
@@ -44,22 +48,28 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 		if (wcscmp(wcPath, L"") == 0)
 		{
-#ifdef _MSC_VER
-			wchar_t wcCurrentDir[PATH_MAX];
-			if ( _wgetcwd(wcCurrentDir, PATH_MAX) != NULL)
+			int ierr = 0;
+			wchar_t *wcCurrentDir = scigetcwdW(&ierr);
+			if (ierr == 0)
 			{
 				wcscpy(wcPath, wcCurrentDir);
 			}
-#else
-			char CurrentDir[PATH_MAX];
-			if (getcwd(CurrentDir, PATH_MAX) != NULL)
+			if (wcCurrentDir)
 			{
-				wchar_t *wcCurrentDir = to_wide_string(CurrentDir);
-				wcscpy(wcPath, wcCurrentDir);
 				FREE(wcCurrentDir);
+				wcCurrentDir = NULL;
 			}
-#endif
 		}
+
+		wcTmp = (wchar_t*)MALLOC(sizeof(wchar_t) *(PATH_MAX * 2));
+		if (wcTmp)
+		{
+			get_full_pathW(wcTmp, (const wchar_t*)wcPath,PATH_MAX * 2);
+			wcscpy(wcPath, wcTmp);
+			FREE(wcTmp);
+			wcTmp = NULL;
+		}
+
 		lenPath = (int)wcslen(wcPath);
 		if (lenPath - 1 >= 0)
 		{

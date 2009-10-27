@@ -31,6 +31,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -86,6 +87,7 @@ public class BlockReader {
 		HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>(); 
 
 		List<BasicBlock> blocks = new ArrayList<BasicBlock>();
+		List<TextBlock> textBlocks = new ArrayList<TextBlock>();
 		HashMap<String, Object> links = new HashMap<String, Object>();
 
 		double minX = Double.MAX_VALUE;
@@ -137,13 +139,14 @@ public class BlockReader {
 
 		double offsetY = 0;
 		offsetY = -minY + 20;
+
 		
 		for (int i = 0; i < blocks.size(); ++i) {
 			blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
 			blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + offsetY);
 		}
 		result.put("Blocks", blocks);
-
+		
 		List<BasicPort[]> linkPorts = new ArrayList<BasicPort[]>(); 
 		List<double[][]> linkPoints = new ArrayList<double[][]>(); 
 		// Read all Links
@@ -220,6 +223,45 @@ public class BlockReader {
 			}
 		}
 
+		// Read all Labels
+		for (int i = 0; i < nbObjs; ++i) {
+			try{
+				if (isLabel(data, i)) {
+					//TODO
+					INFO("Reading Label " + i);
+					TextBlock currentText = fillTextStructure(getBlockAt(data, i));
+					currentText.setOrdering(i);
+
+					//tips to set block direction at load "BLOCK_f;direction=east" 
+					//currentText.setStyle(currentText.getInterfaceFunctionName() + currentText.getStyle());
+					currentText.setValue(((ScilabString)currentText.getRealParameters()).getData()[0][0]);
+					
+					textBlocks.add(currentText);
+					minX = Math.min(minX, currentText.getGeometry().getX());
+					minY = Math.min(minY, currentText.getGeometry().getY()/* - currentBlock.getGeometry().getHeight()*/);
+				}else{
+					//for minX and minY
+				}
+			} catch (BlockReaderException e) {
+				WARNING(" Fail reading Label " + (i + 1));
+				e.printStackTrace();
+				return null;
+			}
+
+		}
+
+		offsetX = -minX + 20;
+		offsetY = -minY + 20;
+
+		
+		for (int i = 0; i < textBlocks.size(); ++i) {
+			textBlocks.get(i).getGeometry().setX(textBlocks.get(i).getGeometry().getX() + offsetX);
+			textBlocks.get(i).getGeometry().setY(textBlocks.get(i).getGeometry().getY() + offsetY);
+		}
+		result.put("TextBlocks", textBlocks);
+		
+		////
+		
 		links.put("Ports", linkPorts);
 		links.put("Points", linkPoints);
 		result.put("Links", links);
@@ -366,6 +408,18 @@ public class BlockReader {
 		return false;
 	}
 
+	public static boolean isLabel(ScilabMList data , int index){
+		ScilabMList object = (ScilabMList) ((ScilabList) data.get(2)).get(index);
+		if(object.get(0) instanceof ScilabString && 
+				((ScilabString) object.get(0)).getData()[0][0].equals("Text")) {
+			
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
 	private static boolean isLink(ScilabMList data , int index) {
 		ScilabMList object = (ScilabMList) ((ScilabList) data.get(2)).get(index);
 
@@ -540,7 +594,41 @@ public class BlockReader {
 
 		return diagramProperties;
 	}
+	
+	private static TextBlock fillTextStructure(ScilabMList blockFields) throws WrongStructureException, WrongTypeException {
+		String[] realNameOfTextFields = {"Text", "graphics" , "model" , "void" , "gui"};
+		
+		TextBlock newBlock = (TextBlock) BasicBlock.createBlock("TEXT_f");
+		// we test if the structure as enough field
+		if (blockFields.size() != realNameOfTextFields.length ) { throw new WrongStructureException(); }
+		
+		// check if all fields are present
+		if (!(blockFields.get(0) instanceof ScilabString)) { throw new WrongStructureException(); }
+		String[] nameOfScs_mFields = ((ScilabString)blockFields.get(0)).getData()[0];
+		
 
+		// check if all the expecting field's name are present
+		if (nameOfScs_mFields.length != realNameOfTextFields.length ) { throw new WrongStructureException(); }
+		for (int i = 0 ; i < realNameOfTextFields.length ; i++){
+			if (!nameOfScs_mFields[i].equals(realNameOfTextFields[i])) {
+				throw new WrongStructureException();
+			}
+		}
+		
+		// the second field must contain list of all graphic property (how the block will be displayed )
+		if (!(blockFields.get(1) instanceof ScilabMList)) { throw new WrongTypeException(); }
+		fillGraphicsStructure( blockFields, newBlock);
+
+
+		// the third field must contains all the informations needed to compile the block
+		if (!(blockFields.get(2) instanceof ScilabMList)) { throw new WrongTypeException(); }
+		fillTextModelStructure(blockFields, newBlock);
+		
+		return newBlock ;
+		
+	}
+	
+	
 	private static BasicBlock  fillBlockStructure(ScilabMList blockFields) throws WrongStructureException, WrongTypeException {
 		String[] realNameOfBlockFields = {"Block", "graphics" , "model" , "gui" , "doc"};
 
@@ -754,6 +842,268 @@ public class BlockReader {
 	}
 
 
+	public static void fillTextModelStructure ( ScilabMList blockFields,BasicBlock newBlock ) throws WrongTypeException, WrongStructureException {
+
+		// graphicsStructure because some infromations about the port are stored there too 
+		ScilabMList graphicsStructure =(ScilabMList)blockFields.get(1);
+		ScilabMList modelFields =(ScilabMList)blockFields.get(2);
+
+		String[] realNameOfStructureFields = new String[]{"model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
+				"state", "dstate", "rpar", "ipar", "blocktype", "firing", "dep_ut", "label",
+				"nzcross", "nmode", "equations"};
+		int numberOfFieldInStructure = realNameOfStructureFields.length;
+
+		// we test if the structure as enough field
+		if (modelFields.size() != numberOfFieldInStructure ) {
+			String[] realNameOfBlockStructureFields = new String[]{"model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
+					"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label",
+					"nzcross", "nmode", "equations"};
+			int numberOfFieldInBlockStructure =  realNameOfBlockStructureFields.length;
+			if (modelFields.size() != numberOfFieldInBlockStructure ) {
+			
+				throw new WrongStructureException();
+			}
+			else{
+				fillModelStructure ( blockFields, newBlock );
+				return ;
+			}
+		}
+
+		// the first field is a list of string containing the name of the other fields
+		if (!(modelFields.get(0) instanceof ScilabString)) { throw new WrongTypeException(); }
+
+		String[] nameOfScs_mFields = ((ScilabString)modelFields.get(0)).getData()[0];
+
+		// check if all the expecting field's name are present
+		if (nameOfScs_mFields.length != numberOfFieldInStructure ) { throw new WrongStructureException(); }
+		for (int i = 0 ; i < numberOfFieldInStructure ; i++) {
+			if ( !nameOfScs_mFields[i].equals(realNameOfStructureFields[i])) {
+				throw new WrongTypeException();
+			}
+		}
+
+		// sim : String or list(String, int)
+		if (!(modelFields.get(1) instanceof ScilabDouble) && !(modelFields.get(1) instanceof ScilabString) && !(modelFields.get(1) instanceof ScilabList)) { throw new WrongTypeException(); }
+
+		if (modelFields.get(1) instanceof ScilabString) { 
+			newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields) );
+		}
+		if (( modelFields.get(1) instanceof ScilabList)){
+			newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
+			newBlock.setSimulationFunctionType((int) ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);
+		}
+
+		// fill inputPort (in , in2 , intyp)
+		if (!(modelFields.get(2) instanceof ScilabDouble) &&
+				!(modelFields.get(3) instanceof ScilabDouble) &&
+				!(modelFields.get(4) instanceof ScilabDouble)) { throw new WrongTypeException(); }  
+
+
+		int size = modelFields.get(2).getHeight();
+
+		// in_implicit = []
+		// by defaults Ports are Explicit
+		if (isEmptyField(graphicsStructure.get(12))) {
+			for (int i = 0 ; i < size ; i++) {
+				ExplicitInputPort tempInputPort =  new ExplicitInputPort();
+				ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
+				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
+
+				if ( dataLines.getRealPart() != null ){
+					int nbLines = (int)dataLines.getRealPart()[i][0];
+					tempInputPort.setDataLines(nbLines);
+				}
+				if ( dataColumns.getRealPart() != null ){
+					int nbColumns = (int)dataColumns.getRealPart()[i][0];
+					tempInputPort.setDataColumns(nbColumns);
+				}
+				newBlock.addPort(tempInputPort);
+			}
+		}
+		else {
+			String[][] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(12)).getData();
+
+			for (int i = 0 ; i < size ; i++) {
+				InputPort tempInputPort = null;
+				// "E" -> Explicit
+				if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth()) {
+					if (implicitExplicitInArray[i][0].equals("E")) { tempInputPort =  new ExplicitInputPort(); }
+					if (implicitExplicitInArray[i][0].equals("I")) { tempInputPort =  new ImplicitInputPort(); }
+				}
+				else {
+					if (implicitExplicitInArray[0][i].equals("E")) { tempInputPort =  new ExplicitInputPort(); }
+					if (implicitExplicitInArray[0][i].equals("I")) { tempInputPort =  new ImplicitInputPort(); }
+				}
+				ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
+				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
+
+				if ( dataLines.getRealPart() != null ){
+					int nbLines = (int)dataLines.getRealPart()[i][0];
+					tempInputPort.setDataLines(nbLines);
+				}
+				if ( dataColumns.getRealPart() != null ){
+					int nbColumns = (int)dataColumns.getRealPart()[i][0];
+					tempInputPort.setDataColumns(nbColumns);
+				}
+				newBlock.addPort(tempInputPort);
+			}
+		}
+
+		// fill outputPort (out , out2 , outtyp)
+		if (!(modelFields.get(5) instanceof ScilabDouble) &&
+				!(modelFields.get(6) instanceof ScilabDouble) &&
+				!(modelFields.get(7) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+
+		size = modelFields.get(5).getHeight();
+
+		// out_implicit = []
+		// by defaults Ports are Explicit
+		if (isEmptyField(graphicsStructure.get(13))) {
+			for (int i = 0 ; i < size ; i++) {
+				ExplicitOutputPort tempOutputPort =  new ExplicitOutputPort();
+				ScilabDouble dataLines = (ScilabDouble)modelFields.get(5);
+				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(6);
+
+
+				if ( dataLines.getRealPart() != null ){
+					int nbLines = (int)dataLines.getRealPart()[i][0];
+					tempOutputPort.setDataLines(nbLines);
+				}
+				if ( dataColumns.getRealPart() != null ){
+					int nbColumns = (int)dataColumns.getRealPart()[i][0];
+					tempOutputPort.setDataColumns(nbColumns);
+				}
+				newBlock.addPort(tempOutputPort);
+			}
+		}
+		else {
+			String[][] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(13)).getData();
+
+			for (int i = 0 ; i < size ; i++){
+				OutputPort tempOutputPort = null;
+				if (graphicsStructure.get(13).getHeight() > graphicsStructure.get(13).getWidth()) {
+					if (implicitExplicitInArray[i][0].equals("E")) { tempOutputPort =  new ExplicitOutputPort(); }
+					if (implicitExplicitInArray[i][0].equals("I")) { tempOutputPort =  new ImplicitOutputPort(); }
+				}
+				else {
+					if (implicitExplicitInArray[0][i].equals("E")) { tempOutputPort =  new ExplicitOutputPort(); }
+					if (implicitExplicitInArray[0][i].equals("I")) { tempOutputPort =  new ImplicitOutputPort(); }
+				}
+
+				ScilabDouble dataLines = (ScilabDouble)modelFields.get(5);
+				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(6);
+
+
+				if ( dataLines.getRealPart() != null ){
+					int nbLines = (int)dataLines.getRealPart()[i][0];
+					tempOutputPort.setDataLines(nbLines);
+				}
+				if ( dataColumns.getRealPart() != null ){
+					int nbColumns = (int)dataColumns.getRealPart()[i][0];
+					tempOutputPort.setDataColumns(nbColumns);
+				}
+				newBlock.addPort(tempOutputPort);
+			}
+		}
+
+
+
+		if (!(modelFields.get(8) instanceof ScilabDouble) && //evtin
+				!(modelFields.get(9) instanceof ScilabDouble)) { // evtout
+			throw new WrongTypeException();
+		}
+
+		ScilabDouble dataNbControlPort = (ScilabDouble)modelFields.get(8);
+		ScilabDouble dataNbCommandPort = (ScilabDouble)modelFields.get(9);
+
+		if (dataNbControlPort.getRealPart() != null ) { 
+			int nbControlPort = dataNbControlPort.getHeight();
+			for (int i = 0 ; i < nbControlPort ; i++) {
+				newBlock.addPort(new ControlPort());
+			}
+		}
+
+		if (dataNbCommandPort.getRealPart() != null ) { 
+			int nbCommandPort = dataNbCommandPort.getHeight();
+			for (int i = 0 ; i < nbCommandPort ; i++) {
+				newBlock.addPort(new CommandPort());
+			}
+		}
+
+		if (!(modelFields.get(10) instanceof ScilabDouble) && // state
+				!(modelFields.get(11) instanceof ScilabDouble)) { // dstate
+				//!(modelFields.get(12) instanceof ScilabList)) { //odstate
+			throw new WrongTypeException();
+		}
+		newBlock.setState(modelFields.get(10));
+		newBlock.setDState(modelFields.get(11));
+		//newBlock.setODState(modelFields.get(12));
+
+		// rpar
+		// SuperBlocks store all "included" data in rpar field.
+		if (!(modelFields.get(12) instanceof ScilabDouble) && !(modelFields.get(12) instanceof ScilabString)) { throw new WrongTypeException(); }
+
+		newBlock.setRealParameters(modelFields.get(12));
+
+
+		// ipar
+		// !! WARNING !! scifunc_block_m ipar = list(...)
+		if (!(modelFields.get(13) instanceof ScilabDouble) && !(modelFields.get(13) instanceof ScilabList)) { throw new WrongTypeException(); }
+
+		newBlock.setIntegerParameters(modelFields.get(13));
+
+
+		//blocktype
+		if (!(modelFields.get(14) instanceof ScilabString)) { throw new WrongTypeException(); }
+		newBlock.setBlockType(((ScilabString) modelFields.get(14)).getData()[0][0]);
+
+		//firing
+		if (!(modelFields.get(15) instanceof ScilabDouble)
+				&& !(modelFields.get(15) instanceof ScilabBoolean)) { 
+			throw new WrongTypeException(); 
+		}
+		if (modelFields.get(15) instanceof ScilabDouble && !isEmptyField(modelFields.get(15))) {
+			List<CommandPort> allCommandPorts = newBlock.getAllCommandPorts();
+			if(modelFields.get(15).getHeight() >= modelFields.get(15).getWidth()) {
+				for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
+					allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(15)).getRealPart()[i][0]);
+				}
+			}
+			else {
+				for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
+					allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(15)).getRealPart()[0][i]);
+				}
+			}
+		}
+
+
+		// dep-ut
+		if (!(modelFields.get(16) instanceof ScilabBoolean)){ throw new WrongTypeException(); }
+		newBlock.setDependsOnU( ((ScilabBoolean)modelFields.get(16)).getData()[0][0]);
+		newBlock.setDependsOnT( ((ScilabBoolean)modelFields.get(16)).getData()[0][1]);
+
+		// label
+		if (!(modelFields.get(17) instanceof ScilabString)) { throw new WrongTypeException(); }
+
+		// nzcross
+		if (!(modelFields.get(18) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+		newBlock.setNbZerosCrossing(modelFields.get(18));
+
+		//nmode 
+		if (!(modelFields.get(19) instanceof ScilabDouble)) { throw new WrongTypeException(); }
+		newBlock.setNmode(modelFields.get(19));
+
+		// equations
+		if (!(modelFields.get(20) instanceof ScilabTList)
+				&& !isEmptyField(modelFields.get(20))) { 
+			throw new WrongTypeException(); 
+		}
+		newBlock.setEquations(modelFields.get(20));
+	}
+
+
+	
+
 	public static void fillModelStructure ( ScilabMList blockFields,BasicBlock newBlock ) throws WrongTypeException, WrongStructureException {
 
 		// graphicsStructure because some infromations about the port are stored there too 
@@ -940,7 +1290,7 @@ public class BlockReader {
 
 		// rpar
 		// SuperBlocks store all "included" data in rpar field.
-		if (!(modelFields.get(13) instanceof ScilabDouble) && !(modelFields.get(13) instanceof ScilabMList)) { throw new WrongTypeException(); }
+		if (!(modelFields.get(13) instanceof ScilabDouble) && !(modelFields.get(13) instanceof ScilabMList) && !(modelFields.get(13) instanceof ScilabString)) { throw new WrongTypeException(); }
 		//	if (modelFields.get(13) instanceof ScilabDouble) {
 		//	    for (int i = 0; i < ((ScilabDouble)modelFields.get(13)).getHeight() ; i++){
 		//		newBlock.getRealParameters().add(((ScilabDouble)modelFields.get(13)).getRealPart()[i][0]); 

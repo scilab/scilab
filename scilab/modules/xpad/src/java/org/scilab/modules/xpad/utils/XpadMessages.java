@@ -126,4 +126,12 @@ public class XpadMessages {
 
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
+    
+    /* About box */
+    public static final String VERSION = Messages.gettext("Editor 1.0");
+    public static final String COPYRIGHT = Messages.gettext("Copyright 2009");
+    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
+    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
+    public static final String LICENSE = Messages.gettext("CeCILL License");
+
 }

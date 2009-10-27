@@ -29,7 +29,7 @@ public class CloseAction extends DefaultAction {
     }
     
     public void doAction() {
-    	getEditor().closeCurrentTab();
+    	getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex());
     	
     	// Close the last opened file create a new file named "Untitled 1"
     	if (getEditor().getTabPane().getTabCount() == 0) {

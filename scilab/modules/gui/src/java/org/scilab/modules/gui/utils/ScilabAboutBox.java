@@ -22,6 +22,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
+
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -45,7 +49,24 @@ public class ScilabAboutBox {
 	}
 
 	public static void displayAndWait() {
+		
+		String[] contents = {Messages.gettext("Copyright 1989 - 2009"),
+				Messages.gettext("The Scilab Consortium / DIGITEO"), 
+				Messages.gettext("INRIA / ENPC / Contributors"), 
+				Messages.gettext("All rights reserved"), 
+				Messages.gettext("CeCILL License")};
+		
+		String filename = System.getenv("SCI") + "/ACKNOWLEDGEMENTS"; // Source version
+		if (!new File(filename).exists()) {
+			filename = System.getenv("SCI") + "/../../ACKNOWLEDGEMENTS"; // Linux binary version
+		}
 
+		createAboutBox(Messages.gettext("About Scilab..."), contents, filename, Messages.gettext("Acknowledgements"));
+
+	}
+	
+	public static void createAboutBox(String aboutTitle, String[] contents, String ackFile, String ackTitle) {
+		
 		ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.png");
 		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2, 0));
 
@@ -53,38 +74,31 @@ public class ScilabAboutBox {
 		ackBox.setIconImage(imageForIcon);
 		final JFrame aboutBox = new JFrame();
 		aboutBox.setIconImage(imageForIcon);
-		aboutBox.setTitle(Messages.gettext("About Scilab..."));
+		aboutBox.setTitle(Messages.gettext(aboutTitle));
 
 		aboutBox.setLayout(null);
 		aboutBox.setAlwaysOnTop(true);
 		aboutBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		aboutBox.setLocationRelativeTo(null);
-		aboutBox.setSize(icon.getIconWidth(), icon.getIconHeight());
-		aboutBox.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-		aboutBox.setUndecorated(true);
-		aboutBox.setResizable(false);
-
-
-		JLabel label = new JLabel(icon);
-		label.setLocation(0, 0);
-		label.setSize(icon.getIconWidth(), icon.getIconHeight());
+		aboutBox.setSize(icon.getIconWidth(), icon.getIconHeight() + 20);
 
 		ImagePanel text = new ImagePanel();
-		text.setText("\n\n\n\n\n\n" + 
-				"\n\t" + Messages.gettext("Copyright 1989 - 2009") +
-				"\n\t" + Messages.gettext("The Scilab Consortium / DIGITEO") + 
-				"\n\t" + Messages.gettext("INRIA / ENPC / Contributors") + 
-				"\n\t" + Messages.gettext("All rights reserved") + 
-				"\n\t" + Messages.gettext("CeCILL License"));
-
-		aboutBox.add(text);
 		
+		String theText = new String("\n\n\n\n\n\n");
+		for (int i = 0; i < contents.length; i++) {
+			theText += "\n\t" + contents[i];
+		}
+		
+		text.setText(theText);
+
 		text.setOpaque(false);
 		text.setEditable(false);
 		text.setSize(icon.getIconWidth(), icon.getIconHeight());
-		text.setLocation(0, 0);
 		text.setVisible(true);
 
+		aboutBox.setContentPane(text);
+		aboutBox.setResizable(false);
+		
 		JButton close = new JButton(Messages.gettext("Close"));
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -94,20 +108,18 @@ public class ScilabAboutBox {
 		});
 		aboutBox.add(close, 0);
 		close.setSize(80, 30);
-		close.setLocation(aboutBox.getWidth() - 90, aboutBox.getHeight() - 40);
+		close.setLocation(text.getWidth() - 90, text.getHeight() - 40);
 		
-		JButton acknowledgements = new JButton(Messages.gettext("Acknowledgements"));
+		if (ackFile != null && ackTitle != null) {
+		JButton acknowledgements = new JButton(ackTitle);
+		final String filename = ackFile;
+		final String finalAckTitle = ackTitle;
 		acknowledgements.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				String filename = System.getenv("SCI") + "/ACKNOWLEDGEMENTS"; // Source version
-				if (!new File(filename).exists()) {
-					filename = System.getenv("SCI") + "/../../ACKNOWLEDGEMENTS"; // Linux binary version
-				}
-				
+								
 				StringBuilder contents = new StringBuilder();
-			    
 			    try {
-			      BufferedReader input =  new BufferedReader(new FileReader(filename));
+			      BufferedReader input = new BufferedReader( new InputStreamReader(new FileInputStream(filename), "UTF8"));
 			      try {
 			        String line = null;
 			        while (( line = input.readLine()) != null){
@@ -123,7 +135,7 @@ public class ScilabAboutBox {
 			      ex.printStackTrace();
 			    }
 			    
-				ackBox.setTitle(Messages.gettext("Scilab Contributors..."));
+				ackBox.setTitle(finalAckTitle);
 
 				ackBox.setLayout(null);
 				ackBox.setAlwaysOnTop(true);
@@ -148,12 +160,13 @@ public class ScilabAboutBox {
 		});
 		aboutBox.add(acknowledgements, 0);
 		acknowledgements.setSize(120, 30);
-		acknowledgements.setLocation(10, aboutBox.getHeight() - 40);
-		
+		acknowledgements.setLocation(10, text.getHeight() - 40);
+		}
 		
 		aboutBox.setLocation((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (aboutBox.getWidth() / 2), 
 				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (aboutBox.getHeight() / 2));
 		aboutBox.setVisible(true);
+		
 	}
 
 }
