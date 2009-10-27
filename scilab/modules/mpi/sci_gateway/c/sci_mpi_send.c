@@ -10,18 +10,19 @@
  *
  */
 #include <mpi.h>
+#include "api_scilab.h"
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "s_mpi_send.h"
-#include "stackTypeVariable.h"
+#include "mappingScilabMPI.h"
 
 /******************************************
  * SCILAB function : mpi_send, fin = 1
- ******************************************/
+ ******************************52************/
 #define TAG 0
 int sci_mpi_send(char *fname,unsigned long fname_len)
 {
-	int nopt,iopos,m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,un=1,l5;
+	int nopt,iopos,m1,n1,l1,m2,n2,m3,n3,m4,n4,l4,un=1,l5;
 	static rhs_opts opts[]={
 		{-1,"comm","i",0,0,0},
 		{-1,NULL,NULL,NULL,0,0}};
@@ -29,30 +30,39 @@ int sci_mpi_send(char *fname,unsigned long fname_len)
 	char *stringToBeSend;
 	int nodeID;
 
-	int one = 1;
-	int l3 = 0;
-
+	int errorCode = 0;
+	mappinpScilabMPI mapping;
 
 	// Tag should be optionnal
 
 	CheckRhs(2,2);	
 	CheckLhs(1,1);
-
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+	
+	/*
+	switch (typevar){
+		case sci_matrix:
+			
+		
+	}
+	*/	
+	//	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	//	CheckScalar(1,m1,n1);
-	stringToBeSend=cstk(l1);
+	//	stringToBeSend=cstk(l1);
 
-
-	GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+	mapping=getMPIDataStructure(1);
+	
+	getMatrixOfDouble(pvApiCtx, 2, &m2, &n2, &nodeID);
+	printf("To node %d\n", nodeID);
 	CheckScalar(2,m2,n2);
-	nodeID=(int) *stk(l2);
 
-	MPI_Send(stringToBeSend, strlen(stringToBeSend), MPI_CHAR, nodeID, TAG, MPI_COMM_WORLD);
+	errorCode = MPI_Send(mapping.data, mapping.count, mapping.MPI, nodeID, TAG, MPI_COMM_WORLD);
+	//	errorCode = MPI_Send(stringToBeSend, strlen(stringToBeSend), MPI_CHAR, nodeID, TAG, MPI_COMM_WORLD);
 	
 	m3=1;
 	n3=1;
-	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
-	*stk(l3) = 1;
+
+	createMatrixOfDouble(pvApiCtx, Rhs + 1, &m3, &n3, &errorCode);
+						 //	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&errorCode);
 	
 	LhsVar(1) = Rhs+1;
 
