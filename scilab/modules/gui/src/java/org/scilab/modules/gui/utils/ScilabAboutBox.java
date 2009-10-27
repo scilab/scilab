@@ -43,7 +43,7 @@ public class ScilabAboutBox {
 
 	public static void displayAndWait() {
 
-		ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.jpg");
+		ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.png");
 		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2, 0));
 
 		final JFrame ackBox = new JFrame();
@@ -157,7 +157,7 @@ final class ImagePanel extends JTextPane {
 
 	private static final long serialVersionUID = -4896563054481112056L;
 
-	Image background = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.jpg").getImage();
+	Image background = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.png").getImage();
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, (int)getSize().getWidth(), (int)getSize().getHeight(), this);
