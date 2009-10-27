@@ -27,7 +27,8 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.actions.LineColorAction;
+import org.scilab.modules.xcos.actions.ColorAction;
+import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -35,6 +36,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
@@ -52,6 +54,98 @@ public abstract class BasicLink extends mxCell {
 		((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
 	}
 
+	public void removePoint(int index){
+		if(getGeometry() == null || getGeometry().getPoints() == null){
+			return;
+		}
+		if(index < getGeometry().getPoints().size()){
+			getGeometry().getPoints().remove(index);
+		}
+	}
+	
+	public mxPoint[] getPoints(int index, boolean fromStart){
+		
+		if(getGeometry() == null || getGeometry().getPoints() == null){
+			return new mxPoint[0];
+		}
+		
+		int start = 0;
+		int size = 0;
+		if(fromStart){
+			size = Math.min(getGeometry().getPoints().size(), index);
+			start = 0;
+		}else{
+			start = index;
+			size = getGeometry().getPoints().size() - index;
+		}
+		
+		if(size > 0)
+		{	
+			mxPoint points[] = new mxPoint[size];
+			for(int i = 0 ; i < size ; i++){
+				points[i] = (mxPoint)getGeometry().getPoints().get(start + i);
+			}
+			return points;
+		}
+		return null;
+	}
+	
+	public int getPointCount(){
+		if(getGeometry() == null || getGeometry().getPoints() == null){
+			return 0;
+		}
+		return getGeometry().getPoints().size();
+	}
+
+	public int findNearestSegment(mxPoint point){
+
+		if(getGeometry() == null || getGeometry().getPoints() == null){
+			return 0;
+		}
+		
+		double startX = (getSource().getParent().getGeometry().getX() + getSource().getGeometry().getX());
+		double startY = (getSource().getParent().getGeometry().getY() + getSource().getGeometry().getY());
+
+		double endX = (getTarget().getParent().getGeometry().getX() + getTarget().getGeometry().getX());
+		double endY = (getTarget().getParent().getGeometry().getY() + getTarget().getGeometry().getY());
+
+		double saveDist = -1;
+		int findPos = 0;
+
+		for(int i = 0 ; i < getGeometry().getPoints().size() + 1; i++){
+			Point2D.Double point1 = null;
+			Point2D.Double point2 = null;
+
+			if(i == 0){//first block
+				point1 = new Point2D.Double(startX, startY);
+			}else{
+				point1 = new Point2D.Double((int) ((mxPoint)getGeometry().getPoints().get(i-1)).getX(), (int) ((mxPoint)getGeometry().getPoints().get(i-1)).getY());
+			}
+
+			if(i == getGeometry().getPoints().size()){
+				point2 = new Point2D.Double(endX, endY);
+			}else{
+				point2 = new Point2D.Double((int)((mxPoint)getGeometry().getPoints().get(i)).getX(), (int)((mxPoint)getGeometry().getPoints().get(i)).getY());
+			}
+
+			Point2D.Double addPoint = new Point2D.Double(point.getX(),point.getY());
+			Line2D.Double line = new Line2D.Double(point1, point2);
+
+			if(saveDist == -1){
+				saveDist = line.ptSegDist(addPoint);
+				findPos = i;
+			}
+			else{
+				double dist = line.ptSegDist(addPoint);
+				if(dist < saveDist){
+					saveDist = dist;
+					findPos = i;
+				}
+			}
+		}
+		return findPos;
+	}
+	
 	public void addPoint(double x, double y) {
 		mxPoint point = new mxPoint(x, y);
 		if (getGeometry().getPoints() == null) {
@@ -67,60 +161,19 @@ public abstract class BasicLink extends mxCell {
 			getGeometry().getPoints().add(point);
 		}
 		else {
-			// TODO : Must do the calculation to know where to insert it in List
-			double startX = (getSource().getParent().getGeometry().getX() + getSource().getGeometry().getX());
-			double startY = (getSource().getParent().getGeometry().getY() + getSource().getGeometry().getY());
-
-			double endX = (getTarget().getParent().getGeometry().getX() + getTarget().getGeometry().getX());
-			double endY = (getTarget().getParent().getGeometry().getY() + getTarget().getGeometry().getY());
-
 			//check to delete an old point before try to insert
 			for(int i = 0 ; i < getGeometry().getPoints().size(); i++){
 				mxPoint oldPoint = (mxPoint)getGeometry().getPoints().get(i);
 				mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
-				if(rect.contains(point.getX(), point.getY())){
+				if(rect.contains(x, y)){
 					getGeometry().getPoints().remove(i);
 					return;
 				}else{
 				}
 			}			
 
-			//increase placement window
-			double saveDist = -1;
-			int newPos = 0;
-
-			for(int i = 0 ; i < getGeometry().getPoints().size() + 1; i++){
-				Point2D.Double point1 = null;
-				Point2D.Double point2 = null;
-
-				if(i == getGeometry().getPoints().size()){
-					point1 = new Point2D.Double(endX, endY);
-				}else{
-					point1 = new Point2D.Double((int)((mxPoint)getGeometry().getPoints().get(i)).getX(), (int)((mxPoint)getGeometry().getPoints().get(i)).getY());
-				}
-
-				if(i == 0){//first block
-					point2 = new Point2D.Double(startX, startY);
-				}else{
-					point2 = new Point2D.Double((int) ((mxPoint)getGeometry().getPoints().get(i-1)).getX(), (int) ((mxPoint)getGeometry().getPoints().get(i-1)).getY());
-				}
-
-				Point2D.Double addPoint = new Point2D.Double(x,y);
-				Line2D.Double line = new Line2D.Double(point1, point2);
-
-				if(saveDist == -1){
-					saveDist = line.ptLineDist(addPoint);
-					newPos = i;
-				}
-				else{
-					double dist = line.ptLineDist(addPoint);
-					if(dist < saveDist && line.getBounds2D().contains(addPoint)){
-						saveDist = dist;
-						newPos = i;
-					}
-				}
-			}	
-			getGeometry().getPoints().add(newPos, point);
+			int insertPos = findNearestSegment(point);
+			getGeometry().getPoints().add(insertPos, point);
 		}
 	}
 
@@ -179,10 +232,20 @@ public abstract class BasicLink extends mxCell {
 		/*--- */
 		Menu format = ScilabMenu.createMenu();
 		format.setText(XcosMessages.FORMAT);
+		format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
 		menu.add(format);
-		format.add(LineColorAction.createMenu(graph));
 		/*--- */
-
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		Menu linkStyle = ScilabMenu.createMenu();
+		linkStyle.setText(XcosMessages.LINK_STYLE);
+		linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
+		linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
+		linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+		
+		
+		menu.add(linkStyle);
+		
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);		
 
 		menu.setVisible(true);

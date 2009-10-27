@@ -1636,7 +1636,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String[] functions =  ScilabKeywords.GetFunctionsName();
 		String[] macros =  ScilabKeywords.GetMacrosName();
 		//String[] variables =  ScilabKeywords.GetVariablesName();
-
+		
 		Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
 
 		for (int i = 0; i < macros.length; i++) {

@@ -93,7 +93,7 @@ public final class XcosMessages {
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
 
     /** Help menu */
-    public static final String HELP = Messages.gettext("Help");
+    public static final String HELP = Messages.gettext("?");
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
@@ -162,6 +162,12 @@ public final class XcosMessages {
     public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
     public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
     
-    public static final String LINE_COLOR = Messages.gettext("Line Color");
+    public static final String BORDER_COLOR = Messages.gettext("Border Color");
+    public static final String FILL_COLOR = Messages.gettext("Fill Color");
+
+    public static final String LINK_STYLE = Messages.gettext("Link Style");
+    public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
+    public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
+    public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
 
 }

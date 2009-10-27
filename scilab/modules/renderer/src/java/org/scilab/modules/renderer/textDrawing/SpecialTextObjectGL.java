@@ -19,7 +19,6 @@ public abstract class SpecialTextObjectGL {
     protected Buffer buffer;
     protected float height;
     protected float width;
-    protected int idTexture;
 
     public SpecialTextObjectGL() {
     }
@@ -28,81 +27,56 @@ public abstract class SpecialTextObjectGL {
      * Return a byte-buffer used to draw content
      */
     public Buffer getBuffer() {
-	        if (buffer != null)
-		    return buffer;
-		makeImage();
-		return buffer;
+		return this.buffer;
     }
     
     /**
      * Return the height of the content
      */
     public float getHeight() {
-	        return height;
+		return this.height;
     }
     
     /**
      * Return the width of the content
      */
     public float getWidth() {
-		return width;
+		return this.width;
     }
     
     /**
-     * Return the texture's name associated to this label
-     */
-    public int getIdTexture() {
-	        return idTexture;
-    }
-
-    /**
-     * Set the texture's name associated to this label
-     * @param id of the texture got with GL
-     */
-    public void setIdTexture(int id) {
-	        idTexture = id;
-		
-		/* The buffer is set to null since GL put it into the buffer of the video card */
-		this.buffer = null;
-    }	
-
-    /**
      * Set the color of the content
      * @param color the color of the content
-     * Return true if the color changed
      */
-    public abstract boolean setColor(Color color);
+    public abstract void setColor(Color color);
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
-     * Return true if the font size changed
      */
-    public abstract boolean setFontSize(float fontSize);
+    public abstract void setFontSize(float fontSize);
 
-    /**
-     * Render the label and set the pixels buffer
-     */
-    public abstract void makeImage();
 
-    /* Convert an ARGB pixmap into RGBA pixmap */
     protected static byte[] ARGBtoRGBA(int[] pix) {
-                byte[] bytes = new byte[pix.length * 4];
-                int p, r, g, b, a;
-		int j = 0;
-		for (int i = 0; i < pix.length; i++) {
-		    p = pix[i];
-		    a = (p >> 24) & 0xFF;
-		    r = (p >> 16) & 0xFF;
-		    g = (p >> 8) & 0xFF;
-		    b = (p >> 0) & 0xFF;
-		    bytes[j] = (byte) r;
-		    bytes[j + 1] = (byte) g;
-		    bytes[j + 2] = (byte) b;
-		    bytes[j + 3] = (byte) a;
-		    j += 4;
-		}
-		
-		return bytes;
+        byte[] bytes = new byte[pix.length * 4];
+        int p;
+		int r;
+		int g;
+		int b;
+		int a;
+        int j = 0;
+        for (int i = 0; i < pix.length; i++) {
+            p = pix[i];
+            a = (p >> 24) & 0xFF;
+            r = (p >> 16) & 0xFF;
+            g = (p >> 8) & 0xFF;
+            b = (p >> 0) & 0xFF;
+            bytes[j] = (byte) r;
+            bytes[j + 1] = (byte) g;
+            bytes[j + 2] = (byte) b;
+            bytes[j + 3] = (byte) a;
+            j += 4;
+        }
+        return bytes;
     }
 }

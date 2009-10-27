@@ -11,6 +11,9 @@
  */
 package org.scilab.modules.xcos.block;
 
+import javax.swing.JOptionPane;
+
+import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -23,6 +26,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -132,25 +136,21 @@ public class SplitBlock extends BasicBlock {
 
 	public void unlinkAndClean() {
 	
-		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2)});
+		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicLink){
-				((BasicLink)objs[i]).setSource(null);
-				((BasicLink)objs[i]).setTarget(null);
+				BasicLink link = (BasicLink)objs[i];
+					getParentDiagram().getModel().beginUpdate();
+					getParentDiagram().getModel().remove(link);
+					getParentDiagram().getModel().endUpdate();
 			}
-		}
-		getParentDiagram().removeCells(objs);
-		
-		//delete all children
-		while(getChildCount() > 0){
-			remove(0);
 		}
 	}
 
 	public void setGeometry(mxGeometry geometry) {
 		if(geometry != null){
-			geometry.setWidth(6);
-			geometry.setHeight(6);
+			geometry.setWidth(7);
+			geometry.setHeight(7);
 		}
 		super.setGeometry(geometry);
 	}

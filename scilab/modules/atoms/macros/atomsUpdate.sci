@@ -21,10 +21,6 @@ function result = atomsUpdate(name,section)
 	
 	result = [];
 	
-	// Save the initial path
-	// =========================================================================
-	initialpath = pwd();
-	
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
@@ -64,13 +60,11 @@ function result = atomsUpdate(name,section)
 	else
 		// Just check if it's a boolean
 		if type(section) <> 10 then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
 		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,atomsPath("system","allusers")));
 		end
 	end
@@ -85,7 +79,6 @@ function result = atomsUpdate(name,section)
 		
 		for i=1:size(name,"*")
 			if ~ atomsIsInstalled(name(i)) then
-				chdir(initialpath);
 				error(msprintf(gettext("%s: ''%s'' isn''t installed.\n"),"atomsUpdate",name(i)));
 			end
 		end
@@ -213,9 +206,5 @@ function result = atomsUpdate(name,section)
 		end
 		
 	end
-	
-	// Go to the initial location
-	// =========================================================================
-	chdir(initialpath);
 	
 endfunction

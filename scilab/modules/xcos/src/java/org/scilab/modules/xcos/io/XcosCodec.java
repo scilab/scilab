@@ -26,7 +26,12 @@ import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -124,9 +129,20 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(ExplicitlinkCodec);
 	XcosObjectCodec ImplicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null ,null);
 	mxCodecRegistry.register(ImplicitlinkCodec);
+	
 	// Ports
 	XcosObjectCodec explicitOutputPortCodec = new XcosObjectCodec(new ExplicitOutputPort(), null, refs, null);
-	mxCodecRegistry.register(explicitOutputPortCodec);    
+	mxCodecRegistry.register(explicitOutputPortCodec);
+	XcosObjectCodec explicitInputPortCodec = new XcosObjectCodec(new ExplicitInputPort(), null, refs, null);
+	mxCodecRegistry.register(explicitInputPortCodec);    
+	XcosObjectCodec implicitOutputPortCodec = new XcosObjectCodec(new ImplicitOutputPort(), null, refs, null);
+	mxCodecRegistry.register(implicitOutputPortCodec);
+	XcosObjectCodec implicitInputPortCodec = new XcosObjectCodec(new ImplicitInputPort(), null, refs, null);
+	mxCodecRegistry.register(implicitInputPortCodec);
+	XcosObjectCodec commandPortCodec = new XcosObjectCodec(new CommandPort(), null, refs, null);
+	mxCodecRegistry.register(commandPortCodec);
+	XcosObjectCodec controltPortCodec = new XcosObjectCodec(new ControlPort(), null, refs, null);
+	mxCodecRegistry.register(controltPortCodec);
     }
     
     public XcosCodec() {

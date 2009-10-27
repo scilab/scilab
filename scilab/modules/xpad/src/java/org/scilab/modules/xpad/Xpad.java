@@ -78,7 +78,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
-import org.scilab.modules.xpad.actions.ExecuteIntoScilabAction;
+import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -381,7 +381,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
 		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
 		executeMenu.add(evaluateSelectionMenuItem);
-		executeMenu.add(ExecuteIntoScilabAction.createMenu(editorInstance));
+		executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -503,7 +503,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -610,7 +610,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -742,6 +742,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
 		}
+		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = f.getAbsolutePath();
 		
 		// If the file is a binary one, editor is in read-only mode
 		boolean binary;

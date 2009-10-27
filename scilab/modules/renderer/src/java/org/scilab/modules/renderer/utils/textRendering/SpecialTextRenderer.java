@@ -15,7 +15,6 @@ package org.scilab.modules.renderer.utils.textRendering;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.util.HashMap;
-import java.nio.Buffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
@@ -33,14 +32,12 @@ public class SpecialTextRenderer {
 
     private static HashMap<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
         
-    /* I use the TextRenderer to render a string which isn't in MathML or LaTeX format
+    /* I use the TextRenderer to render a string which isn't in mathml format
        although it starts with a '<' or '$'*/
     private TextRenderer textrenderer;
 
     private Color color = Color.black;
     private float fontSize;
-    
-    private static GL gl = null;
 
     /**
      * Default constructor.
@@ -49,29 +46,23 @@ public class SpecialTextRenderer {
      */
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
 		this.textrenderer = textrenderer;
-		this.fontSize = fontSize;
-		
-		GL currentGL = GLU.getCurrentGL();
-		if (gl != currentGL) {
-		    gl = currentGL;
-		    table.clear();
-		}
+		this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
      * Construct and return a MathML object.
      * @param content the MathML code
-     * @return Returns the MathML object
+	 * @return Returns the MathML object
      */
     public SpecialTextObjectGL getContent(final String content) {
 		SpecialTextObjectGL spe;
 		if (!table.containsKey(content)) {
 			try {
 				spe = getSpecialTextObjectGL(content);
-				createTexture(spe);
+
 				table.put(content, spe);
 				return spe;
-			} catch (SpecialTextException e) {
+			} catch (RuntimeException e) { /* @TODO: Catcher l'exception 'RuntimeException' est prohibe. */
 				table.put(content, null);
 				return null;
 			}
@@ -79,19 +70,16 @@ public class SpecialTextRenderer {
     
 		spe = table.get(content);
 		if (spe != null) {
-		        boolean b1 = spe.setColor(color);
-		        boolean b2 = spe.setFontSize(fontSize);
-			if (b1 || b2)
-			        replaceTexture(spe);
+			spe.setColor(color);
+			spe.setFontSize(fontSize);
 		}
-		
 		return spe;
     }
     
     /**
      * Get the boundaries.
      * @param content the special code
-     * @return Returns the boundaries
+	 * @return Returns the boundaries
      */
     public Rectangle2D getBounds(String content) {
 		SpecialTextObjectGL spe = getContent(content);
@@ -110,7 +98,7 @@ public class SpecialTextRenderer {
      * @param a alpha channel
      */
     public void setColor(float r, float g, float b, float a) {
-	        color = new Color(r, g, b, a);
+		this.color = new Color(r, g, b, a);
     }
     
     /**
@@ -118,29 +106,7 @@ public class SpecialTextRenderer {
      * @param fontSize font size to use
      */
     public void setFontSize(float fontSize) {
-	        this.fontSize = fontSize;
-    }
-
-    private static void createTexture(SpecialTextObjectGL spe) {
-	        int[] text = new int[1];
-
-		/* If the buffer is null, it must be regenerated before getting width and height */
-		Buffer buf = spe.getBuffer();
-
-	        gl.glGenTextures(1, text, 0);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, text[0]);
-		gl.glTexParameteri(gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MIN_FILTER, gl.GL_LINEAR);
-		gl.glTexParameteri(gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MAG_FILTER, gl.GL_LINEAR);
-		gl.glTexImage2D(gl.GL_TEXTURE_2D, 0, gl.GL_RGBA, (int) spe.getWidth(), (int) spe.getHeight(), 0, gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, buf);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, 0);
-		
-		spe.setIdTexture(text[0]);
-    }
-    
-    private static void replaceTexture(SpecialTextObjectGL spe) {
-	        int[] text = { spe.getIdTexture() };
-		gl.glDeleteTextures(1, text, 0);
-		createTexture(spe);
+		this.fontSize = fontSize + 4; /* @TODO: what is 4 ? */
     }
     
     /**
@@ -156,32 +122,28 @@ public class SpecialTextRenderer {
 		if (spe == null) {
 			textrenderer.draw3D(content, x, y, z, scaleFactor);
 			return;
-	        }
-		
-		float width = spe.getWidth() * scaleFactor;
-		float height = spe.getHeight() * scaleFactor;
-		gl.glPushAttrib(GL.GL_ALL_ATTRIB_BITS);
-		gl.glPushMatrix();
-		gl.glTranslatef(x, y, 0);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, spe.getIdTexture());
-		gl.glBegin(gl.GL_QUADS);
-		gl.glTexCoord2f(0,0); gl.glVertex2d(0, 0);
-		gl.glTexCoord2f(1,0); gl.glVertex2d(width, 0);
-		gl.glTexCoord2f(1,1); gl.glVertex2d(width, height);
-		gl.glTexCoord2f(0,1); gl.glVertex2d(0, height);
-		gl.glEnd();
-		gl.glBindTexture(gl.GL_TEXTURE_2D, 0);
-		gl.glPopMatrix();
-		gl.glPopAttrib();
+	    }
+	
+		GL gl = GLU.getCurrentGL();
+	
+		/* The method begin3DRendering of the object TextRenderer calls 
+		   the method of the same name in object Texture and it enables 
+		   texturing. When TEXTURE_2D is enabled, commands for drawing
+		   don't work, so I disable it.
+		*/
+		gl.glDisable(GL.GL_TEXTURE_2D);
+		gl.glRasterPos2f(x, y);
+		gl.glDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, spe.getBuffer());
+		gl.glEnable(GL.GL_TEXTURE_2D);
     }
 
-    /**
-     * Return the specialTextObjectGL
-     *
-     * @param content the message itself
-     * @return The specialTextObjectGL
-     */
-    private SpecialTextObjectGL getSpecialTextObjectGL(String content) throws SpecialTextException {
+/**
+ * Return the specialTextObjectGL
+ *
+ * @param content the message itself
+ * @return The specialTextObjectGL
+ */
+    private SpecialTextObjectGL getSpecialTextObjectGL(String content) {
 		switch (content.charAt(0)) {
 			case '<': 
 				return new MathMLObjectGL(content, color, fontSize);

@@ -58,7 +58,7 @@ process_XML_files(){
 # Retrieve all the sources files
 FILESCMD='find . -type f '
 # Gettext arg
-XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header "
+XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --sort-output "
 ####### GENERATES THE FIND COMMAND
 i=0
 NB_ELEMENT=${#EXTENSIONS[@]}
@@ -126,7 +126,7 @@ for MODULE in $MODULES; do
 			LOCALIZATION_FILE_LANG=$DIR_LANG/$MODULE_NAME.po
 			if test -f $LOCALIZATION_FILE_LANG; then
 				echo "........ Merging new locales for $l"
-				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --output-file $LOCALIZATION_FILE_LANG > /dev/null
+				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --sort-output --output-file $LOCALIZATION_FILE_LANG > /dev/null
 			else
 				echo "........ Localization file for $l in this module not existing"
 				echo "........ Creating it ..."

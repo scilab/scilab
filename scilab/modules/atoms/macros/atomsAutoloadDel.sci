@@ -13,7 +13,7 @@
 
 // End-User function
 
-function nbDel = atomsAutoloadDel(name,version,section)
+function nbDel = atomsAutoloadDel(packages,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -31,26 +31,19 @@ function nbDel = atomsAutoloadDel(name,version,section)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadDel",2,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadDel",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadDel",1));
 	end
 	
-	if type(version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadDel",2));
-	end
-	
-	// name and version must have the same size
-	// =========================================================================
-	
-	if or( size(name) <> size(version) ) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAutoloadDel",1,2));
+	if (size(packages(1,:),"*") < 1) | (size(packages(1,:),"*") > 3) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix expected.\n"),"atomsAutoloadDel",1));
 	end
 	
 	// Allusers/user management
@@ -66,7 +59,7 @@ function nbDel = atomsAutoloadDel(name,version,section)
 	//       → SCIHOME/atoms/autoloaded
 	// =========================================================================
 	
-	if rhs <= 2 then
+	if rhs < 2 then
 		
 		if ATOMSALLUSERSWRITEACCESS then
 			section = "all"; 
@@ -79,50 +72,119 @@ function nbDel = atomsAutoloadDel(name,version,section)
 		// Allusers can equal to "user","allusers" or "all"
 		
 		if (type(section) <> 4) & (type(section) <> 10) then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadDel",3));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsAutoloadDel",2));
 		end
 		
 		if (type(section) == 10) & and(section<>["user","allusers","all"]) then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadDel",3));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadDel",2));
 		end
 		
 		// Check if we have the write access
 		if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadDel",pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
-	// Define the path of the files that will record the change according to
-	// the "allusers" value and the existence of the latter
-	// =========================================================================
-	atoms_files = atomsPath("system","all") + "autoloaded";
+	if section == "all" then
+		sections = ["user","allusers"];
+	else
+		sections = section;
+	end
 	
-	// Loop on each installed file specified as first input argument
+	// Complete packages matrix with empty columns
 	// =========================================================================
 	
-	for i=1:size(atoms_files,"*")
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
+	end
+	
+	// First filter : No need to process packages that are not present
+	// =========================================================================
+	packages(find(atomsAutoloadCheck(packages,section)==%F),:) = [];
+	
+	// Loop on each sections
+	// =========================================================================
+	
+	for i=1:size(sections,"*")
 		
-		if fileinfo(atoms_files(i))==[] then
-			continue;
-		end
+		autoloaded = atomsAutoloadLoad(sections(i));
 		
-		// Get the installed package list in this file
-		autoloaded = mgetl(atoms_files(i));
-		
-		// Loop on each package specified as first input argument
-		for j=1:size(name,"*")
-			if find(autoloaded == name(j)+" - "+version(j)) <> [] then
-				nbDel = nbDel + 1;
-				autoloaded( find(autoloaded == name(j)+" - "+version(j)) ) = [];
+		for j=1:size(packages(:,1),"*")
+			
+			if ~isempty(packages(j,2)) & ~isempty(packages(j,3)) then
+				
+				// Version : specified
+				// Section : specified
+				
+				del_index = [];
+				
+				for k=1:size(autoloaded(:,1),"*")
+					if and( packages(j,:) == autoloaded(k,:) ) then
+						nbDel     = nbDel + 1;
+						del_index = [ del_index k ];
+					end
+				end
+				
+				autoloaded(del_index,:) = [];
+				
+			elseif ~isempty(packages(j,2)) & isempty(packages(j,3)) then
+				
+				// Version : specified
+				// Section : It doesn't matter
+				
+				del_index = [];
+				
+				for k=1:size(autoloaded(:,1),"*")
+					if and([packages(j,1) packages(j,2)] == [autoloaded(k,1) autoloaded(k,2)]) then
+						nbDel     = nbDel + 1;
+						del_index = [ del_index k ];
+					end
+				end
+				
+				autoloaded(del_index,:) = [];
+				
+			elseif isempty(packages(j,2)) & ~isempty(packages(j,3)) then
+				
+				// Version : It doesn't matter
+				// Section : specified
+				
+				del_index = [];
+				
+				for k=1:size(autoloaded(:,1),"*")
+					if and([packages(j,1) packages(j,3)] == [autoloaded(k,1) autoloaded(k,3)]) then
+						nbDel     = nbDel + 1;
+						del_index = [ del_index k ];
+					end
+				end
+				
+				autoloaded(del_index,:) = [];
+				
+			elseif isempty(packages(j,2)) & isempty(packages(j,3)) then
+				
+				// Version : It doesn't matter
+				// Section : It doesn't matter
+				
+				del_index = [];
+				
+				for k=1:size(autoloaded(:,1),"*")
+					if packages(j,1) == autoloaded(k,1) then
+						nbDel     = nbDel + 1;
+						del_index = [ del_index k ];
+					end
+				end
+				
+				autoloaded(del_index,:) = [];
+				
 			end
+			
 		end
 		
-		if autoloaded == [] then
-			mdelete(atoms_files(i));
-		else
-			// Apply changes on this file
-			mputl(autoloaded,atoms_files(i));
-		end
+		atomsAutoloadSave(autoloaded,sections(i));
+		
 	end
 	
 endfunction

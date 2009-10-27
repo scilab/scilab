@@ -34,8 +34,8 @@ if or(atomsInstallList("toolbox_3")<>ref) then pause, end
 // -----------------------------------------------------------------------------
 
 ref = [ "+" "U" "toolbox_6" "1.0" ;
-        "+" ""  "toolbox_2" "2.0" ;
-        "+" ""  "toolbox_1" "1.0" ];
+        "+" ""  "toolbox_1" "1.0" ;
+        "+" ""  "toolbox_2" "2.0" ];
 
 if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 
@@ -66,8 +66,8 @@ if or(atomsInstallList("toolbox_3")<>ref) then pause, end
 // -----------------------------------------------------------------------------
 
 ref = [ "+" "U" "toolbox_6" "1.0" ;
-        "+" ""  "toolbox_2" "2.1" ;
-        "+" ""  "toolbox_1" "1.0" ];
+        "+" ""  "toolbox_1" "1.0" ;
+        "+" ""  "toolbox_2" "2.1" ];
 
 if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 

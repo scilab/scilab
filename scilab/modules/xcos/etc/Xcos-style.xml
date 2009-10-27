@@ -15,12 +15,12 @@
 
   <!-- Affiche -->
   <add as="Affiche" extend="blockWithLabel"/>
-
-	<add as="Split" extend="block">
-		<add as="shape" value="rectangle"/>
-		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="orange"/>
-	</add>
+  
+  <add as="Split" extend="block">
+    <add as="shape" value="rectangle"/>
+    <add as="strokeColor" value="black"/>
+    <add as="fillColor" value="orange"/>
+  </add>
 
 	
   <!-- Label -->
@@ -123,6 +123,8 @@
 
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
+  <add as="CONST_f" extend="blockWithLabel"/>
+  <add as="CONST" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Square wave&lt;BR&gt;
 				    generator"/>
@@ -213,6 +215,7 @@
 				    &#8747;
 				    &lt;/FONT&gt;"/>
   </add>
+  <add as="INTEGRAL" extend="INTEGRAL_m"/>
   <add as="CLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -233,11 +236,13 @@
 				    &lt;/TR&gt;
 				    &lt;/TABLE&gt;"/>
   </add>
+  <add as="CLSS_f" extend="CLSS"/>
   <add as="CLR" extend="blockWithLabel">
     <add as="displayedLabel" value="num(s)&lt;BR&gt;
 				    &lt;hr&gt;
 				    den(s)"/>
   </add>
+  <add as="CLR_f" extend="CLR"/>
   <add as="TIME_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Continuous&lt;BR&gt;
 				    fix delay"/>
@@ -246,6 +251,7 @@
     <add as="displayedLabel" value="Jump&lt;BR&gt;
 				    (A,B,C,D)"/>
   </add>
+  <add as="TCLSS_f" extend="TCLSS"/>
   <add as="VARIABLE_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Variable&lt;BR&gt;
 				    delay"/>
@@ -309,6 +315,8 @@
   <add as="SAMPHOLD_m" extend="blockWithLabel">
     <add as="displayedLabel" value="S/H"/>
   </add>
+  <add as="SAMPLEHOLD_f" extend="SAMPHOLD_m"/>
+  
 
   <!-- THRESHOLD -->
   <add as="NEGTOPOS_f" extend="blockWithLabel">
@@ -356,6 +364,7 @@
   <add as="INVBLK" extend="blockWithLabel">
     <add as="displayedLabel" value="1/u"/>
   </add>
+  <add as="INVBLK_f" extend="INVBLK"/>
   <add as="SINBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="SIN"/>
   </add>
@@ -703,8 +712,8 @@
   <add as="CMSCOPE" extend="blockWithLabel">
     <add as="displayedLabel" value="MScope"/>
   </add>
-  <add as="AFFICH_m" extend="Affiche">
-  </add>
+  <add as="AFFICH_m" extend="Affiche"/>
+  <add as="AFFICH_f" extend="Affiche"/>
   <add as="TRASH_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Trash"/>
   </add>
@@ -737,6 +746,7 @@
 				    &lt;HR&gt;
 				    den(z)"/>
   </add>
+  <add as="DLR_f" extend="DLR"/>
   <add as="DLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -764,6 +774,7 @@
   <add as="DOLLAR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="1/z"/>
   </add>
+  <add as="DOLLAR" extend="DOLLAR_f"/>
   <!-- DELAYV_f -->
 
   <!-- EVENTS -->
@@ -855,6 +866,7 @@
   <add as="SELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
   </add>
+  <add as="SELECT_f" extend="SELECT_m"/>
   <add as="EXTRACTOR" extend="blockWithLabel">
     <add as="displayedLabel" value="Extractor"/>
   </add>
@@ -959,6 +971,7 @@
   <add as="scifunc_block_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Scifunc"/>
   </add>
+  <add as="scifunc_block" extend="scifunc_block_m"/>
   <add as="CBLOCK" extend="blockWithLabel">
     <add as="displayedLabel" value="C block 2"/>
   </add>
@@ -972,6 +985,7 @@
   <add as="SUPER_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
   </add>
+  <add as="DSUPER" extend="SUPER_f"/>
 
   <!-- ELECTRICAL -->
   <add as="Capacitor" extend="Icon">
