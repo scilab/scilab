@@ -64,10 +64,11 @@ host_triplet = @host@
 @NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c
 @IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
 @IS_MACOSX_TRUE@am__append_3 = -lintl -framework Cocoa
+@IS_MACOSX_TRUE@am__append_4 = -lintl -framework Cocoa
 DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_4 = java
+@NEED_JAVA_TRUE@am__append_5 = java
 subdir = modules/localization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -417,16 +418,13 @@ sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c \
 sci_gateway/c/sci_setdefaultlanguage.c
 
-libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-				-I/sw/include \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
-
+libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I/sw/include \
+	-I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
 pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_LDFLAGS = -version-info \
 	$(SCILAB_LIBRARY_VERSION) $(am__append_3)
@@ -475,7 +473,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4)
+TARGETS_ALL = $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
