@@ -34,12 +34,13 @@ int gw_xcos(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "xcos");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
 		return 0;
 	}
 
 	if (!loadedDep) 
-	{
+	{k
+
 		loadOnUseClassPath("XCos");
 		loadedDep = TRUE;
 	}
