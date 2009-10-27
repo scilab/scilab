@@ -115,8 +115,6 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-
 /**
  * Main Xpad class
  * @author Bruno JOFRET
