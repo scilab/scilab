@@ -39,28 +39,63 @@
           <para>
 						mx1, mx2 or mx3 Matrix of strings:
 					</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, all versions
-								of the module are removed from the autoload system.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"3rd column" (optional)</literal>: devoted to module's
-								installed section. If this field is empty or is not present,
-								Modules installed in both "user" and "allusers" sections are searched.
-							</para>
-            </listitem>
-          </itemizedlist>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present, all versions
+								of the module are removed from the autoload system
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installed section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present, modules installed in
+								both "user" and "allusers" sections are searched.
+							</td>
+						</tr>
+						
+					</informaltable>
+					
         </listitem>
       </varlistentry>
 			

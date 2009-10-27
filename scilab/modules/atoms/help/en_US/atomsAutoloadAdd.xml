@@ -36,32 +36,68 @@
 			<varlistentry>
         <term>modules</term>
         <listitem>
+					
           <para>
 						mx1, mx2 or mx3 Matrix of strings:
 					</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is used.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"3rd column" (optional)</literal>: devoted to module's
-								installed section. If this field is empty or is not present, the most recent
-								version is installed.
-							</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								the most recent	version is used
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installed section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								and <literal>module</literal> is installed in both "user" and
+								"allusers" sections, the section of autoload list is used.
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
 			
 			<!-- 2nd input parameter -->
