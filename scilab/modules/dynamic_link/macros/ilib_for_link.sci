@@ -227,11 +227,13 @@ function ilib_link_gen_Make_msvc(names, ..
   end
 
   if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-      FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
-    else
-      FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
-    end
+     if findmsifortcompiler() <> 'unknown' then
+       if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+         FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
+       else
+         FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+       end
+     end
   end
   
   OBJS = strcat(OBJS_MATRIX, ' ');
