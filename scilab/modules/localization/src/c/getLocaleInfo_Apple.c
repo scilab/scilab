@@ -11,6 +11,7 @@
  */
 
 #include <CoreFoundation/CoreFoundation.h>
+#include "getLocaleInfo_Apple.h"
 
 char *getLocaleUserInfo(void)
 {
@@ -18,8 +19,8 @@ char *getLocaleUserInfo(void)
   CFLocaleRef userLocaleRef = CFLocaleCopyCurrent();
   CFStringRef userLanguage = CFLocaleGetIdentifier(userLocaleRef);
 
-  cUserLanguage = malloc(((int) CFStringgetLength(userLanguage)) * sizeof(char) + 1);
-  CFStringGetCString(userLanguage, cUserLanguage, sizeof(cUserLanguage), kCFStringEncodinfUTF8);
+  cUserLanguage = (char *) malloc(((int) CFStringGetLength(userLanguage) + 1) * sizeof(char));
+  CFStringGetCString(userLanguage, cUserLanguage, ((int) CFStringGetLength(userLanguage)) + 1, kCFStringEncodingUTF8);
 
   return cUserLanguage;
 }
