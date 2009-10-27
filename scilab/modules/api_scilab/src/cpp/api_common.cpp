@@ -150,8 +150,13 @@ StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 
 	//define scope of search
   Fin = -1;
+	Err = 0;
 	//search variable
   C2F(stackg)(iVarID);
+
+	//No idea :(
+  if ( *Infstk(Fin) == 2)
+		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	if (Err > 0 || Fin == 0)
 	{
@@ -159,9 +164,6 @@ StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 		return strErr;
 	}
 
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
 	getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
