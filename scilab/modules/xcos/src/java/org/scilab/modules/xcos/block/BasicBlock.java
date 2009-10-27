@@ -1058,7 +1058,11 @@ public class BasicBlock extends mxCell {
 		menu.setVisible(true);
     }
     
-    public boolean getFlip(){
+	public void setFlip(boolean flip) {
+		this.flip = flip;
+	}
+
+	public boolean getFlip(){
     	return flip;
     }
 
@@ -1283,7 +1287,7 @@ public class BasicBlock extends mxCell {
     		rotatePorts(getAllOutputPorts(), getDataPortsDirection(currentBlockDirection));
     		rotatePorts(getAllCommandPorts(), getEventPortsDirection(currentBlockDirection));
     		rotatePorts(getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
-    	}
+     	}
     }
 
     /**

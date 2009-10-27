@@ -279,6 +279,7 @@ voidrequestFrameFocusjintID=NULL;
 voidraiseWindowjintID=NULL; 
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
+voidscilabAboutBoxID=NULL; 
 
 
 }
@@ -481,6 +482,7 @@ voidrequestFrameFocusjintID=NULL;
 voidraiseWindowjintID=NULL; 
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
+voidscilabAboutBoxID=NULL; 
 
 
 }
@@ -4238,6 +4240,22 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 return (res == JNI_TRUE);
 
+}
+
+void CallScilabBridge::scilabAboutBox (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidscilabAboutBoxID = curEnv->GetStaticMethodID(cls, "scilabAboutBox", "()V" ) ;
+if (voidscilabAboutBoxID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "scilabAboutBox");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidscilabAboutBoxID );if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

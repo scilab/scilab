@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  res = atomsIsInstalled(name[,version,section])
+	  res = atomsIsInstalled(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -30,20 +30,28 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
-        <term>name</term>
+			
+			<varlistentry>
+        <term>modules</term>
         <listitem>
           <para>
-						Matrix of strings : External module's technical name
+						mx1 or mx2 Matrix of strings:
 					</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
-          <para>
-						Matrix of strings : External module's version
-					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"1st column" (mandatory)</literal>: devoted to module's
+								technical name.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"2nd column" (optional)</literal>: devoted to module's
+								version. If this field is empty or is not present, the most recent
+								version is installed.
+							</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 			

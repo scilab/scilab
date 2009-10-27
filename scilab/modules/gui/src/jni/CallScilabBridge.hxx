@@ -235,6 +235,7 @@ jmethodID voidrequestFrameFocusjintID; // cache method id
 jmethodID voidraiseWindowjintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
+jmethodID voidscilabAboutBoxID; // cache method id
 
 
 /**
@@ -635,6 +636,8 @@ static void raiseWindow(JavaVM * jvm_, int objID);
 static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 
 static bool useCanvasForDisplay(JavaVM * jvm_);
+
+static void scilabAboutBox(JavaVM * jvm_);
 
 
                         /**

@@ -100,7 +100,6 @@ Scilab a better software.
 	- Misc patches on localization issues
 
 * Enrico Segre
-	- Scipad
 	- Bug reports
 	- Bug fixes
 	- Advice
@@ -109,7 +108,6 @@ Scilab a better software.
 	- Spanish localization
 
 * François Vogel
-	- Scipad
 	- Bug reports
 	- Bug fixes
 	- Advice
@@ -175,9 +173,6 @@ integ: routines from Odepack and Quadpack.
 interf: Scilab interface with numerical libraries (INRIA/ENPC).
 
 
-metanet: routines for network analysis (Metanet, INRIA and many public
-         programs).
-
 optim: optimization routines (Modulopt library, INRIA).
        semidef : L. Vandenberghe- S. Boyd code sp.c,
        qld     : K.Schittkowski, A.L. Tits and J.L. Zhou
@@ -194,11 +189,6 @@ qsort: qsort.c ( quicksort from the University of California Berkeley)
 
 randlib: Library of Fortran Routines for Random Number Generation
 	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
-
-scipad: an embedded text editor scipad derived from TkNotepad
-        (http://home.earthlink.net/~joseph-ja/programs.html#Tcl-Tk) and improved by
-        Enrico Segre and François Vogel, two Scilab Developers to take
-        an active part in Scilab development.
 
 SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
 	used for the help browser, waitbar and editvar 

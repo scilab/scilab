@@ -185,10 +185,12 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   end
 
   if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-      FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
-    else
-      FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+    if findmsifortcompiler() <> 'unknown' then
+      if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+        FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
+      else
+        FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+      end
     end
   end
   
