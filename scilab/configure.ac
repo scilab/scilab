@@ -1534,6 +1534,7 @@ modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
+modules/mpi/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
