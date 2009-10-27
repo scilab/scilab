@@ -17,11 +17,16 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
 import org.scilab.modules.localization.Messages;
@@ -37,13 +42,22 @@ public class ScilabAboutBox {
 
 	public static void displayAndWait() {
 
+		ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.jpg");
+		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2, 0));
+
+		final JFrame ackBox = new JFrame();
 		final JFrame aboutBox = new JFrame();
 		aboutBox.setTitle(Messages.gettext("About Scilab..."));
 
 		aboutBox.setLayout(null);
+		aboutBox.setAlwaysOnTop(true);
+		aboutBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		aboutBox.setLocationRelativeTo(null);
+		aboutBox.setSize(icon.getIconWidth(), icon.getIconHeight());
+		aboutBox.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+		aboutBox.setUndecorated(true);
+		aboutBox.setResizable(false);
 
-		ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.jpg");
-		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2, 0));
 
 		JLabel label = new JLabel(icon);
 		label.setLocation(0, 0);
@@ -69,20 +83,65 @@ public class ScilabAboutBox {
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				aboutBox.dispose();
+				ackBox.dispose();
 			}
 		});
 		aboutBox.add(close, 0);
-		aboutBox.setAlwaysOnTop(true);
+		close.setSize(80, 30);
+		close.setLocation(aboutBox.getWidth() - 90, aboutBox.getHeight() - 40);
+		
+		JButton acknowledgements = new JButton(Messages.gettext("Acknowledgements"));
+		acknowledgements.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				String filename = System.getenv("SCI") + "/ACKNOWLEDGEMENTS"; // Source version
+				if (!new File(filename).exists()) {
+					filename = System.getenv("SCI") + "/../../ACKNOWLEDGEMENTS"; // Linux binary version
+				}
+				
+				StringBuilder contents = new StringBuilder();
+			    
+			    try {
+			      BufferedReader input =  new BufferedReader(new FileReader(filename));
+			      try {
+			        String line = null;
+			        while (( line = input.readLine()) != null){
+			          contents.append(line);
+			          contents.append(System.getProperty("line.separator"));
+			        }
+			      }
+			      finally {
+			        input.close();
+			      }
+			    }
+			    catch (IOException ex){
+			      ex.printStackTrace();
+			    }
+			    
+				ackBox.setTitle(Messages.gettext("Scilab Contributors..."));
 
-		aboutBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		aboutBox.setLocationRelativeTo(null);
-		aboutBox.setSize(icon.getIconWidth(), icon.getIconHeight());
-		aboutBox.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-		close.setSize(60, 30);
-		close.setLocation(aboutBox.getWidth() - 70, aboutBox.getHeight() - 40);
-		aboutBox.setUndecorated(true);
+				ackBox.setLayout(null);
+				ackBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				ackBox.setLocationRelativeTo(null);
+				ackBox.setSize(600, 400);
+				
+				JTextPane text = new JTextPane();
+				text.setText(contents.toString());
+				text.setCaretPosition(0);
+
+				JScrollPane pane = new JScrollPane(text);
+				pane.setSize(600, 400);
+				ackBox.setContentPane(pane);
+				
+				text.setEditable(false);
+
+				ackBox.setVisible(true);
+			}
+		});
+		aboutBox.add(acknowledgements, 0);
+		acknowledgements.setSize(120, 30);
+		acknowledgements.setLocation(10, aboutBox.getHeight() - 40);
+		
 		aboutBox.setVisible(true);
-		aboutBox.setResizable(false);
 	}
 
 }
