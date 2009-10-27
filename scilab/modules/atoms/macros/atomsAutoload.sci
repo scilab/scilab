@@ -23,7 +23,7 @@ function result = atomsAutoload()
 	
 	// If the autoload system is disabled, no need to continue
 	// =========================================================================
-	if ~ (atomsGetConfig("autoload") == "False") then
+	if atomsGetConfig("autoload") == "False" then
 		return;
 	end
 	
@@ -49,6 +49,7 @@ function result = atomsAutoload()
 	
 	// Get the list of packages to load
 	// =========================================================================
+	
 	packages = atomsAutoloadLoad("all");
 	
 	// If the list is empty, quit the function
