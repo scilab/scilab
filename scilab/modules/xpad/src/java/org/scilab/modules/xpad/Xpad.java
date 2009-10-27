@@ -1035,7 +1035,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ScilabStyleDocument styleDocument = null;
 			JTextPane theTextPane;
 			
-			// If the given file exist
+			// File exist
 			if (f.exists()) {
 				theTextPane = addTab(f.getName()); 
 				styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
@@ -1071,18 +1071,46 @@ public class Xpad extends SwingScilabTab implements Tab {
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
+			// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
 				System.out.println("File = " + f.getAbsolutePath());
 				
 				int choice = JOptionPane.showConfirmDialog(
 						editor,
-						String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()),
+						String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()),
 						"Editor",
 						JOptionPane.YES_NO_OPTION);
 
 				if (choice  == 0) {
-					save(theTextPane);
+					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+					FileWriter writer = null;
+					try {
+						writer = new FileWriter(f);
+						try {
+							editorKit.write(writer, styleDocument, 0, styleDocument.getLength());
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
+						writer.flush();
+						writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					ConfigManager.saveLastOpenedDirectory(f.getPath());
+					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+					theTextPane.setName(f.getPath());
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+					editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+					updateRecentOpenedFilesMenu();
+
+					styleDocument.setContentModified(false);
+					lastKnownSavedState = System.currentTimeMillis();
+
+					// Get current file path for Execute file into Scilab 
+					fileFullPath = f.getAbsolutePath();
+
 					getInfoBar().setText("");
 				} else {
 					getInfoBar().setText("");
