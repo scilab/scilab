@@ -58,7 +58,8 @@ static gw_generic_table Tab[]=
 	{sci_uigetfile,"uigetfile"},
 	{sci_usecanvas,"usecanvas"},
 	{sci_displaytree,"displaytree"},
-	{sci_uiputfile,"uiputfile"}
+	{sci_uiputfile,"uiputfile"},
+        {sci_about,"about"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
