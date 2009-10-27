@@ -46,7 +46,6 @@ public class ExitAction extends DefaultAction {
     		wantToClose &=  getEditor().closeTabAt(0);
     	}
 
-    	System.err.println("wantToClose : " + wantToClose);
     	if(wantToClose == true){
     		xpadWindow.getAsSimpleWindow().removeTab(getEditor());
     		Xpad.closeXpad();
