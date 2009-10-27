@@ -494,28 +494,24 @@ public class BasicBlock extends mxCell {
 	insert(port);
 	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllInputPorts().size());
-	rotatePorts(getAllInputPorts(), getDataPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(OutputPort port) {
 	insert(port);
 	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllOutputPorts().size());
-	rotatePorts(getAllOutputPorts(), getDataPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(CommandPort port) {
 	insert(port);
 	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllCommandPorts().size());
-	rotatePorts(getAllCommandPorts(), getEventPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(ControlPort port) {
 	insert(port);
 	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllControlPorts().size());
-	rotatePorts(getAllControlPorts(), getEventPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public ScilabMList getAsScilabObj() {
@@ -959,7 +955,6 @@ public class BasicBlock extends mxCell {
 	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
-	result.append("flip : " + getFlip() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
 	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
 	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
@@ -1058,10 +1053,6 @@ public class BasicBlock extends mxCell {
 		menu.setVisible(true);
     }
     
-    public void setFlip(boolean flip) {
-	this.flip = flip;
-    }
-    
     public boolean getFlip(){
     	return flip;
     }
@@ -1073,8 +1064,8 @@ public class BasicBlock extends mxCell {
     	mxCellState state = getParentDiagram().getView().getState(this);
     	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
 
-    	updatePortsPosition(currentBlockDirection);
-    	updateBlockDirection(currentBlockDirection);
+    	updatePortsPosition(getNextFlipDirection(currentBlockDirection));
+    	updateBlockDirection(getNextFlipDirection(currentBlockDirection));
     }
 
     
@@ -1121,21 +1112,23 @@ public class BasicBlock extends mxCell {
     }
     
     private String getEventPortsDirection(String currentBlockDirection) {
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	return null;
+    	if(flip){
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_NORTH; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_WEST; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_SOUTH; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_EAST; }
+    		return null;
+    	}else{
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
+    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
+    		return null;
+    	}
     }
 
     private String getDataPortsDirection(String currentBlockDirection) {
-	if(flip) {
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_WEST; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_EAST; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_NORTH; }
-	}
-	return currentBlockDirection;
+    	return currentBlockDirection;
     }
 
     /**
@@ -1211,65 +1204,67 @@ public class BasicBlock extends mxCell {
     	// East <=> Out / North <=> Control / West <=> In / South <=> Command
     	if (blockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) {
     		if(flip){
-    			updateEastPortsPosition(getAllInputPorts());
-    			updateWestPortsPosition(getAllOutputPorts());
+    			updateEastPortsPosition(getAllOutputPorts());
+    			updateSouthPortsPosition(getAllControlPorts());
+    			updateWestPortsPosition(getAllInputPorts());
+    			updateNorthPortsPosition(getAllCommandPorts());
     		}else{
     			updateEastPortsPosition(getAllOutputPorts());
+    			updateNorthPortsPosition(getAllControlPorts());
     			updateWestPortsPosition(getAllInputPorts());
+    			updateSouthPortsPosition(getAllCommandPorts());
     		}
-    		updateNorthPortsPosition(getAllControlPorts());
-    		updateSouthPortsPosition(getAllCommandPorts());
     	}
     	// Block -> NORTH
     	// East <=> Command / North <=> Out / West <=> Control / South <=> In
     	if (blockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) {
     		if(flip){
-    			updateNorthPortsPosition(getAllInputPorts());
-    			updateSouthPortsPosition(getAllOutputPorts());
-    		}else{
+    			updateWestPortsPosition(getAllCommandPorts());
     			updateNorthPortsPosition(getAllOutputPorts());
+    			updateEastPortsPosition(getAllControlPorts());
+    			updateSouthPortsPosition(getAllInputPorts());
+    		}else{
+    			updateEastPortsPosition(getAllCommandPorts());
+    			updateNorthPortsPosition(getAllOutputPorts());
+    			updateWestPortsPosition(getAllControlPorts());
     			updateSouthPortsPosition(getAllInputPorts());
     		}
-    		updateWestPortsPosition(getAllControlPorts());
-    		updateEastPortsPosition(getAllCommandPorts());
     	}
     	// Block -> WEST
     	// East <=> In / North <=> Command / West <=> Out / South <=> Control
     	if (blockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) {
     		if(flip){
-    			updateEastPortsPosition(getAllOutputPorts());
-    			updateWestPortsPosition(getAllInputPorts());
+    			updateEastPortsPosition(getAllInputPorts());
+    			updateSouthPortsPosition(getAllCommandPorts());
+    			updateWestPortsPosition(getAllOutputPorts());
+    			updateNorthPortsPosition(getAllControlPorts());
     		}else{
     			updateEastPortsPosition(getAllInputPorts());
+    			updateNorthPortsPosition(getAllCommandPorts());
     			updateWestPortsPosition(getAllOutputPorts());
+    			updateSouthPortsPosition(getAllControlPorts());
     		}
-    		updateNorthPortsPosition(getAllCommandPorts());
-    		updateSouthPortsPosition(getAllControlPorts());
-    		
     	}
     	// Block -> SOUTH
     	// East <=> Control / North <=> In / West <=> Command / South <=> Out
     	if (blockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) {
     		if(flip){
-    			updateNorthPortsPosition(getAllOutputPorts());
-    			updateSouthPortsPosition(getAllInputPorts());
-    		}else{
+    			updateWestPortsPosition(getAllControlPorts());
     			updateNorthPortsPosition(getAllInputPorts());
+    			updateEastPortsPosition(getAllCommandPorts());
+    			updateSouthPortsPosition(getAllOutputPorts());
+    		}else{
+    			updateEastPortsPosition(getAllControlPorts());
+    			updateNorthPortsPosition(getAllInputPorts());
+    			updateWestPortsPosition(getAllCommandPorts());
     			updateSouthPortsPosition(getAllOutputPorts());
     		}
-    		updateWestPortsPosition(getAllCommandPorts());
-    		updateEastPortsPosition(getAllControlPorts());
     	}
     }    
 
     private void rotatePorts(List ports , String portOrientation){
     	for(int i = 0 ; i < ports.size() ; ++i) {
-    	    if (getParentDiagram() != null && getParentDiagram().getModel() != null) {
     		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {ports.get(i)}, mxConstants.STYLE_DIRECTION, portOrientation);
-    	    }
-    	    else {
-    		((BasicPort) ports.get(i)).setStyle(((BasicPort) ports.get(i)).getStyle()+ ";" + mxConstants.STYLE_DIRECTION + "=" + portOrientation);
-    	    }
     	}
     }
 
