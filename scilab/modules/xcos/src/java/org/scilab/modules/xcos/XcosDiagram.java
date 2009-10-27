@@ -1080,8 +1080,11 @@ public class XcosDiagram extends ScilabGraph {
 	    // Ask the user want he want to do !
 	    int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);
 	    if (choice == 0) {
-		// Save the diagram
-		saveDiagram();
+	    	// Save the diagram
+	    	if(saveDiagram() == false){
+	    		//if save is canceled, cancel close windows
+	    		wantToClose = false;
+	    	}
 	    } else if (choice == 1) {
 		// The user selects no !
 	    } else if (choice == 2) {

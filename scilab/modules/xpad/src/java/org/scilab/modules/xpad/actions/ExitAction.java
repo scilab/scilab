@@ -36,31 +36,21 @@ public class ExitAction extends DefaultAction {
     }
 
     public void doAction() {
-	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
+    	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
 
-	int numberOfTab = getEditor().getTabPane().getComponentCount();
-	for ( int i = 0 ; i < numberOfTab ; i++){
-		
-	JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(i)).getViewport().getComponent(0) ;
-		
-		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
-			int choice = JOptionPane.showConfirmDialog(getEditor(),getEditor().getTabPane().getTitleAt(i) + XpadMessages.MODIFIED);
-			
-			if (choice == 0){// ok choose
-				getEditor().save(textPane);
-			}else if (choice == 1){// cancel choose , we dont'save
-				
-				
-			}else if (choice == 2){
-				return ;// if cancel we stop closing xpad
-			}
-			
-		}
-		
-	}
-	
-	xpadWindow.getAsSimpleWindow().removeTab(getEditor());
-	Xpad.closeXpad();
+    	int numberOfTab = getEditor().getTabPane().getComponentCount();
+
+    	boolean wantToClose = true;
+    	for ( int i = 0 ; i < numberOfTab ; i++){
+    		//close and save all editors if they are modified
+    		wantToClose &=  getEditor().closeTabAt(0);
+    	}
+
+    	System.err.println("wantToClose : " + wantToClose);
+    	if(wantToClose == true){
+    		xpadWindow.getAsSimpleWindow().removeTab(getEditor());
+    		Xpad.closeXpad();
+    	}
     }
     
     public static MenuItem createMenu(Xpad editor) {
