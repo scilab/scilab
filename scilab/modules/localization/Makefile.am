@@ -18,7 +18,7 @@ LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
 endif
 
 if IS_MACOSX
-SHELL_C_SOURCES += src/c/src/c/getLocaleInfo_Apple.c
+LOCALIZATION_C_SOURCES += src/c/src/c/getLocaleInfo_Apple.c
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
