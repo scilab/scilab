@@ -1,6 +1,7 @@
 //==========================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
+// Copyright (C) DIGITEO - 2009 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,19 @@ function MSCompiler = findmsvccompiler()
 
 //==========================================
 //  functions defined only in findmsvccompiler
+//==========================================
+function bOK = is_msvc100express()
+  try
+    MSVS100EXPRESS = winqueryreg('HKEY_LOCAL_MACHINE', ..
+                    'Software\Microsoft\VCExpress\10.0\Setup\VS', ..
+                    'ProductDir');
+    bOK = findWindowsSDK();
+  catch
+    bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
+  end  
+endfunction
 //==========================================
 function bOK = is_msvc90pro()
   try
@@ -171,6 +185,12 @@ endfunction
   MSCompiler='unknown'; // unknown
   
   if MSDOS then
+
+    if is_msvc100express() then
+      MSCompiler = 'msvc100express';          // Microsoft Visual 2010 Express
+      return;
+    end
+  
     if is_msvc90pro() then
       MSCompiler = 'msvc90pro';          // Microsoft Visual 2008 Studio Professional
       return;
