@@ -66,4 +66,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
 <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="displaytree" />
 <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
+<PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
 </GATEWAY>
