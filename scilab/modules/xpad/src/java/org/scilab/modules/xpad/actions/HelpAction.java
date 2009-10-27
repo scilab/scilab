@@ -24,7 +24,7 @@ public class HelpAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		InterpreterManagement.requestScilabExec("help('xpad')");
+		InterpreterManagement.requestScilabExec("help('editor')");
 	}
 
 	public static MenuItem createMenu(Xpad editor) {

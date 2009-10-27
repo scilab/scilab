@@ -33,7 +33,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 
 	if (Rhs == 0)
 	{
-		callXpad(NULL, 0);
+		callXpadW(NULL, 0);
 	}
 	else
 	{

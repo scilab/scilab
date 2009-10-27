@@ -48,23 +48,25 @@ function bOK = VCtoLCCLib()
          'stack_', ..
          'vstk_'];
     bOK = [bOK , Exportalibrary('LibScilab', WSCI+'\bin',DATAS_LIBSCILAB)];
-                 
-    bOK = [bOK , Exportalibrary('call_scilab', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('dynamic_link_f', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('integer', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('libintl', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('libjvm', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('linpack_f', WSCI+'\bin',[])];
+
     bOK = [bOK , Exportalibrary('MALLOC', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('optimization_f', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('scicompletion', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('scilocalization', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('scicos', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('output_stream', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('integer', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('optimization_f', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('libjvm', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('scilocalization', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('libintl', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('linpack_f', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('call_scilab', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('time', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('api_scilab', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('hashtable', WSCI+'\bin',[])];
+    bOK = [bOK , Exportalibrary('scilab_windows', WSCI+'\bin',[])];    
 
     chdir(DirCur);
                  

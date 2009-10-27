@@ -22,7 +22,7 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
 
-  <refnamediv xml:id="mprintf">
+  <refnamediv>
     <refname>mprintf</refname>
     <refpurpose>converts, formats, and writes data to the main scilab
     window</refpurpose>

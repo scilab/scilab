@@ -19,10 +19,19 @@
 * @param[in] relPath Relative path name.
 * @param[in] maxLength Maximum length of the absolute path name buffer (absPath). 
 * @return returns a pointer to a buffer containing the absolute path name (absPath).
-* "localized" on windonws (Wide char)
 */
 
 char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes);
+
+/**
+* Creates an absolute or full path name for the specified relative path name.
+* @param[out] absPath Pointer to a buffer containing the absolute or full path name, or NULL.
+* @param[in] relPath Relative path name.
+* @param[in] maxLength Maximum length of the absolute path name buffer (absPath). 
+* @return returns a pointer to a buffer containing the absolute path name (absPath).
+* "localized" on windows (Wide char)
+*/
+wchar_t * get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _SizeInBytes);
 
 #endif
 /*--------------------------------------------------------------------------*/

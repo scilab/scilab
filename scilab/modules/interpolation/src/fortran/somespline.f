@@ -290,7 +290,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer  isearch, isanan
       external isearch, isanan
       double precision tt
-      external         returnanan 
+      external         returnananfortran
       logical new_call     
       common /INFO_HERMITE/new_call
 
@@ -307,7 +307,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          else   ! t(j) is outside [x(1), x(n)] evaluation depend upon outmode 
 
             if (outmode .eq. BY_NAN  .or.  isanan(tt) .eq. 1) then 
-               CALL returnananfortranreturnananfortran(st(j))
+               CALL returnananfortran(st(j))
                dst(j) = st(j)
                d2st(j) = st(j)
                d3st(j) = st(j)

@@ -1170,26 +1170,28 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	   
 		public void readFile(File f) {
-			/* First try to open file before creating tab */
 			getInfoBar().setText("Loading...");
-			StringBuilder contents = new StringBuilder();
-			JTextPane theTextPane = addTab(f.getName()); 
-			String eof = System.getProperty("line.separator");
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-			System.out.println("File = " + f.getAbsolutePath());
-			theTextPane.setName(f.getAbsolutePath());
-			try {
+			
+			ScilabStyleDocument styleDocument = null;
+			JTextPane theTextPane;
+			
+			// File exist
+			if (f.exists()) {
+				theTextPane = addTab(f.getName()); 
+				styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+
+				try {
 					synchronized (styleDocument) {
 						styleDocument.disableUpdaters();
 						boolean indentMode= styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
 							try {
-									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
-								} catch(ChangedCharSetException e) {
-									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
-								}
-							
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
+							} catch(ChangedCharSetException e) {
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+							}
+
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
@@ -1199,34 +1201,69 @@ public class Xpad extends SwingScilabTab implements Tab {
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.enableUpdaters();
 					}
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				} catch (IOException ioex) {
+					ioex.printStackTrace();
+				}
+				
+				System.out.println("File = " + f.getAbsolutePath());
+				theTextPane.setName(f.getAbsolutePath());
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
-				// Empty the undo Manager
-				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-				undo.discardAllEdits();
+			// File does not exist	
+			} else {
+				theTextPane = addEmptyTab(); 
+				System.out.println("File = " + f.getAbsolutePath());
 				
-			} catch (IOException ioex) {
+				int choice = JOptionPane.showConfirmDialog(
+						editor,
+						String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()),
+						"Editor",
+						JOptionPane.YES_NO_OPTION);
 
-				int choice = JOptionPane.showConfirmDialog(editor, String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()));
 				if (choice  == 0) {
+					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+					FileWriter writer = null;
 					try {
-						FileWriter writer = new FileWriter(f);
-						writer.write("");
+						writer = new FileWriter(f);
+						try {
+							editorKit.write(writer, styleDocument, 0, styleDocument.getLength());
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
 						writer.flush();
 						writer.close();
-
-						readFile(f);
-					} catch (IOException ioexc) {
-						JOptionPane.showMessageDialog(editor , ioexc);
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
+
+					ConfigManager.saveLastOpenedDirectory(f.getPath());
+					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+					theTextPane.setName(f.getPath());
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+					editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+					updateRecentOpenedFilesMenu();
+
+					styleDocument.setContentModified(false);
+					lastKnownSavedState = System.currentTimeMillis();
+
+					// Get current file path for Execute file into Scilab 
+					fileFullPath = f.getAbsolutePath();
+
+					getInfoBar().setText("");
+				} else {
+					getInfoBar().setText("");
 				}	
 			}
+			
+			// Empty the undo Manager
+			UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+			undo.discardAllEdits();
+			
 			synchronized (synchro) {
 				synchro.notify();
 			}
 		}
-
 	}
 }

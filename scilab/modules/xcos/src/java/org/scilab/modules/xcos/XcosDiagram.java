@@ -1253,6 +1253,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     public void loadDiagram(HashMap<String, Object> diagramm) {
 	List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
+	List<TextBlock> allTextBlocks = (List) diagramm.get("TextBlocks");
 	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
@@ -1269,7 +1270,7 @@ public class XcosDiagram extends ScilabGraph {
 	List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
 	List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");
 
-	Object[] objs = new Object[allBlocks.size() + linkPorts.size()];
+	Object[] objs = new Object[allBlocks.size() + linkPorts.size() + allTextBlocks.size()];
 	getModel().beginUpdate();
 	for (int i = 0; i < allBlocks.size(); ++i) {
 		objs[i] = allBlocks.get(i);
@@ -1288,6 +1289,10 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    objs[i + allBlocks.size()] = link;
+	}
+	
+	for (int i = 0; i < allTextBlocks.size() ; ++i) {
+		objs[i + allBlocks.size() + linkPorts.size() ] = allTextBlocks.get(i);
 	}
 	
 	addCells(objs);
@@ -1410,8 +1415,8 @@ public class XcosDiagram extends ScilabGraph {
     				writer.write("");
     				writer.flush();
     				writer.close();
-
-    				openDiagramFromFile(diagramFileName);
+    				setSavedFile(diagramFileName);
+    				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
     			} catch (IOException ioexc) {
     				JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
     			}

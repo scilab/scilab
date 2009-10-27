@@ -311,7 +311,7 @@ images/icons/edit-find.png \
 images/icons/edit-redo.png \
 images/icons/edit-undo.png \
 images/icons/media-floppy.png \
-images/icons/aboutscilab.jpg
+images/icons/aboutscilab.png
 
 
 if GUI

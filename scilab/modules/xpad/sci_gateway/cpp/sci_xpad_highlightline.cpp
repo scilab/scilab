@@ -23,8 +23,8 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#include "expandPathVariable.h"
 #include "freeArrayOfString.h"
+#include "getFullFilename.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -43,6 +43,8 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
   wchar_t **pStVarOne = NULL;
   double *pDbleLineNumber = NULL;
   int *lenStVarOne = NULL;
+  wchar_t *wcFullFilename = NULL;
+  char *utfFilename = NULL;
 
   /*
    * READ FILENAME TO BE OPENED
@@ -150,8 +152,14 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
       return 0;
     }
   
-  
-  Xpad::xpadHighlightLine(getScilabJavaVM(), wide_string_to_UTF8(expandPathVariableW(pStVarOne[0])), (int) pDbleLineNumber[0]);
+
+  wcFullFilename = getFullFilenameW(pStVarOne[0]);
+  utfFilename = wide_string_to_UTF8(wcFullFilename);
+
+  Xpad::xpadHighlightLine(getScilabJavaVM(), utfFilename, (int) pDbleLineNumber[0]);
+
+  if (wcFullFilename) { FREE(wcFullFilename); wcFullFilename = NULL;}
+  if (utfFilename) { FREE(utfFilename); utfFilename = NULL;}
   
   freeArrayOfWideString(pStVarOne,m1 * n1);
   
@@ -161,3 +169,6 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
 return 0;
 }
 /*--------------------------------------------------------------------------*/
+
+
+
