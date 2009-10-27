@@ -102,7 +102,7 @@ char *getFullFilename(char* Filename)
 			if (pStwcFullFilename)
 			{
 				pStFullFilename = wide_string_to_UTF8(pStwcFullFilename);
-				FREE(pStwcFullFilename)
+				FREE(pStwcFullFilename);
 				pStwcFullFilename = NULL;
 			}
 		}
