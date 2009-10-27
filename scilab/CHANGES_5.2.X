@@ -977,3 +977,6 @@ Bug fixes:
 * bug 4966 fixed - execstr([]) should return [].
 
 * bug 4974 fixed - exec('') crashs scilab.
+
+* bug 4991 fixed - No check if there is modification when doing "Execute Into Scilab" in the editor.
+
