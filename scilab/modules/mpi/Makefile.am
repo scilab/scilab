@@ -38,6 +38,8 @@ MPI_PI_SOURCES = src/c/mpi_pi_send.c src/c/dboard.c
 mpi_pi_SOURCES = $(MPI_PI_SOURCES)
 mpi_pi_LDFLAGS = $(OPENMPI_LIBS)
 
+MPI_C_SOURCES = src/c/mappingScilabMPI.c
+
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_mpi_init.c \
 sci_gateway/c/sci_mpi_finalize.c \
@@ -63,6 +65,7 @@ libscimpi_la_CFLAGS=  -Iincludes/ \
 	-Isrc/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-DDEBUG
 libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
 # $(LAMPI_LDFLAGS)
@@ -72,9 +75,9 @@ libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
 pkglib_LTLIBRARIES = libscimpi.la
 
 # All the sources needed by libscimpi.la
-libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES) 
+libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 #$(GATEWAY_FORTRAN_SOURCES) $(MPI_FORTRAN_SOURCES)
-#$(MPI_C_SOURCES)
+
 
 ## Libraries necessary
 libscimpi_la_LIBADD = \
