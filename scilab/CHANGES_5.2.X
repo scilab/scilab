@@ -190,6 +190,9 @@ Mac OS X:
 * bug 4508 fixed - Can't create a file when saving/exporting a figure under
                    Mac OS X.
 
+* bug 4393 fixed - When launching Scilab from the puffin icon, it does not detect my Locale and switch to english.
+
+
 toolbox_skeleton:
 =================
 
