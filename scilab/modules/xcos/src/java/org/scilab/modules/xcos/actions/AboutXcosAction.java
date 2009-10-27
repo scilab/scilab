@@ -66,37 +66,22 @@ public class AboutXcosAction extends DefaultAction {
         JButton okButton = new JButton(XcosMessages.OK);
 
         GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridx = 0;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 1;
-        gbc.insets = new Insets(0, 10, 0, 0);
-
-
-
-
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = 3;
         gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(0, 10, 0, 0);
+        gbc.weightx = 0.0;
         mainFrame.add( aboutLabel, gbc);
 
-
-        gbc.gridx = 1;
-        gbc.gridy = 5;
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.PAGE_END;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        gbc.weightx = 1.;
         gbc.fill = GridBagConstraints.NONE;
-
-        gbc.gridx = 2;
-        gbc.weightx = 0.;
-        gbc.insets = new Insets(5, 0, 10, 10);
         mainFrame.add(okButton, gbc);
-
-	
         
 		okButton.addActionListener(new ActionListener() {
 
