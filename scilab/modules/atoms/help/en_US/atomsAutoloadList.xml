@@ -10,10 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsInstalled">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAutoloadList">
   <refnamediv>
-    <refname>atomsIsInstalled</refname>
-    <refpurpose>Determines whether the module is installed. Returns true if the module is installed, false otherwise.</refpurpose>
+    <refname>atomsAutoloadList</refname>
+    <refpurpose>Get the list of modules registered to autoload</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  res = atomsIsInstalled(modules[,section])
-	</synopsis>
+			modules = atomsAutoloadList([section])
+		</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -32,34 +32,10 @@
     <variablelist>
 			
 			<varlistentry>
-        <term>modules</term>
-        <listitem>
-          <para>
-						mx1 or mx2 Matrix of strings:
-					</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is installed.
-							</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-			
-			<varlistentry>
         <term>section</term>
         <listitem>
           <para>
-						This argument controls the list of searched modules.
+						This argument controls the list of section where search URL(s).
 					</para>
           <para>
 						<literal>section</literal> is a single-string and its value should be :
@@ -67,20 +43,20 @@
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"all"</literal>: atomsIsInstalled() searchs external
-								modules installed in both "user" and "allusers" sections.
+								<literal>"all"</literal>: module(s) present on both "user" and "allusers"
+								autoload lists are returned.
 							</para>
             </listitem>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: atomsIsInstalled() searchs external
-								modules installed in the "allusers" section.
+								<literal>"allusers"</literal>: only module(s) present on the "allusers"
+								autoload lists are returned.
 							</para>
             </listitem>
             <listitem>
               <para>
-								<literal>"user"</literal>: atomsIsInstalled() searchs external
-								modules installed in the "user" section.
+								<literal>"user"</literal>: only module(s) present on the "user"
+								autoload lists are returned.
 							</para>
             </listitem>
           </itemizedlist>
@@ -91,12 +67,32 @@
 			</varlistentry>
 			
       <varlistentry>
-        <term>res</term>
+        <term>modules</term>
         <listitem>
-          <para>
-					</para>
+          <para>4xn String matrix :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>1st column</literal> : External module's technical name
+							</para>
+						</listitem>
+						<listitem>
+							<para><literal>2nd column</literal> : External module's version
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>3rd column</literal> : External module's installed section
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>4th column</literal> : Autoload list section
+							</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
+			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -104,8 +100,7 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para>
-	  
+    <para><literal>atomsAutoloadList</literal> returns the list of modules registered to autoload
 	</para>
   </refsection>
   <!-- ===================================================================== -->
@@ -113,17 +108,17 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
-atomsSetConfig("Verbose","True");
-atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsInstall("toolbox_5");
-atomsIsInstalled(["toolbox_5" "toolbox_4"])
-atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0"])
-atomsIsInstalled("toolbox_5");
-atomsRemove("toolbox_5");
-]]>
-		</programlisting>
+    <programlisting role="example"><![CDATA[
+atomsRepositoryAdd('http://scene1.test.atoms.scilab.org');
+atomsInstall("toolbox_1");
+
+atomsAutoloadList('user')
+atomsAutoloadList('allusers')
+atomsAutoloadList('all')
+
+atomsRemove("toolbox_1");
+atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->
@@ -132,10 +127,10 @@ atomsRemove("toolbox_5");
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsInstall">atomsInstall</link>
+        <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
       </member>
       <member>
-        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+        <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
       </member>
     </simplelist>
   </refsection>

@@ -10,13 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsInstall">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAutoloadDel">
   <refnamediv>
-    <refname>atomsInstall</refname>
-    <refpurpose>Install one or several external modules</refpurpose>
+    <refname>atomsAutoloadDel</refname>
+    <refpurpose>Remove one or several modules from the autoload system</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -24,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(modules[,section])
+	  nbDel = atomsAutoloadDel(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -33,12 +30,14 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      
+			
+			<!-- 1st input parameter -->
+			
 			<varlistentry>
         <term>modules</term>
         <listitem>
           <para>
-						mx1 or mx2 Matrix of strings:
+						mx1, mx2 or mx3 Matrix of strings:
 					</para>
           <itemizedlist>
             <listitem>
@@ -50,20 +49,29 @@
             <listitem>
               <para>
 								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is installed.
+								version. If this field is empty or is not present, all versions
+								of the module are removed from the autoload system.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"3rd column" (optional)</literal>: devoted to module's
+								installed section. If this field is empty or is not present,
+								Modules installed in both "user" and "allusers" sections are searched.
 							</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
-      
+			
+			<!-- 2nd input parameter -->
+			
 			<varlistentry>
         <term>section</term>
-				
         <listitem>
           <para>
-						This argument controls where the external module is installed.
+						This argument controls the list of sections where search
+						modules(s) to remove from autoload system.
 					</para>
           <para>
 						<literal>section</literal> is a single-string and its value should be :
@@ -71,68 +79,50 @@
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: the external module
-								is installed for all users of the computer and is located in
-								SCI/contrib ("allusers zone").
+								<literal>"all"</literal>: module(s) to remove from autotoload list
+								are searched in both "user" and "allusers" sections.
 							</para>
             </listitem>
             <listitem>
-              <para><literal>"user"</literal>: the external module is only
-								installed for the current user and is located in SCIHOME/atoms
-								("user zone").
+              <para>
+								<literal>"allusers"</literal>: module(s) to remove from autotoload
+								system are only searched in the "allusers" autoload list.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: module(s) to remove from autotoload
+								system are only searched in the "user" autoload list.
 							</para>
             </listitem>
           </itemizedlist>
 					<para>
-						If SCI/contrib is write accessible, "allusers" is the default value.
+						If SCI is write accessible, "all" is the default value.
 						Otherwise, the default value is "user".
 					</para>
         </listitem>
 			</varlistentry>
 			
       <varlistentry>
-        <term>result</term>
+        <term>nbDel</term>
         <listitem>
-          <para>5xn String matrix :</para>
-          <itemizedlist>
-            <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-							</para>
-						</listitem>
-						<listitem>
-							<para><literal>2nd column</literal> : External module's version
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
-								the external module has been installed for all users or only for the
-								current user.
-								</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>4th column</literal> : External module's installation path
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>5th column</literal> : I/A, this parameter tell if
-								the external module has been automatically or intentionnaly installed.
-							</para>
-            </listitem>
-          </itemizedlist>
+          <para>
+						An integer : the number of modules successfully removed from the
+						autoload system.
+					</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-	
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsInstall</literal> install one or more external modules.
+    <para>
+			<literal>atomsAutoloadDel</literal> remove one or several modules from the
+			autoload system.
 	</para>
-	
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -141,35 +131,33 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-// Display some additionnal informations
-atomsSetConfig("Verbose","True");
+atomsRepositoryAdd('http://scene1.test.atoms.scilab.org');
 
-// Load the test repository
-atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+atomsInstall("toolbox_5","user");
+atomsAutoloadList()
 
-// Install a module
-atomsInstall("toolbox_1");
+atomsAutoloadDel("toolbox_5");
+atomsAutoloadList()
 
-// Install a specific version
-atomsInstall(["toolbox_2" "2.0"]);
 
-// Install several modules
-atomsInstall(["toolbox_4" "1.0" ; "toolbox_2" "1.0"]);
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0"]);
+atomsAutoloadList()
 
-// Install a module in the user section
-atomsInstall(["toolbox_5"],"user");
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0" "user"]);
+atomsAutoloadList()
 
-// Install a module in the allusers section
-// (write access on SCI directory is needed):
-atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"],"allusers");
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
 
-// Get the list of installed modules:
-disp( atomsGetInstalled() );
-
-// Cleaning :)
-atomsRemove(["toolbox_1";"toolbox_2";"toolbox_3";"toolbox_4";"toolbox_5";"toolbox_6"]);
-
-]]></programlisting>
+atomsRemove("toolbox_5","user");
+atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->
@@ -178,13 +166,10 @@ atomsRemove(["toolbox_1";"toolbox_2";"toolbox_3";"toolbox_4";"toolbox_5";"toolbo
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+        <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
       </member>
       <member>
-        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
-      </member>
-      <member>
-        <link linkend="atomsRemove">atomsRemove</link>
+        <link linkend="atomsAutoloadList">atomsAutoloadList</link>
       </member>
     </simplelist>
   </refsection>

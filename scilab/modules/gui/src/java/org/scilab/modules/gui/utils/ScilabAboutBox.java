@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,6 +35,8 @@ import org.scilab.modules.localization.Messages;
 
 public class ScilabAboutBox {
 
+	private static Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+	private static Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
 	/**
 	 * Constructor
 	 */
@@ -47,7 +50,9 @@ public class ScilabAboutBox {
 		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2, 0));
 
 		final JFrame ackBox = new JFrame();
+		ackBox.setIconImage(imageForIcon);
 		final JFrame aboutBox = new JFrame();
+		aboutBox.setIconImage(imageForIcon);
 		aboutBox.setTitle(Messages.gettext("About Scilab..."));
 
 		aboutBox.setLayout(null);
