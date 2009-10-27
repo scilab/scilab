@@ -15,6 +15,7 @@ package org.scilab.modules.gui.utils;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -120,6 +121,7 @@ public class ScilabAboutBox {
 				ackBox.setTitle(Messages.gettext("Scilab Contributors..."));
 
 				ackBox.setLayout(null);
+				ackBox.setAlwaysOnTop(true);
 				ackBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				ackBox.setLocationRelativeTo(null);
 				ackBox.setSize(600, 400);
@@ -134,6 +136,8 @@ public class ScilabAboutBox {
 				
 				text.setEditable(false);
 
+				ackBox.setLocation((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (aboutBox.getWidth() / 2), 
+						(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (aboutBox.getHeight() / 2));
 				ackBox.setVisible(true);
 			}
 		});
@@ -141,6 +145,9 @@ public class ScilabAboutBox {
 		acknowledgements.setSize(120, 30);
 		acknowledgements.setLocation(10, aboutBox.getHeight() - 40);
 		
+		
+		aboutBox.setLocation((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (aboutBox.getWidth() / 2), 
+				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (aboutBox.getHeight() / 2));
 		aboutBox.setVisible(true);
 	}
 
