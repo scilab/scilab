@@ -67,7 +67,7 @@ wchar_t * get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t 
 		char *_Path = wide_string_to_UTF8(_wcPath);
 		if (_Path)
 		{
-			char *_FullPath = (char *) MALLOC(sizeof(char)*(_SizeInBytes);
+			char *_FullPath = (char *) MALLOC(sizeof(char)*(_SizeInBytes));
 			if (_FullPath)
 			{
 				char *rp = realpath(_Path, _FullPath);
