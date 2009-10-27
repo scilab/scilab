@@ -51,7 +51,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 				msgBox.dispose();
 
 			} else if (msgBox.getSelectedButton() == SAVE_AND_EXECUTE) {
-				if (editor.save(currentPane)) {
+				if (editor.newSave(getEditor().getTabPane().getSelectedIndex(), false)) {
 					filePath = editor.getFileFullPath();
 					String cmdToExec = "exec('" + filePath + "', -1)";
 					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);

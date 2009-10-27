@@ -45,7 +45,7 @@ public class SaveAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		getEditor().save(getEditor().getTextPane());
+		getEditor().newSave(getEditor().getTabPane().getSelectedIndex(), true);
 
 	}
 }

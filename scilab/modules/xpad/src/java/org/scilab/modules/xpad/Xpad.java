@@ -18,12 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -41,10 +40,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.EditorKit;
-import javax.swing.text.ChangedCharSetException;
-
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -258,9 +256,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
-		for (int i = 0; i < editor.getTabPane().getComponentCount(); i++) {
-			editor.closeTabAt(i);
-		}
 		editor = null;
 	}
 
@@ -422,48 +417,193 @@ public class Xpad extends SwingScilabTab implements Tab {
 		return editorInstance;
 	}
 
-	/**
-	 * Close current tab (file)
-	 */
-	public void closeCurrentTab() {
-		closeTabAt(tabPane.getSelectedIndex());
-	}
 
 	/**
 	 * Close a tab using its index
 	 * @param indexTab the index of the tab
 	 */
-	public void closeTabAt(int indexTab) {
-		
-		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
+	public boolean closeTabAt(int indexTab) {
 
-		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
-			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.MODIFIED);
-			if (choice == 0) {
-				save(textPaneAt);
-			} else if (choice == 1) {
-				String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-				if(getTextPane().getName() == null) {
-					String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-					tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-					closedTabList.add(Integer.parseInt(closedTabNameIndex));
-				}
-				tabPane.remove(tabPane.getSelectedComponent());
-			} else if (choice == 2) {
-				return;
-			}
-		} else {
-			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-			if(getTextPane().getName() == null) {
-				String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-				tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-				closedTabList.add(Integer.parseInt(closedTabNameIndex));
-			}
-			tabPane.remove(tabPane.getSelectedComponent());
+		System.err.println("Close tab : " + indexTab);
+
+		if(newSave(indexTab, false) == false){
+			return false;
 		}
 
+//		String closedTabName = tabPane.getTitleAt(indexTab);
+		System.err.println("getName() : " + getTextPane().getName());
+		if(getTextPane().getName() == null) {
+			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
+			System.err.println("closedTabName : " + closedTabName);
+			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
+			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
+			closedTabList.add(Integer.parseInt(closedTabNameIndex));
+		}
+		tabPane.remove(tabPane.getSelectedComponent());
+		System.err.println("remove tab : " + indexTab);
+//		tabPane.remove(indexTab);
+
+		return true;
+		
 	}
 
+	public boolean newSave(int indexTab, boolean force){
+
+		boolean newFile = false;
+		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
+		System.err.println("newSave");
+		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
+		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified() == false) {
+			return true;
+		}
+
+		if(force == false){
+			switch(JOptionPane.showConfirmDialog(this, editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED))
+			{
+			case 0 : //Yes, continue
+				break;
+			case 1 ://No, exit and returns true
+				return true;
+			case 2 : //Cancel, exit and return false
+				return false;
+			}
+		}
+		String fileToSave = textPaneAt.getName(); 
+		if (fileToSave == null) {
+			System.err.println("No filename");
+			
+			newFile = true;
+			//need a filename, call chooseFileToSave
+			fileToSave = chooseFileToSave();
+		}else{
+			System.err.println("checkExternalModification");
+			//check if the file has been modified by external software
+			fileToSave = checkExternalModification(fileToSave);
+		}
+
+		System.err.println("ready to save : " + fileToSave);
+		if(fileToSave == null){
+			return false;
+		}
+
+		File newSavedFile = new File(fileToSave);
+		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+		FileWriter writer;
+		try {
+			writer = new FileWriter(newSavedFile, false);
+			try {
+				editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
+			} catch (BadLocationException e){
+				e.printStackTrace();
+			}
+			writer.flush();
+			writer.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(newFile){
+			ConfigManager.saveLastOpenedDirectory(newSavedFile.getPath());
+			ConfigXpadManager.saveToRecentOpenedFiles(newSavedFile.getPath());
+			textPaneAt.setName(newSavedFile.getPath());
+			updateRecentOpenedFilesMenu();
+		}
+
+		styledDocument.setContentModified(false);
+
+		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
+		editor.setTitle(newSavedFile.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = newSavedFile.getAbsolutePath();
+		System.err.println("save lastKnownSavedState : " + lastKnownSavedState);
+		lastKnownSavedState = System.currentTimeMillis();
+		return true;
+	}
+	
+	/**
+	 * Save a file
+	 * @param textPane the textPane containing the file contents
+	 * @return execution status
+	 */
+	public String checkExternalModification(String filename) {
+		File newSavedFiled = new File(filename);
+		System.err.println("lastKnownSavedState : " + lastKnownSavedState);
+		if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
+			int actionDialog = JOptionPane.showConfirmDialog(this
+				, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath())
+						 ,XpadMessages.REPLACE_FILE_TITLE, JOptionPane.YES_NO_OPTION);
+			if (actionDialog == JOptionPane.NO_OPTION) {
+				return chooseFileToSave();
+			}
+		}
+		return filename;
+	}
+	
+	public String chooseFileToSave(){
+		String extension = new String();
+
+		String initialDirectoryPath = getTextPane().getName();
+		if (initialDirectoryPath == null) {
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
+		}
+
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
+
+		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+
+		fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
+		fileChooser .setAcceptAllFileFilterUsed(true);
+		fileChooser .setInitialDirectory(initialDirectoryPath);
+		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
+		fileChooser.addChoosableFileFilter(scxFilter);
+		fileChooser.addChoosableFileFilter(sceFilter);
+		fileChooser.addChoosableFileFilter(sciFilter);
+
+		int retval = fileChooser.showSaveDialog(this);
+
+		if (retval == JFileChooser.APPROVE_OPTION) {
+			File f = fileChooser.getSelectedFile();
+			initialDirectoryPath = f.getPath();
+			if (f.exists()) {
+				int actionDialog = JOptionPane.showConfirmDialog(this, XpadMessages.REPLACE_FILE_TITLE, 
+						XpadMessages.FILE_ALREADY_EXIST, JOptionPane.YES_NO_OPTION);
+				if (actionDialog == JOptionPane.NO_OPTION) {
+					return chooseFileToSave();
+				}
+			}
+
+			System.err.println("file : " + f.getPath());
+			/*we test if the file has already a scilab extension*/
+			boolean hasNoExtension = true;
+
+			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
+				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
+					hasNoExtension = false;
+					break;
+				}
+
+			}
+			/*if no extension , we add it */
+			if (hasNoExtension) {
+
+				if (fileChooser.getFileFilter() == sciFilter) {
+					extension = SCI_EXTENSION;
+				} else if (fileChooser.getFileFilter() == sceFilter) {
+					extension = SCE_EXTENSION;
+				} else if (fileChooser.getFileFilter() == scxFilter) {
+					extension = SCE_EXTENSION;
+				} else {
+					extension = "";
+				}
+				return f.getPath() + extension;
+			}
+			return f.getPath();
+		}
+		return null;
+	}
 
 	/**
 	 * Save a file
@@ -485,7 +625,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 						return this.saveAs(this.getTextPane());
 					}
 				}
-				String doc = textPane.getText();
+				
 				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 				FileWriter writer = new FileWriter(newSavedFiled, false);
 				try {
