@@ -40,7 +40,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		int i = 0;
 		int lw = 1;
 		int iType = 0;
-		StrErr strErr;
+		SciErr strErr;
 
 		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(strErr.iErr)

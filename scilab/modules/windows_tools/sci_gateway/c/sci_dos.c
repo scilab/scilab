@@ -35,7 +35,7 @@ static int PrintOuput(char **ouput,int nbrlines);
 /*--------------------------------------------------------------------------*/
 int sci_dos(char *fname,unsigned long l)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	int iType1	= 0;
 	int m1 = 0, n1 = 0;

@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	CheckLhs(1,1);
 	CheckRhs(0,1);
 

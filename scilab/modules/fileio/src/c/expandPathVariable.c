@@ -140,7 +140,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			StrErr strErr = getNamedVarType(pvApiCtx, varname, &iType);
+			SciErr strErr = getNamedVarType(pvApiCtx, varname, &iType);
 			if(strErr.iErr)
 			{
 				return NULL;

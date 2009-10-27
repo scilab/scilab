@@ -13,7 +13,7 @@ extern int F2C(fsum)(double *a,double *b,double *c);
 /* ==================================================================== */
 int sci_fsum(char *fname)
 {
-  StrErr strErr;
+  SciErr strErr;
   	
   int m1 = 0, n1 = 0;
   int *piAddressVarOne = NULL;

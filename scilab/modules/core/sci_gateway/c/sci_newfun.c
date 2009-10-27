@@ -28,7 +28,7 @@ static BOOL Is_a_correct_function_name(char *functionname);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	int iType1						= 0;
 	int *piAddressVarOne	= NULL;

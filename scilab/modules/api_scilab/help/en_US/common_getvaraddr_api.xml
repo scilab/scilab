@@ -28,9 +28,9 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>StrErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)</synopsis>
+        <synopsis>SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)</synopsis>
+        <synopsis>SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -68,7 +68,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -89,11 +89,11 @@
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 
-StrErr printf_info(int _iVar);
+SciErr printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
 {
-    StrErr strErr;
+    SciErr strErr;
     int i;
     int *piAddr1 = NULL;
 
@@ -122,9 +122,9 @@ int commom_function(char *fname,unsigned long fname_len)
     return 0;
 }
 
-StrErr printf_info(int _iVar)
+SciErr printf_info(int _iVar)
 {
-    StrErr strErr;
+    SciErr strErr;
     int* piAddr     = NULL;
     int iType       = 0;
     int iRows       = 0;

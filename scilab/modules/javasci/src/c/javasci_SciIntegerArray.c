@@ -18,7 +18,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , job
 /*! public native int GetElement(int indr, int indc); */
 JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int Value = 0;
 	int j = 0;
 

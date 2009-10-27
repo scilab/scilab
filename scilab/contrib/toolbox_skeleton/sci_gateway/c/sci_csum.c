@@ -12,7 +12,7 @@
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
-  StrErr strErr;
+  SciErr strErr;
   
   int m1 = 0, n1 = 0;
   int *piAddressVarOne = NULL;
