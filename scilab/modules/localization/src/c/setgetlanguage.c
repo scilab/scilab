@@ -38,6 +38,9 @@
 #ifdef _MSC_VER
 #include "getLocaleInfo_Windows.h"
 #endif
+#ifdef __APPLE__
+#include "getLocaleInfo_Apple.h"
+#endif
 
 
 #include "setgetlanguage.h"
@@ -67,7 +70,7 @@ BOOL setlanguage(char *lang)
 			{
 			#endif
 				/* Load the locale from the system */
-				#ifndef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__APPLE__)
 				//for mbstowcs
 				char *ret=setlocale(LC_CTYPE,lang);
 				//for gettext

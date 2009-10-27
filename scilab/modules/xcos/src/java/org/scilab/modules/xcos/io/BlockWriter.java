@@ -26,6 +26,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
@@ -165,7 +166,9 @@ public final class BlockWriter {
     	List<BasicLink> linkList = new ArrayList<BasicLink>();
     	for (int i = 0; i < nbObjs; ++i) {
     		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-    		if (currentObject instanceof BasicBlock) {
+    		
+    		
+    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock) ) {
     			blockList.add((BasicBlock) currentObject);
     			//
     			// Look inside a Block to see if there is no "AutoLink"
