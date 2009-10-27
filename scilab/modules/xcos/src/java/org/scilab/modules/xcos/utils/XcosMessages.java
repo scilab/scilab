@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.xcos.utils;
 
+import java.io.File;
+
 import org.scilab.modules.localization.Messages;
 
 
@@ -169,5 +171,11 @@ public final class XcosMessages {
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
-
+    
+    /* About box */
+    public static final String VERSION = Messages.gettext("Xcos 1.0");
+    public static final String COPYRIGHT = Messages.gettext("Copyright 1989 - 2009");
+    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
+    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
+    public static final String LICENSE = Messages.gettext("CeCILL License");
 }
