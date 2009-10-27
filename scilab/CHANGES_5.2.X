@@ -984,4 +984,17 @@ Bug fixes:
 
 * bug 4378 fixed - The gamma function does not work properly with large numbers under Linux 64 bits.
 
+* bug 5001 fixed - The dialog box when opening a non-existing file is not the right one :
+		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
+		   Only <no> & <yes> buttons should appear. <Cancel> button is unnecessary.
 
+* bug 5002 fixed - The dialog box when opening a non-existing file doesn't work.
+		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
+		   If <No> button is pressed, the tab is created anyway.
+
+* bug 5003 fixed - When opening a non-existing file, MSG: "The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>"
+		   If <Yes> is pressed, 2 tabs with the same name are created.
+
+* bug 5007 fixed - When opening a non-existing file, If you answer <yes> to the following dialog box :
+		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
+		   The file is always saved in SCI instead of the current directory
