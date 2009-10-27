@@ -40,7 +40,7 @@ Scilab a better software.
 * Tomasz Pawel Gajc
 	- Misc patches for Mandriva
 
-* Aurélien Gérôme
+* AurÃ©lien GÃ©rÃ´me
 	- Misc patches for Debian & Ubuntu
 
 * Paul Griffiths
@@ -49,7 +49,7 @@ Scilab a better software.
 * Gerard Henry
 	- Misc patches for Solaris/Opensolaris
 
-* Sébastien Jourdain from Artenum ( http://www.artenum.com )	
+* SÃ©bastien Jourdain from Artenum ( http://www.artenum.com )	
 	- Scilab Console console ( Jrosetta )
 
 * Christoph Korn
@@ -61,7 +61,7 @@ Scilab a better software.
 	 and file names containing UTF-8 characters.
 	- Traditional Chinese localization
 
-* Séverin Lemaignan
+* SÃ©verin Lemaignan
 	- Advice
 
 * Dan McMahill 
@@ -74,12 +74,12 @@ Scilab a better software.
 * Armin Mohring
   	- German localization
 
-* Stéphane Mottelet 
+* StÃ©phane Mottelet 
 	- Advice
 	- Bug reports
 	- Misc patches for Mac OS X
 
-* Bruno Pinçon
+* Bruno PinÃ§on
 	- UMFPACK interface
 	- Bug reports
 	- Bug fixes
@@ -107,7 +107,7 @@ Scilab a better software.
 * Federico Vera
 	- Spanish localization
 
-* François Vogel
+* FranÃ§ois Vogel
 	- Bug reports
 	- Bug fixes
 	- Advice
@@ -154,7 +154,7 @@ dcd: Library of Fortran Routines for Cumulative Distribution
          Biomathematics, Box 237, The University of Texas,
          M.D. Anderson Cancer Center. 1515 Holcombe
          Boulevard. Houston, TX 77030.
-        Interfaced by J.P Chancelier and B. Pinçon.
+        Interfaced by J.P Chancelier and B. PinÃ§on.
 
 dld: is a library package of C functions that performs "dynamic link
          editing" from Wilson Ho (how@cs.ucdavis.edu). It is used on
