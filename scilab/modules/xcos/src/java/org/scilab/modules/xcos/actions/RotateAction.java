@@ -61,7 +61,7 @@ public class RotateAction extends DefaultAction {
 		
 		for (int i = 0 ; i < allCells.length ; ++i) {
 		    if (allCells[i] instanceof BasicBlock) {
-			((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
+			((BasicBlock) allCells[i]).toggleAntiClockwiseRotation((XcosDiagram) getGraph(null));
 		    }
 		}
 	    }
