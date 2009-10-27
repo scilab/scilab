@@ -492,30 +492,30 @@ public class BasicBlock extends mxCell {
 
     public void addPort(InputPort port) {
 	insert(port);
-	updatePortsPosition(getCurrentBlockDirection());
+	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllInputPorts().size());
-	rotatePorts(getAllInputPorts(), getDataPortsDirection(getCurrentBlockDirection()));
+	rotatePorts(getAllInputPorts(), getDataPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(OutputPort port) {
 	insert(port);
-	updatePortsPosition(getCurrentBlockDirection());
+	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllOutputPorts().size());
-	rotatePorts(getAllOutputPorts(), getDataPortsDirection(getCurrentBlockDirection()));
+	rotatePorts(getAllOutputPorts(), getDataPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(CommandPort port) {
 	insert(port);
-	updatePortsPosition(getCurrentBlockDirection());
+	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllCommandPorts().size());
-	rotatePorts(getAllCommandPorts(), getEventPortsDirection(getCurrentBlockDirection()));
+	rotatePorts(getAllCommandPorts(), getEventPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public void addPort(ControlPort port) {
 	insert(port);
-	updatePortsPosition(getCurrentBlockDirection());
+	updatePortsPosition(mxConstants.DIRECTION_EAST);
 	port.setOrdering(getAllControlPorts().size());
-	rotatePorts(getAllControlPorts(), getEventPortsDirection(getCurrentBlockDirection()));
+	rotatePorts(getAllControlPorts(), getEventPortsDirection(mxConstants.DIRECTION_EAST));
     }
 
     public ScilabMList getAsScilabObj() {
@@ -1077,18 +1077,13 @@ public class BasicBlock extends mxCell {
     	updateBlockDirection(currentBlockDirection);
     }
 
-    private String getCurrentBlockDirection() {
-	if (getParentDiagram() != null && getParentDiagram().getView() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    return mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-	}
-	
-	return mxConstants.DIRECTION_EAST;
-    }
     
-    public void toggleAntiClockwiseRotation() {
-    	updatePortsPosition(getNextAntiClockwiseDirection(getCurrentBlockDirection()));
-    	updateBlockDirection(getNextAntiClockwiseDirection(getCurrentBlockDirection()));
+    public void toggleAntiClockwiseRotation(XcosDiagram graph) {
+    	mxCellState state = graph.getView().getState(this);
+    	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+
+    	updatePortsPosition(getNextAntiClockwiseDirection(currentBlockDirection));
+    	updateBlockDirection(getNextAntiClockwiseDirection(currentBlockDirection));
     }
 
     private String getNextAntiClockwiseDirection(String currentBlockDirection) {
@@ -1273,7 +1268,7 @@ public class BasicBlock extends mxCell {
     		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {ports.get(i)}, mxConstants.STYLE_DIRECTION, portOrientation);
     	    }
     	    else {
-    		((BasicPort) ports.get(i)).setStyle(ports.get(i).getClass().getSimpleName()+ ";" + mxConstants.STYLE_DIRECTION + "=" + portOrientation);
+    		((BasicPort) ports.get(i)).setStyle(((BasicPort) ports.get(i)).getStyle()+ ";" + mxConstants.STYLE_DIRECTION + "=" + portOrientation);
     	    }
     	}
     }
