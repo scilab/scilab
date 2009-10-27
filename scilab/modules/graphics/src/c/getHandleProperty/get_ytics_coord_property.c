@@ -29,7 +29,7 @@ int get_ytics_coord_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"ytics_coord") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord") ;
     return -1 ;
   }
   return sciReturnRowVector( pAXES_FEATURE(pobj)->vy, pAXES_FEATURE(pobj)->ny ) ;

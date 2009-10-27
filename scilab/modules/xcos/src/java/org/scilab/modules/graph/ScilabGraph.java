@@ -32,6 +32,7 @@ public class ScilabGraph extends mxGraph {
     protected mxGraphComponent component = null;
 
     private String title = Messages.gettext("Untitled");
+    private String savedFile = null;
     private boolean modified = false;
 
     public ScilabGraph() {
@@ -58,6 +59,14 @@ public class ScilabGraph extends mxGraph {
 
 	// Enable edit without final RETURN keystroke
 	//this.setInvokesStopCellEditing(true);
+    }
+
+    public String getSavedFile() {
+        return savedFile;
+    }
+
+    public void setSavedFile(String savedFile) {
+        this.savedFile = savedFile;
     }
 
     /**

@@ -36,14 +36,17 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.FlipAction;
+import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -83,7 +86,7 @@ public class BasicBlock extends mxCell {
     //private List<Integer> integerParameters = new ArrayList<Integer>();
     private ScilabType integerParameters = null;
     //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters = new ScilabList();
+    private ScilabType objectsParameters = null;
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
 
@@ -93,7 +96,7 @@ public class BasicBlock extends mxCell {
     private ScilabType dState = new ScilabDouble();
     private ScilabType oDState = new ScilabDouble();
 
-    private ScilabType equations = new ScilabList();
+    private ScilabType equations = null;
 
     private boolean dependsOnU = false;
     private boolean dependsOnT = false;
@@ -155,15 +158,31 @@ public class BasicBlock extends mxCell {
     public static BasicBlock createBlock(String label) {
     	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
     	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
-    	if(label.compareTo("CONST_m") == 0) { return new ConstBlock(label); }
-    	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
-    	if(label.compareTo("GAINBLK_f") == 0) { return new GainBlock(label); }
+    	if(label.compareTo("CONST_m") == 0
+    		|| label.compareTo("CONST") == 0
+    		|| label.compareTo("CONST_f") == 0) {
+    	    return new ConstBlock(label);
+    	}
+    	if(label.compareTo("AFFICH_m") == 0
+    		|| label.compareTo("AFFICH_f") == 0) {
+    	    return new AfficheBlock(label); 
+    	}
+    	if(label.compareTo("GAINBLK_f") == 0
+    		|| label.compareTo("GAINBLK") == 0
+    		|| label.compareTo("GAIN_f") == 0) {
+    	    return new GainBlock(label);
+    	}
     	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
     	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
     	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
     	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
     	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
     	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
+    	if(label.compareTo("SPLIT_f") == 0 || 
+    		label.compareTo("IMPSPLIT_f") == 0 ||
+    		label.compareTo("CLKSPLIT_f") == 0) {
+    	    return new SplitBlock(label);
+    	}
     	else { 
     		return new BasicBlock(label); 
     	}
@@ -258,6 +277,10 @@ public class BasicBlock extends mxCell {
 	this.dependsOnU = dependsOnU;
     }
 
+    public boolean isDependsOnU() {
+    	return this.dependsOnU;
+       }
+    
     public boolean dependsOnU() {
 	return dependsOnU;
     }
@@ -266,6 +289,9 @@ public class BasicBlock extends mxCell {
 	this.dependsOnT = dependsOnT;
     }
 
+    public boolean isDependsOnT() {
+    	return this.dependsOnT;
+       }
     public boolean dependsOnT() {
 	return dependsOnT;
     }
@@ -514,22 +540,41 @@ public class BasicBlock extends mxCell {
 	double[][] sz = {{getGeometry().getWidth(), getGeometry().getHeight()}};
 	graphics.add(new ScilabDouble(sz)); // sz
 
-	graphics.add(new ScilabBoolean(flip)); // flip
+//	graphics.add(new ScilabBoolean(!flip)); // flip
+	graphics.add(new ScilabBoolean(true)); // flip
 
-	mxCellState state = getParentDiagram().getView().getState(this);
-	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
-	double theta = 0;
-	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
-		theta = 0;
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
-		theta = 90;
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
-		theta = 180;
-	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
-		theta = 270;
-	}
-	graphics.add(new ScilabDouble(theta)); // theta
+//	mxCellState state = getParentDiagram().getView().getState(this);
+//	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
+//
+//	double theta = 0;
+//	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
+//		if(flip){
+//			theta = 180;	
+//		}else{
+//			theta = 0;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
+//		if(flip){
+//			theta = 270;	
+//		}else{
+//			theta = 90;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
+//		if(flip){
+//			theta = 0;	
+//		}else{
+//			theta = 180;
+//		}
+//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
+//		if(flip){
+//			theta = 90;	
+//		}else{
+//			theta = 270;
+//		}
+//	}
+//	graphics.add(new ScilabDouble(theta)); // theta
+	
+	graphics.add(new ScilabDouble(0)); // theta
 
 	graphics.add(getAllExprs()); // exprs
 
@@ -542,7 +587,7 @@ public class BasicBlock extends mxCell {
 	graphics.add(getAllLinkId(getAllCommandPorts())); // peout
 
 	ScilabList gr_i = new ScilabList();
-	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getValue()+"\",sz(1),sz(2));");
+	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getInterfaceFunctionName()+"\",sz(1),sz(2));");
 	gr_i.add(graphicsInstructions);
 	gr_i.add(new ScilabDouble(8));
 	graphics.add(gr_i); // gr_i
@@ -619,7 +664,12 @@ public class BasicBlock extends mxCell {
 
 	model.add(getNmode()); // nmode
 
-	model.add(getEquations()); // equations
+	if (getEquations() == null) {
+	    model.add(new ScilabList()); // equations
+	}
+	else {
+	    model.add(getEquations()); // equations
+	}
 
 	return model;
     }
@@ -854,7 +904,7 @@ public class BasicBlock extends mxCell {
 	
     }
 
-    public void openBlockSettings(String context) {
+    public void openBlockSettings(String context[]) {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
@@ -905,42 +955,44 @@ public class BasicBlock extends mxCell {
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
-	result.append("Block Address : " + this + "<br>");
+	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
+	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
+	result.append("Flip : " + getFlip() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
 	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
 	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
 	result.append("Command ports : " + getAllCommandPorts().size() + "<br>");
-	result.append("Diagram : " + getParentDiagram() + "<br>");
-	//exprs
-	if (getExprs() != null) {
-	    result.append("Exprs : "+getExprs().toString()+"<br>");
-	}
-	else {
-	    result.append("Exprs : (null)<br>");
-	}
-	//ipar
-	if (getIntegerParameters() != null ) {
-	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Ipar : (null)<br>");
-	}
-	//rpar
-	if (getRealParameters() != null) {
-	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Rpar : (null)<br>");
-	}
-	//opar
-	if (getObjectsParameters() != null) {
-	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
-	}
-	else {
-	    result.append("Opar : (null)<br>");
-	}
+//	result.append("Diagram : " + getParentDiagram() + "<br>");
+//	//exprs
+//	if (getExprs() != null) {
+//	    result.append("Exprs : "+getExprs().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Exprs : (null)<br>");
+//	}
+//	//ipar
+//	if (getIntegerParameters() != null ) {
+//	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Ipar : (null)<br>");
+//	}
+//	//rpar
+//	if (getRealParameters() != null) {
+//	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Rpar : (null)<br>");
+//	}
+//	//opar
+//	if (getObjectsParameters() != null) {
+//	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
+//	}
+//	else {
+//	    result.append("Opar : (null)<br>");
+//	}
 	
 	result.append("</html>");
 	return result.toString();
@@ -960,11 +1012,11 @@ public class BasicBlock extends mxCell {
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
 		menu.add(RegionToSuperblockAction.createMenu(graph));
-		Menu mask = ScilabMenu.createMenu();
-		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-		menu.add(mask);
-		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
+//		Menu mask = ScilabMenu.createMenu();
+//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
+//		menu.add(mask);
+//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
+//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -975,13 +1027,35 @@ public class BasicBlock extends mxCell {
 		format.add(FlipAction.createMenu(graph));
 		format.add(ShowHideShadowAction.createMenu(graph));
 		/*--- */
+		format.addSeparator();
+		/*--- */
+		Menu alignMenu = ScilabMenu.createMenu();
+		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
+		alignMenu.addSeparator();
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
+		format.add(alignMenu);
+		/*--- */
+		format.addSeparator();
+		/*--- */
+		format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
+		format.add(ColorAction.createMenu(graph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
+		/*--- */
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*--- */
+		menu.add(ViewDetailsAction.createMenu(graph));
+		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
-		menu.setVisible(true);
-		
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+		
+		menu.setVisible(true);
     }
     
     public boolean getFlip(){

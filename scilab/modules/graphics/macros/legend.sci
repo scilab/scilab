@@ -7,6 +7,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function c=legend(varargin)
+
+  if size(varargin)<1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "legend", 1));
+  end
+
 options_names=["in_upper_right";"in_upper_left";"in_lower_left";
 	       "in_lower_right";"by_coordinates";"out_upper_right";
 	       "out_upper_left";"out_lower_left";"out_lower_right";
@@ -25,7 +30,6 @@ options_codes=[1;2;3;
   A        = Acur;
   opt      = 1;
   with_box = %T;
-
 
 
   while type(varargin(k0))==9 then //a handle that could be an Axes, Agreg. or Polyline handle.

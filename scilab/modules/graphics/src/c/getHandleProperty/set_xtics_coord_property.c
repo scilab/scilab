@@ -39,31 +39,31 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"xtics_coord") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "xtics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "xtics_coord") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "xtics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->nx == 1 && nbCol != 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "xtics_coord");
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "xtics_coord", 2);
     return SET_PROPERTY_ERROR ;
   }
 
@@ -103,7 +103,7 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
-    /* Somthign wrong occured */
+    Scierror(999, _("%s: No more memory.\n"),"set_xtics_coord_property");
     return SET_PROPERTY_ERROR ;
   }
 

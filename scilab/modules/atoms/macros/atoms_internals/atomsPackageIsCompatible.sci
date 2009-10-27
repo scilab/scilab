@@ -85,7 +85,7 @@ function result = atomsPackageIsCompatible(parent_name,parent_version,child_name
 		// Get the dependency field of this package
 		// =========================================================================
 		
-		parent_deps = atomsToolboxDetails(parent_name(i),parent_version(i),"Depends");
+		parent_deps = atomsToolboxDetails([parent_name(i),parent_version(i)],"Depends");
 		
 		if isempty(parent_deps)
 			result = [ result ; %F ];

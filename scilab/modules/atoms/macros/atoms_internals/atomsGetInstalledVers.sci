@@ -7,9 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Liste des versions installée de la toolbox "name"
 
-function res = atomsGetInstalledVers(name,allusers)
+function res = atomsGetInstalledVers(name,section)
 	
 	rhs = argn(2);
 	
@@ -35,32 +37,26 @@ function res = atomsGetInstalledVers(name,allusers)
 	// =========================================================================
 	
 	if rhs <= 1 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
-		// Process the 2nd input argument : allusers
+		// Process the 2nd input argument : section
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledVers",2));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledVers",2));
-		end
-		
-		if allusers == %F then
-			allusers = "user";
-		elseif allusers == %T then
-			allusers = "all";
 		end
 		
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled(allusers);
+	packages = atomsGetInstalled(section);
 	
 	// Filter on names
 	// =========================================================================

@@ -20,7 +20,7 @@ frame1 = findobj("tag", "listbox_1");
 
 // Select Xcos
 allitems = frame1.string;
-xcosItem = find(allitems==gettext("Scicos"));
+xcosItem = find(allitems==gettext("Xcos"));
 frame1.value = xcosItem;
 
 // Exec callback to display Xcos demos list

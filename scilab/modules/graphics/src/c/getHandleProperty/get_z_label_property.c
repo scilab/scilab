@@ -30,7 +30,7 @@ int get_z_label_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "z_label") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_label");
     return -1 ;
   }
   return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_z_label ) ) ;

@@ -69,7 +69,10 @@ public class SciTextRenderer {
 		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
 	}
 	
-	
+	public SpecialTextRenderer getSpeRenderer(){
+		return speRenderer;
+	}
+
 	
 	/**
 	 * Display a string at the desired 3D location.
@@ -265,7 +268,7 @@ public class SciTextRenderer {
 		}
 		return areMipmapsAvailable;
 	}
-	
+
 	/**
 	 * HACK function for buggy drivers on Intel graphics.
 	 * Always try to enable mipmaps since they seems less buggy than normal mode

@@ -28,6 +28,11 @@ import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
+import javax.swing.undo.CompoundEdit;
+
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AttributeSet;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
@@ -49,9 +54,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				}
 				*/
 				if (!indentInprogress){ 
-				undo.addEdit(e.getEdit());
-				
-				EventType = "";
+					(shouldMergeEdits ? compoundEdit : this).addEdit(e.getEdit());
+					EventType = "";
 				}
 			}
 
@@ -59,13 +63,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent         = true;
-	private boolean autoColorize       = true;
-	private boolean colorizeInprogress = false;
-	private boolean indentInprogress   = false;
-	private boolean updaterDisabled    = false;
-
+	private volatile boolean autoIndent         = true;
+	private volatile boolean autoColorize       = true;
+	private volatile boolean colorizeInprogress = false;
+	private volatile boolean indentInprogress   = false;
+	private volatile boolean updaterDisabled    = false;
+	private volatile boolean shouldMergeEdits    = false;
+	
 	private String EventType;
+	private CompoundEdit compoundEdit = null;
 	
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
 	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
@@ -189,6 +195,46 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 			   }
 		});
+		setDocumentFilter( new DocumentFilter(){
+			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLine(getDefaultRootElement().getElementIndex(offset));
+					}
+				}
+				else
+				{
+					fb.insertString(offset, text, attr);
+				}
+			}
+			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+				String text, AttributeSet attr) throws BadLocationException {
+				boolean isTabOnly = true;
+				for(int i=0; isTabOnly && i != text.length(); ++i)
+				{
+					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
+				}
+				if(isTabOnly)
+				{
+					for(int i=0; i!= text.length(); ++i)
+					{
+						tabifyLines(getDefaultRootElement().getElementIndex(offset)
+								, getDefaultRootElement().getElementIndex(offset+length));
+					}
+				}
+				else
+				{
+					fb.replace(offset, length, text, attr);
+				}
+			}
+		});
 	}
 
 
@@ -263,7 +309,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
 		}
 	}
-	
+	public void setShouldMergeEdits(boolean b) {
+		if(shouldMergeEdits){
+			if(!b) { // ending compound editing
+				compoundEdit.end();
+				undo.addEdit(compoundEdit);
+				compoundEdit= null;
+			}
+		} else {
+			if(b) { // starting compound editing
+				compoundEdit= new CompoundEdit();
+			}
+		}
+		shouldMergeEdits = b;
+	}
+	public boolean getShouldMergeEdits() {
+		return shouldMergeEdits;
+	}
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -383,7 +445,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 
 
-	public void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
+	public synchronized void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
 		
 		//System.out.println(startPosition);
 		//System.out.println(endPosition);
@@ -1109,13 +1171,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Insert a tab just after the caret position
 	 */
 	
-	public void insertTab(int position)
+	public synchronized void insertTab(int position)
 	{
-		String tab = "\t";
-		
 		try
 		{
-			this.replace(position, 0, tab, null);
+			this.replace(position, 0, getTabulation(), null);
 		}
 		catch (BadLocationException e)
 		{
@@ -1127,49 +1187,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Tabify a line
 	 */
 	
-	public int tabifyLine(int line)
+	public synchronized int tabifyLine(int line)
 	{
-		String tab = "\t";
-		int offset = tab.length();
-		int start  = this.getDefaultRootElement().getElement(line).getStartOffset();
-		
-		try
-		{
-			this.replace(start, 0, tab, null);
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		insertTab(getDefaultRootElement().getElement(line).getStartOffset());	
+		return getTabulation().length();
 	}
 	
 	/*
 	 * Tabify several lines
 	 */
 	
-	public int tabifyLines(int line_start, int line_end)
+	public synchronized int tabifyLines(int line_start, int line_end)
 	{
-		String tab      = "\t";
-		int offset      = tab.length();
-		
-		int start       = this.getDefaultRootElement().getElement(line_start).getStartOffset();
-		int end         = this.getDefaultRootElement().getElement(line_end).getEndOffset();
-		
-		try{
-			Pattern pattern = Pattern.compile("^",Pattern.MULTILINE);
-			Matcher matcher = pattern.matcher(this.getText(start,end-start));
-			this.replace(start,end-start,matcher.replaceAll(tab), null);	
+		boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
+		setAutoIndent(false);
+		setColorize(false);
+		setShouldMergeEdits(true);
+		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+			tabifyLine(currentLine);
 		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		setAutoIndent(indentMode);
+		setColorize(colorizeMode);
+		setShouldMergeEdits(mergeEditsMode);
+		return getTabulation().length();
 	}
-	
-	
-	
+		
 	/**
 	 * DOCUMENT UNTABIFY ACTION
 	 */
@@ -1178,21 +1220,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Delete a tab just before the caret position
 	 */
 	
-	public int deleteTab(int position)
+	public synchronized int deleteTab(int position)
 	{
-		Pattern pattern = Pattern.compile("^\t");
-		int offset      = 0;
-		
-		try
-		{
-			// Get the text line
-			String text     = this.getText(position,1);
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
-				this.replace(position,1,"", null);
-				offset = 1;
+		String tab = getTabulation(); 
+		int tabLength = tab.length();
+		try{
+			String nextChars = getText(position, tabLength);
+			if(nextChars.equals(tab)){
+				remove(position, tabLength);
 			}
 		}
 		catch (BadLocationException e)
@@ -1200,70 +1235,57 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			e.printStackTrace();
 		}
 		
-		return offset;
+		return tabLength;
 	}
 	
 	/*
 	 * Delete a tab at the beginning of the line "line"
 	 */
 	
-	public int untabifyLine(int line)
+	public synchronized int untabifyLine(int line)
 	{
-		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
-		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
-		int offset  = 0;
-		
-		try
-		{
-			String text     = this.getText(start, end-start);
-			Pattern pattern = Pattern.compile("^\t");
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
-				this.replace(start+matcher.end()-1, 1, "", null);
-				offset = 1;
-			}
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		deleteTab(getDefaultRootElement().getElement(line).getStartOffset());
+		return getTabulation().length();
 	}
 	
 	/*
 	 * Delete tabs at the beginning of several lines
 	 */
-	
-	public int untabifyLines(int line_start, int line_end)
+	public boolean canUntabifyLines(int line_start, int line_end)
 	{
-		Pattern pattern = Pattern.compile("^\t");
-		int offset      = 0;
-		
-		for (int i = line_start; i <= line_end; i++)
-		{
-			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
-			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
-			
-			try
+		boolean result = true;
+		String tab = getTabulation();
+		int tabLength = tab.length();
+		try {
+			for (int i = line_start; result && (i <= line_end); i++)
 			{
-				// Get the text line
-				String text     = this.getText(start, end-start);
-				Matcher matcher = pattern.matcher(text);
-				
-				if(matcher.find())
-				{
-					this.replace(start+matcher.end()-1, 1, "", null);
-					offset = 1;
-				}
-			}
-			catch (BadLocationException e){
-				e.printStackTrace();
+				result = result && (tab.equals(getText(getDefaultRootElement().getElement(i).getStartOffset(), tabLength)));
 			}
 		}
-		
-		return offset;
+		catch( javax.swing.text.BadLocationException e){
+			System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
+		}
+		return result;
+	}
+	
+	public synchronized int untabifyLines(int line_start, int line_end)
+	{	
+		int res=0;
+		if(true || canUntabifyLines(line_start, line_end)) // always untabify as much lines as possible from a selection
+		{
+			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
+			setAutoIndent(false);
+			setColorize(false);
+			setShouldMergeEdits(true);
+			for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
+				untabifyLine(currentLine);
+			}
+			setAutoIndent(indentMode);
+			setColorize(colorizeMode);
+			setShouldMergeEdits(mergeEditsMode);
+			res= getTabulation().length();
+		}
+		return res;
 	}
 	
 	/**
@@ -1614,7 +1636,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String[] functions =  ScilabKeywords.GetFunctionsName();
 		String[] macros =  ScilabKeywords.GetMacrosName();
 		//String[] variables =  ScilabKeywords.GetVariablesName();
-
+		
 		Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
 
 		for (int i = 0; i < macros.length; i++) {

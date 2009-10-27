@@ -27,4 +27,8 @@ public class XcosEvent extends mxEvent {
     
     public static final String IN_EVENT_VALUE_UPDATED 		= "InEventValueUpdated";
     public static final String OUT_EVENT_VALUE_UPDATED		= "OutEventValueUpdated";
+
+    public static final String FORCE_CELL_RESHAPE 		= "ForceCellReshape";
+
+    public static final String FORCE_CELL_VALUE_UPDATE 		= "ForceCellValueUpdate";
 }

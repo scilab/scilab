@@ -178,3 +178,10 @@ shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
 deletefile ( "boxproblemA.txt" )
+//
+// Load this script into the editor
+//
+filename = 'neldermead_boxproblemA.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
+

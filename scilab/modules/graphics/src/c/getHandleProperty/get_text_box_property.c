@@ -33,7 +33,7 @@ int get_text_box_property( sciPointObj * pobj )
     sciGetUserSize( pobj, &(size[0]), &(size[1]) ) ;
     return sciReturnRowVector( size, 2 ) ;
   }
-  Scierror(999, _("%s property does not exist for this handle.\n"),"text_box") ;
+  Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box") ;
   return -1;
 }
 /*------------------------------------------------------------------------*/

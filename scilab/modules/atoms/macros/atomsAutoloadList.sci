@@ -9,7 +9,7 @@
 
 // get the list of repositories
 
-function modules = atomsAutoloadList(allusers)
+function modules = atomsAutoloadList(section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -38,52 +38,41 @@ function modules = atomsAutoloadList(allusers)
 	// =========================================================================
 	
 	if rhs < 1 then
-		allusers = "all";
+		section = "all";
 	
 	else
 		
-		if type(allusers) <> 10 then
+		if type(section) <> 10 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
 		end
 		
-		if size(allusers,"*")<>1 then
+		if size(section,"*")<>1 then
 			error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsAutoloadList",1));
 		end
 		
-		if and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsAutoloadList",1));
 		end
 		
 	end
 	
-	// Define the needed paths
-	// =========================================================================
-	
-	allusers_autoload = pathconvert(SCI+"/.atoms/autoloaded",%F);
-	user_autoload     = pathconvert(SCIHOME+"/atoms/autoloaded",%F);
-	
-	// All users autoload
-	// =========================================================================
-	
-	if or(allusers==["all";"allusers"]) then
-		if fileinfo(allusers_autoload) <> [] then
-			module_list = mgetl(allusers_autoload);
-			for i=1:size(module_list,"*")
-				modules = [ modules ; module_list(i)  "allusers" ];
-			end
-		end
+	if section == "all" then
+		sections = ["user";"allusers"];
+	else
+		sections = section;
 	end
 	
-	// User repositories
+	// Loop on sections
 	// =========================================================================
 	
-	if or(allusers==["all";"user"]) then
-		if fileinfo(user_autoload) <> [] then
-			module_list = mgetl(user_autoload);
-			for i=1:size(module_list,"*")
-				modules = [ modules ; module_list(i)  "user" ];
-			end
+	for i=1:size(sections,"*")
+		
+		autoloaded = atomsAutoloadLoad(sections(i));
+		
+		if ~ isempty(autoloaded) then
+			modules = [ modules ; autoloaded emptystr(size(autoloaded(:,1),"*"),1) + sections(i) ];
 		end
+		
 	end
 	
 endfunction

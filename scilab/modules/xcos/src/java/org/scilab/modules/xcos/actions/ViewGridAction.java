@@ -40,7 +40,9 @@ public final class ViewGridAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		return  createCheckBoxMenu(XcosMessages.GRID, null, new ViewGridAction(scilabGraph), null);
+		CheckBoxMenuItem  menu = createCheckBoxMenu(XcosMessages.GRID, null, new ViewGridAction(scilabGraph), null);
+		menu.setChecked(true);
+		return  menu;
 	}
 	
 	/**

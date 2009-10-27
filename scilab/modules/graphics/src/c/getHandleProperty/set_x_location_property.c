@@ -33,13 +33,13 @@ int set_x_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"x_location") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "x_location");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"x_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -61,7 +61,7 @@ int set_x_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else  
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_x_location_property",2, "top","bottom","middle","origin") ;
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "x_location", "top, bottom, middle, origin");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

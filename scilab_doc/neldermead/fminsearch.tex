@@ -9,6 +9,11 @@ to Matlab's \scifunction{fminsearch}.
 
 \section{\scifunction{fminsearch}'s algorithm}
 
+In this section, we analyse the specific choices used in 
+\scifunction{fminsearch}'s algorithm. We detail what specific variant
+of the Nelder-Mead algorithm is performed, what initial simplex is used,
+the default number of iterations and the termination criteria.
+
 \subsection{The algorithm}
 
 The algorithm used is the Nelder-Mead algorithm. This corresponds to the 
@@ -17,6 +22,7 @@ The "non greedy" version is used, that is, the expansion point is
 accepted only if it improves over the reflection point.
 
 \subsection{The initial simplex}
+\index{Pfeffer, L.}
 
 The fminsearch algorithm uses a special initial simplex, which is an 
 heuristic depending on the initial guess. The strategy chosen by 
@@ -532,16 +538,25 @@ Optimization terminated:
  and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004
 \end{lstlisting}
 
-A close inspection at the data reveals that the two softwares produces
-indeed the same intermediate results. 
+We check that the two softwares produces indeed the same intermediate results in terms
+of iteration, function evaluations, function values and type of steps.
+The only difference is the iteration \#0, which is associated with 
+function evaluation \#1 in Matlab and with function evaluation \#3 in Scilab.
+This is because Scilab calls back the output function once the initial
+simplex is computed, which requires 3 function evaluations. 
 
-\subsection{Plot functions}
+\subsection{Output and plot functions}
 
-In this section, we check that the plotting features of the 
+In this section, we check that the output and plot features of the 
 \scifunction{fminsearch} function are the same.
+We also check that the fields and the content of the \scivar{optimValues}
+data structure and the \scivar{state} variable are the same in 
+both languages.
 
 The following output function plots in the current graphic 
 window the value of the current parameter $\bx$.
+It also unloads the content of the \scivar{optimValues}
+data structure and prints a message in the console.
 To let Matlab load that script, save the content in a 
 .m file, in a directory known by Matlab.
 
@@ -552,6 +567,11 @@ function stop = outfun(x, optimValues, state)
 stop = false;
 hold on;
 plot(x(1),x(2),'.');
+fc = optimValues.funccount;
+fv = optimValues.fval;
+it = optimValues.iteration;
+pr = optimValues.procedure;
+disp(sprintf ( '%d %e %d -%s- %s\n' , fc , fv , it , pr , state ))
 drawnow
 \end{lstlisting}
 
@@ -575,6 +595,29 @@ This produces the plot which is presented in figure \ref{fig-fminsearch-matlab-o
 \label{fig-fminsearch-matlab-outputfun}
 \end{figure}
 
+Matlab also prints the following messages in the console.
+
+\lstset{language=matlabscript}
+\begin{lstlisting}
+% Matlab
+1 2.420000e+001 0 -- init
+1 2.420000e+001 0 -- iter
+3 2.005000e+001 1 -initial simplex- iter
+5 5.161796e+000 2 -expand- iter
+7 4.497796e+000 3 -reflect- iter
+9 4.497796e+000 4 -contract outside- iter
+11 4.381360e+000 5 -contract inside- iter
+13 4.245273e+000 6 -contract inside- iter
+[...]
+149 2.004302e-008 80 -contract inside- iter
+151 1.122930e-009 81 -contract inside- iter
+153 1.122930e-009 82 -contract outside- iter
+155 1.122930e-009 83 -contract inside- iter
+157 1.107549e-009 84 -contract outside- iter
+159 8.177661e-010 85 -contract inside- iter
+159 8.177661e-010 85 -contract inside- done
+\end{lstlisting}
+
 The following Scilab script sets the "OutputFcn" option and then calls 
 the \scifunction{fminsearch} in order to perform the optimization.
 
@@ -583,6 +626,11 @@ the \scifunction{fminsearch} in order to perform the optimization.
 // Scilab
 function outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
+  fc = optimValues.funccount;
+  fv = optimValues.fval;
+  it = optimValues.iteration;
+  pr = optimValues.procedure;
+  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );
@@ -601,6 +649,36 @@ in figure \ref{fig-fminsearch-scilab-outputfun}.
 
 Except for the size of the dots (which can be configured in 
 both softwares), the graphics are exactly the same.
+
+Scilab also prints the following messages in the console.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+// Scilab
+3 2.420000e+001 0 -- init
+3 2.005000e+001 1 -initial simplex- iter
+5 5.161796e+000 2 -expand- iter
+7 4.497796e+000 3 -reflect- iter
+9 4.497796e+000 4 -contract outside- iter
+11 4.381360e+000 5 -contract inside- iter
+13 4.245273e+000 6 -contract inside- iter
+[...]
+149 2.004302e-008 80 -contract inside- iter
+151 1.122930e-009 81 -contract inside- iter
+153 1.122930e-009 82 -contract outside- iter
+155 1.122930e-009 83 -contract inside- iter
+157 1.107549e-009 84 -contract outside- iter
+159 8.177661e-010 85 -contract inside- iter
+159 8.177661e-010 85 -- done
+\end{lstlisting}
+
+We see that the output produced by the two software are identical,
+expect for the two first lines and the last line.
+The lines \#1 and \#2 are different is because Scilab computes the 
+function values of all the vertices before calling back the output function.
+The last line is different because Scilab considers that once the optimization
+is performed, the type of the step is an empty string. Instead, Matlab
+displays the type of the last performed step.
 
 \subsection{Predefined plot functions}
 

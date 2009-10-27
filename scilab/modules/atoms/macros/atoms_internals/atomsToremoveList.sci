@@ -7,11 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of packages to remove
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function toremove = atomsToremoveList(allusers)
+function toremove = atomsToremoveList(section)
 	
 	rhs        = argn(2);
 	toremove   = [];
@@ -24,11 +26,11 @@ function toremove = atomsToremoveList(allusers)
 	end
 	
 	// Allusers/user management
-	//   - If allusers is equal to "all" or to True, packages located in both 
+	//   - If section is equal to "all" or to True, packages located in both 
 	//     "allusers" and "user" sections will removed.
-	//   - If allusers is equal to "allusers", only packages located in the
+	//   - If section is equal to "allusers", only packages located in the
 	//     "allusers" section will be removed.
-	//   - If allusers is equal to "user" or to False, only packages located in 
+	//   - If section is equal to "user" or to False, only packages located in 
 	//     the "user" will be removed
 	// =========================================================================
 	
@@ -40,46 +42,30 @@ function toremove = atomsToremoveList(allusers)
 		//  → Remove only package located in the "user" sections otherwise
 		
 		if atomsAUWriteAccess() then
-			allusers = "all"; 
+			section = "all"; 
 		else
-			allusers = "user";
+			section = "user";
 		end
 		
 	else
 		
-		// Process the 2nd input argument : allusers
+		// Process the 2nd input argument : section
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
-		if (type(allusers) <> 4) & (type(allusers) <> 10) then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveList",1));
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A a single-string expected.\n"),"atomsToremoveList",1));
 		end
 		
-		if (type(allusers) == 10) & and(allusers<>["user","allusers","all"]) then
+		if and(section<>["user","allusers","all"]) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsToremoveList",1));
-		end
-		
-		if allusers == %F then
-			allusers = "user";
-		elseif allusers == %T then
-			allusers = "all";
 		end
 		
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
-	
-	if allusers == "user" then
-		atoms_directories =  pathconvert(SCIHOME+"/atoms");
-	
-	elseif allusers == "allusers" then
-		atoms_directories =  pathconvert(SCI+"/.atoms");
-	
-	elseif allusers == "all" then
-		atoms_directories =  [ pathconvert(SCIHOME+"/atoms") ; pathconvert(SCI+"/.atoms") ];
-		
-	end
+	atoms_directories = atomsPath("system",section);
 	
 	// Get the toremove matrix
 	// =========================================================================

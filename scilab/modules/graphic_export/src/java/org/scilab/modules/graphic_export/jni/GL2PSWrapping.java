@@ -207,4 +207,18 @@ public class GL2PSWrapping {
 		return GL2PSWrappingJNI.sci_gl2psGetFormatDescription(format);
 	}
 
+    /* Added by Calixte */
+    	/**
+	 * Draw a pixel buffer
+	 * @param w width of image
+	 * @param h height of image
+	 * @param format specifies the format of the pixel data. GL_RGB and GL_RGBA are the only values accepted at the moment.
+	 * @param type specifies the data type for pixels
+	 * @return GL2PSWrappingJNI.sci_gl2psGetFormatDescription
+	 */
+        public static int sci_gl2psDrawPixels(int w, int h, int format, int type, java.nio.Buffer buffer) {
+	    return GL2PSWrappingJNI.sci_gl2psDrawPixels(w, h, format, type, buffer);
+	}
+    /* End */
+
 }

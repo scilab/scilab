@@ -46,6 +46,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
+import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.CloseAction;
@@ -60,6 +61,8 @@ import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
+import org.scilab.modules.xcos.actions.ColorAction;
+import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -99,6 +102,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 import com.mxgraph.swing.mxGraphOutline;
+import com.mxgraph.util.mxConstants;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
@@ -339,7 +343,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static XcosPalette createPalette(String[] blocksNames) {
  
     	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
-    	String palImagesPath = System.getenv("SCI") + "/modules/scicos/help/images/";
+    	String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
 
     	XcosPalette palette = new XcosPalette();
  	
@@ -359,7 +363,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     		    theBloc.setValue(theBloc.getInterfaceFunctionName());
     		}
     		
-    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
+    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"), theBloc);
     	}
 
     	return palette;
@@ -420,13 +424,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 		edit.add(BlockParametersAction.createMenu(scilabGraph));
 		edit.addSeparator();
 		edit.add(RegionToSuperblockAction.createMenu(scilabGraph));
-		Menu superblockMask = ScilabMenu.createMenu();
-		superblockMask.setText(XcosMessages.SUPERBLOCK_MASK);
-		superblockMask.add(SuperblockMaskCreateAction.createMenu(scilabGraph));
-		superblockMask.add(SuperblockMaskRemoveAction.createMenu(scilabGraph));
-		superblockMask.add(SuperblockMaskCustomizeAction.createMenu(scilabGraph));
-		superblockMask.add(SuperblockMaskSaveBlockGUIAction.createMenu(scilabGraph));
-		edit.add(superblockMask);
+//		Menu superblockMask = ScilabMenu.createMenu();
+//		superblockMask.setText(XcosMessages.SUPERBLOCK_MASK);
+//		superblockMask.add(SuperblockMaskCreateAction.createMenu(scilabGraph));
+//		superblockMask.add(SuperblockMaskRemoveAction.createMenu(scilabGraph));
+//		superblockMask.add(SuperblockMaskCustomizeAction.createMenu(scilabGraph));
+//		superblockMask.add(SuperblockMaskSaveBlockGUIAction.createMenu(scilabGraph));
+//		edit.add(superblockMask);
 		
 		/** View menu */
 		Menu view = ScilabMenu.createMenu();
@@ -471,6 +475,29 @@ public class Xcos extends SwingScilabTab implements Tab {
 		format.add(ShowHideShadowAction.createMenu(scilabGraph));
 		
 		format.addSeparator();
+		Menu alignMenu = ScilabMenu.createMenu();
+		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
+		alignMenu.addSeparator();
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
+		format.add(alignMenu);
+		format.addSeparator();
+		
+		format.add(ColorAction.createMenu(scilabGraph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
+		format.add(ColorAction.createMenu(scilabGraph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
+		format.addSeparator();
+		
+		Menu linkStyle = ScilabMenu.createMenu();
+		linkStyle.setText(XcosMessages.LINK_STYLE);
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+		format.add(linkStyle);
+		format.addSeparator();	
 		
 		format.add(DiagramBackgroundAction.createMenu(scilabGraph));
 		CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(scilabGraph);
@@ -488,7 +515,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Help menu */
 		Menu help = ScilabMenu.createMenu();
 		help.setText(XcosMessages.HELP);
-		help.setMnemonic('H');
+		help.setMnemonic('?');
 		menuBar.add(help);
 		
 		help.add(XcosDocumentationAction.createMenu(scilabGraph));

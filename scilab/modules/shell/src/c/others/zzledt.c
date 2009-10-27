@@ -793,8 +793,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				wk_buf[0] = NUL;
 				*cursor = *cursor_max = 0;
 			
-				displayPrompt(wk_buf);
-				
 				CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 				return;
 			}
@@ -927,8 +925,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 					wk_buf[0] = NUL;
 					*cursor = *cursor_max = 0;
 			
-					displayPrompt(wk_buf);
-					
 					CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 				}
 			}

@@ -81,10 +81,12 @@ public class XpadMessages {
     public static final String EXECUTE = Messages.gettext("Execute");
     public static final String LOAD_INTO_SCILAB = Messages.gettext("Load Into Scilab");
     public static final String EVALUATE_SELECTION = Messages.gettext("Evaluate Selection");
+    public static final String EXECUTE_FILE_INTO_SCILAB = Messages.gettext("Execute File Into Scilab");
     
     /** HELP MENU */
     public static final String HELP = Messages.gettext("Scilab editor Help") + DOTS;
     public static final String ABOUT = Messages.gettext("About") + DOTS;
+    public static final String XPAD_VERSION = Messages.gettext("Scilab Editor version 1.0");
     
     /** FIND/REPLACE DIALOG */
     public static final String FIND = Messages.gettext("Find:");

@@ -188,7 +188,7 @@ int get_data_property( sciPointObj * pobj )
     }
 		else if (data == NULL)
 		{
-			Scierror(999, _("%s property does not exist for this handle.\n"),"data");
+			Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
 			return -1;
 		}
     else

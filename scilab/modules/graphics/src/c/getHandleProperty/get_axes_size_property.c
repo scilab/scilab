@@ -31,7 +31,7 @@ int get_axes_size_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s undefined for this object.\n"), "axes_size") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
     return -1;
   }
   

@@ -11,6 +11,11 @@ function [xx,yy,zz]=nf3d(x,y,z)
 // from facets coded in three matrices x,y,z to scilab code for facets 
 // accepted by plot3d 
 //---------------------------------------------------------
+if argn(2)<>3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "nf3d", 3));
+end
+
+
 [n1,n2]=size(x)
 ind=ones(1,n1-1).*.[0 1 n1+1 n1]+ (1:n1-1).*.[1 1 1 1];
 // ind=[1,2,n1+2,n1+1 , 2,3,n1+3,n1+2, ....  ,n1-1,n1,2n1,2n1-1

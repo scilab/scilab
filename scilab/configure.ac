@@ -1489,7 +1489,6 @@ modules/arnoldi/Makefile
 modules/interpolation/Makefile
 modules/intersci/Makefile
 modules/localization/Makefile
-modules/metanet/Makefile
 modules/cacsd/Makefile
 modules/boolean/Makefile
 modules/integer/Makefile

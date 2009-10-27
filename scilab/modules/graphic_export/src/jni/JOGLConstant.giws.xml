@@ -68,6 +68,8 @@
     </method>
 	<method name="get_GL_FLOAT" returnType="int" modifier="static">
     </method>
+	<method name="get_GL_UNSIGNED_BYTE" returnType="int" modifier="static">
+    </method>
 	<method name="get_GL_POINTS" returnType="int" modifier="static">
     </method>
 	<method name="get_GL_POLYGON_OFFSET_FACTOR" returnType="int" modifier="static">

@@ -30,7 +30,6 @@ public class AfficheBlock extends BasicBlock {
 	
 	protected AfficheBlock(String label) {
 		super(label);
-		setStyle("Affiche");
 		setInterfaceFunctionName("AFFICH_m");
 		setValue("0.00");
 	}
@@ -42,12 +41,14 @@ public class AfficheBlock extends BasicBlock {
 		}
 		return hashCode;
 	}
+	
+	public void setHashCode(int hashcode){
+		this.hashCode = hashcode;
+	}
 
 	public ScilabType getObjectsParameters() {
 		ScilabList list = new ScilabList();
-		if(this.getId() != null){
-			list.add(new ScilabDouble(hashCode));
-		}
+		list.add(new ScilabDouble(getHashCode()));
 		return list;
 	}
 
