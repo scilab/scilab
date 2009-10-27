@@ -658,13 +658,10 @@ public class BlockReader {
 			throw new WrongTypeException();
 		}
 		
-		boolean flip;
 		if(((ScilabBoolean)graphicsStructure.get(3)).getData()[0][0] == false){
-			flip = true;
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+			newBlock.setFlip(true);
 		}else{
-			flip = false;
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+			newBlock.setFlip(false);
 		}
 		
 		if (!(graphicsStructure.get(4) instanceof ScilabDouble)){// theta
@@ -677,16 +674,32 @@ public class BlockReader {
 		theta += 360;
 		theta %= 360;
 		
-		if(theta > 45 && theta <= 135){
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+		if(theta > 315 || theta <= 45){
+			if(newBlock.getFlip()){
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+			}else{
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+			}
 		}else if(theta > 45 && theta <= 135){
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
+			if(newBlock.getFlip()){
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
+			}else{
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
+			}
 		}else if(theta > 135 && theta <= 225){
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+			if(newBlock.getFlip()){
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_EAST);
+			}else{
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_WEST);
+			}
 		}else if(theta > 225 && theta <= 315){
-			newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
+			if(newBlock.getFlip()){
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_NORTH);
+			}else{
+				newBlock.setStyle(newBlock.getStyle() + ";" + mxConstants.STYLE_DIRECTION + "=" + mxConstants.DIRECTION_SOUTH);
+			}
 		} 
-		
+
 		// exprs 
 		if (!(graphicsStructure.get(5) instanceof ScilabString) 
 				&& !(graphicsStructure.get(5) instanceof ScilabList)

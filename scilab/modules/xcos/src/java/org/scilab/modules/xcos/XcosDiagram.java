@@ -575,7 +575,6 @@ public class XcosDiagram extends ScilabGraph {
     			// Store all AfficheBlocks in a dedicated HasMap
     			if(cells[i] instanceof AfficheBlock){
     			    AfficheBlock affich = (AfficheBlock)cells[i];
-    			    System.err.println("add cell affich : key=" + affich.getHashCode() + " value=" + affich);
     			    Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
     			}
     			// Update parent on cell addition
