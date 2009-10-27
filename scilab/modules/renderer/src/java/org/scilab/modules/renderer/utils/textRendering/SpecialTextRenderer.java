@@ -19,6 +19,7 @@ import java.nio.Buffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
+import javax.media.opengl.GLException;
 import com.sun.opengl.util.j2d.TextRenderer;
 
 import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
@@ -50,8 +51,13 @@ public class SpecialTextRenderer {
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
 		this.textrenderer = textrenderer;
 		this.fontSize = fontSize;
-		
-		GL currentGL = GLU.getCurrentGL();
+
+		GL currentGL = null;
+
+		try{
+			currentGL = GLU.getCurrentGL();
+		} catch (GLException e) {}
+
 		if (gl != currentGL) {
 		    gl = currentGL;
 		    table.clear();
@@ -68,7 +74,8 @@ public class SpecialTextRenderer {
 		if (!table.containsKey(content)) {
 			try {
 				spe = getSpecialTextObjectGL(content);
-				createTexture(spe);
+				if(gl != null)
+		        	   createTexture(spe);
 				table.put(content, spe);
 				return spe;
 			} catch (SpecialTextException e) {
