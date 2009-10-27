@@ -985,6 +985,7 @@
   <add as="SUPER_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
   </add>
+  <add as="DSUPER" extend="SUPER_f"/>
 
   <!-- ELECTRICAL -->
   <add as="Capacitor" extend="Icon">
