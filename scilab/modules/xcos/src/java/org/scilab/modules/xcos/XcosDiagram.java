@@ -1412,8 +1412,8 @@ public class XcosDiagram extends ScilabGraph {
     				writer.write("");
     				writer.flush();
     				writer.close();
-
-    				openDiagramFromFile(diagramFileName);
+    				setSavedFile(diagramFileName);
+    				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
     			} catch (IOException ioexc) {
     				JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
     			}
