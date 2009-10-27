@@ -980,6 +980,10 @@ Bug fixes:
 
 * bug 4983 fixed - when scilab is started in nw mode, the addmenu examples are failing with a wierd error message.
 
+* bug 4989 fixed - editor('myfolder/myfile.sci')
+		   The correct file is opened. But when I modify and save this file, 
+		   it is saved in ./myfile.sci instead of myfolder/myfile.sci
+
 * bug 4991 fixed - No check if there is modification when doing "Execute Into Scilab" in the editor.
 
 * bug 4378 fixed - The gamma function does not work properly with large numbers under Linux 64 bits.
