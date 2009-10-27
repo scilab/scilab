@@ -208,7 +208,7 @@ function result = atomsRemove(packages,section)
 		
 		// Check if the package is loaded or not
 		if atomsIsLoaded([this_package_name this_package_version]) then
-			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n\n" , this_package_name , this_package_version );
+			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
 			continue;
 		end
 		

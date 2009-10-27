@@ -10,9 +10,9 @@
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 // Do not use the autoload system
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
@@ -58,6 +58,6 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");

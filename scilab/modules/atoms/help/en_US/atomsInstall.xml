@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(module[,section]])
+	  result = atomsInstall(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -35,12 +35,11 @@
     <variablelist>
       
 			<varlistentry>
-        <term>module</term>
+        <term>modules</term>
         <listitem>
           <para>
 						mx1 or mx2 Matrix of strings:
 					</para>
-					
           <itemizedlist>
             <listitem>
               <para>
@@ -56,7 +55,6 @@
 							</para>
             </listitem>
           </itemizedlist>
-					
         </listitem>
       </varlistentry>
       

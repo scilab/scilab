@@ -21,7 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
-#include "expandPathVariable.h"
+#include "getFullFilename.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_Xcos(char *fname,unsigned long fname_len)
@@ -60,7 +60,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		{
 			char **pStVarOne = NULL;
 			int *lenStVarOne = NULL;
-			char **pStExpandedPaths = NULL;
+			char **pStFullFilenames = NULL;
 
 			/* get dimensions */
 			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
@@ -94,8 +94,8 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			pStExpandedPaths = (char **)MALLOC(sizeof(char*)*(m1*n1));
-			if (pStExpandedPaths == NULL)
+			pStFullFilenames = (char **)MALLOC(sizeof(char*)*(m1*n1));
+			if (pStFullFilenames == NULL)
 			{
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				freeArrayOfString(pStVarOne, m1 * n1);
@@ -112,7 +112,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(strErr.iErr)
 			{
-				freeArrayOfString(pStExpandedPaths, m1 * n1);
+				freeArrayOfString(pStFullFilenames, m1 * n1);
 				freeArrayOfString(pStVarOne, m1 * n1);
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				printError(&strErr, 0);
@@ -122,15 +122,15 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			/* Expand paths */
 			for(i = 0; i < m1 * n1; i++)
 			{
-				pStExpandedPaths[i] = expandPathVariable(pStVarOne[i]);
+				pStFullFilenames[i] = getFullFilename(pStVarOne[i]);
 			}
 
 			if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 			freeArrayOfString(pStVarOne, m1 * n1);
 
-			callXcos(pStExpandedPaths, m1 * n1);
+			callXcos(pStFullFilenames, m1 * n1);
 
-			freeArrayOfString(pStExpandedPaths, m1 * n1);
+			freeArrayOfString(pStFullFilenames, m1 * n1);
 		}
 		else if (iType == sci_mlist)
 		{

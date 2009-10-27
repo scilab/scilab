@@ -78,7 +78,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
-import org.scilab.modules.xpad.actions.ExecuteIntoScilabAction;
+import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -114,6 +114,8 @@ import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
+
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 
 /**
  * Main Xpad class
@@ -381,7 +383,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
 		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
 		executeMenu.add(evaluateSelectionMenuItem);
-		executeMenu.add(ExecuteIntoScilabAction.createMenu(editorInstance));
+		executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -503,7 +505,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -610,7 +612,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -742,6 +744,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
 		}
+		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = f.getAbsolutePath();
 		
 		// If the file is a binary one, editor is in read-only mode
 		boolean binary;
@@ -1027,26 +1032,28 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	   
 		public void readFile(File f) {
-			/* First try to open file before creating tab */
 			getInfoBar().setText("Loading...");
-			StringBuilder contents = new StringBuilder();
-			JTextPane theTextPane = addTab(f.getName()); 
-			String eof = System.getProperty("line.separator");
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-			System.out.println("File = " + f.getAbsolutePath());
-			theTextPane.setName(f.getAbsolutePath());
-			try {
+			
+			ScilabStyleDocument styleDocument = null;
+			JTextPane theTextPane;
+			
+			// If the given file exist
+			if (f.exists()) {
+				theTextPane = addTab(f.getName()); 
+				styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+
+				try {
 					synchronized (styleDocument) {
 						styleDocument.disableUpdaters();
 						boolean indentMode= styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
 							try {
-									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
-								} catch(ChangedCharSetException e) {
-									editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
-								}
-							
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
+							} catch(ChangedCharSetException e) {
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+							}
+
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
@@ -1056,34 +1063,41 @@ public class Xpad extends SwingScilabTab implements Tab {
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.enableUpdaters();
 					}
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				} catch (IOException ioex) {
+					ioex.printStackTrace();
+				}
+				
+				System.out.println("File = " + f.getAbsolutePath());
+				theTextPane.setName(f.getAbsolutePath());
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
-				// Empty the undo Manager
-				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-				undo.discardAllEdits();
+			} else {
+				theTextPane = addEmptyTab(); 
+				System.out.println("File = " + f.getAbsolutePath());
 				
-			} catch (IOException ioex) {
+				int choice = JOptionPane.showConfirmDialog(
+						editor,
+						String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()),
+						"Editor",
+						JOptionPane.YES_NO_OPTION);
 
-				int choice = JOptionPane.showConfirmDialog(editor, String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()));
 				if (choice  == 0) {
-					try {
-						FileWriter writer = new FileWriter(f);
-						writer.write("");
-						writer.flush();
-						writer.close();
-
-						readFile(f);
-					} catch (IOException ioexc) {
-						JOptionPane.showMessageDialog(editor , ioexc);
-					}
+					save(theTextPane);
+					getInfoBar().setText("");
+				} else {
+					getInfoBar().setText("");
 				}	
 			}
+			
+			// Empty the undo Manager
+			UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+			undo.discardAllEdits();
+			
 			synchronized (synchro) {
 				synchro.notify();
 			}
 		}
-
 	}
 }
