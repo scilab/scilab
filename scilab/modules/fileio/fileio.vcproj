@@ -457,6 +457,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getFullFilename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getlongpathname.c"
 				>
 			</File>
@@ -816,6 +820,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\getfiletype.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getFullFilename.h"
 				>
 			</File>
 			<File

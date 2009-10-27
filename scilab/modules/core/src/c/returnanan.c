@@ -11,6 +11,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "returnanan.h"
+#include <stdio.h>
+
 /*--------------------------------------------------------------------------*/
 double C2F(returnanan)(void)
 {
@@ -25,3 +27,13 @@ double C2F(returnanan)(void)
 	return (nan);
 }
 /*--------------------------------------------------------------------------*/
+// MB, 26/10/2009
+// Because of a "bug" of management of the NAN.
+// See Bug #4678 : 
+// http://bugzilla.scilab.org/show_bug.cgi?id=4378
+void C2F(returnananfortran)(double * nan)
+{
+	*nan = C2F(returnanan)();
+}
+/*--------------------------------------------------------------------------*/
+

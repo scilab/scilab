@@ -159,10 +159,14 @@ public class BasicBlock extends mxCell {
     	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
     	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
     	if(label.compareTo("CONST_m") == 0
-    		|| label.compareTo("CONST") == 0) {
+    		|| label.compareTo("CONST") == 0
+    		|| label.compareTo("CONST_f") == 0) {
     	    return new ConstBlock(label);
     	}
-    	if(label.compareTo("AFFICH_m") == 0) { return new AfficheBlock(label); }
+    	if(label.compareTo("AFFICH_m") == 0
+    		|| label.compareTo("AFFICH_f") == 0) {
+    	    return new AfficheBlock(label); 
+    	}
     	if(label.compareTo("GAINBLK_f") == 0
     		|| label.compareTo("GAINBLK") == 0
     		|| label.compareTo("GAIN_f") == 0) {
@@ -953,7 +957,9 @@ public class BasicBlock extends mxCell {
 	result.append("<html>");
 	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
+	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
+	result.append("Flip : " + getFlip() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
 	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
 	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
@@ -1052,7 +1058,11 @@ public class BasicBlock extends mxCell {
 		menu.setVisible(true);
     }
     
-    public boolean getFlip(){
+	public void setFlip(boolean flip) {
+		this.flip = flip;
+	}
+
+	public boolean getFlip(){
     	return flip;
     }
 
@@ -1277,7 +1287,7 @@ public class BasicBlock extends mxCell {
     		rotatePorts(getAllOutputPorts(), getDataPortsDirection(currentBlockDirection));
     		rotatePorts(getAllCommandPorts(), getEventPortsDirection(currentBlockDirection));
     		rotatePorts(getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
-    	}
+     	}
     }
 
     /**

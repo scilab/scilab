@@ -123,6 +123,7 @@
 
   <!-- SOURCES -->
   <add as="CONST_m" extend="blockWithLabel"/>
+  <add as="CONST_f" extend="blockWithLabel"/>
   <add as="CONST" extend="blockWithLabel"/>
   <add as="GENSQR_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Square wave&lt;BR&gt;
@@ -214,6 +215,7 @@
 				    &#8747;
 				    &lt;/FONT&gt;"/>
   </add>
+  <add as="INTEGRAL" extend="INTEGRAL_m"/>
   <add as="CLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -240,6 +242,7 @@
 				    &lt;hr&gt;
 				    den(s)"/>
   </add>
+  <add as="CLR_f" extend="CLR"/>
   <add as="TIME_DELAY" extend="blockWithLabel">
     <add as="displayedLabel" value="Continuous&lt;BR&gt;
 				    fix delay"/>
@@ -312,6 +315,8 @@
   <add as="SAMPHOLD_m" extend="blockWithLabel">
     <add as="displayedLabel" value="S/H"/>
   </add>
+  <add as="SAMPLEHOLD_f" extend="SAMPHOLD_m"/>
+  
 
   <!-- THRESHOLD -->
   <add as="NEGTOPOS_f" extend="blockWithLabel">
@@ -741,6 +746,7 @@
 				    &lt;HR&gt;
 				    den(z)"/>
   </add>
+  <add as="DLR_f" extend="DLR"/>
   <add as="DLSS" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;TABLE&gt;
 				    &lt;TR&gt;
@@ -860,6 +866,7 @@
   <add as="SELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
   </add>
+  <add as="SELECT_f" extend="SELECT_m"/>
   <add as="EXTRACTOR" extend="blockWithLabel">
     <add as="displayedLabel" value="Extractor"/>
   </add>
@@ -964,6 +971,7 @@
   <add as="scifunc_block_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Scifunc"/>
   </add>
+  <add as="scifunc_block" extend="scifunc_block_m"/>
   <add as="CBLOCK" extend="blockWithLabel">
     <add as="displayedLabel" value="C block 2"/>
   </add>
@@ -977,6 +985,7 @@
   <add as="SUPER_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif"/>
   </add>
+  <add as="DSUPER" extend="SUPER_f"/>
 
   <!-- ELECTRICAL -->
   <add as="Capacitor" extend="Icon">
