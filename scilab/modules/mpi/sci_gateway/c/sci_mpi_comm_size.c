@@ -34,12 +34,15 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
 	CheckLhs(1,1); // The output of the function (1 parameter)
 	if (Rhs==1)
 		{
-			getVarAddressFromPosition(1, &piAddr);
+			int typevar;
+			getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 
-			if (getVarType(piAddr)==sci_matrix)
+			getVarType(pvApiCtx, piAddr, &typevar);
+			if (typevar == sci_matrix)
 				{
 					//					GetRhsVar(1,"d",&m1,&n1,&l1);
-					comm = (MPI_Comm)(int) getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+					getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+					comm=(MPI_Comm)(int) pdblReal;
 
 					//					comm=(MPI_Comm)(int)istk(l1);
 				}else{
@@ -57,8 +60,8 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
     double *pdblReal1 = (double*)malloc(sizeof(double) * iRows2 * iCols2);
 	pdblReal1[0]=(double)comm_size;
 	
-	int iRet = createMatrixOfDouble(Rhs + 1, iRows2, iCols2, pdblReal1);
-    if(iRet)
+	StrErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
+    if(iRet.iErr)
     {
 		Scierror(999,"error in the creation of the variable");
     }
