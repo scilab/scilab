@@ -13,12 +13,15 @@
 package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
@@ -30,6 +33,7 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -53,6 +57,7 @@ import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.DumpAction;
@@ -61,7 +66,6 @@ import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
-import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
@@ -69,6 +73,7 @@ import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.actions.PrintAction;
 import org.scilab.modules.xcos.actions.QuitAction;
+import org.scilab.modules.xcos.actions.RecentFileAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SaveAction;
@@ -79,10 +84,6 @@ import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskCustomizeAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskSaveBlockGUIAction;
 import org.scilab.modules.xcos.actions.ViewBrowserAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
@@ -98,8 +99,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.util.mxConstants;
@@ -117,6 +118,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static Tab palette;
 	private static Thread paletteThread;
 	private static boolean paletteLoaded;
+	private static List<Menu> recentsMenus = new ArrayList<Menu>();
 
 	/** Palette creation */
 	static {
@@ -293,6 +295,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static void xcos(String fileName) {
+    	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
     	XcosDiagram diagram = createEmptyDiagram();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	synchronized(paletteThread) {
@@ -370,6 +373,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
+		ConfigXcosManager.createUserCopy();	
+		ArrayList<File> recentFiles = ConfigXcosManager.getAllRecentOpenedFiles();
 
     	MenuBar menuBar = ScilabMenuBar.createMenuBar();
 
@@ -389,6 +394,16 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
 		fileMenu.add(SaveAsAction.createMenu(scilabGraph));
 		fileMenu.add(ExportAction.createMenu(scilabGraph));
+		
+		Menu recentsMenu = ScilabMenu.createMenu();
+		recentsMenu.setText(XcosMessages.RECENT_FILES);
+		for (int i = 0; i < recentFiles.size(); i++) {
+			recentsMenu.add(RecentFileAction.createMenu(scilabGraph , recentFiles.get(i)));
+		}
+		recentsMenus.add(recentsMenu);
+		fileMenu.add(recentsMenu);
+		
+		
 		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
@@ -644,6 +659,29 @@ public class Xcos extends SwingScilabTab implements Tab {
 	return null;
     }
 
+	/**
+	 * Get recent file menu
+	 * @return the menu
+	 */
+	public List<Menu> getRecentsMenu() {
+		return  recentsMenus;
+	}
+    
+	/**
+	 * Update menu displaying recent opened files
+	 */
+	public void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
+		ArrayList<File> recentFiles = ConfigXcosManager.getAllRecentOpenedFiles();
+
+		for (int j = 0 ; j < getRecentsMenu().size() ; j++) {
+			((SwingScilabMenu) getRecentsMenu().get(j).getAsSimpleMenu()).removeAll();
+
+			for (int i = 0; i < recentFiles.size(); i++) {
+				getRecentsMenu().get(j).add(RecentFileAction.createMenu( scilabGraph , recentFiles.get(i)));
+			}
+		}
+	}
+    
     public void addInfoBar(TextBox infoBarToAdd) {
     }
 
