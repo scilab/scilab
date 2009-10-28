@@ -568,7 +568,7 @@ do_help()
 	echo     "      -nb             : do not display the Scilab banner at starting time."
 	echo     "      -ns             : do not execute scilab.start startup file. This option will disable many features in Scilab (Only use if you know what you are doing)."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-	echo     "      -nw             : start Scilab without specialized Scilab Window."
+	echo     "      -nw             : start Scilab without dedicated Scilab Window."
 	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
 	echo     "      -version        : print product version and exit."

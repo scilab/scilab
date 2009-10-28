@@ -8,18 +8,22 @@
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH XPAD -->
 //
-// <-- Non-regression test for bug 4872 -->
+// <-- Non-regression test for bug 4871 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4872
+// http://bugzilla.scilab.org/show_bug.cgi?id=4871
 //
 // <-- Short Description -->
-//    editor(<binary file>) opens a blank file without any warning.
+//    If Xpad edition zone is not focused (just after starting Xpad for example), "Menu->Edit->Paste" pastes
+//    strings into the scilab console.
+
+// Copy a string
+
+editor()
+// Don't focus the edition zone
+// menu -> Edit -> Paste
 
 
-editor('SCI/modules/core/macros/add_demo.bin')
-
-// A warning message is now added when a binary file is opened
 
 
 
