@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+// Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR 
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -122,12 +122,17 @@ root = createNode('Root', 'iconRoot', 'callbackRoot')
 // right inputs
 dumpTree(leaf11)
 |_./ leaf 1.1
+
 dumpTree(leaf11,%F)
 |_./ leaf 1.1
+
 dumpTree(leaf11,%T)
 |_./ leaf 1.1
-  // iconLeaf1.1
-  // callbackLeaf1.1
+
+| `- iconLeaf1.1
+
+| `- callbackLeaf1.1
+
 // wrong inputs
 if( execstr("dumpTree(leaf11,123)","errcatch") == 0 ) then bugmes();quit;end
 // node creation with errors
@@ -187,23 +192,20 @@ treeOnlyNode1 = createTree(node1)
 // right inputs
 dumpTree(treeOnlyNode1)
 |_./ Node 1
+
 dumpTree(treeOnlyNode1,%F)
 |_./ Node 1
+
 dumpTree(treeOnlyNode1,%T)
 |_./ Node 1
-  // iconNode1
-  // callbackNode1
+
+| `- iconNode1
+
+| `- callbackNode1
+
 // wrong inputs
 if( execstr("dumpTree(treeOnlyNode1,123)","errcatch") == 0 ) then bugmes();quit;end
 treeNode1 = createTree(node1, leaf11,leaf12)
- 
-    2.  
- 
-    1.  
- 
-    2.  
- 
-    2.  
  treeNode1  =
  
  
@@ -230,14 +232,6 @@ treeNode1 = createTree(node1, leaf11,leaf12)
    icon: "iconLeaf1.1"
    callback: "callbackLeaf1.1"
 treeNode3 = createTree(node3, leaf31,leaf32)
- 
-    2.  
- 
-    1.  
- 
-    2.  
- 
-    2.  
  treeNode3  =
  
  
@@ -264,18 +258,6 @@ treeNode3 = createTree(node3, leaf31,leaf32)
    icon: "iconLeaf3.1"
    callback: "callbackLeaf3.1"
 treeRoot = createTree(root, node1,node2,node3)
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
- 
-    3.  
- 
-    3.  
  treeRoot  =
  
  
@@ -304,27 +286,47 @@ treeRoot = createTree(root, node1,node2,node3)
 // right inputs
 dumpTree(treeRoot)
 |_./ Root
-  |_./ Node 1
-  |_./ Node 2
-  |_./ Node 3
+
+| |_./ Node 1
+
+| |_./ Node 2
+
+| |_./ Node 3
+
 dumpTree(treeRoot,%F)
 |_./ Root
-  |_./ Node 1
-  |_./ Node 2
-  |_./ Node 3
+
+| |_./ Node 1
+
+| |_./ Node 2
+
+| |_./ Node 3
+
 dumpTree(treeRoot,%T)
 |_./ Root
-  // iconRoot
-  // callbackRoot
-  |_./ Node 1
-    // iconNode1
-    // callbackNode1
-  |_./ Node 2
-    // iconNode2
-    // callbackNode2
-  |_./ Node 3
-    // iconNode3
-    // callbackNode3
+
+| `- iconRoot
+
+| `- callbackRoot
+
+| |_./ Node 1
+
+| | `- iconNode1
+
+| | `- callbackNode1
+
+| |_./ Node 2
+
+| | `- iconNode2
+
+| | `- callbackNode2
+
+| |_./ Node 3
+
+| | `- iconNode3
+
+| | `- callbackNode3
+
 // wrong inputs
 if( execstr("dumpTree(treeRoot,123)","errcatch") == 0 ) then bugmes();quit;end
 // tree creation with wrong inputs
@@ -350,10 +352,6 @@ if( execstr("dumpTree(myTree,%T)","errcatch") == 0 ) then bugmes();quit;end
 // wrong inputs
 if( execstr("dumpTree(myTree,123)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(root, 123,node2,node3)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
 // right inputs
 if( execstr("dumpTree(myTree)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("dumpTree(myTree,%F)","errcatch") == 0 ) then bugmes();quit;end
@@ -361,14 +359,6 @@ if( execstr("dumpTree(myTree,%T)","errcatch") == 0 ) then bugmes();quit;end
 // wrong inputs
 if( execstr("dumpTree(myTree,123)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(root, node1,123,node3)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
 // right inputs
 if( execstr("dumpTree(myTree)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("dumpTree(myTree,%F)","errcatch") == 0 ) then bugmes();quit;end
@@ -376,18 +366,6 @@ if( execstr("dumpTree(myTree,%T)","errcatch") == 0 ) then bugmes();quit;end
 // wrong inputs
 if( execstr("dumpTree(myTree,123)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(root, node1,node2,123)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
- 
-    3.  
- 
-    3.  
 // right inputs
 if( execstr("dumpTree(myTree)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("dumpTree(myTree,%F)","errcatch") == 0 ) then bugmes();quit;end
