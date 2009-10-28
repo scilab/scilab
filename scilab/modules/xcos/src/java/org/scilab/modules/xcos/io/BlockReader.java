@@ -578,7 +578,6 @@ public class BlockReader {
 			}
 
 		}
-		System.out.println(context);
 		diagramProperties.put("context", context.toArray( new String[context.size()] ));
 
 		//void1
