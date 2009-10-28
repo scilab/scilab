@@ -36,6 +36,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
@@ -59,13 +60,12 @@ import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
-public class BasicBlock extends mxCell {
+public class BasicBlock extends XcosUIDObject {
 
 	private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
