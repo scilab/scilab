@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA -Serge Steer
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -169,8 +170,8 @@ ClosedZeros1=trzeros(closed1);
 Hrond2=System*PID;
 closed2=(1/.(Hrond2));
 ClosedZeros2=trzeros(closed2);
-computed1 = sort_merge ( ClosedZeros1 , compare_complexrealimag , list( 0.0 , 10 * %eps ) );
-computed2 = sort_merge ( ClosedZeros2 , compare_complexrealimag , list( 0.0 , 10 * %eps ) );
+computed1 = sort_merge ( ClosedZeros1 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
+computed2 = sort_merge ( ClosedZeros2 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
 computed = norm ( computed1 - computed2 );
 expected = 0.0;
 assert_close ( computed, expected, 1.e-7 );

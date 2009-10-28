@@ -50,6 +50,9 @@
     </para>
 
     <programlisting role="example"><![CDATA[ 
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
 opt = optimset ( "PlotFcns" , optimplotfunccount );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
  ]]></programlisting>

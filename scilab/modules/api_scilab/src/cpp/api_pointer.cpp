@@ -25,7 +25,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
 	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
-	int *piTmp = NULL;
+	double *pdblTmp = NULL;
 
 	if(	_piAddress == NULL)
 	{
@@ -46,9 +46,9 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 		return strErr;
 	}
 	
-	piTmp = (_piAddress + 4);
+	pdblTmp = (double*)(_piAddress + 4);
 
-	*_pvPtr = (void*)*(long long*)piTmp;
+	*_pvPtr = (void*)((unsigned long int)(*pdblTmp));
 	return strErr;
 }
 
