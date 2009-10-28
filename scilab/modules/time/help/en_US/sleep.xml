@@ -41,6 +41,9 @@ tic;sleep(6000);toc
       <member>
         <link linkend="xpause">xpause</link>
       </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>
