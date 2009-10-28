@@ -31,29 +31,57 @@
     <title>Parameters</title>
     <variablelist>
 			
+			<!-- 1st input parameter -->
+			
 			<varlistentry>
         <term>modules</term>
         <listitem>
+					
           <para>
-						mx1 or mx2 Matrix of strings:
+						mx1, mx2 Matrix of strings:
 					</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is installed.
-							</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's version is ignored.
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
+			
+			<!-- 2nd input parameter -->
 			
 			<varlistentry>
         <term>section</term>

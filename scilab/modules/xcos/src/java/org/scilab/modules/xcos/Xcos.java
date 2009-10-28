@@ -160,6 +160,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 
 				JTabbedPane allpalettes = new JTabbedPane();
 				allpalettes.setTabPlacement(JTabbedPane.BOTTOM);
+				allpalettes.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT); /* View all tabs at a time */
+				
 				((SwingScilabTab) palette.getAsSimpleTab()).setContentPane(allpalettes);
 
 				/** Create SOURCES palette */
@@ -478,7 +480,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Format menu */
 		Menu format = ScilabMenu.createMenu();
 		format.setText(XcosMessages.FORMAT);
-		format.setMnemonic('F');
+		format.setMnemonic('O');
 		menuBar.add(format);
 		
 		format.add(RotateAction.createMenu(scilabGraph));

@@ -1012,8 +1012,10 @@ Bug fixes:
 
 * bug 4855 fixed - Use standard error messages when setting/getting values from graphics handles.
 
-* bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
+* bug 4904 fixed - wrong localized fr_FR message
 
+* bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
+  
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
 
 * bug 4925 fixed - verbose option of the optim function crashs on Windows.
@@ -1038,3 +1040,4 @@ Bug fixes:
 
 * bug 4378 fixed - The gamma function does not work properly with large numbers under Linux 64 bits.
 
+* bug 5033 fixed - The Demo CACSD / Inverted pendulum  is broken.
