@@ -66,31 +66,62 @@
         </listitem>
 			</varlistentry>
 			
-      <varlistentry>
+			<varlistentry>
         <term>modules</term>
         <listitem>
-          <para>4xn String matrix :</para>
-          <itemizedlist>
-            <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-							</para>
-						</listitem>
-						<listitem>
-							<para><literal>2nd column</literal> : External module's version
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>3rd column</literal> : External module's installed section
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>4th column</literal> : Autoload list section
-							</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
+					
+          <para>
+						4xn character string matrix:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Module's technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's technical name</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Module's version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's version</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Module's installed section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's installed section</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Autoload list section -->
+						
+						<tr>
+							<td>
+								<emphasis>4th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Autoload list section</emphasis>
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
 			
     </variablelist>

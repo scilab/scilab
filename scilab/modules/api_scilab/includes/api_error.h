@@ -47,7 +47,6 @@ extern "C" {
 #define API_ERROR_GET_POLY																202
 #define API_ERROR_CREATE_POLY															203
 #define API_ERROR_TOO_LONG_VAR														204
-#define API_ERROR_INVALID_VAR_POINTER											205
 #define API_ERROR_CREATE_NAMED_POLY												207
 #define API_ERROR_READ_NAMED_POLY													208
 
