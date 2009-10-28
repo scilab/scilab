@@ -68,8 +68,6 @@ nm = neldermead_configure(nm,"-tolxrelative",10.e-16);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -95,8 +93,6 @@ nm = neldermead_configure(nm,"-tolxrelative",0.0);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -123,8 +119,6 @@ nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 // Check optimum point
 fopt = neldermead_get(nm,"-fopt");
