@@ -24,7 +24,7 @@ xdot=[x(2);
       (u+mb*(l/2)*(sx3*x(4)**2-cx3*xd4))/(mb+mc);
       x(4);
       xd4]
-
+endfunction
 
 
 function [y,xdot]=pendu(x,u)
@@ -44,7 +44,7 @@ xdot=[x(2);
 //
 y=[x(1);
    x(3)]
-
+endfunction
 
 
 function [xdot]=regu(t,x)
@@ -56,6 +56,6 @@ u =-kr*xo   //control
 [y,xpd]=pendu(xp,u)
 xod=(f-k*h)*xo+k*y+g*u
 xdot=[xpd;xod]
-
+endfunction
 
 
