@@ -36,7 +36,7 @@ int gw_xpad(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "xpad");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xpad");
 		return 0;
 	}
 

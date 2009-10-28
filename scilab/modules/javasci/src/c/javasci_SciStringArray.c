@@ -22,7 +22,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 /*! public native String GetElement(int indr, int indc); */
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *pLength = NULL;
 	char **pStrings = NULL;
 	int cm = 0, cn = 0;

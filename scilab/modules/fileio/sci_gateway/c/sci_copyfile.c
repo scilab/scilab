@@ -30,7 +30,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_copyfile(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
 	int iType1 = 0;

@@ -38,9 +38,9 @@ extern "C"
 /*   string matrix functions   */
 /*******************************/
 
-StrErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piOffset = NULL;
 	int *piData		= NULL;
 	int iType			= 0;
@@ -104,9 +104,9 @@ StrErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings)
+SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iTotalLen		= 0;
@@ -126,9 +126,9 @@ StrErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, cha
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
+SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piOffset = NULL;
 	int* piData		= NULL;
 	int iOffset		= 0;
@@ -167,9 +167,9 @@ StrErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols,
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)
+SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
 	int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
@@ -203,9 +203,9 @@ StrErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr readNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+SciErr readNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
@@ -225,9 +225,9 @@ StrErr readNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* 
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
+SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType					= 0;
 	char **pstStrings = NULL;
 	int *piLenStrings = NULL;
@@ -321,9 +321,9 @@ StrErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings)
+SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	char **pStrings = NULL;
 
 	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
@@ -345,9 +345,9 @@ StrErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)
+SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	char **pStrings = NULL;
 
 	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
@@ -369,9 +369,9 @@ StrErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, i
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr readNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
+SciErr readNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);

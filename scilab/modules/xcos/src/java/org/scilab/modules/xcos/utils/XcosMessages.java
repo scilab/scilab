@@ -48,6 +48,7 @@ public final class XcosMessages {
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String QUIT = Messages.gettext("Quit");
+    public static final String RECENT_FILES = Messages.gettext("Recent Files");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");

@@ -52,7 +52,7 @@ int sci_length(char *fname,unsigned long fname_len)
 	int iScilabType = 0;
 
 	/* get Address of inputs */
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	SciErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -97,7 +97,7 @@ int sci_length(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static int lengthStrings(int *piAddressVar)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	int iType				= 0;
 	char **pStVarOne = NULL;
@@ -266,7 +266,7 @@ static int lengthSparse(int *piAddressVar)
 	double *pdOut = NULL;
 
 	int m = 0, n = 0;
-	StrErr strErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
+	SciErr strErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -304,7 +304,7 @@ static int lengthList(int *piAddressVar)
 	double *pdOut = NULL;
 
 	int nbItem = 0;
-	StrErr strErr = getListItemNumber(pvApiCtx, piAddressVar, &nbItem);
+	SciErr strErr = getListItemNumber(pvApiCtx, piAddressVar, &nbItem);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -342,7 +342,7 @@ static int lengthDefault(int *piAddressVar)
 	double *pdOut = NULL;
 
 	int m = 0, n = 0;
-	StrErr strErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
+	SciErr strErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);

@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int ierr = 0;
 	char *default_env_value = NULL;
 	char *env_value = NULL;

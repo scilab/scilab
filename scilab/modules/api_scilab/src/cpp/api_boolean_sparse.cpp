@@ -24,9 +24,9 @@
 #include "stack-c.h"
 
 
-StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
 
 	if(	_piAddress == NULL)
@@ -66,9 +66,9 @@ StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 	return strErr;
 }
 
-StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iPos				= 5 + _iRows + _iNbItem;
@@ -96,9 +96,9 @@ StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	return strErr;
 }
 
-StrErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 
 	if(_piAddress == NULL)
 	{
@@ -118,9 +118,9 @@ StrErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _i
 	return strErr;
 }
 
-StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 
@@ -136,9 +136,9 @@ StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 	return strErr;
 }
 
-StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
@@ -186,9 +186,9 @@ StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
 	return strErr;
 }
 
-StrErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;

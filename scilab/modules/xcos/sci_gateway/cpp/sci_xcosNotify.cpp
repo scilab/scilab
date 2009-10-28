@@ -38,7 +38,7 @@ int sci_xcosNotify(char *fname,unsigned long fname_len)
 	char **pStVarOne = NULL;
 	int *lenStVarOne = NULL;
 	int iType = 0;
-	StrErr strErr;
+	SciErr strErr;
 
 	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
