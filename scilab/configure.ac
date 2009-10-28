@@ -1042,7 +1042,7 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
-
+if test $HDF5_ENABLE = yes;  then
    if test "$MACOSX" = 1; then
    	  echo "Check of the presence of libjhdf5.jnilib disabled"
    else
@@ -1054,6 +1054,7 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
       LDFLAGS=$LDFLAGS_save
     fi
+fi #HDF5_ENABLE
 
 #################
 ## ocaml which only called when using Scicos

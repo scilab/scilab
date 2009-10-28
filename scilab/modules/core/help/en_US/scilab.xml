@@ -31,7 +31,7 @@
         <term>-args Arguments</term>
 
         <listitem>
-          <para>if this option is present arguments are passed to Scilab. They
+          <para>If this option is present, arguments are passed to Scilab. They
           can then be got by <link linkend="sciargs">sciargs</link> function.
           For multi arguments passing use a quoted, blank separated sequence
           of words like: <literal>scilab -args 'foo1 foo2'</literal></para>
@@ -42,7 +42,7 @@
         <term>-display Display</term>
 
         <listitem>
-          <para>for use under Xwindow systems only to set a specific X server
+          <para>For use under Xwindow systems only to set a specific X server
           display. Default display is unix:0.0</para>
 
           <para><literal>-display</literal> can be abbreviated by
@@ -103,7 +103,7 @@
         <term>-e Instruction</term>
 
         <listitem>
-          <para>if this option is present then Scilab instruction
+          <para>If this option is present then Scilab instruction
           <literal>Instruction</literal> is executed first (just after startup
           file execution) into Scilab. <literal>-e</literal> and
           <literal>-f</literal> options are mutually exclusive.</para>
@@ -114,7 +114,7 @@
         <term>-f file</term>
 
         <listitem>
-          <para>if this option is present then Scilab script
+          <para>If this option is present then Scilab script
           <literal>file</literal> is executed first (just after startup file
           execution) into Scilab. <literal>-e</literal> and
           <literal>-f</literal> options are mutually exclusive.</para>
@@ -125,7 +125,7 @@
         <term>-l lang</term>
 
         <listitem>
-          <para>:if this option is present it fixes the user language. The
+          <para>If this option is present it fixes the user language. The
           possible <literal>lang</literal> values are <literal>'fr'</literal>
           for french and <literal>'en'</literal> for english. The default
           language is english. This default value is fixed the
@@ -180,8 +180,10 @@
         <term>-nw</term>
 
         <listitem>
-          <para>If this option is present then scilab is not run in an
-          specific window.</para>
+          <para>If this option is present, Scilab is started as command line with advanced features (graphics...).</para>
+		  <para>This option may be used with -f or -e options.</para>
+		  <para>Scilab distribution also provides a dedicated binary which is doing the same as -nw: scilab-adv-cli (Scilab Advanced Command Line Interpreter). Available from Scilab 5.2</para>
+		  <para>From Scilab 5.2, pipes are enabled for all operating systems (see the examples for further details).</para>
         </listitem>
       </varlistentry>
 
@@ -189,9 +191,10 @@
         <term>-nwni</term>
 
         <listitem>
-          <para>If this option is present then scilab is not run in an
-          specific window and does not accept user interaction. This option
-          may be used with -f or -e options.</para>
+          <para>If this option is present, Scilab is started as command line without advanced features.</para>
+		  <para>This option may be used with -f or -e options.</para>
+		  <para>Scilab distribution also provides a dedicated binary which is doing the same as -nwni: scilab-cli (Scilab Command Line Interpreter). Available from Scilab 5.2</para>
+		  <para>From Scilab 5.2, pipes are enabled for all operating systems (see the examples for further details).</para>
         </listitem>
       </varlistentry>
 
@@ -207,7 +210,7 @@
         <term>-version</term>
 
         <listitem>
-          <para>This option print product version and exit.</para>
+          <para>This option prints product version and exits.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -231,5 +234,33 @@ export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
 scilab -debug
  ]]></programlisting>
+
+    <programlisting role="example-cli"><![CDATA[ 
+# Under GNU/Linux, Mac OS X or Unix:
+$ echo "disp(%pi)"|scilab-cli
+or
+$ echo "disp(%pi)"|scilab -nwni
+
+# Only open the Scilab help window:
+$ scilab-adv-cli -e "help()"
+or
+$ scilab -nw -e "help()"
+
+
+# Scilab can be used for scripting aspects:
+echo "if 1<>2 then exit(99) end"|scilab-cli
+echo $?
+
+
+ ]]></programlisting>
   </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exit">exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+
 </refentry>

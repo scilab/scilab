@@ -643,8 +643,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(recentsMenu);
 		
 		
-		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
-		fileMenu.addSeparator();
+		//fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
+		//fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(CloseAction.createMenu(scilabGraph));
