@@ -2856,32 +2856,70 @@ static char *Get_Iname()
  * Utility for error message
  *---------------------------------------------------------------------*/
 
-static char *pos[4] ={"first","second","third","fourth"};
 static char arg_position[56]; /* @TODO WTF is 56 ? */
+
+char * CharPosition(int i)
+{
+  char * tmp_buffer = (char *)MALLOC(20*sizeof(char));
+  switch(i+1)
+    {
+    case 1:
+      strcpy(tmp_buffer,_("first"));
+      break;
+    case 2:
+      strcpy(tmp_buffer,_("second"));
+      break;
+    case 3:
+      strcpy(tmp_buffer,_("third"));
+      break;
+    case 4:
+      strcpy(tmp_buffer,_("fourth"));
+      break;
+    default:
+      strcpy(tmp_buffer," ");
+      break;
+    }
+}
 
 char *ArgPosition(int i)
 {
-	if ( i > 0 && i <= 4 ) {
-		sprintf(arg_position,_("%s argument"),pos[i-1]);
-	}else{
-		sprintf(arg_position,_("argument number %d"),i);
-	}
+  char * tmp_buffer = NULL;
+  if ( i > 0 && i <= 4 ) {
+    tmp_buffer = CharPosition(i-1);
+    sprintf(arg_position,_("%s argument"),tmp_buffer);
+    FREE(tmp_buffer);
+  }else{
+    sprintf(arg_position,_("argument number %d"),i);
+  }
   return arg_position;
 }
 
 char *ArgsPosition(int i,int j)
 {
+  char * tmp_buffer_1 = NULL, * tmp_buffer_2 = NULL;
   if ( i > 0 && i <= 4 )
     {
-      if ( j > 0 && j <= 4 )
-	sprintf(arg_position,_("%s and %s arguments"),pos[i-1],pos[j-1]);
-      else
-	sprintf(arg_position,_("%s argument and argument %d"),pos[i-1],j);
+      if ( j > 0 && j <= 4 ) {
+	tmp_buffer_1 = CharPosition(i-1);
+	tmp_buffer_2 = CharPosition(j-1);
+	sprintf(arg_position,_("%s and %s arguments"),tmp_buffer_1,tmp_buffer_2);
+	FREE(tmp_buffer_1);
+	FREE(tmp_buffer_2);
+      }
+      else 
+	{
+	  tmp_buffer_1 = CharPosition(i-1);
+	  sprintf(arg_position,_("%s argument and argument %d"),tmp_buffer_1,j);
+	  FREE(tmp_buffer_1);
+	}
     }
   else
     {
-      if ( j > 0 && j <= 4 )
-	sprintf(arg_position,_("%s argument and argument %d"),pos[j-1],i);
+      if ( j > 0 && j <= 4 ) {
+	tmp_buffer_1 = CharPosition(j-1);
+	sprintf(arg_position,_("%s argument and argument %d"),tmp_buffer_1,i);
+	FREE(tmp_buffer_1);
+      }
       else
 	sprintf(arg_position,_("arguments %d and %d"),i,j);
     }
