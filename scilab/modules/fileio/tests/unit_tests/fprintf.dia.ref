@@ -90,17 +90,17 @@ fprintf test 18:abcde
 fprintf(6,"fprintf test 195:%-2s\n", "gazonk");
 fprintf test 195:gazonk
 // =============================================================================
-ierr = execstr('fprintf(6,5,5)','errcath');
+ierr = execstr('fprintf(6,5,5)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
-ierr = execstr('fprintf(1000,''%d'',5)','errcath');
+ierr = execstr('fprintf(1000,''%d'',5)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
 FILENAMES=[TMPDIR + filesep() + 'results1',TMPDIR + filesep() + 'results2'];
-ierr = execstr('fprintf(FILENAMES,''%d'',5)','errcath');
+ierr = execstr('fprintf(FILENAMES,''%d'',5)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
 FMTS=["%s","%s"];
-ierr = execstr('fprintf(6,FMTS,5)','errcath');
+ierr = execstr('fprintf(6,FMTS,5)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================

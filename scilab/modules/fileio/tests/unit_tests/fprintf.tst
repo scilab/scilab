@@ -71,17 +71,17 @@ fprintf(6,"fprintf test 18:%.5s\n", "abcdefghij");
 // =============================================================================
 fprintf(6,"fprintf test 195:%-2s\n", "gazonk");
 // =============================================================================
-ierr = execstr('fprintf(6,5,5)','errcath');
+ierr = execstr('fprintf(6,5,5)','errcatch');
 if ierr <> 999 then pause,end
 // =============================================================================
-ierr = execstr('fprintf(1000,''%d'',5)','errcath');
+ierr = execstr('fprintf(1000,''%d'',5)','errcatch');
 if ierr <> 999 then pause,end
 // =============================================================================
 FILENAMES=[TMPDIR + filesep() + 'results1',TMPDIR + filesep() + 'results2'];
-ierr = execstr('fprintf(FILENAMES,''%d'',5)','errcath');
+ierr = execstr('fprintf(FILENAMES,''%d'',5)','errcatch');
 if ierr <> 999 then pause,end
 // =============================================================================
 FMTS=["%s","%s"];
-ierr = execstr('fprintf(6,FMTS,5)','errcath');
+ierr = execstr('fprintf(6,FMTS,5)','errcatch');
 if ierr <> 999 then pause,end
 // =============================================================================

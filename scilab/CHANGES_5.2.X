@@ -1038,3 +1038,4 @@ Bug fixes:
 
 * bug 4378 fixed - The gamma function does not work properly with large numbers under Linux 64 bits.
 
+* bug 5033 fixed - The Demo CACSD / Inverted pendulum  is broken.
