@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.xcos.XcosUIDObject;
+import org.scilab.modules.xcos.block.BasicBlock;
 
 import com.mxgraph.model.mxGeometry;
 
