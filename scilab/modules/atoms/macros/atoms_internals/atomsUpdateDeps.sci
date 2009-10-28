@@ -7,9 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Update the dependencies with the installation of this new package
 
-function packages_out = atomsUpdateDeps(name,version,section)
+function packages_out = atomsUpdateDeps(package,section)
 	
 	rhs          = argn(2);
 	packages_out = [];
@@ -17,50 +19,39 @@ function packages_out = atomsUpdateDeps(name,version,section)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsUpdateDeps",2,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsUpdateDeps",1,2));
 	end
 	
-	// Check input parameters type
+	// Check input parameters
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(package) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsUpdateDeps",1));
 	end
 	
-	if type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsUpdateDeps",2));
-	end
-	
-	// Check input parameters dimensions
-	// =========================================================================
-	
-	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsUpdateDeps",1));
-	end
-	
-	if size(version,"*")<>1  then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsUpdateDeps",2));
+	if or( size(package) <> [1 2]) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"),"atomsUpdateDeps",1));
 	end
 	
 	// All user management
 	// =========================================================================
 	
-	if rhs < 3 then
+	if rhs < 2 then
 		section = "all";
 	
 	else
 	
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",3));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",2));
 		end
 		
 		if size(section,"*")<>1 then
-			error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",3));
+			error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsUpdateDeps",3));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsUpdateDeps",2));
 		end
 		
 	end
@@ -68,8 +59,8 @@ function packages_out = atomsUpdateDeps(name,version,section)
 	// The package designed by "name - version" must be installed
 	// =========================================================================
 	
-	if ~ atomsIsInstalled(name,version) then
-		error(msprintf(gettext("%s: %s (%s) isn''t installed.\n"),"atomsUpdateDeps",name,version));
+	if ~ atomsIsInstalled(package) then
+		error(msprintf(gettext("%s: %s (%s) isn''t installed.\n"),"atomsUpdateDeps",package(1),package(2)));
 	end
 	
 	// If alluser, process the 2 list (allusers and user)
@@ -80,6 +71,9 @@ function packages_out = atomsUpdateDeps(name,version,section)
 	if or(section == ["all","allusers"]) then
 		allusers_mat = [ allusers_mat ; "allusers" ];
 	end
+	
+	name    = package(1);
+	version = package(2);
 	
 	for i=1:size(allusers_mat,"*")
 		
@@ -107,8 +101,8 @@ function packages_out = atomsUpdateDeps(name,version,section)
 			// Premier tri : on ne garde que les packages dont le package "<name>"
 			// est un enfant direct 
 			
-			concerned_names_filt    = concerned_names(    atomsIsDirectChild(concerned_names,concerned_versions,name));
-			concerned_versions_filt = concerned_versions( atomsIsDirectChild(concerned_names,concerned_versions,name));
+			concerned_names_filt    = concerned_names(    atomsIsDirectChild([concerned_names concerned_versions],name));
+			concerned_versions_filt = concerned_versions( atomsIsDirectChild([concerned_names concerned_versions],name));
 			
 			// if "name" is not the direct child of packages(j) or of one of the child
 			// of packages(j) :

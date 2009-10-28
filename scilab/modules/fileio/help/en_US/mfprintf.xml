@@ -22,7 +22,7 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
 
-  <refnamediv xml:id="mfprintf">
+  <refnamediv>
     <refname>mfprintf</refname>
 
     <refpurpose>converts, formats, and writes data to a file</refpurpose>

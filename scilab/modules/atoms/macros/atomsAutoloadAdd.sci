@@ -13,7 +13,11 @@
 
 // End-User function
 
-function nbAdd = atomsAutoloadAdd(name,version,section)
+function nbAdd = atomsAutoloadAdd(packages,section)
+	
+	rhs            = argn(2);
+	nbAdd          = 0;
+	autoloaded     = []; // Column vector that contain autoloaded packages
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -21,33 +25,26 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	rhs            = argn(2);
-	nbAdd          = 0;
-	autoloaded     = []; // Column vector that contain autoloaded packages
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadAdd",2,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadAdd",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadAdd",1));
 	end
 	
-	if type(version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadAdd",2));
-	end
-	
-	// name and version must have the same size
-	// =========================================================================
-	
-	if or( size(name) <> size(version) ) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAutoloadAdd",1,2));
+	if (size(packages(1,:),"*") < 1) | (size(packages(1,:),"*") > 3) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix expected.\n"),"atomsAutoloadAdd",1));
 	end
 	
 	// Allusers/user management
@@ -59,14 +56,14 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	//       → SCIHOME/atoms/autoloaded
 	// =========================================================================
 	
-	if rhs <= 2 then
+	if rhs < 2 then
 		
 		// By default: 
 		//  → Add the module to the "autoload" list of the "allusers" section
 		//    if we have the write access to SCI directory
 		//  → Add the module to the "autoload" list of the "user" section otherwise
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "allusers"; 
 		else
 			section = "user";
@@ -78,75 +75,125 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 		// Allusers can be equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsAutoloadAdd",3));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsAutoloadAdd",2));
 		end
 		
 		if and(section<>["user","allusers"]) then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsAutoloadAdd",3));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsAutoloadAdd",2));
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",3,pathconvert(SCI+"/.atoms")));
+		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAutoloadAdd",pathconvert(SCI+"/.atoms")));
 		end
 		
-	end
-	
-	// Define the path of the file that will record the change according to
-	// the "section" value
-	// =========================================================================
-	atoms_directory = atomsPath("system",section);
-	
-	// Does the atoms_directory exist, if not create it
-	// =========================================================================
-	
-	if ~ isdir(atoms_directory) then
-		mkdir(atoms_directory);
 	end
 	
 	// Does the SCIHOME/atoms/autoloaded exist, if yes load it
 	// =========================================================================
+	autoloaded = atomsAutoloadLoad(section);
 	
-	if fileinfo(atoms_directory+"autoloaded") <> [] then
-		autoloaded = mgetl(atoms_directory+"autoloaded");
-	end
-	
-	// Check if all input modules are installed
+	// Complete packages matrix with empty columns
 	// =========================================================================
 	
-	if ~ and(atomsIsInstalled(name,version)) then
-		mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
-		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i)) then
-				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
-			end
-		end
-		error("");
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
 	end
 	
-	// A module installed in the user section cannot be add in the "autoload" list 
-	// of all users
-	
-	if (rhs>=3) & (section=="allusers") & (~ atomsIsInstalled(name,version,"allusers")) then
-		mprintf(gettext("%s: The following modules are installed in the user section, you cannot add them in the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
-		for i=1:size(name,"*")
-			if ~ atomsIsInstalled(name(i),version(i),"allusers") then
-				mprintf(gettext("\t - ''%s - %s''\n"),name(i),version(i));
-			end
-		end
-		error("");
-	end
-	
-	// Loop on each module specified as input argument
+	// Loop on input parameter
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		// Add the package only if it doesn't already exist
+		// The module's installed version hasn't been specified or is empty
+		// → Set the MRV available
+		// =====================================================================
 		
-		if find(autoloaded == name(i)+" - "+version(i)) == [] then
+		if isempty(packages(i,2)) then
+			
+			if ~ isempty(packages(i,3)) then
+				searched_section = packages(i,3);
+			
+			elseif section=="user" then
+				// User can add a module to its "user" autoload list even if it's
+				// installed in the "allusers" section
+				searched_section = "all";
+			
+			else
+				// A module installed in the user section cannot be add in the 
+				// "autoload" list of all users
+				searched_section = "allusers";
+			
+			end
+			
+			this_module_versions = atomsGetInstalledVers(packages(i,1),searched_section);
+			
+			if isempty(this_module_versions) then
+				error(msprintf(gettext("%s: Module ''%s'' is not installed (''%s'' section).\n"),"atomsLoad",packages(i,1),searched_section));
+			else
+				packages(i,2) = this_module_versions(1);
+			end
+		
+		else
+			
+			if ~atomsIsInstalled([packages(i,1) packages(i,2)]) then
+				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+			end
+			
+		end
+		
+		// The module's installed section hasn't been specified or is empty
+		// =====================================================================
+		
+		if isempty(packages(i,3)) then
+		
+			if atomsIsInstalled([packages(i,1) packages(i,2)],section) then
+				packages(i,3) = section;
+			
+			elseif section=="user" & atomsIsInstalled([packages(i,1) packages(i,2)],"allusers") then
+				packages(i,3) = "allusers";
+				
+			elseif section=="allusers" & atomsIsInstalled([packages(i,1) packages(i,2)],"user") then
+				mprintf(gettext("%s: The following module is installed in the user section, you cannot add it to the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
+				printf(gettext("\t - ''%s - %s''\n"),packages(i,1),packages(i,2));
+				error("");
+			
+			else
+				mprintf(gettext("%s: The following module is not installed:\n"),"atomsAutoloadAdd");
+				mprintf(gettext("\t - ''%s - %s''\n"),packages(i,1),packages(i,2));
+			
+			end
+			
+		else
+		
+			// Check if modules are installed
+			if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
+				mprintf(gettext("%s: The following modules is not installed:\n"),"atomsAutoloadAdd");
+				mprintf("\t - ''%s - %s'' (''%s'' section)\n",packages(i,1),packages(i,2),packages(i,3));
+				error("");
+			end
+			
+			// A module installed in the user section cannot be add in the 
+			// "autoload" list of all users
+			
+			if (section=="allusers") & (packages(i,3)=="user") then
+				mprintf(gettext("%s: The following module is installed in the user section, you cannot add it to the ""autoload"" list for all users:\n"),"atomsAutoloadAdd");
+				mprintf(gettext("\t - ''%s - %s''\n"),packages(i,1),packages(i,2));
+				error("");
+			end
+			
+		end
+		
+		// Now we can really add it if it doesn't already exist in the list
+		// =====================================================================
+		
+		if ~ atomsAutoloadCheck(packages(i,:),section) then
 			nbAdd      = nbAdd + 1;
-			autoloaded = [ autoloaded ; name(i)+" - "+version(i) ];
+			autoloaded = [ autoloaded ; packages(i,:) ];
 		end
 		
 	end
@@ -155,7 +202,7 @@ function nbAdd = atomsAutoloadAdd(name,version,section)
 	// =========================================================================
 	
 	if nbAdd > 0 then
-		mputl(autoloaded,atoms_directory+"autoloaded");
+		atomsAutoloadSave(autoloaded,section);
 	end
 	
 endfunction

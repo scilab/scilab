@@ -116,8 +116,8 @@ nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
 //nm = nmplot_configure(nm,"-verbose",0);
 nm = nmplot_configure(nm,"-verbosetermination",0);
-nm = nmplot_configure(nm,"-kelleystagnationflag",1);
-nm = nmplot_configure(nm,"-restartflag",1);
+nm = nmplot_configure(nm,"-kelleystagnationflag",%t);
+nm = nmplot_configure(nm,"-restartflag",%t);
 nm = nmplot_configure(nm,"-restartdetection","kelley");
 //
 // Setup output files
@@ -157,4 +157,10 @@ deletefile("mckinnon.history.restart.fopt.txt");
 deletefile("mckinnon.history.restart.sigma.txt");
 nm = nmplot_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

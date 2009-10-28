@@ -81,11 +81,12 @@ public class XpadMessages {
     public static final String EXECUTE = Messages.gettext("Execute");
     public static final String LOAD_INTO_SCILAB = Messages.gettext("Load Into Scilab");
     public static final String EVALUATE_SELECTION = Messages.gettext("Evaluate Selection");
-    public static final String EXECUTE_INTO_SCILAB = Messages.gettext("Execute Into Scilab");
+    public static final String EXECUTE_FILE_INTO_SCILAB = Messages.gettext("Execute File Into Scilab");
     
     /** HELP MENU */
     public static final String HELP = Messages.gettext("Scilab editor Help") + DOTS;
     public static final String ABOUT = Messages.gettext("About") + DOTS;
+    public static final String XPAD_VERSION = Messages.gettext("Scilab Editor version 1.0");
     
     /** FIND/REPLACE DIALOG */
     public static final String FIND = Messages.gettext("Find:");
@@ -125,4 +126,12 @@ public class XpadMessages {
 
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
+    
+    /* About box */
+    public static final String VERSION = Messages.gettext("Editor 1.0");
+    public static final String COPYRIGHT = Messages.gettext("Copyright 2009");
+    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
+    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
+    public static final String LICENSE = Messages.gettext("CeCILL License");
+
 }

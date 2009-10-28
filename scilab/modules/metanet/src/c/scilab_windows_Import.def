@@ -1,8 +1,0 @@
-LIBRARY    scilab_windows.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; scilab_windows
-; --------------------------------------- 
- strdup_windows

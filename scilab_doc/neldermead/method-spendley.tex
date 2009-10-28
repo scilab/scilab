@@ -1,6 +1,9 @@
 \chapter{Spendley's et al. method}
+\index{Spendley, W.}
+\index{Hext, G. R.}
+\index{Himsworth, F. R.}
 
-In this chapter, we present Spendley's et al. algorithm \cite{Spendley1962} for 
+In this chapter, we present Spendley, Hext and Himsworth algorithm \cite{Spendley1962} for 
 unconstrained optimization.
 
 We begin by presenting a global overview of the algorithm. 
@@ -41,7 +44,7 @@ The vertices are sorted by increasing function values so that the
 \emph{best} vertex has index 1 and the \emph{worst} vertex 
 has index $n+1$
 \begin{eqnarray}
-\label{sorted-vertices-fv}
+\label{sp-sorted-vertices-fv}
 f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
@@ -54,7 +57,7 @@ The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
 where the vertex $\bv_j$ has been 
 excluded. This centroid is 
 \begin{eqnarray}
-\label{centroid-generalized}
+\label{sp-centroid-generalized}
 \overline{\bx} (j) = \frac{1}{n} \sum_{i=1,n+1, i\neq j} \bv_i.
 \end{eqnarray}
 The algorithm makes use
@@ -64,7 +67,7 @@ The algorithm attempts to replace some vertex
 $\bv_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bv_j$
 to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
 \begin{eqnarray}
-\label{interpolate-generalized}
+\label{sp-interpolate-generalized}
 \bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bv_j.
 \end{eqnarray}
 
@@ -106,13 +109,13 @@ At each iteration, we compute the centroid
 $\overline{\bx} (n+1)$ where the worst vertex $\bv_{n+1}$ 
 has been excluded. This centroid is 
 \begin{eqnarray}
-\label{centroid-worst}
+\label{sp-centroid-worst}
 \overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bv_i.
 \end{eqnarray}
 We perform a reflection with respect to the worst vertex $\bv_{n+1}$,
 which creates the reflected point $\bx_r$ defined by 
 \begin{eqnarray}
-\label{interpolate-worst}
+\label{sp-interpolate-worst}
 \bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bv_{n+1}
 \end{eqnarray}
 
@@ -309,7 +312,7 @@ $\bx_0$ & $(2.0,2.0)$ \\
 Relative tolerance on simplex size & $10^{-8}$ \\
 Exact $\bx^\star$ & $(0.,0.)$\\
 Computed $\bx^\star$ & $(2.169e-10, 2.169e-10)$\\
-Exact $f(\b\bx^\star)$ & $0.$\\
+Exact $f(\bx^\star)$ & $0.$\\
 Computed $f(\bx^\star)$ & $4.706e-20$\\
 \hline
 \end{tabular}
@@ -398,8 +401,7 @@ on simplex size.
 We set the maximum number of function evaluations to 400.
 The initial simplex is a regular simplex with length unity.
 
-The following Scilab script uses the neldermead algorithm to perform the 
-optimization.
+The following Scilab script allows to perform the optimization.
 
 \lstset{language=scilabscript}
 \begin{lstlisting}

@@ -138,7 +138,9 @@ function ilib_gen_Make_unix(names,   ..
 				  end
 				  copyfile(x, linkBuildDir);
 				else
-					mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"lib_gen_Make",x,pathFrom);
+				  if ( ilib_verbose() <> 0 ) then
+					  mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"ilib_gen_Make",x,pathFrom);
+					end
 				end
 
 				filelist = filelist + " " + x ;

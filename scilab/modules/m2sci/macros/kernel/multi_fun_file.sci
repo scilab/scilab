@@ -108,9 +108,13 @@ else
   translatepaths(pathconvert(TMPDIR)+base_name,pathconvert(TMPDIR)+base_name)
   
     txt=[]
-    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
+    if isfile(pathconvert(TMPDIR)+base_name+sep+'log') then
+      txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
+    end
     mputl(txt,res_path+'log'); 
-    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
+    if isfile(pathconvert(TMPDIR)+base_name+sep+'resumelog') then
+      txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
+    end
     mputl(txt,res_path+'resumelog'); 
   
   // Catenation of all .sci files to have only one output file

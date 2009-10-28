@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="neldermead" xml:lang="fr"
+<refentry 
+          version="5.0-subset Scilab" 
+	  xml:id="neldermead" 
+	  xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -10,7 +13,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
+    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
   </info>
 
   <refnamediv>
@@ -901,25 +904,24 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <listitem>
                       <para>
 		      the algorithm used to scale the initial simplex into the nonlinear constraints.
-		      The following two algorithms are provided :
+		      The following two algorithms are provided :</para>
 		      <itemizedlist>
 			<listitem>
-				<para>
-					"tox0": scales the vertices toward the initial guess.
-				</para>
+			  <para>
+			    "tox0": scales the vertices toward the initial guess.
+			  </para>
 			</listitem>
 			<listitem>
-				<para>
-					"tocentroid": scales the vertices toward the centroid, as recommended by Box.
-				</para>
+			  <para>
+			    "tocentroid": scales the vertices toward the centroid, as recommended by Box.
+			  </para>
 			</listitem>
 		      </itemizedlist>
-		      If the centroid happens to be unfeasible, because the constraints are 
-		      not convex, the scaling of the initial simplex toward the centroid
-		      may fail. Since the initial guess is always feasible, scaling toward 
-		      the initial guess cannot fail.
-		      The default value is "tox0".
-	           </para>
+		      <para>If the centroid happens to be unfeasible, because the constraints are 
+			not convex, the scaling of the initial simplex toward the centroid
+			may fail. Since the initial guess is always feasible, scaling toward 
+			the initial guess cannot fail.
+			The default value is "tox0".</para>
                     </listitem>
                   </varlistentry>
 
@@ -1563,6 +1565,10 @@ function outputcmd(state, data, myobj)
       </listitem>
 
       <listitem>
+        <para>-tolxmethod.</para>
+      </listitem>
+
+      <listitem>
         <para>-tolsimplexizemethod.</para>
       </listitem>
     </itemizedlist>
@@ -1636,10 +1642,16 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
           </varlistentry>
         </variablelist>
 
-        <para>The relative termination criteria on the function value works
+        <para>
+	The relative termination criteria on the function value works
         well if the function value at optimum is near zero. In that case, the
         function value at initial guess fx0 may be used as
-        <literal>/previousfopt</literal>.</para>
+        <literal>previousfopt</literal>.
+	</para>
+	<para>
+	This criteria is sensitive to the <literal>-tolfunrelative</literal> 
+	and <literal>-tolfunabsolute</literal> options.
+	</para>
 
         <para>The absolute termination criteria on the function value works if
         the user has an accurate idea of the optimum function value.</para>
@@ -1668,11 +1680,19 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
 norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
  </programlisting>
 
-              <para>is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
-              set to %t.</para>
+              <para>
+	      is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
+              set to %t.
+	      </para>
+
             </listitem>
           </varlistentry>
         </variablelist>
+
+      	<para>
+	This criteria is sensitive to the <literal>-tolxrelative</literal> 
+	and <literal>-tolxabsolute</literal> options.
+	</para>
 
         <para>The relative termination criteria on x works well if x at
         optimum is different from zero. In that case, the condition measures
@@ -1685,7 +1705,7 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
       </listitem>
 
       <listitem>
-        <para>The absolute tolerance on simplex size is examined depending on
+        <para>The tolerance on simplex size is examined depending on
         the value of the <literal>-tolsimplexizemethod</literal> option.</para>
 
         <variablelist>
@@ -1707,16 +1727,26 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
 ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
  </programlisting>
 
-              <para>is true where <literal>simplexsize0</literal> is the size of the simplex at
+              <para>
+	      is true where <literal>simplexsize0</literal> is the size of the simplex at
               iteration 0, then the <literal>status</literal> is set to <literal>"tolsize"</literal> 
-	      and <literal>terminate</literal>
-              is set to %t.</para>
+	      and <literal>terminate</literal> is set to %t.
+	      </para>
+              <para>
+	      The size of the simplex is computed from the "sigmaplus" method of the 
+	      <literal>optimsimplex</literal> component.
+	      This criteria is sensitive to the <literal>-tolsimplexizeabsolute</literal> and 
+	      the <literal>-tolsimplexizerelative</literal> options.
+	      </para>
             </listitem>
+	    
+	      
           </varlistentry>
         </variablelist>
       </listitem>
 
-      <listitem>
+
+	<listitem>
         <para>The absolute tolerance on simplex size and absolute difference
         of function value is examined depending on the value of the
         -tolssizedeltafvmethod option.</para>
@@ -2034,20 +2064,19 @@ alpha = alpha0 * sigma0 / nsg
     The original paper uses a "greedy" expansion, in which the expansion point 
     is accepted whatever its function value. The current implementation,
     as most implementations, uses the expansion point only if it improves 
-    over the reflection point, that is, 
+    over the reflection point, that is,</para>
     <itemizedlist>
-	<listitem>
-		<para>
-			if fe&lt;fr, then the expansion point is accepted,
-		</para>
-	</listitem>
-	<listitem>
-		<para>
-			if not, the reflection point is accepted.
-		</para>
-	</listitem>
+      <listitem>
+	<para>
+	  if fe&lt;fr, then the expansion point is accepted,
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  if not, the reflection point is accepted.
+	</para>
+      </listitem>
     </itemizedlist>
-    </para>
 
     <para>
     The termination criteria suggested by Nelder and Mead is based on an
@@ -2115,17 +2144,13 @@ alpha = alpha0 * sigma0 / nsg
 	with specific goals. While it is not possible to provide them all, it is very convenient
 	to use the current structure without being forced to make many developments.
     </para>
-    <para>
-	The value of the <literal>-mymethod</literal> option is expected to be 
-	a Scilab function with the following header
-    <programlisting role="example">
-<![CDATA[ 
-    function this = myalgorithm ( this )
-    endfunction
- ]]>
-</programlisting>
-	where <literal>-this</literal> is the current object.
-    </para>
+    <para>The value of the <literal>-mymethod</literal> option is expected to be 
+      a Scilab function with the following header</para>
+    <programlisting role="example"><![CDATA[ 
+function this = myalgorithm ( this )
+endfunction
+ ]]></programlisting>
+    <para>where <literal>-this</literal> is the current object.</para>
     <para>
 	In order to use the user-defined algorithm, the <literal>-method</literal> option must 
 	be set to "mine". In this case, the component performs the optimization
@@ -2154,14 +2179,12 @@ alpha = alpha0 * sigma0 / nsg
     </para>
     <para>
 	The value of the <literal>-myterminate</literal> option is expected to be 
-	a Scilab function with the following header
-    <programlisting role="example">
-<![CDATA[ 
-    function [ this , terminate , status ] = mystoppingrule ( this , simplex )
-    endfunction
- ]]>
-</programlisting>
-	where <literal>-this</literal> is the current object and <literal>-simplex</literal>
+	a Scilab function with the following header</para>
+    <programlisting role="example"><![CDATA[ 
+function [ this , terminate , status ] = mystoppingrule ( this , simplex )
+endfunction
+ ]]></programlisting>
+    <para>where <literal>-this</literal> is the current object and <literal>-simplex</literal>
 	is the current simplex. The <literal>terminate</literal> output argument is 
 	a boolean which is false if the algorithm must continue and true if the algorithm
 	must stop. The <literal>status</literal> output argument is 

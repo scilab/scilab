@@ -21,6 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#include "getFullFilename.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_Xcos(char *fname,unsigned long fname_len)
@@ -36,8 +37,6 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 	{
 		int m1 = 0, n1 = 0;
 		int *piAddressVarOne = NULL;
-		char **pStVarOne = NULL;
-		int *lenStVarOne = NULL;
 		int i = 0;
 		int lw = 1;
 		int iType = 0;
@@ -59,6 +58,10 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 
 		if ( iType == sci_strings )
 		{
+			char **pStVarOne = NULL;
+			int *lenStVarOne = NULL;
+			char **pStFullFilenames = NULL;
+
 			/* get dimensions */
 			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(strErr.iErr)
@@ -78,6 +81,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(strErr.iErr)
 			{
+				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				printError(&strErr, 0);
 				return 0;
 			}
@@ -85,6 +89,16 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
 			if (pStVarOne == NULL)
 			{
+				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
+				Scierror(999,_("%s: No more memory.\n"), fname);
+				return 0;
+			}
+
+			pStFullFilenames = (char **)MALLOC(sizeof(char*)*(m1*n1));
+			if (pStFullFilenames == NULL)
+			{
+				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
+				freeArrayOfString(pStVarOne, m1 * n1);
 				Scierror(999,_("%s: No more memory.\n"), fname);
 				return 0;
 			}
@@ -98,12 +112,25 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(strErr.iErr)
 			{
+				freeArrayOfString(pStFullFilenames, m1 * n1);
+				freeArrayOfString(pStVarOne, m1 * n1);
+				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				printError(&strErr, 0);
 				return 0;
 			}
 
-			callXcos(pStVarOne,m1 * n1);
-			freeArrayOfString(pStVarOne,m1 * n1);
+			/* Expand paths */
+			for(i = 0; i < m1 * n1; i++)
+			{
+				pStFullFilenames[i] = getFullFilename(pStVarOne[i]);
+			}
+
+			if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
+			freeArrayOfString(pStVarOne, m1 * n1);
+
+			callXcos(pStFullFilenames, m1 * n1);
+
+			freeArrayOfString(pStFullFilenames, m1 * n1);
 		}
 		else if (iType == sci_mlist)
 		{

@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Load one or several toolboxes
 
 function atomsSystemInit()
@@ -17,9 +19,13 @@ function atomsSystemInit()
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
 	// Check if we have the write access
 	// =========================================================================
-	if atomsAUWriteAccess() then
+	if ATOMSALLUSERSWRITEACCESS then
 		section = "all";
 	else
 		section = "user";

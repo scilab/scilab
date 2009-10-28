@@ -20,6 +20,12 @@ lines(0);
 Directories=[];
 CurrentDirectory=pwd();
 
+// set stacksize
+// because scilab.start not called when we build macros
+// Previously (wrong place), it was defined in buildmacros.sce of metanet module
+
+stacksize(5000000);
+
 modules=getmodules();
 index=size(modules);
 

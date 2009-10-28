@@ -26,6 +26,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.Toolkit;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -77,7 +78,6 @@ public final class FindAction extends DefaultAction {
 	private JButton buttonReplaceAll;
 	private JButton buttonClose;
 	private JLabel statusBar;
-
 	private String oldWord;
 	private String newWord;
 	private String wordToFind;
@@ -119,8 +119,8 @@ public final class FindAction extends DefaultAction {
 		//Find & Replace Frame
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(300, 650));
-		frame.setMinimumSize(new Dimension(250, 600));
+		frame.setPreferredSize(new Dimension(300, 510));
+		frame.setMinimumSize(new Dimension(200, 500));
 		frame.setTitle(XpadMessages.FIND_REPLACE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -138,17 +138,23 @@ public final class FindAction extends DefaultAction {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;		
-		gbc.insets = new Insets(10,5,10,5);
+		gbc.insets = new Insets(5,2,5,2);
 
 		//Find & Replace label, text field
 		JLabel labelFind = new JLabel(XpadMessages.FIND);
 		JLabel labelReplace = new JLabel(XpadMessages.REPLACE_WITH);
 		textfieldFind = new JTextField();
-		textfieldFind.setPreferredSize(new Dimension(150, 20));
-		textfieldFind.setMinimumSize(new Dimension(100, 20));
+		textfieldFind.setPreferredSize(new Dimension(150, 25));
+		textfieldFind.setMinimumSize(new Dimension(100, 25));
+				
 		textfieldReplace = new JTextField();
-		textfieldReplace.setPreferredSize(new Dimension(150, 20));
-		textfieldReplace.setMinimumSize(new Dimension(100, 20));
+		textfieldReplace.setPreferredSize(new Dimension(150, 25));
+		textfieldReplace.setMinimumSize(new Dimension(100, 25));
+
+		Font font = new Font("Times", Font.PLAIN, 12);
+		
+		textfieldFind.setFont(font);
+		textfieldReplace.setFont(font);
 
 		panel.add(labelFind, gbc);
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -253,13 +259,44 @@ public final class FindAction extends DefaultAction {
 		panel.add(buttonClose, gbc);
 
 		// status bar
-		 statusBar = new JLabel("");
+		statusBar = new JLabel("");
 		gbc.anchor = GridBagConstraints.SOUTHWEST;
 		panel.add(statusBar, gbc);
 
+		/* behaviour of textfieldFind */
+		textfieldFind.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+						findText();
+					}
+			    }
+
+			public void keyReleased(KeyEvent e) {
+			    }
+			
+			public void keyTyped(KeyEvent e) {
+			    }
+
+		});
 		
+		/* behaviour of textfieldReplace */
+		textfieldReplace.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+						findText();
+					}
+			    }
+
+			public void keyReleased(KeyEvent e) {
+			    }
+			
+			public void keyTyped(KeyEvent e) {
+			    }
+
+		});
+
 		/*behaviour of buttons*/
-		 buttonSelection.addActionListener(new ActionListener() {
+		buttonSelection.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
 					JTextPane xpadTextPane =  getEditor().getTextPane();		

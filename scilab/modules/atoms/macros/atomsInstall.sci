@@ -13,17 +13,21 @@
 
 function result = atomsInstall(packages,section)
 	
+	result = [];
+	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
 	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	result = [];
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	// Save the initial path
 	// =========================================================================
-	initialpath = pwd();
+	ATOMSINITIALPATH = pwd();
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
@@ -42,6 +46,12 @@ function result = atomsInstall(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstall",1));
 	end
 	
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsInstall",1));
+	end
+	
+	// Remove leading and trailing whitespace
+	// =========================================================================
 	packages = stripblanks(packages);
 	
 	// Operating system detection
@@ -86,11 +96,11 @@ function result = atomsInstall(packages,section)
 	
 	// Allusers/user management
 	//   - If Allusers is equal to "allusers", packages will installed in the "allusers" section :
-	//       → SCI/contrib    : location of the modules
+	//       → SCI/contrib    : location of the packages
 	//       → SCI/.atoms     : ATOMS system files
 	//   - Otherwise, packages will installed in the "user" section :
-	//       → SCIHOME/atoms  : location of the modules
-	//       → SCIHOME/.atoms : location of the modules & ATOMS system files
+	//       → SCIHOME/atoms  : location of the packages
+	//       → SCIHOME/.atoms : location of the packages & ATOMS system files
 	// =========================================================================
 	
 	if rhs <= 1 then
@@ -100,7 +110,7 @@ function result = atomsInstall(packages,section)
 		//    SCI directory
 		//  → Install in the "user" otherwise
 		
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "allusers"; 
 		else
 			section = "user";
@@ -112,19 +122,16 @@ function result = atomsInstall(packages,section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
 		end
 		
 		if and(section<>["user","allusers"]) then
-			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~ atomsAUWriteAccess() then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
+		if (section=="allusers") & ~ ATOMSALLUSERSWRITEACCESS then
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
@@ -167,9 +174,9 @@ function result = atomsInstall(packages,section)
 	// "Archive" installation
 	// =========================================================================
 	
-	for i=1:size(packages,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		this_package = packages(i);
+		this_package = packages(i,1);
 		
 		if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
 			
@@ -233,8 +240,7 @@ function result = atomsInstall(packages,section)
 			
 			// change the packages var
 			// -----------------------------------------------------------------
-			packages(i) = this_package_name+" "+this_package_version;
-			
+			packages(i,:) = [ this_package_name this_package_version ];
 			
 		end
 		
@@ -253,9 +259,9 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	for i=1:size(install_package_list(:,1),"*")
 		if install_package_list(i,1) == "+" then
-			atomsDisp(msprintf("\t%s (%s) will be installed\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		elseif install_package_list(i,1) == "~" then
-			atomsDisp(msprintf("\t%s (%s) is already installed and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4)));
+			atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4),section));
 		end
 	end
 	
@@ -283,10 +289,8 @@ function result = atomsInstall(packages,section)
 		// =====================================================================
 		
 		if ~isdir(this_package_directory) & (mkdir(this_package_directory)<>1) then
-			chdir(initialpath);
-			error(msprintf( ..
-				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-				this_package_directory));
+			atomsError("error", ..
+				msprintf( gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),this_package_directory));
 		end
 		
 		// "Repository" installation ; Download and Extract
@@ -328,9 +332,8 @@ function result = atomsInstall(packages,section)
 		[rep,stat]=unix_g(rename_cmd)
 		
 		if stat <> 0 then
-			disp(rename_cmd);
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+			atomsError("error", ..
+				msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
 		end
 		
 		// Register the successfully installed package
@@ -349,8 +352,17 @@ function result = atomsInstall(packages,section)
 		// Autoload the toolbox unless precised
 		// =====================================================================
 		
-		if ~ (atomsGetConfig("autoload") == "False") then
-			atomsAutoloadAdd(this_package_name,this_package_version,section);
+		if ~ (atomsGetConfig("autoloadAddAfterInstall") == "False") then
+			
+			// Add a package to the autoload list only if it's intentionnaly
+			// installed
+			
+			if this_package_status=="I" then
+				// If another version is on the autoload list, remove it
+				atomsAutoloadDel([this_package_name ""                   section],section);
+				atomsAutoloadAdd([this_package_name this_package_version section],section);
+			end
+			
 		end
 		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory
@@ -363,8 +375,8 @@ function result = atomsInstall(packages,section)
 		end
 		
 		if copyfile( this_package_archive , archives_directory ) <> 1 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
+			atomsError("error", ..
+				msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
 		end
 		
 		if this_package_details("fromRepository")=="1" then
@@ -373,7 +385,7 @@ function result = atomsInstall(packages,section)
 		
 		// Fill the result matrix
 		// =====================================================================
-		result = [ result ; atomsGetInstalledDetails(this_package_name,this_package_version) ];
+		result = [ result ; atomsGetInstalledDetails([this_package_name this_package_version]) ];
 		
 		// "archive" installation : Save the description
 		// =====================================================================
@@ -395,7 +407,6 @@ function result = atomsInstall(packages,section)
 		
 		// Sucess message if needed
 		// =====================================================================
-		
 		atomsDisp(msprintf(" success\n\n"));
 		
 	end
@@ -413,7 +424,7 @@ function result = atomsInstall(packages,section)
 	
 	for i=1:size( result(:,1) , "*" )
 		
-		packages_out = atomsUpdateDeps(result(i,1),result(i,2),section);
+		packages_out = atomsUpdateDeps([result(i,1) result(i,2)],section);
 		
 		if ATOMSVERBOSE then
 			for j=1:size(packages_out(:,1),"*")
@@ -426,13 +437,24 @@ function result = atomsInstall(packages,section)
 	// Remove orphan packages
 	// =========================================================================
 	
-	orphan_list = atomsOrphanList(section);
-	for i=1:size( orphan_list(:,1) , "*" )
-		atomsRemove( orphan_list(i,1) + " " + orphan_list(i,2) );
+	if section=="all" then
+		sections = ["user";"allusers"];
+	else
+		sections = section;
+	end
+	
+	for i=1:size(sections,"*")
+		
+		orphan_list = atomsOrphanList(sections(i));
+		
+		if ~ isempty(orphan_list) then
+			atomsRemove( [ orphan_list(:,1) orphan_list(:,2) ] , sections(i) );
+		end
+		
 	end
 	
 	// Go to the initial location
 	// =========================================================================
-	chdir(initialpath);
+	chdir(ATOMSINITIALPATH);
 	
 endfunction

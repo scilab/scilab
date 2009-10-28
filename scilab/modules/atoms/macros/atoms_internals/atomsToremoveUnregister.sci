@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of packages to remove
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin

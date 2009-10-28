@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Remove an URL to the list of repositories, and returns
 
 function nbDel = atomsRepositoryDel(url,section)
@@ -16,6 +18,10 @@ function nbDel = atomsRepositoryDel(url,section)
 	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
+	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	rhs   = argn(2);
 	nbDel = 0;
@@ -53,7 +59,7 @@ function nbDel = atomsRepositoryDel(url,section)
 	if rhs == 1 then
 		// By default, add the repository for all users (if we have write access
 		// of course !)
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "all"; 
 		else
 			section = "user";
@@ -69,7 +75,7 @@ function nbDel = atomsRepositoryDel(url,section)
 		end
 		
 		// Check if we have the write access
-		if or(section==["all","allusers"]) & ~ atomsAUWriteAccess() then
+		if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",pathconvert(SCI+"/.atoms")));
 		end
 		

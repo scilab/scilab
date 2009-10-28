@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("flip_flop_logic.dem.sce");
-scicos_demostration(thispath+"/demo_flipflop.cosf");
+//scicos_demostration(thispath+"/demo_flipflop.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/demo_flipflop.cosf");
+
 clear thispath;

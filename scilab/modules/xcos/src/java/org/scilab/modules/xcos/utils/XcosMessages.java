@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.xcos.utils;
 
+import java.io.File;
+
 import org.scilab.modules.localization.Messages;
 
 
@@ -20,7 +22,6 @@ import org.scilab.modules.localization.Messages;
  *
  */
 public final class XcosMessages {
-
     /**
      * Constructor
      */
@@ -94,11 +95,12 @@ public final class XcosMessages {
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
 
     /** Help menu */
-    public static final String HELP = Messages.gettext("Help");
+    public static final String HELP = Messages.gettext("?");
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
+    public static final String XCOS_VERSION = Messages.gettext("Xcos version 1.0");
 
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -153,4 +155,27 @@ public final class XcosMessages {
     public static final String LINK_ERROR_IMPLICIT_OUT = Messages.gettext("Implicit data output port must be connected to implicit data input port");
     public static final String LINK_ERROR_EVENT_IN = Messages.gettext("Command port must be connected to control port");
     public static final String LINK_ERROR_EVENT_OUT = Messages.gettext("control port must be connected to command port");
+
+    public static final String ALIGN_BLOCKS = Messages.gettext("Align Blocks");
+    public static final String ALIGN_LEFT = Messages.gettext("Left");
+    public static final String ALIGN_RIGHT = Messages.gettext("Right");
+    public static final String ALIGN_CENTER = Messages.gettext("Center");
+    public static final String ALIGN_TOP = Messages.gettext("Top");
+    public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
+    public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
+    
+    public static final String BORDER_COLOR = Messages.gettext("Border Color");
+    public static final String FILL_COLOR = Messages.gettext("Fill Color");
+
+    public static final String LINK_STYLE = Messages.gettext("Link Style");
+    public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
+    public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
+    public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
+    
+    /* About box */
+    public static final String VERSION = Messages.gettext("Xcos 1.0");
+    public static final String COPYRIGHT = Messages.gettext("Copyright 2009");
+    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
+    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
+    public static final String LICENSE = Messages.gettext("CeCILL License");
 }

@@ -16,22 +16,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -45,15 +38,14 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.ChangedCharSetException;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.EditorKit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
-import javax.swing.text.EditorKit;
-import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -84,6 +76,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
+import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -92,7 +85,6 @@ import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.IndentAction;
 import org.scilab.modules.xpad.actions.LineNumbersAction;
 import org.scilab.modules.xpad.actions.LoadIntoScilabAction;
-import org.scilab.modules.xpad.actions.ExecuteIntoScilabAction;
 import org.scilab.modules.xpad.actions.NewAction;
 import org.scilab.modules.xpad.actions.OpenAction;
 import org.scilab.modules.xpad.actions.PageSetupAction;
@@ -113,8 +105,8 @@ import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UTF8EncodingAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
-import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
+import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
@@ -128,7 +120,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public class Xpad extends SwingScilabTab implements Tab { 
 
 	private static final long serialVersionUID = -6410183357490518676L;
-
+	
 	private static final String XPAD = "Xpad";
 	private static final String SCI_EXTENSION = ".sci";
 	private static final String SCE_EXTENSION = ".sce";
@@ -137,7 +129,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private static final int BUTTON_SIZE = 17;
 	
 	private static Xpad editor;
-	private static ToolBar toolBar;
 
 	private final Window parentWindow;
 	private JTabbedPane tabPane;
@@ -156,13 +147,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private String fileFullPath = "";
 	
 	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
-	
-	//private static org.scilab.modules.gui.pushbutton.PushButton saveButton; 
-	//private static org.scilab.modules.gui.menuitem.MenuItem undoMenuItem;
-	//private UndoManager undoManager;
-	//private static org.scilab.modules.gui.pushbutton.PushButton undoButton;
-	//private static org.scilab.modules.gui.pushbutton.PushButton redoButton;
-	//private String documentFirstState;
 	
 
 	/**
@@ -185,33 +169,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 						path  =  " ( " + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
-					
-					
-//					textPane.addKeyListener(new KeyListener() {
-//						public void keyPressed(KeyEvent arg0) {}
-//						public void keyReleased(KeyEvent arg0) {}
-//						public void keyTyped(KeyEvent arg0) {
-//							saveButton.setEnabled(true);
-//						}
-//					});
-					
-					
-					
-					//
-//					try {
-//						documentFirstState = textPane.getDocument().getText(0, textPane.getDocument().getLength());
-//					} catch (BadLocationException e1) {
-//						e1.printStackTrace();
-//					}
-//					undoManager = new UndoManager();
-//					textPane.getDocument().addUndoableEditListener(new UndoableEditListener() {
-//						public void undoableEditHappened(UndoableEditEvent e) {
-//							undoManager.addEdit(e.getEdit());
-//							undoButton.setEnabled(undoManager.canUndo());
-//							redoButton.setEnabled(undoManager.canRedo());
-//						}
-//					});
-					
 					
 					// This listener is for 'evaluate selection' of the Execute menu
 					// it enable the menuItem only if something is selected
@@ -299,9 +256,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
-		for (int i = 0; i < editor.getTabPane().getComponentCount(); i++) {
-			editor.closeTabAt(i);
-		}
 		editor = null;
 	}
 
@@ -355,8 +309,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Menu editMenu = ScilabMenu.createMenu();
 		editMenu.setText(XpadMessages.EDIT); 
 		editMenu.setMnemonic('E');
-//		undoMenuItem = UndoAction.createMenu(editorInstance);
-//		editMenu.add(undoMenuItem);
 		editMenu.add(UndoAction.createMenu(editorInstance));
 		editMenu.add(RedoAction.createMenu(editorInstance));
 		editMenu.addSeparator(); 
@@ -424,7 +376,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
 		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
 		executeMenu.add(evaluateSelectionMenuItem);
-		executeMenu.add(ExecuteIntoScilabAction.createMenu(editorInstance));
+		executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -435,26 +387,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 		menuBar.add(helpMenu);
 
 		// Create TOOLBAR
-		toolBar = ScilabToolBar.createToolBar();
+		ToolBar toolBar = ScilabToolBar.createToolBar();
 		toolBar.add(NewAction.createButton(editorInstance)); // NEW
 		toolBar.add(OpenAction.createButton(editorInstance)); // OPEN
 		toolBar.addSeparator();
-//		saveButton = SaveAction.createButton(editorInstance);
-//		toolBar.add(saveButton); // SAVE
 		toolBar.add(SaveAction.createButton(editorInstance)); // SAVE
 		toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
 		toolBar.addSeparator();
 		//toolBar.add(PrintPreviewAction.createButton(editorInstance)); // PRINT PREVIEW
 		toolBar.add(PrintAction.createButton(editorInstance)); // PRINT
 		toolBar.addSeparator();
-//		undoButton = UndoAction.createButton(editorInstance);
-//		toolBar.add(undoButton); // UNDO
-//		redoButton = RedoAction.createButton(editorInstance);
-//		toolBar.add(redoButton); // REDO
-		
 		toolBar.add(UndoAction.createButton(editorInstance));
 		toolBar.add(RedoAction.createButton(editorInstance));
-		
 		toolBar.addSeparator();
 		toolBar.add(CutAction.createButton(editorInstance)); // CUT
 		toolBar.add(CopyAction.createButton(editorInstance)); // COPY
@@ -462,9 +406,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		toolBar.addSeparator();
 		toolBar.add(FindAction.createButton(editorInstance)); // FIND / REPLACE
 
-
 		TextBox infoBar = ScilabTextBox.createTextBox();
-
 
 		editorInstance.setMenuBar(menuBar);
 		editorInstance.setToolBar(toolBar);
@@ -475,48 +417,180 @@ public class Xpad extends SwingScilabTab implements Tab {
 		return editorInstance;
 	}
 
-	/**
-	 * Close current tab (file)
-	 */
-	public void closeCurrentTab() {
-		closeTabAt(tabPane.getSelectedIndex());
-	}
 
 	/**
 	 * Close a tab using its index
 	 * @param indexTab the index of the tab
 	 */
-	public void closeTabAt(int indexTab) {
-		
-		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
+	public boolean closeTabAt(int indexTab) {
 
-		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
-			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.MODIFIED);
-			if (choice == 0) {
-				save(textPaneAt);
-			} else if (choice == 1) {
-				String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-				if(getTextPane().getName() == null) {
-					String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-					tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-					closedTabList.add(Integer.parseInt(closedTabNameIndex));
-				}
-				tabPane.remove(tabPane.getSelectedComponent());
-			} else if (choice == 2) {
-				return;
-			}
-		} else {
-			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
-			if(getTextPane().getName() == null) {
-				String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-				tabList.removeElement(Integer.parseInt(closedTabNameIndex));
-				closedTabList.add(Integer.parseInt(closedTabNameIndex));
-			}
-			tabPane.remove(tabPane.getSelectedComponent());
+		if(newSave(indexTab, false) == false){
+			return false;
 		}
 
+		if(getTextPane().getName() == null) {
+			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
+			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
+			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
+			closedTabList.add(Integer.parseInt(closedTabNameIndex));
+		}
+		tabPane.remove(tabPane.getSelectedComponent());
+
+		return true;
+		
 	}
 
+	public boolean newSave(int indexTab, boolean force){
+
+		boolean newFile = false;
+		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
+		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
+		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified() == false) {
+			return true;
+		}
+
+		if(force == false){
+			switch(JOptionPane.showConfirmDialog(this, editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED))
+			{
+			case 0 : //Yes, continue
+				break;
+			case 1 ://No, exit and returns true
+				return true;
+			case 2 : //Cancel, exit and return false
+				return false;
+			}
+		}
+		String fileToSave = textPaneAt.getName(); 
+		if (fileToSave == null) {
+			
+			newFile = true;
+			//need a filename, call chooseFileToSave
+			fileToSave = chooseFileToSave();
+		}else{
+			//check if the file has been modified by external software
+			fileToSave = checkExternalModification(fileToSave);
+		}
+
+		if(fileToSave == null){
+			return false;
+		}
+
+		File newSavedFile = new File(fileToSave);
+		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+		FileWriter writer;
+		try {
+			writer = new FileWriter(newSavedFile, false);
+			try {
+				editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
+			} catch (BadLocationException e){
+				e.printStackTrace();
+			}
+			writer.flush();
+			writer.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(newFile){
+			ConfigManager.saveLastOpenedDirectory(newSavedFile.getPath());
+			ConfigXpadManager.saveToRecentOpenedFiles(newSavedFile.getPath());
+			textPaneAt.setName(newSavedFile.getPath());
+			updateRecentOpenedFilesMenu();
+		}
+
+		styledDocument.setContentModified(false);
+
+		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
+		editor.setTitle(newSavedFile.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = newSavedFile.getAbsolutePath();
+		lastKnownSavedState = System.currentTimeMillis();
+		return true;
+	}
+	
+	/**
+	 * Save a file
+	 * @param textPane the textPane containing the file contents
+	 * @return execution status
+	 */
+	public String checkExternalModification(String filename) {
+		File newSavedFiled = new File(filename);
+		
+		if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
+			int actionDialog = JOptionPane.showConfirmDialog(this
+				, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath())
+						 ,XpadMessages.REPLACE_FILE_TITLE, JOptionPane.YES_NO_OPTION);
+			if (actionDialog == JOptionPane.NO_OPTION) {
+				return chooseFileToSave();
+			}
+		}
+		return filename;
+	}
+	
+	public String chooseFileToSave(){
+		String extension = new String();
+
+		String initialDirectoryPath = getTextPane().getName();
+		if (initialDirectoryPath == null) {
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
+		}
+
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
+
+		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+
+		fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
+		fileChooser .setAcceptAllFileFilterUsed(true);
+		fileChooser .setInitialDirectory(initialDirectoryPath);
+		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
+		fileChooser.addChoosableFileFilter(scxFilter);
+		fileChooser.addChoosableFileFilter(sceFilter);
+		fileChooser.addChoosableFileFilter(sciFilter);
+
+		int retval = fileChooser.showSaveDialog(this);
+
+		if (retval == JFileChooser.APPROVE_OPTION) {
+			File f = fileChooser.getSelectedFile();
+			initialDirectoryPath = f.getPath();
+			if (f.exists()) {
+				int actionDialog = JOptionPane.showConfirmDialog(this, XpadMessages.REPLACE_FILE_TITLE, 
+						XpadMessages.FILE_ALREADY_EXIST, JOptionPane.YES_NO_OPTION);
+				if (actionDialog == JOptionPane.NO_OPTION) {
+					return chooseFileToSave();
+				}
+			}
+
+			/*we test if the file has already a scilab extension*/
+			boolean hasNoExtension = true;
+
+			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
+				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
+					hasNoExtension = false;
+					break;
+				}
+
+			}
+			/*if no extension , we add it */
+			if (hasNoExtension) {
+
+				if (fileChooser.getFileFilter() == sciFilter) {
+					extension = SCI_EXTENSION;
+				} else if (fileChooser.getFileFilter() == sceFilter) {
+					extension = SCE_EXTENSION;
+				} else if (fileChooser.getFileFilter() == scxFilter) {
+					extension = SCE_EXTENSION;
+				} else {
+					extension = "";
+				}
+				return f.getPath() + extension;
+			}
+			return f.getPath();
+		}
+		return null;
+	}
 
 	/**
 	 * Save a file
@@ -538,7 +612,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 						return this.saveAs(this.getTextPane());
 					}
 				}
-				String doc = textPane.getText();
+				
 				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 				FileWriter writer = new FileWriter(newSavedFiled, false);
 				try {
@@ -556,7 +630,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = newSavedFiled.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -564,7 +638,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 		} else {
 			isSuccess = saveAs(textPane); 
-			//saveButton.setEnabled(isSuccess);
 		}
 		lastKnownSavedState = System.currentTimeMillis();
 		return isSuccess;
@@ -664,7 +737,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				lastKnownSavedState = System.currentTimeMillis();
 				isSuccess = true;
 				
-				// Get current file path for Execute into Scilab
+				// Get current file path for Execute file into Scilab 
 				fileFullPath = f.getAbsolutePath();
 
 			} catch (IOException ioex) {
@@ -738,33 +811,24 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void undo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
 		UndoManager undo = doc.getUndoManager();
-
-		String documentState = textPane.getText();
-
-		//if (!(documentFirstState.equals(documentState))) {
-			//undoButton.setEnabled(true);
-			if (undo.canUndo()) {
-				try {
-					System.out.println(undo.canUndo());
-					System.err.println("Will undo " + undo.getUndoPresentationName());
-					undo.undo();
-					if(!undo.canUndo()){ // remove "*" prefix from tab name
-						JTabbedPane current = getTabPane();
-						int index = current.getSelectedIndex();
-						String namePrefixedByStar = current.getTitleAt(index);
-						current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
-						doc.setContentModified(false);
-					}			
-					repaint();
-
-				} catch (CannotUndoException ex) {
-					System.out.println("Unable to undo: " + ex);
-					ex.printStackTrace();
-				}
-			} 
-//		} else {
-//			undoButton.setEnabled(false);
-//		}
+		if (undo.canUndo()) {
+			try {
+				System.out.println(undo.canUndo());
+				System.err.println("Will undo " + undo.getUndoPresentationName());
+				undo.undo();
+				if(!undo.canUndo()){ // remove "*" prefix from tab name
+					JTabbedPane current = getTabPane();
+					int index = current.getSelectedIndex();
+					String namePrefixedByStar = current.getTitleAt(index);
+					current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
+					doc.setContentModified(false);
+				}			
+				repaint();
+			} catch (CannotUndoException ex) {
+				System.out.println("Unable to undo: " + ex);
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -772,23 +836,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public void redo() {
 		UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		
-		String documentState = textPane.getText();
-
-//		if (!(documentFirstState.equals(documentState))) {
-//			redoButton.setEnabled(true);
-			if (redo.canRedo()) {
-				try {
-					System.err.println("Will redo " + redo.getRedoPresentationName());
-					redo.redo();
-				} catch (CannotRedoException ex) {
-					System.out.println("Unable to redo: " + ex);
-					ex.printStackTrace();
-				}
+		if (redo.canRedo()) {
+			try {
+				System.err.println("Will redo " + redo.getRedoPresentationName());
+				redo.redo();
+			} catch (CannotRedoException ex) {
+				System.out.println("Unable to redo: " + ex);
+				ex.printStackTrace();
 			}
-//		} else {
-//			redoButton.setEnabled(false);
-//		}
+		}
 	}
 
 	/**
@@ -796,10 +852,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param f the file to open
 	 */
 	public void readFile(File f) {
+
 		/** Is this file already opened */
 		boolean alreadyOpened = false;
 		for (int i = 0; i < tabPane.getTabCount(); i++) {
-			JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(i)).getViewport().getComponent(0);
+			JTextPane  textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(i)).getViewport().getComponent(0);
 			if (f.getAbsolutePath().equals(textPaneAt.getName())) {
 				/* File is already opnened */
 				tabPane.setSelectedIndex(i);
@@ -812,8 +869,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
 		}
+		
+		// Get current file path for Execute file into Scilab 
+		fileFullPath = f.getAbsolutePath();
+		
+		// If the file is a binary one, editor is in read-only mode
+		boolean binary;
+		binary = isBinaryFile(f);
+		if (binary == true) {
+			this.textPane.setEditable(false);
+		}
 	}
-
+	
 	/**
 	 * Load a file inside Xpad
 	 * @param f the file to open
@@ -842,6 +909,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 			}
 		}
+		
+		// If the file is a binary one, editor is in read-only mode
+		boolean binary;
+		binary = isBinaryFile(f);
+		if (binary == true) {
+			this.textPane.setEditable(false);
+		} 
 	}
 
 	/**
@@ -976,6 +1050,51 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
+	
+	public String getFileFullPath() {
+		return fileFullPath;
+	}
+	
+	/**
+	 * Tells if input file is binary or not 
+	 * @param file
+	 * @return boolean if the file is an binary file or not
+	 */
+	public boolean isBinaryFile(File file) {
+
+		byte[] byte_buffer = new byte[(int) file.length()];
+		FileInputStream fis = null;
+
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			return false;
+		}
+
+		try {
+			int file_bytes = (int) file.length();
+			try {
+				file_bytes = fis.read(byte_buffer, 0, file_bytes);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (file_bytes == -1)
+				return false;
+			for (int i = 0; i != file_bytes; i++) {
+				if (byte_buffer[i] < 0)
+					return true;
+			}
+			return false;
+		} finally {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 	/**
 	 * Button displayed on top of tabs
@@ -1038,21 +1157,28 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	   
 		public void readFile(File f) {
-			/* First try to open file before creating tab */
 			getInfoBar().setText("Loading...");
-			StringBuilder contents = new StringBuilder();
-			JTextPane theTextPane = addTab(f.getName()); 
-			String eof = System.getProperty("line.separator");
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-			System.out.println("File = " + f.getAbsolutePath());
-			theTextPane.setName(f.getAbsolutePath());
-			try {
+			
+			ScilabStyleDocument styleDocument = null;
+			JTextPane theTextPane;
+			
+			// File exist
+			if (f.exists()) {
+				theTextPane = addTab(f.getName()); 
+				styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+
+				try {
 					synchronized (styleDocument) {
 						styleDocument.disableUpdaters();
 						boolean indentMode= styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
-							editorKit.read(new BufferedReader(new FileReader(f)), styleDocument, 0);
+							try {
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8")), styleDocument, 0);
+							} catch(ChangedCharSetException e) {
+								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+							}
+
 						} catch (BadLocationException e) {
 							System.err.println("");
 							e.printStackTrace();
@@ -1062,39 +1188,69 @@ public class Xpad extends SwingScilabTab implements Tab {
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.enableUpdaters();
 					}
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				} catch (IOException ioex) {
+					ioex.printStackTrace();
+				}
+				
+				System.out.println("File = " + f.getAbsolutePath());
+				theTextPane.setName(f.getAbsolutePath());
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
-				// Empty the undo Manager
-				UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-				undo.discardAllEdits();
+			// File does not exist	
+			} else {
+				theTextPane = addEmptyTab(); 
+				System.out.println("File = " + f.getAbsolutePath());
 				
-			} catch (IOException ioex) {
+				int choice = JOptionPane.showConfirmDialog(
+						editor,
+						String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()),
+						"Editor",
+						JOptionPane.YES_NO_OPTION);
 
-				int choice = JOptionPane.showConfirmDialog(editor, String.format(XpadMessages.FILE_DOESNT_EXIST,f.getAbsolutePath()));
 				if (choice  == 0) {
+					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+					FileWriter writer = null;
 					try {
-						FileWriter writer = new FileWriter(f);
-						writer.write("");
+						writer = new FileWriter(f);
+						try {
+							editorKit.write(writer, styleDocument, 0, styleDocument.getLength());
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
 						writer.flush();
 						writer.close();
-
-						readFile(f);
-					} catch (IOException ioexc) {
-						JOptionPane.showMessageDialog(editor , ioexc);
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
+
+					ConfigManager.saveLastOpenedDirectory(f.getPath());
+					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+					theTextPane.setName(f.getPath());
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+					editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+					updateRecentOpenedFilesMenu();
+
+					styleDocument.setContentModified(false);
+					lastKnownSavedState = System.currentTimeMillis();
+
+					// Get current file path for Execute file into Scilab 
+					fileFullPath = f.getAbsolutePath();
+
+					getInfoBar().setText("");
+				} else {
+					getInfoBar().setText("");
 				}	
 			}
+			
+			// Empty the undo Manager
+			UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
+			undo.discardAllEdits();
+			
 			synchronized (synchro) {
 				synchro.notify();
 			}
 		}
-
 	}
-
-	public String getFileFullPath() {
-		return fileFullPath;
-	}
-
 }

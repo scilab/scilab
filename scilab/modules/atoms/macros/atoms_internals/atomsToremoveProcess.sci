@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of packages to remove
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
@@ -70,8 +72,8 @@ function atomsToremoveProcess(section)
 	// And now action
 	// =========================================================================
 	for i=1:size(toremove,:)
-		if atomsIsInstalled(toremove(i,1),toremove(i,2)) then
-			atomsRemove(toremove(i,1)+" "+toremove(i,2),section);
+		if atomsIsInstalled([toremove(i,1) toremove(i,2)]) then
+			atomsRemove([toremove(i,1) toremove(i,2)],section);
 		end
 	end
 	

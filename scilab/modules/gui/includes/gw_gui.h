@@ -54,6 +54,7 @@ GUI_IMPEXP int sci_usecanvas(char *fname,unsigned long l);
 GUI_IMPEXP int sci_displaytree(char *fname,unsigned long l);
 GUI_IMPEXP int sci_uiputfile( char * fname, unsigned long fname_len ) ;
 GUI_IMPEXP int sci_raise_window ( char * fname, unsigned long fname_len ) ;
+GUI_IMPEXP int sci_about ( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

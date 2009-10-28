@@ -37,6 +37,7 @@ Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; C
 ;
 Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\images\blocks\*.gif; DestDir: {app}\modules\{#XCOS}\images\blocks; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\images\palettes\*.jpg; DestDir: {app}\modules\{#XCOS}\images\palettes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}

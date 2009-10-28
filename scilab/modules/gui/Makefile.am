@@ -194,7 +194,8 @@ sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
-sci_gateway/cpp/sci_uiputfile.cpp
+sci_gateway/cpp/sci_uiputfile.cpp \
+sci_gateway/cpp/sci_about.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -309,7 +310,8 @@ images/icons/edit-find-replace.png \
 images/icons/edit-find.png \
 images/icons/edit-redo.png \
 images/icons/edit-undo.png \
-images/icons/media-floppy.png
+images/icons/media-floppy.png \
+images/icons/aboutscilab.png
 
 
 if GUI

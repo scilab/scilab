@@ -65,4 +65,10 @@ nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
 
+//
+// Load this script into the editor
+//
+filename = 'neldermead_outputcmd.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

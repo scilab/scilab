@@ -647,5 +647,6 @@
           <parameter type="boolean" name="onOrOff"/>
         </method>      
 	<method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
+	<method name="scilabAboutBox" returnType="void" modifier="static"/>
   </object>
 </package>

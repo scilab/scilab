@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// End user function
+// Internal function
 
 // display of the available toolboxes
 
@@ -41,8 +41,8 @@ function packages = atomsOrphanList(section)
 	installed_list = atomsGetInstalled(section);
 	
 	for i=1:size(installed_list(:,1),"*")
-		if isempty( atomsGetDepParents(installed_list(i,1),installed_list(i,2)) ) ..
-			& (atomsGetInstalledStatus(installed_list(i,1),installed_list(i,2)) == "A") then
+		if isempty( atomsGetDepParents([installed_list(i,1) installed_list(i,2)] , section )) ..
+			& (atomsGetInstalledStatus([installed_list(i,1) installed_list(i,2)],section) == "A") then
 			packages = [ packages ; installed_list(i,:) ];
 		end
 	end

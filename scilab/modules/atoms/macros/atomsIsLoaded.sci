@@ -21,7 +21,7 @@
 //                 . Matrix of string (n x 1)
 //                 . mandatory
 
-function [res,version_out] = atomsIsLoaded(name,version)
+function [res,version_out] = atomsIsLoaded(packages)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -37,74 +37,60 @@ function [res,version_out] = atomsIsLoaded(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsLoaded",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsLoaded",1));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsLoaded",1));
 	end
 	
-	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsLoaded",2));
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsLoaded",1));
 	end
 	
-	// name and version must have the same size
+	// If packages is mx1 matrix, add a 2nd column with empty versions
 	// =========================================================================
 	
-	if rhs>1 & version<>[] & or(size(name)<>size(version)) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsLoaded",1,2));
-	end
-	
-	// Value of version if not precised
-	// =========================================================================
-	
-	if rhs < 2 then
-		version = [];
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetLoaded();
+	loadedpackages = atomsGetLoaded();
 	
 	// Loop on name
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
+		
+		name    = packages(i,1);
+		version = packages(i,2);
 		
 		if isempty(version) then
 			// Just check the name
-			res(i) = or(packages(:,1) == name(i));
+			res(i) = or(loadedpackages(:,1) == name);
 			
 		else
 			// Filter on names
-			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
+			packages_version = loadedpackages( find(loadedpackages(:,1) == name) , 2 );
 			
-			// Check if the wanted version is present$
-			res(i) = or(packages_version == version(i) );
+			// Check if the wanted version is present
+			res(i) = or(packages_version == version);
 		end
 		
 		if lhs>1 then
 			if res(i) then
-				version_out(i) = packages( find(packages(:,1) == name(i)) , 2 )
+				version_out(i) = loadedpackages( find(loadedpackages(:,1) == name) , 2 )
 			else
 				version_out(i) = "";
 			end
 		end
 		
-	end
-	
-	// Reshape the matrix [res]
-	// =========================================================================
-	res = matrix(res,size(name) );
-	
-	// Reshape the matrix [version_out]
-	// =========================================================================
-	if lhs > 1
-		version_out = matrix(version_out,size(name) );
 	end
 	
 endfunction

@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Add an URL to the list of repositories, and returns
 
 function nbAdd = atomsRepositoryAdd(url,section)
@@ -16,6 +18,10 @@ function nbAdd = atomsRepositoryAdd(url,section)
 	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
+	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
 	
 	rhs                    = argn(2);
 	nbAdd                = 0;
@@ -52,7 +58,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 	// =========================================================================
 	
 	if rhs <= 1 then
-		if atomsAUWriteAccess() then
+		if ATOMSALLUSERSWRITEACCESS then
 			section = "allusers"; 
 		else
 			section = "user";
@@ -72,7 +78,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 		end
 		
 		// Check if we have the write access
-		if (section=="allusers") & ~atomsAUWriteAccess() then
+		if (section=="allusers") & ~ATOMSALLUSERSWRITEACCESS then
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryAdd",2,pathconvert(SCI+"/.atoms")));
 		end
 		

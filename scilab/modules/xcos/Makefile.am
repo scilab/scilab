@@ -20,8 +20,9 @@ libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xcos : init scripts ####
 libscixcos_la_etcdir = $(mydatadir)/etc
-libscixcos_la_etc_DATA = etc/xcos.quit \
-etc/xcos.start
+libscixcos_la_etc_DATA =	etc/xcos.quit \
+				etc/xcos.start \
+				etc/Xcos-style.xml
 
 XCOS_C_SOURCES = 
 
@@ -29,7 +30,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Signal.cpp \
-			src/jni/Signal.hxx
+			src/jni/Signal.hxx \
+			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 src/jni/XcosUtils.giws.xml
@@ -48,6 +50,7 @@ libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes	
 
@@ -59,7 +62,8 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-                        -I$(top_srcdir)/modules/scicos_blocks/src/jni \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 # Without the xcos module 
@@ -96,11 +100,377 @@ libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 
 
-#### xcos : include files ####
-libscixcos_la_includedir=$(pkgincludedir)/xcos
-libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h \
-includes/callxcos.h
+#### xcos : images files ####
+libscixcos_la_imagesdir=$(mydatadir)/
+nobase_libscixcos_la_images_DATA = images/blocks/ABS_VALUE.gif \
+images/blocks/ABSBLK_f.gif \
+images/blocks/ANDBLK.gif \
+images/blocks/ANDLOG_f.gif \
+images/blocks/AUTOMAT.gif \
+images/blocks/Bache.gif \
+images/blocks/BACKLASH.gif \
+images/blocks/BOUNCE.gif \
+images/blocks/BOUNCEXY.gif \
+images/blocks/BPLATFORM.gif \
+images/blocks/c_block.gif \
+images/blocks/CANIMXY.gif \
+images/blocks/CANIMXY3D.gif \
+images/blocks/CBLOCK.gif \
+images/blocks/CEVENTSCOPE.gif \
+images/blocks/CFSCOPE.gif \
+images/blocks/CLINDUMMY_f.gif \
+images/blocks/CLKFROM.gif \
+images/blocks/CLKGOTO.gif \
+images/blocks/CLKOUT_f.gif \
+images/blocks/CLKOUTV_f.gif \
+images/blocks/CLKSPLIT_f.gif \
+images/blocks/CLOCK_c.gif \
+images/blocks/CLOCK_f.gif \
+images/blocks/CLR.gif \
+images/blocks/CLSS.gif \
+images/blocks/CMAT3D.gif \
+images/blocks/CMATVIEW.gif \
+images/blocks/CMSCOPE.gif \
+images/blocks/CONSTRAINT_f.gif \
+images/blocks/COSBLK_f.gif \
+images/blocks/CSCOPE.gif \
+images/blocks/CSCOPXY.gif \
+images/blocks/CSCOPXY3D.gif \
+images/blocks/CUMSUM.gif \
+images/blocks/CurrentSensor.gif \
+images/blocks/DEADBAND.gif \
+images/blocks/DEBUG_SCICOS.gif \
+images/blocks/DELAY_f.gif \
+images/blocks/DELAYV_f.gif \
+images/blocks/DEMUX_f.gif \
+images/blocks/DERIV.gif \
+images/blocks/DIFF_f.gif \
+images/blocks/DLR.gif \
+images/blocks/DLRADAPT_f.gif \
+images/blocks/DLSS.gif \
+images/blocks/DOLLAR_f.gif \
+images/blocks/DOLLAR_m.gif \
+images/blocks/EDGE_TRIGGER.gif \
+images/blocks/EDGETRIGGER.gif \
+images/blocks/END_c.gif \
+images/blocks/ENDBLK.gif \
+images/blocks/ESELECT_f.gif \
+images/blocks/EVTDLY_c.gif \
+images/blocks/EVTDLY_f.gif \
+images/blocks/EVTVARDLY.gif \
+images/blocks/EXPBLK_m.gif \
+images/blocks/EXPRESSION.gif \
+images/blocks/EXTRACT.gif \
+images/blocks/Extract_Activation.gif \
+images/blocks/EXTRACTOR.gif \
+images/blocks/EXTTRI.gif \
+images/blocks/fortran_block.gif \
+images/blocks/freq_div.gif \
+images/blocks/FROM.gif \
+images/blocks/FROMMO.gif \
+images/blocks/FROMWS_c.gif \
+images/blocks/FROMWSB.gif \
+images/blocks/GAINBLK.gif \
+images/blocks/GAINBLK_f.gif \
+images/blocks/GENERAL_f.gif \
+images/blocks/generic_block.gif \
+images/blocks/generic_block3.gif \
+images/blocks/GENSIN_f.gif \
+images/blocks/GENSQR_f.gif \
+images/blocks/GOTO.gif \
+images/blocks/GOTOMO.gif \
+images/blocks/Ground.gif \
+images/blocks/HALT_f.gif \
+images/blocks/HYSTHERESIS.gif \
+images/blocks/IFTHEL_f.gif \
+images/blocks/IN_f.gif \
+images/blocks/INTEGRAL_f.gif \
+images/blocks/INTEGRAL_m.gif \
+images/blocks/INTMUL.gif \
+images/blocks/INTRP2BLK_f.gif \
+images/blocks/INTRPLBLK_f.gif \
+images/blocks/INVBLK.gif \
+images/blocks/ISELECT_m.gif \
+images/blocks/LOGBLK_f.gif \
+images/blocks/LOGIC.gif \
+images/blocks/M_freq.gif \
+images/blocks/MATBKSL.gif \
+images/blocks/MATCATH.gif \
+images/blocks/MATCATV.gif \
+images/blocks/MATDET.gif \
+images/blocks/MATDIAG.gif \
+images/blocks/MATDIV.gif \
+images/blocks/MATEIG.gif \
+images/blocks/MATEXPM.gif \
+images/blocks/MATINV.gif \
+images/blocks/MATLU.gif \
+images/blocks/MATMAGPHI.gif \
+images/blocks/MATMUL.gif \
+images/blocks/MATPINV.gif \
+images/blocks/MATRESH.gif \
+images/blocks/MATSING.gif \
+images/blocks/MATSUM.gif \
+images/blocks/MATTRAN.gif \
+images/blocks/MATZCONJ.gif \
+images/blocks/MATZREIM.gif \
+images/blocks/MAX_f.gif \
+images/blocks/MBLOCK.gif \
+images/blocks/MCLOCK_f.gif \
+images/blocks/MEMORY_f.gif \
+images/blocks/MFCLCK_f.gif \
+images/blocks/MIN_f.gif \
+images/blocks/MUX_f.gif \
+images/blocks/NEGTOPOS_f.gif \
+images/blocks/OUT_f.gif \
+images/blocks/PerteDP.gif \
+images/blocks/PID.gif \
+images/blocks/POSTONEG_f.gif \
+images/blocks/PotentialSensor.gif \
+images/blocks/POWBLK_f.gif \
+images/blocks/PROD_f.gif \
+images/blocks/QUANT_f.gif \
+images/blocks/RAMP.gif \
+images/blocks/RAND_f.gif \
+images/blocks/RAND_m.gif \
+images/blocks/RATELIMITER.gif \
+images/blocks/READAU_f.gif \
+images/blocks/READC_f.gif \
+images/blocks/RELAY_f.gif \
+images/blocks/RFILE_f.gif \
+images/blocks/RICC.gif \
+images/blocks/ROOTCOEF.gif \
+images/blocks/SAMPHOLD_m.gif \
+images/blocks/SampleCLK.gif \
+images/blocks/SAT_f.gif \
+images/blocks/SATURATION.gif \
+images/blocks/SAWTOOTH_f.gif \
+images/blocks/SCALAR2VECTOR.gif \
+images/blocks/scifunc_block_m.gif \
+images/blocks/SELECT_m.gif \
+images/blocks/SIGNUM.gif \
+images/blocks/SINBLK_f.gif \
+images/blocks/SPLIT_f.gif \
+images/blocks/SQRT.gif \
+images/blocks/STEP_FUNCTION.gif \
+images/blocks/SUBMAT.gif \
+images/blocks/SUPER_f.gif \
+images/blocks/Switch.gif \
+images/blocks/SWITCH2_m.gif \
+images/blocks/TANBLK_f.gif \
+images/blocks/TCLSS.gif \
+images/blocks/TIME_DELAY.gif \
+images/blocks/TIME_f.gif \
+images/blocks/TKSCALE.gif \
+images/blocks/TOWS_c.gif \
+images/blocks/TRASH_f.gif \
+images/blocks/VanneReglante.gif \
+images/blocks/VARIABLE_DELAY.gif \
+images/blocks/VariableResistor.gif \
+images/blocks/VoltageSensor.gif \
+images/blocks/WFILE_f.gif \
+images/blocks/WRITEAU_f.gif \
+images/blocks/WRITEC_f.gif \
+images/blocks/ZCROSS_f.gif \
+images/icons/document-new.png \
+images/icons/document-open.png \
+images/icons/document-print.png \
+images/icons/document-save.png \
+images/icons/edit-copy.png \
+images/icons/edit-cut.png \
+images/icons/edit-delete.png \
+images/icons/edit-paste.png \
+images/icons/edit-redo.png \
+images/icons/edit-undo.png \
+images/icons/list-add.png \
+images/icons/list-remove.png \
+images/icons/media-playback-start.png \
+images/icons/process-stop.png \
+images/icons/view-fullscreen.png \
+images/palettes/ABS_VALUE.jpg \
+images/palettes/AFFICH_m.jpg \
+images/palettes/ANDBLK.jpg \
+images/palettes/ANDLOG_f.jpg \
+images/palettes/AUTOMAT.jpg \
+images/palettes/Bache.jpg \
+images/palettes/BACKLASH.jpg \
+images/palettes/BIGSOM_f.jpg \
+images/palettes/BITCLEAR.jpg \
+images/palettes/BITSET.jpg \
+images/palettes/BOUNCE.jpg \
+images/palettes/BOUNCEXY.jpg \
+images/palettes/BPLATFORM.jpg \
+images/palettes/c_block.jpg \
+images/palettes/CANIMXY.jpg \
+images/palettes/CANIMXY3D.jpg \
+images/palettes/CBLOCK.jpg \
+images/palettes/CEVENTSCOPE.jpg \
+images/palettes/CFSCOPE.jpg \
+images/palettes/CLINDUMMY_f.jpg \
+images/palettes/CLKFROM.jpg \
+images/palettes/CLKGOTO.jpg \
+images/palettes/CLKGotoTagVisibility.jpg \
+images/palettes/CLKINV_f.jpg \
+images/palettes/CLKOUTV_f.jpg \
+images/palettes/CLKSOMV_f.jpg \
+images/palettes/CLOCK_c.jpg \
+images/palettes/CLR.jpg \
+images/palettes/CLSS.jpg \
+images/palettes/CMAT3D.jpg \
+images/palettes/CMATVIEW.jpg \
+images/palettes/CMSCOPE.jpg \
+images/palettes/CONST_m.jpg \
+images/palettes/CONSTRAINT_f.jpg \
+images/palettes/CONVERT.jpg \
+images/palettes/COSBLK_f.jpg \
+images/palettes/Counter.jpg \
+images/palettes/CSCOPE.jpg \
+images/palettes/CSCOPXY.jpg \
+images/palettes/CSCOPXY3D.jpg \
+images/palettes/CUMSUM.jpg \
+images/palettes/CurrentSensor.jpg \
+images/palettes/DEADBAND.jpg \
+images/palettes/DELAY_f.jpg \
+images/palettes/DELAYV_f.jpg \
+images/palettes/DEMUX.jpg \
+images/palettes/DERIV.jpg \
+images/palettes/DFLIPFLOP.jpg \
+images/palettes/DLATCH.jpg \
+images/palettes/DLR.jpg \
+images/palettes/DLRADAPT_f.jpg \
+images/palettes/DLSS.jpg \
+images/palettes/DOLLAR_f.jpg \
+images/palettes/EDGE_TRIGGER.jpg \
+images/palettes/ESELECT_f.jpg \
+images/palettes/EVTDLY_c.jpg \
+images/palettes/EVTGEN_f.jpg \
+images/palettes/EVTVARDLY.jpg \
+images/palettes/EXPBLK_m.jpg \
+images/palettes/EXPRESSION.jpg \
+images/palettes/EXTRACT.jpg \
+images/palettes/Extract_Activation.jpg \
+images/palettes/EXTRACTBITS.jpg \
+images/palettes/EXTRACTOR.jpg \
+images/palettes/EXTTRI.jpg \
+images/palettes/fortran_block.jpg \
+images/palettes/freq_div.jpg \
+images/palettes/FROM.jpg \
+images/palettes/FROMMO.jpg \
+images/palettes/FROMWSB.jpg \
+images/palettes/GAINBLK_f.jpg \
+images/palettes/GENERAL_f.jpg \
+images/palettes/generic_block3.jpg \
+images/palettes/GENSIN_f.jpg \
+images/palettes/GENSQR_f.jpg \
+images/palettes/GOTO.jpg \
+images/palettes/GOTOMO.jpg \
+images/palettes/GotoTagVisibility.jpg \
+images/palettes/GotoTagVisibilityMO.jpg \
+images/palettes/HALT_f.jpg \
+images/palettes/HYSTHERESIS.jpg \
+images/palettes/IFTHEL_f.jpg \
+images/palettes/IN_f.jpg \
+images/palettes/INIMPL_f.jpg \
+images/palettes/INTEGRAL_f.jpg \
+images/palettes/INTEGRAL_m.jpg \
+images/palettes/INTMUL.jpg \
+images/palettes/INTRP2BLK_f.jpg \
+images/palettes/INTRPLBLK_f.jpg \
+images/palettes/INVBLK.jpg \
+images/palettes/ISELECT_m.jpg \
+images/palettes/JKFLIPFLOP.jpg \
+images/palettes/LOGBLK_f.jpg \
+images/palettes/LOGIC.jpg \
+images/palettes/LOGICAL_OP.jpg \
+images/palettes/M_freq.jpg \
+images/palettes/M_SWITCH.jpg \
+images/palettes/MATBKSL.jpg \
+images/palettes/MATCATH.jpg \
+images/palettes/MATCATV.jpg \
+images/palettes/MATDET.jpg \
+images/palettes/MATDIAG.jpg \
+images/palettes/MATDIV.jpg \
+images/palettes/MATEIG.jpg \
+images/palettes/MATEXPM.jpg \
+images/palettes/MATINV.jpg \
+images/palettes/MATLU.jpg \
+images/palettes/MATMAGPHI.jpg \
+images/palettes/MATMUL.jpg \
+images/palettes/MATPINV.jpg \
+images/palettes/MATRESH.jpg \
+images/palettes/MATSING.jpg \
+images/palettes/MATSUM.jpg \
+images/palettes/MATTRAN.jpg \
+images/palettes/MATZCONJ.jpg \
+images/palettes/MATZREIM.jpg \
+images/palettes/MAX_f.jpg \
+images/palettes/MAXMIN.jpg \
+images/palettes/MBLOCK.jpg \
+images/palettes/MCLOCK_f.jpg \
+images/palettes/MFCLCK_f.jpg \
+images/palettes/MIN_f.jpg \
+images/palettes/Modulo_Count.jpg \
+images/palettes/MUX.jpg \
+images/palettes/NEGTOPOS_f.jpg \
+images/palettes/NRMSOM_f.jpg \
+images/palettes/OpAmp.jpg \
+images/palettes/OUT_f.jpg \
+images/palettes/OUTIMPL_f.jpg \
+images/palettes/PDE.jpg \
+images/palettes/PerteDP.jpg \
+images/palettes/PID.jpg \
+images/palettes/POSTONEG_f.jpg \
+images/palettes/PotentialSensor.jpg \
+images/palettes/POWBLK_f.jpg \
+images/palettes/PROD_f.jpg \
+images/palettes/PRODUCT.jpg \
+images/palettes/QUANT_f.jpg \
+images/palettes/RAMP.jpg \
+images/palettes/RAND_m.jpg \
+images/palettes/RATELIMITER.jpg \
+images/palettes/READAU_f.jpg \
+images/palettes/READC_f.jpg \
+images/palettes/REGISTER.jpg \
+images/palettes/RELATIONALOP.jpg \
+images/palettes/RELAY_f.jpg \
+images/palettes/RFILE_f.jpg \
+images/palettes/RICC.jpg \
+images/palettes/ROOTCOEF.jpg \
+images/palettes/SAMPHOLD_m.jpg \
+images/palettes/SATURATION.jpg \
+images/palettes/SAWTOOTH_f.jpg \
+images/palettes/scifunc_block_m.jpg \
+images/palettes/SELECT_m.jpg \
+images/palettes/SHIFT.jpg \
+images/palettes/SIGNUM.jpg \
+images/palettes/SINBLK_f.jpg \
+images/palettes/SineVoltage.jpg \
+images/palettes/SQRT.jpg \
+images/palettes/SRFLIPFLOP.jpg \
+images/palettes/STEP_FUNCTION.jpg \
+images/palettes/SUBMAT.jpg \
+images/palettes/SUM_f.jpg \
+images/palettes/SUMMATION.jpg \
+images/palettes/SUPER_f.jpg \
+images/palettes/SWITCH2_m.jpg \
+images/palettes/SWITCH_f.jpg \
+images/palettes/TANBLK_f.jpg \
+images/palettes/TCLSS.jpg \
+images/palettes/TEXT_f.jpg \
+images/palettes/TIME_DELAY.jpg \
+images/palettes/TIME_f.jpg \
+images/palettes/TKSCALE.jpg \
+images/palettes/TOWS_c.jpg \
+images/palettes/TRASH_f.jpg \
+images/palettes/TrigFun.jpg \
+images/palettes/VanneReglante.jpg \
+images/palettes/VARIABLE_DELAY.jpg \
+images/palettes/VoltageSensor.jpg \
+images/palettes/VsourceAC.jpg \
+images/palettes/VVsourceAC.jpg \
+images/palettes/WFILE_f.jpg \
+images/palettes/WRITEAU_f.jpg \
+images/palettes/WRITEC_f.jpg \
+images/palettes/ZCROSS_f.jpg
 
 if GUI
 if HDF5
@@ -109,4 +479,3 @@ endif
 endif
 
 include $(top_srcdir)/Makefile.incl.am
-

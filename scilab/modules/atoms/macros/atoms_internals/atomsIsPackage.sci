@@ -11,7 +11,7 @@
 
 // Return true if the package is a valid package or not
 
-function result = atomsIsPackage(package_names,package_versions)
+function result = atomsIsPackage(packages)
 	
 	// Initialize
 	// =========================================================================
@@ -21,20 +21,22 @@ function result = atomsIsPackage(package_names,package_versions)
 	// =========================================================================
 	rhs  = argn(2);
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsPackage",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsPackage",1));
 	end
 	
-	if type(package_names) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsPackage",1));
 	end
 	
-	if (rhs == 2) & type(package_versions) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsPackage",1));
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsPackage",1));
 	end
 	
-	if (rhs == 2) & or( size(package_names) <> size(package_versions) ) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsPackage",1,2));
+	// If packages is mx1 matrix, add a 2nd column with empty versions
+	// =========================================================================
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
 	// Get all package description
@@ -44,26 +46,19 @@ function result = atomsIsPackage(package_names,package_versions)
 	// Loop on packages
 	// =========================================================================
 	
-	for i=1:size(package_names,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		result(i) = %F;
-		
-		if rhs == 1 then
-			version = "";
-		else
-			version = package_versions(i);
-		end
+		result(i) = %F,
+		name      = packages(i,1);
+		version   = packages(i,2);
 		
 		// 1st case : just test the name, not the version
-		if isempty(version) & isfield(allpackages,package_names(i)) then
+		if isempty(version) & isfield(allpackages,name) then
 			result(i) = %T;
 		
 		// 2nd case : Check a specific version
-		elseif isfield(allpackages,package_names(i)) then
-			this_package = allpackages(package_names(i));
-			if isfield(this_package,version) then
-				result(i) = %T;
-			end
+		elseif isfield(allpackages,name) then
+			result(i) = isfield(allpackages(name),version);
 		end
 		
 	end

@@ -237,11 +237,6 @@ protected:
 private:
 
   /**
-   * Modify range if it includes 0
-   */
-  void addZeroInRange(double range[2]);
-
-  /**
    * Compute concealed corner
    * @return index of the coner which is concealed
    */
