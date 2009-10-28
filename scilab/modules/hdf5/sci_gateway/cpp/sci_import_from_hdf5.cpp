@@ -30,7 +30,7 @@ extern "C"
 
 
 //#define PRINT_DEBUG
-int iTab = 0;
+static int iTab = 0;
 
 
 void print_tree(char* _pstMsg);

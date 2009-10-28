@@ -577,7 +577,7 @@ StrErr createComplexMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr NamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+StrErr readMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get polynomial variable in named list
