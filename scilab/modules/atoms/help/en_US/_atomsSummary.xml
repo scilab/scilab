@@ -133,6 +133,50 @@
   </refsection>
 	
   <!-- ===================================================================== -->
+	<!-- Information -->
+  <!-- ===================================================================== -->
+	
+  <refsection>
+    <title>Get information ...</title>
+    <para>
+			<informaltable border="1">
+				<tr>
+					<td>
+						<link linkend="atomsList">atomsList</link>
+					</td>
+					<td>
+						List available modules
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<link linkend="atomsSearch">atomsSearch</link>
+					</td>
+					<td>
+						Searches for modules
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<link linkend="atomsShow">atomsShow</link>
+					</td>
+					<td>
+						Show the caracteristics of a module
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
+					</td>
+					<td>
+						Show the dependency tree of a module
+					</td>
+				</tr>
+			</informaltable>
+		</para>
+  </refsection>	
+	
+  <!-- ===================================================================== -->
 	<!-- Repository management -->
   <!-- ===================================================================== -->
 	
@@ -167,16 +211,6 @@
 			</informaltable>
 		</para>
   </refsection>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
   <!-- ===================================================================== -->
   <!-- Authors -->
