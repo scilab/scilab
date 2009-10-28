@@ -118,16 +118,4 @@ public abstract class BasicPort extends XcosUIDObject {
 	public void setStyle(String style){
 		super.setStyle(style);
 	}
-	
-	public int getConnectedEdgeCount(){
-		int edgeCount = 0;
-		
-		if(getParent() instanceof BasicBlock){
-			BasicBlock block = (BasicBlock)getParent();
-			Object objs[] = block.getParentDiagram().getAllEdges(new Object[]{this});
-			return objs.length;
-		}
-		
-		return edgeCount;
-	}
 }

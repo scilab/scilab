@@ -58,7 +58,7 @@ public class PortCheck extends mxMultiplicity {
     	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
     		if(firstPort instanceof BasicPort){
     			BasicPort port = (BasicPort)firstPort;
-    			if(port.getConnectedEdgeCount() > 0){
+    			if(port.getEdgeCount() > 0){
     				return false;
     			}
     		}
@@ -67,7 +67,7 @@ public class PortCheck extends mxMultiplicity {
     			if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
     				if(secondPort instanceof BasicPort){
     					BasicPort port = (BasicPort)secondPort;
-    					if(port.getConnectedEdgeCount() > 0){
+    					if(port.getEdgeCount() > 0){
     						return false;
     					}
     				}
