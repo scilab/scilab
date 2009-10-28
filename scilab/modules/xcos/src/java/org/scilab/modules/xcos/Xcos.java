@@ -478,7 +478,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		/** Format menu */
 		Menu format = ScilabMenu.createMenu();
 		format.setText(XcosMessages.FORMAT);
-		format.setMnemonic('F');
+		format.setMnemonic('O');
 		menuBar.add(format);
 		
 		format.add(RotateAction.createMenu(scilabGraph));
