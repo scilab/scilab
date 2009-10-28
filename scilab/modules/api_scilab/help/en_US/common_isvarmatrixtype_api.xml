@@ -74,11 +74,11 @@
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 
-StrErr printf_info(int _iVar);
+SciErr printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
 {
-    StrErr strErr;
+    SciErr strErr;
     int i;
     int *piAddr1 = NULL;
 
@@ -107,9 +107,9 @@ int commom_function(char *fname,unsigned long fname_len)
     return 0;
 }
 
-StrErr printf_info(int _iVar)
+SciErr printf_info(int _iVar)
 {
-    StrErr strErr;
+    SciErr strErr;
     int* piAddr     = NULL;
     int iType       = 0;
     int iRows       = 0;

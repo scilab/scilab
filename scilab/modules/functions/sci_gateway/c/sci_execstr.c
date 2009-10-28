@@ -34,7 +34,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		StrErr strErr;
+		SciErr strErr;
 
 		int *piAddressVarOne = NULL;
 		int iType1 = 0;

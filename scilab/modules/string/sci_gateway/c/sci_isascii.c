@@ -33,7 +33,7 @@ static int isasciiMatrix(char *fname,int *piAddressVarOne);
 /*----------------------------------------------------------------------------*/
 int sci_isascii(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	int iType1		= 0;
 
@@ -71,7 +71,7 @@ int sci_isascii(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static int isasciiMatrix(char *fname,int *piAddressVarOne)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	double *pdVarOne = NULL;
 
@@ -148,7 +148,7 @@ static int isasciiMatrix(char *fname,int *piAddressVarOne)
 /*--------------------------------------------------------------------------*/
 static int isasciiStrings(char *fname,int *piAddressVarOne)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	wchar_t **pwcStVarOne = NULL;
 	int *lenStVarOne = NULL;

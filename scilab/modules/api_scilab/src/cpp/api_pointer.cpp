@@ -21,9 +21,9 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 
-StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
+SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
 	double *pdblTmp = NULL;
 
@@ -52,9 +52,9 @@ StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 	return strErr;
 }
 
-StrErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
+SciErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
 		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillPointer");
@@ -71,9 +71,9 @@ StrErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 	return strErr;
 }
 
-StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
+SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
@@ -103,9 +103,9 @@ StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	return strErr;
 }
 
-StrErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
+SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	void* pvPtr		= NULL;
 
 	strErr = allocPointer(_pvCtx, _iVar, &pvPtr);

@@ -24,7 +24,7 @@
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int lw = 0;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;

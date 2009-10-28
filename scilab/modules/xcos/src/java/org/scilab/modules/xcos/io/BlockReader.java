@@ -45,7 +45,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxUtils;
 
 public class BlockReader {
 
@@ -55,12 +54,12 @@ public class BlockReader {
 	}
 
 	private static void WARNING(String msg) {
-		System.err.println("[WARNING] BlockReader : "+msg);
+		//System.err.println("[WARNING] BlockReader : "+msg);
 	}
 
 
 	private static void DEBUG(String msg) {
-		System.err.println("[DEBUG] BlockReader : "+msg);
+		//System.err.println("[DEBUG] BlockReader : "+msg);
 	}
 
 	public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
@@ -234,7 +233,12 @@ public class BlockReader {
 
 					//tips to set block direction at load "BLOCK_f;direction=east" 
 					//currentText.setStyle(currentText.getInterfaceFunctionName() + currentText.getStyle());
-					currentText.setValue(((ScilabString)currentText.getRealParameters()).getData()[0][0]);
+					if (isEmptyField(currentText.getRealParameters())) {
+					    currentText.setValue("");
+					}
+					else {
+					    currentText.setValue(((ScilabString)currentText.getRealParameters()).getData()[0][0]);
+					}
 					
 					textBlocks.add(currentText);
 					minX = Math.min(minX, currentText.getGeometry().getX());
@@ -574,7 +578,6 @@ public class BlockReader {
 			}
 
 		}
-		System.out.println(context);
 		diagramProperties.put("context", context.toArray( new String[context.size()] ));
 
 		//void1

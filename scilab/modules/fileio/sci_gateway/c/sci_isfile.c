@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_isfile(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t **pStVarOne = NULL;
 	int iType = 0;

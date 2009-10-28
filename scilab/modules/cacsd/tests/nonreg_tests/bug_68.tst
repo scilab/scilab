@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA -Serge Steer
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -13,6 +14,148 @@
 // <-- Short Description -->
 //Precision problem with the trzeros function, 
 
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then pause,end
+endfunction
+
+//
+// sort_merge --
+//   Returns the sorted array x.
+// Arguments
+//   x : the array to sort
+//   compfun : the comparison function
+//   data : an optionnal data to pass to the comparison function
+// Bruno Pincon
+// "quelques tests de rapidit´e entre diff´erents logiciels matriciels"
+// Modified by Michael Baudin to manage a comparison function
+//
+function [x] = sort_merge ( varargin )
+  [lhs,rhs]=argn();
+  if ( ( rhs<>1 ) & ( rhs<>2 ) & ( rhs<>3 ) ) then
+    errmsg = sprintf("Unexpected number of arguments : %d provided while 1, 2 or 3 are expected.",rhs);
+    error(errmsg)
+  end
+  // Get the array x
+  x = varargin(1);
+  // Get the comparison function compfun
+  if rhs==1 then
+    compfun = sort_merge_comparison;
+  else
+    compfun = varargin(2);
+    if ( rhs == 3 ) then
+	data = varargin(3);
+    end
+  end
+  // Proceed...
+  n = length(x)
+  if n > 1 then
+    m = floor(n/2); 
+    p = n-m
+    if ( rhs == 3 ) then
+      x1 = sort_merge ( x(1:m) , compfun , data )
+      x2 = sort_merge ( x(m+1:n) , compfun , data )
+    else
+      x1 = sort_merge ( x(1:m) , compfun )
+      x2 = sort_merge ( x(m+1:n) , compfun )
+    end
+    i = 1; 
+    i1 = 1;
+    i2 = 1;
+    for i = 1:n
+      if ( rhs == 3 ) then
+        order = compfun ( x1(i1) , x2(i2) , data );
+      else
+        order = compfun ( x1(i1) , x2(i2) );
+      end
+      if order<=0 then
+        x(i) = x1(i1)
+        i1 = i1+1
+        if (i1 > m) then
+          x(i+1:n) = x2(i2:p)
+          break
+        end
+      else
+        x(i) = x2(i2)
+        i2 = i2+1
+        if (i2 > p) then
+          x(i+1:n) = x1(i1:m)
+          break
+        end
+      end
+    end
+  end
+endfunction
+
+// 
+// sort_merge_comparison --
+//   The default comparison function used in the sort-merge.
+//   Returns -1 if x < y, 
+//   returns 0 if x==y,
+//   returns +1 if x > y
+//
+function order = sort_merge_comparison ( x , y )
+  if x < y then
+    order = -1
+  elseif x==y then
+    order = 0
+  else 
+    order = 1
+  end
+endfunction
+
+// 
+// compare_complexrealimag --
+//   Returns -1 if a < b, 
+//   returns 0 if a==b,
+//   returns +1 if a > b
+// Compare first by real parts, then by imaginary parts.
+// Arguments
+//   a, b : the values to be compared
+//   precision : a list made of the absolute precision (element #1),
+//      and the relative precision (element #2)
+//
+function order = compare_complexrealimag ( a , b , precision )
+  ar = real(a)
+  br = real(b)
+  areequal = ( abs ( ar - br ) <= precision(1) + precision(2) * max ( abs(ar) , abs(br) ) )
+  if ( areequal ) then
+    // Tie on the real part: compare imaginary parts
+    ai = imag(a)
+    bi = imag(b)
+    areequal = ( abs ( ai - bi ) <= precision(1) + precision(2) * max ( abs(ai) , abs(bi) ) )
+    if ( areequal ) then
+      // Tie on imaginary parts too: two numbers are "equal"
+      order = 0
+    elseif ( ai < bi ) then
+      order = -1
+    else
+      order = 1
+    end
+  elseif ( ar < br ) then
+    order = -1
+  else
+    order = 1
+  end
+endfunction
+
 s=poly(0,'s'); 
 A=[-113.63636,-2840909.1,113.63636,2840909.1,0,0;
    1,0,0,0,0,0;
@@ -23,17 +166,25 @@ A=[-113.63636,-2840909.1,113.63636,2840909.1,0,0;
 
 System =syslin('c',A,[1;0;0;0;0;0],[0 0 0 1 0 0]);
 
-Td=1/0.1;alpha=1000;Ti=1/0.1;Tr=1/10000;Kp=1e2;
+Td=1/0.1;
+alpha=1000;
+Ti=1/0.1;
+Tr=1/10000;
+Kp=1e2;
 PID=tf2ss(syslin('c',Kp*(1+Td*s)/(1+Td/alpha*s)));
 
-Hrond1=PID*System;closed1=(1/.(Hrond1));
+Hrond1=PID*System;
+closed1=(1/.(Hrond1));
 ClosedZeros1=trzeros(closed1);
 
-Hrond2=System*PID;closed2=(1/.(Hrond2));
+Hrond2=System*PID;
+closed2=(1/.(Hrond2));
 ClosedZeros2=trzeros(closed2);
 
-C1=gsort([real(ClosedZeros1) imag(ClosedZeros1)],'lr');
-C2=gsort([real(ClosedZeros2) imag(ClosedZeros2)],'lr');
+computed1 = sort_merge ( ClosedZeros1 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
+computed2 = sort_merge ( ClosedZeros2 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
 
-if norm(C1-C2)>1d-5 then pause,end
+computed = norm ( computed1 - computed2 );
+expected = 0.0;
+assert_close ( computed, expected, 1.e-7 );
 

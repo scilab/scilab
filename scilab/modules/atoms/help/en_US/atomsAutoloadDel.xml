@@ -37,7 +37,7 @@
         <term>modules</term>
         <listitem>
           <para>
-						mx1, mx2 or mx3 Matrix of strings:
+						mx1, mx2 or mx3 character string matrix:
 					</para>
 					
 					<informaltable border="1">

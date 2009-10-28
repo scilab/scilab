@@ -28,9 +28,9 @@
 /********************************/
 /*   boolean matrix functions   */
 /********************************/
-StrErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool)
+SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
 
 	if(	_piAddress == NULL)
@@ -60,9 +60,9 @@ StrErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 	return strErr;
 }
 
-StrErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool)
+SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int *piAddr	= NULL;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
@@ -84,9 +84,9 @@ StrErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 	return strErr;
 }
 
-StrErr fillMatrixOfBoolean(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, int** _piBool)
+SciErr fillMatrixOfBoolean(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, int** _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	_piAddress[0]	= sci_boolean;
 	_piAddress[1] = Min(_iRows, _iRows * _iCols);
 	_piAddress[2] = Min(_iCols, _iRows * _iCols);
@@ -95,9 +95,9 @@ StrErr fillMatrixOfBoolean(void* _pvCtx, int* _piAddress, int _iRows, int _iCols
 	return strErr;
 }
 
-StrErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool)
+SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piBool		= NULL;
 
 	strErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
@@ -111,9 +111,9 @@ StrErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, in
 	return strErr;
 }
 
-StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool)
+SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
@@ -155,9 +155,9 @@ StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 	return strErr;
 }
 
-StrErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool)
+SciErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	int* piBool				= NULL;
 

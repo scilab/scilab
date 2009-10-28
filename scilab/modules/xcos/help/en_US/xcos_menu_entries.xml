@@ -123,31 +123,6 @@
         and closes the viewport and palettes windows if these windows are
         opened. It will close all the opened diagram.</para>
       </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Dump</emphasis></para>
-
-        <para>Dump the scs_m structure corresponding to the current diagram
-        into Scilab.</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:View in Scicos</emphasis></para>
-
-        <para>Open Scicos and display the current diagram</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Export to XML</emphasis></para>
-
-        <para>Export the current diagram to a .xcos XML file.</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Import from XML</emphasis></para>
-
-        <para>Import a diagram from a .xcos XML file.</para>
-      </listitem>
     </itemizedlist>
   </refsection>
 

@@ -17,7 +17,6 @@ OBJS = __OBJS__
 OBJS_WITH_PATH = __OBJS_WITH_PATH__
 # ------------------------------------------------------
 # added libraries
-CPP_RUNTIME_LIBRARIES = __CPP_RUNTIME__
 FORTRAN_RUNTIME_LIBRARIES = __FORTRAN_RUNTIME__
 OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
