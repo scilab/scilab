@@ -295,8 +295,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static void xcos(String fileName) {
-    	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
     	XcosDiagram diagram = createEmptyDiagram();
+    	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	synchronized(paletteThread) {
     		try {
@@ -663,21 +663,21 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * Get recent file menu
 	 * @return the menu
 	 */
-	public List<Menu> getRecentsMenu() {
+	public static List<Menu> getRecentsMenu() {
 		return  recentsMenus;
 	}
     
 	/**
 	 * Update menu displaying recent opened files
 	 */
-	public void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
+	public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
 		ArrayList<File> recentFiles = ConfigXcosManager.getAllRecentOpenedFiles();
 
 		for (int j = 0 ; j < getRecentsMenu().size() ; j++) {
 			((SwingScilabMenu) getRecentsMenu().get(j).getAsSimpleMenu()).removeAll();
 
 			for (int i = 0; i < recentFiles.size(); i++) {
-				getRecentsMenu().get(j).add(RecentFileAction.createMenu( scilabGraph , recentFiles.get(i)));
+				getRecentsMenu().get(j).add(RecentFileAction.createMenu(scilabGraph , recentFiles.get(i)));
 			}
 		}
 	}
