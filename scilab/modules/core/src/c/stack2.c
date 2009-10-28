@@ -25,6 +25,10 @@
 #include <string.h>
 #include <stdio.h>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "sciprint.h"
@@ -45,6 +49,7 @@
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
 #endif
+
 /* Table of constant values */
 static int cx1 = 1;
 static int cx0 = 0;
@@ -2860,25 +2865,26 @@ static char arg_position[56]; /* @TODO WTF is 56 ? */
 
 char * CharPosition(int i)
 {
-  char * tmp_buffer = (char *)MALLOC(20*sizeof(char));
+  char * tmp_buffer = NULL;
   switch(i+1)
     {
     case 1:
-      strcpy(tmp_buffer,_("first"));
+      tmp_buffer = strdup(_("first"));
       break;
     case 2:
-      strcpy(tmp_buffer,_("second"));
+      tmp_buffer = strdup(_("second"));
       break;
     case 3:
-      strcpy(tmp_buffer,_("third"));
+      tmp_buffer = strdup(_("third"));
       break;
     case 4:
-      strcpy(tmp_buffer,_("fourth"));
+      tmp_buffer = strdup(_("fourth"));
       break;
     default:
-      strcpy(tmp_buffer," ");
+      tmp_buffer = strdup(" ");
       break;
     }
+  return tmp_buffer;
 }
 
 char *ArgPosition(int i)
