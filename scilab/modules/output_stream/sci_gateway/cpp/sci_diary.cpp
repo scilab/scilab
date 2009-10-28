@@ -92,7 +92,7 @@ static int sci_diary_no_rhs(char *fname)
 {
 	// [ids, filenames] = diary()
 	// [ids, filenames] = diary([],"list")
-	StrErr strErr;
+	SciErr strErr;
 	int nb_diary_ids = 0;
 	double *diary_ids  = getDiaryIDsAsDouble(&nb_diary_ids);
 
@@ -189,7 +189,7 @@ static int sci_diary_no_rhs(char *fname)
 /*--------------------------------------------------------------------------*/
 static int sci_diary_one_rhs(char *fname)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iType	= 0;
 	int *piAddressVarOne = NULL;
 
@@ -315,7 +315,7 @@ static int sci_diary_two_rhs(char *fname)
 {
 	int ierr = 0;
 	wchar_t *wcArgumentTwo = getInputArgumentTwo(fname, &ierr);
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 
 	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -565,7 +565,7 @@ static int sci_diary_three_rhs(char *fname)
 		if (wcArgumentTwo)
 		{
 			int *piAddressVarOne = NULL;
-			StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+			SciErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 			if(strErr.iErr)
 			{
 				printError(&strErr, 0);
@@ -642,7 +642,7 @@ static double *getInputArgumentOneIDs(char *fname,int *sizeReturnedArray, int *i
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	SciErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -700,7 +700,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	SciErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -789,7 +789,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 	int m2 = 0, n2 = 0;
 	int *piAddressVarTwo = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	SciErr strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -853,7 +853,7 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 	int m3 = 0, n3 = 0;
 	int *piAddressVarThree = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+	SciErr strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -1177,7 +1177,7 @@ static int ExistByFilenames(char *fname)
 	}
 	freeArrayOfWideString(wcFilenames,dIDs_size);
 
-	StrErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
+	SciErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -1219,7 +1219,7 @@ static int ExistByIds(char *fname)
 		}
 	}
 
-	StrErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
+	SciErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
 	if(strErr.iErr)
 	{
 		printError(&strErr, 0);
@@ -1238,7 +1238,7 @@ static int AppendByFilenames(char *fname,
 							 diary_prefix_time_filter prefixModeFilter,
 							 bool suspended)
 {
-	StrErr strErr;
+	SciErr strErr;
 	wchar_t **wcFilenames = NULL;
 	int dIDs_size = 0;
 	int ierr = 0;
@@ -1345,7 +1345,7 @@ static int NewByFilenames(char *fname,
 		diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
 		if (suspended) diaryPause((int)dID);
 
-		StrErr strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
+		SciErr strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
 		LhsVar(1) = Rhs + 1;
 
 		if (Lhs == 2)

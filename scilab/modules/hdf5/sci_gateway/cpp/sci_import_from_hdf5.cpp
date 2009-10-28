@@ -59,7 +59,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	int* piAddr					= NULL;
 	char *pstVarName		= NULL;
 	bool bImport				= false;
-	StrErr strErr;
+	SciErr strErr;
 
 	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(strErr.iErr)
@@ -221,7 +221,7 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	int	iRows						= 0;
 	int iCols						= 0;
 	int iComplex				= 0;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
 	iComplex		= isComplexData(_iDatasetId);
@@ -307,7 +307,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	int	iRows						= 0;
 	int iCols						= 0;
 	char **pstData			= NULL;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet = getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(iRet)
@@ -361,7 +361,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	int	iRows						= 0;
 	int iCols						= 0;
 	int iPrec						= 0;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet								= getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(iRet)
@@ -564,7 +564,7 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	int* piData					= NULL;
 	int	iRows						= 0;
 	int iCols						= 0;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(iRet)
@@ -625,7 +625,7 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 	double **pdblReal		= NULL;
 	double **pdblImg		= NULL;
 	int *piNbCoef				= NULL;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(iRet)
@@ -715,7 +715,7 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	int iNbItem					= 0;
 	int* piNbItemRow		= NULL;
 	int* piColPos				= NULL;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet								= getSparseDimension(_iDatasetId, &iRows, &iCols, &iNbItem);
 	if(iRet)
@@ -806,7 +806,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddres
 	int iNbItem					= 0;
 	int* piNbItemRow		= NULL;
 	int* piColPos				= NULL;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet								= getSparseDimension(_iDatasetId, &iRows, &iCols, &iNbItem);
 	if(iRet)
@@ -862,7 +862,7 @@ static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piA
 	int iCols								= 0;
 	int* piListAddr					= NULL;
 	hobj_ref_t* piItemRef		= NULL;
-	StrErr strErr;
+	SciErr strErr;
 
 	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(iRet)

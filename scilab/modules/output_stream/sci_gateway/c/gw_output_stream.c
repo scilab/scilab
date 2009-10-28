@@ -33,7 +33,7 @@ int gw_output_stream(void)
 
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
 	}
 
 	/* Recursion from disp */

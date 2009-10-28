@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_pathconvert(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	wchar_t **pStVarOne = NULL;
 	int iType1 = 0;

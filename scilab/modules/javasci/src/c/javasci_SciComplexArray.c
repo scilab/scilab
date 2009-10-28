@@ -20,7 +20,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
 /*--------------------------------------------------------------------------*/
 JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
 	double Value = 0.0;
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -117,7 +117,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv
 /*! public native double GetImaginaryPartElement(int indr,int indc); */
 JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
 	double Value = 0.0;
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);

@@ -146,9 +146,8 @@
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
   </add>
-  <add as="CURV_f" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CURV_f.gif"/>
+  <add as="CURV_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="Curve"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
@@ -190,9 +189,8 @@
     <add as="displayedLabel" value="Counter&lt;BR&gt;
 				    Modulo 3"/>
   </add>
-  <add as="Sigbuilder" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Sigbuilder.gif"/>
+  <add as="Sigbuilder" extend="blockWithLabel">
+    <add as="displayedLabel" value="Signal Builder"/>
   </add>
   <add as="SampleCLK" extend="Icon">
     <!-- FIXME : Regenerate this image without any stroke -->

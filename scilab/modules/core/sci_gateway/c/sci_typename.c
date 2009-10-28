@@ -43,7 +43,7 @@ int C2F(sci_typename)(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	int iType1			= 0;
 	int *piAddressVarOne = NULL;
@@ -180,7 +180,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int numberOfTypes = 0;
 	int *TypesNumbers = NULL;
 	

@@ -47,9 +47,9 @@ extern int C2F(stackp)(int *,int *);
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
 
-StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)
+SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
 	{
 		*_piRows		= _piAddress[1];
@@ -71,9 +71,9 @@ StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)
+SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(strErr.iErr)
@@ -92,9 +92,9 @@ StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _pi
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
+SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iAddr			= 0;
 	int iValType	= 0;
 	/* we accept a call to getVarAddressFromPosition after a create... call */
@@ -116,9 +116,9 @@ StrErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName)
+SciErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNameLen				= 0;
 	int iJob1						= 1;
 	CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
@@ -139,9 +139,9 @@ int getNewVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
+SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
 
@@ -172,9 +172,9 @@ StrErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
+SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
 		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
@@ -185,9 +185,9 @@ StrErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
+SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
@@ -232,7 +232,7 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int isNamedVarComplex(void* _pvCtx, char *_pstName)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
@@ -295,7 +295,7 @@ int isVarMatrixType(void* _pvCtx, int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int isNamedVarMatrixType(void* _pvCtx, char *_pstName)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
@@ -306,9 +306,9 @@ int isNamedVarMatrixType(void* _pvCtx, char *_pstName)
 	return isVarMatrixType(_pvCtx, piAddr);
 }
 /*--------------------------------------------------------------------------*/
-StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
+SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iRows1			= 0;
 	int iCols1			= 0;
 	int iRows2			= 0;
@@ -419,9 +419,9 @@ StrErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
+SciErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
@@ -559,9 +559,9 @@ StrErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	return strErr;
 }
 /*--------------------------------------------------------------------------*/
-StrErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal)
+SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr		= NULL;
 
 	strErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);

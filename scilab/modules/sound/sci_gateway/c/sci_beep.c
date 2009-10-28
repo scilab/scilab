@@ -33,7 +33,7 @@ void doBeep(void);
 /*--------------------------------------------------------------------------*/
 int sci_beep(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	char *output = NULL;
 	int m_out = 1, n_out = 1;
 

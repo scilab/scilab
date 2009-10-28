@@ -30,7 +30,7 @@
 /*-------------------------------------------------------------------------------------*/
 int sci_strsubst(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne	= NULL;
 	int iType							= 0;
 	int mOne	= 0, nOne		= 0;

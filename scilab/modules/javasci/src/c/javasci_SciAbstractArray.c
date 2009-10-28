@@ -52,7 +52,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Initialize (JNIEnv *env, jc
 */
 JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfRowsFromScilab(JNIEnv *env, jobject obj_this, jstring name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	jint row = -1;
 	int dimension[2];
@@ -82,7 +82,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfRowsFromScilab(J
 */
 JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfColsFromScilab(JNIEnv *env, jobject obj_this, jstring name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	jint col = -1;
 	int dimension[2];
@@ -145,7 +145,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciAbstractArray_Job(JNIEnv *env, jobjec
 */
 JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get(JNIEnv *env, jobject obj_this)
 {
-	StrErr strErr;
+	SciErr strErr;
 	char *signatureType = detectSignatureTypeFromObjectName(env, obj_this);
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -292,7 +292,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i = 0;
 	int cm = 0, cn = 0;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[I");
@@ -327,7 +327,7 @@ static int JNI_getMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_th
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int cm = 0, cn = 0;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
@@ -348,7 +348,7 @@ static int JNI_getMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_thi
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int cm = 0, cn = 0;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jfieldID id_y = (*env)->GetFieldID(env, class_this, "y", "[D");
@@ -377,7 +377,7 @@ static int JNI_getMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_th
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[Ljava/lang/String;");
 	jobjectArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 
@@ -444,7 +444,7 @@ static int JNI_getMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[Z");
 	jbooleanArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	jboolean *cx = (*env)->GetBooleanArrayElements(env, jx, NULL); 
@@ -481,7 +481,7 @@ static int JNI_getMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_th
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[I");
 	jintArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	jint *cx = (*env)->GetIntArrayElements(env, jx, NULL);
@@ -518,7 +518,7 @@ static int JNI_setMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_th
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
@@ -538,7 +538,7 @@ static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_thi
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jfieldID id_y = (*env)->GetFieldID(env, class_this, "y", "[D");
 
@@ -565,7 +565,7 @@ static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_th
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i = 0;
 	char **pStrings = NULL;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[Ljava/lang/String;" );
@@ -601,7 +601,7 @@ static int JNI_setMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[Z");
 	jbooleanArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	jboolean *cx = (*env)->GetBooleanArrayElements(env, jx, NULL);
