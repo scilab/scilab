@@ -166,7 +166,6 @@ function ilib_link_gen_Make_msvc(names, ..
   FILES_SRC = '';
   OBJS = '';
   OBJS_WITH_PATH = '';
-  CPP_RUNTIME = '';
   FORTRAN_RUNTIME = '';
   OTHERLIBS = '';
   CC = cc;
@@ -218,14 +217,6 @@ function ilib_link_gen_Make_msvc(names, ..
     OBJS_WITH_PATH_MATRIX = [OBJS_WITH_PATH_MATRIX, OBJ_DEST_PATH + path_f + file_f + '.obj'];
   end
   
-  if ( or(fileext(FILES_SRC_MATRIX) == '.cpp') | or(fileext(FILES_SRC_MATRIX) == '.cxx') ) then
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-      CPP_RUNTIME = 'LIBCPMT.LIB';
-    else
-      CPP_RUNTIME = 'LIBCPMTD.LIB';
-    end
-  end
-
   if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
      if findmsifortcompiler() <> 'unknown' then
        if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
@@ -265,7 +256,6 @@ function ilib_link_gen_Make_msvc(names, ..
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FILES_SRC__", FILES_SRC);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS__", OBJS);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS_WITH_PATH__", OBJS_WITH_PATH);
-  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__CPP_RUNTIME__", CPP_RUNTIME);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FORTRAN_RUNTIME__", FORTRAN_RUNTIME);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OTHERSLIBS__", OTHERLIBS);
   

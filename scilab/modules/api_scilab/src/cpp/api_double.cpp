@@ -27,19 +27,19 @@
 /*   double matrix functions   */
 /*******************************/
 
-StrErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
+SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {
 	return getCommonMatrixOfDouble(_pvCtx, _piAddress, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+SciErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
 	return getCommonMatrixOfDouble(_pvCtx, _piAddress, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-StrErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ)
+SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal = NULL;
 	double *pdblImg	 = NULL;
 
@@ -54,9 +54,9 @@ StrErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
 	return strErr;
 }
 
-StrErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iType = 0;
 	if(	_piAddress == NULL)
 	{
@@ -95,9 +95,9 @@ StrErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
 	return strErr;
 }
 
-StrErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)
+SciErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 
 	strErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 0, _iRows, _iCols, &pdblReal, NULL);
@@ -112,9 +112,9 @@ StrErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doub
 	return strErr;
 }
 
-StrErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
@@ -130,9 +130,9 @@ StrErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCol
 	return strErr;
 }
 
-StrErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
@@ -152,9 +152,9 @@ StrErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
 	return strErr;
 }
 
-StrErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+SciErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	_piAddress[0]		= sci_matrix;
 	_piAddress[1]		= Min(_iRows, _iRows * _iCols);
 	_piAddress[2]		= Min(_iCols, _iRows * _iCols);
@@ -174,9 +174,9 @@ StrErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, in
 	return strErr;
 }
 
-StrErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)
+SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 
 	int iOne					= 1;
@@ -193,9 +193,9 @@ StrErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, dou
 	return strErr;
 }
 
-StrErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
@@ -214,9 +214,9 @@ StrErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCo
 	return strErr;
 }
 
-StrErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
+SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
 
@@ -232,19 +232,19 @@ StrErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
 	return strErr;
 }
 
-StrErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)
+SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)
 {
 	return createCommunNamedMatrixOfDouble(_pvCtx, _pstName, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-StrErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	return createCommunNamedMatrixOfDouble(_pvCtx, _pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-StrErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
+SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
@@ -276,9 +276,9 @@ StrErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 	return strErr;
 }
 
-StrErr createCommunNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createCommunNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
@@ -323,19 +323,19 @@ StrErr createCommunNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 	return strErr;
 }
 
-StrErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
+SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
 {
 	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-StrErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-StrErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
-	StrErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;

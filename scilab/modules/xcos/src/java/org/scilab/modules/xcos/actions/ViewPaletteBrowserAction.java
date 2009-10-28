@@ -14,10 +14,14 @@ package org.scilab.modules.xcos.actions;
 
 import java.util.ArrayList;
 
+import org.flexdock.docking.Dockable;
+import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -66,10 +70,23 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	public static void setPalettesVisible(boolean status) {
 		Tab palette = Xcos.getPalettes();
 
-		// Hide/Show parent window if the viewport is the only tab
-		if (palette.getParentWindow().getNbDockedObjects() == 1) {
-			palette.getParentWindow().setVisible(status);
+		// If palette has no more parent, create a new one.
+		if (status == true && palette.getParentWindow() == null) {
+		    Window paletteWindow = ScilabWindow.createWindow();
+		    paletteWindow.setVisible(true);
+		    palette.setVisible(true);
+		    paletteWindow.addTab(palette);
 		}
+
+		// Hide/Show parent window if the viewport is the only tab		
+		if (palette.getParentWindow().getNbDockedObjects() == 1) {
+		    palette.getParentWindow().setVisible(status);
+		}
+		else {
+		    DockingManager.undock((Dockable) palette.getAsSimpleTab());
+		    palette.setParentWindowId(-1);
+		}
+		
 		// Hide/Show viewport tab
 		palette.setVisible(status);
 		// Check/Uncheck the menu

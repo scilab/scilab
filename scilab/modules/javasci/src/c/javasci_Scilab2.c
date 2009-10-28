@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	double *matrix = NULL;
 	int nbRow = 0, nbCol = 0;
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	double *matrix = NULL;
 	int nbRow = 0, nbCol = 0;
@@ -132,7 +132,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	double *cx = NULL, *cy = NULL;
 	int nbRow = 0, nbCol = 0;
@@ -172,7 +172,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclas
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	double *cx = NULL, *cy = NULL;
 	int nbRow = 0, nbCol = 0;
@@ -287,7 +287,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	int nbRow = 0, nbCol = 0;
 	int i = 0;
@@ -415,7 +415,7 @@ static jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow
 /*--------------------------------------------------------------------------*/
 JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jclass cl, jstring name)
 {
-	StrErr strErr;
+	SciErr strErr;
 	const char *cname = NULL;
 	jobject obj  = NULL;
 	int type = 0;

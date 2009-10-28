@@ -20,7 +20,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 /*! public native double GetElement(int indr, int indc); */
 JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
 	double Value = 0.0;
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);

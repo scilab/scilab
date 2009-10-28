@@ -22,11 +22,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -74,6 +71,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -83,9 +81,7 @@ import org.w3c.dom.Document;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
@@ -1163,6 +1159,7 @@ public class XcosDiagram extends ScilabGraph {
 	    this.setSavedFile(fileName);
 	    File theFile = new File(fileName);
 	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+	    ConfigXcosManager.saveToRecentOpenedFiles(fileName);
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile();
@@ -1475,5 +1472,7 @@ public class XcosDiagram extends ScilabGraph {
     	block.setValue(blockResult);
     	block.getParentDiagram().refresh();
     }
+    
+
 }
 

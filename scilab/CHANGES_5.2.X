@@ -1,35 +1,91 @@
-               Changes between version 5.1.X and 5.2.0 of Scilab
+               Changes between version 5.1.2 and 5.2.0 of Scilab
                =================================================
 
 
 Xcos:
 =====
 
-TODO: add an explanation about xscos
+Xcos is a new generation Scicos editor. 
+Based on state of the art components, Xcos provides a stable, easy and
+usable interface to create complex simulations and controls.
 
+Group selection
+
+This leads to an excellent usability, much better performances.
+History of operations
+Tools tips
+rotate?
+Combien de diagram on gere?
+integration of the demo straight into Scilab
+Docking integration
+look and feel
 
 ATOMS:
 ======
 
-TODO: add an explanation about atoms
+ATOMS is the packaging system for Scilab's modules. Thanks to ATOMS, any user
+running Scilab on all supported operating systems will be able to
+install any modules from Scilab or thirdparty repositories with only three 
+clicks or just one Scilab command.
+
+For example, the following command will install plotlib:
+atomsInstall("plotlib")
+This command will:
+* download the binary package of plotlib from the Scilab repository
+* unpack the package
+* configure the package
+* load the package
+
+Many packages are already available and more and more are going to be offered
+on Scilab's repositories.
+
+This system is fully open to contributors. Anyone can manage his own toolboxes
+on the Scilab ATOMS website (http://atoms.scilab.org) or run his own 
+repository.
+
+Note that ATOMS website replaces the current toolboxes/modules web interface.
 
 
 Text Editor:
 ============
 
-TODO: add an explanation about the text editor
+A new text editor is introduced in this version of Scilab. The editor now
+follows the look and feel of Scilab and is integrated into the docking system.
+
+The following features are available in this project:
+* Syntaxic colorization
+* Automatic indentation
+* Line numbering
+* Execute into Scilab
+* Comment/uncomment of blocks
+* Goto line
 
 Graphics:
 =========
 
-Thanks to Calixte Denizet, it is now possible to annotate Scilab's graphics
-in MathML or LaTeX.
+* Text rendering with LaTeX / MathML
+
+The annotation of Scilab's graphics in MathML or LaTeX is now possible. 
+It enables the integration of mathematical equations, greek variables, matrix 
+displays... 
+This is available in every cases where texts can be set in the graphic (label, 
+tick, title, xstring...).
+For example:
+x = 1:0.25:10;y1 = 1 + sin(4*%pi*x / 10);plot(x,y1,'k-');
+xstring(6,1.4,'$\leftarrow f \left( x \right) = 1 + \sin \left( \frac{x \cdot 4 \cdot \pi}{10} \right)$');
 See demos => Graphics => LaTeX/MathML
+Many thanks to Calixte Denizet for this feature and the underlying API for the
+LaTeX rendering (project JLaTeXMath)
 
 * New features
-  - Add transparency to markdrawing.
   - Antialiasing on graphics
-  TODO: update it with the various information, sep, etc
+  	This new feature improves the quality of the graphic rendering.
+	It can be activated with the following commands: 
+	df = gdf(); df.anti_aliasing = "8x"; plot3d();
+	The rationnal and performance tests are available in the SEP #16 and the
+	request in the Scilab bugtracker as bug #2984.
+  - Add transparency to markdrawing.
+
 
 Introduction of new binaries:
 =============================
@@ -50,7 +106,7 @@ in different environnements and use cases.
   - Command-Line Interpreter (CLI) - Interpreter in command line without the graphic or Tcl/Tk capabilities (faster) (equivalent to Scilab NWNI Mode)
   	Name: scilab-cli
 
-  See SEP #18 for more comments
+  See SEP #18 for more details
 
 * The pipe has been plugged back under all operating systems
     It is now possible to do:
@@ -190,6 +246,9 @@ Mac OS X:
 * bug 4508 fixed - Can't create a file when saving/exporting a figure under
                    Mac OS X.
 
+* bug 4393 fixed - When launching Scilab from the puffin icon, it does not detect my Locale and switch to english.
+
+
 toolbox_skeleton:
 =================
 
@@ -204,6 +263,9 @@ Input/Output functions:
 =======================
 
 * Input arguments of fprintf are now checked 
+
+* save / load are now based on the HDF5 file format. The specification of the
+formats is going to be released in a close future. 
 
 * Rewrite:
     + getenv
@@ -587,8 +649,6 @@ Bug fixes:
 
 * bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
-* bug 4054 fixed - load into scilab a file with editor can crash scilab.
-
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
 * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
@@ -641,7 +701,7 @@ Bug fixes:
 * bug 4365 fixed - completion fails on a wrong path.
 
 * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
-                    the second possible value was 'clipgrf' instead of 'cliprf'.
+                   the second possible value was 'clipgrf' instead of 'cliprf'.
 
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.
@@ -916,10 +976,6 @@ Bug fixes:
 
 * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
 
-* bug 4780 fixed - The insertion point goes to the end of the document at each newly entered char.
-		   Once unchecked The Document/Colorize menu item is impossible to check again.
-		   If there is no selected line and one execute the Execute/EvaluateSelection menu a java exeception is reported
-
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
 * bug 4792 fixed - macro name too long
@@ -956,10 +1012,10 @@ Bug fixes:
 
 * bug 4855 fixed - Use standard error messages when setting/getting values from graphics handles.
 
-* bug 4872 fixed - editor(<binary file>) opens a blank file without any warning.
+* bug 4904 fixed - wrong localized fr_FR message
 
 * bug 4917 fixed - fileinfo(SCI+'/') returns [] (on Windows)
-
+  
 * bug 4918 fixed - error message returned by 'get_absolute_file_path' is incorrect.
 
 * bug 4925 fixed - verbose option of the optim function crashs on Windows.
@@ -980,25 +1036,8 @@ Bug fixes:
 
 * bug 4983 fixed - when scilab is started in nw mode, the addmenu examples are failing with a wierd error message.
 
-* bug 4989 fixed - editor('myfolder/myfile.sci')
-		   The correct file is opened. But when I modify and save this file, 
-		   it is saved in ./myfile.sci instead of myfolder/myfile.sci
-
 * bug 4991 fixed - No check if there is modification when doing "Execute Into Scilab" in the editor.
 
 * bug 4378 fixed - The gamma function does not work properly with large numbers under Linux 64 bits.
 
-* bug 5001 fixed - The dialog box when opening a non-existing file is not the right one :
-		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
-		   Only <no> & <yes> buttons should appear. <Cancel> button is unnecessary.
-
-* bug 5002 fixed - The dialog box when opening a non-existing file doesn't work.
-		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
-		   If <No> button is pressed, the tab is created anyway.
-
-* bug 5003 fixed - When opening a non-existing file, MSG: "The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>"
-		   If <Yes> is pressed, 2 tabs with the same name are created.
-
-* bug 5007 fixed - When opening a non-existing file, If you answer <yes> to the following dialog box :
-		   The file "xxx" doesn't exist. Do you want to create it. <Cancel> <No> <Yes>
-		   The file is always saved in SCI instead of the current directory
+* bug 5033 fixed - The Demo CACSD / Inverted pendulum  is broken.

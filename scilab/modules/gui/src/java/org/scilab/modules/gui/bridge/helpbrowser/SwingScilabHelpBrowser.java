@@ -78,6 +78,12 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    	currentLanguage = defaultLanguage;
 	    }
 	    
+	    if (!mainJar.exists()) {
+	    	System.out.println("'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. " + "" +
+	    			"Are you sure you built it? The help will not be available.");
+	    	return;
+	    }
+	    
 	    int nbFilesToLoad = 0;
 		jarFiles[nbFilesToLoad++] = mainJar;
 	    

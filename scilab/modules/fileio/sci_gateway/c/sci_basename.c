@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_basename(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	BOOL flag = TRUE; /* default */
 	BOOL flagexpand = TRUE; /* default */
 
