@@ -1030,8 +1030,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void commentLines(int line_start, int line_end)
 	{
+		boolean  mergeEditsMode= getShouldMergeEdits();
 		try
 		{
+			setShouldMergeEdits(true);
 			String comment_str = "//";
 			int start          = this.getDefaultRootElement().getElement(line_start).getStartOffset();
 			int end            = this.getDefaultRootElement().getElement(line_end).getEndOffset();
@@ -1041,6 +1043,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		catch (BadLocationException e){
 			e.printStackTrace();
+		}
+		finally{
+			setShouldMergeEdits(mergeEditsMode);
 		}
 	}
 	
