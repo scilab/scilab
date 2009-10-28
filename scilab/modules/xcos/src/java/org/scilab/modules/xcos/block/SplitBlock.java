@@ -11,9 +11,6 @@
  */
 package org.scilab.modules.xcos.block;
 
-import javax.swing.JOptionPane;
-
-import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -26,7 +23,6 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 

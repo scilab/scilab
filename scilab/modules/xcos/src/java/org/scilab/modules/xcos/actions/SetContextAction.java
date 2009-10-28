@@ -33,7 +33,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
