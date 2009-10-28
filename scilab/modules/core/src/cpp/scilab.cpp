@@ -248,3 +248,4 @@ void Add_Constant(string _szName, double _dblReal, double _dblImg, bool _bComple
 	pVal->val_set(0,0,_dblReal,_dblImg);
 	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
+

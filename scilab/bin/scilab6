@@ -595,9 +595,9 @@ if test "$rest" = "yes"; then
     fi
 
     case $sciarg in
-      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
+      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni|--debug|--context-dump|--display-tree|--parse-trace|--timed|--help)
 	      ;;
-      -display|-f|-l|-e|-d|-args|-mem)
+      -display|-f|-l|-e|-d|-args|--exec|-mem)
 	      prevarg=1
 	      ;;
       -debug)

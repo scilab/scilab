@@ -13,16 +13,21 @@
 #include "stdio.h"
 #include "PATH_MAX.h"
 
-#pragma warning(disable : 4996) //It's not beautifull but that works !
-
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_SHORT
 		#define MAX_PATH_SHORT 260
 	#endif
+	
+	//Only for windows
+	#pragma warning(disable : 4996) //It's not beautifull but that works !
 #endif
 
 /* DIR_SEPARATOR : Under Windows by default is \ */
-#define DIR_SEPARATOR "\\"
+#ifdef MSC_VER
+	#define DIR_SEPARATOR "\\"
+#else
+	#define DIR_SEPARATOR "/"
+#endif
 #define SCI_VERSION_STRING "scilab-trunk-SVN"
 #define UNIX_SEPATATOR '/'
 #define WINDOWS_SEPATATOR '\\'

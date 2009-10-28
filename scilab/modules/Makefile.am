@@ -73,6 +73,7 @@ genetic_algorithms \
 simulated_annealing \
 parameters \
 matio \
+system_env \
 abstractSyntaxTree \
 symbol \
 parse \
@@ -166,6 +167,7 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 
 

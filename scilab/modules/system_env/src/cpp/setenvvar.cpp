@@ -13,11 +13,18 @@
 #include <iostream>
 
 #ifdef _MSC_VER
+
 #include "windows.h"
+#define putenv _putenv
+
 #else
+
 #include <stdlib.h>
 #include <string.h>
-#define putenv _putenv
+#include <sys/stat.h>
+
+#define  DIRMODE	0777
+
 #endif
 
 #include "setenvvar.hxx"
@@ -46,7 +53,7 @@ void SetScilabEnvironment(void)
 #endif
 	if(!setYASPHOME())
 	{
-		std::cerr << "Error: Impossible to define SCIHOME environment variable." << endl;
+		cerr << "Error: Impossible to define SCIHOME environment variable." << endl;
 	}
 }
 
@@ -73,7 +80,31 @@ void SciEnvForWindows(void)
 		SCIPathName = NULL;
 	}
 }
-/*--------------------------------------------------------------------------*/
+#else
+int SciEnvForOthers(void)
+{
+	int ierr,iflag=0;
+	int lbuf=PATH_MAX;
+	char *buf = new char[PATH_MAX];
+	if (buf)
+	{
+		getenvc(&ierr,(char*)"SCI",buf,&lbuf,&iflag);
+
+		if ( ierr== 1) 
+		{
+			cerr << "SCI environment variable not defined." << endl;
+			exit(1);
+		}
+		setYASPpath(buf);
+		delete buf;
+		buf = NULL;
+	}
+	
+	return 0;
+}
+#endif
+
+#ifdef _MSC_VER
 /*----------------------------------------------------
 * set env variables (used when calling scilab from
 * other programs)
@@ -108,7 +139,6 @@ bool Set_YASP_PATH(char *DefaultPath)
 		/* c:/progra~1/scilab-5.0 */
 		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 		AntislashToSlash(ShortPath,CopyOfDefaultPath);
-
 		sprintf (env, "SCI=%s",ShortPath);
 		setYASPpath(ShortPath);
 
@@ -118,7 +148,7 @@ bool Set_YASP_PATH(char *DefaultPath)
 			CopyOfDefaultPath = NULL;
 		}
 
-		if (_putenv (env))
+		if (putenv (env))
 		{
 		  return false;
 		}
@@ -199,7 +229,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 		}
 	}
 
-	if (_putenv (env))
+	if (putenv (env))
 	{
 		bOK=false;
 	}
@@ -236,6 +266,7 @@ bool Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 
 	return bOK;
 }
+
 /*--------------------------------------------------------------------------*/
 bool IsTheGoodShell(void)
 {
@@ -255,6 +286,7 @@ bool IsTheGoodShell(void)
 
 	return bOK;
 }
+
 /*--------------------------------------------------------------------------*/
 bool Set_Shell(void)
 {
@@ -265,7 +297,7 @@ bool Set_Shell(void)
 	WINDIRPATH=getenv ("SystemRoot");
 	sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
 
-	if (_putenv (env))
+	if (putenv (env))
 	{
 		bOK=false;
 	}
@@ -328,6 +360,7 @@ char *getScilabDirectory(bool UnixStyle)
 	}
 	return SciPathName;
 }
+#endif
 
 bool setYASPHOME(void)
 {
@@ -338,7 +371,9 @@ bool setYASPHOME(void)
 	char SCIHOME[PATH_MAX];
 	char USERPATHSCILAB[PATH_MAX];
 
-	getenvc(&ierr,"SCIHOME",SCIHOME,&buflen,&iflag);
+	getenvc(&ierr,(char*)"SCIHOME",SCIHOME,&buflen,&iflag);
+	cout << "SCIHOME : " << SCIHOME << endl;
+	cout << "ierr : " << ierr << endl;
 
 	if (ierr) /* SCIHOME not define */
 	{
@@ -411,7 +446,9 @@ bool setYASPHOME(void)
 			}
 		}
 		#else /* Linux */
-			getenvc(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
+			getenvc(&ierr,(char*)"HOME",USERHOMESYSTEM,&buflen,&iflag);
+			cout << "HOME : " << USERHOMESYSTEM << endl;
+			cout << "ierr : " << ierr << endl;
 			if (ierr) return false;
 		#endif
 
@@ -419,6 +456,9 @@ bool setYASPHOME(void)
 		sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
 		sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIR_SEPARATOR,SCI_VERSION_STRING);
 		sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
+		cout << "USERPATHSCILAB : " << USERPATHSCILAB << endl;
+		cout << "SCIHOMEPATH : " << SCIHOMEPATH << endl;
+		cout << "env : " << env << endl;
 		putenv(env);
 	}
 	else /* SCIHOME already defined */
@@ -480,17 +520,17 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 	return bOK;
 }
 
-static char SCIPATH[PATH_MAX];
 /*--------------------------------------------------------------------------*/
 void setYASPpath(char *path)
 {
-	//if (path) strcpy(SCIPATH,path);
 	ConfigVariable::getInstance()->set("SCI", path);
+	cout << "SCI : " << path << endl;
 }
 /*--------------------------------------------------------------------------*/
 char *getYASPpath(void)
 {
-	return strdup(SCIPATH);
+	string sz = ConfigVariable::getInstance()->get("SCI");
+	return (char*)sz.c_str();
 }
 
 void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)
@@ -511,7 +551,10 @@ void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	char *local;
 	if ( (local=getenv(var)) == 0)
 	{
-		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
+		if ( *iflag == 1 ) 
+		{
+			cout << "Undefined environment variable " << var << endl;
+		}
 		*ierr=1;
 	}
 	else
@@ -559,8 +602,12 @@ char *getshortpathname(char *longpathname,bool *convertok)
 		#else
 		/* Linux */
 		int length = (int)strlen(longpathname) + 1;
-		ShortName = (char*)MALLOC((length) * sizeof(char));
-		if (ShortName) strcpy(ShortName, longpathname);
+		ShortName = new char[length];
+		if(ShortName) 
+		{
+			strcpy(ShortName, longpathname);
+		}
+		
 		*convertok = false;
 		#endif
 	}
@@ -620,7 +667,6 @@ bool createdirectory(const char *path)
 
 bool isDrive(const char *strname)
 {
-	bool bOK = FALSE;
 	#ifdef _MSC_VER
 	if (strname)
 	{
@@ -636,35 +682,11 @@ bool isDrive(const char *strname)
 
 			if ( ( strname[0] >= 'A' && strname[0] <= 'Z' ) || ( strname[0] >= 'a' && strname[0] <= 'z' ) )
 			{
-				bOK = true;
+				return true;
 			}
 		}
 	}
 	#endif
-	return bOK;
-}
-/*--------------------------------------------------------------------------*/
-#else
-int SciEnvForOthers(void)
-{
-	int ierr,iflag=0;
-	int lbuf=PATH_MAX;
-	char *buf = new char[PATH_MAX];
-	if (buf)
-	{
-		getenvc(&ierr,"SCI",buf,&lbuf,&iflag);
-
-		if ( ierr== 1) 
-		{
-			cerr << "SCI environment variable not defined." << endl;
-			exit(1);
-		}
-		setYASPpath(buf);
-		delete buf;
-		buf = NULL;
-	}
-	
-	return 0;
+	return false;
 }
 
-#endif

@@ -54,9 +54,21 @@ endif
 
 
 scilab6_bin_SOURCES		= $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-scilab6_bin_CPPFLAGS	= -I$(top_srcdir)/modules/parse/includes/ -I$(top_srcdir)/modules/abstractSyntaxTree/includes/  -I$(top_srcdir)/modules/symbol/includes/  -I$(top_srcdir)/modules/types/includes/ 
+scilab6_bin_CPPFLAGS	= \
+						-I$(top_srcdir)/modules/parse/includes/ \
+						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+						-I$(top_srcdir)/modules/symbol/includes/ \
+						-I$(top_srcdir)/modules/types/includes/ \
+						-I$(top_srcdir)/modules/system_env/includes/ \
+						-I$(top_srcdir)/modules/functions_manager/includes/
 
-scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la
+scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
+$(top_builddir)/modules/symbol/libscisymbol.la \
+$(top_builddir)/modules/parse/libsciparse.la \
+$(top_builddir)/modules/types/libscitypes.la \
+$(top_builddir)/modules/system_env/libscisystem_env.la \
+$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 
 
 LANG_DOMAIN=scilab
