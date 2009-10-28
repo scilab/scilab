@@ -68,7 +68,7 @@ int gw_gui(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "GUI");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "GUI");
 		return 0;
 	}
 

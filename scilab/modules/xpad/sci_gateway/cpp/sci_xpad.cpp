@@ -27,7 +27,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int sci_xpad(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 

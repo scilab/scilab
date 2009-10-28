@@ -16,7 +16,7 @@ extern "C"
 /* ==================================================================== */
   int sci_cpp_find(char *fname) 
   {
-    StrErr strErr;
+    SciErr strErr;
     
     int m1 = 0, n1 = 0;
     int *piAddressVarOne = NULL;

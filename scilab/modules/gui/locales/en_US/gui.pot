@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-10-27 03:43+0100\n"
 
 # File: macros/getParentNode.sci, line: 87
 # File: macros/deleteNode.sci, line: 110
@@ -773,6 +773,7 @@ msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
+# File: demos/uicontrol.dem.sce, line: 90
 # File: scilab_fake_localization_file.c, line: 34
 # File: scilab_fake_localization_file.c, line: 39
 # File: scilab_fake_localization_file.c, line: 73
@@ -850,6 +851,7 @@ msgid "&EPS"
 msgstr ""
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+# File: demos/uicontrol.dem.sce, line: 89
 # File: scilab_fake_localization_file.c, line: 26
 # File: scilab_fake_localization_file.c, line: 51
 msgid "&Edit"
@@ -880,6 +882,7 @@ msgid "&Figure properties"
 msgstr ""
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
+# File: demos/uicontrol.dem.sce, line: 87
 # File: scilab_fake_localization_file.c, line: 1
 # File: scilab_fake_localization_file.c, line: 37
 # File: scilab_fake_localization_file.c, line: 41
@@ -988,6 +991,7 @@ msgid "&Start entity picker"
 msgstr ""
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
+# File: demos/uicontrol.dem.sce, line: 88
 # File: scilab_fake_localization_file.c, line: 21
 msgid "&Tools"
 msgstr ""
@@ -1022,12 +1026,21 @@ msgstr ""
 msgid "2D/3D &Rotation"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 13
+# File: demos/uicontrol.dem.sce, line: 126
+msgid "<Enter color name here>"
+msgstr ""
+#
 # File: macros/about.sci, line: 20
 msgid "About Scilab..."
 msgstr ""
 #
 # File: macros/about.sci, line: 20
 msgid "Acknowledgements"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 133
+msgid "Add color in listbox"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 48
@@ -1054,6 +1067,10 @@ msgstr ""
 msgid ""
 "Answer given for %s \n"
 " is incorrect see error message in scilab window.\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 99
+msgid "Application"
 msgstr ""
 #
 # File: macros/about.sci, line: 18
@@ -1099,6 +1116,10 @@ msgstr ""
 msgid "Close"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 120
+msgid "Colors list edition"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 59
 msgid "Console &Background..."
 msgstr ""
@@ -1129,6 +1150,14 @@ msgstr ""
 msgid "Cut"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 151
+msgid "Display selection"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 71
+msgid "Do you relly want to quit Scilab?"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 44
 msgid "Encapsulated PostScript image (EPS)"
 msgstr ""
@@ -1145,6 +1174,10 @@ msgstr ""
 msgid "Environment saved.\n"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 14
+msgid "Error"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 201
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 235
 msgid "Error on export"
@@ -1156,6 +1189,10 @@ msgstr ""
 #
 # File: etc/main_menubar.xml, line: 14
 msgid "Execution done.\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 100
+msgid "Exit figure"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 95
@@ -1213,6 +1250,14 @@ msgstr ""
 msgid "Launch Scilab text editor"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 105
+msgid "Launch plot2d"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 104
+msgid "Launch plot3d"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 59
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -1224,6 +1269,23 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
 msgid "Loading help browser..."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 107
+msgid "Menu"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 47
+#, c-format
+msgid "Menu ''%s'' is %s."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 48
+msgid "Menu status"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 72
+msgid "No"
 msgstr ""
 #
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 26
@@ -1279,6 +1341,10 @@ msgstr ""
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 29
+msgid "No color selected."
+msgstr ""
+#
 # File: macros/about.sci, line: 20
 msgid "Ok"
 msgstr ""
@@ -1317,8 +1383,16 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 14
+msgid "Please enter a color name first."
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 201
 msgid "Please specify a file format"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 63
+msgid "Popupmenu selection"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 116
@@ -1327,6 +1401,15 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 93
 msgid "Print..."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 72
+# File: demos/uicontrol.dem.sce, line: 101
+msgid "Quit Scilab"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 192
+msgid "Quit demonstration"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 139
@@ -1360,7 +1443,7 @@ msgstr ""
 #
 # File: sci_gateway/c/gw_gui.c, line: 70
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 #
 # File: src/nogui/nogui.c, line: 25
@@ -1387,6 +1470,10 @@ msgstr ""
 #
 # File: macros/about.sci, line: 30
 msgid "Scilab Contributors..."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 103
+msgid "Scilab Graphics"
 msgstr ""
 #
 # File: sci_gateway/c/sci_x_dialog.c, line: 54
@@ -1442,15 +1529,57 @@ msgstr ""
 msgid "Select a file to write"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 33
+msgid "Selected colors"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 31
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 38
+msgid "Selected menu"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 22
 # File: scilab_fake_localization_file.c, line: 62
 msgid "Show/Hide &Toolbar"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 160
+msgid "Slider demo"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 54
+msgid "Slider value: "
 msgstr ""
 #
 # File: macros/about.sci, line: 17
 msgid ""
 "Some Scilab modules are released under the GPLv2 license.\n"
 "\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 108
+msgid "Sub-menu 1"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 109
+# File: demos/uicontrol.dem.sce, line: 112
+msgid "Sub-menu 2"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 110
+msgid "Sub-menu 2-1"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 111
+msgid "Sub-menu 2-2"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 80
+msgid "Uicontrols demo"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 235
@@ -1742,8 +1871,30 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 72
+msgid "Yes"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 37
+#, c-format
+msgid "You clicked on menu ''%s''."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 62
+#, c-format
+msgid "You selected ''%s''."
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 83
 msgid "Zoom Area"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 137
+msgid "blue"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 43
+msgid "checked"
 msgstr ""
 #
 # File: macros/createpopup.sci, line: 50
@@ -1771,6 +1922,26 @@ msgid ""
 "update your driver.\")"
 msgstr ""
 #
+# File: demos/uicontrol.dem.sce, line: 137
+msgid "green"
+msgstr ""
+#
 # File: macros/about.sci, line: 20
 msgid "http://www.scilab.org/"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 185
+msgid "item1|item2|item3|item4"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 137
+msgid "red"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 45
+msgid "unchecked"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 137
+msgid "yellow"
 msgstr ""

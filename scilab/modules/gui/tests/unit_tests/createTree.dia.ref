@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+// Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR 
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -136,14 +136,6 @@ treeOnlyNode1 = createTree(node1)
    icon: "iconNode1"
    callback: "callbackNode1"
 treeNode1 = createTree(node1, leaf11,leaf12)
- 
-    2.  
- 
-    1.  
- 
-    2.  
- 
-    2.  
  treeNode1  =
  
  
@@ -170,14 +162,6 @@ treeNode1 = createTree(node1, leaf11,leaf12)
    icon: "iconLeaf1.1"
    callback: "callbackLeaf1.1"
 treeNode3 = createTree(node3, leaf31,leaf32)
- 
-    2.  
- 
-    1.  
- 
-    2.  
- 
-    2.  
  treeNode3  =
  
  
@@ -204,18 +188,6 @@ treeNode3 = createTree(node3, leaf31,leaf32)
    icon: "iconLeaf3.1"
    callback: "callbackLeaf3.1"
 treeRoot = createTree(root, node1,node2,node3)
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
- 
-    3.  
- 
-    3.  
  treeRoot  =
  
  
@@ -246,32 +218,8 @@ if( execstr("myTree = createTree()","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(123)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(123, node1,node2,node3)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(root, 123,node2,node3)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
 if( execstr("myTree = createTree(root, node1,123,node3)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
 if( execstr("myTree = createTree(root, node1,node2,123)","errcatch") == 0 ) then bugmes();quit;end
- 
-    3.  
- 
-    1.  
- 
-    3.  
- 
-    2.  
- 
-    3.  
- 
-    3.  
 // tree creation with invalid nodes
 if( execstr("myTree = createTree(myErrorNode1)","errcatch") == 0 ) then bugmes();quit;end
 if( execstr("myTree = createTree(myErrorNode2)","errcatch") == 0 ) then bugmes();quit;end

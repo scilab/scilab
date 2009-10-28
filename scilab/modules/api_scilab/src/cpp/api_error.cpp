@@ -29,7 +29,7 @@ extern "C"
 	#include "mode_exec.h"
 }
 
-int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
+int addStackSizeError(SciErr* _pstrErr, char* _pstCaller, int _iNeeded)
 {
 	char pstMsg1[bsiz];
 	char pstMsg2[bsiz];
@@ -64,7 +64,7 @@ int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
 	return addErrorMessage(_pstrErr, 17, pstMsg1);
 }
 
-int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
+int addErrorMessage(SciErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
 {
 	int iRet = 0;
 	char pstMsg[bsiz];
@@ -90,7 +90,7 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
 	return iRet;
 }
 
-int printError(StrErr* _pstrErr, int _iLastMsg)
+int printError(SciErr* _pstrErr, int _iLastMsg)
 {
 	int iMode = getExecMode();
 
@@ -125,7 +125,7 @@ int printError(StrErr* _pstrErr, int _iLastMsg)
 	return 0;
 }
 
-char* getErrorMessage(StrErr _strErr)
+char* getErrorMessage(SciErr _strErr)
 {
 	if(_strErr.iErr == 0)
 	{

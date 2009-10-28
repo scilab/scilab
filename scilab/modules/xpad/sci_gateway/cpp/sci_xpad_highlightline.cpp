@@ -32,7 +32,7 @@ using namespace org_scilab_modules_xpad;
 /*--------------------------------------------------------------------------*/
 int sci_xpad_highlightline(char *fname,unsigned long fname_len)
 {
-  StrErr strErr;
+  SciErr strErr;
   CheckRhs(2,2);
   CheckLhs(0,1);
 
