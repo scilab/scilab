@@ -63,18 +63,19 @@ public class PortCheck extends mxMultiplicity {
     			}
     		}
 
+    		if(secondPort instanceof BasicPort){
+    			BasicPort port = (BasicPort)secondPort;
+    			if(port.getEdgeCount() > 0){
+    				return false;
+    			}
+    		}
+
     		for (int i = 0 ; i < targetTemplate.length ; ++i) {
     			if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
-    				if(secondPort instanceof BasicPort){
-    					BasicPort port = (BasicPort)secondPort;
-    					if(port.getEdgeCount() > 0){
-    						return false;
-    					}
     				}
     				// We found something compatible !!
     				return true;
     			}
-    		}
     		//Nothing compatible was found ... Sorry ...
     		return false;
     	}
