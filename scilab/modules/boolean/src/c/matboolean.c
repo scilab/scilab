@@ -10,21 +10,20 @@
  *
  */
 
-#ifdef _MSC_VER
-#include <Windows.h>
-#endif
-
+#include "MALLOC.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "core_math.h"
 #include "matboolean.h"
+#include "BOOL.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(matlog)(void)
 {
-    static int ou = 57;
+    static int or = 57;
     static int non = 61;
 
-    static int j=0;
+    static int j= 0;
     static double e1, e2;
 
     static int i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
@@ -91,6 +90,7 @@ int C2F(matlog)(void)
 	}
 	else
 	{
+		BOOL *matBool = NULL;
 		if (mn1 == 0 || mn2 == 0) 
 		{
 			*istk(il1) = 1;
@@ -101,6 +101,7 @@ int C2F(matlog)(void)
 			C2F(vstk).lstk[Top] = (il1 + 4) / 2 + 1;
 			return 0;
 		}
+
 		if (mn1 == 1) 
 		{
 			i1 = 0;
@@ -110,6 +111,7 @@ int C2F(matlog)(void)
 		{
 			i1 = 1;
 		}
+
 		if (mn2 == 1) 
 		{
 			i2 = 0;
@@ -119,25 +121,38 @@ int C2F(matlog)(void)
 		{
 		    i2 = 1;
 		}
+
 		if (mn1 != mn2) 
 		{
 			static int code_error = 60;
 			Error(code_error);
 			return 0;
 		}
-		if (Fin == ou) 
+
+		matBool = (BOOL*)MALLOC(sizeof(BOOL) * mn1);
+		if (matBool == NULL)
 		{
-	        for (j = 0; j <= mn1 - 1; ++j) 
+			Scierror(999,_("%s: No more memory.\n"),"boolean operation (or)");
+			return 0;
+		}
+
+		if (Fin == or) 
+		{
+			for (j = 0; j <= mn1 - 1; ++j) 
 			{
-				e1 = *stk(l1 + j * i1);
-				e2 = *stk(l2 + j * i2);
-				if (e1 != 0. || e2 != 0.) 
+				int j_m_i1 = (int)(j * i1);
+				int j_m_i2 = (int)(j * i2);
+
+				int e1tmp = (int)*stk(l1 + j_m_i1);
+				int e2tmp = (int)*stk(l2 + j_m_i2);
+
+				if (e1tmp || e2tmp) 
 				{
-		    		*istk(il1 + 3 + j) = 1;
+					matBool[j] = TRUE;
 				}
 				else 
 				{
-		    		*istk(il1 + 3 + j) = 0;
+					matBool[j] = FALSE;
 				}
 			}
 		}
@@ -145,18 +160,31 @@ int C2F(matlog)(void)
 		{
 			for (j = 0; j <= mn1 - 1; ++j) 
 			{
-				e1 = *stk(l1 + j * i1);
-				e2 = *stk(l2 + j * i2);
-				if (e1 != 0. && e2 != 0.) 
+				int j_m_i1 = (int)(j * i1);
+				int j_m_i2 = (int)(j * i2);
+
+				int e1tmp = (int)*stk(l1 + j_m_i1);
+				int e2tmp = (int)*stk(l2 + j_m_i2);
+
+				if (e1tmp && e2tmp) 
 				{
-					*istk(il1 + 3 + j) = 1;
+					matBool[j] = TRUE;
 				}
 				else
 				{
-		    		*istk(il1 + 3 + j) = 0;
+					matBool[j] = FALSE;
 				}
 			}
 		}
+
+		for (j = 0; j <= mn1 - 1; ++j) 
+		{
+			*istk(il1 + 3 + j) = (int)matBool[j];
+		}
+
+		FREE(matBool);
+		matBool = NULL;
+
 		*istk(il1) = 4;
 		*istk(il1 + 1) = Max(m1,m2);
 		*istk(il1 + 2) = Max(n1,n2);
