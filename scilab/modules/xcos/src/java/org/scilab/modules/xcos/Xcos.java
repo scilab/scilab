@@ -663,14 +663,14 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * Get recent file menu
 	 * @return the menu
 	 */
-	public List<Menu> getRecentsMenu() {
+	public static List<Menu> getRecentsMenu() {
 		return  recentsMenus;
 	}
     
 	/**
 	 * Update menu displaying recent opened files
 	 */
-	public void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
+	public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
 		ArrayList<File> recentFiles = ConfigXcosManager.getAllRecentOpenedFiles();
 
 		for (int j = 0 ; j < getRecentsMenu().size() ; j++) {
