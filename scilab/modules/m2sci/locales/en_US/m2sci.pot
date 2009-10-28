@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-10-27 03:43+0100\n"
 
 # File: macros/kernel/lst_funcall.sci, line: 94
 # File: macros/kernel/multi_fun_file.sci, line: 98
@@ -183,6 +183,11 @@ msgstr ""
 #
 # File: macros/mfile2sci.sci, line: 331
 msgid "****** End of mfile2sci() session ******"
+msgstr ""
+#
+# File: macros/buildmacros.sce, line: 18
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
 msgstr ""
 #
 # File: macros/sci_files/sci_lookfor.sci, line: 17

@@ -36,7 +36,7 @@ fi
 XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
-EXTENSIONS=( c h cpp hxx java sci start quit )
+EXTENSIONS=( c h cpp hxx java sci sce start quit )
 TARGETDIR=locales/
 LANGS=( fr_FR )
 HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot

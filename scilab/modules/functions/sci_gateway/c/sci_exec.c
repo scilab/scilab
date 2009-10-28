@@ -32,7 +32,7 @@ int C2F(sci_exec)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		StrErr strErr;
+		SciErr strErr;
 
 		int iType1						= 0;
 		int iType2						= 0;

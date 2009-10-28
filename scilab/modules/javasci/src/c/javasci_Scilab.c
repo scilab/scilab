@@ -88,7 +88,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj
 /* public static native boolean ExistVar(String varName); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring varName)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jboolean bOK = JNI_FALSE;
 	const char *cvarName = NULL;
 	int sciType = 0;
@@ -143,7 +143,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
 /* public static native int TypeVar(String varName); */
 JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring varName)
 {
-	StrErr strErr;
+	SciErr strErr;
 	jint type = -1;
 	const char *cvarName = (*env)->GetStringUTFChars(env, varName, NULL);
 

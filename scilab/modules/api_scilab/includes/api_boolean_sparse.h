@@ -29,7 +29,7 @@ extern "C" {
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Alloc boolean sparse variable data
@@ -41,7 +41,7 @@ StrErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Create boolean sparse variable
@@ -53,7 +53,7 @@ StrErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create named boolean sparse variable
@@ -66,7 +66,7 @@ StrErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Read named boolean sparse variable
@@ -79,7 +79,7 @@ StrErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 #ifdef __cplusplus
 }

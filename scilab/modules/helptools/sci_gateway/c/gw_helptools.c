@@ -34,7 +34,7 @@ int gw_helptools(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "helptools");
 		return 0;
 	}
 

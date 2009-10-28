@@ -20,7 +20,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 /*! public native boolean GetElement(int indr, int indc); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr strErr;
   jboolean Value = JNI_FALSE;
   int *CX = NULL;
 

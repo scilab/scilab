@@ -23,7 +23,7 @@ extern int C2F(whereismacro)();
 /*--------------------------------------------------------------------------*/
 int sci_whereis(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int *piAddressVarOne = NULL;
 	int iType1 = 0;
 

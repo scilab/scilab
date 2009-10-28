@@ -26,6 +26,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -80,9 +81,13 @@ public final class OpenAction extends DefaultAction {
 		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 			return;
 		}
-		if (getGraph(null) == null) { // Called from palettes 
+		ConfigXcosManager.saveToRecentOpenedFiles(fc.getSelection()[0]);
+		
+		if (getGraph(null) == null) { // Called from palettes
+			//save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
 			Xcos.xcos(fc.getSelection()[0]);
 		} else {
+			Xcos.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 			((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
 		}
 	}

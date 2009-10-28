@@ -33,7 +33,7 @@ static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int retCode = -1;
 	int lencommand = 0;
 	char *command = NULL;

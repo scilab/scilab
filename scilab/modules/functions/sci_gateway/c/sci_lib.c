@@ -23,7 +23,7 @@ extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_lib)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 	int iType1 = 0;
