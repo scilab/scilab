@@ -62,8 +62,6 @@ nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 // Disable default terminations
 nm = neldermead_configure(nm,"-tolxmethod",%f);
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);

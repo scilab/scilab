@@ -42,11 +42,11 @@ function atomsDepTreeShow(package)
 	// =========================================================================
 	
 	if type(package) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetLoadedPath",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	if size(package(1,:),"*") > 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"),"atomsGetLoadedPath",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	// Get the dependency tree

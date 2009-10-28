@@ -76,27 +76,88 @@ endfunction
 //
 // neldermead_autorestart --
 //   Performs an optimization with automatic restart
+// NOTE
+//   The loop processes for i = 1 to restartmax PLUS 1
+//   This is because a RE-start is performed after one simulation
+//   has been performed, hence the "RE".
+//   Hence,
+//     * if restartmax = 0, the number of performed loops is 1.
+//     * if restartmax = 1, the number of performed loops is 2.
+//     * etc...
+// Example #1
+//   Sample session with restart max = 3 (the default) and process pass.
+//   restartnb = 0
+//   Try #1/4
+//     Run
+//     "Must restart"
+//     restartnb = 1
+//   Try #2/4
+//     Run
+//     "Must restart"
+//     restartnb = 2
+//   Try #3/4
+//     Run
+//     "Must not restart"
+//   "Convergence reached after 2 restarts."
+//   reached = %t
+//   status = depending on the triggered termination criteria
+//   restartnb = 2 (restarts are Tries #2 and #3)
+// Example #2
+//   Sample session with restart max = 3 (the default) and process fails.
+//   restartnb = 0
+//   Try #1/4
+//     Run
+//     "Must restart"
+//     restartnb = 1
+//   Try #2/4
+//     Run
+//     "Must restart"
+//     restartnb = 2
+//   Try #3/4
+//     Run
+//     "Must restart"
+//     restartnb = 3
+//   Try #4/4
+//     Run
+//     Must restart
+//   "Convergence not reached after maximum 3 restarts."
+//   reached = %f
+//   status = "maxrestart"
+//   restartnb = 3 (restarts are Tries #2, #3 and #4)
 //
 function this = neldermead_autorestart ( this )
   restartmax = this.restartmax;
+  reached = %f;
   for iloop = 1: restartmax + 1
-    this = neldermead_log (this,sprintf("Restart #%d/%d", iloop - 1,restartmax));
+    this = neldermead_log (this,sprintf("*****************************************************************"));
+    this = neldermead_log (this,sprintf("Try #%d/%d.", iloop , restartmax + 1 ));
+    //
+    // Run algorithm
     this = neldermead_algo ( this );
+    //
+    // Must we restart ?
     [ this , istorestart ] = neldermead_istorestart ( this );
-    if ( ~istorestart ) then
-      this = neldermead_log (this,"Must not restart");
-      this.restartnb  = iloop - 1
-      break
+    if ( istorestart ) then
+      this = neldermead_log (this,"Must restart.");
     else
-      this = neldermead_log (this,"Must restart");
+      this = neldermead_log (this,"Must not restart.");
     end
-    if ( iloop == restartmax ) then
-      this = neldermead_log (this,"Stopping after all restarts performed");
-      this.restartnb  = iloop
-      this.optbase = optimbase_set ( this.optbase , "-status" , "maxrestart" );
-    else
+    if ( ~istorestart ) then
+      reached = %t;
+      break
+    end
+    if ( iloop < restartmax + 1 ) then
+      // We are going to perform a restart
+      this.restartnb = this.restartnb + 1;
+      this = neldermead_log (this,"Updating simplex.");
       this = neldermead_updatesimp ( this );
     end
+  end
+  if ( reached ) then
+    this = neldermead_log (this, sprintf ( "Convergence reached after %d restarts." , this.restartnb ) );
+  else
+    this = neldermead_log (this, sprintf ( "Convergence not reached after maximum %d restarts." , this.restartnb ) );
+    this.optbase = optimbase_set ( this.optbase , "-status" , "maxrestart" );
   end
 endfunction
 

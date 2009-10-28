@@ -316,7 +316,7 @@ function result = atomsLoad(packages)
 			
 			mandatory_packages(childs(j,1)+" - "+childs(j,2)) = packages(i,1)+" - "+packages(i,2);
 			mandatory_packages_name(childs(j,1)) = childs(j,2);
-			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,:),section) ];
+			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,:),this_package_section) ];
 			
 		end
 	end
