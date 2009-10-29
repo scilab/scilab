@@ -62,10 +62,12 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			
 			instance = new ScilabHelpBrowser(helps, language);
 			
-			if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
-				// An error occured
-				ScilabConsole.getConsole().getInfoBar().setText("");
-				return null;
+			if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
+				if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
+					// An error occured
+					ScilabConsole.getConsole().getInfoBar().setText("");
+					return null;
+				}
 			}
 			
 			helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"));
