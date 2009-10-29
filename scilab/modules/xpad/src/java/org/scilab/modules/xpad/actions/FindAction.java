@@ -100,6 +100,9 @@ public final class FindAction extends DefaultAction {
     	if (!FindAction.windowAlreadyExist) {
         	findReplaceBox();
         	FindAction.windowAlreadyExist = true;
+    	} else {
+    		frame.setVisible(true);
+    		buttonFind.requestFocus();
     	}
 	}
 
