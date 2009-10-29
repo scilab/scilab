@@ -1079,7 +1079,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			for (int i = 0; i < length; i++) {
 				total++;
 				int code = utf8Bytes[i] & 0xff;
-				if (code >= 32 && code <= 122) {
+				 if ((code >= 32 && code <= 122) || (code >= 192 && code <= 252)) {
 					ascii_code++;
 				}
 			}
