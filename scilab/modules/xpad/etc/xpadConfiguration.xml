@@ -23,7 +23,7 @@
 
 		<styles>
 		
-		  <FontName default="Monospaced" useCache="true" value="Monospaced.plain"/>			
+		  <FontName default="Monospaced" useCache="true" value="Monospaced"/>			
 		  <FontSize default="14" useCache="true" value="14"/>
 
 		  <MainWindowPosition useCache="true" x="150" y="50"/>

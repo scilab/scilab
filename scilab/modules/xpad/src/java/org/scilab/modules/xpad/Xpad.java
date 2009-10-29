@@ -430,13 +430,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 			return false;
 		}
 
-		if(getTextPane().getName() == null) {
-			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
+		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
+		
+		if(textPaneAt.getName() == null) {
+			String closedTabName = tabPane.getTitleAt(indexTab);
 			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
 			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
 			closedTabList.add(Integer.parseInt(closedTabNameIndex));
 		}
-		tabPane.remove(tabPane.getSelectedComponent());
+		tabPane.remove(indexTab);
 
 		return true;
 		
@@ -673,7 +675,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
-
+		fileChooser.setTitle(XpadMessages.SAVE_AS); /* Bug 4869 */
 		int retval = fileChooser.showSaveDialog(this);
 
 		if (retval == JFileChooser.APPROVE_OPTION) {
