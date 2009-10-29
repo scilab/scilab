@@ -118,6 +118,10 @@
           <literal>Instruction</literal> is executed first (just after startup
           file execution) into Scilab. <literal>-e</literal> and
           <literal>-f</literal> options are mutually exclusive.</para>
+
+          <para>Note that several instructions can be used in with -e.</para>
+
+          <programlisting>scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting>
         </listitem>
       </varlistentry>
 
