@@ -181,8 +181,6 @@ public final class BlockWriter {
     			}
     		} else if (currentObject instanceof BasicLink) {
     			linkList.add((BasicLink) currentObject);
-    		} else {
-    			System.out.println("Not a BasicBlock nor BasicLink");
     		}
     	}
 
