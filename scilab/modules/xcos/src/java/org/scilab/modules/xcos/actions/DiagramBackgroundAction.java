@@ -12,17 +12,13 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.KeyEvent;
 import java.awt.Color;
-import java.awt.Toolkit;
 
 import javax.swing.JColorChooser;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphComponent;

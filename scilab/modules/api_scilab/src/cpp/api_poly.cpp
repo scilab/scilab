@@ -59,7 +59,6 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 
 	if(_pstVarName == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_VAR_POINTER, _("%s: Unable to get formal variable name"), "getPolyVariableName");
 		return strErr;
 	}
 

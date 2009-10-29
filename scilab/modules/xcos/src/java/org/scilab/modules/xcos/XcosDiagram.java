@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -409,6 +410,14 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(true);
 	getAsComponent().setGridVisible(true);
 	
+	mxCell root = new mxCell();
+	root.setId((new UID()).toString());
+	mxCell inner = new mxCell();
+	inner.setId((new UID()).toString());
+	root.insert(inner);
+	setDefaultParent(root);
+	getModel().setRoot(root);
+	
     }
 
     /**
@@ -742,7 +751,7 @@ public class XcosDiagram extends ScilabGraph {
 			&& !(cell instanceof TextBlock)) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
-		    block.openBlockSettings(getContext());
+		    block.openBlockSettings(buildEntireContext());
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
@@ -1180,6 +1189,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    public String[] buildEntireContext() {
+	return getContext();
+    }
+    
     public void setContext(String[] context){
 	this.context = context;
     }

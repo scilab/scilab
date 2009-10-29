@@ -29,6 +29,7 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -144,6 +145,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
 	
+	private boolean binary_warning;
 	private String fileFullPath = "";
 	
 	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
@@ -775,6 +777,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 		textPane.setFocusable(true);
+		textPane.setRequestFocusEnabled(true);
+		textPane.requestFocus();
+		textPane.grabFocus();
 
 		return textPane;
 	}
@@ -852,7 +857,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param f the file to open
 	 */
 	public void readFile(File f) {
-
 		/** Is this file already opened */
 		boolean alreadyOpened = false;
 		for (int i = 0; i < tabPane.getTabCount(); i++) {
@@ -872,13 +876,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		
 		// Get current file path for Execute file into Scilab 
 		fileFullPath = f.getAbsolutePath();
-		
-		// If the file is a binary one, editor is in read-only mode
-		boolean binary;
-		binary = isBinaryFile(f);
-		if (binary == true) {
-			this.textPane.setEditable(false);
-		}
 	}
 	
 	/**
@@ -909,13 +906,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 			}
 		}
-		
-		// If the file is a binary one, editor is in read-only mode
-		boolean binary;
-		binary = isBinaryFile(f);
-		if (binary == true) {
-			this.textPane.setEditable(false);
-		} 
 	}
 
 	/**
@@ -1159,6 +1149,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 		public void readFile(File f) {
 			getInfoBar().setText("Loading...");
 			
+			// Get current file path for Execute file into Scilab 
+			fileFullPath = f.getAbsolutePath();
+			
+			// If the file is a binary one, editor is in read-only mode
+			boolean isBinaryFile = isBinaryFile(f);
+			
 			ScilabStyleDocument styleDocument = null;
 			JTextPane theTextPane;
 			
@@ -1194,7 +1190,23 @@ public class Xpad extends SwingScilabTab implements Tab {
 				
 				System.out.println("File = " + f.getAbsolutePath());
 				theTextPane.setName(f.getAbsolutePath());
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
+				
+				if (isBinaryFile) {
+					theTextPane.setEditable(false);
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , ("(Read-Only) " + f.getName()));
+
+					if (binary_warning == false) {
+						JCheckBox checkbox = new JCheckBox("Do not show this message again.");  
+						Object[] params = {XpadMessages.BINARY_FILE, checkbox};  
+						int msg = JOptionPane.showConfirmDialog(editor, params, XpadMessages.SCILAB_EDITOR, JOptionPane.CLOSED_OPTION);  
+						binary_warning = checkbox.isSelected(); 
+					}
+					
+					
+				} else {
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
+				}
+				
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
@@ -1228,7 +1240,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					ConfigManager.saveLastOpenedDirectory(f.getPath());
 					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 					theTextPane.setName(f.getPath());
-					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 					editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 					updateRecentOpenedFilesMenu();
 

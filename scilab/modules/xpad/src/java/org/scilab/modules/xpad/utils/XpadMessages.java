@@ -126,6 +126,8 @@ public class XpadMessages {
 
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
+    public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
+    
     
     /* About box */
     public static final String VERSION = Messages.gettext("Editor 1.0");
