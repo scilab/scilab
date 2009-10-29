@@ -7,6 +7,7 @@
 
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH XPAD -->
+// <-- MACOSX ONLY -->
 //
 // <-- Non-regression test for bug 4859 -->
 //
