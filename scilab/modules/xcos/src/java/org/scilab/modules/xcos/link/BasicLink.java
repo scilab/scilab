@@ -31,9 +31,17 @@ import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
+import org.scilab.modules.xcos.link.explicit.ExplicitLink;
+import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -250,5 +258,36 @@ public abstract class BasicLink extends XcosUIDObject {
 
 		menu.setVisible(true);
 	}
+
+    public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
+    	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
+    	    return new ExplicitLink();
+    	}
+    	if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
+    	    return new ImplicitLink();
+    	}
+
+    	if (from instanceof ImplicitOutputPort && to instanceof ImplicitOutputPort) {
+    	    return new ImplicitLink();
+    	}
+
+    	if (from instanceof ImplicitInputPort && to instanceof ImplicitInputPort) {
+    	    return new ImplicitLink();
+    	}
+
+    	if (from instanceof CommandPort && to instanceof ControlPort) {
+    	    return new CommandControlLink();
+    	}
+    	if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
+    	    return new ExplicitLink();
+    	}
+    	if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
+    	    return new ImplicitLink();
+    	}
+    	if (to instanceof CommandPort && from instanceof ControlPort) {
+    	    return new CommandControlLink();
+    	}
+    	return new ExplicitLink();
+        }
 
 }
