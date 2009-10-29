@@ -75,6 +75,14 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
