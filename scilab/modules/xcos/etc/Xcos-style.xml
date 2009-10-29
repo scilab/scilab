@@ -1189,9 +1189,7 @@
   </add>
   <!-- RAND_f and RAND_m looks exactly the same -->
   <add as="RAND_f" extend="RAND_m"/>
-  <add as="MUX_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/MUX_f.gif"/>
-  </add>
+  <add as="MUX_f" extend="MUX"/>
   <add as="MEMORY_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/MEMORY_f.gif"/>
   </add>
@@ -1223,9 +1221,7 @@
   <add as="DIFF_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DIFF_f.gif"/>
   </add>
-  <add as="DEMUX_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEMUX_f.gif"/>
-  </add>
+  <add as="DEMUX_f" extend="DEMUX"/>
   <add as="DEBUG_SCICOS" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEBUG_SCICOS.gif"/>
   </add>
