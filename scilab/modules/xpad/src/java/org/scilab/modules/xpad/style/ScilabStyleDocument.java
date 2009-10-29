@@ -1917,6 +1917,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			//if (caretPosition != 0) {
 			    //System.err.println("Text inserted = {"+event.getDocument().getText(event.getOffset(), event.getLength())+"}");
 				//if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+			if (event == null) { // Called from SetFontAction: do nothing, change is done by ColorUpdater
+				return;
+			}
 			if (event.getDocument().getText(event.getOffset(), event.getLength()).contains("\n")) {
 			    indent(event.getOffset(), event.getOffset() + event.getLength());
 			}
@@ -1942,10 +1945,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			//colorize();
 			ColorizeAction.getXpadEditor();
 			editor = getEditor();
-			javax.swing.text.StyledDocument doc= editor.getTextPane().getStyledDocument();
-			synchronized(doc){
-				lineStartPosition =  doc.getParagraphElement(event.getOffset()).getStartOffset();
-				lineEndPosition = doc.getParagraphElement(event.getOffset()+event.getLength()).getEndOffset()-1;
+			javax.swing.text.StyledDocument doc = editor.getTextPane().getStyledDocument();
+			synchronized (doc) {
+				if (event == null) { // Called from SetFontAction: apply change to the whole document
+					lineStartPosition =  0;
+					lineEndPosition = getLength();
+				} else {
+					lineStartPosition =  doc.getParagraphElement(event.getOffset()).getStartOffset();
+					lineEndPosition = doc.getParagraphElement(event.getOffset() + event.getLength()).getEndOffset() - 1;
+				}
 			
 				if (lineStartPosition != lineEndPosition) {
 					colorize(lineStartPosition, lineEndPosition);
