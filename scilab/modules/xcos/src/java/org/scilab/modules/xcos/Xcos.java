@@ -61,6 +61,7 @@ import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.CompileAction;
+import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
@@ -711,6 +712,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		menuBar.add(simulate);
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
+		simulate.add(DebugLevelAction.createMenu(scilabGraph));
 		simulate.add(SetContextAction.createMenu(scilabGraph));
 		simulate.add(CompileAction.createMenu(scilabGraph));
 		simulate.add(StartAction.createMenu(scilabGraph));
@@ -861,7 +863,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	main.setTitle(XcosMessages.XCOS);
 
 	// Get the palettes position
-	if (!paletteLoaded) { // If at Xcos startup
+	if (!paletteLoaded && palette != null && palette.getParentWindow() != null) { // If at Xcos startup
 		Position palPosition = palette.getParentWindow().getPosition();
 		Size palSize = palette.getParentWindow().getDims();
 		Position mainPosition = new Position(palPosition.getX() + palSize.getWidth(), palPosition.getY());
