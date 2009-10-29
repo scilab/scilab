@@ -861,7 +861,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	main.setTitle(XcosMessages.XCOS);
 
 	// Get the palettes position
-	if (!paletteLoaded) { // If at Xcos startup
+	if (!paletteLoaded && palette != null && palette.getParentWindow() != null) { // If at Xcos startup
 		Position palPosition = palette.getParentWindow().getPosition();
 		Size palSize = palette.getParentWindow().getDims();
 		Position mainPosition = new Position(palPosition.getX() + palSize.getWidth(), palPosition.getY());
