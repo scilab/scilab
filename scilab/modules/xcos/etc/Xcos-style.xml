@@ -115,10 +115,10 @@
     <add as="elbow" value="vertical"/>
   </add>
   <add as="ExplicitLink" extend="defaultEdge">
-    <add as="strokeColor" value="blue"/>
+    <!-- <add as="strokeColor" value="blue"/> -->
   </add>
   <add as="ImplicitLink" extend="defaultEdge">
-    <add as="strokeColor" value="green"/>
+    <!-- <add as="strokeColor" value="green"/> -->
   </add>
 
   <!-- SOURCES -->
