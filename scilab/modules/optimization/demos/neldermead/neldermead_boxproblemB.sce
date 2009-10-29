@@ -121,6 +121,7 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
 xcomp = neldermead_get(nm,"-xopt");
@@ -135,6 +136,8 @@ shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
 deletefile ( "boxproblemB.txt" )
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //

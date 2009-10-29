@@ -75,46 +75,46 @@ public class SetupAction extends DefaultAction {
 		diagram = (XcosDiagram)getGraph(e);
 
 
-		JLabel integrationLabel = new JLabel("Final inegration time");
+		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
 		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getFinalIntegrationTime() ,null,null, 0.01);
 		integrationSpinner = new JSpinner( );
 		integrationSpinner.setModel(spinnerModel);
 		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner,"0.00"));
 
-		JLabel rtsLabel = new JLabel("Real time scaling");
+		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
 		spinnerModel = new SpinnerNumberModel(diagram.getRealTimeScaling() ,null,null, 0.1);
 		rtsSpinner = new JSpinner( );
 		rtsSpinner.setModel(spinnerModel);
 		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner,"0.0"));
 
-		JLabel integratorAbsLabel = new JLabel("Integrator absolute tolerance");
+		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
 		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorAbsoluteTolerance(),null,null, 0.00001);
 		integratorAbsSpinner = new JSpinner( );
 		integratorAbsSpinner.setModel(spinnerModel);
 		integratorAbsSpinner.setEditor(new JSpinner.NumberEditor(integratorAbsSpinner,"0.00000"));
 
-		JLabel integratorRelLabel = new JLabel("Integrator relative tolerance");
+		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
 		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorRelativeTolerance(),null,null, 0.0000001);
 		integratorRelSpinner = new JSpinner( );
 		integratorRelSpinner.setModel(spinnerModel);
 		integratorRelSpinner.setEditor(new JSpinner.NumberEditor(integratorRelSpinner,"0.0000000"));
 
-		JLabel toleranceOnTimeLabel = new JLabel("Tolerance on time");
+		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
 		spinnerModel = new SpinnerNumberModel(diagram.getToleranceOnTime(),null,null,1.000E-11);
 		toleranceOnTimeSpinner = new JSpinner( );
 		toleranceOnTimeSpinner.setModel(spinnerModel);
 		toleranceOnTimeSpinner.setEditor(new JSpinner.NumberEditor(toleranceOnTimeSpinner,"0.000E00"));
 
-		JLabel maxIntegrationTimeLabel = new JLabel("Max integration time interval");
+		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
 		spinnerModel = new SpinnerNumberModel(diagram.getMaxIntegrationTimeinterval(),null,null, 1);
 		maxIntegrationTimeSpinner = new JSpinner( );
 		maxIntegrationTimeSpinner.setModel(spinnerModel);
 		maxIntegrationTimeSpinner.setEditor(new JSpinner.NumberEditor(maxIntegrationTimeSpinner,"0"));
 
-		JLabel solverLabel = new JLabel("Solver 0 (CVODE) - 100 (IDA)");
+		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 		solverChoice = new Choice();
-		solverChoice.addItem("CVODE");
-		solverChoice.addItem("IDA");
+		solverChoice.addItem(XcosMessages.CVODE);
+		solverChoice.addItem(XcosMessages.IDA);
 		if ( diagram.getSolver() == 0.0 ){
 			solverChoice.select(0);
 		} else {
@@ -123,7 +123,7 @@ public class SetupAction extends DefaultAction {
 		
 
 
-		JLabel maxStepSizeLabel = new JLabel("maximum step size (0 means no limit)");
+		JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
 		spinnerModel = new SpinnerNumberModel((int)diagram.getMaximumStepSize(),0,null, 1);
 		maxStepSizeSpinner = new JSpinner( );
 		maxStepSizeSpinner.setModel(spinnerModel);
@@ -131,7 +131,7 @@ public class SetupAction extends DefaultAction {
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
-		JButton defaultButton = new JButton("Default");
+		JButton defaultButton = new JButton(XcosMessages.DEFAULT);
 		JButton setContextButton = new JButton(XcosMessages.SET_CONTEXT);
 		okButton.setPreferredSize(cancelButton.getPreferredSize());
 
@@ -270,7 +270,7 @@ public class SetupAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if ( solverChoice.getSelectedItem().equals("CVODE") ){
+				if ( solverChoice.getSelectedItem().equals(XcosMessages.CVODE) ){
 					diagram.setSolver(0) ;
 				} else {
 					diagram.setSolver(100); 
@@ -336,7 +336,7 @@ public class SetupAction extends DefaultAction {
 
 
 
-		mainFrame.setTitle("Set Parameters");
+		mainFrame.setTitle(XcosMessages.SETUP_TITLE);
 		mainFrame.pack();
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);	
