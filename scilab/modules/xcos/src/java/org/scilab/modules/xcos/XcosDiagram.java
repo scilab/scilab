@@ -1393,22 +1393,26 @@ public class XcosDiagram extends ScilabGraph {
     			if (getModel().getChildCount(getDefaultParent()) == 0) {
     				codec.decode(document.getDocumentElement(), this);
     				setModified(false);
+    				/* comment because a diagramm could be loaded successfully even if it has no block in (just save an empty diagram)
     				if (getModel().getChildCount(getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				    	setSavedFile(theFile.getAbsolutePath());
     					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram();
     			} else {
     				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
     				codec.decode(document.getDocumentElement(), xcosDiagram);
+    				/* same reason as above
     				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				setSavedFile(theFile.getAbsolutePath());
     				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram(xcosDiagram);
     			}
 

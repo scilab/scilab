@@ -774,7 +774,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		help.add(XcosDocumentationAction.createMenu(scilabGraph));
 		help.add(BlockDocumentationAction.createMenu(scilabGraph));
+		help.addSeparator();
 		help.add(XcosDemonstrationsAction.createMenu(scilabGraph));
+		help.addSeparator();
 		help.add(AboutXcosAction.createMenu(scilabGraph));
 		
 		/** Debug menu */

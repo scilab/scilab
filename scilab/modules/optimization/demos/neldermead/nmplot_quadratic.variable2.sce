@@ -31,10 +31,11 @@ nm = nmplot_configure(nm,"-method","variable");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor
