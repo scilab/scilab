@@ -20,9 +20,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -1054,37 +1056,61 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public boolean isBinaryFile(File file) {
 
-		byte[] byte_buffer = new byte[(int) file.length()];
-		FileInputStream fis = null;
+		boolean isBinary = false;
+		int ascii_code = 0;
+		int total = 0;
+		String content= "";
+		content = fileToString(file);
 
+		int length = content.length();
+		byte[] utf8Bytes = null;
 		try {
-			fis = new FileInputStream(file);
+			utf8Bytes = content.getBytes("UTF8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < length; i++) {
+			total++;
+			int code = utf8Bytes[i] & 0xff;
+			if (code >= 32 && code <= 122) {
+				ascii_code++;
+			}
+		}
+
+		double result = (ascii_code * 100)/total;
+		if (result < 40) {
+			isBinary = true;
+		} else {
+			isBinary = false;
+		}
+		return isBinary;
+
+	}
+	
+	/**
+	 * Get the text of a given file
+	 * @param file
+	 * @return a String (file's text)
+	 */
+	public static String fileToString(File file)  {
+		StringBuffer fileData = new StringBuffer();
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
-
+		char[] buf = new char[1024];
+		int numRead=0;
 		try {
-			int file_bytes = (int) file.length();
-			try {
-				file_bytes = fis.read(byte_buffer, 0, file_bytes);
-			} catch (IOException e) {
-				e.printStackTrace();
+			while((numRead=reader.read(buf)) != -1){
+				fileData.append(buf, 0, numRead);
 			}
-			if (file_bytes == -1)
-				return false;
-			for (int i = 0; i != file_bytes; i++) {
-				if (byte_buffer[i] < 0)
-					return true;
-			}
-			return false;
-		} finally {
-			try {
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		return fileData.toString();
 	}
 	
 
