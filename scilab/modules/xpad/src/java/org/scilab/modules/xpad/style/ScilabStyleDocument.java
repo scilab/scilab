@@ -197,7 +197,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		});
 		setDocumentFilter( new DocumentFilter(){
 			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = true;
+				boolean isTabOnly = text.length()>0;
 				for(int i=0; isTabOnly && i != text.length(); ++i)
 				{
 					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
@@ -216,7 +216,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
 				String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = true;
+				boolean isTabOnly = text.length()>0;
 				for(int i=0; isTabOnly && i != text.length(); ++i)
 				{
 					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
@@ -1015,7 +1015,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		try
 		{
 			// Replacement
-			this.replace(start, 0, comment_str, null);
+			this.insertString(start, comment_str, null);
 		}
 		catch (BadLocationException e){
 			e.printStackTrace();
@@ -1057,17 +1057,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	{
 		String comment_str = "//";
 		int offset         = comment_str.length();
-		
 		try
 		{
 			// Replacement
-			this.replace(position_start, 0, comment_str, null);
+			this.insertString(position_start, comment_str, null);
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
 		}
-		
 		return offset;
 	}
 	
@@ -1093,7 +1091,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 			if(matcher.find())
 			{
-				this.replace(start+matcher.end()-2, 2, "", null);
+				this.remove(start+matcher.end()-2, 2 );
 				offset = 2;
 			}
 		}
@@ -1111,7 +1109,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public void uncommentLines(int line_start, int line_end)
 	{
 		Pattern pattern = Pattern.compile("^(\\s)*//");
-		
+		boolean  mergeEditsMode= getShouldMergeEdits();
+		setShouldMergeEdits(true);
 		for (int i = line_start; i <= line_end; i++)
 		{
 			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
@@ -1125,13 +1124,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				
 				if(matcher.find())
 				{
-					this.replace(start+matcher.end()-2, 2, "", null);
+					this.remove(start+matcher.end()-2, 2);
 				}
 			}
 			catch (BadLocationException e){
 				e.printStackTrace();
 			}
 		}
+		setShouldMergeEdits(mergeEditsMode);
 	}
 	
 	/*
@@ -1151,7 +1151,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			
 			if(matcher.find())
 			{
-				this.replace(position_start,2,"", null);
+				this.remove(position_start,2);
 				offset = 2;
 			}
 		}
@@ -1180,7 +1180,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	{
 		try
 		{
-			this.replace(position, 0, getTabulation(), null);
+			this.insertString(position, getTabulation(), null);
 		}
 		catch (BadLocationException e)
 		{
