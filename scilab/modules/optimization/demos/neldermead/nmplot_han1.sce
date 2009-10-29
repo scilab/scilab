@@ -60,13 +60,13 @@ nm = nmplot_configure(nm,"-sigmafn","han1-history-sigma.txt");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 //
 // Plot the history of the simplex
 //
-mprintf("Plotting contour...\n");
+mprintf("Plotting contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
@@ -82,6 +82,7 @@ deletefile("han1-history-fbar.txt");
 deletefile("han1-history-fopt.txt");
 deletefile("han1-history-sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor
