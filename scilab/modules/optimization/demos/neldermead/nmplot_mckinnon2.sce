@@ -129,12 +129,13 @@ nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.restart.sigma.txt");
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 //
 // Plot
 //
-mprintf("Plot contour...\n");
+mprintf("Plot contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf();
 xset("fpf"," ")
@@ -156,6 +157,7 @@ deletefile("mckinnon.history.restart.fbar.txt");
 deletefile("mckinnon.history.restart.fopt.txt");
 deletefile("mckinnon.history.restart.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor
