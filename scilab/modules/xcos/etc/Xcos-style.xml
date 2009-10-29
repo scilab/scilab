@@ -799,7 +799,7 @@
   </add>
   <!-- SampleCLK -->
   <add as="CLKOUTV_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
