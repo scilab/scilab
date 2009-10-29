@@ -77,7 +77,7 @@ public class DebugLevelAction extends DefaultAction {
 
 		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
 		
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getSolver(),0,3, 1);
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getDebugLevel(),0,3, 1);
 		debugSpinner = new JSpinner( );
 		debugSpinner.setModel(spinnerModel);
 		debugSpinner.setEditor(new JSpinner.NumberEditor(debugSpinner,"0"));//0.####E0
@@ -132,6 +132,7 @@ public class DebugLevelAction extends DefaultAction {
 		okButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				diagram.setDebugLevel((Integer) debugSpinner.getValue());
 				InterpreterManagement.requestScilabExec("scicos_debug("+debugSpinner.getValue()+");");
 		
 				mainFrame.dispose();

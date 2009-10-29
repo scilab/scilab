@@ -100,6 +100,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
+    private int debugLevel = 0 ;
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
@@ -1198,6 +1199,14 @@ public class XcosDiagram extends ScilabGraph {
     public String getVersion() {
 	return version;
     }
+    
+    public int getDebugLevel(){
+    	return debugLevel;
+    }
+    
+    public void setDebugLevel(int debugLevel){
+    	this.debugLevel = debugLevel;
+    }
 
     private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
 	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
@@ -1384,22 +1393,26 @@ public class XcosDiagram extends ScilabGraph {
     			if (getModel().getChildCount(getDefaultParent()) == 0) {
     				codec.decode(document.getDocumentElement(), this);
     				setModified(false);
+    				/* comment because a diagramm could be loaded successfully even if it has no block in (just save an empty diagram)
     				if (getModel().getChildCount(getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				    	setSavedFile(theFile.getAbsolutePath());
     					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram();
     			} else {
     				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
     				codec.decode(document.getDocumentElement(), xcosDiagram);
+    				/* same reason as above
     				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				setSavedFile(theFile.getAbsolutePath());
     				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram(xcosDiagram);
     			}
 

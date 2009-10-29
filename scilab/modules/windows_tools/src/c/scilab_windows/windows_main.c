@@ -166,8 +166,10 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			strcpy(Commande, "empty");
 			CommandByFileExtension(FileName, CodeAction, Commande);
 
-			if (( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
-				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction == 1) )
+			if (
+				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
+				( ( IsABinOrSavFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
+				( ( IsAXpadFile(FileName)== TRUE  ) ) 
 				)
 			{
 				my_argc = -1;

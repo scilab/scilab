@@ -7,6 +7,8 @@ show how to use the component with a simple example.
 \section{Overview}
 \index{Torczon, Virginia}
 \index{Wright, Margaret}
+\index{Nelder, John}
+\index{Mead, Roger}
 
 The Nelder-Mead simplex algorithm \cite{citeulike:3009487}, published in 1965, is an enormously 
 popular search method for multidimensional unconstrained optimization. 
@@ -31,6 +33,11 @@ function values. The algorithm attemps to replace the worst vertex with
 a new point, which depends on the worst point and the centre of the best 
 vertices. 
 
+\index{Spendley, W.}
+\index{Hext, G. R.}
+\index{Himsworth, F. R.}
+\index{Box, M. J.}
+
 The goal of this toolbox is to provide a Nelder-Mead (1965) direct search optimization method to solve the 
 following unconstrained optimization problem
 \begin{eqnarray}
@@ -39,7 +46,7 @@ following unconstrained optimization problem
 where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
 function $f:\RR^n\rightarrow \RR$.
 In order to solve the unconstrained optimization problem, the Nelder-Mead 
-algorithm uses a variable shape simplex. The toolbox also provide Spendley's et al. 
+algorithm uses a variable shape simplex. The toolbox also provide Spendley, Hext and Himsworth's  
 algorithm \cite{Spendley1962} (1962), which uses a fixed shape simplex. Historically, the algorithm created  
 by Nelder and Mead was designed as an improvement on Spendley's et al. algorithm.
 The Box complex algorithm \cite{Box1965} (1965), which is an extension of Spendley's  et al. algorithm, solves the 
@@ -281,7 +288,7 @@ corresponding functions, as well as many sample uses.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=15cm]{introduction-help.png}
+\includegraphics[width=15cm]{introduction/introduction-help.png}
 \end{center}
 \caption{Built-in help for the Nelder-Mead component}
 \label{fig-intro-help}
@@ -289,7 +296,7 @@ corresponding functions, as well as many sample uses.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=15cm]{introduction-help-fminsearch.png}
+\includegraphics[width=15cm]{introduction/introduction-help-fminsearch.png}
 \end{center}
 \caption{Built-in help for the \scifunction{fminsearch} function}
 \label{fig-intro-helpfminsearch}
@@ -301,7 +308,7 @@ and are presented in figure \ref{fig-intro-demos}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{introduction-demos.png}
+\includegraphics[width=10cm]{introduction/introduction-demos.png}
 \end{center}
 \caption{Built-in demonstration scripts for the Nelder-Mead component}
 \label{fig-intro-demos}

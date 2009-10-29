@@ -76,6 +76,8 @@ hh.children.y_label.text = "Number of function evaluations"
 hh.children.children.children.mark_mode = "on";
 hh.children.children.children.mark_style = 9;
 hh.children.children.children.mark_size = 10;
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //
