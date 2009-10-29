@@ -41,9 +41,14 @@ public class ExitAction extends DefaultAction {
     	int numberOfTab = getEditor().getTabPane().getComponentCount();
 
     	boolean wantToClose = true;
+    	int k = 0;
     	for ( int i = 0 ; i < numberOfTab ; i++){
     		//close and save all editors if they are modified
-    		wantToClose &=  getEditor().closeTabAt(0);
+    		boolean response = getEditor().closeTabAt(k); 
+    		if(response == false){
+    			k++;
+    		}
+    		wantToClose &= response;  
     	}
 
     	if(wantToClose == true){

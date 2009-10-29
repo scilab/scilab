@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.Choice;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -45,7 +46,7 @@ public class SetupAction extends DefaultAction {
 	private JSpinner integratorRelSpinner;
 	private JSpinner toleranceOnTimeSpinner;
 	private JSpinner maxIntegrationTimeSpinner;
-	private JSpinner solverSpinner;
+	private Choice   solverChoice ;
 	private JSpinner maxStepSizeSpinner;
 
 	public SetupAction(ScilabGraph scilabGraph) {
@@ -110,11 +111,17 @@ public class SetupAction extends DefaultAction {
 		maxIntegrationTimeSpinner.setModel(spinnerModel);
 		maxIntegrationTimeSpinner.setEditor(new JSpinner.NumberEditor(maxIntegrationTimeSpinner,"0"));
 
-		JLabel solverLabel = new JLabel("Solver 0 (CVODE)/100 (IDA)");
-		spinnerModel = new SpinnerNumberModel(diagram.getSolver(),0,100, 1);
-		solverSpinner = new JSpinner( );
-		solverSpinner.setModel(spinnerModel);
-		solverSpinner.setEditor(new JSpinner.NumberEditor(solverSpinner,"0"));//0.####E0
+		JLabel solverLabel = new JLabel("Solver 0 (CVODE) - 100 (IDA)");
+		solverChoice = new Choice();
+		solverChoice.addItem("CVODE");
+		solverChoice.addItem("IDA");
+		if ( diagram.getSolver() == 0.0 ){
+			solverChoice.select(0);
+		} else {
+			solverChoice.select(1);
+		}
+		
+
 
 		JLabel maxStepSizeLabel = new JLabel("maximum step size (0 means no limit)");
 		spinnerModel = new SpinnerNumberModel((int)diagram.getMaximumStepSize(),0,null, 1);
@@ -197,7 +204,7 @@ public class SetupAction extends DefaultAction {
 		mainFrame.add( maxIntegrationTimeSpinner , gbc);
 
 		gbc.gridy = 10;
-		mainFrame.add( solverSpinner , gbc);
+		mainFrame.add( solverChoice, gbc);
 
 		gbc.gridy = 11;
 		mainFrame.add( maxStepSizeSpinner , gbc);
@@ -242,7 +249,7 @@ public class SetupAction extends DefaultAction {
 				integratorRelSpinner.setValue(1e-6);
 				toleranceOnTimeSpinner.setValue(1e-10);
 				maxIntegrationTimeSpinner.setValue(100001.0);
-				solverSpinner.setValue(0.0);
+				solverChoice.select(0);
 				maxStepSizeSpinner.setValue(0.0);
 
 				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
@@ -251,7 +258,7 @@ public class SetupAction extends DefaultAction {
 				diagram.setIntegratorRelativeTolerance((Double)integratorRelSpinner.getValue() ) ;
 				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
 				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
-				diagram.setSolver((Double)solverSpinner.getValue()) ;
+				diagram.setSolver(0) ;
 				diagram.setMaximumStepSize( ((Double)maxStepSizeSpinner.getValue()).doubleValue())  ;
 			}
 		});
@@ -263,7 +270,11 @@ public class SetupAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 
-
+				if ( solverChoice.getSelectedItem().equals("CVODE") ){
+					diagram.setSolver(0) ;
+				} else {
+					diagram.setSolver(100); 
+				}
 
 				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
 				diagram.setRealTimeScaling((Double)rtsSpinner.getValue())   ;
@@ -271,7 +282,7 @@ public class SetupAction extends DefaultAction {
 				diagram.setIntegratorRelativeTolerance((Double)integratorRelSpinner.getValue() ) ;
 				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
 				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
-				diagram.setSolver((Double)solverSpinner.getValue()) ;
+				
 				diagram.setMaximumStepSize( ((Integer)maxStepSizeSpinner.getValue()).doubleValue())  ;
 
 				SetupAction.windowAlreadyExist= false ;
