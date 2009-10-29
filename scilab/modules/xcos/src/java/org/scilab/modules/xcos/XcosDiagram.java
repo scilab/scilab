@@ -100,6 +100,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
+    private int debugLevel = 0 ;
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
@@ -1197,6 +1198,14 @@ public class XcosDiagram extends ScilabGraph {
 
     public String getVersion() {
 	return version;
+    }
+    
+    public int getDebugLevel(){
+    	return debugLevel;
+    }
+    
+    public void setDebugLevel(int debugLevel){
+    	this.debugLevel = debugLevel;
     }
 
     private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {

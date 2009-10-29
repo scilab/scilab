@@ -37,7 +37,7 @@ nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 // Plot various histories
@@ -65,7 +65,7 @@ f.children.y_ticks = newticks;
 f.children.children(1).children.mark_mode = "on";
 f.children.children(1).children.mark_style = 9;
 // Plot the contours of the cost function and the simplex history
-mprintf("Plotting contour...\n");
+mprintf("Plotting contour (please wait)...\n");
 nm = nmplot_configure(nm,"-verbose",0);
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 50 , ny = 50 );
 f = scf();
@@ -79,6 +79,7 @@ deletefile("rosenbrock.fixed.history.fbar.txt");
 deletefile("rosenbrock.fixed.history.fopt.txt");
 deletefile("rosenbrock.fixed.history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor

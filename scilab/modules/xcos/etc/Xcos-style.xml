@@ -115,10 +115,10 @@
     <add as="elbow" value="vertical"/>
   </add>
   <add as="ExplicitLink" extend="defaultEdge">
-    <!-- <add as="strokeColor" value="blue"/> -->
+   <add as="strokeColor" value="blue"/>
   </add>
   <add as="ImplicitLink" extend="defaultEdge">
-    <!-- <add as="strokeColor" value="green"/> -->
+   <add as="strokeColor" value="blue"/>
   </add>
 
   <!-- SOURCES -->
@@ -1236,11 +1236,9 @@
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>
   </add>
-	<add as="CLKSPLIT_f" extend="Split"/>
-	<add as="IMPSPLIT_f" extend="Split"/>
-	<add as="CLKSOM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOM_f.gif"/>
-  </add>
+  <add as="CLKSPLIT_f" extend="Split"/>
+  <add as="IMPSPLIT_f" extend="Split"/>
+  <add as="CLKSOM_f" extend="CLKSOMV_f"/>
   <add as="CLKOUT_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKOUT_f.gif"/>
   </add>

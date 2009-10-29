@@ -45,7 +45,7 @@ public class StartAction  extends DefaultAction {
 			temp = File.createTempFile("xcos",".hdf5");
 			temp.delete();
 			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");xcos_simulate(scs_m);");
+			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");xcos_simulate(scs_m);");
 			temp.deleteOnExit();
 		} catch (IOException e1) {
 			e1.printStackTrace();
