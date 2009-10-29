@@ -48,15 +48,19 @@ function [res,version_out] = atomsIsLoaded(packages)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsLoaded",1));
 	end
 	
-	if size(packages(1,:),"*") > 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsLoaded",1));
+	if size(packages(1,:),"*") > 3 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix expected.\n"),"atomsIsLoaded",1));
 	end
 	
-	// If packages is mx1 matrix, add a 2nd column with empty versions
+	// Complete packages matrix with empty columns to have a mx3 matrix
 	// =========================================================================
 	
 	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
 		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
 	end
 	
 	// Get the list of installed packages
@@ -70,17 +74,41 @@ function [res,version_out] = atomsIsLoaded(packages)
 		
 		name    = packages(i,1);
 		version = packages(i,2);
+		section = packages(i,3);
 		
-		if isempty(version) then
+		if packages(i,3) == "all" then
+			section = "";
+		else
+			section = packages(i,3);
+		end
+		
+		if isempty(version) & isempty(section) then
 			// Just check the name
 			res(i) = or(loadedpackages(:,1) == name);
 			
-		else
+		elseif isempty(version) & ~isempty(section) then
 			// Filter on names
-			packages_version = loadedpackages( find(loadedpackages(:,1) == name) , 2 );
+			packages_filtered = loadedpackages( find(loadedpackages(:,1) == name) , 3 );
+			
+			// Check if the wanted section is present
+			res(i) = or(packages_filtered == section);
+			
+		elseif ~isempty(version) & isempty(section) then
+			// Filter on names
+			packages_filtered = loadedpackages( find(loadedpackages(:,1) == name) , 2 );
 			
 			// Check if the wanted version is present
-			res(i) = or(packages_version == version);
+			res(i) = or(packages_filtered == version);
+			
+		else
+			// Filter on names
+			packages_filtered = loadedpackages( find(loadedpackages(:,1) == name) , [2 3] );
+			
+			// Filter on version
+			packages_filtered = packages_filtered( find(packages_filtered(:,1) == version) , 2 );
+			
+			// Check if the wanted section is present
+			res(i) = or(packages_filtered == section);
 		end
 		
 		if lhs>1 then

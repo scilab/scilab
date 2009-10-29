@@ -20,6 +20,7 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -63,41 +64,12 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
-	this.setLocked(true);
-	
-	if (child == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
-	    // This means we have a SuperBlock and we generated C code for it.
-	    this.setLocked(false);
-	    return;
-	}
-	
-	if (child == null) {
-	    child = new SuperBlockDiagram(this);
-	    child.installListeners();
-	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
-	    child.installSuperBlockListeners();
-	    updateAllBlocksColor();
-	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
-	    for(int i = 0 ; i < blockCount ; i++){
-		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
-		    if(cell instanceof BasicBlock){
-		    	BasicBlock block = (BasicBlock)cell;
-		    	block.setParentDiagram(child);
-		    }
-	    }
-	}
-	else {
-	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-	    newChild.installListeners();
-	    newChild.setModel(child.getModel());
-	    newChild.setContext(child.getContext());
-	    newChild.getModel().setRoot(child.getModel().getRoot());
-	    newChild.setDefaultParent(child.getDefaultParent());
-	    child = newChild;
-	    
-	    child.installSuperBlockListeners();
-	    updateAllBlocksColor();
-	}
+    	if (child == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
+    	    // This means we have a SuperBlock and we generated C code for it.
+    	    this.setLocked(false);
+    	    return;
+    	}
+	createChildDiagram();
 	Xcos.showDiagram(child);
     }
 
@@ -108,6 +80,36 @@ public class SuperBlock extends BasicBlock {
 	menu.add(CodeGenerationAction.createMenu(graph));
 	
 	menu.setVisible(true);
+    }
+    
+    public void createChildDiagram(){
+    	if (child == null) {
+    	    child = new SuperBlockDiagram(this);
+    	    child.installListeners();
+    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.installSuperBlockListeners();
+    	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
+    	    for(int i = 0 ; i < blockCount ; i++){
+    		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
+    		    if(cell instanceof BasicBlock){
+    		    	BasicBlock block = (BasicBlock)cell;
+    		    	block.setParentDiagram(child);
+    		    }
+    	    }
+    	    updateAllBlocksColor();
+    	}
+    	else {
+    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
+    	    newChild.installListeners();
+    	    newChild.setModel(child.getModel());
+    	    newChild.setContext(child.getContext());
+    	    newChild.getModel().setRoot(child.getModel().getRoot());
+    	    newChild.setDefaultParent(child.getDefaultParent());
+    	    child = newChild;
+    	    
+    	    child.installSuperBlockListeners();
+    	    updateAllBlocksColor();
+    	}
     }
     
     public SuperBlockDiagram getChild() {
@@ -318,8 +320,9 @@ public class SuperBlock extends BasicBlock {
     	}
     }
 
-    protected void updateExportedPort(){
+    public void updateExportedPort(){
     	if(child == null){
+    		System.err.println("child == null");
     		return;
     	}
 
