@@ -819,39 +819,42 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public void undo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
-		UndoManager undo = doc.getUndoManager();
-		if (undo.canUndo()) {
-			try {
-				System.out.println(undo.canUndo());
-				System.err.println("Will undo " + undo.getUndoPresentationName());
-				undo.undo();
-				if(!undo.canUndo()){ // remove "*" prefix from tab name
-					JTabbedPane current = getTabPane();
-					int index = current.getSelectedIndex();
-					String namePrefixedByStar = current.getTitleAt(index);
-					current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
-					doc.setContentModified(false);
-				}			
-				repaint();
-			} catch (CannotUndoException ex) {
-				System.out.println("Unable to undo: " + ex);
-				ex.printStackTrace();
+		synchronized(doc){
+			UndoManager undo = doc.getUndoManager();
+			if (undo.canUndo()) {
+				try {
+					System.err.println("Will undo " + undo.getUndoPresentationName());
+					undo.undo();
+					if(!undo.canUndo()){ // remove "*" prefix from tab name
+						JTabbedPane current = getTabPane();
+						int index = current.getSelectedIndex();
+						String namePrefixedByStar = current.getTitleAt(index);
+						current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
+						doc.setContentModified(false);
+					}			
+					repaint();
+				} catch (CannotUndoException ex) {
+					System.out.println("Unable to undo: " + ex);
+					ex.printStackTrace();
+				}
 			}
 		}
 	}
-
 	/**
 	 * Redo last modification
 	 */
 	public void redo() {
-		UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		if (redo.canRedo()) {
-			try {
-				System.err.println("Will redo " + redo.getRedoPresentationName());
-				redo.redo();
-			} catch (CannotRedoException ex) {
-				System.out.println("Unable to redo: " + ex);
-				ex.printStackTrace();
+		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
+		synchronized(doc){
+			UndoManager redo = doc.getUndoManager();
+			if (redo.canRedo()) {
+				try {
+					System.err.println("Will redo " + redo.getRedoPresentationName());
+					redo.redo();
+				} catch (CannotRedoException ex) {
+					System.out.println("Unable to redo: " + ex);
+					ex.printStackTrace();
+				}
 			}
 		}
 	}
@@ -1076,7 +1079,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			for (int i = 0; i < length; i++) {
 				total++;
 				int code = utf8Bytes[i] & 0xff;
-				if (code >= 32 && code <= 122) {
+				 if ((code >= 32 && code <= 122) || (code >= 192 && code <= 252)) {
 					ascii_code++;
 				}
 			}
