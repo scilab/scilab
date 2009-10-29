@@ -895,7 +895,7 @@ function [stk,txt,top]=_e2sci()
 	end
       end
       stk=list(ex,'0')
-    elseif type(s2(1))==10&type(evstr(s2(1)))==10 then // recursive extraction
+    elseif type(s2(1))==10&execstr(s2(1),"errcatch")==0&type(evstr(s2(1)))==10 then // recursive extraction
       stk=list(sn(1)+'.'+evstr(s2(1)),'0')
     else
       if s2(1)=='eye()' then s2(1)=':',end
