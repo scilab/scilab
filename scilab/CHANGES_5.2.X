@@ -1044,3 +1044,5 @@ Bug fixes:
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum is broken.
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returns a wrong result.
+
+* bug 5074 fixed - French help star shows mis-encoded characters.
