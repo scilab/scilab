@@ -204,7 +204,7 @@ deff('z=f(x,y)','z=cos(x+y)')
 
       <member><link linkend="intg">intg</link></member>
 
-      <member><link linkend="mesh2d">mesh2d</link></member>
+      <member><link linkend="mesh">mesh</link></member>
     </simplelist>
   </refsection>
 
