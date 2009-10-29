@@ -19,15 +19,6 @@ opt = optimset ( "Display" , "iter" );
 //
 mprintf("x=%s\n",strcat(string(x)," "));
 mprintf("fval=%e\n",fval);
-mprintf("exitflag=%d\n",exitflag);
-mprintf("output.message:\n");
-for i =1:3
-  mprintf(output.message(i));
-  mprintf("\n");
-end
-mprintf("output.algorithm:%s\n",output.algorithm);
-mprintf("output.funcCount:%d\n",output.funcCount);
-mprintf("output.iterations:%d\n",output.iterations);
 //
 // Load this script into the editor
 //
