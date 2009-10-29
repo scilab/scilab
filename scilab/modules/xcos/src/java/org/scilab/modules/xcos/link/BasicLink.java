@@ -27,6 +27,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -35,12 +36,11 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
-public abstract class BasicLink extends mxCell {
+public abstract class BasicLink extends XcosUIDObject {
 
 	public BasicLink(String style) {
 		super();

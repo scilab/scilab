@@ -13,7 +13,6 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 

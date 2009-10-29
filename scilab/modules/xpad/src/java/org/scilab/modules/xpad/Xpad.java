@@ -777,6 +777,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 		textPane.setFocusable(true);
+		textPane.setRequestFocusEnabled(true);
+		textPane.requestFocus();
+		textPane.grabFocus();
 
 		return textPane;
 	}

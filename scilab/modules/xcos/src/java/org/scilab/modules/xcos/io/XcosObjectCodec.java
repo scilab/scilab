@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 

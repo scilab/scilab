@@ -11,8 +11,6 @@
  */
 package org.scilab.modules.xcos.utils;
 
-import java.io.File;
-
 import org.scilab.modules.localization.Messages;
 
 

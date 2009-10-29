@@ -14,7 +14,6 @@ package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;

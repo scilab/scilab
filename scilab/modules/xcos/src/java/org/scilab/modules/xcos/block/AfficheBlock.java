@@ -16,7 +16,6 @@ import java.util.UUID;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-import org.scilab.modules.xcos.Xcos;
 
 public class AfficheBlock extends BasicBlock {
 
