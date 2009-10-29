@@ -1,14 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include "MALLOC.h"
 #include "stack-c.h"
@@ -20,24 +20,24 @@
 /*--------------------------------------------------------------------------*/
 int C2F(matlog)(void)
 {
-    static int or = 57;
-    static int non = 61;
+	static int or = 57;
+	static int non = 61;
 
-    static int j= 0;
-    static double e1, e2;
+	static int j= 0;
+	static double e1, e2;
 
-    static int i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
+	static int i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
 
-    top0 = Top;
-    op = Fin;
-    lw = C2F(vstk).lstk[Top] + 1;
+	top0 = Top;
+	op = Fin;
+	lw = C2F(vstk).lstk[Top] + 1;
 
-    if (Rhs == 2)
-    {
+	if (Rhs == 2)
+	{
 		il2 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
 		if (*istk(il2) < 0) 
 		{
-	    	il2 = iadr(*istk(il2+1));
+			il2 = iadr(*istk(il2+1));
 		}
 		m2 = *istk(il2 + 1);
 		n2 = *istk(il2 + 2);
@@ -45,21 +45,21 @@ int C2F(matlog)(void)
 		l2 = (il2 + 4) / 2 + 1;
 		mn2 = m2 * n2;
 		--Top;
-    }
+	}
 
-    il1 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
-    if (*istk(il1) < 0) 
-   	{
+	il1 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
+	if (*istk(il1) < 0) 
+	{
 		il1 = iadr(*istk(il1+1));
-    }
-    m1 = *istk(il1 + 1);
-    n1 = *istk(il1 + 2);
-    it1 = *istk(il1 + 3);
+	}
+	m1 = *istk(il1 + 1);
+	n1 = *istk(il1 + 2);
+	it1 = *istk(il1 + 3);
 
-    l1 = (il1 + 4) / 2 + 1;
-    mn1 = m1 * n1;
-    if (Fin == non) 
-   	{
+	l1 = (il1 + 4) / 2 + 1;
+	mn1 = m1 * n1;
+	if (Fin == non) 
+	{
 		if (mn1 == 0) 
 		{
 			*istk(il1) = 1;
@@ -78,11 +78,11 @@ int C2F(matlog)(void)
 				e1 = *stk(l1 + j);
 				if (e1 == 0.) 
 				{
-		    		*istk(il1 + 3 + j) = 1;
+					*istk(il1 + 3 + j) = 1;
 				}
 				else
 				{
-		    		*istk(il1 + 3 + j) = 0;
+					*istk(il1 + 3 + j) = 0;
 				}
 			}
 			C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
@@ -119,7 +119,7 @@ int C2F(matlog)(void)
 		}
 		else 
 		{
-		    i2 = 1;
+			i2 = 1;
 		}
 
 		if (mn1 != mn2) 
@@ -132,7 +132,14 @@ int C2F(matlog)(void)
 		matBool = (BOOL*)MALLOC(sizeof(BOOL) * mn1);
 		if (matBool == NULL)
 		{
-			Scierror(999,_("%s: No more memory.\n"),"boolean operation (or)");
+			if (Fin == or) 
+			{
+				Scierror(999,_("%s: No more memory.\n"),"boolean operation '|'");
+			}
+			else
+			{
+				Scierror(999,_("%s: No more memory.\n"),"boolean operation '&'");
+			}
 			return 0;
 		}
 
@@ -192,7 +199,7 @@ int C2F(matlog)(void)
 		C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
 		return 0;
 	}
-return 0;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 
