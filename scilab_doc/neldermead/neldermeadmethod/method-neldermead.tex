@@ -1,5 +1,8 @@
 \chapter{Nelder-Mead method}
 
+\index{Nelder, John}
+\index{Mead, Roger}
+
 In this chapter, we present Nelder and Mead's \cite{citeulike:3009487} algorithm.
 We begin by the analysis of the algorithm, which is based on a variable shape simplex.
 Then, we present geometric situations where the various steps of the algorithm 
@@ -233,7 +236,7 @@ simplex in the Nelder-Mead algorithm.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=6cm]{nelder-mead-steps.pdf}
+\includegraphics[width=6cm]{neldermeadmethod/nelder-mead-steps.pdf}
 \end{center}
 \caption{Nelder-Mead simplex steps}
 \label{fig-nm-moves}
@@ -270,7 +273,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{nelder-mead-reflection.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-reflection.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves -- Reflection}
 \label{fig-nm-moves-reflection}
@@ -278,7 +281,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{nelder-mead-extension.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-extension.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves -- Expansion}
 \label{fig-nm-moves-expansion}
@@ -286,7 +289,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{nelder-mead-contract-inside.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-contract-inside.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves - Inside contraction}
 \label{fig-nm-moves-insidecontraction}
@@ -294,7 +297,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{nelder-mead-contract-outside.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-contract-outside.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves -- Outside contraction}
 \label{fig-nm-moves-outsidecontraction}
@@ -302,7 +305,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=6cm]{nelder-mead-shrink-afterci.pdf}
+\includegraphics[width=6cm]{neldermeadmethod/nelder-mead-shrink-afterci.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves -- Shrink after inside contraction.}
 \label{fig-nm-moves-shrinkafterci}
@@ -310,7 +313,7 @@ shrink steps are rare.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{nelder-mead-shrink-afterco.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-shrink-afterco.pdf}
 \end{center}
 \caption{Nelder-Mead simplex moves -- Shrink after outside contraction}
 \label{fig-nm-moves-shrinkafterco}
@@ -740,7 +743,7 @@ coefficients. (Some results are not displayed to make the table fit the page).}
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{neldermead-roots.png}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-roots.png}
 \end{center}
 \caption{Modulus of the roots of the characteristic equations of the Nelder-Mead method with standard 
 coefficients -- R-max-IC is the maximum of the modulus of the root of the Inside Contraction steps}
@@ -853,7 +856,7 @@ experiment.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{neldermead-roots-variable.png}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-roots-variable.png}
 \end{center}
 \caption{Modulus of the roots of the characteristic equations of the Nelder-Mead method with variable 
 contraction coefficient and $n=10$ -- R-max is the maximum of the modulus of the root of the 
@@ -951,7 +954,7 @@ presented in figure \ref{fig-nm-numexp1-historysimplex}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{quad2bis-nm-simplexcontours.png}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-simplexcontours.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- history of simplex}
 \label{fig-nm-numexp1-historysimplex}
@@ -964,7 +967,7 @@ step-by-step evolution of the simplex with the Spendley et al. algorithm.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{quad2bis-nm-history-sigma.png}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-history-sigma.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- History of logarithm of length of simplex}
 \label{fig-nm-numexp1-sigma}
@@ -976,7 +979,7 @@ figure \ref{fig-nm-numexp1-logfopt}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{quad2bis-nm-history-logfopt.png}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-history-logfopt.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- History of logarithm of function}
 \label{fig-nm-numexp1-logfopt}
@@ -1223,7 +1226,7 @@ the number of function evaluations is equal to $100n$.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{neldermead-dimension-nfevals.png}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-dimension-nfevals.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Number of function evaluations 
 depending on the number of variables}
@@ -1239,7 +1242,7 @@ explained by Han \& Neumann.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{neldermead-dimension-rho.png}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-dimension-rho.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Rate of convergence 
 depending on the number of variables}
@@ -1699,7 +1702,7 @@ point $(0,0)$, which is a non stationnary point.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{mckinnon-history-simplex.png}
+\includegraphics[width=10cm]{neldermeadmethod/mckinnon-history-simplex.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Mc Kinnon example for convergence toward
 a non stationnary point}
@@ -1715,7 +1718,7 @@ by Mc Kinnon are so that the situation loops without end.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{mcKinnon-insidecontraction.pdf}
+\includegraphics[width=10cm]{neldermeadmethod/mcKinnon-insidecontraction.pdf}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Detail of the first steps.
 The simplex converges to a non stationnary point, after repeated 
@@ -1749,7 +1752,7 @@ The failure is caused by repeated inside contractions.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{han1-history-simplex.png}
+\includegraphics[width=10cm]{neldermeadmethod/han1-history-simplex.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Han example \#1 for convergence toward
 a non stationnary point}
@@ -1797,7 +1800,7 @@ The failure is caused by repeated inside contractions.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{han2-history-simplex.png}
+\includegraphics[width=10cm]{neldermeadmethod/han2-history-simplex.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Han example \#2 for convergence toward
 a non stationnary point}
@@ -1911,7 +1914,7 @@ vertices and $\bx_h$ is the worst (or high) vertex.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{torczon_test1_angle.png}
+\includegraphics[width=10cm]{neldermeadmethod/torczon_test1_angle.png}
 \end{center}
 \caption{Nelder-Mead numerical experiment -- Penalty \#1 function --
 We see that the angle between the gradient and the search direction

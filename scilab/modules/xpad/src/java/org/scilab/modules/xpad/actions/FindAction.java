@@ -34,6 +34,7 @@ import java.util.regex.PatternSyntaxException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -100,6 +101,9 @@ public final class FindAction extends DefaultAction {
     	if (!FindAction.windowAlreadyExist) {
         	findReplaceBox();
         	FindAction.windowAlreadyExist = true;
+    	} else {
+    		frame.setVisible(true);
+    		buttonFind.requestFocus();
     	}
 	}
 
@@ -118,6 +122,7 @@ public final class FindAction extends DefaultAction {
 
 		//Find & Replace Frame
 		frame = new JFrame();
+		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(300, 510));
 		frame.setMinimumSize(new Dimension(200, 500));

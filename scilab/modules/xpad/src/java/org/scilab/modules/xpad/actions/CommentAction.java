@@ -30,35 +30,39 @@ public class CommentAction extends DefaultAction {
 	
 	public void doAction()
 	{
-		int position_start = getEditor().getTextPane().getSelectionStart();
-		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		
-		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if(position_start == position_end)
-		{
-			// No selection : comment the current line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLine(line_start);
-			getEditor().getTextPane().setCaretPosition(position_start+offset);
-		}
-		
-		else if( line_start == line_end )
-		{
-			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(position_start);
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end+offset);
-		}
-		
-		else
-		{
-			// several lines are selected
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLines(line_start, line_end);
-			position_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElement(line_end).getEndOffset();
+		ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		synchronized(doc){
+			int position_start = getEditor().getTextPane().getSelectionStart();
+			int position_end   = getEditor().getTextPane().getSelectionEnd();
 			
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end-1);
+			int line_start     = doc.getDefaultRootElement().getElementIndex(position_start);
+			int line_end       = doc.getDefaultRootElement().getElementIndex(position_end);
+			
+			if(position_start == position_end)
+			{
+				// No selection : comment the current line
+				int offset = doc.commentLine(line_start);
+				getEditor().getTextPane().setCaretPosition(position_start+offset);
+			}
+			
+			else if( line_start == line_end )
+			{
+				// A part of the line is selected
+				int offset = doc.commentText(position_start);
+				getEditor().getTextPane().setSelectionStart(position_start);
+				getEditor().getTextPane().setSelectionEnd(position_end+offset);
+			}
+			
+			else
+			{
+				// several lines are selected
+				doc.commentLines(line_start, line_end);
+				position_end = doc.getDefaultRootElement().getElement(line_end).getEndOffset();
+				
+				getEditor().getTextPane().setSelectionStart(position_start);
+				getEditor().getTextPane().setSelectionEnd(position_end-1);
+			}
+
 		}
 	}
 	

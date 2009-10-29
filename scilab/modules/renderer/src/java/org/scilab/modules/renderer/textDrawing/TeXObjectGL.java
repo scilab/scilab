@@ -63,7 +63,6 @@ public class TeXObjectGL extends SpecialTextObjectGL {
  
 		this.fontSize = fontSize;
 		this.color = color;
-		formula.setBackground(new Color(255, 255, 255, 0));
 		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
 		COMPONENT.setForeground(color);
 		makeImage();

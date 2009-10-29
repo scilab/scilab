@@ -1,4 +1,5 @@
 \chapter{The \scifunction{fminsearch} function}
+\index{fminsearch}
 
 In this chapter, we analyze the implementation of the \scifunction{fminsearch}
 which is provided in Scilab. In the first part, we describe the specific 
@@ -23,6 +24,7 @@ accepted only if it improves over the reflection point.
 
 \subsection{The initial simplex}
 \index{Pfeffer, L.}
+\index{Fan, Ellen}
 
 The fminsearch algorithm uses a special initial simplex, which is an 
 heuristic depending on the initial guess. The strategy chosen by 
@@ -327,6 +329,8 @@ that is, produces the same intermediate steps.
 The following Matlab script allows to get deeper information by printing a message at each iteration
 with the "Display" option.
 
+\index{optimset}
+
 \lstset{language=matlabscript}
 \begin{lstlisting}
 % Matlab
@@ -434,6 +438,7 @@ Optimization terminated:
 
 The following Scilab script set the "Display" option to "iter" and 
 run the \scifunction{fminsearch} function.
+\index{optimset}
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -577,6 +582,7 @@ drawnow
 
 The following Matlab script allows to perform the optimization
 so that the output function is called back at each iteration.
+\index{optimset}
 
 \lstset{language=matlabscript}
 \begin{lstlisting}
@@ -589,7 +595,7 @@ This produces the plot which is presented in figure \ref{fig-fminsearch-matlab-o
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchPlotMatlab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchPlotMatlab.png}
 \end{center}
 \caption{Plot produced by Matlab's fminsearch, with customized output function.}
 \label{fig-fminsearch-matlab-outputfun}
@@ -620,6 +626,7 @@ Matlab also prints the following messages in the console.
 
 The following Scilab script sets the "OutputFcn" option and then calls 
 the \scifunction{fminsearch} in order to perform the optimization.
+\index{optimset}
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -641,7 +648,7 @@ in figure \ref{fig-fminsearch-scilab-outputfun}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchPlotScilab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchPlotScilab.png}
 \end{center}
 \caption{Plot produced by Scilab's fminsearch, with customized output function.}
 \label{fig-fminsearch-scilab-outputfun}
@@ -682,6 +689,10 @@ displays the type of the last performed step.
 
 \subsection{Predefined plot functions}
 
+\index{optimplotfval}
+\index{optimplotx}
+\index{optimplotfunccount}
+
 Several pre-defined plot functions are provided with 
 the \scifunction{fminsearch} function.
 These functions are 
@@ -693,6 +704,7 @@ These functions are
 
 In the following Matlab script, we use the \scifunction{optimplotfval}
 pre-defined function.
+\index{optimset}
 
 \lstset{language=matlabscript}
 \begin{lstlisting}
@@ -706,7 +718,7 @@ The previous script produces the plot which is presented in figure
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchOptimplotfvalMatlab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchOptimplotfvalMatlab.png}
 \end{center}
 \caption{Plot produced by Matlab's fminsearch, with the \scifunction{optimplotfval} function.}
 \label{fig-fminsearch-matlab-optimplotfval}
@@ -714,6 +726,7 @@ The previous script produces the plot which is presented in figure
 
 The following Scilab script uses the \scifunction{optimplotfval}
 pre-defined function.
+\index{optimset}
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -727,7 +740,7 @@ The previous script produces the plot which is presented in figure
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchOptimplotfvalScilab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchOptimplotfvalScilab.png}
 \end{center}
 \caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotfval} function.}
 \label{fig-fminsearch-scilab-optimplotfval}
@@ -744,7 +757,7 @@ functions.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchOptimplotxScilab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchOptimplotxScilab.png}
 \end{center}
 \caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotx} function.}
 \label{fig-fminsearch-scilab-optimplotx}
@@ -752,7 +765,7 @@ functions.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=10cm]{testFminsearchOptimplotfunccountScilab.png}
+\includegraphics[width=10cm]{fminsearch/testFminsearchOptimplotfunccountScilab.png}
 \end{center}
 \caption{Plot produced by Scilab's fminsearch, with the \scifunction{optimplotfunccount} function.}
 \label{fig-fminsearch-scilab-optimplotfunccount}

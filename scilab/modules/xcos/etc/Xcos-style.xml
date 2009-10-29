@@ -141,7 +141,7 @@
 				    input file"/>
   </add>
   <add as="CLKINV_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
@@ -150,7 +150,7 @@
     <add as="displayedLabel" value="Curve"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -173,7 +173,7 @@
 				    generator"/>
   </add>
   <add as="IN_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -193,7 +193,6 @@
     <add as="displayedLabel" value="Signal Builder"/>
   </add>
   <add as="SampleCLK" extend="Icon">
-    <!-- FIXME : Regenerate this image without any stroke -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif"/>
   </add>
   <add as="TKSCALE" extend="blockWithLabel">
@@ -288,7 +287,6 @@
 
   <!-- LOOKUP TABLES -->
   <add as="LOOKUP_f" extend="Icon">
-    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif"/>
   </add>
   <add as="INTRP2BLK_f" extend="blockWithLabel">
@@ -379,7 +377,6 @@
     <add as="displayedLabel" value="a^u"/>
   </add>
   <add as="PROD_f" extend="blockWithLabel">
-    <!-- FIXME : Cross sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;&#xD7;&lt;/FONT&gt;"/>
@@ -438,7 +435,6 @@
     <add as="displayedLabel" value="SIGN"/>
   </add>
   <add as="SUM_f" extend="blockWithLabel">
-    <!-- FIXME : Plus sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;+&lt;/FONT&gt;"/>
@@ -473,7 +469,7 @@
     <add as="strokeColor" value="green"/>
   </add>
   <add as="OUTIMPL_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -792,21 +788,19 @@
     <add as="displayedLabel" value="Goto"/>
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
-    <!-- FIXME : Regenerate this image -->
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
     <add as="shape" value="ellipse"/>
     <add as="strokeColor" value="red"/>
   </add>
   <!-- SampleCLK -->
   <add as="CLKOUTV_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
   </add>
   <!-- ESELECT -->
   <add as="CLKSOMV_f" extend="blockWithLabel">
-    <!-- FIXME : Plus sign should fill circle completely -->
     <add as="shape" value="ellipse"/>
     <add as="strokeColor" value="red"/>
     <add as="perimeter" value="ellipsePerimeter"/>
@@ -882,7 +876,6 @@
     <add as="displayedLabel" value="SWITCH"/>
   </add>
   <add as="NRMSOM_f" extend="blockWithLabel">
-    <!-- FIXME : Generate a fixed image -->
     <add as="displayedLabel" value=""/>
   </add>
   <!-- READC_f -->
@@ -896,7 +889,6 @@
     <add as="displayedLabel" value="Goto"/>
   </add>
   <add as="GotoTagVisibility" extend="blockWithLabel">
-    <!-- FIXME : Regenerate this image -->
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
   </add>
   <add as="FROM" extend="blockWithLabel">
@@ -912,12 +904,10 @@
   </add>
   <!-- ANDBLK -->
   <add as="MUX" extend="blockWithLabel">
-    <!-- FIXME : Generate a fixed image -->
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
   </add>
   <add as="DEMUX" extend="blockWithLabel">
-    <!-- FIXME : Generate a fixed image -->
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
   </add>
@@ -927,7 +917,7 @@
   <!-- DEMUX -->
   <!-- NRMSOM_f -->
   <add as="OUT_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -987,11 +977,9 @@
 
   <!-- ELECTRICAL -->
   <add as="Capacitor" extend="Icon">
-    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.gif"/>
   </add>
   <add as="Ground" extend="Icon">
-    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.gif"/>
   </add>
   <add as="VVsourceAC" extend="blockWithLabel">
@@ -1012,32 +1000,27 @@
 				    &lt;/TABLE&gt;"/>
   </add>
   <add as="ConstantVoltage" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.gif"/>
   </add>
   <add as="Inductor" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif"/>
   </add>
   <add as="PotentialSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.gif"/>
   </add>
   <add as="VariableResistor" extend="Icon">
-    <!-- FIXME : Regenerate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif"/>
   </add>
   <add as="CurrentSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.gif"/>
   </add>
   <add as="Resistor" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif"/>
   </add>
   <add as="VoltageSensor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.gif"/>
   </add>
   <add as="Diode" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif"/>
   </add>
   <add as="VsourceAC" extend="blockWithLabel">
@@ -1058,11 +1041,9 @@
 				    &lt;/TABLE&gt;"/>
   </add>
   <add as="NPN" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.gif"/>
   </add>
   <add as="PNP" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.gif"/>
   </add>
   <add as="SineVoltage" extend="blockWithLabel">
@@ -1083,7 +1064,6 @@
 				    &lt;/TABLE&gt;"/>
   </add>
   <add as="Switch" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.gif"/>
   </add>
   <add as="OpAmp" extend="blockWithLabel">
@@ -1115,27 +1095,21 @@
 				    &lt;/TABLE&gt;"/>
   </add>
   <add as="PMOS" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.gif"/>
   </add>
   <add as="NMOS" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.gif"/>
   </add>
   <add as="CCS" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.gif"/>
   </add>
   <add as="CVS" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.gif"/>
   </add>
   <add as="IdealTransformer" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.gif"/>
   </add>
   <add as="Gyrator" extend="Icon">
-    <!-- FIXME : Generate a fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.gif"/>
   </add>
 
@@ -1150,11 +1124,9 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.gif"/>
   </add>
   <add as="PuitsP" extend="Icon">
-    <!-- FIXME : Generate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.gif"/>
   </add>
   <add as="SourceP" extend="Icon">
-    <!-- FIXME : Generate fixed image -->
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.gif"/>
   </add>
 
