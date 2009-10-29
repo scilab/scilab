@@ -27,6 +27,9 @@ import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxUtils;
+
 
 public class CodeGenerationAction extends DefaultAction {
 
@@ -68,7 +71,10 @@ public class CodeGenerationAction extends DefaultAction {
 		    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 		    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
 		    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-		    block.setStyle(modifiedBlock.getInterfaceFunctionName());
+		    block.setStyle("blockWithLabel");
+		    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
+			    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+		    block.setValue(block.getSimulationFunctionName());
 		    block.setChild(null);
 		    //tempOutput.delete();
 		    //tempInput.delete();
