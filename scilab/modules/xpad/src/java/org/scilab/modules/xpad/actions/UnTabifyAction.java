@@ -48,9 +48,10 @@ public class UnTabifyAction extends DefaultAction {
 			// several lines are selected
 			// TODO exact caret position requires API change if we untabify as much lines as possible: we must know if
 			// the line of the caret position was untabified or not.
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLines(line_start, line_end);
-			getEditor().getTextPane().setSelectionStart(position_start-offset);
-			getEditor().getTextPane().setSelectionEnd(position_end - offset*(line_end-line_start+1));
+			ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+			int [] delta = doc.untabifyLines(line_start, line_end);
+			getEditor().getTextPane().setSelectionStart(position_start- delta[0]);
+			getEditor().getTextPane().setSelectionEnd(position_end - delta[1]);
 		}
 	}
 	

@@ -15,10 +15,13 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -61,6 +64,13 @@ public class SuperBlock extends BasicBlock {
      */
     public void openBlockSettings(String[] context) {
 	this.setLocked(true);
+	
+	if (child == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
+	    // This means we have a SuperBlock and we generated C code for it.
+	    this.setLocked(false);
+	    return;
+	}
+	
 	if (child == null) {
 	    child = new SuperBlockDiagram(this);
 	    child.installListeners();
@@ -90,6 +100,15 @@ public class SuperBlock extends BasicBlock {
 	}
 	Xcos.showDiagram(child);
     }
+
+    public void openContextMenu(ScilabGraph graph) {
+	ContextMenu menu = createContextMenu(graph);
+	
+	menu.getAsSimpleContextMenu().addSeparator();
+	menu.add(CodeGenerationAction.createMenu(graph));
+	
+	menu.setVisible(true);
+    }
     
     public SuperBlockDiagram getChild() {
         return child;
@@ -104,21 +123,6 @@ public class SuperBlock extends BasicBlock {
 	    setRealParameters(BlockWriter.convertDiagramToMList(child));
 	}
 	return super.getAsScilabObj();
-    }
-    
-    public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
-	result.append("<html>");
-	result.append("SUPER BLOCK"+"<br>");
-	result.append("Explicit input ports : "+getAllExplicitInputPorts().size()+"<br>");
-	result.append("Implicit input ports : "+getAllImplicitInputPorts().size()+"<br>");
-	result.append("Explicit output ports : "+getAllExplicitOutputPorts().size()+"<br>");
-	result.append("Implicit output ports : "+getAllImplicitOutputPorts().size()+"<br>");
-	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
-	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
-	result.append("isLocked : "+isLocked()+"<br>");
-	result.append("</html>");
-	return result.toString();
     }
 
     protected List<mxCell> getAllExplicitInBlock(){

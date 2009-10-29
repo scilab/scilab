@@ -282,35 +282,39 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int availableWidth = getSize().width - insets.left - insets.right;
 
 		//  Determine the rows to draw within the clipped bounds.
+		javax.swing.text.StyledDocument doc= textPane.getStyledDocument();
+		synchronized(doc){
+			Rectangle clip = g.getClipBounds();
+			int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
+			int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
 
-		Rectangle clip = g.getClipBounds();
-		int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
-		int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
+			while (rowStartOffset <= endOffset) {
+				try {
+					if (isCurrentLine(rowStartOffset))
+					{
+						g.setColor(getCurrentLineForeground());
+					} else {
+						g.setColor(getForeground());
+					}
 
-		while (rowStartOffset <= endOffset) {
-			try {
-				if (isCurrentLine(rowStartOffset))
-				{
-					g.setColor(getCurrentLineForeground());
-				} else {
-					g.setColor(getForeground());
+					//  Get the line number as a string and then determine the
+					//  "X" and "Y" offsets for drawing the string.
+
+					String lineNumber = getTextLineNumber(rowStartOffset);
+					int stringWidth = fontMetrics.stringWidth(lineNumber);
+					int x = getOffsetX(availableWidth, stringWidth) + insets.left;
+					int y = getOffsetY(rowStartOffset, fontMetrics);
+					g.drawString(lineNumber, x, y);
+
+					//  Move to the next row
+
+					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
 				}
-
-    			//  Get the line number as a string and then determine the
-    			//  "X" and "Y" offsets for drawing the string.
-
-				String lineNumber = getTextLineNumber(rowStartOffset);
-				int stringWidth = fontMetrics.stringWidth(lineNumber);
-				int x = getOffsetX(availableWidth, stringWidth) + insets.left;
-				int y = getOffsetY(rowStartOffset, fontMetrics);
-				g.drawString(lineNumber, x, y);
-
-    			//  Move to the next row
-
-				rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
+				catch(Exception ex) {
+					ex.printStackTrace();
+					System.err.println("rowStartOffset:"+rowStartOffset+" endOffset:"+endOffset);
+					rowStartOffset = endOffset; // break loop when an exception is thrown
+				}
 			}
 		}
 	}

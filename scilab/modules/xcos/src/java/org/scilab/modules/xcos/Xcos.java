@@ -348,7 +348,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "CSCOPXY", 
 				    "CSCOPXY3D", 
 				    "TOWS_c", 
-				    "TRASH_f"
+				    "TRASH_f",
+				    "WFILE_f",
+				    "WRITEAU_f", 
+				    "WRITEC_f"
 				};
 				allpalettes.addTab(XcosMessages.SINKS_PAL, createPalette(sinksBlocksNames));
 
@@ -357,7 +360,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "EDGE_TRIGGER",
 				    "ESELECT_f", 
 				    "Extract_Activation", 
-				    "IFTHEL_f"
+				    "IFTHEL_f",
+				    "IN_f",
+				    "OUT_f"
 				};
 				allpalettes.add(XcosMessages.PORTACTION_PAL, createPalette(portactionBlocksNames));
 
@@ -407,15 +412,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "MUX", 
 				    "M_SWITCH", 
 				    "NRMSOM_f", 
-				    "READC_f", 
 				    "RELAY_f", 
-				    "RFILE_f", 
 				    "SELECT_m", 
 				    "SWITCH2_m", 
-				    "SWITCH_f",
-				    "WFILE_f",
-				    "WRITEAU_f", 
-				    "WRITEC_f"
+				    "SWITCH_f"
 				};
 				allpalettes.addTab(XcosMessages.SIGNALROUTING_PAL, createPalette(routingBlocksNames));
 
