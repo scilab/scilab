@@ -107,9 +107,13 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
       /* scoAddPolylineLineStyle(*pScopeMemory,colors); */
     }
   scicos_free(colors);
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 
+  /* use only single buffering to be sure to draw on the screen */
+  if (scoGetPointerScopeWindow(*pScopeMemory) != NULL)
+    {
+      sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    }
+  
 }
 
 /** \fn void cscope(scicos_block * block,int flag)
