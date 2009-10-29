@@ -675,7 +675,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
-
+		fileChooser.setTitle(XpadMessages.SAVE_AS); /* Bug 4869 */
 		int retval = fileChooser.showSaveDialog(this);
 
 		if (retval == JFileChooser.APPROVE_OPTION) {

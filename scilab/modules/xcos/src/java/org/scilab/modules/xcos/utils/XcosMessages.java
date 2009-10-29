@@ -171,6 +171,9 @@ public final class XcosMessages {
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
     
+    public static final String DEBUG_LEVEL_LABEL = "<html>"  + Messages.gettext("Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)") + "</html>";
+    public static final String SET_DEBUG = Messages.gettext("Set Debug Level");
+    
     /* About box */
     public static final String VERSION = Messages.gettext("Xcos 1.0");
     public static final String COPYRIGHT = Messages.gettext("Copyright 2009");

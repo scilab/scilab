@@ -71,8 +71,7 @@
     initial portion of str1 which consists only of characters that are part of
     str2.</para>
 
-    <para>str2 must have same dimensions than str2 or str2 can be a
-    string.</para>
+    <para>str1 must have same dimensions than str2 or str1 must be a string. </para>
   </refsection>
 
   <refsection>

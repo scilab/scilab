@@ -158,6 +158,10 @@
         <submenu label="&amp;Matlab to Scilab translator">
             <callback instruction='mfile2sci();' type="0"/>
         </submenu>
+        <separator/>
+        <submenu label="M&amp;odules manager - ATOMS">
+            <callback instruction='atomsGui();' type="0"/>
+        </submenu>
     </menu>
 
     <!-- Help menu -->
