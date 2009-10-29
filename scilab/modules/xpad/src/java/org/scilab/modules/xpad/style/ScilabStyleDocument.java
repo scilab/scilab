@@ -1028,7 +1028,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Comment several lines
 	 */
 	
-	public void commentLines(int line_start, int line_end)
+	public synchronized void commentLines(int line_start, int line_end)
 	{
 		boolean  mergeEditsMode= getShouldMergeEdits();
 		try
@@ -1106,7 +1106,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Un-Comment several lines
 	 */
 	
-	public void uncommentLines(int line_start, int line_end)
+	public synchronized void uncommentLines(int line_start, int line_end)
 	{
 		Pattern pattern = Pattern.compile("^(\\s)*//");
 		boolean  mergeEditsMode= getShouldMergeEdits();
@@ -1222,35 +1222,38 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 	
 	/*
-	 * Delete a tab just before the caret position
+	 * Delete a tab just after position if possible.
+	 * returns the nb of deleted characters.
 	 */
 	
 	public synchronized int deleteTab(int position)
 	{
 		String tab = getTabulation(); 
-		int tabLength = tab.length();
+		int res = 0, tabLength = tab.length();
 		try{
 			String nextChars = getText(position, tabLength);
 			if(nextChars.equals(tab)){
 				remove(position, tabLength);
+				res= tabLength;
 			}
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
+			res= 0;
 		}
 		
-		return tabLength;
+		return res;
 	}
 	
 	/*
-	 * Delete a tab at the beginning of the line "line"
+	 * Delete a tab at the beginning of the line "line" if there was one.
+	 * returns the nb of deleted characters. 
 	 */
 	
 	public synchronized int untabifyLine(int line)
 	{
-		deleteTab(getDefaultRootElement().getElement(line).getStartOffset());
-		return getTabulation().length();
+		return deleteTab(getDefaultRootElement().getElement(line).getStartOffset());
 	}
 	
 	/*
@@ -1272,10 +1275,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		return result;
 	}
-	
-	public synchronized int untabifyLines(int line_start, int line_end)
+	/*
+	 * remove one tabulation step from every line starting with tabulation in [line_start, line_end]
+	 * returns an array of int containing the position delta for line start and line end.
+	 * the first value is getTabulation().length() if the first line was starting with a tabulation, 0 otherwise
+	 * the second value is the total nb of character removed in the region.   
+	 */
+	public synchronized int[] untabifyLines(int line_start, int line_end)
 	{	
-		int res=0;
+		int []res={0,0};
 		if(true || canUntabifyLines(line_start, line_end)) // always untabify as much lines as possible from a selection
 		{
 			boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
@@ -1283,12 +1291,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			setColorize(false);
 			setShouldMergeEdits(true);
 			for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
-				untabifyLine(currentLine);
+				res[1]+= untabifyLine(currentLine); // accumulate nb of deleted characters
+				if(currentLine == line_start)
+				{
+					res[0] = res[1]; // nb of deleted characters in the first line
+				}
 			}
 			setAutoIndent(indentMode);
 			setColorize(colorizeMode);
 			setShouldMergeEdits(mergeEditsMode);
-			res= getTabulation().length();
 		}
 		return res;
 	}
@@ -1930,32 +1941,34 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			//colorize();
 			ColorizeAction.getXpadEditor();
 			editor = getEditor();
+			javax.swing.text.StyledDocument doc= editor.getTextPane().getStyledDocument();
+			synchronized(doc){
+				lineStartPosition =  doc.getParagraphElement(event.getOffset()).getStartOffset();
+				lineEndPosition = doc.getParagraphElement(event.getOffset()+event.getLength()).getEndOffset()-1;
 			
-			lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(event.getOffset()).getStartOffset();
-			lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(event.getOffset()+event.getLength()).getEndOffset()-1;
-			
-			if (lineStartPosition != lineEndPosition) {
-				colorize(lineStartPosition, lineEndPosition);
+				if (lineStartPosition != lineEndPosition) {
+					colorize(lineStartPosition, lineEndPosition);
+				}
 			}
-			/*
-			// Get the current line (position of the caret) 
-			int  caretPosition = editor.getTextPane().getCaretPosition();
-			currentLine = editor.getTextPane().getStyledDocument().getDefaultRootElement().getElementIndex(caretPosition);
+				/*
+				// Get the current line (position of the caret) 
+				int  caretPosition = editor.getTextPane().getCaretPosition();
+				currentLine = editor.getTextPane().getStyledDocument().getDefaultRootElement().getElementIndex(caretPosition);
 
-			// Get current line's start & end offsets
-			lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getStartOffset();
-			lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getEndOffset()-1;
+				// Get current line's start & end offsets
+				lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getStartOffset();
+				lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getEndOffset()-1;
 			
-			// If we add a line (by pressing return)
-			if (lineStartPosition == lineEndPosition) {
-				lineStartPosition = lineStartPosition + lineEndPosition;
-				lineEndPosition = lineEndPosition + lineEndPosition;
-			} 
+				// If we add a line (by pressing return)
+				if (lineStartPosition == lineEndPosition) {
+					lineStartPosition = lineStartPosition + lineEndPosition;
+					lineEndPosition = lineEndPosition + lineEndPosition;
+				} 
 			
-			if (lineStartPosition != lineEndPosition) {
+				if (lineStartPosition != lineEndPosition) {
 				colorize(lineStartPosition, lineEndPosition);
-			}
-			*/
+				}
+				 */
 	    }
 	}
 	
