@@ -141,7 +141,7 @@
 				    input file"/>
   </add>
   <add as="CLKINV_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
@@ -150,7 +150,7 @@
     <add as="displayedLabel" value="Curve"/>
   </add>
   <add as="INIMPL_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -173,7 +173,7 @@
 				    generator"/>
   </add>
   <add as="IN_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -473,7 +473,7 @@
     <add as="strokeColor" value="green"/>
   </add>
   <add as="OUTIMPL_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
@@ -927,7 +927,7 @@
   <!-- DEMUX -->
   <!-- NRMSOM_f -->
   <add as="OUT_f" extend="blockWithLabel">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="hexagon"/>
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
   </add>
