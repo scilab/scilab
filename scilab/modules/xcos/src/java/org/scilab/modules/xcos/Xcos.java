@@ -47,6 +47,8 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
@@ -78,7 +80,6 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
-import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
@@ -131,6 +132,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 				
 				Window palWin = ScilabWindow.createWindow();
+				palWin.setDims(new Size(700, 600));
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
 				
@@ -858,6 +860,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
+	// Get the palettes position
+	if (!paletteLoaded) { // If at Xcos startup
+		Position palPosition = palette.getParentWindow().getPosition();
+		Size palSize = palette.getParentWindow().getDims();
+		Position mainPosition = new Position(palPosition.getX() + palSize.getWidth(), palPosition.getY());
+		main.setPosition(mainPosition);
+	}
 	
 	diagrams.add(xcosDiagram);
 	

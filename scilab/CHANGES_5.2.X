@@ -524,6 +524,10 @@ Bugs:
 
 * bug 4768 fixed - strsplit returned strange results with accented characters
 
+* bug 5071 fixed - isletter("é") returns [%F %F] instead of %F.
+
+* bug 5072 fixed - strspn("aéio","éa") returns 3 instead of 2.
+
 String manipulation:
 ====================
 
@@ -1040,3 +1044,5 @@ Bug fixes:
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum is broken.
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returns a wrong result.
+
+* bug 5074 fixed - French help star shows mis-encoded characters.
