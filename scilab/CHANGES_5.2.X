@@ -524,6 +524,11 @@ Bugs:
 
 * bug 4768 fixed - strsplit returned strange results with accented characters
 
+* bug 4915 fixed - The default font in some of the uicontrols applications in
+  	  	   		   Scilab were not handling correctly for the japanese and
+				   others languages. This was happenning with m2sci and the
+				   demos browser.
+
 * bug 5071 fixed - isletter("é") returns [%F %F] instead of %F.
 
 * bug 5072 fixed - strspn("aéio","éa") returns 3 instead of 2.
