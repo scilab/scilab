@@ -15,10 +15,14 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -60,32 +64,52 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
-	this.setLocked(true);
-	if (child == null) {
-	    child = new SuperBlockDiagram(this);
-	    child.installListeners();
-	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
-	    child.installSuperBlockListeners();
-	    updateAllBlocksColor();
-	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
-	    for(int i = 0 ; i < blockCount ; i++){
-		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
-		    if(cell instanceof BasicBlock){
-		    	BasicBlock block = (BasicBlock)cell;
-		    	block.setParentDiagram(child);
-		    }
-	    }
-	}
-	else {
-	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-	    newChild.installListeners();
-	    newChild.setModel(child.getModel());
-	    child = newChild;
-	    
-	    child.installSuperBlockListeners();
-	    updateAllBlocksColor();
-	}
+    	if (child == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
+    	    // This means we have a SuperBlock and we generated C code for it.
+    	    this.setLocked(false);
+    	    return;
+    	}
+	createChildDiagram();
 	Xcos.showDiagram(child);
+    }
+
+    public void openContextMenu(ScilabGraph graph) {
+	ContextMenu menu = createContextMenu(graph);
+	
+	menu.getAsSimpleContextMenu().addSeparator();
+	menu.add(CodeGenerationAction.createMenu(graph));
+	
+	menu.setVisible(true);
+    }
+    
+    public void createChildDiagram(){
+    	if (child == null) {
+    	    child = new SuperBlockDiagram(this);
+    	    child.installListeners();
+    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.installSuperBlockListeners();
+    	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
+    	    for(int i = 0 ; i < blockCount ; i++){
+    		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
+    		    if(cell instanceof BasicBlock){
+    		    	BasicBlock block = (BasicBlock)cell;
+    		    	block.setParentDiagram(child);
+    		    }
+    	    }
+    	    updateAllBlocksColor();
+    	}
+    	else {
+    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
+    	    newChild.installListeners();
+    	    newChild.setModel(child.getModel());
+    	    newChild.setContext(child.getContext());
+    	    newChild.getModel().setRoot(child.getModel().getRoot());
+    	    newChild.setDefaultParent(child.getDefaultParent());
+    	    child = newChild;
+    	    
+    	    child.installSuperBlockListeners();
+    	    updateAllBlocksColor();
+    	}
     }
     
     public SuperBlockDiagram getChild() {
@@ -101,21 +125,6 @@ public class SuperBlock extends BasicBlock {
 	    setRealParameters(BlockWriter.convertDiagramToMList(child));
 	}
 	return super.getAsScilabObj();
-    }
-    
-    public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
-	result.append("<html>");
-	result.append("SUPER BLOCK"+"<br>");
-	result.append("Explicit input ports : "+getAllExplicitInputPorts().size()+"<br>");
-	result.append("Implicit input ports : "+getAllImplicitInputPorts().size()+"<br>");
-	result.append("Explicit output ports : "+getAllExplicitOutputPorts().size()+"<br>");
-	result.append("Implicit output ports : "+getAllImplicitOutputPorts().size()+"<br>");
-	result.append("Control ports : "+getAllControlPorts().size()+"<br>");
-	result.append("Command ports : "+getAllCommandPorts().size()+"<br>");
-	result.append("isLocked : "+isLocked()+"<br>");
-	result.append("</html>");
-	return result.toString();
     }
 
     protected List<mxCell> getAllExplicitInBlock(){
@@ -311,8 +320,9 @@ public class SuperBlock extends BasicBlock {
     	}
     }
 
-    protected void updateExportedPort(){
+    public void updateExportedPort(){
     	if(child == null){
+    		System.err.println("child == null");
     		return;
     	}
 

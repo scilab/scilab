@@ -63,26 +63,6 @@ function result = atomsLoad(packages)
 	// =========================================================================
 	packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	
-	
-	// Create the TMPDIR/atoms directory
-	// =========================================================================
-	
-	if ~ isdir(TMPDIR+"/atoms") then
-		status = mkdir( TMPDIR+"/atoms" );
-		if status <> 1 then
-			error_str = msprintf( ..
-							gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
-							"atomsLoad", ..
-							TMPDIR+"/atoms");
-			if ATOMSAUTOLOAD then
-				mprintf(error_str+"\n");
-				return;
-			else
-				error(error_str);
-			end
-		end
-	end
-	
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
@@ -91,18 +71,10 @@ function result = atomsLoad(packages)
 		ATOMSVERBOSE = %F;
 	end
 	
-	// Define the path of the loaded file
+	// Already loaded modules :
 	// =========================================================================
-	loaded_file = pathconvert(TMPDIR+"/atoms/loaded",%F);
-	
-	// Does the loaded file exist, if yes load it
-	// =========================================================================
-	nbAdd = 0;
-	if fileinfo(loaded_file) <> [] then
-		loaded = mgetl(loaded_file);
-	else
-		loaded = [];
-	end
+	loaded = atomsLoadLoad();
+	nbAdd  = 0;
 	
 	// Loop on input parameter
 	// =========================================================================
@@ -232,7 +204,7 @@ function result = atomsLoad(packages)
 		
 		mandatory_packages(this_package_name+" - "+this_package_version) = "asked_by_user";
 		mandatory_packages_name(this_package_name) = this_package_version;
-		mandatory_packages_mat = [ mandatory_packages_mat ; this_package_name this_package_version this_package_path ];
+		mandatory_packages_mat = [ mandatory_packages_mat ; this_package_name this_package_version this_package_section this_package_path ];
 		
 	end
 	
@@ -316,7 +288,7 @@ function result = atomsLoad(packages)
 			
 			mandatory_packages(childs(j,1)+" - "+childs(j,2)) = packages(i,1)+" - "+packages(i,2);
 			mandatory_packages_name(childs(j,1)) = childs(j,2);
-			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,:),this_package_section) ];
+			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) this_package_section atomsGetInstalledPath(childs(j,:),this_package_section) ];
 			
 		end
 	end
@@ -333,7 +305,8 @@ function result = atomsLoad(packages)
 		
 		this_package_name    = mandatory_packages_mat(i,1);
 		this_package_version = mandatory_packages_mat(i,2);
-		this_package_path    = mandatory_packages_mat(i,3);
+		this_package_section = mandatory_packages_mat(i,3);
+		this_package_path    = mandatory_packages_mat(i,4);
 		
 		// Get the list of lib
 		// =====================================================================
@@ -376,9 +349,10 @@ function result = atomsLoad(packages)
 		
 		// fill the loaded matrix
 		// =====================================================================
-		if find(loaded == this_package_name + " - " + this_package_version) == [] then
+		
+		if and(loaded(:,1) <> this_package_name) then
 			nbAdd  = nbAdd + 1;
-			loaded = [ loaded ; this_package_name + " - " + this_package_version ];
+			loaded = [ loaded ; this_package_name this_package_version this_package_section ];
 		end
 		
 	end
@@ -386,7 +360,7 @@ function result = atomsLoad(packages)
 	// Apply changes
 	// =========================================================================
 	if nbAdd > 0 then
-		mputl(loaded,loaded_file);
+		atomsLoadSave(loaded);
 	end
 	
 	// If libs_resume is empty, the job is done

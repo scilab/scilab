@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
+    private int debugLevel = 0 ;
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
@@ -293,7 +295,7 @@ public class XcosDiagram extends ScilabGraph {
     	getModel().remove(link);
     	getModel().endUpdate();
 
-    	BasicLink newLink1 = createLinkFromPorts(linkSource, splitBlock.getIn());
+    	BasicLink newLink1 = BasicLink.createLinkFromPorts(linkSource, splitBlock.getIn());
     	newLink1.setGeometry(new mxGeometry(0,0,80,80));
     	newLink1.setSource(linkSource);
     	newLink1.setTarget(splitBlock.getIn());
@@ -306,7 +308,7 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink1);
     	
-    	BasicLink newLink2 = createLinkFromPorts(splitBlock.getOut1(), linkTarget);
+    	BasicLink newLink2 = BasicLink.createLinkFromPorts(splitBlock.getOut1(), linkTarget);
     	newLink2.setGeometry(new mxGeometry(0,0,80,80));
     	newLink2.setSource(splitBlock.getOut1());
     	newLink2.setTarget(linkTarget);
@@ -318,7 +320,7 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink2);
     	
-    	BasicLink newLink3 = createLinkFromPorts(splitBlock.getOut2(), (BasicPort)target);
+    	BasicLink newLink3 = BasicLink.createLinkFromPorts(splitBlock.getOut2(), (BasicPort)target);
     	newLink3.setGeometry(new mxGeometry(0,0,80,80));
     	newLink3.setSource(splitBlock.getOut2());
     	newLink3.setTarget((mxCell)target);
@@ -409,6 +411,8 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(true);
 	getAsComponent().setGridVisible(true);
 	
+	((mxCell) getDefaultParent()).setId((new UID()).toString());
+	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
     /**
@@ -655,7 +659,7 @@ public class XcosDiagram extends ScilabGraph {
 
     	if(saveSource != null && saveTarget != null){
     		//create new link
-    		BasicLink newLink = createLinkFromPorts(saveSource, saveTarget);
+    		BasicLink newLink = BasicLink.createLinkFromPorts(saveSource, saveTarget);
     		newLink.setGeometry(new mxGeometry(0,0,80,80));
 
     		Object[] saveLinks = getAllEdges(new Object[]{saveSource, saveTarget});
@@ -742,7 +746,7 @@ public class XcosDiagram extends ScilabGraph {
 			&& !(cell instanceof TextBlock)) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
-		    block.openBlockSettings(getContext());
+		    block.openBlockSettings(buildEntireContext());
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
@@ -1180,6 +1184,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    public String[] buildEntireContext() {
+	return getContext();
+    }
+    
     public void setContext(String[] context){
 	this.context = context;
     }
@@ -1191,36 +1199,13 @@ public class XcosDiagram extends ScilabGraph {
     public String getVersion() {
 	return version;
     }
-
-    private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
-	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	}
-	if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof ImplicitOutputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof ImplicitInputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof CommandPort && to instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
-	if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	}
-	if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-	if (to instanceof CommandPort && from instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
-	return new ExplicitLink();
+    
+    public int getDebugLevel(){
+    	return debugLevel;
+    }
+    
+    public void setDebugLevel(int debugLevel){
+    	this.debugLevel = debugLevel;
     }
 
     /**
@@ -1274,7 +1259,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	for (int i = 0; i < linkPorts.size(); ++i) {
-	    BasicLink link = createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
+	    BasicLink link = BasicLink.createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
 	    link.setGeometry(new mxGeometry(0,0,80,80));
 	    link.setSource(linkPorts.get(i)[0]);
 	    link.setTarget(linkPorts.get(i)[1]);
@@ -1377,22 +1362,26 @@ public class XcosDiagram extends ScilabGraph {
     			if (getModel().getChildCount(getDefaultParent()) == 0) {
     				codec.decode(document.getDocumentElement(), this);
     				setModified(false);
+    				/* comment because a diagramm could be loaded successfully even if it has no block in (just save an empty diagram)
     				if (getModel().getChildCount(getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				    	setSavedFile(theFile.getAbsolutePath());
     					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram();
     			} else {
     				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
     				codec.decode(document.getDocumentElement(), xcosDiagram);
+    				/* same reason as above
     				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				setSavedFile(theFile.getAbsolutePath());
     				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram(xcosDiagram);
     			}
 

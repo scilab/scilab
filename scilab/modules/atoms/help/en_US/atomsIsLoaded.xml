@@ -80,6 +80,24 @@
 							</td>
 						</tr>
 						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's section is ignored.
+							</td>
+						</tr>
+						
 					</informaltable>
 				</listitem>
       </varlistentry>

@@ -36,16 +36,15 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
-import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ColorAction;
+import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
-import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -61,13 +60,12 @@ import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
-public class BasicBlock extends mxCell {
+public class BasicBlock extends XcosUIDObject {
 
 	private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
@@ -805,7 +803,6 @@ public class BasicBlock extends mxCell {
     }
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
-    	System.err.println("updateBlockSettings");
     	
 	this.setDependsOnT(modifiedBlock.dependsOnT());
 	this.setDependsOnU(modifiedBlock.dependsOnU());
@@ -821,9 +818,11 @@ public class BasicBlock extends mxCell {
 
 	this.setEquations(modifiedBlock.getEquations());
 
+	getParentDiagram().getModel().beginUpdate();
 	// Check if new input port have been added
 	if (modifiedBlock.getAllInputPorts().size() > getAllInputPorts().size()) {
-	    for(int i = getAllInputPorts().size() - 1 ; i < modifiedBlock.getAllInputPorts().size() ; ++i)
+	    int nbInputPorts = getAllInputPorts().size();
+	    for(int i = modifiedBlock.getAllInputPorts().size() - 1 ; i >= nbInputPorts ; --i)
 	    {
 		addPort(modifiedBlock.getAllInputPorts().get(i));
 	    }
@@ -843,7 +842,8 @@ public class BasicBlock extends mxCell {
 	
 	// Check if new output port have been added
 	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
-	    for(int i = getAllOutputPorts().size() - 1 ; i < modifiedBlock.getAllOutputPorts().size() ; ++i)
+	    int nbOutputPorts = getAllOutputPorts().size();
+	    for(int i = modifiedBlock.getAllOutputPorts().size() - 1 ; i >=  nbOutputPorts ; --i)
 	    {
 		addPort(modifiedBlock.getAllOutputPorts().get(i));
 	    }
@@ -864,7 +864,8 @@ public class BasicBlock extends mxCell {
 
 	// Check if new command port have been added
 	if (modifiedBlock.getAllCommandPorts().size() > getAllCommandPorts().size()) {
-	    for(int i = getAllCommandPorts().size() - 1 ; i < modifiedBlock.getAllCommandPorts().size() ; ++i)
+	    int nbCommandPorts = getAllCommandPorts().size();
+	    for(int i = modifiedBlock.getAllCommandPorts().size() - 1 ; i >= nbCommandPorts ; --i)
 	    {
 		addPort(modifiedBlock.getAllCommandPorts().get(i));
 	    }
@@ -872,7 +873,7 @@ public class BasicBlock extends mxCell {
 	// Check if output ports have been removed
 	else if (modifiedBlock.getAllCommandPorts().size() < getAllCommandPorts().size()) {
 	    List<CommandPort> removedPorts = new ArrayList<CommandPort>();
-	    for(int i = modifiedBlock.getAllCommandPorts().size() ; i < getAllCommandPorts().size() ; ++i)
+	    for(int i = modifiedBlock.getAllCommandPorts().size() ; i < getAllCommandPorts().size() ; --i)
 	    {
 		removedPorts.add(getAllCommandPorts().get(i));
 	    }
@@ -884,7 +885,8 @@ public class BasicBlock extends mxCell {
 	
 	// Check if new control port have been added
 	if (modifiedBlock.getAllControlPorts().size() > getAllControlPorts().size()) {
-	    for(int i = getAllControlPorts().size() - 1 ; i < modifiedBlock.getAllControlPorts().size() ; ++i)
+	    int nbControlPorts = getAllControlPorts().size();
+	    for(int i = modifiedBlock.getAllControlPorts().size() - 1 ; i >= nbControlPorts ; --i)
 	    {
 		addPort(modifiedBlock.getAllControlPorts().get(i));
 	    }
@@ -901,7 +903,7 @@ public class BasicBlock extends mxCell {
 		getAllControlPorts().remove(removedPorts.get(i));
 	    }
 	}
-	
+	getParentDiagram().getModel().endUpdate();
     }
 
     public void openBlockSettings(String context[]) {
@@ -999,6 +1001,11 @@ public class BasicBlock extends mxCell {
     }
 
     public void openContextMenu(ScilabGraph graph) {
+	ContextMenu menu = createContextMenu(graph);
+	menu.setVisible(true);
+    }
+    
+    public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
 		
 		menu.add(BlockParametersAction.createMenu(graph));
@@ -1055,7 +1062,7 @@ public class BasicBlock extends mxCell {
 
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		
-		menu.setVisible(true);
+		return menu;
     }
     
 	public void setFlip(boolean flip) {

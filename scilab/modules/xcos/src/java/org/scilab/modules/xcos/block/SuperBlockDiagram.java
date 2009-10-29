@@ -13,7 +13,6 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
@@ -36,6 +35,18 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 	this.container = container;
     }
 
+    public String[] buildEntireContext() {
+	String []entireContext = new String[getContext().length + container.getParentDiagram().getContext().length];
+	for (int i = 0 ; i < container.getParentDiagram().getContext().length ; ++i) {
+	    entireContext[i] = container.getParentDiagram().getContext()[i];
+	}
+	for (int i = 0 ; i < getContext().length ; ++i) {
+	    entireContext[i + container.getParentDiagram().getContext().length] = getContext()[i];
+	}
+	
+	return entireContext;
+    }
+    
     public void closeDiagram() {
 	boolean wantToClose = true;
 

@@ -148,6 +148,8 @@ shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
 deletefile ( "postoffice.txt" )
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //

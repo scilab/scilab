@@ -11,8 +11,6 @@
  */
 package org.scilab.modules.xcos.utils;
 
-import java.io.File;
-
 import org.scilab.modules.localization.Messages;
 
 
@@ -172,6 +170,23 @@ public final class XcosMessages {
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
+    
+    public static final String DEBUG_LEVEL_LABEL = "<html>"  + Messages.gettext("Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)") + "</html>";
+    public static final String SET_DEBUG = Messages.gettext("Set Debug Level");
+    
+    /* Setup box*/
+    public static final String FINAL_INTEGRATION_TIME  = Messages.gettext("Final inegration time");
+    public static final String REAL_TIME_SCALING =  Messages.gettext("Real time scaling");
+    public static final String INTEGRATOR_ABSOLUTE_TOLERANCE =  Messages.gettext("Integrator absolute tolerance");
+    public static final String INTEGRATOR_RELATIVE_TOLERANCE =  Messages.gettext("Integrator relative tolerance");
+    public static final String TOLERANCE_ON_TIME =  Messages.gettext("Tolerance on time");
+    public static final String MAX_INTEGRATION_TIME_INTERVAL =  Messages.gettext("Max integration time interval");
+    public static final String SOLVER_CHOICE =  Messages.gettext("Solver 0 (CVODE) - 100 (IDA)");
+    public static final String CVODE =  Messages.gettext("CVODE");
+    public static final String IDA =  Messages.gettext("IDA");
+    public static final String MAXIMUN_STEP_SIZE =  Messages.gettext("maximum step size (0 means no limit)");
+    public static final String DEFAULT =  Messages.gettext("Default");
+    public static final String SETUP_TITLE =  Messages.gettext("Set Parameters");
     
     /* About box */
     public static final String VERSION = Messages.gettext("Xcos 1.0");

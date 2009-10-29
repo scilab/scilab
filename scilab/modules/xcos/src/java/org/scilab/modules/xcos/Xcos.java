@@ -47,6 +47,8 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
@@ -59,6 +61,7 @@ import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.CompileAction;
+import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
@@ -78,7 +81,6 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
-import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
@@ -131,6 +133,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 				allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 				
 				Window palWin = ScilabWindow.createWindow();
+				palWin.setDims(new Size(700, 600));
 				palWin.setVisible(true);
 				palette = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
 				
@@ -345,7 +348,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "CSCOPXY", 
 				    "CSCOPXY3D", 
 				    "TOWS_c", 
-				    "TRASH_f"
+				    "TRASH_f",
+				    "WFILE_f",
+				    "WRITEAU_f", 
+				    "WRITEC_f"
 				};
 				allpalettes.addTab(XcosMessages.SINKS_PAL, createPalette(sinksBlocksNames));
 
@@ -354,7 +360,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "EDGE_TRIGGER",
 				    "ESELECT_f", 
 				    "Extract_Activation", 
-				    "IFTHEL_f"
+				    "IFTHEL_f",
+				    "IN_f",
+				    "OUT_f"
 				};
 				allpalettes.add(XcosMessages.PORTACTION_PAL, createPalette(portactionBlocksNames));
 
@@ -404,15 +412,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 				    "MUX", 
 				    "M_SWITCH", 
 				    "NRMSOM_f", 
-				    "READC_f", 
 				    "RELAY_f", 
-				    "RFILE_f", 
 				    "SELECT_m", 
 				    "SWITCH2_m", 
-				    "SWITCH_f",
-				    "WFILE_f",
-				    "WRITEAU_f", 
-				    "WRITEC_f"
+				    "SWITCH_f"
 				};
 				allpalettes.addTab(XcosMessages.SIGNALROUTING_PAL, createPalette(routingBlocksNames));
 
@@ -643,8 +646,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.add(recentsMenu);
 		
 		
-		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
-		fileMenu.addSeparator();
+		//fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
+		//fileMenu.addSeparator();
 		fileMenu.add(PrintAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(CloseAction.createMenu(scilabGraph));
@@ -709,6 +712,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		menuBar.add(simulate);
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
+		simulate.add(DebugLevelAction.createMenu(scilabGraph));
 		simulate.add(SetContextAction.createMenu(scilabGraph));
 		simulate.add(CompileAction.createMenu(scilabGraph));
 		simulate.add(StartAction.createMenu(scilabGraph));
@@ -770,7 +774,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		help.add(XcosDocumentationAction.createMenu(scilabGraph));
 		help.add(BlockDocumentationAction.createMenu(scilabGraph));
+		help.addSeparator();
 		help.add(XcosDemonstrationsAction.createMenu(scilabGraph));
+		help.addSeparator();
 		help.add(AboutXcosAction.createMenu(scilabGraph));
 		
 		/** Debug menu */
@@ -858,6 +864,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
+	// Get the palettes position
+	if (!paletteLoaded && palette != null && palette.getParentWindow() != null) { // If at Xcos startup
+		Position palPosition = palette.getParentWindow().getPosition();
+		Size palSize = palette.getParentWindow().getDims();
+		Position mainPosition = new Position(palPosition.getX() + palSize.getWidth(), palPosition.getY());
+		main.setPosition(mainPosition);
+	}
 	
 	diagrams.add(xcosDiagram);
 	

@@ -30,8 +30,8 @@ function res = atomsGetInstalledDetails(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
-	if size(packages(1,:),"*") <> 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsGetInstalledDetails",1));
+	if and(size(packages(1,:),"*") <> [2 3]) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
 	// Allusers/user management
@@ -55,6 +55,13 @@ function res = atomsGetInstalledDetails(packages,section)
 		
 	end
 	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
+	
 	// Get the list of installed packages
 	// =========================================================================
 	installedpackages = atomsGetInstalled(section);
@@ -69,6 +76,11 @@ function res = atomsGetInstalledDetails(packages,section)
 		
 		// Filter on versions
 		packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
+		
+		// Filter on section
+		if ~isempty(packages(i,3)) & packages(i,3)<>"all" then
+			packages_filtered = packages_filtered( find(packages_filtered(:,3) == packages(i,3)) , : );
+		end
 		
 		if ~ isempty(packages_filtered) then
 			res = [ res ; packages_filtered(1,:) ];

@@ -1,6 +1,7 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,6 +17,8 @@ import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosPalette extends JScrollPane {
+public class XcosPalette extends JScrollPane implements ComponentListener {
 
 	private static final int BLOCK_WIDTH = 100;
 	private static final int BLOCK_HEIGHT = 100;
@@ -63,7 +66,7 @@ public class XcosPalette extends JScrollPane {
 	private static final int VMARGIN = 5;
 	private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
 	
-	private JPanel panel;
+	private JPanel panel = null;
 
 	protected JLabel selectedEntry;
 
@@ -81,10 +84,13 @@ public class XcosPalette extends JScrollPane {
 			panel.setPreferredSize(new Dimension(DEFAULT_NB_COLS * (BLOCK_WIDTH + HMARGIN), 0));
 
 			getVerticalScrollBar().setBlockIncrement(BLOCK_HEIGHT + VMARGIN);
-			getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
 			getVerticalScrollBar().setUnitIncrement(BLOCK_HEIGHT + VMARGIN);
+
+			//getHorizontalScrollBar().setVisible(false);
+			getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
 			getHorizontalScrollBar().setUnitIncrement(BLOCK_WIDTH + HMARGIN);
 
+			addComponentListener(this);
 			// Clears the current selection when the background is clicked
 			addMouseListener(new MouseListener()
 			{
@@ -469,9 +475,21 @@ public class XcosPalette extends JScrollPane {
 
 			panel.add(entry);
 
-			int panelWidth = (int) panel.getPreferredSize().getWidth();
-			int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
-			panel.setPreferredSize(new Dimension(panelWidth, (BLOCK_WIDTH + HMARGIN) * (panel.getComponentCount() / numberOfCols + 1)));
+//			System.err.println("getSize() : " + getSize());
+//			System.err.println("getPreferredSize() : " + getPreferredSize());
+//			System.err.println("getViewport().getPreferredSize() : " + getViewport().getPreferredSize());
+//			System.err.println("getViewport().getSize() : " + getViewport().getSize());
+//			System.err.println("getViewport().getViewSize() : " + getViewport().getViewSize());
+//			System.err.println("panel.getPreferredSize() : " + panel.getPreferredSize());
+//			System.err.println("panel.getSize() : " + panel.getSize());
+//			System.err.println("panel.getSize() : " + panel.getVisibleRect());
+//
+//			int panelWidth = (int) panel.getPreferredSize().getWidth();
+//			int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
+//			int numberOfRows = (panel.getComponentCount() / numberOfCols) + 1;
+//			int preferedHeight = (BLOCK_HEIGHT + VMARGIN) * numberOfRows;
+//			
+//			panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
 		}
 
 		/**
@@ -519,5 +537,32 @@ public class XcosPalette extends JScrollPane {
 		public void setEventsEnabled(boolean eventsEnabled)
 		{
 			eventSource.setEventsEnabled(eventsEnabled);
+		}
+
+		public void componentHidden(ComponentEvent arg0) {
+		}
+
+		public void componentMoved(ComponentEvent arg0) {
+		}
+
+		public void componentResized(ComponentEvent arg0) {
+			if(arg0.getSource() instanceof XcosPalette){
+				XcosPalette palette = ((XcosPalette)arg0.getSource());
+				int panelWidth = (int)palette.getSize().getWidth() - 3;
+
+				//take care if VerticalScrollBar is visible to compute visible area
+				if(getVerticalScrollBar().isVisible() == true){
+					panelWidth -=  getVerticalScrollBar().getWidth();
+				}
+
+				int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
+				double numberOfRows = (double)panel.getComponentCount() / (double)numberOfCols;
+				int preferedHeight = (int)((BLOCK_HEIGHT + VMARGIN) * Math.ceil(numberOfRows));
+
+				panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
+			}
+		}
+
+		public void componentShown(ComponentEvent arg0) {
 		}
 	}
