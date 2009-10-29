@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.port.input;
 
-import java.util.List;
-
 import org.scilab.modules.xcos.port.BasicPort;
 
 public abstract class InputPort extends BasicPort {

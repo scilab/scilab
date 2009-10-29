@@ -80,6 +80,9 @@ public class SuperBlock extends BasicBlock {
 	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
 	    newChild.installListeners();
 	    newChild.setModel(child.getModel());
+	    newChild.setContext(child.getContext());
+	    newChild.getModel().setRoot(child.getModel().getRoot());
+	    newChild.setDefaultParent(child.getDefaultParent());
 	    child = newChild;
 	    
 	    child.installSuperBlockListeners();

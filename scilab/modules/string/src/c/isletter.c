@@ -16,14 +16,16 @@
 #include <ctype.h>
 #include "isletter.h"
 #include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/
-BOOL *isletter(char *input_string)
+BOOL *isletter(char *input_string, int *sizeArray)
 {
 	BOOL *returnedValues = NULL;
 	if (input_string)
 	{
 		int i = 0;
 		int length_input_string = (int)strlen(input_string);
+		*sizeArray = length_input_string;
 
 		if (length_input_string > 0)
 		{
@@ -33,6 +35,32 @@ BOOL *isletter(char *input_string)
 				for (i = 0;i < length_input_string; i++)
 				{
 					if ( isalpha(input_string[i]) ) returnedValues[i] = TRUE;
+					else returnedValues[i] = FALSE;
+				}
+			}
+		}
+	}
+	return returnedValues;
+}
+/*--------------------------------------------------------------------------*/
+BOOL *isletterW(wchar_t *wcInput_string, int *sizeArray)
+{
+	BOOL *returnedValues = NULL;
+	if (wcInput_string)
+	{
+		int i = 0;
+		int length_input_string = (int)wcslen(wcInput_string);
+
+		*sizeArray = length_input_string;
+
+		if (length_input_string > 0)
+		{
+			returnedValues = (BOOL*)MALLOC(sizeof(BOOL)*length_input_string);
+			if (returnedValues)
+			{
+				for (i = 0;i < length_input_string; i++)
+				{
+					if ( iswalpha(wcInput_string[i]) ) returnedValues[i] = TRUE;
 					else returnedValues[i] = FALSE;
 				}
 			}

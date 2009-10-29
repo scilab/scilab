@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,7 @@ public class XcosDiagram extends ScilabGraph {
     private double realTimeScaling = 0;
     private double solver = 0;
     private double maximumStepSize = 0;
+    private int debugLevel = 0 ;
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
@@ -409,6 +411,8 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(true);
 	getAsComponent().setGridVisible(true);
 	
+	((mxCell) getDefaultParent()).setId((new UID()).toString());
+	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
     /**
@@ -742,7 +746,7 @@ public class XcosDiagram extends ScilabGraph {
 			&& !(cell instanceof TextBlock)) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
-		    block.openBlockSettings(getContext());
+		    block.openBlockSettings(buildEntireContext());
 		}
 		if (cell instanceof BasicLink) {
 		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
@@ -1180,6 +1184,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    public String[] buildEntireContext() {
+	return getContext();
+    }
+    
     public void setContext(String[] context){
 	this.context = context;
     }
@@ -1190,6 +1198,14 @@ public class XcosDiagram extends ScilabGraph {
 
     public String getVersion() {
 	return version;
+    }
+    
+    public int getDebugLevel(){
+    	return debugLevel;
+    }
+    
+    public void setDebugLevel(int debugLevel){
+    	this.debugLevel = debugLevel;
     }
 
     private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {

@@ -49,6 +49,14 @@
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piAddress</term>
                 <listitem>
                     <para>
