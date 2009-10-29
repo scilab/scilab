@@ -524,6 +524,10 @@ Bugs:
 
 * bug 4768 fixed - strsplit returned strange results with accented characters
 
+* bug 5071 fixed - isletter("é") returns [%F %F] instead of %F.
+
+* bug 5072 fixed - strspn("aéio","éa") returns 3 instead of 2.
+
 String manipulation:
 ====================
 

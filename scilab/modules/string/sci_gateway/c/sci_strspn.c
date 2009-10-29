@@ -24,6 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 int sci_strspn(char *fname,unsigned long fname_len)
 {
@@ -56,10 +57,26 @@ int sci_strspn(char *fname,unsigned long fname_len)
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&outIndex);   
 			for ( i = 0 ; i < m1n1 ; i++ )
 			{
+				wchar_t *wcParam1 = NULL;
+				wchar_t *wcParam2 = NULL;
+
 				if (m2n2 == 1) j = 0;
 				else j = i;
 				
-				stk(outIndex)[i] = (double) strspn( InputString_Parameter1[i], InputString_Parameter2[j] );
+				wcParam1 = to_wide_string(InputString_Parameter1[i]);
+				wcParam2 = to_wide_string(InputString_Parameter2[j]);
+
+				if (wcParam1 && wcParam2)
+				{
+					stk(outIndex)[i] = (double) wcsspn( wcParam1, wcParam2 );
+				}
+				else
+				{
+					stk(outIndex)[i] = (double) strspn( InputString_Parameter1[i], InputString_Parameter2[j] );
+				}
+
+				if (wcParam1) { FREE(wcParam1); wcParam1 = NULL;}
+				if (wcParam2) { FREE(wcParam2); wcParam2 = NULL;}
 			}
 			LhsVar(1) = Rhs+1 ;
 			C2F(putlhsvar)();
