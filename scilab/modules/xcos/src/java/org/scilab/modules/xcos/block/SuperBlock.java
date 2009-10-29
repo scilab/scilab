@@ -15,10 +15,13 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -89,6 +92,15 @@ public class SuperBlock extends BasicBlock {
 	    updateAllBlocksColor();
 	}
 	Xcos.showDiagram(child);
+    }
+
+    public void openContextMenu(ScilabGraph graph) {
+	ContextMenu menu = createContextMenu(graph);
+	
+	menu.getAsSimpleContextMenu().addSeparator();
+	menu.add(CodeGenerationAction.createMenu(graph));
+	
+	menu.setVisible(true);
     }
     
     public SuperBlockDiagram getChild() {
