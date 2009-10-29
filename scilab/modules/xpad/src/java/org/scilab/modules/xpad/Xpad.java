@@ -1060,28 +1060,33 @@ public class Xpad extends SwingScilabTab implements Tab {
 		int ascii_code = 0;
 		int total = 0;
 		String content= "";
-		content = fileToString(file);
 
-		int length = content.length();
-		byte[] utf8Bytes = null;
-		try {
-			utf8Bytes = content.getBytes("UTF8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		for (int i = 0; i < length; i++) {
-			total++;
-			int code = utf8Bytes[i] & 0xff;
-			if (code >= 32 && code <= 122) {
-				ascii_code++;
-			}
-		}
-
-		double result = (ascii_code * 100)/total;
-		if (result < 40) {
-			isBinary = true;
+		if (file.exists() == false) {
+			return false;
 		} else {
-			isBinary = false;
+			content = fileToString(file);
+
+			int length = content.length();
+			byte[] utf8Bytes = null;
+			try {
+				utf8Bytes = content.getBytes("UTF8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			for (int i = 0; i < length; i++) {
+				total++;
+				int code = utf8Bytes[i] & 0xff;
+				if (code >= 32 && code <= 122) {
+					ascii_code++;
+				}
+			}
+
+			double result = (ascii_code * 100)/total;
+			if (result < 40) {
+				isBinary = true;
+			} else {
+				isBinary = false;
+			}
 		}
 		return isBinary;
 
