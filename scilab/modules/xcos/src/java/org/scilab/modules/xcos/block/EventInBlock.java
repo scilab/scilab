@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.block;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -29,6 +31,10 @@ public class EventInBlock extends BasicBlock {
 	public EventInBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("CLKINV_f");
+		setSimulationFunctionName("input");
+		setNbZerosCrossing(new ScilabDouble(0));
+		setNmode(new ScilabDouble(0));
+		setODState(new ScilabList());
 		setValue("1");
 	}
 

@@ -9,16 +9,19 @@ Xcos replaces Scicos in Scilab distribution.
 Based on state of the art components, Xcos provides a stable, easy and
 usable interface to create complex simulations and controls.
 
-Group selection
-
-It leads to an excellent usability, much better performances.
-History of operations
-Tools tips
-rotate?
-Combien de diagram on gere?
-integration of the demo straight into Scilab
-Docking integration
-look and feel
+This new version provides numerous new features:
+* Several diagrams can be edited at the same time
+* Scilab can be used during the diagram construction
+* Diagram edition is available even during simulation
+* Drap and drop
+* Command history: Undo / Redo
+* Viewport
+* Palette window with 
+* Improved stability
+* Better usability of menus
+* Tool tips on block
+* Big diagram managements
+* Better integration of the demonstrations
 
 ATOMS:
 ======
@@ -903,6 +906,8 @@ Bug fixes:
                    to Paul Griffiths for the patch!
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
+
+* bug 4620 fixed - the setenv function makes scilab hangs.
 
 * bug 4626 fixed - When using the CLI version, completion made Scilab crashed
 

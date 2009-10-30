@@ -15,7 +15,7 @@
 //
 function this = optimbase_logshutdown ( this )
   if ~this.logstartup then
-    error ( gettext ( "%s: Logging not started." , "optimbase_logstartup" ) )
+    error ( gettext ( "%s: Logging not started." , "optimbase_logshutdown" ) )
   else
     this.logstartup = %f;
     if ( this.logfile <> "" ) then

@@ -303,7 +303,7 @@
 				    clock"/>
   </add>
   <add as="SAMPHOLD_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="S/H"/>
+    <add as="displayedLabel" value="S / H"/>
   </add>
   <add as="SAMPLEHOLD_f" extend="SAMPHOLD_m"/>
   
@@ -363,7 +363,7 @@
     <add as="displayedLabel" value="TAN"/>
   </add>
   <add as="MATDIV" extend="blockWithLabel">
-    <add as="displayedLabel" value="A/B"/>
+    <add as="displayedLabel" value="A / B"/>
   </add>
   <add as="EXPBLK_m" extend="blockWithLabel">
     <add as="displayedLabel" value="a^u"/>
@@ -568,7 +568,7 @@
   </add>
   <add as="SUBMAT" extend="blockWithLabel"/>
   <add as="MATBKSL" extend="blockWithLabel">
-    <add as="displayedLabel" value="A\B"/>
+    <add as="displayedLabel" value="A \ B"/>
   </add>
   <add as="MATINV" extend="blockWithLabel">
     <add as="displayedLabel" value="INV"/>
@@ -580,7 +580,7 @@
   <add as="MATSUM" extend="blockWithLabel"/>
   <add as="RICC" extend="blockWithLabel"/>
   <add as="ROOTCOEF" extend="blockWithLabel">
-    <add as="displayedLabel" value="ROOT/COEF"/>
+    <add as="displayedLabel" value="ROOT / COEF"/>
   </add>
   <add as="MATCATH" extend="blockWithLabel">
     <add as="displayedLabel" value="Horiz&lt;BR&gt;
