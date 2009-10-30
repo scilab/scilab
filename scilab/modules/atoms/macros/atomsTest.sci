@@ -76,11 +76,87 @@ function path = atomsTest(packages)
 		end
 	end
 	
+	// Add a fourth column : the module installation path
+	// =========================================================================
+	packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
+	// Loop on input parameter to set the version and the section if it's not 
+	// already done
+	// =========================================================================
+	
+	for i=1:size(packages(:,1),"*")
+		
+		// The module's installed version hasn't been specified or is empty
+		// → Set the MRV available
+		// =====================================================================
+		
+		if isempty(packages(i,2)) then
+			
+			if ~ isempty(packages(i,3)) then
+				section = packages(i,3);
+			
+			else
+				section = "all";
+			
+			end
+			
+			this_module_versions = atomsGetInstalledVers(packages(i,1),section);
+			
+			if isempty(this_module_versions) then
+				if section == "all" then
+					error(msprintf(gettext("%s: Module ''%s'' is not installed.\n"),"atomsTest",packages(i,1)));
+				else
+					error(msprintf(gettext("%s: Module ''%s'' is not installed (''%s'' section).\n"),"atomsTest",packages(i,1),section));
+				end
+			else
+				packages(i,2) = this_module_versions(1);
+			end
+			
+		else
+			
+			if ~atomsIsInstalled([packages(i,1) packages(i,2)]) then
+				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+			end
+			
+		end
+		
+		// The module's installed section hasn't been specified or is empty
+		// → If the module (same name/same version) is installed in both sections,
+		//   module installed in the "user" section is taken
+		// =====================================================================
+		
+		if isempty(packages(i,3)) then
+			
+			sections = ["user","allusers"];
+			
+			for j=1:size(sections,"*")
+				if atomsIsInstalled([packages(i,1) packages(i,2)],sections(j)) then
+					packages(i,3) = sections(j);
+				end
+			end
+			
+		else
+		
+			// Check if modules are installed
+			if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
+				mprintf(gettext("%s: The following modules is not installed:\n"),"atomsAutoloadAdd");
+				mprintf("\t - ''%s - %s'' (''%s'' section)\n",packages(i,1),packages(i,2),packages(i,3));
+				error("");
+			end
+			
+		end
+		
+		// Get the installed path
+		// =====================================================================
+		packages(i,4) = atomsGetInstalledPath([packages(i,1) packages(i,2) packages(i,3)]);
+		
+	end
+	
 	// Loop on packages
 	// =========================================================================
 	
 	for i=1:size(packages(:,1),"*")
-		test_run(atomsGetInstalledPath(packages(i,:)));
+		test_run(packages(i,4));
 	end
 	
 endfunction
