@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.block;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -29,6 +30,9 @@ public class ExplicitInBlock extends BasicBlock {
 	public ExplicitInBlock(String label) {
 		super(label);
 		setInterfaceFunctionName("IN_f");
+		setSimulationFunctionName("input");
+		setNbZerosCrossing(new ScilabDouble(0));
+		setNmode(new ScilabDouble(0));
 		setValue("1");
 	}
 
