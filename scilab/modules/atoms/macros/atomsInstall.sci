@@ -58,12 +58,14 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
 	end
 	
 	if MSDOS then
@@ -72,6 +74,8 @@ function result = atomsInstall(packages,section)
 		OSNAME = "linux";
 	elseif MACOSX then
 		OSNAME = "macosx";
+	elseif SOLARIS then
+		OSNAME = "solaris";
 	end
 	
 	// Architecture detection
