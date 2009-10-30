@@ -4,16 +4,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/common_list_api"));
 cd(pathconvert(TMPDIR+"/common_list_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
 ilib_build("common_list",["common_list","common_list"],SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",[],[],"",cflags);
-exec("loader.sce");
-
-             
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -22,5 +18,26 @@ l4 = list(l5, list(l5,l5));
 l6 = uint16([1000,2000,3000]);
 l = list(l1,l2,l3,l6,l4,l5);
 common_list(l)
- 
-        
+List (6 items) -> address : 0xB2AE5010) : 
+Child 1 -> address : 0xB2AE5038
+Child 2 -> address : 0xB2AE50A8
+Child 3 -> address : 0xB2AE5128
+Child 4 -> address : 0xB2AE5140
+Child 5 -> List (2 items) -> address : 0xB2AE5158) : 
+	Child 1 -> List (3 items) -> address : 0xB2AE5170) : 
+		Child 1 -> address : 0xB2AE5188
+		Child 2 -> address : 0xB2AE51F8
+		Child 3 -> address : 0xB2AE5278
+	Child 2 -> List (2 items) -> address : 0xB2AE5290) : 
+		Child 1 -> List (3 items) -> address : 0xB2AE52A8) : 
+			Child 1 -> address : 0xB2AE52C0
+			Child 2 -> address : 0xB2AE5330
+			Child 3 -> address : 0xB2AE53B0
+		Child 2 -> List (3 items) -> address : 0xB2AE53C8) : 
+			Child 1 -> address : 0xB2AE53E0
+			Child 2 -> address : 0xB2AE5450
+			Child 3 -> address : 0xB2AE54D0
+Child 6 -> List (3 items) -> address : 0xB2AE54E8) : 
+	Child 1 -> address : 0xB2AE5500
+	Child 2 -> address : 0xB2AE5570
+	Child 3 -> address : 0xB2AE55F0

@@ -14,62 +14,66 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
+#include "api_scilab.h"
 
-            
-int printf_info(int _iVar);
+			 
+SciErr printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
 {
+    SciErr sciErr;
     int i;
-    int iRet        = 0;
-    int *piAddr1    = NULL;
+    int *piAddr1 = NULL;
 
     for(i = 0 ; i < Rhs ; i++)
     {
-        iRet = printf_info(i + 1);
-        if(iRet)
+        sciErr = printf_info(i + 1);
+        if(sciErr.iErr)
         {
+            printError(&sciErr, 0);
             break;
         }
         sciprint("\n\n");
     }
 
-    if(iRet)
+    //1 for true, 0 for false
+    int iBool = sciErr.iErr == 0 ? 1 : 0;
+    sciErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
+    if(sciErr.iErr)
     {
-        //1 for true, 0 for false
-        iRet = !iRet;
-        createMatrixOfBoolean(1, 1, 1, &iRet);
-        //assign allocated variables to Lhs position
-        LhsVar(1) = 1;
+        printError(&sciErr, 0);
+        return 0;
     }
-    else
-    {
-        //assign allocated variables to Lhs position
-        LhsVar(1) = 0;
-    }
+    //assign allocated variables to Lhs position
+    LhsVar(1) = 1;
 
     return 0;
 }
 
-int printf_info(int _iVar)
+SciErr printf_info(int _iVar)
 {
+    SciErr sciErr;
     int* piAddr     = NULL;
-    int iRet        = 0;
     int iType       = 0;
     int iRows       = 0;
     int iCols       = 0;
     int iItem       = 0;
     int iComplex    = 0;
 
-    iRet = getVarAddressFromPosition(_iVar, &piAddr);
-    if(iRet)
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
+    if(sciErr.iErr)
     {
-        return 1;
+        return sciErr;
     }
 
     sciprint("Variable %d information:\n", _iVar);
-    iType = getVarType(piAddr);
+
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        return sciErr;
+    }
+
     sciprint("\tType: ");
     switch(iType)
     {
@@ -80,8 +84,8 @@ int printf_info(int _iVar)
             sciprint("polynomial\n");
             break;
         case sci_boolean : 
-           sciprint("boolean\n");
-           break;
+            sciprint("boolean\n");
+            break;
         case sci_sparse : 
             sciprint("sparse\n");
             break;
@@ -95,7 +99,11 @@ int printf_info(int _iVar)
             char* pstSign       = pstSigned;
 
             int iPrec           = 0;
-            iRet = getMatrixOfIntegerPrecision(piAddr, &iPrec);
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
+            if(sciErr.iErr)
+            {
+                return sciErr;
+            }
 
             if(iPrec > 10)
             {
@@ -119,26 +127,35 @@ int printf_info(int _iVar)
             break;
         default :
             sciprint("Not manage by this function\n");
-            return 0;
+            return sciErr;
     }
 
-    if(isVarComplex(piAddr))
+    if(isVarComplex(pvApiCtx, piAddr))
     {
         sciprint("\tComplex: Yes\n");
     }
 
     sciprint("\tDimensions: ");
-    if(isVarMatrixType(piAddr))
+    if(isVarMatrixType(pvApiCtx, piAddr))
     {
-        getVarDimension(piAddr, &iRows, &iCols);
+        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+        if(sciErr.iErr)
+        {
+            return sciErr;
+        }
+
         sciprint("%d x %d", iRows, iCols);
     }
     else
     {
-        getListItemNumber(piAddr, &iItem);
+        sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
+        if(sciErr.iErr)
+        {
+            return sciErr;
+        }
         sciprint("%d", iItem);
     }
-    return 0;
+    return sciErr;
 }
-        
-        
+ 
+		
