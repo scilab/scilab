@@ -93,7 +93,7 @@
                 </listitem>
             </varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -126,7 +126,7 @@ int read_double(char *fname,unsigned long fname_len)
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	StrErr strErr;
+	SciErr strErr;
 	//check input and output arguments
 	CheckRhs(1,1);
 	CheckLhs(1,1);

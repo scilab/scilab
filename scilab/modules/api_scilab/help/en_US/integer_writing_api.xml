@@ -32,22 +32,22 @@
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>StrErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>StrErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>StrErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>StrErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
         <para>Named variable profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -101,7 +101,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -117,13 +117,13 @@
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
-        <synopsis>StrErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
-        <synopsis>StrErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -169,7 +169,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -195,7 +195,7 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
 
 int read_integer(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	//output variable info
 	int iRows8					= 0;
 	int iCols8					= 0;

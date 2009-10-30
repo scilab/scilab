@@ -27,11 +27,11 @@
     <refsynopsisdiv>
 		<title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>StrErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
-		<synopsis>StrErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings)</synopsis>
+		<synopsis>SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
+		<synopsis>SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>StrErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
-		<synopsis>StrErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
 	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -101,7 +101,7 @@
 				</listitem>
 			</varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -124,7 +124,7 @@
 	<![CDATA[ 
 int read_string(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i,j;
 	int iLen		= 0;
 	//variable info

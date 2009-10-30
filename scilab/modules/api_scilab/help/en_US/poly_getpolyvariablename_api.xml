@@ -28,7 +28,7 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>StrErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
+		<synopsis>SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
 	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -88,7 +88,7 @@
         <programlisting role="code_gateway"><![CDATA[ 
 int read_poly(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i,j;
 	//variable info
 	int iRows			= 0;

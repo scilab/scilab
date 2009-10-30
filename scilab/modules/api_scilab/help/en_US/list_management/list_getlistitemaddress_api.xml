@@ -65,7 +65,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.

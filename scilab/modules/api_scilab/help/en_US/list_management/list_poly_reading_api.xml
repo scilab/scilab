@@ -110,7 +110,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -156,7 +156,7 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 
 int common_read(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iItem       = 0;
 	int iRet        = 0;
 	int *piAddr     = NULL;
@@ -178,7 +178,7 @@ int common_read(char *fname,unsigned long fname_len)
 
 int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iRet    = 0;
 	int iType   = 0;
 
@@ -234,7 +234,7 @@ int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i;
 	int iRet        = 0;
 	int iItem       = 0;
@@ -267,7 +267,7 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iRows           = 0;
 	int iCols           = 0;
 
@@ -311,7 +311,7 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i;
 	int iLen            = 0;
 	int iRows           = 0;
@@ -430,7 +430,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iRows       = 0;
 	int iCols       = 0;
 
@@ -458,7 +458,7 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iRows           = 0;
 	int iCols           = 0;
 	int iItem           = 0;
@@ -499,7 +499,7 @@ int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iRows       = 0;
 	int iCols       = 0;
 	int iItem       = 0;
@@ -529,7 +529,7 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int iPrec               = 0;
 	int iRows               = 0;
 	int iCols               = 0;
@@ -627,7 +627,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i;
 	int iRows       = 0;
 	int iCols       = 0;
@@ -710,7 +710,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
-	StrErr strErr;
+	SciErr strErr;
 	void* pvPtr     = NULL;
 
 	if(_iItemPos == 0)

@@ -27,11 +27,11 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>StrErr getMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
-		<synopsis>StrErr getComplexMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
+		<synopsis>SciErr getMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+		<synopsis>SciErr getComplexMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>StrErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
-		<synopsis>StrErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
+		<synopsis>SciErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+		<synopsis>SciErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
 	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -101,7 +101,7 @@
                 </listitem>
             </varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -124,7 +124,7 @@
 			<![CDATA[ 
 int read_poly(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i,j;
 	//variable info
 	int iRows			= 0;

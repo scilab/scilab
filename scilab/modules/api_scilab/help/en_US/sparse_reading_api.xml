@@ -28,11 +28,11 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>StrErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
-		<synopsis>StrErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+		<synopsis>SciErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
+		<synopsis>SciErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>StrErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-		<synopsis>StrErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+		<synopsis>SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
+		<synopsis>SciErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
 	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -118,7 +118,7 @@
                 </listitem>
             </varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -141,7 +141,7 @@
 	<![CDATA[ 
 int read_sparse(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	int i,j,k;
 	int* piAddr			= NULL;
 

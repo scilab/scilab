@@ -29,7 +29,7 @@
 			Create from existing data.
 		</refsection>
 		<title>Calling Sequence</title>
-		<synopsis>StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
+		<synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
         <title>Parameters</title>
@@ -73,7 +73,7 @@
 			Write directly in Scilab memory.
 		</refsection>
 		<title>Calling Sequence</title>
-		<synopsis>StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)</synopsis>
+		<synopsis>SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
         <title>Parameters</title>
@@ -127,7 +127,7 @@
 			<![CDATA[ 
 int read_pointer(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr strErr;
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
