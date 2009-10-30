@@ -1474,5 +1474,15 @@ public class XcosDiagram extends ScilabGraph {
 	getParentTab().getInfoBar().setText(message);
     }
 
+    public void warnCellByUID(String uid, String message) {
+	for (int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; ++i) {
+	    if(getModel().getChildAt(getDefaultParent(), i) instanceof mxCell) {
+		if(((mxCell) getModel().getChildAt(getDefaultParent(), i)).getId().compareTo(uid) == 0) {
+		    getAsComponent().setCellWarning(getModel().getChildAt(getDefaultParent(), i), message);
+		}
+	    }
+	}
+    }
+    
 }
 

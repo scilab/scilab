@@ -187,7 +187,7 @@
         <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.c-->
         <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.tst-->
         <!--Lib_name: integer_writing-->
-        <!--Func_list: write_integer-->
+        <!--Func_list: read_integer-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 

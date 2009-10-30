@@ -49,10 +49,10 @@ nm = nmplot_configure(nm,"-coords0",coords0);
 // Setup output files
 //
 mprintf("Setup output files...\n");
-nm = nmplot_configure(nm,"-simplexfn","han1-history-simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","han1-history-fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","han1-history-fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","han1-history-sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
@@ -73,10 +73,10 @@ drawnow();
 //
 // Clean-up
 //
-deletefile("han1-history-simplex.txt");
-deletefile("han1-history-fbar.txt");
-deletefile("han1-history-fopt.txt");
-deletefile("han1-history-sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

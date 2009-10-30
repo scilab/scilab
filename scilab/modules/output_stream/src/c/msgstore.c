@@ -13,6 +13,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "msgstore.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2
@@ -60,11 +61,9 @@ int C2F(msgstore)(char *str,int *n)
 /*--------------------------------------------------------------------------*/ 
 void C2F(freemsgtable)()
 {
-  int k;
-  for (k=0 ; k< msg_line_counter ; k++)
-    FREE(msg_buff[k]);
-  msg_line_counter=0;
-  err_n = 0;
+	freeArrayOfString(msg_buff, msg_line_counter);
+	msg_line_counter = 0;
+	err_n = 0;
 }
 /*--------------------------------------------------------------------------*/ 
 int C2F(lasterror)(char *fname, unsigned long fname_len)

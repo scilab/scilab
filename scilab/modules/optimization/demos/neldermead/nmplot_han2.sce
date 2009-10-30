@@ -52,7 +52,7 @@ nm = nmplot_configure(nm,"-coords0",coords0);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","han2-history-simplex.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
 //
 // Perform optimization
 //
@@ -70,7 +70,7 @@ drawlater();
 contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
 nmplot_simplexhistory ( nm );
 drawnow();
-deletefile("han2-history-simplex.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

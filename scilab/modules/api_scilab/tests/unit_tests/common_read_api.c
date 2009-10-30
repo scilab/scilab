@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+/*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,124 +8,15 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- -->
-<refentry version="5.0-subset Scilab" xml:id="list_integer_reading_API"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+ */
 
-    <refnamediv>
-        <refname>Integer reading (Scilab gateway)</refname>
+#include "stack-c.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "api_scilab.h"
 
-        <refpurpose>
-            How to read matrix of integer in a list.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <para>Input argument profile:</para>
-        <para>Signed integer :</para>
-        <synopsis>SciErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)</synopsis>
-        <synopsis>SciErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)</synopsis>
-        <synopsis>SciErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)</synopsis>
-        <para>Unsigned integer :</para>
-        <synopsis>SciErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)</synopsis>
-        <synopsis>SciErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)</synopsis>
-        <synopsis>SciErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)</synopsis>
-        <para>Named variable profile:</para>
-        <para>Signed integer :</para>
-        <synopsis>SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)</synopsis>
-        <synopsis>SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)</synopsis>
-        <synopsis>SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)</synopsis>
-        <para>Unsigned integer :</para>
-        <synopsis>SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)</synopsis>
-        <synopsis>SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)</synopsis>
-        <synopsis>SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piParent</term>
-                <listitem>
-                    <para>
-                        Address of the parent of the new item.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstName</term>
-                <listitem>
-                    <para>
-                        Name of the variable for "named" functions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iItemPos</term>
-                <listitem>
-                    <para>
-                        Position of the new item in the list.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piRows</term>
-                <listitem>
-                    <para>
-                        Return number of rows of the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piCols</term>
-                <listitem>
-                    <para>
-                        Return number of columns of the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pcData, _pucData, _psData, _pusData, _piData, _puiData</term>
-                <listitem>
-                    <para>
-                        Return address of data array (size: _iRows * _iCols).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to read matrix of integer in a list.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
-        <!--Lib_name: common_read-->
-        <!--Func_list: common_read-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
+             
 static int iTab = 0;
 
 void insert_indent(void)
@@ -729,33 +619,5 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	return 0;
 }
- ]]>
-        </programlisting>
-    </refsection>
-
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[ 
-function read_all()
-d = [1,2,3;4,5,6;7,8,9];common_read(d);
-s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);
-b = [%t,%f;%t,%f;%f,%t];common_read(b);
-sp=sparse([2,-1,0,0,0;-1,2,-1,0,0;0,-1,2,-1,0;0,0,-1,2,-1;0,0,0,-1,2]);common_read(sp);
-bsp=sparse([1,2;4,5;3,10],[%t,%t,%t]);common_read(bsp);
-i8 = int8([1,2,3]);common_read(i8);
-ui32 = uint32([3;2;1]);common_read(ui32);
-str = ["may", "the", "puffin"; "be", "with","you"];common_read(str);
-if with_module('umfpack') then
-    Cp = taucs_chfact(sp);
-    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str), Cp);
-else
-    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str));
-end
-common_read(l)
-endfunction
-read_all;
- ]]>
-        </programlisting>
-    </refsection>
-</refentry>
+ 
+        
