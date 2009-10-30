@@ -128,7 +128,7 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
             
       if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 
-      freeArrayOfString(pStVarOne, m1 * n1);
+      //freeArrayOfString(pStVarOne, m1 * n1);
     }
   else
     {
@@ -216,7 +216,7 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
             
       if (lenStVarTwo) { FREE(lenStVarTwo); lenStVarTwo = NULL;}
 
-      freeArrayOfString(pStVarTwo, m1 * n1);
+      //freeArrayOfString(pStVarTwo, m1 * n1);
     }
   else
     {
