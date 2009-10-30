@@ -6,6 +6,8 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
+// <-- NO CHECK REF -->
+
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/common_read_api"));
 cd(pathconvert(TMPDIR+"/common_read_api"));
