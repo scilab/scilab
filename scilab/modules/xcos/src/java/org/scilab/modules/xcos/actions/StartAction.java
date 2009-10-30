@@ -46,6 +46,7 @@ public class StartAction  extends DefaultAction {
     public void actionPerformed(ActionEvent e) {
 	File temp;
 	Xcos.setStartEnabled(false);
+	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
 	try {
 	    temp = File.createTempFile("xcos",".hdf5");
 	    temp.delete();
@@ -53,6 +54,7 @@ public class StartAction  extends DefaultAction {
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(simulationEnd);
+		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		    Xcos.setStartEnabled(true);
 		}
 	    };
