@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,18 +13,36 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class ViewBrowserAction extends DefaultAction {
 
-	private ViewBrowserAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.BROWSER, scilabGraph);
-	}
+    private ViewBrowserAction(ScilabGraph scilabGraph) {
+	super(XcosMessages.BROWSER, scilabGraph);
+    }
 
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.BROWSER, null, new ViewBrowserAction(scilabGraph), null);
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+	return createMenu(XcosMessages.BROWSER, null, new ViewBrowserAction(scilabGraph), null);
+    }
+
+    public void doAction() {
+	try {
+	    File temp = File.createTempFile("xcos",".hdf5");
+	    temp.delete();
+	    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
+	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
+		    +"tree_show(scs_m);");
+	    temp.deleteOnExit();
+	} catch (IOException e1) {
+	    e1.printStackTrace();
 	}
+    }
 }
