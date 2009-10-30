@@ -20,6 +20,7 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -49,6 +50,8 @@ public class CodeGenerationAction extends DefaultAction {
 	Object selectedObj = getGraph(null).getSelectionCell();
 	if (!(selectedObj instanceof SuperBlock)) { return; }
 
+	((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
 	    final File tempOutput = File.createTempFile("xcos",".hdf5");;
@@ -78,6 +81,7 @@ public class CodeGenerationAction extends DefaultAction {
 		    block.setChild(null);
 		    //tempOutput.delete();
 		    //tempInput.delete();
+		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		}
 	    };
 	    launchMe.start();
@@ -86,6 +90,7 @@ public class CodeGenerationAction extends DefaultAction {
 	catch (Exception e) {
 	    // TODO: handle exception
 	    e.printStackTrace();
+	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}
     }
 }
