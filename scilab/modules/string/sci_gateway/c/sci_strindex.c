@@ -265,12 +265,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 		}
 
 		FREE(wStrings_Input1);
-		for(i = 0 ; i < m2n2 ; i++)
-		{
-			FREE(wStrings_Input2[i]);
-		}
-		FREE(wStrings_Input2);
-
+		freeArrayOfWideString(wStrings_Input2, m2n2);
 		freeArrayOfString(Strings_Input1,m1n1);
 		freeArrayOfString(Strings_Input2,m2n2);
 
