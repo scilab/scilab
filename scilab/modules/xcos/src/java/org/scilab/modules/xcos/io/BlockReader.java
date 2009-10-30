@@ -33,6 +33,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -1160,6 +1161,7 @@ public class BlockReader {
 				ExplicitInputPort tempInputPort =  new ExplicitInputPort();
 				ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
 				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
+				ScilabDouble dataType = (ScilabDouble)modelFields.get(4);
 
 				if ( dataLines.getRealPart() != null ){
 					int nbLines = (int)dataLines.getRealPart()[i][0];
@@ -1168,6 +1170,10 @@ public class BlockReader {
 				if ( dataColumns.getRealPart() != null ){
 					int nbColumns = (int)dataColumns.getRealPart()[i][0];
 					tempInputPort.setDataColumns(nbColumns);
+				}
+				if ( dataType.getRealPart() != null ){
+					int type = (int)dataType.getRealPart()[0][0];
+					tempInputPort.setDataType(DataType.convertScilabValue(type));
 				}
 				newBlock.addPort(tempInputPort);
 			}
@@ -1188,6 +1194,7 @@ public class BlockReader {
 				}
 				ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
 				ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
+				ScilabDouble dataType = (ScilabDouble)modelFields.get(4);
 
 				if ( dataLines.getRealPart() != null ){
 					int nbLines = (int)dataLines.getRealPart()[i][0];
@@ -1196,6 +1203,10 @@ public class BlockReader {
 				if ( dataColumns.getRealPart() != null ){
 					int nbColumns = (int)dataColumns.getRealPart()[i][0];
 					tempInputPort.setDataColumns(nbColumns);
+				}
+				if ( dataType.getRealPart() != null ){
+					int type = (int)dataType.getRealPart()[0][0];
+					tempInputPort.setDataType(DataType.convertScilabValue(type));
 				}
 				newBlock.addPort(tempInputPort);
 			}
