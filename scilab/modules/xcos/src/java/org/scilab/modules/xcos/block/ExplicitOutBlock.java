@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -33,6 +34,7 @@ public class ExplicitOutBlock extends BasicBlock {
 		setSimulationFunctionName("output");
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
+		setODState(new ScilabList());
 		setValue("1");
 	}
 
