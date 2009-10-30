@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_link">
+  <refnamediv>
+    <refname>scicos_link</refname>
+    <refpurpose>Définit une structure link</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_link">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="link_scicos_link">
+    <title>link</title>
+    <para>
+Size : 8.
+</para>
+    <para>
+Type : liste scilab.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">xx</emphasis>
+        </para>
+        <para> Un vecteur de coordonnées des abscisses x d'un lien. Un lien est définit comme une polyline.</para>
+        <para> 
+Taille : nombre total de points du liens.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">yy</emphasis>
+        </para>
+        <para> Un vecteur de coordonnées des ordonnées y d'un lien. Un lien est définit comme une polyline.</para>
+        <para> 
+Taille : nombre total de points du liens.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">id</emphasis>
+        </para>
+        <para> Une chaîne de caractères définissant l'identification du lien.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : chaîne de caractères.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">thick</emphasis>
+        </para>
+        <para> Un vecteur de taille deux définissant l'épaisseur du lien.</para>
+        <para> 
+Taille : 2.
+</para>
+        <para>
+Type : vecteur ligne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ct</emphasis>
+        </para>
+        <para> La première entrée de ce vecteur désigne la couleur et la deuxième la nature du lien. La valeur de cette dernière entrée est 1 pour un lien régulier, -1 pour un lien d'activation et 2 pour un lien implicite.</para>
+        <para> 
+Taille : 2.
+</para>
+        <para>
+Type : vecteur ligne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">from</emphasis>
+        </para>
+        <para> Un vecteur de taille 3 qui designe un numéro de bloc, un numéro de port et un type de port (0 pour une sortie et 1 pour une entrée) concernant l'origine du lien. Notez que la troisième entrée peut être 1 si le lien est implicite. Sinon il est zéro.</para>
+        <para> 
+Taille : 3.
+</para>
+        <para>
+Type : vecteur ligne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">to</emphasis>
+        </para>
+        <para> Un vecteur de taille 3 qui designe un numéro de bloc, un numéro de port et un type de port (0 pour une sortie et 1 pour une entrée) concernant la destination du lien. Notez que la troisième entrée peut être 1 si le lien est implicite. Sinon il est zéro.</para>
+        <para> 
+Taille : 3.
+</para>
+        <para>
+Type : vecteur ligne de nombre entiers.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_link">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_link.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

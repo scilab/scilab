@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Multiwindow">
+  <refnamediv>
+    <refname>Multiwindow</refname>
+    <refpurpose>New Scicos multi-window editor</refpurpose>
+  </refnamediv>
+  <refsection id="Module_Multiwindow">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Introduction_Multiwindow">
+    <title>Introduction</title>
+    <para>
+A serious limitation of the Scicos editor has been its inability to
+handle more than one diagram at a time. This limitation has been
+lifted; it is now possible to open and edit multiple diagrams as
+long as they are sub-diagrams of the same Scicos model. In most cases,
+the multi-window editing is needed in this situation. The extension
+that would allow the simultaneous editing of multiple Scicos models is
+forthcoming.  
+
+</para>
+    <para>
+There are a number of new functionalities available in the new editor
+for taking advantage of its muti-windows capabilites. This document
+gives a brief description of these functionalities.
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Activediagram_Multiwindow">
+    <title>Active diagram</title>
+    <para>
+In the new editor multiple diagrams can be simultaneously
+open. Standard object editing capabilities are available in all of the
+diagrams as usual (but not palettes which are read only). But editing
+across diagrams is also allowed. For example a block can be ``copied''
+in one diagram and ``pasted'' to another one. 
+
+</para>
+    <para>
+Any action on a diagram window, such as clicking or selecting a menu,
+activates the diagram. In most cases the user does not care which
+diagram is active because most operations activate the diagram in
+which the action has taken place immediately in a completely
+transparent manner. 
+</para>
+    <para>
+When a diagram is activated, all the necessary steps are taken by
+Scicos to make sure that the environment of the diagram is up to
+date. In particular, the symbolic parameters defined in the context of
+the diagram and all other diagrams above it are available. This
+implies that the user can start editing the diagram without any risk
+of inconsistency with the rest of the model.
+</para>
+    <para>
+In most cases, inactive diagrams are also up to date. There is however
+an exception. If the number of input/output ports of a Super Block is
+modified, the parent diagram is affected. If the parent diagram is
+open, it should be updated. This modification however is not
+materialized until either the first diagram is closed or the parent
+diagram is activated. Once again there is no risk in creating any
+inconsistency because the parent diagram, which may not be up to date
+at a given time, cannot be edited without being activated.
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="ScicosBrowser_Multiwindow">
+    <title>Scicos Browser</title>
+    <para>
+It is very easy to lose track of the topology of a model when many
+diagrams are open at the same time. To obtain a hierachical view of
+the structure of the model, a Browser functionality has been made
+available. The Browser gives a global view of the full model as a tree
+like structure. It also indicates the node corresponding to the active
+diagram (diagram in which the Browser operation has been launched). 
+
+</para>
+    <para>
+The Browser is more than just a viewing facility. By double clicking
+on a node in the Browser, the corresponding diagram is activated
+(opened first if not already open). The main diagram, which
+is the root of the tree like structure in the Browser, is not a
+node. To activate the main diagram use the
+``Diagram/Up_to_Main_diagram'' menu. 
+</para>
+    <para>
+Note that the Browser display is not updated dynamically as the diagram is
+edited. So if a Super Block is removed or a new one is created, the
+tree structure would no longer be correct. In that case the Browser must
+be launched again.
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="LimitedUndooperations_Multiwindow">
+    <title>Limited Undo operations</title>
+    <para>
+Scicos has always had a single step undo facility. This has not
+been really improved in the new editor, however, now each diagram has
+its own single step undo facility. In most cases the undo operations
+are independent from one window to another, but there is an
+exception. If a low-level diagram of a diagram is edited, the undo
+operation in this latter diagram can undo all the editing done in the
+low-level diagram since it has been opened. To avoid loss of work by an
+inadvertent undo operation, a warning message is displayed in such situations. 
+
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Scilabwindowactivation_Multiwindow">
+    <title>Scilab window activation</title>
+    <para>
+One of the most important features of the new editor is that it allows the user
+to activate the Scilab shell without really leaving Scicos. Such a
+functionality did exist previously through the Calc command. But Calc activated
+the Scilab shell under the pause environment. Even though user could have used this
+environment to perform calculations, the result was lost upon leaving the shell
+back to Scicos. This was particularly annoying for loaded functions which were
+not usable in Scicos.
+
+</para>
+    <para>
+The Activate Scilab Window operation in Tools menu activates the Scilab prompt
+at normal level. This operation is particularly useful for From/To workspace
+blocks. For most usages, except perhaps very advanced debugging, this operation
+replaces the Calc operation.
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Authors_Multiwindow">
+    <title>Authors</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

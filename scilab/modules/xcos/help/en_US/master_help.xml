@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY xcos SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\xcos.xml">
+<!ENTITY xcos_menu_entries SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\XCOS_M~1.XML">
+<!ENTITY About_scicos SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\ABOUT_~1\ABOUT_~1.XML">
+<!ENTITY lincos SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\BATCH_~1\lincos.xml">
+<!ENTITY scicos SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\BATCH_~1\scicos.xml">
+<!ENTITY scicos_simulate SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\BATCH_~1\SCICOS~1.XML">
+<!ENTITY scicosim SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\BATCH_~1\scicosim.xml">
+<!ENTITY steadycos SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\BATCH_~1\STEADY~1.XML">
+<!ENTITY Context SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\editor\Context.xml">
+<!ENTITY Keyboard_shortcuts SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\editor\KEYBOA~1.XML">
+<!ENTITY Menu_entries SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\editor\MENU_E~1.XML">
+<!ENTITY Multiwindow SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\editor\MULTIW~1.XML">
+<!ENTITY ANDBLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\ANDBLK.xml">
+<!ENTITY BIGSOM_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\BIGSOM_f.xml">
+<!ENTITY CMSCOPE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\CMSCOPE.xml">
+<!ENTITY CONST_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\CONST_m.xml">
+<!ENTITY CONVERT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\CONVERT.xml">
+<!ENTITY CSCOPXY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\CSCOPXY.xml">
+<!ENTITY Commonlyusedblocks_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\COMMON~1.XML">
+<!ENTITY DEMUX SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\DEMUX.xml">
+<!ENTITY DOLLAR_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\DOLLAR_f.xml">
+<!ENTITY INTEGRAL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\INTEGR~1.XML">
+<!ENTITY IN_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\IN_f.xml">
+<!ENTITY LOGICAL_OP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\LOGICA~1.XML">
+<!ENTITY MUX SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\MUX.xml">
+<!ENTITY NRMSOM_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\NRMSOM_f.xml">
+<!ENTITY OUT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\OUT_f.xml">
+<!ENTITY PRODUCT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\PRODUCT.xml">
+<!ENTITY RELATIONALOP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\RELATI~1.XML">
+<!ENTITY SATURATION SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\SATURA~1.XML">
+<!ENTITY SWITCH2_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\SWITCH~1.XML">
+<!ENTITY TEXT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\COMMON~1\TEXT_f.xml">
+<!ENTITY CLR SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\CLR.xml">
+<!ENTITY CLSS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\CLSS.xml">
+<!ENTITY Continuous_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\CONTIN~1.XML">
+<!ENTITY DERIV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\DERIV.xml">
+<!ENTITY INTEGRAL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\INTEGR~1.XML">
+<!ENTITY INTEGRAL_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\INTEGR~2.XML">
+<!ENTITY PID SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\PID.xml">
+<!ENTITY TCLSS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\TCLSS.xml">
+<!ENTITY TIME_DELAY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\TIME_D~1.XML">
+<!ENTITY VARIABLE_DELAY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\CONTIN~1\VARIAB~1.XML">
+<!ENTITY AUTOMAT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\AUTOMAT.xml">
+<!ENTITY BOUNCE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\BOUNCE.xml">
+<!ENTITY BOUNCEXY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\BOUNCEXY.xml">
+<!ENTITY BPLATFORM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\BPLATF~1.XML">
+<!ENTITY Demonstrationsblocks_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\DEMONS~1.XML">
+<!ENTITY PDE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DEMONS~1\PDE.xml">
+<!ENTITY BACKLASH SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\BACKLASH.xml">
+<!ENTITY DEADBAND SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\DEADBAND.xml">
+<!ENTITY DELAYV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\DELAYV_f.xml">
+<!ENTITY Discontinuous_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\DISCON~1.XML">
+<!ENTITY HYSTHERESIS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\HYSTHE~1.XML">
+<!ENTITY RATELIMITER SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\RATELI~1.XML">
+<!ENTITY REGISTER SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\REGISTER.xml">
+<!ENTITY SATURATION SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCON~1\SATURA~1.XML">
+<!ENTITY DELAYV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DELAYV_f.xml">
+<!ENTITY DELAY_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DELAY_f.xml">
+<!ENTITY DLR SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DLR.xml">
+<!ENTITY DLRADAPT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DLRADA~1.XML">
+<!ENTITY DLSS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DLSS.xml">
+<!ENTITY DOLLAR_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DOLLAR_f.xml">
+<!ENTITY Discrete_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\DISCRE~1\DISCRE~1.XML">
+<!ENTITY CCS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\CCS.xml">
+<!ENTITY CVS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\CVS.xml">
+<!ENTITY Capacitor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\CAPACI~1.XML">
+<!ENTITY ConstantVoltage SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\CONSTA~1.XML">
+<!ENTITY CurrentSensor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\CURREN~1.XML">
+<!ENTITY Diode SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Diode.xml">
+<!ENTITY Electrical_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\ELECTR~1.XML">
+<!ENTITY Ground SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Ground.xml">
+<!ENTITY Gyrator SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Gyrator.xml">
+<!ENTITY IdealTransformer SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\IDEALT~1.XML">
+<!ENTITY Inductor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Inductor.xml">
+<!ENTITY NMOS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\NMOS.xml">
+<!ENTITY NPN SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\NPN.xml">
+<!ENTITY OpAmp SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\OpAmp.xml">
+<!ENTITY PMOS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\PMOS.xml">
+<!ENTITY PNP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\PNP.xml">
+<!ENTITY PotentialSensor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\POTENT~1.XML">
+<!ENTITY Resistor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Resistor.xml">
+<!ENTITY SineVoltage SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\SINEVO~1.XML">
+<!ENTITY Switch SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\Switch.xml">
+<!ENTITY VVsourceAC SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\VVSOUR~1.XML">
+<!ENTITY VariableResistor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\VARIAB~1.XML">
+<!ENTITY VoltageSensor SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\VOLTAG~1.XML">
+<!ENTITY VsourceAC SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\ELECTR~1\VSOURC~1.XML">
+<!ENTITY ANDBLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\ANDBLK.xml">
+<!ENTITY ANDLOG_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\ANDLOG_f.xml">
+<!ENTITY CEVENTSCOPE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CEVENT~1.XML">
+<!ENTITY CLKFROM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLKFROM.xml">
+<!ENTITY CLKGOTO SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLKGOTO.xml">
+<!ENTITY CLKGotoTagVisibility SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLKGOT~1.XML">
+<!ENTITY CLKOUTV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLKOUT~1.XML">
+<!ENTITY CLKSOMV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLKSOM~1.XML">
+<!ENTITY CLOCK_c SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\CLOCK_c.xml">
+<!ENTITY ESELECT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\ESELEC~1.XML">
+<!ENTITY EVTDLY_c SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\EVTDLY_c.xml">
+<!ENTITY EVTGEN_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\EVTGEN_f.xml">
+<!ENTITY EVTVARDLY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\EVTVAR~1.XML">
+<!ENTITY Events_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\EVENTS~1.XML">
+<!ENTITY HALT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\HALT_f.xml">
+<!ENTITY IFTHEL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\IFTHEL_f.xml">
+<!ENTITY M_freq SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\M_freq.xml">
+<!ENTITY SampleCLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\SAMPLE~1.XML">
+<!ENTITY freq_div SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\EVENTS~1\freq_div.xml">
+<!ENTITY BITCLEAR SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\BITCLEAR.xml">
+<!ENTITY BITSET SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\BITSET.xml">
+<!ENTITY CONVERT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\CONVERT.xml">
+<!ENTITY DFLIPFLOP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\DFLIPF~1.XML">
+<!ENTITY DLATCH SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\DLATCH.xml">
+<!ENTITY EXTRACTBITS SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\EXTRAC~1.XML">
+<!ENTITY INTMUL SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\INTMUL.xml">
+<!ENTITY Integer_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\INTEGE~1.XML">
+<!ENTITY JKFLIPFLOP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\JKFLIP~1.XML">
+<!ENTITY LOGIC SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\LOGIC.xml">
+<!ENTITY SHIFT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\SHIFT.xml">
+<!ENTITY SRFLIPFLOP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\INTEGE~1\SRFLIP~1.XML">
+<!ENTITY INTRP2BLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\LOOKUP~1\INTRP2~1.XML">
+<!ENTITY INTRPLBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\LOOKUP~1\INTRPL~1.XML">
+<!ENTITY LOOKUP_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\LOOKUP~1\LOOKUP_f.xml">
+<!ENTITY Lookuptables_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\LOOKUP~1\LOOKUP~1.XML">
+<!ENTITY ABS_VALUE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\ABS_VA~1.XML">
+<!ENTITY BIGSOM_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\BIGSOM_f.xml">
+<!ENTITY CONSTRAINT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\CONSTR~1.XML">
+<!ENTITY COSBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\COSBLK_f.xml">
+<!ENTITY EXPBLK_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\EXPBLK_m.xml">
+<!ENTITY GAINBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\GAINBL~1.XML">
+<!ENTITY INVBLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\INVBLK.xml">
+<!ENTITY LOGBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\LOGBLK_f.xml">
+<!ENTITY MATDIV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MATDIV.xml">
+<!ENTITY MATMAGPHI SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MATMAG~1.XML">
+<!ENTITY MATZREIM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MATZREIM.xml">
+<!ENTITY MAXMIN SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MAXMIN.xml">
+<!ENTITY MAX_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MAX_f.xml">
+<!ENTITY MIN_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MIN_f.xml">
+<!ENTITY Mathoperations_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\MATHOP~1.XML">
+<!ENTITY POWBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\POWBLK_f.xml">
+<!ENTITY PRODUCT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\PRODUCT.xml">
+<!ENTITY PROD_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\PROD_f.xml">
+<!ENTITY SIGNUM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\SIGNUM.xml">
+<!ENTITY SINBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\SINBLK_f.xml">
+<!ENTITY SQRT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\SQRT.xml">
+<!ENTITY SUMMATION SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\SUMMAT~1.XML">
+<!ENTITY SUM_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\SUM_f.xml">
+<!ENTITY TANBLK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\TANBLK_f.xml">
+<!ENTITY TrigFun SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATHOP~1\TrigFun.xml">
+<!ENTITY CUMSUM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\CUMSUM.xml">
+<!ENTITY EXTRACT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\EXTRACT.xml">
+<!ENTITY EXTTRI SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\EXTTRI.xml">
+<!ENTITY MATBKSL SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATBKSL.xml">
+<!ENTITY MATCATH SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATCATH.xml">
+<!ENTITY MATCATV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATCATV.xml">
+<!ENTITY MATDET SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATDET.xml">
+<!ENTITY MATDIAG SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATDIAG.xml">
+<!ENTITY MATDIV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATDIV.xml">
+<!ENTITY MATEIG SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATEIG.xml">
+<!ENTITY MATEXPM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATEXPM.xml">
+<!ENTITY MATINV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATINV.xml">
+<!ENTITY MATLU SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATLU.xml">
+<!ENTITY MATMAGPHI SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATMAG~1.XML">
+<!ENTITY MATMUL SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATMUL.xml">
+<!ENTITY MATPINV SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATPINV.xml">
+<!ENTITY MATRESH SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATRESH.xml">
+<!ENTITY MATSING SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATSING.xml">
+<!ENTITY MATSUM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATSUM.xml">
+<!ENTITY MATTRAN SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATTRAN.xml">
+<!ENTITY MATZCONJ SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATZCONJ.xml">
+<!ENTITY MATZREIM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATZREIM.xml">
+<!ENTITY Matrix_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\MATRIX~1.XML">
+<!ENTITY RICC SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\RICC.xml">
+<!ENTITY ROOTCOEF SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\ROOTCOEF.xml">
+<!ENTITY SQRT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\SQRT.xml">
+<!ENTITY SUBMAT SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MATRIX~1\SUBMAT.xml">
+<!ENTITY FROMMO SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\FROMMO.xml">
+<!ENTITY GOTOMO SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\GOTOMO.xml">
+<!ENTITY GotoTagVisibilityMO SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\GOTOTA~1.XML">
+<!ENTITY MBLOCK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\MBLOCK.xml">
+<!ENTITY Modelica_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\MODELI~1.XML">
+<!ENTITY OUTIMPL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\MODELI~1\OUTIMP~1.XML">
+<!ENTITY EDGE_TRIGGER SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\PORTAC~1\EDGE_T~1.XML">
+<!ENTITY ESELECT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\PORTAC~1\ESELEC~1.XML">
+<!ENTITY Extract_Activation SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\PORTAC~1\EXTRAC~1.XML">
+<!ENTITY IFTHEL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\PORTAC~1\IFTHEL_f.xml">
+<!ENTITY Portaction_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\PORTAC~1\PORTAC~1.XML">
+<!ENTITY ANDBLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\ANDBLK.xml">
+<!ENTITY DEMUX SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\DEMUX.xml">
+<!ENTITY EXTRACTOR SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\EXTRAC~1.XML">
+<!ENTITY FROM SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\FROM.xml">
+<!ENTITY GOTO SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\GOTO.xml">
+<!ENTITY GotoTagVisibility SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\GOTOTA~1.XML">
+<!ENTITY ISELECT_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\ISELEC~1.XML">
+<!ENTITY MUX SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\MUX.xml">
+<!ENTITY M_SWITCH SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\M_SWITCH.xml">
+<!ENTITY NRMSOM_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\NRMSOM_f.xml">
+<!ENTITY READC_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\READC_f.xml">
+<!ENTITY RELAY_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\RELAY_f.xml">
+<!ENTITY RFILE_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\RFILE_f.xml">
+<!ENTITY SELECT_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\SELECT_m.xml">
+<!ENTITY SWITCH2_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\SWITCH~1.XML">
+<!ENTITY SWITCH_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\SWITCH_f.xml">
+<!ENTITY Signalrouting_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\SIGNAL~1.XML">
+<!ENTITY WFILE_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\WFILE_f.xml">
+<!ENTITY WRITEAU_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\WRITEA~1.XML">
+<!ENTITY WRITEC_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SIGNAL~1\WRITEC_f.xml">
+<!ENTITY AFFICH_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\AFFICH_m.xml">
+<!ENTITY CANIMXY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CANIMXY.xml">
+<!ENTITY CANIMXY3D SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CANIMX~1.XML">
+<!ENTITY CFSCOPE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CFSCOPE.xml">
+<!ENTITY CMAT3D SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CMAT3D.xml">
+<!ENTITY CMATVIEW SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CMATVIEW.xml">
+<!ENTITY CMSCOPE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CMSCOPE.xml">
+<!ENTITY CSCOPE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CSCOPE.xml">
+<!ENTITY CSCOPXY SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CSCOPXY.xml">
+<!ENTITY CSCOPXY3D SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\CSCOPX~1.XML">
+<!ENTITY Sinks_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\SINKS_~1.XML">
+<!ENTITY TOWS_c SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\TOWS_c.xml">
+<!ENTITY TRASH_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SINKS_~1\TRASH_f.xml">
+<!ENTITY CLKINV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\CLKINV_f.xml">
+<!ENTITY CLOCK_c SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\CLOCK_c.xml">
+<!ENTITY CONST_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\CONST_m.xml">
+<!ENTITY CURV_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\CURV_f.xml">
+<!ENTITY Counter SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\Counter.xml">
+<!ENTITY FROMWSB SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\FROMWSB.xml">
+<!ENTITY GENSIN_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\GENSIN_f.xml">
+<!ENTITY GENSQR_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\GENSQR_f.xml">
+<!ENTITY INIMPL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\INIMPL_f.xml">
+<!ENTITY IN_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\IN_f.xml">
+<!ENTITY Modulo_Count SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\MODULO~1.XML">
+<!ENTITY RAMP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\RAMP.xml">
+<!ENTITY RAND_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\RAND_m.xml">
+<!ENTITY READAU_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\READAU_f.xml">
+<!ENTITY READC_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\READC_f.xml">
+<!ENTITY RFILE_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\RFILE_f.xml">
+<!ENTITY SAWTOOTH_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\SAWTOO~1.XML">
+<!ENTITY STEP_FUNCTION SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\STEP_F~1.XML">
+<!ENTITY SampleCLK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\SAMPLE~1.XML">
+<!ENTITY Sigbuilder SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\SIGBUI~1.XML">
+<!ENTITY Sources_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\SOURCE~1.XML">
+<!ENTITY TIME_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\TIME_f.xml">
+<!ENTITY TKSCALE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\SOURCE~1\TKSCALE.xml">
+<!ENTITY Bache SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\Bache.xml">
+<!ENTITY PerteDP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\PerteDP.xml">
+<!ENTITY PuitsP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\PuitsP.xml">
+<!ENTITY SourceP SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\SourceP.xml">
+<!ENTITY ThermoHydraulics_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\THERMO~1.XML">
+<!ENTITY VanneReglante SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THERMO~1\VANNER~1.XML">
+<!ENTITY CLINDUMMY_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\CLINDU~1.XML">
+<!ENTITY GENERAL_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\GENERA~1.XML">
+<!ENTITY NEGTOPOS_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\NEGTOP~1.XML">
+<!ENTITY POSTONEG_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\POSTON~1.XML">
+<!ENTITY Threshold_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\THRESH~1.XML">
+<!ENTITY ZCROSS_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\THRESH~1\ZCROSS_f.xml">
+<!ENTITY MCLOCK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\TRAITE~1\MCLOCK_f.xml">
+<!ENTITY MFCLCK_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\TRAITE~1\MFCLCK_f.xml">
+<!ENTITY QUANT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\TRAITE~1\QUANT_f.xml">
+<!ENTITY SAMPHOLD_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\TRAITE~1\SAMPHO~1.XML">
+<!ENTITY Traitementdusignal_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\TRAITE~1\TRAITE~1.XML">
+<!ENTITY CBLOCK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\CBLOCK.xml">
+<!ENTITY EXPRESSION SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\EXPRES~1.XML">
+<!ENTITY MBLOCK SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\MBLOCK.xml">
+<!ENTITY PDE SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\PDE.xml">
+<!ENTITY SUPER_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\SUPER_f.xml">
+<!ENTITY TEXT_f SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\TEXT_f.xml">
+<!ENTITY Userdefinedfunctions_pal SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\USERDE~1.XML">
+<!ENTITY c_block SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\c_block.xml">
+<!ENTITY fortran_block SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\FORTRA~1.XML">
+<!ENTITY generic_block3 SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\GENERI~1.XML">
+<!ENTITY scifunc_block_m SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\palettes\USERDE~1\SCIFUN~1.XML">
+<!ENTITY C_macros SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\C_COMP~1\C_macros.xml">
+<!ENTITY C_struct SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\C_COMP~1\C_struct.xml">
+<!ENTITY C_utils SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\C_COMP~1\C_utils.xml">
+<!ENTITY sci_struct SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\SCILAB~1\SCI_ST~1.XML">
+<!ENTITY curblock SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\curblock.xml">
+<!ENTITY getblocklabel SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\GETBLO~1.XML">
+<!ENTITY getscicosvars SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\GETSCI~1.XML">
+<!ENTITY phase_simulation SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\PHASE_~1.XML">
+<!ENTITY pointer_xproperty SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\POINTE~1.XML">
+<!ENTITY scicos_time SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\SCICOS~1.XML">
+<!ENTITY set_blockerror SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\SET_BL~1.XML">
+<!ENTITY set_xproperty SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\PROGRA~1\UTILIT~1\SET_XP~1.XML">
+<!ENTITY scicos_block SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\blocks\SCICOS~1.XML">
+<!ENTITY scicos_graphics SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\blocks\SCICOS~2.XML">
+<!ENTITY scicos_model SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\blocks\SCICOS~3.XML">
+<!ENTITY scicos_cpr SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\COMPIL~1\SCICOS~1.XML">
+<!ENTITY scicos_sim SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\COMPIL~1\SCICOS~2.XML">
+<!ENTITY scicos_state SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\COMPIL~1\SCICOS~3.XML">
+<!ENTITY scicos_diagram SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\diagram\SCICOS~1.XML">
+<!ENTITY scicos_params SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\diagram\SCICOS~2.XML">
+<!ENTITY scicos_link SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~1\links\SCICOS~1.XML">
+<!ENTITY buildouttb SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\BUILDO~1.XML">
+<!ENTITY create_palette SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\CREATE~1.XML">
+<!ENTITY get_scicos_version SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\GET_SC~1.XML">
+<!ENTITY scicos_debug SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\SCICOS~1.XML">
+<!ENTITY var2vec SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\var2vec.xml">
+<!ENTITY vec2var SYSTEM "file:///D:\master\scilab\scilab\modules\xcos\help\en_US\SCILAB~2\vec2var.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='xcos_manual'>
+    <title>xcos</title>
+  </info>
+
+<part xml:id='section_ae323f26a7248a04f8de6b8aece673ae'>
+<title>xcos</title>
+&xcos;
+&xcos_menu_entries;
+<chapter xml:id='section_93b079be6e0d90ff92296e1611e9e607'>
+<title>About Scicos ...</title>
+&About_scicos;
+</chapter>
+<chapter xml:id='section_2f929ccdf1ab2aa35959c346ef2ba11f'>
+<title>Batch functions</title>
+&lincos;
+&scicos;
+&scicos_simulate;
+&scicosim;
+&steadycos;
+</chapter>
+<chapter xml:id='section_edea69fd74739cba3bf3d3f107d29350'>
+<title>Editor</title>
+&Context;
+&Keyboard_shortcuts;
+&Menu_entries;
+&Multiwindow;
+</chapter>
+<chapter xml:id='section_83882566e7066f5c8662b44a1acbfae1'>
+<title>palettes</title>
+<section xml:id='section_07feb05082eafe81c718a85b6734faaa'>
+<title>Commonly used blocks palette</title>
+&ANDBLK;
+&BIGSOM_f;
+&CMSCOPE;
+&CONST_m;
+&CONVERT;
+&CSCOPXY;
+&Commonlyusedblocks_pal;
+&DEMUX;
+&DOLLAR_f;
+&INTEGRAL_f;
+&IN_f;
+&LOGICAL_OP;
+&MUX;
+&NRMSOM_f;
+&OUT_f;
+&PRODUCT;
+&RELATIONALOP;
+&SATURATION;
+&SWITCH2_m;
+&TEXT_f;
+</section>
+<section xml:id='section_efd398814e4112bc1f7fff10d4ce67a1'>
+<title>Continuous palette</title>
+&CLR;
+&CLSS;
+&Continuous_pal;
+&DERIV;
+&INTEGRAL_f;
+&INTEGRAL_m;
+&PID;
+&TCLSS;
+&TIME_DELAY;
+&VARIABLE_DELAY;
+</section>
+<section xml:id='section_5f925b3a29f136aa21b278d8eba71ae9'>
+<title>Demonstrations blocks palette</title>
+&AUTOMAT;
+&BOUNCE;
+&BOUNCEXY;
+&BPLATFORM;
+&Demonstrationsblocks_pal;
+&PDE;
+</section>
+<section xml:id='section_87aaa0c389dbecc84763aa928cb780a4'>
+<title>Discontinuous palette</title>
+&BACKLASH;
+&DEADBAND;
+&DELAYV_f;
+&Discontinuous_pal;
+&HYSTHERESIS;
+&RATELIMITER;
+&REGISTER;
+&SATURATION;
+</section>
+<section xml:id='section_a1a2437bfe9bc73d729e0bdfd76396d0'>
+<title>Discrete palette</title>
+&DELAYV_f;
+&DELAY_f;
+&DLR;
+&DLRADAPT_f;
+&DLSS;
+&DOLLAR_f;
+&Discrete_pal;
+</section>
+<section xml:id='section_75672014656505a71987fbe5e01cf481'>
+<title>Electrical palette</title>
+&CCS;
+&CVS;
+&Capacitor;
+&ConstantVoltage;
+&CurrentSensor;
+&Diode;
+&Electrical_pal;
+&Ground;
+&Gyrator;
+&IdealTransformer;
+&Inductor;
+&NMOS;
+&NPN;
+&OpAmp;
+&PMOS;
+&PNP;
+&PotentialSensor;
+&Resistor;
+&SineVoltage;
+&Switch;
+&VVsourceAC;
+&VariableResistor;
+&VoltageSensor;
+&VsourceAC;
+</section>
+<section xml:id='section_65d4dff2b1d9287a41b148e2a1346aff'>
+<title>Events palette</title>
+&ANDBLK;
+&ANDLOG_f;
+&CEVENTSCOPE;
+&CLKFROM;
+&CLKGOTO;
+&CLKGotoTagVisibility;
+&CLKOUTV_f;
+&CLKSOMV_f;
+&CLOCK_c;
+&ESELECT_f;
+&EVTDLY_c;
+&EVTGEN_f;
+&EVTVARDLY;
+&Events_pal;
+&HALT_f;
+&IFTHEL_f;
+&M_freq;
+&SampleCLK;
+&freq_div;
+</section>
+<section xml:id='section_41adb8b1dccac89eb31ae859c15be4f5'>
+<title>Integer palette</title>
+&BITCLEAR;
+&BITSET;
+&CONVERT;
+&DFLIPFLOP;
+&DLATCH;
+&EXTRACTBITS;
+&INTMUL;
+&Integer_pal;
+&JKFLIPFLOP;
+&LOGIC;
+&SHIFT;
+&SRFLIPFLOP;
+</section>
+<section xml:id='section_966d185354048be4660b2008d842f2cc'>
+<title>Lookup tables palette</title>
+&INTRP2BLK_f;
+&INTRPLBLK_f;
+&LOOKUP_f;
+&Lookuptables_pal;
+</section>
+<section xml:id='section_553224ec04a5f859f101ef762a4ed5ff'>
+<title>Math operations palette</title>
+&ABS_VALUE;
+&BIGSOM_f;
+&CONSTRAINT_f;
+&COSBLK_f;
+&EXPBLK_m;
+&GAINBLK_f;
+&INVBLK;
+&LOGBLK_f;
+&MATDIV;
+&MATMAGPHI;
+&MATZREIM;
+&MAXMIN;
+&MAX_f;
+&MIN_f;
+&Mathoperations_pal;
+&POWBLK_f;
+&PRODUCT;
+&PROD_f;
+&SIGNUM;
+&SINBLK_f;
+&SQRT;
+&SUMMATION;
+&SUM_f;
+&TANBLK_f;
+&TrigFun;
+</section>
+<section xml:id='section_3093b5f8d4b3db7d1299ae25a2309dba'>
+<title>Matrix operation palette</title>
+&CUMSUM;
+&EXTRACT;
+&EXTTRI;
+&MATBKSL;
+&MATCATH;
+&MATCATV;
+&MATDET;
+&MATDIAG;
+&MATDIV;
+&MATEIG;
+&MATEXPM;
+&MATINV;
+&MATLU;
+&MATMAGPHI;
+&MATMUL;
+&MATPINV;
+&MATRESH;
+&MATSING;
+&MATSUM;
+&MATTRAN;
+&MATZCONJ;
+&MATZREIM;
+&Matrix_pal;
+&RICC;
+&ROOTCOEF;
+&SQRT;
+&SUBMAT;
+</section>
+<section xml:id='section_cef38aaf1a2077ae3f2e36a589299e48'>
+<title>Modelica palette</title>
+&FROMMO;
+&GOTOMO;
+&GotoTagVisibilityMO;
+&MBLOCK;
+&Modelica_pal;
+&OUTIMPL_f;
+</section>
+<section xml:id='section_c21bb09fedc6b4d1534efd198b6f2b71'>
+<title>Port action palette</title>
+&EDGE_TRIGGER;
+&ESELECT_f;
+&Extract_Activation;
+&IFTHEL_f;
+&Portaction_pal;
+</section>
+<section xml:id='section_1f2a3fbd55d929ab10e2c318fdb2e1a0'>
+<title>Signal routing palette</title>
+&ANDBLK;
+&DEMUX;
+&EXTRACTOR;
+&FROM;
+&GOTO;
+&GotoTagVisibility;
+&ISELECT_m;
+&MUX;
+&M_SWITCH;
+&NRMSOM_f;
+&READC_f;
+&RELAY_f;
+&RFILE_f;
+&SELECT_m;
+&SWITCH2_m;
+&SWITCH_f;
+&Signalrouting_pal;
+&WFILE_f;
+&WRITEAU_f;
+&WRITEC_f;
+</section>
+<section xml:id='section_833ebe1c0daf970e19e7fbdb5d33509d'>
+<title>Sinks palette</title>
+&AFFICH_m;
+&CANIMXY;
+&CANIMXY3D;
+&CFSCOPE;
+&CMAT3D;
+&CMATVIEW;
+&CMSCOPE;
+&CSCOPE;
+&CSCOPXY;
+&CSCOPXY3D;
+&Sinks_pal;
+&TOWS_c;
+&TRASH_f;
+</section>
+<section xml:id='section_dffe5fdf30d9c94d1372dd6220cccca3'>
+<title>Sources palette</title>
+&CLKINV_f;
+&CLOCK_c;
+&CONST_m;
+&CURV_f;
+&Counter;
+&FROMWSB;
+&GENSIN_f;
+&GENSQR_f;
+&INIMPL_f;
+&IN_f;
+&Modulo_Count;
+&RAMP;
+&RAND_m;
+&READAU_f;
+&READC_f;
+&RFILE_f;
+&SAWTOOTH_f;
+&STEP_FUNCTION;
+&SampleCLK;
+&Sigbuilder;
+&Sources_pal;
+&TIME_f;
+&TKSCALE;
+</section>
+<section xml:id='section_4f16823b5034e4919e1c117c0f94e949'>
+<title>Thermohydraulics palette</title>
+&Bache;
+&PerteDP;
+&PuitsP;
+&SourceP;
+&ThermoHydraulics_pal;
+&VanneReglante;
+</section>
+<section xml:id='section_e1a767bfae64663963538cddd0ec78db'>
+<title>Threshold palette</title>
+&CLINDUMMY_f;
+&GENERAL_f;
+&NEGTOPOS_f;
+&POSTONEG_f;
+&Threshold_pal;
+&ZCROSS_f;
+</section>
+<section xml:id='section_254f2d52bb1618d142d010c436b9a07e'>
+<title>Signal processing palette</title>
+&MCLOCK_f;
+&MFCLCK_f;
+&QUANT_f;
+&SAMPHOLD_m;
+&Traitementdusignal_pal;
+</section>
+<section xml:id='section_8d7afb2d6b47b64f37dd99fc382674c8'>
+<title>User defined functions palette</title>
+&CBLOCK;
+&EXPRESSION;
+&MBLOCK;
+&PDE;
+&SUPER_f;
+&TEXT_f;
+&Userdefinedfunctions_pal;
+&c_block;
+&fortran_block;
+&generic_block3;
+&scifunc_block_m;
+</section>
+</chapter>
+<chapter xml:id='section_cf8795dbe298dd098e1148c75192d0d7'>
+<title>Programming Scicos Blocks</title>
+<section xml:id='section_75dc1cd71cca35284e103854d2ebd75a'>
+<title>C Computational Functions</title>
+&C_macros;
+&C_struct;
+&C_utils;
+</section>
+<section xml:id='section_62061f41583d83d9e5e6dc4473c56bcc'>
+<title>Scilab Computational Functions</title>
+&sci_struct;
+</section>
+<section xml:id='section_64994839409eee51562168f3e12cf3ff'>
+<title>Utilities Functions</title>
+&curblock;
+&getblocklabel;
+&getscicosvars;
+&phase_simulation;
+&pointer_xproperty;
+&scicos_time;
+&set_blockerror;
+&set_xproperty;
+</section>
+</chapter>
+<chapter xml:id='section_ea1389404ff04f128b6853aba27f1991'>
+<title>Scilab Data Structures</title>
+<section xml:id='section_993114f98c5aef293f44a140592e7f61'>
+<title>Blocks</title>
+&scicos_block;
+&scicos_graphics;
+&scicos_model;
+</section>
+<section xml:id='section_091b773f2eba0d4a6de3f6e11c0ca34d'>
+<title>Compilation/Simulation</title>
+&scicos_cpr;
+&scicos_sim;
+&scicos_state;
+</section>
+<section xml:id='section_145a5e9e7d5623a2fed570e3713c2001'>
+<title>Diagram</title>
+&scicos_diagram;
+&scicos_params;
+</section>
+<section xml:id='section_03e234213b5d2216a3cfe42ef819ce47'>
+<title>Links</title>
+&scicos_link;
+</section>
+</chapter>
+<chapter xml:id='section_5e34b337fc9eed5acbab612d118835bf'>
+<title>Scilab Utilities Functions</title>
+&buildouttb;
+&create_palette;
+&get_scicos_version;
+&scicos_debug;
+&var2vec;
+&vec2var;
+</chapter>
+</part>
+</book>
