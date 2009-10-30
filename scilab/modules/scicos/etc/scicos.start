@@ -18,7 +18,7 @@ load('SCI/modules/scicos/macros/scicos_menus/lib')
 // Add help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
-	add_module_help_chapter("scicos");
+	//add_module_help_chapter("scicos");
 end
 
 // Add demos

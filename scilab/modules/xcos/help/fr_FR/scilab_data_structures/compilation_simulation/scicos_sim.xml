@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_sim">
+  <refnamediv>
+    <refname>scicos_sim</refname>
+    <refpurpose>Définit une structure sim</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_sim">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="sim_scicos_sim">
+    <title>sim</title>
+    <para>
+ Une liste typée scilab de type scs. Cette
+ liste contient des tableaux statiques issus
+ du résultat de la compilation. Ces tableaux
+ n'évoluent pas pendant la simulation.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Taille : 33.
+</para>
+    <para>
+Type : tlist scilab.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">funs</emphasis>
+        </para>
+        <para> Une liste qui contient les noms des fonctions de calculs ou des fonctions scilab.</para>
+        <para> 
+Taille : nombre de blocs.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">xptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des états continus x. Le registre des états continus du bloc i peut-être retrouvé par : state.x(sim.xptr(i):sim.xptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des états discret z. Le registre des états discrets du bloc i peut-être retrouvé par : state.z(sim.zptr(i):sim.zptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ozptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des états objets discret oz. Le registre des états objets du bloc i peut-être retrouvé par : state.oz(sim.ozptr(i):sim.ozptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zcptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des détections de surfaces. Ce vecteur indique par bloc le nombre de passages à zéro utilisé.</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">inpptr</emphasis>
+        </para>
+        <para> (sim.inpptr(i+1)-sim.inpptr(i)) donne le nombre de ports réguliers d'entrée du bloc i.</para>
+        <para> inpptr(i) pointe vers le début des ports d'entrée du bloc i et les connections à ces ports peuvent retrouvées par la table d'indirection inplnk.</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outptr</emphasis>
+        </para>
+        <para> (sim.outptr(i+1)-sim.outptr(i)) donne le nombre de ports réguliers de sortie du bloc i.</para>
+        <para> outptr(i) pointe vers le début des ports de sortie du bloc i et les connections à ces ports peuvent retrouvées par la table d'indirection outlnk.</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">inplnk</emphasis>
+        </para>
+        <para> (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j)) est l'index du lien connecté à l'entrée j du bloc i, où j va de 1 jusqu'à (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)).</para>
+        <para> 
+Taille : nombre total de port réguliers d'entrée.
+</para>
+        <para>
+Type : vecteur colonne de nombre entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outlnk</emphasis>
+        </para>
+        <para> (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j)) est l'index du lien connecté à la sortie j du bloc i, où j va de 1 jusqu'à (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)).</para>
+        <para> 
+Taille : nombre total de port réguliers de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">rpar</emphasis>
+        </para>
+        <para> Vecteur des paramètres réels qui est obtenu en concatenant les registres des paramètres réels de tous les blocs.</para>
+        <para> 
+Taille : nombre total de paramètres réels.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">rpptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des paramètres réels rpar. Les paramètres réels du bloc i peuvent être retrouvés par : sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ipar</emphasis>
+        </para>
+        <para> Vecteur des paramètres entiers qui est obtenu en concatenant les registres des paramètres entiers de tous les blocs.</para>
+        <para> 
+Taille : nombre total de paramètres entiers.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ipptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers le registre des paramètres entier ipar. Les paramètres entiers du bloc i peuvent être retrouvés par : sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">opar</emphasis>
+        </para>
+        <para> Liste des paramètres objets qui est obtenue en concatenant les listes des paramètres objets de tous les blocs.</para>
+        <para> 
+Taille : nombre total de paramètres objets.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">opptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers la liste des paramètres objets opar. Les paramètres entiers du bloc i peuvent être retrouvés par : sim.opar(sim.opptr(i):sim.opptr(i+1)-1).</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">clkptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers les ports d'activation de sortie.</para>
+        <para> (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1) donne les numéros des ports de sortie événementiel du bloc i.</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ordptr</emphasis>
+        </para>
+        <para> Un vecteur pointant vers ordclk (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1) pointe vers la zone de ordclk qui indique les numéros des blocs activés par le port événementiel numérotés i.</para>
+        <para> 
+Taille : nombre de source d'activations + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">execlk</emphasis>
+        </para>
+        <para> Non utilisé.</para>
+        <para> 
+Taille : 
+          Type : 
+  </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ordclk</emphasis>
+        </para>
+        <para> Une matrice associé aux blocs activés par événements. La première colonne contient les numéros des blocs et la deuxième le code de l'événement par lequel le bloc sera appelé pendant la simulation.</para>
+        <para> 
+Taille : nombre total de bloc sommé par source d'activations.
+</para>
+        <para>
+Type : matrice de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">cord</emphasis>
+        </para>
+        <para> Une matrice associé aux blocs activés en permanence. La première colonne contient les numéros des blocs et la deuxième le code de l'événement par lequel le bloc sera appelé pendant la simulation.</para>
+        <para> 
+Taille : ncord.
+</para>
+        <para>
+Type : matrice de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">oord</emphasis>
+        </para>
+        <para> Sous-ensemble de cord. Les blocs de cette matrice ont des sorties qui affectent le calcul des états continus.</para>
+        <para> 
+Taille : noord.
+</para>
+        <para>
+Type : matrice de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zord</emphasis>
+        </para>
+        <para> Sous-ensemble de cord. Les blocs de cette matrice ont des sorties qui affectent le calcul des détections de surface.</para>
+        <para> 
+Taille : nzord.
+</para>
+        <para>
+Type : matrice de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">critev</emphasis>
+        </para>
+        <para> Un vecteur de taille égale au nombre d'activation. Ce vecteur est composé de 0 et de 1 qui indiquent si des événements sont critiques dans le sens où le solveur doit redémarrer à froid.</para>
+        <para> 
+Taille : nombre de sources d'activation.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nb</emphasis>
+        </para>
+        <para> Nombre de blocs. Notez que le nombre de blocs peut être différent du nombre original de blocs dans le diagramme car la fonction c_pass2 du compilateur peut dupliquer des blocs synchrones.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ztyp</emphasis>
+        </para>
+        <para> Un vecteur de taille égale au nombre de blocs.</para>
+        <para> Une entrée égale à 1 indique que le bloc possède une détection de surface.</para>
+        <para> 
+Taille : nombre de source d'activations + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nblk</emphasis>
+        </para>
+        <para> Pas utilisé. Mis à nb.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ndcblk</emphasis>
+        </para>
+        <para> Pas utilisé.</para>
+        <para> 
+Taille : -.
+</para>
+        <para>
+Type : entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">subscr</emphasis>
+        </para>
+        <para> Pas utilisé.</para>
+        <para> 
+Taille : 0.
+</para>
+        <para>
+Type : vide.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">funtyp</emphasis>
+        </para>
+        <para> Un vecteur de taille égale au nombre de blocs qui indique le type de la fonction de calcul.</para>
+        <para> Le type de bloc peut aller de 0 à 5.</para>
+        <para> Les blocs courants de Scicos sont les blocs de type 4 (bloc C) et de type 5 (bloc scilab).</para>
+        <para> Les anciens blocs restent compatibles.</para>
+        <para> 
+Taille : nombre de blocs.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">iord</emphasis>
+        </para>
+        <para> Une matrice qui associe les blocs à activer au début de la simulation. Celà inclue les blocs Constante et les blocs activés en permanence.</para>
+        <para> 
+Taille : niord.
+</para>
+        <para>
+Type : matrice de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">labels</emphasis>
+        </para>
+        <para> Un vecteur de chaîne de caractères de taille égale au nombre de blocs contenant les labels des blocs.</para>
+        <para> 
+Taille : nombre de blocs.
+</para>
+        <para>
+Type : vecteur colonne de chaînes de caractères.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">modptr</emphasis>
+        </para>
+        <para> Un vecteur pointant sur les modes des blocs.</para>
+        <para> 
+Taille : nombre de blocs + 1.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_sim">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_sim.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -79,10 +79,7 @@
         <listitem>
           <para>This field is the character string vector which contains the
           legends for each annotated objects.</para>
-          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
-          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
-          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
-          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
         </listitem>
       </varlistentry>
 

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getscicosvars">
+  <refnamediv>
+    <refname>getscicosvars</refname>
+    <refpurpose>Fonction superviseur utilitaire</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_getscicosvars">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_getscicosvars">
+    <title>Description</title>
+    <para>
+Cette fonction utilitaire est utilisée pour retrouver les tableaux de travail du compilateur et du simulateur scicos pendant la simulation.  
+</para>
+    <para>
+Elle peut-être utilisée dans un bloc scilab pour retourner des informations de tous types de blocs. Cette fonction est très utile pour débugger les diagrammes et pour prototyper des simulations.  
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+[myvar]=getscicosvars(str)
+[myvar]=getscicosvars([str1;str2;...])
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_getscicosvars">
+    <title>Paramètres</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">str,str1,str2,... :</emphasis> Ce paramètre est soit une chaîne de caractères ou une matrice de chaine de caractère. Les entrées suivantes sont permises :</para>
+        <para> "x" : retourne le registre des états continus.</para>
+        <para> "nx" : retourne la longueur du registre des états continus.</para>
+        <para> "xptr" : retourne le registre des pointeurs du registre des états continus.</para>
+        <para> "zcptr" : retourne le registre des pointeurs du registre des détections de surfaces.</para>
+        <para> "z" : retourne le registre des états discrets.</para>
+        <para> "nz" : retourne la longueur des registres des états discrets.</para>
+        <para> "zptr" : retourne le registre des pointeurs du registre des états discrets.</para>
+        <para> "noz" : retourne le nombre d'éléments de la liste de l'état discret objet.</para>
+        <para> "oz" : retourne la liste de l'état discret objet.</para>
+        <para> "ozsz" : retourne les tailles des éléments de la liste l'état discret objet.</para>
+        <para> "oztyp" : retourne les types des éléments de la liste l'état discret objet.</para>
+        <para> "ozptr" : retourne le registre des pointeurs de la liste l'état discret objet.</para>
+        <para> "rpar" : retourne le registre des paramètres réels.</para>
+        <para> "rpptr" : retourne le registre des pointeurs du registre des paramètres réels.</para>
+        <para> "ipar" : retourne le registre des paramètres entiers.</para>
+        <para> "ipptr" : retourne le registre des pointeurs du registre des paramètres entiers.</para>
+        <para> "opar" : retourne la liste des paramètres objets.</para>
+        <para> "oparsz" : retourne les tailles des éléments de la liste des paramètres objets.</para>
+        <para> "opartyp" : retourne les types des éléments de la liste des paramètres objets.</para>
+        <para> "opptr" : retourne le registre des pointeurs de la liste des paramètres objets.</para>
+        <para> "outtb" : retourne le registre des sorties.</para>
+        <para> "inpptr" : retourne le registre des pointeurs des ports réguliers d'entrée.</para>
+        <para> "outptr" : retourne le registre des pointeurs des ports réguliers de sorties.</para>
+        <para> "inplnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers d'entrée.</para>
+        <para> "outlnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers de sortie.</para>
+        <para> "subs" : pas utilisé.</para>
+        <para> "tevts" : retourne le registre des dates courantes de l'agenda.</para>
+        <para> "evtspt" : retourne le registre des événements courants de l'agenda.</para>
+        <para> "pointi" : retourne le prochain événement à activer.</para>
+        <para> "iord" : retourne le vecteur des blocs activés au début de la simulation.</para>
+        <para> "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des états continus.</para>
+        <para> "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des détections de surfaces.</para>
+        <para> "funtyp" : retourne le vecteur des types des fonctions de calcul.</para>
+        <para> "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les détections de surface.</para>
+        <para> "cord" : retourne le vecteur des blocs dont les sorties évoluent continuellement.</para>
+        <para> "ordclk" : retourne la matrice associée aux blocs activés par événements.</para>
+        <para> "clkptr" : retourne le vecteur de pointeurs pour les ports de sortie d'activation.</para>
+        <para> "ordptr" : retourne le vecteur de pointeurs (à partir de ordclk) qui désigne les parties de ordclk correspondant à une activation donnée.</para>
+        <para> "critev" : retourne le vecteur des événements critiques.</para>
+        <para> "mod" : retourne le vecteur de pointeurs des modes des blocs.</para>
+        <para> "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.</para>
+        <para> "iz" : retourne le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "nblk" : retourne le nombre de blocs.</para>
+        <para> "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.</para>
+        <para> "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.</para>
+        <para> "outtbtyp" : retourne le registre qui contient les types des éléments de outtb.</para>
+        <para> "nlnk" : retourne le nombre de sortie.</para>
+        <para> "ncord" : retourne le nombre de blocs qui évoluent continuellement.</para>
+        <para> "nordptr" : retourne le nombre de blocs qui évoluent par activation.</para>
+        <para> "iwa" : n.d.</para>
+        <para> "blocks" : retourne une liste scilab qui contient toutes les structures des blocs contenus dans le diagramme.</para>
+        <para> "ng" : retourne la longueur du registre des détections de surface.</para>
+        <para> "g" : retourne le registre des détections de surfaces.</para>
+        <para> "t0" : retourne le temps courant de la simulation.</para>
+        <para> "tf" : retourne le temps final de la simulation.</para>
+        <para> "Atol" : retourne la tolérance absolue de l'intégrateur du solveur numérique.</para>
+        <para> "rtol" : retourne la tolérance relative de l'intégrateur du solveur numérique.</para>
+        <para> "ttol" : retourne la tolérance sur le temps du simulateur.</para>
+        <para> "deltat" : retourne le temps maximal d'intégration.</para>
+        <para> "hmax" : retourne le pas maximal d'intégration du solveur numérique.</para>
+        <para> "nelem" : retourne le nombre d'éléments dans outtb.</para>
+        <para> "outtb_elem" : retourne le vecteur contenant les numéro d'éléments dans outtb.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">myvar :</emphasis> Ce paramètre de sortie peut-être soit une matrice de nombre int32, une matrice de nombre réel (double) ou bien une Tlist, suivant le paramètre donné en entrée.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Voiraussi_getscicosvars">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DEBUG_SCICOS">DEBUG_SCICOS - Bloc debug (Bloc Scicos)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_getscicosvars">
+    <title>Auteurs</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

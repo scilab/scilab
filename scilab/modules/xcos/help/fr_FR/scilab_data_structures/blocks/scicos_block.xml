@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_block">
+  <refnamediv>
+    <refname>scicos_block</refname>
+    <refpurpose>Définit une structure bloc</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_block">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="block_scicos_block">
+    <title>block</title>
+    <para>
+ Une structure de base qui définit un bloc Scicos.
+</para>
+    <para>
+Cette structure inclut les champs <link linkend="scicos_graphics">graphics</link>, <link linkend="scicos_model">model</link>,
+
+gui et doc.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Size : 5.
+</para>
+    <para>
+Type : scilab list.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">graphics</emphasis>
+        </para>
+        <para> Liste Scilab contenant les informations sur les données graphiques du bloc.</para>
+        <para> 
+Taille : 14.
+</para>
+        <para>
+Type : scilab list.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">model</emphasis>
+        </para>
+        <para> Liste Scilab qui contient les informations du bloc utilisées pour la compilation.</para>
+        <para> 
+Taille : 23.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">gui</emphasis>
+        </para>
+        <para> Le nom de la fonction d'interface Scilab associée au bloc.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : chaîne de caractères.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">doc</emphasis>
+        </para>
+        <para> Un champ utilisé pour la documentation du bloc.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : chaîne de caractères.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_block">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_block.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

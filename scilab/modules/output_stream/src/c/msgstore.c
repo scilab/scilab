@@ -61,9 +61,11 @@ int C2F(msgstore)(char *str,int *n)
 /*--------------------------------------------------------------------------*/ 
 void C2F(freemsgtable)()
 {
-	freeArrayOfString(msg_buff, msg_line_counter);
-	msg_line_counter = 0;
-	err_n = 0;
+  int k;
+  for (k=0 ; k< msg_line_counter ; k++)
+    FREE(msg_buff[k]);
+  msg_line_counter=0;
+  err_n = 0;
 }
 /*--------------------------------------------------------------------------*/ 
 int C2F(lasterror)(char *fname, unsigned long fname_len)
