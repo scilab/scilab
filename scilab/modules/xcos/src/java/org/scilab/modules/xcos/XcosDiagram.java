@@ -1474,6 +1474,13 @@ public class XcosDiagram extends ScilabGraph {
 	getParentTab().getInfoBar().setText(message);
     }
 
+    /**
+     * Find the block corresponding to the given uid
+     * and display a warning message.
+     * 
+     * @param uid - A String as UID.
+     * @param message - The message to display.
+     */
     public void warnCellByUID(String uid, String message) {
 	for (int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; ++i) {
 	    if(getModel().getChildAt(getDefaultParent(), i) instanceof mxCell) {
