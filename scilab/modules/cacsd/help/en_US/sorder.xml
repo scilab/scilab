@@ -183,7 +183,7 @@ printw,ldwork,Ri))</synopsis>
       <varlistentry>
         <term>printw</term>
         <listitem>
-          <para>:(optional) switch for printing the warning messages.</para>
+          <para>(optional) switch for printing the warning messages.</para>
           <variablelist>
             <varlistentry>
               <term>=  </term>

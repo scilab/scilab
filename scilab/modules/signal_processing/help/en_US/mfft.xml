@@ -17,7 +17,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>: <literal>x(i,j,k,...)</literal> input signal in the form of a row vector whose values are arranged so that the i index runs the quickest, followed by the j index, etc.</para>
+          <para> <literal>x(i,j,k,...)</literal> input signal in the form of a row vector whose values are arranged so that the i index runs the quickest, followed by the j index, etc.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -73,7 +73,7 @@
       <varlistentry>
         <term>z</term>
         <listitem>
-          <para>: <literal>z=[y(1),....,y(N)]</literal></para>
+          <para> <literal>z=[y(1),....,y(N)]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>

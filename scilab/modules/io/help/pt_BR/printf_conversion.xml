@@ -138,7 +138,7 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita um valor inteiro e o converte para notação decimal com
+        <para>Aceita um valor inteiro e o converte para notação decimal com
         sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
         o valor sendo convertido puder ser representado em menos dígitos, ele
         é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
@@ -149,7 +149,7 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita um valor inteiro e o converte para a notação decimal sem
+        <para>Aceita um valor inteiro e o converte para a notação decimal sem
         sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
         o valor sendo convertido puder ser representado em menos dígitos, ele
         é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
@@ -160,7 +160,7 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita um valor inteiro e o converte para a sua notação octal
+        <para>Aceita um valor inteiro e o converte para a sua notação octal
         sem sinal. A precisão especifica o número mínimo de dígitos a
         aparecer. Se o valor sendo convertido puder ser representado em menos
         dígitos, ele é expandido com zeros à esquerda. A precisão padrão é 1.
@@ -172,7 +172,7 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita um valor inteiro e o converte para a sua notação
+        <para>Aceita um valor inteiro e o converte para a sua notação
         hexadecimal sem sinal. As letras ``abcdef'' são utilizadas para a
         conversão <literal>x</literal>; as letras ``ABCDEF'' são utilizadas
         para a conversão <literal>X</literal>. A precisão especifica o número
@@ -208,7 +208,7 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita um real e o converte para a sua forma exponencial
+        <para>Aceita um real e o converte para a sua forma exponencial
         %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. Há um dígito
         antes do ponto decimal, e o número de dígitos após o ponto decimal é
         igual à especificação de precisão.</para>
@@ -243,12 +243,12 @@
       </listitem>
 
       <listitem>
-        <para>:Aceita e exibe um valor inteiro convertido em um
+        <para>Aceita e exibe um valor inteiro convertido em um
         caractere.</para>
       </listitem>
 
       <listitem>
-        <para>:Aceita um valor string e exibe caracteres do string até o fim
+        <para>Aceita um valor string e exibe caracteres do string até o fim
         ou até que o número de caracteres indicados pela precisão seja
         alcançado. Se nenhuma precisão for especificada, todos os caracteres
         até o fim são exibidos.</para>

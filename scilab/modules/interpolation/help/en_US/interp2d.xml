@@ -150,7 +150,7 @@ s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> is extended by periodicity.</para>
+          <para> <literal>s</literal> is extended by periodicity.</para>
         </listitem>
       </varlistentry>
     </variablelist>

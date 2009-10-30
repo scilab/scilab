@@ -28,31 +28,31 @@
       <varlistentry>
         <term>P22</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (nominal plant) in state-space form</para>
+          <para> <literal>syslin</literal> list (nominal plant) in state-space form</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bigQ</term>
         <listitem>
-          <para>: <literal>[Q,S;S',N]</literal> (symmetric) weighting matrix</para>
+          <para> <literal>[Q,S;S',N]</literal> (symmetric) weighting matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bigR</term>
         <listitem>
-          <para>: <literal>[R,T;T',V]</literal> (symmetric) covariance matrix</para>
+          <para> <literal>[R,T;T',V]</literal> (symmetric) covariance matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>: <literal>1</literal>x<literal>2</literal> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)</para>
+          <para> <literal>1</literal>x<literal>2</literal> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (augmented plant)</para>
+          <para> <literal>syslin</literal> list (augmented plant)</para>
         </listitem>
       </varlistentry>
     </variablelist>

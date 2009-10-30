@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl1,sl2</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists (linear systems in state space representation)</para>
+          <para> <literal>syslin</literal> lists (linear systems in state space representation)</para>
         </listitem>
       </varlistentry>
     </variablelist>

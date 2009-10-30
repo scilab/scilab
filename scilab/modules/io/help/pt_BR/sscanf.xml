@@ -42,7 +42,7 @@
         <term>format</term>
 
         <listitem>
-          <para>: especifica a conversão de formato</para>
+          <para> especifica a conversão de formato</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>string</term>
 
         <listitem>
-          <para>: especifica a entrada a ser lida</para>
+          <para> especifica a entrada a ser lida</para>
         </listitem>
       </varlistentry>
     </variablelist>

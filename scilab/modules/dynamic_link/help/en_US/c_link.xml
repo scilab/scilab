@@ -36,7 +36,7 @@ test=c_link(routine-name,num)</synopsis>
       <varlistentry>
         <term>num</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>

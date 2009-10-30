@@ -29,7 +29,7 @@
       <varlistentry>
         <term>file_desc</term>
         <listitem>
-          <para>:a character string giving the file name or a logical unit returned by mopen</para>
+          <para>a character string giving the file name or a logical unit returned by mopen</para>
         </listitem>
       </varlistentry>
       <varlistentry>

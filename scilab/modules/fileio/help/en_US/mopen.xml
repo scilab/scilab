@@ -181,7 +181,7 @@
         <term>a+ or a+b</term>
 
         <listitem>
-          <para>:Appends (opens a file for update, writing at the end of the
+          <para>Appends (opens a file for update, writing at the end of the
           file, or creates a file for writing).</para>
         </listitem>
       </varlistentry>
