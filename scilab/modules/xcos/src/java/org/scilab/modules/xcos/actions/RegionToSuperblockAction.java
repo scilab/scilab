@@ -268,7 +268,8 @@ public class RegionToSuperblockAction extends DefaultAction {
         	graph.addCell(newLink);
         	
         	//this method don't call CELLS_REMOVED between beginUpdate and endUpdate
-        	link.getLink().removeFromParent();
+        	//this function unlink source and target correctly too
+        	graph.getModel().remove(link.getLink());
 	    }
 	    diagram.getModel().endUpdate();
 	    diagram.refresh();
@@ -282,22 +283,18 @@ public class RegionToSuperblockAction extends DefaultAction {
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicBlock){
 				BasicBlock block = (BasicBlock)objs[i];
-//				System.err.println("block info : " + block.getClass().getSimpleName());
 				for(int j = 0 ; j < block.getChildCount() ; j++){
 					BasicPort port = (BasicPort)block.getChildAt(j);
-//					System.err.println("Port info : " + (port == null ? "null" : port.getClass() == null ? "getClass == null" : port.getClass().getSimpleName()));
 					if(port.getEdgeCount() != 0){
 						BasicLink link = (BasicLink)port.getEdgeAt(0);
 						if(block.getChildAt(j) instanceof InputPort || block.getChildAt(j) instanceof ControlPort){
 							BasicBlock source = (BasicBlock)(link.getSource().getParent());
 							if(!isInSelection(objs, source)){
-//								System.err.println("add : " + source.getClass().getSimpleName());
 								breaks.add(new BrokenLink(link, source.getGeometry(), false));
 							}
 						}else{ //OutputPort or CommandPort
 							BasicBlock target = (BasicBlock)(link.getTarget().getParent());
 							if(!isInSelection(objs, target)){
-//								System.err.println("add : " + target.getClass().getSimpleName());
 								breaks.add(new BrokenLink(link, target.getGeometry(), true));
 							}
 						}
@@ -310,9 +307,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	
 	private boolean isInSelection(Object objs[], Object item){
 		boolean isFind = false;
-//		System.err.println("item : " + item);
 		for(int k = 0 ; k < objs.length ; k++){
-//			System.err.println("objs[" + k + "] : " + objs[k]);
 			if(objs[k] == item){
 				isFind = true;
 				break;
