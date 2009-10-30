@@ -90,7 +90,6 @@ import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
-import org.scilab.modules.xcos.actions.ViewGetinfosAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
@@ -1008,5 +1007,20 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static ArrayList<XcosDiagram> getDiagrams() {
     	return diagrams;
+    }
+    
+    /**
+     * Look in each diagram to find the block corresponding to the given uid
+     * and display a warning message.
+     * 
+     * @param uid - A String as UID.
+     * @param message - The message to display.
+     */
+    public static void warnCellByUID(String UID, String message) {
+	// Try to find a block with given index (UID)
+	ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	for (int i = 0 ; i < allDiagrams.size() ; ++i) {
+	    allDiagrams.get(i).warnCellByUID(UID, message);
+	}
     }
 }
