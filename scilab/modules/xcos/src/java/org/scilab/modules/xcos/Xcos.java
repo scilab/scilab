@@ -127,6 +127,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static List<MenuItem> stopMenuItems = new ArrayList<MenuItem>();
 	private static List<PushButton> startPushButtons = new ArrayList<PushButton>();
 	private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
+	private static boolean startEnabled  = true;
 
 	/** Palette creation */
 	static {
@@ -719,8 +720,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		MenuItem startMenu =  StartAction.createMenu(scilabGraph);
 		startMenuItems.add(startMenu);
+		startMenu.setEnabled(startEnabled);
 		MenuItem stopMenu =  StopAction.createMenu(scilabGraph);
 		stopMenuItems.add(stopMenu);
+		stopMenu.setEnabled(startEnabled);
 		
 		
 		simulate.add(SetupAction.createMenu(scilabGraph));
@@ -836,6 +839,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     	// START / STOP
     	PushButton startPushButton = StartAction.createButton(scilabGraph);
     	PushButton stopPushButton = StopAction.createButton(scilabGraph);
+    	startPushButton.setEnabled(startEnabled);
+    	stopPushButton.setEnabled(!startEnabled);
     	startPushButtons.add(startPushButton);
     	stopPushButtons.add(stopPushButton);
     	
@@ -949,6 +954,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		for (int i = 0 ; i < getStartMenuItems().size() ; i++ ){
 			getStartMenuItems().get(i).setEnabled(status);
 			getStartPushButtons().get(i).setEnabled(status);
+			startEnabled = status;
 			
 			getStopMenuItems().get(i).setEnabled(!status);
 			getStopPushButtons().get(i).setEnabled(!status);
