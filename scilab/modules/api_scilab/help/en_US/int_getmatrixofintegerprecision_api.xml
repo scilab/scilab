@@ -27,8 +27,8 @@
     </refnamediv>
     <refsynopsisdiv>
       <title>Calling Sequence</title>
-		<synopsis>StrErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)</synopsis>
-		<synopsis>StrErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPrecision)</synopsis>
+		<synopsis>SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)</synopsis>
+		<synopsis>SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPrecision)</synopsis>
 	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -87,31 +87,31 @@
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
 			<![CDATA[ 
-StrErr printf_info(int _iVar);
+SciErr printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
 {
-    StrErr strErr;
+    SciErr sciErr;
     int i;
     int *piAddr1 = NULL;
 
     for(i = 0 ; i < Rhs ; i++)
     {
-        strErr = printf_info(i + 1);
-        if(strErr.iErr)
+        sciErr = printf_info(i + 1);
+        if(sciErr.iErr)
         {
-            printError(&strErr, 0);
+            printError(&sciErr, 0);
             break;
         }
         sciprint("\n\n");
     }
 
     //1 for true, 0 for false
-    int iBool = strErr.iErr == 0 ? 1 : 0;
-    strErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
-    if(strErr.iErr)
+    int iBool = sciErr.iErr == 0 ? 1 : 0;
+    sciErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
+    if(sciErr.iErr)
     {
-        printError(&strErr, 0);
+        printError(&sciErr, 0);
         return 0;
     }
     //assign allocated variables to Lhs position
@@ -120,9 +120,9 @@ int commom_function(char *fname,unsigned long fname_len)
     return 0;
 }
 
-StrErr printf_info(int _iVar)
+SciErr printf_info(int _iVar)
 {
-    StrErr strErr;
+    SciErr sciErr;
     int* piAddr     = NULL;
     int iType       = 0;
     int iRows       = 0;
@@ -130,18 +130,18 @@ StrErr printf_info(int _iVar)
     int iItem       = 0;
     int iComplex    = 0;
 
-    strErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
-    if(strErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
+    if(sciErr.iErr)
     {
-        return strErr;
+        return sciErr;
     }
 
     sciprint("Variable %d information:\n", _iVar);
 
-    strErr = getVarType(pvApiCtx, piAddr, &iType);
-    if(strErr.iErr)
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
     {
-        return strErr;
+        return sciErr;
     }
 
     sciprint("\tType: ");
@@ -169,10 +169,10 @@ StrErr printf_info(int _iVar)
             char* pstSign       = pstSigned;
 
             int iPrec           = 0;
-            strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
-            if(strErr.iErr)
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
+            if(sciErr.iErr)
             {
-                return strErr;
+                return sciErr;
             }
 
             if(iPrec > 10)
@@ -197,7 +197,7 @@ StrErr printf_info(int _iVar)
             break;
         default :
             sciprint("Not manage by this function\n");
-            return strErr;
+            return sciErr;
     }
 
     if(isVarComplex(pvApiCtx, piAddr))
@@ -208,24 +208,24 @@ StrErr printf_info(int _iVar)
     sciprint("\tDimensions: ");
     if(isVarMatrixType(pvApiCtx, piAddr))
     {
-        strErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-        if(strErr.iErr)
+        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+        if(sciErr.iErr)
         {
-            return strErr;
+            return sciErr;
         }
 
         sciprint("%d x %d", iRows, iCols);
     }
     else
     {
-        strErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
-        if(strErr.iErr)
+        sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
+        if(sciErr.iErr)
         {
-            return strErr;
+            return sciErr;
         }
         sciprint("%d", iItem);
     }
-    return strErr;
+    return sciErr;
 }
  ]]>
 		</programlisting>

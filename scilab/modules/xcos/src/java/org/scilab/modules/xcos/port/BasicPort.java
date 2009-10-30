@@ -42,27 +42,42 @@ public abstract class BasicPort extends XcosUIDObject {
     };
 
     public enum DataType {
-	REAL_MATRIX,
-	COMPLEX_MATRIX,
-	INT32_MATRIX,
-	INT16_MATRIX,
-	INT8_MATRIX,
-	UINT32_MATRIX,
-	UINT16_MATRIX,
-	UINT8_MATRIX;
+    	UNKNOW_TYPE,
+    	REAL_MATRIX,
+    	COMPLEX_MATRIX,
+    	INT32_MATRIX,
+    	INT16_MATRIX,
+    	INT8_MATRIX,
+    	UINT32_MATRIX,
+    	UINT16_MATRIX,
+    	UINT8_MATRIX;
 
-	public double getAsDouble() {
-	    switch (this) {
-	    case REAL_MATRIX:
-		return 1;
-	    case COMPLEX_MATRIX:
-		return 2;
-		//TODO
-	    default:
-		return 0;
-	    }
-	}
-    }
+    	public double getAsDouble() {
+    		switch (this) {
+    		case UNKNOW_TYPE:
+    			return -1;
+    		case REAL_MATRIX:
+    			return 1;
+    		case COMPLEX_MATRIX:
+    			return 2;
+    			//TODO
+    		default:
+    			return 0;
+    		}
+    	}
+
+    	public static DataType convertScilabValue(double val) {
+    		if(val == -1){
+    			return DataType.UNKNOW_TYPE;
+    		}else if(val == 1){
+    			return DataType.REAL_MATRIX;
+    		}else if(val == 2){
+    			return DataType.COMPLEX_MATRIX;
+    		}else{
+    			return DataType.UNKNOW_TYPE;
+    		}
+    	}
+}
 
     public BasicPort(String style) {
 	super();
@@ -104,7 +119,8 @@ public abstract class BasicPort extends XcosUIDObject {
     }
     
     public void setConnectedLinkId(int connectedLinkId) {
-	this.connectedLinkId = Math.max(connectedLinkId, this.connectedLinkId);
+//    	this.connectedLinkId = Math.max(connectedLinkId, this.connectedLinkId);
+    	this.connectedLinkId = connectedLinkId;
     }
 
     public int getConnectedLinkId() {

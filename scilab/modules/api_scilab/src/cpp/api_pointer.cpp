@@ -23,42 +23,42 @@
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
-	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iType = 0;
 	double *pdblTmp = NULL;
 
 	if(	_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
+		return sciErr;
 	}
 
-	strErr = getVarType(_pvCtx, _piAddress, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(_pvCtx, _piAddress, &iType);
+	if(sciErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
+		return sciErr;
 	}
 	
 	if(iType != sci_pointer)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
+		return sciErr;
 	}
 	
 	pdblTmp = (double*)(_piAddress + 4);
 
 	*_pvPtr = (void*)((unsigned long int)(*pdblTmp));
-	return strErr;
+	return sciErr;
 }
 
 SciErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 {
-	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	if(_piAddress == NULL)
 	{
-		addErrorMessage(&strErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillPointer");
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillPointer");
+		return sciErr;
 	}
 
 	_piAddress[0] = sci_pointer;
@@ -68,12 +68,12 @@ SciErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 
 	*_pvPtr = _piAddress + 4;
 
-	return strErr;
+	return sciErr;
 }
 
 SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 {
-	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
@@ -83,39 +83,39 @@ SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
 	if (iMemSize > iFreeSpace)
 	{
-		addStackSizeError(&strErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return strErr;
+		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return sciErr;
 	}
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
-	strErr = fillPointer(_pvCtx, piAddr, &pvPtr);
-	if(strErr.iErr)
+	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
+	if(sciErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
+		return sciErr;
 	}
 
 	*_pvPtr = pvPtr;
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
 
-	return strErr;
+	return sciErr;
 }
 
 SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
-	SciErr strErr; strErr.iErr = 0; strErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	void* pvPtr		= NULL;
 
-	strErr = allocPointer(_pvCtx, _iVar, &pvPtr);
-	if(strErr.iErr)
+	sciErr = allocPointer(_pvCtx, _iVar, &pvPtr);
+	if(sciErr.iErr)
 	{
-		addErrorMessage(&strErr, API_ERROR_CREATE_POINTER, _("%s: Unable to create variable in Scilab memory"), "createPointer");
-		return strErr;
+		addErrorMessage(&sciErr, API_ERROR_CREATE_POINTER, _("%s: Unable to create variable in Scilab memory"), "createPointer");
+		return sciErr;
 	}
 
 	((long long*)pvPtr)[0] = (long long) ((unsigned long int) _pvPtr);
 
-	return strErr;
+	return sciErr;
 }
