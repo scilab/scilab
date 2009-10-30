@@ -25,10 +25,7 @@
         <term>str  </term>
         <listitem>
           <para>matrice de chaînes de caractères.</para>
-          <para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions LaTeX ou MathML.</para>
-          <para>Une expression LaTeX doit commencer et se terminer par un $ (dollar).</para>
-          <para>Une expression MathML doit commencer par &lt;, se terminer par &gt; et être syntaxiquement valide.</para>
-          <para>A la première utilisation, le moteur MathML est plus long à charger que celui LaTeX.</para>
+<para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions <link linkend="math_rendering_features_in_graphic">LaTeX ou MathML</link></para>
         </listitem>
       </varlistentry>
       <varlistentry>
