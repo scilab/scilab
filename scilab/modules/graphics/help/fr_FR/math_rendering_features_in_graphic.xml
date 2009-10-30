@@ -95,4 +95,18 @@ a=get("current_axes");
 a.x_label.font_size= 5;
 a.x_label.text="&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;&lt;/mo&gt;&lt;mfenced open=""{"" close=""}""&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfenced&gt;&lt;/mrow&gt;"</programlisting>
   </refsection>
+  <refsection>
+    <title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xtitle">xtitle</link></member>,
+      <member><link linkend="axes_properties">axes_properties</link></member>,
+      <member><link linkend="label_properties">label_properties</link></member>,
+      <member><link linkend="legend_properties">legend_properties</link></member>,
+      <member><link linkend="text_properties">text_properties</link></member>,
+      <member><link linkend="xstringb">xstringb</link></member>,
+      <member><link linkend="xstringl">xstringl</link></member>,
+      <member><link linkend="xstring">xstring</link></member>
+    </simplelist>
+  </refsection>
 </refentry>
