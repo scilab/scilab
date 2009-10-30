@@ -127,7 +127,7 @@
 			<![CDATA[ 
 int read_pointer(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
@@ -139,7 +139,7 @@ int read_pointer(char *fname,unsigned long fname_len)
 		pdblData[2]			= 2;
 		pdblData[3]			= 4;
 
-		strErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
+		sciErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
 	}
 	else if(Rhs == 1)
 	{//read mode
@@ -148,32 +148,32 @@ int read_pointer(char *fname,unsigned long fname_len)
 		void* pvPtr			= NULL;
 		double* pdblData	= NULL;
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getPointer(pvApiCtx, piAddr, &pvPtr);
-		if(strErr.iErr)
+		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
 		pdblData = (double*)pvPtr;
 
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
 	}
 	else
 	{
 		return 0;
 	}
 
-	if(strErr.iErr)
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

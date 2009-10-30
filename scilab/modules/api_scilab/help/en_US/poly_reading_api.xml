@@ -124,7 +124,7 @@
 			<![CDATA[ 
 int read_poly(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int i,j;
 	//variable info
 	int iRows			= 0;
@@ -140,10 +140,10 @@ int read_poly(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -154,38 +154,38 @@ int read_poly(char *fname,unsigned long fname_len)
 	}
 
 	//get variable name length
-	strErr = getPolyVariableName(pvApiCtx, piAddr, NULL, &iVarLen);
-	if(strErr.iErr)
+	sciErr = getPolyVariableName(pvApiCtx, piAddr, NULL, &iVarLen);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//alloc buff to receive variable name
 	pstVarname = (char*)malloc(sizeof(char) * (iVarLen + 1));//1 for null termination
 	//get variable name
-	strErr = getPolyVariableName(pvApiCtx, piAddr, pstVarname, &iVarLen);
-	if(strErr.iErr)
+	sciErr = getPolyVariableName(pvApiCtx, piAddr, pstVarname, &iVarLen);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//First call: retrieve dimmension
-	strErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL, NULL);
-	if(strErr.iErr)
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL, NULL);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//alloc array of coefficient
 	piNbCoef = (int*)malloc(sizeof(int) * iRows * iCols);
 	//Second call: retrieve coefficient
-	strErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
-	if(strErr.iErr)
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -199,10 +199,10 @@ int read_poly(char *fname,unsigned long fname_len)
 	}
 
 	//Third call: retrieve data
-	strErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, pdblReal, pdblImg);
-	if(strErr.iErr)
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, pdblReal, pdblImg);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -248,10 +248,10 @@ int read_poly(char *fname,unsigned long fname_len)
 		}
 	}
 
-	strErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
-	if(strErr.iErr)
+	sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

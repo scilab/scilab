@@ -190,7 +190,7 @@
 	<![CDATA[ 
 int write_double(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int i,j;
 	//first variable info : real matrix of double 3 x 4
 	int iRows1			= 3;
@@ -227,10 +227,10 @@ int write_double(char *fname,unsigned long fname_len)
 	//}
 
 	//create a variable from a existing data array
-	strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
-	if(strErr.iErr)
+	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -241,10 +241,10 @@ int write_double(char *fname,unsigned long fname_len)
 	*    Second variable    *
 	*************************/
 	//reserve space in scilab memory and fill it
-	strErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
-	if(strErr.iErr)
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

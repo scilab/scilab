@@ -126,7 +126,7 @@ int read_double(char *fname,unsigned long fname_len)
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	SciErr strErr;
+	SciErr sciErr;
 	//check input and output arguments
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -137,18 +137,18 @@ int read_double(char *fname,unsigned long fname_len)
 	************************/
 
 	//get variable address of the first input argument
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check type
-	strErr = getVarType(pvApiCtx, piAddr, &iType);
-	if(strErr.iErr || iType != sci_matrix)
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr || iType != sci_matrix)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -159,17 +159,17 @@ int read_double(char *fname,unsigned long fname_len)
 	if(iComplex)
 	{
 		//get size and data from Scilab memory
-		strErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 	}
 	else
 	{
 		//get size and data from Scilab memory
-		strErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 	}
 
-	if(strErr.iErr)
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -178,7 +178,7 @@ int read_double(char *fname,unsigned long fname_len)
 
 	if(iComplex)
 	{
-		strErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
 	}
 	else
 	{
@@ -186,12 +186,12 @@ int read_double(char *fname,unsigned long fname_len)
 		{
 			pdblReal[i] = pdblReal[i] * -1;
 		}
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
 	}
 
-	if(strErr.iErr)
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

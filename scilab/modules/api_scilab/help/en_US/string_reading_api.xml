@@ -124,7 +124,7 @@
 	<![CDATA[ 
 int read_string(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int i,j;
 	int iLen		= 0;
 	//variable info
@@ -144,27 +144,27 @@ int read_string(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	//get variable address
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//fisrt call to retrieve dimensions
-	strErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 	//second call to retrieve length of each string
-	strErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -174,10 +174,10 @@ int read_string(char *fname,unsigned long fname_len)
 		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 	}
 	//third call to retrieve data
-	strErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -207,10 +207,10 @@ int read_string(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	strErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRowsOut, iColsOut, &pstOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRowsOut, iColsOut, &pstOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

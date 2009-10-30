@@ -23,7 +23,7 @@ extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_lib)(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 	int iType1 = 0;
@@ -39,17 +39,17 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -59,10 +59,10 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -75,10 +75,10 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	/* get string One */
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

@@ -108,7 +108,7 @@
 	<![CDATA[ 
 int write_string(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	//variable info : matrix of string 2 x 3
 	int iRows		= 2;
 	int iCols		= 3;
@@ -134,10 +134,10 @@ int write_string(char *fname,unsigned long fname_len)
 	pstData[5]		= string23;
 
 	//create the variable
-	strErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
-	if(strErr.iErr)
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

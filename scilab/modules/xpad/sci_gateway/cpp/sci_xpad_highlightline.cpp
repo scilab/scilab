@@ -32,7 +32,7 @@ using namespace org_scilab_modules_xpad;
 /*--------------------------------------------------------------------------*/
 int sci_xpad_highlightline(char *fname,unsigned long fname_len)
 {
-  SciErr strErr;
+  SciErr sciErr;
   CheckRhs(2,2);
   CheckLhs(0,1);
 
@@ -50,17 +50,17 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
    * READ FILENAME TO BE OPENED
    */
 
-  strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressFilename);
-  if(strErr.iErr)
+  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressFilename);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
-  strErr = getVarType(pvApiCtx, piAddressFilename, &iType);
-  if(strErr.iErr)
+  sciErr = getVarType(pvApiCtx, piAddressFilename, &iType);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
@@ -71,10 +71,10 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
     }
 
   /* get dimensions */
-  strErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
-  if(strErr.iErr)
+  sciErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
@@ -92,10 +92,10 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
     }
 
   /* get lengths */
-  strErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
-  if(strErr.iErr)
+  sciErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
@@ -110,25 +110,25 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
   pStVarOne[0] = (wchar_t *)MALLOC(sizeof(wchar_t *) * (lenStVarOne[0] + 1));
 
   /* get file name */
-  strErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
-  if(strErr.iErr)
+  sciErr = getMatrixOfWideString(pvApiCtx, piAddressFilename, &m1, &n1, lenStVarOne, pStVarOne);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
   /* Read line number */
-  strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressLineNumber);
-  if(strErr.iErr)
+  sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressLineNumber);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
-  strErr = getVarType(pvApiCtx, piAddressLineNumber, &iType);
-  if(strErr.iErr)
+  sciErr = getVarType(pvApiCtx, piAddressLineNumber, &iType);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 
@@ -139,10 +139,10 @@ int sci_xpad_highlightline(char *fname,unsigned long fname_len)
     }
 
   /* get dimensions */
-  strErr = getMatrixOfDouble(pvApiCtx, piAddressLineNumber, &m1, &n1, &pDbleLineNumber);
-  if(strErr.iErr)
+  sciErr = getMatrixOfDouble(pvApiCtx, piAddressLineNumber, &m1, &n1, &pDbleLineNumber);
+  if(sciErr.iErr)
     {
-      printError(&strErr, 0);
+      printError(&sciErr, 0);
       return 0;
     }
 

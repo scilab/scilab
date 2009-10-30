@@ -40,19 +40,19 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		int i = 0;
 		int lw = 1;
 		int iType = 0;
-		SciErr strErr;
+		SciErr sciErr;
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -63,10 +63,10 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			char **pStFullFilenames = NULL;
 
 			/* get dimensions */
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -78,11 +78,11 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			}
 
 			/* get lengths */
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(sciErr.iErr)
 			{
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -109,13 +109,13 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			}
 
 			/* get strings */
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			if(sciErr.iErr)
 			{
 				freeArrayOfString(pStFullFilenames, m1 * n1);
 				freeArrayOfString(pStVarOne, m1 * n1);
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
