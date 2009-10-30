@@ -56,6 +56,7 @@ jobject instance;
 jclass instanceClass; // cache class
 jmethodID voidxcosID; // cache method id
 jmethodID voidxcosjstringID; // cache method id
+jmethodID voidwarnCellByUIDjstringjstringID; // cache method id
 
 
 /**
@@ -100,6 +101,8 @@ void endSynchronize();
 static void xcos(JavaVM * jvm_);
 
 static void xcos(JavaVM * jvm_, char * fileName);
+
+static void warnCellByUID(JavaVM * jvm_, char * UID, char * message);
 
 
                         /**

@@ -286,8 +286,7 @@ static int sci_diary_one_rhs(char *fname)
 				{
 					if (wcFilenames)
 					{
-						if (wcFilenames[0]) {FREE(wcFilenames[0]); wcFilenames[0] = NULL;}
-						FREE(wcFilenames); wcFilenames = NULL;
+						freeArrayOfWideString(wcFilenames, 1);
 						Scierror(999,_("%s: error can not close diary.\n"),fname);
 						return 0;
 					}
