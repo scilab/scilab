@@ -115,7 +115,7 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 		return sciErr;
 	}
 
-	((long long*)pvPtr)[0] = (long long) ((unsigned long int) _pvPtr);
+	((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
 
 	return sciErr;
 }
