@@ -1074,7 +1074,6 @@ public class XcosDiagram extends ScilabGraph {
     public void closeDiagram() {
 
 	boolean wantToClose = true;
-
 	if (isModified()) {
 	    // The diagram has been modified
 	    // Ask the user want he want to do !
@@ -1120,7 +1119,7 @@ public class XcosDiagram extends ScilabGraph {
     public boolean saveDiagramAs(String fileName) {
 
 	boolean isSuccess = false;
-
+	info(XcosMessages.SAVING_DIAGRAM);
 	if (fileName == null) {
 		// Choose a filename
 		FileChooser fc = ScilabFileChooser.createFileChooser();
@@ -1144,6 +1143,7 @@ public class XcosDiagram extends ScilabGraph {
 	    fileName += ".xcos";
 	} else if (!extension.equals("xcos")) {
 	    XcosDialogs.couldNotSaveFile();
+	    info(XcosMessages.EMPTY_INFO);
 	    return false;
 	}
 
@@ -1168,7 +1168,7 @@ public class XcosDiagram extends ScilabGraph {
 	} else {
 	    XcosDialogs.couldNotSaveFile();
 	}
-
+	info(XcosMessages.EMPTY_INFO);
 	return isSuccess;
     }
 
@@ -1462,6 +1462,14 @@ public class XcosDiagram extends ScilabGraph {
     	block.getParentDiagram().refresh();
     }
     
+    
+    /**
+     * Display the message in info bar.
+     * @param message
+     */
+    public void info(String message) {
+	getParentTab().getInfoBar().setText(message);
+    }
 
 }
 

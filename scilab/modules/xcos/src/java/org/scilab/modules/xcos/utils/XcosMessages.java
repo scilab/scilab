@@ -194,4 +194,8 @@ public final class XcosMessages {
     public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
     public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
     public static final String LICENSE = Messages.gettext("CeCILL License");
+
+    /** InfoBar messages */
+    public static final String EMPTY_INFO = "";
+    public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
 }
