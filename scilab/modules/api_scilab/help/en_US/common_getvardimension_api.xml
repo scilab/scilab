@@ -90,16 +90,16 @@
       <para>This help describes how to get the dimensions of a variable in a gateway.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
-        <!--Lib_name: commom_function-->
-        <!--Func_list: commom_function-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        <!--Lib_name: common_function-->
+        <!--Func_list: common_function-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 
 SciErr printf_info(int _iVar);
 
-int commom_function(char *fname,unsigned long fname_len)
+int common_function(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
     int i;
@@ -249,7 +249,7 @@ l3 = int8([1,2,3]);
 l4 = uint16([1000,2000,3000]);
 l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
-commom_function(l(1:$))
+common_function(l(1:$))
  ]]></programlisting>
     </refsection>
 </refentry>
