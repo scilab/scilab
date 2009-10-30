@@ -1298,6 +1298,8 @@ public class XcosDiagram extends ScilabGraph {
 
     	File theFile = new File(diagramFileName);
 
+    	info(XcosMessages.LOADING_DIAGRAM);
+    	
     	if (theFile.exists()) {
 
     		String fileToLoad = diagramFileName;
@@ -1409,6 +1411,7 @@ public class XcosDiagram extends ScilabGraph {
     		}	
 
     	}
+    	info(XcosMessages.EMPTY_INFO);
     }
 
     private void setChildrenParentDiagram(){

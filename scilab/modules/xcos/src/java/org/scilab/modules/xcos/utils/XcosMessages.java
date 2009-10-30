@@ -198,4 +198,5 @@ public final class XcosMessages {
     /** InfoBar messages */
     public static final String EMPTY_INFO = "";
     public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
+    public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
 }
