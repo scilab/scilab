@@ -945,7 +945,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		return startPushButtons;
 	}
 		
-	public static void setEnabledStartMenus(boolean status){
+	public static void setStartEnabled(boolean status){
 		for (int i = 0 ; i < getStartMenuItems().size() ; i++ ){
 			getStartMenuItems().get(i).setEnabled(status);
 			getStartPushButtons().get(i).setEnabled(status);
@@ -954,41 +954,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 			getStopPushButtons().get(i).setEnabled(!status);
 		}
 		
-	}
-    
-	public static void setEnabledStopMenus(boolean status){
-		for (int i = 0 ; i < getStopMenuItems().size() ; i++ ){
-			getStopMenuItems().get(i).setEnabled(status);
-			getStopPushButtons().get(i).setEnabled(status);
-			
-			getStartMenuItems().get(i).setEnabled(!status);
-			getStartPushButtons().get(i).setEnabled(!status);
-		}
-		
-	}
-	
-	public static void setEnabledStartButtons(boolean status){
-		for (int i = 0 ; i < getStartPushButtons().size() ; i++ ){
-			getStartMenuItems().get(i).setEnabled(status);
-			getStartPushButtons().get(i).setEnabled(status);
-			
-			getStopMenuItems().get(i).setEnabled(!status);
-			getStopPushButtons().get(i).setEnabled(!status);
-		}
-		
-	}
-	
-	public static void setEnabledStopButtons(boolean status){
-		for (int i = 0 ; i < getStopPushButtons().size() ; i++ ){
-			getStopMenuItems().get(i).setEnabled(status);
-			getStopPushButtons().get(i).setEnabled(status);
-			
-			getStartMenuItems().get(i).setEnabled(!status);
-			getStartPushButtons().get(i).setEnabled(!status);
-		}
-		
-	}
-    
+	}   
+	    
 	/**
 	 * Get recent file menu
 	 * @return the menu List

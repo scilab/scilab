@@ -22,33 +22,49 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class StartAction  extends DefaultAction {
 
-	public StartAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.START, scilabGraph);
-	}
+    private static String simulationEnd = "__simulationEnd__";
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
-	}
+    public StartAction(ScilabGraph scilabGraph) {
+	super(XcosMessages.START, scilabGraph);
+    }
 
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.START, null, new StartAction(scilabGraph), null);
-	}
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+	return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
+    }
 
-	public void actionPerformed(ActionEvent e) {
-		File temp;
-		try {
-			temp = File.createTempFile("xcos",".hdf5");
-			temp.delete();
-			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");xcos_simulate(scs_m);");
-			temp.deleteOnExit();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+	return createMenu(XcosMessages.START, null, new StartAction(scilabGraph), null);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+	File temp;
+	Xcos.setStartEnabled(false);
+	try {
+	    temp = File.createTempFile("xcos",".hdf5");
+	    temp.delete();
+	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+	    Thread launchMe = new Thread() {
+		public void run() {
+		    Signal.wait(simulationEnd);
+		    Xcos.setStartEnabled(true);
 		}
+	    };
+	    launchMe.start();
+	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
+		    +"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
+		    +"xcos_simulate(scs_m);"
+		    +"xcosNotify(\"" + simulationEnd + "\");");
+	    temp.deleteOnExit();
+	} catch (IOException e1) {
+	    e1.printStackTrace();
+	    Xcos.setStartEnabled(true);
 	}
+    }
 }
