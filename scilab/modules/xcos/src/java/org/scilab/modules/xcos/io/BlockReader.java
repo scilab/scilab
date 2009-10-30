@@ -124,7 +124,8 @@ public class BlockReader {
 					blocks.add(currentBlock);
 					minX = Math.min(minX, currentBlock.getGeometry().getX());
 					minY = Math.min(minY, currentBlock.getGeometry().getY()/* - currentBlock.getGeometry().getHeight()*/);
-				}else{
+				}else if(isLink(data, i)){
+					System.err.println("Link !");
 					//for minX and minY
 				}
 			} catch (BlockReaderException e) {
@@ -133,19 +134,6 @@ public class BlockReader {
 				return null;
 			}
 		}
-		
-		double offsetX = 0;
-		offsetX = -minX + 20;
-
-		double offsetY = 0;
-		offsetY = -minY + 20;
-
-		
-		for (int i = 0; i < blocks.size(); ++i) {
-			blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
-			blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + offsetY);
-		}
-		result.put("Blocks", blocks);
 		
 		List<BasicPort[]> linkPorts = new ArrayList<BasicPort[]>(); 
 		List<double[][]> linkPoints = new ArrayList<double[][]>(); 
@@ -207,8 +195,8 @@ public class BlockReader {
 						double[][] linkPoint = new double[link.get(1).getHeight() - 2][2]; 
 						for(int point = 0 ; point < link.get(1).getHeight() - 2 ; point++){
 							linkPoint[point] = getLinkPoint(link, point);
-							linkPoint[point][0] += offsetX;
-							linkPoint[point][1] += offsetY;
+							minX = Math.min(minX, linkPoint[point][0]);
+							minY = Math.min(minY, linkPoint[point][1]);
 						}
 						linkPoints.add(linkPoint);
 					}
@@ -255,18 +243,34 @@ public class BlockReader {
 
 		}
 
-		offsetX = -minX + 20;
-		offsetY = -minY + 20;
+		double offsetX = -minX + 20;
+		double offsetY = -minY + 20;
 
 		
+		for (int i = 0; i < blocks.size(); ++i) {
+			blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
+			blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + offsetY);
+		}
+
+		for (int i = 0; i < linkPoints.size(); i++) {
+			if(linkPoints.get(i) != null){
+				System.err.println("");
+				for (int j = 0; j < linkPoints.get(i).length; j++) {
+					linkPoints.get(i)[j][0] += offsetX;
+					linkPoints.get(i)[j][1] += offsetY;
+					System.err.println("(" + linkPoints.get(i)[j][0] + "," + linkPoints.get(i)[j][1] + ")");
+				}
+			}
+		}
+
 		for (int i = 0; i < textBlocks.size(); ++i) {
 			textBlocks.get(i).getGeometry().setX(textBlocks.get(i).getGeometry().getX() + offsetX);
 			textBlocks.get(i).getGeometry().setY(textBlocks.get(i).getGeometry().getY() + offsetY);
 		}
+
+		//put all data
+		result.put("Blocks", blocks);
 		result.put("TextBlocks", textBlocks);
-		
-		////
-		
 		links.put("Ports", linkPorts);
 		links.put("Points", linkPoints);
 		result.put("Links", links);
