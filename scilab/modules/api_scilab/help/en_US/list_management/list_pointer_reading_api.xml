@@ -98,10 +98,10 @@
         <para>This help describes how to read pointer in a list.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_read_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_read_api.tst-->
-        <!--Lib_name: commom_read-->
-        <!--Func_list: commom_read-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+        <!--Lib_name: common_read-->
+        <!--Func_list: common_read-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 

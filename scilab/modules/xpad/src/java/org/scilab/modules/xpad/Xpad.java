@@ -220,7 +220,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		File f = new File(filePath);
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
-		editorInstance.readFile(f);
+		editorInstance.readFileAndWait(f);
 		editorInstance.lastKnownSavedState = System.currentTimeMillis();
 	}
 

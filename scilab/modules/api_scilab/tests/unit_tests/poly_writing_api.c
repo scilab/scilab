@@ -14,9 +14,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
-
-            
+#include "api_scilab.h"
+ 
 int write_poly(char *fname,unsigned long fname_len)
 {
     int iRet                = 0;
@@ -55,5 +54,4 @@ int write_poly(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     return 0;
 }
-        
-        
+ 

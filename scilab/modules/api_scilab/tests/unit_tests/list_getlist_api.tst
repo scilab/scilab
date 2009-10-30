@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/list_getlist_api"));
 cd(pathconvert(TMPDIR+"/list_getlist_api"));
@@ -12,10 +13,16 @@ cflags = "-I"+SCI+"/modules/localization/includes";
 ilib_build("list_getlist_api",["list_getlist","list_getlist"],SCI+"/modules/api_scilab/tests/unit_tests/list_getlist_api.c",[],[],"",cflags);
 exec("loader.sce");
 
-            
-M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
-T=tlist(['V','value1','value2','value3'],['a','b','c'], [1,2,3], int32([1,2,3]));
-L=list(M,T);
-list_getlist(L)
-            
+             
+size_ref    = 8;
+type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
+dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
+
+l = list_createlist();
+if size(l) <> size_ref then pause;end
+for i = 1 : size_ref
+    if typeof(l(i)) <> type_ref(i) then pause;end
+    if size(l(i)) <> dim_ref(i) then pause;end
+end
+ 
         
