@@ -101,6 +101,7 @@ curEnv->DeleteLocalRef(localInstance);
                 /* Methods ID set to NULL */
 voidxcosID=NULL; 
 voidxcosjstringID=NULL; 
+voidwarnCellByUIDjstringjstringID=NULL; 
 
 
 }
@@ -125,6 +126,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         /* Methods ID set to NULL */
         voidxcosID=NULL; 
 voidxcosjstringID=NULL; 
+voidwarnCellByUIDjstringjstringID=NULL; 
 
 
 }
@@ -174,6 +176,26 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "xcos");
 jstring fileName_ = curEnv->NewStringUTF( fileName );
 
                          curEnv->CallStaticVoidMethod(cls, voidxcosjstringID ,fileName_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::warnCellByUID (JavaVM * jvm_, char * UID, char * message){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidwarnCellByUIDjstringjstringID = curEnv->GetStaticMethodID(cls, "warnCellByUID", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voidwarnCellByUIDjstringjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "warnCellByUID");
+}
+
+jstring UID_ = curEnv->NewStringUTF( UID );
+
+jstring message_ = curEnv->NewStringUTF( message );
+
+                         curEnv->CallStaticVoidMethod(cls, voidwarnCellByUIDjstringjstringID ,UID_, message_);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
