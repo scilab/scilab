@@ -172,10 +172,10 @@ extern "C" {
 #define API_ERROR_CREATE_POINTER													12804
 
 /* error functions*/
-int addStackSizeError(SciErr* _pstrErr, char* _pstCaller, int iNeeded);
-int addErrorMessage(SciErr* _pstrErr, int _iErr, const char* _pstMsg, ...);
-int printError(SciErr* _pstrErr, int _iLastMsg);
-char* getErrorMessage(SciErr _strErr);
+int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int iNeeded);
+int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...);
+int printError(SciErr* _psciErr, int _iLastMsg);
+char* getErrorMessage(SciErr _sciErr);
 
 #ifdef __cplusplus
 }

@@ -707,7 +707,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		CheckBoxMenuItem menu = ViewViewportAction.createCheckBoxMenu(scilabGraph);
 		view.add(menu);
 		((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
-		view.add(ViewGetinfosAction.createMenu(scilabGraph));
+		//view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
 
 		/** Simulation menu */

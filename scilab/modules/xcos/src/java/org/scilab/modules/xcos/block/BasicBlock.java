@@ -590,7 +590,7 @@ public class BasicBlock extends XcosUIDObject {
 	gr_i.add(new ScilabDouble(8));
 	graphics.add(gr_i); // gr_i
 
-	graphics.add(new ScilabString("")); // id
+	graphics.add(new ScilabString(getId())); // id
 
 	graphics.add(getAllPortsType(getAllInputPorts())); // in_implicit
 
@@ -927,7 +927,7 @@ public class BasicBlock extends XcosUIDObject {
 	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
 	    H5Write.closeFile(context_file_id);
 
-	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
+	    InterpreterManagement.putCommandInScilabQueue("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
 		    ", \""+tempInput.getAbsolutePath()+"\""+
 		    ", "+getInterfaceFunctionName()+
 		    ", \"set\""+
