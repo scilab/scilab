@@ -62,20 +62,14 @@ function result = atomsRemove(packages,section)
 	// =========================================================================
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
-	end
-	
-	if MSDOS then
-		OSNAME = "windows";
-	elseif LINUX then
-		OSNAME = "linux";
-	elseif MACOSX then
-		OSNAME = "macosx";
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
 	end
 	
 	// Verbose Mode ?

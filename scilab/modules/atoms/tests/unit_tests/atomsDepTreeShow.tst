@@ -19,7 +19,7 @@ atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 // Install toolbox 5
 atomsInstall("toolbox_5");
@@ -29,7 +29,7 @@ atomsDepTreeShow("toolbox_5");
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 // Update modules
 atomsUpdate();
