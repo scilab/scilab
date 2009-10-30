@@ -40,6 +40,8 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -121,6 +123,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static Thread paletteThread;
 	private static boolean paletteLoaded;
 	private static List<Menu> recentsMenus = new ArrayList<Menu>();
+	private static List<MenuItem> startMenuItems = new ArrayList<MenuItem>();
+	private static List<MenuItem> stopMenuItems = new ArrayList<MenuItem>();
+	private static List<PushButton> startPushButtons = new ArrayList<PushButton>();
+	private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
 
 	/** Palette creation */
 	static {
@@ -711,12 +717,18 @@ public class Xcos extends SwingScilabTab implements Tab {
 		simulate.setMnemonic('S');
 		menuBar.add(simulate);
 		
+		MenuItem startMenu =  StartAction.createMenu(scilabGraph);
+		startMenuItems.add(startMenu);
+		MenuItem stopMenu =  StopAction.createMenu(scilabGraph);
+		stopMenuItems.add(stopMenu);
+		
+		
 		simulate.add(SetupAction.createMenu(scilabGraph));
 		simulate.add(DebugLevelAction.createMenu(scilabGraph));
 		simulate.add(SetContextAction.createMenu(scilabGraph));
 		simulate.add(CompileAction.createMenu(scilabGraph));
-		simulate.add(StartAction.createMenu(scilabGraph));
-		simulate.add(StopAction.createMenu(scilabGraph));
+		simulate.add(startMenu);
+		simulate.add(stopMenu);
 	
 		/** Format menu */
 		Menu format = ScilabMenu.createMenu();
@@ -822,8 +834,13 @@ public class Xcos extends SwingScilabTab implements Tab {
     	toolBar.addSeparator();
 
     	// START / STOP
-    	toolBar.add(StartAction.createButton(scilabGraph));
-    	toolBar.add(StopAction.createButton(scilabGraph));
+    	PushButton startPushButton = StartAction.createButton(scilabGraph);
+    	PushButton stopPushButton = StopAction.createButton(scilabGraph);
+    	startPushButtons.add(startPushButton);
+    	stopPushButtons.add(stopPushButton);
+    	
+    	toolBar.add(startPushButton);
+    	toolBar.add(stopPushButton);
 
     	toolBar.addSeparator();
     	
@@ -911,14 +928,76 @@ public class Xcos extends SwingScilabTab implements Tab {
 	return null;
     }
 
+    
+	public static List<MenuItem> getStartMenuItems() {
+		return startMenuItems;
+	}
+	
+	public static List<MenuItem> getStopMenuItems() {
+		return stopMenuItems;
+	}
+	
+	public static List<PushButton> getStopPushButtons() {
+		return stopPushButtons;
+	}
+	
+	public static List<PushButton> getStartPushButtons() {
+		return startPushButtons;
+	}
+		
+	public static void setEnabledStartMenus(boolean status){
+		for (int i = 0 ; i < getStartMenuItems().size() ; i++ ){
+			getStartMenuItems().get(i).setEnabled(status);
+			getStartPushButtons().get(i).setEnabled(status);
+			
+			getStopMenuItems().get(i).setEnabled(!status);
+			getStopPushButtons().get(i).setEnabled(!status);
+		}
+		
+	}
+    
+	public static void setEnabledStopMenus(boolean status){
+		for (int i = 0 ; i < getStopMenuItems().size() ; i++ ){
+			getStopMenuItems().get(i).setEnabled(status);
+			getStopPushButtons().get(i).setEnabled(status);
+			
+			getStartMenuItems().get(i).setEnabled(!status);
+			getStartPushButtons().get(i).setEnabled(!status);
+		}
+		
+	}
+	
+	public static void setEnabledStartButtons(boolean status){
+		for (int i = 0 ; i < getStartPushButtons().size() ; i++ ){
+			getStartMenuItems().get(i).setEnabled(status);
+			getStartPushButtons().get(i).setEnabled(status);
+			
+			getStopMenuItems().get(i).setEnabled(!status);
+			getStopPushButtons().get(i).setEnabled(!status);
+		}
+		
+	}
+	
+	public static void setEnabledStopButtons(boolean status){
+		for (int i = 0 ; i < getStopPushButtons().size() ; i++ ){
+			getStopMenuItems().get(i).setEnabled(status);
+			getStopPushButtons().get(i).setEnabled(status);
+			
+			getStartMenuItems().get(i).setEnabled(!status);
+			getStartPushButtons().get(i).setEnabled(!status);
+		}
+		
+	}
+    
 	/**
 	 * Get recent file menu
-	 * @return the menu
+	 * @return the menu List
 	 */
 	public static List<Menu> getRecentsMenu() {
 		return  recentsMenus;
 	}
-    
+
+	
 	/**
 	 * Update menu displaying recent opened files
 	 */

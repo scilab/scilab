@@ -54,6 +54,9 @@ public class SuperBlock extends BasicBlock {
 	setIntegerParameters(new ScilabDouble());
 	setObjectsParameters(new ScilabList());
 	setExprs(new ScilabDouble());
+	setBlockType("h");
+	setNbZerosCrossing(new ScilabDouble(0));
+	setNmode(new ScilabDouble(0));
     }
     
     /**
@@ -343,7 +346,10 @@ public class SuperBlock extends BasicBlock {
     	int portCount = ports.size();
 
     	while(blockCount > portCount){ //add if required
-    		addPort(new ExplicitInputPort());
+    		ExplicitInputPort port = new ExplicitInputPort();
+    		port.setDataLines(-1);
+    		port.setDataColumns(-2);
+    		addPort(port);
     		portCount++;
     	}
 
@@ -394,7 +400,10 @@ public class SuperBlock extends BasicBlock {
     	int portCount = ports.size();
 
     	while(blockCount > portCount){ //add if required
-    		addPort(new ExplicitOutputPort());
+    		ExplicitOutputPort port = new ExplicitOutputPort();
+    		port.setDataLines(-1);
+    		port.setDataColumns(-2);
+    		addPort(port);
     		portCount++;
     	}
 
