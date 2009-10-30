@@ -907,6 +907,8 @@ Bug fixes:
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
 
+* bug 4620 fixed - the setenv function makes scilab hangs.
+
 * bug 4626 fixed - When using the CLI version, completion made Scilab crashed
 
 * bug 4627 fixed - The function matfile2sci did not manage 7.x format
