@@ -30,7 +30,7 @@ gm=geomean(x,'c')(or, equivalently, gm=geomean(x,2))</synopsis>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>:real or complex vector or matrix</para>
+          <para>real or complex vector or matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>

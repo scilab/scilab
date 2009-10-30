@@ -73,37 +73,37 @@
       <varlistentry>
         <term>%</term>
         <listitem>
-          <para>:Accepts a single % (percent sign) input at this point; no assignment is done.</para>
+          <para>Accepts a single % (percent sign) input at this point; no assignment is done.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d, i</term>
         <listitem>
-          <para>:Accepts a decimal integer;</para>
+          <para>Accepts a decimal integer;</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>u</term>
         <listitem>
-          <para>:Accepts an unsigned decimal integer;</para>
+          <para>Accepts an unsigned decimal integer;</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>o</term>
         <listitem>
-          <para>:Accepts an octal integer;</para>
+          <para>Accepts an octal integer;</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>:Accepts a hexadecimal integer;</para>
+          <para>Accepts a hexadecimal integer;</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>e,f,g</term>
         <listitem>
-          <para>:Accepts a floating-point number. The next field is converted accordingly and stored through the corresponding parameter, which should be a pointer to a float. The input format for floating-point numbers is a string of digits, with the following optional characteristics:</para>
+          <para>Accepts a floating-point number. The next field is converted accordingly and stored through the corresponding parameter, which should be a pointer to a float. The input format for floating-point numbers is a string of digits, with the following optional characteristics:</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -127,19 +127,19 @@
       <varlistentry>
         <term>s</term>
         <listitem>
-          <para>:Accepts a string of characters.</para>
+          <para>Accepts a string of characters.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c</term>
         <listitem>
-          <para>:character value is expected. The normal skip over white space is suppressed.</para>
+          <para>character value is expected. The normal skip over white space is suppressed.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>%lg</term>
         <listitem>
-          <para>: get value as a double.</para>
+          <para> get value as a double.</para>
         </listitem>
       </varlistentry>
     </variablelist>

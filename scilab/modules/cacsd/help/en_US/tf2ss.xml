@@ -39,13 +39,13 @@
             <varlistentry>
               <term>rtol</term>
               <listitem>
-                <para>:tolerance used when evaluating observability.</para>
+                <para>tolerance used when evaluating observability.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>atol</term>
               <listitem>
-                <para>:absolute tolerance used when evaluating observability.</para>
+                <para>absolute tolerance used when evaluating observability.</para>
               </listitem>
             </varlistentry>
           </variablelist>

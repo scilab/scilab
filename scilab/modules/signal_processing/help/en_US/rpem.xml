@@ -17,7 +17,7 @@
       <varlistentry>
         <term>w0</term>
         <listitem>
-          <para>: <literal>list(theta,p,l,phi,psi)</literal> where:</para>
+          <para> <literal>list(theta,p,l,phi,psi)</literal> where:</para>
           <variablelist>
             <varlistentry>
               <term>theta</term>
@@ -27,7 +27,7 @@
 		  <varlistentry>
 		    <term>a,b,c</term>
 		    <listitem>
-		      <para>: <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal></para>
+		      <para> <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal></para>
 		    </listitem>
 		  </varlistentry>
 		</variablelist>

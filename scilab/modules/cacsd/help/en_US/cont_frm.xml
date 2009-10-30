@@ -40,7 +40,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.</para>
+          <para> <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>

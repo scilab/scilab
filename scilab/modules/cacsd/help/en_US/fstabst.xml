@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (linear system)</para>
+          <para> <literal>syslin</literal> list (linear system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (linear system in state-space representation)</para>
+          <para> <literal>syslin</literal> list (linear system in state-space representation)</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (continuous, discrete or sampled system)</para>
+          <para> <literal>syslin</literal> list (continuous, discrete or sampled system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
