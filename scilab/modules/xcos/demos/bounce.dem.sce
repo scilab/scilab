@@ -8,8 +8,5 @@
 //
 
 thispath = get_absolute_file_path("bounce.dem.sce");
-
-//Open the cosf file with xcos
 xcos(thispath+"/bounce.xcos"); 
-
 clear thispath;

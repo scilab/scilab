@@ -8,8 +8,5 @@
 //
 
 thispath = get_absolute_file_path("data_type.dem.sce");
-
-//Open the cosf file with xcos
 xcos(thispath+"/demo_Datatype.xcos");
-
 clear thispath;

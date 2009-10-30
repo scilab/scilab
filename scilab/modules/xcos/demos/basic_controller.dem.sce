@@ -8,7 +8,5 @@
 //
 
 thispath = get_absolute_file_path("basic_controller.dem.sce");
-
-//Open the cosf file with xcos
 xcos(thispath+"/Controller.xcos");
 clear thispath;
