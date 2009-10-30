@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_cpr">
+  <refnamediv>
+    <refname>scicos_cpr</refname>
+    <refpurpose>Structure compilée Scicos</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_cpr">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="cpr_scicos_cpr">
+    <title>cpr</title>
+    <para>
+ La liste scilab <link linkend="scicos_cpr">cpr</link>
+contient 
+ le résultat de la compilation.
+</para>
+    <para>
+Cette structure est composée des champs
+ <link linkend="scicos_state">state</link>, <link linkend="scicos_sim">sim</link>, cor et corinv.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Taille : 5.
+</para>
+    <para>
+Type : tlist scilab.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">state</emphasis>
+        </para>
+        <para> Une liste typée scilab de type xcs. Cette liste contient tous les états du diagramme qui vont évoluer pendant la simulation.</para>
+        <para> state contient x, z, oz, iz, tevts, evtspt, pointi et outtb.</para>
+        <para> 
+Taille : 9.
+</para>
+        <para>
+Type : tlist scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sim</emphasis>
+        </para>
+        <para> Une liste typée scilab de type scs. Cette liste contient des tableaux statiques issus du résultat de la compilation. Ces tableaux n'évoluent pas pendant la simulation.</para>
+        <para> 
+Taille : 33.
+</para>
+        <para>
+Type : tlist scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">cor</emphasis>
+        </para>
+        <para> C'est une liste avec la même structure récursive que la liste scs_m. Chaque feuille contient l'indice d'un bloc associé à la structure compilée sim.</para>
+        <para> 
+Taille : nombre d'objets dans scs_m.
+</para>
+        <para>
+Type : scilab list.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">corinv</emphasis>
+        </para>
+        <para> corinv(i) est le chemin du bloc i définit dans la structure compilée sim dans la structure scs_m.</para>
+        <para> 
+Taille : nombre de blocs dans la structure compilée.
+</para>
+        <para>
+Type : scilab list.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_cpr">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_cpr.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

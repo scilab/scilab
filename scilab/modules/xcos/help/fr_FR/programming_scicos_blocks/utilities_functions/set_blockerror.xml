@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="set_blockerror">
+  <refnamediv>
+    <refname>set_blockerror</refname>
+    <refpurpose>Définit le numéro d'erreur de bloc</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>set_blockerror(n)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_set_blockerror">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_set_blockerror">
+    <title>Description</title>
+    <para>
+Cette fonction permet de définir une erreur spécifique en cours de simulation pour le bloc courant. Si c'est fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera un message d'erreur associé au numéro donné en argument.  
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+set_blockerror(n)
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_set_blockerror">
+    <title>Paramètres</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">n</emphasis> : un numéro d'erreur. Les appels suivant sont autorisés :</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">set_blockerror(-1)</emphasis>
+            </para>
+            <para>
+le bloc a été appelé avec une valeur d'entrée en dehors du domaine autorisé
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">set_blockerror(-2)</emphasis>
+            </para>
+            <para>
+une singularité a été rencontrée dans le bloc
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">set_blockerror(-3)</emphasis>
+            </para>
+            <para>
+le bloc a produit une erreur interne
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">set_blockerror(-16)</emphasis>
+            </para>
+            <para>
+le bloc ne peut pas allouer de mémoire
+          
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_set_blockerror">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
