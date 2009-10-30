@@ -162,7 +162,7 @@ s(P) = s(proj(P)) where proj(P) is nearest point from P
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> is extended by periodicity.</para>
+          <para> <literal>s</literal> is extended by periodicity.</para>
         </listitem>
       </varlistentry>
     </variablelist>

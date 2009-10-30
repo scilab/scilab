@@ -133,6 +133,16 @@ char *getFilePartLevel(char *line)
 		index++;
 	}
 
+	/* bug 5105 */
+	/* cd "toto */
+	if ( (linebis[index] == '\"') || (linebis[index] == '\''))
+	{
+		if (index < len)
+		{
+			index++;
+		}
+	}
+
 	if ( (index <= 0) || (linebis[index] == '\0') ) return NULL;
 
 	return strdup(&linebis[index]);

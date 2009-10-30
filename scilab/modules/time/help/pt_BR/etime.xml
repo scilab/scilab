@@ -72,7 +72,7 @@
         <term>t1 e t2 com 10 valores</term>
 
         <listitem>
-          <para>: <literal>t2</literal> e <literal>t1</literal> devem ter o
+          <para> <literal>t2</literal> e <literal>t1</literal> devem ter o
           mesmo formato retornado por <literal>getdate</literal>. Neste caso,
           seus terceiro, quarto e quinto valores serão ignorados. </para>
         </listitem>
@@ -82,7 +82,7 @@
         <term>t1 e t2 com 6 valores</term>
 
         <listitem>
-          <para>: <literal>t2</literal> e <literal>t1</literal> devem ter o
+          <para> <literal>t2</literal> e <literal>t1</literal> devem ter o
           mesmo formato: T = [Ano Mês Dia Hora Minuto Segundo] com Segundo o
           número de segundos com milisegundos (ex.: 12.345).</para>
         </listitem>

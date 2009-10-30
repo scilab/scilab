@@ -474,7 +474,7 @@ scale       x          e          /  gamma(shape)
             <varlistentry>
               <term>for fsultra</term>
               <listitem>
-                <para>:  <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
+                <para>  <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
        l'intervalle<literal>[0,37]</literal>, son deuxième (drapeau) doit être 0 ou 1, le troisième un
        entier de [1,2^32[ et les 37 composantes suivantes, des entiers de [0,2^32[) ; il est recommandé
        d'utiliser l'autre procédure d'initialisation (plus simple) avec deux entiers <literal>s1</literal> et 

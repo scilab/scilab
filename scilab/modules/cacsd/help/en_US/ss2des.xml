@@ -29,7 +29,7 @@ S=ss2des(Sl,flag)</synopsis>
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list: proper or improper linear system.</para>
+          <para> <literal>syslin</literal> list: proper or improper linear system.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

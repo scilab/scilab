@@ -85,12 +85,8 @@ public class SpecialTextRenderer {
 		}
     
 		spe = table.get(content);
-		if (spe != null) {
-		        boolean b1 = spe.setColor(color);
-		        boolean b2 = spe.setFontSize(fontSize);
-			if (b1 || b2)
-			        replaceTexture(spe);
-		}
+		if (spe != null && spe.setFontSize(fontSize))
+		    replaceTexture(spe);
 		
 		return spe;
     }
@@ -169,7 +165,17 @@ public class SpecialTextRenderer {
 		float height = spe.getHeight() * scaleFactor;
 		gl.glPushAttrib(GL.GL_ALL_ATTRIB_BITS);
 		gl.glPushMatrix();
-		gl.glTranslatef(x, y, 0);
+
+		/* The above code handles the case where the label is colored */
+		float[] currentColor = new float[4];
+		gl.glGetFloatv(GL.GL_CURRENT_COLOR, currentColor, 0);
+		currentColor[0] = 1 - currentColor[0];
+		currentColor[1] = 1 - currentColor[1];
+		currentColor[2] = 1 - currentColor[2];
+		gl.glTexEnvfv(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_COLOR, currentColor, 0);
+		gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_BLEND);
+
+		gl.glTranslatef(x, y, z);
 		gl.glBindTexture(gl.GL_TEXTURE_2D, spe.getIdTexture());
 		gl.glBegin(gl.GL_QUADS);
 		gl.glTexCoord2f(0,0); gl.glVertex2d(0, 0);

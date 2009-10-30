@@ -29,7 +29,7 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>:a positive scalar: The number of character to read.</para>
+          <para>a positive scalar: The number of character to read.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

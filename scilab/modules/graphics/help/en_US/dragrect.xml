@@ -34,13 +34,13 @@
       <varlistentry>
         <term>final_rect</term>
         <listitem>
-          <para>:a rectangle defined by [x_left, y_top, width, height]</para>
+          <para>a rectangle defined by [x_left, y_top, width, height]</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>btn</term>
         <listitem>
-          <para>:an integer, the number of the mouse button clicked</para>
+          <para>an integer, the number of the mouse button clicked</para>
         </listitem>
       </varlistentry>
     </variablelist>

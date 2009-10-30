@@ -43,7 +43,7 @@
       <varlistentry>
         <term>X</term>
         <listitem>
-          <para>:Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)</para>
+          <para>Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

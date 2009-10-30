@@ -81,7 +81,7 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
         <term>flag=[type,box]</term>
 
         <listitem>
-          <para>: <literal>type</literal> and <literal>box</literal> have the
+          <para> <literal>type</literal> and <literal>box</literal> have the
           same meaning as in <literal>plot3d</literal>:</para>
 
           <variablelist>

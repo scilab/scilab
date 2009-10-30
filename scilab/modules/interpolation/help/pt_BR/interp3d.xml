@@ -129,7 +129,7 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> é estendido por periodicidade.</para>
+          <para> <literal>s</literal> é estendido por periodicidade.</para>
         </listitem>
       </varlistentry>
     </variablelist>

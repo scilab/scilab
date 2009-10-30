@@ -246,6 +246,9 @@ Mac OS X:
 
 * bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to english.
 
+* bug 4949 fixed - Using Scicos/Xcox in the source tree environnement, with
+  	  	   		   schema using sundials library, the application had problems
+				   to load the dynamic library.
 
 toolbox_skeleton:
 =================
@@ -1054,3 +1057,4 @@ Bug fixes:
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" fails (on Windows)
 
+* bug 5105 fixed - completion: cd "..\L<tab>  does not work.

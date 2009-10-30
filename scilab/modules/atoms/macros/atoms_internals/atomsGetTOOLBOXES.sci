@@ -22,12 +22,14 @@ function packages = atomsGetTOOLBOXES(update)
 	// Operating system
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
 	end
 	
 	if MSDOS then
@@ -36,6 +38,8 @@ function packages = atomsGetTOOLBOXES(update)
 		OSNAME = "linux";
 	elseif MACOSX then
 		OSNAME = "macosx";
+	elseif SOLARIS then
+		OSNAME = "solaris";
 	end
 	
 	// Architecture
@@ -106,7 +110,7 @@ function packages = atomsGetTOOLBOXES(update)
 			// Extract It
 			// ----------------------------------------
 			
-			if LINUX | MACOSX then
+			if LINUX | MACOSX | SOLARIS then
 				extract_cmd = "gunzip "+ file_out;
 				
 			else

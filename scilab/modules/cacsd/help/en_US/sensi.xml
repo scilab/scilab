@@ -53,13 +53,13 @@
       <varlistentry>
         <term>Re</term>
         <listitem>
-          <para>: <literal>K*Se</literal></para>
+          <para> <literal>K*Se</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Te</term>
         <listitem>
-          <para>: <literal>G*K*Se</literal> (output complementary sensitivity function)</para>
+          <para> <literal>G*K*Se</literal> (output complementary sensitivity function)</para>
         </listitem>
       </varlistentry>
     </variablelist>

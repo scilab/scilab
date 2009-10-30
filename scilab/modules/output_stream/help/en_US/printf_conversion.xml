@@ -106,16 +106,16 @@
         <para>Performs no conversion.  Displays %.</para>
       </listitem>
       <listitem>
-        <para>:Accepts an integer <literal>value</literal> and converts it to signed decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as a leading character causes the field width value to be padded with leading zeros.</para>
+        <para>Accepts an integer <literal>value</literal> and converts it to signed decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as a leading character causes the field width value to be padded with leading zeros.</para>
       </listitem>
       <listitem>
-        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
+        <para>Accepts an integer <literal>value</literal> and converts it to unsigned decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
       </listitem>
       <listitem>
-        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned octal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros. An octal value for field width is not implied.</para>
+        <para>Accepts an integer <literal>value</literal> and converts it to unsigned octal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros. An octal value for field width is not implied.</para>
       </listitem>
       <listitem>
-        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned hexadecimal notation. The letters ``abcdef'' are used for the <literal>x</literal> conversion; the letters ``ABCDEF'' are used for the <literal>X</literal> conversion. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
+        <para>Accepts an integer <literal>value</literal> and converts it to unsigned hexadecimal notation. The letters ``abcdef'' are used for the <literal>x</literal> conversion; the letters ``ABCDEF'' are used for the <literal>X</literal> conversion. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
       </listitem>
       <listitem>
         <para>Accepts a float or double <literal>value</literal> and converts it to decimal notation in the format %[\-]<literal>ddd.ddd</literal>. The number of digits after the decimal point is equal to the precision specification.</para>
@@ -130,7 +130,7 @@
         <para>If a decimal point is output, at least one digit is output before it.</para>
       </listitem>
       <listitem>
-        <para>:Accepts a real  and converts it to the exponential form %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. There is one digit before the decimal point, and the number of digits after the decimal point is equal to the precision specification.</para>
+        <para>Accepts a real  and converts it to the exponential form %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. There is one digit before the decimal point, and the number of digits after the decimal point is equal to the precision specification.</para>
       </listitem>
       <listitem>
         <para>If no precision is specified, , six digits are output.</para>
@@ -153,10 +153,10 @@
     if it is greater or equal to the precision.</para>
       </listitem>
       <listitem>
-        <para>:Accepts and displays an integer value converted to a character.</para>
+        <para>Accepts and displays an integer value converted to a character.</para>
       </listitem>
       <listitem>
-        <para>:Accepts a string <literal>value</literal>  and displays characters from the string to the end or the number of characters indicated by the precision is reached. If no precision is specified, all characters up to the end are displayed.</para>
+        <para>Accepts a string <literal>value</literal>  and displays characters from the string to the end or the number of characters indicated by the precision is reached. If no precision is specified, all characters up to the end are displayed.</para>
       </listitem>
     </itemizedlist>
     <para>

@@ -295,7 +295,7 @@ public class XcosDiagram extends ScilabGraph {
     	getModel().remove(link);
     	getModel().endUpdate();
 
-    	BasicLink newLink1 = createLinkFromPorts(linkSource, splitBlock.getIn());
+    	BasicLink newLink1 = BasicLink.createLinkFromPorts(linkSource, splitBlock.getIn());
     	newLink1.setGeometry(new mxGeometry(0,0,80,80));
     	newLink1.setSource(linkSource);
     	newLink1.setTarget(splitBlock.getIn());
@@ -308,7 +308,7 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink1);
     	
-    	BasicLink newLink2 = createLinkFromPorts(splitBlock.getOut1(), linkTarget);
+    	BasicLink newLink2 = BasicLink.createLinkFromPorts(splitBlock.getOut1(), linkTarget);
     	newLink2.setGeometry(new mxGeometry(0,0,80,80));
     	newLink2.setSource(splitBlock.getOut1());
     	newLink2.setTarget(linkTarget);
@@ -320,7 +320,7 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink2);
     	
-    	BasicLink newLink3 = createLinkFromPorts(splitBlock.getOut2(), (BasicPort)target);
+    	BasicLink newLink3 = BasicLink.createLinkFromPorts(splitBlock.getOut2(), (BasicPort)target);
     	newLink3.setGeometry(new mxGeometry(0,0,80,80));
     	newLink3.setSource(splitBlock.getOut2());
     	newLink3.setTarget((mxCell)target);
@@ -659,7 +659,7 @@ public class XcosDiagram extends ScilabGraph {
 
     	if(saveSource != null && saveTarget != null){
     		//create new link
-    		BasicLink newLink = createLinkFromPorts(saveSource, saveTarget);
+    		BasicLink newLink = BasicLink.createLinkFromPorts(saveSource, saveTarget);
     		newLink.setGeometry(new mxGeometry(0,0,80,80));
 
     		Object[] saveLinks = getAllEdges(new Object[]{saveSource, saveTarget});
@@ -1074,7 +1074,6 @@ public class XcosDiagram extends ScilabGraph {
     public void closeDiagram() {
 
 	boolean wantToClose = true;
-
 	if (isModified()) {
 	    // The diagram has been modified
 	    // Ask the user want he want to do !
@@ -1120,7 +1119,7 @@ public class XcosDiagram extends ScilabGraph {
     public boolean saveDiagramAs(String fileName) {
 
 	boolean isSuccess = false;
-
+	info(XcosMessages.SAVING_DIAGRAM);
 	if (fileName == null) {
 		// Choose a filename
 		FileChooser fc = ScilabFileChooser.createFileChooser();
@@ -1144,6 +1143,7 @@ public class XcosDiagram extends ScilabGraph {
 	    fileName += ".xcos";
 	} else if (!extension.equals("xcos")) {
 	    XcosDialogs.couldNotSaveFile();
+	    info(XcosMessages.EMPTY_INFO);
 	    return false;
 	}
 
@@ -1168,7 +1168,7 @@ public class XcosDiagram extends ScilabGraph {
 	} else {
 	    XcosDialogs.couldNotSaveFile();
 	}
-
+	info(XcosMessages.EMPTY_INFO);
 	return isSuccess;
     }
 
@@ -1206,37 +1206,6 @@ public class XcosDiagram extends ScilabGraph {
     
     public void setDebugLevel(int debugLevel){
     	this.debugLevel = debugLevel;
-    }
-
-    private BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
-	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	}
-	if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof ImplicitOutputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof ImplicitInputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-
-	if (from instanceof CommandPort && to instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
-	if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	}
-	if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	}
-	if (to instanceof CommandPort && from instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
-	return new ExplicitLink();
     }
 
     /**
@@ -1290,7 +1259,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	for (int i = 0; i < linkPorts.size(); ++i) {
-	    BasicLink link = createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
+	    BasicLink link = BasicLink.createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
 	    link.setGeometry(new mxGeometry(0,0,80,80));
 	    link.setSource(linkPorts.get(i)[0]);
 	    link.setTarget(linkPorts.get(i)[1]);
@@ -1329,6 +1298,8 @@ public class XcosDiagram extends ScilabGraph {
 
     	File theFile = new File(diagramFileName);
 
+    	info(XcosMessages.LOADING_DIAGRAM);
+    	
     	if (theFile.exists()) {
 
     		String fileToLoad = diagramFileName;
@@ -1393,22 +1364,26 @@ public class XcosDiagram extends ScilabGraph {
     			if (getModel().getChildCount(getDefaultParent()) == 0) {
     				codec.decode(document.getDocumentElement(), this);
     				setModified(false);
+    				/* comment because a diagramm could be loaded successfully even if it has no block in (just save an empty diagram)
     				if (getModel().getChildCount(getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				    	setSavedFile(theFile.getAbsolutePath());
     					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram();
     			} else {
     				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
     				codec.decode(document.getDocumentElement(), xcosDiagram);
+    				/* same reason as above
     				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
     					XcosDialogs.couldNotLoadFile();
     				} else {
+    				*/
     				setSavedFile(theFile.getAbsolutePath());
     				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				}
+    				//}
     				setChildrenParentDiagram(xcosDiagram);
     			}
 
@@ -1436,6 +1411,7 @@ public class XcosDiagram extends ScilabGraph {
     		}	
 
     	}
+    	info(XcosMessages.EMPTY_INFO);
     }
 
     private void setChildrenParentDiagram(){
@@ -1489,6 +1465,14 @@ public class XcosDiagram extends ScilabGraph {
     	block.getParentDiagram().refresh();
     }
     
+    
+    /**
+     * Display the message in info bar.
+     * @param message
+     */
+    public void info(String message) {
+	getParentTab().getInfoBar().setText(message);
+    }
 
 }
 
