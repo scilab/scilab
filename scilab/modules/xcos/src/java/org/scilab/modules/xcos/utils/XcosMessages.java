@@ -70,7 +70,6 @@ public final class XcosMessages {
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");
     public static final String DETAILS = Messages.gettext("Details");
-    public static final String BROWSER = Messages.gettext("Browser");
 
     /** Simulation menu */
     public static final String SIMULATION = Messages.gettext("Simulation");
