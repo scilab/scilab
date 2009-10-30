@@ -77,7 +77,7 @@ function this = neldermead_updatesimp ( this )
       // Transpose x because xopt is a column vector : xp is now a column vector
       [ this , status , xp ] = _scaleinconstraints ( this , x.' , xopt );
       if ( ~status ) then
-        errmsg = msprintf(gettext("Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), "neldermead_updatesimp", ...
+        errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), "neldermead_updatesimp", ...
           ive , nbve , strcat(string(x)," "));
         error(errmsg);
       end

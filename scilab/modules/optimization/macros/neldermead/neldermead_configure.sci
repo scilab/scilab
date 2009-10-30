@@ -25,8 +25,7 @@ function this = neldermead_configure (this,key,value)
     case "mine" then
       this.method = "mine";
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
-      error(errmsg);
+      unknownValueForOption ( value , "-method" )
     end
   case "-coords0" then
     assert_typereal ( value );
@@ -45,8 +44,7 @@ function this = neldermead_configure (this,key,value)
     case "randbounds" then
       this.simplex0method = "randbounds";
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-simplex0method" )
     end
   case "-simplex0length" then
     assert_typereal ( value );
@@ -83,8 +81,7 @@ function this = neldermead_configure (this,key,value)
     case %f then
       this.tolsimplexizemethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolsimplexizemethod" )
     end
   case "-toldeltafv" then
     assert_typereal ( value );
@@ -97,8 +94,7 @@ function this = neldermead_configure (this,key,value)
     case %f then
       this.tolssizedeltafvmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolssizedeltafvmethod" )
     end
   case "-restartmax" then
     assert_typereal ( value );
@@ -135,8 +131,7 @@ function this = neldermead_configure (this,key,value)
     case %t then
       this.checkcostfunction = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-checkcostfunction" )
     end
   case "-boxnbpoints" then
     assert_typereal ( value );
@@ -150,7 +145,7 @@ function this = neldermead_configure (this,key,value)
   case "-guinalphamin" then
     assert_typereal ( value );
     if ( value <=0.0 ) then 
-      errmsg = msprintf(gettext("%s: Unexpected negative value %s for -guinalphamin option"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unexpected negative value %s for %s option"),"neldermead_configure", value , "-guinalphamin" );
       error(errmsg);
     end
     this.guinalphamin = value;
@@ -183,8 +178,7 @@ function this = neldermead_configure (this,key,value)
     case %t then
       this.myterminateflag = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-myterminateflag" )
     end
   case "-tolvarianceflag" then
     assert_typeboolean ( value )
@@ -230,6 +224,13 @@ function assert_typeboolean ( var )
     errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
     error(errmsg);
   end
+endfunction
+
+
+// Generates an error if the value corresponding to an option is unknown.
+function unknownValueForOption ( value , optionname )
+      errmsg = msprintf(gettext("%s: Unknown value %s for %s option"),"unknownValueForOption",value , optionname );
+      error(errmsg);
 endfunction
 
 

@@ -938,7 +938,7 @@ function this = neldermead_startup (this)
       neldermead_costf , this.optbase.boundsmin , this.optbase.boundsmax , ...
       this.boxnbpointseff  , this );
   else
-    errmsg = msprintf(gettext("%s: Unknown -simplex0method : %s"), "neldermead_startup", this.simplex0method);
+    errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"), "neldermead_startup", this.simplex0method);
     error(errmsg);
   end
   //

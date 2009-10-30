@@ -23,7 +23,7 @@ function cen = optimsimplex_xbar ( this , iexcl )
     iexcl = this.nbve;
   end
   if ( size(iexcl,1)<>1 ) then
-    errmsg = msprintf(gettext("%s: The exclusion index vector has %d instead of 1."), ...
+    errmsg = msprintf(gettext("%s: The exclusion index vector has %d rows instead of 1."), ...
       "optimsimplex_xbar", size(iexcl,1) );
     error(errmsg);
   end

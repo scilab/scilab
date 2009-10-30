@@ -24,9 +24,6 @@ nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolxmethod",%f);
 nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = nmplot_configure(nm,"-simplex0method","spendley");
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-//nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //

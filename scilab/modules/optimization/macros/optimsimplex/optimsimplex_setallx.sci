@@ -18,11 +18,11 @@
 function this = optimsimplex_setallx ( this , x )
   nx1 = size ( x , 1 );
   if nx1 <> this.nbve then
-    error ( msprintf ( gettext ( "%s: The number of rows is %d, while expected %d." ), "optimsimplex_setallx" , nx1 , this.nbve ))
+    error ( msprintf ( gettext ( "%s: The number of rows in x is %d, while expected %d." ), "optimsimplex_setallx" , nx1 , this.nbve ))
   end
   nx2 = size ( x , 2 );
   if nx2 <> this.n then
-    error ( msprintf ( gettext ( "%s: The number of columns is %d, while expected %d." ), "optimsimplex_setallx" , nx2 , this.n ))
+    error ( msprintf ( gettext ( "%s: The number of columns in x is %d, while expected %d." ), "optimsimplex_setallx" , nx2 , this.n ))
   end
   this.x ( 1:this.nbve , 1:this.n ) = x ( 1:this.nbve , 1:this.n );
 endfunction

@@ -23,11 +23,6 @@ nm = nmplot_configure(nm,"-maxiter",200);
 nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
-nm = nmplot_configure(nm,"-simplex0method","axes");
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",0);
 //
 // Setup output files
 //
