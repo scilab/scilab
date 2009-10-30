@@ -59,8 +59,7 @@ function this = optimbase_configure (this,key,value)
     case %f then
       this.tolxmethod = %f;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolxmethod option"),"optimbase_configure",value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolxmethod" )
     end
   case "-tolfunmethod" then
     assert_typeboolean ( value );
@@ -70,8 +69,7 @@ function this = optimbase_configure (this,key,value)
     case %f then
       this.tolfunmethod = %f;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfunmethod"),"optimbase_configure",value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolfunmethod" )
     end
   case "-function" then
     assert_typefunction ( value );
@@ -141,6 +139,11 @@ function assert_typeboolean ( var )
     errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
     error(errmsg);
   end
+endfunction
+// Generates an error if the value corresponding to an option is unknown.
+function unknownValueForOption ( value , optionname )
+      errmsg = msprintf(gettext("%s: Unknown value %s for %s option"),"unknownValueForOption",value , optionname );
+      error(errmsg);
 endfunction
 
 

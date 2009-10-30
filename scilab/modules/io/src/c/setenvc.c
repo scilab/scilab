@@ -25,10 +25,9 @@
 BOOL setenvc(char *stringIn,char *valueIn)
 {
 	BOOL ret = TRUE;
-
+	int len_env = 0;
 #ifdef _MSC_VER
 	{
-		int len_env = 0;
 		/*
 		On Windows :
 		each process has two copies of the environment variables,
@@ -67,7 +66,21 @@ BOOL setenvc(char *stringIn,char *valueIn)
 	/* linux and Mac OS X */
 	/* setenv() function is strongly preferred to putenv() */
 	/* http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/setenv.3.html */
-	if ( setenv(stringIn,valueIn,1) ) ret = FALSE;
+	
+	#ifndef _MAX_ENV 
+		#define _MAX_ENV 32767
+	#endif
+
+	len_env = (int)(strlen(stringIn) + strlen(valueIn) + 1);
+	if (len_env < _MAX_ENV)
+	{
+		if ( setenv(stringIn, valueIn, 1) ) 
+		{
+			ret = FALSE;
+		}
+	}
+	else ret = FALSE;
+
 #endif
 
 	if(ret)
