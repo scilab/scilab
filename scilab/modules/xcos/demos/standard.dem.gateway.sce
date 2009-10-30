@@ -19,7 +19,6 @@ subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"   
                "Scicos data types"                    , "data_type.dem.sce"         ; ..
                "Zero Crossing"                        , "zero_crossing.dem.sce"     ; .. 
                "_IF_ Scicos block"                    , "if_scicos_block.dem.sce"   ; ..
-               "FLIP_FLOP logic"                      , "flip_flop_logic.dem.sce"   ; ..
                "Goto/From blocks"                     , "goto_from.dem.sce"         ; ..
               ];
 
