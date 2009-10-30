@@ -31,11 +31,11 @@
 		</refsection>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>StrErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)</synopsis>
-        <synopsis>StrErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <synopsis>SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)</synopsis>
+        <synopsis>SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>StrErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)</synopsis>
-        <synopsis>StrErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)</synopsis>
+        <synopsis>SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -100,7 +100,7 @@
                 </listitem>
             </varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -115,8 +115,8 @@
 		</refsection>
 		<title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>StrErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)</synopsis>
-		<synopsis>StrErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
+		<synopsis>SciErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)</synopsis>
+		<synopsis>SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
         <title>Parameters</title>
@@ -171,7 +171,7 @@
                 </listitem>
             </varlistentry>
 			<varlistentry>
-				<term>StrErr</term>
+				<term>SciErr</term>
 				<listitem>
 					<para>
 						Error structure where is stored errors messages history and first error number.
@@ -190,7 +190,7 @@
 	<![CDATA[ 
 int write_double(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int i,j;
 	//first variable info : real matrix of double 3 x 4
 	int iRows1			= 3;
@@ -227,10 +227,10 @@ int write_double(char *fname,unsigned long fname_len)
 	//}
 
 	//create a variable from a existing data array
-	strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
-	if(strErr.iErr)
+	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -241,10 +241,10 @@ int write_double(char *fname,unsigned long fname_len)
 	*    Second variable    *
 	*************************/
 	//reserve space in scilab memory and fill it
-	strErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
-	if(strErr.iErr)
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

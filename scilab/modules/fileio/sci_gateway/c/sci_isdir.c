@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_isdir(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
 	wchar_t **pStVarOne = NULL;
 	int iType = 0;
@@ -44,17 +44,17 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -64,10 +64,10 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-	if(strErr.iErr)
+	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -96,10 +96,10 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -121,10 +121,10 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 	freeArrayOfWideString(pStVarOne, m1 * n1);
 
-	strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, results);
-	if(strErr.iErr)
+	sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, results);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

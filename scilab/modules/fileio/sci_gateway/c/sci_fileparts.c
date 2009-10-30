@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_fileparts(char *fname,unsigned long fname_len)
 {
-	SciErr strErr;
+	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 	int iType1	= 0;
@@ -53,17 +53,17 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -73,10 +73,10 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -93,26 +93,26 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	if (Rhs == 2)
 	{
-		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -122,10 +122,10 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-		if(strErr.iErr)
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -142,10 +142,10 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			return 0;
 		}
 		
-		strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-		if(strErr.iErr)
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 	}
@@ -206,10 +206,10 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		}
 
 		m_out = 1; n_out = 1;
-		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &output_value);
-		if(strErr.iErr)
+		sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &output_value);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -223,28 +223,28 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		wcscpy(path_out, drv);
 		wcscat(path_out, dir);
 
-		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &path_out);
-		if(strErr.iErr)
+		sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &path_out);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
 		LhsVar(1) = Rhs + 1;
 
-		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, &name);
-		if(strErr.iErr)
+		sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, &name);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
 		LhsVar(2) = Rhs + 2;
 
-		strErr = createMatrixOfWideString(pvApiCtx, Rhs + 3, m_out, n_out, &ext);
-		if(strErr.iErr)
+		sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 3, m_out, n_out, &ext);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 

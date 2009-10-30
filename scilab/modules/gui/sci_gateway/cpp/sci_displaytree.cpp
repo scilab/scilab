@@ -19,15 +19,15 @@
 
 extern "C" 
 {
+#include <stdlib.h>
 #include "stack-c.h"
 #include "gw_gui.h"
-#include "stdlib.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
 #ifdef _MSC_VER
-#include "strdup_windows.h"
+#define strdup _strdup
 #endif
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
@@ -142,13 +142,12 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	//Java
 	org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, (int)struct_size);
 
-	//Free
-	for(i = 0; i < struct_size; ++i)
+	//delete
+	if (tab)
 	{
-		FREE(tab[i]);
+		delete [] tab;
+		tab = NULL;
 	}
-
-	FREE(tab);
 
 	return 0;
 }

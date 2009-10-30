@@ -57,7 +57,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -85,15 +85,15 @@ static int iLocalTab = 0;
 
 int common_list(char *fname,unsigned long fname_len)
 {
-    SciErr strErr;
+    SciErr sciErr;
     int *piAddr     = NULL;
 
     CheckRhs(1,1);
 
-    strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(strErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
     {
-        printError(&strErr, 0);
+        printError(&sciErr, 0);
         return 0;
     }
 
@@ -105,16 +105,16 @@ int common_list(char *fname,unsigned long fname_len)
 
 int get_list_info(int* _piAddress)
 {
-    SciErr strErr;
+    SciErr sciErr;
     int i       = 0;
     int iRet    = 0;
     int iItem   = 0;
 
     //get list item number, failed if variable is not a kind of list
-    strErr = getListItemNumber(pvApiCtx, _piAddress, &iItem);
-    if(strErr.iErr)
+    sciErr = getListItemNumber(pvApiCtx, _piAddress, &iItem);
+    if(sciErr.iErr)
     {
-        printError(&strErr, 0);
+        printError(&sciErr, 0);
         sciprint("This variable is not a list");
         return 0;
     }
@@ -124,17 +124,17 @@ int get_list_info(int* _piAddress)
     {
         int iType           = 0;
         int* piAddrChild    = NULL;
-        strErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
-        if(strErr.iErr)
+        sciErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
+        if(sciErr.iErr)
         {
-            printError(&strErr, 0);
+            printError(&sciErr, 0);
             return 0;
         }
 
-        strErr = getVarType(pvApiCtx, piAddrChild, &iType);
-        if(strErr.iErr)
+        sciErr = getVarType(pvApiCtx, piAddrChild, &iType);
+        if(sciErr.iErr)
         {
-            printError(&strErr, 0);
+            printError(&sciErr, 0);
             return 0;
         }
 
