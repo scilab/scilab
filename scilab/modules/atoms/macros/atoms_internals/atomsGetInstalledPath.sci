@@ -37,6 +37,12 @@ function res = atomsGetInstalledPath(packages,section)
 	
 	packages = stripblanks(packages);
 	
+	if or(packages(:,2)=="")  then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: All modules'' version should be set.\n"),"atomsGetInstalledPath",1));
+	end
+	
+	packages = stripblanks(packages);
+	
 	// Allusers/user management
 	// =========================================================================
 	
