@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atoms">
 
   <refnamediv>
-    <refname>atoms</refname>
+    <refname>Functions Summary</refname>
   </refnamediv>
 
   <!-- ===================================================================== -->
@@ -211,6 +211,34 @@
 			</informaltable>
 		</para>
   </refsection>	
+	
+	<!-- ===================================================================== -->
+	<!-- Atoms  -->
+  <!-- ===================================================================== -->
+	
+  <refsection>
+    <title>Manage ATOMS system ...</title>
+    <para>
+			<informaltable border="1">
+				<tr>
+					<td>
+						<link linkend="atomsSystemUpdate">atomsSystemUpdate</link>
+					</td>
+					<td>
+						Update the list of available modules
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<link linkend="atomsSetConfig">atomsSetConfig</link>
+					</td>
+					<td>
+						Manage ATOMS parameters
+					</td>
+				</tr>
+			</informaltable>
+		</para>
+  </refsection>
 	
   <!-- ===================================================================== -->
   <!-- Authors -->
