@@ -57,6 +57,18 @@
 
     <separator/>
 
+    <!-- Atoms -->
+    <button icon="package-x-generic.png" tooltiptext="Modules manager - ATOMS">
+        <callback instruction='atomsGui();' type="0"/>
+    </button>
+
+    <separator/>
+
+    <!-- Démos -->
+    <button icon="applications-system.png" tooltiptext="Scilab Demonstrations">
+        <callback instruction='demo_gui();' type="0"/>
+    </button>
+
     <!-- Help -->
     <button icon="help-browser.png" tooltiptext="Help Browser">
         <callback instruction='help();' type="0"/>

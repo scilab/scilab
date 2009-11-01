@@ -33,7 +33,7 @@
       editor()
       editor(file)
       editor([file1, file2])
-      editor_highlightline(file, line_number)
+      editorHighlightLine(file, line_number)
     </synopsis>
   </refsynopsisdiv>
 
@@ -114,7 +114,7 @@
           </listitem>
 
           <listitem>
-            <para>editor_highlightline(file, line_number)</para>
+            <para>editorHighlightLine(file, line_number)</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -657,13 +657,13 @@
 editor();
     
 // editor with a file name
-editor('SCI/etc/scilab.start');
+editor('SCI/modules/time/macros/datenum.sci');
     
 // editor with a matrice of files name
-editor(['SCI/etc/scilab.start','SCI/etc/scilab.quit']);
+editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
     
 // editor with a file name and the line number to highlight
-editor_highlightline('SCI/etc/scilab.start', 1);
+editorHighlightLine('SCI/modules/time/macros/datenum.sci', 1);
  ]]></programlisting>
   </refsection>
 
