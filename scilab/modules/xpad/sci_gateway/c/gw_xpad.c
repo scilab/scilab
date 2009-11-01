@@ -27,7 +27,7 @@ static gw_generic_table Tab[]=
   {sci_xpad, "xpad"},
   {sci_xpad_highlightline, "xpad_highlightline"},
   {sci_xpad, "editor"},
-  {sci_xpad_highlightline, "editor_highlightline"}
+  {sci_xpad_highlightline, "editorHighlightLine"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_xpad(void)
