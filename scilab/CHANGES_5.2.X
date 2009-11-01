@@ -1,4 +1,4 @@
-               Changes between version 5.1.2 and 5.2.0 of Scilab
+               Changes between version 5.1.1 and 5.2.0 of Scilab
                =================================================
 
 
@@ -9,16 +9,20 @@ Xcos replaces Scicos in Scilab distribution.
 Based on state of the art components, Xcos provides a stable, easy and
 usable interface to create complex simulations and controls.
 
-Group selection
-
-It leads to an excellent usability, much better performances.
-History of operations
-Tools tips
-rotate?
-Combien de diagram on gere?
-integration of the demo straight into Scilab
-Docking integration
-look and feel
+This new version provides numerous new features:
+* Several diagrams can be edited at the same time
+* Scilab can be used during the diagram construction
+* Diagram edition is available even during simulation
+* Drap and drop from palettes to diagram and between diagrams
+* History (Undo/Redo) with an unlimited number of actions memorized 
+* Viewport to have an overall view of your diagram
+* Palette window with new palettes organization
+* Improved stability
+* Better usability of menus
+* Tool tips on block
+* Big diagram managements
+* Better integration of the demonstrations
+* Standard shortcuts (Copy/Paste/Undo/Redo/...)
 
 ATOMS:
 ======
@@ -904,6 +908,8 @@ Bug fixes:
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
 
+* bug 4620 fixed - the setenv function makes scilab hangs.
+
 * bug 4626 fixed - When using the CLI version, completion made Scilab crashed
 
 * bug 4627 fixed - The function matfile2sci did not manage 7.x format
@@ -1057,3 +1063,4 @@ Bug fixes:
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" fails (on Windows)
 
+* bug 5105 fixed - completion: cd "..\L<tab>  does not work.

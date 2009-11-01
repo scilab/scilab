@@ -98,9 +98,6 @@ nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "boxproblemB.txt" );
-nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
 nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
 // Configure like Box
@@ -135,7 +132,6 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-deletefile ( "boxproblemB.txt" )
 mprintf("End of demo.\n");
 
 //

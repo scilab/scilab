@@ -5,14 +5,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/double_reading_api"));
 cd(pathconvert(TMPDIR+"/double_reading_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
 ilib_build("double_reading",["read_double","read_double"],SCI+"/modules/api_scilab/tests/unit_tests/double_reading_api.c",[],[],"",cflags);
 exec("loader.sce");
-
-            
+ 
 a = [   0 1 2 3; ..
         4 5 6 7; ..
         8 9 10 11];
@@ -26,5 +26,4 @@ b2 = read_double(b);
 
 if or(a2 <> a * -1) then pause;end
 if or(b2 <> (imag(b) + real(b) * %i)) then pause;end
-            
-        
+ 

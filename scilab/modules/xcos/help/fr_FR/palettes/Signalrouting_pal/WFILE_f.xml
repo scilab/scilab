@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="WFILE_f">
+  <refnamediv>
+    <refname>WFILE_f</refname>
+    <refpurpose>Ecriture dans un fichier</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/WFILE_f_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_WFILE_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="WFILE_f">Ecriture dans un fichier</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_WFILE_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_WFILE_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_WFILE_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_WFILE_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_WFILE_f">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondecalcul_WFILE_f">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_WFILE_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_WFILE_f">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Sinks - Palette Affichage</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_WFILE_f">
+    <title>Description</title>
+    <para>
+Ce bloc permet à l'utilisateur de sauvegarder des données dans un fichier.
+Ces données peuvent être formatées ou binaires.
+Chaque appel au bloc correspond à un enregistrement.
+Chaque enregistrement à la forme suivante :  
+ où  est la valeur du temps lorsque le bloc est appelé et  est la 
+ valeur d'entrée.
+</para>
+<para>Ce bloc ne gere pas les noms de fichier au format UTF.</para>
+    <para>
+Ce bloc fonctionne de paire avec le bloc .
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_WFILE_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/WFILE_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Input size</emphasis>
+        </para>
+        <para> un scalaire. Cela fixe la taille de l'entrée.</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Output file name</emphasis>
+        </para>
+        <para> une chaîne de caractères définissant le chemin du fichier.</para>
+        <para> Propriétés : Type 'str' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Output Format</emphasis>
+        </para>
+        <para> une chaîne de caractères définissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramètre est renseigné alors il doit être encadrer par des paranthèses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/WFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> Propriétés : Type 'str' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Buffer size</emphasis>
+        </para>
+        <para> Pour améliorer l'efficacité de la lecture, il est possible d'enregistrer les données d'entrée dans un buffer. Les données sont alors délivrées à chaque appel du bloc lorsque le buffer est rempli.</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_WFILE_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">writef</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_WFILE_f">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Sinks/WFILE_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondecalcul_WFILE_f">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/fortran/writef.f (Type 0)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_WFILE_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

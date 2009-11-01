@@ -32,22 +32,22 @@
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>StrErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>StrErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>StrErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>StrErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
         <para>Named variable profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>StrErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -101,7 +101,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -117,13 +117,13 @@
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
-        <synopsis>StrErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
-        <synopsis>StrErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
-        <synopsis>StrErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
-        <synopsis>StrErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -169,7 +169,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>StrErr</term>
+                <term>SciErr</term>
                 <listitem>
                     <para>
                         Error structure where is stored errors messages history and first error number.
@@ -187,7 +187,7 @@
         <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.c-->
         <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.tst-->
         <!--Lib_name: integer_writing-->
-        <!--Func_list: write_integer-->
+        <!--Func_list: read_integer-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 
@@ -195,7 +195,7 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
 
 int read_integer(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	//output variable info
 	int iRows8					= 0;
 	int iCols8					= 0;
@@ -237,141 +237,141 @@ int read_integer(char *fname,unsigned long fname_len)
 	CheckLhs(6,6);
 
 	//get varialbe address
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr8);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr8);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddru8);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddru8);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr16);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr16);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddru16);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddru16);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddr32);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddr32);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddru32);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddru32);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
-		return 0;
-	}
-
-	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr8, &iPrec);
-	if(strErr.iErr || iPrec != SCI_INT8)
-	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru8, &iPrec);
-	if(strErr.iErr || iPrec != SCI_UINT8)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr8, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT8)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr16, &iPrec);
-	if(strErr.iErr || iPrec != SCI_INT16)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru8, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT8)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru16, &iPrec);
-	if(strErr.iErr || iPrec != SCI_UINT16)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr16, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT16)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr32, &iPrec);
-	if(strErr.iErr || iPrec != SCI_INT32)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru16, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT16)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//check variable precision
-	strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru32, &iPrec);
-	if(strErr.iErr || iPrec != SCI_UINT32)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr32, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT32)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	//check variable precision
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru32, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT32)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfInteger8(pvApiCtx, piAddr8, &iRows8, &iCols8, &pcData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfInteger8(pvApiCtx, piAddr8, &iRows8, &iCols8, &pcData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddru8, &iRowsu8, &iColsu8, &pucData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddru8, &iRowsu8, &iColsu8, &pucData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfInteger16(pvApiCtx, piAddr16, &iRows16, &iCols16, &psData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfInteger16(pvApiCtx, piAddr16, &iRows16, &iCols16, &psData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddru16, &iRowsu16, &iColsu16, &pusData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddru16, &iRowsu16, &iColsu16, &pusData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfInteger32(pvApiCtx, piAddr32, &iRows32, &iCols32, &piData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfInteger32(pvApiCtx, piAddr32, &iRows32, &iCols32, &piData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//retrieve dimensions and data
-	strErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddru32, &iRowsu32, &iColsu32, &puiData);
-	if(strErr.iErr)
+	sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddru32, &iRowsu32, &iColsu32, &puiData);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -384,50 +384,50 @@ int read_integer(char *fname,unsigned long fname_len)
 	puiDataOut  = (unsigned int*)create_output(64, 4, iRowsu32, iColsu32, (void*)puiData);
 
 	//create new variable
-	strErr = createMatrixOfInteger8(pvApiCtx, Rhs + 1, iRows8, iCols8, pcDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfInteger8(pvApiCtx, Rhs + 1, iRows8, iCols8, pcDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//create new variable
-	strErr = createMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 2, iRowsu8, iColsu8, pucDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 2, iRowsu8, iColsu8, pucDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//create new variable
-	strErr = createMatrixOfInteger16(pvApiCtx, Rhs + 3, iRows16, iCols16, psDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfInteger16(pvApiCtx, Rhs + 3, iRows16, iCols16, psDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//create new variable
-	strErr = createMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 4, iRowsu16, iColsu16, pusDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 4, iRowsu16, iColsu16, pusDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//create new variable
-	strErr = createMatrixOfInteger32(pvApiCtx, Rhs + 5, iRows32, iCols32, piDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 5, iRows32, iCols32, piDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	//create new variable
-	strErr = createMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 6, iRowsu32, iColsu32, puiDataOut);
-	if(strErr.iErr)
+	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 6, iRowsu32, iColsu32, puiDataOut);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

@@ -189,17 +189,24 @@ public abstract class BasicLink extends XcosUIDObject {
 		String[] fields = {"Link", "xx", "yy", "id", "thick", "ct", "from", "to"};
 		ScilabMList data = new ScilabMList(fields);
 
-//		double[][] xx = {{getSource().getGeometry().getCenterX() + getSource().getParent().getGeometry().getX()},
-//				{getTarget().getGeometry().getCenterX() + getTarget().getParent().getGeometry().getX()}};
-//		data.add(new ScilabDouble(xx)); // xx
-//
-//		double[][] yy = {{-(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight())},
-//				{-(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight())}};
-//		data.add(new ScilabDouble(yy)); // yy
+		double[][] xx = new double[1][2 + getPointCount()];
 
-		data.add(new ScilabDouble()); // xx
-		
-		data.add(new ScilabDouble()); // yy
+		// xx
+		xx[0][0] = getSource().getGeometry().getCenterX() + getSource().getParent().getGeometry().getX();
+		for(int i = 0 ; i < getPointCount() ; i++){
+			xx[0][i+1] = ((mxPoint)getGeometry().getPoints().get(i)).getX();
+		}
+		xx[0][1 + getPointCount()] = getTarget().getGeometry().getCenterX() + getTarget().getParent().getGeometry().getX();
+		data.add(new ScilabDouble(xx));
+
+		// yy
+		double[][] yy = new double[1][2 + getPointCount()];
+		yy[0][0] = -(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		for(int i = 0 ; i < getPointCount() ; i++){
+			yy[0][i+1] = - ((mxPoint)getGeometry().getPoints().get(i)).getY() + getSource().getParent().getGeometry().getHeight();
+		}
+		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		data.add(new ScilabDouble(yy));
 		
 		data.add(new ScilabString("drawlink")); // id
 

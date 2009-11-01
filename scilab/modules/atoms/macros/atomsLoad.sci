@@ -143,7 +143,7 @@ function result = atomsLoad(packages)
 		
 		// Get the installed path
 		// =====================================================================
-		packages(i,4) = atomsGetInstalledPath([packages(i,1) packages(i,2)],packages(i,3));
+		packages(i,4) = atomsGetInstalledPath([packages(i,1) packages(i,2) packages(i,3)]);
 		
 	end
 	

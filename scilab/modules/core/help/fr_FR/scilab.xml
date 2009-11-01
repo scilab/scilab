@@ -20,7 +20,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>scilab &lt;Options&gt;</synopsis>
+    <synopsis>scilab &lt;Options&gt;
+scilab-adv-cli &lt;Options&gt;
+scilab-cli &lt;Options&gt;</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -32,10 +34,10 @@
 
         <listitem>
           <para>si cette option est présente des arguments sont passés à
-          Scilab. Ils peuvent être récupérés par la fonction
-          <literal>sciargs</literal>. Les arguments multiples doivent être
-          passés dans chaîne de caractères les contenant, séparés par des
-          espaces <literal>scilab -args 'foo1 foo2';</literal></para>
+          Scilab. Ils peuvent être récupérés par la fonction <literal><link
+          linkend="sciargs">sciargs</link></literal>. Les arguments multiples
+          doivent être passés dans chaîne de caractères les contenant, séparés
+          par des espaces <literal>scilab -args 'foo1 foo2';</literal></para>
         </listitem>
       </varlistentry>
 
@@ -60,6 +62,9 @@
 
           <para>Définir la variable SCILAB_GDB_OPT pour ajouter des options
           supplémentaire à gdb.</para>
+
+          <para>Conseil: Utilisez cette option à partir de l'arborescence
+          source de Scilab</para>
         </listitem>
       </varlistentry>
 
@@ -68,6 +73,9 @@
 
         <listitem>
           <para>Lance Scilab sous kdbg (Unix/linux seulement).</para>
+
+          <para>Conseil: Utilisez cette option à partir de l'arborescence
+          source de Scilab</para>
         </listitem>
       </varlistentry>
 
@@ -80,6 +88,9 @@
           <para>Définir la variable SCILAB_VALGRIND_OPT pour ajouter des
           options supplémentaire à valgrind (et surcharger les options de
           valgrind existantes).</para>
+
+          <para>Conseil: Utilisez cette option à partir de l'arborescence
+          source de Scilab</para>
         </listitem>
       </varlistentry>
 
@@ -92,6 +103,9 @@
           <para>Définir la variable SCILAB_VALGRIND_OPT pour ajouter des
           options supplémentaires à callgrind (et surcharger les options de
           callgrind existante).</para>
+
+          <para>Conseil: Utilisez cette option à partir de l'arborescence
+          source de Scilab</para>
         </listitem>
       </varlistentry>
 
@@ -101,6 +115,9 @@
         <listitem>
           <para>Lance Scilab sous Electric Fence (Unix/linux
           seulement).</para>
+
+          <para>Conseil: Utilisez cette option à partir de l'arborescence
+          source de Scilab</para>
         </listitem>
       </varlistentry>
 
@@ -111,6 +128,11 @@
           <para>si cette option est présente l'instruction
           <literal>Instruction</literal> est exécutée dans Scilab
           immédiatement après les fichiers startup.</para>
+
+          <para>Plusieurs commandes peuvent être indiquées à la suite avec
+          l'option -e:</para>
+
+          <para><programlisting>scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting></para>
         </listitem>
       </varlistentry>
 
@@ -119,8 +141,8 @@
 
         <listitem>
           <para>si cette option est présente le script <literal>File</literal>
-          est exécuté dans Scilab mmédiatement après les fichiers
-          startup.</para>
+          est exécuté dans Scilab mmédiatement après les fichiers startup. -f
+          et -e ne peuvent pas être utilisée en même temps.</para>
         </listitem>
       </varlistentry>
 
@@ -129,11 +151,24 @@
 
         <listitem>
           <para>Cette option permet de sélectionner la langue de
-          l'utilisateur. Les valeurs possible pour sont <literal>-l
-          fr</literal> pour sélectionner le francais et <literal>-l
-          en</literal> pour sélectionner l'anglais. La langue par défaut est
-          l'anglais, ce défaut est fixé dans le fichier
+          l'utilisateur. <emphasis>lang</emphasis> peut avoir les valeurs:
+          <emphasis>ca_ES de_DE en_US es_ES fr_FR ja_JP pt_BR ru_RU zh_CN
+          zh_TW</emphasis> (à partir de Scilab 5.2).</para>
+
+          <para>Les valeurs possible pour sont <literal>-l fr</literal> pour
+          sélectionner le francais et <literal>-l en</literal> pour
+          sélectionner l'anglais. La langue par défaut est l'anglais, ce
+          défaut est fixé dans le fichier
           <literal>scilab.start</literal>.</para>
+
+          <para>Avec certains systèmes, la compilation des locales peut être
+          nécessaire pour rendre correctement les polices UTF-8.</para>
+
+          <para>Scilab peut être aussi appellé de la manière suivante:</para>
+
+          <programlisting>LANG=ja_JP scilab
+# équivalent à
+scilab -l ja_JP</programlisting>
         </listitem>
       </varlistentry>
 
@@ -188,8 +223,29 @@
         <term>-nw</term>
 
         <listitem>
-          <para>si cette option est présente Scilab n'est pas exécuté dans une
-          fenêtre spécifique mais sur la ligne de commande.</para>
+          <para>si cette option est présente Scilab est lancé en tant que
+          interpreteur de commande avancé (graphiques, fonctionnalité de
+          construction de l'aide, etc).</para>
+
+          <para>The option peut être utilisé avec les arguments -f ou
+          -e.</para>
+
+          <para>A partir de la version 5.2 de Scilab:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>La distribution de Scilab fournit aussi un binaire dédié
+              faisant la même chose que l'option <emphasis>-nw</emphasis>:
+              <emphasis>scilab-adv-cli</emphasis> (Scilab Advanced Command
+              Line Interpreter).</para>
+            </listitem>
+
+            <listitem>
+              <para>Les fonctionnalités de pipe sont accessibles pour tous les
+              systèmes d'exploitations (voir les examples pour plus de
+              détails)</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -197,10 +253,32 @@
         <term>-nwni</term>
 
         <listitem>
-          <para>si cette option est présente Scilab n'est pas exécuté dans une
-          fenêtre spécifique et n'accepte pas d'interaction avec
-          l'utilisateur. Cette option doit être utilisée avec l'option -e ou
-          -f .</para>
+          <para>si cette option est présente Scilab est lancé en tant que
+          interpreteur de commande (sans graphique, ni fonctionnalité de
+          construction de l'aide, etc).</para>
+
+          <para>The option peut être utilisé avec les arguments -f ou
+          -e.</para>
+
+          <para>A partir de la version 5.2 de Scilab:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>La distribution de Scilab fournit aussi un binaire dédié
+              faisant la même chose que l'option <emphasis>-nw</emphasis>:
+              <emphasis>scilab-cli</emphasis> (Scilab Command Line
+              Interpreter).</para>
+            </listitem>
+
+            <listitem>
+              <para>Les fonctionnalités de pipe sont accessibles pour tous les
+              systèmes d'exploitations (voir les examples pour plus de
+              détails)</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>Ce mode ne charge pas la Machine Virtuelle Java (plus rapide à
+          démarer et consomme moins de mémoire).</para>
         </listitem>
       </varlistentry>
 
@@ -223,9 +301,72 @@
   </refsection>
 
   <refsection>
+    <title>Java Virtual Machine options</title>
+
+    <para>A partir de la version 5.0 de Scilab, l'interface graphique et le
+    système de génération de la documentation sont basés sur des
+    fonctionnalités Java. Dans certains cas, il peut être intéressant de
+    modifier les options de la JVM (Java Virtual Machine).</para>
+
+    <para>Ces options sont accessibles via le fichier
+    <emphasis>jvm_options.xml</emphasis>.</para>
+
+    <para>Dans les version 5.0.X et 5.1.X, ce fichier est accessible dans
+    <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis></para>
+
+    <para>Dans les versions &gt;= 5.2.0, le fichier est accessible sous
+    <emphasis>etc/jvm_options.xml<emphasis> </emphasis></emphasis></para>
+
+    <para><emphasis><emphasis>Par défault, les trois options suivantes sont
+    facilement accessibles à partir du fichier de
+    configuration:</emphasis></emphasis></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>-XmxXXXm</term>
+
+        <listitem>
+          <para>Cette option indique la quantité de mémoire mise à disposition
+          de la machine virtuelle Java. Par défaut, la valeur est de 256M. Si
+          vous changez cette valeur, assurez vous que cette valeur ne dépasse
+          pas la quantité de mémoire accessible sur le système.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-Djava.compiler=JIT</term>
+
+        <listitem>
+          <para>Avec la valeur JIT, le compilateur Java Just In Time (JIT) est
+          activé. Il est activé par défault. <emphasis>NONE</emphasis>
+          désactive le JIT et diminue de manière importante les
+          performances.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-verbose:jni / -Xcheck:jni</term>
+
+        <listitem>
+          <para>Ces options activent de nombreuses vérifications, message de
+          débug et autres contrôles sur les appels JNI (appel natif Java). Ces
+          options sont utiles pour le débuggage et désactivée par défaut à
+          cause de l'impact sur les performances. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Many more options are available. They can improve the performances,
+    change look and feel, change memory managements... See: <link
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
+    or <link
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
+  </refsection>
+
+  <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 # Lançons Scilab en mode profilage sans qu'un gdb soit lancé à chaque SIGSEGV.
 # On est sous Bash
 export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
@@ -233,12 +374,36 @@ scilab -profiling
 
 # Lançons Scilab en mode debug sans s'arrêter à chaque SIGSEGV
 # D'abord écrivons un petit fichier de commandes
-echo "handle SIGSEGV nostop" &gt; debug.txt
+echo "handle SIGSEGV nostop" &amp;gt; debug.txt
 # On règle l'option de gdb
 # On est sous Bash
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Lançons Scilab en mode debug
 scilab -debug
- ]]></programlisting>
+ </programlisting>
+
+    <programlisting role="example-cli">
+# Sous GNU/Linux, Mac OS X or Unix:
+$ echo "disp(%pi)"|scilab-cli
+ou
+$ echo "disp(%pi)"|scilab -nwni
+
+# Ouvre uniquement la fenêtre d'aide Scilab:
+$ scilab-adv-cli -e "help()"
+or
+$ scilab -nw -e "help()"
+
+
+# Scilab utilisé en tant que moteur de scripting
+echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
+echo $? </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="exit">exit</link></member>
+    </simplelist>
   </refsection>
 </refentry>

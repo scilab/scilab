@@ -28,13 +28,13 @@
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>:Specifies the format conversion.</para>
+          <para>Specifies the format conversion.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>string</term>
         <listitem>
-          <para>:Specifies input to be read.</para>
+          <para>Specifies input to be read.</para>
         </listitem>
       </varlistentry>
     </variablelist>

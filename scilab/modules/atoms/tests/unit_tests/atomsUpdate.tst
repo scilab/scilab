@@ -26,7 +26,7 @@ atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsInstall("toolbox_5","user");
 
@@ -45,7 +45,7 @@ if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsUpdate();
 
@@ -71,7 +71,7 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsInstall("toolbox_4","user");
 atomsInstall("toolbox_5","user");
@@ -91,7 +91,7 @@ if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsUpdate();
 
@@ -119,7 +119,7 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsInstall("toolbox_3","user");
 atomsInstall("toolbox_4","user");
@@ -141,7 +141,7 @@ if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsUpdate();
 
@@ -171,7 +171,7 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsInstall("toolbox_5","user");
 atomsInstall("toolbox_5","allusers");
@@ -200,7 +200,7 @@ if atomsGetInstalledStatus(["toolbox_1" "1.0"],"allusers")<>"A" then pause, end
 
 // Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
-atomsGetTOOLBOXES(%T);
+atomsSystemUpdate();
 
 atomsUpdate([],"user");
 

@@ -72,7 +72,7 @@
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>: <literal>||y - impuls(H,npt)||^2</literal>, where <literal>impuls(H,npt)</literal> are the <literal>npt</literal> first coefficients of impulse response of <literal>H</literal></para>
+          <para> <literal>||y - impuls(H,npt)||^2</literal>, where <literal>impuls(H,npt)</literal> are the <literal>npt</literal> first coefficients of impulse response of <literal>H</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>

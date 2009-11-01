@@ -15,12 +15,14 @@ function atomsDownload(url_in,file_out,md5sum)
 	// =========================================================================
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
 	end
 	
 	// Check input parameters number

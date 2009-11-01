@@ -17,11 +17,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -216,7 +220,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		File f = new File(filePath);
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
-		editorInstance.readFile(f);
+		editorInstance.readFileAndWait(f);
 		editorInstance.lastKnownSavedState = System.currentTimeMillis();
 	}
 
@@ -477,25 +481,25 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		File newSavedFile = new File(fileToSave);
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
-		FileWriter writer;
+		
+		BufferedWriter out = null;
 		try {
-			writer = new FileWriter(newSavedFile, false);
+			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), "UTF8"));
 			try {
-				editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
-			} catch (BadLocationException e){
+				editorKit.write(out, styledDocument, 0, styledDocument.getLength());
+				out.flush();
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-			writer.flush();
-			writer.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		if(newFile){
-			ConfigManager.saveLastOpenedDirectory(newSavedFile.getPath());
-			ConfigXpadManager.saveToRecentOpenedFiles(newSavedFile.getPath());
-			textPaneAt.setName(newSavedFile.getPath());
-			updateRecentOpenedFilesMenu();
+		} catch (UnsupportedEncodingException e2) {
+			e2.printStackTrace();
+			return false;
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+			return false;
 		}
 
 		styledDocument.setContentModified(false);
@@ -601,41 +605,48 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		boolean isSuccess = false;
 		if (textPane.getName() != null) {
-			try {
-// TODO: imho should use File.createTempFile("Sci",".sci") and .renameTo(textPane.getName()) to be safe
-				File newSavedFiled = new File(textPane.getName());
-				if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
-					int actionDialog = JOptionPane.showConfirmDialog(this
-						, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath())
-								 ,XpadMessages.REPLACE_FILE_TITLE, JOptionPane.YES_NO_OPTION);
-					if (actionDialog == JOptionPane.NO_OPTION) {
-						return this.saveAs(this.getTextPane());
-					}
-				}
-				
-				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
-				FileWriter writer = new FileWriter(newSavedFiled, false);
-				try {
-					editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
-				} catch (BadLocationException e){
-					System.err.println("");
-			    	e.printStackTrace();
-				}
-				writer.flush();
-				writer.close();
-				styledDocument.setContentModified(false);
-
-				int index = getTabPane().getSelectedIndex();
-				getTabPane().setTitleAt(index, newSavedFiled.getName());
-				editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
-				isSuccess = true;
-				
-				// Get current file path for Execute file into Scilab 
-				fileFullPath = newSavedFiled.getAbsolutePath();
-
-			} catch (IOException ioex) {
-				JOptionPane.showMessageDialog(this, ioex);
-			}
+			// TODO: imho should use File.createTempFile("Sci",".sci") and .renameTo(textPane.getName()) to be safe
+							File newSavedFiled = new File(textPane.getName());
+							if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
+								int actionDialog = JOptionPane.showConfirmDialog(this
+									, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath())
+											 ,XpadMessages.REPLACE_FILE_TITLE, JOptionPane.YES_NO_OPTION);
+								if (actionDialog == JOptionPane.NO_OPTION) {
+									return this.saveAs(this.getTextPane());
+								}
+							}
+							
+							ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+							
+							BufferedWriter out = null;
+							try {
+								out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFiled), "UTF8"));
+								try {
+									editorKit.write(out, styledDocument, 0, styledDocument.getLength());
+									out.flush();
+									out.close();
+								} catch (IOException e) {
+									e.printStackTrace();
+								} catch (BadLocationException e) {
+									e.printStackTrace();
+								}
+							} catch (UnsupportedEncodingException e2) {
+								e2.printStackTrace();
+								return false;
+							} catch (FileNotFoundException e2) {
+								e2.printStackTrace();
+								return false;
+							}
+							
+							styledDocument.setContentModified(false);
+			
+							int index = getTabPane().getSelectedIndex();
+							getTabPane().setTitleAt(index, newSavedFiled.getName());
+							editor.setTitle(newSavedFiled.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+							isSuccess = true;
+							
+							// Get current file path for Execute file into Scilab 
+							fileFullPath = newSavedFiled.getAbsolutePath();
 		} else {
 			isSuccess = saveAs(textPane); 
 		}
@@ -686,64 +697,69 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 			}
 
-			try {
-				String doc = this.getTextPane().getText();
+			String doc = this.getTextPane().getText();
 
-				/*we test if the file has already a scilab extension*/
-				boolean hasNoExtension = true;
+			/*we test if the file has already a scilab extension*/
+			boolean hasNoExtension = true;
 
-				for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
-					if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
-						hasNoExtension = false;
-						break;
-					}
-
+			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
+				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
+					hasNoExtension = false;
+					break;
 				}
-				/*if no extension , we add it */
-				if (hasNoExtension) {
 
-					if (fileChooser.getFileFilter() == sciFilter) {
-						extension = SCI_EXTENSION;
-					} else if (fileChooser.getFileFilter() == sceFilter) {
-						extension = SCE_EXTENSION;
-					} else if (fileChooser.getFileFilter() == scxFilter) {
-						extension = SCE_EXTENSION;
-					} else {
-						extension = "";
-					}
-					f = new File(f.getPath() + extension);
-				}
-								
-				// TODO factor common code with "Save"
-				ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
-				FileWriter writer = new FileWriter(f);
-				try {
-					editorKit.write(writer, styledDocument, 0, styledDocument.getLength());
-				} catch (BadLocationException e){
-					System.err.println("");
-			    	e.printStackTrace();
-				}
-				writer.flush();
-				writer.close();
-
-				ConfigManager.saveLastOpenedDirectory(f.getPath());
-				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-				textPane.setName(f.getPath());
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-				editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
-				updateRecentOpenedFilesMenu();
-
-				styledDocument.setContentModified(false);
-				lastKnownSavedState = System.currentTimeMillis();
-				isSuccess = true;
-				
-				// Get current file path for Execute file into Scilab 
-				fileFullPath = f.getAbsolutePath();
-
-			} catch (IOException ioex) {
-				ioex.printStackTrace();
-				JOptionPane.showMessageDialog(this, ioex);
 			}
+			/*if no extension , we add it */
+			if (hasNoExtension) {
+
+				if (fileChooser.getFileFilter() == sciFilter) {
+					extension = SCI_EXTENSION;
+				} else if (fileChooser.getFileFilter() == sceFilter) {
+					extension = SCE_EXTENSION;
+				} else if (fileChooser.getFileFilter() == scxFilter) {
+					extension = SCE_EXTENSION;
+				} else {
+					extension = "";
+				}
+				f = new File(f.getPath() + extension);
+			}
+							
+			// TODO factor common code with "Save"
+			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+			
+			BufferedWriter out = null;
+			try {
+				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF8"));
+				try {
+					editorKit.write(out, styledDocument, 0, styledDocument.getLength());
+					out.flush();
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (BadLocationException e) {
+					e.printStackTrace();
+				}
+			} catch (UnsupportedEncodingException e2) {
+				e2.printStackTrace();
+				return false;
+			} catch (FileNotFoundException e2) {
+				e2.printStackTrace();
+				return false;
+			}
+
+			ConfigManager.saveLastOpenedDirectory(f.getPath());
+			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+			textPane.setName(f.getPath());
+			getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+			editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+			updateRecentOpenedFilesMenu();
+
+			styledDocument.setContentModified(false);
+			lastKnownSavedState = System.currentTimeMillis();
+			isSuccess = true;
+			
+			// Get current file path for Execute file into Scilab 
+			fileFullPath = f.getAbsolutePath();
 
 		}
 		return isSuccess;
@@ -1165,18 +1181,23 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 				if (choice  == 0) {
 					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-					FileWriter writer = null;
+					
+					BufferedWriter out = null;
 					try {
-						writer = new FileWriter(f);
+						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF8"));
 						try {
-							editorKit.write(writer, styleDocument, 0, styleDocument.getLength());
+							editorKit.write(out, styleDocument, 0, styleDocument.getLength());
+							out.flush();
+							out.close();
+						} catch (IOException e) {
+							e.printStackTrace();
 						} catch (BadLocationException e) {
 							e.printStackTrace();
 						}
-						writer.flush();
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
+					} catch (UnsupportedEncodingException e2) {
+						e2.printStackTrace();
+					} catch (FileNotFoundException e2) {
+						e2.printStackTrace();
 					}
 
 					ConfigManager.saveLastOpenedDirectory(f.getPath());

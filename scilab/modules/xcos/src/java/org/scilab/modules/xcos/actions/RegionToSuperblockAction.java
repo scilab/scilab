@@ -37,6 +37,7 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -122,7 +123,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    //find breaking links, to insert input/output blocks
 	    List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
-	    
+//	    printBreakingLink(breaks);
 	    List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
 	    
 	    //add in/out blocks in SuperBlock
@@ -134,36 +135,60 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	if(link.getLink() instanceof ExplicitLink){
 	    		if(link.getOutGoing()){//OUT_f
 	    			block = BasicBlock.createBlock("OUT_f");
-	    			block.addPort(new ExplicitInputPort());
+	    			ExplicitInputPort port = new ExplicitInputPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(0) + 1);
 	    			maxValues.set(0, maxValues.get(0) + 1);
 	    		}else{//IN_f
 	    			block = BasicBlock.createBlock("IN_f");
-	    			block.addPort(new ExplicitOutputPort());
+	    			ExplicitOutputPort port = new ExplicitOutputPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(1) + 1);
 	    			maxValues.set(1, maxValues.get(1) + 1);
 	    		}
 	    	}else if(link.getLink() instanceof ImplicitLink){
 	    		if(link.getOutGoing()){//OUTIMPL_f
 	    			block = BasicBlock.createBlock("OUTIMPL_f");
-	    			block.addPort(new ImplicitInputPort());
+	    			ImplicitInputPort port = new ImplicitInputPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(2) + 1);
 	    			maxValues.set(2, maxValues.get(2) + 1);
 	    		}else{//INIMPL_f
 	    			block = BasicBlock.createBlock("INIMPL_f");
-	    			block.addPort(new ImplicitOutputPort());
+	    			ImplicitOutputPort port = new ImplicitOutputPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(3) + 1);
 	    			maxValues.set(3, maxValues.get(3) + 1);
 	    		}
 	    	}else if(link.getLink() instanceof CommandControlLink){
 	    		if(link.getOutGoing()){//CLKOUTV_f
 	    			block = BasicBlock.createBlock("CLKOUTV_f");
-	    			block.addPort(new ControlPort());
+	    			ControlPort port = new ControlPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(4) + 1);
 	    			maxValues.set(4, maxValues.get(4) + 1);
 	    		}else{//CLKINV_f
 	    			block = BasicBlock.createBlock("CLKINV_f");
-	    			block.addPort(new CommandPort());
+	    			CommandPort port = new CommandPort();
+	    			port.setDataLines(-1);
+	    			port.setDataColumns(-2);
+	    			port.setDataType(DataType.UNKNOW_TYPE);
+	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(5) + 1);
 	    			maxValues.set(5, maxValues.get(5) + 1);
 	    		}
@@ -172,22 +197,18 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	block.setGeometry(link.getGeometry());
 	    	block.setExprs(new ScilabString(Integer.toString(link.getPortNumber())));
 	    	block.setRealParameters(new ScilabDouble());
-	    	block.setIntegerParameters(new ScilabDouble());
+	    	block.setIntegerParameters(new ScilabDouble(link.getPortNumber()));
 	    	block.setObjectsParameters(new ScilabList());
 	    	diagram.addCells(new Object[]{block});
 	    	
 	    	//create new link in SuperBlock
 	    	BasicLink newLink = null;
 	    	if(link.getOutGoing()){//old -> new
-//	    		System.err.println("create link from : " + link.getLink().getSource().getClass().getSimpleName());
-//	    		System.err.println("to : " + block.getChildAt(0).getClass().getSimpleName());
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)link.getLink().getSource(), (BasicPort)block.getChildAt(0));
 	    		newLink.setGeometry(new mxGeometry(0,0,80,80));
 		    	newLink.setSource((BasicPort)link.getLink().getSource());
 		    	newLink.setTarget((BasicPort)block.getChildAt(0));
 	    	}else{//new -> old
-//	    		System.err.println("create link from : " + block.getChildAt(0).getClass().getSimpleName());
-//	    		System.err.println("to : " + link.getLink().getTarget().getClass().getSimpleName());
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)block.getChildAt(0), (BasicPort)link.getLink().getTarget());
 	    		newLink.setGeometry(new mxGeometry(0,0,80,80));
 		    	newLink.setSource((BasicPort)block.getChildAt(0));
@@ -197,7 +218,6 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	diagram.addCells(new Object[]{newLink});
 	    }
 	    
-	    //printBreakingLink(breaks);
 	    superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	    superBlock.createChildDiagram();
 
@@ -246,10 +266,13 @@ public class RegionToSuperblockAction extends DefaultAction {
         	newLink.setSource(source);
         	newLink.setTarget(target);
         	graph.addCell(newLink);
-        	graph.removeCells(new Object[]{link.getLink()});
-
+        	
+        	//this method don't call CELLS_REMOVED between beginUpdate and endUpdate
+        	//this function unlink source and target correctly too
+        	graph.getModel().remove(link.getLink());
 	    }
 	    diagram.getModel().endUpdate();
+	    diagram.refresh();
 	}
 
 
@@ -266,12 +289,12 @@ public class RegionToSuperblockAction extends DefaultAction {
 						BasicLink link = (BasicLink)port.getEdgeAt(0);
 						if(block.getChildAt(j) instanceof InputPort || block.getChildAt(j) instanceof ControlPort){
 							BasicBlock source = (BasicBlock)(link.getSource().getParent());
-							if(isInSelection(objs, source)){
+							if(!isInSelection(objs, source)){
 								breaks.add(new BrokenLink(link, source.getGeometry(), false));
 							}
 						}else{ //OutputPort or CommandPort
 							BasicBlock target = (BasicBlock)(link.getTarget().getParent());
-							if(isInSelection(objs, target)){
+							if(!isInSelection(objs, target)){
 								breaks.add(new BrokenLink(link, target.getGeometry(), true));
 							}
 						}
@@ -283,10 +306,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
 	
 	private boolean isInSelection(Object objs[], Object item){
-		boolean isFind = true;
+		boolean isFind = false;
 		for(int k = 0 ; k < objs.length ; k++){
 			if(objs[k] == item){
-				isFind = false;
+				isFind = true;
 				break;
 			}
 		}

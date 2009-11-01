@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OpAmp">
+  <refnamediv>
+    <refname>OpAmp</refname>
+    <refpurpose>Ideal opamp (norator-nullator pair)</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/OpAmp.jpg" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_OpAmp">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="OpAmp">Ideal opamp (norator-nullator pair)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_OpAmp">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_OpAmp">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_OpAmp">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_OpAmp">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="OpAmp">Modelica model</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_OpAmp">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_OpAmp">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_OpAmp">
+    <title>Description</title>
+    <para>
+The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0 (nullator). At the right port both any voltage v2 and any current i2 are possible (norator).  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Defaultproperties_OpAmp">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'in_p'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'in_n'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'out'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> OpAmp</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_OpAmp">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/OpAmp.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_OpAmp">
+    <title>Modelica model</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/OpAmp.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_OpAmp">
+    <title>Authors</title>
+    <para><emphasis role="bold"/> - www.modelica.org</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,2074 @@
+<!--  Scicos
+
+   Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+  See the file ../license.txt
+-->
+
+<DATA flag="bib">
+
+<FILE name='ABCD_Blocks' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='ABSBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ABS_VALUE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='AFFICH_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='AFFICH_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ANDBLK' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ANDLOG_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='AUTOMAT' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='About_scicos' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='BACKLASH' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='BIGSOM_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='BITCLEAR' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='BITSET' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='BOUNCE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='BOUNCEXY' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='BPLATFORM' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='Bache' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Branching_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CANIMXY' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CANIMXY3D' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CBLOCK' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CEVENTSCOPE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CFSCOPE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLINDUMMY_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKFROM' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKGOTO' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKGotoTagVisibility' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKINV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKIN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKOUTV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKOUT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKSOMV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKSOM_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLKSPLIT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLOCK_c' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLOCK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLR' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLR_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLSS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CLSS_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CMAT3D' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CMATVIEW' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CMSCOPE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CONST' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CONSTRAINT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CONST_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CONST_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CONVERT' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='COSBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CSCOPE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CSCOPXY' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CSCOPXY3D' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CUMSUM' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CURVE_c' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CURV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='Capacitor' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ConstantVoltage' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Context' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='Counter' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='CurrentSensor' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DEADBAND' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DEBUG_SCICOS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DELAYV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DELAY_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DEMUX' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DEMUX_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DERIV' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DFLIPFLOP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DIFF_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLATCH' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLR' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLRADAPT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLR_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLSS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DLSS_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DOLLAR' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DOLLAR_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DOLLAR_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='DemoBlocks_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Diode' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EDGETRIGGER' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EDGE_TRIGGER' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ENDBLK' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='ESELECT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EVTDLY_c' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EVTDLY_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EVTGEN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EVTVARDLY' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXPBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXPBLK_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXPRESSION' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXTRACT' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXTRACTBITS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='EXTRACTOR' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='EXTTRI' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Electrical_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Events_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Extract_Activation' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='FROM' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='FROMMO' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='FROMWSB' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='FROMWS_c' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='FSV_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GAINBLK' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GAINBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GAIN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GENERAL_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GENSIN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GENSQR_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='GOTO' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='GOTOMO' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='GotoTagVisibility' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='GotoTagVisibilityMO' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='Ground' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Gyrator' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='HALT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='HYSTHERESIS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='IFTHEL_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='IMPSPLIT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INIMPL_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INTEGRAL' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INTEGRAL_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INTEGRAL_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INTMUL' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='INTRP2BLK_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INTRPLBLK_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INVBLK' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='INVBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='IN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ISELECT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ISELECT_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Inductor' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Integer_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='JKFLIPFLOP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Keyboard_shortcuts' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='LOGBLK_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='LOGIC' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='LOGICAL_OP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='LOOKUP_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Linear_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Lorentz_diagr' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='MATBKSL' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATCATH' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATCATV' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATDET' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATDIAG' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATDIV' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATEIG' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATEXPM' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATINV' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATLU' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATMAGPHI' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATMUL' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATPINV' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATRESH' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATSING' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATSUM' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATTRAN' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATZCONJ' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MATZREIM' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MAXMIN' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MAX_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MBLOCK' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='MCLOCK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MEMORY_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MFCLCK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MIN_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MOTOR' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MUX' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='MUX_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='M_SWITCH' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='M_freq' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='Matrix_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Menu_entries' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Modulo_Count' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='NEGTOPOS_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='NMOS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='NPN' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='NRMSOM_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Non_linear_pal' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='OUTIMPL_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='OUT_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='OldBlocks_pal' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='OpAmp' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='Others_pal' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PDE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PID' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='PNP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='POSTONEG_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='POWBLK_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PRODUCT' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PROD_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PerteDP' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PotentialSensor' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='PuitsP' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='QUANT_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RAMP' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RAND_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RAND_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RATELIMITER' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='READAU_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='READC_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='REGISTER' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='REGISTER_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RELATIONALOP' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RELAY_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RFILE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RFILE_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='RICC' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ROOTCOEF' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Resistor' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SAMPHOLD' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SAMPHOLD_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SAMPLEHOLD_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SATURATION' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SAT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SAWTOOTH_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SCALAR2VECTOR' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SELECT_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SELECT_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SHIFT' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='SIGNUM' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SINBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SLIDER_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SPLIT_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SQRT' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SRFLIPFLOP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='STEP' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='STEP_FUNCTION' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SUBMAT' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SUMMATION' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SUM_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SUPER_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SWITCH2' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SWITCH2_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SWITCH_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SampleCLK' type='XML'>
+<BIBLIO>
+<SP>
+
+</SP>
+</BIBLIO>
+</FILE>
+
+<FILE name='Sigbuilder' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SineVoltage' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Sinks_pal' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='SourceP' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Sources_pal' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Switch' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='TANBLK_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TCLSS' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TCLSS_f' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TEXT_f' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TIME_DELAY' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TIME_f' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TKSCALE' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='TOWS_c' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='TRASH_f' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ThermoHydraulics_pal' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='Threshold_pal' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='TrigFun' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VARIABLE_DELAY' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VVsourceAC' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VanneReglante' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VariableResistor' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VoltageSensor' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='VsourceAC' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='WFILE' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='WFILE_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='WRITEAU_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='WRITEC_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='ZCROSS_f' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='block_type' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='buildouttb' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='c_block' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='create_palette' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='curblock' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='fortran_block' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='freq_div' type='XML'>
+<BIBLIO>
+
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='func_block' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='generic_block' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='generic_block2' type='XML'>
+<BIBLIO>
+
+
+</BIBLIO>
+</FILE>
+
+<FILE name='generic_block3' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='getblocklabel' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='getscicosvars' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='lincos' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='phase_simulation' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='pointer_xproperty' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='scicos' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_block' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='scicos_cpr' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='scicos_debug' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_diagram' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_graphics' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_link' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_model' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_params' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_sim' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_simulate' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_state' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicos_time' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scicosim' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scifunc_block' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='scifunc_block_m' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='set_xproperty' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='steadycos' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='var2vec' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+<FILE name='vec2var' type='XML'>
+<BIBLIO>
+
+</BIBLIO>
+</FILE>
+
+
+</DATA>

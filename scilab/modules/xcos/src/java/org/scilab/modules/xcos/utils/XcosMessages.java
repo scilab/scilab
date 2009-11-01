@@ -70,7 +70,6 @@ public final class XcosMessages {
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");
     public static final String DETAILS = Messages.gettext("Details");
-    public static final String BROWSER = Messages.gettext("Browser");
 
     /** Simulation menu */
     public static final String SIMULATION = Messages.gettext("Simulation");
@@ -194,4 +193,11 @@ public final class XcosMessages {
     public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
     public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
     public static final String LICENSE = Messages.gettext("CeCILL License");
+
+    /** InfoBar messages */
+    public static final String EMPTY_INFO = "";
+    public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
+    public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
+    public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
+    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
 }

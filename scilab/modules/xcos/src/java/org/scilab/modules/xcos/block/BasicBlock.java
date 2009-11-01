@@ -717,7 +717,11 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     private ScilabList createScilabDocProperties() {
-	return new ScilabList();
+	ScilabList result = new ScilabList();
+	// Store UID in doc so that Scilab will now it without being disturbed.
+	result.add(new ScilabString(getId()));
+	
+	return result;
     }
 
     private ScilabType getSimulationFunctionNameAndType() {
@@ -927,7 +931,7 @@ public class BasicBlock extends XcosUIDObject {
 	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
 	    H5Write.closeFile(context_file_id);
 
-	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
+	    InterpreterManagement.putCommandInScilabQueue("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
 		    ", \""+tempInput.getAbsolutePath()+"\""+
 		    ", "+getInterfaceFunctionName()+
 		    ", \"set\""+
@@ -960,6 +964,7 @@ public class BasicBlock extends XcosUIDObject {
 	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
 	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
+	result.append("UID : "+ getId() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
 	result.append("Flip : " + getFlip() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");

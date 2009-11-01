@@ -40,6 +40,8 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -86,10 +88,8 @@ import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
-import org.scilab.modules.xcos.actions.ViewBrowserAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
-import org.scilab.modules.xcos.actions.ViewGetinfosAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
@@ -121,6 +121,11 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static Thread paletteThread;
 	private static boolean paletteLoaded;
 	private static List<Menu> recentsMenus = new ArrayList<Menu>();
+	private static List<MenuItem> startMenuItems = new ArrayList<MenuItem>();
+	private static List<MenuItem> stopMenuItems = new ArrayList<MenuItem>();
+	private static List<PushButton> startPushButtons = new ArrayList<PushButton>();
+	private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
+	private static boolean startEnabled  = true;
 
 	/** Palette creation */
 	static {
@@ -701,9 +706,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		CheckBoxMenuItem menu = ViewViewportAction.createCheckBoxMenu(scilabGraph);
 		view.add(menu);
 		((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
-		view.add(ViewGetinfosAction.createMenu(scilabGraph));
+		//view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
-		view.add(ViewBrowserAction.createMenu(scilabGraph));
 
 		/** Simulation menu */
 		Menu simulate = ScilabMenu.createMenu();
@@ -711,12 +715,20 @@ public class Xcos extends SwingScilabTab implements Tab {
 		simulate.setMnemonic('S');
 		menuBar.add(simulate);
 		
+		MenuItem startMenu =  StartAction.createMenu(scilabGraph);
+		startMenuItems.add(startMenu);
+		startMenu.setEnabled(startEnabled);
+		MenuItem stopMenu =  StopAction.createMenu(scilabGraph);
+		stopMenuItems.add(stopMenu);
+		stopMenu.setEnabled(startEnabled);
+		
+		
 		simulate.add(SetupAction.createMenu(scilabGraph));
 		simulate.add(DebugLevelAction.createMenu(scilabGraph));
 		simulate.add(SetContextAction.createMenu(scilabGraph));
 		simulate.add(CompileAction.createMenu(scilabGraph));
-		simulate.add(StartAction.createMenu(scilabGraph));
-		simulate.add(StopAction.createMenu(scilabGraph));
+		simulate.add(startMenu);
+		simulate.add(stopMenu);
 	
 		/** Format menu */
 		Menu format = ScilabMenu.createMenu();
@@ -822,8 +834,15 @@ public class Xcos extends SwingScilabTab implements Tab {
     	toolBar.addSeparator();
 
     	// START / STOP
-    	toolBar.add(StartAction.createButton(scilabGraph));
-    	toolBar.add(StopAction.createButton(scilabGraph));
+    	PushButton startPushButton = StartAction.createButton(scilabGraph);
+    	PushButton stopPushButton = StopAction.createButton(scilabGraph);
+    	startPushButton.setEnabled(startEnabled);
+    	stopPushButton.setEnabled(!startEnabled);
+    	startPushButtons.add(startPushButton);
+    	stopPushButtons.add(stopPushButton);
+    	
+    	toolBar.add(startPushButton);
+    	toolBar.add(stopPushButton);
 
     	toolBar.addSeparator();
     	
@@ -832,6 +851,9 @@ public class Xcos extends SwingScilabTab implements Tab {
     	toolBar.add(ZoomOutAction.zoomoutButton(scilabGraph));
     	
     	toolBar.addSeparator();
+    	
+    	toolBar.add(XcosDemonstrationsAction.createButton(scilabGraph));
+    	toolBar.add(XcosDocumentationAction.createButton(scilabGraph));
 
     	return toolBar;
     }
@@ -911,14 +933,44 @@ public class Xcos extends SwingScilabTab implements Tab {
 	return null;
     }
 
+    
+	public static List<MenuItem> getStartMenuItems() {
+		return startMenuItems;
+	}
+	
+	public static List<MenuItem> getStopMenuItems() {
+		return stopMenuItems;
+	}
+	
+	public static List<PushButton> getStopPushButtons() {
+		return stopPushButtons;
+	}
+	
+	public static List<PushButton> getStartPushButtons() {
+		return startPushButtons;
+	}
+		
+	public static void setStartEnabled(boolean status){
+		for (int i = 0 ; i < getStartMenuItems().size() ; i++ ){
+			getStartMenuItems().get(i).setEnabled(status);
+			getStartPushButtons().get(i).setEnabled(status);
+			startEnabled = status;
+			
+			getStopMenuItems().get(i).setEnabled(!status);
+			getStopPushButtons().get(i).setEnabled(!status);
+		}
+		
+	}   
+	    
 	/**
 	 * Get recent file menu
-	 * @return the menu
+	 * @return the menu List
 	 */
 	public static List<Menu> getRecentsMenu() {
 		return  recentsMenus;
 	}
-    
+
+	
 	/**
 	 * Update menu displaying recent opened files
 	 */
@@ -958,5 +1010,20 @@ public class Xcos extends SwingScilabTab implements Tab {
     
     public static ArrayList<XcosDiagram> getDiagrams() {
     	return diagrams;
+    }
+    
+    /**
+     * Look in each diagram to find the block corresponding to the given uid
+     * and display a warning message.
+     * 
+     * @param uid - A String as UID.
+     * @param message - The message to display.
+     */
+    public static void warnCellByUID(String UID, String message) {
+	// Try to find a block with given index (UID)
+	ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	for (int i = 0 ; i < allDiagrams.size() ; ++i) {
+	    allDiagrams.get(i).warnCellByUID(UID, message);
+	}
     }
 }

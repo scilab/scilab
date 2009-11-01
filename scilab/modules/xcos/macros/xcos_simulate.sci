@@ -11,7 +11,16 @@
 //
 
 function xcos_simulate(scs_m)
-   //** extract tolerances from scs_m.props.tol
+
+//-- BJ : Alias Warning Function
+  prot = funcprot();
+  funcprot(0);
+  hilite_obj = xcosShowBlockWarning;
+  unhilite_obj = xcosClearBlockWarning;
+  funcprot(prot);
+  //-- end
+
+//** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
   solver = tolerances(6) ; 

@@ -25,7 +25,7 @@ t=A.^b</synopsis>
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para>:a scalar, a vector or a scalar matrix.</para>
+          <para>a scalar, a vector or a scalar matrix.</para>
         </listitem>
       </varlistentry>
     </variablelist>
