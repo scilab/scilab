@@ -1,4 +1,4 @@
-               Changes between version 5.1.2 and 5.2.0 of Scilab
+               Changes between version 5.1.1 and 5.2.0 of Scilab
                =================================================
 
 
@@ -13,15 +13,16 @@ This new version provides numerous new features:
 * Several diagrams can be edited at the same time
 * Scilab can be used during the diagram construction
 * Diagram edition is available even during simulation
-* Drap and drop
-* Command history: Undo / Redo
-* Viewport
-* Palette window with 
+* Drap and drop from palettes to diagram and between diagrams
+* History (Undo/Redo) with an unlimited number of actions memorized 
+* Viewport to have an overall view of your diagram
+* Palette window with new palettes organization
 * Improved stability
 * Better usability of menus
 * Tool tips on block
 * Big diagram managements
 * Better integration of the demonstrations
+* Standard shortcuts (Copy/Paste/Undo/Redo/...)
 
 ATOMS:
 ======
