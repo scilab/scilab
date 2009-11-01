@@ -43,7 +43,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.XCOS_DOCUMENTATION, null, new XcosDocumentationAction(scilabGraph));
+		return createButton(XcosMessages.XCOS_DOCUMENTATION, "help-browser.png", new XcosDocumentationAction(scilabGraph));
 	}
 
 	/**

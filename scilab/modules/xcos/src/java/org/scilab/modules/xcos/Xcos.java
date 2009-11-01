@@ -851,6 +851,9 @@ public class Xcos extends SwingScilabTab implements Tab {
     	toolBar.add(ZoomOutAction.zoomoutButton(scilabGraph));
     	
     	toolBar.addSeparator();
+    	
+    	toolBar.add(XcosDemonstrationsAction.createButton(scilabGraph));
+    	toolBar.add(XcosDocumentationAction.createButton(scilabGraph));
 
     	return toolBar;
     }
