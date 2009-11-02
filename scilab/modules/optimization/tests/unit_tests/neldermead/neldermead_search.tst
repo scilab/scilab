@@ -95,7 +95,11 @@ nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
 cmd = "nm = neldermead_search(nm)";
 execstr(cmd,"errcatch");
 computed = lasterror();
+if MSDOS then
 expected = "neldermead_startup: The max bound -1.000000e+001 for variable #1 is lower than the min bound 1.000000e+001.";
+else
+expected = "neldermead_startup: The max bound -1.000000e+01 for variable #1 is lower than the min bound 1.000000e+01.";
+end
 assert_equal ( computed , expected );
 //
 // Test with wrong number of min bounds
