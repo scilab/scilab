@@ -105,18 +105,13 @@ import org.scilab.modules.xpad.actions.RedoAction;
 import org.scilab.modules.xpad.actions.ResetFontAction;
 import org.scilab.modules.xpad.actions.SaveAction;
 import org.scilab.modules.xpad.actions.SaveAsAction;
-import org.scilab.modules.xpad.actions.ScilabStyleAction;
 import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.SetFontAction;
-import org.scilab.modules.xpad.actions.ShowToolBarAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
-import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
-import org.scilab.modules.xpad.actions.WordWrapAction;
-import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -177,7 +172,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				String path = new String("");
 				if (getTextPane() != null) {
 					if (getTextPane().getName() != null) {
-						path  =  " ( " + getTextPane().getName() + ")";
+						path  =  " (" + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
 					
@@ -1189,7 +1184,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 							}
 
 						} catch (BadLocationException e) {
-							System.err.println("");
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
@@ -1211,7 +1205,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
-				System.out.println("File = " + f.getAbsolutePath());
 				
 				int choice = JOptionPane.showConfirmDialog(
 						editor,
