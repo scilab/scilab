@@ -30,9 +30,13 @@ import java.util.SortedMap;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
+import javax.swing.undo.UndoManager;
 
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class EncodingAction extends DefaultCheckAction {
 	
@@ -108,8 +112,16 @@ public class EncodingAction extends DefaultCheckAction {
 
 		getEditor().getTextPane().repaint();
 		
-		if (isSuccess == false) {
-			System.err.println("ERROR : Could not convert file.");
+		UndoManager undo = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getUndoManager();
+		undo.discardAllEdits();
+		
+		if (!isSuccess) {
+			MessageBox messageBox = ScilabMessageBox.createMessageBox();
+			messageBox.setTitle(XpadMessages.XPAD_ERROR);
+			messageBox.setMessage(XpadMessages.COULD_NOT_CONVERT_FILE);
+			messageBox.setModal(true);
+			messageBox.setIcon("error");
+			messageBox.displayAndWait();
 		}
 	}
 }
