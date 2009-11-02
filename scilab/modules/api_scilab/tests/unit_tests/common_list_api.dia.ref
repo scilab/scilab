@@ -8,8 +8,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/common_list_api"));
 cd(pathconvert(TMPDIR+"/common_list_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",pathconvert(TMPDIR+"/common_list_api/common_list_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_list",["common_list","common_list"],SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",[],[],"",cflags);
+ilib_build("common_list",["common_list","common_list"],pathconvert(TMPDIR+"/common_list_api/common_list_api.c",%F),[],[],"",cflags);
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -18,26 +19,26 @@ l4 = list(l5, list(l5,l5));
 l6 = uint16([1000,2000,3000]);
 l = list(l1,l2,l3,l6,l4,l5);
 common_list(l)
-List (6 items) -> address : 0xB2B38010) : 
-Child 1 -> address : 0xB2B38038
-Child 2 -> address : 0xB2B380A8
-Child 3 -> address : 0xB2B38128
-Child 4 -> address : 0xB2B38140
-Child 5 -> List (2 items) -> address : 0xB2B38158) : 
-	Child 1 -> List (3 items) -> address : 0xB2B38170) : 
-		Child 1 -> address : 0xB2B38188
-		Child 2 -> address : 0xB2B381F8
-		Child 3 -> address : 0xB2B38278
-	Child 2 -> List (2 items) -> address : 0xB2B38290) : 
-		Child 1 -> List (3 items) -> address : 0xB2B382A8) : 
-			Child 1 -> address : 0xB2B382C0
-			Child 2 -> address : 0xB2B38330
-			Child 3 -> address : 0xB2B383B0
-		Child 2 -> List (3 items) -> address : 0xB2B383C8) : 
-			Child 1 -> address : 0xB2B383E0
-			Child 2 -> address : 0xB2B38450
-			Child 3 -> address : 0xB2B384D0
-Child 6 -> List (3 items) -> address : 0xB2B384E8) : 
-	Child 1 -> address : 0xB2B38500
-	Child 2 -> address : 0xB2B38570
-	Child 3 -> address : 0xB2B385F0
+List (6 items) -> address : 0xB2AD0010) : 
+Child 1 -> address : 0xB2AD0038
+Child 2 -> address : 0xB2AD00A8
+Child 3 -> address : 0xB2AD0128
+Child 4 -> address : 0xB2AD0140
+Child 5 -> List (2 items) -> address : 0xB2AD0158) : 
+	Child 1 -> List (3 items) -> address : 0xB2AD0170) : 
+		Child 1 -> address : 0xB2AD0188
+		Child 2 -> address : 0xB2AD01F8
+		Child 3 -> address : 0xB2AD0278
+	Child 2 -> List (2 items) -> address : 0xB2AD0290) : 
+		Child 1 -> List (3 items) -> address : 0xB2AD02A8) : 
+			Child 1 -> address : 0xB2AD02C0
+			Child 2 -> address : 0xB2AD0330
+			Child 3 -> address : 0xB2AD03B0
+		Child 2 -> List (3 items) -> address : 0xB2AD03C8) : 
+			Child 1 -> address : 0xB2AD03E0
+			Child 2 -> address : 0xB2AD0450
+			Child 3 -> address : 0xB2AD04D0
+Child 6 -> List (3 items) -> address : 0xB2AD04E8) : 
+	Child 1 -> address : 0xB2AD0500
+	Child 2 -> address : 0xB2AD0570
+	Child 3 -> address : 0xB2AD05F0

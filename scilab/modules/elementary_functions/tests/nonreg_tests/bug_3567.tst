@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // gsort called with a complex array
-
+warning("off");
 c = [1 2 3]+%i;
 v = gsort(c);
 ref_v = [ 3. + %i      2. + %i      1. + %i  ];

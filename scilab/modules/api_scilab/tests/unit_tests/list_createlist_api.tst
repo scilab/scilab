@@ -9,8 +9,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/list_createlist_api"));
 cd(pathconvert(TMPDIR+"/list_createlist_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/list_createlist_api.c",pathconvert(TMPDIR+"/list_createlist_api/list_createlist_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("list_createlist",["list_createlist","list_createlist"],SCI+"/modules/api_scilab/tests/unit_tests/list_createlist_api.c",[],[],"",cflags);
+ilib_build("list_createlist",["list_createlist","list_createlist"],pathconvert(TMPDIR+"/list_createlist_api/list_createlist_api.c",%F),[],[],"",cflags);
 exec("loader.sce");
 
              

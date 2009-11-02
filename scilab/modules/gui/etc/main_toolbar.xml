@@ -58,7 +58,7 @@
     <separator/>
 
     <!-- Atoms -->
-    <button icon="package-x-generic.png" tooltiptext="Modules manager - ATOMS">
+    <button icon="package-x-generic.png" tooltiptext="Module manager - ATOMS">
         <callback instruction='atomsGui();' type="0"/>
     </button>
 
