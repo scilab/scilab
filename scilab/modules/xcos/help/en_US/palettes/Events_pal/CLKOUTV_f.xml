@@ -93,7 +93,7 @@
   <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
-This block must only be used inside Scicos Super Blocks to represent 
+This block must only be used inside Xcos Super Blocks to represent 
 an event output port. In a Super Block, the event output ports must be
 numbered from 1 to the number of event output ports.
 

@@ -176,7 +176,7 @@ This block is used in the event case. For more information on how it works pleas
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility (Scicos Block)</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility</link>
         </para>
       </listitem>
     </itemizedlist>

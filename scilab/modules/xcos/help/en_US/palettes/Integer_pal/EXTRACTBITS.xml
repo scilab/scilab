@@ -340,12 +340,12 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BITSET">BITSET - BITSET Set a Bit (Scicos Block)</link>
+          <link linkend="BITSET">BITSET - BITSET Set a Bit</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit (Scicos Block)</link>
+          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit</link>
         </para>
       </listitem>
     </itemizedlist>

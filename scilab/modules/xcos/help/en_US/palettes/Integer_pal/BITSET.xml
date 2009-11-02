@@ -286,8 +286,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit (Scicos
-          Block)</link>
+          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit</link>
         </para>
       </listitem>
     </itemizedlist>

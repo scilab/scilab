@@ -216,7 +216,7 @@ Each sampling time, both dates and values of input are recorded.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROMWS_c">FROMWS_c - Data from Scilab worspace to Scicos (Scicos Block)</link>
+          <link linkend="FROMWS_c">FROMWS_c - Data from Scilab worspace to Xcos</link>
         </para>
       </listitem>
     </itemizedlist>
