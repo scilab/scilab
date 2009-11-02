@@ -191,7 +191,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GOTO">GOTO - GOTO Pass block input to From block (Scicos Block)</link>
+          <link linkend="GOTO">GOTO - GOTO Pass block input to From block (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>
