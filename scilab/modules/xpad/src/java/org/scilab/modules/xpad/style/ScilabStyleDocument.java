@@ -1534,7 +1534,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
-		System.out.println(currentPos);
 		currentPos -=  offset;
 		int index = -1;
 		int end = -1;
@@ -1568,7 +1567,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
-				System.out.println(currentPos);
 				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
 
 				boolean found = false;
