@@ -96,7 +96,7 @@ This component represents a variable ohmic resistor. The resistance
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../imagesVariableResistor_img3_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VariableResistor_img3_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

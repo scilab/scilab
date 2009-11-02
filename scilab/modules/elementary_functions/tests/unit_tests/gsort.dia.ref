@@ -74,7 +74,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(string(a),'lr') ;        
 [a2,ind]=gsort(a,'lr') ;
@@ -86,7 +86,7 @@ if norm(evstr(a1)- a2 ) > %eps then bugmes();quit;end;
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(string(a),'lc');                   
 [a2,ind]=gsort(a,'lc') ;
@@ -199,7 +199,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if norm(a1- alr) > %eps then bugmes();quit;end;
@@ -232,7 +232,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if norm(a1- alr) > %eps then bugmes();quit;end;
@@ -409,7 +409,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -443,7 +443,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -622,7 +622,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -656,7 +656,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -877,7 +877,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -911,7 +911,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1061,7 +1061,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1095,7 +1095,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1246,7 +1246,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1280,7 +1280,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1389,7 +1389,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(a,'lr');                   
 if or((a1- alr) <>0) then bugmes();quit;end;
@@ -1423,7 +1423,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 [a1,ind]=gsort(a,'lc');                   
 if or((a1- alr) <>0) then bugmes();quit;end;

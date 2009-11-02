@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+import javax.swing.JComponent;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -57,5 +58,9 @@ public class UnTabifyAction extends DefaultAction {
 	
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,ActionEvent.SHIFT_MASK));
+	}
+	public static void putInInputMap(JComponent textPane, Xpad editor) {
+		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.SHIFT_MASK), new UnTabifyAction(editor));
+		return;
 	}
 }
