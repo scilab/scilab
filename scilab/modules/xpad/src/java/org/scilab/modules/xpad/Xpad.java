@@ -522,6 +522,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Get current file path for Execute file into Scilab 
 		fileFullPath = newSavedFile.getAbsolutePath();
 		lastKnownSavedState = System.currentTimeMillis();
+		
+		
+		textPaneAt.setName(fileToSave); 
 		return true;
 	}
 	
