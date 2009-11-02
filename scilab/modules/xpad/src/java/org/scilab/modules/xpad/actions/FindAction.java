@@ -546,12 +546,13 @@ public final class FindAction extends DefaultAction {
 		/*case we want to search only into the selected lines*/
 		
 		currentCaretPos =  xpadTextPane.getSelectionStart() + 1;
-		if(backwardSearch){
+		if (backwardSearch) {
 			currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
 		}
 
 		if (onlySelectedLines) {
-			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
+					wholeWordSelected, regexpSelected);
 		} else {
 			offsets = scilabStyle.findWord(wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
@@ -563,21 +564,21 @@ public final class FindAction extends DefaultAction {
 
 			//find actual position of the caret in the array
 			int nextIndex = -1;
-			for(int i = 0 ; i < offsets.size() ; i++){
-				if(offsets.get(i)[0] > currentCaretPos){
+			for (int i = 0; i < offsets.size(); i++) {
+				if (offsets.get(i)[0] > currentCaretPos) {
 					nextIndex = i;
 					break;
 				}
 			}
 			
 			//if backwardSearch, the next position is the previous one
-			if(backwardSearch && nextIndex != -1){
+			if (backwardSearch && nextIndex != -1) {
 				nextIndex -= 1;
 			}
 
 			
-			if (nextIndex == -1){
-				if(wrapSearchSelected ) {
+			if (nextIndex == -1) {
+				if (wrapSearchSelected) {
 					// return to the end or the beginning of the document
 					if (backwardSearch) {
 						statusBar.setText(XpadMessages.PASSED_BEGIN_OF_DOCUMENT);
@@ -586,23 +587,22 @@ public final class FindAction extends DefaultAction {
 						statusBar.setText(XpadMessages.PASSED_END_OF_DOCUMENT);
 						nextIndex = 0;
 					}
-				}
-				else{
-					if(backwardSearch){
+				} else {
+					if (backwardSearch) {
 						statusBar.setText(XpadMessages.BEGIN_OF_DOCUMENT);
-					}else{
+					} else {
 						statusBar.setText(XpadMessages.END_OF_DOCUMENT);
 					}
 				}
 			}
 			
 			//tips to keep last find if we have reach the end/begin of file
-			if(nextIndex == -1){
-				if(backwardSearch){
-					if(saveStart >= offsets.get(0)[0]){
+			if (nextIndex == -1) {
+				if (backwardSearch) {
+					if (saveStart >= offsets.get(0)[0]) {
 						nextIndex = 0;
 					}
-				}else if(saveStart <= offsets.get(offsets.size() - 1)[0]){
+				} else if (saveStart <= offsets.get(offsets.size() - 1)[0]) {
 					nextIndex = offsets.size() - 1;
 				}
 			}
@@ -611,8 +611,9 @@ public final class FindAction extends DefaultAction {
 			//Here we highlight all the matching words
 			for (int i = 0; i < offsets.size(); i++) {
 				try {
-					if(i != nextIndex){
-						highlight.addHighlight(offsets.get(i)[0], offsets.get(i)[1], new DefaultHighlighter.DefaultHighlightPainter(Color.green));
+					if (i != nextIndex) {
+						highlight.addHighlight(offsets.get(i)[0], offsets.get(i)[1], 
+								new DefaultHighlighter.DefaultHighlightPainter(Color.green));
 					}
 					//TODO add a mechanism to change the foreground color too, if not if the text matched is in green too ...
 				} catch (BadLocationException e1) {
@@ -622,7 +623,8 @@ public final class FindAction extends DefaultAction {
 			
 			if (onlySelectedLines) {
 				try {
-					highlight.addHighlight(startSelectedLines, endSelectedLines, new DefaultHighlighter.DefaultHighlightPainter(new Color(205,183,158)));
+					highlight.addHighlight(startSelectedLines, endSelectedLines, 
+							new DefaultHighlighter.DefaultHighlightPainter(new Color(205, 183, 158)));
 				} catch (BadLocationException exc) {
 					exc.printStackTrace();
 				}
@@ -630,10 +632,10 @@ public final class FindAction extends DefaultAction {
 
 			int nextStart  = 0;
 			int nextEnd  = 0;
-			if(nextIndex != -1){
+			if (nextIndex != -1) {
 				nextStart = offsets.get(nextIndex)[0];
 				nextEnd = offsets.get(nextIndex)[1];
-			}else{
+			} else {
 				nextStart = saveStart;
 				nextEnd = saveEnd;
 			}
