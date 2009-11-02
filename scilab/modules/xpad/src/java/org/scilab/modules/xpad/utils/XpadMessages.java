@@ -107,7 +107,10 @@ public class XpadMessages {
     public static final String REPLACE = Messages.gettext("Replace");
     public static final String REPLACE_ALL = Messages.gettext("Replace All");
     public static final String INVALID_REGEXP = Messages.gettext("Invalid regular expression : %s");
+    public static final String PASSED_END_OF_DOCUMENT = Messages.gettext("You have passed the end of the document");
+    public static final String PASSED_BEGIN_OF_DOCUMENT = Messages.gettext("You have passed the beginning of the document");
     public static final String END_OF_DOCUMENT = Messages.gettext("You have reached the end of the document");
+    public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
