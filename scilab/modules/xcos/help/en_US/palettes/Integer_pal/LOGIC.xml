@@ -252,12 +252,12 @@ The easiest example to consider is the OR example. In this case we have two inpu
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop (Scicos Block)</link>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop (Scicos Block)</link>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop</link>
         </para>
       </listitem>
     </itemizedlist>

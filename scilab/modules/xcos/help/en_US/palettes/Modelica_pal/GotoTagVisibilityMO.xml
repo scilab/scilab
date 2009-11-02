@@ -176,7 +176,7 @@ This block is used in case of Modelica connection. For more information on how i
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility (Scicos Block)</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

@@ -206,12 +206,12 @@ This block can support all the data types.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO (Scicos Block)</link>
+          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility (Scicos Block)</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility</link>
         </para>
       </listitem>
     </itemizedlist>

@@ -104,8 +104,8 @@
 
       <listitem>
         <para>
-          <link linkend="FROMWSB">FROMWSB - Data from Scilab worspace to
-          Scicos</link>
+          <link linkend="FROMWSB">FROMWSB - Data from Scilab workspace to
+          Xcos</link>
         </para>
       </listitem>
 

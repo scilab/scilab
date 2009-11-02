@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="FROMWSB">
   <refnamediv>
     <refname>FROMWSB</refname>
-    <refpurpose>Data from Scilab worspace to Scicos</refpurpose>
+    <refpurpose>Data from Scilab workspace to Xcos</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROMWSB">Data from Scilab worspace to Scicos</link>
+          <link linkend="FROMWSB">Data from Scilab workspace to Xcos</link>
         </para>
       </listitem>
       <listitem>
@@ -103,7 +103,7 @@
   <refsection id="Description_FROMWSB">
     <title>Description</title>
     <para>
-That block is used to get data defined in the Scilab workspace and use them in Scicos. Data should have "time" and "values" fields.   
+That block is used to get data defined in the Scilab workspace and use them in Xcos. Data should have "time" and "values" fields.   
 </para>
     <para>
 </para>
@@ -125,7 +125,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
         <para><emphasis role="bold">Variable name:</emphasis> This variable is defined in Scilab and should be a structure with two fields, i.e., a "time" field of size (Nx1) and a "values" filed of size (NxM). "time" is a column vector of size Nx1 and "values" is a matrix of size "N*M". "time" filed can only be of Real type, whereas the "values" field can be , , , , , , , and . </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Interpolation method:</emphasis> Variables read by Scicos are data values read at discrete instants given by the time field. This option causes the block to interpolate at time steps for which no corresponding workspace data exists. There are four interpolation methods available.
+        <para><emphasis role="bold">Interpolation method:</emphasis> Variables read by Xcos are data values read at discrete instants given by the time field. This option causes the block to interpolate at time steps for which no corresponding workspace data exists. There are four interpolation methods available.
 
 </para>
         <itemizedlist>
@@ -280,12 +280,12 @@ That block is used to get data defined in the Scilab workspace and use them in S
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TOWS_c">TOWS_c - Data to Scilab worspace (Scicos Block)</link>
+          <link linkend="TOWS_c">TOWS_c - Data to Scilab worspace</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="FROMWS_c">FROMWS_c - Data from Scilab worspace to Scicos (Scicos Block)</link>
+          <link linkend="FROMWS_c">FROMWS_c - Data from Scilab workspace to Xcos</link>
         </para>
       </listitem>
     </itemizedlist>

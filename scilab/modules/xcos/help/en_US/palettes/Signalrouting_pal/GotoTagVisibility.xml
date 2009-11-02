@@ -176,12 +176,12 @@ This block defines the accessibility of the GOTO block when it is configure as "
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GOTO">GOTO - GOTO Pass block input to From block (Scicos Block)</link>
+          <link linkend="GOTO">GOTO - GOTO Pass block input to From block</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO (Scicos Block)</link>
+          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO</link>
         </para>
       </listitem>
     </itemizedlist>

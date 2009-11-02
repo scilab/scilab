@@ -225,7 +225,7 @@ CMAT3D is a scope that shows matrix values as z values on a xy grid.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CMATVIEW">CMATVIEW - Matrix Colormapped viewer (Scicos Block)</link>
+          <link linkend="CMATVIEW">CMATVIEW - Matrix Colormapped viewer</link>
         </para>
       </listitem>
     </itemizedlist>
