@@ -93,7 +93,7 @@
   <refsection id="Description_IN_f">
     <title>Description</title>
     <para>
-This block must only be used inside Xcos Super Blocks to represent a
+This block must only be used inside xcos Super Blocks to represent a
 regular input port. The input size is determined by the context.  In a
 Super Block, regular input ports must be numbered from 1 to the number
 of regular input ports.
