@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 
 			 
 SciErr printf_info(int _iVar);
@@ -23,7 +24,8 @@ int common_function(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
     int i;
-    int *piAddr1 = NULL;
+    int *piAddr1    = NULL;
+    int iBool       = 0;
 
     for(i = 0 ; i < Rhs ; i++)
     {
@@ -37,7 +39,7 @@ int common_function(char *fname,unsigned long fname_len)
     }
 
     //1 for true, 0 for false
-    int iBool = sciErr.iErr == 0 ? 1 : 0;
+    iBool = sciErr.iErr == 0 ? 1 : 0;
     sciErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
     if(sciErr.iErr)
     {

@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/pointer_reading_api"));
 cd(pathconvert(TMPDIR+"/pointer_reading_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/pointer_reading_api.c",pathconvert(TMPDIR+"/pointer_reading_api/pointer_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("pointer_reading",["read_pointer","read_pointer"],pathconvert(TMPDIR+"/pointer_reading_api/pointer_reading_api.c",%F),[],[],"",cflags);
+ilib_build("pointer_reading",["read_pointer","read_pointer"],"pointer_reading_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
 
 			 

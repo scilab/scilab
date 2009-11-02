@@ -201,6 +201,10 @@
 int read_write_bsparse(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
+    int i                   = 0;
+    int j                   = 0;
+    int k                   = 0;
+
     //first variable info : real matrix of double
     int iRows               = 0;
     int iCols               = 0;
@@ -244,13 +248,13 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
     piNewRow = (int*)MALLOC(sizeof(int) * iRows);
     piNewCol = (int*)MALLOC(sizeof(int) * iNewItem);
 
-    for(int i = 0 ; i < iRows ; i++)
+    for(i = 0 ; i < iRows ; i++)
     {
         piNewRow[i] = iCols - piNbItemRow[i];
-        for(int j = 0 ; j < iCols ; j++)
+        for(j = 0 ; j < iCols ; j++)
         {
             int iFind = 0;
-            for(int k = 0 ; k < piNbItemRow[i] ; k++)
+            for(k = 0 ; k < piNbItemRow[i] ; k++)
             {
                 if(piColPos[iCol + k] == (j + 1))
                 {

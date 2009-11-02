@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 
              
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
