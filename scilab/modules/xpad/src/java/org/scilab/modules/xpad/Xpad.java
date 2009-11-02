@@ -790,6 +790,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setStyledDocument(new ScilabStyleDocument(this));
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
+		TabifyAction.putInInputMap(textPane, this);
+		UnTabifyAction.putInInputMap(textPane, this);
+		
 		textPane.setFocusable(true);
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
