@@ -7,6 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function txt=sd2sci(sd,zoom,orig)
+[lhs,rhs]=argn(0);
 if rhs<1 then
    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "sd2sci", 1));
 end
