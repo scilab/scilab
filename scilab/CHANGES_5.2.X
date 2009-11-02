@@ -257,7 +257,7 @@ Mac OS X:
 
 * bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to english.
 
-* bug 4949 fixed - Using Scicos/Xcox in the source tree environnement, with
+* bug 4949 fixed - Using Xcos/Scicos in the source tree environnement, with
   	  	   		   schema using sundials library, the application had problems
 				   to load the dynamic library.
 
@@ -414,7 +414,7 @@ Compilation:
 * Symbols in dlls are explicitly exported on Windows.
   In previous versions of Scilab all symbols were exported.
 
-* modelicac (scicos) built with Ocaml 3.11.0 on Windows
+* modelicac (Xcos/scicos) built with Ocaml 3.11.0 on Windows
 
 * blas, lapack, arpack libraries moved as pre-requirements (Windows)
 
@@ -436,7 +436,7 @@ Compilation:
   Note that this should not be used into a binary since it is expensive
 
 * C++ => Java connector updated (using GIWS - 
-  http://www.scilab.org/giws/ version 1.0.3)
+  http://www.scilab.org/giws/ version 1.0.5)
   There was a bug in GIWS:
 	The use of a static method returning an int was not calling the right
 	method.
@@ -700,6 +700,8 @@ Bug fixes:
 
 * bug 4298 fixed - ilib_for_link failed with lcc-win32 (Windows).
 
+* bug 4304 fixed - Fail to build with ./configure --without-gui
+
 * bug 4307 fixed - Desactivate (in modules.xml) modules if their functionnalities
                    were not available.
                    
@@ -894,8 +896,6 @@ Bug fixes:
 
 * bug 4606 fixed - Example of 'link' in help did not work
 
-* bug 4707 fixed - Fail to build with ./configure --without-gui
-
 * bug 4608 fixed - get_function_path returned a non-consistent path
 
 * bug 4611 fixed - What function did not return a complete list of functions
@@ -921,7 +921,7 @@ Bug fixes:
 
 * bug 4627 fixed - The function matfile2sci did not manage 7.x format
 
-* bug 4630 fixed - Problem with the Scicos block affich
+* bug 4630 fixed - Problem with the Xcos/Scicos block affich
 
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
@@ -962,7 +962,7 @@ Bug fixes:
 
 * bug 4702 fixed - On some cases, dos(cmd) did not return results
 
-* bug 4707 fixed - Could not save a Scicos diagram to a non-existing file under Mac OS
+* bug 4707 fixed - Could not save a Xcos/Scicos diagram to a non-existing file under Mac OS
 
 * bug 4709 fixed - The set function with 2 parameters and no handles made Scilab hung
 

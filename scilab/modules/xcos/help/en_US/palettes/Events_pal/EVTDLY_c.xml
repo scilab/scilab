@@ -207,7 +207,7 @@ the delay and <inlinemediaobject><imageobject><imagedata fileref="../../../image
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CLOCK_c">CLOCK_c - Activation clock (Scicos Block)</link>
+          <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
         </para>
       </listitem>
     </itemizedlist>

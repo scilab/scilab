@@ -466,7 +466,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="NPN">NPN - NPN transistor (Scicos Block)</link>
+          <link linkend="NPN">NPN - NPN transistor</link>
         </para>
       </listitem>
     </itemizedlist>

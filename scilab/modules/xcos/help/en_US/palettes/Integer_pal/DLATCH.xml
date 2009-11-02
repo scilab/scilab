@@ -224,17 +224,17 @@ The truth table of this block is
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DFLIPFLOP">DFLIPFLOP - D flip-flop (Scicos Block)</link>
+          <link linkend="DFLIPFLOP">DFLIPFLOP - D flip-flop</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop (Scicos Block)</link>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop (Scicos Block)</link>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop</link>
         </para>
       </listitem>
     </itemizedlist>
