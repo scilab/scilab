@@ -92,7 +92,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -method option";
+expected = "unknownValueForOption: Unknown value foo for -method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -101,7 +101,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -simplex0method option";
+expected = "unknownValueForOption: Unknown value foo for -simplex0method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
