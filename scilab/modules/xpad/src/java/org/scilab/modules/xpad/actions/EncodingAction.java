@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedMap;
 
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
@@ -39,7 +40,7 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class EncodingAction extends DefaultCheckAction {
-	
+
 	private String encoding;
 
 	public EncodingAction(String encodingName, Xpad editor) {
@@ -56,7 +57,7 @@ public class EncodingAction extends DefaultCheckAction {
 		});
 		return radio;
 	}
-	
+
 	public static ArrayList<String> getEcodings() {
 		SortedMap<String,Charset> charsetList = Charset.availableCharsets();
 		Set cles = charsetList.keySet();
@@ -78,17 +79,41 @@ public class EncodingAction extends DefaultCheckAction {
 
 		return encodingList;
 	}
-	
+
 	public void doAction() {
 		boolean isSuccess = false;
+
+		ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
 		
+		if (styleDocument.isContentModified()) {
+			/* File modified */
+			if (getEditor().getTextPane().getName() != null) {
+				/* Not untitled */
+				switch (JOptionPane.showConfirmDialog(this, XpadMessages.MODIFICATIONS_WILL_BE_LOST, 
+						XpadMessages.CONTINUE, JOptionPane.YES_NO_OPTION)) {
+						case 0 : //Yes, continue
+							break;
+						case 1 ://No, exit
+							// Back to previous menu checked
+							getEditor().updateEncodingMenu();
+							return;
+						default :
+							return;
+				}
+			}			
+		}
+
+		// Avoid modifications to be saved
+		styleDocument.disableUpdaters();
+		boolean indentMode = styleDocument.getAutoIndent();
+		styleDocument.setAutoIndent(false); 
+
 		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setEncoding(encoding);
-		
+
 		// If file associated then reload
-		ScilabStyleDocument styleDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		EditorKit editorKit = getEditor().getEditorKit();
 		String fileName = getEditor().getTextPane().getName();
-		
+
 		try {
 			if (fileName != null) {
 				File file = new File(getEditor().getTextPane().getName());
@@ -110,11 +135,19 @@ public class EncodingAction extends DefaultCheckAction {
 			isSuccess = false;
 		}
 
-		getEditor().getTextPane().repaint();
+		//getEditor().getTextPane().repaint();
+
+		/* Allow changes to be saved */
+		styleDocument.colorize(0, styleDocument.getLength());
+		styleDocument.setAutoIndent(indentMode);
+		styleDocument.enableUpdaters();
 		
+		styleDocument.setContentModified(false);
+
+		/* Disable changes */
 		UndoManager undo = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getUndoManager();
 		undo.discardAllEdits();
-		
+
 		if (!isSuccess) {
 			MessageBox messageBox = ScilabMessageBox.createMessageBox();
 			messageBox.setTitle(XpadMessages.XPAD_ERROR);
