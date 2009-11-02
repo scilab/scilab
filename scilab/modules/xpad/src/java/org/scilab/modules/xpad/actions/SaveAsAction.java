@@ -12,20 +12,17 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileWriter;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SaveAsAction extends DefaultAction {
@@ -36,7 +33,14 @@ public class SaveAsAction extends DefaultAction {
 
 	public void doAction() {
 		
-		 getEditor().saveAs(getEditor().getTextPane());
+		 if (!getEditor().saveAs(getEditor().getTextPane())) {
+				MessageBox messageBox = ScilabMessageBox.createMessageBox();
+				messageBox.setTitle(XpadMessages.XPAD_ERROR);
+				messageBox.setMessage(XpadMessages.COULD_NOT_SAVE_FILE);
+				messageBox.setModal(true);
+				messageBox.setIcon("error");
+				messageBox.displayAndWait();
+		 }
 			
 	}
 	
