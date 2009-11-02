@@ -53,6 +53,7 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
     	
     	if (isModified()) {
     		container.setRealParameters(BlockWriter.convertDiagramToMList(this));
+        	container.getParentDiagram().setModified(true);
     	}
 
     	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentTab().getParentWindowId());
