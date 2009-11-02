@@ -1,0 +1,359 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+function [ y , index ] = rosenbrock ( x , index )
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+//
+// Use output function
+//
+// outfun --
+//   A sample output function
+// Arguments, input
+//   x : the current point
+//   optimValues : a tlist which contains the following fields
+//     funccount : the number of function evaluations
+//     fval : the current function value
+//     iteration : the current iteration
+//     procedure : a string containing the current type of step
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//
+function outfun ( x , optimValues , state )
+  plot( x(1),x(2),'.');
+  // Unload all fields and check consistent values
+  fc = optimValues.funccount;
+  fv = optimValues.fval;
+  it = optimValues.iteration;
+  pr = optimValues.procedure;
+  select pr
+  case "initial simplex"
+    // OK
+  case "expand"
+    // OK
+  case "reflect"
+    // OK
+  case "shrink"
+    // OK
+  case "contract inside"
+    // OK
+  case "contract outside"
+    // OK
+  case ""
+    // OK
+  else
+    error ( sprintf ( "Unknown procedure %s." , pr ) )
+  end
+  select state
+  case "init"
+    // OK
+  case "iter"
+    // OK
+  case "done"
+    // OK
+  else
+    error ( sprintf ( "Unknown state %s." , state ) )
+  end
+  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
+endfunction
+opt = optimset ( "OutputFcn" , outfun);
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+3 2.420000e+001 0 -- init
+
+3 2.005000e+001 1 -initial simplex- iter
+
+5 5.161796e+000 2 -expand- iter
+
+7 4.497796e+000 3 -reflect- iter
+
+9 4.497796e+000 4 -contract outside- iter
+
+11 4.381360e+000 5 -contract inside- iter
+
+13 4.245273e+000 6 -contract inside- iter
+
+15 4.217625e+000 7 -reflect- iter
+
+17 4.211291e+000 8 -contract inside- iter
+
+19 4.135560e+000 9 -expand- iter
+
+21 4.135560e+000 10 -contract inside- iter
+
+23 4.012727e+000 11 -expand- iter
+
+25 3.937381e+000 12 -expand- iter
+
+27 3.602606e+000 13 -expand- iter
+
+28 3.602606e+000 14 -reflect- iter
+
+30 3.466221e+000 15 -reflect- iter
+
+32 3.216055e+000 16 -expand- iter
+
+34 3.164913e+000 17 -reflect- iter
+
+36 2.706869e+000 18 -expand- iter
+
+37 2.706869e+000 19 -reflect- iter
+
+39 2.002182e+000 20 -expand- iter
+
+41 2.002182e+000 21 -contract inside- iter
+
+43 2.002182e+000 22 -contract inside- iter
+
+45 1.815434e+000 23 -expand- iter
+
+47 1.734814e+000 24 -contract outside- iter
+
+49 1.316972e+000 25 -expand- iter
+
+50 1.316972e+000 26 -reflect- iter
+
+51 1.316972e+000 27 -reflect- iter
+
+53 1.159504e+000 28 -reflect- iter
+
+55 1.076739e+000 29 -contract inside- iter
+
+57 8.834921e-001 30 -reflect- iter
+
+59 8.834921e-001 31 -contract inside- iter
+
+61 6.691654e-001 32 -expand- iter
+
+63 6.691654e-001 33 -contract inside- iter
+
+64 6.691654e-001 34 -reflect- iter
+
+66 5.367289e-001 35 -reflect- iter
+
+68 5.367289e-001 36 -contract inside- iter
+
+70 4.232940e-001 37 -expand- iter
+
+72 4.232940e-001 38 -contract outside- iter
+
+74 3.985272e-001 39 -reflect- iter
+
+76 3.144704e-001 40 -expand- iter
+
+77 3.144704e-001 41 -reflect- iter
+
+79 1.903167e-001 42 -expand- iter
+
+81 1.903167e-001 43 -contract inside- iter
+
+82 1.903167e-001 44 -reflect- iter
+
+84 1.369602e-001 45 -reflect- iter
+
+86 1.369602e-001 46 -contract outside- iter
+
+88 1.131281e-001 47 -contract outside- iter
+
+90 1.105304e-001 48 -contract inside- iter
+
+92 1.023402e-001 49 -reflect- iter
+
+94 1.011837e-001 50 -contract inside- iter
+
+96 7.949687e-002 51 -expand- iter
+
+97 7.949687e-002 52 -reflect- iter
+
+98 7.949687e-002 53 -reflect- iter
+
+100 5.692937e-002 54 -expand- iter
+
+102 5.692937e-002 55 -contract inside- iter
+
+104 3.448549e-002 56 -expand- iter
+
+106 1.795342e-002 57 -expand- iter
+
+108 1.694692e-002 58 -contract outside- iter
+
+110 4.014627e-003 59 -reflect- iter
+
+112 4.014627e-003 60 -contract inside- iter
+
+113 4.014627e-003 61 -reflect- iter
+
+115 3.699544e-004 62 -reflect- iter
+
+117 3.699544e-004 63 -contract inside- iter
+
+118 3.699544e-004 64 -reflect- iter
+
+120 3.699544e-004 65 -contract inside- iter
+
+122 5.901115e-005 66 -contract outside- iter
+
+124 3.366824e-005 67 -contract inside- iter
+
+126 3.366824e-005 68 -contract outside- iter
+
+128 1.891590e-005 69 -contract outside- iter
+
+130 8.460826e-006 70 -contract inside- iter
+
+132 2.882547e-006 71 -contract inside- iter
+
+133 2.882547e-006 72 -reflect- iter
+
+135 7.489972e-007 73 -contract inside- iter
+
+137 7.489972e-007 74 -contract inside- iter
+
+139 6.203654e-007 75 -contract inside- iter
+
+141 2.169195e-007 76 -contract outside- iter
+
+143 1.002443e-007 77 -contract inside- iter
+
+145 5.234866e-008 78 -contract inside- iter
+
+147 5.035031e-008 79 -contract inside- iter
+
+149 2.004302e-008 80 -contract inside- iter
+
+151 1.122930e-009 81 -contract inside- iter
+
+153 1.122930e-009 82 -contract outside- iter
+
+155 1.122930e-009 83 -contract inside- iter
+
+157 1.107549e-009 84 -contract outside- iter
+
+159 8.177661e-010 85 -contract inside- iter
+
+159 8.177661e-010 85 -- done
+
+close();
+//
+// Use several output functions
+//
+function outfun2 ( x , optimValues , state )
+  scf ( fig1 );
+  plot( x(1),x(2),'.');
+endfunction
+function outfun3 ( x , optimValues , state )
+  scf ( fig2 );
+  plot( x(1),x(2),'o');
+endfunction
+myfunctions = list ( outfun2 , outfun3 );
+fig1 = scf(1000);
+fig2 = scf(1001);
+opt = optimset ( "OutputFcn" , myfunctions );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close(fig1);
+close(fig2);
+//
+// Use plot function
+//
+//
+// plotfun --
+//   A sample plot function
+// Arguments, input
+//   x : the current point
+//   optimValues : a tlist which contains the following fields
+//     funcCount" : the number of function evaluations
+//     fval : the current function value
+//     iteration : the current iteration
+//     procedure : a string containing the current type of step
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//
+function plotfun ( x , optimValues , state )
+  plot(x(1),x(2),'.');
+endfunction
+opt = optimset ( "PlotFcns" , plotfun);
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use several plot functions
+//
+function plotfun2 ( x , optimValues , state )
+  scf ( fig1 );
+  plot( x(1),x(2),'.');
+endfunction
+function plotfun3 ( x , optimValues , state )
+  scf ( fig2 );
+  plot( x(1),x(2),'o');
+endfunction
+myfunctions = list ( plotfun2 , plotfun3 );
+fig1 = scf(1000);
+fig2 = scf(1001);
+opt = optimset ( "PlotFcns" , myfunctions );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close(fig1);
+close(fig2);
+//
+// Use optimplotfval plot function
+//
+opt = optimset ( "PlotFcns" , optimplotfval );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use optimplotx plot function
+//
+opt = optimset ( "PlotFcns" , optimplotx );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use optimplotfunccount plot function
+//
+opt = optimset ( "PlotFcns" , optimplotfunccount );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
+//
+// Use all 3 plot functions
+//
+myfunctions = list ( optimplotfval , optimplotx , optimplotfunccount );
+opt = optimset ( "PlotFcns" , myfunctions );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+close();
