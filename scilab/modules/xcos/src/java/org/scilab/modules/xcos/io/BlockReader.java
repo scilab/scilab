@@ -1140,7 +1140,6 @@ public class BlockReader {
 		if (modelFields.get(1) instanceof ScilabString) { 
 			newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields) );
 		}
-		System.err.println("sim : " + newBlock.getSimulationFunctionName());
 		
 		if (( modelFields.get(1) instanceof ScilabList)){
 			newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
