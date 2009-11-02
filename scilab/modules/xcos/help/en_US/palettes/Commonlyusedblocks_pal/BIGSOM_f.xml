@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>BIGSOM_f</refname>
 
-    <refpurpose>Sum</refpurpose>
+    <refpurpose>Sum (Old block)</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -39,7 +39,8 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/BIGSOM_f.jpg"
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/BIGSOM_f.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -51,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BIGSOM_f">Sum</link>
+          <link linkend="BIGSOM_f">Sum (Old block)</link>
         </para>
       </listitem>
 
@@ -126,7 +127,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/gui/BIGSOM_f_gui.gif"
+          <imagedata align="center" fileref="../../../images/BIGSOM_f_gui.gif"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject>

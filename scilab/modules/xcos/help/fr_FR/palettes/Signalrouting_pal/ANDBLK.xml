@@ -21,29 +21,41 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ANDBLK">
+<refentry version="5.0-subset Scilab" xml:id="ANDBLK"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
     <refname>ANDBLK</refname>
+
     <refpurpose>Et activation</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
+
+    <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/ANDBLK_blk.gif" align="center" valign="middle"/>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/ANDBLK.jpg"
+                     valign="middle"></imagedata>
         </imageobject>
-      </inlinemediaobject>
-    </para>
+      </inlinemediaobject></para>
   </refsection>
+
   <refsection id="Contenu_ANDBLK">
     <title>Contenu</title>
+
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="ANDBLK">Et activation</link>
         </para>
       </listitem>
+
       <listitem>
         <itemizedlist>
           <listitem>
@@ -51,26 +63,33 @@
               <xref linkend="Palette_ANDBLK">Palette</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
               <xref linkend="Description_ANDBLK">Description</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_ANDBLK">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_ANDBLK">Propriétés par
+              défaut</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Fonctiondinterface_ANDBLK">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_ANDBLK">Fonction
+              d'interface</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
               <link linkend="ANDBLK">Contenu du super-bloc compilé</link>
             </para>
           </listitem>
+
           <listitem>
             <para>
               <xref linkend="Auteurs_ANDBLK">Auteurs</xref>
@@ -80,8 +99,10 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_ANDBLK">
     <title>Palette</title>
+
     <itemizedlist>
       <listitem>
         <para>
@@ -90,75 +111,99 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_ANDBLK">
     <title>Description</title>
-    <para>
-The Bus Creator block combines a set of signals, i.e., a
-group of signals represented by a single line in a block diagram. It
-allows you to reduce the number of lines required to route signals
-from one part of a diagram to another. This makes your easier to
-understand.
 
-</para>
+    <para>The Bus Creator block combines a set of signals, i.e., a group of
+    signals represented by a single line in a block diagram. It allows you to
+    reduce the number of lines required to route signals from one part of a
+    diagram to another. This makes your easier to understand.</para>
   </refsection>
+
   <refsection id="Propriétéspardéfaut_ANDBLK">
     <title>Propriétés par défaut</title>
+
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 2</para>
+        <para><emphasis role="bold">nombre des entrées
+        évènementielles:</emphasis> 2</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des sorties
+        évènementielles:</emphasis> 1</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état continu:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état discret:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état objet:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+
           <emphasis role="italic">csuper</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Fonctiondinterface_ANDBLK">
     <title>Fonction d'interface</title>
+
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Events/ANDBLK.sci</para>
+        <para>SCI/modules/scicos_blocks/macros/Events/ANDBLK.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Contenudusuperbloccompilé_ANDBLK">
     <title>Contenu du super-bloc compilé</title>
+
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/ANDBLK_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata align="center"
+                     fileref="../../../images/ANDBLK_img2_fr.gif"
+                     valign="middle" />
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Auteurs_ANDBLK">
     <title>Auteurs</title>
+
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>
