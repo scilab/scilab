@@ -437,8 +437,8 @@ sub write_scilab_code
 	# ==========================================================================
 	
 	my $TMPDIR = basename($fileout);
-	$TMPDIR =~ s/\.tst$//g;
-	$TMPDIR = 'pathconvert(TMPDIR+"/'.$TMPDIR.'")';
+	$TMPDIR  =~ s/\.tst$//g;
+	$TMPDIR  = 'pathconvert(TMPDIR+"/'.$TMPDIR.'")';
 	
 	# table management (ilib_build 2nd input argument)
 	# ==========================================================================
@@ -463,7 +463,11 @@ sub write_scilab_code
 	# C file management
 	# ==========================================================================
 	
-	my $cfile = 'SCI+"'.substr($tags{'File_gateway'},3).'"';
+	my $cfile         = 'SCI+"'.substr($tags{'File_gateway'},3).'"';
+	
+	my $cfiletmpdir   = basename($fileout);
+	$cfiletmpdir      =~ s/\.tst$//g;
+	$cfiletmpdir      =  'pathconvert(TMPDIR+"/'.$cfiletmpdir.'/'.basename(substr($tags{'File_gateway'},3)).'",%F)';
 	
 	# Open the fileout file
 	# ==========================================================================
@@ -496,12 +500,13 @@ sub write_scilab_code
 	print FILEOUT 'ilib_verbose(0);'."\n";
 	print FILEOUT 'mkdir('.$TMPDIR.');'."\n";
 	print FILEOUT 'cd('.$TMPDIR.');'."\n";
+	print FILEOUT 'copyfile('.$cfile.','.$cfiletmpdir.');'."\n";
 	print FILEOUT 'cflags = "-I"+SCI+"/modules/localization/includes";'."\n";
 	
 	print FILEOUT 'ilib_build(';
 	print FILEOUT '"'.$tags{'Lib_name'}.'",'; # lib_name
 	print FILEOUT $table_str.',';             # table
-	print FILEOUT $cfile.',';                 # files
+	print FILEOUT $cfiletmpdir.',';           # files
 	print FILEOUT '[],';                      # libs
 	print FILEOUT '[],';                      # makename
 	print FILEOUT '"",';                      # ldflags
