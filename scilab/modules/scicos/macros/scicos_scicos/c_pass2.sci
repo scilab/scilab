@@ -2032,7 +2032,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 //!
 
   //** save the current figure handle
-  gh_wins = gcf();
+  //gh_wins = gcf();
 
   if path_in==-1 then
     hilite_obj(path_out);
@@ -2092,7 +2092,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
     //unhilite_obj(all_scs_m.objs(numk(1)))
 
     //** restore the active window
-    scf(gh_wins);
+    //scf(gh_wins);
 
     unhilite_obj(numk(1))
   else
@@ -2159,7 +2159,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       end
       //scs_m=null()
       //** restore the active window
-      scf(gh_wins);
+      //scf(gh_wins);
 
       //unhilite_obj(scs_m.objs(path(1)))
       unhilite_obj(path(1))

@@ -593,14 +593,12 @@ public final class FindAction extends DefaultAction {
 				if (onlySelectedLines) {
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				} else {
-					System.out.println(startSelectedLines);
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				}
 			} else {
 				if (onlySelectedLines) {
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				} else {
-					System.out.println(startSelectedLines);
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				}
 			}

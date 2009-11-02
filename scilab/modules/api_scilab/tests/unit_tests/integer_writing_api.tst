@@ -9,8 +9,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/integer_writing_api"));
 cd(pathconvert(TMPDIR+"/integer_writing_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/integer_writing_api.c",pathconvert(TMPDIR+"/integer_writing_api/integer_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("integer_writing",["read_integer","read_integer"],SCI+"/modules/api_scilab/tests/unit_tests/integer_writing_api.c",[],[],"",cflags);
+ilib_build("integer_writing",["read_integer","read_integer"],"integer_writing_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
 
              

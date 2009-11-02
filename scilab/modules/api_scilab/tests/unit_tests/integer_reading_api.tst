@@ -9,8 +9,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/integer_reading_api"));
 cd(pathconvert(TMPDIR+"/integer_reading_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/integer_reading_api.c",pathconvert(TMPDIR+"/integer_reading_api/integer_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("integer_reading",["read_integer","read_integer"],SCI+"/modules/api_scilab/tests/unit_tests/integer_reading_api.c",[],[],"",cflags);
+ilib_build("integer_reading",["read_integer","read_integer"],"integer_reading_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
 
 	 

@@ -44,7 +44,7 @@ xcos(scs_m_list)</synopsis>
 
     <itemizedlist>
       <listitem>
-        <para><link linkend="xcos_manual">xcos</link></para>
+        <para><link linkend="xcos">xcos</link></para>
       </listitem>
     </itemizedlist>
   </refsection>

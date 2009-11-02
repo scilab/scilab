@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="IdealTransformer">
+  <refnamediv>
+    <refname>IdealTransformer</refname>
+    <refpurpose>Ideal Transformer</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/IdealTransformer.jpg" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_IdealTransformer">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="IdealTransformer">Ideal Transformer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_IdealTransformer">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_IdealTransformer">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_IdealTransformer">Dialog box</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_IdealTransformer">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_IdealTransformer">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="IdealTransformer">Modelica model</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_IdealTransformer">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_IdealTransformer">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_IdealTransformer">
+    <title>Description</title>
+    <para>
+The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Dialogbox_IdealTransformer">
+    <title>Dialog box</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/IdealTransformer_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">N</emphasis>
+        </para>
+        <para> Turns ratio (N1/N2)</para>
+        <para> Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_IdealTransformer">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p1'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n1'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p2'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n2'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'N'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> IdealTransformer</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_IdealTransformer">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/IdealTransformer.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_IdealTransformer">
+    <title>Modelica model</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/IdealTransformer.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_IdealTransformer">
+    <title>Authors</title>
+    <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

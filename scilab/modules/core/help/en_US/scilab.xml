@@ -20,7 +20,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>scilab &lt;Options&gt;</synopsis>
+    <synopsis>scilab &lt;Options&gt;
+scilab-adv-cli &lt;Options&gt;
+scilab-cli &lt;Options&gt;</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -140,11 +142,26 @@
         <term>-l lang</term>
 
         <listitem>
-          <para>If this option is present it fixes the user language. The
-          possible <literal>lang</literal> values are <literal>'fr'</literal>
-          for french and <literal>'en'</literal> for english. The default
-          language is english. This default value is fixed the
-          <literal>scilab.start</literal> file.</para>
+          <para>If this option is present it fixes the user language.
+          <emphasis>lang</emphasis> can be: <emphasis>ca_ES de_DE en_US es_ES
+          fr_FR ja_JP pt_BR ru_RU zh_CN zh_TW</emphasis> (from Scilab
+          5.2).</para>
+
+          <para>Other possible <literal>lang</literal> values are
+          <literal>'fr'</literal> for french and <literal>'en'</literal> for
+          english for compatibility reasons. The default language is english.
+          This default value is fixed the <literal>scilab.start</literal>
+          file.</para>
+
+          <para>On some systems, locales must be compiled to render correctly
+          UTF-8 fonts.</para>
+
+          <para>Scilab can be also called the following way:</para>
+
+          <programlisting>LANG=ja_JP scilab
+# equivalent to
+scilab -l ja_JP
+</programlisting>
         </listitem>
       </varlistentry>
 
@@ -200,12 +217,20 @@
 
           <para>This option may be used with -f or -e options.</para>
 
-          <para>Scilab distribution also provides a dedicated binary which is
-          doing the same as -nw: scilab-adv-cli (Scilab Advanced Command Line
-          Interpreter). Available from Scilab 5.2</para>
+          <para>From Scilab 5.2:</para>
 
-          <para>From Scilab 5.2, pipes are enabled for all operating systems
-          (see the examples for further details).</para>
+          <itemizedlist>
+            <listitem>
+              <para>Scilab distribution also provides a dedicated binary which
+              is doing the same as -nw: scilab-adv-cli (Scilab Advanced
+              Command Line Interpreter).</para>
+            </listitem>
+
+            <listitem>
+              <para>pipes are enabled for all operating systems (see the
+              examples for further details).</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -218,12 +243,25 @@
 
           <para>This option may be used with -f or -e options.</para>
 
-          <para>Scilab distribution also provides a dedicated binary which is
-          doing the same as -nwni: scilab-cli (Scilab Command Line
-          Interpreter). Available from Scilab 5.2</para>
+          <para>From Scilab 5.2:</para>
 
-          <para>From Scilab 5.2, pipes are enabled for all operating systems
-          (see the examples for further details).</para>
+          <itemizedlist>
+            <listitem>
+              <para>Scilab distribution also provides a dedicated binary which
+              is doing the same as -nwni: scilab-cli (Scilab Command Line
+              Interpreter).</para>
+            </listitem>
+          </itemizedlist>
+
+          <itemizedlist>
+            <listitem>
+              <para>pipes are enabled for all operating systems (see the
+              examples for further details).</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>This mode does not load the Java Virtual Machine (faster to
+          start and uses less memory)</para>
         </listitem>
       </varlistentry>
 
@@ -250,9 +288,10 @@
 
     <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
     build documentation are based on Java features. In some cases, it can be
-    important to edit the JVM option.</para>
+    important to edit the JVM options (Java Virtual Machine).</para>
 
-    <para>These options are available in the jvm_options.xml file.</para>
+    <para>These options are available in the
+    <emphasis>jvm_options.xml</emphasis> file.</para>
 
     <para>In version 5.0.X and 5.1.X, this file is stored as
     <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis></para>
@@ -299,9 +338,9 @@
 
     <para>Many more options are available. They can improve the performances,
     change look and feel, change memory managements... See: <link
-    linkend="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
     or <link
-    linkend="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
   </refsection>
 
   <refsection>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_params">
+  <refnamediv>
+    <refname>scicos_params</refname>
+    <refpurpose>Define a param structure</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_params">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="params_scicos_params">
+    <title>params</title>
+    <para>
+Size : 11.
+</para>
+    <para>
+Type : scilab list.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">wpar</emphasis>
+        </para>
+        <para> This vector is not currently used.</para>
+        <para> It may be used in the future to code window sizes of the editor.</para>
+        <para> 
+Size : 6.
+</para>
+        <para>
+Type : column vector or real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">title</emphasis>
+        </para>
+        <para> Vector of character strings, where the first one is the diagram title and default name of save file name, and the second one is the path of the directory of the file name.</para>
+        <para> 
+Size : 2.
+</para>
+        <para>
+Type : row vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">tol</emphasis>
+        </para>
+        <para> 
+A vector containing simulation parameters including
+          various tolerances used by the solver: 
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">atol  </emphasis>
+            </para>
+            <para>
+Integrator absolute tolerance for the numerical solver.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">rtol  </emphasis>
+            </para>
+            <para>
+Integrator relative tolerance for the numerical solver.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">ttol  </emphasis>
+            </para>
+            <para>
+Tolerance on time.
+</para>
+            <para>
+If an integration period is less
+                         than ttol, the numerical solver is not called.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">deltat</emphasis>
+            </para>
+            <para>
+Maximum integration time interval.
+</para>
+            <para>
+If an integration period is larger than
+                         deltat, the numerical solver is called more than
+                         once in such a way that for each call the integration
+                         period remains below deltat
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">scale </emphasis>
+            </para>
+            <para>
+Real-time scaling; the value 0 corresponds to no
+                         real-time scaling.
+</para>
+            <para>
+It associates a Scicos simulation time to the real
+                         time in seconds.
+</para>
+            <para>
+A value of 1 means that each Scicos unit of time
+                         corresponds to one second.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">solver</emphasis>
+            </para>
+            <para>
+Choice of numerical solver.
+</para>
+            <para>
+The value 0 implies an ODE solver and 100
+                         implies a DAE solver.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">hmax  </emphasis>
+            </para>
+            <para>
+Maximum step size for the numerical solver.
+</para>
+            <para>
+0 means no limit.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Size : 7.
+</para>
+        <para>
+Type : column vector of real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">tf</emphasis>
+        </para>
+        <para> Final time simulation.</para>
+        <para> The simulation stops at this time.</para>
+        <para> The default value is 100000.</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">context</emphasis>
+        </para>
+        <para> A vector of strings containing Scilab instructions defining Scilab variables to be used inside block's dialog box as symbolic parameters.</para>
+        <para> All valid Scilab instructions can be used and also comments.</para>
+        <para> 
+Size : number of lines of the context.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void1</emphasis>
+        </para>
+        <para> unused field.</para>
+        <para> 
+Size : -.
+</para>
+        <para>
+Type : -.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">options</emphasis>
+        </para>
+        <para> Scilab object of type scsopt defining graphical properties of the editor such as background color and link color.</para>
+        <para> 
+The fields are the following:
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">3D        </emphasis>
+            </para>
+            <para>
+A list with two entries. The first one is a boolean
+                             indicating whether or not blocks should have 3D aspect.
+</para>
+            <para>
+The second entry indicates the color in the current colormap
+                             to be used to create the 3D effect.
+</para>
+            <para>
+The default is 33 which corresponds to gray added by
+                             Scicos to the standard colormap, which contains 32 colors.
+</para>
+            <para>
+The default value is list(%t,33).
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Background</emphasis>
+            </para>
+            <para>
+Vector with two entries: background and
+                             foreground colors.
+</para>
+            <para>
+The default value is [8,1].
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">link      </emphasis>
+            </para>
+            <para>
+Default link colors for regular and activation links.
+</para>
+            <para>
+These colors are used only at link construction.
+</para>
+            <para>
+Changing them does not affect already constructed links.
+</para>
+            <para>
+The default value is [1,5], which corresponds to black and
+                             red if the standard Scilab colormap is used.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">ID        </emphasis>
+            </para>
+            <para>
+A list of two vectors including font number and sizes.
+</para>
+            <para>
+The default value is [5,1],[4,1].
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Cmap      </emphasis>
+            </para>
+            <para>
+An n,3 matrix containing RGB values of colors
+                             to be added to the colormap.
+</para>
+            <para>
+The default value is, [0.8,0.8,0.8] i.e., the color gray.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Size : 6.
+</para>
+        <para>
+Type : scilab tlist of type scsopt.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void2</emphasis>
+        </para>
+        <para> unused field.</para>
+        <para> 
+Size : -.
+</para>
+        <para>
+Type : -.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void3</emphasis>
+        </para>
+        <para> unused field.</para>
+        <para> 
+Size : -.
+</para>
+        <para>
+Type : -.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">doc</emphasis>
+        </para>
+        <para> User defined diagram documentation structure.</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : Strings.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_scicos_params">
+    <title>File content</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Bache"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Bache</refname>
+
+    <refpurpose>Thermal-hydraulic tank (reservoir)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/Bache.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_Bache">
+    <title>Contents</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Bache">Thermal-hydraulic tank (reservoir)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_Bache">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_Bache">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_Bache">Dialog box</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_Bache">Default
+              properties</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_Bache">Interfacing
+              function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <link linkend="Bache">Modelica model</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_Bache">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ThermoHydraulics_pal">Thermal-Hydraulics
+          palette</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Bache">
+    <title>Description</title>
+
+    <para>The <emphasis role="bold">Bache</emphasis> block represents a
+    thermal-hydraulic tank or reservoir. This block has two inlets and two
+    outlets whose altitudes can be changed by the user. Conventionally, for
+    input ports (black ports) flow direction is positive when fluid flows into
+    the tank. On the other hand, for output ports (white ports) flow direction
+    is positive when fluid flows out of the tank. The user can set the surface
+    area of the tank, the initial temperature and initial level of the fluid
+    in the tank. If an input or output port is left unused, it should be
+    blocked by a <emphasis role="bold">stopper</emphasis> block.</para>
+  </refsection>
+
+  <refsection id="Dialogbox_Bache">
+    <title>Dialog box</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/Bache_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Pression dans le ciel de la bache : Patm
+          (Pa)</emphasis>
+        </para>
+
+        <para>Atmospheric pressure inside the tank.</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Section de la bache : A (m2)</emphasis>
+        </para>
+
+        <para>Surface area of the tank.</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage d entrée 1: ze1
+          (m)</emphasis>
+        </para>
+
+        <para>Altitude of the first input port</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage d entrée 2: ze2
+          (m)</emphasis>
+        </para>
+
+        <para>Altitude of the second input port</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage de sortie 1: zs1
+          (m)</emphasis>
+        </para>
+
+        <para>Altitude of the first output port.</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage de sortie 2: zs2
+          (m)</emphasis>
+        </para>
+
+        <para>Altitude of the second output port.</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude initiale du fluide : z0
+          (m)</emphasis>
+        </para>
+
+        <para>Initial fluid level in the tank.</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Température initiale du fluide : T0
+          (K)</emphasis>
+        </para>
+
+        <para>Temperature of fluid in the tank</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Si 0, masse volumique imposée du fluide :
+          p_rho (kg/m3)</emphasis>
+        </para>
+
+        <para>Density of fluid</para>
+
+        <para>Properties : Type 'vec' of size -1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_Bache">
+    <title>Default properties</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'Ce1'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'Ce2'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'Cs1'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'Cs2'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'yNiveau'</para>
+
+            <para>Explicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'Patm'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            101300</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'A'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 1</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'ze1'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 40</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'ze2'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'zs1'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 40</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'zs2'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'z0'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 30</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'T0'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 290</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'p_rho'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis>
+        Bache</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_Bache">
+    <title>Interfacing function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Hydraulics/Bache.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Modelicamodel_Bache">
+    <title>Modelica model</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Hydraulics/Bache.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

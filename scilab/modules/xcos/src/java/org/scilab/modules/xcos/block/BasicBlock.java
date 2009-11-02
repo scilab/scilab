@@ -590,7 +590,7 @@ public class BasicBlock extends XcosUIDObject {
 	gr_i.add(new ScilabDouble(8));
 	graphics.add(gr_i); // gr_i
 
-	graphics.add(new ScilabString(getId())); // id
+	graphics.add(new ScilabString("")); // id
 
 	graphics.add(getAllPortsType(getAllInputPorts())); // in_implicit
 
@@ -717,7 +717,11 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     private ScilabList createScilabDocProperties() {
-	return new ScilabList();
+	ScilabList result = new ScilabList();
+	// Store UID in doc so that Scilab will now it without being disturbed.
+	result.add(new ScilabString(getId()));
+	
+	return result;
     }
 
     private ScilabType getSimulationFunctionNameAndType() {
@@ -960,6 +964,7 @@ public class BasicBlock extends XcosUIDObject {
 	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
 	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
+	result.append("UID : "+ getId() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
 	result.append("Flip : " + getFlip() + "<br>");
 	result.append("Input ports : " + getAllInputPorts().size() + "<br>");

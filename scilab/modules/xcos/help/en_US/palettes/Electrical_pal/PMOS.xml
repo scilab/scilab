@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="PMOS"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>PMOS</refname>
+
+    <refpurpose>Simple PMOS Transistor</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/PMOS.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_PMOS">
+    <title>Contents</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PMOS">Simple PMOS Transistor</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_PMOS">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_PMOS">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_PMOS">Dialog box</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_PMOS">Default properties</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_PMOS">Interfacing
+              function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <link linkend="PMOS">Modelica model</link>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_PMOS">See also</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_PMOS">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_PMOS">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Electrical
+          toolbox</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_PMOS">
+    <title>Description</title>
+
+    <para>The PMOS model is a simple model of a p-channel metal-oxide
+    semiconductor FET. It differs slightly from the device used in the SPICE
+    simulator. For more details please care for H. Spiro.</para>
+
+    <para>The model does not consider capacitances. A small fixed drain-source
+    resistance is included (to avoid numerical difficulties).</para>
+
+    <para>Some typical parameter sets are:</para>
+
+    <para />
+
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="center">W [m]</td>
+
+        <td align="center">L[m]</td>
+
+        <td align="center">Beta [1/V²]</td>
+
+        <td align="center">Vt [V]</td>
+
+        <td align="center">K2</td>
+
+        <td align="center">K5</td>
+
+        <td align="center">DW [m]</td>
+
+        <td align="center">DL [m]</td>
+      </tr>
+
+      <tr>
+        <td align="center">50.e-6</td>
+
+        <td align="center">8.e-6</td>
+
+        <td align="center">.0085</td>
+
+        <td align="center">-.15</td>
+
+        <td align="center">.41</td>
+
+        <td align="center">.839</td>
+
+        <td align="center">-3.8e-6</td>
+
+        <td align="center">-4.0e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">20.e-6</td>
+
+        <td align="center">6.e-6</td>
+
+        <td align="center">.0105</td>
+
+        <td align="center">-1.0</td>
+
+        <td align="center">.41</td>
+
+        <td align="center">.839</td>
+
+        <td align="center">-2.5e-6</td>
+
+        <td align="center">-2.1e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">30.e-6</td>
+
+        <td align="center">5.e-6</td>
+
+        <td align="center">.0059</td>
+
+        <td align="center">-.3</td>
+
+        <td align="center">.98</td>
+
+        <td align="center">1.01</td>
+
+        <td align="center">0</td>
+
+        <td align="center">-3.9e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">30.e-6</td>
+
+        <td align="center">5.e-6</td>
+
+        <td align="center">.0152</td>
+
+        <td align="center">-.69</td>
+
+        <td align="center">.104</td>
+
+        <td align="center">1.1</td>
+
+        <td align="center">-.8e-6</td>
+
+        <td align="center">-.4e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">30.e-6</td>
+
+        <td align="center">5.e-6</td>
+
+        <td align="center">.0163</td>
+
+        <td align="center">-.69</td>
+
+        <td align="center">.104</td>
+
+        <td align="center">1.1</td>
+
+        <td align="center">-.8e-6</td>
+
+        <td align="center">-.4e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">30.e-6</td>
+
+        <td align="center">5.e-6</td>
+
+        <td align="center">.0182</td>
+
+        <td align="center">-.69</td>
+
+        <td align="center">.086</td>
+
+        <td align="center">1.06</td>
+
+        <td align="center">-.1e-6</td>
+
+        <td align="center">-.6e-6</td>
+      </tr>
+
+      <tr>
+        <td align="center">20.e-6</td>
+
+        <td align="center">6.e-6</td>
+
+        <td align="center">.0074</td>
+
+        <td align="center">-1.</td>
+
+        <td align="center">.4</td>
+
+        <td align="center">.59</td>
+
+        <td align="center">0</td>
+
+        <td align="center">0</td>
+      </tr>
+    </informaltable>
+  </refsection>
+
+  <refsection id="Dialogbox_PMOS">
+    <title>Dialog box</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/PMOS_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Width [m]</emphasis>
+        </para>
+
+        <para>W</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Length [m]</emphasis>
+        </para>
+
+        <para>L</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Transconductance parameter
+          [A/(V*V)]</emphasis>
+        </para>
+
+        <para>Beta</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Zero bias threshold voltage [V]</emphasis>
+        </para>
+
+        <para>Vt</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Bulk threshold parameter</emphasis>
+        </para>
+
+        <para>K2</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Reduction of pinch-off region</emphasis>
+        </para>
+
+        <para>K5</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Narrowing of channel [m]</emphasis>
+        </para>
+
+        <para>dW</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Shortening of channel [m]</emphasis>
+        </para>
+
+        <para>dL</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Drain-Source-Resistance [Ohm]</emphasis>
+        </para>
+
+        <para>RDS</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_PMOS">
+    <title>Default properties</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'G'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'D'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'B'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'S'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'W'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.00005</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'L'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.000006</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'Beta'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.0000105</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'Vt'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> -1</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'K2'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 0.41</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'K5'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.839</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'dW'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            -0.0000025</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'dL'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            -0.0000021</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'RDS'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            10000000</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis>
+        PMOS</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_PMOS">
+    <title>Interfacing function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Electrical/PMOS.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Modelicamodel_PMOS">
+    <title>Modelica model</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Electrical/PMOS.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_PMOS">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="NMOS">NMOS - Simple NMOS Transistor</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_PMOS">
+    <title>Authors</title>
+
+    <para><emphasis role="bold" /> - www.modelica.org</para>
+  </refsection>
+</refentry>

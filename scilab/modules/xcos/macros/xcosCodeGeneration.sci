@@ -11,7 +11,15 @@
 //
 
 function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
-
+  
+//-- BJ : Alias Warning Function
+  prot = funcprot();
+  funcprot(0);
+  hilite_obj = xcosShowBlockWarning;
+  unhilite_obj = xcosClearBlockWarning;
+  funcprot(prot);
+  //-- end
+    
 // This will create a scs_m variable.
   import_from_hdf5(hdf5FileToLoad);
   

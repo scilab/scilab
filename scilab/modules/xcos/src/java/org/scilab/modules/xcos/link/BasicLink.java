@@ -194,7 +194,6 @@ public abstract class BasicLink extends XcosUIDObject {
 		// xx
 		xx[0][0] = getSource().getGeometry().getCenterX() + getSource().getParent().getGeometry().getX();
 		for(int i = 0 ; i < getPointCount() ; i++){
-			System.err.println("Point : " + ((mxPoint)getGeometry().getPoints().get(i)).getX());
 			xx[0][i+1] = ((mxPoint)getGeometry().getPoints().get(i)).getX();
 		}
 		xx[0][1 + getPointCount()] = getTarget().getGeometry().getCenterX() + getTarget().getParent().getGeometry().getX();
@@ -204,7 +203,6 @@ public abstract class BasicLink extends XcosUIDObject {
 		double[][] yy = new double[1][2 + getPointCount()];
 		yy[0][0] = -(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
 		for(int i = 0 ; i < getPointCount() ; i++){
-			System.err.println("Point : " + - ((mxPoint)getGeometry().getPoints().get(i)).getY());
 			yy[0][i+1] = - ((mxPoint)getGeometry().getPoints().get(i)).getY() + getSource().getParent().getGeometry().getHeight();
 		}
 		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());

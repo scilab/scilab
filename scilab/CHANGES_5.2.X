@@ -1,27 +1,29 @@
-               Changes between version 5.1.2 and 5.2.0 of Scilab
+               Changes between version 5.1.1 and 5.2.0 of Scilab
                =================================================
 
 
 Xcos:
 =====
 
-Xcos replaces Scicos in Scilab distribution. 
-Based on state of the art components, Xcos provides a stable, easy and
-usable interface to create complex simulations and controls.
+Xcos is developed simultaneously and together with Scilab, and replaces Scicos
+in Scilab distributions. With a new ergonomic and efficient block diagrams 
+editor, Xcos provides functionalities for modeling mechanical systems and control
+systems, and is particularly suitable for industrial and academic needs.
 
 This new version provides numerous new features:
 * Several diagrams can be edited at the same time
 * Scilab can be used during the diagram construction
 * Diagram edition is available even during simulation
-* Drap and drop
-* Command history: Undo / Redo
-* Viewport
-* Palette window with 
+* Drap and drop from palettes to diagram and between diagrams
+* History (Undo/Redo) with an unlimited number of actions memorized 
+* Viewport to have an overall view of your diagram
+* Palette window with new palettes organization
 * Improved stability
 * Better usability of menus
 * Tool tips on block
 * Big diagram managements
 * Better integration of the demonstrations
+* Standard shortcuts (Copy/Paste/Undo/Redo/...)
 
 ATOMS:
 ======
@@ -138,8 +140,8 @@ Optimization:
    based on numerical derivatives
 
 
-Extension capabilities of Scilab:
-=================================
+Extension capabilities of Scilab (API Scilab):
+==============================================
 
 In the previous versions of Scilab, there was no clear or easy way to extend
 Scilab or to use it as an embedded application. 
@@ -169,8 +171,6 @@ consistent, documented and easy way to use API.
   The rationale is to improve the use in special case of the pointer data type
   to avoid memory duplication.
 
-TODO: talk about call scilab based on api_scilab
-
 * Under all operating systems but Windows, all headers are not installed in a single directory in order to simplify the use
   of Scilab features in the dynamic link. See SEP #32 for more information
 
@@ -181,8 +181,6 @@ TODO: talk about call scilab based on api_scilab
   See SEP #35. 
   Do not hesitate to contact us if you have been using a Scilab header which had been removed from Scilab 5.2.
 
-
-TODO: add the information about the doxygen doc generation if we do it.
 
 call_scilab module:
 ===================
@@ -201,7 +199,7 @@ the function name.
 * Documentation and examples about call_scilab added (BooleanManagement call_scilab
   compile_and_run_call_scilab DisableInteractiveMode GetLastJob DoubleManagement
   ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement
-  TerminateScilab) 
+  TerminateScilab)
 
 * Some function profiles in stack3.h provided to manage named variable
   have been moved in CallScilab.h (please note that we have not changed the ABI
@@ -213,12 +211,22 @@ the function name.
 * In call_scilab, all previous functions available to read/write data from/to
   the Scilab engine are now obsolete but supported until Scilab 6:
 
-  TODO  list all depecreated functions
-
-  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
-  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead
-    (same profile)
-  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+  * C2F(readmat) is obsolete. Please use readNamedMatrix in api_double.h
+  * C2F(readchain) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h
+  * C2F(matptr) is obsolete. Please use readNamedMatrixOfDouble in api_double.h
+  * C2F(creadmat) is obsolete. Please use readNamedMatrix in api_double.h
+  * C2F(creadbmat) is obsolete. Please use readNamedMatrixOfBoolean in api_boolean.h
+  * C2F(creadcmat) is obsolete. Please use readNamedComplexMatrixOfDouble in api_double.h
+  * C2F(creadchain) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h
+  * C2F(creadchains) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h in api_string.h
+  * C2F(cmatptr) is obsolete. Please use readNamedMatrixOfDouble in api_double.h
+  * C2F(cmatcptr) is obsolete. Please use readNamedComplexMatrixOfDouble in api_double.h
+  * C2F(cmatsptr) is obsolete. Please use createNamedMatrixOfString or createNamedMatrixOfWideString in api_string.h
+  * C2F(cmatbptr) is obsolete. Please use createNamedMatrixOfBoolean in api_boolean.h
+  * C2F(cwritemat) is obsolete. Please use createNamedMatrixOfDouble in api_double.h
+  * C2F(cwritecmat) is obsolete. Please use createNamedComplexMatrixOfDouble in api_double.h
+  * C2F(cwritechain) is obsolete. Please use createNamedMatrixOfString or createNamedMatrixOfWideString in api_string.h
+  * C2F(cwritebmat) is obsolete. Please use createNamedMatrixOfBoolean in api_boolean.h
 
 * "make check" now also builds call_scilab examples
 
@@ -249,7 +257,7 @@ Mac OS X:
 
 * bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to english.
 
-* bug 4949 fixed - Using Scicos/Xcox in the source tree environnement, with
+* bug 4949 fixed - Using Xcos/Scicos in the source tree environnement, with
   	  	   		   schema using sundials library, the application had problems
 				   to load the dynamic library.
 
@@ -406,7 +414,7 @@ Compilation:
 * Symbols in dlls are explicitly exported on Windows.
   In previous versions of Scilab all symbols were exported.
 
-* modelicac (scicos) built with Ocaml 3.11.0 on Windows
+* modelicac (Xcos/scicos) built with Ocaml 3.11.0 on Windows
 
 * blas, lapack, arpack libraries moved as pre-requirements (Windows)
 
@@ -428,7 +436,7 @@ Compilation:
   Note that this should not be used into a binary since it is expensive
 
 * C++ => Java connector updated (using GIWS - 
-  http://www.scilab.org/giws/ version 1.0.3)
+  http://www.scilab.org/giws/ version 1.0.5)
   There was a bug in GIWS:
 	The use of a static method returning an int was not calling the right
 	method.
@@ -692,6 +700,8 @@ Bug fixes:
 
 * bug 4298 fixed - ilib_for_link failed with lcc-win32 (Windows).
 
+* bug 4304 fixed - Fail to build with ./configure --without-gui
+
 * bug 4307 fixed - Desactivate (in modules.xml) modules if their functionnalities
                    were not available.
                    
@@ -886,8 +896,6 @@ Bug fixes:
 
 * bug 4606 fixed - Example of 'link' in help did not work
 
-* bug 4707 fixed - Fail to build with ./configure --without-gui
-
 * bug 4608 fixed - get_function_path returned a non-consistent path
 
 * bug 4611 fixed - What function did not return a complete list of functions
@@ -913,7 +921,7 @@ Bug fixes:
 
 * bug 4627 fixed - The function matfile2sci did not manage 7.x format
 
-* bug 4630 fixed - Problem with the Scicos block affich
+* bug 4630 fixed - Problem with the Xcos/Scicos block affich
 
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
@@ -954,7 +962,7 @@ Bug fixes:
 
 * bug 4702 fixed - On some cases, dos(cmd) did not return results
 
-* bug 4707 fixed - Could not save a Scicos diagram to a non-existing file under Mac OS
+* bug 4707 fixed - Could not save a Xcos/Scicos diagram to a non-existing file under Mac OS
 
 * bug 4709 fixed - The set function with 2 parameters and no handles made Scilab hung
 

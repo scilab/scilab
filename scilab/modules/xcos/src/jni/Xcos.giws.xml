@@ -4,5 +4,9 @@
     <method name="xcos" returnType="void" modifier="static">
       <parameter name="fileName" type="String"/>
     </method>
+    <method name="warnCellByUID" returnType="void" modifier="static">
+      <parameter name="UID" type="String"/>
+      <parameter name="message" type="String"/>
+    </method>
   </object>
 </package>

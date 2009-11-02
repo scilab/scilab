@@ -22,7 +22,8 @@ libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscixcos_la_etcdir = $(mydatadir)/etc
 libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/xcos.start \
-				etc/Xcos-style.xml
+				etc/Xcos-style.xml \
+				etc/xcosConfiguration.xml
 
 XCOS_C_SOURCES = 
 
@@ -44,7 +45,8 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp 
+sci_gateway/cpp/sci_xcosNotify.cpp \
+sci_gateway/cpp/sci_warnBlockByUID.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -163,6 +165,8 @@ images/icons/list-remove.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \
+images/icons/applications-system.png \
+images/icons/help-browser.png \
 images/palettes/ABS_VALUE.jpg \
 images/palettes/AFFICH_m.jpg \
 images/palettes/ANDBLK.jpg \

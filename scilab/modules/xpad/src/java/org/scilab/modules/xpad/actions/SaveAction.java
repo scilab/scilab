@@ -12,21 +12,16 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileWriter;
+import java.awt.event.KeyEvent;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SaveAction extends DefaultAction {
@@ -37,7 +32,8 @@ public class SaveAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.SAVE, null, new SaveAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.SAVE, null, new SaveAction(editor),
+				KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(Xpad editor) {
@@ -45,7 +41,14 @@ public class SaveAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		getEditor().newSave(getEditor().getTabPane().getSelectedIndex(), true);
+		if (!getEditor().newSave(getEditor().getTabPane().getSelectedIndex(), true)) {
+			MessageBox messageBox = ScilabMessageBox.createMessageBox();
+			messageBox.setTitle(XpadMessages.XPAD_ERROR);
+			messageBox.setMessage(XpadMessages.COULD_NOT_SAVE_FILE);
+			messageBox.setModal(true);
+			messageBox.setIcon("error");
+			messageBox.displayAndWait();
+		}
 
 	}
 }

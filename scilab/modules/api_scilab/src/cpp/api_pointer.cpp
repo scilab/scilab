@@ -19,6 +19,7 @@
 #include "localization.h"
 
 #include "MALLOC.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
@@ -115,7 +116,78 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 		return sciErr;
 	}
 
-	((long long*)pvPtr)[0] = (long long) ((unsigned long int) _pvPtr);
+	((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
 
 	return sciErr;
 }
+
+SciErr createNamedPointer(void* _pvCtx, char* _pstName, int* _pvPtr)
+{
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	int iVarID[nsiz];
+  int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	void* pvPtr				= NULL;
+	int *piAddr				= NULL;
+
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+  Top = Top + Nbvars + 1;
+
+	int iMemSize = 1;
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return sciErr;
+	}
+
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+
+	//write matrix information
+	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POINTER, _("%s: Unable to create %s named \"%s\""), "createNamedPointer", _("pointer"), _pstName);
+		return sciErr;
+	}
+
+	//copy data in stack
+	((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
+
+	updateLstk(Top, *Lstk(Top) + sadr(4), 2);
+
+	Rhs = 0;
+	//Add name in stack reference list
+	createNamedVariable(iVarID);
+
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
+	return sciErr;
+}
+
+SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)
+{
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	int* piAddr				= NULL;
+	void *pvPtr				= NULL;
+
+	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
+		return sciErr;
+	}
+
+	sciErr = getPointer(_pvCtx, piAddr, &pvPtr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
+		return sciErr;
+	}
+	
+	*_pvPtr = pvPtr;
+
+	return sciErr;
+}
+/*--------------------------------------------------------------------------*/
+
