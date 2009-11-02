@@ -176,7 +176,7 @@ This block is used to connect events ports. For more information on how it works
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO (Scicos Block)</link>
+          <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO</link>
         </para>
       </listitem>
     </itemizedlist>

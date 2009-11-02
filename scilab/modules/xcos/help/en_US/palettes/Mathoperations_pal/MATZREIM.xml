@@ -211,7 +211,7 @@ This block decomposes a complex number by separating the real and imaginary part
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Complex to Magnitude and Angle Conversion (Scicos Block)</link>
+          <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Complex to Magnitude and Angle Conversion</link>
         </para>
       </listitem>
     </itemizedlist>

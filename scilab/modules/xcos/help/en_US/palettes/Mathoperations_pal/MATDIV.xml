@@ -166,7 +166,7 @@
 
         <para>It indicates the type of the output. It support only the two
         types double (1) and complex (2). If we input another entry in this
-        label Scicos will print the message "Datatype is not
+        label Xcos will print the message "Datatype is not
         supported".</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
@@ -293,15 +293,13 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATBKSL">MATBKSL - MATBKSL:left matrix division
-          (Scicos Block)</link>
+          <link linkend="MATBKSL">MATBKSL - MATBKSL:left matrix division</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication (Scicos
-          Block)</link>
+          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication</link>
         </para>
       </listitem>
     </itemizedlist>
