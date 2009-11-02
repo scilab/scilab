@@ -9,8 +9,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/string_writing_api"));
 cd(pathconvert(TMPDIR+"/string_writing_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/string_writing_api.c",pathconvert(TMPDIR+"/string_writing_api/string_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("string_writing",["write_string","write_string"],SCI+"/modules/api_scilab/tests/unit_tests/string_writing_api.c",[],[],"",cflags);
+ilib_build("string_writing",["write_string","write_string"],pathconvert(TMPDIR+"/string_writing_api/string_writing_api.c",%F),[],[],"",cflags);
 exec("loader.sce");
  
 a_ref = "may the puffin be with you ";

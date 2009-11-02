@@ -15,6 +15,7 @@ package org.scilab.modules.xpad.actions;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+import javax.swing.JComponent;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -53,5 +54,9 @@ public class TabifyAction extends DefaultAction {
 	
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.TABIFY_SELECTION , null, new TabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0));
+	}
+	public static void putInInputMap(JComponent textPane, Xpad editor) {
+		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0), new TabifyAction(editor));
+		return;
 	}
 }

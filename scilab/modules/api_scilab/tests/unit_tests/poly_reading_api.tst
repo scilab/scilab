@@ -9,8 +9,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/poly_reading_api"));
 cd(pathconvert(TMPDIR+"/poly_reading_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/poly_reading_api.c",pathconvert(TMPDIR+"/poly_reading_api/poly_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("poly_reading",["read_poly","read_poly"],SCI+"/modules/api_scilab/tests/unit_tests/poly_reading_api.c",[],[],"",cflags);
+ilib_build("poly_reading",["read_poly","read_poly"],pathconvert(TMPDIR+"/poly_reading_api/poly_reading_api.c",%F),[],[],"",cflags);
 exec("loader.sce");
  
 coeff1 = [ ..

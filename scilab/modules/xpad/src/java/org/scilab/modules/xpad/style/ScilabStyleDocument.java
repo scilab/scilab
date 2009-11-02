@@ -196,46 +196,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 			   }
 		});
-		setDocumentFilter( new DocumentFilter(){
-			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = text.length()>0;
-				for(int i=0; isTabOnly && i != text.length(); ++i)
-				{
-					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
-				}
-				if(isTabOnly)
-				{
-					for(int i=0; i!= text.length(); ++i)
-					{
-						tabifyLine(getDefaultRootElement().getElementIndex(offset));
-					}
-				}
-				else
-				{
-					fb.insertString(offset, text, attr);
-				}
-			}
-			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-				String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = text.length()>0;
-				for(int i=0; isTabOnly && i != text.length(); ++i)
-				{
-					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
-				}
-				if(isTabOnly)
-				{
-					for(int i=0; i!= text.length(); ++i)
-					{
-						tabifyLines(getDefaultRootElement().getElementIndex(offset)
-								, getDefaultRootElement().getElementIndex(offset+length));
-					}
-				}
-				else
-				{
-					fb.replace(offset, length, text, attr);
-				}
-			}
-		});
 	}
 
 
