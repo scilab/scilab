@@ -12,6 +12,16 @@ function titlepage(str,win)
 //une taille de caractere maximale.
 //!
 [lhs,rhs]=argn(0)
+
+if ~isdef("str") then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "titlepage", 1, 2));
+end
+
+if type(str) <> 10 then
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "titlepage", 1));
+end
+
+
 old=xget('window')
 if rhs==2 then xset('window',win);end
 plot2d([0,1],[0,1],[-1,-1],"022");
