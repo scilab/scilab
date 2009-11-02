@@ -31,10 +31,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
+
 import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -252,17 +252,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 		if(shouldMergeEdits){
 			if(!b) { // ending compound editing with a new CaretEdit
-				System.err.println("adding a caretEdit");
 				undo.addEdit(new CaretEdit(editor.getTextPane()));
-				System.err.println("ending coumpoundEdit");
 				((CompoundEdit)undo.editToBeUndone()).end();
 				
 			}
 		} else {
 			if(b) { // starting compound editing
-				System.err.println("adding a CompoundEdit");
 				undo.addEdit(new CompoundEdit());
-				System.err.println("adding a caretEdit");
 				undo.addEdit(new CaretEdit(editor.getTextPane()));
 			}
 		}
@@ -398,7 +394,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String previousSpace = "";
 		String currentSpace ="";
 		String previousLineContent = "";
-		System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
+		//System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
 		int finalPosition = getEditor().getTextPane().getText().length();
 
 		
@@ -1217,7 +1213,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 		}
 		catch( javax.swing.text.BadLocationException e){
-			System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
+			//System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
 		}
 		return result;
 	}
