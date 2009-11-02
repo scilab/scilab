@@ -101,8 +101,8 @@ It can be used inside a Scilab block to get information of all type of blocks. T
         <para> "critev" : get the vector of the critical events.</para>
         <para> "mod" : get the vector pointers of block modes.</para>
         <para> "nmod" : get the length of the vector pointers of block modes.</para>
-        <para> "iz" : get the register that store pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../../images/palettesgetscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
-        <para> "izptr" : get the pointers vector of the register that store C pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../../images/palettesgetscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "iz" : get the register that store pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../../images/palettes/getscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "izptr" : get the pointers vector of the register that store C pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../../images/palettes/getscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
         <para> "nblk" : get the number of block.</para>
         <para> "outtbptr" : get the register that store C pointers of outtb.</para>
         <para> "outtbpsz" : get the register that store the size of the elements of outtb.</para>

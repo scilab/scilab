@@ -21,94 +21,94 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="freq_div">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ROOTCOEF">
   <refnamediv>
-    <refname>freq_div</refname>
-    <refpurpose>Frequency division</refpurpose>
+    <refname>ROOTCOEF</refname>
+    <refpurpose>Coefficient computation</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/freq_div.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/ROOTCOEF.jpg" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents_freq_div">
+  <refsection id="Contents_ROOTCOEF">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="freq_div">Frequency division</link>
+          <link linkend="ROOTCOEF">Coefficient computation</link>
         </para>
       </listitem>
       <listitem>
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette_freq_div">Palette</xref>
+              <xref linkend="Palette_ROOTCOEF">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description_freq_div">Description</xref>
+              <xref linkend="Description_ROOTCOEF">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialogbox_freq_div">Dialog box</xref>
+              <xref linkend="Dialogbox_ROOTCOEF">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_freq_div">Default properties</xref>
+              <xref linkend="Defaultproperties_ROOTCOEF">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_freq_div">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ROOTCOEF">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="freq_div">Compiled Super Block content</link>
+              <xref linkend="Computationalfunction_ROOTCOEF">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_freq_div">Authors</xref>
+              <xref linkend="Authors_ROOTCOEF">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette_freq_div">
+  <refsection id="Palette_ROOTCOEF">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Events_pal">Events palette</link>
+          <link linkend="Matrix_pal">Matrix operation palette</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_freq_div">
+  <refsection id="Description_ROOTCOEF">
     <title>Description</title>
     <para>
-This block is a Super Block. The input event is directed once every n
- times to output. The input is  driven by an event clock.
+This block computes the coefficients of a polynomial given its root
+values.
 
 </para>
   </refsection>
-  <refsection id="Dialogbox_freq_div">
+  <refsection id="Dialogbox_ROOTCOEF">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/freq_div_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/gui/ROOTCOEF_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,28 +118,28 @@ This block is a Super Block. The input event is directed once every n
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Phase </emphasis>
+          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-        <para> positive scalar.</para>
-        <para> Properties : Type 'vec' of size 1 </para>
+        <para> This block can only support double inputs values. These values can be real or complex.</para>
+        <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Division factor</emphasis>
+          <emphasis role="bold">input row size</emphasis>
         </para>
-        <para> an integer greater than 1.</para>
-        <para> Properties : Type 'vec' of size 1</para>
+        <para> The input row size.</para>
+        <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Defaultproperties_freq_div">
+  <refsection id="Defaultproperties_ROOTCOEF">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">always active:</emphasis> no</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
@@ -148,10 +148,26 @@ This block is a Super Block. The input event is directed once every n
         <para><emphasis role="bold">mode:</emphasis> no</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-2,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
@@ -165,31 +181,32 @@ This block is a Super Block. The input event is directed once every n
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">csuper</emphasis>
+          <emphasis role="italic">root_coef</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacingfunction_freq_div">
+  <refsection id="Interfacingfunction_ROOTCOEF">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Events/freq_div.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/MatrixOp/ROOTCOEF.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="CompiledSuperBlockcontent_freq_div">
-    <title>Compiled Super Block content</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/freq_div_img3_eng.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
+  <refsection id="Computationalfunction_ROOTCOEF">
+    <title>Computational function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/root_coef.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/rootz_coef.c</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
-  <refsection id="Authors_freq_div">
+  <refsection id="Authors_ROOTCOEF">
     <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

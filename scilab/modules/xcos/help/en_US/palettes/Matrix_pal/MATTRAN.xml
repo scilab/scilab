@@ -21,98 +21,104 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="INTRP2BLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATTRAN">
   <refnamediv>
-    <refname>INTRP2BLK_f</refname>
-    <refpurpose>2D interpolation</refpurpose>
+    <refname>MATTRAN</refname>
+    <refpurpose>Matrix Transpose</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/INTRP2BLK_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/MATTRAN.jpg" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents_INTRP2BLK_f">
+  <refsection id="Contents_MATTRAN">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="INTRP2BLK_f">2D interpolation</link>
+          <link linkend="MATTRAN">Matrix Transpose</link>
         </para>
       </listitem>
       <listitem>
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette_INTRP2BLK_f">Palette</xref>
+              <xref linkend="Palette_MATTRAN">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description_INTRP2BLK_f">Description</xref>
+              <xref linkend="Description_MATTRAN">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialogbox_INTRP2BLK_f">Dialog box</xref>
+              <xref linkend="Dialogbox_MATTRAN">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_INTRP2BLK_f">Default properties</xref>
+              <link linkend="MATTRAN">Example</link>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_INTRP2BLK_f">Interfacing function</xref>
+              <xref linkend="Defaultproperties_MATTRAN">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
+              <xref linkend="Interfacingfunction_MATTRAN">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_INTRP2BLK_f">Authors</xref>
+              <xref linkend="Computationalfunction_MATTRAN">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_MATTRAN">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_MATTRAN">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette_INTRP2BLK_f">
+  <refsection id="Palette_MATTRAN">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Lookuptables_pal">Lookup tables palette</link>
+          <link linkend="Matrix_pal">Matrix operation palette</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_INTRP2BLK_f">
+  <refsection id="Description_MATTRAN">
     <title>Description</title>
     <para>
-The output of this block is a function of the inputs obtained by
-bilinear interpolation. This block has two scalar inputs and a single
-scalar output. The  and  give respectively the  coordinate
-and the  coordinate of the -th data point to be interpolated and
-
- its value.   
-
+This Block transposes an MxN matrix to a NxM matrix. For complex data type it uses the hermitian transpose. The equivalent of this block in Scilab is y=u'.  
+</para>
+    <para>
 </para>
   </refsection>
-  <refsection id="Dialogbox_INTRP2BLK_f">
+  <refsection id="Dialogbox_MATTRAN">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/gui/MATTRAN_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -122,28 +128,31 @@ and the  coordinate of the -th data point to be interpolated and
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">X coord.</emphasis>
+          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-        <para> an n-vector (strictly increasing).</para>
-        <para> Properties : Type 'vec' of size -1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Y coord.</emphasis>
-        </para>
-        <para> an m-vector (strictly increasing).</para>
-        <para> Properties : Type 'vec' of size -1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Z values</emphasis>
-        </para>
-        <para> an <inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix.</para>
-        <para> Properties : Type 'mat' of size [-1,-1] </para>
+        <para> It indicates the data type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label Scicos will print the message "Datatype is not supported".</para>
+        <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Defaultproperties_INTRP2BLK_f">
+  <refsection id="Example_MATTRAN">
+    <title>Example</title>
+    <programlisting role="example"><![CDATA[ 
+.                        Complex 
+--                  --               --           --
+| 1+i   2+3i    3+2i |   Tranpose    | 1- i   4- i |
+| 4+i   5-8i    6-2i | ----------->  | 2-3i   5+8i |
+--                  --               | 3-2i   6+2i |
+.                                    --           --
+.                  Real 
+--          --               --      --
+| 1   -2   3 |   Tranpose    | 1    4 |
+| 4   5    6 | ----------->  |- 2   5 |
+--          --               | 3    6 |
+.                            --      --
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Defaultproperties_MATTRAN">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -163,10 +172,7 @@ and the  coordinate of the -th data point to be interpolated and
           <emphasis role="bold">regular inputs:</emphasis>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
@@ -174,7 +180,7 @@ and the  coordinate of the -th data point to be interpolated and
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+          <emphasis role="bold">- port 1 : size [-2,-1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
@@ -195,29 +201,52 @@ and the  coordinate of the -th data point to be interpolated and
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">intrp2</emphasis>
+          <emphasis role="italic">mattran_m</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacingfunction_INTRP2BLK_f">
+  <refsection id="Interfacingfunction_MATTRAN">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/MatrixOp/MATTRAN.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computationalfunction_INTRP2BLK_f">
+  <refsection id="Computationalfunction_MATTRAN">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/intrp2.f (Type 1)</para>
+        <para> SCI/modules/scicos_blocks/src/c/mattran_m.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/matztran_m.c</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_INTRP2BLK_f">
+  <refsection id="Seealso_MATTRAN">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Matrix_pal">Matrix_pal - Matrix operation palette (Scicos Palette)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_MATTRAN">
     <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 </refentry>

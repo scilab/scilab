@@ -21,98 +21,99 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="INTRP2BLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATSUM">
   <refnamediv>
-    <refname>INTRP2BLK_f</refname>
-    <refpurpose>2D interpolation</refpurpose>
+    <refname>MATSUM</refname>
+    <refpurpose>Matrix Sum</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/INTRP2BLK_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/MATSUM.jpg" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents_INTRP2BLK_f">
+  <refsection id="Contents_MATSUM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="INTRP2BLK_f">2D interpolation</link>
+          <link linkend="MATSUM">Matrix Sum</link>
         </para>
       </listitem>
       <listitem>
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette_INTRP2BLK_f">Palette</xref>
+              <xref linkend="Palette_MATSUM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description_INTRP2BLK_f">Description</xref>
+              <xref linkend="Description_MATSUM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialogbox_INTRP2BLK_f">Dialog box</xref>
+              <xref linkend="Dialogbox_MATSUM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_INTRP2BLK_f">Default properties</xref>
+              <xref linkend="Defaultproperties_MATSUM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_INTRP2BLK_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATSUM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
+              <xref linkend="Computationalfunction_MATSUM">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_INTRP2BLK_f">Authors</xref>
+              <xref linkend="Seealso_MATSUM">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_MATSUM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette_INTRP2BLK_f">
+  <refsection id="Palette_MATSUM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Lookuptables_pal">Lookup tables palette</link>
+          <link linkend="Matrix_pal">Matrix operation palette</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_INTRP2BLK_f">
+  <refsection id="Description_MATSUM">
     <title>Description</title>
     <para>
-The output of this block is a function of the inputs obtained by
-bilinear interpolation. This block has two scalar inputs and a single
-scalar output. The  and  give respectively the  coordinate
-and the  coordinate of the -th data point to be interpolated and
-
- its value.   
-
+The MATSUM block returns the sum of the element of an input matrix/vector. When the Sum along is set to all the block outputs the sum of all the elements of the matrix. The output is then a scalar. When the Sum along is set to lines the block is a row-wise sum. The output is a row vector. When the Sum along is set to Columns the block is a column-wise sum. The output is a column vector. The equivalent function of this block in Scilab is: "sum".  
+</para>
+    <para>
 </para>
   </refsection>
-  <refsection id="Dialogbox_INTRP2BLK_f">
+  <refsection id="Dialogbox_MATSUM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/gui/MATSUM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -122,28 +123,21 @@ and the  coordinate of the -th data point to be interpolated and
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">X coord.</emphasis>
+          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-        <para> an n-vector (strictly increasing).</para>
-        <para> Properties : Type 'vec' of size -1 </para>
+        <para> It indicates the type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label Scicos will print the message "Datatype is not supported".</para>
+        <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Y coord.</emphasis>
+          <emphasis role="bold">Sum along (0=all 1=lines 2=Columns)</emphasis>
         </para>
-        <para> an m-vector (strictly increasing).</para>
-        <para> Properties : Type 'vec' of size -1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Z values</emphasis>
-        </para>
-        <para> an <inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix.</para>
-        <para> Properties : Type 'mat' of size [-1,-1] </para>
+        <para> Indicates the used rule to sum. For more information see the description part.</para>
+        <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Defaultproperties_INTRP2BLK_f">
+  <refsection id="Defaultproperties_MATSUM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -163,10 +157,7 @@ and the  coordinate of the -th data point to be interpolated and
           <emphasis role="bold">regular inputs:</emphasis>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
@@ -195,29 +186,59 @@ and the  coordinate of the -th data point to be interpolated and
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">intrp2</emphasis>
+          <emphasis role="italic">mat_sum</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacingfunction_INTRP2BLK_f">
+  <refsection id="Interfacingfunction_MATSUM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/MatrixOp/MATSUM.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computationalfunction_INTRP2BLK_f">
+  <refsection id="Computationalfunction_MATSUM">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/intrp2.f (Type 1)</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_sum.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/mat_suml.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/mat_sumc.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/matz_sum.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/matz_suml.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/matz_sumc.c</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_INTRP2BLK_f">
+  <refsection id="Seealso_MATSUM">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SUBMAT">SUBMAT - SUBMAT Sub-matrix extraction (Scicos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION - SUMMATION Matrix Summation (Scicos Block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_MATSUM">
     <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>
