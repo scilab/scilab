@@ -124,7 +124,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private static final long serialVersionUID = -6410183357490518676L;
 	
-	private static final String XPAD = "Xpad";
+	private static final String XPAD = "Editor";
 	private static final String SCI_EXTENSION = ".sci";
 	private static final String SCE_EXTENSION = ".sce";
 	private static final String ALL_SCI_FILES = "*.sci";
@@ -735,15 +735,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 					out.flush();
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return false;
 				} catch (BadLocationException e) {
-					e.printStackTrace();
+					return false;
 				}
 			} catch (UnsupportedEncodingException e2) {
-				e2.printStackTrace();
 				return false;
 			} catch (FileNotFoundException e2) {
-				e2.printStackTrace();
 				return false;
 			}
 
