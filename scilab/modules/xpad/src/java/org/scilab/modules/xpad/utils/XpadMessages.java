@@ -71,7 +71,7 @@ public class XpadMessages {
     public static final String SCILAB_STYLE = Messages.gettext("Scilab");
     public static final String PLAIN_TEXT_STYLE = Messages.gettext("Plain Text");
     public static final String XML_STYLE = Messages.gettext("XML");
-    public static final String ENCODING_TYPE = Messages.gettext("Encoding Type");
+    public static final String ENCODING_TYPE = Messages.gettext("Encoding");
     public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
