@@ -60,7 +60,7 @@ t=[1,2,3];t0=0;
 x=dae([x0,x0d],t0,t,g);
 x=[t;x];
 x1=x(2:nx+1,:);
-if norm(pp*x1-x1,1)>1.d-5 then bugmes();quit;end //bug car on a plus la premi�re ligne 
+if norm(pp*x1-x1,1)>1.d-5 then bugmes();quit;end // Bug because we don't have the first line anymore
 //x(4) goes through 1 at  t=1.5409711;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 t=1.5409711;

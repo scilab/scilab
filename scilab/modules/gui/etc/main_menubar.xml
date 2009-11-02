@@ -159,7 +159,7 @@
             <callback instruction='mfile2sci();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="M&amp;odules manager - ATOMS">
+        <submenu label="M&amp;odule manager - ATOMS">
             <callback instruction='atomsGui();' type="0"/>
         </submenu>
     </menu>

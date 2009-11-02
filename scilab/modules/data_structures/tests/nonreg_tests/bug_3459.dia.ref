@@ -16,7 +16,7 @@
 // list with entries:
 //   1: 1
 // !--error 246
-// Fonction non définie pour le type d'argument donné.
+// Function not defined for given argument type(s).
 function M=%to_e(varargin)
   M = varargin($),
   select varargin(1)

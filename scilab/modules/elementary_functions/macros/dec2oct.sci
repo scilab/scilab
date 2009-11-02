@@ -31,6 +31,11 @@ function y = dec2oct(x)
 	for i=1:nr
 		for j=1:nc
 			
+			if x(i,j) < 8 then
+				y(i,j) = string(x(i,j));
+				continue;
+			end
+			
 			x_bin          = dec2bin(x(i,j));
 			x_bin_length   = length(x_bin);
 			
