@@ -130,7 +130,7 @@ coordinate and the  coordinate of the data points to be interpolated.
         <para>
           <emphasis role="bold">Y coord.</emphasis>
         </para>
-        <para> A vector (same size as<inlinemediaobject><imageobject><imagedata fileref="../../../imagesINTRPLBLK_f_img2_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> coord).</para>
+        <para> A vector (same size as<inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRPLBLK_f_img2_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> coord).</para>
         <para> Properties : Type 'vec' of size -1 </para>
       </listitem>
     </itemizedlist>

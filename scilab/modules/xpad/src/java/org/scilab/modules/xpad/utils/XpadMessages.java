@@ -135,5 +135,9 @@ public class XpadMessages {
     public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
     public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
     public static final String LICENSE = Messages.gettext("CeCILL License");
+    
+    public static final String XPAD_ERROR = Messages.gettext("Editor error");
+    public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
+    public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
 
 }

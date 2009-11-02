@@ -59,6 +59,8 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -124,7 +126,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private static final long serialVersionUID = -6410183357490518676L;
 	
-	private static final String XPAD = "Xpad";
+	private static final String XPAD = "Editor";
 	private static final String SCI_EXTENSION = ".sci";
 	private static final String SCE_EXTENSION = ".sce";
 	private static final String ALL_SCI_FILES = "*.sci";
@@ -218,6 +220,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public static void xpad(String filePath) {
 		Xpad editorInstance = launchXpad();
 		File f = new File(filePath);
+		if (f.isDirectory()) { /* Bug 5131 */
+			MessageBox messageBox = ScilabMessageBox.createMessageBox();
+			messageBox.setTitle(XpadMessages.XPAD_ERROR);
+			messageBox.setMessage(String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()));
+			messageBox.setModal(true);
+			messageBox.setIcon("error");
+			messageBox.displayAndWait();
+			xpad();
+			return;
+		}
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFileAndWait(f);
@@ -480,7 +492,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 		File newSavedFile = new File(fileToSave);
-		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
 		
 		BufferedWriter out = null;
 		try {
@@ -510,6 +522,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Get current file path for Execute file into Scilab 
 		fileFullPath = newSavedFile.getAbsolutePath();
 		lastKnownSavedState = System.currentTimeMillis();
+		
+		
+		textPaneAt.setName(fileToSave); 
 		return true;
 	}
 	
@@ -735,15 +750,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 					out.flush();
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return false;
 				} catch (BadLocationException e) {
-					e.printStackTrace();
+					return false;
 				}
 			} catch (UnsupportedEncodingException e2) {
-				e2.printStackTrace();
 				return false;
 			} catch (FileNotFoundException e2) {
-				e2.printStackTrace();
 				return false;
 			}
 
@@ -790,6 +803,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setStyledDocument(new ScilabStyleDocument(this));
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
+		TabifyAction.putInInputMap(textPane, this);
+		UnTabifyAction.putInInputMap(textPane, this);
+		
 		textPane.setFocusable(true);
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();

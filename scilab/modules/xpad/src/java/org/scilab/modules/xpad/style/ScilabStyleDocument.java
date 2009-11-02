@@ -14,10 +14,10 @@ package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -27,12 +27,8 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.undo.UndoManager;
-import javax.swing.undo.UndoableEdit;
 import javax.swing.undo.CompoundEdit;
-
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.AttributeSet;
+import javax.swing.undo.UndoManager;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
@@ -95,7 +91,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private final String IN = "IN";
 	private final String OUT = "OUT";
-	private final int BOOLS = 0;
+	private final int VARIABLES = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
 	private final int FUNCTIONS = 3;
@@ -196,46 +192,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 			   }
 		});
-		setDocumentFilter( new DocumentFilter(){
-			public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = text.length()>0;
-				for(int i=0; isTabOnly && i != text.length(); ++i)
-				{
-					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
-				}
-				if(isTabOnly)
-				{
-					for(int i=0; i!= text.length(); ++i)
-					{
-						tabifyLine(getDefaultRootElement().getElementIndex(offset));
-					}
-				}
-				else
-				{
-					fb.insertString(offset, text, attr);
-				}
-			}
-			public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-				String text, AttributeSet attr) throws BadLocationException {
-				boolean isTabOnly = text.length()>0;
-				for(int i=0; isTabOnly && i != text.length(); ++i)
-				{
-					isTabOnly = isTabOnly && (text.charAt(i)=='\t');
-				}
-				if(isTabOnly)
-				{
-					for(int i=0; i!= text.length(); ++i)
-					{
-						tabifyLines(getDefaultRootElement().getElementIndex(offset)
-								, getDefaultRootElement().getElementIndex(offset+length));
-					}
-				}
-				else
-				{
-					fb.replace(offset, length, text, attr);
-				}
-			}
-		});
 	}
 
 
@@ -280,7 +236,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.addUndoableEditListener(null);
 			resetStyle(lineStartPosition, lineEndPosition);
 			try {
-				applyStyle(boundaries_list.get(BOOLS), getStyle("Bool"));
+				applyStyle(boundaries_list.get(VARIABLES), getStyle("Variable"));
 				applyStyle(boundaries_list.get(COMMANDS), getStyle("Command"));
 				applyStyle(boundaries_list.get(FUNCTIONS), getStyle("Function"));
 				applyStyle(boundaries_list.get(MACROS), getStyle("Macro"));
@@ -1578,7 +1534,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
-		System.out.println(currentPos);
 		currentPos -=  offset;
 		int index = -1;
 		int end = -1;
@@ -1612,7 +1567,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
-				System.out.println(currentPos);
 				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
 
 				boolean found = false;

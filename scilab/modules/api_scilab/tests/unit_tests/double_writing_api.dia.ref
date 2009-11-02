@@ -8,8 +8,9 @@
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/double_writing_api"));
 cd(pathconvert(TMPDIR+"/double_writing_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/double_writing_api.c",pathconvert(TMPDIR+"/double_writing_api/double_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("double_writing",["write_double","write_double"],SCI+"/modules/api_scilab/tests/unit_tests/double_writing_api.c",[],[],"",cflags);
+ilib_build("double_writing",["write_double","write_double"],"double_writing_api.c",[],"Makefile","",cflags);
 a_ref = [   0 1 2 3; ..
             4 5 6 7; ..
             8 9 10 11];
