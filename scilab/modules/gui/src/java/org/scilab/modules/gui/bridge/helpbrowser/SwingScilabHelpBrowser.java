@@ -33,6 +33,8 @@ import javax.help.search.SearchQuery;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -79,8 +81,17 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    }
 	    
 	    if (!mainJar.exists()) {
-	    	System.out.println("'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. " + "" +
-	    			"Are you sure you built it? The help will not be available.");
+	    	String message = "'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. " 
+	    		+ "" + "Are you sure you built it? The help will not be available.";
+	    	if (ScilabConsole.isExistingConsole()) {
+	    		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+	    		messageBox.setMessage(message);
+	    		messageBox.setModal(true);
+	    		messageBox.setIcon("error");
+	    		messageBox.displayAndWait();
+	    	} else {
+	    		System.out.println(message);
+	    	}
 	    	return;
 	    }
 	    
