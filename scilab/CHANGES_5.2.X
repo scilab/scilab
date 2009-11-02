@@ -5,9 +5,10 @@
 Xcos:
 =====
 
-Xcos replaces Scicos in Scilab distribution. 
-Based on state of the art components, Xcos provides a stable, easy and
-usable interface to create complex simulations and controls.
+Xcos is developed simultaneously and together with Scilab, and replaces Scicos
+in Scilab distributions. With a new ergonomic and efficient block diagrams 
+editor, Xcos provides functionalities for modeling mechanical systems and control
+systems, and is particularly suitable for industrial and academic needs.
 
 This new version provides numerous new features:
 * Several diagrams can be edited at the same time
