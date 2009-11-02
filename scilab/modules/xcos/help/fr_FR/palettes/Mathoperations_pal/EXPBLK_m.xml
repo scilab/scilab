@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+ml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -21,29 +21,41 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="EXPBLK_m">
+<refentry version="5.0-subset Scilab" xml:id="EXPBLK_m"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
     <refname>EXPBLK_m</refname>
+
     <refpurpose>Exponentielle</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
+
+    <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/EXPBLK_m_blk.gif" align="center" valign="middle"/>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/EXPBLK_m.jpg"
+                     valign="middle"></imagedata>
         </imageobject>
-      </inlinemediaobject>
-    </para>
+      </inlinemediaobject></para>
   </refsection>
+
   <refsection id="Contenu_EXPBLK_m">
     <title>Contenu</title>
+
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="EXPBLK_m">Exponentielle</link>
         </para>
       </listitem>
+
       <listitem>
         <itemizedlist>
           <listitem>
@@ -51,146 +63,187 @@
               <xref linkend="Palette_EXPBLK_m">Palette</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
               <xref linkend="Description_EXPBLK_m">Description</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_EXPBLK_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXPBLK_m">Boîte de
+              dialogue</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_EXPBLK_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXPBLK_m">Propriétés par
+              défaut</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Fonctiondinterface_EXPBLK_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXPBLK_m">Fonction
+              d'interface</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Fonctiondecalcul_EXPBLK_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXPBLK_m">Fonction de
+              calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_EXPBLK_m">
     <title>Palette</title>
+
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Mathoperations_pal">Palette opérations mathématiques</link>
+          <link linkend="Mathoperations_pal">Palette opérations
+          mathématiques</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_EXPBLK_m">
     <title>Description</title>
-    <para>
-Ce bloc calcule 
-. 
-</para>
-    <para>
-Les tailles des ports d'entrée et de sortie sont déterminées par
-le compilateur.
 
-</para>
+    <para>Ce bloc calcule .</para>
+
+    <para>Les tailles des ports d'entrée et de sortie sont déterminées par le
+    compilateur.</para>
   </refsection>
+
   <refsection id="Boîtededialogue_EXPBLK_m">
     <title>Boîte de dialogue</title>
+
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/EXPBLK_m_gui.gif" align="center" valign="middle"/>
+          <imagedata align="center" fileref="../../../images/EXPBLK_m_gui.gif"
+                     valign="middle" />
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
 
-</para>
+    <para />
+
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">a (0)</emphasis>
         </para>
-        <para> Un scalaire à valeur réelle positive donnant le nombre élévé à la puissance u.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+
+        <para>Un scalaire à valeur réelle positive donnant le nombre élévé à
+        la puissance u.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Propriétéspardéfaut_EXPBLK_m">
     <title>Propriétés par défaut</title>
+
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">entrée régulières:</emphasis>
         </para>
+
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">sorties régulières:</emphasis>
         </para>
+
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrées
+        évènementielles:</emphasis> 0</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties
+        évènementielles:</emphasis> 0</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état continu:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état discret:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état objet:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+
           <emphasis role="italic">expblk_m</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Fonctiondinterface_EXPBLK_m">
     <title>Fonction d'interface</title>
+
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/NonLinear/EXPBLK_m.sci</para>
+        <para>SCI/modules/scicos_blocks/macros/NonLinear/EXPBLK_m.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Fonctiondecalcul_EXPBLK_m">
     <title>Fonction de calcul</title>
+
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/expblk_m.c (Type 4)</para>
+        <para>SCI/modules/scicos_blocks/src/c/expblk_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

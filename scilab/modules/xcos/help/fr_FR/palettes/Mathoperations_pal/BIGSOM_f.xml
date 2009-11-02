@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+ml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -21,29 +21,41 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="BIGSOM_f">
+<refentry version="5.0-subset Scilab" xml:id="BIGSOM_f"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
     <refname>BIGSOM_f</refname>
+
     <refpurpose>Somme (Ancien bloc)</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
+
+    <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/BIGSOM_f_blk.gif" align="center" valign="middle"/>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/BIGSOM_f.jpg"
+                     valign="middle"></imagedata>
         </imageobject>
-      </inlinemediaobject>
-    </para>
+      </inlinemediaobject></para>
   </refsection>
+
   <refsection id="Contenu_BIGSOM_f">
     <title>Contenu</title>
+
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="BIGSOM_f">Somme (Ancien bloc)</link>
         </para>
       </listitem>
+
       <listitem>
         <itemizedlist>
           <listitem>
@@ -51,145 +63,189 @@
               <xref linkend="Palette_BIGSOM_f">Palette</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
               <xref linkend="Description_BIGSOM_f">Description</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_BIGSOM_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BIGSOM_f">Boîte de
+              dialogue</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_BIGSOM_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BIGSOM_f">Propriétés par
+              défaut</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Fonctiondinterface_BIGSOM_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BIGSOM_f">Fonction
+              d'interface</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Fonctiondecalcul_BIGSOM_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_BIGSOM_f">Fonction de
+              calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_BIGSOM_f">
     <title>Palette</title>
+
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Mathoperations_pal">Palette opérations mathématiques</link>
+          <link linkend="Mathoperations_pal">Palette opérations
+          mathématiques</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_BIGSOM_f">
     <title>Description</title>
-    <para>
-Le bloc somme réalise l'addition de ses entrées.
-Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
 
-</para>
+    <para>Le bloc somme réalise l'addition de ses entrées. Ce bloc peut
+    additionner des scalaires ou des vecteurs d'entrée.</para>
   </refsection>
+
   <refsection id="Boîtededialogue_BIGSOM_f">
     <title>Boîte de dialogue</title>
+
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../images/BIGSOM_f_gui.gif" align="center" valign="middle"/>
+          <imagedata align="center" fileref="../../../images/BIGSOM_f_gui.gif"
+                     valign="middle" />
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
 
-</para>
+    <para />
+
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Inputs ports signs/gain</emphasis>
         </para>
-        <para> Définit le signe de l'addition ainsi qu'un gain pour chaque entrée.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+
+        <para>Définit le signe de l'addition ainsi qu'un gain pour chaque
+        entrée.</para>
+
+        <para>Propriétés : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Propriétéspardéfaut_BIGSOM_f">
     <title>Propriétés par défaut</title>
+
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">entrée régulières:</emphasis>
         </para>
+
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
+
         <para>
           <emphasis role="bold">- port 2 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">sorties régulières:</emphasis>
         </para>
+
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrées
+        évènementielles:</emphasis> 0</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties
+        évènementielles:</emphasis> 0</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état continu:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état discret:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état objet:</emphasis>
+        non</para>
       </listitem>
+
       <listitem>
         <para>
           <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+
           <emphasis role="italic">sum</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Fonctiondinterface_BIGSOM_f">
     <title>Fonction d'interface</title>
+
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Linear/BIGSOM_f.sci</para>
+        <para>SCI/modules/scicos_blocks/macros/Linear/BIGSOM_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Fonctiondecalcul_BIGSOM_f">
     <title>Fonction de calcul</title>
+
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/sum.c (Type 2)</para>
+        <para>SCI/modules/scicos_blocks/src/c/sum.c (Type 2)</para>
       </listitem>
     </itemizedlist>
   </refsection>
