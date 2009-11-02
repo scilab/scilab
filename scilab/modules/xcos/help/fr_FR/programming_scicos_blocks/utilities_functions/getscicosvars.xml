@@ -134,7 +134,7 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DEBUG_SCICOS">DEBUG_SCICOS - Bloc debug (Bloc Scicos)</link>
+          <link linkend="scicos_debug">DEBUG_SCICOS - Bloc debug (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

@@ -270,7 +270,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DEBUG_SCICOS">DEBUG_SCICOS - Debug block (Scicos
+          <link linkend="scicos_debug">DEBUG_SCICOS - Debug block (Scicos
           Block)</link>
         </para>
       </listitem>
