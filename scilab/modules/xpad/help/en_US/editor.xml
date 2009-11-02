@@ -533,12 +533,12 @@
 	  </tr>
 	  
 	  <tr>
-            <td>Encoding Type</td>
+            <td>Encoding</td>
 	    
             <td />
 	    
             <td>
-              <para>Encoding type settings (default type is UTF-8
+              <para>Encoding settings (default type is UTF-8
 		Encoding)</para>
             </td>
 	  </tr>
