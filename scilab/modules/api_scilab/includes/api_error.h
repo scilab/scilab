@@ -170,6 +170,8 @@ extern "C" {
 #define API_ERROR_GET_POINTER															12801
 #define API_ERROR_ALLOC_POINTER														12803
 #define API_ERROR_CREATE_POINTER													12804
+#define API_ERROR_CREATE_NAMED_POINTER										12805
+#define API_ERROR_READ_POINTER														12806
 
 /* error functions*/
 int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int iNeeded);
