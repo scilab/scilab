@@ -254,11 +254,9 @@ public class BlockReader {
 
 		for (int i = 0; i < linkPoints.size(); i++) {
 			if(linkPoints.get(i) != null){
-				System.err.println("");
 				for (int j = 0; j < linkPoints.get(i).length; j++) {
 					linkPoints.get(i)[j][0] += offsetX;
 					linkPoints.get(i)[j][1] += offsetY;
-					System.err.println("(" + linkPoints.get(i)[j][0] + "," + linkPoints.get(i)[j][1] + ")");
 				}
 			}
 		}
