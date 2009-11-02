@@ -107,15 +107,15 @@ The event date of that block is computed by the formula :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../imagesEVTDLY_c_img2_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTDLY_c_img2_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
     <para>
 </para>
     <para>
-where <inlinemediaobject><imageobject><imagedata fileref="../../../imagesEVTDLY_c_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> the date of initial output event, <inlinemediaobject><imageobject><imagedata fileref="../../../imagesEVTDLY_c_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>
-the delay and <inlinemediaobject><imageobject><imagedata fileref="../../../imagesEVTDLY_c_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> and internal integer discrete counter.
+where <inlinemediaobject><imageobject><imagedata fileref="../../../images/EVTDLY_c_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> the date of initial output event, <inlinemediaobject><imageobject><imagedata fileref="../../../images/EVTDLY_c_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>
+the delay and <inlinemediaobject><imageobject><imagedata fileref="../../../images/EVTDLY_c_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> and internal integer discrete counter.
 
 </para>
   </refsection>

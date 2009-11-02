@@ -138,7 +138,7 @@ and the  coordinate of the -th data point to be interpolated and
         <para>
           <emphasis role="bold">Z values</emphasis>
         </para>
-        <para> an <inlinemediaobject><imageobject><imagedata fileref="../../../imagesINTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix.</para>
+        <para> an <inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix.</para>
         <para> Properties : Type 'mat' of size [-1,-1] </para>
       </listitem>
     </itemizedlist>
