@@ -115,7 +115,7 @@ fonts=xlfont()</synopsis>
     <para>Default family fonts are "Monospaced" (0), "Symbol" (1), "Serif"
     (2), "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5),
     "SansSerif" (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif
-    Bold Italic" (9). These default fonts are automaticaly loaded when needed
+    Bold Italic" (9). These default fonts are automatically loaded when needed
     and so <literal>xlfont</literal> is not really required for them. In fact
     <literal>xlfont</literal> is essentially useful to load a new font.</para>
   </refsection>
@@ -134,14 +134,6 @@ figure_entity = gcf();
 axes_entity = figure_entity.children;
 title_entity = axes_entity.children;
 title_entity.font_style = 10;
-
-xlfont()
-
-xlfont(SCI+'/thirdparty/fonts/scilabsymbols.ttf')
-title_entity.font_style = 11; // use scilabsymbols.ttf font
-title_entity.font_size  = 4; // size scilabsymbols.ttf font
-
-xlfont()
 
 xlfont('reset');
  ]]></programlisting>
