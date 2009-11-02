@@ -159,7 +159,7 @@
 
         <para>It indicates the type of the output. It support only the two
         types double (1) and complex (2). If we input another entry in this
-        label Scicos will print the message "Datatype is not
+        label xcos will print the message "Datatype is not
         supported".</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
@@ -275,7 +275,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATINV">MATINV - MATINV Matrix Inverse (Scicos
+          <link linkend="MATINV">MATINV - MATINV Matrix Inverse (xcos
           Block)</link>
         </para>
       </listitem>

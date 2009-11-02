@@ -93,7 +93,7 @@
   <refsection id="Description_MBLOCK">
     <title>Description</title>
     <para>
-The block "MBlock" provides an easy way to build a Scicos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in Scicos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other Scicos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
+The block "MBlock" provides an easy way to build a xcos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in xcos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other xcos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
 </para>
     <para>
 </para>
@@ -185,7 +185,7 @@ The block "MBlock" provides an easy way to build a Scicos block whose behavior i
 
  
 These values that can be scalar or vector, can also be defined in the
-          Scicos context. In order to access the Scicos context, click on the
+          xcos context. In order to access the xcos context, click on the
           "Diagram" menu then click on the "Context" submenu.
           For instance, here is an example of overloading of parameters in a Modelica program.
  

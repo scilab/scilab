@@ -124,9 +124,6 @@ public class BlockReader {
 					blocks.add(currentBlock);
 					minX = Math.min(minX, currentBlock.getGeometry().getX());
 					minY = Math.min(minY, currentBlock.getGeometry().getY()/* - currentBlock.getGeometry().getHeight()*/);
-				}else if(isLink(data, i)){
-					System.err.println("Link !");
-					//for minX and minY
 				}
 			} catch (BlockReaderException e) {
 				WARNING(" Fail reading Block " + (i + 1));
@@ -1143,6 +1140,7 @@ public class BlockReader {
 		if (modelFields.get(1) instanceof ScilabString) { 
 			newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields) );
 		}
+		
 		if (( modelFields.get(1) instanceof ScilabList)){
 			newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
 			newBlock.setSimulationFunctionType((int) ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);

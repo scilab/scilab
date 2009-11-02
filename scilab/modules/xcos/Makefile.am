@@ -22,7 +22,8 @@ libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscixcos_la_etcdir = $(mydatadir)/etc
 libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/xcos.start \
-				etc/Xcos-style.xml
+				etc/Xcos-style.xml \
+				etc/xcosConfiguration.xml
 
 XCOS_C_SOURCES = 
 

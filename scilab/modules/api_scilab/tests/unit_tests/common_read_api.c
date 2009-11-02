@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 
              
 static int iTab = 0;

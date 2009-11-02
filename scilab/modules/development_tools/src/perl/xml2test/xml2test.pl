@@ -504,13 +504,13 @@ sub write_scilab_code
 	print FILEOUT 'cflags = "-I"+SCI+"/modules/localization/includes";'."\n";
 	
 	print FILEOUT 'ilib_build(';
-	print FILEOUT '"'.$tags{'Lib_name'}.'",'; # lib_name
-	print FILEOUT $table_str.',';             # table
-	print FILEOUT $cfiletmpdir.',';           # files
-	print FILEOUT '[],';                      # libs
-	print FILEOUT '[],';                      # makename
-	print FILEOUT '"",';                      # ldflags
-	print FILEOUT 'cflags);'."\n";            # cflags
+	print FILEOUT '"'.$tags{'Lib_name'}.'",';                          # lib_name
+	print FILEOUT $table_str.',';                                      # table
+	print FILEOUT '"'.basename(substr($tags{'File_gateway'},3)).'",';  # files
+	print FILEOUT '[],';                                               # libs
+	print FILEOUT '"Makefile",';                                       # makename
+	print FILEOUT '"",';                                               # ldflags
+	print FILEOUT 'cflags);'."\n";                                     # cflags
 	
 	print FILEOUT 'exec("loader.sce");'."\n";
 	

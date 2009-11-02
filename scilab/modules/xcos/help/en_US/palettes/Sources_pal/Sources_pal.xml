@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="xcos_manual">Xcos</link>
+          <link linkend="xcos">xcos</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -104,8 +104,8 @@
 
       <listitem>
         <para>
-          <link linkend="FROMWSB">FROMWSB - Data from Scilab worspace to
-          Scicos</link>
+          <link linkend="FROMWSB">FROMWSB - Data from Scilab workspace to
+          Xcos</link>
         </para>
       </listitem>
 

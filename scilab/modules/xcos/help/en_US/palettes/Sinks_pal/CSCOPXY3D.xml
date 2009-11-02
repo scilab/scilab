@@ -273,7 +273,7 @@ This block realizes the visualization of the evolution of the three regular inpu
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer (Scicos Block)</link>
+          <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
         </para>
       </listitem>
     </itemizedlist>

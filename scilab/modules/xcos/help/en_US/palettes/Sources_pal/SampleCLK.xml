@@ -204,22 +204,22 @@ The second method uses the Multifrequency block it generates events only for spe
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CLOCK_c">CLOCK_c - Activation clock (Scicos Block)</link>
+          <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="Counter">Counter - Counter (Scicos Block)</link>
+          <link linkend="Counter">Counter - Counter</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="ESELECT_f">ESELECT_f - Synchronous block Event-Select (Scicos Block)</link>
+          <link linkend="ESELECT_f">ESELECT_f - Synchronous block Event-Select</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="M_freq">M_freq - Multiple Frequencies (Scicos Block)</link>
+          <link linkend="M_freq">M_freq - Multiple Frequencies</link>
         </para>
       </listitem>
     </itemizedlist>

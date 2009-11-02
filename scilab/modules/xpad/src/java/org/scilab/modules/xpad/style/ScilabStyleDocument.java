@@ -14,10 +14,10 @@ package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -27,41 +27,19 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
+import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
-import javax.swing.undo.CompoundEdit;
-
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.AttributeSet;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
 
-	private UndoManager undo = new UndoManager() {
-		public void undoableEditHappened(UndoableEditEvent e) {
-					
-			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) 
-						|| EventType.equals(DocumentEvent.EventType.REMOVE.toString()) )
-				&& (e.getEdit().canUndo()) ){
-				/*
-				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
-					System.out.println("remove");
-					System.out.println(indentInprogress);
-				}
-				*/
-				if (!indentInprogress){ 
-					(shouldMergeEdits ? compoundEdit : this).addEdit(e.getEdit());
-					EventType = "";
-				}
-			}
-
-					
-		}
-	};
+	private CompoundUndoManager undo = new CompoundUndoManager(); 
 
 	private volatile boolean autoIndent         = true;
 	private volatile boolean autoColorize       = true;
@@ -71,7 +49,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private volatile boolean shouldMergeEdits    = false;
 	
 	private String EventType;
-	private CompoundEdit compoundEdit = null;
 	
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
 	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
@@ -95,7 +72,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private final String IN = "IN";
 	private final String OUT = "OUT";
-	private final int BOOLS = 0;
+	private final int VARIABLES = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
 	private final int FUNCTIONS = 3;
@@ -240,7 +217,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.addUndoableEditListener(null);
 			resetStyle(lineStartPosition, lineEndPosition);
 			try {
-				applyStyle(boundaries_list.get(BOOLS), getStyle("Bool"));
+				applyStyle(boundaries_list.get(VARIABLES), getStyle("Variable"));
 				applyStyle(boundaries_list.get(COMMANDS), getStyle("Command"));
 				applyStyle(boundaries_list.get(FUNCTIONS), getStyle("Function"));
 				applyStyle(boundaries_list.get(MACROS), getStyle("Macro"));
@@ -271,18 +248,25 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	}
 	public void setShouldMergeEdits(boolean b) {
+	
 		if(shouldMergeEdits){
-			if(!b) { // ending compound editing
-				compoundEdit.end();
-				undo.addEdit(compoundEdit);
-				compoundEdit= null;
+			if(!b) { // ending compound editing with a new CaretEdit
+				System.err.println("adding a caretEdit");
+				undo.addEdit(new CaretEdit(editor.getTextPane()));
+				System.err.println("ending coumpoundEdit");
+				((CompoundEdit)undo.editToBeUndone()).end();
+				
 			}
 		} else {
 			if(b) { // starting compound editing
-				compoundEdit= new CompoundEdit();
+				System.err.println("adding a CompoundEdit");
+				undo.addEdit(new CompoundEdit());
+				System.err.println("adding a caretEdit");
+				undo.addEdit(new CaretEdit(editor.getTextPane()));
 			}
 		}
 		shouldMergeEdits = b;
+		
 	}
 	public boolean getShouldMergeEdits() {
 		return shouldMergeEdits;
@@ -413,7 +397,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String previousSpace = "";
 		String currentSpace ="";
 		String previousLineContent = "";
-		
+		System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
 		int finalPosition = getEditor().getTextPane().getText().length();
 
 		
@@ -1167,13 +1151,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	{
 		boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
 		setAutoIndent(false);
-		setColorize(false);
+		//setColorize(false);
 		setShouldMergeEdits(true);
 		for(int currentLine = line_start; currentLine <= line_end; ++currentLine){ // tabifying should not insert/remove lines
 			tabifyLine(currentLine);
 		}
 		setAutoIndent(indentMode);
-		setColorize(colorizeMode);
+		//setColorize(colorizeMode);
 		setShouldMergeEdits(mergeEditsMode);
 		return getTabulation().length();
 	}
@@ -1538,7 +1522,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
 		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
 		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
-		System.out.println(currentPos);
 		currentPos -=  offset;
 		int index = -1;
 		int end = -1;
@@ -1572,7 +1555,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				pattern = Pattern.compile(word , Pattern.LITERAL );
 				
 			}
-				System.out.println(currentPos);
 				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
 
 				boolean found = false;
@@ -2055,5 +2037,28 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	    }
 	}
 
-	
-}
+
+class CompoundUndoManager extends UndoManager {
+	public void undoableEditHappened(UndoableEditEvent e) {
+				
+		if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+					|| EventType.equals(DocumentEvent.EventType.REMOVE.toString()) )
+			&& (e.getEdit().canUndo()) ){
+			/*
+			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+				System.out.println("remove");
+				System.out.println(indentInprogress);
+			}
+			*/
+			if (!indentInprogress){ 
+				this.addEdit(e.getEdit());
+				EventType = "";
+			}
+		}		
+	}
+	public UndoableEdit editToBeUndone(){ // protected -> public 
+		return super.editToBeUndone();
+	}
+};
+
+};

@@ -99,7 +99,7 @@
     <title>Description</title>
     <para>
 This block has a unique input event port. Upon the arrival of an
-event, the simulation is stopped and the main Scicos window is
+event, the simulation is stopped and the main Xcos window is
 activated. Simulation can be restarted or continued (Run button).   
 
 </para>

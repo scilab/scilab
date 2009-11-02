@@ -492,7 +492,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 		File newSavedFile = new File(fileToSave);
-		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
 		
 		BufferedWriter out = null;
 		try {
@@ -522,6 +522,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Get current file path for Execute file into Scilab 
 		fileFullPath = newSavedFile.getAbsolutePath();
 		lastKnownSavedState = System.currentTimeMillis();
+		
+		
+		textPaneAt.setName(fileToSave); 
 		return true;
 	}
 	
