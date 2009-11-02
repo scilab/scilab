@@ -1206,6 +1206,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
+				updateEncodingMenu();
+				
 			// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
