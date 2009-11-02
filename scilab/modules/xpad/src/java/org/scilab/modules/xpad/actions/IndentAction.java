@@ -37,7 +37,7 @@ public class IndentAction extends DefaultAction {
 		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
 		try {
-			styleDocument.beautifier(getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+			styleDocument.getIndentManager().beautifier(styleDocument, getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

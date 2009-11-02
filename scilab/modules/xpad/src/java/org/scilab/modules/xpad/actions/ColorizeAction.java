@@ -41,8 +41,9 @@ public final class ColorizeAction extends DefaultAction {
 	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
-			.colorize(0, getEditor().getTextPane().getDocument().getLength());
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument)getEditor().getTextPane().getStyledDocument(); 
+		((ScilabStyleDocument) scilabDocument).getColorizationManager()
+			.colorize(scilabDocument, 0, getEditor().getTextPane().getDocument().getLength());
 	}
 
 	/**

@@ -383,7 +383,9 @@ public final class FindAction extends DefaultAction {
 				int currentCaretPos = xpadTextPane.getCaretPosition();
 				
 				if (buttonSelection.isSelected()) {
-					text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
+					ScilabStyleDocument scilabDocument = (ScilabStyleDocument)xpadTextPane.getStyledDocument();
+					text = scilabDocument.getSearchManager().getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
+					//text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
 				} else {
 					text = xpadTextPane.getText();
 				}
@@ -545,10 +547,10 @@ public final class FindAction extends DefaultAction {
 		
 		if (onlySelectedLines) {
 			currentCaretPos = xpadTextPane.getCaretPosition();
-			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		} else {
 			currentCaretPos =  xpadTextPane.getCaretPosition();
-			offsets = scilabStyle.findWord(wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
 		
 
@@ -587,21 +589,21 @@ public final class FindAction extends DefaultAction {
 			}
 
 
-			
+			ScilabStyleDocument scilabDocument = ((ScilabStyleDocument) xpadTextPane.getStyledDocument());
 			// get the position of the next expression to find
 			if (backwardSearch) {
 				if (onlySelectedLines) {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+					nextFindArray = scilabDocument.getSearchManager().findPreviousWord(scilabDocument, wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				} else {
 					System.out.println(startSelectedLines);
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+					nextFindArray = scilabDocument.getSearchManager().findPreviousWord(scilabDocument, wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				}
 			} else {
 				if (onlySelectedLines) {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+					nextFindArray = scilabDocument.getSearchManager().findNextWord(scilabDocument, wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				} else {
 					System.out.println(startSelectedLines);
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+					nextFindArray = scilabDocument.getSearchManager().findNextWord(scilabDocument, wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 				}
 			}
 			
@@ -616,18 +618,18 @@ public final class FindAction extends DefaultAction {
 						xpadTextPane.setCaretPosition(xpadTextPane.getDocument().getLength());
 						currentCaretPos =  xpadTextPane.getCaretPosition();
 						if (onlySelectedLines) {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+							nextFindArray = scilabDocument.getSearchManager().findPreviousWord(scilabDocument, wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 						} else {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+							nextFindArray = scilabDocument.getSearchManager().findPreviousWord(scilabDocument, wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 						}
 						
 					} else {
 						xpadTextPane.setCaretPosition(0);
 						currentCaretPos =  xpadTextPane.getCaretPosition();
 						if (onlySelectedLines) {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+							nextFindArray = scilabDocument.getSearchManager().findNextWord(scilabDocument, wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 						} else {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+							nextFindArray = scilabDocument.getSearchManager().findNextWord(scilabDocument, wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 						}
 					}
 					

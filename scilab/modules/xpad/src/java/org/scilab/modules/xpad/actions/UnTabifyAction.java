@@ -34,12 +34,13 @@ public class UnTabifyAction extends DefaultAction {
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
 		
-		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
+		ScilabStyleDocument scilabDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+		int line_start     = scilabDocument.getDefaultRootElement().getElementIndex(position_start);
+		int line_end       = scilabDocument.getDefaultRootElement().getElementIndex(position_end);
 		 if( line_start == line_end )
 		{
 			// A part of the line is selected : Delete a Tab at the beginning of the line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLine(line_start);
+			int offset = scilabDocument.getTabManager().untabifyLine(scilabDocument, line_start);
 			getEditor().getTextPane().setSelectionStart(position_start-offset);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
@@ -49,9 +50,9 @@ public class UnTabifyAction extends DefaultAction {
 			// several lines are selected
 			// TODO exact caret position requires API change if we untabify as much lines as possible: we must know if
 			// the line of the caret position was untabified or not.
-			ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
-			int [] delta = doc.untabifyLines(line_start, line_end);
-			getEditor().getTextPane().setSelectionStart(position_start- delta[0]);
+			
+			int [] delta = scilabDocument.getTabManager().untabifyLines(scilabDocument,line_start, line_end);
+			getEditor().getTextPane().setSelectionStart(position_start - delta[0]);
 			getEditor().getTextPane().setSelectionEnd(position_end - delta[1]);
 		}
 	}
