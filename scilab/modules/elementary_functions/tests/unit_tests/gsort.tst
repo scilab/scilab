@@ -9,8 +9,6 @@
 
 // <-- JVM NOT MANDATORY -->
 
-warning("off");
-
 //================================ complex matrix ================================================
 x = [3  1  5 ; 2 9 8];
 y = [2  4  1 ; 4 1 3];
@@ -95,7 +93,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 [a1,ind]=gsort(string(a),'lr') ;        
 [a2,ind]=gsort(a,'lr') ;
@@ -108,7 +106,7 @@ if norm(evstr(a1)- a2 ) > %eps then pause,end;
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(string(a),'lc');                   
@@ -242,7 +240,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -284,7 +282,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -504,7 +502,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -548,7 +546,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -773,7 +771,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -816,7 +814,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -1091,7 +1089,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -1134,7 +1132,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -1320,7 +1318,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -1363,7 +1361,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -1552,7 +1550,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -1595,7 +1593,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
@@ -1735,7 +1733,7 @@ alr=[1,2,2;
      1,1,2;
      1,1,1];
 // a random permutation 
-[ax,perm]=sort(rand(1,N1,'u'));
+[ax,perm]=gsort(rand(1,N1,'u'));
 a=alr(perm,:);
 
 [a1,ind]=gsort(a,'lr');                   
@@ -1778,7 +1776,7 @@ end
 N1=3;P1=4;
 alr=alr';
 // a random permutation 
-[ax,perm]=sort(rand(1,P1,'u'));
+[ax,perm]=gsort(rand(1,P1,'u'));
 a=alr(:,perm);
 
 [a1,ind]=gsort(a,'lc');                   
