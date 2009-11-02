@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/sparse_writing_api"));
 cd(pathconvert(TMPDIR+"/sparse_writing_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/sparse_writing_api.c",pathconvert(TMPDIR+"/sparse_writing_api/sparse_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("sparse_writing",["write_sparse","write_sparse"],pathconvert(TMPDIR+"/sparse_writing_api/sparse_writing_api.c",%F),[],[],"",cflags);
+ilib_build("sparse_writing",["write_sparse","write_sparse"],"sparse_writing_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
 
 	 

@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 
 			 
 SciErr printf_info(int _iVar);
