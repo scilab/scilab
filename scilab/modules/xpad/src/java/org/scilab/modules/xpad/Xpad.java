@@ -363,10 +363,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Create VIEW Menubar
 		Menu viewMenu = ScilabMenu.createMenu();
 		viewMenu.setText(XpadMessages.VIEW);
-		viewMenu.add(ShowToolBarAction.createCheckBoxMenu(editorInstance));
-		viewMenu.addSeparator();
+//		viewMenu.add(ShowToolBarAction.createCheckBoxMenu(editorInstance));
+//		viewMenu.addSeparator();
 		viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance));
-		viewMenu.add(WordWrapAction.createCheckBoxMenu(editorInstance));
+//		viewMenu.add(WordWrapAction.createCheckBoxMenu(editorInstance));
 		viewMenu.add(LineNumbersAction.createCheckBoxMenu(editorInstance));
 		viewMenu.add(SetColorsAction.createMenu(editorInstance));
 		viewMenu.add(SetFontAction.createMenu(editorInstance));
@@ -377,12 +377,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Menu documentMenu = ScilabMenu.createMenu();
 		documentMenu.setText(XpadMessages.DOCUMENT);
 		Menu syntaxTypeMenu = ScilabMenu.createMenu();
-		syntaxTypeMenu.setText(XpadMessages.SYNTAX_TYPE);
-		documentMenu.add(syntaxTypeMenu);
-		syntaxTypeMenu.add(TextStyleAction.createCheckBoxMenu(editorInstance));
-		syntaxTypeMenu.add(ScilabStyleAction.createCheckBoxMenu(editorInstance));
-		syntaxTypeMenu.add(XMLStyleAction.createCheckBoxMenu(editorInstance));
-		documentMenu.addSeparator();
+//		syntaxTypeMenu.setText(XpadMessages.SYNTAX_TYPE);
+//		documentMenu.add(syntaxTypeMenu);
+//		syntaxTypeMenu.add(TextStyleAction.createCheckBoxMenu(editorInstance));
+//		syntaxTypeMenu.add(ScilabStyleAction.createCheckBoxMenu(editorInstance));
+//		syntaxTypeMenu.add(XMLStyleAction.createCheckBoxMenu(editorInstance));
+//		documentMenu.addSeparator();
 		Menu encodingTypeMenu = ScilabMenu.createMenu();
 		encodingTypeMenu.setText(XpadMessages.ENCODING_TYPE);
 		documentMenu.add(encodingTypeMenu);
@@ -1222,7 +1222,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					
 					BufferedWriter out = null;
 					try {
-						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), ((ScilabStyleDocument) getTextPane().getStyledDocument()).getEncoding()));
+						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncoding()));
 						try {
 							editorKit.write(out, styleDocument, 0, styleDocument.getLength());
 							out.flush();
