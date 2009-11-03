@@ -84,6 +84,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private int currentLevelIdent = 0;
 	private String currentStringIndent = "";
 	private String tabulation = "  ";
+	private final String line_comment="//";
 	
 	private String encoding = Charset.defaultCharset().toString();
 	
@@ -950,21 +951,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public int commentLine(int line)
 	{
 		// No selection : comment the current line
-		
-		String comment_str = "//";
-		int offset         = comment_str.length();
-		int start          = this.getDefaultRootElement().getElement(line).getStartOffset();
-		
-		try
-		{
-			// Replacement
-			this.insertString(start, comment_str, null);
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		return commentText(this.getDefaultRootElement().getElement(line).getStartOffset());
 	}
 	
 	/*
@@ -974,22 +961,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public synchronized void commentLines(int line_start, int line_end)
 	{
 		boolean  mergeEditsMode= getShouldMergeEdits();
-		try
-		{
-			setShouldMergeEdits(true);
-			String comment_str = "//";
-			int start          = this.getDefaultRootElement().getElement(line_start).getStartOffset();
-			int end            = this.getDefaultRootElement().getElement(line_end).getEndOffset();
-			Pattern pattern    = Pattern.compile("^",Pattern.MULTILINE);
-			Matcher matcher    = pattern.matcher(this.getText(start,end-start));
-			this.replace(start,end-start,matcher.replaceAll(comment_str), null);	
+		setShouldMergeEdits(true);
+		for(int i = line_start; i<=line_end; ++i){
+			commentLine(i);
 		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		finally{
-			setShouldMergeEdits(mergeEditsMode);
-		}
+		setShouldMergeEdits(mergeEditsMode);
 	}
 	
 	/*
@@ -998,16 +974,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public int commentText(int position_start)
 	{
-		String comment_str = "//";
-		int offset         = comment_str.length();
+		int offset = 0;
 		try
 		{
-			// Replacement
-			this.insertString(position_start, comment_str, null);
+			this.insertString(position_start, line_comment, null);
+			offset= line_comment.length();
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
+			offset = 0; 
 		}
 		return offset;
 	}
@@ -1022,27 +998,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public int uncommentLine(int line)
 	{
-		int start   = this.getDefaultRootElement().getElement(line).getStartOffset();
-		int end     = this.getDefaultRootElement().getElement(line).getEndOffset();			
-		int offset  = 0;
-		
-		try
-		{
-			String text     = this.getText(start, end-start);
-			Pattern pattern = Pattern.compile("^(\\s)*//");
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
-				this.remove(start+matcher.end()-2, 2 );
-				offset = 2;
-			}
-		}
-		catch (BadLocationException e){
-			e.printStackTrace();
-		}
-		
-		return offset;
+		return uncommentText(this.getDefaultRootElement().getElement(line).getStartOffset());
 	}
 	
 	/*
@@ -1051,28 +1007,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public synchronized void uncommentLines(int line_start, int line_end)
 	{
-		Pattern pattern = Pattern.compile("^(\\s)*//");
 		boolean  mergeEditsMode= getShouldMergeEdits();
 		setShouldMergeEdits(true);
 		for (int i = line_start; i <= line_end; i++)
 		{
-			int start   = this.getDefaultRootElement().getElement(i).getStartOffset();
-			int end     = this.getDefaultRootElement().getElement(i).getEndOffset();			
-			
-			try
-			{
-				// Get the text line
-				String text     = this.getText(start, end-start);
-				Matcher matcher = pattern.matcher(text);
-				
-				if(matcher.find())
-				{
-					this.remove(start+matcher.end()-2, 2);
-				}
-			}
-			catch (BadLocationException e){
-				e.printStackTrace();
-			}
+			uncommentLine(i);
 		}
 		setShouldMergeEdits(mergeEditsMode);
 	}
@@ -1081,26 +1020,20 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * Un-Comment a part of a line
 	 */
 	
-	public int uncommentText(int position_start, int position_end)
+	public int uncommentText(int position_start)
 	{
-		Pattern pattern = Pattern.compile("^//");
-		int offset      = 0;
-		
+		int offset = 0;
 		try
 		{
-			// Get the text line
-			String text     = this.getText(position_start,position_end-position_start);
-			Matcher matcher = pattern.matcher(text);
-			
-			if(matcher.find())
-			{
+			if(line_comment.equals(this.getText(position_start, line_comment.length()))) {
 				this.remove(position_start,2);
-				offset = 2;
+				offset = line_comment.length();
 			}
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
+			offset = 0;
 		}
 		
 		return offset;
