@@ -761,7 +761,9 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 	    	System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
 	    	if(cell == null){
-		    	System.err.println("[DEBUG] Click on : null");
+		    	System.err.println("[DEBUG] Click on diagram");
+		    	System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+		    	System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
 	    	}else{
 		    	System.err.println("[DEBUG] Click on : "+cell);
 		    	System.err.println("[DEBUG] Style : "+((mxCell) cell).getStyle());
