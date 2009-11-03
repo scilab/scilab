@@ -33,7 +33,7 @@
         <para>
           <emphasis role="bold">File:New</emphasis>
         </para>
-        <para> Clicking on the New menu item loads an empty diagram in the active editor Scicos window. If the previous content of the window is not saved, it will be lost. </para>
+        <para> Clicking on the New menu item loads an empty diagram in the active editor xcos window. If the previous content of the window is not saved, it will be lost. </para>
       </listitem>
       <listitem>
         <para>
@@ -69,13 +69,13 @@ If extension is ".cosf" an ASCII  formatted save is performed
         <para>
           <emphasis role="bold">File:Save as Interf Func</emphasis>
         </para>
-        <para> Select "the Save as Interf. Func." menu item to save the diagram as a new Scicos block. A Scilab function is generated and saved in a file with ".sci" extension. File name and path are to be set in a "File menu" dialog. </para>
+        <para> Select "the Save as Interf. Func." menu item to save the diagram as a new xcos block. A Scilab function is generated and saved in a file with ".sci" extension. File name and path are to be set in a "File menu" dialog. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">File:Export</emphasis>
         </para>
-        <para> This menu is used to export a figure of the current Scicos diagram. The export can be done directly in postscript format or done first in a graphic window to export in a second step in all the format that scilab can provide. </para>
+        <para> This menu is used to export a figure of the current xcos diagram. The export can be done directly in postscript format or done first in a graphic window to export in a second step in all the format that scilab can provide. </para>
       </listitem>
       <listitem>
         <para>
@@ -87,7 +87,7 @@ If extension is ".cosf" an ASCII  formatted save is performed
         <para>
           <emphasis role="bold">File:Exit Scicos</emphasis>
         </para>
-        <para> Click on the Exit Scicos menu item to close Scicos. That menu allows to return to Scilab session even if the current diagram is a Super block. </para>
+        <para> Click on the Exit xcos menu item to close Scicos. That menu allows to return to Scilab session even if the current diagram is a Super block. </para>
       </listitem>
       <listitem>
         <para>
