@@ -353,9 +353,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		while (matcherOut.find()){
 			currentStringIndent = currentStringIndent.replaceFirst(getTabulation(), "");
 		}
-		//System.out.println(lineToIndent);
-		//System.out.println(indentLevel);
-		
 		 //lineToIndent + System.getProperty("line.separator");
 		
 		
@@ -391,12 +388,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	public synchronized void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
 		
-		//System.out.println(startPosition);
-		//System.out.println(endPosition);
 		String previousSpace = "";
 		String currentSpace ="";
 		String previousLineContent = "";
-		//System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
 		int finalPosition = getEditor().getTextPane().getText().length();
 
 		
@@ -633,7 +627,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 							tmp_cas_tab = getLineTabulations(indentedText);
 							
 							if (tmp_cas_tab.length() == 2) {
-								System.out.println("222222222222222");
 							} else {
 								System.out.println(tmp_cas_tab.length());
 							}

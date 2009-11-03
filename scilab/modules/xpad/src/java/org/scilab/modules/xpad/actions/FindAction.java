@@ -14,9 +14,11 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -25,8 +27,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.Toolkit;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,7 +48,6 @@ import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
-import javax.swing.text.Highlighter.Highlight;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -322,7 +321,6 @@ public final class FindAction extends DefaultAction {
 						
 						
 						public void focusGained(FocusEvent arg0) {
-			            	//System.out.println("scope will change");
 			            	if (buttonSelection.isSelected()) {
 			            		
 			            		Highlighter highlight = getEditor().getTextPane().getHighlighter();
@@ -387,7 +385,6 @@ public final class FindAction extends DefaultAction {
 				} else {
 					text = xpadTextPane.getText();
 				}
-				System.out.println(text);
 				int[] nextFindArray = new int[] {-1, -1};
 				Pattern pattern = null;
 				
@@ -607,7 +604,6 @@ public final class FindAction extends DefaultAction {
 				}
 			}
 
-			System.err.println("nextIndex : " + nextIndex);
 			//Here we highlight all the matching words
 			for (int i = 0; i < offsets.size(); i++) {
 				try {
@@ -701,9 +697,7 @@ public final class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart, currentPosEnd - currentPosStart));
 				newWord = matcher.replaceAll(newWord);
 			} catch (BadLocationException ex) {
-				System.err.println("Bad location");
 				ex.printStackTrace();
-
 			}
 		}
 
@@ -712,9 +706,7 @@ public final class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
 		
 		} catch (BadLocationException ex) {
-			System.err.println("Bad location");
 			ex.printStackTrace();
-
 		}
 		getEditor().getTextPane().getHighlighter().removeAllHighlights();
 		offsets.clear();
@@ -751,9 +743,7 @@ public final class FindAction extends DefaultAction {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart, currentPosEnd - currentPosStart));
 				newWord = matcher.replaceAll(newWord);
 			} catch (BadLocationException ex) {
-				System.err.println("Bad location");
 				ex.printStackTrace();
-
 			}
 		}
 
@@ -762,9 +752,7 @@ public final class FindAction extends DefaultAction {
 			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
 		
 		} catch (BadLocationException ex) {
-			System.err.println("Bad location");
 			ex.printStackTrace();
-
 		}
 
 	
