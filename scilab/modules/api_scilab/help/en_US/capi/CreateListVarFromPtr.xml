@@ -146,6 +146,8 @@
 
     <para>A C interface function which allows to create a new Scilab parameter
     from a pointer in a [mt]list</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

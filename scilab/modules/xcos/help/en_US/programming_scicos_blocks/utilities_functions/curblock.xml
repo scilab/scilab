@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="curblock">
   <refnamediv>
     <refname>curblock</refname>
-    <refpurpose>Return the current called scicos block during the simulation</refpurpose>
+    <refpurpose>Return the current called xcos block during the simulation</refpurpose>
   </refnamediv>
   <refsection id="Module_curblock">
     <title>Module</title>

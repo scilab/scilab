@@ -145,19 +145,19 @@
 
       <listitem>
         <para>
-          <link linkend="TRASH_f ">TRASH_f — Trash block</link>
+          <link linkend="TRASH_f">TRASH_f — Trash block</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="WFILE_f ">WFILE_f — Write to file</link>
+          <link linkend="WFILE_f">WFILE_f — Write to file</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MUX ">
+          <link linkend="MUX">
             <refname linkend="WRITEAU_f">WRITEAU_f — Write AU sound
             file</refname>
           </link>

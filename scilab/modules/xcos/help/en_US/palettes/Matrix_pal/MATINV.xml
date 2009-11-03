@@ -271,7 +271,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATLU">MATLU - MATLU LU Factorization (Scicos
+          <link linkend="MATLU">MATLU - MATLU LU Factorization (xcos
           Block)</link>
         </para>
       </listitem>

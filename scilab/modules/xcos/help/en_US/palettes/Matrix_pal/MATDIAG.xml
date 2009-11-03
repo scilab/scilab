@@ -285,7 +285,7 @@ y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
       <listitem>
         <para>
           <link linkend="EXTTRI">EXTTRI - EXTTRI: Triangular or Diagonal
-          extraction (Scicos Block)</link>
+          extraction (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

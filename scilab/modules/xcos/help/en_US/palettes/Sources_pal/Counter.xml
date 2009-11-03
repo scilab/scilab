@@ -211,7 +211,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Modulo_Count">Modulo_Count - Modulo counter (Scicos Block)</link>
+          <link linkend="Modulo_Count">Modulo_Count - Modulo counter (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>
