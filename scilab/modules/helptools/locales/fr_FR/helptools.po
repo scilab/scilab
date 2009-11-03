@@ -8,18 +8,50 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-03-26 12:53+0000\n"
-"Last-Translator: Claire Alexandre <Unknown>\n"
+"PO-Revision-Date: 2009-10-26 15:32+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-11 19:52+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s : Mauvais nombre d'argument(s) d'entrée : Au plus %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument en entrée: %d à %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Table de chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Arguments d'entrée n° %d et n° %d incompatibles: Même dimension "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un répertoire existant "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -34,24 +66,6 @@ msgstr ""
 msgid "-- Deleting help files --\n"
 msgstr "-- Suppression des fichiers d'aide --\n"
 
-#, c-format
-msgid "Processing %s to %s"
-msgstr "Traitement de %s à %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
-"est attendue.\n"
-
-#, c-format
-msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s : Le navigateur d'aide n'est pas accessible dans le mode %s.\n"
-
-#, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s : le module help n'est pas installé.\n"
-
 msgid "Scilab 5.0 or more is required."
 msgstr "Scilab 5.0 ou supérieur est nécessaire."
 
@@ -59,51 +73,20 @@ msgid "...demodir must be a directory."
 msgstr "...demodir doit être un répertoire."
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
-
-#, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr ""
 "%s : Cette fonction n'est utilisable que sur les plateformes Windows.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée : Au plus %d attendus.\n"
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: hhc.exe non trouvé.\n"
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: pas de fichier généré.\n"
 
 msgid "Help chapter"
 msgstr "Chapitre d'aide"
-
-#, c-format
-msgid "%s: The %s files are up-to-date."
-msgstr "%s : Les %s fichiers sont à jour."
-
-msgid ""
-"\n"
-"Copying missing help files copied from the default language\n"
-msgstr ""
-"\n"
-"Copie les fichiers d'aide manquant à partir des fichiers d'aide du langage "
-"par défaut\n"
-
-#, c-format
-msgid "\t%s\n"
-msgstr "\t%s\n"
-
-msgid ""
-"\n"
-"Copying missing files copied from\n"
-msgstr ""
-"\n"
-"Copie les fichiers manquant à partir de\n"
-
-#, c-format
-msgid ""
-"\n"
-"Copying missing from %s\n"
-msgstr ""
-"\n"
-"Copie les fichiers manquant à partir de %s\n"
 
 #, c-format
 msgid ""
@@ -113,36 +96,26 @@ msgstr ""
 "\n"
 "Construit le manuel de documentation principal Scilab pour %s.\n"
 
-#, c-format
 msgid ""
 "\n"
-"Building the master document: %s\n"
+"Building master documents:\n"
 msgstr ""
 "\n"
-"Construit le document principal: %s\n"
-
-#, c-format
-msgid ""
-"\n"
-"Building the master document for %s.\n"
-msgstr ""
-"\n"
-"Construit le document principal pour %s.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Building the master document in %s\n"
-msgstr ""
-"\n"
-"Construit le document principal dans %s\n"
+"Construit les documents maîtres:\n"
 
 msgid ""
 "\n"
-"Building the scilab manual file ["
+"Building the master document:\n"
 msgstr ""
 "\n"
-"Construit le fichier manuel Scilab ["
+"Construit le document maître:\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+msgid "Building the scilab manual file ["
+msgstr "Construit le fichier du manuel Scilab ["
 
 #, c-format
 msgid "%s: %s has not been generated."
@@ -173,113 +146,80 @@ msgstr ""
 "prendre un certain temps)\n"
 
 #, c-format
-msgid ""
-"\n"
-"Deleting files copied from\n"
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"\n"
-"Supprime les fichiers copiés de\n"
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une simple chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une simple chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un entier attendu.\n"
 
 #, c-format
 msgid ""
-"\n"
-"Deleting files copied from %s\n"
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
 msgstr ""
-"\n"
-"Supprime les fichiers copiés de %s\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un répertoire existant "
+"valide attendu.\n"
 
-msgid "Scilab manual"
-msgstr "Manuel Scilab"
-
-msgid "About Scicos"
-msgstr "A propos de Scicos"
-
-msgid "Scicos Manual"
-msgstr "Manuel Scicos"
-
-msgid "Batch functions"
-msgstr "Fonctions Batch"
-
-msgid "Editor"
-msgstr "Editeur"
-
-msgid "Sources Palette"
-msgstr "Palette Sources"
-
-msgid "Linear Palette"
-msgstr "Palette Linéaire"
-
-msgid "Non-linear Palette"
-msgstr "Palette Non-Linéaire"
-
-msgid "Branching Palette"
-msgstr "Palette Connections"
-
-msgid "Others Palettes"
-msgstr "Palettes Autres"
-
-msgid "Threshold Palette"
-msgstr "Palette Seuil"
-
-msgid "Sinks Palette"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"finissant par CHAPTER attendue.\n"
 
-msgid "Events Palette"
-msgstr "Palette Evènements"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un fichier existant "
+"valide attendu.\n"
 
-msgid "Electrical Palette"
-msgstr "Palette Electricité"
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: Le fichier CHAPTER n'est pas bien formaté à la ligne %d\n"
 
-msgid "Thermohydraulics Palette"
-msgstr "Palette Thermo-Hydrauliques"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"terminant par .last_successful_build attendue.\n"
 
-msgid "Matrix Palette"
-msgstr "Palette Matrice"
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+"%s: Le fichier last_successful_build n'est pas bien formaté à la ligne %d\n"
 
-msgid "Integer Palette"
-msgstr "Palette Entier"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 
-msgid "Demoblocks Palette"
-msgstr "Palette Demoblocks"
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr "%s: Les 2 mlist ne doivent pas avoir de champ en commun.\n"
 
-msgid "ABCD Blocks"
-msgstr "Blocs ABCD"
-
-msgid "C Computational Functions"
-msgstr "Fonctions de Calcul en C"
-
-msgid "Scilab Computational Functions"
-msgstr "Fonction de Calcul en Scilab"
-
-msgid "Utilities Functions"
-msgstr "Fonctions utilitaires"
-
-msgid "Programming Scicos Blocks"
-msgstr "Programmer des Blocks Scicos"
-
-msgid "Scilab Utilities Functions"
-msgstr "Fonctions utilitaires Scilab"
-
-msgid "Diagram"
-msgstr "Diagramme"
-
-msgid "Blocks"
-msgstr "Blocs"
-
-msgid "Links"
-msgstr "Liens"
-
-msgid "Compilation/Simulation"
-msgstr "Compilation/Simulation"
-
-msgid "Scilab Data Structures"
-msgstr "Structures de données Scilab"
-
-msgid "Palettes"
-msgstr "Palettes"
-
-msgid "Old Blocks Palette"
-msgstr "Palette Anciens Blocs"
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "\tProcessing file %s.xml\n"
@@ -290,8 +230,22 @@ msgid "Warning %s does not follow the dtd"
 msgstr "Attention %s ne respecte pas la dtd"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni."
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s : Le navigateur d'aide n'est pas accessible dans le mode %s.\n"
+
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr "%s : le module help n'est pas installé.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -313,5 +267,9 @@ msgid "%s: Error while building documentation: %s.\n"
 msgstr "%s : Erreur pendant la construction de la documentation: %s.\n"
 
 #, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Pile d'exécution Java %s.\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni."
