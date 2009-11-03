@@ -1055,6 +1055,8 @@ Bug fixes:
 
 * bug 4943 fixed - execstr did not check input arguments
 
+* bug 4944 fixed - If the extension is not provided, some functions adds the extension, some others don't.
+
 * bug 4961 fixed - missing some field when printing some graphics Handle
 
 * bug 4964 fixed - set or get 'format_n' property from an axis crashed Scilab
