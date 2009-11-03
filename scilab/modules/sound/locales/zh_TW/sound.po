@@ -14,37 +14,30 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: 無法開啟檔案 %s.\n"
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: 錯誤產生: %s\n"
 
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr ""
+
+msgid "Unknown data format."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
-
-msgid "Data array must have 1- or 2-dimensions only."
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
-msgid "Error while writing sound file."
-msgstr ""
-
-msgid ""
-"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
-msgstr ""
-
-msgid "Unrecognized data format."
-msgstr ""
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 無法開啟檔案 %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -55,32 +48,12 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 
-msgid "Audio capabilities not available."
-msgstr ""
-
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-msgid "only 8/16/24/32 bits for the encoding."
-msgstr ""
-
-msgid "Unknown data format."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
-
-msgid "Requires 2-D values only."
-msgstr ""
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
 msgid ""
@@ -112,6 +85,15 @@ msgstr ""
 msgid "Error reading <fact-ck> chunk."
 msgstr ""
 
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
 
@@ -140,12 +122,48 @@ msgstr ""
 msgid "Invalid sample limits (use ascending order)."
 msgstr ""
 
-msgid "Cannot play file."
-msgstr "無法使用檔案."
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr ""
+
+msgid "Error while writing sound file."
+msgstr ""
+
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr ""
+
+msgid "Unrecognized data format."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+msgid "Requires 2-D values only."
+msgstr ""
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 輸入參數錯誤: 應為 '%s' 或 '%s'.\n"
+
+msgid "Cannot play file."
+msgstr "無法使用檔案."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "未安裝　Scilab sound  模組\n"

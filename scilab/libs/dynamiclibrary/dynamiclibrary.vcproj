@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
@@ -203,6 +204,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
