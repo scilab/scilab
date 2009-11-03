@@ -1181,6 +1181,7 @@ public class XcosDiagram extends ScilabGraph {
 	String tabTitle = !isModified() ? getTitle() : "* "+getTitle();
 	if (parentTab != null) {
 	    parentTab.setName(tabTitle);
+	    parentTab.draw();
 	}
     }
 
@@ -1222,6 +1223,7 @@ public class XcosDiagram extends ScilabGraph {
 	    } else {
 		XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 		xcosDiagram.loadDiagram(diagramm);
+		setChildrenParentDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile();
@@ -1288,6 +1290,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Clear all undo events in Undo Manager
 	undoManager.reset();
+	setModified(false);
     }
 
     /**
@@ -1414,7 +1417,7 @@ public class XcosDiagram extends ScilabGraph {
     	info(XcosMessages.EMPTY_INFO);
     }
 
-    private void setChildrenParentDiagram(){
+    public void setChildrenParentDiagram(){
     	setChildrenParentDiagram(this);
     }
 
@@ -1422,7 +1425,7 @@ public class XcosDiagram extends ScilabGraph {
     	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
     		mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
     		if (cell instanceof BasicBlock){
-    			BasicBlock block = (BasicBlock)cell; 
+    			BasicBlock block = (BasicBlock)cell;
     			block.setParentDiagram(diagram);
     			if(block instanceof AfficheBlock){
     				AfficheBlock affich = (AfficheBlock)block;
@@ -1490,6 +1493,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	}
     }
-    
-}
 
+	public void setModified(boolean modified) {
+		super.setModified(modified);
+		updateTabTitle();
+	}
+}

@@ -73,6 +73,7 @@ public class SuperBlock extends BasicBlock {
     	    return;
     	}
 	createChildDiagram();
+	child.setModified(false);
 	Xcos.showDiagram(child);
     }
 
@@ -90,29 +91,24 @@ public class SuperBlock extends BasicBlock {
     	    child = new SuperBlockDiagram(this);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
-    	    child.installSuperBlockListeners();
-    	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
-    	    for(int i = 0 ; i < blockCount ; i++){
-    		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
-    		    if(cell instanceof BasicBlock){
-    		    	BasicBlock block = (BasicBlock)cell;
-    		    	block.setParentDiagram(child);
-    		    }
-    	    }
-    	    updateAllBlocksColor();
+    	} else {
+//    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
+//    	    newChild.installListeners();
+//    	    newChild.setModel(child.getModel());
+//    	    newChild.setContext(child.getContext());
+//    	    newChild.getModel().setRoot(child.getModel().getRoot());
+//    	    newChild.setDefaultParent(child.getDefaultParent());
+//    	    
+//    	    System.err.println("old value : " + child.isModified());
+//    	    newChild.setModified(child.isModified());
+//    	    child = newChild;
+    		child.setContainer(this);
+    	    child.installListeners();
     	}
-    	else {
-    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-    	    newChild.installListeners();
-    	    newChild.setModel(child.getModel());
-    	    newChild.setContext(child.getContext());
-    	    newChild.getModel().setRoot(child.getModel().getRoot());
-    	    newChild.setDefaultParent(child.getDefaultParent());
-    	    child = newChild;
-    	    
-    	    child.installSuperBlockListeners();
-    	    updateAllBlocksColor();
-    	}
+    	
+	    child.installSuperBlockListeners();
+		child.setChildrenParentDiagram();
+	    updateAllBlocksColor();
     }
     
     public SuperBlockDiagram getChild() {
