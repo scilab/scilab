@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Context">
   <refnamediv>
     <refname>Context</refname>
-    <refpurpose>Using symbolic parameters, context and masking in Scicos</refpurpose>
+    <refpurpose>Using symbolic parameters, context and masking in xcos</refpurpose>
   </refnamediv>
   <refsection id="Modules_Context">
     <title>Modules</title>
@@ -39,7 +39,7 @@
   <refsection id="Introduction_Context">
     <title>Introduction</title>
     <para>
-In most cases, double clicking on a Scicos block leads to the opening of a dialog box used
+In most cases, double clicking on a xcos block leads to the opening of a dialog box used
 to set the values of block parameters. These parameters, which we refer to as GUI parameters,
 are not necessarily the exact duplicate of the block parameters used in the <emphasis role="italic">computational function</emphasis>
 of the block used during simulation. For example the GUI parameters of a linear system block can be
@@ -74,7 +74,7 @@ Indeed, the sizes of the symbolic parameters can also be changed if it does not 
   <refsection id="Diagramcontext_Context">
     <title>Diagram context</title>
     <para>
-Each Scicos diagram (the main diagram as well as the Super Blocks) has a context associated with it.
+Each xcos diagram (the main diagram as well as the Super Blocks) has a context associated with it.
 The context is a <emphasis role="italic">Scilab script</emphasis>; it can be edited interactively using the ``Diagram/Context'' menu of
 the diagram. To use a symbolic parameter, say the matrix <literal>A</literal>, to be used in defining 
 the GUI parameter of a block, <literal>A</literal>
@@ -128,13 +128,13 @@ the content of the context of the diagram has not changed since it has last been
 must be up to date. This assumption holds in most cases, but not if functions such as  or  are
 used in the context. Another instruction that can invalidate the assumption is the execution of an external
 script, for example . Clearly if the file  is modified, the re-evaluation
-of the context can lead to different values for the symbolic parameters. Scicos attempts to identify the presence 
+of the context can lead to different values for the symbolic parameters. xcos attempts to identify the presence 
 of such commands inside the text of the context and issues a full re-evaluation if it finds it necessary when
 a diagram is opened. But this identification is not full proof and a manual ``Evaluate'' button is provided to
 force a full re-evaluation if the user finds it necessary. 
 </para>
     <para>
-The ``Evaluate'' button is particularly useful when the context contains an  command since Scicos
+The ``Evaluate'' button is particularly useful when the context contains an  command since xcos
 does not know if the executed file is edited. In such a case, it is up to the user to force an evaluation.
 </para>
     <para>

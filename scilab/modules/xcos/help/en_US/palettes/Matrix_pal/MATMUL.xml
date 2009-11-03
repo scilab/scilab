@@ -331,7 +331,7 @@ y=[46 37 28 19;115 94 73 52]
 
       <listitem>
         <para>
-          <link linkend="MATEXPM">MATEXPM - MATEXPM Matrix Exponential (Scicos
+          <link linkend="MATEXPM">MATEXPM - MATEXPM Matrix Exponential (xcos
           Block)</link>
         </para>
       </listitem>

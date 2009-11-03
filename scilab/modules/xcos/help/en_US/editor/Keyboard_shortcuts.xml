@@ -104,10 +104,10 @@ Permanent keyboard shortcuts :
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">'Ctrl + c' :</emphasis> Copy the selected items in the scicos clipboard</para>
+        <para><emphasis role="bold">'Ctrl + c' :</emphasis> Copy the selected items in the xcos clipboard</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">'Ctrl + v' :</emphasis> Paste items from the scicos clipboard</para>
+        <para><emphasis role="bold">'Ctrl + v' :</emphasis> Paste items from the xcos clipboard</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">'Ctrl + a' :</emphasis> Select all items of the current window</para>
