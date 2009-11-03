@@ -124,7 +124,7 @@
 
       <listitem>
         <para>
-          <link linkend="INTEGRAL_f ">INTEGRAL_f - Integration</link>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
         </para>
       </listitem>
 
@@ -136,7 +136,7 @@
 
       <listitem>
         <para>
-          <link linkend="MUX ">MUX - Multiplexer</link>
+          <link linkend="MUX">MUX - Multiplexer</link>
         </para>
       </listitem>
 
@@ -179,7 +179,7 @@
 
       <listitem>
         <para>
-          <link linkend="TEXT_f ">TEXT_f - Text</link>
+          <link linkend="TEXT_f">TEXT_f - Text</link>
         </para>
       </listitem>
     </itemizedlist>
