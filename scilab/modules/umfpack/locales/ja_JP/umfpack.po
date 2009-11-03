@@ -1,134 +1,23 @@
-# Localization of the module umfpack
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
+"PO-Revision-Date: 2009-10-09 17:29+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
-
-# File: macros/PlotSparse.sci, line: 74
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数(s)で不正な数です。\n"
-
-#
-# File: macros/PlotSparse.sci, line: 81
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 疎行列を想定します。\n"
-
-#
-# File: macros/PlotSparse.sci, line: 88
-# File: macros/ReadHBSparse.sci, line: 81
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
-
-#
-# File: macros/ReadHBSparse.sci, line: 77
-msgid "Choose a sparse matrix"
-msgstr "疎行列を選択してください"
-
-#
-# File: macros/ReadHBSparse.sci, line: 78
-msgid "   then click on OK   "
-msgstr "   そして、OKをクリックして下さい"
-
-#
-# File: macros/ReadHBSparse.sci, line: 84
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 最小の %d を想定します。\n"
-
-#
-# File: macros/ReadHBSparse.sci, line: 110
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: ファイルは rhs を含みますが、それは読まれないでしょう!"
-
-#
-# File: macros/ReadHBSparse.sci, line: 120
-#, c-format
-msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-msgstr "%s: 現在、組み立てられていない 疎行列(基本原理) を読めません "
-
-#
-# File: macros/ReadHBSparse.sci, line: 148
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr "%s:  この行列(ゼロでないパターンだけ)のための値がありません: 約1を置いて下さい。"
-
-#
-# File: macros/cond2sp.sci, line: 75
-msgid ""
-"\n"
-" approximate (lM,vM) with the iterative power method \n"
-msgstr ""
-"\n"
-" 繰り返し方法の近似値(lM,vM)\n"
-
-#
-# File: macros/cond2sp.sci, line: 76
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
-#
-# File: macros/cond2sp.sci, line: 84
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr "%3d 繰り返し: IM = %e \n"
-
-#
-# File: macros/cond2sp.sci, line: 94
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " 警告 : for IM 集合 rtol = %e \n"
-
-#
-# File: macros/cond2sp.sci, line: 95
-# File: macros/cond2sp.sci, line: 126
-#, c-format
-msgid "           don''t reached after %d iterations (got only %e) \n"
-msgstr "           達成することが出来ない繰り返し%d (%e だけ得られました)\n"
-
-#
-# File: macros/cond2sp.sci, line: 107
-msgid ""
-"\n"
-" approximate (lm,vm) with the inverse iterative power method \n"
-msgstr ""
-"\n"
-" 逆の繰り返し方法の近似値(lm,vm)\n"
-
-#
-# File: macros/cond2sp.sci, line: 108
-msgid " ------------------------------------------------------------\n"
-msgstr " ------------------------------------------------------------\n"
-
-#
-# File: macros/cond2sp.sci, line: 116
-#, c-format
-msgid " iteration %3d : lm = %e  \n"
-msgstr "%3d 繰り返し : lm = %e \n"
-
-#
-# File: macros/cond2sp.sci, line: 125
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " 警告 : for lm 収束 rtol = %e \n"
+"X-Poedit-Language: Japanese\n"
 
 #
 # File: macros/condestsp.sci, line: 71
@@ -139,13 +28,15 @@ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します�
 #
 # File: macros/condestsp.sci, line: 75
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 正方疎行列を想定します。\n"
 
 #
 # File: macros/condestsp.sci, line: 79
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 正方疎行列を想定します。\n"
 
 #
@@ -163,12 +54,12 @@ msgstr "%s: 第二引数の、不正な型 または サイズ、または、値
 #
 # File: macros/scisptdemo.sci, line: 37
 msgid " For this demo the current stack size is not enought "
-msgstr " このデモのために、現在のスタックサイズは、十分ではありません"
+msgstr " このデモのために、現在のスタックサイズは、十分ではありません "
 
 #
 # File: macros/scisptdemo.sci, line: 38
 msgid " enter the following at the scilab prompt :          "
-msgstr " scilabプロンプトで下記の入力をしてください :"
+msgstr " scilabプロンプトで下記の入力をしてください :          "
 
 #
 # File: macros/scisptdemo.sci, line: 39
@@ -180,12 +71,12 @@ msgstr "                                                     "
 #
 # File: macros/scisptdemo.sci, line: 40
 msgid "              stacksize(3000000);                    "
-msgstr "              スタックサイズ(3000000);        "
+msgstr "              スタックサイズ(3000000);                    "
 
 #
 # File: macros/scisptdemo.sci, line: 42
 msgid "           then re enter scisptdemo()                "
-msgstr "           そして、scisptdemo()  に入ります              "
+msgstr "           そして、scisptdemo()  に入ります                "
 
 #
 # File: macros/scisptdemo.sci, line: 44
@@ -213,124 +104,125 @@ msgid "Click to choose a demo"
 msgstr "クリックしてデモを選んで下さい"
 
 #
-# File: sci_gateway/c/sci_res_with_prec.c, line: 63
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: 入力引数で不正なサイズ: 小さなサイズを想定します。\n"
+# File: macros/cond2sp.sci, line: 75
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" 繰り返し方法の近似値(lM,vM) \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chdel.c, line: 98
-#, c-format
-msgid "%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors.\n"
-msgstr "%s: 入力引数 #%d で不正な値: コレスキー要素に適当な参照ではありません。\n"
+# File: macros/cond2sp.sci, line: 76
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
+# File: macros/cond2sp.sci, line: 84
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be symetric positive definite"
-msgstr "%s: 入力引数 #%d で不正な値: 明確に対称でなくてはなりません"
+msgid " iteration %3d : lM = %e  \n"
+msgstr " %3d 繰り返し: IM = %e  \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 98
-# File: sci_gateway/c/sci_taucs_chget.c, line: 86
-# File: sci_gateway/c/sci_umf_luget.c, line: 210
-# File: src/c/taucs_scilab.c, line: 256
-# File: src/c/taucs_scilab.c, line: 2122
+# File: macros/cond2sp.sci, line: 94
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: これ以上メモリがありません。\n"
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " 警告 : for IM 集合 rtol = %e \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
-# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+# File: macros/cond2sp.sci, line: 95
+# File: macros/cond2sp.sci, line: 126
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが起きました: %s\n"
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           達成することが出来ない繰り返し%d (%e だけ得られました) \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
-msgid "factorization"
-msgstr "因数分解"
+# File: macros/cond2sp.sci, line: 107
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" 逆の繰り返し方法の近似値(lm,vm) \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chget.c, line: 79
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorisation"
-msgstr "%s: 入力引数 #%d で不正な値: コレスキー分解法への明確な参照でなくてはなりません"
+# File: macros/cond2sp.sci, line: 108
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
 
 #
-# File: sci_gateway/c/sci_taucs_chget.c, line: 107
-# File: sci_gateway/c/sci_umf_luget.c, line: 218
+# File: macros/cond2sp.sci, line: 116
 #, c-format
-msgid "%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s: これ以上メモリがありません: スタックサイズ %d を補足語分増やす必要があります。\n"
+msgid " iteration %3d : lm = %e  \n"
+msgstr " %3d 繰り返し : lm = %e  \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
+# File: macros/cond2sp.sci, line: 125
 #, c-format
-msgid "%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors"
-msgstr "%s: 入力引数 #%d で不正な値: コレスキー要素への適当な参照ではありません"
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " 警告 : for lm 収束 rtol = %e \n"
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
-# File: sci_gateway/c/sci_umf_lufact.c, line: 89
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 118
-# File: sci_gateway/c/sci_umfpack.c, line: 116
-# File: sci_gateway/c/sci_umfpack.c, line: 123
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+# File: macros/ReadHBSparse.sci, line: 77
+msgid "Choose a sparse matrix"
+msgstr "疎行列を選択してください"
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
-#, c-format
-msgid "%s: Wrong size for input argument #%d: not compatible with the Choleski factorisation.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: コレスキー分解法と互換性がありません。\n"
+# File: macros/ReadHBSparse.sci, line: 78
+msgid "   then click on OK   "
+msgstr "   そして、OKをクリックして下さい   "
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
+# File: macros/PlotSparse.sci, line: 88
+# File: macros/ReadHBSparse.sci, line: 81
 #, c-format
-msgid "%s: not enough memory.\n"
-msgstr "%s: が足りません。\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 84
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数で不正な数: 最小の %d を想定します。\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 110
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: ファイルは rhs を含みますが、それは読まれないでしょう!"
+
+#
+# File: macros/ReadHBSparse.sci, line: 120
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s: 現在、組み立てられていない 疎行列(基本原理) を読めません"
+
+#
+# File: macros/ReadHBSparse.sci, line: 148
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s:  この行列(ゼロでないパターンだけ)のための値がありません: 約1を置いて下さい。"
+
+# File: macros/PlotSparse.sci, line: 74
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数(s)で不正な数です。\n"
+
+#
+# File: macros/PlotSparse.sci, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 疎行列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_umf_ludel.c, line: 100
 # File: sci_gateway/c/sci_umf_luget.c, line: 95
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 93
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
 msgstr "%s: 入力引数 #%d で不正な値: LU(umf)要素に適当な参照でなくてはなりません。\n"
-
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 103
-# File: sci_gateway/c/sci_umf_lufact.c, line: 120
-# File: sci_gateway/c/sci_umfpack.c, line: 160
-# File: sci_gateway/c/sci_umfpack.c, line: 192
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s: エラーが起きました: %s: %s\n"
-
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 103
-# File: sci_gateway/c/sci_umf_lufact.c, line: 120
-# File: sci_gateway/c/sci_umfpack.c, line: 160
-msgid "symbolic factorization"
-msgstr "記号因数分解"
-
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 128
-msgid "Warning"
-msgstr "警告"
-
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 128
-msgid "The (square) matrix appears to be singular."
-msgstr "行列(正方)する単数のようです。"
-
-#
-# File: sci_gateway/c/sci_umf_lufact.c, line: 146
-msgid "no place to store the LU pointer in ListNumeric."
-msgstr "LUポインターを数値リストに保存するための場所がありません。"
 
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 105
@@ -348,6 +240,16 @@ msgstr "これは、正方行列の因数分解ではありません"
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 110
 msgid "This is a factorisation of a singular matrix"
 msgstr "これは、特異行列の因数分解です"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
+# File: sci_gateway/c/sci_umf_lufact.c, line: 89
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 118
+# File: sci_gateway/c/sci_umfpack.c, line: 116
+# File: sci_gateway/c/sci_umfpack.c, line: 123
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
 
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 146
@@ -368,29 +270,126 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "行列に与えられたLU要素と互換性がありません"
 
 #
+# File: sci_gateway/c/sci_taucs_chdel.c, line: 98
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr "%s: 入力引数 #%d で不正な値: コレスキー要素に適当な参照ではありません。\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr "%s: 入力引数 #%d で不正な値: コレスキー分解法への明確な参照でなくてはなりません"
+
+#
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 98
+# File: sci_gateway/c/sci_taucs_chget.c, line: 86
+# File: sci_gateway/c/sci_umf_luget.c, line: 210
+# File: src/c/taucs_scilab.c, line: 256
+# File: src/c/taucs_scilab.c, line: 2122
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上メモリがありません。\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 107
+# File: sci_gateway/c/sci_umf_luget.c, line: 218
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s: これ以上メモリがありません: スタックサイズ %d を補足語分増やす必要があります。\n"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+# File: sci_gateway/c/sci_umfpack.c, line: 192
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: エラーが起きました: %s: %s\n"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+msgid "symbolic factorization"
+msgstr "記号因数分解"
+
+#
 # File: sci_gateway/c/sci_umfpack.c, line: 192
 msgid "numeric factorization"
 msgstr "数値因数分解"
 
 #
-# File: src/c/common_umfpack.c, line: 201
-msgid "singular matrix"
-msgstr "特異行列"
+# File: sci_gateway/c/sci_res_with_prec.c, line: 63
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 入力引数で不正なサイズ: 小さなサイズを想定します。\n"
 
 #
-# File: src/c/common_umfpack.c, line: 202
-msgid "not enough memory"
-msgstr "メモリが足りません　"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symetric positive definite"
+msgstr "%s: 入力引数 #%d で不正な値: 明確に対称でなくてはなりません"
 
 #
-# File: src/c/common_umfpack.c, line: 203
-msgid "internal error"
-msgstr "内部エラー"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが起きました: %s\n"
 
 #
-# File: src/c/common_umfpack.c, line: 204
-msgid "invalid matrix"
-msgstr "無効な行列"
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+msgid "factorization"
+msgstr "因数分解"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "Warning"
+msgstr "警告"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "The (square) matrix appears to be singular."
+msgstr "行列(正方)する単数のようです。"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "LUポインターを数値リストに保存するための場所がありません。"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr "%s: 入力引数 #%d で不正な値: コレスキー要素への適当な参照ではありません"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: コレスキー分解法と互換性がありません。\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s: が足りません。\n"
+
+#
+# File: src/noumfpack/noumfpack.c, line: 19
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Scilab UMFPACK モジュールはインストールされていません。\n"
 
 #
 # File: src/c/taucs_scilab.c, line: 128
@@ -420,7 +419,21 @@ msgid "                        nonpositive pivot in column %d\n"
 msgstr "                        列で明確でないピボット %d\n"
 
 #
-# File: src/noumfpack/noumfpack.c, line: 19
-msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Scilab UMFPACK モジュールはインストールされていません。\n"
+# File: src/c/common_umfpack.c, line: 201
+msgid "singular matrix"
+msgstr "特異行列"
 
+#
+# File: src/c/common_umfpack.c, line: 202
+msgid "not enough memory"
+msgstr "メモリが足りません"
+
+#
+# File: src/c/common_umfpack.c, line: 203
+msgid "internal error"
+msgstr "内部エラー"
+
+#
+# File: src/c/common_umfpack.c, line: 204
+msgid "invalid matrix"
+msgstr "無効な行列"
