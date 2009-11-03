@@ -1,0 +1,409 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-03 00:55+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "FAILED TO EXPORT: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+
+msgid "Untitled"
+msgstr ""
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Group"
+msgstr ""
+
+msgid "UnGroup"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Zoom In"
+msgstr ""
+
+msgid "Zoom Out"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Invert selection"
+msgstr ""
+
+msgid "Xcos"
+msgstr ""
+
+msgid "File"
+msgstr "Файл"
+
+msgid "New"
+msgstr "Создать"
+
+msgid "New diagram"
+msgstr ""
+
+msgid "New palette"
+msgstr ""
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save as"
+msgstr "Сохранить как"
+
+msgid "Export"
+msgstr "Экспортировать"
+
+msgid "Save as interface function"
+msgstr ""
+
+msgid "Print"
+msgstr "Печать"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Quit"
+msgstr "Выход"
+
+msgid "Dump"
+msgstr ""
+
+msgid "View in Scicos"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Block Parameters"
+msgstr ""
+
+msgid "Region to superblock"
+msgstr ""
+
+msgid "Superblock mask"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Customize"
+msgstr ""
+
+msgid "Save block GUI"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Fit diagram to view"
+msgstr ""
+
+msgid "Normal 100%"
+msgstr ""
+
+msgid "Palette browser"
+msgstr ""
+
+msgid "Diagram browser"
+msgstr ""
+
+msgid "Viewport"
+msgstr ""
+
+msgid "Get infos"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Browser"
+msgstr ""
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "Compile"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Set Context"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Resize"
+msgstr ""
+
+msgid "Rotate"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Show/Hide shadow"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "Diagram background"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Code generation"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Xcos Help"
+msgstr ""
+
+msgid "Block Help"
+msgstr ""
+
+msgid "Xcos Demos"
+msgstr ""
+
+msgid "About Xcos"
+msgstr ""
+
+msgid "Xcos version 1.0"
+msgstr ""
+
+msgid "Palettes"
+msgstr ""
+
+msgid "Sources"
+msgstr ""
+
+msgid "Continuous"
+msgstr ""
+
+msgid "Discontinuous"
+msgstr ""
+
+msgid "Lookup Tables"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr ""
+
+msgid "Threshold"
+msgstr ""
+
+msgid "Math Operations"
+msgstr ""
+
+msgid "Modelica"
+msgstr ""
+
+msgid "Integer"
+msgstr ""
+
+msgid "Matrix"
+msgstr ""
+
+msgid "Sinks"
+msgstr ""
+
+msgid "Port Action"
+msgstr ""
+
+msgid "Discrete"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "Signal Routing"
+msgstr ""
+
+msgid "Commonly Used Blocks"
+msgstr ""
+
+msgid "User-Defined Functions"
+msgstr ""
+
+msgid "Demonstrations Blocks"
+msgstr ""
+
+msgid "Electrical"
+msgstr ""
+
+msgid "Thermo-Hydraulics"
+msgstr ""
+
+msgid ""
+"Diagram has been modified since last save\n"
+"save it?"
+msgstr ""
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+"diagram is loaded.)"
+msgstr ""
+
+msgid "Failed to load Diagram"
+msgstr ""
+
+msgid "Could not save diagram."
+msgstr ""
+
+msgid "Do you want to overwrite existing file?"
+msgstr ""
+
+msgid "Do you want a transparent background image?"
+msgstr ""
+
+msgid "Image contains no data."
+msgstr ""
+
+msgid "Xcos error"
+msgstr ""
+
+msgid "No block selected"
+msgstr ""
+
+msgid "Export to XML"
+msgstr ""
+
+msgid "Import from XML"
+msgstr ""
+
+msgid "Add to"
+msgstr ""
+
+msgid "Add to new diagram"
+msgstr ""
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr ""
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr ""
+
+msgid "Command port must be connected to control port"
+msgstr ""
+
+msgid "control port must be connected to command port"
+msgstr ""
+
+msgid "Align Blocks"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Line Color"
+msgstr ""
