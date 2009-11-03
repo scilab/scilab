@@ -12,9 +12,9 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -47,7 +47,7 @@ public class UnCommentAction extends DefaultAction {
 		else if( line_start == line_end )
 		{
 			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentText(position_start,position_end);
+			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentText(position_start);
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}

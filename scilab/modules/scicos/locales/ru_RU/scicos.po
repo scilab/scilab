@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-01-12 22:19+0000\n"
-"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
+"PO-Revision-Date: 2009-06-09 23:55+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Scicos"
-msgstr "Scicos"
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s: Неверный число входных аргументов. Должно быть между %d и %d.\n"
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
@@ -45,43 +46,8 @@ msgstr ""
 "'),"
 
 #, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr "%s: Неверный число входных аргументов. Должно быть между %d и %d.\n"
-
-#, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
 msgstr "%s: Ошибка: Компилятор Modelica (MODELICAC) недоступен."
-
-#, c-format
-msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr "%s: Произошла ошибка во время компиляции блока Modelica."
-
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: Ошибка: Блок scifunc не определён."
-
-#, c-format
-msgid "%s: Error : the following command line failed to execute: %s.\n"
-msgstr "%s: Ошибка: не удалось выполнить следующую командную строку: %s.\n"
-
-msgid "Only one block can be selected in current window for this operation."
-msgstr "Только один блок может быть выбран в текущем окне для этой операции."
-
-msgid "The current icon depends on block parameter\n"
-msgstr "Текущая иконка зависит от параметров блока\n"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&Tools"
-msgstr "&Сервис"
-
-msgid "&?"
-msgstr "&Справка"
-
-#, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
-msgstr "%s: Ошибка: Компилятор Modelica (MODELICAC) недоступен.\n"
 
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
@@ -104,8 +70,32 @@ msgstr " %s.mo не может быть скомпилирован\n"
 msgid "Problem while building library %s\n"
 msgstr "Проблема при компоновке библиотеки %s\n"
 
-msgid "&File"
-msgstr "&Файл"
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Ошибка: Блок scifunc не определён."
+
+#, c-format
+msgid "%s: Error : the following command line failed to execute: %s.\n"
+msgstr "%s: Ошибка: не удалось выполнить следующую командную строку: %s.\n"
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr "Только один блок может быть выбран в текущем окне для этой операции."
+
+msgid "The current icon depends on block parameter\n"
+msgstr "Текущая иконка зависит от параметров блока\n"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&Tools"
+msgstr "&Инструменты"
+
+msgid "&?"
+msgstr "&Справка"
+
+#, c-format
+msgid "%s: An error occurred during the compilation of the Modelica block."
+msgstr "%s: Произошла ошибка во время компиляции блока Modelica."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -132,3 +122,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента #%d: Ожидалась одиночная строка.\n"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "Scicos"
+msgstr "Scicos"

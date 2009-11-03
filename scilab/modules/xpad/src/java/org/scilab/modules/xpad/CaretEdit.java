@@ -1,10 +1,9 @@
 package org.scilab.modules.xpad;
 
-import javax.swing.undo.AbstractUndoableEdit;
-import javax.swing.undo.UndoableEdit;
+import javax.swing.text.JTextComponent;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
-import javax.swing.text.JTextComponent;
+import javax.swing.undo.UndoableEdit;
 public class CaretEdit extends javax.swing.undo.AbstractUndoableEdit
 {
   private int mark;
@@ -32,7 +31,6 @@ public class CaretEdit extends javax.swing.undo.AbstractUndoableEdit
 	    super.undo();
 	    try
 	    {
-	    	System.err.println("undoing caret move going to mark:"+mark+" dot:"+dot);
 	    	updateCaret();
 	    }
 	    catch (Exception ex)
@@ -45,7 +43,6 @@ public class CaretEdit extends javax.swing.undo.AbstractUndoableEdit
 	    super.redo();
 	    try
 	    {
-	    	System.err.println("redoing caret move going to mark:"+mark+" dot:"+dot);
 	    	updateCaret();
 	    }
 	    catch (Exception ex)

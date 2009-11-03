@@ -8,58 +8,36 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-03-31 20:49+0000\n"
+"PO-Revision-Date: 2009-10-28 18:18+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "Error(es): vea la ayuda de powershell"
+
+msgid "Verify your script without Scilab."
+msgstr "Verifique su script sin Scilab"
+
+msgid "Only for Microsoft Windows."
+msgstr "Sólo para Microsoft Windows."
+
+msgid "Powershell not found."
+msgstr "No se encontró Powershell."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
-msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr "Solo en Modo Ventana, no en Modo Consola.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error de asignación de memoria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para el argumento de entrada: Se esperaba enteros no "
-"negativos.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para el argumento de entrada: Se esperaba un escalar.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
-
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto de los argumentos de entrada: Se esperaban strings.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: %s.\n"
-msgstr "%s: Valor incorrecto de argumento de entrada: %s.\n"
-
-msgid "see help"
-msgstr "vea la ayuda"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: No se puede abrir el archivo %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
@@ -73,3 +51,51 @@ msgstr "%s: No se pudo abrir el registro de Windows.\n"
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: No se puede consultar valores de este tipo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: %s.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada: %s.\n"
+
+msgid "see help"
+msgstr "vea la ayuda"
+
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "Sólo en Modo Ventana, no en Modo Consola.\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Error de asignación de memoria.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada: Se esperaban enteros no "
+"negativos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No se puede abrir el archivo %s.\n"

@@ -1,23 +1,37 @@
-# Localization of the module statistics
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-09 17:29+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/nanmeanf.sci, line: 48
+# File: macros/sample.sci, line: 49
+# File: macros/samplef.sci, line: 71
+# File: macros/st_deviation.sci, line: 38
+# File: macros/stdev.sci, line: 41
+# File: macros/stdevf.sci, line: 54
+# File: macros/variancef.sci, line: 60
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'', ''%s'', %d または %d を想定します。\n"
 
 # File: macros/center.sci, line: 35
 # File: macros/cmoment.sci, line: 37
@@ -50,177 +64,9 @@ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します�
 # File: macros/nanmedian.sci, line: 51
 # File: macros/wcenter.sci, line: 57
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'', %d または %d を想定します。\n"
-
-#
-# File: macros/correl.sci, line: 26
-# File: macros/covar.sci, line: 28
-# File: macros/perctl.sci, line: 31
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
-
-#
-# File: macros/correl.sci, line: 31
-# File: macros/correl.sci, line: 32
-# File: macros/covar.sci, line: 32
-# File: macros/covar.sci, line: 33
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ベクトルを想定します。\n"
-
-#
-# File: macros/correl.sci, line: 37
-# File: macros/covar.sci, line: 37
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Same number of line as first input argument expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 最初の入力引数で行の同数を想定します。\n"
-
-#
-# File: macros/correl.sci, line: 38
-# File: macros/covar.sci, line: 38
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Same number of column as first input argument expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 最初の入力引数で列の同数を想定します。\n"
-
-#
-# File: macros/iqr.sci, line: 34
-# File: macros/msd.sci, line: 33
-# File: macros/quart.sci, line: 40
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 最小の %d を想定します。\n"
-
-#
-# File: macros/mad.sci, line: 35
-# File: macros/mean.sci, line: 26
-# File: macros/meanf.sci, line: 38
-# File: macros/moment.sci, line: 46
-# File: macros/nanmedian.sci, line: 29
-# File: macros/nanstdev.sci, line: 34
-# File: macros/nansum.sci, line: 35
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
-
-#
-# File: macros/mad.sci, line: 49
-# File: macros/meanf.sci, line: 51
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'',''%s'', %d または %d \n"
-
-#
-# File: macros/mean.sci, line: 29
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実ベクトルか、または、行列を想定します。\n"
-
-#
-# File: macros/mean.sci, line: 33
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。\n"
-
-#
-# File: macros/mean.sci, line: 50
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラー、または、ベクトルを想定します。\n"
-
-#
-# File: macros/median.sci, line: 33
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive number expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'',''%s'' または 明確な数を想定します。\n"
-
-#
-# File: macros/mvcorrel.sci, line: 29
-# File: macros/mvvacov.sci, line: 31
-# File: macros/samwr.sci, line: 19
-# File: macros/thrownan.sci, line: 26
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
-
-#
-# File: macros/nanmeanf.sci, line: 48
-# File: macros/sample.sci, line: 49
-# File: macros/samplef.sci, line: 71
-# File: macros/st_deviation.sci, line: 38
-# File: macros/stdev.sci, line: 41
-# File: macros/stdevf.sci, line: 54
-# File: macros/variancef.sci, line: 60
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'', ''%s'', %d または %d を想定します。\n"
-
-#
-# File: macros/nanmedian.sci, line: 30
-#, c-format
-msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 数値を想定します。\n"
-
-#
-# File: macros/perctl.sci, line: 34
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d で不正な値: %d と %d の間でなくてはなりません。\n"
-
-#
-# File: macros/perctl.sci, line: 37
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 数値を想定します。\n"
-
-#
-# File: macros/princomp.sci, line: 37
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Boolean expected."
-msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。"
-
-#
-# File: macros/regress.sci, line: 24
-#, c-format
-msgid "%s: Wrong type for input arguments: Numerical expected.\n"
-msgstr "%s: 入力引数で不正な型: 数値を想定します。\n"
-
-#
-# File: macros/regress.sci, line: 26
-#, c-format
-msgid "%s: Wrong size for both input arguments: same size expected.\n"
-msgstr "%s: 両方の入力引数で不正なサイズ: 同じサイズを想定します。\n"
-
-#
-# File: macros/regress.sci, line: 27
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: > %d でなくてはなりません。\n"
-
-#
-# File: macros/samplef.sci, line: 52
-#, c-format
-msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じサイズを想定します。\n"
-
-#
-# File: macros/samplef.sci, line: 59
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Same number of rows of the second input argument expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 第二の入力引数の同じ列の数を想定します。\n"
-
-#
-# File: macros/samplef.sci, line: 66
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Same number of columns of the second input argument expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 第二の入力引数の同じ欄の数を想定します。\n"
-
-#
-# File: macros/samwr.sci, line: 24
-#, c-format
-msgid "%s: Wrong value of input argument #%d: Less or equal than length of last input argument expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 最新の入力引数の僅か、または、同等の長さを想定します。\n"
 
 #
 # File: macros/show_pca.sci, line: 24
@@ -245,21 +91,11 @@ msgid "Eigenvalues (in percent)"
 msgstr "固有値(パーセントで)"
 
 #
-# File: macros/stdevf.sci, line: 41
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じ次元を想定します。\n"
-
-#
-# File: macros/strange.sci, line: 33
-#, c-format
-msgid "%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
-msgstr "%s: %d の入力引数で不正な値: ''%s'', ''%s'', %d または %d を想定します。\n"
-
-#
 # File: macros/tabul.sci, line: 64
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: ベクトル, 文字列 または、数の行列を想定します。\n"
 
 #
@@ -270,16 +106,64 @@ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
 
 #
+# File: macros/mad.sci, line: 35
+# File: macros/mean.sci, line: 26
+# File: macros/meanf.sci, line: 38
+# File: macros/moment.sci, line: 46
+# File: macros/nanmedian.sci, line: 29
+# File: macros/nanstdev.sci, line: 34
+# File: macros/nansum.sci, line: 35
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/mad.sci, line: 49
+# File: macros/meanf.sci, line: 51
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'',''%s'', %d または %d\n"
+
+#
+# File: macros/regress.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s: 入力引数で不正な型: 数値を想定します。\n"
+
+#
+# File: macros/regress.sci, line: 26
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr "%s: 両方の入力引数で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: macros/regress.sci, line: 27
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: > %d でなくてはなりません。\n"
+
+#
+# File: macros/iqr.sci, line: 34
+# File: macros/msd.sci, line: 33
+# File: macros/quart.sci, line: 40
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 入力引数で不正な数: 最小の %d を想定します。\n"
+
+#
 # File: macros/trimmean.sci, line: 81
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real number between %d to %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
 msgstr "%1$s: 入力引数 #%2$d で不正な値: %4$d への %3$d 間の実数を想定します。\n"
 
 #
 # File: macros/trimmean.sci, line: 98
 #, c-format
 msgid "Wrong value for input argument orien: %s.\n"
-msgstr "入力引数 orien で不正な値: %s \n"
+msgstr "入力引数 orien で不正な値: %s\n"
 
 #
 # File: macros/trimmean.sci, line: 103
@@ -318,6 +202,126 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "適用の思いがけない値 : %s\n"
 
 #
+# File: macros/correl.sci, line: 26
+# File: macros/covar.sci, line: 28
+# File: macros/perctl.sci, line: 31
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/perctl.sci, line: 34
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d と %d の間でなくてはなりません。\n"
+
+#
+# File: macros/perctl.sci, line: 37
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 数値を想定します。\n"
+
+#
+# File: macros/correl.sci, line: 31
+# File: macros/correl.sci, line: 32
+# File: macros/covar.sci, line: 32
+# File: macros/covar.sci, line: 33
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ベクトルを想定します。\n"
+
+#
+# File: macros/correl.sci, line: 37
+# File: macros/covar.sci, line: 37
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 最初の入力引数で行の同数を想定します。\n"
+
+#
+# File: macros/correl.sci, line: 38
+# File: macros/covar.sci, line: 38
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 最初の入力引数で列の同数を想定します。\n"
+
+#
+# File: macros/mvcorrel.sci, line: 29
+# File: macros/mvvacov.sci, line: 31
+# File: macros/samwr.sci, line: 19
+# File: macros/thrownan.sci, line: 26
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#
+# File: macros/samwr.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 最新の入力引数の僅か、または、同等の長さを想定します。\n"
+
+#
+# File: macros/median.sci, line: 33
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'',''%s'' または 明確な数を想定します。\n"
+
+#
+# File: macros/strange.sci, line: 33
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr "%s: %d の入力引数で不正な値: ''%s'', ''%s'', %d または %d を想定します。\n"
+
+#
+# File: macros/princomp.sci, line: 37
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。"
+
+#
+# File: macros/samplef.sci, line: 52
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: macros/samplef.sci, line: 59
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 第二の入力引数の同じ列の数を想定します。\n"
+
+#
+# File: macros/samplef.sci, line: 66
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 第二の入力引数の同じ欄の数を想定します。\n"
+
+#
+# File: macros/nanmedian.sci, line: 30
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 数値を想定します。\n"
+
+#
+# File: macros/stdevf.sci, line: 41
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じ次元を想定します。\n"
+
+#
 # File: macros/variance.sci, line: 47
 # File: macros/variance.sci, line: 59
 # File: macros/variance.sci, line: 72
@@ -328,8 +332,28 @@ msgstr "%s: w の間違った値 : %d; 0 または 1 を想定します。\n"
 #
 # File: macros/variance.sci, line: 76
 #, c-format
-msgid "%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr "%s: 入力引数で不正な値: ''%s'', ''%s'', %d または %d を想定します。\n"
+
+#
+# File: macros/mean.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実ベクトルか、または、行列を想定します。\n"
+
+#
+# File: macros/mean.sci, line: 33
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: macros/mean.sci, line: 50
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラー、または、ベクトルを想定します。\n"
 
 #
 # File: macros/variancef.sci, line: 42
@@ -341,24 +365,24 @@ msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr "%s: 入力引数 #%d で不正な値: > %d でなくてはなりません。\n"
 
 #
-# File: sci_gateway/c/sci_cdfbet.c, line: 44
-msgid "X,Y,A and B"
-msgstr "X,Y,A と B"
+# File: sci_gateway/c/sci_cdfnor.c, line: 42
+msgid "X,Mean and Std"
+msgstr "X,平均 と Std"
 
 #
-# File: sci_gateway/c/sci_cdfbet.c, line: 50
-msgid "A,B,P and Q"
-msgstr "A,B,P と Q"
+# File: sci_gateway/c/sci_cdfnor.c, line: 48
+msgid "Mean,Std,P and Q"
+msgstr "平均,Std,P と Q"
 
 #
-# File: sci_gateway/c/sci_cdfbet.c, line: 56
-msgid "B,P,Q,X and Y"
-msgstr "B,P,Q,X と Y"
+# File: sci_gateway/c/sci_cdfnor.c, line: 54
+msgid "Std,P,Q and X"
+msgstr "Std,P,Q と X"
 
 #
-# File: sci_gateway/c/sci_cdfbet.c, line: 62
-msgid "P,Q,X,Y and A"
-msgstr "P,Q,X,Y と A"
+# File: sci_gateway/c/sci_cdfnor.c, line: 60
+msgid "P,Q,X and Mean"
+msgstr "P,Q,X と 平均"
 
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 67
@@ -369,7 +393,8 @@ msgstr "P,Q,X,Y と A"
 # File: sci_gateway/c/sci_cdfnbn.c, line: 67
 # File: sci_gateway/c/sci_cdfnor.c, line: 65
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s' または '%s' を想定します。\n"
 
 #
@@ -405,6 +430,11 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "答えは、最上の境界線 %f よりも高いようです\n"
 
 #
+# File: sci_gateway/c/sci_cdfnor.c, line: 78
+msgid " Std must not be zero\n"
+msgstr " Stdはゼロではいけません\n"
+
+#
 # File: sci_gateway/c/sci_cdfbet.c, line: 83
 # File: sci_gateway/c/sci_cdfbin.c, line: 82
 # File: sci_gateway/c/sci_cdfchi.c, line: 75
@@ -421,27 +451,67 @@ msgid ""
 "Bound exceeded: %f\n"
 msgstr ""
 "入力引数 %c は範囲外です。\n"
-"境界線を想定します: %f \n"
+"境界線を想定します: %f\n"
 
 #
-# File: sci_gateway/c/sci_cdfbin.c, line: 44
-msgid "S,Xn,Pr and Ompr"
-msgstr "S,Xn,Pr と Ompr"
+# File: sci_gateway/c/sci_cdfgam.c, line: 42
+msgid "X,Shape and Scale"
+msgstr "X,形状 と 比率"
 
 #
-# File: sci_gateway/c/sci_cdfbin.c, line: 50
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn,Pr,Ompr,P と Q"
+# File: sci_gateway/c/sci_cdfgam.c, line: 48
+msgid "Shape,Scale,P and Q"
+msgstr "形状,比率,P と Q"
 
 #
-# File: sci_gateway/c/sci_cdfbin.c, line: 56
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr,OMPr,P,Q と S"
+# File: sci_gateway/c/sci_cdfgam.c, line: 54
+msgid "Scale,P,Q and X"
+msgstr "形状,P,Q と X"
 
 #
-# File: sci_gateway/c/sci_cdfbin.c, line: 62
-msgid "P,Q,S  and Xn"
-msgstr "P,Q,S  と Xn"
+# File: sci_gateway/c/sci_cdfgam.c, line: 60
+msgid "P,Q,X and Shape"
+msgstr "P,Q,X と 形状"
+
+#
+# File: sci_gateway/c/sci_cdff.c, line: 41
+msgid "F,Dfn and Dfd"
+msgstr "F,Dfn と Dfd"
+
+#
+# File: sci_gateway/c/sci_cdff.c, line: 47
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn,Dfd,P と Q"
+
+#
+# File: sci_gateway/c/sci_cdff.c, line: 53
+msgid "Dfd,P,Q and F"
+msgstr "Dfd,P,Q と F"
+
+#
+# File: sci_gateway/c/sci_cdff.c, line: 59
+msgid "P,Q,F and Dfn"
+msgstr "P,Q,F と Dfn"
+
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 44
+msgid "X,Y,A and B"
+msgstr "X,Y,A と B"
+
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 50
+msgid "A,B,P and Q"
+msgstr "A,B,P と Q"
+
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 56
+msgid "B,P,Q,X and Y"
+msgstr "B,P,Q,X と Y"
+
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 62
+msgid "P,Q,X,Y and A"
+msgstr "P,Q,X,Y と A"
 
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 43
@@ -464,7 +534,8 @@ msgstr "P,Q と X"
 # File: sci_gateway/c/sci_cdfpoi.c, line: 58
 # File: sci_gateway/c/sci_cdft.c, line: 57
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s' または '%s' を想定します。\n"
 
 #
@@ -473,44 +544,24 @@ msgid "cdfchi: Error in cumgam\n"
 msgstr "cdfchi: cumgam の誤り\n"
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 39
-msgid "X,Df and Pnonc"
-msgstr "X,Df と Pnonc"
+# File: sci_gateway/c/sci_cdfnbn.c, line: 43
+msgid "S,XN,PR and OMPR"
+msgstr "S,XN,PR と OMPR"
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 45
-msgid "Df,Pnonc,P and Q"
-msgstr "Df,Pnonc,P と Q"
+# File: sci_gateway/c/sci_cdfnbn.c, line: 49
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN,PR,OMPR,P と Q"
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 51
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc,P,Q と X"
+# File: sci_gateway/c/sci_cdfnbn.c, line: 55
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR,OMPR,P,Q と S"
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 57
-msgid "P,Q,X and Df"
-msgstr "P,Q,X と Df"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 41
-msgid "F,Dfn and Dfd"
-msgstr "F,Dfn と Dfd"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 47
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn,Dfd,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 53
-msgid "Dfd,P,Q and F"
-msgstr "Dfd,P,Q と F"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 59
-msgid "P,Q,F and Dfn"
-msgstr "P,Q,F と Dfn"
+# File: sci_gateway/c/sci_cdfnbn.c, line: 62
+msgid "P,Q,S and Xn"
+msgstr "P,Q,S と Xn"
 
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 41
@@ -540,73 +591,10 @@ msgstr "P,Q,F,Dfn と Dfd"
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 70
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値:  '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 42
-msgid "X,Shape and Scale"
-msgstr "X,形状 と 比率"
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 48
-msgid "Shape,Scale,P and Q"
-msgstr "形状,比率,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 54
-msgid "Scale,P,Q and X"
-msgstr "形状,P,Q と X"
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 60
-msgid "P,Q,X and Shape"
-msgstr "P,Q,X と 形状"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 43
-msgid "S,XN,PR and OMPR"
-msgstr "S,XN,PR と OMPR"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 49
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN,PR,OMPR,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 55
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR,OMPR,P,Q と S"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 62
-msgid "P,Q,S and Xn"
-msgstr "P,Q,S と Xn"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 42
-msgid "X,Mean and Std"
-msgstr "X,平均 と Std"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 48
-msgid "Mean,Std,P and Q"
-msgstr "平均,Std,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 54
-msgid "Std,P,Q and X"
-msgstr "Std,P,Q と X"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 60
-msgid "P,Q,X and Mean"
-msgstr "P,Q,X と 平均"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 78
-msgid " Std must not be zero\n"
-msgstr " Stdはゼロではいけません\n"
 
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 41
@@ -624,6 +612,26 @@ msgid "P,Q and S"
 msgstr "P,Q と S"
 
 #
+# File: sci_gateway/c/sci_cdfchn.c, line: 39
+msgid "X,Df and Pnonc"
+msgstr "X,Df と Pnonc"
+
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 45
+msgid "Df,Pnonc,P and Q"
+msgstr "Df,Pnonc,P と Q"
+
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 51
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc,P,Q と X"
+
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 57
+msgid "P,Q,X and Df"
+msgstr "P,Q,X と Df"
+
+#
 # File: sci_gateway/c/sci_cdft.c, line: 40
 msgid "T and Df"
 msgstr "T と Df"
@@ -634,9 +642,30 @@ msgid "P,Q and T"
 msgstr "P,Q と T"
 
 #
+# File: sci_gateway/c/sci_cdfbin.c, line: 44
+msgid "S,Xn,Pr and Ompr"
+msgstr "S,Xn,Pr と Ompr"
+
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 50
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn,Pr,Ompr,P と Q"
+
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 56
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr,OMPr,P,Q と S"
+
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 62
+msgid "P,Q,S  and Xn"
+msgstr "P,Q,S  と Xn"
+
+#
 # File: src/c/CdfBase.c, line: 26
 #, c-format
-msgid "%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
 msgstr "%s: '%s' オプションと入力引数で不正な数: %d を想定します。\n"
 
 #
@@ -644,4 +673,3 @@ msgstr "%s: '%s' オプションと入力引数で不正な数: %d を想定し�
 #, c-format
 msgid "%s and %s must have same size.\n"
 msgstr "%s と %s は、同じサイズを持っていなくてはいけません。\n"
-
