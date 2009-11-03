@@ -1,33 +1,29 @@
-# Localization of the module jvm
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-08 15:58+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
-
-# File: sci_gateway/c/gw_jvm.c, line: 41
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "JVM インターフェース無効 -nogui または -nwni モード\n"
+"X-Poedit-Language: Japanese\n"
 
 #
-# File: sci_gateway/c/sci_javaclasspath.c, line: 56
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
 #, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr "%s: システム classloader にURLを追加できませんでした : %s\n"
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s:  java.library.pathにpathを追加できませんでした。: %s\n"
 
 #
 # File: sci_gateway/c/sci_javaclasspath.c, line: 67
@@ -38,49 +34,25 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
-#, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s:  java.library.pathにpathを追加できませんでした。: %s\n"
-
-#
 # File: sci_gateway/c/sci_system_setproperty.c, line: 62
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d または #%d: 文字列を想定します。\n"
 
 #
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 42
+# File: sci_gateway/c/sci_javaclasspath.c, line: 56
 #, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilabは JVMライブラリを開けません。\n"
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr "%s: システム classloader にURLを追加できませんでした : %s\n"
+
+# File: sci_gateway/c/gw_jvm.c, line: 41
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "JVM インターフェース無効 -nogui または -nwni モード\n"
 
 #
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 53
-# File: src/c/JVM.c, line: 68
-# File: src/c/JVM.c, line: 83
-# File: src/c/JVM.c, line: 146
-# File: src/c/JVM.c, line: 180
-# File: src/c/JVM.c, line: 207
-msgid "Error"
-msgstr "エラー"
-
-#
-# File: src/c/InitializeJVM.c, line: 53
-# File: src/c/InitializeJVM.c, line: 55
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"
-msgstr ""
-"\n"
-"Scilab Java メイン・クラスを生成できません(私達は、主なScilabクラスを見つけることができません。Scilabとサードパーティパッケージが利用できるかどうか確かめて下さい)\n"
+# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 145
+msgid "Console"
+msgstr "コンソール"
 
 #
 # File: src/c/JVM.c, line: 68
@@ -94,22 +66,36 @@ msgstr ""
 "エラー: Scilab Java環境(jvm_SCILAB)から戻れません。\n"
 
 #
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 53
+# File: src/c/JVM.c, line: 68
+# File: src/c/JVM.c, line: 83
+# File: src/c/JVM.c, line: 146
+# File: src/c/JVM.c, line: 180
+# File: src/c/JVM.c, line: 207
+msgid "Error"
+msgstr "エラー"
+
+#
 # File: src/c/JVM.c, line: 83
 # File: src/c/JVM.c, line: 85
 #, c-format
 msgid ""
 "\n"
-"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"エラー: Scilab Java環境(jvm_SCILAB)から戻れません: JVMがこのファンクションを呼ぶ前にScilabによってロードされたかどうか確かめて下さい。\n"
+"エラー: Scilab Java環境(jvm_SCILAB)から戻れません: "
+"JVMがこのファンクションを呼ぶ前にScilabによってロードされたかどうか確かめて下さい。\n"
 
 #
 # File: src/c/JVM.c, line: 108
 #, c-format
 msgid ""
 "\n"
-"Weird error. Calling from Java but haven't been able to find the already existing JVM.\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
 msgstr ""
 "\n"
 "奇妙なエラー、Javaからの呼び出し、しかし、JVMを見つけることができません。\n"
@@ -198,27 +184,6 @@ msgid "Undefined error code in the JNI. Weird problem"
 msgstr "JNIで定義されていないのエラーコード。奇妙な問題"
 
 #
-# File: src/c/addToClasspath.c, line: 59
-#, c-format
-msgid "Warning: Could not find Java package '%s'.\n"
-msgstr "警告: Javaパッケージ '%s' が見つかりません。\n"
-
-#
-# File: src/c/createMainScilabObject.c, line: 33
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "メインScilabクラスにアクセスできません:\n"
-
-#
-# File: src/c/createMainScilabObject.c, line: 38
-msgid "Could not access to the constructor of the Main Scilab Class:\n"
-msgstr "メインScilabクラスのコンストラクタにアクセスすることができませんでした:\n"
-
-#
-# File: src/c/createMainScilabObject.c, line: 45
-msgid "Could not create a Scilab main class. Error:\n"
-msgstr "Scilabメインクラスを作り出すことができないエラー:\n"
-
-#
 # File: src/c/getJvmOptions.c, line: 51
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -227,8 +192,11 @@ msgstr "エラー: ファイル %s の解析ができません。\n"
 #
 # File: src/c/getJvmOptions.c, line: 118
 #, c-format
-msgid "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr "エラー: 構成ファイル %s が適切ではありません(エンコーディングが '%s' ではない) エンコーディング '%s' が見つかりました\n"
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"エラー: 構成ファイル %s が適切ではありません(エンコーディングが '%s' ではない) エンコーディング '%s' が見つかりました\n"
 
 #
 # File: src/c/loadClasspath.c, line: 78
@@ -247,10 +215,12 @@ msgid "Wrong format for %s.\n"
 msgstr "%s でフォーマットが不正です。\n"
 
 #
-# File: src/c/loadClasspath.c, line: 178
+# File: src/c/loadLibrarypath.c, line: 127
 #, c-format
-msgid "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr "エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
 
 #
 # File: src/c/loadClasspath.c, line: 184
@@ -258,6 +228,16 @@ msgstr "エラー: classpathファイル %s が適切ではありません(エ�
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"
 msgstr "警告: classpath定義ファイル %s が見つかりません。\n"
+
+#
+# File: src/c/loadClasspath.c, line: 178
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' "
+"が見つかりました\n"
 
 #
 # File: src/c/loadClasspath.c, line: 188
@@ -272,18 +252,53 @@ msgstr ""
 "どうぞ　SCI/etc/classpath.xml を確認してください。\n"
 
 #
-# File: src/c/loadLibrarypath.c, line: 127
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 42
 #, c-format
-msgid "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr "エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilabは JVMライブラリを開けません。\n"
 
 #
-# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 145
-msgid "Console"
-msgstr "コンソール"
+# File: src/c/InitializeJVM.c, line: 53
+# File: src/c/InitializeJVM.c, line: 55
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab Java "
+"メイン・クラスを生成できません(私達は、主なScilabクラスを見つけることができません。Scilabとサードパーティパッケージが利用できるかどうか確かめ"
+"て下さい)\n"
+
+#
+# File: src/c/createMainScilabObject.c, line: 33
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "メインScilabクラスにアクセスできません:\n"
+
+#
+# File: src/c/createMainScilabObject.c, line: 38
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "メインScilabクラスのコンストラクタにアクセスすることができませんでした:\n"
+
+#
+# File: src/c/createMainScilabObject.c, line: 45
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Scilabメインクラスを作り出すことができないエラー:\n"
+
+#
+# File: src/c/addToClasspath.c, line: 59
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "警告: Javaパッケージ '%s' が見つかりません。\n"
 
 #
 # File: src/nojvm/nojvm.c, line: 27
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab Java モジュールはインストールされていません。\n"
-

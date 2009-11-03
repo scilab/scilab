@@ -1,96 +1,23 @@
-# Localization of the module sparse
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-25 07:36+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
-
-# File: includes/spDefs.h, line: 379
-#, c-format
-msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "スパース: 線 %2$d で ファイル `%1$s' はパニックです。\n"
-
-#
-# File: macros/gmres.sci, line: 51
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 少なくとも %d を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 66
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 71
-# File: macros/gmres.sci, line: 142
-# File: macros/pcg.sci, line: 108
-# File: macros/qmr.sci, line: 115
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 75
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Same size as input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 83
-# File: macros/gmres.sci, line: 93
-# File: macros/gmres.sci, line: 103
-# File: macros/pcg.sci, line: 117
-# File: macros/pcg.sci, line: 121
-# File: macros/qmr.sci, line: 235
-# File: macros/qmr.sci, line: 249
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 122
-# File: macros/pcg.sci, line: 103
-# File: macros/pcg.sci, line: 142
-# File: macros/pcg.sci, line: 168
-# File: macros/qmr.sci, line: 79
-# File: macros/qmr.sci, line: 140
-# File: macros/qmr.sci, line: 191
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 正方行列を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 128
-# File: macros/pcg.sci, line: 112
-# File: macros/pcg.sci, line: 145
-# File: macros/pcg.sci, line: 171
-# File: macros/pcg.sci, line: 179
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 145
-# File: macros/qmr.sci, line: 118
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+"X-Poedit-Language: Japanese\n"
 
 #
 # File: macros/gmres.sci, line: 152
@@ -100,12 +27,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じ�
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 290
-#, c-format
-msgid "%s: Did not converge.\n"
-msgstr "%s: 集まりませんでした。\n"
 
 #
 # File: macros/pcg.sci, line: 72
@@ -121,6 +42,51 @@ msgstr "引数:\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: macros/gmres.sci, line: 122
+# File: macros/pcg.sci, line: 103
+# File: macros/pcg.sci, line: 142
+# File: macros/pcg.sci, line: 168
+# File: macros/qmr.sci, line: 79
+# File: macros/qmr.sci, line: 140
+# File: macros/qmr.sci, line: 191
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 正方行列を想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 71
+# File: macros/gmres.sci, line: 142
+# File: macros/pcg.sci, line: 108
+# File: macros/qmr.sci, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 128
+# File: macros/pcg.sci, line: 112
+# File: macros/pcg.sci, line: 145
+# File: macros/pcg.sci, line: 171
+# File: macros/pcg.sci, line: 179
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 83
+# File: macros/gmres.sci, line: 93
+# File: macros/gmres.sci, line: 103
+# File: macros/pcg.sci, line: 117
+# File: macros/pcg.sci, line: 121
+# File: macros/qmr.sci, line: 235
+# File: macros/qmr.sci, line: 249
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
 
 #
 # File: macros/pcg.sci, line: 176
@@ -141,11 +107,19 @@ msgstr "右手側の標準 : %s\n"
 msgid "Special processing where the right-hand side is zero.\n"
 msgstr "右手の側がゼロであるところの特別の加工\n"
 
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  型 の調整 #1 : %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  型 の調整 #2 : %d\n"
+
 #
 # File: macros/pcg.sci, line: 214
 #, c-format
 msgid "  New residual = %s < tol = %s => break\n"
-msgstr "新しい剰余 = %s < tol = %s => break\n"
+msgstr "  新しい剰余 = %s < tol = %s => break\n"
 
 #
 # File: macros/pcg.sci, line: 220
@@ -190,13 +164,17 @@ msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n
 # File: macros/qmr.sci, line: 215
 # File: macros/qmr.sci, line: 219
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
 
 #
 # File: macros/qmr.sci, line: 97
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定します。\n"
 
 #
@@ -206,17 +184,48 @@ msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ベクトルを想定します。\n"
 
 #
+# File: macros/gmres.sci, line: 145
+# File: macros/qmr.sci, line: 118
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
 # File: macros/qmr.sci, line: 143
 # File: macros/qmr.sci, line: 194
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must be same size as input argument #%d"
+msgid ""
+"%s: Wrong size for input argument #%d: Must be same size as input argument "
+"#%d"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d と同じサイズでなくてはいけません"
 
 #
-# File: src/c/lu.c, line: 121
+# File: macros/gmres.sci, line: 51
 #, c-format
-msgid "%s: A zero was encountered on the diagonal the matrix.\n"
-msgstr "%s: 行列でゼロが対角線で出会いました。\n"
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 入力引数で不正な数: 少なくとも %d を想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 66
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 290
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: 集まりませんでした。\n"
 
 #
 # File: src/c/spFactor.c, line: 233
@@ -234,7 +243,7 @@ msgstr "因数分解の内側のループのための操作数 = %d\n"
 # File: src/c/spFactor.c, line: 3011
 #, c-format
 msgid "Pivot found at %1d,%1d using "
-msgstr "軸は %1d,%1d で使っているのを見つけました"
+msgstr "軸は %1d,%1d で使っているのを見つけました "
 
 #
 # File: src/c/spOutput.c, line: 176
@@ -369,7 +378,7 @@ msgstr "行列は複雑です。\n"
 # File: src/c/spOutput.c, line: 689
 #, c-format
 msgid "Matrix is real.\n"
-msgstr "行列は実数です。\n"
+msgstr "行列は実です。\n"
 
 #
 # File: src/c/spOutput.c, line: 713
@@ -381,7 +390,7 @@ msgstr "     要素の初期数 = %d\n"
 # File: src/c/spOutput.c, line: 716
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
-msgstr "      列当たりの要素の最初の平均数 = %lf\n"
+msgstr "     列当たりの要素の最初の平均数 = %lf\n"
 
 #
 # File: src/c/spOutput.c, line: 718
@@ -443,3 +452,13 @@ msgstr ""
 "\n"
 "\n"
 
+#
+# File: src/c/lu.c, line: 121
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr "%s: 行列でゼロが対角線で出会いました。\n"
+
+# File: includes/spDefs.h, line: 379
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr "スパース: 線 %2$d で ファイル `%1$s' はパニックです。\n"

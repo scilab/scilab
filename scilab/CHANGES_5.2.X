@@ -490,6 +490,8 @@ Internationalization:
 
 * Japanese localization added (Thanks Hiroshi Saito)
 
+* Italian localization added (Thanks Carmelo Leggio)
+
 * More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
@@ -1081,6 +1083,8 @@ Bug fixes:
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
+
+* bug 5155 fixed - Scilab windows 32 bits version requires CPU SSE 2 instructions.
 
 * bug 5160 fixed - When you export a graphics by the 'File -> export' menu, and don't specify any 'filter', scilab crash.
 

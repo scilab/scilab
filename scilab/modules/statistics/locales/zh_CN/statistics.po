@@ -8,14 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-04-12 07:03+0000\n"
+"PO-Revision-Date: 2009-10-29 06:10+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，''%s''，%d 或 %d。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -25,118 +31,6 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，%d 或 %d 。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为%d个。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为向量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Same number of line as first input "
-"argument expected.\n"
-msgstr "%s：输入参数#%d的值错误：行数应该应该跟第一个参数一样。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Same number of column as first input "
-"argument expected.\n"
-msgstr "%s：输入参数#%d的值错误：列数应该应该跟第一个参数一样。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s：输入参数的个数错误：应该至少有%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s''，''%s''，''%s''，%d 或 %d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数向量或矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为标量或向量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
-"number expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，''%s''或一个正数。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s：第一个输入参数值错误：应该为%d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
-"expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，''%s''，%d 或 %d。\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Boolean expected."
-msgstr "%s：输入参数#%d的类型错误：应该为布尔值。"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Numerical expected.\n"
-msgstr "%s：输入参数的类型错误：应该为数字。\n"
-
-#, c-format
-msgid "%s: Wrong size for both input arguments: same size expected.\n"
-msgstr "%s：两个输入参数的大小错误：应该为同样的大小。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
-msgstr "%s：输入参数#%d的大小错误：必须 > %d。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr "%s：输入参数#%d和参数#%d的大小错误：应该为同样大小。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of rows of the second "
-"input argument expected.\n"
-msgstr "%s：输入参数#%d的大小错误：行数应该跟第二个输入参数的行数相同。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of columns of the second "
-"input argument expected.\n"
-msgstr "%s：输入参数#%d的大小错误：列数应该跟第二个输入参数的列数相同。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: Less or equal than length of last "
-"input argument expected.\n"
-msgstr "%s：输入参数#%d的值错误：长度应该小于或等于最后一个参数的长度。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
@@ -154,16 +48,6 @@ msgstr "特征值（百分比）"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，%d 或 %d。\n"
-
-#, c-format
-msgid ""
 "%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
 "expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为数字或字符串向量（矩阵）。\n"
@@ -171,6 +55,31 @@ msgstr "%s：输入参数#%d的类型错误：应该为数字或字符串向量�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为''%s''或者''%s''。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s''，''%s''，''%s''，%d 或 %d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s：输入参数的类型错误：应该为数字。\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr "%s：两个输入参数的大小错误：应该为同样的大小。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s：输入参数#%d的大小错误：必须 > %d。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s：输入参数的个数错误：应该至少有%d个。\n"
 
 #, c-format
 msgid ""
@@ -200,11 +109,89 @@ msgstr "x的大小：%i\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"
-msgstr ""
+msgstr "请将 %i 个数（从 %i 到 %i）排好序。\n"
 
 #, c-format
 msgid "Unexpected value of orien : %s\n"
 msgstr "不正确的orien值：%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr "%s：输入参数#%d的值错误：行数应该应该跟第一个参数一样。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr "%s：输入参数#%d的值错误：列数应该应该跟第一个参数一样。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s：第一个输入参数值错误：应该为%d。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr "%s：输入参数#%d的值错误：长度应该小于或等于最后一个参数的长度。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，''%s''或一个正数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''，''%s''，%d 或 %d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr "%s：输入参数#%d的类型错误：应该为布尔值。"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr "%s：输入参数#%d和参数#%d的大小错误：应该为同样大小。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr "%s：输入参数#%d的大小错误：行数应该跟第二个输入参数的行数相同。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr "%s：输入参数#%d的大小错误：列数应该跟第二个输入参数的列数相同。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
 
 #, c-format
 msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
@@ -216,20 +203,33 @@ msgid ""
 msgstr "%s：输入参数的值错误：应该为\"%s\"，\"%s\"，%d或者%d。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数向量或矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：输入参数#%d的类型错误。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为标量或向量。\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr "%s：输入参数#%d的值错误：必须 > %d。\n"
 
-msgid "X,Y,A and B"
-msgstr "X、Y、A和B"
+msgid "X,Mean and Std"
+msgstr "X、Mean和Std"
 
-msgid "A,B,P and Q"
-msgstr "A、B、P和Q"
+msgid "Mean,Std,P and Q"
+msgstr "Mean、Std、P和Q"
 
-msgid "B,P,Q,X and Y"
-msgstr "B、P、Q、X和Y"
+msgid "Std,P,Q and X"
+msgstr "Std、P、Q和X"
 
-msgid "P,Q,X,Y and A"
-msgstr "P、Q、X、Y和A"
+msgid "P,Q,X and Mean"
+msgstr "P、Q、X和Mean"
 
 #, c-format
 msgid ""
@@ -244,6 +244,9 @@ msgstr "答案好像比最低搜索边界%f还低\n"
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "答案好像比最高搜索边界%f还高\n"
 
+msgid " Std must not be zero\n"
+msgstr " Std必须是0。\n"
+
 #, c-format
 msgid ""
 "Input argument %c is out of range.\n"
@@ -252,17 +255,41 @@ msgstr ""
 "输入参数%c超出范围。\n"
 "超出的边界：%f\n"
 
-msgid "S,Xn,Pr and Ompr"
-msgstr "S、Xn、Pr和Ompr"
+msgid "X,Shape and Scale"
+msgstr "X、Shape和Scale"
 
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn、Pr、Ompr、P和Q"
+msgid "Shape,Scale,P and Q"
+msgstr "Shape、Scale、P和Q"
 
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr、OMPr、P、Q和S"
+msgid "Scale,P,Q and X"
+msgstr "Scale、P、Q和X"
 
-msgid "P,Q,S  and Xn"
-msgstr "P、Q、S和Xn"
+msgid "P,Q,X and Shape"
+msgstr "P、Q、X和Shape"
+
+msgid "F,Dfn and Dfd"
+msgstr "F、Dfn和Dfd"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn、Dfd、P和Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd、P、Q和F"
+
+msgid "P,Q,F and Dfn"
+msgstr "P、Q、F和Dfn"
+
+msgid "X,Y,A and B"
+msgstr "X、Y、A和B"
+
+msgid "A,B,P and Q"
+msgstr "A、B、P和Q"
+
+msgid "B,P,Q,X and Y"
+msgstr "B、P、Q、X和Y"
+
+msgid "P,Q,X,Y and A"
+msgstr "P、Q、X、Y和A"
 
 msgid "X and Df"
 msgstr "X和Df"
@@ -281,29 +308,17 @@ msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
 msgid "cdfchi: Error in cumgam\n"
 msgstr "cdfchi：cumgam中有错误\n"
 
-msgid "X,Df and Pnonc"
-msgstr "X、Df和Pnonc"
+msgid "S,XN,PR and OMPR"
+msgstr "S、XN、PR和OMPR"
 
-msgid "Df,Pnonc,P and Q"
-msgstr "Df、Pnonc、P和Q"
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN、PR、OMPR、P和Q"
 
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc、P、Q和X"
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR、OMPR、P、Q和S"
 
-msgid "P,Q,X and Df"
-msgstr "P、Q、X和Df"
-
-msgid "F,Dfn and Dfd"
-msgstr "F、Dfn和Dfd"
-
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn、Dfd、P和Q"
-
-msgid "Dfd,P,Q and F"
-msgstr "Dfd、P、Q和F"
-
-msgid "P,Q,F and Dfn"
-msgstr "P、Q、F和Dfn"
+msgid "P,Q,S and Xn"
+msgstr "P、Q、S和Xn"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F、Dfn、Dfd和Pnonc"
@@ -326,45 +341,6 @@ msgid ""
 "expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'，'%s'，'%s'，'%s'或'%s' 。\n"
 
-msgid "X,Shape and Scale"
-msgstr "X、Shape和Scale"
-
-msgid "Shape,Scale,P and Q"
-msgstr "Shape、Scale、P和Q"
-
-msgid "Scale,P,Q and X"
-msgstr "Scale、P、Q和X"
-
-msgid "P,Q,X and Shape"
-msgstr "P、Q、X和Shape"
-
-msgid "S,XN,PR and OMPR"
-msgstr "S、XN、PR和OMPR"
-
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN、PR、OMPR、P和Q"
-
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR、OMPR、P、Q和S"
-
-msgid "P,Q,S and Xn"
-msgstr "P、Q、S和Xn"
-
-msgid "X,Mean and Std"
-msgstr "X、Mean和Std"
-
-msgid "Mean,Std,P and Q"
-msgstr "Mean、Std、P和Q"
-
-msgid "Std,P,Q and X"
-msgstr "Std、P、Q和X"
-
-msgid "P,Q,X and Mean"
-msgstr "P、Q、X和Mean"
-
-msgid " Std must not be zero\n"
-msgstr " Std必须是0。\n"
-
 msgid "S and Xlam"
 msgstr "S和Xlam"
 
@@ -374,11 +350,35 @@ msgstr "Xlam、P和Q"
 msgid "P,Q and S"
 msgstr "P、Q和S"
 
+msgid "X,Df and Pnonc"
+msgstr "X、Df和Pnonc"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df、Pnonc、P和Q"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc、P、Q和X"
+
+msgid "P,Q,X and Df"
+msgstr "P、Q、X和Df"
+
 msgid "T and Df"
 msgstr "T和Df"
 
 msgid "P,Q and T"
 msgstr "P、Q和T"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S、Xn、Pr和Ompr"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn、Pr、Ompr、P和Q"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr、OMPr、P、Q和S"
+
+msgid "P,Q,S  and Xn"
+msgstr "P、Q、S和Xn"
 
 #, c-format
 msgid ""

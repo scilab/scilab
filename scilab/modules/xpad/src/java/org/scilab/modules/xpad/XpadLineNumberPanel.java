@@ -51,8 +51,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
 import javax.swing.text.Highlighter.HighlightPainter;
 
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-
 /**
  *  This class will display line numbers for a related text component. The text
  *  component must use the same line height for each line. TextLineNumber
@@ -312,7 +310,6 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 				}
 				catch(Exception ex) {
 					ex.printStackTrace();
-					System.err.println("rowStartOffset:"+rowStartOffset+" endOffset:"+endOffset);
 					rowStartOffset = endOffset; // break loop when an exception is thrown
 				}
 			}
@@ -434,7 +431,6 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		repaint();
 	}
 	public void removeUpdate(DocumentEvent e) {
-		System.err.println("--- Calling LineNumberPanel.removeUpdate");
 		documentChanged();
 		repaint();
 	}

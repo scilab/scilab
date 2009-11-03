@@ -31,7 +31,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
-import javax.swing.undo.UndoManager;
 
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
