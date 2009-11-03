@@ -865,7 +865,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			newTitle.append('*');
 		}
 		String textPaneName = textPane.getName();
-		System.err.println(newTitle.toString()+" "+textPaneName);
 		try {
 			File f= new File(textPaneName);
 			newTitle.append(f.getName());
@@ -1169,7 +1168,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		public void run() {
 			readFile(fileToRead);
 			this.stop();
-			//System.err.println("I'm still alive baaaaahhhh");
 		}
 	   
 		public void readFile(File f) {
