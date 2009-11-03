@@ -1071,3 +1071,5 @@ Bug fixes:
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" fails (on Windows)
 
 * bug 5105 fixed - completion: cd "..\L<tab>  does not work.
+
+* bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
