@@ -8,14 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-11-10 11:04+0000\n"
+"PO-Revision-Date: 2009-10-23 07:38+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß sich im Satz {%s} befinden.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -23,20 +32,8 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine N x N Matrix erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: nicht-negative Integer "
-"erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -52,15 +49,6 @@ msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: diese Funktion wurde nicht implementiert.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: muß sich im Satz {%s} befinden.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
@@ -68,11 +56,25 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: nicht-negativer Skalar "
+"%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: nicht-negative Integer "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Symmetric expected"
@@ -84,8 +86,11 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument '%d: nicht semi-definite positive Zahl"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: nicht-negativer Skalar "
+"erwartet.\n"
 
 #, c-format
 msgid ""

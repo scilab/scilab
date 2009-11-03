@@ -17,7 +17,7 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_Make"));
     return
   end
-
+  
   if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='', cc='';end
   for i=1:size(files,'*') // compatibility scilab 4.x
     [path_f, file_f, ext_f] = fileparts(files(i));
@@ -52,11 +52,21 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
       
   comp_target = COMPILER;
   if with_lcc() == %T then
-  	Makename = makename+'.lcc'
-  	ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
+    Makename = makename + '.lcc';
+    ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
   else if getenv('WIN32','NO')=='OK' then
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
     select comp_target
-     case 'VC++'   then Makename = makename+'.mak'
+     case 'VC++'   then Makename = makename + '.mak';
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
      case 'gcc' then 
       Makename = makename; 

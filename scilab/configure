@@ -11584,7 +11584,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used 
 
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled"
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
@@ -11707,7 +11707,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt
 
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libgluegen-rt.jnilib disabled"
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
@@ -15937,7 +15937,7 @@ fi
 
 if test $HDF5_ENABLE = yes;  then
    if test "$MACOSX" = 1; then
-   	  echo "Check of the presence of libjhdf5.jnilib disabled"
+   	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
       LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
@@ -17123,7 +17123,7 @@ _ACEOF
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT"
 
 # Check whether --enable-build-localization was given.
 if test "${enable_build_localization+set}" = set; then :

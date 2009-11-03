@@ -691,7 +691,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(JOGL)
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled"
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
@@ -707,7 +707,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(GLUEGEN_RT)
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libgluegen-rt.jnilib disabled"
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
@@ -1044,7 +1044,7 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
 
 if test $HDF5_ENABLE = yes;  then
    if test "$MACOSX" = 1; then
-   	  echo "Check of the presence of libjhdf5.jnilib disabled"
+   	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
       LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
@@ -1134,7 +1134,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])

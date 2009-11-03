@@ -83,11 +83,11 @@ Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rend
 
 * New features
   - Antialiasing on graphics
-  	This new feature improves the quality of graphic rendering.
-	It can be activated with the following commands: 
-	df = gdf(); df.anti_aliasing = "8x"; plot3d();
-	The rationnal and performance tests are available in SEP #16 or can be
-	requested in Scilab bugtracker as bug #2984.
+    This new feature improves the quality of graphic rendering.
+    It can be activated with the following commands: 
+    df = gdf(); df.anti_aliasing = "8x"; plot3d();
+    The rationnal and performance tests are available in SEP #16 or can be
+    requested in Scilab bugtracker as bug #2984.
   - Add transparency to markdrawing.
 
 
@@ -100,17 +100,17 @@ in different environnements and use cases.
 * Scilab 5.2 introduces new binaries in the distribution:
 
   - classical - The GUI application (equivalent to Scilab Standard Mode).
-  	This program is exactly the same as in the previous version and all arguments
-	are still available
-  	Name: scilab
+    This program is exactly the same as in the previous version and all arguments
+    are still available
+    Name: scilab
 
   - Advanced Command-Line Interpreter (ACLI) - Interpreter in command line with the graphic capabilities available 
-  	(equivalent to Scilab NW Mode)
-  	Name: scilab-adv-cli
+    (equivalent to Scilab NW Mode)
+    Name: scilab-adv-cli
 
   - Command-Line Interpreter (CLI) - Interpreter in command line without the graphic or Tcl/Tk capabilities (faster)
-  	(equivalent to Scilab NWNI Mode)
-  	Name: scilab-cli
+    (equivalent to Scilab NWNI Mode)
+    Name: scilab-cli
 
   See SEP #18 for more details
 
@@ -123,8 +123,8 @@ in different environnements and use cases.
 
 * Add error code capability to exit (SEP #19 and request 505).
   Example:
-	echo "if 1<>2 then exit(99) end"|scilab -nwni; echo $?
-	returns 99
+  echo "if 1<>2 then exit(99) end"|scilab -nwni; echo $?
+  returns 99
 
 
 Optimization:
@@ -261,8 +261,8 @@ Mac OS X:
 * bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to English.
 
 * bug 4949 fixed - Using Xcos/Scicos in the source tree environnement, with
-  	  	   		   schema using sundials library, the application had problems
-				   to load the dynamic library.
+                   schema using sundials library, the application had problems
+                   to load the dynamic library.
 
 toolbox_skeleton:
 =================
@@ -441,40 +441,39 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.5)
   There was a bug in GIWS:
-	The use of a static method returning an int was not calling the right
-	method.
-	It did not seem to trigger any errors in the past but the latest 
-	version of the JDK is now complaining.
+  The use of a static method returning an int was not calling the right
+  method.
+  It did not seem to trigger any errors in the past but the latest 
+  version of the JDK is now complaining.
 
 
 * Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill. They fix 
   some compile time problems under NetBSD which also improve all operating systems but Windows.
-  		- adds some missing $host to the 64 bit list.  
-		- adds a needed compiler flag for alpha-*-netbsd
-		- adds autoconf check for term.h header
-		- adds autoconf checks for gettext
-		- adds autoconf check for dlopen in -ldl 
-		  (on some systems, we do not need -ldl because dlopen is in libc).  
-		  Do not hardcode linking with -ldl but rely on this new check.
-		- adds correct getrlimit() argument for NetBSD and DragonFly
-		- avoids pulling in an OSF1 specific header on NetBSD/alpha
-		- adds missing newline at the end of a file
-		- adds missing XML LIBS and CFLAGS
-		- adds LTLIBINTL to the list of common objects needed for linking the top level binary.
-		- adds checks for term.h and termcap.h headers.  
-		- adds check for -lpthread
-		- reworks the checks for curses a little bit to search for 
-		  curses.h and -lcurses first followed by ncurses.h and 
-		  -lncurses.   
-		- uses configure results to protect the inclusion of curses.h, 
-		  ncurses.h, term.h, and termcap.h.
-		- adds __DragonFly__ to a few conditional lines.
-		- removes the static declaration of BC to match what was found
-		  in a header file.
-		- adds missing enable_keypad_mode()
-		- uses configure results to protect the inclusion of curses.h, 
-		  ncurses.h, term.h, and termcap.h.
-		- Large amounts of cleanup of the PVM configure code (Closes: #4151)
+    - adds some missing $host to the 64 bit list.  
+    - adds a needed compiler flag for alpha-*-netbsd
+    - adds autoconf check for term.h header
+    - adds autoconf checks for gettext
+    - adds autoconf check for dlopen in -ldl 
+      (on some systems, we do not need -ldl because dlopen is in libc).  
+      Do not hardcode linking with -ldl but rely on this new check.
+    - adds correct getrlimit() argument for NetBSD and DragonFly
+    - avoids pulling in an OSF1 specific header on NetBSD/alpha
+    - adds missing newline at the end of a file
+    - adds missing XML LIBS and CFLAGS
+    - adds LTLIBINTL to the list of common objects needed for linking the top level binary.
+    - adds checks for term.h and termcap.h headers.  
+    - adds check for -lpthread
+    - reworks the checks for curses a little bit to search for 
+      curses.h and -lcurses first followed by ncurses.h and -lncurses.   
+    - uses configure results to protect the inclusion of curses.h, 
+      ncurses.h, term.h, and termcap.h.
+    - adds __DragonFly__ to a few conditional lines.
+    - removes the static declaration of BC to match what was found
+      in a header file.
+    - adds missing enable_keypad_mode()
+    - uses configure results to protect the inclusion of curses.h, 
+      ncurses.h, term.h, and termcap.h.
+    - Large amounts of cleanup of the PVM configure code (Closes: #4151)
 
 * Improve detection of build/run environment under GNU/Linux Debian under
   arm, armel, mips & mipsel
@@ -490,6 +489,8 @@ Internationalization:
 * Portugues do Brazil localization added (Thanks Daniel de Souza Grilo and others)
 
 * Japanese localization added (Thanks Hiroshi Saito)
+
+* Italian localization added (Thanks Carmelo Leggio)
 
 * More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
 
@@ -533,7 +534,7 @@ Bugs:
                    characters and character class were associated in the pattern to match.
 
 * bug 4617 fixed - Some items (Console pull down menu and help browser item) 
-  	  	   		   were not translatable
+                 were not translatable
 
 * bug 4660 fixed - Error in the French localization (Edit instead of Edition)
 
@@ -542,9 +543,9 @@ Bugs:
 * bug 4768 fixed - strsplit returned strange results with accented characters
 
 * bug 4915 fixed - The default font in some of the uicontrols applications in
-  	  	   		   Scilab were not handling correctly for the Japanese and
-				   others languages. This was happenning with m2sci and the
-				   demos browser.
+                   Scilab were not handling correctly for the Japanese and
+                   others languages. This was happenning with m2sci and the
+                   demos browser.
 
 * bug 5071 fixed - isletter("é") returned [%F %F] instead of %F.
 
@@ -756,7 +757,7 @@ Bug fixes:
 * bug 4396 fixed - In Plot2d, the nax option could receive -1 for number of ticks, which meant autoticks
 
 * bug 4403 fixed - ieeefp.h was not included under Solaris in evaluate_expr.c
-  	  	   		   isinf was defined (when not provided by the system) with a return
+                   isinf was defined (when not provided by the system) with a return
 
 * bug 4407 fixed - Help file scilab_xx_XX_help.jar had another scilab_xx_XX_help.jar embedded
                    and not valid.
@@ -1055,6 +1056,8 @@ Bug fixes:
 
 * bug 4943 fixed - execstr did not check input arguments
 
+* bug 4944 fixed - If the extension is not provided, some functions adds the extension, some others don't.
+
 * bug 4961 fixed - missing some field when printing some graphics Handle
 
 * bug 4964 fixed - set or get 'format_n' property from an axis crashed Scilab
@@ -1077,4 +1080,11 @@ Bug fixes:
 
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
+* bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
+
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
+
+* bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
+
+* bug 5160 fixed - When you exported a graphics by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
+

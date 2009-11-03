@@ -14,8 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Out of Screen"
+msgstr "超出螢幕"
+
+msgid "Could not change the Console Font."
+msgstr "無法改變控制台之字型"
+
+msgid "Could not change the Console Foreground."
+msgstr "無法改變控制台之背景"
 
 msgid "File or Directory"
 msgstr "檔案或目錄"
@@ -37,12 +46,3 @@ msgstr "Scilab 巨集"
 
 msgid "No help"
 msgstr "沒有輔助文件"
-
-msgid "Out of Screen"
-msgstr "超出螢幕"
-
-msgid "Could not change the Console Font."
-msgstr "無法改變控制台之字型"
-
-msgid "Could not change the Console Foreground."
-msgstr "無法改變控制台之背景"

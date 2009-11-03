@@ -12,12 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
