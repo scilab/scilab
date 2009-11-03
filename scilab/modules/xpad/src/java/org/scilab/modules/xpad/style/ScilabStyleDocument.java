@@ -1018,7 +1018,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		int offset = 0;
 		try
 		{
-			if(line_comment.equals(this.getText(position_start, line_comment.length()))) {
+			Element root= getDefaultRootElement();
+			int lineLength= root.getElement( root.getElementIndex(position_start)).getEndOffset()-position_start;
+			if( (lineLength >= line_comment.length()) && line_comment.equals(this.getText(position_start, line_comment.length()))) {
 				this.remove(position_start,2);
 				offset = line_comment.length();
 			}
