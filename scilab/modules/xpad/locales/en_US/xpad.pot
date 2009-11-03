@@ -112,7 +112,7 @@ msgid "Edit"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 74
-msgid "Encoding Type"
+msgid "Encoding"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 128

@@ -220,7 +220,7 @@ public final class FindAction extends DefaultAction {
 		options.setBorder(BorderFactory.createTitledBorder(XpadMessages.OPTIONS));
 
 		caseSensitive = new JCheckBox(XpadMessages.CASE_SENSITIVE);
-		wrap = new JCheckBox(XpadMessages.WRAP_SEARCH);
+		wrap = new JCheckBox(XpadMessages.WRAP_SEARCH, true);
 		wholeWord = new JCheckBox(XpadMessages.WHOLE_WORD);
 		regularExp = new JCheckBox(XpadMessages.REGULAR_EXPRESSIONS);
 
@@ -526,11 +526,13 @@ public final class FindAction extends DefaultAction {
 		boolean regexpSelected  = regularExp.isSelected();
 		
 		boolean onlySelectedLines = buttonSelection.isSelected();
-		
+
+		int saveStart 	= startFindSelection;
+		int saveEnd 	= endFindSelection;
+
 		JTextPane xpadTextPane =  getEditor().getTextPane();
 		ScilabStyleDocument scilabStyle = ((ScilabStyleDocument) xpadTextPane.getStyledDocument());
 
-		int[] nextFindArray;
 		/*mainly used in case of selected text, otherwise currentPosStart =  currentPosEnd*/
 		int currentCaretPos = 0;
 
@@ -543,32 +545,76 @@ public final class FindAction extends DefaultAction {
 		
 		/*case we want to search only into the selected lines*/
 		
+		currentCaretPos =  xpadTextPane.getSelectionStart() + 1;
+		if (backwardSearch) {
+			currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
+		}
+
 		if (onlySelectedLines) {
-			currentCaretPos = xpadTextPane.getCaretPosition();
-			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
+					wholeWordSelected, regexpSelected);
 		} else {
-			currentCaretPos =  xpadTextPane.getCaretPosition();
 			offsets = scilabStyle.findWord(wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
 		
-
-		//Find all matching words and return their starting position into a vector
-		
-
 		statusBar.setText("");
 
-		
 		// if nothing has been found all this things are not needed
 		if (offsets.size() > 0) {
+
+			//find actual position of the caret in the array
+			int nextIndex = -1;
+			for (int i = 0; i < offsets.size(); i++) {
+				if (offsets.get(i)[0] > currentCaretPos) {
+					nextIndex = i;
+					break;
+				}
+			}
 			
+			//if backwardSearch, the next position is the previous one
+			if (backwardSearch && nextIndex != -1) {
+				nextIndex -= 1;
+			}
 
+			
+			if (nextIndex == -1) {
+				if (wrapSearchSelected) {
+					// return to the end or the beginning of the document
+					if (backwardSearch) {
+						statusBar.setText(XpadMessages.PASSED_BEGIN_OF_DOCUMENT);
+						nextIndex = offsets.size() - 1;
+					} else {
+						statusBar.setText(XpadMessages.PASSED_END_OF_DOCUMENT);
+						nextIndex = 0;
+					}
+				} else {
+					if (backwardSearch) {
+						statusBar.setText(XpadMessages.BEGIN_OF_DOCUMENT);
+					} else {
+						statusBar.setText(XpadMessages.END_OF_DOCUMENT);
+					}
+				}
+			}
+			
+			//tips to keep last find if we have reach the end/begin of file
+			if (nextIndex == -1) {
+				if (backwardSearch) {
+					if (saveStart >= offsets.get(0)[0]) {
+						nextIndex = 0;
+					}
+				} else if (saveStart <= offsets.get(offsets.size() - 1)[0]) {
+					nextIndex = offsets.size() - 1;
+				}
+			}
 
+			System.err.println("nextIndex : " + nextIndex);
 			//Here we highlight all the matching words
 			for (int i = 0; i < offsets.size(); i++) {
 				try {
-
-					
-					highlight.addHighlight(offsets.get(i)[0], offsets.get(i)[1], new DefaultHighlighter.DefaultHighlightPainter(Color.green));
+					if (i != nextIndex) {
+						highlight.addHighlight(offsets.get(i)[0], offsets.get(i)[1], 
+								new DefaultHighlighter.DefaultHighlightPainter(Color.green));
+					}
 					//TODO add a mechanism to change the foreground color too, if not if the text matched is in green too ...
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -576,106 +622,37 @@ public final class FindAction extends DefaultAction {
 			}
 			
 			if (onlySelectedLines) {
-			
-			
 				try {
-					highlight.addHighlight(startSelectedLines, endSelectedLines, new DefaultHighlighter.DefaultHighlightPainter(new Color(205,183,158)));
-					} catch (BadLocationException exc) {
-						exc.printStackTrace();
-					}
-				
+					highlight.addHighlight(startSelectedLines, endSelectedLines, 
+							new DefaultHighlighter.DefaultHighlightPainter(new Color(205, 183, 158)));
+				} catch (BadLocationException exc) {
+					exc.printStackTrace();
+				}
 			}
 
-
-			
-			// get the position of the next expression to find
-			if (backwardSearch) {
-				if (onlySelectedLines) {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-				} else {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-				}
+			int nextStart  = 0;
+			int nextEnd  = 0;
+			if (nextIndex != -1) {
+				nextStart = offsets.get(nextIndex)[0];
+				nextEnd = offsets.get(nextIndex)[1];
 			} else {
-				if (onlySelectedLines) {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-				} else {
-					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-				}
+				nextStart = saveStart;
+				nextEnd = saveEnd;
 			}
+
+			//select current index
+			//xpadTextPane.setCaretPosition(offsets.get(nextIndex)[0]);
+			xpadTextPane.select(nextStart, nextEnd);
+
+			// used by replace and replace/find
+			startFindSelection = nextStart;
+			endFindSelection = nextEnd;
+
+			buttonReplace.setEnabled(true);
+			buttonReplaceFind.setEnabled(true);
 			
 			//Here we highlight differently the match next after the caret position
-			if (nextFindArray[0] == -1) {
-				statusBar.setText(XpadMessages.END_OF_DOCUMENT);
-				
-				if (wrapSearchSelected) {
-					// return to the end or the beginning of the document
-					if (backwardSearch) {
-						
-						xpadTextPane.setCaretPosition(xpadTextPane.getDocument().getLength());
-						currentCaretPos =  xpadTextPane.getCaretPosition();
-						if (onlySelectedLines) {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-						} else {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-						}
-						
-					} else {
-						xpadTextPane.setCaretPosition(0);
-						currentCaretPos =  xpadTextPane.getCaretPosition();
-						if (onlySelectedLines) {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, startSelectedLines, endSelectedLines -1, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-						} else {
-							nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected, wholeWordSelected, regexpSelected);
-						}
-					}
-					
-				}
-			}
-			if (nextFindArray[0] != -1) {
-				
-				//Highlighter hl = xpadTextPane.getHighlighter(); 
-				
-				Highlight myHighlight = null;
-				Highlight[] highlights =highlight.getHighlights();
-
-				for (int i =0; i < highlights.length; i ++) {
-					myHighlight = highlights[i];
-					//Should equal zero
-					if (myHighlight.getStartOffset() == nextFindArray[0]) {
-						break;
-					}
-				}
-
-				try {
-					xpadTextPane.setCaretPosition(nextFindArray[0]);
-					xpadTextPane.select(nextFindArray[0], nextFindArray[1]);
-					
-					// used by replace and replace/find
-					startFindSelection = nextFindArray[0];
-					endFindSelection = nextFindArray[1];
-
-					
-					buttonReplace.setEnabled(true);
-					buttonReplaceFind.setEnabled(true);
-					
-					highlight.addHighlight(nextFindArray[0], nextFindArray[1], DefaultHighlighter.DefaultPainter);
-					int hilightLength = myHighlight.getStartOffset() + (nextFindArray[1] - nextFindArray[0]);
-					
-					highlight.changeHighlight(myHighlight, hilightLength, myHighlight.getEndOffset());
-				} catch (BadLocationException e1) {
-					e1.printStackTrace();
-				}
-				
-				// when doing we need the caret to be at the beginning of the word to avoid the same word being matched 
-				if (backwardSearch) {
-					xpadTextPane.setCaretPosition(nextFindArray[0]);
-				}
-				
-			}
-
-
-			
-			/*if we typed on the textPanel all hilights will disappear*/
+			/*if we typed on the textPanel all highlights will disappear*/
 			
 			if (getEditor().getTextPane().getKeyListeners().length == 0) {
 
@@ -694,7 +671,7 @@ public final class FindAction extends DefaultAction {
 			}
 		} else { // nothing has been found
 			statusBar.setText(String.format(XpadMessages.STRING_NOT_FOUND, wordToFind));
-			
+
 			startFindSelection = -1;
 			endFindSelection = -1;
 		

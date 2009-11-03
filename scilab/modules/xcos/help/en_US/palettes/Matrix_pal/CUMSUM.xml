@@ -323,7 +323,7 @@ B=[12;15;18]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATSUM">MATSUM - Matrix Sum (Scicos Block)</link>
+          <link linkend="MATSUM">MATSUM - Matrix Sum (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

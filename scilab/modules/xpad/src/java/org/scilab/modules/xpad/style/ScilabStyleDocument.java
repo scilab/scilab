@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -31,9 +32,9 @@ import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
 
+import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -84,7 +85,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private String currentStringIndent = "";
 	private String tabulation = "  ";
 	
-	
+	private String encoding = Charset.defaultCharset().toString();
 	
 	private int lineStartPosition;
 	private int lineEndPosition;
@@ -251,17 +252,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 		if(shouldMergeEdits){
 			if(!b) { // ending compound editing with a new CaretEdit
-				System.err.println("adding a caretEdit");
 				undo.addEdit(new CaretEdit(editor.getTextPane()));
-				System.err.println("ending coumpoundEdit");
 				((CompoundEdit)undo.editToBeUndone()).end();
 				
 			}
 		} else {
 			if(b) { // starting compound editing
-				System.err.println("adding a CompoundEdit");
 				undo.addEdit(new CompoundEdit());
-				System.err.println("adding a caretEdit");
 				undo.addEdit(new CaretEdit(editor.getTextPane()));
 			}
 		}
@@ -397,7 +394,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String previousSpace = "";
 		String currentSpace ="";
 		String previousLineContent = "";
-		System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
+		//System.err.println("applyIndent_trueone"+startPosition+" to "+endPosition);
 		int finalPosition = getEditor().getTextPane().getText().length();
 
 		
@@ -1216,7 +1213,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 		}
 		catch( javax.swing.text.BadLocationException e){
-			System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
+			//System.err.println("untabifying lines "+line_start+" to "+line_end+" "+e);
 		}
 		return result;
 	}
@@ -1248,53 +1245,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		return res;
 	}
+
 	
 	/**
 	 * FIND AND REPLACE START
 	 */
 	public ArrayList<Integer[]> findWord(String word, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
-		String fullText = getFullDocument(); 
-		int lastIndex = 0;
-		int wordSize = word.length();
-		ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
-
-		//If we don't give any word to find
-		if ( (word != null) && !(word.equals("")) ) {
-			// prepare word for each kind of search
-			if (wholeWord){
-				word = "\\b" + word + "\\b";
-			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
-					word = "(?i)" + word;
-				}
-				else{
-					fullText = fullText.toLowerCase();
-					word = word.toLowerCase();
-				}
-			}
-
-
-			//We find matching words ...
-			// ... for regexp or whole words
-			if (useRegexp || wholeWord){
-				word = "(?m)" + word;
-				Pattern pattern = Pattern.compile(word);
-				Matcher matcher = pattern.matcher(fullText);
-
-				while (matcher.find()) {
-					offsetList.add(new Integer[] {matcher.start() ,matcher.end()});
-				}
-				// ... for other case
-			}else {
-				while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
-					int endIndex = lastIndex + wordSize;
-					offsetList.add(new Integer[] {lastIndex,endIndex} );
-					lastIndex = endIndex;
-				}
-			}
-		}
-		return offsetList;
+		return findWord(word, 0, getFullDocument().length() - 1, caseSensitive, wholeWord, useRegexp);
 	}
 	
 	public ArrayList<Integer[]> findWord(String word,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
@@ -1343,241 +1300,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		return offsetList;
 	}
-
-	/**
-	 * Get the next expression matching the search after the caret current position
-	 * @param word , the word or regexp to find
-	 * @param currentPos, the position where the search start
-	 * @param caseSensitive , whether the search is sensitive or not to case
-	 * @param wholeWord  , whether the search will only look to separate word or not
-	 * @param useRegexp  , whether the string to search should be interpreted as a regexp or not
-	 */
-	public int[] findNextWord (String word ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = getFullDocument();
-		int index = -1;
-		int end = -1;
-
-
-
-		if ( (word != null) && (!word.equals(""))  ) {
-			// prepare word for each kind of search
-			if (wholeWord){
-				word = "\\b" + word + "\\b";
-			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
-					word = "(?i)" + word;
-				}
-				else{
-					fullText = fullText.toLowerCase();
-					word = word.toLowerCase();
-				}
-			}
-			//We find matching words ...
-			// ... for regexp or whole words
-			if (useRegexp || wholeWord){
-				word = "(?m)" + word;
-				Pattern pattern = Pattern.compile(word);
-				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
-
-				if (matcher.find()) {
-					index = matcher.start()+currentPos;
-					end = matcher.end()+currentPos;
-				}else{
-					index = -1;
-					end  = -1;
-				}
-
-				// ... for other case
-			}else {
-				index = fullText.indexOf(word,currentPos);
-				end = index + word.length();
-			}
-		}
-
-			return new int [] {index , end };
-	}
-
-	public int[] findNextWord (String word ,int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		
-		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
-		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
-		System.out.println(currentPos);
-		currentPos -=  offset;
-		
-		int index = -1;
-		int end = -1;
-
-
-		if ( (word != null) && (!word.equals(""))  ) {
-			// prepare word for each kind of search
-			if (wholeWord){
-				word = "\\b" + word + "\\b";
-			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
-					word = "(?i)" + word;
-				}
-				else{
-					fullText = fullText.toLowerCase();
-					word = word.toLowerCase();
-				}
-			}
-
-			//We find matching words ...
-			// ... for regexp or whole words
-			if (useRegexp || wholeWord){
-				word = "(?m)" + word;
-				Pattern pattern = Pattern.compile(word);
-				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
-
-				if (matcher.find()) {
-					index = matcher.start()+currentPos+offset;
-					end = matcher.end()+currentPos+offset;
-				}else{
-					index = -1;
-					end  = -1;
-				}
-
-				// ... for other case
-			}else {
-			
-				index = fullText.indexOf(word,currentPos);
-				if (index != -1) index += offset;
-				end = index + word.length();
-			}
-		}
-
-			return new int [] {index , end };
-	}
-	
-	
-	
-	/**
-	 * Get the previous expression matching the search before the caret current position
-	 * @param word , the word or regexp to find
-	 * @param currentPos, the position where the search start
-	 * @param caseSensitive , whether the search is sensitive or not to case
-	 * @param wholeWord  , whether the search will only look to separate word or not
-	 * @param useRegexp  , whether the string to search should be interpreted as a regexp or not
-	 */
-	public int[] findPreviousWord (String word , int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = getFullDocument();
-		int index = -1;
-		int end = -1;
-		Pattern pattern;
-
-		if ( (word != null) && (!word.equals(""))  ) {
-
-			// prepare word for each kind of search
-			if (wholeWord){
-				word = "\\b" + word + "\\b";
-			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
-					word = "(?i)" + word;
-				}
-				else{
-					fullText = fullText.toLowerCase();
-					word = word.toLowerCase();
-				}
-			}
-
-			//We find matching words ...
-			// ... for regexp or whole words
-
-			if (useRegexp || wholeWord){
-				word = "(?m)" + word;
-				 pattern = Pattern.compile(word);
-			}else{// ... for other case
-				// we use regexp in both case cause of a nasty bug when you have string like 
-				//121212  and you search "121" forward then backward
-				word = "(?m)" + word;
-				pattern = Pattern.compile(word , Pattern.LITERAL );
-				
-			}
-				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
-
-				boolean found = false;
-				while (matcher.find()) {
-					index = matcher.start();
-					end = matcher.end();
-					found = true;
-				}
-
-				if(!found){
-					index = -1;
-					end = -1;
-				}
-		}
-
-
-		/*if nothing index and end will both be equal to -1*/
-		return new int [] {index , end };
-
-
-	}
-	
-	
-	public int[] findPreviousWord (String word , int currentPos,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = getSelectedDocumentLines(currentSelectStart, currentSelectEnd);
-		int offset = this.getParagraphElement(currentSelectStart).getStartOffset();
-		currentPos -=  offset;
-		int index = -1;
-		int end = -1;
-		Pattern pattern;
-
-		if ( (word != null) && (!word.equals(""))  ) {
-
-			// prepare word for each kind of search
-			if (wholeWord){
-				word = "\\b" + word + "\\b";
-			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
-					word = "(?i)" + word;
-				}
-				else{
-					fullText = fullText.toLowerCase();
-					word = word.toLowerCase();
-				}
-			}		
-			word = "(?m)" + word;
-
-			//We find matching words ...
-			// ... for regexp or whole words
-
-			if (useRegexp || wholeWord){
-				 pattern = Pattern.compile(word);
-			}else{// ... for other case
-				// we use regexp in both case cause of a nasty bug when you have string like 
-				//121212  and you search "121" forward then backward
-				pattern = Pattern.compile(word , Pattern.LITERAL );
-				
-			}
-				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
-
-				boolean found = false;
-				while (matcher.find()) {
-					index = matcher.start() + offset;
-					end = matcher.end() + offset;
-					found = true;
-				}
-
-				if(!found){
-					index = -1;
-					end = -1;
-				}
-		}
-
-
-		/*if nothing index and end will both be equal to -1*/
-		return new int [] {index , end };
-
-
-	}
-	
-	
 	/**
 	 * FIND AND REPLACE END
 	 */
@@ -2035,6 +1757,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		start();
 		return result;
 	    }
+	}
+	
+	public String getEncoding() {
+		return encoding;
+	}
+	
+	public void setEncoding(String encode) {
+		encoding = encode;
 	}
 
 

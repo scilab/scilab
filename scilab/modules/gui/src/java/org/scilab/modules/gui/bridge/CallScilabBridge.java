@@ -67,6 +67,7 @@ import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
@@ -2064,9 +2065,15 @@ public class CallScilabBridge {
 	 */
 	public static void searchKeyword(String[] helps, String keyword, String language, boolean fullText) {
 		if (fullText) {
-			ScilabHelpBrowser.createHelpBrowser(helps, language).fullTextSearch(keyword);
+			HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+			if (helpBrowser != null) {
+				helpBrowser.fullTextSearch(keyword);
+			}
 		} else {
-			ScilabHelpBrowser.createHelpBrowser(helps, language).searchKeywork(keyword);
+			HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+			if (helpBrowser != null) {
+				helpBrowser.searchKeywork(keyword);
+			}
 		}
 	}
 

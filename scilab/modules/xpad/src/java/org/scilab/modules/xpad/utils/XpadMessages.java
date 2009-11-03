@@ -71,7 +71,7 @@ public class XpadMessages {
     public static final String SCILAB_STYLE = Messages.gettext("Scilab");
     public static final String PLAIN_TEXT_STYLE = Messages.gettext("Plain Text");
     public static final String XML_STYLE = Messages.gettext("XML");
-    public static final String ENCODING_TYPE = Messages.gettext("Encoding Type");
+    public static final String ENCODING_TYPE = Messages.gettext("Encoding");
     public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
@@ -107,7 +107,10 @@ public class XpadMessages {
     public static final String REPLACE = Messages.gettext("Replace");
     public static final String REPLACE_ALL = Messages.gettext("Replace All");
     public static final String INVALID_REGEXP = Messages.gettext("Invalid regular expression : %s");
+    public static final String PASSED_END_OF_DOCUMENT = Messages.gettext("You have passed the end of the document");
+    public static final String PASSED_BEGIN_OF_DOCUMENT = Messages.gettext("You have passed the beginning of the document");
     public static final String END_OF_DOCUMENT = Messages.gettext("You have reached the end of the document");
+    public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
@@ -138,6 +141,8 @@ public class XpadMessages {
     
     public static final String XPAD_ERROR = Messages.gettext("Editor error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
+    public static final String COULD_NOT_CONVERT_FILE = Messages.gettext("The file could not be converted.");
     public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
-
+    public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
+    public static final String CONTINUE = Messages.gettext("Continue?");
 }

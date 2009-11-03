@@ -111,7 +111,7 @@ xcos(scs_m);
 
       <listitem>
         <para><link linkend="scicos_simulate">scicos_simulate - Function for
-        running scicos simulation in batch mode (Scilab
+        running xcos simulation in batch mode (Scilab
         Function)</link></para>
       </listitem>
 
