@@ -630,12 +630,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.setText(XcosMessages.FILE);
 		fileMenu.setMnemonic('F');
 		
-		Menu newMenu = ScilabMenu.createMenu();
-		newMenu.setText(XcosMessages.NEW);
-		newMenu.add(NewDiagramAction.createMenu(scilabGraph));
-		newMenu.add(NewPaletteAction.createMenu(scilabGraph));
-		fileMenu.add(newMenu);
-
+		//Menu newMenu = ScilabMenu.createMenu();
+		//newMenu.setText(XcosMessages.NEW);
+		//newMenu.add(NewDiagramAction.createMenu(scilabGraph));
+		//newMenu.add(NewPaletteAction.createMenu(scilabGraph));
+		//fileMenu.add(newMenu);
+		fileMenu.add(NewDiagramAction.createMenu(scilabGraph));
+		
 		fileMenu.add(OpenAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(scilabGraph));

@@ -172,7 +172,7 @@ function using a curve editor.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Sigbuilder">Sigbuilder - Signal creator/generator (Scicos Block)</link>
+          <link linkend="Sigbuilder">Sigbuilder - Signal creator/generator</link>
         </para>
       </listitem>
     </itemizedlist>

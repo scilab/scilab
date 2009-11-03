@@ -232,7 +232,7 @@ When t=2 we loop back to 0.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MFCLCK_f">MFCLCK_f - MFCLCK_f title (Scicos Block)</link>
+          <link linkend="MFCLCK_f">MFCLCK_f - MFCLCK_f title</link>
         </para>
       </listitem>
     </itemizedlist>

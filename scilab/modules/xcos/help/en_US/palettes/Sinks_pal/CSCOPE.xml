@@ -261,7 +261,7 @@ the amount of time and the range of input values displayed.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CMSCOPE">CMSCOPE - Multi display scope (Scicos Block)</link>
+          <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
         </para>
       </listitem>
     </itemizedlist>
