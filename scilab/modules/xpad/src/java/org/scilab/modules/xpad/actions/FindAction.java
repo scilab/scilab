@@ -411,8 +411,12 @@ public final class FindAction extends DefaultAction {
 	            Matcher matcher = pattern.matcher(text);
 	            String replacedText = matcher.replaceAll(newWord);
 	            if (!replacedText.equals(text)) {// only touch document if any replacement took place
+	            	ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 	            	try {
-	            		((ScilabStyleDocument) xpadTextPane.getStyledDocument()).replace(startSelectedLines, text.length(), replacedText, null);
+	            		boolean mergeMode = doc.getShouldMergeEdits();
+	            		doc.setShouldMergeEdits(true);
+	            		doc.replace(startSelectedLines, text.length(), replacedText, null);
+	            		doc.setShouldMergeEdits(mergeMode);
 	            	} catch (BadLocationException e1) {
 	            		// TODO Auto -generated catch block
 	            		e1.printStackTrace();
