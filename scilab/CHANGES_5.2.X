@@ -79,7 +79,7 @@ For example:
 x = 1:0.25:10;y1 = 1 + sin(4*%pi*x / 10);plot(x,y1,'k-');
 xstring(6,1.4,'$\leftarrow f \left( x \right) = 1 + \sin \left( \frac{x \cdot 4 \cdot \pi}{10} \right)$');
 See demos => Graphics => LaTeX/MathML
-Many thanks to Calixte Denizet for this feature and the underlying API for LaTeX rendering (project JLaTeXMath)
+Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rendering (project JLaTeXMath)
 
 * New features
   - Antialiasing on graphics
@@ -104,10 +104,12 @@ in different environnements and use cases.
 	are still available
   	Name: scilab
 
-  - Advanced Command-Line Interpreter (ACLI) - Interpreter in command line with the graphic capabilities available (equivalent to Scilab NW Mode)
+  - Advanced Command-Line Interpreter (ACLI) - Interpreter in command line with the graphic capabilities available 
+  	(equivalent to Scilab NW Mode)
   	Name: scilab-adv-cli
 
-  - Command-Line Interpreter (CLI) - Interpreter in command line without the graphic or Tcl/Tk capabilities (faster) (equivalent to Scilab NWNI Mode)
+  - Command-Line Interpreter (CLI) - Interpreter in command line without the graphic or Tcl/Tk capabilities (faster)
+  	(equivalent to Scilab NWNI Mode)
   	Name: scilab-cli
 
   See SEP #18 for more details
@@ -171,15 +173,16 @@ consistent, documented and easy way to use API.
   The rationale is to improve the use in special case of the pointer data type
   to avoid memory duplication.
 
-* Under all operating systems but Windows, all headers are not installed in a single directory in order to simplify the use
-  of Scilab features in the dynamic link. See SEP #32 for more information
+* Under all operating systems but Windows, all headers are not installed in a single directory 
+  in order to simplify the use   of Scilab features in the dynamic link.
+  See SEP #32 for more information
 
 * From this version of Scilab, only a defined and documented number of headers
   are installed. 
   Thanks to this change, a module/toolbox developer knows exactly what are the
   available functions provided by Scilab.
   See SEP #35. 
-  Do not hesitate to contact us if you have been using a Scilab header which had been removed from Scilab 5.2.
+  Do not hesitate to contact us if you have been using a Scilab header which has been removed from Scilab 5.2.
 
 
 call_scilab module:
@@ -206,7 +209,7 @@ the function name.
   and the symbols remain in the core library)
   The goal of this modification is to separate functions dealing with the
   call_scilab API and the internal API used in the gateways.
-  Note that all the moved functions are considered as obsolete.
+  Note that all moved functions are considered as obsolete.
 
 * In call_scilab, all previous functions available to read/write data from/to
   the Scilab engine are now obsolete but supported until Scilab 6:
@@ -252,10 +255,10 @@ Mac OS X:
 
 * bug 4087 fixed - Under Mac OS X, an Apple + C shortcut (Ctrl + C) did not work from the console.
 
-* bug 4508 fixed - A file when saving/exporting a figure under
-                   Mac OS X could not be created.
+* bug 4508 fixed - When saving/exporting a figure under
+                   Mac OS X, a file could not be created.
 
-* bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to english.
+* bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to English.
 
 * bug 4949 fixed - Using Xcos/Scicos in the source tree environnement, with
   	  	   		   schema using sundials library, the application had problems
@@ -414,7 +417,7 @@ Compilation:
 * Symbols in dlls are explicitly exported on Windows.
   In previous versions of Scilab all symbols were exported.
 
-* modelicac (Xcos/scicos) built with Ocaml 3.11.0 on Windows
+* modelicac (Xcos/Scicos) built with Ocaml 3.11.0 on Windows
 
 * blas, lapack, arpack libraries moved as pre-requirements (Windows)
 
@@ -496,12 +499,12 @@ Internationalization:
 
 Bugs:
 
-* bug 2627 fixed - Scilab 5 console retrieved input strings in UTF-8 format and Scilab does not
+* bug 2627 fixed - Scilab 5 console retrieved input strings in UTF-8 format and Scilab did not
                    manage this format but ISO-8859.
 
-* bug 3228 fixed - ascii function was broken for extended set (example: ascii('�')).
+* bug 3228 fixed - ascii function was broken for extended set (example: ascii('é')).
 
-* bug 3433 fixed - Length with a UTF string returned a incorrect size
+* bug 3433 fixed - Length with a UTF string returned an incorrect size
 
 * bug 3472 fixed - Dropping files into Scilab shell did not work when the path
                    contained accented characters.
@@ -539,13 +542,13 @@ Bugs:
 * bug 4768 fixed - strsplit returned strange results with accented characters
 
 * bug 4915 fixed - The default font in some of the uicontrols applications in
-  	  	   		   Scilab were not handling correctly for the japanese and
+  	  	   		   Scilab were not handling correctly for the Japanese and
 				   others languages. This was happenning with m2sci and the
 				   demos browser.
 
-* bug 5071 fixed - isletter("�") returns [%F %F] instead of %F.
+* bug 5071 fixed - isletter("é") returned [%F %F] instead of %F.
 
-* bug 5072 fixed - strspn("a�io","�a") returns 3 instead of 2.
+* bug 5072 fixed - strspn("aéio","éa") returned 3 instead of 2.
 
 String manipulation:
 ====================
@@ -613,7 +616,7 @@ Bug fixes:
 * bug 2446 fixed - "while" documentation help page improved to explain 
                     that the keywords do or then can be ommitted.
 
-* bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf might crash Scilab when
+* bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf could crash Scilab when
                    first argument was -1 (any number of lines)
 
 * bug 2509 fixed - execstr forgot to store the function name and line number when in the errcatch mode
@@ -628,12 +631,12 @@ Bug fixes:
                    Debian Etch, Centos 4.X and some other old operating 
                    systems)
 
-* bug 3264 fixed - More explicit message when too many files have been
-                    opened added.
-
 * bug 3184 fixed - Ticks of colorbar have disappeared
 
 * bug 3201 fixed - Help page for the function del_help_chapter added
+
+* bug 3264 fixed - More explicit message when too many files have been
+                    opened added.
 
 * bug 3422 fixed - The keyword for history search was not updatable
 
@@ -703,7 +706,7 @@ Bug fixes:
 * bug 4304 fixed - Fail to build with ./configure --without-gui
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if their functionnalities
-                   were not available.
+                   are not available.
                    
 * bug 4307 fixed - Help file for %io added                  
 
@@ -725,10 +728,12 @@ Bug fixes:
 * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
                    the second possible value was 'clipgrf' instead of 'cliprf'
 
-* bug 4379 fixed - If the thickness property (of plot3d for example) was set to 0,
-                   the lines/edges should disappear
+* bug 4378 fixed - The gamma function did not work properly with large numbers under Linux 64 bits
 
-* bug 4380 fixed - diary(0) without a initialization of diary crashed Scilab
+* bug 4379 fixed - If the thickness property (of plot3d for example) was set to 0,
+                   the lines/edges could disappear
+
+* bug 4380 fixed - diary(0) without an initialization of diary crashed Scilab
 
 * bug 4380 fixed - Help page of the printf command had a problem
 
@@ -741,23 +746,23 @@ Bug fixes:
                    we had only one symbol.
 
 * bug 4391 fixed - make install-html (when the option --with-install-help-xml
-                   is added to the configure) was not installing MathML sources
+                   was added to the configure) was not installing MathML sources
 
 * bug 4394 fixed - 'origin' as position for X and Y axes added
 
 * bug 4395 fixed - Incorrect descriptions of the axesflag and nax parameters
                    in the plot2d help page.
 
-* bug 4396 fixed - In Plot2d, the nax option could receive -1 for number of ticks, it's mean autoticks
+* bug 4396 fixed - In Plot2d, the nax option could receive -1 for number of ticks, which meant autoticks
 
 * bug 4403 fixed - ieeefp.h was not included under Solaris in evaluate_expr.c
   	  	   		   isinf was defined (when not provided by the system) with a return
 
-* bug 4409 fixed - Fortran optim subroutines used write (fortran) and not basout as
-                   standard output
-
 * bug 4407 fixed - Help file scilab_xx_XX_help.jar had another scilab_xx_XX_help.jar embedded
                    and not valid.
+
+* bug 4409 fixed - Fortran optim subroutines used fwrite (fortran) and not basout as
+                   standard output
 
 * bug 4414 fixed - Complex grayplots were not saved correctly in Scilab 5.1
 
@@ -767,6 +772,8 @@ Bug fixes:
 
 * bug 4428 fixed - Function compute_initial_temp could not handle functions with
                     several arguments
+
+* bug 4429 fixed - Use hidden_axes instead of hidden_axis
 
 * bug 4430 fixed - Incorrect description of the margins property in the axes_properties help page.
 
@@ -791,9 +798,9 @@ Bug fixes:
 
 * bug 4467 fixed - getshortpathname,getlongpathname did not manage string matrix as input
 
-* bug 4468 fixed - pathconvert(<path>,%F) should remove last trailing separator.
+* bug 4468 fixed - pathconvert(<path>,%F) could remove last trailing separator.
 
-* bug 4469 fixed - getmd5() & mopen hang if there were called with an existing
+* bug 4469 fixed - getmd5() & mopen hung if there were called with an existing
                     directory as input argument and not a filename (Linux)
 
 * bug 4474 fixed - Help of 'fort' was obsolete.
@@ -801,7 +808,7 @@ Bug fixes:
 * bug 4474 fixed - addinter help had no example.
 
 * bug 4479 fixed - A few minor bugs were causing the configure to fail under
-                   FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
+                   FreeBSD (Thanks to OtacÃ­lio de AraÃºjo Ramos Neto)
 
 * bug 4483 fixed - Handle FreeBSD Java detection
 
@@ -833,13 +840,13 @@ Bug fixes:
 
 * bug 4514 fixed - valgrind.supp was not installed
 
+* bug 4515 fixed - Linking and loading some external functions already used crashed Scilab
+
 * bug 4516 fixed - ilib_for_link did not use ilib_gen_loader but an internal function.
 
 * bug 4518 fixed - ilib_build with a column vector of strings as filenames did not work on Linux
 
 * bug 4522 fixed - The Tcl interpreter initialization code made use of some uninitialized variables
-
-* bug 4515 fixed - Linking and loading some external functions already used crashed Scilab
 
 * bug 4525 fixed - scilab.sln and scilab_f2c.sln did not apply same dependencies on libraries (Windows)
 
@@ -873,7 +880,7 @@ Bug fixes:
 
 * bug 4584 fixed - Under Windows, home value was wrong
 
-* bug 4585 fixed - Scilab failed to build with intel C++ compiler 11.0.074 on Windows
+* bug 4585 fixed - Scilab failed to build with Intel C++ compiler 11.0.074 on Windows
 
 * bug 4586 fixed - Function fieldnames added for getting tlist, mlist and struct field names (see SEP #28)
 
@@ -882,7 +889,7 @@ Bug fixes:
 
 * bug 4596 fixed - g_margin failed to return the gain margins in some cases
 
-* bug 4600 fixed - Missing function inside lgfft (lgfft must be removed)
+* bug 4600 fixed - Missing function inside lgfft (lgfft needed be removed)
 
 * bug 4601 fixed - Hidden functions and missing help for vec2list list2vec aplat and recons
 
@@ -898,7 +905,7 @@ Bug fixes:
 
 * bug 4608 fixed - get_function_path returned a non-consistent path
 
-* bug 4611 fixed - What function did not return a complete list of functions
+* bug 4611 fixed - what function did not return a complete list of functions
 
 * bug 4612 fixed - The graphic export used to consider .jpeg as an invalid
                    extension
@@ -915,7 +922,7 @@ Bug fixes:
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
 
-* bug 4620 fixed - the setenv function makes scilab hangs.
+* bug 4620 fixed - the setenv function made scilab hung.
 
 * bug 4626 fixed - When using the CLI version, completion made Scilab crashed
 
@@ -952,7 +959,7 @@ Bug fixes:
 
 * bug 4683 fixed - There was no example of the use of tlist in the dedicated page
 
-* bug 4684 fixed - printf(), mprintf, msprintf do not properly deal with -%inf
+* bug 4684 fixed - printf(), mprintf, msprintf did not properly deal with -%inf
 
 * bug 4688 fixed - listfiles("/") returned an error
 
@@ -975,8 +982,6 @@ Bug fixes:
 * bug 4724 fixed - When the f variation of a data set was too small, plot hung
 
 * bug 4727 fixed - The function 'length' did not return the same value in Scilab 5.1 and Scilab 4.1.2
-
-* bug 4429 fixed - Use hidden_axes instead of hidden_axis
 
 * bug 4728 fixed - The function 'strcat' did not return the same value in Scilab 5.1 and Scilab 4.1.2
 
@@ -1032,7 +1037,7 @@ Bug fixes:
 
 * bug 4853 fixed - C,C++ dlls generated by Scilab had a dependency on fortran runtime (Windows)
 
-* bug 4855 fixed - Use standard error messages when setting/getting values from graphics handles
+* bug 4855 fixed - Standard error messages added when setting/getting values from graphics handles
 
 * bug 4904 fixed - wrong localized fr_FR message
 
@@ -1060,16 +1065,14 @@ Bug fixes:
 
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
-* bug 4378 fixed - The gamma function did not work properly with large numbers under Linux 64 bits
+* bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
 
-* bug 5033 fixed - The Demo CACSD / Inverted pendulum is broken.
+* bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
 
-* bug 5042 fixed - (1|[1,0,1;1,1,0]) returns a wrong result.
+* bug 5074 fixed - French help star showed mis-encoded characters.
 
-* bug 5074 fixed - French help star shows mis-encoded characters.
+* bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
-* bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" fails (on Windows)
-
-* bug 5105 fixed - completion: cd "..\L<tab>  does not work.
+* bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
