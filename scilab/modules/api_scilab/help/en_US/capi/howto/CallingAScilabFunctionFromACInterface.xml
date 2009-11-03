@@ -16,6 +16,8 @@
   <refsection>
     <title>Calling a scilab function (macros) from a C interface</title>
 
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+
     <para>When you write a interface with scilab, you can need to call another
     function directly from your function. You can pass a pointer on scilab
     function to your function.</para>

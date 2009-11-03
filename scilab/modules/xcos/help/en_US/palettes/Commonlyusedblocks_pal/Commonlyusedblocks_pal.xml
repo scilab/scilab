@@ -75,13 +75,13 @@
 
       <listitem>
         <para>
-          <link linkend="BIGSOM_f ">BIGSOM_f - Sum</link>
+          <link linkend="BIGSOM_f">BIGSOM_f - Sum</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="CMSCOPE ">CMSCOPE - Multi display scope</link>
+          <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
         </para>
       </listitem>
 
@@ -93,14 +93,14 @@
 
       <listitem>
         <para>
-          <link linkend="CONVERT ">CONVERT - CONVERT Data Type
+          <link linkend="CONVERT">CONVERT - CONVERT Data Type
           Conversion</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="CSCOPXY ">CSCOPXY - y=f(x) permanent viewer</link>
+          <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
         </para>
       </listitem>
 
@@ -112,19 +112,19 @@
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f ">DOLLAR_f - Delay operator</link>
+          <link linkend="DOLLAR_f">DOLLAR_f - Delay operator</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="IN_f ">IN_f - Input Port</link>
+          <link linkend="IN_f">IN_f - Input Port</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="INTEGRAL_f ">INTEGRAL_f - Integration</link>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
         </para>
       </listitem>
 
@@ -136,7 +136,7 @@
 
       <listitem>
         <para>
-          <link linkend="MUX ">MUX - Multiplexer</link>
+          <link linkend="MUX">MUX - Multiplexer</link>
         </para>
       </listitem>
 
@@ -179,7 +179,7 @@
 
       <listitem>
         <para>
-          <link linkend="TEXT_f ">TEXT_f - Text</link>
+          <link linkend="TEXT_f">TEXT_f - Text</link>
         </para>
       </listitem>
     </itemizedlist>

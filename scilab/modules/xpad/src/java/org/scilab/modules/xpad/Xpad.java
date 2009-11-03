@@ -105,18 +105,13 @@ import org.scilab.modules.xpad.actions.RedoAction;
 import org.scilab.modules.xpad.actions.ResetFontAction;
 import org.scilab.modules.xpad.actions.SaveAction;
 import org.scilab.modules.xpad.actions.SaveAsAction;
-import org.scilab.modules.xpad.actions.ScilabStyleAction;
 import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.SetFontAction;
-import org.scilab.modules.xpad.actions.ShowToolBarAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
-import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
-import org.scilab.modules.xpad.actions.WordWrapAction;
-import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -177,7 +172,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				String path = new String("");
 				if (getTextPane() != null) {
 					if (getTextPane().getName() != null) {
-						path  =  " ( " + getTextPane().getName() + ")";
+						path  =  " (" + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
 					
@@ -860,7 +855,27 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void setAutoIndent(boolean b) {
 		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoIndent(b);
 	}
-
+	/*
+	 * Add or remove '*' prefix in current tab tile according to isContentModified()
+	 */
+	public void updateTabTitle(){
+		StringBuffer newTitle= new StringBuffer();
+		JTextPane textPane = getTextPane();
+		if(((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified()) {
+			newTitle.append('*');
+		}
+		String textPaneName = textPane.getName();
+		System.err.println(newTitle.toString()+" "+textPaneName);
+		try {
+			File f= new File(textPaneName);
+			newTitle.append(f.getName());
+		} catch(Exception e) { // not a file name, no path prefix to remove, but maybe a '*'
+			textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+			newTitle.append(textPaneName.charAt(0)=='*'? textPaneName.substring(1, textPaneName.length()) : textPaneName);
+		}
+		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
+	}
+	
 	/**
 	 * Undo last modification
 	 */
@@ -870,18 +885,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 			UndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
 				try {
-					System.err.println("Will undo " + undo.getUndoPresentationName());
 					undo.undo();
 					if(!undo.canUndo()){ // remove "*" prefix from tab name
-						JTabbedPane current = getTabPane();
-						int index = current.getSelectedIndex();
-						String namePrefixedByStar = current.getTitleAt(index);
-						current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
 						doc.setContentModified(false);
 					}			
 					repaint();
 				} catch (CannotUndoException ex) {
-					System.out.println("Unable to undo: " + ex);
 					ex.printStackTrace();
 				}
 			}
@@ -896,10 +905,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 			UndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
 				try {
-					System.err.println("Will redo " + redo.getRedoPresentationName());
 					redo.redo();
+					if(!doc.isContentModified()){
+						doc.setContentModified(true);
+					}
 				} catch (CannotRedoException ex) {
-					System.out.println("Unable to redo: " + ex);
 					ex.printStackTrace();
 				}
 			}
@@ -1189,7 +1199,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 							}
 
 						} catch (BadLocationException e) {
-							System.err.println("");
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
@@ -1206,10 +1215,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 				styleDocument.setContentModified(false);
 				getInfoBar().setText("");
 				
+				updateEncodingMenu();
+				
 			// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
-				System.out.println("File = " + f.getAbsolutePath());
 				
 				int choice = JOptionPane.showConfirmDialog(
 						editor,

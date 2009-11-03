@@ -39,7 +39,7 @@
   <refsection id="block_scicos_block">
     <title>block</title>
     <para>
- Basic  structure that define a Scicos block.
+ Basic  structure that define a xcos block.
 </para>
     <para>
 That structure includes fields <link linkend="scicos_graphics">graphics</link>, <link linkend="scicos_model">model</link>,
