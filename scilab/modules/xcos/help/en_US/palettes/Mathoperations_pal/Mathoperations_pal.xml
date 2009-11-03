@@ -138,30 +138,16 @@
 
       <listitem>
         <para>
-          <link linkend="MAX_f">
-            <listitem>
-              <para>
-                <link linkend="MAX_f">MAX_f — MAX</link>
-              </para>
-            </listitem>
-          </link>
+           <link linkend="MAX_f">MAX_f — MAX</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MAX_f">
-            <listitem>
-              <para>
-                <link linkend="MAXMIN">MAXMIN — Max and Min</link>
-
-                <MAXMIN />
-              </para>
-            </listitem>
-          </link>
+           <link linkend="MAXMIN">MAXMIN — Max and Min</link>
         </para>
-      </listitem>
-
+       </listitem>
+          
       <listitem>
         <para>
           <link linkend="MIN_f">MIN_f — MIN</link>

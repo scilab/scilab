@@ -13,9 +13,7 @@ subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball
                "Bouncing Ball     "                       , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
                "Chaos Modelica"                           , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
                "Hydraulics blocks"                        , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
-               "RLC circuit"                              , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"    ; ..
-               "FSM buck converter"                       , "ModelicaBlocks/modelica_fsm_buck.dem.sce"       ; ..
-               "FSM boost converter"                      , "ModelicaBlocks/modelica_fsm_boost.dem.sce"      ; ..
+               "RLC circuit"                              , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"  
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

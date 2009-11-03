@@ -146,7 +146,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		loadingsForColorisation();
-		setContentModified(false );
+		// do not use setcontentModified before construstor is finished because it needs a complete objet
+		contentModified = false ; 
 		
 		this.addDocumentListener( new DocumentListener(){
 			
@@ -1698,13 +1699,21 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return undo;
 	}
 
+	public void disableUndoManager(){
+		this.removeUndoableEditListener(undo);
+	}
 	
+	public void enableUndoManager(){
+        this.addUndoableEditListener(undo);
+	}
+
 	public boolean isContentModified(){
 		return contentModified;
 	}
 	
 	public void setContentModified(boolean contentModified){
 		this.contentModified = contentModified;
+		editor.updateTabTitle();
 	}
 
 	public int getLineToColor() {

@@ -138,6 +138,8 @@
 
     <para>A C gateway function which allows to access a argument transmitted
     to a Scilab function</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

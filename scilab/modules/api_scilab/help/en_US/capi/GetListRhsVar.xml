@@ -147,6 +147,8 @@
 
     <para>A C gateway function which allows to access a parameter stored in a
     [mt]list transmitted to a Scilab function</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>
