@@ -490,6 +490,8 @@ Internationalization:
 
 * Japanese localization added (Thanks Hiroshi Saito)
 
+* Italian localization added (Thanks Carmelo Leggio)
+
 * More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
