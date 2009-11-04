@@ -546,7 +546,7 @@ public final class FindAction extends DefaultAction {
 		
 		/*case we want to search only into the selected lines*/
 		
-		currentCaretPos =  xpadTextPane.getSelectionStart() + 1;
+		currentCaretPos =  xpadTextPane.getSelectionStart();
 		if (backwardSearch) {
 			currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
 		}
@@ -566,7 +566,7 @@ public final class FindAction extends DefaultAction {
 			//find actual position of the caret in the array
 			int nextIndex = -1;
 			for (int i = 0; i < offsets.size(); i++) {
-				if (offsets.get(i)[0] > currentCaretPos) {
+				if (offsets.get(i)[0] >= currentCaretPos) {
 					nextIndex = i;
 					break;
 				}
