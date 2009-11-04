@@ -14,7 +14,7 @@
 ;
 #define XPAD "xpad"
 ;
-Source: bin\xpad.dll; DestDir: {app}\bin; Components: {#COMPN_XPAD}
+Source: bin\scixpad.dll; DestDir: {app}\bin; Components: {#COMPN_XPAD}
 ;
 Source: modules\{#XPAD}\jar\org.scilab.modules.xpad.jar; DestDir: {app}\modules\{#XPAD}\jar; Components: {#COMPN_XPAD}
 ;

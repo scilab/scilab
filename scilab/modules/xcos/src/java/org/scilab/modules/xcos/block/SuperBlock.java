@@ -92,10 +92,13 @@ public class SuperBlock extends BasicBlock {
         	getParentDiagram().setModified(true);
     	}
 
-    	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
-    	xcosWindow.removeTab(child.getParentTab());
-    	child.getViewPort().close();
-    	Xcos.closeDiagram(child);
+    	if(child.getParentTab() != null) {
+    		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
+    		xcosWindow.removeTab(child.getParentTab());
+    		child.getViewPort().close();
+    		Xcos.closeDiagram(child);
+    	}
+
     	child.removeListener(null);
     	setLocked(false);
     	child = null;

@@ -22,20 +22,14 @@ public class ScilabKeywordsJNI {
 	throw new UnsupportedOperationException();
   }
 
-  private static final String OSNAME = System.getProperty("os.name").toLowerCase();
   static {
     try {
-        if (OSNAME.indexOf("windows") != -1) {
-        System.loadLibrary("xpad");
-        }
-        else {
         System.loadLibrary("scixpad");
-        }
     } catch (SecurityException e) {
-		//System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
 	} catch (UnsatisfiedLinkError e)	{
-		//System.err.println("The native library xpad does not exist or cannot be found.");
+		System.err.println("The native library xpad does not exist or cannot be found.");
 		e.printStackTrace(System.err);
     }
   }

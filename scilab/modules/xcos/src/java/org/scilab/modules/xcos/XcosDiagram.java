@@ -121,6 +121,7 @@ public class XcosDiagram extends ScilabGraph {
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index)
     {	
+    	
     	// Command -> Control
     	if(source instanceof CommandPort) {
     		if (target instanceof ControlPort) {
@@ -368,6 +369,9 @@ public class XcosDiagram extends ScilabGraph {
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
 
+	//
+	setCloneInvalidEdges(true);
+
 	// Override isCellEditable to filter what the user can edit
 	setCellsEditable(true);
 	// This enable stop editing cells when pressing Enter.
@@ -570,17 +574,21 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void invoke(Object source, mxEventObject evt) {
     		Object[] cells = (Object[]) evt.getArgs()[0];
+    		
     		diagram.getModel().beginUpdate();
     		for (int i = 0 ; i < cells.length ; ++i) {
-    		    if (cells[i] instanceof BasicBlock) {
-    			// Store all AfficheBlocks in a dedicated HasMap
-    			if(cells[i] instanceof AfficheBlock){
-    			    AfficheBlock affich = (AfficheBlock)cells[i];
-    			    Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
-    			}
-    			// Update parent on cell addition
-    			((BasicBlock) cells[i]).setParentDiagram(diagram);
-    		    }
+    			
+    			((mxCell)cells[i]).setId((new UID()).toString());
+
+				if (cells[i] instanceof BasicBlock) {
+					// Store all AfficheBlocks in a dedicated HasMap
+					if(cells[i] instanceof AfficheBlock){
+						AfficheBlock affich = (AfficheBlock)cells[i];
+						Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+					}
+					// Update parent on cell addition
+					((BasicBlock) cells[i]).setParentDiagram(diagram);
+				}
     		}
     		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
     		diagram.getModel().endUpdate();
@@ -851,7 +859,7 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
     }
-  
+
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
      * and a (+) to expand them.
@@ -861,7 +869,7 @@ public class XcosDiagram extends ScilabGraph {
      * @see com.mxgraph.view.mxGraph#isCellFoldable(java.lang.Object, boolean)
      */
     public boolean isCellFoldable(Object cell, boolean collapse) {
-	return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
+		return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
     }
 
 	public boolean isCellSelectable(Object cell)
@@ -872,50 +880,55 @@ public class XcosDiagram extends ScilabGraph {
 		return super.isCellSelectable(cell);
 	}
 
+	public boolean isCellClonable(Object cell) {
+		return true;
+	}
+	
 	public boolean isCellMovable(Object cell) {
-	if(cell instanceof BasicPort){
-	    return false;
-	}
+		if(cell instanceof BasicPort){
+			return false;
+		}
 
-	boolean movable = false;
-	Object[] cells =  this.getSelectionCells();
+		boolean movable = false;
+		Object[] cells =  this.getSelectionCells();
 
-	//don't move if selection is only links
-	for(int i = 0 ; i < cells.length ; i++){
-	    if(!(cells[i] instanceof BasicLink)){
-		movable = true;
-		break;
-	    }
-	}
+		//don't move if selection is only links
+		for(int i = 0 ; i < cells.length ; i++){
+			if(!(cells[i] instanceof BasicLink)){
+				movable = true;
+				break;
+			}
+		}
 
-	return movable && super.isCellMovable(cell);
+		return movable && super.isCellMovable(cell);
     }
 
     public boolean isCellResizable(Object cell) {
     	if(cell instanceof SplitBlock){
     		return false;
     	}
-	return (cell instanceof BasicBlock) && super.isCellResizable(cell);
+    	return (cell instanceof BasicBlock) && super.isCellResizable(cell);
     }
 
     public boolean isCellDeletable(Object cell) {
-	if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
-	    return false;
-	}
-	return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
+    	if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
+    		return false;
+    	}
+
+    	return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
     }
 
     public boolean isCellEditable(Object cell) {
-	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
+    	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
     }
 
     public boolean isCellConnectable(Object cell)
     {
-	return !(cell instanceof BasicBlock) && super.isCellConnectable(cell);
+    	return !(cell instanceof BasicBlock) && super.isCellConnectable(cell);
     }
 
     public boolean isAutoSizeCell(Object cell){
-	return (cell instanceof AfficheBlock) || super.isAutoSizeCell(cell);
+    	return (cell instanceof AfficheBlock) || super.isAutoSizeCell(cell);
     }
 
 
