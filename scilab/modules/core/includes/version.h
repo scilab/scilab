@@ -13,9 +13,9 @@
 #define SCI_VERSION_H
 
 #define SCI_VERSION_MAJOR 5
-#define SCI_VERSION_MINOR 2
+#define SCI_VERSION_MINOR 3
 #define SCI_VERSION_MAINTENANCE 0
-#define SCI_VERSION_STRING "scilab-branch-5.2"
+#define SCI_VERSION_STRING "scilab-branch-master"
 /* SCI_VERSION_REVISION --> hash key commit */
 #define SCI_VERSION_REVISION 0
 #define SCI_VERSION_TIMESTAMP 0
@@ -25,7 +25,7 @@ void disp_scilab_version(void);
 /* for compatibility */
 /* Deprecated */
 #define SCI_VERSION SCI_VERSION_STRING
-#define DEFAULT_SCI_VERSION_MESSAGE "scilab-branch-5.2"
+#define DEFAULT_SCI_VERSION_MESSAGE "scilab-branch-master"
 
 
 #endif
