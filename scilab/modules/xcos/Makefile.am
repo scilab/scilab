@@ -105,7 +105,7 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 libscixcos_la_imagesdir=$(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/Bache.gif \
-images/blocks/BIGSOM_f.gif
+images/blocks/BIGSOM_f.gif \
 images/blocks/BOUNCEXY.gif \
 images/blocks/BPLATFORM.gif \
 images/blocks/CANIMXY.gif \
