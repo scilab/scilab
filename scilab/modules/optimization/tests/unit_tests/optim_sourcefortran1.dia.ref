@@ -16,7 +16,7 @@
 //   Thus, the "genros" function from Ex-optim.f is not needed anymore.
 //
 // This is the precision measured with experiments.
-ilib_verbose(1);
+ilib_verbose(0);
 Leps=10^12*%eps;
 n=3;
 xopt=ones(n,1);
@@ -55,22 +55,8 @@ mputl(F,TMPDIR+filesep()+'rosenf.f');
 cur_dir = pwd();
 chdir(TMPDIR);
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
-   Generate a loader file
-
-   Generate a Makefile
-
-   Running the Makefile
-
-   Compilation of rosenf
-
-   Building shared library (be patient)
-
-   Generate a cleaner file
-
 // incremental linking
 linkid=link(libpath,'rosenf','f');
-Shared archive loaded.
-Link done.
 chdir(cur_dir);
 //solve the problem
 x0=1.2*ones(n,1);

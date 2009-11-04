@@ -19,7 +19,7 @@
 //
 // This is the precision measured with experiments.
 
-ilib_verbose(1);
+ilib_verbose(0);
 
 Leps=10^12*%eps;
 n=3;
