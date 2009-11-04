@@ -131,6 +131,10 @@ public class XpadMessages {
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
     public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
     
+    /* Sttus bar messages */
+    public static final String LOADING = Messages .gettext("Loading...");
+    public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
+    
     
     /* About box */
     public static final String VERSION = Messages.gettext("Editor 1.0");
@@ -145,4 +149,5 @@ public class XpadMessages {
     public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
     public static final String CONTINUE = Messages.gettext("Continue?");
+    public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"xpadConfiguration.xml\"");
 }
