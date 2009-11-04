@@ -46,12 +46,14 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-sourcefile = TMPDIR+'/rosenc.c';
-mputl(C,sourcefile);
+mputl(C,TMPDIR+filesep()+'rosenc.c');
 // compile the C code
-libpath=ilib_for_link('rosenc',sourcefile,[],'c',TMPDIR+'/Makefile');
+cur_dir = pwd();
+chdir(TMPDIR);
+libpath=ilib_for_link('rosenc','rosenc.o',[],'c');
 // incremental linking
 linkid=link(libpath,'rosenc','c');
+chdir(cur_dir);
 //solve the problem
 valtd=100;
 // Test with default solver and default settings.

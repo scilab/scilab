@@ -76,12 +76,14 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
-sourcefile = TMPDIR+'/rosenf.f';
-mputl(fortransource,sourcefile);
+mputl(fortransource,TMPDIR+filesep()+'rosenf.f');
 // compile the Fortran code
-libpath=ilib_for_link('rosenf',sourcefile,[],'f',TMPDIR+'/Makefile');
+cur_dir = pwd();
+chdir(TMPDIR);
+libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+chdir(cur_dir);
 //
 // Define some constants
 //

@@ -19,7 +19,7 @@
 //
 // This is the precision measured with experiments.
 
-ilib_verbose(0);
+ilib_verbose(1);
 
 Leps=10^12*%eps;
 n=3;
@@ -55,12 +55,14 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-sourcefile = TMPDIR+'/rosenf.f';
-mputl(F,sourcefile);
+mputl(F,TMPDIR+filesep()+'rosenf.f');
 // compile the Fortran code
-libpath=ilib_for_link('rosenf',sourcefile,[],'f',TMPDIR+'/Makefile');
+cur_dir = pwd();
+chdir(TMPDIR);
+libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+chdir(cur_dir);
 //solve the problem
 x0=1.2*ones(n,1);
 valtd=100;

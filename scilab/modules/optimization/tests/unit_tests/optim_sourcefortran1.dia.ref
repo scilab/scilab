@@ -16,7 +16,7 @@
 //   Thus, the "genros" function from Ex-optim.f is not needed anymore.
 //
 // This is the precision measured with experiments.
-ilib_verbose(0);
+ilib_verbose(1);
 Leps=10^12*%eps;
 n=3;
 xopt=ones(n,1);
@@ -50,12 +50,28 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      endif'
 '      return'
 '      end'];
-sourcefile = TMPDIR+'/rosenf.f';
-mputl(F,sourcefile);
+mputl(F,TMPDIR+filesep()+'rosenf.f');
 // compile the Fortran code
-libpath=ilib_for_link('rosenf',sourcefile,[],'f',TMPDIR+'/Makefile');
+cur_dir = pwd();
+chdir(TMPDIR);
+libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
+   Generate a loader file
+
+   Generate a Makefile
+
+   Running the Makefile
+
+   Compilation of rosenf
+
+   Building shared library (be patient)
+
+   Generate a cleaner file
+
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+Shared archive loaded.
+Link done.
+chdir(cur_dir);
 //solve the problem
 x0=1.2*ones(n,1);
 valtd=100;
