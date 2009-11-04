@@ -34,7 +34,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving objects files needed for shared library creation</para>
+          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
