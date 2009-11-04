@@ -23,7 +23,7 @@ int gw_dynamic_generic(char *moduleName,
 	dynamic_gateway_error_code err;
 	if (*dynlibName == NULL)
 	{
-		*dynlibName = buildModuleDynLibraryName(moduleName);
+		*dynlibName = buildModuleDynLibraryName(moduleName, DYNLIB_NAME_FORMAT_AUTO);
 	}
 
 	if (*gatewayName == NULL)

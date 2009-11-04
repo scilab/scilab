@@ -1290,7 +1290,8 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void updateBlockView() {
-    	if (getParentDiagram().getView() != null && getParentDiagram().getView().getState(this) != null) {
+    	
+    	if (getParentDiagram() != null && getParentDiagram().getView() != null && getParentDiagram().getView().getState(this) != null) {
     		mxCellState state = getParentDiagram().getView().getState(this);
     		String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
     		//currentBlockDirection = mxConstants.DIRECTION_EAST;
