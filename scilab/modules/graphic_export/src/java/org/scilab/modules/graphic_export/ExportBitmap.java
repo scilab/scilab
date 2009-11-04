@@ -50,25 +50,30 @@ public class ExportBitmap extends ExportToFile {
 	 * @return a int which is a type of error
 	 */
 	public int exportToBitmap() {				
+    String suffix = ExportRenderer.getFileExtension();
+
+    if(suffix.length()==0)
+    {
+		  switch (getFiletype())
+      {
+		    case ExportRenderer.BMP_EXPORT:  suffix = "bmp";
+		    break;
+		    case ExportRenderer.GIF_EXPORT:  suffix = "gif";
+		    break;
+		    case ExportRenderer.JPG_EXPORT:  suffix = "jpg";
+		    break;
+		    case ExportRenderer.PNG_EXPORT:  suffix = "png";
+		    break;
+      }
+    }
 
 		/** Select the screen-shot format */		
 		switch (getFiletype()) {
-/*
-		case ExportRenderer.BMP_EXPORT:  file = new File(getFilename() + ".bmp");
-		break;
-		case ExportRenderer.GIF_EXPORT:  file = new File(getFilename() + ".gif");
-		break;
-		case ExportRenderer.JPG_EXPORT:  file = new File(getFilename() + ".jpg");
-		break;
-		case ExportRenderer.PNG_EXPORT:  file = new File(getFilename() + ".png");
-		break;					  
-*/
-
 		case ExportRenderer.BMP_EXPORT:  
 		case ExportRenderer.GIF_EXPORT:  
 		case ExportRenderer.JPG_EXPORT:  
 		case ExportRenderer.PNG_EXPORT:  
-			file = new File(getFilename() + "." + ExportRenderer.getFileExtension());
+			file = new File(getFilename() + "." + suffix);
 			break;		
 
 		default: return ExportRenderer.INVALID_FILE;

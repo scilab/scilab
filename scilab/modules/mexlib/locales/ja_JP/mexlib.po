@@ -1,27 +1,23 @@
-# Localization of the module mexlib
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"PO-Revision-Date: 2009-10-09 15:36+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
-
-# File: includes/mex.h, line: 80
-msgid "mexPutFull failed\n"
-msgstr "mexPutFull に失敗しました\n"
+"X-Poedit-Language: Japanese\n"
 
 #
 # File: src/c/mexlib.c, line: 420
@@ -46,7 +42,7 @@ msgstr "これ以上メモリを要求できません: スタックサイズの�
 #
 # File: src/c/mexlib.c, line: 1964
 msgid "Warning: "
-msgstr "警告:"
+msgstr "警告: "
 
 #
 # File: src/c/mexlib.c, line: 1983
@@ -56,7 +52,7 @@ msgstr "mexCallSCILAB:呼ばれた機能への無効なポインター。"
 #
 # File: src/c/mexlib.c, line: 1998
 msgid "mexCallSCILAB: evaluation failed. "
-msgstr "mexCallSCILAB: 評価は失敗しました。"
+msgstr "mexCallSCILAB: 評価は失敗しました。 "
 
 #
 # File: src/c/mexlib.c, line: 2092
@@ -141,3 +137,6 @@ msgstr "入力間違いです"
 msgid "No more memory"
 msgstr "これ以上メモリがありません"
 
+# File: includes/mex.h, line: 80
+msgid "mexPutFull failed\n"
+msgstr "mexPutFull に失敗しました\n"

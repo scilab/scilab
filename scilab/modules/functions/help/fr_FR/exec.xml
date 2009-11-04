@@ -104,7 +104,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       l'exécution se fait dans l'environnement courant (les variables
       créées dans la fonction sont conservées après l'exécution). Cette
       forme est plus efficace, car ainsi les instructions du script peuvent
-      être pré-compilées (voir getf, comp). Cette méthode d'exécution des
+      être pré-compilées (voir comp). Cette méthode d'exécution des
       scripts permet aussi de stocker des scripts comme des fonctions dans des
       librairies. 
     </para>
@@ -156,7 +156,7 @@ whos -name "a "
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="execstr">execstr</link>

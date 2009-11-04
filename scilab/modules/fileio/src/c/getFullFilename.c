@@ -34,10 +34,13 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 		wchar_t wcName[PATH_MAX * 2];
 		wchar_t wcExt[PATH_MAX * 2];
 
-		wchar_t wcNameExt[PATH_MAX * 2];
-		wchar_t wcPath[PATH_MAX * 2];
+                wchar_t *wcNameExt = (wchar_t *)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+		wchar_t *wcPath = (wchar_t *)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
 		wchar_t *wcTmp = NULL;
 
+                if (wcNameExt == NULL || wcPath == NULL) {
+                  return NULL;
+                }
 		splitpathW(FilenameInput, TRUE, wcDrv, wcDir,  wcName, wcExt);
 
 		wcscpy(wcNameExt, wcName);
@@ -75,8 +78,8 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 		{
 			if ( (wcPath[lenPath - 1 ] != L'/') && (wcPath[lenPath - 1 ] != L'\\') )
 			{
-				wcscat(wcPath, L"/");
-				lenPath = (int)wcslen(wcPath);
+                          wcscat(wcPath, L"/");
+                          lenPath = (int)wcslen(wcPath);
 			}
 		}
 
@@ -91,6 +94,9 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 		wcscpy(pStwcFullFilename, wcPath);
 		wcscat(pStwcFullFilename, wcNameExt);
+
+                FREE(wcNameExt);
+                FREE(wcPath);
 	}
 	return pStwcFullFilename;
 

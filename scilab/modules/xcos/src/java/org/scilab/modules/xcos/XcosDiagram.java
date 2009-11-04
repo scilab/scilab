@@ -761,7 +761,9 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 	    	System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
 	    	if(cell == null){
-		    	System.err.println("[DEBUG] Click on : null");
+		    	System.err.println("[DEBUG] Click on diagram");
+		    	System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+		    	System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
 	    	}else{
 		    	System.err.println("[DEBUG] Click on : "+cell);
 		    	System.err.println("[DEBUG] Style : "+((mxCell) cell).getStyle());
@@ -1181,6 +1183,7 @@ public class XcosDiagram extends ScilabGraph {
 	String tabTitle = !isModified() ? getTitle() : "* "+getTitle();
 	if (parentTab != null) {
 	    parentTab.setName(tabTitle);
+	    parentTab.draw();
 	}
     }
 
@@ -1222,6 +1225,7 @@ public class XcosDiagram extends ScilabGraph {
 	    } else {
 		XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 		xcosDiagram.loadDiagram(diagramm);
+		setChildrenParentDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile();
@@ -1288,6 +1292,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Clear all undo events in Undo Manager
 	undoManager.reset();
+	setModified(false);
     }
 
     /**
@@ -1414,7 +1419,7 @@ public class XcosDiagram extends ScilabGraph {
     	info(XcosMessages.EMPTY_INFO);
     }
 
-    private void setChildrenParentDiagram(){
+    public void setChildrenParentDiagram(){
     	setChildrenParentDiagram(this);
     }
 
@@ -1422,7 +1427,7 @@ public class XcosDiagram extends ScilabGraph {
     	for (int i = 0 ; i < diagram.getModel().getChildCount(diagram.getDefaultParent()) ; i++){
     		mxCell cell = (mxCell)diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
     		if (cell instanceof BasicBlock){
-    			BasicBlock block = (BasicBlock)cell; 
+    			BasicBlock block = (BasicBlock)cell;
     			block.setParentDiagram(diagram);
     			if(block instanceof AfficheBlock){
     				AfficheBlock affich = (AfficheBlock)block;
@@ -1490,6 +1495,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	}
     }
-    
-}
 
+	public void setModified(boolean modified) {
+		super.setModified(modified);
+		updateTabTitle();
+	}
+}

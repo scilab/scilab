@@ -43,11 +43,6 @@ Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\
 ;
 Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components:  {#COMPN_XCOS}
 ;
-Source: modules\{#SCICOS}\jar\*.jar; DestDir: {app}\modules\{#SCICOS}\jar; Flags: recursesubdirs; Components:  {#COMPN_XCOS}
-;
-#ifdef WITH_CHM
-Source: modules\{#SCICOS}\chm\*.chm; DestDir: {app}\modules\{#SCICOS}\chm; Components: {#COMPN_XCOS}
-#endif
 ;
 ;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}

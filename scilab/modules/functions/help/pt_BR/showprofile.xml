@@ -53,7 +53,7 @@
 
     <para>Para utilizar <literal>showprofile</literal> a função Scilab deve
     ter sido preparada para profiling (análise de performance) (ver
-    getf).</para>
+    exec).</para>
 
     <para>Para tal função,Quando tal função é executada, o sistema conta
     quantas número de vezes que cada linha é executada e quanto tempo de cpu é

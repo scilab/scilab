@@ -8,19 +8,25 @@
 // <-- JVM NOT MANDATORY -->
 
 
-filename = TMPDIR+'/filetodelete.txt';
+filename = pathconvert(TMPDIR+"/filetodelete_1.txt",%F);
 
-// Regular use
-fd=mopen ( filename , 'w' );
+// First test-case : Regular use
+fd=mopen ( filename , "w" );
 mclose(fd); 
 computed = deletefile ( filename );
 if computed <> %t then pause,end
 
-// Wrong use then correct use
-fd=mopen ( filename , 'w' );
+// Second test-case : Wrong use then correct use
+if MSDOS then
+	fd=mopen ( filename , "w" );
+	computed = deletefile ( filename );
+	if computed <> %f then pause,end
+	mclose(fd); 
+	computed = deletefile ( filename );
+	if computed <> %t then pause,end
+end
+
+// Third test-case : try to delete a non-existing file
+filename = pathconvert(TMPDIR+"/filetodelete_2.txt",%F);
 computed = deletefile ( filename );
 if computed <> %f then pause,end
-mclose(fd); 
-computed = deletefile ( filename );
-if computed <> %t then pause,end
-

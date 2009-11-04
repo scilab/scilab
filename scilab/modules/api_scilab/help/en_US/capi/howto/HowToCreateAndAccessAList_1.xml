@@ -17,6 +17,8 @@
   <refsection>
     <title>Description</title>
 
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+
     <para>The goal is to get a [mt]list, to get some elements stored in that
     this and to send a new [mt]list using a function written in C.</para>
 

@@ -35,6 +35,14 @@ function libn = ilib_for_link(names, ..
   if rhs <= 9 then fflags  = ""; end 
   if rhs <= 10 then cc  = ""; end 
   
+  if MSDOS then
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
+  end
+  
   // generate a loader file
   if ( ilib_verbose() <> 0 ) then
     mprintf(gettext("   Generate a loader file\n"));

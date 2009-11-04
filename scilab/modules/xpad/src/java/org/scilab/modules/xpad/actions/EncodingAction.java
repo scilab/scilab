@@ -31,7 +31,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
-import javax.swing.undo.UndoManager;
 
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
@@ -108,7 +107,7 @@ public class EncodingAction extends DefaultCheckAction {
 		boolean indentMode = styleDocument.getAutoIndent();
 		styleDocument.setAutoIndent(false); 
 
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setEncoding(encoding);
+		styleDocument.setEncoding(encoding);
 
 		// If file associated then reload
 		EditorKit editorKit = getEditor().getEditorKit();
@@ -119,8 +118,11 @@ public class EncodingAction extends DefaultCheckAction {
 				File file = new File(getEditor().getTextPane().getName());
 				if (file.exists()) {
 					if (styleDocument.getLength() > 0) {
+						styleDocument.getUndoManager().discardAllEdits();
+						styleDocument.disableUndoManager();
 						styleDocument.remove(0, styleDocument.getLength());
 						editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
+						styleDocument.enableUndoManager();
 					}
 				}
 			}
@@ -143,10 +145,7 @@ public class EncodingAction extends DefaultCheckAction {
 		styleDocument.enableUpdaters();
 		
 		styleDocument.setContentModified(false);
-
-		/* Disable changes */
-		UndoManager undo = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getUndoManager();
-		undo.discardAllEdits();
+		
 
 		if (!isSuccess) {
 			MessageBox messageBox = ScilabMessageBox.createMessageBox();

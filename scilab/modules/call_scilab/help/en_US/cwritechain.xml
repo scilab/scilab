@@ -126,7 +126,7 @@ SendScilabJob("disp(A);"); /* Display A */
       <member><link linkend="String_management_reading_API">API_Scilab: String reading</link>,  <link linkend="String_management_writing_API">API_Scilab: String writing</link>, 
         <link linkend="SendScilabJob">SendScilabJob</link>
         <link linkend="StartScilab">StartScilab</link>
-        <link linkend="creadchains">creadchains</link>
+        <link linkend="creadchain">creadchains</link>
         <link linkend="StringManagement_callscilab">String Management</link>
       </member>
     </simplelist>

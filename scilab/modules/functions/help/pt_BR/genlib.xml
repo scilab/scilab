@@ -93,7 +93,7 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
     <para>Para cada arquivo <literal>.sci</literal> em
     <literal>dir_name</literal> (ou apenas para aqueles especificados pelo
     argumento <literal>Names</literal>), <literal>genlib</literal> executa um
-    <literal>getf</literal> e salva as funções no arquivo
+    <literal>exec</literal> e salva as funções no arquivo
     <literal>.bin</literal> correspondente. O arquivo <literal>.sci</literal>
     só pode conter instruções Scilab. Se um arquivo <literal>.bin</literal>
     for mais novo que o arquivo <literal>.sci</literal> assicuadi,
@@ -137,7 +137,7 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
     <simplelist type="inline">
       <member><link linkend="getd">getd</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="save">save</link></member>
 

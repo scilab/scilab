@@ -855,7 +855,26 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void setAutoIndent(boolean b) {
 		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoIndent(b);
 	}
-
+	/*
+	 * Add or remove '*' prefix in current tab tile according to isContentModified()
+	 */
+	public void updateTabTitle(){
+		StringBuffer newTitle= new StringBuffer();
+		JTextPane textPane = getTextPane();
+		if(((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified()) {
+			newTitle.append('*');
+		}
+		String textPaneName = textPane.getName();
+		try {
+			File f= new File(textPaneName);
+			newTitle.append(f.getName());
+		} catch(Exception e) { // not a file name, no path prefix to remove, but maybe a '*'
+			textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+			newTitle.append(textPaneName.charAt(0)=='*'? textPaneName.substring(1, textPaneName.length()) : textPaneName);
+		}
+		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
+	}
+	
 	/**
 	 * Undo last modification
 	 */
@@ -867,10 +886,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 				try {
 					undo.undo();
 					if(!undo.canUndo()){ // remove "*" prefix from tab name
-						JTabbedPane current = getTabPane();
-						int index = current.getSelectedIndex();
-						String namePrefixedByStar = current.getTitleAt(index);
-						current.setTitleAt(index, namePrefixedByStar.substring(1, namePrefixedByStar.length()));
 						doc.setContentModified(false);
 					}			
 					repaint();
@@ -890,6 +905,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			if (redo.canRedo()) {
 				try {
 					redo.redo();
+					if(!doc.isContentModified()){
+						doc.setContentModified(true);
+					}
 				} catch (CannotRedoException ex) {
 					ex.printStackTrace();
 				}
@@ -1150,7 +1168,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		public void run() {
 			readFile(fileToRead);
 			this.stop();
-			//System.err.println("I'm still alive baaaaahhhh");
 		}
 	   
 		public void readFile(File f) {

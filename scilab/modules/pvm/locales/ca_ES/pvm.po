@@ -14,11 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "PVM parallel Toolbox"
-msgstr "Barra d'eines paral·lela de PVM"
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Hi ha hagut un error: %s\n"
 
 #, c-format
 msgid "%s: work space (stacksize) is too small d\n"
@@ -29,20 +30,12 @@ msgid "%s: Unknow type or not yet implemented\n"
 msgstr "%s: El tipus és desconegut o encara no s'ha implementat\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Hi ha hagut un error: %s\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: El primer argument d'entrada és incorrecte: Ha de ser '%s' o '%s'.\n"
 
-msgid "Error pvm_reduce: Not scalar type\n"
-msgstr "Error al pvm_reduce: El tipus no és escalar\n"
-
-#, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Error al pvm_reduce: La operació de reducció %s és desconeguda\n"
+msgid "Scilab PVM module not installed.\n"
+msgstr "El mòdul PVM del Scilab no està instal·lat.\n"
 
 msgid "Unknown Error"
 msgstr "Error desconegut"
@@ -200,5 +193,12 @@ msgstr "Error pvm_halt - signal\n"
 msgid "%s: Error while creating processes: %s.\n"
 msgstr "%s: Error en crear el procés: %s.\n"
 
-msgid "Scilab PVM module not installed.\n"
-msgstr "El mòdul PVM del Scilab no està instal·lat.\n"
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Error al pvm_reduce: El tipus no és escalar\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "Error al pvm_reduce: La operació de reducció %s és desconeguda\n"
+
+msgid "PVM parallel Toolbox"
+msgstr "Barra d'eines paral·lela de PVM"
