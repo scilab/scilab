@@ -273,6 +273,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    }
 	    diagram.getModel().endUpdate();
 	    diagram.refresh();
+	    superBlock.closeBlockSettings();
 	}
 
 

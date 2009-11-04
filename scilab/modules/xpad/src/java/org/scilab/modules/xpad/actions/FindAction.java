@@ -674,6 +674,8 @@ public final class FindAction extends DefaultAction {
 
 			startFindSelection = -1;
 			endFindSelection = -1;
+			buttonReplace.setEnabled(false);
+			buttonReplaceFind.setEnabled(false);
 		
 		}
 	}
@@ -753,7 +755,8 @@ public final class FindAction extends DefaultAction {
 
 	
 		try {
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
+			ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+			doc.replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
 		
 		} catch (BadLocationException ex) {
 			ex.printStackTrace();
