@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Lookuptables_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,14 +58,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Lookuptables_pal">
     <title>Description</title>
 
     <para>The lookup tables palette includes blocks that compute output
     approximations from inputs.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Lookuptables_pal">
     <title>Blocks</title>
 
     <itemizedlist>

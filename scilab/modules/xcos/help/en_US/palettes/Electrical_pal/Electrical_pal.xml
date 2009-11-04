@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Electrical_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,14 +58,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Electrical_pal">
     <title>Description</title>
 
     <para>Electrical toolbox contains very basic electrical components such as
     voltage source, diode, capacitor, etc.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Electrical_pal">
     <title>Blocks</title>
 
     <itemizedlist>

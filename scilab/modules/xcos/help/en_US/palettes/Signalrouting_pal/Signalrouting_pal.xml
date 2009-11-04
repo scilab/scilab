@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Matrix_pal">
+  <refsection id="Module_Signalrouting_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,14 +58,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Matrix_pal">
+  <refsection id="Description_Signalrouting_pal">
     <title>Description</title>
 
     <para>The Signal routing palette includes blocks that transport signals
     from one point in a block diagram to another.</para>
   </refsection>
 
-  <refsection id="Blocks_Matrix_pal">
+  <refsection id="Blocks_Signalrouting_pal">
     <title>Blocks</title>
 
     <itemizedlist>

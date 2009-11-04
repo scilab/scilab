@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Matrix_pal">
+  <refsection id="Module_Sinks_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,7 +58,7 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Matrix_pal">
+  <refsection id="Description_Sinks_pal">
     <title>Description</title>
 
     <para>
@@ -71,7 +71,7 @@
     </para>
   </refsection>
 
-  <refsection id="Blocks_Matrix_pal">
+  <refsection id="Blocks_Sinks_pal">
     <title>Blocks</title>
 
     <itemizedlist>

@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Signalprocessing_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,14 +58,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Signalprocessing_pal">
     <title>Description</title>
 
     <para>The signal processing palette contains blocks designed specifically
     for signal processing applications.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Signalprocessing_pal">
     <title>Blocks</title>
 
     <itemizedlist>
