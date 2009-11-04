@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Userdefinedfunctions_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,7 +58,7 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Userdefinedfunctions_pal">
     <title>Description</title>
 
     <para>The user defined function contains blocks that allow you to model
@@ -66,7 +66,7 @@
     input.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Userdefinedfunctions_pal">
     <title>Blocks</title>
 
     <itemizedlist>

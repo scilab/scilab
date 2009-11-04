@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Demonstrationsblocks_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -56,14 +56,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Demonstrationsblocks_pal">
     <title>Description</title>
 
     <para>The Demonstrations blocks palette contains blocks used in some Xcos
     demonstration diagrams.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Demonstrationsblocks_pal">
     <title>Blocks</title>
 
     <itemizedlist>

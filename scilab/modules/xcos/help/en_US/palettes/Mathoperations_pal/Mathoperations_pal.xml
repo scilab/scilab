@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Mathoperations_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -58,14 +58,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Mathoperations_pal">
     <title>Description</title>
 
     <para>The Math operations palette contains blocks that model general
     mathematical functions.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Mathoperations_pal">
     <title>Blocks</title>
 
     <itemizedlist>

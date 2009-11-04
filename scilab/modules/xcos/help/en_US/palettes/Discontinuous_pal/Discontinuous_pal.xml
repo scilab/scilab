@@ -46,7 +46,7 @@
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Branching_pal">
+  <refsection id="Module_Discontinuous_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -56,14 +56,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Branching_pal">
+  <refsection id="Description_Discontinuous_pal">
     <title>Description</title>
 
     <para>Discontinuous palette includes blocks whose outputs are
     discontinuous functions of their inputs.</para>
   </refsection>
 
-  <refsection id="Blocks_Branching_pal">
+  <refsection id="Blocks_Discontinuous_pal">
     <title>Blocks</title>
 
     <itemizedlist>
