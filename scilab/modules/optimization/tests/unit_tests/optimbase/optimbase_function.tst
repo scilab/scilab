@@ -325,7 +325,7 @@ opt = optimbase_destroy(opt);
 // Note : 
 //   This function could be accepted by optim, hence the test.
 //
-function [ f , g , index ] = rosenbrock ( x , index )
+function [ f , g , index ] = rosenbrock4 ( x , index )
   if index == 1 then
     mprintf ( "index = %d, x = [%f %f]\n" , index , x(1) , x(2) );
   end
@@ -336,7 +336,7 @@ endfunction
 
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
-opt= optimbase_configure(opt,"-function", rosenbrock );
+opt= optimbase_configure(opt,"-function", rosenbrock4 );
 opt = optimbase_configure(opt,"-withderivatives",%t);
 [ opt , f , g , index ] = optimbase_function ( opt , [-1.2 1.0] , 4 );
 assert_equal ( index , 4 );

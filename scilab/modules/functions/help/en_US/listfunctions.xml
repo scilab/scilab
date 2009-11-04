@@ -83,7 +83,7 @@ flist(profilable)
         <link linkend="function">function</link>
       </member>
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="deff">deff</link>

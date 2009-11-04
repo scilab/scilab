@@ -51,7 +51,7 @@
     <para>
        This function works only for functions which are defined in libraries, i.e.
        not for internal functions, nor with functions defined online, nor loaded with
-       individual <link linkend="getf">getf</link> or <link linkend="getd">getd</link>. This is since Scilab presently
+       individual <link linkend="exec">exec</link> or <link linkend="getd">getd</link>. This is since Scilab presently
        retains only the path to libraries and not to individual function sources.
       </para>
     <para>

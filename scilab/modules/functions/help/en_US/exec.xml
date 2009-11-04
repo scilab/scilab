@@ -73,8 +73,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     : stops + prompts + echoes : useful mode for demos.</para>
     <para><literal>exec(fun [,mode])</literal> executes function  <literal>fun</literal> as a script: no
     input nor output argument nor specific variable environment. This form
-    is more efficient, because script code may be pre-compiled (see getf,
-    comp). This method for script evaluation allows to store scripts as
+    is more efficient, because script code may be pre-compiled (see comp). This method for script evaluation allows to store scripts as
     function in libraries.</para>
     <para>
     If an error is encountered while executing, if 'errcatch' flag is
@@ -116,9 +115,6 @@ whos -name "a "
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="getf">getf</link>
-      </member>
       <member>
         <link linkend="execstr">execstr</link>
       </member>
