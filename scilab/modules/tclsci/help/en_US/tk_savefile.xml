@@ -82,7 +82,7 @@ tk_savefile(Title='Choose a file name ')
         <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
-        <link linkend="tk_getdir">tk_getdir</link>
+        <link linkend="uigetdir">uigetdir</link>
       </member>
       <member>
         <link linkend="file">file</link>
