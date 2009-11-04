@@ -207,10 +207,11 @@
   <add as="DERIV" extend="blockWithLabel">
     <add as="displayedLabel" value="du / dt"/>
   </add>
-  <add as="INTEGRAL_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
+  <add as="INTEGRAL_m" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_m.gif"/>
+    <!--<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
 				    &#8747;
-				    &lt;/FONT&gt;"/>
+				    &lt;/FONT&gt;"/>-->
   </add>
   <add as="INTEGRAL" extend="INTEGRAL_m"/>
   <add as="CLSS" extend="blockWithLabel">
@@ -333,8 +334,9 @@
   <add as="MIN_f" extend="blockWithLabel">
     <add as="displayedLabel" value="MIN"/>
   </add>
-  <add as="BIGSOM_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
+  <add as="BIGSOM_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.gif"/>
+    <!-- <add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
 				        &lt;TD&gt;+&lt;/TD&gt;
 				        &lt;TD ROWSPAN=&quot;2&quot;&gt;
 					  &lt;FONT SIZE=&quot;6&quot;&gt;&#8721;&lt;/FONT&gt;
@@ -344,7 +346,7 @@
 				        &lt;TD&gt;+&lt;/TD&gt;
 				        &lt;TD/&gt;
 				      &lt;/TR&gt;
-				    &lt;/TABLE&gt;"/>
+				    &lt;/TABLE&gt;"/> -->
   </add>
   <add as="POWBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="u^a"/>
@@ -368,10 +370,11 @@
   <add as="EXPBLK_m" extend="blockWithLabel">
     <add as="displayedLabel" value="a^u"/>
   </add>
-  <add as="PROD_f" extend="blockWithLabel">
-    <add as="shape" value="ellipse"/>
+  <add as="PROD_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.gif"/>
+    <!-- <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;&#xD7;&lt;/FONT&gt;"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;&#xD7;&lt;/FONT&gt;"/> -->
   </add>
   <add as="MATZREIM" extend="blockWithLabel">
     <add as="displayedLabel" value="Re &amp; Im"/>
@@ -384,8 +387,9 @@
   <add as="LOGBLK_f" extend="blockWithLabel">
     <add as="displayedLabel" value="LOG"/>
   </add>
-  <add as="SUMMATION" extend="blockWithLabel">
-    <add as="displayedLabel" value="&lt;TABLE&gt;
+  <add as="SUMMATION" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUMMATION.gif"/>
+    <!-- <add as="displayedLabel" value="&lt;TABLE&gt;
 				      &lt;TR&gt;
 				        &lt;TD&gt;+&lt;/TD&gt;
 				        &lt;TD ROWSPAN=&quot;2&quot;&gt;
@@ -396,13 +400,14 @@
 				        &lt;TD&gt;-&lt;/TD&gt;
 					&lt;TD/&gt;
 				      &lt;/TR&gt;
-				    &lt;/TABLE&gt;"/>
+				    &lt;/TABLE&gt;"/> -->
   </add>
   <add as="TrigFun" extend="blockWithLabel">
     <add as="displayedLabel" value="Trig function"/>
   </add>
-  <add as="PRODUCT" extend="blockWithLabel">
-    <add as="displayedLabel" value="&lt;TABLE&gt;
+  <add as="PRODUCT" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.gif"/>
+    <!-- <add as="displayedLabel" value="&lt;TABLE&gt;
 				      &lt;TR&gt;
 				        &lt;TD&gt;*&lt;/TD&gt;
 				        &lt;TD ROWSPAN=&quot;2&quot;&gt;
@@ -413,7 +418,7 @@
 				        &lt;TD&gt;/&lt;/TD&gt;
 					&lt;TD/&gt;
 				      &lt;/TR&gt;
-				    &lt;/TABLE&gt;"/>
+				    &lt;/TABLE&gt;"/> -->
   </add>
   <add as="MAXMIN" extend="blockWithLabel">
     <add as="displayedLabel" value="MIN / MAX"/>
@@ -424,10 +429,11 @@
   <add as="SIGNUM" extend="blockWithLabel">
     <add as="displayedLabel" value="SIGN"/>
   </add>
-  <add as="SUM_f" extend="blockWithLabel">
-    <add as="shape" value="ellipse"/>
+  <add as="SUM_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.gif"/>
+    <!-- <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;+&lt;/FONT&gt;"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;+&lt;/FONT&gt;"/> -->
   </add>
   <add as="CONSTRAINT_f" extend="blockWithLabel">
     <add as="displayedLabel" value="=0 ?"/>
@@ -736,11 +742,12 @@
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
   </add>
-  <add as="CLKSOMV_f" extend="blockWithLabel">
-    <add as="shape" value="ellipse"/>
+  <add as="CLKSOMV_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif"/>
+    <!-- <add as="shape" value="ellipse"/>
     <add as="strokeColor" value="red"/>
     <add as="perimeter" value="ellipsePerimeter"/>
-    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot; COLOR=&quot;red&quot;&gt;+&lt;/FONT&gt;"/>
+    <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot; COLOR=&quot;red&quot;&gt;+&lt;/FONT&gt;"/>-->
   </add>
   <add as="EVTGEN_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Event at&lt;BR&gt;
