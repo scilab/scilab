@@ -27,6 +27,9 @@ bi=-bs;
 x0=1.2*ones(n,1);
 epsx=1.e-15*x0;
 xopt=ones(n,1);
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
 // External function written in C (C compiler required)
 // write down the C code (Rosenbrock problem)
 C=['#include <math.h>'
@@ -50,11 +53,9 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-mputl(C,TMPDIR+filesep()+'rosenc.c');
+mputl(C,'rosenc.c');
 // compile the C code
-cur_dir = pwd();
-chdir(TMPDIR);
-libpath=ilib_for_link('rosenc','rosenc.o',[],'c');
+libpath=ilib_for_link('rosenc','rosenc.c',[],'c');
 // incremental linking
 linkid=link(libpath,'rosenc','c');
 chdir(cur_dir);
