@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -54,11 +55,14 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-mputl(F,TMPDIR+'/rosenf.f');
+mputl(F,TMPDIR+filesep()+'rosenf.f');
 // compile the Fortran code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+cur_dir = pwd();
+chdir(TMPDIR);
+libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+chdir(cur_dir);
 //solve the problem
 x0=1.2*ones(n,1);
 valtd=100;
