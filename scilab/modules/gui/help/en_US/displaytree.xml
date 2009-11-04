@@ -40,9 +40,10 @@ node2 = createNode('Node 2')
 node3 = createNode('Node 3')
 root = createNode('Root')
 
-treeNode1 = createTree(node1, leaf11,leaf12)
-treeNode3 = createTree(node3, leaf31,leaf32)
-treeRoot = createTree(root, node1,node2,node3)
+treeNode1 = createTree(node1, leaf11, leaf12)
+treeNode3 = createTree(node3, leaf31, leaf32)
+
+treeRoot = createTree( root, treeNode1, node2, treeNode3)
 
 displaytree(treeRoot)
  ]]></programlisting>

@@ -75,14 +75,14 @@
     <title>Description</title>
     <para><literal>deff</literal> can be used to define functions from sequences of instructions
     written in text strings. The resulting function object has the same proprerties
-    of any other function defined in a text file and loaded with <literal>getf</literal> 
+    of any other function defined in a text file and loaded with <literal>exec</literal> 
     or <literal>exec</literal>.</para>
     <para>
     Quotes in the instructions (delimiting strings or meaning matrix transposition) 
     have to be doubled to be interpreted correctly (see help quote). This can make
     writing up a little awkward.
     An option in such cases is to define functions in files as usual, to load them into
-    Scilab by <literal>getf</literal> (with the <literal>'n'</literal> option) and to use 
+    Scilab by <literal>exec</literal> (with the <literal>'n'</literal> option) and to use 
     <literal>sci2exp</literal> to get a printout of corresponding <literal>deff</literal> 
     instructions.</para>
   </refsection>
@@ -97,9 +97,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="getf">getf</link>
-      </member>
       <member>
         <link linkend="comp">comp</link>
       </member>

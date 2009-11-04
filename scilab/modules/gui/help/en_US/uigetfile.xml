@@ -106,9 +106,6 @@ uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"", %f
       <member>
         <link linkend="exec">exec</link>
       </member>
-      <member>
-        <link linkend="getf">getf</link>
-      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -117,7 +117,7 @@ load('vals.dat','a','b');
 
       <member><link linkend="save_format">save_format</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="mopen">mopen</link></member>
     </simplelist>

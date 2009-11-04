@@ -169,7 +169,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
 
       <member><link linkend="deff">deff</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="comp">comp</link></member>
 
