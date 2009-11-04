@@ -57,9 +57,6 @@ uigetdir("SCI/modules/", "Choose a directory")
       <member>
         <link linkend="uiputfile">uiputfile</link>
       </member>
-     <member>
-        <link linkend="tk_getdir">tk_getdir</link>
-      </member>
     </simplelist>
   </refsection>
 </refentry>
