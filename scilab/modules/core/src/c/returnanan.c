@@ -28,7 +28,13 @@ double C2F(returnanan)(void)
 }
 /*--------------------------------------------------------------------------*/
 // MB, 26/10/2009
-// Because of a "bug" of management of the NAN.
+// Because of a problem of management of the NANs, when used in a Fortran
+// source code with implicit none.
+// If the client fortran source code does not declare the type of the 
+// external, it is assumed as REAL instead of DOUBLE PRECISION.
+// This leads to bugs. 
+// It is simpler and safer to use this as a subroutine, where the 
+// result variable must still be declared as a DOUBLE PRECISION.
 // See Bug #4678 : 
 // http://bugzilla.scilab.org/show_bug.cgi?id=4378
 void C2F(returnananfortran)(double * nan)
