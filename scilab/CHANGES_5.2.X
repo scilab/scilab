@@ -1098,5 +1098,5 @@ Bug fixes:
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
 
-* bug 5160 fixed - When you exported a graphics by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
+* bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
