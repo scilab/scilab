@@ -186,7 +186,79 @@
    independent from one another.
    </para>
   </refsection>
-  <refsection>
+
+<refsection>
+    <title>Platform-specific tests</title>
+    <para>
+    It may happen that the output of a test depends on the platform on which it is 
+    executed. In this case, the <literal>.ref</literal> file cannot be correct for 
+    all platforms and unit tests may fail for some platform. In this case, we can 
+    create a default <literal>.ref</literal> and create additionnal <literal>.ref</literal> 
+    file for each platform. 
+   </para>
+
+    <para>
+    The various platform-specific <literal>.ref</literal> files must have one of the following extensions.
+   </para>
+    
+   <itemizedlist>
+       <listitem>
+       <para>
+       <literal>.unix.dia.ref</literal> for Unix platform,
+       </para>
+       </listitem>
+
+       <listitem>
+       <para>
+       <literal>.linux..diaref</literal> for Linux platform,
+       </para>
+       </listitem>
+       
+       <listitem>
+       <para>
+       <literal>.win.dia.ref</literal> for Windows platform,
+       </para>
+       </listitem>
+       
+       <listitem>
+       <para>
+       <literal>.macosx.dia.ref</literal> for Mac OS X platform.
+       </para>
+       </listitem>
+       
+     </itemizedlist>
+    
+   <para>
+   The algorithm is the following. 
+   First, the <literal>.ref</literal> is considered. If this file does not exist,
+   the platform-specific <literal>.ref</literal> file is examined depending on the current platform.
+       </para>
+
+   <itemizedlist>
+
+       <listitem>
+       <para>
+       on windows platforms: <literal>.win.dia.ref</literal>,
+       </para>
+       </listitem>
+
+       <listitem>
+       <para>
+      on Max OS X platforms: <literal>.unix.dia.ref</literal>, <literal>.macosx.dia.ref</literal>,
+       </para>
+       </listitem>
+       
+       <listitem>
+       <para>
+       on Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
+       </para>
+       </listitem>
+      
+     </itemizedlist>
+
+  </refsection>
+
+<refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // Launch all tests
