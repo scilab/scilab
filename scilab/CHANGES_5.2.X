@@ -576,20 +576,20 @@ Functions removed:
 
 Linear algebra:
 ===============
- - Clarified documentation for lu function.
+* Clarified documentation for lu function.
 
 Elementary functions:
 =====================
- - 'sort' is obsolete. See 'gsort'.
+* 'sort' is obsolete. See 'gsort'.
 
 TCLSCI interface:
-=====================
- - 'tk_getdir' is obsolete. See 'uigetdir'.
- - 'tk_savefile' is obsolete. See 'uiputfile'.
+=================
+* 'tk_getdir' is obsolete. See 'uigetdir'.
+* 'tk_savefile' is obsolete. See 'uiputfile'.
 
 GUI interface:
-=====================
- - 'x_message_modeless' is obsolete. See 'messagebox'.
+==============
+* 'x_message_modeless' is obsolete. See 'messagebox'.
 
 Bug fixes:
 ==========
@@ -1098,5 +1098,5 @@ Bug fixes:
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
 
-* bug 5160 fixed - When you exported a graphics by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
+* bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 

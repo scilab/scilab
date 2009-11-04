@@ -1,0 +1,426 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-28 03:53+0000\n"
+"Last-Translator: Federico Vera <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr "%s: El archivo ''%s'' no existe.\n"
+
+#, c-format
+msgid "FAILED TO EXPORT: %s\n"
+msgstr "FALLÓ LA EXPORTACIÓN: %s\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "El módulo '%s' de Scilab esta deshabilitado en modo -nogui o -nwni."
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "El módulo '%s' de Scilab no está instalado.\n"
+
+msgid "Untitled"
+msgstr "Sin título"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Cut"
+msgstr "Cortar"
+
+msgid "Group"
+msgstr "Agrupar"
+
+msgid "UnGroup"
+msgstr "Desagrupar"
+
+msgid "Paste"
+msgstr "Pegar"
+
+msgid "Redo"
+msgstr "Rehacer"
+
+msgid "Undo"
+msgstr "Deshacer"
+
+msgid "Zoom In"
+msgstr "Acercar"
+
+msgid "Zoom Out"
+msgstr "Alejar"
+
+msgid "Delete"
+msgstr "Borrar"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Invert selection"
+msgstr "Invertir selección"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "New"
+msgstr "Nuevo"
+
+msgid "New diagram"
+msgstr "Nuevo diagrama"
+
+msgid "New palette"
+msgstr "Nueva paleta"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Save as"
+msgstr "Guardar como"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Save as interface function"
+msgstr "Guardar como función de interfaz"
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Quit"
+msgstr "Salir"
+
+msgid "Dump"
+msgstr "Volcado"
+
+msgid "View in Scicos"
+msgstr "Ver en Scicos"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Block Parameters"
+msgstr "Parámetros del Bloque"
+
+msgid "Region to superblock"
+msgstr "Región al superbloque"
+
+msgid "Superblock mask"
+msgstr "Máscara del superbloque"
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Remove"
+msgstr "Quitar"
+
+msgid "Customize"
+msgstr "Personalizar"
+
+msgid "Save block GUI"
+msgstr "Guardar bloque de Interfaz Gráfica de Usuario"
+
+msgid "View"
+msgstr "Ver"
+
+msgid "Fit diagram to view"
+msgstr "Ajustar el diagrama a la vista"
+
+msgid "Normal 100%"
+msgstr "Normal 100%"
+
+msgid "Palette browser"
+msgstr "Explorador de paletas"
+
+msgid "Diagram browser"
+msgstr "Explorador de diagramas"
+
+msgid "Viewport"
+msgstr "Puerto de vista"
+
+msgid "Get infos"
+msgstr "Obtener información"
+
+msgid "Details"
+msgstr "Detalles"
+
+msgid "Browser"
+msgstr "Explorador"
+
+msgid "Simulation"
+msgstr "Simulación"
+
+msgid "Setup"
+msgstr "Configuración"
+
+msgid "Compile"
+msgstr "Compilar"
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Stop"
+msgstr "Detener"
+
+msgid "Set Context"
+msgstr "Asignar Contexto"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Resize"
+msgstr "Redimensionar"
+
+msgid "Rotate"
+msgstr "Rotar"
+
+msgid "Flip"
+msgstr "Voltear"
+
+msgid "Show/Hide shadow"
+msgstr "Mostrar/Ocultar sombra"
+
+msgid "Grid"
+msgstr "Cuadrilla"
+
+msgid "Diagram background"
+msgstr "Fondo de pantalla del diagrama"
+
+msgid "Tools"
+msgstr "Herramientas"
+
+msgid "Code generation"
+msgstr "Generación de código"
+
+msgid "Help"
+msgstr "Ayuda"
+
+msgid "Xcos Help"
+msgstr "Ayuda de Xcos"
+
+msgid "Block Help"
+msgstr "Ayuda de Bloque"
+
+msgid "Xcos Demos"
+msgstr "Demos de Xcos"
+
+msgid "About Xcos"
+msgstr "Acerca de Xcos"
+
+msgid "Xcos version 1.0"
+msgstr "Xcos versión 1.0"
+
+msgid "Palettes"
+msgstr "Paletas"
+
+msgid "Sources"
+msgstr "Fuentes"
+
+msgid "Continuous"
+msgstr "Continuo"
+
+msgid "Discontinuous"
+msgstr "Discontinuo"
+
+msgid "Lookup Tables"
+msgstr "Buscar Tablas"
+
+msgid "Signal Processing"
+msgstr "Procesamiento de Señales"
+
+msgid "Threshold"
+msgstr "Umbral"
+
+msgid "Math Operations"
+msgstr "Operaciones Matemáticas"
+
+msgid "Modelica"
+msgstr "Modelica"
+
+msgid "Integer"
+msgstr "Entero"
+
+msgid "Matrix"
+msgstr "Matriz"
+
+msgid "Sinks"
+msgstr "Sinks"
+
+msgid "Port Action"
+msgstr "Acción del Puerto"
+
+msgid "Discrete"
+msgstr "Discreto"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Signal Routing"
+msgstr "Enrutamiento de Señal"
+
+msgid "Commonly Used Blocks"
+msgstr "Bloques Usados Comúnmente"
+
+msgid "User-Defined Functions"
+msgstr "Funciones Definidas por el Usuario"
+
+msgid "Demonstrations Blocks"
+msgstr "Bloques de Demostración"
+
+msgid "Electrical"
+msgstr "Eléctrica"
+
+msgid "Thermo-Hydraulics"
+msgstr "Termo-Hidráulica"
+
+msgid ""
+"Diagram has been modified since last save\n"
+"save it?"
+msgstr ""
+"El diagrama ha sido modificado desde la últimas vez\n"
+"¿desea guardarlo?"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"El archivo %s no existe\n"
+" ¿Desea crearlo?"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+"diagram is loaded.)"
+msgstr ""
+"Puede ingresar aquí instrucciones de Scilab para definir parámetros "
+"simbólicos que serán usados en definiciones de bloque usando instrucciones "
+"de Scilab.<br/>Estas instrucciones son evaluadas una vez confirmadas.(i.e. "
+"hace click en OK, por Eval y cada vez se carga un diagrama.)"
+
+msgid "Failed to load Diagram"
+msgstr "Fallo al cargar el Diagrama"
+
+msgid "Could not save diagram."
+msgstr "No se pudo guardar el diagrama."
+
+msgid "Do you want to overwrite existing file?"
+msgstr "¿Desea sobreescribir el archivo existente?"
+
+msgid "Do you want a transparent background image?"
+msgstr "¿Desea una imagen de fondo transparente?"
+
+msgid "Image contains no data."
+msgstr "La imagen no contiene datos."
+
+msgid "Xcos error"
+msgstr "Error de Xcos"
+
+msgid "No block selected"
+msgstr "No hay ningún bloque seleccionado"
+
+msgid "Export to XML"
+msgstr "Exportar a XML"
+
+msgid "Import from XML"
+msgstr "Importar de XML"
+
+msgid "Add to"
+msgstr "Añadir a"
+
+msgid "Add to new diagram"
+msgstr "Añadir a un nuevo diagrama"
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Un puerto de entrada explícito debe estar conectado a un puerto de salida "
+"explícito"
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr ""
+"Un puerto de entrada implícito debe estar conectado a un puerto de salida "
+"implícito"
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"Un puerto de salida explícito debe estar conectado a un puerto de entrada "
+"explícito"
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr ""
+"Un puerto de salida implícito debe estar conectado a un puerto de entrada "
+"implícito"
+
+msgid "Command port must be connected to control port"
+msgstr "Un puerto de comandos debe estar conectado a un puerto de control"
+
+msgid "control port must be connected to command port"
+msgstr "Un puerto de control debe estar conectado a un puerto de comandos"
+
+msgid "Align Blocks"
+msgstr "Alinear Bloques"
+
+msgid "Left"
+msgstr "Izquierda"
+
+msgid "Right"
+msgstr "Derecha"
+
+msgid "Center"
+msgstr "Centrar"
+
+msgid "Top"
+msgstr "Superior"
+
+msgid "Bottom"
+msgstr "Inferior"
+
+msgid "Middle"
+msgstr "Medio"
+
+msgid "Line Color"
+msgstr "Color de Línea"
