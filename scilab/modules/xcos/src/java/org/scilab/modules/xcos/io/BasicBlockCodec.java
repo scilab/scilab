@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -43,6 +44,10 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		((BasicBlock) obj).setSimulationFunctionType(
 				BasicBlock.SimulationFunctionType.valueOf((((Element)node).getAttribute("simulationFunctionType" ))));
+		
+		if(obj instanceof SuperBlock){
+			((SuperBlock)obj).setChild(null);
+		}
 		return super.afterDecode(dec, node, obj);
 	}
 	

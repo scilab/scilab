@@ -12,9 +12,9 @@ function files= listfiles(paths,flag,flagexpand)
 
   // list the files in a set of directories
   // files= listfiles(paths [,flag,flagexpand])
-  // paths : a string matrix giving a set of pathnames (eventually ended by a pattern built with  * )
+  // paths           : a string matrix giving a set of pathnames (eventually ended by a pattern built with  * )
   // flag,flagexpand : boolean optional parameters. (default value  %t ).
-  // files : a string matrix
+  // files           : a string matrix
   
   [lhs,rhs]=argn(0) 
   if rhs < 1  then paths='./' ; end 
@@ -22,10 +22,21 @@ function files= listfiles(paths,flag,flagexpand)
   if rhs <= 2 then flagexpand = %t ; end 
   files=[];
   
-  if flag == %t then 
+  // Stripblanks paths
+  paths = stripblanks(paths);
+  
+  // list files of the current directory
+  paths(find(paths=="")) = "./";
+  
+  if flag == %t then
     paths = pathconvert(paths,%f,flagexpand); 
-  end 
-
+  end
+  
+  // list files of the root directory
+  if ~ MSDOS then
+    paths(find(paths=="")) = "/";
+  end
+  
   DIR_SEPARATOR=filesep();
   
   for i=1:size(paths,'*')  // Loop on the file/path list
@@ -54,7 +65,6 @@ function files= listfiles(paths,flag,flagexpand)
       // prepend with the path, if required 
       // when listing a full directory, path is not prepended
       dirs=paths(i);
-      
       if part(dirs,length(dirs))<>DIR_SEPARATOR then
         if isdir(dirs) then //yes
           with_dir=%f;

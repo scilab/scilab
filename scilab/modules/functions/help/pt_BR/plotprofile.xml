@@ -54,7 +54,7 @@
 
     <para>Para utilizar <literal>plotprofile</literal>, a função Scilab deve
     ter sido preparada para profiling (análise de desempenho) (ver
-    getf).</para>
+    exec).</para>
 
     <para>Quando tal função é executada, o sistema conta quantas vezes cada
     linha foi executada e quanto tempo de cpu foi gasto para cada linha. Estes

@@ -65,6 +65,8 @@ path=tk_savefile(file_mask,dir,'string')</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
+    <para>WARNING: this function is obsolete (see uigetfile as a replacement of tk_savefile). It will be removed in Scilab 5.3.</para>
+
     <para>Creates a dialog window for output file selection</para>
   </refsection>
   <refsection>
@@ -82,7 +84,7 @@ tk_savefile(Title='Choose a file name ')
         <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
-        <link linkend="tk_getdir">tk_getdir</link>
+        <link linkend="uigetdir">uigetdir</link>
       </member>
       <member>
         <link linkend="file">file</link>

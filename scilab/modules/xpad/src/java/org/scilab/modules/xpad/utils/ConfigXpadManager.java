@@ -705,11 +705,11 @@ public final class ConfigXpadManager {
 			document = docBuilder.parse(xml);
 		
 		} catch (ParserConfigurationException pce) {
-			//System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		} catch (SAXException se) {
-			//System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		} catch (IOException ioe) {
-			//System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		}
 		
 	}
@@ -722,9 +722,9 @@ public final class ConfigXpadManager {
 		try {
 			transformer = TransformerFactory.newInstance().newTransformer();
 		} catch (TransformerConfigurationException e1) {
-			//System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
 		} catch (TransformerFactoryConfigurationError e1) {
-			//System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
 		}
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		
@@ -733,7 +733,7 @@ public final class ConfigXpadManager {
 		try {
 			transformer.transform(source, result);
 		} catch (TransformerException e) {
-			//System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
+			System.out.println(ERROR_WRITE + USER_XPAD_CONFIG_FILE);
 		}
 	
 		

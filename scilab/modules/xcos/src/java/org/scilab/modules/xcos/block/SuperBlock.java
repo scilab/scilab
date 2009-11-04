@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -72,11 +74,33 @@ public class SuperBlock extends BasicBlock {
     	    this.setLocked(false);
     	    return;
     	}
-	createChildDiagram();
-	child.setModified(false);
-	Xcos.showDiagram(child);
+	
+    	if(createChildDiagram() == true) {
+    		child.setModified(false);
+    		Xcos.showDiagram(child);
+    	} else {
+        	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
+        	xcosWindow.setVisible(true);
+    	}
     }
 
+	public void closeBlockSettings() {
+
+    	// Do not ask the user, the diagram is saved and closed
+    	if (child.isModified()) {
+    		setRealParameters(BlockWriter.convertDiagramToMList(child));
+        	getParentDiagram().setModified(true);
+    	}
+
+    	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
+    	xcosWindow.removeTab(child.getParentTab());
+    	child.getViewPort().close();
+    	Xcos.closeDiagram(child);
+    	child.removeListener(null);
+    	setLocked(false);
+    	child = null;
+	}
+    
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = createContextMenu(graph);
 	
@@ -86,29 +110,18 @@ public class SuperBlock extends BasicBlock {
 	menu.setVisible(true);
     }
     
-    public void createChildDiagram(){
+    public boolean createChildDiagram(){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.installSuperBlockListeners();
+    		child.setChildrenParentDiagram();
+    	    updateAllBlocksColor();
     	} else {
-//    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-//    	    newChild.installListeners();
-//    	    newChild.setModel(child.getModel());
-//    	    newChild.setContext(child.getContext());
-//    	    newChild.getModel().setRoot(child.getModel().getRoot());
-//    	    newChild.setDefaultParent(child.getDefaultParent());
-//    	    
-//    	    System.err.println("old value : " + child.isModified());
-//    	    newChild.setModified(child.isModified());
-//    	    child = newChild;
-    		child.setContainer(this);
-    	    child.installListeners();
+    		return false;
     	}
-    	
-	    child.installSuperBlockListeners();
-		child.setChildrenParentDiagram();
-	    updateAllBlocksColor();
+    	return true;
     }
     
     public SuperBlockDiagram getChild() {

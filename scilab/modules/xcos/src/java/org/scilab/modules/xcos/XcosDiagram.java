@@ -56,6 +56,7 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -761,7 +762,11 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 	    	System.err.println("[DEBUG] Click at position : "+arg0.getX()+" , "+arg0.getY());
 	    	if(cell == null){
-		    	System.err.println("[DEBUG] Click on : null");
+		    	System.err.println("[DEBUG] Click on diagram");
+		    	System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+		    	System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
+		    	System.err.println("getParentWindow : " + getParentTab().getParentWindow());
+		    	
 	    	}else{
 		    	System.err.println("[DEBUG] Click on : "+cell);
 		    	System.err.println("[DEBUG] Style : "+((mxCell) cell).getStyle());
@@ -1074,6 +1079,17 @@ public class XcosDiagram extends ScilabGraph {
     public void closeDiagram() {
 
 	boolean wantToClose = true;
+
+	//look if SuperBlock windows are opened
+	for(int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++){
+		if(getModel().getChildAt(getDefaultParent(), i) instanceof SuperBlock){
+			SuperBlock sb = (SuperBlock)getModel().getChildAt(getDefaultParent(), i);
+			if(sb.getChild() != null) { //window is visible, force close and save if needed
+				sb.closeBlockSettings();
+			}
+		}
+	}
+	
 	if (isModified()) {
 	    // The diagram has been modified
 	    // Ask the user want he want to do !
