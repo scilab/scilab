@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -22,6 +23,9 @@
 
 ilib_verbose(0);
 
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
 'c (DLL Digital Visual Fortran)'     
@@ -75,11 +79,12 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
-mputl(fortransource,TMPDIR+'/rosenf.f');
-// compile the C code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+mputl(fortransource,'rosenf.f');
+// compile the Fortran code
+libpath=ilib_for_link('rosenf','rosenf.c',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+chdir(cur_dir);
 //
 // Define some constants
 //
