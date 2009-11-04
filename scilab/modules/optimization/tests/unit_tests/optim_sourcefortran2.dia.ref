@@ -19,6 +19,9 @@
 // Define a fortran source code and compile it (fortran compiler required)
 //
 ilib_verbose(0);
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
 'c (DLL Digital Visual Fortran)'     
@@ -72,11 +75,9 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
-mputl(fortransource,TMPDIR+filesep()+'rosenf.f');
+mputl(fortransource,'rosenf.f');
 // compile the Fortran code
-cur_dir = pwd();
-chdir(TMPDIR);
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
+libpath=ilib_for_link('rosenf','rosenf.c',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
 chdir(cur_dir);

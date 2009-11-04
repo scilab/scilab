@@ -24,6 +24,9 @@ ilib_verbose(0);
 Leps=10^12*%eps;
 n=3;
 xopt=ones(n,1);
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
 //
 // Define a fortran source code and compile it (fortran compiler required)
 //
@@ -55,11 +58,9 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-mputl(F,TMPDIR+filesep()+'rosenf.f');
+mputl(F,'rosenf.f');
 // compile the Fortran code
-cur_dir = pwd();
-chdir(TMPDIR);
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f');
+libpath=ilib_for_link('rosenf','rosenf.c',[],'f');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
 chdir(cur_dir);
