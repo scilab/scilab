@@ -54,10 +54,10 @@
     fornecidas nas bibliotecas padrões são compiladas.</para>
 
     <para>A definição online bem como a sintaxe curta dos comandos
-    <literal>getf</literal> e <literal>deff</literal> geram funções
+    <literal>exec</literal> e <literal>deff</literal> geram funções
     compiladas. Então comp tem que ser usado apenas em casos bem particulares.
     Para se produzir uma função não compilada, deve-se usar &gt;<link
-    linkend="getf">getf</link> ou <link linkend="deff">deff</link> com a opção
+    linkend="exec">exec</link> ou <link linkend="deff">deff</link> com a opção
     <literal>"n"</literal>.</para>
 
     <para>O valor opt==2 faz com que a função seja compilada "para definição
@@ -80,7 +80,7 @@
 
       <member><link linkend="deff">deff</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="function">function</link></member>
 

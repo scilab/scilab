@@ -394,7 +394,7 @@ public final class FindAction extends DefaultAction {
 				
 				if (regexpSelected) {
 					oldWord = "(?m)" + oldWord;
-			        pattern = Pattern.compile(oldWord);
+			        pattern = Pattern.compile(oldWord, Pattern.MULTILINE);
 
 
 				} else {
@@ -695,7 +695,7 @@ public final class FindAction extends DefaultAction {
 		 */
 
 		if (regexpSelected) {
-			Pattern patternOldWord = Pattern.compile(oldWord);
+			Pattern patternOldWord = Pattern.compile(oldWord, Pattern.MULTILINE);
 			 Matcher matcher;
 			try {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart, currentPosEnd - currentPosStart));
@@ -741,7 +741,7 @@ public final class FindAction extends DefaultAction {
 		 */
 
 		if (regexpSelected) {
-			Pattern patternOldWord = Pattern.compile(oldWord);
+			Pattern patternOldWord = Pattern.compile(oldWord, Pattern.MULTILINE);
 			 Matcher matcher;
 			try {
 				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart, currentPosEnd - currentPosStart));
