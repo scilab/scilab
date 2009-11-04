@@ -576,20 +576,20 @@ Functions removed:
 
 Linear algebra:
 ===============
- - Clarified documentation for lu function.
+* Clarified documentation for lu function.
 
 Elementary functions:
 =====================
- - 'sort' is obsolete. See 'gsort'.
+* 'sort' is obsolete. See 'gsort'.
 
 TCLSCI interface:
-=====================
- - 'tk_getdir' is obsolete. See 'uigetdir'.
- - 'tk_savefile' is obsolete. See 'uiputfile'.
+=================
+* 'tk_getdir' is obsolete. See 'uigetdir'.
+* 'tk_savefile' is obsolete. See 'uiputfile'.
 
 GUI interface:
-=====================
- - 'x_message_modeless' is obsolete. See 'messagebox'.
+==============
+* 'x_message_modeless' is obsolete. See 'messagebox'.
 
 Bug fixes:
 ==========
