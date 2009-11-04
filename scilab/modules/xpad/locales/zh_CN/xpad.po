@@ -1,0 +1,309 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2009-10-28 03:07+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个实数标量。\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "在-nogui或-nwni模式下Scilab的'%s'模块被禁用。"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab模块'%s'尚未安装。\n"
+
+msgid "Scilab editor"
+msgstr "Scilab编辑器"
+
+msgid "File"
+msgstr "文件"
+
+msgid "New"
+msgstr "新建"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Recent Files"
+msgstr "最近的文件"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save as"
+msgstr "另存为"
+
+msgid "Page Setup"
+msgstr "页面设置"
+
+msgid "Print Preview"
+msgstr "打印预览"
+
+msgid "Print"
+msgstr "打印"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Exit"
+msgstr "退出"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Undo"
+msgstr "撤销"
+
+msgid "Redo"
+msgstr "重做"
+
+msgid "Cut"
+msgstr "剪切"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Paste"
+msgstr "粘贴"
+
+msgid "Select All"
+msgstr "全选"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Comment Selection"
+msgstr "注释选区"
+
+msgid "Uncomment Selection"
+msgstr "取消选区注释"
+
+msgid "Tabify Selection"
+msgstr "用制表符替换空格"
+
+msgid "Untabify Selection"
+msgstr "用空格替换制表符"
+
+msgid "Indent"
+msgstr "增加缩进"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Find/Replace"
+msgstr "查找/替换"
+
+msgid "Goto line"
+msgstr "转到行"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Show/Hide ToolBar"
+msgstr "显示/隐藏工具栏"
+
+msgid "Highlight current line"
+msgstr "高亮显示当前行"
+
+msgid "Word Wrap"
+msgstr "文字换行"
+
+msgid "Line Numbers"
+msgstr "行号"
+
+msgid "Set Colors"
+msgstr "设置颜色"
+
+msgid "Set Font"
+msgstr "设置字体"
+
+msgid "Reset default font"
+msgstr "重置缺省字体"
+
+msgid "Document"
+msgstr "文档"
+
+msgid "Syntax Type"
+msgstr "语法类型"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+msgid "Plain Text"
+msgstr "纯文本"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "Encoding Type"
+msgstr "编码类型"
+
+msgid "UTF-8 Encoding"
+msgstr "UTF－8编码"
+
+msgid "ASCII Encoding"
+msgstr "ASCII编码"
+
+msgid "Colorize"
+msgstr "加彩色"
+
+msgid "Auto Indent"
+msgstr "自动缩进"
+
+msgid "Execute"
+msgstr "执行"
+
+msgid "Load Into Scilab"
+msgstr "载入Scilab"
+
+msgid "Evaluate Selection"
+msgstr "执行选择部分"
+
+msgid "Execute Into Scilab"
+msgstr "在Scilab内执行"
+
+msgid "Scilab editor Help"
+msgstr "Scilab编辑器帮助"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Scilab Editor version 1.0"
+msgstr "Scilab编辑器 版本1.0"
+
+msgid "Find:"
+msgstr "查找:"
+
+msgid "Find"
+msgstr "查找"
+
+msgid "Replace/Find"
+msgstr "替换/查找"
+
+msgid "Replace With :"
+msgstr "替换为:"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Forward"
+msgstr "向前"
+
+msgid "Backward"
+msgstr "向后"
+
+msgid "Scope"
+msgstr "范围"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Selected lines"
+msgstr "选择的区域"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Case sensitive"
+msgstr "区分大小写"
+
+msgid "Wrap search"
+msgstr "回到文档开始处继续搜寻"
+
+msgid "Whole word"
+msgstr "全词匹配"
+
+msgid "Regular expressions"
+msgstr "正则表达式"
+
+msgid "Replace"
+msgstr "替换"
+
+msgid "Replace All"
+msgstr "全部替换"
+
+msgid "Invalid regular expression : %s"
+msgstr "不正确的正则表达式：%s"
+
+msgid "You have reached the end of the document"
+msgstr "已经到达文档尾部"
+
+msgid "String %s not found"
+msgstr "没有发现字符串 %s"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"文件 %s 不存在\n"
+" 你希望创建它么？"
+
+msgid "close this tab"
+msgstr "关闭这个标签页"
+
+msgid "This file"
+msgstr "文件"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr " 自上次保存已经被修改，保存改动么？"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"文件 %s 已经被另一个程序修改！\n"
+" 覆盖？"
+
+msgid "Replace File?"
+msgstr "替换文件？"
+
+msgid "File already exists"
+msgstr "文件已存在"
+
+msgid "Untitled "
+msgstr "未命名 "
+
+msgid "Ok"
+msgstr "确定"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Next tab"
+msgstr "下一个标签"
+
+msgid "Previous tab"
+msgstr "上一个标签"
+
+msgid "Enter line number"
+msgstr "输入行号"

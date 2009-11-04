@@ -205,7 +205,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	
 	
-	public void colorize(int lineStartPosition, int lineEndPosition) {
+	public boolean colorize(int lineStartPosition, int lineEndPosition) {
 	    DEBUG("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
 	    Timer timer = new Timer();
 		DEBUG("Colorize [before parse] : " + timer.top());
@@ -220,13 +220,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.addUndoableEditListener(null);
 			resetStyle(lineStartPosition, lineEndPosition);
 			try {
-				applyStyle(boundaries_list.get(VARIABLES), getStyle("Variable"));
-				applyStyle(boundaries_list.get(COMMANDS), getStyle("Command"));
-				applyStyle(boundaries_list.get(FUNCTIONS), getStyle("Function"));
-				applyStyle(boundaries_list.get(MACROS), getStyle("Macro"));
-				applyStyle(boundaries_list.get(OPERATORS), getStyle("Operator"));
-				applyStyle(boundaries_list.get(QUOTATIONS), getStyle("String"));
-				applyStyle(boundaries_list.get(COMMENTS), getStyle("Comment"));
+				if(applyStyle(boundaries_list.get(VARIABLES), getStyle("Variable")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(COMMANDS), getStyle("Command")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(FUNCTIONS), getStyle("Function")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(MACROS), getStyle("Macro")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(OPERATORS), getStyle("Operator")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(QUOTATIONS), getStyle("String")) == false){ return false;}
+				if(applyStyle(boundaries_list.get(COMMENTS), getStyle("Comment")) == false){ return false;}
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
@@ -236,8 +236,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 		}
 		DEBUG("Colorize [after all applyStyle] : " + timer.top());
+		return true;
 	}
 
+	public Style getStyle(String styleString){
+		Style style = super.getStyle(styleString);
+		if(style == null) {
+			super.getStyle("Default");
+		}
+		return style;
+	}
+	
 	private void resetStyle(int line_start, int line_end) {
 	    	DEBUG("resetStyle("+line_start+", "+line_end+")");
 		// Reset Color
@@ -245,10 +254,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	
-	private void applyStyle(ArrayList<Integer> boundaries, Style style) throws BadLocationException {
-		for(int i = 0; i < boundaries.size(); i=i+2)	{
-			this.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
+	private boolean applyStyle(ArrayList<Integer> boundaries, Style style) throws BadLocationException {
+		
+		if(style != null){
+			for(int i = 0; i < boundaries.size(); i=i+2)	{
+				this.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
+			}
+			return true;
 		}
+		return false;
 	}
 	public void setShouldMergeEdits(boolean b) {
 	
