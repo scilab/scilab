@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -54,9 +55,10 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-mputl(F,TMPDIR+'/rosenf.f');
+sourcefile = TMPDIR+'/rosenf.f';
+mputl(F,sourcefile);
 // compile the Fortran code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf',sourcefile,[],'f',TMPDIR+'/Makefile');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
 //solve the problem

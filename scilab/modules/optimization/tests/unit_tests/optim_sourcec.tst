@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -49,9 +50,10 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-mputl(C,TMPDIR+'/rosenc.c');
+sourcefile = TMPDIR+'/rosenc.c';
+mputl(C,sourcefile);
 // compile the C code
-libpath=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenc',sourcefile,[],'c',TMPDIR+'/Makefile');
 // incremental linking
 linkid=link(libpath,'rosenc','c');
 //solve the problem

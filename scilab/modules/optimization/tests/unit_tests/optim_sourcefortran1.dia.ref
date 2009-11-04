@@ -1,14 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-//
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
-//   in the case where the cost function is provided as a Fortran
+//   in the case where the cost function is provided as a Fortran 
 //   routine and the parameter is given as a scilab variable, using the "td" option.
 //
 //   Note : the following source code was copied from optimization/sci_gateway/fortran/Ex-optim.f
@@ -49,9 +50,10 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      endif'
 '      return'
 '      end'];
-mputl(F,TMPDIR+'/rosenf.f');
+sourcefile = TMPDIR+'/rosenf.f';
+mputl(F,sourcefile);
 // compile the Fortran code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf',sourcefile,[],'f',TMPDIR+'/Makefile');
 // incremental linking
 linkid=link(libpath,'rosenf','f');
 //solve the problem
