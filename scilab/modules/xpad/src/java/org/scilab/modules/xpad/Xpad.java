@@ -1171,14 +1171,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	   
 		public void readFile(File f) {
-			getInfoBar().setText("Loading...");
+			getInfoBar().setText(XpadMessages.LOADING);
 			
+			boolean colorStatus = false;
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
-			
+
 			ScilabStyleDocument styleDocument = null;
 			JTextPane theTextPane;
-			
+
 			// File exist
 			if (f.exists()) {
 				theTextPane = addTab(f.getName()); 
@@ -1200,34 +1201,39 @@ public class Xpad extends SwingScilabTab implements Tab {
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						styleDocument.colorize(0, styleDocument.getLength());
+						colorStatus = styleDocument.colorize(0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.enableUpdaters();
 					}
 				} catch (IOException ioex) {
 					ioex.printStackTrace();
 				}
-				
+
 				theTextPane.setName(f.getAbsolutePath());
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
-				getInfoBar().setText("");
-				
+
+				if(colorStatus == false) {
+					getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
+				} else {
+					getInfoBar().setText("");
+				}
+
 				updateEncodingMenu();
 				
-			// File does not exist	
+				// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
-				
+
 				int choice = JOptionPane.showConfirmDialog(
 						editor,
 						String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()),
 						"Editor",
 						JOptionPane.YES_NO_OPTION);
 
-				if (choice  == 0) {
+				if (choice  == 0) { //OK
 					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
-					
+
 					BufferedWriter out = null;
 					try {
 						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncoding()));
@@ -1264,11 +1270,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 					getInfoBar().setText("");
 				}	
 			}
-			
+
 			// Empty the undo Manager
 			UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
 			undo.discardAllEdits();
-			
+
 			synchronized (synchro) {
 				synchro.notify();
 			}
