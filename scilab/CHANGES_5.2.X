@@ -90,6 +90,7 @@ Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rend
     requested in Scilab bugtracker as bug #2984.
   - Add transparency to markdrawing.
 
+* 'xbasc' is obsolete. See 'clf'
 
 Introduction of new binaries:
 =============================
@@ -296,9 +297,11 @@ Core functions:
    + typename
    + whereis
      
-* sethomedirectory is obsolete (see home). 
+* 'sethomedirectory' is obsolete. See 'home'.
 
-* getf is obsolete (see exec).
+* 'getf' is obsolete. See 'exec'.
+
+* toolboxes is obsolete.
 
 fileio functions:
 =================
@@ -313,7 +316,7 @@ fileio functions:
 * pathconvert: If the flagtrail argument is set to FALSE and the trailing separator
                 of the path is removed (if present of course). See Bug 4468.
                   
-* getcwd is obsolete (see pwd). 
+* 'getcwd' is obsolete. See 'pwd'. 
 
 * isfile: checks if filename is an existing file.
 
@@ -557,7 +560,7 @@ String manipulation:
 * Rewrite:
     + strsplit - SEP #26
 
-* 'NumTokens' is obsolete. See 'tokens'
+* 'NumTokens' is obsolete. See 'tokens'.
 
 Java/Scilab API:
 ================
@@ -577,7 +580,16 @@ Linear algebra:
 
 Elementary functions:
 =====================
- - 'sort' is obsolete. see 'gsort'
+ - 'sort' is obsolete. See 'gsort'.
+
+TCLSCI interface:
+=====================
+ - 'tk_getdir' is obsolete. See 'uigetdir'.
+ - 'tk_savefile' is obsolete. See 'uiputfile'.
+
+GUI interface:
+=====================
+ - 'x_message_modeless' is obsolete. See 'messagebox'.
 
 Bug fixes:
 ==========
