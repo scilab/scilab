@@ -23,10 +23,6 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
-/**
- * @author elias
- *
- */
 public final class BlockPositioning {
 
     /**
