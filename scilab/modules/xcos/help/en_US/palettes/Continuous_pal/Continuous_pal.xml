@@ -51,9 +51,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>
-          <link linkend="xcos_manual">Xcos</link>
-        </para>
+         <para><link linkend="xcos">xcos</link></para>
       </listitem>
     </itemizedlist>
   </refsection>

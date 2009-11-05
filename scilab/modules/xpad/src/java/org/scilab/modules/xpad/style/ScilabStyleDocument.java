@@ -14,10 +14,10 @@ package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -27,11 +27,9 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.undo.UndoableEdit;
 import javax.swing.undo.CompoundEdit;
-
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.AttributeSet;
+import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
@@ -213,10 +211,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT COLORISATION END
 	 */
-
-	
-
-
 	
 
 

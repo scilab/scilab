@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 
 	 
 int read_string(char *fname,unsigned long fname_len)

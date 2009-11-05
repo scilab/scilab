@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/double_reading_api"));
 cd(pathconvert(TMPDIR+"/double_reading_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/double_reading_api.c",pathconvert(TMPDIR+"/double_reading_api/double_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("double_reading",["read_double","read_double"],pathconvert(TMPDIR+"/double_reading_api/double_reading_api.c",%F),[],[],"",cflags);
+ilib_build("double_reading",["read_double","read_double"],"double_reading_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
  
 a = [   0 1 2 3; ..

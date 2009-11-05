@@ -5,9 +5,10 @@
 Xcos:
 =====
 
-Xcos replaces Scicos in Scilab distribution. 
-Based on state of the art components, Xcos provides a stable, easy and
-usable interface to create complex simulations and controls.
+Xcos is developed simultaneously and together with Scilab, and replaces Scicos
+in Scilab distributions. With a new ergonomic and efficient block diagrams 
+editor, Xcos provides functionalities for modeling mechanical systems and control
+systems, and is particularly suitable for industrial and academic needs.
 
 This new version provides numerous new features:
 * Several diagrams can be edited at the same time
@@ -139,8 +140,8 @@ Optimization:
    based on numerical derivatives
 
 
-Extension capabilities of Scilab:
-=================================
+Extension capabilities of Scilab (API Scilab):
+==============================================
 
 In the previous versions of Scilab, there was no clear or easy way to extend
 Scilab or to use it as an embedded application. 
@@ -170,8 +171,6 @@ consistent, documented and easy way to use API.
   The rationale is to improve the use in special case of the pointer data type
   to avoid memory duplication.
 
-TODO: talk about call scilab based on api_scilab
-
 * Under all operating systems but Windows, all headers are not installed in a single directory in order to simplify the use
   of Scilab features in the dynamic link. See SEP #32 for more information
 
@@ -182,8 +181,6 @@ TODO: talk about call scilab based on api_scilab
   See SEP #35. 
   Do not hesitate to contact us if you have been using a Scilab header which had been removed from Scilab 5.2.
 
-
-TODO: add the information about the doxygen doc generation if we do it.
 
 call_scilab module:
 ===================
@@ -202,7 +199,7 @@ the function name.
 * Documentation and examples about call_scilab added (BooleanManagement call_scilab
   compile_and_run_call_scilab DisableInteractiveMode GetLastJob DoubleManagement
   ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement
-  TerminateScilab) 
+  TerminateScilab)
 
 * Some function profiles in stack3.h provided to manage named variable
   have been moved in CallScilab.h (please note that we have not changed the ABI
@@ -214,12 +211,22 @@ the function name.
 * In call_scilab, all previous functions available to read/write data from/to
   the Scilab engine are now obsolete but supported until Scilab 6:
 
-  TODO  list all depecreated functions
-
-  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
-  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead
-    (same profile)
-  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+  * C2F(readmat) is obsolete. Please use readNamedMatrix in api_double.h
+  * C2F(readchain) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h
+  * C2F(matptr) is obsolete. Please use readNamedMatrixOfDouble in api_double.h
+  * C2F(creadmat) is obsolete. Please use readNamedMatrix in api_double.h
+  * C2F(creadbmat) is obsolete. Please use readNamedMatrixOfBoolean in api_boolean.h
+  * C2F(creadcmat) is obsolete. Please use readNamedComplexMatrixOfDouble in api_double.h
+  * C2F(creadchain) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h
+  * C2F(creadchains) is obsolete. Please use readNamedMatrixOfString or readNamedMatrixOfWideString in api_string.h in api_string.h
+  * C2F(cmatptr) is obsolete. Please use readNamedMatrixOfDouble in api_double.h
+  * C2F(cmatcptr) is obsolete. Please use readNamedComplexMatrixOfDouble in api_double.h
+  * C2F(cmatsptr) is obsolete. Please use createNamedMatrixOfString or createNamedMatrixOfWideString in api_string.h
+  * C2F(cmatbptr) is obsolete. Please use createNamedMatrixOfBoolean in api_boolean.h
+  * C2F(cwritemat) is obsolete. Please use createNamedMatrixOfDouble in api_double.h
+  * C2F(cwritecmat) is obsolete. Please use createNamedComplexMatrixOfDouble in api_double.h
+  * C2F(cwritechain) is obsolete. Please use createNamedMatrixOfString or createNamedMatrixOfWideString in api_string.h
+  * C2F(cwritebmat) is obsolete. Please use createNamedMatrixOfBoolean in api_boolean.h
 
 * "make check" now also builds call_scilab examples
 
