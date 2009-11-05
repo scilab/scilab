@@ -125,7 +125,7 @@ modulesDesc = uicontrol("Parent", atomsfig,..
 // Buttons
 // =============================================================================
 
-buttonWidth = (descFrameWidth - 3*margin) / 4;
+buttonWidth = (descFrameWidth - 2*margin) / 3;
 
 // "Remove" Button
 
@@ -159,17 +159,5 @@ updateButton = uicontrol("Parent", atomsfig,..
     "Callback", "cbAtomsGui", ..
     "Enable", "off", ..
     "Tag", "updateButton")
-
-
-// "Update" Button
-
-updateButton = uicontrol("Parent", atomsfig,..
-    "Style", "pushbutton",..
-    "Position", [listboxFrameWidth+5*margin+3*buttonWidth margin buttonWidth widgetHeight],..
-    "FontSize", defaultFontSize,..
-    "String", gettext("Load"),..
-    "Callback", "cbAtomsGui", ..
-    "Enable", "off", ..
-    "Tag", "loadButton")
 
 endfunction
