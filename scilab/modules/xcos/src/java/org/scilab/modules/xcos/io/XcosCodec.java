@@ -129,10 +129,10 @@ public class XcosCodec extends mxCodec {
 
 	//Link 
 	
-	XcosObjectCodec ExplicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null ,null);
-	mxCodecRegistry.register(ExplicitlinkCodec);
-	XcosObjectCodec ImplicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null ,null);
-	mxCodecRegistry.register(ImplicitlinkCodec);
+	XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null , null);
+	mxCodecRegistry.register(explicitlinkCodec);
+	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);
+	mxCodecRegistry.register(implicitlinkCodec);
 	
 	// Ports
 	XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), portIgnore, refs, null);
@@ -157,36 +157,5 @@ public class XcosCodec extends mxCodec {
 	super(document);
     }
     
-	public Object decode(Node node, Object into)
-	{
-		Object obj = null;
-
-		if (node != null && node.getNodeType() == Node.ELEMENT_NODE)
-		{
-			
-			mxObjectCodec codec = mxCodecRegistry.getCodec(node.getNodeName());
-
-			try
-			{
-				if (codec != null)
-				{
-					obj = codec.decode(this, node, into);
-				}
-				else
-				{
-					obj = node.cloneNode(true);
-					((Element) obj).removeAttribute("as");
-				}
-			}
-			catch (Exception e)
-			{
-				System.err.println("Cannot decode " + node.getNodeName() + ": "
-						+ e.getMessage());
-				e.printStackTrace();
-			}
-		}
-
-		return obj;
-	}
     
 }
