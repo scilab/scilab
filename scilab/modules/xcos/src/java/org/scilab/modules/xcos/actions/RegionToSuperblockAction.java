@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.block.ImplicitInBlock;
 import org.scilab.modules.xcos.block.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
@@ -239,11 +240,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    		target = (BasicPort)link.getLink().getTarget();
 		    	
 	    		if(link.getLink() instanceof ExplicitLink){
-			    	source = superBlock.getAllExplicitOutputPorts().get(link.getPortNumber() - 1);
+			    	source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else if(link.getLink() instanceof ImplicitLink){
-			    	source = superBlock.getAllImplicitOutputPorts().get(link.getPortNumber() - 1);
+			    	source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else if(link.getLink() instanceof CommandControlLink){
-			    	source = superBlock.getAllCommandPorts().get(link.getPortNumber() - 1);
+			    	source = BasicBlockInfo.getAllCommandPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else{
 	    			System.err.println("Houston ...");
 	    		}
@@ -251,11 +252,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    		source = (BasicPort)link.getLink().getSource();
 	    		
 	    		if(link.getLink() instanceof ExplicitLink){
-	    			target = superBlock.getAllExplicitInputPorts().get(link.getPortNumber() - 1);
+	    			target = BasicBlockInfo.getAllExplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else if(link.getLink() instanceof ImplicitLink){
-	    			target = superBlock.getAllImplicitInputPorts().get(link.getPortNumber() - 1);
+	    			target = BasicBlockInfo.getAllImplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else if(link.getLink() instanceof CommandControlLink){
-	    			target = superBlock.getAllControlPorts().get(link.getPortNumber() - 1);
+	    			target = BasicBlockInfo.getAllControlPorts(superBlock).get(link.getPortNumber() - 1);
 	    		}else{
 	    			System.err.println("Houston ...");
 	    		}

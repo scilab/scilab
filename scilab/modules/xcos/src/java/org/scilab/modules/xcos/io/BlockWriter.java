@@ -192,7 +192,7 @@ public final class BlockWriter {
     	// Go over all blocks to dump it inside Scilab Structure
     	for (int i = 0; i < blockList.size(); ++i) {
     		blockList.get(i).setOrdering(i + 1);
-    		data.add(blockList.get(i).getAsScilabObj());
+    		data.add(BasicBlockInfo.getAsScilabObj(blockList.get(i)));
     	}
 
     	// Go over all link to dump it inside Scilab Structure
