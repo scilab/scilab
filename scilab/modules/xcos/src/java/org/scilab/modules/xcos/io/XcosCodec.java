@@ -78,6 +78,10 @@ public class XcosCodec extends mxCodec {
 		"simulationFunctionType",
 		"SimulationFunctionType"
 			};
+	
+	String[] portIgnore = {
+		"dataType"
+	};
 
 	
 	String[] refs = {"parent", "source", "target"};
@@ -131,17 +135,17 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(ImplicitlinkCodec);
 	
 	// Ports
-	XcosObjectCodec explicitOutputPortCodec = new XcosObjectCodec(new ExplicitOutputPort(), null, refs, null);
+	XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(explicitOutputPortCodec);
-	XcosObjectCodec explicitInputPortCodec = new XcosObjectCodec(new ExplicitInputPort(), null, refs, null);
+	XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(explicitInputPortCodec);    
-	XcosObjectCodec implicitOutputPortCodec = new XcosObjectCodec(new ImplicitOutputPort(), null, refs, null);
+	XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(implicitOutputPortCodec);
-	XcosObjectCodec implicitInputPortCodec = new XcosObjectCodec(new ImplicitInputPort(), null, refs, null);
+	XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(implicitInputPortCodec);
-	XcosObjectCodec commandPortCodec = new XcosObjectCodec(new CommandPort(), null, refs, null);
+	XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(commandPortCodec);
-	XcosObjectCodec controltPortCodec = new XcosObjectCodec(new ControlPort(), null, refs, null);
+	XcosObjectCodec controltPortCodec = new BasicPortCodec(new ControlPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(controltPortCodec);
     }
     
