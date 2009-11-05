@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -416,3 +417,4 @@ assert_close ( fopt , -44.0 , 1e-5 );
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
+
