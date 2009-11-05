@@ -45,6 +45,10 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -1097,18 +1101,23 @@ public class XcosDiagram extends ScilabGraph {
 	if (isModified()) {
 	    // The diagram has been modified
 	    // Ask the user want he want to do !
-	    int choice = JOptionPane.showConfirmDialog(getAsComponent(), XcosMessages.DIAGRAM_MODIFIED);
-	    if (choice == 0) {
+	    AnswerOption answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+		    IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
+	    
+	    switch(answer) {
+	    case YES_OPTION :
 	    	// Save the diagram
 	    	if (!saveDiagram()) {
 	    		//if save is canceled, cancel close windows
 	    		wantToClose = false;
 	    	}
-	    } else if (choice == 1) {
-		// The user selects no !
-	    } else if (choice == 2) {
+		break;
+	    case NO_OPTION :
+		break;
+	    case CANCEL_OPTION :
 		// The user cancels
 		wantToClose = false;
+		break;
 	    }
 	}
 
@@ -1418,20 +1427,21 @@ public class XcosDiagram extends ScilabGraph {
     		}
 
     	} else {
-    		int choice = JOptionPane.showConfirmDialog(this.getAsComponent()
-    				, String.format(XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()));
-    		if (choice  == 0) {
-    			try {
-    				FileWriter writer = new FileWriter(diagramFileName);
-    				writer.write("");
-    				writer.flush();
-    				writer.close();
-    				setSavedFile(diagramFileName);
-    				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    			} catch (IOException ioexc) {
-    				JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
-    			}
-    		}	
+    	    AnswerOption answer = ScilabModalDialog.show(String.format(XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()), 
+    		    XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO);
+    	    
+    	    if (answer  == AnswerOption.YES_OPTION) {
+    		try {
+    		    FileWriter writer = new FileWriter(diagramFileName);
+    		    writer.write("");
+    		    writer.flush();
+    		    writer.close();
+    		    setSavedFile(diagramFileName);
+    		    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+    		} catch (IOException ioexc) {
+    		    JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
+    		}
+    	    }	
 
     	}
     	info(XcosMessages.EMPTY_INFO);
