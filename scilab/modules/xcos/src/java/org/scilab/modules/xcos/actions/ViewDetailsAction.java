@@ -23,6 +23,7 @@ import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -49,7 +50,7 @@ public class ViewDetailsAction extends DefaultAction {
 		    File temp = File.createTempFile("xcos",".hdf5");
 		    temp.delete();
 		    int file_id = H5Write.createFile(temp.getAbsolutePath());
-		    H5Write.writeInDataSet(file_id, "scs_m", ((BasicBlock) selectedCells[i]).getAsScilabObj());
+		    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
 		    H5Write.closeFile(file_id);
 		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);");
 		}

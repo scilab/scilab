@@ -73,6 +73,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosDialogs;
@@ -543,7 +544,7 @@ public class XcosDiagram extends ScilabGraph {
 	    for (int i = 0 ; i <  cells.length ; ++i) {
 		Object cell = cells[i];
 		if (cell instanceof BasicBlock) {
-		    ((BasicBlock) cell).updateBlockView();
+		    BlockPositioning.updateBlockView((BasicBlock)cell);
 		}
 	    }
 	    getModel().endUpdate();
@@ -717,7 +718,7 @@ public class XcosDiagram extends ScilabGraph {
 	    getModel().beginUpdate();
 	    for (int i = 0 ; i < cells.length ; ++i) {
 		if (cells[i] instanceof BasicBlock) {
-		    ((BasicBlock) cells[i]).updateBlockView();
+		    BlockPositioning.updateBlockView((BasicBlock) cells[i]);
 		}
 	    }
 	    getModel().endUpdate();
