@@ -8,7 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+
 // There is a Warning message in the .dia of this test,
 // with respect to the conditionning of the direction matrix.
 // This is an expected message, because the simplex is degenerated
