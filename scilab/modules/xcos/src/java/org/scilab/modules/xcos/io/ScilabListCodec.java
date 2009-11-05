@@ -45,16 +45,6 @@ public class ScilabListCodec  extends XcosObjectCodec {
 		return obj;
 	}
 	
-	public Object afterDecode(mxCodec dec, Node node, Object obj)
-	{
-		return obj;
-	}
-	
-	public Node beforeDecode(mxCodec dec, Node node, Object obj)
-	{
-		return node;
-	}
-	
 	public Object cloneTemplate(Node node)
 	{
 		Object obj = null;
