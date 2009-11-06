@@ -32,14 +32,17 @@ public class KeywordManager {
 	 */
 	public KeywordManager(){
 		//Get all Scilab keywords with SWIG
-		if (true==true) { /* @TODO: update it to allow the text editor as standalone */
-			String[] commands =  ScilabKeywords.GetCommandsName();
-			String[] functions =  ScilabKeywords.GetFunctionsName();
-			String[] macros =  ScilabKeywords.GetMacrosName();
-		}else{
-			String[] commands =  {""};//ScilabKeywords.GetCommandsName();
-			String[] functions =  {""};// ScilabKeywords.GetFunctionsName();
-			String[] macros =  {""};//ScilabKeywords.GetMacrosName();
+		String[] commands;
+		String[] functions;
+		String[] macros;
+		if (true) { /* @TODO: update it to allow the text editor as standalone */
+			commands =  ScilabKeywords.GetCommandsName();
+			functions =  ScilabKeywords.GetFunctionsName();
+			macros =  ScilabKeywords.GetMacrosName();
+		} else {
+			commands =  new String[]{""};//ScilabKeywords.GetCommandsName();
+			functions =  new String[]{""};// ScilabKeywords.GetFunctionsName();
+			macros =  new String[]{""};//ScilabKeywords.GetMacrosName();
 			
 		}
 		//String[] variables =  ScilabKeywords.GetVariablesName();
