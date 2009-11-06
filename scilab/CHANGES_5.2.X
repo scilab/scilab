@@ -1,5 +1,12 @@
-               Changes between version 5.1.1 and 5.2.0 of Scilab
-               =================================================
+               Changes between version 5.2.0-beta1 and 5.2.0-xxx of Scilab
+               ==========================================================
+
+Bug fixes:
+==========
+
+
+               Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
+               =======================================================
 
 
 Xcos:
