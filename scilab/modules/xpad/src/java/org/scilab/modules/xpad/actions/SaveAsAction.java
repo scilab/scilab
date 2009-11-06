@@ -19,36 +19,32 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SaveAsAction extends DefaultAction {
 
-	private SaveAsAction(Xpad editor) {
-		super(XpadMessages.SAVE_AS, editor);
+    private SaveAsAction(Xpad editor) {
+	super(XpadMessages.SAVE_AS, editor);
+    }
+
+    public void doAction() {
+
+	if (!getEditor().saveAs(getEditor().getTextPane())) {
+	    ScilabModalDialog.show(XpadMessages.COULD_NOT_SAVE_FILE,
+		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 	}
 
-	public void doAction() {
-		
-		 if (!getEditor().saveAs(getEditor().getTextPane())) {
-				MessageBox messageBox = ScilabMessageBox.createMessageBox();
-				messageBox.setTitle(XpadMessages.XPAD_ERROR);
-				messageBox.setMessage(XpadMessages.COULD_NOT_SAVE_FILE);
-				messageBox.setModal(true);
-				messageBox.setIcon("error");
-				messageBox.displayAndWait();
-		 }
-			
-	}
-	
-	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
-	 }
-	 
-	 public static PushButton createButton(Xpad editor) {
-	     return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
-	 }
+    }
+
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
+    }
+
+    public static PushButton createButton(Xpad editor) {
+	return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
+    }
 }

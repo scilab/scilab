@@ -34,28 +34,28 @@ public class UnCommentAction extends DefaultAction {
 	{
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
+		ScilabStyleDocument scilabDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+		int line_start     = scilabDocument.getDefaultRootElement().getElementIndex(position_start);
+		int line_end       = scilabDocument.getDefaultRootElement().getElementIndex(position_end);
 		
-		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if(position_start == position_end)
+		if (position_start == position_end)
 		{
 			// No selection : uncomment the current line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentLine(line_start);
+			int offset = scilabDocument.getCommentManager().uncommentLine(scilabDocument, line_start);
 			getEditor().getTextPane().setCaretPosition(position_start-offset);
 		}
 		else if( line_start == line_end )
 		{
 			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentText(position_start);
+			int offset = scilabDocument.getCommentManager().uncommentText(scilabDocument, position_start);
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
 		else
 		{
 			// several lines are selected
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).uncommentLines(line_start, line_end);
-			position_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElement(line_end).getEndOffset();
+			scilabDocument.getCommentManager().uncommentLines(scilabDocument, line_start, line_end);
+			position_end = scilabDocument.getDefaultRootElement().getElement(line_end).getEndOffset();
 			
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-1);

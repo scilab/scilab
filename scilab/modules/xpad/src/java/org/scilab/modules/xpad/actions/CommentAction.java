@@ -28,8 +28,7 @@ public class CommentAction extends DefaultAction {
 		super(XpadMessages.COMMENT_SELECTION, editor);
 	}
 	
-	public void doAction()
-	{
+	public void doAction() 	{
 		ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		synchronized(doc){
 			int position_start = getEditor().getTextPane().getSelectionStart();
@@ -38,25 +37,23 @@ public class CommentAction extends DefaultAction {
 			int line_start     = doc.getDefaultRootElement().getElementIndex(position_start);
 			int line_end       = doc.getDefaultRootElement().getElementIndex(position_end);
 			
-			if(position_start == position_end)
-			{
+			if (position_start == position_end) {
 				// No selection : comment the current line
-				int offset = doc.commentLine(line_start);
+				int offset = doc.getCommentManager().commentLine(doc, line_start);
 				getEditor().getTextPane().setCaretPosition(position_start+offset);
 			}
 			
-			else if( line_start == line_end )
-			{
+			else if (line_start == line_end) {
 				// A part of the line is selected
-				int offset = doc.commentText(position_start);
+				int offset = doc.getCommentManager().commentText(doc, position_start);
 				getEditor().getTextPane().setSelectionStart(position_start);
-				getEditor().getTextPane().setSelectionEnd(position_end+offset);
+				getEditor().getTextPane().setSelectionEnd(position_end + offset);
 			}
 			
 			else
 			{
 				// several lines are selected
-				doc.commentLines(line_start, line_end);
+				doc.getCommentManager().commentLines(doc, line_start, line_end);
 				position_end = doc.getDefaultRootElement().getElement(line_end).getEndOffset();
 				
 				getEditor().getTextPane().setSelectionStart(position_start);

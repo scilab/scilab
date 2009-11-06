@@ -64,15 +64,13 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 	// Alignment of the line index
-	public final static float LEFT_JUSTIFY = 0.0f;
-	public final static float CENTER_JUSTIFY = 0.5f;
-	public final static float RIGHT_JUSTIFY = 1.0f;
+	public static final float LEFT_JUSTIFY = 0.0f;
+	public static final float CENTER_JUSTIFY = 0.5f;
+	public static final float RIGHT_JUSTIFY = 1.0f;
 
-	private final static Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
+	private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
 
-	private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
-
-	public final static int PANEL_GAP_SIZE = 10;
+	private static final int HEIGHT = Integer.MAX_VALUE - 1000000;
 
 	private JTextPane textPane;
 
@@ -92,6 +90,8 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	private int lastLine;
 
 	private HashMap<String, FontMetrics> fonts;
+
+	public final static int PANEL_GAP_SIZE = 10;
 
 	/**
 	 *	Create a line number component for a text component. This minimum
@@ -236,7 +236,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	 *  Specify the mimimum number of digits used to calculate the preferred
 	 *  width of the component. Default is 3.
 	 *
-	 *  @param minimumDisplayDigits  the number digits used in the preferred
+	 *  @param minimumNumbers  the number digits used in the preferred
 	 *                               width calculation
 	 */
 	public void setMinimumNumbers(int minimumNumbers) {
@@ -263,13 +263,14 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 			Dimension d = getPreferredSize();
 			d.setSize(preferredWidth, HEIGHT);
-			setPreferredSize( d );
-			setSize( d );
+			setPreferredSize(d);
+			setSize(d);
 		}
 	}
 
 	/**
 	 *  Draw the line numbers
+	 *  @param g The graphic component
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -280,16 +281,15 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int availableWidth = getSize().width - insets.left - insets.right;
 
 		//  Determine the rows to draw within the clipped bounds.
-		javax.swing.text.StyledDocument doc= textPane.getStyledDocument();
-		synchronized(doc){
+		javax.swing.text.StyledDocument doc = textPane.getStyledDocument();
+		synchronized (doc) {
 			Rectangle clip = g.getClipBounds();
 			int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
 			int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
 
 			while (rowStartOffset <= endOffset) {
 				try {
-					if (isCurrentLine(rowStartOffset))
-					{
+					if (isCurrentLine(rowStartOffset)) {
 						g.setColor(getCurrentLineForeground());
 					} else {
 						g.setColor(getForeground());
@@ -305,10 +305,12 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 					g.drawString(lineNumber, x, y);
 
 					//  Move to the next row
-
+		//			System.err.println("rowStartOffset: " + rowStartOffset);
+					//System.err.println("text size : "+textPane.getDocument().getLength());
+					//if (rowStartOffset < textPane.getDocument().getLength()) {
 					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
-				}
-				catch(Exception ex) {
+					//}
+				} catch (BadLocationException ex) {
 					ex.printStackTrace();
 					rowStartOffset = endOffset; // break loop when an exception is thrown
 				}
@@ -324,37 +326,94 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int caretPosition = textPane.getCaretPosition();
 		Element root = textPane.getDocument().getDefaultRootElement();
 
-		if (root.getElementIndex(rowStartOffset) == root.getElementIndex(caretPosition))
+		if (root.getElementIndex(rowStartOffset) == root.getElementIndex(caretPosition)) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 	/*
 	 *	Get the line number to be drawn. The empty string will be returned
 	 *  when a line of text has wrapped.
+	 *  @param rowStartOffset todo
+	 *  @return 
 	 */
 	protected String getTextLineNumber(int rowStartOffset) {
 		Element root = textPane.getDocument().getDefaultRootElement();
 		int index = root.getElementIndex(rowStartOffset);
 		Element line = root.getElement(index);
 
-		if (line.getStartOffset() == rowStartOffset)
+		if (line.getStartOffset() == rowStartOffset) {
 			return String.valueOf(index + 1);
-		else
+		} else {
 			return "";
+		}
 	}
 
 	/*
-	 *  Determine the X offset to properly align the line number when drawn
+	 * Determine the X offset to properly align the line number when drawn
+	 * @param availableWidth Width available
+	 * @param stringWidth the width of the strings
+	 * @return the offset of X
 	 */
 	private int getOffsetX(int availableWidth, int stringWidth) {
-		return (int)((availableWidth - stringWidth) * alignmentOfNumber);
+		return (int) ((availableWidth - stringWidth) * alignmentOfNumber);
 	}
-
 	/*
 	 *  Determine the Y offset for the current row
 	 */
+	private int getOffsetY(int rowStartOffset, FontMetrics fontMetrics)	throws BadLocationException	{
+		//  Get the bounding rectangle of the row
+
+		Rectangle r = this.textPane.modelToView(rowStartOffset);
+		int lineHeight = fontMetrics.getHeight();
+		int y = r.y + r.height;
+		int descent = 0;
+
+		//  The text needs to be positioned above the bottom of the bounding
+		//  rectangle based on the descent of the font(s) contained on the row.
+		//System.err.println("r.height == lineHeight / " + r.height + " == " + lineHeight);
+		if (r.height == lineHeight) { // default font is being used
+			//System.err.println("ici");
+			descent = fontMetrics.getDescent();
+			//System.err.println("la");
+		} else { // We need to check all the attributes for font changes
+			if (fonts == null) {
+				fonts = new HashMap<String, FontMetrics>();
+			}
+			
+			Element root = this.textPane.getDocument().getDefaultRootElement();
+			int index = root.getElementIndex(rowStartOffset);
+			Element line = root.getElement(index);
+
+			for (int i = 0; i < line.getElementCount(); i++) {
+				Element child = line.getElement(i);
+				AttributeSet as = child.getAttributes();
+				String fontFamily = (String) as.getAttribute(StyleConstants.FontFamily);
+				Integer fontSize = (Integer) as.getAttribute(StyleConstants.FontSize);
+				String key = fontFamily + fontSize;
+
+				FontMetrics fm = fonts.get(key);
+
+				if (fm == null)	{
+					Font font = new Font(fontFamily, Font.PLAIN, fontSize);
+					fm = this.textPane.getFontMetrics(font);
+					fonts.put(key, fm);
+				}
+				System.err.println("descent : "+descent +" fm.getDescent() : "+fm.getDescent());
+				descent = Math.max(descent, fm.getDescent());
+			}
+		}
+		//System.err.println("y - descent=" + (y - descent));
+		return y - descent;
+	}
+
+
+	/*
+	 *  Determine the Y offset for the current row
+	 */ 
+	/*
 	private int getOffsetY(int rowStartOffset, FontMetrics fontMetrics) throws BadLocationException {
 
 		Rectangle r = textPane.modelToView(rowStartOffset);
@@ -366,12 +425,11 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		//  rectangle based on the descent of the font(s) contained on the row.
 
 		if (r.height == lineHeight) { // default font is being used
-
 			descent = fontMetrics.getDescent();
 		} else { // We need to check all the attributes for font changes
-
-			if (fonts == null)
+			if (fonts == null) {
 				fonts = new HashMap<String, FontMetrics>();
+			}
 
 			Element root = textPane.getDocument().getDefaultRootElement();
 			int index = root.getElementIndex(rowStartOffset);
@@ -380,8 +438,8 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 			for (int i = 0; i < line.getElementCount(); i++) {
 				Element child = line.getElement(i);
 				AttributeSet as = child.getAttributes();
-				String fontFamily = (String)as.getAttribute(StyleConstants.FontFamily);
-				Integer fontSize = (Integer)as.getAttribute(StyleConstants.FontSize);
+				String fontFamily = (String) as.getAttribute(StyleConstants.FontFamily);
+				Integer fontSize = (Integer) as.getAttribute(StyleConstants.FontSize);
 				String key = fontFamily + fontSize;
 
 				FontMetrics fm = fonts.get(key);
@@ -397,10 +455,11 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 		return y - descent;
 	}
-
-//
-//  Implement CaretListener interface
-//
+*/
+/**
+*  Implement CaretListener interface
+*  @param e
+*/
 	public void caretUpdate(CaretEvent e) {
 		//  Get the line the caret is positioned on
 
@@ -480,10 +539,10 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 				try {
 					Element root = textPane.getDocument().getDefaultRootElement();
 					int offset =  textPane.getCaretPosition();
-					int currentLine = root.getElementIndex( offset );
+					int currentLine = root.getElementIndex(offset);
 
 					if (lastLine != currentLine) {
-						Element lineElement = root.getElement( lastLine );
+						Element lineElement = root.getElement(lastLine);
 
 						if (lineElement != null) {
 							int start = lineElement.getStartOffset();

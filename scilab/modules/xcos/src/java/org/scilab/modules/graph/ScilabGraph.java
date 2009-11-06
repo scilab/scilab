@@ -74,16 +74,14 @@ public class ScilabGraph extends mxGraph {
      */
     protected mxIEventListener changeTracker = new mxIEventListener()
     {
-	public void invoke(Object source, mxEventObject evt)
-	{
+	public void invoke(Object source, mxEventObject evt) {
 	    setModified(true);
 	}
     };   
 
     protected mxIEventListener undoHandler = new mxIEventListener()
     {
-	public void invoke(Object source, mxEventObject evt)
-	{
+	public void invoke(Object source, mxEventObject evt) {
 	    undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
 	}
     };

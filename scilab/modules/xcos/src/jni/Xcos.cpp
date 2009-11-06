@@ -102,6 +102,7 @@ curEnv->DeleteLocalRef(localInstance);
 voidxcosID=NULL; 
 voidxcosjstringID=NULL; 
 voidwarnCellByUIDjstringjstringID=NULL; 
+voidcloseXcosFromScilabID=NULL; 
 
 
 }
@@ -127,6 +128,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         voidxcosID=NULL; 
 voidxcosjstringID=NULL; 
 voidwarnCellByUIDjstringjstringID=NULL; 
+voidcloseXcosFromScilabID=NULL; 
 
 
 }
@@ -196,6 +198,22 @@ jstring UID_ = curEnv->NewStringUTF( UID );
 jstring message_ = curEnv->NewStringUTF( message );
 
                          curEnv->CallStaticVoidMethod(cls, voidwarnCellByUIDjstringjstringID ,UID_, message_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::closeXcosFromScilab (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidcloseXcosFromScilabID = curEnv->GetStaticMethodID(cls, "closeXcosFromScilab", "()V" ) ;
+if (voidcloseXcosFromScilabID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "closeXcosFromScilab");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidcloseXcosFromScilabID );if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

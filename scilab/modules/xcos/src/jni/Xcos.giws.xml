@@ -8,5 +8,6 @@
       <parameter name="UID" type="String"/>
       <parameter name="message" type="String"/>
     </method>
+    <method name="closeXcosFromScilab" returnType="void" modifier="static"/>	
   </object>
 </package>

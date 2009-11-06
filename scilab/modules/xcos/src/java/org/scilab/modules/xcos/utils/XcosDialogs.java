@@ -12,8 +12,8 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 
 /**
  * Xcos standard dialogs
@@ -32,36 +32,20 @@ public final class XcosDialogs {
 	 * Dialog displayed when no  block is selected and one is needed for action
 	 */
 	public static void noBlockSelected() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.NO_BLOCK_SELECTED);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
+	    ScilabModalDialog.show(XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 
 	/**
 	 * Dialog displayed when saving failed
 	 */
 	public static void couldNotSaveFile() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.FAIL_SAVING_DIAGRAM);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
-
+	    ScilabModalDialog.show(XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 	
 	/**
 	 * Dialog displayed when loading failed
 	 */
 	public static void couldNotLoadFile() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.FAIL_LOADING_DIAGRAM);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
+	    ScilabModalDialog.show(XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 }

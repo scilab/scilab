@@ -1,5 +1,4 @@
-/*
- * Scilab (http://www.scilab.org/) - This file is part of Scilab
+/* Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
  *
  * This file must be used under the terms of the CeCILL.
@@ -381,7 +380,9 @@ public final class FindAction extends DefaultAction {
 				int currentCaretPos = xpadTextPane.getCaretPosition();
 				
 				if (buttonSelection.isSelected()) {
-					text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
+					ScilabStyleDocument scilabDocument = (ScilabStyleDocument)xpadTextPane.getStyledDocument();
+					text = scilabDocument.getSearchManager().getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
+					//text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
 				} else {
 					text = xpadTextPane.getText();
 				}
@@ -413,10 +414,10 @@ public final class FindAction extends DefaultAction {
 	            if (!replacedText.equals(text)) {// only touch document if any replacement took place
 	            	ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 	            	try {
-	            		boolean mergeMode = doc.getShouldMergeEdits();
-	            		doc.setShouldMergeEdits(true);
+	            		boolean mergeMode = doc.getUpdateManager().getShouldMergeEdits();
+	            		doc.getUpdateManager().setShouldMergeEdits(true);
 	            		doc.replace(startSelectedLines, text.length(), replacedText, null);
-	            		doc.setShouldMergeEdits(mergeMode);
+	            		doc.getUpdateManager().setShouldMergeEdits(mergeMode);
 	            	} catch (BadLocationException e1) {
 	            		// TODO Auto -generated catch block
 	            		e1.printStackTrace();
@@ -552,10 +553,10 @@ public final class FindAction extends DefaultAction {
 		}
 
 		if (onlySelectedLines) {
-			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
+			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
 					wholeWordSelected, regexpSelected);
 		} else {
-			offsets = scilabStyle.findWord(wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
 		
 		statusBar.setText("");

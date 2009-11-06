@@ -102,6 +102,7 @@ curEnv->DeleteLocalRef(localInstance);
 voidxpadID=NULL; 
 voidxpadjstringID=NULL; 
 voidxpadHighlightLinejstringjintID=NULL; 
+voidcloseXpadFromScilabID=NULL; 
 
 
 }
@@ -127,6 +128,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         voidxpadID=NULL; 
 voidxpadjstringID=NULL; 
 voidxpadHighlightLinejstringjintID=NULL; 
+voidcloseXpadFromScilabID=NULL; 
 
 
 }
@@ -194,6 +196,23 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "xpadHighlightLine");
 jstring fileName_ = curEnv->NewStringUTF( fileName );
 
                          curEnv->CallStaticVoidMethod(cls, voidxpadHighlightLinejstringjintID ,fileName_, lineNumber);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xpad::closeXpadFromScilab (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidcloseXpadFromScilabID = curEnv->GetStaticMethodID(cls, "closeXpadFromScilab", "()V" ) ;
+if (voidcloseXpadFromScilabID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "closeXpadFromScilab");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidcloseXpadFromScilabID );
+if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

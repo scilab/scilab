@@ -28,13 +28,13 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem, ActionListener {
-	private Xpad _editor;
+	private Xpad editor;
 
 	public DefaultCheckAction(Xpad editor) {
 		super();
 		setText(XpadMessages.DEFAULT + XpadMessages.DOTS);
 		setState(true);
-		_editor = editor;
+		this.editor = editor;
 		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
 
 			public void callBack() {
@@ -51,7 +51,7 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 		super();
 		setText(label);
 		setState(true);
-		_editor = editor;
+		this.editor = editor;
 		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
 			public void callBack() {
 				doAction();
@@ -65,12 +65,20 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 
 
 
+	/**
+	 * Return the editor
+	 * @return the editor
+	 */
 	public Xpad getEditor() {
-		return _editor;
+		return editor;
 	}
 
+	/**
+	 * doAction is overloaded by son classes
+	 * If not, trigger a message saying that it has not yet been implemeted  
+	 */
 	public void doAction() {
-		JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(getEditor(), "Feature not yet implemented (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

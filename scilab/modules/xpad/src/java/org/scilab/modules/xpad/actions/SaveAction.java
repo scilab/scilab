@@ -18,8 +18,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -41,15 +41,10 @@ public class SaveAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		if (!getEditor().newSave(getEditor().getTabPane().getSelectedIndex(), true)) {
-			MessageBox messageBox = ScilabMessageBox.createMessageBox();
-			messageBox.setTitle(XpadMessages.XPAD_ERROR);
-			messageBox.setMessage(XpadMessages.COULD_NOT_SAVE_FILE);
-			messageBox.setModal(true);
-			messageBox.setIcon("error");
-			messageBox.displayAndWait();
-		}
-
+	    if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
+		ScilabModalDialog.show(XpadMessages.COULD_NOT_SAVE_FILE,
+			XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+	    }
 	}
 }
 
