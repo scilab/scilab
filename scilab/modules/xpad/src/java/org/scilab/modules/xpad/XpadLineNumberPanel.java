@@ -305,7 +305,6 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 					g.drawString(lineNumber, x, y);
 
 					//  Move to the next row
-
 					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
 				}
 				catch(Exception ex) {

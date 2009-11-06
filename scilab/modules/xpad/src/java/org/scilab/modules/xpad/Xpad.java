@@ -36,6 +36,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -964,6 +965,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		try {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
+			System.err.println("Could not retrieve the current text tab.");
 			return null;
 		}
 	}

@@ -40,51 +40,34 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
 
-	private CompoundUndoManager undo = new CompoundUndoManager(); 
+	
+	private String eventType;
+	
+	private boolean contentModified;
+	Xpad editor;
 
-	private volatile boolean autoIndent         = true;
-	private volatile boolean autoColorize       = true;
-	private volatile boolean colorizeInprogress = false;
-	private volatile boolean indentInprogress   = false;
-	private volatile boolean updaterDisabled    = false;
-	private volatile boolean shouldMergeEdits    = false;
-	
-	private String EventType;
-	
-	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
-	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
-	private final String[] bools = {"%T", "%F", "%t", "%f",	"%e","%pi",
-			"%inf", "%i", "%z", "%s", "%nan", "%eps","SCI", "WSCI", "SCIHOME", "TMPDIR", "MSDOS"};
-	private final String[] comments = {"//[^{\n}]*"};
-	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
-			"\\./", "\\.\\\\", "\\.\\^", 
-			"\\.\\*\\.", "\\./\\.", "\\.\\\\\\.",
-			"==", "<", ">", "<=", ">=", "~=", "@=",
-			"&", "\\|", "@", "~",
-	"\\.\\.[\\.]*"};
-	
-	private Pattern patternIn;
-	private Pattern patternInOut;
-	private Pattern patternOut;
-	private Pattern patternComment;
-	private Pattern patternQuote;
-	
-	private Pattern patternSpace;
+	/*if you want to add a new style just add it in the xml*/
+	private ArrayList<String> listStylesName;
+	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
+	private Style defaultStyle;
 
-	private final String IN = "IN";
-	private final String OUT = "OUT";
-	private final int VARIABLES = 0;
-	private final int COMMANDS = 1;
-	private final int COMMENTS = 2;
-	private final int FUNCTIONS = 3;
-	private final int MACROS = 4;
-	private final int OPERATORS = 5;
-	private final int QUOTATIONS = 6;
-	
-	private int currentLevelIdent = 0;
-	private String currentStringIndent = "";
-	private String tabulation = "  ";
-	private final String line_comment="//";
+	private UpdateManager updateManager = new UpdateManager();
+	private IndentManager indentManager = new IndentManager();
+	private ColorizationManager colorizationManager = new ColorizationManager();	
+	private CommentManager commentManager = new CommentManager();
+	private SearchManager searchManager = new SearchManager();
+	private TabManager tabManager = new TabManager();
+	public EncodingManager getEncodingManager() {
+		return encodingManager;
+	}
+
+	public void setEncodingManager(EncodingManager encodingManager) {
+		this.encodingManager = encodingManager;
+	}
+
+
+
+	private EncodingManager encodingManager = new EncodingManager();
 	
 	private String encoding = Charset.defaultCharset().toString();
 	
@@ -93,22 +76,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean singleLine = false;
 	private int currentLine;
 	
-	private boolean contentModified;
 	
 	//private XpadStyles xpadStyles; 
-	
-	Hashtable<String, String[]> keywords;
-	String[] commands;
-	String[] functions;
-	String[] macros;
-	
-	Xpad editor;
 
-	/*if you want to add a new style just add it in the xml*/
-	private ArrayList<String> listStylesName;
-	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
-	private Style defaultStyle;
 
+    private UndoManager undo = new UndoManager() {
+	public void undoableEditHappened(UndoableEditEvent e) {
+				
+		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+					|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
+			&& (e.getEdit().canUndo())) {
+			/*
+			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+				System.out.println("remove");
+				System.out.println(indentInprogress);
+			}
+			*/
+			if (!indentManager.isIndentInprogress()) { 
+				((UndoableEdit) (updateManager.getShouldMergeEdits() ?  updateManager.getCompoundEdit(): this)).addEdit(e.getEdit());
+				eventType = "";
+			}
+		}
+
+	}
+    };
+    	
 
 	public ScilabStyleDocument(Xpad editor) {
 		super();
@@ -146,9 +138,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
 		
-		loadingsForColorisation();
-		// do not use setcontentModified before construstor is finished because it needs a complete objet
-		contentModified = false ; 
+		contentModified=false;
 		
 		this.addDocumentListener( new DocumentListener(){
 			
@@ -1658,10 +1648,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		editor.updateTabTitle();
 	}
 
-	public int getLineToColor() {
-		return currentLine;
-	}
-
 	public void setLineToColor(int lineToColor) {
 		this.currentLine = lineToColor;
 	}
@@ -1742,4 +1728,10 @@ class CompoundUndoManager extends UndoManager {
 	}
 };
 
-};
+	public void disableUndoManager(){
+		this.removeUndoableEditListener(undo);
+	}
+	
+	public void enableUndoManager(){
+        this.addUndoableEditListener(undo);
+	}
