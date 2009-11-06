@@ -20,9 +20,7 @@ import java.util.List;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
-import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;

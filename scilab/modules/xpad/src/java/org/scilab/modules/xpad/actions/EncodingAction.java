@@ -27,133 +27,128 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedMap;
 
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class EncodingAction extends DefaultCheckAction {
 
-	private String encoding;
+    private String encoding;
 
-	public EncodingAction(String encodingName, Xpad editor) {
-		super(encodingName, editor);
-		encoding = encodingName;
+    public EncodingAction(String encodingName, Xpad editor) {
+	super(encodingName, editor);
+	encoding = encodingName;
+    }
+
+    public JRadioButtonMenuItem createRadioButtonMenuItem(Xpad editor) {
+	JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
+	radio.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent arg0) {
+		doAction();
+	    }
+	});
+	return radio;
+    }
+
+    public static ArrayList<String> getEcodings() {
+	SortedMap<String,Charset> charsetList = Charset.availableCharsets();
+	Set cles = charsetList.keySet();
+	Iterator iterator = cles.iterator();
+	ArrayList<String> completEncodingList = new ArrayList<String>();
+	ArrayList<String> encodingList = new ArrayList<String>();
+	while (iterator.hasNext()) {
+	    completEncodingList.add(charsetList.get(iterator.next()).toString());
 	}
 
-	public JRadioButtonMenuItem createRadioButtonMenuItem(Xpad editor) {
-		JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
-		radio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				doAction();
-			}
-		});
-		return radio;
+	for (int i = 0; i < completEncodingList.size(); i++) {
+	    if (completEncodingList.get(i).toLowerCase().startsWith("ibm") ||
+		    completEncodingList.get(i).toLowerCase().startsWith("x-")) {
+		continue;
+	    } else {
+		encodingList.add(completEncodingList.get(i));
+	    }
 	}
 
-	public static ArrayList<String> getEcodings() {
-		SortedMap<String,Charset> charsetList = Charset.availableCharsets();
-		Set cles = charsetList.keySet();
-		Iterator iterator = cles.iterator();
-		ArrayList<String> completEncodingList = new ArrayList<String>();
-		ArrayList<String> encodingList = new ArrayList<String>();
-		while (iterator.hasNext()) {
-			completEncodingList.add(charsetList.get(iterator.next()).toString());
-		}
+	return encodingList;
+    }
 
-		for (int i = 0; i < completEncodingList.size(); i++) {
-			if (completEncodingList.get(i).toLowerCase().startsWith("ibm") ||
-					completEncodingList.get(i).toLowerCase().startsWith("x-")) {
-				continue;
-			} else {
-				encodingList.add(completEncodingList.get(i));
-			}
-		}
+    public void doAction() {
+	boolean isSuccess = false;
 
-		return encodingList;
+	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+
+	if (styleDocument.isContentModified()) {
+	    /* File modified */
+	    if (getEditor().getTextPane().getName() != null) {
+		/* Not untitled */
+
+		switch (ScilabModalDialog.show(XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
+			IconType.QUESTION_ICON, ButtonType.YES_NO)) {
+			case YES_OPTION : //Yes, continue
+			    break;
+			case NO_OPTION ://No, exit
+			    // Back to previous menu checked
+			    getEditor().updateEncodingMenu();
+			    return;
+		}
+	    }			
 	}
 
-	public void doAction() {
-		boolean isSuccess = false;
+	// Avoid modifications to be saved
+	styleDocument.disableUpdaters();
+	boolean indentMode = styleDocument.getAutoIndent();
+	styleDocument.setAutoIndent(false); 
 
-		ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
-		
-		if (styleDocument.isContentModified()) {
-			/* File modified */
-			if (getEditor().getTextPane().getName() != null) {
-				/* Not untitled */
-				switch (JOptionPane.showConfirmDialog(this, XpadMessages.MODIFICATIONS_WILL_BE_LOST, 
-						XpadMessages.CONTINUE, JOptionPane.YES_NO_OPTION)) {
-						case 0 : //Yes, continue
-							break;
-						case 1 ://No, exit
-							// Back to previous menu checked
-							getEditor().updateEncodingMenu();
-							return;
-						default :
-							return;
-				}
-			}			
+	styleDocument.setEncoding(encoding);
+
+	// If file associated then reload
+	EditorKit editorKit = getEditor().getEditorKit();
+	String fileName = getEditor().getTextPane().getName();
+
+	try {
+	    if (fileName != null) {
+		File file = new File(getEditor().getTextPane().getName());
+		if (file.exists()) {
+		    if (styleDocument.getLength() > 0) {
+			styleDocument.getUndoManager().discardAllEdits();
+			styleDocument.disableUndoManager();
+			styleDocument.remove(0, styleDocument.getLength());
+			editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
+			styleDocument.enableUndoManager();
+		    }
 		}
-
-		// Avoid modifications to be saved
-		styleDocument.disableUpdaters();
-		boolean indentMode = styleDocument.getAutoIndent();
-		styleDocument.setAutoIndent(false); 
-
-		styleDocument.setEncoding(encoding);
-
-		// If file associated then reload
-		EditorKit editorKit = getEditor().getEditorKit();
-		String fileName = getEditor().getTextPane().getName();
-
-		try {
-			if (fileName != null) {
-				File file = new File(getEditor().getTextPane().getName());
-				if (file.exists()) {
-					if (styleDocument.getLength() > 0) {
-						styleDocument.getUndoManager().discardAllEdits();
-						styleDocument.disableUndoManager();
-						styleDocument.remove(0, styleDocument.getLength());
-						editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
-						styleDocument.enableUndoManager();
-					}
-				}
-			}
-			isSuccess = true;
-		} catch (UnsupportedEncodingException e) {
-			isSuccess = false;
-		} catch (FileNotFoundException e) {
-			isSuccess = false;
-		} catch (IOException e) {
-			isSuccess = false;
-		} catch (BadLocationException e) {
-			isSuccess = false;
-		}
-
-		//getEditor().getTextPane().repaint();
-
-		/* Allow changes to be saved */
-		styleDocument.colorize(0, styleDocument.getLength());
-		styleDocument.setAutoIndent(indentMode);
-		styleDocument.enableUpdaters();
-		
-		styleDocument.setContentModified(false);
-		
-
-		if (!isSuccess) {
-			MessageBox messageBox = ScilabMessageBox.createMessageBox();
-			messageBox.setTitle(XpadMessages.XPAD_ERROR);
-			messageBox.setMessage(XpadMessages.COULD_NOT_CONVERT_FILE);
-			messageBox.setModal(true);
-			messageBox.setIcon("error");
-			messageBox.displayAndWait();
-		}
+	    }
+	    isSuccess = true;
+	} catch (UnsupportedEncodingException e) {
+	    isSuccess = false;
+	} catch (FileNotFoundException e) {
+	    isSuccess = false;
+	} catch (IOException e) {
+	    isSuccess = false;
+	} catch (BadLocationException e) {
+	    isSuccess = false;
 	}
+
+	//getEditor().getTextPane().repaint();
+
+	/* Allow changes to be saved */
+	styleDocument.colorize(0, styleDocument.getLength());
+	styleDocument.setAutoIndent(indentMode);
+	styleDocument.enableUpdaters();
+
+	styleDocument.setContentModified(false);
+
+
+	if (!isSuccess) {
+	    ScilabModalDialog.show(XpadMessages.COULD_NOT_CONVERT_FILE,
+		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+	}
+    }
 }
