@@ -1016,7 +1016,7 @@ public class Xcos extends SwingScilabTab implements Tab {
      * Look in each diagram to find the block corresponding to the given uid
      * and display a warning message.
      * 
-     * @param uid - A String as UID.
+     * @param UID - A String as UID.
      * @param message - The message to display.
      */
     public static void warnCellByUID(String UID, String message) {
@@ -1025,5 +1025,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 	for (int i = 0; i < allDiagrams.size(); ++i) {
 	    allDiagrams.get(i).warnCellByUID(UID, message);
 	}
+    }
+    
+    /**
+     * This method is called when the user exits from Scilab
+     */
+    public static void closeXcosFromScilab() {
+    	// TODO
     }
 }
