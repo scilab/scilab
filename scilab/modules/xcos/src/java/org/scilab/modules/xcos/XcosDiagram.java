@@ -794,7 +794,7 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	    // Context menu
-	    if (arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) {
+	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) || arg0.isPopupTrigger()) {
 
 		if (cell == null) {
 		    // Display diagram context menu
