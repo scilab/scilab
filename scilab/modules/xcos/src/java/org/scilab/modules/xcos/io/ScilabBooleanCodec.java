@@ -19,7 +19,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     private static final String LINE = "line";
     private static final String DATA = "data";
     private static final String HEIGHT = "height";
-    private final static String WIDTH = "width";
+    private static final String WIDTH = "width";
     
     public ScilabBooleanCodec(Object template) {
 	super(template);
@@ -32,8 +32,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 
     }
 
-    public Node encode(mxCodec enc, Object obj)
-    {
+    public Node encode(mxCodec enc, Object obj) {
 	String name = mxCodecRegistry.getName(obj.getClass());
 	Node node = enc.getDocument().createElement(name);
 
@@ -41,8 +40,8 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	mxCodec.setAttribute(node, WIDTH, scilabBoolean.getWidth());
 	mxCodec.setAttribute(node, HEIGHT, scilabBoolean.getHeight());
 
-	for(int i = 0 ; i < scilabBoolean.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabBoolean.getWidth() ; ++j) {
+	for (int i = 0; i < scilabBoolean.getHeight(); ++i) {
+	    for (int j = 0; j < scilabBoolean.getWidth(); ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
@@ -54,8 +53,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     }
     
 
-    public Object decode(mxCodec dec, Node node, Object into)
-    {
+    public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
 
@@ -67,8 +65,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    NamedNodeMap attrs = node.getAttributes();
 	    int heightXMLPosition = -1;
 	    int widthXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++)
-	    {
+	    for (int i = 0; i < attrs.getLength(); i++) {
 		Node attr = attrs.item(i);
 		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
 		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
@@ -80,13 +77,12 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 
 	    boolean[][] data = new boolean[height][width];
 	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0 ; i < allValues.getLength() ; ++i) {
+	    for (int i = 0; i < allValues.getLength(); ++i) {
 	    	int lineXMLPosition = -1;
 	    	int columnXMLPosition = -1;
 	    	int valueXMLPosition = -1;
 	    	NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-	    	for (int j = 0; j < dataAttributes.getLength(); j++)
-	    	{
+	    	for (int j = 0; j < dataAttributes.getLength(); j++) {
 	    		Node attr = dataAttributes.item(j);
 	    		if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
 	    		if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
@@ -97,7 +93,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    	int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
 	    	int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
 	    	
-	    	if(dataAttributes.item(valueXMLPosition).getNodeValue().compareToIgnoreCase("false") == 0){
+	    	if (dataAttributes.item(valueXMLPosition).getNodeValue().compareToIgnoreCase("false") == 0) {
 	    		data[line][column] = false;
 	    	} else {
 	    		data[line][column] = true;
@@ -106,11 +102,9 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    }
 
 	    ((ScilabBoolean) obj).setData(data);
-	}
-	catch (UnrecognizeFormatException e) {
+	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
-	}
-	finally {
+	} finally {
 	    return obj;
 	}
 
