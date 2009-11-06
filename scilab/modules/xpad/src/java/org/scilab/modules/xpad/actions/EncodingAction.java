@@ -103,11 +103,11 @@ public class EncodingAction extends DefaultCheckAction {
 		}
 
 		// Avoid modifications to be saved
-		styleDocument.disableUpdaters();
-		boolean indentMode = styleDocument.getAutoIndent();
-		styleDocument.setAutoIndent(false); 
+		styleDocument.getUpdateManager().setUpdater(false);
+		boolean indentMode = styleDocument.getIndentManager().getAutoIndent();
+		styleDocument.getIndentManager().setAutoIndent(false); 
 
-		styleDocument.setEncoding(encoding);
+		styleDocument.getEncodingManager().setEncoding(encoding);
 
 		// If file associated then reload
 		EditorKit editorKit = getEditor().getEditorKit();
@@ -140,9 +140,9 @@ public class EncodingAction extends DefaultCheckAction {
 		//getEditor().getTextPane().repaint();
 
 		/* Allow changes to be saved */
-		styleDocument.colorize(0, styleDocument.getLength());
-		styleDocument.setAutoIndent(indentMode);
-		styleDocument.enableUpdaters();
+		styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+		styleDocument.getIndentManager().setAutoIndent(indentMode);
+		styleDocument.getUpdateManager().setUpdater(true);
 		
 		styleDocument.setContentModified(false);
 		

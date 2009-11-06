@@ -4,8 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Element;
 
 public class CommentManager {
+	private final String line_comment="//";
 	/*
 	 * Comment the current line when no selection has been done
 	 */
@@ -131,23 +133,24 @@ public class CommentManager {
 	/*
 	 * Un-Comment a part of a line
 	 */
-	public int uncommentText(ScilabStyleDocument scilabDocument, int position_start, int position_end) {
-		Pattern pattern = Pattern.compile("^//");
-		int offset      = 0;
-		
-		try {
-			// Get the text line
-			String text     = scilabDocument.getText(position_start, position_end - position_start);
-			Matcher matcher = pattern.matcher(text);
-			
-			if (matcher.find()) {
-				scilabDocument.remove(position_start, 2);
-				offset = 2;
+
+	public int uncommentText(ScilabStyleDocument scilabDocument, int position_start) {
+		int offset = 0;
+		try
+		{
+			Element root= scilabDocument.getDefaultRootElement();
+			int lineLength= root.getElement( root.getElementIndex(position_start)).getEndOffset()-position_start;
+			if( (lineLength >= line_comment.length()) && line_comment.equals(scilabDocument.getText(position_start, line_comment.length()))) {
+				scilabDocument.remove(position_start,2);
+				offset = line_comment.length();
 			}
-		} catch (BadLocationException e) {
-			e.printStackTrace();
 		}
+		catch (BadLocationException e)
+		{
+			e.printStackTrace();
+			offset = 0;
+		}
+		
 		return offset;
 	}
-
 }
