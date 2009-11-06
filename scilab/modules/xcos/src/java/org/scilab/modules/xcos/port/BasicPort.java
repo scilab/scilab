@@ -67,13 +67,13 @@ public abstract class BasicPort extends XcosUIDObject {
     	}
 
     	public static DataType convertScilabValue(double val) {
-    		if(val == -1){
+    		if (val == -1) {
     			return DataType.UNKNOW_TYPE;
-    		}else if(val == 1){
+    		} else if (val == 1) {
     			return DataType.REAL_MATRIX;
-    		}else if(val == 2){
+    		} else if (val == 2) {
     			return DataType.COMPLEX_MATRIX;
-    		}else{
+    		} else {
     			return DataType.UNKNOW_TYPE;
     		}
     	}

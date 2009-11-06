@@ -23,6 +23,8 @@ import com.mxgraph.io.mxCodec;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
+	private static final String DATA_TYPE = "dataType";
+	
 	public BasicPortCodec(Object template) {
 		super(template);
 	}
@@ -34,14 +36,14 @@ public class BasicPortCodec extends XcosObjectCodec {
 	}
 
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-		((Element) node).setAttribute("dataType",
-				String.valueOf(((BasicPort)obj).getDataType()));
+		((Element) node).setAttribute(DATA_TYPE,
+				String.valueOf(((BasicPort) obj).getDataType()));
 		return super.beforeEncode(enc, obj, node);
 	}
 
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		((BasicPort) obj).setDataType(
-				BasicPort.DataType.valueOf((((Element)node).getAttribute("dataType" ))));
+				BasicPort.DataType.valueOf((((Element) node).getAttribute(DATA_TYPE))));
 		return super.afterDecode(dec, node, obj);
 	}
 	
