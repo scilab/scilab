@@ -324,6 +324,140 @@ shrink steps are rare.
 
 %TODO...
 
+\section{Automatic restarts}
+
+In this section, we describe an algorithm which enables the user 
+to perform automatic restarts when a search has failed. 
+A condition is used to detect that a false minimum has been reached.
+We describe the automatic restart algorithm as well as the 
+conditions used to detect a false minimum.
+
+\subsection{Automatic restart algorithm}
+
+In this section, we present the automatic restart algorithm.
+
+The goal of this algorithm is to detect that a false minimum has been found,
+a situation which may occur with the Nelder-Mead algorithm, as we are 
+going to see in the numerical experiments section. 
+These problems are known by practitionners since decades and several authors 
+have tried to detect and solve this specific problem.
+
+In 1971, O'Neill published a fortran 77 implementation of the Nelder-Mead
+algorithm \cite{O'Neill1971AAF}. In order to check that the algorithm has converged, 
+a factorial test is used. This test will be detailed later in this section.
+If a false minimum is found by this test, O'Neill suggests to restart the 
+algorithm.
+
+In 1998, Mc Kinnon \cite{589109} showed a simple objective function 
+for which the Nelder-Mead algorithm fails to converge to a minimum and, instead, 
+converge to a non-stationnary point. In this numerical experiment, the simplex 
+degenerates toward a single point. In 1999, Kelley \cite{589283} shows that 
+restarting the algorithm allows to converge toward the global minimum.
+In order to detect the convergence problem, Kelley adapted the sufficient decrease 
+condition which is classical in the frameword of gradient-based algorithms.
+When this condition is met, the algorithm is stopped and a restart should be performed.
+
+Scilab provides an automatic restart algorithm, which allows to detect 
+that a false optimum has been reached and that a new search must be performed.
+The algorithm is based on a loop where a maximum number of restarts 
+is allowed. The default maximum number of restarts is 3, which means that the maximum
+number of searches is 4. 
+
+After a search has been performed, a condition is computed to know whether a restart
+must be performed. There are two conditions which are implemented:
+\begin{itemize}
+\item O'Neill factorial test,
+\item Kelley's stagnation condition.
+\end{itemize}
+We will analyze these tests later in this section.
+
+Notice that the automatic restarts are available whatever the simplex algorithm,
+be it the Nelder-Mead variable shape simplex algorithm, Spendley's et al. fixed shape 
+simplex algorithm or any other algorithm. This is because the 
+automatic restart is a loop programmed above the optimization algorithm.
+
+The automatic restart algorithm is presented in \ref{algo-automaticrestart}.
+Notice that, if a false minimum is detected after the maximum number of restart has been reached,
+the status is set to "maxrestart".
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $restartnb \gets 0$
+\STATE $reached \gets FALSE$
+\FOR{$i= 1$ to $restartmax + 1$}
+  \STATE $search()$
+  \STATE $istorestart = istorestart ()$
+  \IF {$NOT(istorestart)$}
+    \STATE $reached \gets TRUE$ \COMMENT{Convergence}
+    \STATE $BREAK$
+  \ENDIF
+  \IF {$i<restartmax$}
+    \STATE $restartnb \gets restartnb + 1$ \COMMENT{A restart is going to be performed}
+  \ENDIF
+\ENDFOR
+\IF {$reached$}
+  \STATE printf ( "Convergence reached after %d restarts." , restartnb )
+\ELSE
+  \STATE printf ( "Convergence not reached after maximum %d restarts." , restartnb )
+  \STATE $status \gets "maxrestart"$
+\ENDIF
+\end{algorithmic}
+\caption{Nelder-Mead algorithm -- Automatic restart algorithm.}
+\label{algo-automaticrestart}
+\end{figure}
+
+\subsection{O'Neill factorial test}
+
+In this sectin, we present O'Neill's factorial test.
+This algorithm is given a vector of lengths, stored in the 
+$step$ variable. It is also given a small value $\epsilon$, which 
+is an step length relative to the $step$ variable.
+The algorithm is presented in figure \ref{algo-factorialtest}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $\bx \gets \bx^\star$
+\STATE $istorestart = FALSE$
+\FOR{$i = 1$ to $n$} 
+  \STATE $\delta = step ( i ) * \epsilon$
+  \IF { $\delta == 0.0$ }
+    \STATE $\delta = \epsilon$
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) - \delta - \delta $
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+\ENDFOR
+\end{algorithmic}
+\caption{O'Neill's factorial test}
+\label{algo-factorialtest}
+\end{figure}
+
+O'Neill's factorial test requires a large number of function evaluations, namely 
+$2^n$ function evaluations. In O'Neill's implementation, the parameter
+$\epsilon$ is set to the constant value $1.e-3$.
+In Scilab's implementation, this parameter can be customized, 
+thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},
+the machine epsilon. In O'Neill's implementation, the parameter \scivar{step}
+is equal to the vector of length used in order to compute the initial 
+simplex. In Scilab's implementation, the two parameters are different,
+and the \scivar{step} used in the factorial test can be customized 
+with the \scivar{-restartstep} option. Its default value is 1.0, which is 
+expanded into a vector with size $n$.
+
+%\subsection{Kelley's stagnation detection}
+
+% TODO...
+
 \section{Convergence properties on a quadratic}
 
 \index{Han, Lixing}
@@ -1267,53 +1401,6 @@ computed optimum is greater than a local point computed with a relative
 epsilon equal to 1.e-3 and a step equal to the length of the initial simplex.
 \end{itemize}
 
-In order to get an accurate view on O'Neill's factorial test,
-we must describe explicitely the algorithm.
-This algorithm is given a vector of lengths, stored in the 
-$step$ variable. It is also given a small value $\epsilon$.
-The algorithm is presented in figure \ref{algo-factorialtest}.
-
-\begin{figure}[htbp]
-\begin{algorithmic}
-\STATE $\bx \gets \bx^\star$
-\STATE $istorestart = FALSE$
-\FOR{$i = 1$ to $n$} 
-  \STATE $\delta = step ( i ) * \epsilon$
-  \IF { $\delta == 0.0$ }
-    \STATE $\delta = \epsilon$
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) + \delta$
-  \STATE $fv = f ( x ) $
-  \IF { $ fv < fopt $}
-    \STATE $istorestart = TRUE$
-    \STATE    break
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) - \delta - \delta $
-  \STATE $fv = f ( x ) $
-  \IF { $ fv < fopt $}
-    \STATE $istorestart = TRUE$
-    \STATE    break
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) + \delta$
-\ENDFOR
-\end{algorithmic}
-\caption{O'Neill's factorial test}
-\label{algo-factorialtest}
-\end{figure}
-
-O'Neill's factorial test requires a large number of function evaluations, namely 
-$2^n$ function evaluations. In O'Neill's implementation, the parameter
-$\epsilon$ is set to the constant value $1.e-3$.
-In Scilab's implementation, this parameter can be customized, 
-thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},
-the machine epsilon. In O'Neill's implementation, the parameter \scivar{step}
-is equal to the vector of length used in order to compute the initial 
-simplex. In Scilab's implementation, the two parameters are different,
-and the \scivar{step} used in the factorial test can be customized 
-with the \scivar{-restartstep} option. Its default value is 1.0, which is 
-expanded into a vector with size $n$.
-
-
 The following tests are presented by O'Neill :
 \begin{itemize}
 \item Rosenbrock's parabolic valley \cite{citeulike:1903787}
@@ -1548,7 +1635,7 @@ Scilab  & 4 & 616 & 3 & 3.370756e-008 & 402 & 2.949000 \\
 \label{fig-nm-oneill-table}
 \end{figure}
 
-\subsection{Convergence to a non stationnary point}
+\subsection{Mc Kinnon: convergence to a non stationnary point}
 \label{section-mcKinnon}
 \index{Mc Kinnon, K. I. M.}
 
@@ -1652,6 +1739,10 @@ f(x_1,x_2) &=&
 The solution is $\bx^\star = (0 , -0.5 )^T$.
 
 The following Scilab script solves the optimization problem.
+We must use the "-simplex0method" option so that a 
+user-defined initial simplex is used. Then the 
+"-coords0" allows to define the coordinates of the initial 
+simplex, where each row corresponds to a vertex of the simplex
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -1676,21 +1767,19 @@ coords0 = [
 lambda1 lambda2
 ];
 x0 = [1.0 1.0]';
-nm = nmplot_new ();
-nm = nmplot_configure(nm,"-numberofvariables",2);
-nm = nmplot_configure(nm,"-function",mckinnon3);
-nm = nmplot_configure(nm,"-x0",x0);
-nm = nmplot_configure(nm,"-maxiter",200);
-nm = nmplot_configure(nm,"-maxfunevals",300);
-nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
-nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
-nm = nmplot_configure(nm,"-simplex0method","given");
-nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-nm = nmplot_search(nm);
-nmplot_display(nm);
-nm = nmplot_destroy(nm);
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
 \end{lstlisting}
 
 
@@ -1725,6 +1814,92 @@ The simplex converges to a non stationnary point, after repeated
 inside contractions.}
 \label{fig-nm-numexp-mckinnon-detail}
 \end{figure}
+
+\subsection{Kelley: oriented restart}
+\index{Kelley, C. T.}
+
+Kelley analyzed Mc Kinnon counter example in \cite{Kelley1999}.
+He analyzed the evolution of the simplex gradient and found that 
+its norm begins to grow when the simplex start to degenerate.
+Therefore, Kelley suggest to detect the stagnation of the algorithm
+by using a termination criteria which is based on a sufficient decrease 
+condition. Once that the stagnation is detected and the algorithm is stopped,
+restarting the algorithm with a non-degenerated simplex allows to 
+converge toward the global minimum. Kelley advocates the use of the oriented 
+restart, where the new simplex is so that it maximizes the chances of 
+producing a good descent direction at the next iteration.
+
+The following Scilab script solves the optimization problem.
+We must use the "-simplex0method" option so that a 
+user-defined initial simplex is used. Then the 
+"-coords0" allows to define the coordinates of the initial 
+simplex, where each row corresponds to a vertex of the simplex.
+
+We also use the "-kelleystagnationflag" option, which turns on 
+the termination criteria associated with Kelley's stagnation
+detection method. Once that the algorithm is stopped, we want 
+to automatically restart the algorithm. This is why we 
+turn on the "-restartflag" option, which enables to perform 
+automatically 3 restarts. After an optimization process, the 
+automatic restart algorithm needs to know if the algorithm
+must restart or not. By default, the algorithm uses a 
+factorial test, due to O'Neill. This is why we configure the 
+"-restartdetection" to the "kelley" option, which uses Kelley's 
+termination condition as a criteria to determine 
+if a restart must be performed.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = mckinnon3 ( x , index )
+  if ( length ( x ) ~= 2 )
+    error ( 'Error: function expects a two dimensional input\n' );
+  end
+  tau = 3.0;
+  theta = 6.0;
+  phi = 400.0;
+  if ( x(1) <= 0.0 )
+    f = theta * phi * abs ( x(1) ).^tau + x(2) * ( 1.0 + x(2) );
+  else
+    f = theta       *       x(1).^tau   + x(2) * ( 1.0 + x(2) );
+  end
+endfunction
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
+coords0 = [
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
+x0 = [1.0 1.0]';
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","kelley");
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
+The figure \ref{fig-nm-numexp-mckinnonkelley} presents the first steps 
+of the algorithm in this numerical experiment. We see that the 
+algorithm converges now toward the minimum $\bx^\star = (0,-0.5)^T$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/mckinnonkelley-history-simplex.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Mc Kinnon example with Kelley's stagnation detection.}
+\label{fig-nm-numexp-mckinnonkelley}
+\end{figure}
+
 
 \subsection{Han counter examples}
 
