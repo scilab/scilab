@@ -1,5 +1,5 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Scilab (http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
  * 
  * This file must be used under the terms of the CeCILL.
@@ -25,7 +25,7 @@ import com.mxgraph.io.mxCodec;
 public class ScilabListCodec  extends XcosObjectCodec {
 
     
-    private final static String SCILAB_CLASS = "scilabClass";
+    private static final String SCILAB_CLASS = "scilabClass";
     
     public ScilabListCodec(Object template) {
 	super(template);
@@ -38,24 +38,22 @@ public class ScilabListCodec  extends XcosObjectCodec {
 
     }
 
-	public Object beforeEncode(mxCodec enc, Object obj, Node node)
-	{
+	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		mxCodec.setAttribute(node, SCILAB_CLASS, obj.getClass().getSimpleName());
 		
 		return obj;
 	}
 	
-	public Object cloneTemplate(Node node)
-	{
+	public Object cloneTemplate(Node node) {
 		Object obj = null;
-		if ( node.getAttributes().getNamedItem(SCILAB_CLASS) != null){
+		if (node.getAttributes().getNamedItem(SCILAB_CLASS) != null) { 
 			String scilabClass = node.getAttributes().getNamedItem(SCILAB_CLASS).getNodeValue();
-			if ( scilabClass.equalsIgnoreCase("ScilabMList")){
-				obj = new ScilabMList() ;
-			} else if ( scilabClass.equalsIgnoreCase("ScilabTList")){
-				obj = new ScilabTList() ;
-			} else if ( scilabClass.equalsIgnoreCase("ScilabList")){
-				obj = new ScilabList() ;
+			if (scilabClass.equalsIgnoreCase("ScilabMList")) { 
+				obj = new ScilabMList();
+			} else if (scilabClass.equalsIgnoreCase("ScilabTList")) { 
+				obj = new ScilabTList();
+			} else if (scilabClass.equalsIgnoreCase("ScilabList")) { 
+				obj = new ScilabList();
 			} else {
 				
 				obj = super.cloneTemplate(node);

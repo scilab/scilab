@@ -20,21 +20,19 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
     private static final String LINE = "line";
     private static final String DATA = "data";
     private static final String HEIGHT = "height";
-    private final static String WIDTH = "width";
+    private static final String WIDTH = "width";
     
     public ScilabIntegerCodec(Object template) {
 	super(template);
     }
 
 
-    public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
-    {
+    public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
 
-    public Node encode(mxCodec enc, Object obj)
-    {
+    public Node encode(mxCodec enc, Object obj) {
 	String name = mxCodecRegistry.getName(obj.getClass());
 	Node node = enc.getDocument().createElement(name);
 
@@ -42,8 +40,8 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	mxCodec.setAttribute(node, WIDTH, scilabInteger.getWidth());
 	mxCodec.setAttribute(node, HEIGHT, scilabInteger.getHeight());
 
-	for(int i = 0 ; i < scilabInteger.getHeight() ; ++i) {
-	    for(int j = 0 ; j < scilabInteger.getWidth() ; ++j) {
+	for (int i = 0; i < scilabInteger.getHeight(); ++i) {
+	    for (int j = 0; j < scilabInteger.getWidth(); ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
@@ -75,7 +73,9 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
 		if (attr.getNodeName().compareToIgnoreCase(BUNSIGNED) == 0) { bUnsignedXMLPosition = i; }
 	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1 ) { throw new UnrecognizeFormatException(); }
+	    if (heightXMLPosition == -1 || widthXMLPosition == -1) {
+	    	throw new UnrecognizeFormatException();
+	    }
 
 	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
@@ -83,14 +83,13 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 
 	    long[][] data = new long[height][width];
 	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0 ; i < allValues.getLength() ; ++i) {
+	    for (int i = 0; i < allValues.getLength(); ++i) {
 		int lineXMLPosition = -1;
 		int columnXMLPosition = -1;
 		int valueXMLPosition = -1;
 
 		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-		for (int j = 0; j < dataAttributes.getLength(); j++)
-		{
+		for (int j = 0; j < dataAttributes.getLength(); j++) {
 		    Node attr = dataAttributes.item(j);
 		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
 		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
@@ -105,17 +104,15 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 		data[line][column] = Long.parseLong(dataAttributes.item(valueXMLPosition).getNodeValue());
 	    }
 
-	    ((ScilabInteger) obj).setData(data,bUnsigned);
-	}
-	catch (UnrecognizeFormatException e) {
+	    ((ScilabInteger) obj).setData(data, bUnsigned);
+	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
-	}
-	finally {
+	} finally {
 	    return obj;
 	}
 
     }
 
-    private class UnrecognizeFormatException extends Exception {}
+    private class UnrecognizeFormatException extends Exception { }
 
 }
