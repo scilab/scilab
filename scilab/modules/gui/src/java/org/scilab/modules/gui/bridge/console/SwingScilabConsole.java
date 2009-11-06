@@ -63,7 +63,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		MouseListener contextMenu = new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-				if (arg0.getButton() == MouseEvent.BUTTON3) {
+				if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) || arg0.isPopupTrigger()) {
 					SwingScilabContextMenu menu = new SwingScilabContextMenu();
 					
 					SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
