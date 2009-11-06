@@ -459,7 +459,7 @@ public class XcosPaletteManager {
 
 	Window palWin = ScilabWindow.createWindow();
 	palWin.setDims(new Size(700, 600));
-//	palWin.setVisible(true);
+	palWin.setVisible(true);
 	palettes = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
 
 	palettes.setCallback(new ClosePalettesAction(null));
