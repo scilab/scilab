@@ -1293,12 +1293,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.fileToEncode = fileToEncode;
 	}
 	
+	public static Xpad getEditor() {
+	    return editor;
+	}
+
 	public static void closeXpadFromScilab() {
-	    Xpad xpad = launchXpad();
+	    Xpad xpad = getEditor();
+	    if(xpad == null) {
+		return;
+	    }
 
 	    while(xpad.getTabPane().getComponentCount() > 0) {
 		//close and save all editors if they are modified
 		xpad.closeTabAt(0, true); 
 	    }
 	}
+
 }
