@@ -51,8 +51,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
 import javax.swing.text.Highlighter.HighlightPainter;
 
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-
 /**
  *  This class will display line numbers for a related text component. The text
  *  component must use the same line height for each line. TextLineNumber
@@ -307,8 +305,8 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 					g.drawString(lineNumber, x, y);
 
 					//  Move to the next row
-					System.err.println("rowStartOffset: " + rowStartOffset);
-					System.err.println("text size : "+textPane.getDocument().getLength());
+		//			System.err.println("rowStartOffset: " + rowStartOffset);
+					//System.err.println("text size : "+textPane.getDocument().getLength());
 					//if (rowStartOffset < textPane.getDocument().getLength()) {
 					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
 					//}
@@ -319,7 +317,8 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 					System.err.println("rowStartOffset: " + rowStartOffset + " endOffset: " + endOffset);
 					System.err.println("fontsMetrics: " + fontMetrics);
 					System.exit(2);
-					//rowStartOffset = endOffset; // break loop when an exception is thrown
+
+					rowStartOffset = endOffset; // break loop when an exception is thrown
 				}
 			}
 		}
@@ -380,11 +379,11 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 		//  The text needs to be positioned above the bottom of the bounding
 		//  rectangle based on the descent of the font(s) contained on the row.
-		System.err.println("r.height == lineHeight / " + r.height + " == " + lineHeight);
+		//System.err.println("r.height == lineHeight / " + r.height + " == " + lineHeight);
 		if (r.height == lineHeight) { // default font is being used
-			System.err.println("ici");
+			//System.err.println("ici");
 			descent = fontMetrics.getDescent();
-			System.err.println("la");
+			//System.err.println("la");
 		} else { // We need to check all the attributes for font changes
 			if (fonts == null) {
 				fonts = new HashMap<String, FontMetrics>();
@@ -412,7 +411,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 				descent = Math.max(descent, fm.getDescent());
 			}
 		}
-		System.err.println("y - descent=" + (y - descent));
+		//System.err.println("y - descent=" + (y - descent));
 		return y - descent;
 	}
 
@@ -497,7 +496,6 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		repaint();
 	}
 	public void removeUpdate(DocumentEvent e) {
-		System.err.println("--- Calling LineNumberPanel.removeUpdate");
 		documentChanged();
 		repaint();
 	}

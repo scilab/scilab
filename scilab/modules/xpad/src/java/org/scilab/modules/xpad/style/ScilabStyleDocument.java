@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -31,6 +32,7 @@ import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
 
+import org.scilab.modules.xpad.CaretEdit;
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.actions.ColorizeAction;
@@ -38,43 +40,34 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import javax.swing.undo.UndoManager;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
-
-	
-    private UndoManager undo = new UndoManager() {
-	public void undoableEditHappened(UndoableEditEvent e) {
-				
-		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
-					|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
-			&& (e.getEdit().canUndo())) {
-			/*
-			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
-				System.out.println("remove");
-				System.out.println(indentInprogress);
-			}
-			*/
-			if (!indentManager.isIndentInprogress()) { 
-				((UndoableEdit) (updateManager.getShouldMergeEdits() ?  updateManager.getCompoundEdit(): this)).addEdit(e.getEdit());
-				eventType = "";
-			}
-		}
-	}
-    };
-    	
 	
 	private String eventType;
 	
-	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
-	
-	
-	
+	private boolean contentModified;
+	Xpad editor;
 
-	
+	/*if you want to add a new style just add it in the xml*/
+	private ArrayList<String> listStylesName;
+	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
+	private Style defaultStyle;
+
 	private UpdateManager updateManager = new UpdateManager();
 	private IndentManager indentManager = new IndentManager();
 	private ColorizationManager colorizationManager = new ColorizationManager();	
 	private CommentManager commentManager = new CommentManager();
 	private SearchManager searchManager = new SearchManager();
 	private TabManager tabManager = new TabManager();
+	public EncodingManager getEncodingManager() {
+		return encodingManager;
+	}
+
+	public void setEncodingManager(EncodingManager encodingManager) {
+		this.encodingManager = encodingManager;
+	}
+
+
+
+	private EncodingManager encodingManager = new EncodingManager();
 	
 	public TabManager getTabManager() {
 		return tabManager;
@@ -129,19 +122,34 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	
 	
-	private boolean contentModified;
 	
 	
 	//private XpadStyles xpadStyles; 
 	
 
-	Xpad editor;
 
-	/*if you want to add a new style just add it in the xml*/
-	private ArrayList<String> listStylesName;
-	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
-	private Style defaultStyle;
 
+    private UndoManager undo = new UndoManager() {
+	public void undoableEditHappened(UndoableEditEvent e) {
+				
+		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+					|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
+			&& (e.getEdit().canUndo())) {
+			/*
+			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+				System.out.println("remove");
+				System.out.println(indentInprogress);
+			}
+			*/
+			if (!indentManager.isIndentInprogress()) { 
+				((UndoableEdit) (updateManager.getShouldMergeEdits() ?  updateManager.getCompoundEdit(): this)).addEdit(e.getEdit());
+				eventType = "";
+			}
+		}
+
+	}
+    };
+    	
 
 	public ScilabStyleDocument(Xpad editor) {
 		super();
@@ -171,7 +179,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
 		
-		setContentModified(false);
+		contentModified=false;
 		
 		this.addDocumentListener(new DocumentListener() {
 			
@@ -320,6 +328,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
+		editor.updateTabTitle();
 	}
 
 
@@ -330,5 +339,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public void setEditor(Xpad editor) {
 		this.editor = editor;
 	}    
+
+	public void disableUndoManager(){
+		this.removeUndoableEditListener(undo);
+	}
+	
+	public void enableUndoManager(){
+        this.addUndoableEditListener(undo);
+	}
 
 }

@@ -109,8 +109,8 @@ public class ColorizationManager {
 	}
 	
 	
-	
-	public void colorize(ScilabStyleDocument scilabDocument, int lineStartPosition, int lineEndPosition) {
+
+	public boolean colorize(ScilabStyleDocument scilabDocument, int lineStartPosition, int lineEndPosition) {
 	    //DEBUG("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
 	    //Timer timer = new Timer();
 		//DEBUG("Colorize [before parse] : " + timer.top());
@@ -150,6 +150,8 @@ public class ColorizationManager {
 			}
 		}
 //		DEBUG("Colorize [after all applyStyle] : " + timer.top());
+	
+		return true;
 	}
 	
 	private void resetStyle(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
