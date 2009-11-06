@@ -23,6 +23,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -59,7 +60,11 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		setPalettesVisible(!Xcos.getPalettes().isVisible());
+	    if(XcosPaletteManager.getPalettes() == null) {
+		XcosPaletteManager.loadPalette();
+	    } else {
+		setPalettesVisible(!XcosPaletteManager.isVisible());
+	    }
 	}	
 	
 	/**
