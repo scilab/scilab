@@ -14,7 +14,8 @@ public class ScilabModalDialog {
 	OK,
 	OK_CANCEL,
 	YES_NO,
-	YES_NO_CANCEL
+	YES_NO_CANCEL,
+	CANCEL_OR_SAVE_AND_EXECUTE
     }
 
     /**
@@ -34,7 +35,8 @@ public class ScilabModalDialog {
 	OK_OPTION,
 	CANCEL_OPTION,
 	YES_OPTION,
-	NO_OPTION
+	NO_OPTION,
+	SAVE_EXECUTE_OPTION
     }
     /**
      * private constructor, only static functions 
@@ -153,6 +155,9 @@ public class ScilabModalDialog {
 	case YES_NO_CANCEL :
 	    labels = new String[]{Messages.gettext("Yes"), Messages.gettext("No"), Messages.gettext("Cancel")};
 	    break;
+	case CANCEL_OR_SAVE_AND_EXECUTE :
+	    labels = new String[]{Messages.gettext("Cancel"), Messages.gettext("Save and execute")};
+	    break;
 	}
 
 	messageBox.setButtonsLabels(labels);
@@ -211,6 +216,13 @@ public class ScilabModalDialog {
 		answer = AnswerOption.NO_OPTION;
 	    } else { //Cancel
 		answer = AnswerOption.CANCEL_OPTION;
+	    }
+	    break;
+	case CANCEL_OR_SAVE_AND_EXECUTE :
+	    if(choice == 0) { //Yes
+		answer = AnswerOption.CANCEL_OPTION;		
+	    } else if (choice == 1) { //No
+		answer = AnswerOption.SAVE_EXECUTE_OPTION;
 	    }
 	    break;
 	}

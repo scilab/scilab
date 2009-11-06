@@ -69,7 +69,10 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	 */
 	public static void setPalettesVisible(boolean status) {
 		Tab palette = Xcos.getPalettes();
-
+		if(palette == null) {
+		    return;
+		}
+		
 		// If palette has no more parent, create a new one.
 		if (status == true && palette.getParentWindow() == null) {
 		    Window paletteWindow = ScilabWindow.createWindow();

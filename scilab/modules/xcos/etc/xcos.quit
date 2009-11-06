@@ -14,4 +14,7 @@ if WITH_HELPTOOLS then
 end
 
 //ask xcos to close not saved files before close
-closeXcos();
+
+if getscilabmode() <> "NWNI" then
+	closeXcos();
+end

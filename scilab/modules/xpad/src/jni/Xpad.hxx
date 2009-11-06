@@ -57,6 +57,7 @@ jclass instanceClass; // cache class
 jmethodID voidxpadID; // cache method id
 jmethodID voidxpadjstringID; // cache method id
 jmethodID voidxpadHighlightLinejstringjintID; // cache method id
+jmethodID voidcloseXpadFromScilabID; // cache method id
 
 
 /**
@@ -103,6 +104,8 @@ static void xpad(JavaVM * jvm_);
 static void xpad(JavaVM * jvm_, char * fileName);
 
 static void xpadHighlightLine(JavaVM * jvm_, char * fileName, int lineNumber);
+
+static void closeXpadFromScilab(JavaVM * jvm_);
 
 
                         /**

@@ -14,9 +14,12 @@ package org.scilab.modules.xpad.actions;
 
 import javax.swing.JTextPane;
 
-import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -31,37 +34,26 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		/* Will execute the document file (file sould be saved)*/
-		
-		String filePath = "";
-		Xpad editor = getEditor();
-		JTextPane currentPane = getEditor().getTextPane();
+	    /* Will execute the document file (file sould be saved)*/
 
-		if (((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).isContentModified()) {
-			
-			SwingScilabMessageBox msgBox = new SwingScilabMessageBox();
-			msgBox.setTitle(XpadMessages.EXECUTE_FILE_INTO_SCILAB);
-			msgBox.setIcon("warning");
-			msgBox.setMessage("You need to save your modifications before executing this file into Scilab");
-			String[] buttons = {"Cancel","Save and Execute"};
-			msgBox.setButtonsLabels(buttons);
-			msgBox.displayAndWait();
-			
-			if (msgBox.getSelectedButton() == CANCEL) {
-				msgBox.dispose();
+	    String filePath = "";
+	    Xpad editor = getEditor();
+	    JTextPane currentPane = getEditor().getTextPane();
 
-			} else if (msgBox.getSelectedButton() == SAVE_AND_EXECUTE) {
-				if (editor.newSave(getEditor().getTabPane().getSelectedIndex(), false)) {
-					filePath = editor.getFileFullPath();
-					String cmdToExec = "exec('" + filePath + "', -1)";
-					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
-				}
-			} 
-		} else {
+	    if (((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).isContentModified()) {
+		if (ScilabModalDialog.show(XpadMessages.EXECUTE_WARNING, XpadMessages.EXECUTE_FILE_INTO_SCILAB, 
+			IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
+		    if (editor.save(getEditor().getTabPane().getSelectedIndex(), false)) {
 			filePath = editor.getFileFullPath();
 			String cmdToExec = "exec('" + filePath + "', -1)";
 			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
-		}
+		    }
+		} 
+	    } else {
+		filePath = editor.getFileFullPath();
+		String cmdToExec = "exec('" + filePath + "', -1)";
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+	    }
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {

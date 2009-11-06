@@ -19,9 +19,9 @@ import org.scilab.modules.localization.Messages;
  */
 public class XpadMessages {
 
-	public static final String DOTS = "...";
+    public static final String DOTS = "...";
 	
-	  public static final String SCILAB_EDITOR = Messages.gettext("Scilab editor");
+    public static final String SCILAB_EDITOR = Messages.gettext("Scilab editor");
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
@@ -126,12 +126,14 @@ public class XpadMessages {
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String NEXT_TAB = Messages.gettext("Next tab");
     public static final String PREVIOUS_TAB = Messages.gettext("Previous tab");
+    public static final String EXECUTE_WARNING = Messages.gettext("You need to save your modifications before executing this file into Scilab.");
+    
 
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
     public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
     
-    /* Sttus bar messages */
+    /* Status bar messages */
     public static final String LOADING = Messages .gettext("Loading...");
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     
