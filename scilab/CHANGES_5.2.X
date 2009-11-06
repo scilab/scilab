@@ -1089,6 +1089,10 @@ Bug fixes:
 
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
+* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
+
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
