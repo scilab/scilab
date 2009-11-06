@@ -1031,6 +1031,9 @@ public class Xcos extends SwingScilabTab implements Tab {
      * This method is called when the user exits from Scilab
      */
     public static void closeXcosFromScilab() {
-    	// TODO
+	//call close on all diagrams
+	while(Xcos.getDiagrams().size() > 0) {
+	    diagrams.get(0).closeDiagram(true);
+	}
     }
 }

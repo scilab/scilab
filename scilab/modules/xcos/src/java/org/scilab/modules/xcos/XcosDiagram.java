@@ -1081,10 +1081,18 @@ public class XcosDiagram extends ScilabGraph {
     public void setGridMenuItem(CheckBoxMenuItem menu) {
 	this.gridMenu = menu;
     }
+
     /**
      * Close Xcos instance including all tabs
      */
     public void closeDiagram() {
+	closeDiagram(false);
+    }
+    
+    /**
+     * Close Xcos instance including all tabs
+     */
+    public void closeDiagram(boolean fromScilab) {
 
 	boolean wantToClose = true;
 
@@ -1101,9 +1109,16 @@ public class XcosDiagram extends ScilabGraph {
 	if (isModified()) {
 	    // The diagram has been modified
 	    // Ask the user want he want to do !
-	    AnswerOption answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
-		    IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 	    
+	    AnswerOption answer; 
+	    if(fromScilab == true) {
+		answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+			IconType.QUESTION_ICON, ButtonType.YES_NO);
+	    } else {
+		answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+			IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
+	    }
+
 	    switch(answer) {
 	    case YES_OPTION :
 	    	// Save the diagram
