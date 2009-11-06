@@ -7,6 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
+
 
 //
 // assert_close --
@@ -79,13 +83,13 @@ opt = optimbase_destroy(opt);
 // Here, the cost function is callable, but returns a matrix,
 // instead of a scalar.
 //
-function [ y , index ] = rosenbrock2 ( x , index )
+function [ y , index ] = rosenbrock3 ( x , index )
   y = ones(10,10);
 endfunction
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
-opt = optimbase_configure(opt,"-function",rosenbrock2);
+opt = optimbase_configure(opt,"-function",rosenbrock3);
 cmd = "opt = optimbase_checkcostfun(opt);";
 execstr(cmd,"errcatch");
 computed = lasterror();
@@ -269,7 +273,7 @@ opt = optimbase_destroy(opt);
 //
 // Test with not correct rosenbrock function : g is a column vector instead of row vector
 //
-function [ f , g , index ] = rosenbrock2 ( x , index )
+function [ f , g , index ] = rosenbrock4 ( x , index )
   f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
   g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
   g(2) = 200. * ( x(2) - x(1)**2 )
@@ -277,7 +281,7 @@ endfunction
 
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
-opt = optimbase_configure(opt,"-function", rosenbrock2 );
+opt = optimbase_configure(opt,"-function", rosenbrock4 );
 opt = optimbase_configure(opt,"-withderivatives",%t);
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
 cmd = "opt = optimbase_checkcostfun(opt);";

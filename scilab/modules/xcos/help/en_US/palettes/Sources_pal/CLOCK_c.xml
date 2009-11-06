@@ -208,7 +208,7 @@ that's scheduled by the dialog parameter <emphasis role="bold">Period</emphasis>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="EVTDLY_c">EVTDLY_c - Event delay (Scicos Block)</link>
+          <link linkend="EVTDLY_c">EVTDLY_c - Event delay</link>
         </para>
       </listitem>
     </itemizedlist>

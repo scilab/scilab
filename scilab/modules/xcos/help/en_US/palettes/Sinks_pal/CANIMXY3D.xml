@@ -273,7 +273,7 @@ This block realizes the visualization of the evolution of the three regular inpu
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CANIMXY">CANIMXY - y=f(x) animated viewer (Scicos Block)</link>
+          <link linkend="CANIMXY">CANIMXY - y=f(x) animated viewer</link>
         </para>
       </listitem>
     </itemizedlist>

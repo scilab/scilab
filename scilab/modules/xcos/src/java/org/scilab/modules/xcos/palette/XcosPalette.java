@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Color;
@@ -99,8 +111,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 				 */
-				public void mousePressed(MouseEvent e)
-				{
+				public void mousePressed(MouseEvent e) {
 					clearSelection();
 				}
 
@@ -108,32 +119,28 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 				 */
-				public void mouseClicked(MouseEvent e)
-				{
+				public void mouseClicked(MouseEvent e) {
 				}
 
 				/*
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 				 */
-				public void mouseEntered(MouseEvent e)
-				{
+				public void mouseEntered(MouseEvent e) {
 				}
 
 				/*
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 				 */
-				public void mouseExited(MouseEvent e)
-				{
+				public void mouseExited(MouseEvent e) {
 				}
 
 				/*
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 				 */
-				public void mouseReleased(MouseEvent e)
-				{
+				public void mouseReleased(MouseEvent e) {
 				}
 
 			});
@@ -141,8 +148,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 			// Shows a nice icon for drag and drop but doesn't import anything
 			setTransferHandler(new TransferHandler()
 			{
-				public boolean canImport(JComponent comp, DataFlavor[] flavors)
-				{
+				public boolean canImport(JComponent comp, DataFlavor[] flavors) {
 					return true;
 				}
 			});
@@ -151,34 +157,27 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		/**
 		 * 
 		 */
-		public void setGradientColor(Color c)
-		{
+		public void setGradientColor(Color c) {
 			gradientColor = c;
 		}
 
 		/**
 		 * 
 		 */
-		public Color getGradientColor()
-		{
+		public Color getGradientColor() {
 			return gradientColor;
 		}
 
 		/**
 		 * 
 		 */
-		public void paintComponent(Graphics g)
-		{
-			if (gradientColor == null)
-			{
+		public void paintComponent(Graphics g) {
+			if (gradientColor == null) {
 				super.paintComponent(g);
-			}
-			else
-			{
+			} else {
 				Rectangle rect = getVisibleRect();
 
-				if (g.getClipBounds() != null)
-				{
+				if (g.getClipBounds() != null) {
 					rect = rect.intersection(g.getClipBounds());
 				}
 
@@ -193,27 +192,23 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		/**
 		 * 
 		 */
-		public void clearSelection()
-		{
+		public void clearSelection() {
 			setSelectionEntry(null, null);
 		}
 
 		/**
 		 * 
 		 */
-		public void setSelectionEntry(JLabel entry, mxGraphTransferable t)
-		{
+		public void setSelectionEntry(JLabel entry, mxGraphTransferable t) {
 			JLabel last = selectedEntry;
 			selectedEntry = entry;
 
-			if (last != null)
-			{
+			if (last != null) {
 				last.setBorder(null);
 				last.setOpaque(false);
 			}
 
-			if (selectedEntry != null)
-			{
+			if (selectedEntry != null) {
 				selectedEntry.setBorder(new ShadowBorder());
 				selectedEntry.setOpaque(true);
 			}
@@ -232,8 +227,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param value
 		 */
 		public void addEdgeTemplate(final String name, ImageIcon icon,
-				String style, int width, int height, Object value)
-		{
+				String style, int width, int height, Object value) {
 			mxGeometry geometry = new mxGeometry(0, 0, width, height);
 			geometry.setTerminalPoint(new mxPoint(0, height), true);
 			geometry.setTerminalPoint(new mxPoint(width, 0), false);
@@ -255,8 +249,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param value
 		 */
 		public void addTemplate(final String name, ImageIcon icon, String style,
-				int width, int height, Object value)
-		{
+				int width, int height, Object value) {
 			mxCell cell = new mxCell(value, new mxGeometry(0, 0, width, height),
 					style);
 			cell.setVertex(true);
@@ -273,11 +266,10 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param height
 		 * @param value
 		 */
-		public void addTemplate(final String name, ImageIcon icon, mxCell cell)
-		{
+		public void addTemplate(final String name, ImageIcon icon, mxCell cell) {
 			mxRectangle bounds = (mxGeometry) cell.getGeometry().clone();
 			final mxGraphTransferable t = new mxGraphTransferable(
-					new Object[] { cell }, bounds);
+					new Object[] {cell}, bounds);
 			
 			final BasicBlock cloneMe = (BasicBlock) cell;
 			
@@ -292,19 +284,16 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 			//	}
 			//}
 
-			final JLabel entry = new JLabel(icon)
-			{
+			final JLabel entry = new JLabel(icon) {
 				/**
 				 * 
 				 */
-				public void paint2(Graphics g)
-				{
+				public void paint2(Graphics g) {
 					boolean opaque = isOpaque();
 					Color bg = getBackground();
 					Border br = getBorder();
 
-					if (selectedEntry == this)
-					{
+					if (selectedEntry == this) {
 						setBackground(XcosPalette.this.getBackground().brighter());
 						setBorder(new ShadowBorder());
 						setOpaque(true);
@@ -336,8 +325,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 				 */
-				public void mousePressed(MouseEvent e)
-				{
+				public void mousePressed(MouseEvent e) {
 					setSelectionEntry(entry, t);
 				}
 
@@ -431,24 +419,21 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 				 */
-				public void mouseEntered(MouseEvent e)
-				{
+				public void mouseEntered(MouseEvent e) {
 				}
 
 				/*
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 				 */
-				public void mouseExited(MouseEvent e)
-				{
+				public void mouseExited(MouseEvent e) {
 				}
 
 				/*
 				 * (non-Javadoc)
 				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 				 */
-				public void mouseReleased(MouseEvent e)
-				{
+				public void mouseReleased(MouseEvent e) {
 				}
 
 			});
@@ -459,8 +444,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				/**
 				 * 
 				 */
-				public void dragGestureRecognized(DragGestureEvent e)
-				{
+				public void dragGestureRecognized(DragGestureEvent e) {
 					e
 					.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 							t, null);
@@ -497,8 +481,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param listener
 		 * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
 		 */
-		public void addListener(String eventName, mxIEventListener listener)
-		{
+		public void addListener(String eventName, mxIEventListener listener) {
 			eventSource.addListener(eventName, listener);
 		}
 
@@ -506,8 +489,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @return
 		 * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
 		 */
-		public boolean isEventsEnabled()
-		{
+		public boolean isEventsEnabled() {
 			return eventSource.isEventsEnabled();
 		}
 
@@ -515,8 +497,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param listener
 		 * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
 		 */
-		public void removeListener(mxIEventListener listener)
-		{
+		public void removeListener(mxIEventListener listener) {
 			eventSource.removeListener(listener);
 		}
 
@@ -525,8 +506,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param listener
 		 * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
 		 */
-		public void removeListener(mxIEventListener listener, String eventName)
-		{
+		public void removeListener(mxIEventListener listener, String eventName) {
 			eventSource.removeListener(listener, eventName);
 		}
 
@@ -534,8 +514,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		 * @param eventsEnabled
 		 * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
 		 */
-		public void setEventsEnabled(boolean eventsEnabled)
-		{
+		public void setEventsEnabled(boolean eventsEnabled) {
 			eventSource.setEventsEnabled(eventsEnabled);
 		}
 
@@ -546,18 +525,18 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		}
 
 		public void componentResized(ComponentEvent arg0) {
-			if(arg0.getSource() instanceof XcosPalette){
-				XcosPalette palette = ((XcosPalette)arg0.getSource());
-				int panelWidth = (int)palette.getSize().getWidth() - 3;
+			if (arg0.getSource() instanceof XcosPalette) {
+				XcosPalette palette = ((XcosPalette) arg0.getSource());
+				int panelWidth = (int) palette.getSize().getWidth() - 3;
 
 				//take care if VerticalScrollBar is visible to compute visible area
-				if(getVerticalScrollBar().isVisible() == true){
+				if (getVerticalScrollBar().isVisible()) {
 					panelWidth -=  getVerticalScrollBar().getWidth();
 				}
 
 				int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
-				double numberOfRows = (double)panel.getComponentCount() / (double)numberOfCols;
-				int preferedHeight = (int)((BLOCK_HEIGHT + VMARGIN) * Math.ceil(numberOfRows));
+				double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
+				int preferedHeight = (int) ((BLOCK_HEIGHT + VMARGIN) * Math.ceil(numberOfRows));
 
 				panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
 			}

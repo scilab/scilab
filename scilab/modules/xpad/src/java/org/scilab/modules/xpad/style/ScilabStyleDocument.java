@@ -44,8 +44,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private String eventType;
 	
 	private boolean contentModified;
-	Xpad editor;
-
+	private Xpad editor;	
 	/*if you want to add a new style just add it in the xml*/
 	private ArrayList<String> listStylesName;
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};

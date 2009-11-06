@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -22,6 +23,8 @@ import com.mxgraph.io.mxCodec;
 
 public class BasicBlockCodec extends XcosObjectCodec {
 
+	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
+	
 	public BasicBlockCodec(Object template) {
 		super(template);
 	}
@@ -35,14 +38,18 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	
 	
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-		((Element) node).setAttribute("simulationFunctionType",
-				String.valueOf(((BasicBlock)obj).getSimulationFunctionType()));
+		((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE,
+				String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
 		return super.beforeEncode(enc, obj, node);
 	}
 
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		((BasicBlock) obj).setSimulationFunctionType(
-				BasicBlock.SimulationFunctionType.valueOf((((Element)node).getAttribute("simulationFunctionType" ))));
+				BasicBlock.SimulationFunctionType.valueOf((((Element) node) .getAttribute(SIMULATION_FUNCTION_TYPE))));
+		
+		if (obj instanceof SuperBlock) {
+			((SuperBlock) obj).setChild(null);
+		}
 		return super.afterDecode(dec, node, obj);
 	}
 	

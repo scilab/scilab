@@ -48,19 +48,6 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
     }
     
     public void closeDiagram() {
-
-    	// Do not ask the user, the diagram is saved and closed
-    	
-    	if (isModified()) {
-    		container.setRealParameters(BlockWriter.convertDiagramToMList(this));
-    	}
-
-    	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentTab().getParentWindowId());
-    	xcosWindow.removeTab(getParentTab());
-    	getViewPort().close();
-    	Xcos.closeDiagram(this);
-    	this.removeListener(null);
-    	container.setLocked(false);
     }
 
     public void installSuperBlockListeners() {

@@ -39,24 +39,6 @@ elseif  get(gcbo, "Tag") == "installButton" then // Install selected module
 
   updateAtomsGui();
  
-elseif  get(gcbo, "Tag") == "loadButton" then // Install selected module
-  
-  disableAtomsGui();
-  
-  set(findobj("Tag", "modulesDesc"), "String", gettext("Installing..."));
-  
-  if execstr("atomsLoad(getSelectedModuleName())", "errcatch")<>0 then
-    
-    messagebox(gettext("Load failed !"), gettext("Atoms error"), "error");
-  
-  else
-  
-    messagebox(gettext("Load done !"), gettext("Atoms"), "info");
-
-  end
-
-  updateAtomsGui();
- 
 elseif  get(gcbo, "Tag") == "removeButton" then // Remove selected module
 
   disableAtomsGui();
@@ -165,13 +147,6 @@ for k=1:size(installedVersions,"*")
   end
 end
 
-// Tests for load available
-if atomsIsInstalled(getSelectedModuleName()) & ~ atomsIsLoaded(getSelectedModuleName()) then
-  canLoad = "on";
-else
-  canLoad = "off";
-end
-
 if atomsIsInstalled(getSelectedModuleName()) then
   canRemove = "on";
 else
@@ -187,6 +162,5 @@ end
 set(findobj("tag", "installButton"), "Enable", canInstall );
 set(findobj("tag", "updateButton") , "Enable", canUpdate );
 set(findobj("tag", "removeButton") , "Enable", canRemove );
-set(findobj("tag", "loadButton")   , "Enable", canLoad );
 
 endfunction

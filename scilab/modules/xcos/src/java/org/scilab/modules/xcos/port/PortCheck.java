@@ -14,10 +14,7 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
-import org.scilab.modules.xcos.XcosDiagram;
-
 import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGeometry;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -55,30 +52,30 @@ public class PortCheck extends mxMultiplicity {
 
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
 
-    	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-    		if(firstPort instanceof BasicPort){
-    			BasicPort port = (BasicPort)firstPort;
-    			if(port.getEdgeCount() > 0){
-    				return false;
-    			}
-    		}
+	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
+	    if (firstPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) firstPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
 
-    		if(secondPort instanceof BasicPort){
-    			BasicPort port = (BasicPort)secondPort;
-    			if(port.getEdgeCount() > 0){
-    				return false;
-    			}
-    		}
+	    if (secondPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) secondPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
 
-    		for (int i = 0 ; i < targetTemplate.length ; ++i) {
-    			if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
-    				}
-    				// We found something compatible !!
-    				return true;
-    			}
-    		//Nothing compatible was found ... Sorry ...
-    		return false;
-    	}
+	    for (int i = 0; i < targetTemplate.length; ++i) {
+		if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
+		    // We found something compatible !!
+		    return true;
+		}
+	    }
+	    //Nothing compatible was found ... Sorry ...
+	    return false;
+	}
 
 	// This rule is not applicable so we want it to be silent.
 	return true;

@@ -16,6 +16,8 @@
   <refsection>
     <title>Description</title>
 
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+
     <para>The string/char * datatype in the Scilab memory:</para>
 
     <itemizedlist>

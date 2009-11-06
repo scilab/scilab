@@ -312,12 +312,15 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 					//}
 				} catch (BadLocationException ex) {
 					ex.printStackTrace();
+<<<<<<< HEAD:scilab/modules/xpad/src/java/org/scilab/modules/xpad/XpadLineNumberPanel.java
 					System.err.println("Invalid location. Error: " + ex.getLocalizedMessage());
 
 					System.err.println("rowStartOffset: " + rowStartOffset + " endOffset: " + endOffset);
 					System.err.println("fontsMetrics: " + fontMetrics);
 					System.exit(2);
 
+=======
+>>>>>>> b9a0431c3c552a49a34ea154ff8f421cecdd9dfe:scilab/modules/xpad/src/java/org/scilab/modules/xpad/XpadLineNumberPanel.java
 					rowStartOffset = endOffset; // break loop when an exception is thrown
 				}
 			}

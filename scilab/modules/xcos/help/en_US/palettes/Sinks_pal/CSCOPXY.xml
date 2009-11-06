@@ -269,7 +269,7 @@ This block realizes the visualization of the evolution of the two regular inputs
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CSCOPXY3D">CSCOPXY3D - z=f(x,y) permanent viewer (Scicos Block)</link>
+          <link linkend="CSCOPXY3D">CSCOPXY3D - z=f(x,y) permanent viewer</link>
         </para>
       </listitem>
     </itemizedlist>

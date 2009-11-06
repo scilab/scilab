@@ -270,7 +270,7 @@ This block realizes the visualization of the evolution of the two regular input 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated viewer (Scicos Block)</link>
+          <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated viewer</link>
         </para>
       </listitem>
     </itemizedlist>

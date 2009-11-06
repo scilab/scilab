@@ -14,8 +14,8 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
 import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;

@@ -280,6 +280,13 @@ static char* gatewayname_xpad = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_xpad(void)
 {
+#ifdef _MSC_VER
+	if (dynlibname_xpad == NULL)
+	{
+		dynlibname_xpad = buildModuleDynLibraryName(XPAD_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	
 	return gw_dynamic_generic(XPAD_MODULE_NAME,
 		&dynlibname_xpad,
 		&gatewayname_xpad,

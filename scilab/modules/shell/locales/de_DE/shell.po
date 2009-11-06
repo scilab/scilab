@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-02-13 19:13+0000\n"
+"PO-Revision-Date: 2009-10-23 07:34+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -35,10 +35,6 @@ msgid "%s: Not implemented in this mode.\n"
 msgstr "%s: in diesem Modus nicht implementiert.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: Matrix erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
@@ -48,10 +44,13 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-"[mit der Anzeige fortfahren? n (Nein) um zu beenden, andere Taste um "
-"fortzufahren]"
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: falsche Anzahl von Ausgabeargumenten.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: Matrix erwartet.\n"
 
 msgid "File or Directory"
 msgstr "Datei oder Verzeichnis"
@@ -70,3 +69,17 @@ msgstr "Scilab Variable"
 
 msgid "Graphics handle field"
 msgstr "Feld für Graphen"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Geben Sie '%s' oder '%s', um zur Standarteingabe-Aufforderung "
+"zurückzukehren.\n"
+"\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[mit der Anzeige fortfahren? n (Nein) um zu beenden, andere Taste um "
+"fortzufahren]"

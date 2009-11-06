@@ -164,7 +164,7 @@
 
         <para>It indicates the type of the output. It support only the two
         types double (1) and complex (2). If we input another entry in this
-        label Scicos will print the message "Datatype is not
+        label xcos will print the message "Datatype is not
         supported".</para>
 
         <para>Properties : Type 'vec' of size -1.</para>
@@ -306,7 +306,7 @@ y=[1 2 3 4 5 6]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="EXTRACT">EXTRACT - EXTRACT: Matrix Extractor (Scicos
+          <link linkend="EXTRACT">EXTRACT - EXTRACT: Matrix Extractor (xcos
           Block)</link>
         </para>
       </listitem>

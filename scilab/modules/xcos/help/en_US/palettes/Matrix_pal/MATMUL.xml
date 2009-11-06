@@ -166,7 +166,7 @@
 
         <para>It indicates the type of the output. It support only the two
         types double (1) and complex (2). If we input another entry in this
-        label Scicos will print the message "Datatype is not
+        label xcos will print the message "Datatype is not
         supported".</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
@@ -311,7 +311,7 @@ y=[46 37 28 19;115 94 73 52]
       <listitem>
         <para>
           <link linkend="INTMUL">INTMUL - INTMUL integer matrix multiplication
-          (Scicos Block)</link>
+          (xcos Block)</link>
         </para>
       </listitem>
 
@@ -325,13 +325,13 @@ y=[46 37 28 19;115 94 73 52]
       <listitem>
         <para>
           <link linkend="MATBKSL">MATBKSL - MATBKSL:left matrix division
-          (Scicos Block)</link>
+          (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATEXPM">MATEXPM - MATEXPM Matrix Exponential (Scicos
+          <link linkend="MATEXPM">MATEXPM - MATEXPM Matrix Exponential (xcos
           Block)</link>
         </para>
       </listitem>
@@ -339,7 +339,7 @@ y=[46 37 28 19;115 94 73 52]
       <listitem>
         <para>
           <link linkend="SUMMATION">SUMMATION - SUMMATION Matrix Summation
-          (Scicos Block)</link>
+          (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

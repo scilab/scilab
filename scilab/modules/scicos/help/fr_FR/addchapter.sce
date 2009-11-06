@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Scicos",SCI+"/modules/scicos/help/fr_FR",%F);
+//add_help_chapter("Scicos",SCI+"/modules/scicos/help/fr_FR",%F);
 

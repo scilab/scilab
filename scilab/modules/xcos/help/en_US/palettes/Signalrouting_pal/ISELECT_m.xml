@@ -115,7 +115,7 @@ input port.
         <para>
           <emphasis role="bold">Datatype(1= real double  2=Complex)</emphasis>
         </para>
-        <para> It indicates the type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label Scicos will print the message "Datatype is not supported".</para>
+        <para> It indicates the type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label Xcos will print the message "Datatype is not supported".</para>
         <para> Properties : Type 'vec' of size 1 </para>
       </listitem>
       <listitem>

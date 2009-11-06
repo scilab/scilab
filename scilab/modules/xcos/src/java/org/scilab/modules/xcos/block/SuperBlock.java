@@ -17,12 +17,15 @@ import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -72,10 +75,36 @@ public class SuperBlock extends BasicBlock {
     	    this.setLocked(false);
     	    return;
     	}
-	createChildDiagram();
-	Xcos.showDiagram(child);
+	
+    	if(createChildDiagram() == true) {
+    		child.setModified(false);
+    		Xcos.showDiagram(child);
+    	} else {
+        	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
+        	xcosWindow.setVisible(true);
+    	}
     }
 
+	public void closeBlockSettings() {
+
+    	// Do not ask the user, the diagram is saved and closed
+    	if (child.isModified()) {
+    		setRealParameters(BlockWriter.convertDiagramToMList(child));
+        	getParentDiagram().setModified(true);
+    	}
+
+    	if(child.getParentTab() != null) {
+    		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
+    		xcosWindow.removeTab(child.getParentTab());
+    		child.getViewPort().close();
+    		Xcos.closeDiagram(child);
+    	}
+
+    	child.removeListener(null);
+    	setLocked(false);
+    	child = null;
+	}
+    
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = createContextMenu(graph);
 	
@@ -85,34 +114,18 @@ public class SuperBlock extends BasicBlock {
 	menu.setVisible(true);
     }
     
-    public void createChildDiagram(){
+    public boolean createChildDiagram(){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
     	    child.installSuperBlockListeners();
-    	    int blockCount = child.getModel().getChildCount(child.getDefaultParent());
-    	    for(int i = 0 ; i < blockCount ; i++){
-    		    mxCell cell = (mxCell)child.getModel().getChildAt(child.getDefaultParent(), i);
-    		    if(cell instanceof BasicBlock){
-    		    	BasicBlock block = (BasicBlock)cell;
-    		    	block.setParentDiagram(child);
-    		    }
-    	    }
+    		child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
+    	} else {
+    		return false;
     	}
-    	else {
-    	    SuperBlockDiagram newChild = new SuperBlockDiagram(this);
-    	    newChild.installListeners();
-    	    newChild.setModel(child.getModel());
-    	    newChild.setContext(child.getContext());
-    	    newChild.getModel().setRoot(child.getModel().getRoot());
-    	    newChild.setDefaultParent(child.getDefaultParent());
-    	    child = newChild;
-    	    
-    	    child.installSuperBlockListeners();
-    	    updateAllBlocksColor();
-    	}
+    	return true;
     }
     
     public SuperBlockDiagram getChild() {
@@ -127,7 +140,7 @@ public class SuperBlock extends BasicBlock {
 	if (child != null) {
 	    setRealParameters(BlockWriter.convertDiagramToMList(child));
 	}
-	return super.getAsScilabObj();
+	return BasicBlockInfo.getAsScilabObj(this);
     }
 
     protected List<mxCell> getAllExplicitInBlock(){
@@ -341,7 +354,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
-    	List<ExplicitInputPort> ports = getAllExplicitInputPorts();
+    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this);
 
     	int portCount = ports.size();
 
@@ -361,7 +374,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
-    	List<ImplicitInputPort> ports = getAllImplicitInputPorts();
+    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this);
 
     	int portCount = ports.size();
 
@@ -378,7 +391,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
-    	List<ControlPort> ports = getAllControlPorts();
+    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this);
 
     	int portCount = ports.size();
 
@@ -395,7 +408,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
-    	List<ExplicitOutputPort> ports = getAllExplicitOutputPorts();
+    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this);
 
     	int portCount = ports.size();
 
@@ -415,7 +428,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
-    	List<ImplicitOutputPort> ports = getAllImplicitOutputPorts();
+    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this);
 
     	int portCount = ports.size();
 
@@ -432,7 +445,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
-    	List<CommandPort> ports = getAllCommandPorts();
+    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this);
 
     	int portCount = ports.size();
 

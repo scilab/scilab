@@ -35,7 +35,7 @@ public class AfficheBlock extends BasicBlock {
 
 	public int getHashCode(){
 		//generate UID
-		if(hashCode == 0){
+		if (hashCode == 0) {
 			hashCode = UUID.randomUUID().hashCode();			
 		}
 		return hashCode;

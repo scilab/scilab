@@ -21,7 +21,9 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -76,11 +78,9 @@ public class BlockReader {
 			e.printStackTrace();
 			return null;
 		} catch (VersionMismatchException e) {
-			MessageBox messageBox = ScilabMessageBox.createMessageBox();
-			messageBox.setTitle(XcosMessages.FAIL_LOADING_DIAGRAM);
-			String[] message = {"Unknow Diagram Version : "+e.getVersion(), "Will try to continue..."};
-			messageBox.setMessage(message);
-			messageBox.displayAndWait();
+		    //    UNKNOW_VERSION TRY_TO_CONTINUE
+		    ScilabModalDialog.show(new String[]{XcosMessages.UNKNOW_VERSION + e.getVersion(), 
+			    XcosMessages.TRY_TO_CONTINUE}, XcosMessages.FAIL_LOADING_DIAGRAM, IconType.ERROR_ICON);
 		} 
 
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -156,31 +156,31 @@ public class BlockReader {
 					DEBUG("End : [" + endBlockIndex + ", " + endPortIndex + ", " + endPortType + "]");
 					switch (startPortType) {
 					case INPUT:
-						startingPort = indexedBlock.get(startBlockIndex).getAllInputPorts().get(startPortIndex - 1);
+						startingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(startBlockIndex)).get(startPortIndex - 1);
 						break;
 					case OUTPUT:
-						startingPort = indexedBlock.get(startBlockIndex).getAllOutputPorts().get(startPortIndex - 1);
+						startingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(startBlockIndex)).get(startPortIndex - 1);
 						break;
 					case COMMAND:
-						startingPort = indexedBlock.get(startBlockIndex).getAllCommandPorts().get(startPortIndex - 1);
+						startingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(startBlockIndex)).get(startPortIndex - 1);
 						break;
 					case CONTROL:
-						startingPort = indexedBlock.get(startBlockIndex).getAllControlPorts().get(startPortIndex - 1);
+						startingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(startBlockIndex)).get(startPortIndex - 1);
 						break;
 					}
 
 					switch (endPortType) {
 					case INPUT:
-						endingPort = indexedBlock.get(endBlockIndex).getAllInputPorts().get(endPortIndex - 1);
+						endingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(endBlockIndex)).get(endPortIndex - 1);
 						break;
 					case OUTPUT:
-						endingPort = indexedBlock.get(endBlockIndex).getAllOutputPorts().get(endPortIndex - 1);
+						endingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(endBlockIndex)).get(endPortIndex - 1);
 						break;
 					case COMMAND:
-						endingPort = indexedBlock.get(endBlockIndex).getAllCommandPorts().get(endPortIndex - 1);
+						endingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(endBlockIndex)).get(endPortIndex - 1);
 						break;
 					case CONTROL:
-						endingPort = indexedBlock.get(endBlockIndex).getAllControlPorts().get(endPortIndex - 1);
+						endingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(endBlockIndex)).get(endPortIndex - 1);
 						break;
 					}
 
@@ -1066,7 +1066,7 @@ public class BlockReader {
 			throw new WrongTypeException(); 
 		}
 		if (modelFields.get(15) instanceof ScilabDouble && !isEmptyField(modelFields.get(15))) {
-			List<CommandPort> allCommandPorts = newBlock.getAllCommandPorts();
+			List<CommandPort> allCommandPorts = BasicBlockInfo.getAllCommandPorts(newBlock);
 			if(modelFields.get(15).getHeight() >= modelFields.get(15).getWidth()) {
 				for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
 					allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(15)).getRealPart()[i][0]);
@@ -1338,7 +1338,7 @@ public class BlockReader {
 			throw new WrongTypeException(); 
 		}
 		if (modelFields.get(17) instanceof ScilabDouble && !isEmptyField(modelFields.get(17))) {
-			List<CommandPort> allCommandPorts = newBlock.getAllCommandPorts();
+			List<CommandPort> allCommandPorts = BasicBlockInfo.getAllCommandPorts(newBlock);
 			if(modelFields.get(17).getHeight() >= modelFields.get(17).getWidth()) {
 				for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
 					allCommandPorts.get(i).setInitialState(((ScilabDouble) modelFields.get(17)).getRealPart()[i][0]);

@@ -363,8 +363,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication (Scicos
-          Block)</link>
+          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication</link>
         </para>
       </listitem>
     </itemizedlist>

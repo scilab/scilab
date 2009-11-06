@@ -1,0 +1,313 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2009-11-01 15:36+0000\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上のメモリはありません。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実スカラーを想定します。\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' モジュールはインストールされていません。\n"
+
+msgid "Scilab editor"
+msgstr "Scilabエディター"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "New"
+msgstr "新規"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Recent Files"
+msgstr "最近のファイル"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save as"
+msgstr "保存"
+
+msgid "Page Setup"
+msgstr "ページ設定"
+
+msgid "Print Preview"
+msgstr "印刷プレビュー"
+
+msgid "Print"
+msgstr "印刷"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Exit"
+msgstr "終了"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Redo"
+msgstr "やり直す"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Select All"
+msgstr "全て選択"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Comment Selection"
+msgstr "コメント選択"
+
+msgid "Uncomment Selection"
+msgstr "コメントなし選択"
+
+msgid "Tabify Selection"
+msgstr "タブ選択"
+
+msgid "Untabify Selection"
+msgstr "タブなし選択"
+
+msgid "Indent"
+msgstr "インデント"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Find/Replace"
+msgstr "検索/変更"
+
+msgid "Goto line"
+msgstr "ラインへ跳ぶ"
+
+msgid "View"
+msgstr "ビュー"
+
+msgid "Show/Hide ToolBar"
+msgstr "ツールバーの表示/非表示"
+
+msgid "Highlight current line"
+msgstr "現在の行をハイライト"
+
+msgid "Word Wrap"
+msgstr "ワードラップ"
+
+msgid "Line Numbers"
+msgstr "ライン番号"
+
+msgid "Set Colors"
+msgstr "カラー設定"
+
+msgid "Set Font"
+msgstr "フォント設定"
+
+msgid "Reset default font"
+msgstr "初期値フォントのリセット"
+
+msgid "Document"
+msgstr "ドキュメント"
+
+msgid "Syntax Type"
+msgstr "文法型"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+msgid "Plain Text"
+msgstr "プレイン・テキスト"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "Encoding Type"
+msgstr "エンコーディング型"
+
+msgid "UTF-8 Encoding"
+msgstr "UTF-8エンコーディング"
+
+msgid "ASCII Encoding"
+msgstr "ASCIIエンコードィング"
+
+msgid "Colorize"
+msgstr "カラー化"
+
+msgid "Auto Indent"
+msgstr "自動インデント"
+
+msgid "Execute"
+msgstr "実行"
+
+msgid "Load Into Scilab"
+msgstr "Scilabへロード"
+
+msgid "Evaluate Selection"
+msgstr "選択の評価"
+
+msgid "Execute Into Scilab"
+msgstr "Scilabへ実行"
+
+msgid "Scilab editor Help"
+msgstr "Scilabエディター・ヘルプ"
+
+msgid "About"
+msgstr "バージョン情報"
+
+msgid "Scilab Editor version 1.0"
+msgstr "Scilaエディターバージョン 1.0"
+
+msgid "Find:"
+msgstr "検索:"
+
+msgid "Find"
+msgstr "検索"
+
+msgid "Replace/Find"
+msgstr "変更/検索"
+
+msgid "Replace With :"
+msgstr "取り替えます :"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Forward"
+msgstr "先へ"
+
+msgid "Backward"
+msgstr "後へ"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "All"
+msgstr "全て"
+
+msgid "Selected lines"
+msgstr "ライン選択"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Case sensitive"
+msgstr "大／小文字の区別"
+
+msgid "Wrap search"
+msgstr "Warp 検索"
+
+msgid "Whole word"
+msgstr "全体の語"
+
+msgid "Regular expressions"
+msgstr "正規表現"
+
+msgid "Replace"
+msgstr "変更"
+
+msgid "Replace All"
+msgstr "全て変更"
+
+msgid "Invalid regular expression : %s"
+msgstr "正規表現の不正 : %s"
+
+msgid "You have reached the end of the document"
+msgstr "ドキュメントの終りに達しました"
+
+msgid "String %s not found"
+msgstr "文字列 %s は見つかりません"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"ファイル %s は存在しません\n"
+"作成しますか?"
+
+msgid "close this tab"
+msgstr "このタブを閉じる"
+
+msgid "This file"
+msgstr "ファイル"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+" 最後の保存の後で修正されました\n"
+"保存しますか?"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"ファイル %s は別のプログラムで修正されました !\n"
+"上書きしますか?"
+
+msgid "Replace File?"
+msgstr "ファイルを変更しますか?"
+
+msgid "File already exists"
+msgstr "ファイルは既に存在します"
+
+msgid "Untitled "
+msgstr "無題 "
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Default"
+msgstr "初期値"
+
+msgid "Next tab"
+msgstr "次のタブ"
+
+msgid "Previous tab"
+msgstr "前のタブ"
+
+msgid "Enter line number"
+msgstr "ライン番号を入力してください"

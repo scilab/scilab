@@ -123,8 +123,8 @@ free(pstData);
       linkend="StartScilab">StartScilab</link>, <link
       linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>, <link
       linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>, <link
-      linkend="Boolean_management_reading_API">API_Scilab: Boolean Reading</link>, <link
-      linkend="Boolean_management_writing_API">API_Scilab: Boolean Writing</link>, <link
+      linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>, <link
+      linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>, <link
       linkend="Double_management_reading_API">API_Scilab: Double Reading</link>, <link
       linkend="Double_management_writing_API">API_Scilab: Double Writing</link>, <link
       linkend="ComplexManagement_callscilab">Complex

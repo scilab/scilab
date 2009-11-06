@@ -14,20 +14,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-11 19:52+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "&File"
-msgstr "&Fichier"
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr "Erreur %s pendant le chargement de la librairie %s"
 
-msgid "&Tools"
-msgstr "&Outils"
+msgid "Updating, please wait"
+msgstr "Mise à jour, patientez s'il vous plait"
 
-msgid "&Edit"
-msgstr "&Edition"
-
-msgid "&?"
-msgstr "&?"
+msgid "Tcl/Tk interface not loaded."
+msgstr "Interface TCL/TK n'est pas chargée."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -53,65 +51,17 @@ msgid "%s: Slave interpreter already exists.\n"
 msgstr "%s: L'interpréteur esclave existe déjà.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un réel ou une matrice de "
-"chaîne de caractères attendue.\n"
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr "%s: Erreur interpréteur principal TCL non initialisé.\n"
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
 msgstr "%s: Pas d'interpréteur esclave.\n"
 
-msgid "Updating, please wait"
-msgstr "Mise à jour, patientez s'il vous plait"
-
-#, c-format
-msgid "Error %s while loading library %s"
-msgstr "Erreur %s pendant le chargement de la librairie %s"
-
-msgid "Tcl/Tk interface not loaded."
-msgstr "Interface TCL/TK n'est pas chargée."
-
-msgid "Open"
-msgstr "Ouvrir"
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-"Attention : Problème(s) avec l'interface TCL/TK. L'interface n'est pas "
-"activée.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "L'interface Tcl/TK est désactivée en mode -nogui.\n"
-
-#, c-format
-msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Erreur interpréteur principal TCL non initialisé.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
-
-#, c-format
-msgid "%s: File %s not found.\n"
-msgstr "%s: Fichier %s pas trouvé.\n"
-
-#, c-format
-msgid ""
-"%s, at line %i of file %s\n"
-"\t%s.\n"
-msgstr ""
-"%s, à la ligne %i du fichier %s\n"
-"\t%s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or vector of strings "
-"expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument n° #%d: Chaîne de caractères ou vecteur de "
-"chaînes de caractères attendu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -120,23 +70,6 @@ msgstr "%s : Plus de mémoire disponible.\n"
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
 msgstr "%s: Ne peut pas lire la Variable Tcl.\n"
-
-msgid "Alpha Release"
-msgstr "Release Alpha"
-
-msgid "Beta Release"
-msgstr "Release Beta"
-
-msgid "Final Release"
-msgstr "Release Finale"
-
-msgid "Unknown Release"
-msgstr "Release inconnue"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: '%s' attendue.\n"
 
 msgid "This function doesn't work with Complex.\n"
 msgstr "Cette fonction ne marche pas avec des complexes.\n"
@@ -155,15 +88,113 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° #%d ou #%d: Chaîne de "
 "caractères attendue.\n"
 
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr ""
+"Attention : Problème(s) avec l'interface TCL/TK. L'interface n'est pas "
+"activée.\n"
+
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr "L'interface Tcl/TK est désactivée en mode -nogui.\n"
+
+msgid "Alpha Release"
+msgstr "Release Alpha"
+
+msgid "Beta Release"
+msgstr "Release Beta"
+
+msgid "Final Release"
+msgstr "Release Finale"
+
+msgid "Unknown Release"
+msgstr "Release inconnue"
+
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Une erreur s'est produite: %s\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: '%s' attendue.\n"
 
-msgid "Impossible to set environment variable."
-msgstr "Impossible de définir la variable d'environnement."
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or vector of strings "
+"expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument n° #%d: Chaîne de caractères ou vecteur de "
+"chaînes de caractères attendu.\n"
 
-msgid "Impossible to set system encoding."
-msgstr "Impossible de définir l'encodage système."
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr "%s: Fichier %s pas trouvé.\n"
+
+#, c-format
+msgid ""
+"%s, at line %i of file %s\n"
+"\t%s.\n"
+msgstr ""
+"%s, à la ligne %i du fichier %s\n"
+"\t%s.\n"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Tools"
+msgstr "&Outils"
+
+msgid "&Edit"
+msgstr "&Edition"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Scilab TCL/TK module not installed.\n"
+msgstr "Le module TCL/TK de Scilab n'est pas installé.\n"
+
+#, c-format
+msgid "Tcl Error : %s\n"
+msgstr "Erreur Tcl : %s\n"
+
+msgid "Variable too long.\n"
+msgstr "Variable trop longue.\n"
+
+#, c-format
+msgid "%s: Error TCL interpreter not initialized.\n"
+msgstr "%s: Erreur interpréteur TCL non initialisé.\n"
+
+#, c-format
+msgid "TCL_EvalScilabCmd %s"
+msgstr "TCL_EvalScilabCmd %s"
+
+#, c-format
+msgid "Execution starts for %s"
+msgstr "L'exécution commence à %s"
+
+#, c-format
+msgid "Execution ends for %s"
+msgstr "L'exécution finit à %s"
+
+msgid " Flushing starts for queued commands.\n"
+msgstr " Commence à vider les commandes de la queue.\n"
+
+msgid "Warning: Too many callbacks in queue!\n"
+msgstr "Attention: trop de callbacks dans la queue!\n"
+
+#, c-format
+msgid "Flushed execution starts for %s - No option"
+msgstr "Vide %s du début de l'exécution - Pas d'option"
+
+#, c-format
+msgid "Flushed execution starts for %s - seq"
+msgstr "Vide %s du début de l'exécution - seq"
+
+#, c-format
+msgid "Flushed execution ends for %s"
+msgstr "Vide %s de la fin de l'exécution"
+
+msgid "Flushing ends\n"
+msgstr "Vidage terminé\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) d'entrée: Au moins un attendu.\n"
 
 msgid ""
 "The SCI environment variable is not set.\n"
@@ -217,56 +248,15 @@ msgstr ""
 "chargement de %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
 
-#, c-format
-msgid "Execution starts for %s"
-msgstr "L'exécution commence à %s"
+msgid "Impossible to set environment variable."
+msgstr "Impossible de définir la variable d'environnement."
 
-#, c-format
-msgid "Execution ends for %s"
-msgstr "L'exécution finit à %s"
-
-msgid " Flushing starts for queued commands.\n"
-msgstr " Commence à vider les commandes de la queue.\n"
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Attention: trop de callbacks dans la queue!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "Vide %s du début de l'exécution - Pas d'option"
-
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "Vide %s du début de l'exécution - seq"
-
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr "Vide %s de la fin de l'exécution"
-
-msgid "Flushing ends\n"
-msgstr "Vidage terminé\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) d'entrée: Au moins un attendu.\n"
-
-#, c-format
-msgid "Tcl Error : %s\n"
-msgstr "Erreur Tcl : %s\n"
+msgid "Impossible to set system encoding."
+msgstr "Impossible de définir l'encodage système."
 
 #, c-format
 msgid "Tcl Error: %s\n"
 msgstr "Erreur Tcl: %s\n"
-
-msgid "Variable too long.\n"
-msgstr "Variable trop longue.\n"
-
-#, c-format
-msgid "%s: Error TCL interpreter not initialized.\n"
-msgstr "%s: Erreur interpréteur TCL non initialisé.\n"
-
-msgid "Scilab TCL/TK module not installed.\n"
-msgstr "Le module TCL/TK de Scilab n'est pas installé.\n"

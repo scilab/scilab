@@ -1,0 +1,306 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2009-11-03 08:55+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "Модуль «%s» выключен в режимах  -nogui и -nwni."
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"
+
+msgid "Scilab editor"
+msgstr "Текстовый редактор"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "New"
+msgstr "Создать"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Recent Files"
+msgstr "Недавние файлы"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save as"
+msgstr ""
+
+msgid "Page Setup"
+msgstr "Параметры  страницы"
+
+msgid "Print Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Print"
+msgstr "Печать"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "Edit"
+msgstr "Правка"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Select All"
+msgstr "Выделить всё"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Comment Selection"
+msgstr "Добавить комментарии"
+
+msgid "Uncomment Selection"
+msgstr "Удалить комментарии"
+
+msgid "Tabify Selection"
+msgstr "Сделать отступ"
+
+msgid "Untabify Selection"
+msgstr "Убрать отступ"
+
+msgid "Indent"
+msgstr "Отступ"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Find/Replace"
+msgstr "Найти/заменить"
+
+msgid "Goto line"
+msgstr "Перейти к строке"
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Show/Hide ToolBar"
+msgstr "Показать/скрыть панель инструментов"
+
+msgid "Highlight current line"
+msgstr "Подсвечивать текущую строку"
+
+msgid "Word Wrap"
+msgstr "Автоматические переход на новую строку"
+
+msgid "Line Numbers"
+msgstr "Показывать номера строк"
+
+msgid "Set Colors"
+msgstr "Цвета"
+
+msgid "Set Font"
+msgstr "Шрифт"
+
+msgid "Reset default font"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Syntax Type"
+msgstr ""
+
+msgid "Scilab"
+msgstr ""
+
+msgid "Plain Text"
+msgstr ""
+
+msgid "XML"
+msgstr ""
+
+msgid "Encoding Type"
+msgstr ""
+
+msgid "UTF-8 Encoding"
+msgstr ""
+
+msgid "ASCII Encoding"
+msgstr ""
+
+msgid "Colorize"
+msgstr ""
+
+msgid "Auto Indent"
+msgstr ""
+
+msgid "Execute"
+msgstr ""
+
+msgid "Load Into Scilab"
+msgstr ""
+
+msgid "Evaluate Selection"
+msgstr ""
+
+msgid "Execute Into Scilab"
+msgstr ""
+
+msgid "Scilab editor Help"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Scilab Editor version 1.0"
+msgstr ""
+
+msgid "Find:"
+msgstr ""
+
+msgid "Find"
+msgstr ""
+
+msgid "Replace/Find"
+msgstr ""
+
+msgid "Replace With :"
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "Forward"
+msgstr ""
+
+msgid "Backward"
+msgstr ""
+
+msgid "Scope"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Selected lines"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
+
+msgid "Wrap search"
+msgstr ""
+
+msgid "Whole word"
+msgstr ""
+
+msgid "Regular expressions"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Replace All"
+msgstr ""
+
+msgid "Invalid regular expression : %s"
+msgstr ""
+
+msgid "You have reached the end of the document"
+msgstr ""
+
+msgid "String %s not found"
+msgstr ""
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+
+msgid "close this tab"
+msgstr ""
+
+msgid "This file"
+msgstr ""
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+
+msgid "Replace File?"
+msgstr ""
+
+msgid "File already exists"
+msgstr ""
+
+msgid "Untitled "
+msgstr ""
+
+msgid "Ok"
+msgstr "ОК"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Default"
+msgstr ""
+
+msgid "Next tab"
+msgstr ""
+
+msgid "Previous tab"
+msgstr ""
+
+msgid "Enter line number"
+msgstr ""

@@ -28,7 +28,6 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -46,8 +45,8 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -56,14 +55,13 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxCellState;
 
 public class BasicBlock extends XcosUIDObject {
 
@@ -374,107 +372,6 @@ public class BasicBlock extends XcosUIDObject {
         this.locked = locked;
     }
 
-    public List<InputPort> getAllInputPorts() {
-	List<InputPort> data = new ArrayList<InputPort>();
-	int childrenCount = getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if(getChildAt(i) instanceof InputPort) {
-		data.add((InputPort) getChildAt(i));
-	    }
-	}
-
-	return data;
-    }
-
-    public List<ExplicitInputPort> getAllExplicitInputPorts() {
-    	List<ExplicitInputPort> data = new ArrayList<ExplicitInputPort>();
-    	int childrenCount = getChildCount();
-
-    	for (int i = 0 ; i < childrenCount ; ++i) {
-    		if(getChildAt(i) instanceof ExplicitInputPort) {
-    			data.add((ExplicitInputPort) getChildAt(i));
-    		}
-    	}
-    	return data;
-    }
-
-    public List<ImplicitInputPort> getAllImplicitInputPorts() {
-    	List<ImplicitInputPort> data = new ArrayList<ImplicitInputPort>();
-    	int childrenCount = getChildCount();
-
-    	for (int i = 0 ; i < childrenCount ; ++i) {
-    		if(getChildAt(i) instanceof ImplicitInputPort) {
-    			data.add((ImplicitInputPort) getChildAt(i));
-    		}
-    	}
-    	return data;
-    }
-
-    public List<OutputPort> getAllOutputPorts() {
-	List<OutputPort> data = new ArrayList<OutputPort>();
-	int childrenCount = getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if(getChildAt(i) instanceof OutputPort) {
-		data.add((OutputPort) getChildAt(i));
-	    }
-	}
-
-	return data;
-    }
-
-    public List<ExplicitOutputPort> getAllExplicitOutputPorts() {
-    	List<ExplicitOutputPort> data = new ArrayList<ExplicitOutputPort>();
-    	int childrenCount = getChildCount();
-
-    	for (int i = 0 ; i < childrenCount ; ++i) {
-    		if(getChildAt(i) instanceof ExplicitOutputPort) {
-    			data.add((ExplicitOutputPort) getChildAt(i));
-    		}
-    	}
-    	return data;
-    }
-
-    public List<ImplicitOutputPort> getAllImplicitOutputPorts() {
-    	List<ImplicitOutputPort> data = new ArrayList<ImplicitOutputPort>();
-    	int childrenCount = getChildCount();
-
-    	for (int i = 0 ; i < childrenCount ; ++i) {
-    		if(getChildAt(i) instanceof ImplicitOutputPort) {
-    			data.add((ImplicitOutputPort) getChildAt(i));
-    		}
-    	}
-    	return data;
-    }
-
-    public List<CommandPort> getAllCommandPorts() {
-	List<CommandPort> data = new ArrayList<CommandPort>();
-	int childrenCount = getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if(getChildAt(i) instanceof CommandPort) {
-		data.add((CommandPort) getChildAt(i));
-	    }
-	}
-
-	return data;
-    }
-
-    public List<ControlPort> getAllControlPorts() {
-	List<ControlPort> data = new ArrayList<ControlPort>();
-	int childrenCount = getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if(getChildAt(i) instanceof ControlPort) {
-		data.add((ControlPort) getChildAt(i));
-	    }
-	}
-
-	return data;
-    }
-
-
     public void removePort(InputPort port){
     	remove(port);
     }
@@ -492,239 +389,43 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void addPort(InputPort port) {
-	insert(port);
-	updatePortsPosition(mxConstants.DIRECTION_EAST);
-	port.setOrdering(getAllInputPorts().size());
+    	insert(port);
+    	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
+    	port.setOrdering(BasicBlockInfo.getAllInputPorts(this).size());
     }
 
     public void addPort(OutputPort port) {
-	insert(port);
-	updatePortsPosition(mxConstants.DIRECTION_EAST);
-	port.setOrdering(getAllOutputPorts().size());
+    	insert(port);
+    	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
+    	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this).size());
     }
 
     public void addPort(CommandPort port) {
-	insert(port);
-	updatePortsPosition(mxConstants.DIRECTION_EAST);
-	port.setOrdering(getAllCommandPorts().size());
+    	insert(port);
+    	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
+    	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this).size());
     }
 
     public void addPort(ControlPort port) {
-	insert(port);
-	updatePortsPosition(mxConstants.DIRECTION_EAST);
-	port.setOrdering(getAllControlPorts().size());
+    	insert(port);
+    	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
+    	port.setOrdering(BasicBlockInfo.getAllControlPorts(this).size());
     }
 
-    public ScilabMList getAsScilabObj() {
-	String[] objFields = {"Block", "graphics", "model", "gui", "doc"};
-	ScilabMList obj = new ScilabMList(objFields);
-
-	obj.add(createScilabGraphicsProperties());
-	obj.add(createScilabModelProperties());
-	obj.add(createScilabGuiProperties());
-	obj.add(createScilabDocProperties());
-
-	return obj;
-    }
-
-    private ScilabMList createScilabGraphicsProperties() {
-	String[] graphicsFields = {"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
-		"id", "in_implicit", "out_implicit"};
-	ScilabMList graphics = new ScilabMList(graphicsFields);
-
-	double[][] orig = {{getGeometry().getX(), - getGeometry().getY()}};
-	graphics.add(new ScilabDouble(orig)); // orig
-
-	double[][] sz = {{getGeometry().getWidth(), getGeometry().getHeight()}};
-	graphics.add(new ScilabDouble(sz)); // sz
-
-//	graphics.add(new ScilabBoolean(!flip)); // flip
-	graphics.add(new ScilabBoolean(true)); // flip
-
-//	mxCellState state = getParentDiagram().getView().getState(this);
-//	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-//
-//	double theta = 0;
-//	if(currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0){
-//		if(flip){
-//			theta = 180;	
-//		}else{
-//			theta = 0;
-//		}
-//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0){
-//		if(flip){
-//			theta = 270;	
-//		}else{
-//			theta = 90;
-//		}
-//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0){
-//		if(flip){
-//			theta = 0;	
-//		}else{
-//			theta = 180;
-//		}
-//	}else if(currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0){
-//		if(flip){
-//			theta = 90;	
-//		}else{
-//			theta = 270;
-//		}
-//	}
-//	graphics.add(new ScilabDouble(theta)); // theta
-	
-	graphics.add(new ScilabDouble(0)); // theta
-
-	graphics.add(getAllExprs()); // exprs
-
-	graphics.add(getAllLinkId(getAllInputPorts())); // pin
-
-	graphics.add(getAllLinkId(getAllOutputPorts())); // pout
-
-	graphics.add(getAllLinkId(getAllControlPorts())); // pein
-
-	graphics.add(getAllLinkId(getAllCommandPorts())); // peout
-
-	ScilabList gr_i = new ScilabList();
-	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getInterfaceFunctionName()+"\",sz(1),sz(2));");
-	gr_i.add(graphicsInstructions);
-	gr_i.add(new ScilabDouble(8));
-	graphics.add(gr_i); // gr_i
-
-	graphics.add(new ScilabString("")); // id
-
-	graphics.add(getAllPortsType(getAllInputPorts())); // in_implicit
-
-	graphics.add(getAllPortsType(getAllOutputPorts())); // out_implicit
-
-	return graphics;
-    }
-
-    private ScilabType getAllExprs() {
-	//	if (getExprs().isEmpty()) {
-	//	    return new ScilabList();
-	//	}
-	//
-	//	String[][] data = new String[getExprs().size()][1];
-	//	for (int i = 0 ; i < getExprs().size() ; ++i) {
-	//	    data[i][0] = getExprs().get(i);
-	//	}
-	//
-	//	return new ScilabString(data);
-	return getExprs();
-    }
-
-    private ScilabMList createScilabModelProperties() {
-	String[] modelFields = {"model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
-		"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label",
-		"nzcross", "nmode", "equations"};
-	ScilabMList model = new ScilabMList(modelFields);
-
-	model.add(getSimulationFunctionNameAndType()); // sim
-
-	model.add(getAllPortsDataLines(getAllInputPorts())); // in
-
-	model.add(getAllPortsDataColumns(getAllInputPorts())); // in2
-
-	model.add(getAllPortsDataType(getAllInputPorts())); // intyp
-
-	model.add(getAllPortsDataLines(getAllOutputPorts())); // out
-
-	model.add(getAllPortsDataColumns(getAllOutputPorts())); // out2
-
-	model.add(getAllPortsDataType(getAllOutputPorts())); // outtyp
-
-	model.add(getAllPortsDataLines(getAllControlPorts())); // evtin
-
-	model.add(getAllPortsDataLines(getAllCommandPorts())); // evtout
-
-	model.add(getState()); // state
-
-	model.add(getDState()); // dstate
-
-	model.add(getODState()); // odstate
-
-	model.add(createScilabRPar()); // rpar
-
-	model.add(createScilabIPar()); // ipar
-
-	model.add(getObjectsParameters()); // opar
-
-	model.add(new ScilabString(getBlockType())); // blocktype
-
-	model.add(getAllCommandPortsInitialStates()); // firing
-
-	boolean[][] dep_ut = {{dependsOnU() , dependsOnT()}};
-	model.add(new ScilabBoolean(dep_ut)); // dep_ut
-
-	model.add(new ScilabString("")); // label
-
-	model.add(getNbZerosCrossing()); // nzcross
-
-	model.add(getNmode()); // nmode
-
-	if (getEquations() == null) {
-	    model.add(new ScilabList()); // equations
-	}
-	else {
-	    model.add(getEquations()); // equations
-	}
-
-	return model;
-    }
-
-    private ScilabDouble getAllCommandPortsInitialStates() {
-	if (getAllCommandPorts().isEmpty()) {
+    public ScilabDouble getAllCommandPortsInitialStates() {
+	if (BasicBlockInfo.getAllCommandPorts(this).isEmpty()) {
 	    return new ScilabDouble();
 	}
 
-	double[][] data = new double[getAllCommandPorts().size()][1];
-	for (int i = 0 ; i < getAllCommandPorts().size() ; ++i) {
-	    data[i][0] = getAllCommandPorts().get(i).getInitialState();
+	double[][] data = new double[BasicBlockInfo.getAllCommandPorts(this).size()][1];
+	for (int i = 0 ; i < BasicBlockInfo.getAllCommandPorts(this).size() ; ++i) {
+	    data[i][0] = BasicBlockInfo.getAllCommandPorts(this).get(i).getInitialState();
 	}
 
 	return new ScilabDouble(data);
     }
 
-    private ScilabType createScilabRPar() {
-	//	if (realParameters.isEmpty()) {
-	//	    return new ScilabDouble();
-	//	}
-	//	double[][] data = new double[realParameters.size()][1];
-	//	for (int i = 0 ; i < realParameters.size() ; ++i) {
-	//	    data[i][0] = realParameters.get(i).doubleValue();
-	//	}
-	//
-	//	return new ScilabDouble(data);
-	return getRealParameters();
-    }
-
-    private ScilabType createScilabIPar() {
-	//	if (integerParameters.isEmpty()) {
-	//	    return new ScilabDouble();
-	//	}
-	//	double[][] data = new double[integerParameters.size()][1];
-	//	for (int i = 0 ; i < integerParameters.size() ; ++i) {
-	//	    data[i][0] = integerParameters.get(i).doubleValue();
-	//	}
-	//
-	//	return new ScilabDouble(data);
-	return getIntegerParameters();
-    }
-
-
-    private ScilabString createScilabGuiProperties() {
-	return new ScilabString(interfaceFunctionName);
-    }
-
-    private ScilabList createScilabDocProperties() {
-	ScilabList result = new ScilabList();
-	// Store UID in doc so that Scilab will now it without being disturbed.
-	result.add(new ScilabString(getId()));
-	
-	return result;
-    }
-
-    private ScilabType getSimulationFunctionNameAndType() {
+    public ScilabType getSimulationFunctionNameAndType() {
 	if (getSimulationFunctionType() == SimulationFunctionType.DEFAULT) {
 	    return new ScilabString(getSimulationFunctionName());
 	}
@@ -736,178 +437,109 @@ public class BasicBlock extends XcosUIDObject {
 	return data;
     }
 
-    private ScilabDouble getAllLinkId(List ports) {
-	if (ports.isEmpty()) {
-	    return new ScilabDouble();
-	}
-
-	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = ((BasicPort) ports.get(i)).getConnectedLinkId();
-	}
-
-	return new ScilabDouble(data);
-    }
-
-    private ScilabDouble getAllPortsDataLines(List ports) {
-	if (ports.isEmpty()) {
-	    return new ScilabDouble();
-	}
-	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = ((BasicPort) ports.get(i)).getDataLines();
-	}
-
-	return new ScilabDouble(data);
-    }
-
-    private ScilabDouble getAllPortsDataColumns(List ports) {
-	boolean allZeros = true;
-	if (ports.isEmpty()) {
-	    return new ScilabDouble();
-	}
-
-	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = ((BasicPort) ports.get(i)).getDataColumns();
-	    if(data[i][0] != 0) {
-		allZeros = false;
-	    }
-	}
-
-	if(allZeros) {
-	    return new ScilabDouble();
-	}
-
-	return new ScilabDouble(data);
-    }
-
-    private ScilabType getAllPortsDataType(List ports) {
-	if (ports.isEmpty()) {
-	    return new ScilabDouble();
-	}
-	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = ((BasicPort) ports.get(i)).getDataType().getAsDouble();
-	}
-
-	return new ScilabDouble(data);
-    }
-
-    private ScilabType getAllPortsType(List ports) {
-	if (ports.isEmpty()) {
-	    return new ScilabDouble();
-	}
-	String[][] data = new String[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = ((BasicPort) ports.get(i)).getType().getAsString();
-	}
-
-	return new ScilabString(data);
-    }
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
-    	
-	this.setDependsOnT(modifiedBlock.dependsOnT());
-	this.setDependsOnU(modifiedBlock.dependsOnU());
-	this.setExprs(modifiedBlock.getExprs());
 
-	this.setRealParameters(modifiedBlock.getRealParameters());
-	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
-	this.setObjectsParameters(modifiedBlock.getObjectsParameters());
+    	setDependsOnT(modifiedBlock.dependsOnT());
+    	setDependsOnU(modifiedBlock.dependsOnU());
+    	setExprs(modifiedBlock.getExprs());
 
-	this.setState(modifiedBlock.getState());
-	this.setDState(modifiedBlock.getDState());
-	this.setODState(modifiedBlock.getODState());
+    	setRealParameters(modifiedBlock.getRealParameters());
+    	setIntegerParameters(modifiedBlock.getIntegerParameters());
+    	setObjectsParameters(modifiedBlock.getObjectsParameters());
 
-	this.setEquations(modifiedBlock.getEquations());
+    	setState(modifiedBlock.getState());
+    	setDState(modifiedBlock.getDState());
+    	setODState(modifiedBlock.getODState());
 
-	getParentDiagram().getModel().beginUpdate();
-	// Check if new input port have been added
-	if (modifiedBlock.getAllInputPorts().size() > getAllInputPorts().size()) {
-	    int nbInputPorts = getAllInputPorts().size();
-	    for(int i = modifiedBlock.getAllInputPorts().size() - 1 ; i >= nbInputPorts ; --i)
-	    {
-		addPort(modifiedBlock.getAllInputPorts().get(i));
-	    }
-	}
-	// Check if input ports have been removed
-	else if (modifiedBlock.getAllInputPorts().size() < getAllInputPorts().size()) {
-	    List<InputPort> removedPorts = new ArrayList<InputPort>();
-	    for(int i = modifiedBlock.getAllInputPorts().size() ; i < getAllInputPorts().size() ; ++i)
-	    {
-		removedPorts.add(getAllInputPorts().get(i));
-	    }
-	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
-		remove(removedPorts.get(i));
-		getAllInputPorts().remove(removedPorts.get(i));
-	    }
-	}
-	
-	// Check if new output port have been added
-	if (modifiedBlock.getAllOutputPorts().size() > getAllOutputPorts().size()) {
-	    int nbOutputPorts = getAllOutputPorts().size();
-	    for(int i = modifiedBlock.getAllOutputPorts().size() - 1 ; i >=  nbOutputPorts ; --i)
-	    {
-		addPort(modifiedBlock.getAllOutputPorts().get(i));
-	    }
-	}
-	// Check if output ports have been removed
-	else if (modifiedBlock.getAllOutputPorts().size() < getAllOutputPorts().size()) {
-	    List<OutputPort> removedPorts = new ArrayList<OutputPort>();
-	    for(int i = modifiedBlock.getAllOutputPorts().size() ; i < getAllOutputPorts().size() ; ++i)
-	    {
-		removedPorts.add(getAllOutputPorts().get(i));
-	    }
-	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
-		remove(removedPorts.get(i));
-		getAllOutputPorts().remove(removedPorts.get(i));
-	    }
-	}
-	
+    	setEquations(modifiedBlock.getEquations());
 
-	// Check if new command port have been added
-	if (modifiedBlock.getAllCommandPorts().size() > getAllCommandPorts().size()) {
-	    int nbCommandPorts = getAllCommandPorts().size();
-	    for(int i = modifiedBlock.getAllCommandPorts().size() - 1 ; i >= nbCommandPorts ; --i)
-	    {
-		addPort(modifiedBlock.getAllCommandPorts().get(i));
-	    }
-	}
-	// Check if output ports have been removed
-	else if (modifiedBlock.getAllCommandPorts().size() < getAllCommandPorts().size()) {
-	    List<CommandPort> removedPorts = new ArrayList<CommandPort>();
-	    for(int i = modifiedBlock.getAllCommandPorts().size() ; i < getAllCommandPorts().size() ; --i)
-	    {
-		removedPorts.add(getAllCommandPorts().get(i));
-	    }
-	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
-		remove(removedPorts.get(i));
-		getAllCommandPorts().remove(removedPorts.get(i));
-	    }
-	}
-	
-	// Check if new control port have been added
-	if (modifiedBlock.getAllControlPorts().size() > getAllControlPorts().size()) {
-	    int nbControlPorts = getAllControlPorts().size();
-	    for(int i = modifiedBlock.getAllControlPorts().size() - 1 ; i >= nbControlPorts ; --i)
-	    {
-		addPort(modifiedBlock.getAllControlPorts().get(i));
-	    }
-	}
-	// Check if output ports have been removed
-	else if (modifiedBlock.getAllControlPorts().size() < getAllControlPorts().size()) {
-	    List<ControlPort> removedPorts = new ArrayList<ControlPort>();
-	    for(int i = modifiedBlock.getAllControlPorts().size() ; i < getAllControlPorts().size() ; ++i)
-	    {
-		removedPorts.add(getAllControlPorts().get(i));
-	    }
-	    for(int i = 0 ; i < removedPorts.size() ; ++i) {
-		remove(removedPorts.get(i));
-		getAllControlPorts().remove(removedPorts.get(i));
-	    }
-	}
-	getParentDiagram().getModel().endUpdate();
+    	getParentDiagram().getModel().beginUpdate();
+    	// Check if new input port have been added
+    	if (BasicBlockInfo.getAllInputPorts(modifiedBlock).size() > BasicBlockInfo.getAllInputPorts(this).size()) {
+    		int nbInputPorts = BasicBlockInfo.getAllInputPorts(this).size();
+    		for(int i = BasicBlockInfo.getAllInputPorts(modifiedBlock).size() - 1 ; i >= nbInputPorts ; --i)
+    		{
+    			addPort(BasicBlockInfo.getAllInputPorts(modifiedBlock).get(i));
+    		}
+    	}
+    	// Check if input ports have been removed
+    	else if (BasicBlockInfo.getAllInputPorts(modifiedBlock).size() < BasicBlockInfo.getAllInputPorts(this).size()) {
+    		List<InputPort> removedPorts = new ArrayList<InputPort>();
+    		for(int i = BasicBlockInfo.getAllInputPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllInputPorts(this).size() ; ++i)
+    		{
+    			removedPorts.add(BasicBlockInfo.getAllInputPorts(this).get(i));
+    		}
+    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
+    			remove(removedPorts.get(i));
+    			BasicBlockInfo.getAllInputPorts(this).remove(removedPorts.get(i));
+    		}
+    	}
+
+    	// Check if new output port have been added
+    	if (BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() > BasicBlockInfo.getAllOutputPorts(this).size()) {
+    		int nbOutputPorts = BasicBlockInfo.getAllOutputPorts(this).size();
+    		for(int i = BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() - 1 ; i >=  nbOutputPorts ; --i)
+    		{
+    			addPort(BasicBlockInfo.getAllOutputPorts(modifiedBlock).get(i));
+    		}
+    	}
+    	// Check if output ports have been removed
+    	else if (BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() < BasicBlockInfo.getAllOutputPorts(this).size()) {
+    		List<OutputPort> removedPorts = new ArrayList<OutputPort>();
+    		for(int i = BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllOutputPorts(this).size() ; ++i)
+    		{
+    			removedPorts.add(BasicBlockInfo.getAllOutputPorts(this).get(i));
+    		}
+    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
+    			remove(removedPorts.get(i));
+    			BasicBlockInfo.getAllOutputPorts(this).remove(removedPorts.get(i));
+    		}
+    	}
+
+
+    	// Check if new command port have been added
+    	if (BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() > BasicBlockInfo.getAllCommandPorts(this).size()) {
+    		int nbCommandPorts = BasicBlockInfo.getAllCommandPorts(this).size();
+    		for(int i = BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() - 1 ; i >= nbCommandPorts ; --i)
+    		{
+    			addPort(BasicBlockInfo.getAllCommandPorts(modifiedBlock).get(i));
+    		}
+    	}
+    	// Check if output ports have been removed
+    	else if (BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() < BasicBlockInfo.getAllCommandPorts(this).size()) {
+    		List<CommandPort> removedPorts = new ArrayList<CommandPort>();
+    		for(int i = BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllCommandPorts(this).size() ; --i)
+    		{
+    			removedPorts.add(BasicBlockInfo.getAllCommandPorts(this).get(i));
+    		}
+    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
+    			remove(removedPorts.get(i));
+    			BasicBlockInfo.getAllCommandPorts(this).remove(removedPorts.get(i));
+    		}
+    	}
+
+    	// Check if new control port have been added
+    	if (BasicBlockInfo.getAllControlPorts(modifiedBlock).size() > BasicBlockInfo.getAllControlPorts(this).size()) {
+    		int nbControlPorts = BasicBlockInfo.getAllControlPorts(this).size();
+    		for(int i = BasicBlockInfo.getAllControlPorts(modifiedBlock).size() - 1 ; i >= nbControlPorts ; --i)
+    		{
+    			addPort(BasicBlockInfo.getAllControlPorts(modifiedBlock).get(i));
+    		}
+    	}
+    	// Check if output ports have been removed
+    	else if (BasicBlockInfo.getAllControlPorts(modifiedBlock).size() < BasicBlockInfo.getAllControlPorts(this).size()) {
+    		List<ControlPort> removedPorts = new ArrayList<ControlPort>();
+    		for(int i = BasicBlockInfo.getAllControlPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllControlPorts(this).size() ; ++i)
+    		{
+    			removedPorts.add(BasicBlockInfo.getAllControlPorts(this).get(i));
+    		}
+    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
+    			remove(removedPorts.get(i));
+    			BasicBlockInfo.getAllControlPorts(this).remove(removedPorts.get(i));
+    		}
+    	}
+    	getParentDiagram().getModel().endUpdate();
     }
 
     public void openBlockSettings(String context[]) {
@@ -923,7 +555,7 @@ public class BasicBlock extends XcosUIDObject {
 	    tempContext.delete();
 	    // Write scs_m
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", getAsScilabObj());
+	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
 	    H5Write.closeFile(file_id);
 
 	    // Write context
@@ -967,10 +599,10 @@ public class BasicBlock extends XcosUIDObject {
 	result.append("UID : "+ getId() + "<br>");
 	result.append("Block Style : " + getStyle() + "<br>");
 	result.append("Flip : " + getFlip() + "<br>");
-	result.append("Input ports : " + getAllInputPorts().size() + "<br>");
-	result.append("Output ports : " + getAllOutputPorts().size() + "<br>");
-	result.append("Control ports : " + getAllControlPorts().size() + "<br>");
-	result.append("Command ports : " + getAllCommandPorts().size() + "<br>");
+	result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this).size() + "<br>");
+	result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this).size() + "<br>");
+	result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this).size() + "<br>");
+	result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this).size() + "<br>");
 //	result.append("Diagram : " + getParentDiagram() + "<br>");
 //	//exprs
 //	if (getExprs() != null) {
@@ -1077,231 +709,15 @@ public class BasicBlock extends XcosUIDObject {
 	public boolean getFlip(){
     	return flip;
     }
-
-    public void toggleFlip() {
-
-    	flip = !flip;
-
-    	mxCellState state = getParentDiagram().getView().getState(this);
-    	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
-    	updatePortsPosition(getNextFlipDirection(currentBlockDirection));
-    	updateBlockDirection(getNextFlipDirection(currentBlockDirection));
-    }
-
-    
-    public void toggleAntiClockwiseRotation(XcosDiagram graph) {
-    	mxCellState state = graph.getView().getState(this);
-    	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
-    	updatePortsPosition(getNextAntiClockwiseDirection(currentBlockDirection));
-    	updateBlockDirection(getNextAntiClockwiseDirection(currentBlockDirection));
-    }
-
-    private String getNextAntiClockwiseDirection(String currentBlockDirection) {
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_NORTH; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_WEST; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_EAST; }
-    	return null;
-    }
-
-    private String getNextClockwiseDirection(String currentBlockDirection) {
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	return null;
-    }
-    
-    private String getNextFlipDirection(String currentBlockDirection) {
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_WEST; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_SOUTH; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_EAST; }
-    	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_NORTH; }
-    	return null;
-        }
-
- 
-    private void updateBlockDirection(String newBlockDirection) {
-	mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, mxConstants.STYLE_DIRECTION, newBlockDirection);
 	
-	rotatePorts(getAllInputPorts(), getDataPortsDirection(newBlockDirection));
-	rotatePorts(getAllOutputPorts(), getDataPortsDirection(newBlockDirection));
-	rotatePorts(getAllCommandPorts(), getEventPortsDirection(newBlockDirection));
-	rotatePorts(getAllControlPorts(), getEventPortsDirection(newBlockDirection));
-    }
-    
-    private String getEventPortsDirection(String currentBlockDirection) {
-    	if(flip){
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_NORTH; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_WEST; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_EAST; }
-    		return null;
-    	}else{
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
-    		if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
-    		return null;
-    	}
-    }
+	public void toggleFlip() {
+		BlockPositioning.toggleFlip(this);
+	}
 
-    private String getDataPortsDirection(String currentBlockDirection) {
-    	return currentBlockDirection;
-    }
-
-    /**
-     * Dispatch ports on Block's _WEST_ side.
-     * @param ports
-     */
-    private void updateWestPortsPosition(List ports) {
-    	mxGeometry blockGeom = getGeometry();
-    	if(blockGeom == null){
-    		return;
-    	}
-    	for (int i = 0 ; i < ports.size() ; ++i) {
-    		mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-    		portGeom.setX(- portGeom.getWidth());
-    		portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
-    				- (portGeom.getHeight() / 2.0));
-    	}
-    }
-
-    /**
-     * Dispatch ports on Block's _NORTH_ side.
-     * @param ports
-     */
-    private void updateNorthPortsPosition(List ports) {
-    	mxGeometry blockGeom = getGeometry();
-    	if(blockGeom == null){
-    		return;
-    	}
-    	for (int i = 0 ; i < ports.size() ; ++i) {
-    		mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-    		portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
-    				- (portGeom.getWidth() / 2.0));
-    		portGeom.setY(- portGeom.getHeight());
-    	}
-    }
-
-    /**
-     * Dispatch ports on Block's _EAST_ side.
-     * @param ports
-     */
-    private void updateEastPortsPosition(List ports) {
-    	mxGeometry blockGeom = getGeometry();
-    	if(blockGeom == null){
-    		return;
-    	}
-    	for (int i = 0 ; i < ports.size() ; ++i) {
-    		mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-    		portGeom.setX(blockGeom.getWidth());
-    		portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
-    				- (portGeom.getHeight() / 2.0));
-    	}
-    }
-
-    /**
-     * Dispatch ports on Block's _SOUTH_ side.
-     * @param ports
-     */
-    private void updateSouthPortsPosition(List ports) {
-    	mxGeometry blockGeom = getGeometry();
-    	if(blockGeom == null){
-    		return;
-    	}
-    	for (int i = 0 ; i < ports.size() ; ++i) {
-    		mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-    		portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
-    				- (portGeom.getWidth() / 2.0));
-    		portGeom.setY(blockGeom.getHeight());
-    	}
-    }
-
-    private void updatePortsPosition(String blockDirection) {
-    	// Block -> EAST
-    	// East <=> Out / North <=> Control / West <=> In / South <=> Command
-    	if (blockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) {
-    		if(flip){
-    			updateEastPortsPosition(getAllOutputPorts());
-    			updateSouthPortsPosition(getAllControlPorts());
-    			updateWestPortsPosition(getAllInputPorts());
-    			updateNorthPortsPosition(getAllCommandPorts());
-    		}else{
-    			updateEastPortsPosition(getAllOutputPorts());
-    			updateNorthPortsPosition(getAllControlPorts());
-    			updateWestPortsPosition(getAllInputPorts());
-    			updateSouthPortsPosition(getAllCommandPorts());
-    		}
-    	}
-    	// Block -> NORTH
-    	// East <=> Command / North <=> Out / West <=> Control / South <=> In
-    	if (blockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) {
-    		if(flip){
-    			updateWestPortsPosition(getAllCommandPorts());
-    			updateNorthPortsPosition(getAllOutputPorts());
-    			updateEastPortsPosition(getAllControlPorts());
-    			updateSouthPortsPosition(getAllInputPorts());
-    		}else{
-    			updateEastPortsPosition(getAllCommandPorts());
-    			updateNorthPortsPosition(getAllOutputPorts());
-    			updateWestPortsPosition(getAllControlPorts());
-    			updateSouthPortsPosition(getAllInputPorts());
-    		}
-    	}
-    	// Block -> WEST
-    	// East <=> In / North <=> Command / West <=> Out / South <=> Control
-    	if (blockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) {
-    		if(flip){
-    			updateEastPortsPosition(getAllInputPorts());
-    			updateSouthPortsPosition(getAllCommandPorts());
-    			updateWestPortsPosition(getAllOutputPorts());
-    			updateNorthPortsPosition(getAllControlPorts());
-    		}else{
-    			updateEastPortsPosition(getAllInputPorts());
-    			updateNorthPortsPosition(getAllCommandPorts());
-    			updateWestPortsPosition(getAllOutputPorts());
-    			updateSouthPortsPosition(getAllControlPorts());
-    		}
-    	}
-    	// Block -> SOUTH
-    	// East <=> Control / North <=> In / West <=> Command / South <=> Out
-    	if (blockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) {
-    		if(flip){
-    			updateWestPortsPosition(getAllControlPorts());
-    			updateNorthPortsPosition(getAllInputPorts());
-    			updateEastPortsPosition(getAllCommandPorts());
-    			updateSouthPortsPosition(getAllOutputPorts());
-    		}else{
-    			updateEastPortsPosition(getAllControlPorts());
-    			updateNorthPortsPosition(getAllInputPorts());
-    			updateWestPortsPosition(getAllCommandPorts());
-    			updateSouthPortsPosition(getAllOutputPorts());
-    		}
-    	}
-    }    
-
-    private void rotatePorts(List ports , String portOrientation){
-    	for(int i = 0 ; i < ports.size() ; ++i) {
-    		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {ports.get(i)}, mxConstants.STYLE_DIRECTION, portOrientation);
-    	}
-    }
-
-    public void updateBlockView() {
-    	if (getParentDiagram().getView() != null && getParentDiagram().getView().getState(this) != null) {
-    		mxCellState state = getParentDiagram().getView().getState(this);
-    		String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-    		//currentBlockDirection = mxConstants.DIRECTION_EAST;
-    		updatePortsPosition(currentBlockDirection);
-    		rotatePorts(getAllInputPorts(), getDataPortsDirection(currentBlockDirection));
-    		rotatePorts(getAllOutputPorts(), getDataPortsDirection(currentBlockDirection));
-    		rotatePorts(getAllCommandPorts(), getEventPortsDirection(currentBlockDirection));
-    		rotatePorts(getAllControlPorts(), getEventPortsDirection(currentBlockDirection));
-     	}
-    }
-
+	public void toggleAntiClockwiseRotation() {
+		BlockPositioning.toggleAntiClockwiseRotation(this);
+		
+	}
     /**
      * Create a clone for block added by context menu in palette
      * @return the clone

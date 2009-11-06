@@ -30,6 +30,11 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -70,8 +75,8 @@ public final class ExportAction extends DefaultAction {
 	 */
 	public void doAction() {
 
-		mxGraph graph = getGraph(null);
-		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
+	    XcosDiagram graph = (XcosDiagram)getGraph(null);
+		mxGraphComponent graphComponent = graph.getAsComponent();
 		String filename = null;
 
 		FileChooser fc = ScilabFileChooser.createFileChooser();
@@ -118,8 +123,8 @@ public final class ExportAction extends DefaultAction {
 		filename = fc.getSelection()[0];
 
 		if (new File(filename).exists()
-				&& JOptionPane.showConfirmDialog(graphComponent,
-						XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
+			&& ScilabModalDialog.show(XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
+				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			return;
 		}
 
@@ -139,8 +144,8 @@ public final class ExportAction extends DefaultAction {
 				Color bg = null;
 
 				if ((!extension.equalsIgnoreCase("gif") && !extension.equalsIgnoreCase("png"))
-						|| JOptionPane.showConfirmDialog(graphComponent, 
-								XcosMessages.TRANSPARENT_BACKGROUND) != JOptionPane.YES_OPTION) {
+					|| ScilabModalDialog.show(XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
+						IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 					bg = graphComponent.getBackground();
 				}
 

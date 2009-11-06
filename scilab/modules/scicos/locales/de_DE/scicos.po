@@ -14,11 +14,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Scicos"
-msgstr "Scios"
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: falsche Anzahl an Eingangsargumenten. Muß zwischen %d und %d liegen.\n"
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
@@ -43,18 +45,28 @@ msgid ""
 msgstr "%s: Diagramm kompiliert im Durchlauf %d nicht."
 
 #, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten. Muß zwischen %d und %d liegen.\n"
-
-#, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
 msgstr "%s: Fehler: Modelica Kompiler (MODELICAC) nicht verfügbar."
 
 #, c-format
-msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr ""
-"%s: Ein Fehler ist während der Kompilation des Modelica Blocks aufgetreten."
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: kann keine MO Dateien an dem folgenden Ort finden: %s.\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " %s.mo Kompilation erzwungen\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo muß kompiliert werden\n"
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " %s.mo kann nicht kompiliert werden\n"
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "Problem beim Erzeugen der Bibliothek %s\n"
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
@@ -83,31 +95,9 @@ msgid "&?"
 msgstr "&?"
 
 #, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
-msgstr "%s: Fehler: Modelica Kompiler (MODELICAC) nicht verfügbar.\n"
-
-#, c-format
-msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr "%s: kann keine MO Dateien an dem folgenden Ort finden: %s.\n"
-
-#, c-format
-msgid " %s.mo compilation forced\n"
-msgstr " %s.mo Kompilation erzwungen\n"
-
-#, c-format
-msgid " %s.mo must be recompiled\n"
-msgstr " %s.mo muß kompiliert werden\n"
-
-#, c-format
-msgid " %s.mo cannot be compiled\n"
-msgstr " %s.mo kann nicht kompiliert werden\n"
-
-#, c-format
-msgid "Problem while building library %s\n"
-msgstr "Problem beim Erzeugen der Bibliothek %s\n"
-
-msgid "&File"
-msgstr "&Datei"
+msgid "%s: An error occurred during the compilation of the Modelica block."
+msgstr ""
+"%s: Ein Fehler ist während der Kompilation des Modelica Blocks aufgetreten."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -134,3 +124,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: einzelner Integer erwartet.\n"
+
+msgid "&File"
+msgstr "&Datei"
+
+msgid "Scicos"
+msgstr "Scios"

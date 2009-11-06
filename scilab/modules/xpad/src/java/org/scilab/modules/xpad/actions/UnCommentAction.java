@@ -47,7 +47,7 @@ public class UnCommentAction extends DefaultAction {
 		else if( line_start == line_end )
 		{
 			// A part of the line is selected
-			int offset = scilabDocument.getCommentManager().uncommentText(scilabDocument, position_start,position_end);
+			int offset = scilabDocument.getCommentManager().uncommentText(scilabDocument, position_start);
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}

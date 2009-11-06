@@ -172,7 +172,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				String path = new String("");
 				if (getTextPane() != null) {
 					if (getTextPane().getName() != null) {
-						path = " ( "  + getTextPane().getName() + " ) ";
+						path  =  " (" + getTextPane().getName() + ")";
 					}
 					setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
 				
@@ -511,6 +511,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		
 		BufferedWriter out = null;
 		try {
+
 		out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), styledDocument.getEncodingManager().getEncoding()));
 			try {
 				editorKit.write(out, styledDocument, 0, styledDocument.getLength());

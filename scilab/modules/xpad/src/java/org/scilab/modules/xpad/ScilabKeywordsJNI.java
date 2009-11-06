@@ -22,15 +22,9 @@ public class ScilabKeywordsJNI {
 	throw new UnsupportedOperationException();
   }
 
-  private static final String OSNAME = System.getProperty("os.name").toLowerCase();
   static {
     try {
-        if (OSNAME.indexOf("windows") != -1) {
-        System.loadLibrary("xpad");
-        }
-        else {
         System.loadLibrary("scixpad");
-        }
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);

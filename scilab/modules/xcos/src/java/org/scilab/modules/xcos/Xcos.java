@@ -545,10 +545,9 @@ public class Xcos extends SwingScilabTab implements Tab {
     	XcosDiagram diagram = createEmptyDiagram();
     	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
     	ViewPaletteBrowserAction.setPalettesVisible(true);
-    	synchronized(paletteThread) {
+    	synchronized (paletteThread) {
     		try {
-    			if(paletteLoaded == false)
-    			{
+    			if (!paletteLoaded) {
     				paletteThread.wait();
     			}
     	} catch (InterruptedException e) {
@@ -595,7 +594,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
     	String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
 
-    	XcosPalette palette = new XcosPalette();
+    	XcosPalette xcosPalette = new XcosPalette();
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
@@ -613,10 +612,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     		    theBloc.setValue(theBloc.getInterfaceFunctionName());
     		}
     		
-    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"), theBloc);
+    		xcosPalette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"), theBloc);
     	}
 
-    	return palette;
+    	return xcosPalette;
     }
     
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
@@ -630,12 +629,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 		fileMenu.setText(XcosMessages.FILE);
 		fileMenu.setMnemonic('F');
 		
-		Menu newMenu = ScilabMenu.createMenu();
-		newMenu.setText(XcosMessages.NEW);
-		newMenu.add(NewDiagramAction.createMenu(scilabGraph));
-		newMenu.add(NewPaletteAction.createMenu(scilabGraph));
-		fileMenu.add(newMenu);
-
+		//Menu newMenu = ScilabMenu.createMenu();
+		//newMenu.setText(XcosMessages.NEW);
+		//newMenu.add(NewDiagramAction.createMenu(scilabGraph));
+		//newMenu.add(NewPaletteAction.createMenu(scilabGraph));
+		//fileMenu.add(newMenu);
+		fileMenu.add(NewDiagramAction.createMenu(scilabGraph));
+		
 		fileMenu.add(OpenAction.createMenu(scilabGraph));
 		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
@@ -793,7 +793,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		/** Debug menu */
 		// DEBUG / RELEASE option
-		if(false) {
+		if (false) {
 		    Menu debug = ScilabMenu.createMenu();
 		    debug.setText("DEBUG");
 		    menuBar.add(debug);
@@ -951,7 +951,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	}
 		
 	public static void setStartEnabled(boolean status){
-		for (int i = 0 ; i < getStartMenuItems().size() ; i++ ){
+		for (int i = 0; i < getStartMenuItems().size(); i++ ){
 			getStartMenuItems().get(i).setEnabled(status);
 			getStartPushButtons().get(i).setEnabled(status);
 			startEnabled = status;
@@ -977,7 +977,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
 		ArrayList<File> recentFiles = ConfigXcosManager.getAllRecentOpenedFiles();
 
-		for (int j = 0 ; j < getRecentsMenu().size() ; j++) {
+		for (int j = 0; j < getRecentsMenu().size(); j++) {
 			((SwingScilabMenu) getRecentsMenu().get(j).getAsSimpleMenu()).removeAll();
 
 			for (int i = 0; i < recentFiles.size(); i++) {
@@ -1016,14 +1016,24 @@ public class Xcos extends SwingScilabTab implements Tab {
      * Look in each diagram to find the block corresponding to the given uid
      * and display a warning message.
      * 
-     * @param uid - A String as UID.
+     * @param UID - A String as UID.
      * @param message - The message to display.
      */
     public static void warnCellByUID(String UID, String message) {
 	// Try to find a block with given index (UID)
 	ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-	for (int i = 0 ; i < allDiagrams.size() ; ++i) {
+	for (int i = 0; i < allDiagrams.size(); ++i) {
 	    allDiagrams.get(i).warnCellByUID(UID, message);
+	}
+    }
+    
+    /**
+     * This method is called when the user exits from Scilab
+     */
+    public static void closeXcosFromScilab() {
+	//call close on all diagrams
+	while(Xcos.getDiagrams().size() > 0) {
+	    diagrams.get(0).closeDiagram(true);
 	}
     }
 }
