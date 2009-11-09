@@ -26,7 +26,7 @@ function atomsGui()
     figwidth         = 800;
     figheight        = 500;
     buttonHeight     = 20;
-    widgetHeight     = 20;
+    widgetHeight     = 25;
     defaultFontSize  = 12;
 
     // Close the window if it already exists
@@ -109,21 +109,27 @@ function atomsGui()
         
     // Frame title
 
+    descFrameHTML            = "<html>" + ..
+                               "<body>" + ..
+                               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;font-size:105%;"">" + gettext("Modules") + "</div>" + ..
+                               "</body>" + ..
+                               "</html>";
+
     modulesListboxFrameTitle = uicontrol( ..
         "Parent"              , atomsfig,..
         "Style"               , "text",..
         "Position"            , [2*margin figheight-2*margin 110 widgetHeight],..
         "HorizontalAlignment" , "center",..
-        "String"              , gettext("Available Modules"), ..
+        "String"              , descFrameHTML, ..
         "Background"          , [1 1 1],..
         "Tag"                 , "modulesListboxFrameTitle")
-        
-    // Frame listbox    
 
+    // Frame listbox    
+    
     modulesListbox = uicontrol( ..
         "Parent"              , atomsfig,..
         "Style"               , "listbox",..
-        "Position"            , [2*margin 2*margin listboxWidth figheight-4*margin],..
+        "Position"            , [2*margin 2*margin listboxWidth figheight-5*margin],..
         "Background"          , [1 1 1],..
         "FontSize"            , defaultFontSize,..
         "String"              , modulesTitles,..
@@ -131,7 +137,7 @@ function atomsGui()
         "Min"                 , 1, ..
         "Max"                 , 1, ..
         "Tag"                 , "modulesListbox")
-    
+
     // Description
     // =============================================================================
 
@@ -148,9 +154,9 @@ function atomsGui()
     modulesDescFrameTitle    = uicontrol( ..
         "Parent"             , atomsfig,..
         "Style"              , "text",..
-        "Position"           , [listboxFrameWidth+3*margin figheight-2*margin 120 widgetHeight],..
+        "Position"           , [listboxFrameWidth+3*margin figheight-2*margin 0 widgetHeight],..
         "HorizontalAlignment", "center",..
-        "String"             , gettext("Module Description"), ..
+        "String"             , "", ..
         "Background"         , [1 1 1],..
         "Tag"                , "modulesDescFrameTitle")
 
