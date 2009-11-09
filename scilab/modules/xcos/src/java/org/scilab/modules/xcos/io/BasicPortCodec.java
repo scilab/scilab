@@ -44,7 +44,7 @@ public class BasicPortCodec extends XcosObjectCodec {
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
-	if(attr == null || attr.isEmpty()) {
+	if(attr == null || attr.equals("")) {
 	    ((BasicPort) obj).setDataType(BasicPort.DataType.REAL_MATRIX);
 
 	} else {
