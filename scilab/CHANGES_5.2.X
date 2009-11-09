@@ -25,6 +25,8 @@ Bug fixes:
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
 
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
