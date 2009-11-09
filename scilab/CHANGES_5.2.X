@@ -1,6 +1,12 @@
                Changes between version 5.2.0-beta1 and 5.2.0-xxx of Scilab
                ==========================================================
 
+
+Documentation improvements:
+===========================
+
+* More examples with LaTeX use-cases (colors, etc)
+
 Bug fixes:
 ==========
 
