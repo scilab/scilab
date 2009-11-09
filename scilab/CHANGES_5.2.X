@@ -2,6 +2,22 @@
                ==========================================================
 
 
+Text editor:
+============
+
+* Rename of the item menu "Indent" => "Reformat Selection" (Bug #5219)
+
+* Mnemonic added on View ("V") and Document ("D") in the menu bar
+
+* Refactoring of some large part of the source code
+
+
+Localization:
+=============
+
+* Some strings were untranslatable/untranslated (Bug #4124)
+
+
 Documentation improvements:
 ===========================
 
