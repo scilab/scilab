@@ -7,6 +7,11 @@ Documentation improvements:
 
 * More examples with LaTeX use-cases (colors, etc)
 
+Compilation:
+============
+
+* Rebuild some C++/Java wrappers with a newer version of SWIG
+
 Bug fixes:
 ==========
 
@@ -19,6 +24,8 @@ Bug fixes:
 * bug 5259 fixed - root_properties help page displayed mis-encoded characters.
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
+
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

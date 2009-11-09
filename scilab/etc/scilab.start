@@ -49,6 +49,16 @@ ieee(0);
 %T = %t;
 %F = %f;
 
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args = sciargs();
+larg = find(args=="-l");
+if larg<>[] & larg<=size(args,"*") then
+  L = args(larg+1);
+  setlanguage(L);
+end
+clear larg args L
+
 // Startup message  ===================================================
 
 if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
@@ -73,16 +83,6 @@ PWD = pwd();
 global demolist
 demolist = [];
 clear demolist;
-
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-args = sciargs();
-larg = find(args=="-l");
-if larg<>[] & larg<=size(args,"*") then
-  L = args(larg+1);
-  setlanguage(L);
-end
-clear larg args L
 
 // loads modules ======================================================
 
