@@ -1,8 +1,47 @@
                Changes between version 5.2.0-beta1 and 5.2.0-xxx of Scilab
                ==========================================================
 
+
+Text editor:
+============
+
+* Rename of the item menu "Indent" => "Reformat Selection" (Bug #5219)
+
+* Mnemonic added on View ("V") and Document ("D") in the menu bar
+
+* Refactoring of some large part of the source code
+
+
+Localization:
+=============
+
+* Some strings were untranslatable/untranslated (Bug #4124)
+
+
+Documentation improvements:
+===========================
+
+* More examples with LaTeX use-cases (colors, etc)
+
+Compilation:
+============
+
+* Rebuild some C++/Java wrappers with a newer version of SWIG
+
 Bug fixes:
 ==========
+
+* bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
+
+* bug 5251 fixed - getversion help page updated.
+
+* bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
+
+* bug 5259 fixed - root_properties help page displayed mis-encoded characters.
+
+* bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
+
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
@@ -1111,4 +1150,3 @@ Bug fixes:
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
-* bug 5195 fixed - "get" crashed with "Lycée" toolboxe.

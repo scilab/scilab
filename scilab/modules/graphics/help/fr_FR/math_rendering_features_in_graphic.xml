@@ -65,10 +65,13 @@ xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
     <programlisting role="example">
 xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
 xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
-xtitle('$\begin{pmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{pmatrix}$')
-xtitle('$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}}{x}\right\rangle$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{bmatrix}$')
+xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
 xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
-xtitle('$\rotatebox{-20}{\boxed{\JLaTeXMath}}\reflectedbox{\JLaTeXMath}$')
+xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
+xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
+xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
+xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
 </programlisting>
 
 <para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>

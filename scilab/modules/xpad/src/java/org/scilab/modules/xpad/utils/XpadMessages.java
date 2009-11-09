@@ -34,6 +34,7 @@ public class XpadMessages {
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String EXIT = Messages.gettext("Exit");
+    public static final String QUESTION_MARK = Messages.gettext("?");
     
     /** EDIT MENU */
     public static final String EDIT = Messages.gettext("Edit");
@@ -48,7 +49,7 @@ public class XpadMessages {
     public static final String UNCOMMENT_SELECTION = Messages.gettext("Uncomment Selection");
     public static final String TABIFY_SELECTION = Messages.gettext("Tabify Selection");
     public static final String UNTABIFY_SELECTION = Messages.gettext("Untabify Selection");
-    public static final String INDENT = Messages.gettext("Indent");
+    public static final String INDENT = Messages.gettext("Reformat Selection");
     
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");
@@ -75,7 +76,7 @@ public class XpadMessages {
     public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
-    public static final String AUTO_INDENT = Messages.gettext("Auto Indent");
+    public static final String AUTO_INDENT = Messages.gettext("Auto Reformat Selection");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
