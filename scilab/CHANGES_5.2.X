@@ -4,6 +4,12 @@
 Bug fixes:
 ==========
 
+* bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
+
+* bug 5259 fixed - root_properties help page displayed mis-encoded characters.
+
+* bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1111,6 +1117,3 @@ Bug fixes:
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
-* bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
-
-* bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.

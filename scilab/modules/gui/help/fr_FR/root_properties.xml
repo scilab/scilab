@@ -16,56 +16,56 @@
   </info>
   <refnamediv>
     <refname>root_properties</refname>
-    <refpurpose>Description des propriÃ©tÃ©s de l'objet root.</refpurpose>
+    <refpurpose>Description des propriétés de l'objet root.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>L'objet root est un objet virtuel utilisÃ© pour obtenir les propriÃ©tÃ©s de l'Ã©cran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramÃ¨tre pour accÃ©der Ã  ses propriÃ©tÃ©s.</para>
+    <para>L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramétre pour accéder à ses propriétés.</para>
     <variablelist>
       <varlistentry>
-        <term>PropriÃ©tÃ©s de l'objet root</term>
+        <term>Propriétés de l'objet root</term>
         <listitem>
           <variablelist>
             <varlistentry>
               <term>screensize_px : </term>
               <listitem>
-                <para>La taille de l'Ã©cran en pixels.</para>
+                <para>La taille de l'écran en pixels.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screensize_pt : </term>
               <listitem>
-                <para>La taille de l'Ã©cran en points.</para>
+                <para>La taille de l'écran en points.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screensize_mm : </term>
               <listitem>
-                <para>La taille de l'Ã©cran en millimÃ¨tres.</para>
+                <para>La taille de l'écran en millimétres.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screensize_cm : </term>
               <listitem>
-                <para>La taille de l'Ã©cran en centimÃ¨tres.</para>
+                <para>La taille de l'écran en centimétres.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screensize_in : </term>
               <listitem>
-                <para>La taille de l'Ã©cran en pouces.</para>
+                <para>La taille de l'écran en pouces.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screensize_norm : </term>
               <listitem>
-                <para>La taille normalisÃ©e de l'Ã©cran.</para>
+                <para>La taille normalisée de l'écran.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>screendepth : </term>
               <listitem>
-                <para>Le nombre de bits utilisÃ©s pour coder les couleurs.</para>
+                <para>Le nombre de bits utilisés pour coder les couleurs.</para>
               </listitem>
             </varlistentry>
           </variablelist>
