@@ -410,7 +410,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		//Create HELP menubar
 		Menu helpMenu = ScilabMenu.createMenu();
-		helpMenu.setText("?");
+		helpMenu.setText(XpadMessages.QUESTION_MARK);
 		helpMenu.add(HelpAction.createMenu(editorInstance));
 		helpMenu.add(AboutAction.createMenu(editorInstance));
 		menuBar.add(helpMenu);

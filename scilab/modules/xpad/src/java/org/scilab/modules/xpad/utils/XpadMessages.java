@@ -34,6 +34,7 @@ public class XpadMessages {
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String EXIT = Messages.gettext("Exit");
+    public static final String QUESTION_MARK = Messages.gettext("?");
     
     /** EDIT MENU */
     public static final String EDIT = Messages.gettext("Edit");
