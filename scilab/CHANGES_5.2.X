@@ -14,6 +14,8 @@ Bug fixes:
 
 * bug 5251 fixed - getversion help page updated.
 
+* bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
+
 * bug 5259 fixed - root_properties help page displayed mis-encoded characters.
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
