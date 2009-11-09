@@ -6,6 +6,8 @@ Bug fixes:
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
+* bug 5251 fixed - getversion help page updated.
+
 * bug 5259 fixed - root_properties help page displayed mis-encoded characters.
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
