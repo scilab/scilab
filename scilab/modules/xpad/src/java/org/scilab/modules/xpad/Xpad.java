@@ -355,6 +355,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Create VIEW Menubar
 		Menu viewMenu = ScilabMenu.createMenu();
 		viewMenu.setText(XpadMessages.VIEW);
+		viewMenu.setMnemonic('S');
 //		viewMenu.add(ShowToolBarAction.createCheckBoxMenu(editorInstance));
 //		viewMenu.addSeparator();
 		viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance));
@@ -368,6 +369,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Create DOCUMENT MenuBar
 		Menu documentMenu = ScilabMenu.createMenu();
 		documentMenu.setText(XpadMessages.DOCUMENT);
+		documentMenu.setMnemonic('D');
 		Menu syntaxTypeMenu = ScilabMenu.createMenu();
 //		syntaxTypeMenu.setText(XpadMessages.SYNTAX_TYPE);
 //		documentMenu.add(syntaxTypeMenu);
