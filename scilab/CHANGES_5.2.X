@@ -33,6 +33,8 @@ Bug fixes:
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
+* bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
+
 * bug 5251 fixed - getversion help page updated.
 
 * bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
