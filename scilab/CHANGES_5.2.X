@@ -7,6 +7,11 @@ Documentation improvements:
 
 * More examples with LaTeX use-cases (colors, etc)
 
+Compilation:
+============
+
+* Rebuild some C++/Java wrappers with a newer version of SWIG
+
 Bug fixes:
 ==========
 
