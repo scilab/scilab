@@ -490,6 +490,10 @@ src/jni/JOGLConstant.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 @GIWS_TRUE@BUILT_SOURCES = giws
+@SWIG_TRUE@BUILT_SOURCES = swig
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
