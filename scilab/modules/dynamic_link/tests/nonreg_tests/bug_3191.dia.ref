@@ -21,7 +21,7 @@ mkdir(OS_TMP_DIR,'bug_3191');
 TEST_DIR = OS_TMP_DIR + filesep() + 'bug_3191';
 copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3191.c' , TEST_DIR + filesep() + 'bug_3191.c');
 chdir(TEST_DIR);
-files=['bug_3191.o'];
+files=['bug_3191.c'];
 ilib_build('libc_fun',['c_fun','c_intfun'],files,[]);
 // load the shared library
 exec loader.sce;
