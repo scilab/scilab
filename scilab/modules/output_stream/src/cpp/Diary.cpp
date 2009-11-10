@@ -30,6 +30,7 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID, bool autorename)
 	if (autorename)
 	{
 		fullfilename = getUniqueFilename(_wfilename);
+		fullfilename = getFullFilename(fullfilename);
 	}
 	else
 	{

@@ -334,7 +334,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 				 */
 				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) {
+					if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger()) {
 						
 						ContextMenu menu = ScilabContextMenu.createContextMenu();
 						

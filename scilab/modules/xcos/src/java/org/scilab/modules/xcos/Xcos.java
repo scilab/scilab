@@ -101,7 +101,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
-import org.scilab.modules.xcos.palette.XcosPaletteLoader;
+import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -146,7 +146,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public static void xcos() {
-    	XcosPaletteLoader.loadPalette();
+    	XcosPaletteManager.loadPalette();
     	ViewPaletteBrowserAction.setPalettesVisible(true);
     	createEmptyDiagram();
     }
@@ -458,9 +458,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 	main.setTitle(XcosMessages.XCOS);
 
 	// Get the palettes position
-	if (XcosPaletteLoader.isVisible()) { // If at Xcos startup
-		Position palPosition = XcosPaletteLoader.getPalettes().getParentWindow().getPosition();
-		Size palSize = XcosPaletteLoader.getPalettes().getParentWindow().getDims();
+	if (XcosPaletteManager.isVisible()) { // If at Xcos startup
+		Position palPosition = XcosPaletteManager.getPalettes().getParentWindow().getPosition();
+		Size palSize = XcosPaletteManager.getPalettes().getParentWindow().getDims();
 		Position mainPosition = new Position(palPosition.getX() + palSize.getWidth(), palPosition.getY());
 		main.setPosition(mainPosition);
 	}
@@ -576,7 +576,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static Tab getPalettes() {
-    	return XcosPaletteLoader.getPalettes();
+    	return XcosPaletteManager.getPalettes();
     }
     
     public static ArrayList<XcosDiagram> getDiagrams() {

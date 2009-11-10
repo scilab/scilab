@@ -68,8 +68,8 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
         <term>opts</term>
 
         <listitem>
-          <para>um vetor de strings de quatro entradas:
-          <literal>[compiler,pvm,tk,modelicac]</literal></para>
+          <para>um vetor de strings de 7 entradas:
+          <literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>

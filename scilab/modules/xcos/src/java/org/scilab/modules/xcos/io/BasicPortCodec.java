@@ -23,28 +23,34 @@ import com.mxgraph.io.mxCodec;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
-	private static final String DATA_TYPE = "dataType";
-	
-	public BasicPortCodec(Object template) {
-		super(template);
-	}
-	
-	public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
-	{
-		super(template, exclude, idrefs, mapping);
+    private static final String DATA_TYPE = "dataType";
 
-	}
+    public BasicPortCodec(Object template) {
+	super(template);
+    }
 
-	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-		((Element) node).setAttribute(DATA_TYPE,
-				String.valueOf(((BasicPort) obj).getDataType()));
-		return super.beforeEncode(enc, obj, node);
-	}
+    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+    {
+	super(template, exclude, idrefs, mapping);
 
-	public Object afterDecode(mxCodec dec, Node node, Object obj) {
-		((BasicPort) obj).setDataType(
-				BasicPort.DataType.valueOf((((Element) node).getAttribute(DATA_TYPE))));
-		return super.afterDecode(dec, node, obj);
+    }
+
+    public Object beforeEncode(mxCodec enc, Object obj, Node node) {
+	((Element) node).setAttribute(DATA_TYPE,
+		String.valueOf(((BasicPort) obj).getDataType()));
+	return super.beforeEncode(enc, obj, node);
+    }
+
+    public Object afterDecode(mxCodec dec, Node node, Object obj) {
+	String attr = ((Element) node).getAttribute(DATA_TYPE);
+
+	if(attr == null || attr.equals("")) {
+	    ((BasicPort) obj).setDataType(BasicPort.DataType.REAL_MATRIX);
+
+	} else {
+	    ((BasicPort) obj).setDataType(BasicPort.DataType.valueOf(attr));
 	}
-	
+	return super.afterDecode(dec, node, obj);
+    }
+
 }

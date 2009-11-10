@@ -38,7 +38,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class XcosPaletteLoader {
+public class XcosPaletteManager {
 
     private static Thread paletteThread;
     private static boolean paletteLoadStarted;
@@ -406,7 +406,7 @@ public class XcosPaletteLoader {
 	};
     }
 
-    private XcosPaletteLoader() {
+    private XcosPaletteManager() {
     }
 
     public static Tab loadPalette() {
@@ -459,7 +459,7 @@ public class XcosPaletteLoader {
 
 	Window palWin = ScilabWindow.createWindow();
 	palWin.setDims(new Size(700, 600));
-//	palWin.setVisible(true);
+	palWin.setVisible(true);
 	palettes = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
 
 	palettes.setCallback(new ClosePalettesAction(null));
