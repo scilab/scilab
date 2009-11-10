@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
