@@ -7,7 +7,7 @@
 
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
 
-stacksize('max');
+stacksize(7000000);
 
 N = 100000;
 
