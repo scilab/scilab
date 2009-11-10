@@ -908,9 +908,9 @@ void *mxGetImagData(const mxArray *ptr)
   return mxGetPi(ptr);
 }
 
-void mexErrMsgTxt(char *error_msg)
+void mexErrMsgTxt(const char *error_msg)
 {
-  cerro(error_msg);
+  cerro((char *)error_msg);
   errjump(0);
 }
 
@@ -1948,7 +1948,7 @@ bool mxIsLogicalScalar(mxArray *pa)
   in Scilab window
 */
 
-void mexPrintf (char *fmt,...)
+void mexPrintf (const char *fmt,...)
 {
   va_list args;
   char buf[2048];
@@ -1960,7 +1960,7 @@ void mexPrintf (char *fmt,...)
 }
 
 
-void mexWarnMsgTxt(char *error_msg)
+void mexWarnMsgTxt(const char *error_msg)
 {
   mexPrintf(_("Warning: "));
   mexPrintf(error_msg);
@@ -2117,7 +2117,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
   return (mxArray *) C2F(vstk).lstk[lw - 1];
 }
 
-int mexEvalString(char *name)
+int mexEvalString(const char *name)
 {
   double *val ;
   int rep;
@@ -2391,7 +2391,7 @@ int mxGetNzmax(const mxArray *ptr)
   return header[4];
 }
 
-mxLOGICAL *mxGetLogicals(mxArray *array_ptr)
+mxLOGICAL *mxGetLogicals(const mxArray *array_ptr)
 {
   int *header = Header(array_ptr);
   /*  TO BE DONE : ND Arrays  */
@@ -2664,7 +2664,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
 {
   char * buf;
   if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1))) == NULL) {
-    cerro(_("No more memory"));
+    cerro((char *)_("No more memory"));
     return;
   }
   buf[len]='\0';
