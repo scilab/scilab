@@ -210,7 +210,7 @@ current_dir = pwd();
 chdir(TMPDIR);
 mputl(code, TMPDIR+'/foo.c');
 //creating Makefile
-ilib_for_link('foo','foo.o',[],'c');
+ilib_for_link('foo','foo.c',[],'c');
 exec('loader.sce');
 chdir(current_dir);
 //add menu

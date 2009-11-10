@@ -32,7 +32,7 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3191.c' , TEST_DIR + 
 
 chdir(TEST_DIR);
 
-files=['bug_3191.o'];
+files=['bug_3191.c'];
 ilib_build('libc_fun',['c_fun','c_intfun'],files,[]);
 
 // load the shared library 

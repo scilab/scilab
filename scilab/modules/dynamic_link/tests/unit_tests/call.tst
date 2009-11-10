@@ -23,7 +23,7 @@ if ~c_link('foo') then
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
   
-  ilib_for_link(['foo'],'foo.o',[],"c");
+  ilib_for_link(['foo'],'foo.c',[],"c");
 
   // load the shared library 
   exec loader.sce ;

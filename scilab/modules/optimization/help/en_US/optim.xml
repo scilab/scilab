@@ -583,7 +583,7 @@ C=['#include <math.h>'
 mputl(C,TMPDIR+'/rosenc.c')
 
 // compile the C code
-l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenc','rosenc.c',[],'c',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'rosenc','c')
@@ -632,7 +632,7 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 mputl(F,TMPDIR+'/rosenf.f')
 
 // compile the Fortran code
-l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'rosenf','f')
@@ -721,7 +721,7 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 mputl(fortransource,TMPDIR+'/rosenf.f')
 
 // compile the C code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 linkid=link(libpath,'rosenf','f');
