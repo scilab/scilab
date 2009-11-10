@@ -148,7 +148,7 @@ F=['      double precision function ffun(x)'
 mputl(F,TMPDIR+'/ffun.f')
 
 // compile the fortran code
-l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'ffun','f')
@@ -169,7 +169,7 @@ C=['#include <math.h>'
 mputl(C,TMPDIR+'/cfun.c')
 
 // compile the C code
-l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.f',[],'c',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'cfun','c')

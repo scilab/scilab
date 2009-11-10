@@ -38,7 +38,7 @@ cur_dir = pwd();
 
 chdir(TMP_DIR);
 
-ilib_for_link('ext1c','fun1.o',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c") 
 
 // load the shared library 
 exec loader.sce 
