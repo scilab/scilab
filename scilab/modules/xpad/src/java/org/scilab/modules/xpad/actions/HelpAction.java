@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -28,6 +33,6 @@ public class HelpAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), null);
+		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 }

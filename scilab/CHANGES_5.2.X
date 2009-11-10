@@ -57,6 +57,7 @@ Bug fixes:
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
+* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
@@ -1170,6 +1171,8 @@ Bug fixes:
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
+* bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
 
 * bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
 
