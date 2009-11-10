@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -26,18 +31,14 @@ public class LoadIntoScilabAction extends DefaultAction {
 
 	public void doAction() {
 	    /* Will do the job as if it was copy / paste in scilab Console */
-	    
 	    try {
 	    	ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getText(), true, false);
 	    } catch (NoClassDefFoundError noClass) {
 	    	InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText().replaceAll("\n", ","));
-	    	
 	    }
-		
-		
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Load Into Scilab", null, new LoadIntoScilabAction(editor), null);
+		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, new LoadIntoScilabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }

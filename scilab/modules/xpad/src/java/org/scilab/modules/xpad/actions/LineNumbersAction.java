@@ -24,7 +24,7 @@ public class LineNumbersAction extends DefaultCheckAction {
 
     private LineNumbersAction(Xpad editor) {
 	super(XpadMessages.LINE_NUMBERS, editor);
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 
     public void doAction() {
@@ -32,7 +32,7 @@ public class LineNumbersAction extends DefaultCheckAction {
     }
 
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-    CheckBoxMenuItem lineNumber = createCheckBoxMenu(XpadMessages.LINE_NUMBERS, null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    CheckBoxMenuItem lineNumber = createCheckBoxMenu(XpadMessages.LINE_NUMBERS, null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     lineNumber.setChecked(true);
 	return lineNumber;
     }
