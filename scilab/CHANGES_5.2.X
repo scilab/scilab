@@ -1163,3 +1163,5 @@ Bug fixes:
 
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
+* bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
