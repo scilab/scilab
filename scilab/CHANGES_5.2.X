@@ -1109,6 +1109,8 @@ Bug fixes:
 
 * bug 4855 fixed - Standard error messages added when setting/getting values from graphics handles
 
+* bug 4880 fixed - Query-replace with a regular expression doesn't work in editor
+
 * bug 4904 fixed - wrong localized fr_FR message
 
 * bug 4917 fixed - fileinfo(SCI+'/') returned [] (under Windows)
