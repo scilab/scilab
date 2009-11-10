@@ -279,6 +279,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 		((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
 		//view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
+		
+		if(XcosPaletteManager.isVisible()) {
+		    ViewPaletteBrowserAction.setPalettesVisible(true);
+		}
 
 		/** Simulation menu */
 		Menu simulate = ScilabMenu.createMenu();
@@ -437,11 +441,22 @@ public class Xcos extends SwingScilabTab implements Tab {
 	
     }
     
-    public static void closeDiagram(XcosDiagram diagramm) {
-    	diagrams.remove(diagramm);
+    public static void closeDiagram(XcosDiagram diagram) {
+	
+//	System.err.println("Xcos::closeDiagram : " + diagram);
+	
+	diagram.closeChildren();
+	diagrams.remove(diagram);
+
+	
+//	for(int i = 0 ; i < diagrams.size(); i++){
+//	    System.err.println("diagrams[" + i + "] : " + diagrams.get(i).getClass());
+//	}
     	if (diagrams.size() == 0) {
-    		closeSession();
+    	    System.err.println("close session");
+    	    closeSession();
     	}
+    	
     }
     
     
@@ -494,6 +509,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * INFO BAR
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+	xcosDiagram.setOpened(true);
+	xcosDiagram.setVisible(true);
     }
 
     public SimpleTab getAsSimpleTab() {
