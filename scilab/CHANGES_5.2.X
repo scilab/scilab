@@ -1163,3 +1163,4 @@ Bug fixes:
 
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
