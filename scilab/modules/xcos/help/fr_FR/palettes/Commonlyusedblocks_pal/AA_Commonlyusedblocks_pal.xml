@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>Commonlyusedblocks_pal</refname>
 
-    <refpurpose>Palette Blocs couramment utilisés </refpurpose>
+    <refpurpose>Palette Blocs couramment utilisés</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -59,7 +59,7 @@
   <refsection id="Description_Commonlyusedblocks_pal">
     <title>Description</title>
 
-    <para>Cette palette contient les blocs couramment utilisées pour la
+    <para>Cette palette contient les blocs couramment utilisés pour la
     modélisation des systèmes. C'est un ensemble de blocs provenants des
     autres palettes.</para>
   </refsection>
