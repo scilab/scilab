@@ -453,7 +453,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 //	    System.err.println("diagrams[" + i + "] : " + diagrams.get(i).getClass());
 //	}
     	if (diagrams.size() == 0) {
-    	    System.err.println("close session");
+//    	    System.err.println("close session");
     	    closeSession();
     	}
     	
