@@ -319,12 +319,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 		Menu alignMenu = ScilabMenu.createMenu();
 		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
 		alignMenu.addSeparator();
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
 		format.add(alignMenu);
 		format.addSeparator();
 		
@@ -334,8 +334,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		Menu linkStyle = ScilabMenu.createMenu();
 		linkStyle.setText(XcosMessages.LINK_STYLE);
-		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
 		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
 		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
 		format.add(linkStyle);
 		format.addSeparator();	

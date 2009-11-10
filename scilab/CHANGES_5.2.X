@@ -31,7 +31,11 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
+
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
+
+* bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
 
 * bug 5251 fixed - getversion help page updated.
 
@@ -41,7 +45,14 @@ Bug fixes:
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
 
+* bug 5271 fixed - ATOMS GUI : Frames title was not emphasized
+
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
+
+* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
+
+* bug 5292 fixed -  There was a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
+
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
