@@ -13,9 +13,9 @@
  
 package org.scilab.modules.graphic_export;
 
-import org.scilab.modules.graphic_export.jni.GL2PSConstant;
-import org.scilab.modules.graphic_export.jni.GL2PSWrapping;
-import org.scilab.modules.graphic_export.jni.GL2PSWrappingJNI;
+import org.scilab.modules.graphic_export.GL2PSConstant;
+import org.scilab.modules.graphic_export.GL2PSWrapping;
+import org.scilab.modules.graphic_export.GL2PSWrappingJNI;
 
 /**
  * GL2PS Class
