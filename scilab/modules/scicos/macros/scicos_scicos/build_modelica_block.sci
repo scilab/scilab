@@ -38,7 +38,7 @@ path = pathconvert(stripblanks(path),%t,%t);
 
 mputl(txt, path+name+'.mo');
 
-mprintf('   Modelica code generated at '+path+name+'.mo\n'); 
+mprintf(_('   Modelica code generated at ""%s.mo""\n'),path+name); 
 
 [ok,name1,nx,nin,nout,ng,nm,nz] = compile_modelica(path+name+'.mo'); //** here we are 
 
