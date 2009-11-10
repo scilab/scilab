@@ -177,7 +177,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			this.getModel().getHelpSet().add(helpSet);
         }
 	    
-	    /** Disable Index navigator beacause no index in Scilab help files */
+	    /** Disable Index navigator because no index in Scilab help files */
 	    Enumeration navigators = getHelpNavigators();
 	    navigators.nextElement(); /* TOC */
 	    removeHelpNavigator((JHelpIndexNavigator) navigators.nextElement());
