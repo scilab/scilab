@@ -59,6 +59,8 @@ Bug fixes:
 
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
 
+* bug 5308 fixed - editor did not check input argument type.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
