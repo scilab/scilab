@@ -59,7 +59,7 @@ for i = 0 : loop_max
   table = [scilab_functionA,c_functionA; ..
            scilab_functionB,c_functionB];
   
-  c_file = 'addinter' + string(i) + '.o';
+  c_file = 'addinter' + string(i) + '.c';
   interf_name = 'interftest_' + string(i);
   
   DIR_NAME_ADDINTER = TMPDIR + filesep() + 'addinter_dir_' + string(i);

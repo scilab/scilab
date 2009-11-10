@@ -48,6 +48,7 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
     }
     
     public void closeDiagram() {
+	getContainer().closeBlockSettings();
     }
 
     public void installSuperBlockListeners() {

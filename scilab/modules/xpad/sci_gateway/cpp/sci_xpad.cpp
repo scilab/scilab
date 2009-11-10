@@ -28,7 +28,7 @@ extern "C"
 int sci_xpad(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
-	CheckRhs(0,1);
+	CheckRhs(0,2);
 	CheckLhs(0,1);
 
 	if (Rhs == 0)
@@ -39,10 +39,10 @@ int sci_xpad(char *fname,unsigned long fname_len)
 	{
 		int m1 = 0, n1 = 0;
 		int *piAddressVarOne = NULL;
-		int iType1 = 0;
 		wchar_t **pStVarOne = NULL;
 		int *lenStVarOne = NULL;
 		int i = 0;
+		int iType1 = 0;
 
 		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(sciErr.iErr)
@@ -58,9 +58,9 @@ int sci_xpad(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		if (iType1  != sci_strings )
+		if (iType1 != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong type for argument %d: String matrix expected.\n"),fname,1);
 			return 0;
 		}
 
@@ -71,7 +71,6 @@ int sci_xpad(char *fname,unsigned long fname_len)
 			printError(&sciErr, 0);
 			return 0;
 		}
-
 
 		lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
 		if (lenStVarOne == NULL)
@@ -108,7 +107,59 @@ int sci_xpad(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		callXpadW(pStVarOne,m1 * n1);
+		if(Rhs == 2) //get line numbers
+		{
+			int* piAddressVarTwo = NULL;
+			int m2 = 0, n2 = 0;
+			double* pdblVarTwo = NULL;
+			int iType2 = 0;
+
+			sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType2);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			if (iType2 != sci_matrix)
+			{
+				Scierror(999,_("%s: Wrong type for argument %d: Real matrix expected.\n"),fname,2);
+				return 0;
+			}
+
+			if(isVarComplex(pvApiCtx, piAddressVarTwo) == 1)
+			{
+				Scierror(999,_("%s: Wrong type for argument %d: Real matrix expected.\n"),fname,2);
+				return 0;
+			}
+
+			sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdblVarTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			if(m2 * n2 != m1 * n1)
+			{
+				Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"),fname,1,2);
+				return 0;
+			}
+
+			callXpadWWithLineNumber(pStVarOne, pdblVarTwo, m1 * n1);
+		}
+		else
+		{
+			callXpadW(pStVarOne,m1 * n1);
+		}
+
 		freeArrayOfWideString(pStVarOne,m1 * n1);
 	}
 

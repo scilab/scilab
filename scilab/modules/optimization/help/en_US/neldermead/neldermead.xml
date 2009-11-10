@@ -35,7 +35,7 @@ neldermead_display ( this )
 value = neldermead_get ( this , key )
 this = neldermead_search ( this )
 this = neldermead_restart ( this )
-[ this , result ] = neldermead_function ( this , x , index )
+[ this , result ] = neldermead_function ( this , x )
 </synopsis>
   </refsynopsisdiv>
 
@@ -1302,8 +1302,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , result ] = neldermead_function ( this , x , index
-        )</term>
+        <term>[ this , result ] = neldermead_function ( this , x )</term>
 
         <listitem>
           <para>Call the cost function and return the value.</para>
@@ -1361,7 +1360,7 @@ function y = myfunction(x, index, data)
         <term>x</term>
 
         <listitem>
-          <para>the current point</para>
+          <para>the current point, as a column vector</para>
         </listitem>
       </varlistentry>
 
@@ -2344,7 +2343,7 @@ xr=[1 1], f(xr)=0.000000
 Contract - inside
 Function Evaluation #299 is [6.023D-27] at [1 1]
 xc=1 1, f(xc)=0.000000
-  &gt; Perform Inside Contraction
+  > Perform Inside Contraction
 Sort
  ]]>
 </programlisting>

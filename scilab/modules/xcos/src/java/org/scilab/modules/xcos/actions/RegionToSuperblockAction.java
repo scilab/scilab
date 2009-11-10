@@ -95,12 +95,51 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
 
 	public void doAction() {
+	    
+	    
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
+	    graph.info(XcosMessages.GENERATE_SUPERBLOCK);
 	    
 	    double minX = Double.MAX_VALUE;
 	    double minY = Double.MAX_VALUE;
 	    double maxX = Double.MIN_VALUE;
 	    double maxY = Double.MIN_VALUE;
+	    
+	    
+	    //check for missing links or selected ports, to add or exclude them.
+	    for (int i = 0 ; i < graph.getSelectionCells().length ; ++i) {
+		mxCell current = (mxCell) graph.getSelectionCells()[i];
+		if(current instanceof BasicBlock) {
+		    BasicBlock block = (BasicBlock)current;
+		    for(int j = 0 ; j < block.getChildCount() ; j++) {
+			if (block.getChildAt(j) instanceof BasicPort) {
+			    BasicPort port = (BasicPort) block.getChildAt(j);
+			    if(port.getEdgeCount() > 0) {
+				if(port.getEdgeAt(0) instanceof BasicLink) {
+				    BasicLink link = (BasicLink)port.getEdgeAt(0);
+				    BasicBlock otherSide = null;
+				    if(link.getTarget() == port) {
+					otherSide = (BasicBlock) link.getSource().getParent();
+				    } else {
+					otherSide = (BasicBlock) link.getTarget().getParent();
+				    }//target == port
+				    
+				    if(isInSelection(graph.getSelectionCells(), otherSide)) {
+					graph.addSelectionCell(link);
+				    }//isInSelection
+				}//BasicLink
+			    }//Edge > 0
+			}//BasicPort
+		    }//for child
+		} else if(current instanceof BasicPort) {
+		    //remove orphan port and connected link
+		    graph.removeSelectionCell(current.getEdgeAt(0));
+		    graph.removeSelectionCell(current);
+		    
+		    //restart loop
+		    i = -1;
+		}
+	    }//for selection
 	    
 	    for (int i = 0 ; i < graph.getSelectionCells().length ; ++i) {
 		mxCell current = (mxCell) graph.getSelectionCells()[i];
@@ -124,7 +163,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    //find breaking links, to insert input/output blocks
 	    List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
-//	    printBreakingLink(breaks);
+	    printBreakingLink(breaks);
 	    List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
 	    
 	    //add in/out blocks in SuperBlock
@@ -230,7 +269,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    superBlock.updateExportedPort();
     	//change source or target of old link
 	    
-	    diagram.getModel().beginUpdate();
+	    graph.getModel().beginUpdate();
 	    for(int i = 0 ; i < breaks.size() ; i++){
 	    	BrokenLink link = breaks.get(i);
     		BasicPort source = null;
@@ -272,9 +311,10 @@ public class RegionToSuperblockAction extends DefaultAction {
         	//this function unlink source and target correctly too
         	graph.getModel().remove(link.getLink());
 	    }
-	    diagram.getModel().endUpdate();
+	    graph.getModel().endUpdate();
 	    diagram.refresh();
 	    superBlock.closeBlockSettings();
+	    graph.info(XcosMessages.EMPTY_INFO);
 	}
 
 

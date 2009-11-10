@@ -279,6 +279,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 		((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
 		//view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
+		
+		if(XcosPaletteManager.isVisible()) {
+		    ViewPaletteBrowserAction.setPalettesVisible(true);
+		}
 
 		/** Simulation menu */
 		Menu simulate = ScilabMenu.createMenu();
@@ -315,12 +319,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 		Menu alignMenu = ScilabMenu.createMenu();
 		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
 		alignMenu.addSeparator();
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
 		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
+		alignMenu.add(AlignBlockAction.createMenu(scilabGraph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
 		format.add(alignMenu);
 		format.addSeparator();
 		
@@ -330,8 +334,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 		
 		Menu linkStyle = ScilabMenu.createMenu();
 		linkStyle.setText(XcosMessages.LINK_STYLE);
-		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
 		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
+		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
 		linkStyle.add(LinkStyleAction.createMenu(scilabGraph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
 		format.add(linkStyle);
 		format.addSeparator();	
@@ -437,11 +441,22 @@ public class Xcos extends SwingScilabTab implements Tab {
 	
     }
     
-    public static void closeDiagram(XcosDiagram diagramm) {
-    	diagrams.remove(diagramm);
+    public static void closeDiagram(XcosDiagram diagram) {
+	
+//	System.err.println("Xcos::closeDiagram : " + diagram);
+	
+	diagram.closeChildren();
+	diagrams.remove(diagram);
+
+	
+//	for(int i = 0 ; i < diagrams.size(); i++){
+//	    System.err.println("diagrams[" + i + "] : " + diagrams.get(i).getClass());
+//	}
     	if (diagrams.size() == 0) {
-    		closeSession();
+//    	    System.err.println("close session");
+    	    closeSession();
     	}
+    	
     }
     
     
@@ -494,6 +509,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * INFO BAR
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+	xcosDiagram.setOpened(true);
+	xcosDiagram.setVisible(true);
     }
 
     public SimpleTab getAsSimpleTab() {

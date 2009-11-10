@@ -209,8 +209,8 @@ function fminsearch_outputfun ( state , data , fmsdata )
   //
   if ( fmsdata.Display == "iter" ) then
     if ( data.step <> "done" ) then
-    mprintf ( "%6s        %5s     %12s         %-20s\n", ...
-      string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
+      mprintf ( "%6s        %5s     %12s         %-20s\n", ...
+        string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
     else
       mprintf ( "\n" )
     end

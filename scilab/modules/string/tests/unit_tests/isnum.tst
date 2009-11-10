@@ -36,7 +36,7 @@ if isnum('E')          then pause, end
 if isnum('e')          then pause, end
 
 if isnum('-1.2a+345')  then pause, end
-if isnum('-1.2e+3+45') then pause, end
-if isnum('-1.2e+3+45') then pause, end
+if ~isnum('-1.2e+3+45') then pause, end
+if ~isnum('-1.2e+3-45') then pause, end
 
 if execstr("isnum(1)","errcatch") == 0 then pause, end

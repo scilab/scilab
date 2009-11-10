@@ -37,7 +37,7 @@ function []=npend_build_and_load()
 		fcode = mgetl(path+'ener.f');mputl(fcode,'ener.f');
 		fcode = mgetl(path+'np.f');mputl(fcode,'np.f');
 		fcode = mgetl(path+'npend.f');mputl(fcode,'npend.f');
-		files = ['npend.o','np.o','ener.o','dlslv.o' ];
+		files = ['npend.f','np.f','ener.f','dlslv.f' ];
 		ilib_for_link(['npend';'np';'ener'],files,[],"f");
 		exec loader.sce
 		chdir(cdpath);

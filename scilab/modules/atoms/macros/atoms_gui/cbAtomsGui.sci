@@ -123,12 +123,33 @@ function updateAtomsGui()
     // Get the modules list
     allModules = get(findobj("Tag", "atomsFigure"), "userdata");
 
-    // Update the description
 
+
+
+    // Get the modules details
+    // =========================================================================
+    
     modulesNames       = getfield(1, allModules);
     modulesNames (1:2) = [];
     themodule          = allModules(getSelectedModuleName());
     vers               = getfield(1, themodule);
+    
+    // Manage authors
+    // ========================================================================= 
+    
+    authorMat          = themodule(vers(3)).Author;
+            
+    authorHTML         = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
+                         "  Author(s)" + ..
+                         "</div>" + ..
+                         "<div>";
+
+    for i=1:size(authorMat,"*")
+        authorHTML = authorHTML + authorMat(i)+"<br>";
+    end
+    
+    authorHTML = authorHTML + "</div>";
+    
     descZone           = findobj("tag", "modulesDesc");
     descFrameTitle     = findobj("tag", "modulesDescFrameTitle");
 
@@ -138,6 +159,7 @@ function updateAtomsGui()
                         "  Version" + ..
                         "</div>" + ..
                         "<div>" + themodule(vers(3)).Version  + "</div>" + ..
+                        authorHTML + ..
                         "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
                         "  Description" + ..
                         "</div>" + ..  
