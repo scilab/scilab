@@ -550,7 +550,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	}
 	
 	public void highlightLine(int lineNumber) {
-		if (lineNumber > 1 && lineNumber <= textPane.getStyledDocument().getDefaultRootElement().getElementCount()) {
+		if (lineNumber > 0 && lineNumber <= textPane.getStyledDocument().getDefaultRootElement().getElementCount()) {
 			textPane.setCaretPosition(textPane.getStyledDocument().getDefaultRootElement().getElement(lineNumber - 1).getStartOffset());
 			this.isHighlighted = true;
 			repaint();
