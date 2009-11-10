@@ -64,7 +64,12 @@ typedef struct table_struct {
 #endif
 
 #define mxCreateFull mxCreateDoubleMatrix
-#define bool int
+
+#ifndef __cplusplus
+	#ifndef bool
+		#define bool int
+	#endif
+#endif
 
 #define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
 
