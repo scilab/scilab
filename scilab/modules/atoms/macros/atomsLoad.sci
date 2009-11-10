@@ -134,7 +134,7 @@ function result = atomsLoad(packages)
 		
 			// Check if modules are installed
 			if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
-				mprintf(gettext("%s: The following modules is not installed:\n"),"atomsAutoloadAdd");
+				mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
 				mprintf("\t - ''%s - %s'' (''%s'' section)\n",packages(i,1),packages(i,2),packages(i,3));
 				error("");
 			end
