@@ -243,7 +243,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param filePath the name of the file to open
 	 * @param lineNumber the line to highlight
 	 */
-	public static void xpadHighlightLine(String filePath, int lineNumber) {
+	public static void xpad(String filePath, int lineNumber) {
 		Xpad editorInstance = launchXpad();
 		File f = new File(filePath);
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
