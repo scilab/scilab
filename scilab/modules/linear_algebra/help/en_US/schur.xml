@@ -299,7 +299,7 @@ mputl(C,TMPDIR+'/mytest.c')
 
 
 //build and link
-lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytest','mytest.c',[],'c',TMPDIR+'/Makefile');
 link(lp,'mytest','c'); 
 
 //run it
@@ -328,7 +328,7 @@ ftn=['integer function mytestf(ar,ai,b)' //the fortran code
 mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
-lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytestf','mytestf.f',[],'F',TMPDIR+'/Makefile');
 link(lp,'mytestf','f'); 
 
 //run it

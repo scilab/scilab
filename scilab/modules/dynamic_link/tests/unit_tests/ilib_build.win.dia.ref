@@ -42,7 +42,7 @@ mputl(i,TMP_DIR+filesep()+'intfun1.c');
 //generated.
 cur_dir = pwd();
 chdir(TMP_DIR);
-files=['fun1.o','fun2.o','intfun1.o'];
+files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
    Generate a gateway file
    Generate a loader file
