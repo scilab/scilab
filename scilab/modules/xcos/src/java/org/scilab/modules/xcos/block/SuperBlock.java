@@ -70,41 +70,50 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
-    	if (child == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
-    	    // This means we have a SuperBlock and we generated C code for it.
-    	    this.setLocked(false);
-    	    return;
-    	}
-	
-    	if(createChildDiagram() == true) {
-    		child.setModified(false);
-    		Xcos.showDiagram(child);
-    	} else {
-        	ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
-        	xcosWindow.setVisible(true);
-    	}
+	if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
+	    // This means we have a SuperBlock and we generated C code for it.
+	    this.setLocked(false);
+	    return;
+	}
+
+	if(createChildDiagram() == true) {
+	    getChild().setModified(false);
+	    Xcos.showDiagram(getChild());
+	} else {
+	    getChild().setVisible(true);
+	}
     }
 
-	public void closeBlockSettings() {
+    public void closeBlockSettings() {
 
-    	// Do not ask the user, the diagram is saved and closed
-    	if (child.isModified()) {
-    		setRealParameters(BlockWriter.convertDiagramToMList(child));
-        	getParentDiagram().setModified(true);
-    	}
-
-    	if(child.getParentTab() != null) {
-    		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(child.getParentTab().getParentWindowId());
-    		xcosWindow.removeTab(child.getParentTab());
-    		child.getViewPort().close();
-    		Xcos.closeDiagram(child);
-    	}
-
-    	child.removeListener(null);
-    	setLocked(false);
-    	child = null;
+	// Do not ask the user, the diagram is saved and closed
+	if (getChild().isModified()) {
+	    setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
+	    getParentDiagram().setModified(true);
+	    getChild().setModified(false);
 	}
-    
+
+	if(getChild().canClose() == false) {
+	    getChild().setVisible(false);
+	    return;
+	}
+
+	if(getChild().getParentTab() != null) {
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getChild().getParentTab().getParentWindowId());
+	    xcosWindow.removeTab(getChild().getParentTab());
+	    getChild().getViewPort().close();
+	    getChild().setOpened(false);
+	    Xcos.closeDiagram(getChild());
+	    if(getParentDiagram().isOpened() && getParentDiagram().isVisible() == false) {
+		getParentDiagram().closeDiagram();
+	    }
+	}
+
+	child.removeListener(null);
+	setLocked(false);
+	child = null;
+    }
+
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = createContextMenu(graph);
 	

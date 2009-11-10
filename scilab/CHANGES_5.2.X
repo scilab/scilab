@@ -1111,6 +1111,8 @@ Bug fixes:
 
 * bug 4855 fixed - Standard error messages added when setting/getting values from graphics handles
 
+* bug 4880 fixed - Query-replace with a regular expression doesn't work in editor
+
 * bug 4904 fixed - wrong localized fr_FR message
 
 * bug 4917 fixed - fileinfo(SCI+'/') returned [] (under Windows)
@@ -1162,4 +1164,10 @@ Bug fixes:
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
+
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
+
+* bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
+* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
 
