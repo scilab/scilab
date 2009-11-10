@@ -60,12 +60,13 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-	    	// If diagram is empty (has one default child) : do nothing.
-	    	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 2) { return; }
-	    
-	    	Dimension viewportSize = ((XcosDiagram) getGraph(null)).getAsComponent().getViewport().getSize();
+    	// If diagram is empty (has one default child) : do nothing.
+    	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 2) { return; }
+    
+    	Dimension viewportSize = ((XcosDiagram) getGraph(null)).getAsComponent().getViewport().getSize();
 		Dimension componentSize = ((XcosDiagram) getGraph(null)).getAsComponent().getPreferredSize();
 		
+		/* Save the configuration */
 		double newZoomFactor = 0;
 		double oldZoomFactor = ((XcosDiagram) getGraph(null)).getAsComponent().getZoomFactor();
 		
@@ -77,13 +78,13 @@ public final class FitDiagramToViewAction extends DefaultAction {
 			((XcosDiagram) getGraph(null)).getAsComponent().zoomIn();
 		} else if (componentSize.getHeight() / viewportSize.getHeight() > 1.0 || componentSize.getWidth() / viewportSize.getWidth() > 1.0) {
 			// The component is too big
-			newZoomFactor = Math.min(componentSize.getHeight() / viewportSize.getHeight(),
+			newZoomFactor = Math.max(componentSize.getHeight() / viewportSize.getHeight(),
 					componentSize.getWidth() / viewportSize.getWidth());
 			((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(newZoomFactor);
 			((XcosDiagram) getGraph(null)).getAsComponent().zoomOut();
 		}
 		
+		/* Restore previous configuration */
 		((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(oldZoomFactor);
-		
 	}
 }

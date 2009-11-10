@@ -54,6 +54,8 @@ function [ this , terminate , status ] = mystoppingrule ( this , simplex )
   if ( ssize < 1.e-4 ) then
     terminate = %t;
     status = "mysize";
+  else
+    terminate = %f
   end
 
 endfunction

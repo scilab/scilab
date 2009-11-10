@@ -190,9 +190,29 @@ evals=spec(A,B)
           the pencil.</para>
         </listitem>
       </varlistentry>
-    </variablelist>
-  </refsection>
 
+
+      <varlistentry>
+        <term>[al,be,Z] = spec(A,E)</term>
+	<listitem>
+	  <para> returns the matrix <literal>Z</literal> of right
+	    generalized eigen vectors.</para>
+	</listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>[al,be,Q,Z] = spec(A,E)</term>
+	<listitem>
+	  <para>returns the matrices <literal>Q</literal>
+	    and <literal>Z</literal> of right and left generalized
+	    eigen vectors.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <para>For big full / sparse matrix, you can use the Arnoldi module.</para>
+  </refsection>
+  
   <refsection>
     <title>References</title>
 
@@ -306,6 +326,10 @@ roots(det(A-%s*E))   //complex case
       <member><link linkend="bdiag">bdiag</link></member>
 
       <member><link linkend="colcomp">colcomp</link></member>
+
+      <member><link linkend="dsaupd">dsaupd</link></member>
+
+      <member><link linkend="dnaupd">dnaupd</link></member>
     </simplelist>
   </refsection>
 </refentry>

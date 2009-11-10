@@ -24,7 +24,7 @@ sourcecode=['      subroutine incrdoublef77(x,y)'
     '      y=x+1'
     '      end'];
 mputl(sourcecode,'incrdoublef77.f');
-libpath=ilib_for_link('incrdoublef77','incrdoublef77.o',[],'f','Makefile');
+libpath=ilib_for_link('incrdoublef77','incrdoublef77.f',[],'f','Makefile');
 exec loader.sce;
 n = 1;
 m = call("incrdoublef77",n,1,"d","out",[1,1],2,"d");
