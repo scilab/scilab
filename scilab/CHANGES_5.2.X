@@ -55,6 +55,8 @@ Bug fixes:
 
 * bug 5292 fixed -  There was a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
 
+* bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
+
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
