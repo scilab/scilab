@@ -47,7 +47,7 @@ Bug fixes:
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
 
-
+* bug 5292 fixed -  There is a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
 
 
 

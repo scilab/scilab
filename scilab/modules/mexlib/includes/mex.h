@@ -61,7 +61,12 @@ typedef int (*GT) ();
 #endif
 
 #define mxCreateFull mxCreateDoubleMatrix
-#define bool int
+
+#ifndef __cplusplus
+	#ifndef bool
+		#define bool int
+	#endif
+#endif
 
   /* mexGetMatrixPtr - mexGetArrayPtr : NOT IN MATLAB API - V6.4 compatible*/
 #define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
