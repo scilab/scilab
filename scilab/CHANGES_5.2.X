@@ -1171,3 +1171,4 @@ Bug fixes:
 
 * bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
 
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
