@@ -1161,3 +1161,5 @@ Bug fixes:
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
+
