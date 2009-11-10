@@ -18,6 +18,7 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "machine.h"
+#include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
@@ -28,6 +29,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	int *piAddressVarOne = NULL;
 	int iType1 = 0;
 	char *pStVarOne = NULL;
+	char lib_filename[bsiz];
 	int lenStVarOne = 0;
 
 	int len = 0;
@@ -74,6 +76,13 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	}
 
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
+
+	if (pStVarOne == NULL)
+	{
+		Scierror(999,"%s : Memory allocation error.\n", fname);
+		return 0;
+	}
+
 	/* get string One */
 	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
@@ -85,7 +94,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	if ( (pStVarOne[strlen(pStVarOne)-1] != '/') && 
 		(pStVarOne[strlen(pStVarOne)-1] != '\\') )
 	{
-		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + 1) * sizeof(char));
+		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
 		if (pStVarOne)
 		{
 			strcat(pStVarOne, DIR_SEPARATOR);
@@ -97,14 +106,24 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	len = (int)strlen(pStVarOne);
-	C2F(intlib)(&len, pStVarOne,&len);
-
+	if ((int)strlen(pStVarOne) >= bsiz)
+	{
+		strncpy(lib_filename, pStVarOne, bsiz - 1);
+		lib_filename[bsiz - 1] = '\0';
+	}
+	else
+	{
+		strcpy(lib_filename, pStVarOne);
+	}
+	
 	if (pStVarOne)
 	{
 		FREE(pStVarOne);
 		pStVarOne = NULL;
 	}
+
+	len = (int)strlen(lib_filename);
+	C2F(intlib)(&len, lib_filename);
 
 	return 0;
 }
