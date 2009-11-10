@@ -1174,3 +1174,5 @@ Bug fixes:
 * bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
 
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
+
+* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
