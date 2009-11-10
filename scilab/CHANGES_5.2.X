@@ -57,6 +57,7 @@ Bug fixes:
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
+* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
