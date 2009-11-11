@@ -28,6 +28,7 @@ import javax.help.JHelp;
 import javax.help.JHelpIndexNavigator;
 import javax.help.JHelpSearchNavigator;
 import javax.help.JHelpTOCNavigator;
+import javax.help.SwingHelpUtilities;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
 import javax.help.search.SearchQuery;
 
@@ -51,6 +52,9 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	private String currentLanguage = "";
     private HelpSet helpSet;
 
+    static {
+        SwingHelpUtilities.setContentViewerUI("org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowserViewer");    
+    }
     /**
 	 * Constructor
 	 * @param helps help chapters and directories
