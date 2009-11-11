@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -251,6 +252,32 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editorInstance.readFileAndWait(f);
 		editorInstance.getXln().highlightLine(lineNumber);
 		editorInstance.lastKnownSavedState = System.currentTimeMillis();
+	}
+
+	/**
+	 * Launch Xpad with a provided text (from the help for example)  
+	 * @param text the text which should be modified
+	 */
+	public static void xpadWithText(String text) {
+		Xpad editorInstance = launchXpad();
+		editorInstance.lastKnownSavedState = System.currentTimeMillis(); 
+		JTextPane theTextPane = editorInstance.addEmptyTab();
+		ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+		try {
+			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
+			boolean colorStatus = styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+
+			if(colorStatus == false) {
+				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
+			} else {
+				editorInstance.getInfoBar().setText("");
+			}
+
+		} catch (IOException e) {
+			System.err.println("Error while reading the String");
+		} catch (BadLocationException e) {
+			System.err.println("Error while reading the String");
+		}
 	}
 
 	/**
