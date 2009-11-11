@@ -1,5 +1,5 @@
 package org.scilab.modules.xpad;
-
+/* @TODO: comment this class */
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
