@@ -79,6 +79,7 @@ Bug fixes:
 
 * bug 5326 fixed - graphic_export module was not loaded dynamically.
 
+* bug 5330 fixed - "help str1 str2" returned a error.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
