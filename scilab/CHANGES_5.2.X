@@ -63,6 +63,8 @@ Bug fixes:
 
 * bug 5308 fixed - editor did not check input argument type.
 
+* bug 5326 fixed - graphic_export module was not loaded dynamically.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
