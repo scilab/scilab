@@ -38,6 +38,7 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import javax.swing.undo.UndoManager;
+import java.nio.charset.Charset;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
 	
@@ -50,112 +51,92 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
 	private Style defaultStyle;
 
-	private UpdateManager updateManager = new UpdateManager();
-	private IndentManager indentManager = new IndentManager();
-	private ColorizationManager colorizationManager = new ColorizationManager();	
-	private CommentManager commentManager = new CommentManager();
-	private SearchManager searchManager = new SearchManager();
-	private TabManager tabManager = new TabManager();
-	public EncodingManager getEncodingManager() {
-		return encodingManager;
+	private String encoding = Charset.defaultCharset().toString();
+	private boolean updater;
+	private boolean autoIndent;
+	private boolean autoColorize;
+	private volatile boolean shouldMergeEdits;
+	private CompoundEdit compoundEdit;
+
+	public String getEncoding(){
+		return encoding;
+	}
+	public void setEncoding(String encoding){
+		this.encoding = encoding;
 	}
 
-	public void setEncodingManager(EncodingManager encodingManager) {
-		this.encodingManager = encodingManager;
+	public boolean getAutoColorize() {
+		return autoColorize;
 	}
 
-
-
-	private EncodingManager encodingManager = new EncodingManager();
+	 public void setAutoColorize(boolean b) {
+		 autoColorize = b;
+	 }
 	
-	public TabManager getTabManager() {
-		return tabManager;
-	}
+	 public boolean isUpdater() {
+		 return updater;
+	 }
+	 public boolean getAutoIndent() {
+		 DEBUG("getAutoIndent("+autoIndent+")");
+		 return autoIndent;
+	 }
+	 public void setAutoIndent(boolean b) {
+		 DEBUG("setAutoIndent("+b+")");
+		 autoIndent = b;
+	 }
 
-	public void setTabManager(TabManager tabManager) {
-		this.tabManager = tabManager;
-	}
+	 public void setUpdater(boolean updaterDisabled) {
+		 this.updater = updaterDisabled;
+	 }
 
-	public SearchManager getSearchManager() {
-		return searchManager;
-	}
-
-	public void setSearchManager(SearchManager searchManager) {
-		this.searchManager = searchManager;
-	}
-
-	public ColorizationManager getColorizationManager() {
-		return colorizationManager;
-	}
-
-	public CommentManager getCommentManager() {
-		return commentManager;
-	}
-
-	public void setCommentManager(CommentManager commentManager) {
-		this.commentManager = commentManager;
-	}
-
-	public void setColorizationManager(ColorizationManager colorizationManager) {
-		this.colorizationManager = colorizationManager;
-	}
-
-	public IndentManager getIndentManager() {
-		return indentManager;
-	}
-
-	public void setIndentManager(IndentManager indentManager) {
-		this.indentManager = indentManager;
-	}
-
-
-
-
-	public UpdateManager getUpdateManager() {
-		return updateManager;
-	}
-
-	public void setUpdateManager(UpdateManager updateManager) {
-		this.updateManager = updateManager;
-	}
-
-	
-	
-	
-	
-	//private XpadStyles xpadStyles; 
-	
-
-
-
+	 public CompoundEdit getCompoundEdit() {
+		 return compoundEdit;
+	 }
+	 
+	 public void setShouldMergeEdits(boolean b) {
+		 if (shouldMergeEdits) {
+			 if (!b) { // ending compound editing
+				 compoundEdit.end();
+				 undo.addEdit(compoundEdit);
+				 compoundEdit = null;
+			 }
+		 } else {
+			 if (b) { // starting compound editing
+				 compoundEdit = new CompoundEdit();
+			 }
+		 }
+		 shouldMergeEdits = b;
+	 }
+	 
+	 public boolean getShouldMergeEdits() {
+		 return shouldMergeEdits;
+	 }
+	 
     private UndoManager undo = new UndoManager() {
-	public void undoableEditHappened(UndoableEditEvent e) {
+    	public void undoableEditHappened(UndoableEditEvent e) {
 				
-		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
-					|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
-			&& (e.getEdit().canUndo())) {
-			/*
-			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
-				System.out.println("remove");
-				System.out.println(indentInprogress);
-			}
-			*/
-			if (!indentManager.isIndentInprogress()) { 
-				((UndoableEdit) (updateManager.getShouldMergeEdits() ?  updateManager.getCompoundEdit(): this)).addEdit(e.getEdit());
+    		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+    				|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
+    				&& (e.getEdit().canUndo())) {
+    			/*
+				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+					System.out.println("remove");
+					System.out.println(indentInprogress);
+				}
+    			 */
+    			((UndoableEdit) (shouldMergeEdits ?  compoundEdit: this)).addEdit(e.getEdit());
 				eventType = "";
-			}
-		}
+    		}
 
 	}
     };
     	
 
-	public ScilabStyleDocument(Xpad editor) {
+	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
 		eventType = new String();
 		
-		this.editor = editor;
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
@@ -179,40 +160,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		contentModified=false;
-		
-		this.addDocumentListener(new DocumentListener() {
-			
-				public void changedUpdate(DocumentEvent documentEvent) {
-				}
-			      
-				public void insertUpdate(DocumentEvent documentEvent) {
-					handleEvent(documentEvent);
-			    }
-			    
-			    public void removeUpdate(DocumentEvent documentEvent) {
-			    	handleEvent(documentEvent);
-			    }
-			    
-			    private void handleEvent(DocumentEvent documentEvent) {
-			        DocumentEvent.EventType type = documentEvent.getType();
-			        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
-			         
-			        	int index = getEditor().getTabPane().getSelectedIndex();
-			        	if (!isContentModified()) {
-			        		getEditor().getTabPane().setTitleAt(index, "*" + getEditor().getTabPane().getTitleAt(index ) );
-			        	}
-			        	setContentModified(true);
-			        }  
 
-			   }
-		});
 	}
 
-
+	// TODO: check usefulness of this method
 	public ScilabStyleDocument getScilabDocument(){
 		return this;
 	}
 
+	public String getText(){
+		String res ="";
+		try{
+			res = getText(0, getLength());
+		}catch(javax.swing.text.BadLocationException e){
+			res= "";
+		}
+		return res;
+	}
 	
 	
 	/**
@@ -245,37 +209,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		//System.err.println("[DEBUG] "+msg);
 	}
 	
-	public String getFullDocument() {
-		/*
-		int startOffset;
-		int endOffset;
-		String textLine = "";
-		StringBuffer text = new StringBuffer();
-		
-		//We read the document and put the document into the String text
-		for (int i = 0; i < this.getLength();) {
-			startOffset = this.getParagraphElement(i).getStartOffset();
-			endOffset = this.getParagraphElement(i).getEndOffset();
-
-			try {
-				//Get the document line by line
-				textLine = this.getText(startOffset, endOffset - startOffset);
-			} catch (BadLocationException ex) {
-				ex.printStackTrace();
-			}
-			i = endOffset;
-			text.append(textLine);
-		}
-		return text.toString();*/
-		String textLine = "";
-		try {
-			//Get the document line by line
-			textLine = this.getText(0, getLength());
-		} catch (BadLocationException ex) {
-			ex.printStackTrace();
-		}
-		return textLine;
-	}
 
 	public void insertUpdate(DocumentEvent e) {
 		
@@ -284,17 +217,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		DEBUG("--- Calling insertUpdate");
+		/* TODO : move to DocumentListener s in ColorizeAction and IndentAction
 		if (!updateManager.isUpdater()) {
 
-			if (colorizationManager.isAutoColorize()) {
+			if (autoColorize) {
 				DEBUG("--- Calling insertUpdate -> colorize");
-			    SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(this, e));
+			    SwingUtilities.invokeLater(ColorizationManager.new ColorUpdater(this, e));
 			}
-			if (colorizationManager.isAutoColorize()) {
+			if (autoColorize) {
 			    DEBUG("--- Calling insertUpdate -> indent");
-			    SwingUtilities.invokeLater(indentManager.new IndentUpdater(this,e));
+			    SwingUtilities.invokeLater(IndentManager.new IndentUpdater(this,e));
 			}
 		}
+		*/
 	}
 	
 
@@ -304,11 +239,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		eventType = e.getType().toString();
 		//System.err.println("--- Calling ScilabStyleDocument.removeUpdate");
+		/* TODO: put in a DocumentListener in ColorizeAction
 		if (!updateManager.isUpdater()) {
 			if (colorizationManager.isAutoColorize()) {
 			    SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(getScilabDocument(), e));
 			}
 		}
+		*/
 	}
 
 	public void changedUpdate(DocumentEvent arg0) {
@@ -327,7 +264,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
-		editor.updateTabTitle();
 	}
 
 

@@ -22,9 +22,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.TabManager;
 
 public class UnTabifyAction extends DefaultAction {
 
+	private TabManager tabManager = new TabManager();
+	
 	private UnTabifyAction(Xpad editor) {
 	  super(XpadMessages.UNTABIFY_SELECTION, editor);
 	}
@@ -40,7 +43,7 @@ public class UnTabifyAction extends DefaultAction {
 		 if( line_start == line_end )
 		{
 			// A part of the line is selected : Delete a Tab at the beginning of the line
-			int offset = scilabDocument.getTabManager().untabifyLine(scilabDocument, line_start);
+			int offset = tabManager.untabifyLine(scilabDocument, line_start);
 			getEditor().getTextPane().setSelectionStart(position_start-offset);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
@@ -51,7 +54,7 @@ public class UnTabifyAction extends DefaultAction {
 			// TODO exact caret position requires API change if we untabify as much lines as possible: we must know if
 			// the line of the caret position was untabified or not.
 			
-			int [] delta = scilabDocument.getTabManager().untabifyLines(scilabDocument,line_start, line_end);
+			int [] delta = tabManager.untabifyLines(scilabDocument,line_start, line_end);
 			getEditor().getTextPane().setSelectionStart(position_start - delta[0]);
 			getEditor().getTextPane().setSelectionEnd(position_end - delta[1]);
 		}

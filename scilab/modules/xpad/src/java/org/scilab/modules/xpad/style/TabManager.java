@@ -35,24 +35,22 @@ public class TabManager {
 	 * Tabify several lines
 	 */
 	public synchronized int tabifyLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
-		IndentManager indentManager = new IndentManager();
-		ColorizationManager colorizationManager = new ColorizationManager();
+	
+		boolean indentMode = scilabDocument.getAutoIndent();
+		boolean colorizeMode = scilabDocument.getAutoColorize();
+		boolean mergeEditsMode = scilabDocument.getShouldMergeEdits();
 		
-		boolean indentMode = indentManager.getAutoIndent();
-		boolean colorizeMode = colorizationManager.getColorize();
-		boolean mergeEditsMode = scilabDocument.getUpdateManager().getShouldMergeEdits();
+		scilabDocument.setAutoIndent(false);
+		scilabDocument.setAutoColorize(false);
 		
-		indentManager.setAutoIndent(false);
-		colorizationManager.setColorize(false);
-		
-		scilabDocument.getUpdateManager().setShouldMergeEdits(true);
+		scilabDocument.setShouldMergeEdits(true);
 		
 		for (int currentLine = line_start; currentLine <= line_end; ++currentLine) { // tabifying should not insert/remove lines
 			tabifyLine(scilabDocument, currentLine);
 		}
-		indentManager.setAutoIndent(indentMode);
-		colorizationManager.setColorize(colorizeMode);
-		scilabDocument.getUpdateManager().setShouldMergeEdits(mergeEditsMode);
+		scilabDocument.setAutoIndent(indentMode);
+		scilabDocument.setAutoColorize(colorizeMode);
+		scilabDocument.setShouldMergeEdits(mergeEditsMode);
 		return getTabulation().length();
 	}
 		
@@ -68,7 +66,7 @@ public class TabManager {
 		String tab = getTabulation(); 
 		int res = 0, tabLength = tab.length();
 		try {
-			String nextChars = scilabDocument.getText(position, tabLength);
+			String nextChars = scilabDocument.getText(position, java.lang.Math.min(tabLength, scilabDocument.getLength()-position));
 			if(nextChars.equals(tab)){
 				scilabDocument.remove(position, tabLength);
 				res= tabLength;
@@ -121,19 +119,17 @@ public class TabManager {
 	public synchronized int[] untabifyLines(ScilabStyleDocument scilabDocument, int line_start, int line_end)
 	{	
 		int []res={0,0};
-        IndentManager indentManager = new IndentManager();
-        ColorizationManager colorizationManager = new ColorizationManager();
-
+      
 		if(true || canUntabifyLines(scilabDocument, line_start, line_end)) // always untabify as much lines as possible from a selection
 		{
 			//boolean indentMode= getAutoIndent(), colorizeMode= getColorize(), mergeEditsMode= getShouldMergeEdits();
-            boolean indentMode = indentManager.getAutoIndent();
-            boolean colorizeMode = colorizationManager.getColorize();
-            boolean mergeEditsMode = scilabDocument.getUpdateManager().getShouldMergeEdits();
+            boolean indentMode = scilabDocument.getAutoIndent();
+            boolean colorizeMode = scilabDocument.getAutoColorize();
+            boolean mergeEditsMode = scilabDocument.getShouldMergeEdits();
 
-			//setAutoIndent(false);
-			//setColorize(false);
-			//setShouldMergeEdits(true);
+			scilabDocument.setAutoIndent(false);
+			scilabDocument.setAutoColorize(false);
+			scilabDocument.setShouldMergeEdits(true);
 			for (int currentLine = line_start; currentLine <= line_end; ++currentLine) { // tabifying should not insert/remove lines
 				res[1] += untabifyLine(scilabDocument, currentLine); // accumulate nb of deleted characters
 				if (currentLine == line_start) {
@@ -141,9 +137,9 @@ public class TabManager {
 				}
 			}
 			
-            indentManager.setAutoIndent(indentMode);
-            colorizationManager.setColorize(colorizeMode);
-            scilabDocument.getUpdateManager().setShouldMergeEdits(mergeEditsMode);
+            scilabDocument.setAutoIndent(indentMode);
+            scilabDocument.setAutoColorize(colorizeMode);
+            scilabDocument.setShouldMergeEdits(mergeEditsMode);
 /*
 			setAutoIndent(indentMode);
 			setColorize(colorizeMode);
