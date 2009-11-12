@@ -1170,6 +1170,8 @@ Bug fixes:
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
 
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
@@ -1183,3 +1185,4 @@ Bug fixes:
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+
