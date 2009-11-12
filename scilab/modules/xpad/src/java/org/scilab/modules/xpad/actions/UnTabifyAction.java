@@ -26,9 +26,9 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public class UnTabifyAction extends DefaultAction {
 
 	private UnTabifyAction(Xpad editor) {
-	  super(XpadMessages.UNTABIFY_SELECTION, editor);
+		super(XpadMessages.UNTABIFY_SELECTION, editor);
 	}
-	
+
 	public void doAction()
 	{
 		int position_start = getEditor().getTextPane().getSelectionStart();
@@ -36,14 +36,13 @@ public class UnTabifyAction extends DefaultAction {
 		
 		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
 		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		 if( line_start == line_end )
+		
+		if( line_start == line_end )
 		{
 			// A part of the line is selected : Delete a Tab at the beginning of the line
 			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).untabifyLine(line_start);
-			getEditor().getTextPane().setSelectionStart(position_start-offset);
-			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
-		
+
 		else
 		{
 			// several lines are selected
@@ -51,11 +50,9 @@ public class UnTabifyAction extends DefaultAction {
 			// the line of the caret position was untabified or not.
 			ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 			int [] delta = doc.untabifyLines(line_start, line_end);
-			getEditor().getTextPane().setSelectionStart(position_start- delta[0]);
-			getEditor().getTextPane().setSelectionEnd(position_end - delta[1]);
 		}
 	}
-	
+
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,ActionEvent.SHIFT_MASK));
 	}

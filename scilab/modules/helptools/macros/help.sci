@@ -7,7 +7,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function help(key)
+function help(varargin)
+
+[lhs,rhs]=argn(0);
+
+if rhs >= 1 then
+  key = varargin(1);
+else
+  key = '';
+end
 
 if (fileinfo('SCI/modules/helptools/help') <> []) then
   
@@ -38,9 +46,7 @@ if (fileinfo('SCI/modules/helptools/help') <> []) then
     // If the function name does not exists then full-text search is done (See Java code)
     
   else
-
     error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));
-  
   end
 else
 
@@ -49,12 +55,4 @@ else
 end
 
 endfunction
-
-
-
-
-
-
-
-
 
