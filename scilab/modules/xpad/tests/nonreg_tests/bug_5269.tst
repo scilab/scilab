@@ -20,6 +20,8 @@ editor()
 // try CTRL-F1
 // shoul load scilab's help page
 
+// CTRL-F1 + selecting a keyword in editor should open the corresponding help page
+
 
 
 

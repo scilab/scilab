@@ -29,7 +29,12 @@ public class HelpAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		InterpreterManagement.requestScilabExec("help('editor')");
+		String selection = getEditor().getTextPane().getSelectedText();
+		if (selection == null || selection.equals("")) {
+			InterpreterManagement.requestScilabExec("help('editor')");
+		} else {
+			InterpreterManagement.requestScilabExec("help('" + selection + "')");
+		}
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
