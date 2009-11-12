@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4670 fixed - ilib_build examples updated with api_scilab.
+
 * bug 5312 fixed - Xcos : adding 'Compile' informations
 
 * bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
