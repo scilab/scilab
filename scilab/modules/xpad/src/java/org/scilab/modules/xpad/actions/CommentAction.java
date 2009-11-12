@@ -21,9 +21,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.CommentManager;
 
 public class CommentAction extends DefaultAction {
 
+	private CommentManager commentManager = new CommentManager();
+	
 	private CommentAction(Xpad editor) {
 		super(XpadMessages.COMMENT_SELECTION, editor);
 	}
@@ -41,14 +44,14 @@ public class CommentAction extends DefaultAction {
 			if(position_start == position_end)
 			{
 				// No selection : comment the current line
-				int offset = doc.commentLine(line_start);
+				int offset = commentManager.commentLine(doc, line_start);
 				getEditor().getTextPane().setCaretPosition(position_start+offset);
 			}
 			
 			else if( line_start == line_end )
 			{
 				// A part of the line is selected
-				int offset = doc.commentText(position_start);
+				int offset = commentManager.commentText(doc, position_start);
 				getEditor().getTextPane().setSelectionStart(position_start);
 				getEditor().getTextPane().setSelectionEnd(position_end+offset);
 			}
@@ -56,7 +59,7 @@ public class CommentAction extends DefaultAction {
 			else
 			{
 				// several lines are selected
-				doc.commentLines(line_start, line_end);
+				commentManager.commentLines(doc, line_start, line_end);
 				position_end = doc.getDefaultRootElement().getElement(line_end).getEndOffset();
 				
 				getEditor().getTextPane().setSelectionStart(position_start);

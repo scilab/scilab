@@ -16,7 +16,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
-
+import org.scilab.modules.xpad.style.ColorizationManager;
 /**
  * Colorization management
  * @author Bruno JOFRET
@@ -26,6 +26,7 @@ public final class ColorizeAction extends DefaultAction {
 	private static final long serialVersionUID = -2486375196709197718L;
 
 	private static Xpad colorEditor;
+	private ColorizationManager colorizationManager= new ColorizationManager();
 
 	/**
 	 * Constructor
@@ -41,8 +42,8 @@ public final class ColorizeAction extends DefaultAction {
 	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
-			.colorize(0, getEditor().getTextPane().getDocument().getLength());
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument)getEditor().getTextPane().getStyledDocument(); 
+		colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());
 	}
 
 	/**

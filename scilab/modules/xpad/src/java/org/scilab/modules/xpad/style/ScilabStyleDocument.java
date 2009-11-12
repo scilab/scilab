@@ -37,6 +37,8 @@ import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import javax.swing.undo.UndoManager;
+import java.nio.charset.Charset;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
 
@@ -51,58 +53,88 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
 	private Style defaultStyle;
 
-	private UpdateManager updateManager = new UpdateManager();
-	private IndentManager indentManager = new IndentManager();
-	private ColorizationManager colorizationManager = new ColorizationManager();	
-	private CommentManager commentManager = new CommentManager();
-	private SearchManager searchManager = new SearchManager();
-	private TabManager tabManager = new TabManager();
-	public EncodingManager getEncodingManager() {
-		return encodingManager;
-	}
-
-	public void setEncodingManager(EncodingManager encodingManager) {
-		this.encodingManager = encodingManager;
-	}
-
-
-
-	private EncodingManager encodingManager = new EncodingManager();
-	
 	private String encoding = Charset.defaultCharset().toString();
-	
-	private int lineStartPosition;
-	private int lineEndPosition;
-	private boolean singleLine = false;
-	private int currentLine;
-	
-	
-	//private XpadStyles xpadStyles; 
+	private boolean updater;
+	private boolean autoIndent;
+	private boolean autoColorize;
+	private volatile boolean shouldMergeEdits;
+	private CompoundEdit compoundEdit;
 
+	public String getEncoding(){
+		return encoding;
+	}
+	public void setEncoding(String encoding){
+		this.encoding = encoding;
+	}
 
+	public boolean getAutoColorize() {
+		return autoColorize;
+	}
+
+	 public void setAutoColorize(boolean b) {
+		 autoColorize = b;
+	 }
+	
+	 public boolean isUpdater() {
+		 return updater;
+	 }
+	 public boolean getAutoIndent() {
+		 DEBUG("getAutoIndent("+autoIndent+")");
+		 return autoIndent;
+	 }
+	 public void setAutoIndent(boolean b) {
+		 DEBUG("setAutoIndent("+b+")");
+		 autoIndent = b;
+	 }
+
+	 public void setUpdater(boolean updaterDisabled) {
+		 this.updater = updaterDisabled;
+	 }
+
+	 public CompoundEdit getCompoundEdit() {
+		 return compoundEdit;
+	 }
+	 
+	 public void setShouldMergeEdits(boolean b) {
+		 if (shouldMergeEdits) {
+			 if (!b) { // ending compound editing
+				 compoundEdit.end();
+				 undo.addEdit(compoundEdit);
+				 compoundEdit = null;
+			 }
+		 } else {
+			 if (b) { // starting compound editing
+				 compoundEdit = new CompoundEdit();
+			 }
+		 }
+		 shouldMergeEdits = b;
+	 }
+	 
+	 public boolean getShouldMergeEdits() {
+		 return shouldMergeEdits;
+	 }
+	 
     private UndoManager undo = new UndoManager() {
-	public void undoableEditHappened(UndoableEditEvent e) {
+    	public void undoableEditHappened(UndoableEditEvent e) {
 				
-		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
-					|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
-			&& (e.getEdit().canUndo())) {
-			/*
-			if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
-				System.out.println("remove");
-				System.out.println(indentInprogress);
-			}
-			*/
-			if (!indentManager.isIndentInprogress()) { 
-				((UndoableEdit) (updateManager.getShouldMergeEdits() ?  updateManager.getCompoundEdit(): this)).addEdit(e.getEdit());
+    		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
+    				|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
+    				&& (e.getEdit().canUndo())) {
+    			/*
+				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+					System.out.println("remove");
+					System.out.println(indentInprogress);
+				}
+    			 */
+    			((UndoableEdit) (shouldMergeEdits ?  compoundEdit: this)).addEdit(e.getEdit());
 				eventType = "";
-			}
-		}
+    		}
 
 	}
     };
     	
 
-	public ScilabStyleDocument(Xpad editor) {
+	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
 		EventType = new String();
@@ -115,9 +147,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		patternSpace = Pattern.compile("\\s*");
 		
-		this.editor = editor;
-		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
-		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
+		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
+		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
 
 		//xpadStyles = XpadStyles.getInstance();
@@ -139,102 +170,22 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		contentModified=false;
-		
-		this.addDocumentListener( new DocumentListener(){
-			
-				public void changedUpdate(DocumentEvent documentEvent){
-				}
-			      
-				public void insertUpdate(DocumentEvent documentEvent){
-					handleEvent(documentEvent);
-			    }
-			    
-			    public void removeUpdate(DocumentEvent documentEvent){
-			    	handleEvent(documentEvent);
-			    }
-			    
-			    private void handleEvent(DocumentEvent documentEvent){
-			        DocumentEvent.EventType type = documentEvent.getType();
-			        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
-			         
-			        	int index = getEditor().getTabPane().getSelectedIndex();
-			        	if ( ! isContentModified()){
-			        		getEditor().getTabPane().setTitleAt( index  , "*" + getEditor().getTabPane().getTitleAt(index ) );
-			        	}
-			        	setContentModified(true);
-			        }  
 
-			   }
-		});
 	}
 
-
-	
-	/**
-	 * DOCUMENT COLORISATION START
-	 */
-	
-	public void loadingsForColorisation() {
-		// Scilab keywords to be colored
-		keywords = getScilabKeywords();    	
-		commands = (String[])keywords.get("command");
-		functions = (String[])keywords.get("function");
-		macros = (String[])keywords.get("macro");
-
-		// Regexp for Scilab keywords  (for commands, functions & macros) 
-		for (int i = 0; i < commands.length; i++) {
-			commands[i] = "\\b" + commands[i] + "\\b"; 
-		}    	
-		for (int i = 0; i < functions.length; i++) {
-			functions[i] = "\\b" + functions[i] + "\\b"; 
-		}    	
-		for (int i = 0; i < macros.length; i++) {
-			macros[i] = "\\b" + macros[i] + "\\b"; 
-		}
-	}
-	
-	
-	
-	public boolean colorize(int lineStartPosition, int lineEndPosition) {
-	    DEBUG("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
-	    Timer timer = new Timer();
-		DEBUG("Colorize [before parse] : " + timer.top());
-		singleLine = false;
-		
-		// We parse all words which are susceptible to be colored
-		ArrayList<ArrayList<Integer>> boundaries_list = parse(bools, commands, comments, functions, macros, operators, quotations, lineStartPosition, lineEndPosition);
-		DEBUG("Colorize [after parse] : " + timer.top());
-		if (!colorizeInprogress) {
-			//colorizeInprogress = true;
-			this.removeUndoableEditListener(undo);
-			this.addUndoableEditListener(null);
-			resetStyle(lineStartPosition, lineEndPosition);
-			try {
-				if(applyStyle(boundaries_list.get(VARIABLES), getStyle("Variable")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(COMMANDS), getStyle("Command")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(FUNCTIONS), getStyle("Function")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(MACROS), getStyle("Macro")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(OPERATORS), getStyle("Operator")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(QUOTATIONS), getStyle("String")) == false){ return false;}
-				if(applyStyle(boundaries_list.get(COMMENTS), getStyle("Comment")) == false){ return false;}
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-			finally {
-				this.addUndoableEditListener(undo);
-				//colorizeInprogress = false;
-			}
-		}
-		DEBUG("Colorize [after all applyStyle] : " + timer.top());
-		return true;
+	// TODO: check usefulness of this method
+	public ScilabStyleDocument getScilabDocument(){
+		return this;
 	}
 
-	public Style getStyle(String styleString){
-		Style style = super.getStyle(styleString);
-		if(style == null) {
-			super.getStyle("Default");
+	public String getText(){
+		String res ="";
+		try{
+			res = getText(0, getLength());
+		}catch(javax.swing.text.BadLocationException e){
+			res= "";
 		}
-		return style;
+		return res;
 	}
 	
 	private void resetStyle(int line_start, int line_end) {
@@ -1434,132 +1385,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private final void DEBUG(String msg) {
 		//System.err.println("[DEBUG] "+msg);
 	}
-	public void disableUpdaters() {
-		updaterDisabled = true;
-	}
 
-	public String getFullDocument() {
-		/*
-		int startOffset;
-		int endOffset;
-		String textLine = "";
-		StringBuffer text = new StringBuffer();
-		
-		//We read the document and put the document into the String text
-		for (int i = 0; i < this.getLength();) {
-			startOffset = this.getParagraphElement(i).getStartOffset();
-			endOffset = this.getParagraphElement(i).getEndOffset();
-
-			try {
-				//Get the document line by line
-				textLine = this.getText(startOffset, endOffset - startOffset);
-			} catch (BadLocationException ex) {
-				ex.printStackTrace();
-			}
-			i = endOffset;
-			text.append(textLine);
-		}
-		return text.toString();*/
-		String textLine = "";
-		try {
-			//Get the document line by line
-			textLine = this.getText(0,getLength());
-		} catch (BadLocationException ex) {
-			ex.printStackTrace();
-		}
-		return textLine;
-	}
-	
-
-
-	public String getSelectedDocumentLines(int start , int end ) {
-		int startOffset;
-		int endOffset;
-
-		String text = "";
-
-		startOffset = this.getParagraphElement(start).getStartOffset();
-		endOffset = this.getParagraphElement(end).getEndOffset();
-		//We read the document and put the document into the String text
-
-		try {
-			//Get the document line by line
-			text = this.getText(startOffset, endOffset - startOffset);
-		} catch (BadLocationException ex) {
-			ex.printStackTrace();
-		}
-
-
-		return text;
-	}
-
-	public void enableUpdaters() {
-		updaterDisabled = false;
-	}
-
-	private class IndentUpdater implements Runnable {
-	    private DocumentEvent event = null;
-	    
-	    public IndentUpdater(DocumentEvent event) {
-		super();
-		this.event = event;
-	    }
-	    
-	    public void run() { 
-		//IndentAction.getXpadEditor();
-		//editor = getEditor();
-		//int  caretPosition = editor.getTextPane().getCaretPosition();
-		
-		try {
-			//if (caretPosition != 0) {
-			    //System.err.println("Text inserted = {"+event.getDocument().getText(event.getOffset(), event.getLength())+"}");
-				//if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-			if (event == null) { // Called from SetFontAction: do nothing, change is done by ColorUpdater
-				return;
-			}
-			if (event.getDocument().getText(event.getOffset(), event.getLength()).contains("\n")) {
-			    indent(event.getOffset(), event.getOffset() + event.getLength());
-			}
-			//}
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
-		
-		//indent();
-	    }
-	}
-	
-	
-	private class ColorUpdater implements Runnable {
-	    private DocumentEvent event = null;
-	    
-	    public ColorUpdater(DocumentEvent event) {
-		super();
-		this.event = event;
-	    }
-	    
-	    public void run() {
-			//colorize();
-			ColorizeAction.getXpadEditor();
-			editor = getEditor();
-			javax.swing.text.StyledDocument doc = editor.getTextPane().getStyledDocument();
-			synchronized (doc) {
-				if (event == null) { // Called from SetFontAction: apply change to the whole document
-					lineStartPosition =  0;
-					lineEndPosition = getLength();
-				} else {
-					lineStartPosition =  doc.getParagraphElement(event.getOffset()).getStartOffset();
-					lineEndPosition = doc.getParagraphElement(event.getOffset() + event.getLength()).getEndOffset() - 1;
-				}
-			
-				if (lineStartPosition != lineEndPosition) {
-					colorize(lineStartPosition, lineEndPosition);
-				}
-			}
-				/*
-				// Get the current line (position of the caret) 
-				int  caretPosition = editor.getTextPane().getCaretPosition();
-				currentLine = editor.getTextPane().getStyledDocument().getDefaultRootElement().getElementIndex(caretPosition);
 
 				// Get current line's start & end offsets
 				lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getStartOffset();
@@ -1586,17 +1412,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		DEBUG("--- Calling insertUpdate");
-		if (!updaterDisabled) {
+		/* TODO : move to DocumentListener s in ColorizeAction and IndentAction
+		if (!updateManager.isUpdater()) {
 
 			if (autoColorize) {
 				DEBUG("--- Calling insertUpdate -> colorize");
-			    SwingUtilities.invokeLater(new ColorUpdater(e));
+			    SwingUtilities.invokeLater(ColorizationManager.new ColorUpdater(this, e));
 			}
-			if (autoIndent) {
+			if (autoColorize) {
 			    DEBUG("--- Calling insertUpdate -> indent");
-			    SwingUtilities.invokeLater(new IndentUpdater(e));
+			    SwingUtilities.invokeLater(IndentManager.new IndentUpdater(this,e));
 			}
 		}
+		*/
 	}
 	
 
@@ -1606,11 +1434,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		EventType = e.getType().toString();
 		//System.err.println("--- Calling ScilabStyleDocument.removeUpdate");
-		if (!updaterDisabled) {
-			if (autoColorize) {
-			    SwingUtilities.invokeLater(new ColorUpdater(e));
+		/* TODO: put in a DocumentListener in ColorizeAction
+		if (!updateManager.isUpdater()) {
+			if (colorizationManager.isAutoColorize()) {
+			    SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(getScilabDocument(), e));
 			}
 		}
+		*/
 	}
 
 	public void changedUpdate(DocumentEvent arg0) {
@@ -1645,7 +1475,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	
 	public void setContentModified(boolean contentModified){
 		this.contentModified = contentModified;
-		editor.updateTabTitle();
 	}
 
 	public void setLineToColor(int lineToColor) {

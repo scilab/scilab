@@ -22,11 +22,13 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.IndentManager;
 
 public class IndentAction extends DefaultAction {
 	
 	private static Xpad indent_editor;
-
+	private IndentManager indentManager = new IndentManager();
+	
 	private IndentAction(Xpad editor) {
 		super(XpadMessages.INDENT, editor);
 		indent_editor = editor;
@@ -36,7 +38,7 @@ public class IndentAction extends DefaultAction {
 		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
 		try {
-			styleDocument.beautifier(getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+			indentManager.beautifier(styleDocument, getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

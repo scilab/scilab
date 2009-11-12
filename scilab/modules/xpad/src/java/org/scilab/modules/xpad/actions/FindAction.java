@@ -53,6 +53,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.SearchManager;
 
 public final class FindAction extends DefaultAction {
 
@@ -90,6 +91,7 @@ public final class FindAction extends DefaultAction {
 	private int startFindSelection;
 	private int endFindSelection;
 
+	private SearchManager searchManager = new SearchManager();
 
 	private FindAction(Xpad editor) {
 		super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
@@ -380,7 +382,8 @@ public final class FindAction extends DefaultAction {
 				int currentCaretPos = xpadTextPane.getCaretPosition();
 				
 				if (buttonSelection.isSelected()) {
-					text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
+					ScilabStyleDocument scilabDocument = (ScilabStyleDocument)xpadTextPane.getStyledDocument();
+					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
 				} else {
 					text = xpadTextPane.getText();
 				}
@@ -551,10 +554,10 @@ public final class FindAction extends DefaultAction {
 		}
 
 		if (onlySelectedLines) {
-			offsets = scilabStyle.findWord(wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
+			offsets = searchManager.findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
 					wholeWordSelected, regexpSelected);
 		} else {
-			offsets = scilabStyle.findWord(wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = searchManager.findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
 		
 		statusBar.setText("");
