@@ -53,6 +53,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.SearchManager;
 
 public final class FindAction extends DefaultAction {
 
@@ -90,6 +91,7 @@ public final class FindAction extends DefaultAction {
 	private int startFindSelection;
 	private int endFindSelection;
 
+	private SearchManager searchManager = new SearchManager();
 
 	private FindAction(Xpad editor) {
 		super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
@@ -381,7 +383,7 @@ public final class FindAction extends DefaultAction {
 				
 				if (buttonSelection.isSelected()) {
 					ScilabStyleDocument scilabDocument = (ScilabStyleDocument)xpadTextPane.getStyledDocument();
-					text = scilabDocument.getSearchManager().getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
+					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
 					//text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
 				} else {
 					text = xpadTextPane.getText();
@@ -414,10 +416,10 @@ public final class FindAction extends DefaultAction {
 	            if (!replacedText.equals(text)) {// only touch document if any replacement took place
 	            	ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 	            	try {
-	            		boolean mergeMode = doc.getUpdateManager().getShouldMergeEdits();
-	            		doc.getUpdateManager().setShouldMergeEdits(true);
+	            		boolean mergeMode = doc.getShouldMergeEdits();
+	            		doc.setShouldMergeEdits(true);
 	            		doc.replace(startSelectedLines, text.length(), replacedText, null);
-	            		doc.getUpdateManager().setShouldMergeEdits(mergeMode);
+	            		doc.setShouldMergeEdits(mergeMode);
 	            	} catch (BadLocationException e1) {
 	            		// TODO Auto -generated catch block
 	            		e1.printStackTrace();
@@ -553,10 +555,10 @@ public final class FindAction extends DefaultAction {
 		}
 
 		if (onlySelectedLines) {
-			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
+			offsets = searchManager.findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
 					wholeWordSelected, regexpSelected);
 		} else {
-			offsets = scilabStyle.getSearchManager().findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = searchManager.findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
 		}
 		
 		statusBar.setText("");

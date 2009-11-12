@@ -21,9 +21,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.TabManager;
 
 public class TabifyAction extends DefaultAction {
 
+	private TabManager tabManager= new TabManager();
+	
 	private TabifyAction(Xpad editor) {
 		super(XpadMessages.TABIFY_SELECTION, editor);
 	}
@@ -40,7 +43,7 @@ public class TabifyAction extends DefaultAction {
 		if( line_start == line_end )
 		{
 			// A part of the line is selected : Insert a Tab at the beginning of the line
-			int offset = scilabDocument.getTabManager().tabifyLine(scilabDocument, line_start);
+			int offset = tabManager.tabifyLine(scilabDocument, line_start);
 			getEditor().getTextPane().setSelectionStart(position_start + offset);
 			getEditor().getTextPane().setSelectionEnd(position_end + offset);
 		}
@@ -48,7 +51,7 @@ public class TabifyAction extends DefaultAction {
 		else
 		{
 			// several lines are selected
-			int offset = scilabDocument.getTabManager().tabifyLines(scilabDocument, line_start, line_end);
+			int offset = tabManager.tabifyLines(scilabDocument, line_start, line_end);
 			getEditor().getTextPane().setSelectionStart(position_start + offset);
 			getEditor().getTextPane().setSelectionEnd(position_end + offset * (line_end - line_start + 1));
 		}
