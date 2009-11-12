@@ -100,6 +100,7 @@ import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
@@ -467,7 +468,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	showDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
-    
+
+    public static XcosDiagram createHiddenDiagram() {
+	XcosDiagram xcosDiagramm = new XcosDiagram();
+	xcosDiagramm.installListeners();
+	return xcosDiagramm;
+    }
+
     public static void showDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
@@ -625,4 +632,23 @@ public class Xcos extends SwingScilabTab implements Tab {
 	}
     }
 
+    /**
+     * This function convert a Xcos diagram to Scilab variable
+     */
+    public static int xcosDiagramToHDF5(String xcosFile, String h5File, boolean forceOverwrite) {
+	XcosDiagram diagram = createHiddenDiagram();
+	diagram.openDiagramFromFile(xcosFile);
+	File temp = new File(h5File);
+	if(temp.exists()) {
+	    if(forceOverwrite == false) {
+		return 1;
+	    } else {
+		temp.delete();
+	    }
+	}
+	
+	diagram.dumpToHdf5File(temp.getAbsolutePath());
+	diagram.closeDiagram();
+	return 0;
+    }
 }
