@@ -47,6 +47,8 @@ Bug fixes:
 
 * bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
 
+* bug 5235 fixed - Error message added when launching Scicos
+
 * bug 5251 fixed - getversion help page updated.
 
 * bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
