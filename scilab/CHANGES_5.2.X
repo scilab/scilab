@@ -51,6 +51,9 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
+* In some cases, under !Windows, the detection of libjogl.* was failling
+  because of a missing explicit link against libGL.*
+
 Bug fixes:
 ==========
 
