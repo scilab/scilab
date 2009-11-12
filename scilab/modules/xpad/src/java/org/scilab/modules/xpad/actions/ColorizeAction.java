@@ -59,6 +59,6 @@ public final class ColorizeAction extends DefaultAction {
 	 * Get current instance
 	 */
 	public static void getXpadEditor() {
-		((ScilabStyleDocument) colorEditor.getTextPane().getStyledDocument()).setEditor(colorEditor);
+		//((ScilabStyleDocument) colorEditor.getTextPane().getStyledDocument()).setEditor(colorEditor);
 	}
 }

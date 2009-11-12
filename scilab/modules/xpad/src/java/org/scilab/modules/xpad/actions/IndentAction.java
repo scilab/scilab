@@ -50,6 +50,6 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public static void getXpadEditor(){
-		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
+		//((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
 	}
 }
