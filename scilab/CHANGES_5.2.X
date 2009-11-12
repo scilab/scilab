@@ -47,6 +47,8 @@ Bug fixes:
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
+* bug 5190 fixed - context menus are now available under MacOS
+
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
 * bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
