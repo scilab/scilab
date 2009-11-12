@@ -18,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
+import javax.help.DefaultHelpHistoryModel;
 import javax.help.HelpUtilities;
 import javax.help.JHelpContentViewer;
 import javax.help.plaf.basic.BasicContentViewerUI;
@@ -107,9 +108,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
      * @param c The graphic component
      */
 	private void createPopupMenu(JComponent c) {
-		Locale locale = HelpUtilities.getLocale(c);
 		final JPopupMenu popup = new JPopupMenu();
-		
+
 		/* Execute into Scilab */
 		ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
@@ -173,37 +173,36 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		popup.add(menuItem);
 		popup.addSeparator();
 
-		/*
-		 * History disable (hard to access to the main object 
-		 
-		ActionListener actionListenerBack = new ActionListener() {
+		/* Back in the history*/
+		ActionListener actionListenerBackHistory = new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
-					DefaultHelpHistoryModel history = new DefaultHelpHistoryModel(null);
-					history.goBack();
-//		  help.getHistoryModel().goBack();
-//		  ScilabHelpBrowser.getHelpBrowser().getHistoryModel().goBack();
-//		  SwingScilabHelpBrowser()
-//		  SwingScilabHelpBrowser.getHistoryModel().goBack();
-					System.out.println("Selected: " + actionEvent.getActionCommand());
+					DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+					/* Not at the first position */
+					if (history.getIndex() > 0) {
+						SwingScilabHelpBrowser.getHelpHistory().goBack();
+					}
 				}
 			};
-		
 
-		menuItem = new JMenuItem(HelpUtilities.getString(locale, "tooltip.BackAction"));
-		menuItem.addActionListener(actionListenerBack);
-
-//new BackAction(control));
-//menuItem.addActionListener(actionListener);
-//		menuItem.setActionCommand("BackAction");
-//					menuItem.addActionListener(this);
+		menuItem = new JMenuItem(Messages.gettext("Back"));
+		menuItem.addActionListener(actionListenerBackHistory);
 		popup.add(menuItem);
+		
+		/* Forward in the history*/
+		ActionListener actionListenerForwardHistory = new ActionListener() {
+				public void actionPerformed(ActionEvent actionEvent) {
+					DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+					/* Not at the last position */
+					if (history.getHistory().size() != (history.getIndex() + 1)) { 
+						SwingScilabHelpBrowser.getHelpHistory().goForward();
+					}
+				}
+			};
 
-		menuItem = new JMenuItem(HelpUtilities.getString(locale, "tooltip.ForwardAction"));
-//		menuItem.setActionCommand("javax.help.ForwardAction");
+		menuItem = new JMenuItem(Messages.gettext("Forward"));
+		menuItem.addActionListener(actionListenerForwardHistory);
 		popup.add(menuItem);
 		popup.addSeparator();
-//					popup.setMnemonic('C');
-		*/
 		
 		/* Copy */
         menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
