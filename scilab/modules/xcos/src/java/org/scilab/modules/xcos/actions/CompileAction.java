@@ -49,7 +49,7 @@ public class CompileAction extends DefaultAction {
 
 	/**
 	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()bin
 	 */
 	public void doAction() {
 		File temp;
@@ -58,6 +58,7 @@ public class CompileAction extends DefaultAction {
 			temp.delete();
 			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 			InterpreterManagement.requestScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");xcos_compile(scs_m);");
+			((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
 			temp.deleteOnExit();
 		} catch (IOException e1) {
 			e1.printStackTrace();

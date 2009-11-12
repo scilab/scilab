@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5312 fixed - Xcos : adding 'Compile' informations
+
 * bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
 
 * bug 4401 fixed - isnum returned wrong values.

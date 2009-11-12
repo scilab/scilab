@@ -55,10 +55,10 @@ public class BlockParametersAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
-			((BasicBlock) ((XcosDiagram) getGraph(null)).getSelectionCell()).openBlockSettings(
-					((XcosDiagram) getGraph(null)).getContext());
-		}
+	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
+		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
+		((BasicBlock)diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
+	    }
 	}
 
 }
