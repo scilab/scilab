@@ -39,6 +39,10 @@ Bug fixes:
 
 * bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
 
+* bug 5106 fixed - mopen help page did not contain any example.
+
+* bug 5107 fixed - mgetstr help page did not contain any example.
+
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
 * bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
