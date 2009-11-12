@@ -939,6 +939,7 @@ public class XcosDiagram extends ScilabGraph {
     public void dumpToHdf5File(String fileName) {
 	if (fileName == null) {
 	    FileChooser fc = ScilabFileChooser.createFileChooser();
+	    fc.setInitialDirectory(getSavedFile());
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
@@ -1166,6 +1167,7 @@ public class XcosDiagram extends ScilabGraph {
 		fc.setTitle(XcosMessages.SAVE_AS);
 		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
+		fc.setInitialDirectory(getSavedFile());
 		String[] mask = {"*.xcos"};
 		String[] maskDesc = {"Xcos file (XML)"};  
 		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
