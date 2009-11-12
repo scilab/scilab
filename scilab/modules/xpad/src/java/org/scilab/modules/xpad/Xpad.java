@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.StringReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,11 +46,14 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.EditorKit;
+import javax.swing.SwingUtilities;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -115,6 +119,7 @@ import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -251,7 +256,33 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFileAndWait(f);
 		editorInstance.getXln().highlightLine(lineNumber);
-		editorInstance.lastKnownSavedState= System.currentTimeMillis();
+		editorInstance.lastKnownSavedState = System.currentTimeMillis();
+	}
+
+	/**
+	 * Launch Xpad with a provided text (from the help for example)  
+	 * @param text the text which should be modified
+	 */
+	public static void xpadWithText(String text) {
+		Xpad editorInstance = launchXpad();
+		editorInstance.lastKnownSavedState = System.currentTimeMillis(); 
+		JTextPane theTextPane = editorInstance.addEmptyTab();
+		ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
+		try {
+			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
+			boolean colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+
+			if(colorStatus == false) {
+				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
+			} else {
+				editorInstance.getInfoBar().setText("");
+			}
+
+		} catch (IOException e) {
+			System.err.println("Error while reading the String");
+		} catch (BadLocationException e) {
+			System.err.println("Error while reading the String");
+		}
 	}
 
 	/**
@@ -787,7 +818,34 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public JTextPane addTab(String title) {
 		textPane = new JTextPane();
-		
+		textPane.setEditorKit(new ScilabEditorKit());
+		textPane.getDocument().addDocumentListener(new DocumentListener() {
+			ColorizationManager colorizationManager = new ColorizationManager();
+			
+			public void changedUpdate(DocumentEvent documentEvent) {
+			}
+		      
+			public void insertUpdate(DocumentEvent documentEvent) {
+				handleEvent(documentEvent);
+		    }
+		    
+		    public void removeUpdate(DocumentEvent documentEvent) {
+		    	handleEvent(documentEvent);
+		    }
+		    
+		    private void handleEvent(DocumentEvent documentEvent) {
+		        DocumentEvent.EventType type = documentEvent.getType();
+		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
+		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
+		        	doc.setContentModified(true);
+		        	Xpad.this.updateTabTitle();
+		        	SwingUtilities.invokeLater( colorizationManager.new ColorUpdater(doc, documentEvent));
+		        }  
+		        
+
+		   }
+	});
+
 		scrollingText = new JScrollPane(textPane);
 
 		// Panel of line number for the text pane
@@ -802,7 +860,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		textPane.setBackground(ConfigXpadManager.getXpadBackgroundColor());
 		textPane.setCaretColor(Color.BLACK);
-		textPane.setStyledDocument(new ScilabStyleDocument(this));
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 		TabifyAction.putInInputMap(textPane, this);
@@ -873,6 +930,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					undo.undo();
 					if(!undo.canUndo()){ // remove "*" prefix from tab name
 						doc.setContentModified(false);
+						Xpad.this.updateTabTitle();
 					}			
 					repaint();
 				} catch (CannotUndoException ex) {
@@ -893,6 +951,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					redo.redo();
 					if(!doc.isContentModified()){
 						doc.setContentModified(true);
+						Xpad.this.updateTabTitle();
 					}
 				} catch (CannotRedoException ex) {
 					ex.printStackTrace();
@@ -965,7 +1024,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		try {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
-			System.err.println("Could not retrieve the current text tab.");
+			System.err.println("Could not retrieve the current text tab."+e);
 			return null;
 		}
 	}
@@ -1174,12 +1233,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 				try {
 					synchronized (styleDocument) {
-						styleDocument.disableUpdaters();
-						boolean indentMode= styleDocument.getAutoIndent();
+						styleDocument.setUpdater(false);
+						boolean indentMode = styleDocument.getAutoIndent();
 						styleDocument.setAutoIndent(false); 
 						try {
 							try {
-								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),styleDocument.getEncoding())), styleDocument, 0);
+							editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),styleDocument.getEncoding())), styleDocument, 0);
 							} catch(ChangedCharSetException e) {
 								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
 							}
@@ -1188,9 +1247,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = styleDocument.colorize(0, styleDocument.getLength());
+						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
-						styleDocument.enableUpdaters();
+						styleDocument.setUpdater(true);
 					}
 				} catch (IOException ioex) {
 					ioex.printStackTrace();
