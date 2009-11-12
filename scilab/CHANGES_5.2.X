@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5325 fixed - Wrong default path on FileChooser
+
 * bug 5111 fixed - Xcos : "Save As" default path is the current file path
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
@@ -1196,6 +1198,8 @@ Bug fixes:
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
+* bug 5224 fixed - Maj+Tab modify the text selection.
 
 * bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
 

@@ -61,6 +61,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		 * Bug 4187 fixed: uigetdir() opens on "Desktop" and not on "Computer" on windows
 		 * No need to use 'putClientProperty' anymore (bug 3231)
 		 */
+		/* Bug 5111 : The Current directory have to be set before */
+		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory() ));
 	}	
 
 	/**
