@@ -38,6 +38,8 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.ColorizationManager;
+import org.scilab.modules.xpad.style.IndentManager;
 
 public class EncodingAction extends DefaultCheckAction {
 
@@ -102,11 +104,11 @@ public class EncodingAction extends DefaultCheckAction {
 	}
 
 	// Avoid modifications to be saved
-	styleDocument.getUpdateManager().setUpdater(false);
-	boolean indentMode = styleDocument.getIndentManager().getAutoIndent();
-	styleDocument.getIndentManager().setAutoIndent(false); 
+	styleDocument.setUpdater(false);
+	boolean indentMode = styleDocument.getAutoIndent();
+	styleDocument.setAutoIndent(false); 
 
-	styleDocument.getEncodingManager().setEncoding(encoding);
+	styleDocument.setEncoding(encoding);
 
 	// If file associated then reload
 	EditorKit editorKit = getEditor().getEditorKit();
@@ -139,9 +141,9 @@ public class EncodingAction extends DefaultCheckAction {
 	//getEditor().getTextPane().repaint();
 
 	/* Allow changes to be saved */
-	styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-	styleDocument.getIndentManager().setAutoIndent(indentMode);
-	styleDocument.getUpdateManager().setUpdater(true);
+	new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+	styleDocument.setAutoIndent(indentMode);
+	styleDocument.setUpdater(true);
 
 	styleDocument.setContentModified(false);
 

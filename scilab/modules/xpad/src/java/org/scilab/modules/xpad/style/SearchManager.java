@@ -11,7 +11,7 @@ public class SearchManager {
 	 * FIND AND REPLACE START
 	 */
 	public ArrayList<Integer[]> findWord(ScilabStyleDocument scilabDocument, String word, boolean caseSensitive, boolean wholeWord, boolean useRegexp) {
-		String fullText = scilabDocument.getFullDocument(); 
+		String fullText = scilabDocument.getText(); 
 		int lastIndex = 0;
 		int wordSize = word.length();
 		ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
@@ -112,7 +112,7 @@ public class SearchManager {
 	 * @return 
 	 */
 	public int[] findNextWord (ScilabStyleDocument scilabDocument, String word ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = scilabDocument.getFullDocument();
+		String fullText = scilabDocument.getText();
 		int index = -1;
 		int end = -1;
 
@@ -221,7 +221,7 @@ public class SearchManager {
 	 * @param useRegexp  , whether the string to search should be interpreted as a regexp or not
 	 */
 	public int[] findPreviousWord (ScilabStyleDocument scilabDocument, String word , int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
-		String fullText = scilabDocument.getFullDocument();
+		String fullText = scilabDocument.getText();
 		int index = -1;
 		int end = -1;
 		Pattern pattern;

@@ -18,7 +18,6 @@ import com.sun.org.apache.xpath.internal.compiler.Keywords;
  * This class manages the Colorization aspect
  */
 public class ColorizationManager {
-	private volatile boolean autoColorize       = true;
 	private volatile boolean colorizeInprogress;
 	private String[] commands;
 	private String[] functions;
@@ -57,25 +56,6 @@ public class ColorizationManager {
 		
 		}
 		
-		public boolean isAutoColorize() {
-			return autoColorize;
-		}
-
-		public void setAutoColorize(boolean autoColorize) {
-			this.autoColorize = autoColorize;
-		}
-
-	/**
-	 * @return if we are colorizing or not
-	 */
-	public boolean getColorize() {
-		return autoColorize;
-	}
-
-	public void setColorize(boolean b) {
-		//DEBUG("setColorize("+b+")");
-		autoColorize = b;
-	}
 
 	public int getLineToColor() {
 		return currentLine;
@@ -130,9 +110,7 @@ public class ColorizationManager {
 		//DEBUG("Colorize [after parse] : " + timer.top());
 		if (!colorizeInprogress) {
 			//colorizeInprogress = true;
-			HistoryManager historyManager = new HistoryManager();
-			scilabDocument.removeUndoableEditListener(historyManager.getUndo());
-			scilabDocument.addUndoableEditListener(null);
+			scilabDocument.disableUndoManager();
 			resetStyle(scilabDocument, lineStartPosition, lineEndPosition);
 			try {
 				applyStyle(scilabDocument, boundaries_list.get(BOOLS), scilabDocument.getStyle("Bool"));
@@ -145,7 +123,7 @@ public class ColorizationManager {
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			} finally {
-				scilabDocument.addUndoableEditListener(scilabDocument.getUndoManager());
+				scilabDocument.enableUndoManager();
 				//colorizeInprogress = false;
 			}
 		}
@@ -172,6 +150,7 @@ public class ColorizationManager {
 	    
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
 	    	super();
+	    	this.scilabDocument = scilabDocument;
 	    	this.event = event;
 	    }
 	    
@@ -179,21 +158,19 @@ public class ColorizationManager {
 			//colorize();
 			ColorizeAction.getXpadEditor();
 			/* @TODO CHECK THAT */
-			Xpad editor = scilabDocument.getEditor();
-			javax.swing.text.StyledDocument doc = editor.getTextPane().getStyledDocument();
-			synchronized (doc) {
+			
 				if (event == null) { // Called from SetFontAction: apply change to the whole document
 					lineStartPosition =  0;
 					lineEndPosition = scilabDocument.getLength();
 				} else {
-					lineStartPosition =  doc.getParagraphElement(event.getOffset()).getStartOffset();
-					lineEndPosition = doc.getParagraphElement(event.getOffset() + event.getLength()).getEndOffset() - 1;
+					lineStartPosition =  scilabDocument.getParagraphElement(event.getOffset()).getStartOffset();
+					lineEndPosition = scilabDocument.getParagraphElement(event.getOffset() + event.getLength()).getEndOffset() - 1;
 				}
 			
 				if (lineStartPosition != lineEndPosition) {
 					colorize(scilabDocument, lineStartPosition, lineEndPosition);
 				}
-			}
+	    }
 				/*
 				// Get the current line (position of the caret) 
 				int  caretPosition = editor.getTextPane().getCaretPosition();
@@ -213,7 +190,6 @@ public class ColorizationManager {
 				colorize(lineStartPosition, lineEndPosition);
 				}
 				 */
-	    }
 	}
 	/*
 	 * Parse all Scilab keywords

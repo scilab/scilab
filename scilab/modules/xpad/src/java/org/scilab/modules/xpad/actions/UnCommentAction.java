@@ -22,9 +22,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.CommentManager;
 
 public class UnCommentAction extends DefaultAction {
 
+	private CommentManager commentManager = new CommentManager();
+	
 	private UnCommentAction(Xpad editor)
 	{
 		super(XpadMessages.UNCOMMENT_SELECTION, editor);
@@ -41,20 +44,20 @@ public class UnCommentAction extends DefaultAction {
 		if (position_start == position_end)
 		{
 			// No selection : uncomment the current line
-			int offset = scilabDocument.getCommentManager().uncommentLine(scilabDocument, line_start);
+			int offset = commentManager.uncommentLine(scilabDocument, line_start);
 			getEditor().getTextPane().setCaretPosition(position_start-offset);
 		}
 		else if( line_start == line_end )
 		{
 			// A part of the line is selected
-			int offset = scilabDocument.getCommentManager().uncommentText(scilabDocument, position_start);
+			int offset = commentManager.uncommentText(scilabDocument, position_start);
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
 		else
 		{
 			// several lines are selected
-			scilabDocument.getCommentManager().uncommentLines(scilabDocument, line_start, line_end);
+			commentManager.uncommentLines(scilabDocument, line_start, line_end);
 			position_end = scilabDocument.getDefaultRootElement().getElement(line_end).getEndOffset();
 			
 			getEditor().getTextPane().setSelectionStart(position_start);

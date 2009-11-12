@@ -29,10 +29,7 @@ public IndentManager() {
 	patternSpace = Pattern.compile("\\s*");
 }
 	
-	public void setAutoIndent(boolean b) {
-		//DEBUG("setAutoIndent("+b+")");
-		autoIndent = b;
-	}
+
 	public boolean isIndentInprogress() {
 		return indentInprogress;
 	}
@@ -41,16 +38,13 @@ public IndentManager() {
 		this.indentInprogress = indentInprogress;
 	}
 
-	public boolean getAutoIndent() {
-		//DEBUG("getAutoIndent("+autoIndent+")");
-		return autoIndent;
-	}
+
 	/**
 	 * DOCUMENT INDENTATION START
 	 */
 	public void indent(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) {
 		if (!indentInprogress) {
-			scilabDocument.getUpdateManager().setUpdater(false);
+			scilabDocument.setUpdater(false);
 			
 			indentInprogress = true;
 			//resetStyle(startPosition, startPosition);
@@ -63,7 +57,7 @@ public IndentManager() {
 			//applySelectionIndent();
 			
 			indentInprogress = false;
-			scilabDocument.getUpdateManager().setUpdater(true);
+			scilabDocument.setUpdater(true);
 		}
 	}
 
