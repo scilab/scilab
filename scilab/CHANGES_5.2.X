@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5325 fixed - Wrong default path on FileChooser
+
 * bug 5111 fixed - Xcos : "Save As" default path is the current file path
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
