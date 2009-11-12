@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
@@ -38,6 +37,6 @@ public class HelpAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 	}
 }
