@@ -54,7 +54,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
 	private final String[] quotations = {"(\"|')([^\\n])*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f",	"%e","%pi",
-			"%inf", "%i", "%z", "%s", "%nan", "%eps","SCI", "SCIHOME", "TMPDIR", "MSDOS"};
+			"%inf", "%i", "%z", "%s", "%nan", "%eps","SCI", "WSCI", "SCIHOME", "TMPDIR", "MSDOS"};
 	private final String[] comments = {"//[^{\n}]*"};
 	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
 			"\\./", "\\.\\\\", "\\.\\^", 
