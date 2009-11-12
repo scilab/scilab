@@ -1166,6 +1166,7 @@ public class XcosDiagram extends ScilabGraph {
 		fc.setTitle(XcosMessages.SAVE_AS);
 		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 		fc.setMultipleSelection(false);
+		fc.setInitialDirectory(getSavedFile());
 		String[] mask = {"*.xcos"};
 		String[] maskDesc = {"Xcos file (XML)"};  
 		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);

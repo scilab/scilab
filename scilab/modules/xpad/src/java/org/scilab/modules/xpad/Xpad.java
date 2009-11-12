@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.StringReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,7 +26,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -45,11 +45,14 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.EditorKit;
+import javax.swing.SwingUtilities;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -115,6 +118,7 @@ import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -265,7 +269,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 		try {
 			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
-			boolean colorStatus = styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+			boolean colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 
 			if(colorStatus == false) {
 				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
@@ -586,7 +590,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		BufferedWriter out = null;
 		try {
 
-		out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), styledDocument.getEncodingManager().getEncoding()));
+		out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), styledDocument.getEncoding()));
 			try {
 				editorKit.write(out, styledDocument, 0, styledDocument.getLength());
 				out.flush();
@@ -773,7 +777,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			
 			BufferedWriter out = null;
 			try {
-				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styledDocument.getEncodingManager().getEncoding()));
+				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styledDocument.getEncoding()));
 				try {
 					editorKit.write(out, styledDocument, 0, styledDocument.getLength());
 					out.flush();
@@ -814,7 +818,34 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public JTextPane addTab(String title) {
 		textPane = new JTextPane();
-		
+		textPane.setEditorKit(new ScilabEditorKit());
+		textPane.getDocument().addDocumentListener(new DocumentListener() {
+			ColorizationManager colorizationManager = new ColorizationManager();
+			
+			public void changedUpdate(DocumentEvent documentEvent) {
+			}
+		      
+			public void insertUpdate(DocumentEvent documentEvent) {
+				handleEvent(documentEvent);
+		    }
+		    
+		    public void removeUpdate(DocumentEvent documentEvent) {
+		    	handleEvent(documentEvent);
+		    }
+		    
+		    private void handleEvent(DocumentEvent documentEvent) {
+		        DocumentEvent.EventType type = documentEvent.getType();
+		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
+		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
+		        	doc.setContentModified(true);
+		        	Xpad.this.updateTabTitle();
+		        	SwingUtilities.invokeLater( colorizationManager.new ColorUpdater(doc, documentEvent));
+		        }  
+		        
+
+		   }
+	});
+
 		scrollingText = new JScrollPane(textPane);
 
 		// Panel of line number for the text pane
@@ -829,7 +860,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		textPane.setBackground(ConfigXpadManager.getXpadBackgroundColor());
 		textPane.setCaretColor(Color.BLACK);
-		textPane.setStyledDocument(new ScilabStyleDocument(this));
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 		TabifyAction.putInInputMap(textPane, this);
@@ -866,7 +896,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @param b true to activate auto-indent mode
 	 */
 	public void setAutoIndent(boolean b) {
-		((ScilabStyleDocument) getTextPane().getStyledDocument()).getIndentManager().setAutoIndent(b);
+		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoIndent(b);
 	}
 	/*
 	 * Add or remove '*' prefix in current tab tile according to isContentModified()
@@ -900,6 +930,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					undo.undo();
 					if(!undo.canUndo()){ // remove "*" prefix from tab name
 						doc.setContentModified(false);
+						Xpad.this.updateTabTitle();
 					}			
 					repaint();
 				} catch (CannotUndoException ex) {
@@ -920,6 +951,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					redo.redo();
 					if(!doc.isContentModified()){
 						doc.setContentModified(true);
+						Xpad.this.updateTabTitle();
 					}
 				} catch (CannotRedoException ex) {
 					ex.printStackTrace();
@@ -992,7 +1024,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		try {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
-			System.err.println("Could not retrieve the current text tab.");
+			System.err.println("Could not retrieve the current text tab."+e);
 			return null;
 		}
 	}
@@ -1203,13 +1235,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 				try {
 					synchronized (styleDocument) {
 						//styleDocument.disableUpdaters();
-						styleDocument.getUpdateManager().setUpdater(false);
+						styleDocument.setUpdater(false);
 
-						boolean indentMode = styleDocument.getIndentManager().getAutoIndent();
-						styleDocument.getIndentManager().setAutoIndent(false); 
+						boolean indentMode = styleDocument.getAutoIndent();
+						styleDocument.setAutoIndent(false); 
 						try {
 							try {
-							editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),styleDocument.getEncodingManager().getEncoding())), styleDocument, 0);
+							editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),styleDocument.getEncoding())), styleDocument, 0);
 							} catch(ChangedCharSetException e) {
 								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
 							}
@@ -1218,9 +1250,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-						styleDocument.getIndentManager().setAutoIndent(indentMode);
-						styleDocument.getUpdateManager().setUpdater(true);
+						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+						styleDocument.setAutoIndent(indentMode);
+						styleDocument.setUpdater(true);
 
 					}
 				} catch (IOException ioex) {
@@ -1250,7 +1282,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 					BufferedWriter out = null;
 					try {
-						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncodingManager().getEncoding()));
+						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncoding()));
 						try {
 							editorKit.write(out, styleDocument, 0, styleDocument.getLength());
 							out.flush();
@@ -1307,7 +1339,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		for (int k = 0; k < radioTypes.length; k++) {
 
 			if (getTextPane().getStyledDocument() instanceof ScilabStyleDocument) {
-				if (((ScilabStyleDocument)getTextPane().getStyledDocument()).getEncodingManager().getEncoding().equals(radioTypes[k].getText())) {
+				if (((ScilabStyleDocument)getTextPane().getStyledDocument()).getEncoding().equals(radioTypes[k].getText())) {
 					radioTypes[k].setSelected(true);
 				}
 			}

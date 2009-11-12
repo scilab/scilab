@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4670 fixed - ilib_build examples updated with api_scilab.
+
 * bug 5312 fixed - Xcos : adding 'Compile' informations
 
 * bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
@@ -44,6 +46,8 @@ Bug fixes:
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
+
+* bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
@@ -75,6 +79,7 @@ Bug fixes:
 
 * bug 5326 fixed - graphic_export module was not loaded dynamically.
 
+* bug 5330 fixed - "help str1 str2" returned a error.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
