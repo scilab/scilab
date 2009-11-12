@@ -124,8 +124,9 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public void displayAndWait() {
 
-		 
+/* Bug 5111 : The Current directory have to be set before
 		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory() ));
+*/
 		
 		JFrame parentFrame = new JFrame();
 		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
