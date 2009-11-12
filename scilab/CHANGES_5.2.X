@@ -31,6 +31,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5111 fixed - Xcos : "Save As" default path is the current file path
+
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
 * bug 5312 fixed - Xcos : adding 'Compile' informations
