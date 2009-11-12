@@ -939,6 +939,7 @@ public class XcosDiagram extends ScilabGraph {
     public void dumpToHdf5File(String fileName) {
 	if (fileName == null) {
 	    FileChooser fc = ScilabFileChooser.createFileChooser();
+	    fc.setInitialDirectory(getSavedFile());
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
