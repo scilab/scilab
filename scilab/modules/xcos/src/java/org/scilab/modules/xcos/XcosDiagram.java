@@ -775,21 +775,22 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 	    	System.err.println("[DEBUG] Click at position : " + arg0.getX() + " , " + arg0.getY());
 	    	if (cell == null) {
-		    	System.err.println("[DEBUG] Click on diagram");
-		    	System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
-		    	System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-		    	System.err.println("getParentWindow : " + getParentTab().getParentWindow());
-		    	
+	    	    System.err.println("[DEBUG] Click on diagram");
+	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
+	    	    System.err.println("getParentWindow : " + getParentTab().getParentWindow());
 	    	} else {
-		    	System.err.println("[DEBUG] Click on : " + cell);
-		    	System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
-		    	if (cell != null) {
-		    		System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
-		    		System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
-		    		for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
-			    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
-		    		}
-		    	}
+	    	    System.err.println("[DEBUG] Click on : " + cell);
+	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
+	    	    System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
+	    	    System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
+	    	    for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
+	    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
+	    	    }
+	    	    
+	    	    if(cell instanceof BasicLink) {
+	    		System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
+	    	    }
 	    	}
 	    	
 	    }

@@ -186,17 +186,17 @@ public class BlockReader {
 					linkPorts.add(startAndEnd);
 
 					//First and last value -> start and end point
-					if(link.get(1).getHeight() > 2){
-						double[][] linkPoint = new double[link.get(1).getHeight() - 2][2]; 
-						for(int point = 0 ; point < link.get(1).getHeight() - 2 ; point++){
-							linkPoint[point] = getLinkPoint(link, point);
-							minX = Math.min(minX, linkPoint[point][0]);
-							minY = Math.min(minY, linkPoint[point][1]);
-						}
-						linkPoints.add(linkPoint);
-					}
-					else{
-						linkPoints.add(null);
+					if(link.get(1).getHeight() > 2 || link.get(1).getWidth() > 2){
+					    int maxDim = Math.max(link.get(1).getHeight(), link.get(1).getWidth());
+					    double[][] linkPoint = new double[maxDim - 2][2]; 
+					    for(int point = 0 ; point < maxDim - 2 ; point++){
+						linkPoint[point] = getLinkPoint(link, point);
+						minX = Math.min(minX, linkPoint[point][0]);
+						minY = Math.min(minY, linkPoint[point][1]);
+					    }
+					    linkPoints.add(linkPoint);
+					} else {
+					    linkPoints.add(null);
 					}
 				} catch (BlockReaderException e) {
 					WARNING(" Fail reading Link " + (i + 1));
@@ -301,19 +301,22 @@ public class BlockReader {
 	}
 
 	private static double[] getLinkPoint(ScilabMList link, int index) throws WrongTypeException {
-		if (!(link.get(1) instanceof ScilabDouble)) { 
-			throw new WrongTypeException(); 
-		}
+	    if (!(link.get(1) instanceof ScilabDouble)) { 
+		throw new WrongTypeException(); 
+	    }
 
-
-		if(index < link.get(1).getHeight() - 2){
-
-			double[] ret = new double[2];
-			ret[0] = ((ScilabDouble)link.get(1)).getRealPart()[index + 1][0];
-			ret[1] = -((ScilabDouble)link.get(2)).getRealPart()[index + 1][0];
-			return ret;
-		}
-		return null;
+	    if(index < link.get(1).getHeight() - 2){
+		double[] ret = new double[2];
+		ret[0] = ((ScilabDouble)link.get(1)).getRealPart()[index + 1][0];
+		ret[1] = -((ScilabDouble)link.get(2)).getRealPart()[index + 1][0];
+		return ret;
+	    } else if(index < link.get(1).getWidth() - 2){
+		double[] ret = new double[2];
+		ret[0] = ((ScilabDouble)link.get(1)).getRealPart()[0][index + 1];
+		ret[1] = -((ScilabDouble)link.get(2)).getRealPart()[0][index + 1];
+		return ret;
+	    }
+	    return null;
 	}
 
 	private static int getStartPortIndex(ScilabMList link) throws WrongTypeException {
