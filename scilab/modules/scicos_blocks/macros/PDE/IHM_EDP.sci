@@ -51,21 +51,21 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
 //----------------------------------------------------------------------------------------------------//
 
 // create a figure
-ok=%f;
-fin=%t;
+ok  = %f;
+fin = %t;
 // On desactive les volumes finis pour le moment car il y a un bug dans l'implémentation des conditions 
 // aux limites, mais sera réglé dans la prochaine version.
-list_methode = ["Diff finies"  "Elts finis"];
+list_methode = [gettext("Finite Diff.")  gettext("Finite Elemts.")];
 methode=strcat(list_methode,"|");
 
-list_discrimant = ["positif" "négatif" "nul"];
+list_discrimant = [gettext("positive") gettext("negative") gettext("null")];
 discrimant=strcat(list_discrimant,"|");
 
 list_points = params_pde.points;
 points=strcat(list_points,"|");
 
 f = figure("Position",[50 50 670 620], ..
-    "figure_name", "PDE_IHM", ..
+    "figure_name", "PDE_GUI", ..
     "BackgroundColor",[0.7 0.9 0.4], ..
     "Tag", "PDE_GUI",..
     "userdata",[ok,fin]);
@@ -75,15 +75,15 @@ m4=uimenu("Parent", f, ..
     'label', 'Documentation', ..
     'callback', "help()");
 m5=uimenu("Parent",f, ..
-    'label', 'Quitter', ..
+    'label', gettext("Quit"), ..
     'callback', "cb_IHM_EDP()", ..
     "tag","quitmenu");
 
 // Titre
 txt0 = uicontrol("Parent", f, ..
-    "Position",[300 560 100 30], ..
+    "Position",[300 560 120 30], ..
     "Style","text",..
-    "String","PDE block",..
+    "String",gettext("PDE block"),..
     "fontname", "Times Bold Italic", ..
     "fontsize",21, ..
     "BackgroundColor",[0.7 0.9 0.4]);
@@ -95,7 +95,7 @@ frame1= uicontrol("Parent", f, ..
 txt1 = uicontrol("Parent", f, ..
     "Position",[20 600 50 10], ..
     "Style","text", ..
-    "String","Domaine",..
+    "String",gettext("Domain"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt2 = uicontrol("Parent", f, ..
@@ -130,8 +130,8 @@ frame2= uicontrol("Parent", f, ..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt4 = uicontrol("Parent", f, ..
     "Position",[20 530 120 10],..
-    "Style","text","String",..
-    "Spécification de l''EDP",..
+    "Style","text", ...
+    "String",gettext("Specification of the PDE"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 
@@ -144,7 +144,7 @@ frame3= uicontrol("Parent", f, ..
 txt5 = uicontrol("Parent", f, ..
     "Position",[20 513 100 10],..
     "Style","text",..
-    "String","Expression de l''EDP :",..
+    "String",gettext("Expression of the PDE :"),..
     "fontsize",8,..
     "BackgroundColor",[0.7 0.7 0.7]);
 txt_exp = uicontrol("Parent", f, ..
@@ -550,7 +550,7 @@ editb7 = uicontrol("Parent", f, ..
 b1 = uicontrol("Parent", f, ..
     "Position"  , [270 345 130 20],..
     "Style", "pushbutton",..
-    "String", "Visualiser l''expression",..
+    "String", gettext("Visualize the expression"),..
     "fontname","Times Bold Italic",..
     "fontsize",8,..
     "callback"  , "cb_IHM_EDP()",..
@@ -561,7 +561,7 @@ b1 = uicontrol("Parent", f, ..
 txt5 = uicontrol("Parent", f, ..
     "Position",[25 310 120 15],..
     "Style","text",..
-    "String","Type du discrimant :",..
+    "String",gettext("Type of the discrimant :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 check1 = uicontrol("Parent", f,..
@@ -572,9 +572,9 @@ check1 = uicontrol("Parent", f,..
     "callback", "cb_IHM_EDP()",..
     "tag","check1");
 txt51 = uicontrol("Parent", f, ..
-    "Position",[170 315 100 15],..
+    "Position",[170 315 110 15],..
     "Style","text",..
-    "String","discriminant constant",..
+    "String",gettext("constant discriminant"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);		
 check2 = uicontrol("Parent", f,..
@@ -585,9 +585,9 @@ check2 = uicontrol("Parent", f,..
     "callback", "cb_IHM_EDP()",..
     "tag","check2");
 txt53 = uicontrol("Parent", f, ..
-    "Position",[170 295 130 15],..
+    "Position",[170 295 140 15],..
     "Style","text",..
-    "String","discriminant non constant :",..
+    "String",gettext("non constant discriminant :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);		
 liste_signe = uicontrol("Parent", f,..
@@ -607,13 +607,13 @@ frame5= uicontrol("Parent", f,..
 txt81 = uicontrol("Parent", f,..
     "Position",[25 220 180 10],..
     "Style","text",..
-    "String","Méthode de discrétisation spatiale",..
+    "String",gettext("Spatial discretization method"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt811 = uicontrol("Parent", f, ..
     "Position",[15 200 40 15],..
     "Style","text",..
-    "String","Choix :",..
+    "String",gettext("Choice :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);	
 
@@ -627,7 +627,7 @@ rad_automatique = uicontrol("Parent", f, ..
 txt51 = uicontrol("Parent", f, ..
     "Position",[25 175 70 15],..
     "Style","text",..
-    "String","Automatique",..
+    "String",gettext("Automatic"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);		
 rad_manuel = uicontrol("Parent", f, ..
@@ -640,7 +640,7 @@ rad_manuel = uicontrol("Parent", f, ..
 txt54 = uicontrol("Parent", f,..
     "Position",[25 155 45 15],..
     "Style","text",..
-    "String","Manuel",..
+    "String",gettext("Manual"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);		
 // Type		
@@ -661,7 +661,7 @@ liste_meth = uicontrol("Parent", f, ..
 txt83 = uicontrol("Parent", f,..
     "Position",[230 210 100 15],..
     "Style","text",..
-    "String","Ordonnancement :",..
+    "String",gettext("Scheduling :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 editordre1 = uicontrol("Parent", f, ..
@@ -686,7 +686,7 @@ editordre3 = uicontrol("Parent", f,..
 txt84 = uicontrol("Parent", f, ..
     "Position",[320 200 80 15],..
     "Style","text",..
-    "String","degré :",..
+    "String",gettext("degree :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 editdegre = uicontrol("Parent", f,..
@@ -699,7 +699,7 @@ editdegre = uicontrol("Parent", f,..
 txt6 = uicontrol("Parent", f, ..
     "Position",[310 180 130 15],..
     "Style","text",..
-    "String","Nombre de noeuds :",..
+    "String",gettext("Number of nodes :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 //affichage du pas de maillage 
@@ -712,7 +712,7 @@ editpas = uicontrol("Parent", f,..
 bb = uicontrol("Parent", f,..
     "Position"  , [290 135 80 20],..
     "Style", "pushbutton",..
-    "String", "Afficher le pas",..
+    "String", gettext("Display the step"),..
     "fontname","Times Bold Italic",..
     "fontsize",8,..
     "callback"  , "cb_IHM_EDP()",..
@@ -736,7 +736,7 @@ frame6= uicontrol("Parent", f,..
 txt8 = uicontrol("Parent", f, ..
     "Position",[25 110 100 10],..
     "Style","text",..
-    "String","Conditions initiales",..
+    "String",gettext("Initial conditions"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt9 = uicontrol("Parent", f, ..
@@ -773,7 +773,7 @@ frame7= uicontrol("Parent", f, ..
 txt10 = uicontrol("Parent", f, ..
     "Position",[25 65 100 10],..
     "Style","text",..
-    "String","Condition limite en a",..
+    "String",gettext("Limit condition in a"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 frame8= uicontrol("Parent", f,..
@@ -783,7 +783,7 @@ frame8= uicontrol("Parent", f,..
 txt11 = uicontrol("Parent", f, ..
     "Position",[270 65 100 10],..
     "Style","text",..
-    "String","Condition limite en b",..
+    "String",gettext("Limit condition in b"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt8111 = uicontrol("Parent", f, ..
@@ -802,7 +802,7 @@ popa = uicontrol("Parent", f, ..
 txt81112 = uicontrol("Parent", f, ..
     "Position",[255 45 40 15],..
     "Style","text",..
-    "String","Type :",..
+    "String",gettext("Type :"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);	
 popb = uicontrol("Parent", f, ..
@@ -813,9 +813,9 @@ popb = uicontrol("Parent", f, ..
     "BackgroundColor",[1 1 0],..
     "tag","popb");
 txt12 = uicontrol("Parent", f, ..
-    "Position",[20 10 60 15],..
+    "Position",[20 10 70 15],..
     "Style","text",..
-    "String","Expression =",..
+    "String",gettext("Expression ="),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 editCLa = uicontrol("Parent", f, ..
@@ -825,9 +825,9 @@ editCLa = uicontrol("Parent", f, ..
     "BackgroundColor",[1 1 1],..
     "tag","editCLa");		
 txt13 = uicontrol("Parent", f, ..
-    "Position",[265 10 60 15],..
+    "Position",[265 10 70 15],..
     "Style","text",..
-    "String","Expression =",..
+    "String",gettext("Expression ="),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);
 editCLb = uicontrol("Parent", f, ..
@@ -844,9 +844,9 @@ frame9= uicontrol("Parent", f,..
     "Style","frame",..
     "BackgroundColor",[0.9 0.9 0.9]);
 txt14 = uicontrol("Parent", f, ..
-    "Position",[485 525 90 15],..
+    "Position",[485 525 100 15],..
     "Style","text",..
-    "String","Points de mesure",..
+    "String",gettext("Measurement points"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);		
 txt141 = uicontrol("Parent", f, ..
@@ -858,7 +858,7 @@ txt141 = uicontrol("Parent", f, ..
 txt142 = uicontrol("Parent", f, ..
     "Position",[500 500 160 15],..
     "Style","text",..
-    "String","les points de mesure",..
+    "String",gettext("measurement points"),..
     "fontsize",10,..
     "BackgroundColor",[0.9 0.9 0.9]);	
 liste_pts = uicontrol("Parent", f, ..
@@ -876,28 +876,28 @@ edit_pt = uicontrol("Parent", f,..
 b2 = uicontrol("Parent", f, ..
     "Position"  , [490 255 70 20],..
     "Style","pushbutton",..
-    "String","ajouter",..
+    "String",gettext("add"),..
     "callback"  , "cb_IHM_EDP()" ,..
     "BackgroundColor",[0 1 0],..
     "tag","b2");  	
 b5 = uicontrol("Parent", f, ..
     "Position"  , [580 255 70 20],..
     "Style","pushbutton",..
-    "String","supprimer",..
+    "String",gettext("remove"),..
     "callback"  , "cb_IHM_EDP()" ,..
     "BackgroundColor",[0 0.7 1],..
     "tag","b5");
 b3 = uicontrol("Parent", f, ..
     "Position"  , [500 90 50 20],..
     "Style", "pushbutton",..
-    "String", "Valider",..
+    "String", gettext("Validate"),..
     "callback"  , "cb_IHM_EDP()",..
     "BackgroundColor",[0 1 0],..
     "tag","b3");
 b4 = uicontrol("Parent", f, ..
     "Position", [610 90 50 20], ..
     "Style", "pushbutton", ..
-    "String", "Annuler", ..
+    "String", gettext("Cancel"), ..
     "callback", "cb_IHM_EDP()", ..
     "BackgroundColor",[1 0 0], ..
     "tag","cancelbutton");  		 
