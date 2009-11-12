@@ -13,7 +13,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
