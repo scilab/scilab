@@ -12,7 +12,6 @@
 
 package org.scilab.modules.gui.utils;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,18 +19,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
-
-
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
@@ -50,10 +45,10 @@ public class ScilabAboutBox {
 
 	public static void displayAndWait() {
 		
-		String[] contents = {Messages.gettext("Copyright 1989 - 2009"),
-				Messages.gettext("The Scilab Consortium / DIGITEO"), 
-				Messages.gettext("INRIA / ENPC / Contributors"), 
-				Messages.gettext("All rights reserved"), 
+		String[] contents = {Messages.gettext("The Scilab Consortium (DIGITEO)"),
+				Messages.gettext("Copyright (c) 1989-2009 (INRIA)"),
+				Messages.gettext("Copyright (c) 1989-2007 (ENPC)"),
+				"",
 				Messages.gettext("CeCILL License")};
 		
 		String filename = System.getenv("SCI") + "/ACKNOWLEDGEMENTS"; // Source version
