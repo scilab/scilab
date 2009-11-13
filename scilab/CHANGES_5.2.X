@@ -1207,5 +1207,7 @@ Bug fixes:
 
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
 
+* bug 5284 fixed - Function "legend" now draws line segments in its box in a corect order.
+
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 
