@@ -126,7 +126,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		contentModified=false;
 
 	}
-
+	public Style getStyle(String styleString){
+		Style style = super.getStyle(styleString);
+		if(style == null) {
+			super.getStyle("Default");
+		}
+		return style;
+	 }
 	// TODO: check usefulness of this method
 	public ScilabStyleDocument getScilabDocument(){
 		return this;

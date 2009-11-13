@@ -1270,10 +1270,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 				// File does not exist	
 			} else {
 				theTextPane = addEmptyTab(); 
-
-				if (ScilabModalDialog.show(String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()), 
-					    XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON,
-					    ButtonType.YES_NO)  == AnswerOption.YES_OPTION) { //Yes
+				int choice = JOptionPane.showConfirmDialog(
+                        editor,
+                        String.format(XpadMessages.FILE_DOESNT_EXIST, f.getName()),
+                        "Editor",
+                        JOptionPane.YES_NO_OPTION);
+				if (choice == 0) { //OK
 					styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 
 					BufferedWriter out = null;
