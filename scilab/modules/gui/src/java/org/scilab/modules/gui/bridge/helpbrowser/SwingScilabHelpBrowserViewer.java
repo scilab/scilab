@@ -133,7 +133,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 					String selection = accessibleHtml.getSelectedText();
 					if (selection == null) {
 						/* @TODO: check if we can instead write in the info bar of the help */
-						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
+//						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
 					} else {
 			            try {
 			            	/* Dynamic load of the Xpad class. 
@@ -151,17 +151,17 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 							System.err.println("Security error: Could not access to Xpad class");
 							e.printStackTrace();
 						} catch (NoSuchMethodException e) {
-							System.err.println("Could not access to xpathWithText method from object Xpad");
+							System.err.println("Could not access to xpadWithText method from object Xpad");
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (IllegalArgumentException e) {
-							System.err.println("Wrong argument used with xpathWithText method from object Xpad");
+							System.err.println("Wrong argument used with xpadWithText method from object Xpad");
 							e.printStackTrace();
 						} catch (IllegalAccessException e) {
-							System.err.println("Illegal access with xpathWithText method from object Xpad");
+							System.err.println("Illegal access with xpadWithText method from object Xpad");
 							e.printStackTrace();
 						} catch (InvocationTargetException e) {
-							System.err.println("Error of invocation with xpathWithText method from object Xpad");
+							System.err.println("Error of invocation with xpadWithText method from object Xpad");
 							e.printStackTrace();
 						}
 					}
