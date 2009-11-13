@@ -67,6 +67,7 @@ public final class SaveAsAction extends DefaultAction {
 	 */
 	public void doAction() {
 		if ( ((XcosDiagram) getGraph(null)).saveDiagramAs(null) ){
+			((XcosDiagram) getGraph(null)).setModified(false);
 			Xcos.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 		}
 		

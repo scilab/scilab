@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
@@ -126,11 +127,14 @@ public class SuperBlock extends BasicBlock {
     public boolean createChildDiagram(){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
+    	    child.getParentTab().getInfoBar().setText(XcosMessages.LOADING_DIAGRAM);
+    	    child.getParentTab().getInfoBar().draw();
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
     	    child.installSuperBlockListeners();
     		child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
+    	    child.getParentTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
     	} else {
     		return false;
     	}
