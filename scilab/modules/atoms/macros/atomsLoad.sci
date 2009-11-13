@@ -327,7 +327,19 @@ function result = atomsLoad(packages)
 			end
 		end
 		
-		exec( loader_file );
+		ierr = exec(loader_file,"errcatch");
+		
+		if ierr > 0 then
+			error_str = msprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
+			if ATOMSAUTOLOAD then
+				mprintf(error_str+"\n");
+				lasterror(%T);
+				continue;
+			else
+				error(error_str);
+			end
+		end
+		
 		mprintf("\n");
 		
 		// Get the list of libraries (macros)
