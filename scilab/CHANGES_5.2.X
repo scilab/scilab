@@ -11,6 +11,15 @@ Text editor:
 
 * Refactoring of some large part of the source code
 
+Help browser:
+=============
+
+* Thanks to a right button click, a popup menu shows the following features:
+- Execute in Scilab
+- Edit in the text editor
+- Copy
+- Select all
+- History
 
 Localization:
 =============
