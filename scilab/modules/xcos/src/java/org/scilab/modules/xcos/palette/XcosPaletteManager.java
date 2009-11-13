@@ -89,6 +89,7 @@ public class XcosPaletteManager {
 
 		/** Create CONTINUOUS palette */
 		String[] continuousBlocksNames = {
+			"CLINDUMMY_f",
 			"CLR", 
 			"CLSS", 
 			"DERIV", 
@@ -108,7 +109,7 @@ public class XcosPaletteManager {
 			"DELAYV_f",
 			"HYSTHERESIS", 
 			"RATELIMITER", 
-			"REGISTER",
+			"QUANT_f", 
 			"SATURATION"
 		};
 		allpalettes.addTab(XcosMessages.DISCONTINUOUS_PAL, createPalette(discontinuousBlocksNames));
@@ -123,8 +124,6 @@ public class XcosPaletteManager {
 
 		/** Create SIGNAL PROCESSING palette */
 		String[] signalBlocksNames = {
-			"MCLOCK_f", 
-			"MFCLCK_f", 
 			"QUANT_f", 
 			"SAMPHOLD_m"
 		};
@@ -132,7 +131,6 @@ public class XcosPaletteManager {
 
 		/** Create THRESHOLD palette */
 		String[] thresholdBlocksNames = {
-			"CLINDUMMY_f",
 			"GENERAL_f",
 			"NEGTOPOS_f", 
 			"POSTONEG_f", 
@@ -144,13 +142,11 @@ public class XcosPaletteManager {
 		String[] mathsBlocksNames = {
 			"ABS_VALUE", 
 			"BIGSOM_f", 
-			"CONSTRAINT_f",
 			"COSBLK_f", 
 			"EXPBLK_m", 
 			"GAINBLK_f", 
 			"INVBLK", 
 			"LOGBLK_f",
-			"MATDIV", 
 			"MATMAGPHI", 
 			"MATZREIM", 
 			"MAXMIN", 
@@ -168,16 +164,6 @@ public class XcosPaletteManager {
 			"TrigFun"
 		};
 		allpalettes.addTab(XcosMessages.MATHSOPS_PAL, createPalette(mathsBlocksNames));
-
-		/** Create MODELICA palette */
-		String[] modelicaBlocksNames = {
-			"FROMMO", 
-			"GOTOMO", 
-			"GotoTagVisibilityMO", 
-			"MBLOCK", 
-			"OUTIMPL_f"
-		};
-		allpalettes.addTab(XcosMessages.MODELICA_PAL, createPalette(modelicaBlocksNames));
 
 		/** Create INTEGER palette */
 		String[] integerBlocksNames = {
@@ -238,6 +224,7 @@ public class XcosPaletteManager {
 			"CSCOPE", 
 			"CSCOPXY", 
 			"CSCOPXY3D", 
+			"HALT_f", 
 			"TOWS_c", 
 			"TRASH_f",
 			"WFILE_f",
@@ -248,12 +235,13 @@ public class XcosPaletteManager {
 
 		/** Create PORT ACTION palette */
 		String[] portactionBlocksNames = {
-			"EDGE_TRIGGER",
-			"ESELECT_f", 
-			"Extract_Activation", 
-			"IFTHEL_f",
+			"CLKINV_f",
+			"CLKOUTV_f",
 			"IN_f",
-			"OUT_f"
+			"INIMPL_f",
+			"OUTIMPL_f",
+			"OUT_f",
+			"SUPER_f"
 		};
 		allpalettes.add(XcosMessages.PORTACTION_PAL, createPalette(portactionBlocksNames));
 
@@ -264,7 +252,9 @@ public class XcosPaletteManager {
 			"DLR", 
 			"DLRADAPT_f", 
 			"DLSS", 
-			"DOLLAR_f"
+			"DOLLAR_f",
+			"SAMPHOLD_m",
+			"TCLSS"
 		};
 		allpalettes.addTab(XcosMessages.DISCRETE_PAL, createPalette(discreteBlocksNames));
 
@@ -279,13 +269,18 @@ public class XcosPaletteManager {
 			"CLKOUTV_f", 
 			"CLKSOMV_f", 
 			"CLOCK_c", 
+			"EDGE_TRIGGER",
 			"ESELECT_f",
 			"EVTDLY_c", 
 			"EVTGEN_f", 
 			"EVTVARDLY", 
+			"Extract_Activation", 
 			"HALT_f", 
 			"IFTHEL_f", 
-			"M_freq", 
+			"M_freq",
+			"MCLOCK_f", 
+			"MFCLCK_f", 
+			"REGISTER",
 			"SampleCLK", 
 			"freq_div"
 		};
@@ -293,12 +288,14 @@ public class XcosPaletteManager {
 
 		/** Create SIGNAL ROUTING palette */
 		String[] routingBlocksNames = {
-			"ANDBLK", 
 			"DEMUX",
 			"EXTRACTOR", 
 			"FROM", 
+			"FROMMO", 
 			"GOTO", 
+			"GOTOMO", 
 			"GotoTagVisibility", 
+			"GotoTagVisibilityMO", 
 			"ISELECT_m", 
 			"MUX", 
 			"M_SWITCH", 
@@ -341,7 +338,6 @@ public class XcosPaletteManager {
 			"MBLOCK", 
 			"PDE", 
 			"SUPER_f",
-			"TEXT_f", 
 			"c_block", 
 			"fortran_block", 
 			"generic_block3", 
@@ -387,6 +383,18 @@ public class XcosPaletteManager {
 		};
 		allpalettes.addTab(XcosMessages.THERMOHYDRAULICS_PAL, createPalette(thermoHydraulicsBlocksNames));
 
+		/** Create IMPLICIT palette */
+		String[] implicitBlocksNames = {
+			"CONSTRAINT_f"
+		};
+		allpalettes.addTab(XcosMessages.IMPLICIT_PAL, createPalette(implicitBlocksNames));
+		
+		/** Create ANNOTATIONS palette */
+		String[] annotationsBlocksNames = {
+			"TEXT_f"
+		};
+		allpalettes.addTab(XcosMessages.ANNOTATIONS_PAL, createPalette(annotationsBlocksNames));
+		
 		/** Create DEMO-BLOCKS palette */
 		String[] demoBlocksNames = {
 			"AUTOMAT", 
