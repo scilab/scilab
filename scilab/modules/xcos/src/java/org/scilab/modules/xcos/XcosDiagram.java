@@ -19,7 +19,6 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.server.UID;
@@ -52,7 +51,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -93,6 +91,7 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
@@ -125,6 +124,13 @@ public class XcosDiagram extends ScilabGraph {
     
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
+    
+    protected mxIEventListener undoEnabler = new mxIEventListener()
+    {
+	public void invoke(Object source, mxEventObject evt) {
+	    ((Xcos)getParentTab()).setEnabledUndo(true);
+	}
+    };
 
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index) {	
@@ -342,6 +348,8 @@ public class XcosDiagram extends ScilabGraph {
     
     public XcosDiagram() {
 	super();
+	getModel().addListener(mxEvent.UNDO, undoEnabler);
+	getView().addListener(mxEvent.UNDO, undoEnabler);
 	keyboardHandler = new XcosShortCut(this);
 	mxCodec codec = new mxCodec();
 
@@ -1448,6 +1456,8 @@ public class XcosDiagram extends ScilabGraph {
     	    }	
 
     	}
+    	//TODO
+    	this.resetUndoManager();
     	info(XcosMessages.EMPTY_INFO);
     }
 
@@ -1533,6 +1543,47 @@ public class XcosDiagram extends ScilabGraph {
     public void setModified(boolean modified) {
 	super.setModified(modified);
 	updateTabTitle();
+    }
+
+
+	public void undo() {
+		super.undo();
+		
+		if (undoManager.canUndo()){
+			((Xcos)getParentTab()).setEnabledUndo(true);
+		} else {
+			((Xcos)getParentTab()).setEnabledUndo(false);
+		}
+		((Xcos)getParentTab()).setEnabledRedo(true);
+		
+		/*
+		if (undoManager.canRedo()){
+			((Xcos)getParentTab()).setEnabledRedo(true);
+		} else {
+			((Xcos)getParentTab()).setEnabledRedo(false);
+		}
+*/
+	}
+	
+	public void redo() {
+		super.redo();
+		
+		if (undoManager.canUndo()){
+			((Xcos)getParentTab()).setEnabledUndo(true);
+		} else {
+			((Xcos)getParentTab()).setEnabledUndo(false);
+		}
+		if (undoManager.canRedo()){
+			((Xcos)getParentTab()).setEnabledRedo(true);
+		} else {
+			((Xcos)getParentTab()).setEnabledRedo(false);
+		}
+	}
+	
+    public void resetUndoManager() {
+    	undoManager.reset();
+    	((Xcos)getParentTab()).setEnabledRedo(false);
+    	((Xcos)getParentTab()).setEnabledUndo(false);
     }
 }
 

@@ -43,8 +43,6 @@ import java.nio.charset.Charset;
 public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	
-	private String eventType;
-	
 	private boolean contentModified;
 	/*if you want to add a new style just add it in the xml*/
 	private ArrayList<String> listStylesName;
@@ -93,19 +91,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
     private UndoManager undo = new UndoManager() {
     	public void undoableEditHappened(UndoableEditEvent e) {
 				
-    		if ((eventType.equals(DocumentEvent.EventType.INSERT.toString()) 
-    				|| eventType.equals(DocumentEvent.EventType.REMOVE.toString()))
-    				&& (e.getEdit().canUndo())) {
-    			/*
-				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
-					System.out.println("remove");
-					System.out.println(indentInprogress);
-				}
-    			 */
     			((UndoableEdit) (shouldMergeEdits ?  compoundEdit: this)).addEdit(e.getEdit());
-				eventType = "";
-    		}
-
+	
 	}
     };
     	
