@@ -44,14 +44,14 @@ if rhs<=0 then,
   flag=0;
   select nc
   case 1 then //low pass
-    [ok,fl,forder]=scicos_getvalue(gettext('Input filter characteristics'),..
+    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
                     [gettext('cut-off frequency (0.<frequ<.5):');
 		     gettext('filter length')],..
 		    list('vec',1,'vec',1),[' ';' '])
     ftype='lp'
     fh=0;
   case 2 then //high pass
-    [ok,fl,forder]=scicos_getvalue(gettext('Input filter characteristics'),..
+    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
                     [gettext('cut-off frequency (0.<frequ<.5):');
 		     gettext('filter length (odd value)')],..
 		    list('vec',1,'vec',1),[' ';' '])
@@ -59,14 +59,14 @@ if rhs<=0 then,
     flag=1;
     ftype='hp'
   case 3 then //band pass
-    [ok,fl,fh,forder]=scicos_getvalue(gettext('Input filter characteristics'),..
+    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
                     [gettext('low cut-off frequency (0.<flow<.5):');
 		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
 		     gettext('filter length')],..
 		    list('vec',1,'vec',1,'vec',1),[' ';' ';' '])
     ftype='bp'	
   case 4 then //stop band
-    [ok,fl,fh,forder]=scicos_getvalue(gettext('Input filter characteristics'),..
+    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
                     [gettext('low cut-off frequency (0.<flow<.5):');
 		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
 		     gettext('filter length (odd value)')],..
@@ -94,13 +94,13 @@ if rhs<=0 then,
   select nc
   case 1 then
     wtype='kr'
-    [ok,Beta]=scicos_getvalue(gettext('Input window characteristics'),..
+    [ok,Beta]=getvalue(gettext('Input window characteristics'),..
                      ['beta>0'],list('vec',1),' ')
     fpar(1)=Beta
     fpar(2)=0;
   case 2 then
     wtype='ch' 
-    [ok,name,value]=scicos_getvalue([gettext('Input window characteristics:');
+    [ok,name,value]=getvalue([gettext('Input window characteristics:');
              ' ';
 	     gettext('dp (dp>0)   : the maximum value of the window side-lobe height');
 	     gettext('df (0<df<.5): the width of the window main lobe')
