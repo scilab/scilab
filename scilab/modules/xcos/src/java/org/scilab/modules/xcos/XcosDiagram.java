@@ -1173,6 +1173,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	boolean isSuccess = false;
 	info(XcosMessages.SAVING_DIAGRAM);
+	this.getParentTab().getInfoBar().draw();
 	if (fileName == null) {
 	    // Choose a filename
 	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
