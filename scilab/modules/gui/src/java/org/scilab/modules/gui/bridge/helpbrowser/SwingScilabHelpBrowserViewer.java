@@ -16,10 +16,8 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Locale;
 
 import javax.help.DefaultHelpHistoryModel;
-import javax.help.HelpUtilities;
 import javax.help.JHelpContentViewer;
 import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.JComponent;
@@ -28,6 +26,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.localization.Messages;
 
 
@@ -109,41 +108,46 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
      */
 	private void createPopupMenu(JComponent c) {
 		final JPopupMenu popup = new JPopupMenu();
-
+		
+		JMenuItem menuItem = null; 
+		
 		/* Execute into Scilab */
-		ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
+		if (ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
+			ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
 					String selection = accessibleHtml.getSelectedText();
 					if (selection == null) {
-						/* @TODO: check if we can instead write in the info bar of the help */
-						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
+						ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
 					} else {
 						ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 					}
 				}
 			};
 
-		JMenuItem menuItem = new JMenuItem(Messages.gettext("Execute into Scilab"));
-		menuItem.addActionListener(actionListenerExecuteIntoScilab);
-		popup.add(menuItem);
+			menuItem = new JMenuItem(Messages.gettext("Execute into Scilab"));
+			menuItem.addActionListener(actionListenerExecuteIntoScilab);
+			popup.add(menuItem);
+		}
+		
 		
 		/* Edit in the Scilab Text Editor */
-		ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
+		try {
+			Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
+			ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
 					String selection = accessibleHtml.getSelectedText();
 					if (selection == null) {
-						/* @TODO: check if we can instead write in the info bar of the help */
-//						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
+						ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
 					} else {
-			            try {
-			            	/* Dynamic load of the Xpad class. 
-			            	 * This is done to avoid a cyclic dependency on gui <=> xpad
-			            	 */
+						try {
+							/* Dynamic load of the Xpad class. 
+							 * This is done to avoid a cyclic dependency on gui <=> xpad
+							 */
 							Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
-						    Class arguments[] = new Class[] { String.class };
-							Method method = xpadClass.getMethod("xpadWithText",arguments);
-						    method.invoke(xpadClass, new Object[]{selection});
-							
+							Class arguments[] = new Class[] { String.class };
+							Method method = xpadClass.getMethod("xpadWithText", arguments);
+							method.invoke(xpadClass, new Object[]{selection});
+
 						} catch (ClassNotFoundException e) {
 							System.err.println("Could not find Xpad class");
 							e.printStackTrace();
@@ -168,9 +172,15 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 				}
 			};
 
-		menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
-		menuItem.addActionListener(actionListenerLoadIntoTextEditor);
-		popup.add(menuItem);
+			menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
+			menuItem.addActionListener(actionListenerLoadIntoTextEditor);
+			popup.add(menuItem);
+
+		} catch (ClassNotFoundException e) {
+			/* Xpad not available */
+			/* Do nothing, the menu will not be added */
+		}
+
 		popup.addSeparator();
 
 		/* Back in the history*/
