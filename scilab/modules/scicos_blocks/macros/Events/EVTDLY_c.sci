@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,dt,ff,exprs]=getvalue(['Set Event Delay block parameters';
+    [ok,dt,ff,exprs]=scicos_getvalue(['Set Event Delay block parameters';
 	'Delay  is the delay between an input event ';
 	'       and the generated output event';
 	'Block may initially generate an output event before ';

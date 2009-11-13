@@ -33,10 +33,10 @@ this = optimbase_set ( this , key , value )
 [ this , isok ] = optimbase_checkbounds ( this )
 [ opt , isok ] = optimbase_checkx0 ( this )
 this = optimbase_display ( this )
-[ this , f , index ] = optimbase_function ( this , x , index )
-[ this , f , c , index ] = optimbase_function ( this , x , index )
-[ this , f , g , index ] = optimbase_function ( this , x , index )
-[ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
+[ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+[ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+[ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+[ this , f , g , c , gc , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
 [ this , hasbounds ] = optimbase_hasbounds ( this )
 [ this , hascons ] = optimbase_hasconstraints ( this )
 [ this , hasnlcons ] = optimbase_hasnlcons ( this )
@@ -617,17 +617,13 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , f , index ] = optimbase_function ( this , x , index
-        )</term>
+        <term>[ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
 
-        <term>[ this , f , c , index ] = optimbase_function ( this , x , index
-        )</term>
+        <term>[ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
 
-        <term>[ this , f , g , index ] = optimbase_function ( this , x , index
-        )</term>
+        <term>[ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
 
-        <term>[ this , f , g , c , gc , index ] = optimbase_function ( this ,
-        x , index )</term>
+        <term>[ this , f , g , c , gc , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
 
         <listitem>
           <para>Call the cost function and return the required results.</para>
@@ -647,22 +643,55 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
             <varlistentry>
               <term>x</term>
-
               <listitem>
-                <para>the current point</para>
+                <para>the current point, as a column vector</para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
               <term>index</term>
-
               <listitem>
-                <para>optional, the value to compute.</para>
-
+                <para>what value to compute.</para>
                 <para>See below in the section "Cost function" for details on
                 this index.</para>
               </listitem>
             </varlistentry>
+	    
+            <varlistentry>
+              <term>f</term>
+              <listitem>
+                <para>the value of the cost function</para>
+              </listitem>
+            </varlistentry>
+	    
+            <varlistentry>
+              <term>g</term>
+              <listitem>
+                <para>the gradient of the cost function</para>
+              </listitem>
+            </varlistentry>
+	    
+            <varlistentry>
+              <term>c</term>
+              <listitem>
+                <para>the nonlinear, positive, inequality constraints</para>
+              </listitem>
+            </varlistentry>
+	    
+            <varlistentry>
+              <term>gc</term>
+              <listitem>
+                <para>the gradient of the nonlinear, positive, inequality constraints</para>
+              </listitem>
+            </varlistentry>
+	    
+            <varlistentry>
+              <term>data</term>
+              <listitem>
+                <para>an optionnal user-provided argument</para>
+              </listitem>
+            </varlistentry>
+	    
           </variablelist>
         </listitem>
       </varlistentry>
@@ -1329,7 +1358,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
   <refsection>
     <title>The cost function</title>
 
-    <para>The option -function allows to configure the cost function. The cost
+    <para>The <literal>-function</literal> option  allows to configure the cost function. The cost
     function is used, depending on the context, to compute the cost, the
     nonlinear inequality positive constraints, the gradient of the function
     and the gradient of the nonlinear inequality constraints.</para>
@@ -1340,19 +1369,19 @@ g_i(x) &lt;= 0, i = 1,nbineq
     <para>In the following, the variables are </para>
     <itemizedlist>
       <listitem>
-        <para>f: scalar, the objective,</para>
+        <para><literal>f</literal>: scalar, the objective,</para>
       </listitem>
       
       <listitem>
-        <para>g: row matrix, the gradient of the objective,</para>
+        <para><literal>g</literal>: row matrix, the gradient of the objective,</para>
       </listitem>
       
       <listitem>
-        <para>c: row matrix, the constraints,</para>
+        <para><literal>c</literal>: row matrix, the constraints,</para>
       </listitem>
       
       <listitem>
-        <para>gc: matrix, the gradient of the constraints.</para>
+        <para><literal>gc</literal>: matrix, the gradient of the constraints.</para>
       </listitem>
     </itemizedlist>
 

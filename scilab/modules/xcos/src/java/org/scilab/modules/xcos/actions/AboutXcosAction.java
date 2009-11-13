@@ -52,10 +52,11 @@ public class AboutXcosAction extends DefaultAction {
 	 */
 	public void doAction() {
 		String[] contents = {XcosMessages.VERSION,
-				XcosMessages.COPYRIGHT,
-				XcosMessages.AUTHORS, 
-				XcosMessages.ALLRIGHTSRESERVED, 
-				XcosMessages.LICENSE};
+				"",
+				XcosMessages.DIGITEO,
+				XcosMessages.COPYRIGHT_INRIA,
+				"",
+				XcosMessages.SCICOS_BASED};
 		
 		ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null, null);
     	

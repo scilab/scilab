@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=getvalue('Set NMOS Transistor block parameters',..
+    [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue('Set NMOS Transistor block parameters',..
 	['Width [m]';..
 	 'Length [m]';..
 	 'Transconductance parameter [A/(V*V)]';..

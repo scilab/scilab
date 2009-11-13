@@ -141,10 +141,8 @@ public class XpadMessages {
     
     /* About box */
     public static final String VERSION = Messages.gettext("Editor 1.0");
-    public static final String COPYRIGHT = Messages.gettext("Copyright 2009");
-    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
-    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
-    public static final String LICENSE = Messages.gettext("CeCILL License");
+    public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c) 2009 (INRIA)");
     
     public static final String XPAD_ERROR = Messages.gettext("Editor error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");

@@ -49,7 +49,7 @@ case "set" then
   model = arg1.model ;
   
   while %t do
-    [ok,in,font,fontsize,colr,nt,nd,herit,exprs]=getvalue(..
+    [ok,in,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue(..
          "Set  parameters",..
         ["Input Size",
          "Font number";

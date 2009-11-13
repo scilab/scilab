@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,nin,base,rule,exprs]=getvalue('Set parameters',..
+    [ok,nin,base,rule,exprs]=scicos_getvalue('Set parameters',..
 	['number of inputs';'zero base indexing (0), otherwise 1';..
 	 'rounding rule: int (0), round (1), ceil (2), floor (3)'],..
 	list('vec',1,'vec',1,'vec',1),exprs)

@@ -105,16 +105,17 @@ public final class XcosMessages {
     public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
     public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
-    public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuous");
+    public static final String IMPLICIT_PAL = Messages.gettext("Implicit");
+    public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuities");
     public static final String LOOKUPTABLES_PAL = Messages.gettext("Lookup Tables");
     public static final String SIGNALPROCESSING_PAL = Messages.gettext("Signal Processing");
     public static final String THRESHOLD_PAL = Messages.gettext("Threshold");
     public static final String MATHSOPS_PAL = Messages.gettext("Math Operations");
-    public static final String MODELICA_PAL = Messages.gettext("Modelica");
     public static final String INTEGER_PAL = Messages.gettext("Integer");
     public static final String MATRIX_PAL = Messages.gettext("Matrix");
     public static final String SINKS_PAL = Messages.gettext("Sinks");
-    public static final String PORTACTION_PAL = Messages.gettext("Port Action");
+    public static final String PORTACTION_PAL = Messages.gettext("Port & Subsystem");
+    public static final String ANNOTATIONS_PAL = Messages.gettext("Annotations");
     public static final String DISCRETE_PAL = Messages.gettext("Discrete");
     public static final String EVENTS_PAL = Messages.gettext("Events");
     public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
@@ -192,10 +193,9 @@ public final class XcosMessages {
     
     /* About box */
     public static final String VERSION = Messages.gettext("Xcos 1.0");
-    public static final String COPYRIGHT = Messages.gettext("Copyright 2009");
-    public static final String AUTHORS = Messages.gettext("The Scilab Consortium / DIGITEO");
-    public static final String ALLRIGHTSRESERVED = Messages.gettext("All rights reserved");
-    public static final String LICENSE = Messages.gettext("CeCILL License");
+    public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
+    public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
+    public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
 
     /** InfoBar messages */
     public static final String EMPTY_INFO = "";

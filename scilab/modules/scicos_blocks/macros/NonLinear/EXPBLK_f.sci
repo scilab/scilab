@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')==2 then exprs=exprs(2),end
   while %t do
-    [ok,a,exprs]=getvalue('Set a^u  block parameters',..
+    [ok,a,exprs]=scicos_getvalue('Set a^u  block parameters',..
 	'a (>0)',list('vec',1),exprs)
     if ~ok then break,end
     if or(a<=0) then

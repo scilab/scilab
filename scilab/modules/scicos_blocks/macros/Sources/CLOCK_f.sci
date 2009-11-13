@@ -44,7 +44,7 @@ function [x,y,typ]=CLOCK_f(job,arg1,arg2)
     dt_old= model.rpar
     model_n=model
     while %t do
-      [ok,dt,t0,exprs0]=getvalue('Set Clock  block parameters',..
+      [ok,dt,t0,exprs0]=scicos_getvalue('Set Clock  block parameters',..
 				['Period';'Init time'],list('vec',1,'vec',1),exprs)
       if ~ok then break,end
       if dt<=0 then

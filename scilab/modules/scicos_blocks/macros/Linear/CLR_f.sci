@@ -41,7 +41,7 @@ case 'set' then
   %scicos_context.s=%s //add s definition to the context
 
   while %t do
-    [ok,num,den,exprs]=getvalue('Set continuous SISO transfer parameters',..
+    [ok,num,den,exprs]=scicos_getvalue('Set continuous SISO transfer parameters',..
 	['Numerator (s)';
 	 'Denominator (s)'],..
 	list('pol',1,'pol',1),exprs)

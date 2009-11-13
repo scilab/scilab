@@ -1315,7 +1315,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
      rdnom,..
      rpat,..
      libs,..
-     label1]=getvalue('Set code generator parameters :',..
+     label1]=scicos_getvalue('Set code generator parameters :',..
                       ['New block''s name :';
                        'Created files Path :';
                        'Other object files to link with (if any)'],..

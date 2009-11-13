@@ -6,7 +6,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-function []=show(xx,t,p)
+function []=wheel_show(xx,t,p)
 	
 	//[]=show(xx,t,p)
 	// Just show the wheel evolution 

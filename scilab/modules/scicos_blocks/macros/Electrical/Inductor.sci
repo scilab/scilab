@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,L,exprs]=getvalue('Set Inductor block parameter',..
+    [ok,L,exprs]=scicos_getvalue('Set Inductor block parameter',..
     			   'L (H)',list('vec',1),exprs)
     if ~ok then break,end
     model.rpar=L

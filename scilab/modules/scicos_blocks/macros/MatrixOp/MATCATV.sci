@@ -37,7 +37,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,typ,l1,lab]=..
-        getvalue('Set MATCATV block parameters',..
+        scicos_getvalue('Set MATCATV block parameters',..
         ['Datatype(1=real double  2=Complex)';
 	 'number of line of each matrix'],..
          list('vec',1,'mat',[-1 1]),label)

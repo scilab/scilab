@@ -196,4 +196,13 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	public void setVisible(boolean newVisibleState) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Get associated InfoBar
+	 * @return the infobar of the parent tab
+	 * @see org.scilab.modules.gui.uielement.ScilabUIElement#getInfoBar()
+	 */
+	public TextBox getInfoBar() {
+		return helpTab.getInfoBar();
+	}
 }

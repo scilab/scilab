@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,a,exprs]=getvalue('Set u^a block parameters',..
+    [ok,a,exprs]=scicos_getvalue('Set u^a block parameters',..
 	'to the power of',list('vec',1),exprs)
     if ~ok then break,end
     graphics.exprs=exprs
