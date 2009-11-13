@@ -33,7 +33,9 @@
       editor()
       editor(file)
       editor([file1, file2])
-      editorHighlightLine(file, line_number)
+      editor(file, line_number)
+      editor([file1, file2], [line_number1, line_number2])
+      
     </synopsis>
   </refsynopsisdiv>
 
@@ -65,6 +67,17 @@
         <listitem>
           <para>an integer, number of the line we want to highlight at the
           opening of the file.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <variablelist>
+      <varlistentry>
+        <term>[line_number1, line_number2]</term>
+
+        <listitem>
+          <para>a matrix of integer, each opened file will have it's corresponding
+          line highlighted.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -114,7 +127,11 @@
           </listitem>
 
           <listitem>
-            <para>editorHighlightLine(file, line_number)</para>
+            <para>editor(file, line_number)</para>
+          </listitem>
+          
+          <listitem>
+            <para>editor([file1, file2], [line_number1, line_number2])</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -465,7 +482,7 @@
 	  <tr>
             <td>Line Numbers</td>
 	    
-            <td />
+            <td>&lt;CTRL-B&gt;</td>
 	    
             <td>
               <para>Display document's line numbers</para>
@@ -586,7 +603,7 @@
 	  <tr>
             <td>Load Into Scilab</td>
 	    
-            <td />
+            <td>&lt;CTRL-L&gt;</td>
 	    
             <td>
               <para>Load the entire document into the Scilab console</para>
@@ -606,7 +623,7 @@
 	  <tr>
             <td>Execute Into Scilab</td>
 	    
-            <td />
+            <td>&lt;CTRL-E&gt;</td>
 	    
             <td>
               <para>If the file exist, execute the content of the file</para>
@@ -659,11 +676,15 @@ editor();
 // editor with a file name
 editor('SCI/modules/time/macros/datenum.sci');
     
-// editor with a matrice of files name
+// editor with a matrix of files name
 editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
     
 // editor with a file name and the line number to highlight
-editorHighlightLine('SCI/modules/time/macros/datenum.sci', 1);
+editor('SCI/modules/time/macros/datenum.sci', 5);
+
+// editor with a matrix of files name and the corresponding matrix of lines to highlight
+// the files name matrix and the lines to highlight matrix should have the same size
+editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci'], [5,10]);
  ]]></programlisting>
   </refsection>
 

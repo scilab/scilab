@@ -55,7 +55,7 @@ mputl(i,TMP_DIR+filesep()+'intfun1.c');
 cur_dir = pwd();
 chdir(TMP_DIR);
 
-files=['fun1.o','fun2.o','intfun1.o'];
+files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
 
 // load the shared library 

@@ -18,19 +18,19 @@ function this = neldermead_updatesimp ( this )
   xopt = optimbase_get ( this.optbase , "-xopt" );
   select this.restartsimplexmethod
   case "oriented" then
-    [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , neldermead_costf , this );
+    [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , costf_transposex , this );
   case "axes" then
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "axes" , ...
-      xopt.' , neldermead_costf , this.simplex0length , this );
+      xopt.' , costf_transposex , this.simplex0length , this );
   case "spendley" then
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "spendley" , ...
-      xopt.' , neldermead_costf , this.simplex0length , this );
+      xopt.' , costf_transposex , this.simplex0length , this );
   case "pfeffer" then
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "pfeffer" , ...
-      xopt.' , neldermead_costf , this.simplex0deltausual , ...
+      xopt.' , costf_transposex , this.simplex0deltausual , ...
       this.simplex0deltazero , this );
   case "randbounds" then
     if ( this.boxnbpoints=="2n" ) then
@@ -44,7 +44,7 @@ function this = neldermead_updatesimp ( this )
     end
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "randbounds" , xopt.' , ...
-      neldermead_costf , this.optbase.boundsmin , this.optbase.boundsmax , ...
+      costf_transposex , this.optbase.boundsmin , this.optbase.boundsmax , ...
       this.boxnbpointseff  , this )
   else
     errmsg = msprintf(gettext("%s: Unknown restart simplex method %s"), "neldermead_updatesimp", this.restartsimplexmethod)
@@ -102,5 +102,16 @@ function this = neldermead_updatesimp ( this )
   this.simplex0 = simplex0;
   this.simplexsize0 = optimsimplex_size ( simplex0 );
   this.simplex0 = optimsimplex_sort ( this.simplex0 )
+endfunction
+//
+// costf_transposex --
+//   Call the cost function and return the value.
+//   Transpose the value of x, so that the input row vector,
+//   given by optimsimplex, is transposed into a column vector, 
+//   as required by the cost function.
+//
+function [ f , this ] = costf_transposex ( x , this )
+  xt = x.'
+  [ f , this ] = neldermead_costf ( xt , this )
 endfunction
 

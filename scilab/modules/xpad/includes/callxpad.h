@@ -23,5 +23,6 @@
 * @return 0
 */
 XPAD_IMPEXP int callXpadW(wchar_t **_wcfilenames, int _nbfiles);
+XPAD_IMPEXP int callXpadWWithLineNumber(wchar_t **_wcfilenames, double* pdblLineNumber, int _nbfiles);
 /*--------------------------------------------------------------------------*/
 #endif /* __CALLXPAD_H__ */

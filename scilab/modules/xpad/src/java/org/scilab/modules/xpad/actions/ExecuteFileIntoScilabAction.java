@@ -12,7 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -57,6 +61,6 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.EXECUTE_FILE_INTO_SCILAB, null, new ExecuteFileIntoScilabAction(editor), null);
+		return createMenu(XpadMessages.EXECUTE_FILE_INTO_SCILAB, null, new ExecuteFileIntoScilabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }

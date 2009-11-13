@@ -12,7 +12,16 @@
 
 package org.scilab.modules.graph;
 
+import java.util.List;
+
+import javax.swing.undo.UndoManager;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.SuperBlockDiagram;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
@@ -22,6 +31,7 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
 import com.mxgraph.util.mxUndoableEdit;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxGraph;
 
 public class ScilabGraph extends mxGraph {
@@ -34,12 +44,53 @@ public class ScilabGraph extends mxGraph {
     private String title = Messages.gettext("Untitled");
     private String savedFile = null;
     private boolean modified = false;
+    private Tab parentTab;
+    private boolean opened = false;
+    private boolean redoInAction = false ;
+    
+    /**
+     * 
+     */
+    protected mxIEventListener changeTracker = new mxIEventListener()
+    {
+	public void invoke(Object source, mxEventObject evt) {
+	    setModified(true);
+	}
+    };   
+
+    protected mxIEventListener undoHandler = new mxIEventListener()
+    {
+	public void invoke(Object source, mxEventObject evt) {
+	
+		if (! redoInAction){
+			System.out.println("undoable event occured");
+			undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
+		}
+	}
+    };
+    
+	mxIEventListener selectionHandler = new mxIEventListener()
+	{
+		public void invoke(Object source, mxEventObject evt)
+		{
+			List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+			setSelectionCells(getSelectionCellsForChanges(changes));
+		}
+	};
+
 
     public ScilabGraph() {
 	// Undo / Redo capabilities
 	getModel().addListener(mxEvent.UNDO, undoHandler);
 	getView().addListener(mxEvent.UNDO, undoHandler);
+    	
+    
+	// Keeps the selection in sync with the command history
 
+	undoManager.addListener(mxEvent.UNDO, selectionHandler);
+	undoManager.addListener(mxEvent.REDO, selectionHandler);
+
+	
 	component = new mxGraphComponent(this);
 
 	// Adds rubberband selection
@@ -69,22 +120,7 @@ public class ScilabGraph extends mxGraph {
         this.savedFile = savedFile;
     }
 
-    /**
-     * 
-     */
-    protected mxIEventListener changeTracker = new mxIEventListener()
-    {
-	public void invoke(Object source, mxEventObject evt) {
-	    setModified(true);
-	}
-    };   
 
-    protected mxIEventListener undoHandler = new mxIEventListener()
-    {
-	public void invoke(Object source, mxEventObject evt) {
-	    undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
-	}
-    };
 
     public boolean isModified() {
 	return modified;
@@ -110,11 +146,19 @@ public class ScilabGraph extends mxGraph {
     }
 
     public void undo() {
+    redoInAction = true;
 	undoManager.undo();
+	redoInAction = false;
     }
 
     public void redo() {
+    redoInAction = true;
 	undoManager.redo();
+	redoInAction = false;
+    }
+    
+    public void resetUndoManager() {
+    	undoManager.reset();
     }
 
     public void zoom() {
@@ -131,5 +175,73 @@ public class ScilabGraph extends mxGraph {
 	//	}
     }
 
+    public Tab getParentTab() {
+	return parentTab;
+    }
+
+    public void setParentTab(Tab parentTab) {
+	this.parentTab = parentTab;
+    }
+
+
+    public void setOpened(boolean opened) {
+	this.opened = opened;
+    }
+    
+    public boolean isOpened() {
+	return opened;
+    }
+
+    public void  setVisible(boolean visible) {
+	if(parentTab != null) {
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
+	    xcosWindow.setVisible(visible);
+	}
+    }
+
+    public boolean isVisible() {
+	if(parentTab != null) {
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
+	    return xcosWindow.isVisible();
+	}
+
+	return false;
+    }
+    
+    public boolean isChildVisible() {
+	for( int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
+	    Object child = getModel().getChildAt(getDefaultParent(), i);
+	    if(child instanceof SuperBlock){
+		XcosDiagram diag = ((SuperBlock)child).getChild();
+		if(diag != null && diag.isOpened()) {
+		    //if child or sub child is visible
+		    if(diag.isChildVisible() || diag.isVisible()) {
+			return true;
+		    }
+		}
+	    }
+	}
+	return false;
+    }
+    
+    public boolean canClose() {
+	if(isChildVisible() == false) {
+	    return true;
+	}
+	return false;
+    }
+
+    public void closeChildren() {
+	for( int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
+	    Object child = getModel().getChildAt(getDefaultParent(), i);
+	    if(child instanceof SuperBlock){
+		SuperBlock diag = (SuperBlock)child;
+		
+		if(diag.getChild() != null && diag.getChild().isOpened()) {
+		    diag.closeBlockSettings();
+		}
+	    }
+	}
+    }
 }
 

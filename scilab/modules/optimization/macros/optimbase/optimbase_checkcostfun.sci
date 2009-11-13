@@ -26,7 +26,7 @@ function this = optimbase_checkcostfun ( this )
     index = 1;
     cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -34,7 +34,7 @@ function this = optimbase_checkcostfun ( this )
     index = 2;
     cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -43,7 +43,7 @@ function this = optimbase_checkcostfun ( this )
     index = 5;
     cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,5)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -52,7 +52,7 @@ function this = optimbase_checkcostfun ( this )
     index = 6;
     cmd = "[ this , f , c , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,6)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -67,7 +67,7 @@ function this = optimbase_checkcostfun ( this )
     index = 1;
     cmd = "[ this , f , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -75,7 +75,7 @@ function this = optimbase_checkcostfun ( this )
     index = 2;
     cmd = "[ this , f , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -89,7 +89,7 @@ function this = optimbase_checkcostfun ( this )
     index = 1;
     cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,1)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -97,7 +97,7 @@ function this = optimbase_checkcostfun ( this )
     index = 2;
     cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,2)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -106,7 +106,7 @@ function this = optimbase_checkcostfun ( this )
     index = 3;
     cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,3)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -115,7 +115,7 @@ function this = optimbase_checkcostfun ( this )
     index = 4;
     cmd = "[ this , f , g , index ] = optimbase_function ( this , this.x0 , index )";
     ierr=execstr(cmd,"errcatch");
-    if ierr <> 0 then
+    if ( ierr <> 0 ) then
       errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function from costf(x0,4)." ) , "optimbase_checkcostfun" )
       error ( errmsg );
     end
@@ -131,11 +131,11 @@ endfunction
 //   Generate an error if there is one.
 //
 function this = optimbase_checkshape ( this , varname , data , index , expectednrows , expectedncols )
-    if size(data,1) <> expectednrows then
+    if ( size(data,1) <> expectednrows ) then
       errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(data,1) , expectednrows )
       error ( errmsg );
     end
-    if size(data,2) <> expectedncols then
+    if ( size(data,2) <> expectedncols ) then
       errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(data,2) , expectedncols )
       error ( errmsg );
     end

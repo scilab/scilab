@@ -55,7 +55,7 @@ function [X, LU, IPIV, INFO] = msolve(A,B)
 endfunction
 
 chdir(TMPDIR);
-libn=ilib_for_link('dgesvtst','dgesvtst.o',[],'f');
+libn=ilib_for_link('dgesvtst','dgesvtst.f',[],'f');
 exec loader.sce;
 chdir(curdir),
 n=44;

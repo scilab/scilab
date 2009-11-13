@@ -31,9 +31,33 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5325 fixed - Wrong default path on FileChooser
+
+* bug 5111 fixed - Xcos : "Save As" default path is the current file path
+
+* bug 4670 fixed - ilib_build examples updated with api_scilab.
+
+* bug 5312 fixed - Xcos : adding 'Compile' informations
+
+* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
+
+* bug 4401 fixed - isnum returned wrong values.
+
+* bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
+
+* bug 4844 fixed - The help page for the deletefile function did not specify what is the meaning of the output variable.
+
+* bug 5106 fixed - mopen help page did not contain any example.
+
+* bug 5107 fixed - mgetstr help page did not contain any example.
+
+* bug 5190 fixed - context menus are now available under MacOS
+
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
 * bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
+
+* bug 5235 fixed - Error message added when launching Scicos
 
 * bug 5251 fixed - getversion help page updated.
 
@@ -47,9 +71,19 @@ Bug fixes:
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
 
-* bug 5292 fixed -  There is a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
+* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
 
+* bug 5292 fixed -  There was a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
 
+* bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
+
+* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
+
+* bug 5308 fixed - editor did not check input argument type.
+
+* bug 5326 fixed - graphic_export module was not loaded dynamically.
+
+* bug 5330 fixed - "help str1 str2" returned a error.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1105,6 +1139,8 @@ Bug fixes:
 
 * bug 4855 fixed - Standard error messages added when setting/getting values from graphics handles
 
+* bug 4880 fixed - Query-replace with a regular expression doesn't work in editor
+
 * bug 4904 fixed - wrong localized fr_FR message
 
 * bug 4917 fixed - fileinfo(SCI+'/') returned [] (under Windows)
@@ -1155,5 +1191,23 @@ Bug fixes:
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
 
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
+
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
+
+* bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
+* bug 5224 fixed - Maj+Tab modify the text selection.
+
+* bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
+
+* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
+
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
+
+* bug 5284 fixed - Function "legend" now draws line segments in its box in a corect order.
+
+* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 

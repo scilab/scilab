@@ -13,6 +13,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.xpad.Xpad;
@@ -41,7 +46,7 @@ public final class AboutAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.ABOUT, null, new AboutAction(editor), null);
+		return createMenu(XpadMessages.ABOUT, null, new AboutAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, ActionEvent.SHIFT_MASK));
 	}
 
 	/**
@@ -56,6 +61,5 @@ public final class AboutAction extends DefaultAction {
 				XpadMessages.LICENSE};
 
 		ScilabAboutBox.createAboutBox(XpadMessages.ABOUT, contents, null, null);
-
 	}
 }

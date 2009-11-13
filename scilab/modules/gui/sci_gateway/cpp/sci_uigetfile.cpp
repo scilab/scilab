@@ -35,6 +35,45 @@ extern "C"
 #endif
 #include "BOOL.h"
 }
+/*--------------------------------------------------------------------------*/
+#define freePointersUigetfile()\
+if (selection)\
+{\
+	for (int i = 0; i < selectionSize; i++)\
+	{\
+		if (selection[i])\
+		{\
+			delete selection[i];\
+			selection[i] = NULL;\
+		}\
+	}\
+	delete [] selection;\
+	selection = NULL;\
+}\
+if (selectionPathName)\
+{\
+	delete selectionPathName;\
+	selectionPathName = NULL;\
+}\
+if (selectionFileNames)\
+{\
+	for (int i = 0; i < selectionSize; i++)\
+	{\
+		if (selectionFileNames[i])\
+		{\
+			delete selectionFileNames[i];\
+			selectionFileNames[i] = NULL;\
+		}\
+	}\
+	delete [] selectionFileNames;\
+	selectionFileNames = NULL;\
+}\
+if (menuCallback)\
+{\
+	delete menuCallback;\
+	menuCallback = NULL;\
+}
+/*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_filechooser;
 /*--------------------------------------------------------------------------*/
 
@@ -248,6 +287,7 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 			double *tmp = (double*)MALLOC(sizeof(double));
 			if (tmp == NULL)
 			{
+				freePointersUigetfile();
 				Scierror(999, _("%s: No more memory.\n"), fname);
 				return 0;
 			}
@@ -257,6 +297,7 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 			LhsVar(3) = Rhs + 3 ;
 		}
 		C2F(putlhsvar)();
+		freePointersUigetfile();
 		return 0;
 	}
 
@@ -266,6 +307,7 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
           CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
           LhsVar(1) = Rhs + 1 ;
           C2F(putlhsvar)();
+		  freePointersUigetfile();
           return 0;
 	}
 
@@ -283,6 +325,7 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 		if (tmp == NULL)
 		{
 			Scierror(999, _("%s: No more memory.\n"), fname);
+			freePointersUigetfile();
 			return 0;
 		}
 		tmp[0] = filterIndex;
@@ -292,6 +335,9 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 	}
         
 	C2F(putlhsvar)();
+
+	freePointersUigetfile();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

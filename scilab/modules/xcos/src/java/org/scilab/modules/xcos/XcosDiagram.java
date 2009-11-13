@@ -19,6 +19,7 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.server.UID;
@@ -29,6 +30,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
@@ -50,17 +52,19 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
+import org.scilab.modules.xcos.actions.ShowParentAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
-import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -110,7 +114,6 @@ public class XcosDiagram extends ScilabGraph {
     private String[] context = new String[]{""};
     private List doc = null;
     private String version = "scicos4.2";
-    private Tab parentTab;
     //private Window palette;
     private Tab viewPort;
     
@@ -774,21 +777,22 @@ public class XcosDiagram extends ScilabGraph {
 	    {
 	    	System.err.println("[DEBUG] Click at position : " + arg0.getX() + " , " + arg0.getY());
 	    	if (cell == null) {
-		    	System.err.println("[DEBUG] Click on diagram");
-		    	System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
-		    	System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-		    	System.err.println("getParentWindow : " + getParentTab().getParentWindow());
-		    	
+	    	    System.err.println("[DEBUG] Click on diagram");
+	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
+	    	    System.err.println("getParentWindow : " + getParentTab().getParentWindow());
 	    	} else {
-		    	System.err.println("[DEBUG] Click on : " + cell);
-		    	System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
-		    	if (cell != null) {
-		    		System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
-		    		System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
-		    		for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
-			    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
-		    		}
-		    	}
+	    	    System.err.println("[DEBUG] Click on : " + cell);
+	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
+	    	    System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
+	    	    System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
+	    	    for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
+	    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
+	    	    }
+	    	    
+	    	    if(cell instanceof BasicLink) {
+	    		System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
+	    	    }
 	    	}
 	    	
 	    }
@@ -809,6 +813,13 @@ public class XcosDiagram extends ScilabGraph {
 		    /*---*/
 		    menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 		    menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+		    
+		    if(diagram instanceof SuperBlockDiagram) {
+			/*---*/
+			menu.getAsSimpleContextMenu().addSeparator();
+			/*---*/
+			menu.add(ShowParentAction.createMenu(diagram));
+		    }
 		    /*---*/
 		    menu.getAsSimpleContextMenu().addSeparator();
 		    /*---*/
@@ -930,6 +941,7 @@ public class XcosDiagram extends ScilabGraph {
     public void dumpToHdf5File(String fileName) {
 	if (fileName == null) {
 	    FileChooser fc = ScilabFileChooser.createFileChooser();
+	    fc.setInitialDirectory(getSavedFile());
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
@@ -1005,14 +1017,6 @@ public class XcosDiagram extends ScilabGraph {
 
     public void setToleranceOnTime(double toleranceOnTime) {
 	this.toleranceOnTime = toleranceOnTime;
-    }
-
-    public Tab getParentTab() {
-	return parentTab;
-    }
-
-    public void setParentTab(Tab parentTab) {
-	this.parentTab = parentTab;
     }
 
     /**
@@ -1096,14 +1100,9 @@ public class XcosDiagram extends ScilabGraph {
 
 	boolean wantToClose = true;
 
-	//look if SuperBlock windows are opened
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-		if (getModel().getChildAt(getDefaultParent(), i) instanceof SuperBlock) {
-			SuperBlock sb = (SuperBlock) getModel().getChildAt(getDefaultParent(), i);
-			if (sb.getChild() != null) { //window is visible, force close and save if needed
-				sb.closeBlockSettings();
-			}
-		}
+	if(canClose() == false) {
+	    setVisible(false);
+	    return;
 	}
 	
 	if (isModified()) {
@@ -1137,11 +1136,13 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	if (wantToClose) {
-	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
-	    xcosWindow.removeTab(parentTab);
-	    //palette.getAsSimpleWindow().close();
-	    viewPort.close();
+	    if(getParentTab() != null) {
+		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentTab().getParentWindowId());
+		xcosWindow.removeTab(getParentTab());
+		viewPort.close();
+	    }
 	    Xcos.closeDiagram(this);
+	    setOpened(false);
 	}
     }
 
@@ -1165,30 +1166,31 @@ public class XcosDiagram extends ScilabGraph {
 	boolean isSuccess = false;
 	info(XcosMessages.SAVING_DIAGRAM);
 	if (fileName == null) {
-		// Choose a filename
-		FileChooser fc = ScilabFileChooser.createFileChooser();
-		fc.setTitle(XcosMessages.SAVE_AS);
-		fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
-		fc.setMultipleSelection(false);
-		String[] mask = {"*.xcos"};
-		String[] maskDesc = {"Xcos file (XML)"};  
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
-		fc.displayAndWait();
+	    // Choose a filename
+	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+	    fc.setTitle(XcosMessages.SAVE_AS);
+	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
+	    fc.setMultipleSelection(false);
+	    FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter("Xcos file (XML)", "xcos");
+	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.setFileFilter(xcosFilter);
+	    fc.displayAndWait();
 
-		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-			return isSuccess;
-		}
-		fileName = fc.getSelection()[0];
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
+		info(XcosMessages.EMPTY_INFO);
+		return isSuccess;
+	    }
+	    fileName = fc.getSelection()[0];
 	}
 	/* Extension checks */
-	String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-	if (extension.equals(fileName)) {
-	    /* No extension given --> .xcos added */
-	    fileName += ".xcos";
-	} else if (!extension.equals("xcos")) {
-	    XcosDialogs.couldNotSaveFile();
-	    info(XcosMessages.EMPTY_INFO);
-	    return false;
+	File file = new File(fileName);
+	if(!file.exists()) {
+	    String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+	    if (extension.equals(fileName)) {
+		/* No extension given --> .xcos added */
+		fileName += ".xcos";
+	    }
 	}
 
 	XcosCodec codec = new XcosCodec();
@@ -1198,7 +1200,6 @@ public class XcosDiagram extends ScilabGraph {
 	    mxUtils.writeFile(xml, fileName);
 	    isSuccess = true;
 	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	    isSuccess = false;
 	}
@@ -1223,9 +1224,9 @@ public class XcosDiagram extends ScilabGraph {
 
     public void updateTabTitle() {
 	String tabTitle = !isModified() ? getTitle() : "* " + getTitle();
-	if (parentTab != null) {
-	    parentTab.setName(tabTitle);
-	    parentTab.draw();
+	if (getParentTab() != null) {
+	    getParentTab().setName(tabTitle);
+	    getParentTab().draw();
 	}
     }
 
@@ -1398,47 +1399,34 @@ public class XcosDiagram extends ScilabGraph {
     				e.printStackTrace();
     			}
     		} else if (extension.equals("xcos")) {
-    			Document document = null;
-    			try {
-    				document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
-    			} catch (IOException e1) {
-    				// TODO Auto-generated catch block
-    				e1.printStackTrace();
-    			}
+    		    Document document = null;
+    		    try {
+    			document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
+    		    } catch (IOException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		    }
 
-    			XcosCodec codec = new XcosCodec(document);
+    		    XcosCodec codec = new XcosCodec(document);
 
-    			if (getModel().getChildCount(getDefaultParent()) == 0) {
-    				codec.decode(document.getDocumentElement(), this);
-    				setModified(false);
-    				/* comment because a diagramm could be loaded successfully even if it has no block in (just save an empty diagram)
-    				if (getModel().getChildCount(getDefaultParent()) == 0) {
-    					XcosDialogs.couldNotLoadFile();
-    				} else {
-    				*/
-    				    	setSavedFile(theFile.getAbsolutePath());
-    					setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				//}
-    				setChildrenParentDiagram();
-    			} else {
-    				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
-    				codec.decode(document.getDocumentElement(), xcosDiagram);
-    				/* same reason as above
-    				if (xcosDiagram.getModel().getChildCount(xcosDiagram.getDefaultParent()) == 0) {
-    					XcosDialogs.couldNotLoadFile();
-    				} else {
-    				*/
-    				setSavedFile(theFile.getAbsolutePath());
-    				setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    				//}
-    				setChildrenParentDiagram(xcosDiagram);
-    			}
-
-    		} else if (extension.equals("h5")) {
-    			openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+    		    if (getModel().getChildCount(getDefaultParent()) == 0) {
+    			codec.decode(document.getDocumentElement(), this);
     			setModified(false);
+    			setSavedFile(theFile.getAbsolutePath());
+    			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+    			setChildrenParentDiagram();
+    		    } else {
+    			XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+    			codec.decode(document.getDocumentElement(), xcosDiagram);
+    			setSavedFile(theFile.getAbsolutePath());
+    			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+    			setChildrenParentDiagram(xcosDiagram);
+    		    }
+    		} else if (extension.equals("h5")) {
+    		    openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+    		    setModified(false);
     		} else {
-    			XcosDialogs.couldNotLoadFile();
+    		    XcosDialogs.couldNotLoadFile();
     		}
 
     	} else {
@@ -1519,7 +1507,9 @@ public class XcosDiagram extends ScilabGraph {
      * @param message
      */
     public void info(String message) {
-	getParentTab().getInfoBar().setText(message);
+	if(getParentTab() != null && getParentTab().getInfoBar() != null) {
+	    getParentTab().getInfoBar().setText(message);
+	}
     }
 
     /**
@@ -1539,8 +1529,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
-	public void setModified(boolean modified) {
-		super.setModified(modified);
-		updateTabTitle();
-	}
+    public void setModified(boolean modified) {
+	super.setModified(modified);
+	updateTabTitle();
+    }
 }
+

@@ -36,18 +36,23 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
     }
 
     public String[] buildEntireContext() {
-	String []entireContext = new String[getContext().length + container.getParentDiagram().getContext().length];
-	for (int i = 0 ; i < container.getParentDiagram().getContext().length ; ++i) {
-	    entireContext[i] = container.getParentDiagram().getContext()[i];
+	
+	String[] parentContext = getContainer().getParentDiagram().buildEntireContext();
+	String []entireContext = new String[getContext().length + parentContext.length];
+	
+	for (int i = 0 ; i < parentContext.length ; ++i) {
+	    entireContext[i] = parentContext[i];
 	}
+
 	for (int i = 0 ; i < getContext().length ; ++i) {
-	    entireContext[i + container.getParentDiagram().getContext().length] = getContext()[i];
+	    entireContext[i + parentContext.length] = getContext()[i];
 	}
 	
 	return entireContext;
     }
     
     public void closeDiagram() {
+	getContainer().closeBlockSettings();
     }
 
     public void installSuperBlockListeners() {

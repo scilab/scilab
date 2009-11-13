@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This configuration file was written by the eclipse-cs plugin configuration editor
+    This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-Checkstyle-Configuration: scilab checkstyle
-Description:
-
+    Checkstyle-Configuration: Scilab checkstyle
+    Description: none
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
     <property name="severity" value="warning"/>
     <module name="TreeWalker">
         <module name="JavadocMethod">
-            <property name="severity" value="error"/>
+            <metadata name="com.atlassw.tools.eclipse.checkstyle.lastEnabledSeverity" value="error"/>
+            <property name="severity" value="ignore"/>
         </module>
         <module name="JavadocType">
-            <property name="severity" value="error"/>
+            <metadata name="com.atlassw.tools.eclipse.checkstyle.lastEnabledSeverity" value="error"/>
+            <property name="severity" value="ignore"/>
         </module>
         <module name="JavadocVariable">
             <property name="severity" value="info"/>
@@ -126,9 +127,4 @@ Description:
     <module name="PackageHtml"/>
     <module name="NewlineAtEndOfFile"/>
     <module name="Translation"/>
-<!--    
-Commented because we do need it (copy and paste for create bridges)
-<module name="StrictDuplicateCode">
-        <property name="severity" value="info"/>
-    </module>-->
 </module>

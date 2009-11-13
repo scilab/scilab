@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_xcosNotify.cpp"
 				>
 			</File>

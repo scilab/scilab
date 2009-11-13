@@ -34,21 +34,13 @@ public class CommentManager {
 	 */
 	
 	public synchronized void commentLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
-		boolean  mergeEditsMode = scilabDocument.getUpdateManager().getShouldMergeEdits();
-		
-		try	{
-			scilabDocument.getUpdateManager().setShouldMergeEdits(true);
-			String comment_str = "//";
-			int start          = scilabDocument.getDefaultRootElement().getElement(line_start).getStartOffset();
-			int end            = scilabDocument.getDefaultRootElement().getElement(line_end).getEndOffset();
-			Pattern pattern    = Pattern.compile("^", Pattern.MULTILINE);
-			Matcher matcher    = pattern.matcher(scilabDocument.getText(start, end-start));
-			scilabDocument.replace(start, end-start, matcher.replaceAll(comment_str), null);	
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		} finally {
-			scilabDocument.getUpdateManager().setShouldMergeEdits(mergeEditsMode);
+		boolean  mergeEditsMode = scilabDocument.getShouldMergeEdits();
+		scilabDocument.setShouldMergeEdits(true);
+		for ( int line = line_start; line <= line_end; ++line){
+			commentLine(scilabDocument, line);
 		}
+		scilabDocument.setShouldMergeEdits(mergeEditsMode);
+
 	}
 	
 	/*
@@ -108,8 +100,8 @@ public class CommentManager {
 	public synchronized void uncommentLines(ScilabStyleDocument scilabDocument, int line_start, int line_end)
 	{
 		Pattern pattern = Pattern.compile("^(\\s)*//");
-		boolean  mergeEditsMode = scilabDocument.getUpdateManager().getShouldMergeEdits();
-		scilabDocument.getUpdateManager().setShouldMergeEdits(true);
+		boolean  mergeEditsMode = scilabDocument.getShouldMergeEdits();
+		scilabDocument.setShouldMergeEdits(true);
 
 		for (int i = line_start; i <= line_end; i++) {
 			int start   = scilabDocument.getDefaultRootElement().getElement(i).getStartOffset();
@@ -127,7 +119,7 @@ public class CommentManager {
 				e.printStackTrace();
 			}
 		}
-		scilabDocument.getUpdateManager().setShouldMergeEdits(mergeEditsMode);
+		scilabDocument.setShouldMergeEdits(mergeEditsMode);
 	}
 	
 	/*

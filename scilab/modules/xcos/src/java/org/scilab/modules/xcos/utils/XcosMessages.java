@@ -70,6 +70,7 @@ public final class XcosMessages {
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");
     public static final String DETAILS = Messages.gettext("Details");
+    public static final String SHOW_PARENT = Messages.gettext("Show parent diagram");
 
     /** Simulation menu */
     public static final String SIMULATION = Messages.gettext("Simulation");
@@ -202,4 +203,7 @@ public final class XcosMessages {
     public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
+    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
+    public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
+    
 }

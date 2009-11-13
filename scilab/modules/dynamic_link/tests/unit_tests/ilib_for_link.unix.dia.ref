@@ -27,7 +27,7 @@ mputl(f1,TMP_DIR+filesep()+'fun1.c');
 //generated. 
 cur_dir = pwd();
 chdir(TMP_DIR);
-ilib_for_link('ext1c','fun1.o',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c") 
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
