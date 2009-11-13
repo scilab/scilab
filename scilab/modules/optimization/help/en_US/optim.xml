@@ -1023,8 +1023,52 @@ costf = list ( costfunction , a , b , c, d );
   </programlisting>
 
 <para>
-These coefficients are defined before the optimizer is called.
-There are directly used in the cost function.
+In complex cases, the cost function may have so many parameters, that having a 
+function which takes all arguments as inputs is not convenient.
+For example, consider the situation where the cost function needs 12 parameters.
+Then, designing a function with 14 input arguments (x, index and the 12 parameters) is 
+difficult to manage. Instead, we can use a more complex data structure to store 
+our data. In the following example, we use a tlist to store the 4 input arguments.
+This method can easily be expanded to an arbitrary number of parameters.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+function [ f , g , ind ] = costfunction ( x , ind , parameters )
+    // Get the parameters
+    a = parameters.a
+    b = parameters.b
+    c = parameters.c
+    d = parameters.d
+    f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+    g(1) = 2 * a * ( x(1) - c )
+    g(2) = 2 * b * ( x(2) - d )
+endfunction
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+// Store the parameters
+parameters = tlist ( [
+  "T_MYPARAMS"  
+  "a"
+  "b"
+  "c"
+  "d"
+  ]);
+parameters.a = a;
+parameters.b = b;
+parameters.c = c;
+parameters.d = d;
+costf = list ( costfunction , parameters );
+[ fopt , xopt ] = optim ( costf , x0 , imp = 2 )
+]]>
+  </programlisting>
+
+<para>
+In the following example, the parameters are defined before the optimizer is called.
+They are directly used in the cost function.
 </para>
 
 <programlisting role="example">
@@ -1049,6 +1093,8 @@ While the previous example perfectly works, there is a risk that
 the same variables are used by some internal function used by <literal>optim</literal>.
 In this case, the value of the parameters are not what is expected and the 
 optimization can fail or, worse, give a wrong result. 
+It is also difficult to manage such a function, which requires that all the parameters
+are defined in the calling context.
 </para>
 
 <para>
