@@ -1342,15 +1342,23 @@ g_i(x) &lt;= 0, i = 1,nbineq
   <refsection>
     <title>The cost function</title>
 
-    <para>The option -function allows to configure the cost function. The cost
-    function is used to compute the cost and the value of the nonlinear
-    inequality constraints.</para>
-
-    <para>In the more general case, the cost function is expected to have the
-    following header</para>
+    <para>
+    The option <literal>-function</literal> allows to configure the cost function. The cost
+    function is used to compute the objective function value <literal>f</literal>.  
+    If the <literal>-nbineqconst</literal> option is configured to a non-zero value, the cost function 
+    must also compute the value of the nonlinear, positive, inequality constraints <literal>c</literal>. 
+    The cost function can also take as input/output an additional 
+    argument, if the <literal>-costfargument</literal> option is configured.
+   Depending of these options, the cost function can have one of the following headers :
+    </para>
 
     <programlisting role="example"> 
-function y = myfunction(x, index, data)
+//  Without additionnal data
+   [ f , index ] = costf ( x , index )
+   [ f , c , index ] = costf ( x , index )
+//  With -costfargument
+   [ f , index , data ] = costf ( x , index , data )
+   [ f , c , index , data ] = costf ( x , index , data )
  </programlisting>
 
     <para>where</para>
@@ -1373,66 +1381,99 @@ function y = myfunction(x, index, data)
       </varlistentry>
 
       <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>the value of the cost function</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>c</term>
+
+        <listitem>
+          <para>the value of the non-linear, positive, inequality constraints</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>data</term>
 
         <listitem>
-          <para>optional, a user-defined data.</para>
-
-          <para>This argument is configured with the -costfargument
-          option.</para>
+          <para>an user-provided input/output argument</para>
         </listitem>
       </varlistentry>
 
-      <varlistentry>
-        <term>y</term>
-
-        <listitem>
-          <para>the result</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
 
-    <para>The index input parameter has the following meaning</para>
+    <para>
+    The index input parameter tells to the cost function what is expected 
+    in the output arguments. It has the following meaning
+    </para>
 
     <variablelist>
-      <varlistentry>
-        <term>index = 1 (or no index)</term>
-
-        <listitem>
-          <para>the result is the value of the cost function</para>
-        </listitem>
-      </varlistentry>
-
+    
       <varlistentry>
         <term>index = 2</term>
-
         <listitem>
-          <para>the result is the value of the non-linear inequality
-          constraints, as an array of values</para>
+          <para>compute <literal>f</literal></para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>index = 3</term>
-
+        <term>index = 5</term>
         <listitem>
-          <para>the result is an array, which content is the following. At
-          index #1, the value of the cost function. At index #2 to the end,
-          the list of values of the nonlinear inequality constraints.</para>
+          <para>compute <literal>c</literal></para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>index = 6</term>
+        <listitem>
+          <para>
+	  compute <literal>f</literal> and <literal>c</literal>
+	  </para>
+        </listitem>
+      </varlistentry>
+      
     </variablelist>
 
-    <para>In the most simple case, the cost function is expected to have the
-    following header</para>
+    <para>
+    In the most simplex case, there is no additionnal cost function argument and no nonlinear constraints.
+    In this case, the cost function is expected to have the following header
+    </para>
 
     <programlisting role="example"> 
-function y = myfunction(x)
+function [ f , index ]= myfunction ( x , index )
  </programlisting>
 
-    <para>where x is the current point and y is the value of the cost. This
-    case is associated with an unconstrained problem without any additionnal
-    parameter.</para>
+    <para>
+    The <literal>data</literal> argument is both input and output and the following paragraph 
+    explains for what reason and how it works. 
+    </para>
+    <para>
+    This feature may be used in the situation where the cost function has to update its 
+    environment from call to call. Its simplest use is to count the 
+    number of calls to the cost function, but this feature is already available directly.
+    Consider the more practical situation where the optimization requires the execution of 
+    an underlying Newton method (a chemical solver for example).
+    This Newton method requires an initial guess x0. If the initial guess
+    for this underlying Newton method is kept constant, the Newton method may 
+    have problems to converge when the current optimization point get far away from the 
+    its initial point. If the <literal>-costfargument</literal> option is provided, the 
+    initial guess for the Newton method can be updated so that it gets the 
+    value of the previous call. This way, the Newton method will have less problems to 
+    converge and the cost function evaluation may be faster.
+    </para>
+    <para>
+    We now present how the feature works.
+    Everytime the cost function is called back, the <literal>-costfargument</literal> option 
+    is passed to the cost function as an input argument. If the cost function modifies its content
+    in the output argument, the content of the <literal>-costfargument</literal> option is updated accordingly.
+    Once the optimization is performed, the user may call the <literal>neldermead_cget</literal> 
+    function and get back an updated <literal>-costfargument</literal> content.
+    </para>
+
   </refsection>
 
   <refsection>
