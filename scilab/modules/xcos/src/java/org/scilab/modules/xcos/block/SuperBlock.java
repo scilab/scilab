@@ -134,6 +134,7 @@ public class SuperBlock extends BasicBlock {
     	    child.installSuperBlockListeners();
     		child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
+    	    child.getParentTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
     	} else {
     		return false;
     	}
