@@ -463,7 +463,7 @@ return
       mdialog = x_mdialog  ;
 
       //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
-      //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
+      //** In scilab 5 we use "modules/scicos/macros/scicos_util/scicos_getvalue.sci"
       //** by Alan Layec, modified in order to accept string, etc.
 
       if MSDOS then

@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,Amplitude,exprs]=getvalue([
+    [ok,Amplitude,exprs]=scicos_getvalue([
 	'Set Square generator block parameters'],..
 	['Amplitude'],..
 	list('vec',1),exprs)

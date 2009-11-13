@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,rule,bit,scal,exprs]=getvalue(...
+    [ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue(...
         ['            Set parameters';'';'-Dataype : set the integer type';..
          '     3=int32, 4=int16, 5=int8, ...';..
          '-Bits to extract :';'     1=Upper Half';'     2=Lower Half';..

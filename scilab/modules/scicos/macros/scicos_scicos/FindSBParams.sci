@@ -22,7 +22,7 @@
 function [params,param_types]=FindSBParams(scs_m,params)
   prot = funcprot();
   funcprot(0);
-  deff('varargout=getvalue(a,b,c,d)',..
+  deff('varargout=scicos_getvalue(a,b,c,d)',..
     ['global par_types'
      'par_types=c'
      'x=1;y=x(2)'])

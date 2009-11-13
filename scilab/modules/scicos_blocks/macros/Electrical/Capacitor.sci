@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,C,v,exprs]=getvalue('Set Capacitor block parameter',..
+    [ok,C,v,exprs]=scicos_getvalue('Set Capacitor block parameter',..
     			   ['C (F)','Initial Voltage'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=C

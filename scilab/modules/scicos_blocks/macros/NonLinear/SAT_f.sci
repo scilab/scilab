@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,minp,maxp,pente,exprs]=getvalue('Set Saturation parameters',..
+    [ok,minp,maxp,pente,exprs]=scicos_getvalue('Set Saturation parameters',..
 	['Min';'Max';'Slope'],list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if maxp<=0  then

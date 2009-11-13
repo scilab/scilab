@@ -37,7 +37,7 @@ case 'set' then
   //backward compatibility
   if size(exprs,'*')<2 then exprs(2)='0';end
   while %t do
-    [ok,a,inh,exprs]=getvalue('Set 1/z block parameters',..
+    [ok,a,inh,exprs]=scicos_getvalue('Set 1/z block parameters',..
 	['initial condition';'Inherit (no:0, yes:1)'],...
 			      list('mat',[-1 -2],'vec',-1),exprs)
     if ~ok then break,end

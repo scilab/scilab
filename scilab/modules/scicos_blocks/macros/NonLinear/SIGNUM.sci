@@ -36,7 +36,7 @@ function [x,y,typ]=SIGNUM(job,arg1,arg2)
     model=arg1.model;
     while %t do
       [ok,zcr,exprs]=..
-	  getvalue('Set block parameters',..
+	  scicos_getvalue('Set block parameters',..
 		   ['use zero_crossing (1: yes) (0:no)'],..
 		   list('vec',1),exprs)
       if ~ok then break,end

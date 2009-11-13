@@ -186,7 +186,7 @@ function [x,y,typ]=GOTO(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,tag,tagvis,exprs]=getvalue('Set parameters',..
+      [ok,tag,tagvis,exprs]=scicos_getvalue('Set parameters',..
 		['Tag';'Tag Visibility(1=Local 2=scoped 3= global)'],..
 		    list('str',-1,'vec',1),exprs)
       if ~ok then break,end

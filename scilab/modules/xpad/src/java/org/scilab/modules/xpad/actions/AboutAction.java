@@ -55,10 +55,9 @@ public final class AboutAction extends DefaultAction {
 	 */
 	public void doAction() {
 		String[] contents = {XpadMessages.VERSION,
-				XpadMessages.COPYRIGHT,
-				XpadMessages.AUTHORS, 
-				XpadMessages.ALLRIGHTSRESERVED, 
-				XpadMessages.LICENSE};
+				"",
+				XpadMessages.DIGITEO,
+				XpadMessages.COPYRIGHT};
 
 		ScilabAboutBox.createAboutBox(XpadMessages.ABOUT, contents, null, null);
 	}

@@ -7,9 +7,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-thispath = get_absolute_file_path("inverted_pendulum.dem.sce");
+exec("SCI/modules/xcos/demos/setw.sci");
+xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
 
-exec(thispath+"/setw.sci");
-
-xcos(thispath+"/Inverted_pendulum.xcos");
-clear thispath;

@@ -45,7 +45,7 @@ case 'set' then
   //for backward compatibility
   if size(exprs,'*')>5 then exprs(6)=[],end
   while %t do
-    [ok,tmask1,outmask,fname1,frmt1,N,exprs]=getvalue(..
+    [ok,tmask1,outmask,fname1,frmt1,N,exprs]=scicos_getvalue(..
 	['Set RFILE block parameters';
 	 'Read is done on';
 	 '  -  a binary file if no format given';

@@ -23,7 +23,7 @@ function wpar=do_window(wpar)
   wd=wpar.wpar;w=wd(1);h=wd(2);
 
   while %t do
-    [ok,h,w]=getvalue('Set parameters',[
+    [ok,h,w]=scicos_getvalue('Set parameters',[
 	'Window height';
 	'Window width'],list('vec',1,'vec',1),string([h;w]))
     if ~ok then break,end

@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')==14 then exprs(9)=[],end //compatiblity
   while %t do
-    [ok,typ,flag,a,b,seed_c,exprs]=getvalue([
+    [ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue([
 	'Set Random generator block parameters';
 	'flag = 0 : Uniform distribution A is min and A+B max';
 	'flag = 1 : Normal distribution A is mean and B deviation';
