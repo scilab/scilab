@@ -85,6 +85,8 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5339 fixed - some macros had multiple definitions.
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
