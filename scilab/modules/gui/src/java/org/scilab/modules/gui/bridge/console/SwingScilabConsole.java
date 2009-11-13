@@ -59,90 +59,67 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public SwingScilabConsole() {
 		super(ConfigManager.getUserConfigFile());
-		
-		MouseListener contextMenu = new MouseListener() {
 
-			public void mouseClicked(MouseEvent arg0) {
-				if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) || arg0.isPopupTrigger()) {
-					SwingScilabContextMenu menu = new SwingScilabContextMenu();
+		SwingScilabContextMenu menu = new SwingScilabContextMenu();
 					
-					SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
-					cutMenu.setText(Messages.gettext("Cut"));
-					cutMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
-							ScilabCallBack.JAVA));
-					cutMenu.setMnemonic('U');
+		SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
+		cutMenu.setText(Messages.gettext("Cut"));
+		cutMenu.setCallback(ScilabCallBack.createCallback(
+								"org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
+								ScilabCallBack.JAVA));
+		cutMenu.setMnemonic('U');
 					
-					SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
-					copyMenu.setText(Messages.gettext("Copy"));
-					copyMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
-							ScilabCallBack.JAVA));
-					copyMenu.setMnemonic('C');
+		SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
+		copyMenu.setText(Messages.gettext("Copy"));
+		copyMenu.setCallback(ScilabCallBack.createCallback(
+								 "org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
+								 ScilabCallBack.JAVA));
+		copyMenu.setMnemonic('C');
 					
-					SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
-					pasteMenu.setText(Messages.gettext("Paste"));
-					pasteMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
-							ScilabCallBack.JAVA));
-					pasteMenu.setMnemonic('P');
+		SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
+		pasteMenu.setText(Messages.gettext("Paste"));
+		pasteMenu.setCallback(ScilabCallBack.createCallback(
+								  "org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
+								  ScilabCallBack.JAVA));
+		pasteMenu.setMnemonic('P');
 					
-					SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
-					clearHistoryMenu.setText(Messages.gettext("Clear History"));
-					clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory", 
-							ScilabCallBack.JAVA));
-					clearHistoryMenu.setMnemonic('H');
+		SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
+		clearHistoryMenu.setText(Messages.gettext("Clear History"));
+		clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
+										 "org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory", 
+										 ScilabCallBack.JAVA));
+		clearHistoryMenu.setMnemonic('H');
 
-					SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
-					clearMenu.setText(Messages.gettext("Clear Console"));
-					clearMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.clear",
-							ScilabCallBack.JAVA));
-					clearMenu.setMnemonic('O');
+		SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
+		clearMenu.setText(Messages.gettext("Clear Console"));
+		clearMenu.setCallback(ScilabCallBack.createCallback(
+								  "org.scilab.modules.gui.bridge.CallScilabBridge.clear",
+								  ScilabCallBack.JAVA));
+		clearMenu.setMnemonic('O');
 
-					SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
-					selectMenu.setText(Messages.gettext("Select All"));
-					selectMenu.setCallback(ScilabCallBack.createCallback(
-							"org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents", 
-							ScilabCallBack.JAVA));
-					selectMenu.setMnemonic('S');
+		SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
+		selectMenu.setText(Messages.gettext("Select All"));
+		selectMenu.setCallback(ScilabCallBack.createCallback(
+								   "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents", 
+								   ScilabCallBack.JAVA));
+		selectMenu.setMnemonic('S');
 
-					menu.add(cutMenu);
-					menu.add(copyMenu);
-					menu.add(pasteMenu);
+		menu.add(cutMenu);
+		menu.add(copyMenu);
+		menu.add(pasteMenu);
 
-					menu.addSeparator();
+		menu.addSeparator();
 
-					menu.add(clearHistoryMenu);
-					menu.add(clearMenu);
+		menu.add(clearHistoryMenu);
+		menu.add(clearMenu);
 
-					menu.addSeparator();
+		menu.addSeparator();
 					
-					menu.add(selectMenu);
+		menu.add(selectMenu);
 
-					menu.setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-					menu.setVisible(true);
-				}
-			}
-
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			public void mouseExited(MouseEvent arg0) {
-			}
-
-			public void mousePressed(MouseEvent arg0) {
-			}
-
-			public void mouseReleased(MouseEvent arg0) {
-			}
-			
-		};
-		
-		((JTextPane) getConfiguration().getOutputView()).addMouseListener(contextMenu);
-		((JTextPane) getConfiguration().getInputCommandView()).addMouseListener(contextMenu);
-		((JPanel) getConfiguration().getPromptView()).addMouseListener(contextMenu);
+		((JTextPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
+		((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);
+		((JPanel) getConfiguration().getPromptView()).setComponentPopupMenu(menu);
 		
 		((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
 	}
