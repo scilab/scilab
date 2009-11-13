@@ -18,6 +18,7 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "freeArrayOfString.h"
+#include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/

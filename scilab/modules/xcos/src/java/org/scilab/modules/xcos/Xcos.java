@@ -123,6 +123,9 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static List<MenuItem> stopMenuItems = new ArrayList<MenuItem>();
 	private static List<PushButton> startPushButtons = new ArrayList<PushButton>();
 	private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
+	
+	private static PushButton undoPushButton ;
+	private static PushButton redoPushButton ;
 	private static boolean startEnabled  = true;
 
 	/** Palette creation */
@@ -400,8 +403,14 @@ public class Xcos extends SwingScilabTab implements Tab {
     	toolBar.addSeparator();
     	
     	// UNDO / REDO
-    	toolBar.add(UndoAction.undoButton(scilabGraph));
-    	toolBar.add(RedoAction.redoButton(scilabGraph));
+    	// we disable undo/redo buttons at the beginning because it's irrelevant to undo/redo
+    	// when nothing has been done
+    	undoPushButton = UndoAction.undoButton(scilabGraph);
+    	redoPushButton = RedoAction.redoButton(scilabGraph);
+    	undoPushButton.setEnabled(false);
+    	redoPushButton.setEnabled(false);
+    	toolBar.add(undoPushButton);
+    	toolBar.add(redoPushButton);
 	
     	toolBar.addSeparator();
 
@@ -620,6 +629,14 @@ public class Xcos extends SwingScilabTab implements Tab {
 	for (int i = 0; i < allDiagrams.size(); ++i) {
 	    allDiagrams.get(i).warnCellByUID(UID, message);
 	}
+    }
+    
+    public void setEnabledUndo (boolean status){
+    	undoPushButton.setEnabled(status);
+    }
+
+    public void setEnabledRedo (boolean status){
+    	redoPushButton.setEnabled(status);
     }
     
     /**

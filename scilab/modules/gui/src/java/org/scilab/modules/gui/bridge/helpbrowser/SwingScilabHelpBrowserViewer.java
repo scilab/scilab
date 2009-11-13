@@ -16,10 +16,8 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Locale;
 
 import javax.help.DefaultHelpHistoryModel;
-import javax.help.HelpUtilities;
 import javax.help.JHelpContentViewer;
 import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.JComponent;
@@ -28,6 +26,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.localization.Messages;
 
 
@@ -40,6 +39,7 @@ import org.scilab.modules.localization.Messages;
  *  - Edit in the text editor
  *  - Copy
  *  - Select all
+ *  - History
  */
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
@@ -52,32 +52,32 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 	 * to the methods of this object
 	 */
 	private javax.swing.JEditorPane accessibleHtml;
-	
+
 	public SwingScilabHelpBrowserViewer(JHelpContentViewer x) {
-        super(x);
-    }
+		super(x);
+	}
 
-      public static javax.swing.plaf.ComponentUI createUI(JComponent x) {
-        return new SwingScilabHelpBrowserViewer((JHelpContentViewer) x);
-    }
+	public static javax.swing.plaf.ComponentUI createUI(JComponent x) {
+		return new SwingScilabHelpBrowserViewer((JHelpContentViewer) x);
+	}
 
-    /**
-     * Create the UI interface
-     * @see javax.help.plaf.basic.BasicContentViewerUI#installUI(javax.swing.JComponent)
-     * @param c The component
-     */
-    public void installUI(JComponent c) {
+	/**
+	 * Create the UI interface
+	 * @see javax.help.plaf.basic.BasicContentViewerUI#installUI(javax.swing.JComponent)
+	 * @param c The component
+	 */
+	public void installUI(JComponent c) {
 		super.installUI(c);
 		this.retrievePrivateFieldFromBasicContentViewerUI();
 		this.createPopupMenu(c);
 	}
 
-    
+
 	/**
 	 * Retrieve the field "html" from BasicContentViewerUI and change
 	 * permission (it is private by default) 
 	 */
-    private void retrievePrivateFieldFromBasicContentViewerUI() {
+	private void retrievePrivateFieldFromBasicContentViewerUI() {
 		Field privateField = null;
 		try {
 			privateField = BasicContentViewerUI.class.getDeclaredField("html");
@@ -91,7 +91,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 			System.err.println("Please submit a bug report: http://bugzilla.scilab.org");
 			e.printStackTrace();
 		} 
-		
+
 		try {
 			this.accessibleHtml = (javax.swing.JEditorPane) privateField.get(this);
 		} catch (IllegalArgumentException e) {
@@ -101,122 +101,132 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 			System.err.println("Illegal access in the retrieval of the html component of Javahelp");
 			e.printStackTrace();
 		}
-    }    
-    
-    /**
-     * Create the popup menu on the help
-     * @param c The graphic component
-     */
+	}    
+
+	/**
+	 * Create the popup menu on the help
+	 * @param c The graphic component
+	 */
 	private void createPopupMenu(JComponent c) {
 		final JPopupMenu popup = new JPopupMenu();
 
+		JMenuItem menuItem = null; 
+
 		/* Execute into Scilab */
 		ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
-				public void actionPerformed(ActionEvent actionEvent) {
-					String selection = accessibleHtml.getSelectedText();
-					if (selection == null) {
-						/* @TODO: check if we can instead write in the info bar of the help */
-						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
-					} else {
-						ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
-					}
+			public void actionPerformed(ActionEvent actionEvent) {
+				String selection = accessibleHtml.getSelectedText();
+				if (selection == null) {
+					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+				} else {
+					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
 				}
-			};
-
-		JMenuItem menuItem = new JMenuItem(Messages.gettext("Execute into Scilab"));
+			}
+		};
+		menuItem = new JMenuItem(Messages.gettext("Execute into Scilab"));
 		menuItem.addActionListener(actionListenerExecuteIntoScilab);
+		if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
+			menuItem.setEnabled(false);
+		}
 		popup.add(menuItem);
-		
+
+
 		/* Edit in the Scilab Text Editor */
 		ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
-				public void actionPerformed(ActionEvent actionEvent) {
-					String selection = accessibleHtml.getSelectedText();
-					if (selection == null) {
-						/* @TODO: check if we can instead write in the info bar of the help */
-						ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("No text selected"));
-					} else {
-			            try {
-			            	/* Dynamic load of the Xpad class. 
-			            	 * This is done to avoid a cyclic dependency on gui <=> xpad
-			            	 */
-							Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
-						    Class arguments[] = new Class[] { String.class };
-							Method method = xpadClass.getMethod("xpadWithText",arguments);
-						    method.invoke(xpadClass, new Object[]{selection});
-							
-						} catch (ClassNotFoundException e) {
-							System.err.println("Could not find Xpad class");
-							e.printStackTrace();
-						} catch (SecurityException e) {
-							System.err.println("Security error: Could not access to Xpad class");
-							e.printStackTrace();
-						} catch (NoSuchMethodException e) {
-							System.err.println("Could not access to xpathWithText method from object Xpad");
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IllegalArgumentException e) {
-							System.err.println("Wrong argument used with xpathWithText method from object Xpad");
-							e.printStackTrace();
-						} catch (IllegalAccessException e) {
-							System.err.println("Illegal access with xpathWithText method from object Xpad");
-							e.printStackTrace();
-						} catch (InvocationTargetException e) {
-							System.err.println("Error of invocation with xpathWithText method from object Xpad");
-							e.printStackTrace();
-						}
+			public void actionPerformed(ActionEvent actionEvent) {
+				String selection = accessibleHtml.getSelectedText();
+				if (selection == null) {
+					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+				} else {
+					try {
+						/* Dynamic load of the Xpad class. 
+						 * This is done to avoid a cyclic dependency on gui <=> xpad
+						 */
+						Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
+						Class arguments[] = new Class[] { String.class };
+						Method method = xpadClass.getMethod("xpadWithText", arguments);
+						method.invoke(xpadClass, new Object[]{selection});
+
+					} catch (ClassNotFoundException e) {
+						System.err.println("Could not find Xpad class");
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						System.err.println("Security error: Could not access to Xpad class");
+						e.printStackTrace();
+					} catch (NoSuchMethodException e) {
+						System.err.println("Could not access to xpathWithText method from object Xpad");
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						System.err.println("Wrong argument used with xpathWithText method from object Xpad");
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						System.err.println("Illegal access with xpathWithText method from object Xpad");
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						System.err.println("Error of invocation with xpathWithText method from object Xpad");
+						e.printStackTrace();
 					}
 				}
-			};
+			}
+		};
+
+
 
 		menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
+		try {
+			Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
+		} catch (ClassNotFoundException e) {
+			/* Xpad not available */
+			menuItem.setEnabled(false);
+		}
 		menuItem.addActionListener(actionListenerLoadIntoTextEditor);
 		popup.add(menuItem);
 		popup.addSeparator();
 
 		/* Back in the history*/
 		ActionListener actionListenerBackHistory = new ActionListener() {
-				public void actionPerformed(ActionEvent actionEvent) {
-					DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
-					/* Not at the first position */
-					if (history.getIndex() > 0) {
-						SwingScilabHelpBrowser.getHelpHistory().goBack();
-					}
+			public void actionPerformed(ActionEvent actionEvent) {
+				DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+				/* Not at the first position */
+				if (history.getIndex() > 0) {
+					SwingScilabHelpBrowser.getHelpHistory().goBack();
 				}
-			};
+			}
+		};
 
 		menuItem = new JMenuItem(Messages.gettext("Back"));
 		menuItem.addActionListener(actionListenerBackHistory);
 		popup.add(menuItem);
-		
+
 		/* Forward in the history*/
 		ActionListener actionListenerForwardHistory = new ActionListener() {
-				public void actionPerformed(ActionEvent actionEvent) {
-					DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
-					/* Not at the last position */
-					if (history.getHistory().size() != (history.getIndex() + 1)) { 
-						SwingScilabHelpBrowser.getHelpHistory().goForward();
-					}
+			public void actionPerformed(ActionEvent actionEvent) {
+				DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+				/* Not at the last position */
+				if (history.getHistory().size() != (history.getIndex() + 1)) { 
+					SwingScilabHelpBrowser.getHelpHistory().goForward();
 				}
-			};
+			}
+		};
 
 		menuItem = new JMenuItem(Messages.gettext("Forward"));
 		menuItem.addActionListener(actionListenerForwardHistory);
 		popup.add(menuItem);
 		popup.addSeparator();
-		
+
 		/* Copy */
-        menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
-        menuItem.setText(Messages.gettext("Copy"));
+		menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
+		menuItem.setText(Messages.gettext("Copy"));
 		popup.add(menuItem); 
 		popup.addSeparator();
 
 
 		/* Select all */
 		ActionListener actionListenerSelectAll = new ActionListener() {
-				public void actionPerformed(ActionEvent actionEvent) {
-					accessibleHtml.selectAll();
-				}
-			};
+			public void actionPerformed(ActionEvent actionEvent) {
+				accessibleHtml.selectAll();
+			}
+		};
 		menuItem = new JMenuItem("Select All");
 		menuItem.addActionListener(actionListenerSelectAll);
 		popup.add(menuItem);

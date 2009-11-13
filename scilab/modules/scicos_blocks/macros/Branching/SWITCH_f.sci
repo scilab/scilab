@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;ipar=model.ipar
   while %t do
-    [ok,nin,z0,exprs]=getvalue('Set switch parameters',..
+    [ok,nin,z0,exprs]=scicos_getvalue('Set switch parameters',..
 	['number of inputs';'connected input'],..
 	list('vec',1,'vec',1),exprs)
     if ~ok then break,end

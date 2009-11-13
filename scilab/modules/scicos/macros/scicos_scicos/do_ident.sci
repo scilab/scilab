@@ -60,7 +60,7 @@ function scs_m = do_ident(scs_m)
     //** Use a dialog box to acquire/modify the id string
     texte_1 = "Set Block identification" ;
     texte_2 = "ID"                       ;
-    [ok, identification] = getvalue(texte_1, texte_2, list('str', 1), identification) ;
+    [ok, identification] = scicos_getvalue(texte_1, texte_2, list('str', 1), identification) ;
 
     if ok then
       objet.graphics.id = stripblanks(identification); //** update the identification structure
@@ -83,7 +83,7 @@ function scs_m = do_ident(scs_m)
     //** Use a dialog box to acquire/modify the id string
     texte_1 = "Set link Identification" ;
     texte_2 = "ID"                      ;
-    [ok, identification] = getvalue(texte_1, texte_2, list('str', 1),identification) ;
+    [ok, identification] = scicos_getvalue(texte_1, texte_2, list('str', 1),identification) ;
     //
     if ok then
       identification = stripblanks(identification)  ;

@@ -36,7 +36,7 @@ case 'set' then
   exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=getvalue(..
+    [ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Bounds Vector X (-1 for standard)';
 	'Bounds Vector Y (-1 for standard)';

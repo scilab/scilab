@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,a,inh,exprs]=getvalue('Set memory block parameters',..
+    [ok,a,inh,exprs]=scicos_getvalue('Set memory block parameters',..
 	['initial condition';'Inherit (1: no, 0: yes)'],list('vec',-1,'vec',1),exprs)
     if ~ok then break,end
     if inh==0 then inh=[]; else inh=1;end

@@ -35,7 +35,7 @@ function [x,y,typ]=TKSCALE(job,arg1,arg2)
     x=arg1;
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
-    [ok,a,b,f,exprs]=getvalue('Set scale block parameters',..
+    [ok,a,b,f,exprs]=scicos_getvalue('Set scale block parameters',..
         ['Min value';'Max value';'Normalization'],..
         list('vec',1,'vec',1,'vec',1),exprs)
     // tk widget returns a scalar, the value is divided by

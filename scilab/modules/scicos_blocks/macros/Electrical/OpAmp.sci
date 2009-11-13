@@ -35,7 +35,7 @@ function [x,y,typ]=OpAmp(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %f do
-     [ok,OLGain,SatH,SatL,exprs]=getvalue('Set the Operational Amplifier parameters',..
+     [ok,OLGain,SatH,SatL,exprs]=scicos_getvalue('Set the Operational Amplifier parameters',..
       ['Open Loop Gain';'Positive saturation voltage';'Negative saturation voltage'],..
       list('vec',1,'vec',1,'vec',1),exprs);
     if ~ok then break,end

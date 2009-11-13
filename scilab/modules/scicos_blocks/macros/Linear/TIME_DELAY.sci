@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;nin=model.in(1)
  
    while %t do
-    [ok,T,init,N,exprs]=getvalue('Set delay parameters',..
+    [ok,T,init,N,exprs]=scicos_getvalue('Set delay parameters',..
      	['Delay';'initial input';'Buffer size'],..
 	list('vec',1,'vec',1,'vec',1),..
 	exprs);

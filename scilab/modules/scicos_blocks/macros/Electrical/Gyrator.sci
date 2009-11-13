@@ -39,7 +39,7 @@ case 'set' then
 x=arg1
 exprs=x.graphics.exprs
 while %t do
-  [ok,G1,G2,exprs]=getvalue(["Set Gyrator block parameters:";"";"G1: Gyration conductance";"G2: Gyration conductance"],["G1";"G2"],list("vec",1,"vec",1),exprs)
+  [ok,G1,G2,exprs]=scicos_getvalue(["Set Gyrator block parameters:";"";"G1: Gyration conductance";"G2: Gyration conductance"],["G1";"G2"],list("vec",1,"vec",1),exprs)
   if ~ok then break,end
   x.model.equations.parameters(2)=list(G1,G2)
   x.graphics.exprs=exprs

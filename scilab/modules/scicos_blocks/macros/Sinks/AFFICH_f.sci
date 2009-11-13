@@ -55,7 +55,7 @@ case "set" then
   model.dstate = [0;-1;0;0;1;1;0] ; //** set the initial value of "z" and the associated "nz"
 
   while %t do
-    [ok,font,fontsize,colr,nt,nd,herit,exprs] = getvalue(..
+    [ok,font,fontsize,colr,nt,nd,herit,exprs] = scicos_getvalue(..
 	'Set  parameters',..
 	["Font number";
 	 "Font size";

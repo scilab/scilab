@@ -26,7 +26,7 @@ public class ColorizationManager {
 	private int lineStartPosition;
 	private int lineEndPosition;
 	private int currentLine;
-	private final int BOOLS = 0;
+	private final int VARIABLES = 0;
 	private final int COMMANDS = 1;
 	private final int COMMENTS = 2;
 	private final int FUNCTIONS = 3;
@@ -113,13 +113,13 @@ public class ColorizationManager {
 			scilabDocument.disableUndoManager();
 			resetStyle(scilabDocument, lineStartPosition, lineEndPosition);
 			try {
-				applyStyle(scilabDocument, boundaries_list.get(BOOLS), scilabDocument.getStyle("Bool"));
-				applyStyle(scilabDocument, boundaries_list.get(COMMANDS), scilabDocument.getStyle("Command"));
-				applyStyle(scilabDocument, boundaries_list.get(FUNCTIONS), scilabDocument.getStyle("Function"));
-				applyStyle(scilabDocument, boundaries_list.get(MACROS), scilabDocument.getStyle("Macro"));
-				applyStyle(scilabDocument, boundaries_list.get(OPERATORS), scilabDocument.getStyle("Operator"));
-				applyStyle(scilabDocument, boundaries_list.get(QUOTATIONS), scilabDocument.getStyle("String"));
-				applyStyle(scilabDocument, boundaries_list.get(COMMENTS), scilabDocument.getStyle("Comment"));
+				if(applyStyle(scilabDocument, boundaries_list.get(VARIABLES), scilabDocument.getStyle("Variable")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(COMMANDS), scilabDocument.getStyle("Command")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(FUNCTIONS), scilabDocument.getStyle("Function")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(MACROS), scilabDocument.getStyle("Macro")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(OPERATORS), scilabDocument.getStyle("Operator")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(QUOTATIONS), scilabDocument.getStyle("String")) == false){ return false;}
+				if(applyStyle(scilabDocument, boundaries_list.get(COMMENTS), scilabDocument.getStyle("Comment")) == false){ return false;}
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			} finally {
@@ -138,10 +138,14 @@ public class ColorizationManager {
 		scilabDocument.setCharacterAttributes(line_start, line_end-line_start, scilabDocument.getStyle("Default"), false);
 	}
 	
-	private void applyStyle(ScilabStyleDocument scilabDocument, ArrayList<Integer> boundaries, Style style) throws BadLocationException {
-		for (int i = 0; i < boundaries.size(); i = i + 2) {
-			scilabDocument.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
+	private boolean  applyStyle(ScilabStyleDocument scilabDocument, ArrayList<Integer> boundaries, Style style) throws BadLocationException {
+		if(style != null){
+			for (int i = 0; i < boundaries.size(); i = i + 2) {
+				scilabDocument.setCharacterAttributes(boundaries.get(i), boundaries.get(i+1)-boundaries.get(i), style, false);
+			}
+			return true;
 		}
+		return false;
 	}
 
 	public class ColorUpdater implements Runnable {

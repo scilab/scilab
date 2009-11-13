@@ -63,7 +63,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
       sz       = graphics.sz   ;
       orig     = graphics.orig ;
 
-      [ok,w,h] = getvalue('Set Block sizes',['width';'height'],..
+      [ok,w,h] = scicos_getvalue('Set Block sizes',['width';'height'],..
 	  	           list('vec',1,'vec',1),string(sz(:)))
       //** in case of valid (w,h)
       if ok  then
@@ -83,7 +83,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
       Thick = pos(1) ;
       Type  = pos(2) ;
       //** open a dialog box to edit
-      [ok,Thick,Type] = getvalue('Link parameters',['Thickness';'Type'],..
+      [ok,Thick,Type] = scicos_getvalue('Link parameters',['Thickness';'Type'],..
 			          list('vec','1','vec',1),[string(Thick);string(Type)])
       if ok then
 	edited = or(scs_m.objs(K).thick<>[Thick,Type]) ; //** set flag if the parm are edited

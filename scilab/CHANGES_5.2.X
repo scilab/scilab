@@ -11,6 +11,15 @@ Text editor:
 
 * Refactoring of some large part of the source code
 
+Help browser:
+=============
+
+* Thanks to a right button click, a popup menu shows the following features:
+- Execute in Scilab
+- Edit in the text editor
+- Copy
+- Select all
+- History
 
 Localization:
 =============
@@ -31,25 +40,26 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5325 fixed - Wrong default path on FileChooser
+* bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
-* bug 5111 fixed - Xcos : "Save As" default path is the current file path
-
-* bug 4670 fixed - ilib_build examples updated with api_scilab.
-
-* bug 5312 fixed - Xcos : adding 'Compile' informations
-
-* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
+* bug 3593 fixed - macros to read and write csv file format updated.
 
 * bug 4401 fixed - isnum returned wrong values.
 
-* bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
+* bug 4565 fixed - getvalue macro is definied two times.
 
-* bug 4844 fixed - The help page for the deletefile function did not specify what is the meaning of the output variable.
+* bug 4670 fixed - ilib_build examples updated with api_scilab.
+
+* bug 4844 fixed - The help page for the deletefile function did not specify 
+                   what is the meaning of the output variable.
+
+* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
+
+* bug 5111 fixed - Xcos : "Save As" default path is the current file path
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -59,31 +69,44 @@ Bug fixes:
 
 * bug 5235 fixed - Error message added when launching Scicos
 
+* bug 5237 fixed - ATOMS : If the load of an ATOMS toolbox produces an error.
+                   The error is now catched.
+
 * bug 5251 fixed - getversion help page updated.
 
 * bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
 
 * bug 5259 fixed - root_properties help page displayed mis-encoded characters.
 
-* bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
+* bug 5263 fixed - diary returned incorrect path for automatically numbered
+                   filenames.
 
 * bug 5271 fixed - ATOMS GUI : Frames title was not emphasized
 
-* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
+                   settings in Visual Studio.
 
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
 
-* bug 5292 fixed -  There was a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
+* bug 5292 fixed - There was a conflict between bool and scilab header mex.h
+                   (with Visual Studio and mex files)
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
-* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
+* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
+                   of the cost function.
 
 * bug 5308 fixed - editor did not check input argument type.
+
+* bug 5312 fixed - Xcos : adding 'Compile' informations
+
+* bug 5325 fixed - Wrong default path on FileChooser.
 
 * bug 5326 fixed - graphic_export module was not loaded dynamically.
 
 * bug 5330 fixed - "help str1 str2" returned a error.
+
+* bug 5339 fixed - some macros had multiple definitions.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================

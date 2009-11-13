@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,tpe,mod,exprs]=getvalue('Set RICC Block',['Type (1=Cont  2=Disc)';'Model(1=Schr  2=sign(cont) inv(disc))'],list('vec',1,'vec',1),label)
+    [ok,tpe,mod,exprs]=scicos_getvalue('Set RICC Block',['Type (1=Cont  2=Disc)';'Model(1=Schr  2=sign(cont) inv(disc))'],list('vec',1,'vec',1),label)
     if ~ok then break,end
     in=[model.in model.in2];
     out=[model.out model.out2];

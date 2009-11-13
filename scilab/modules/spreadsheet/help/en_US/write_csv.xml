@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="write_csv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>write_csv</refname>
+
+    <refpurpose>Read comma-separated value file</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>write_csv(M, filename)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>a character string. The file path.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>a matrix of strings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>write_csv(M, filename) writes matrix M into filename as
+    comma-separated values. The filename input is a string.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// save a matrix as csv file format
+A = [1:10] * 0.1;
+write_csv(A, TMPDIR + '/datas.csv');
+
+// read as text
+mgetl(TMPDIR + '/datas.csv')
+
+r = read_csv(TMPDIR + '/datas.csv',ascii(9));
+r = strsubst(r,',','.');
+evstr(r)</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="read_csv">read_csv</link></member>
+
+      <member><link linkend="evstr">evstr</link></member>
+
+      <member><link linkend="mgetl">mgetl</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Allan CORNET</term>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

@@ -78,7 +78,7 @@ case 'set' then
 
  while %t do
 //     [ok,Tin,Tintype,Tout,Touttype,Tparam,Tparamv,Tfunam,lab]=..
-//         getvalue('Set Modelica generic block parameters',..
+//         scicos_getvalue('Set Modelica generic block parameters',..
 //         ['Input variables:       ';..
 //          'Input variables types: ';..
 //          'Output variables:      ';..
@@ -90,7 +90,7 @@ case 'set' then
 
    //warning here lab_1 is a list
    [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1]=..
-       getvalue('Set Modelica generic block parameters',..
+       scicos_getvalue('Set Modelica generic block parameters',..
        ['Input variables:       ';..
         'Input variables types: ';..
         'Output variables:      ';..
@@ -300,7 +300,7 @@ case 'set' then
        lab_2=lab_2_tmp
      end
 
-     //generate lhs, label and rhs txt for getvalue
+     //generate lhs, label and rhs txt for scicos_getvalue
      if Tparam_sz<>0 then //if param
        lhs_txt="" //lhs txt
        lab_txt="" //label txt
@@ -320,9 +320,9 @@ case 'set' then
        lab_txt=part(lab_txt,1:length(lab_txt)-1)
        rhs_txt=part(rhs_txt,1:length(rhs_txt)-1)
 
-       //generate main getvalue cmd
+       //generate main scicos_getvalue cmd
        //warning here lab_2 is a list in input and a string in output
-       getvalue_txt = '[ok,'+lhs_txt+',lab_2]=getvalue(''Set parameters values'',['+..
+       getvalue_txt = '[ok,'+lhs_txt+',lab_2]=scicos_getvalue(''Set parameters values'',['+..
                       lab_txt+'],'+..
                       'list('+rhs_txt+'),lab_2)'
 

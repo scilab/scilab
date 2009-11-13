@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,temps,in,fi,exprs]=getvalue('Set Saturation parameters',..
+    [ok,temps,in,fi,exprs]=scicos_getvalue('Set Saturation parameters',..
 	['Step time';'Initial value';'Final value'],list('vec',1,'vec',-1,'vec',-1),exprs)
     if ~ok then break,end
     in=in(:);fi=fi(:);

@@ -35,7 +35,7 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,ot,rule,thra,nzz,exprs]=getvalue('Set parameters',..
+      [ok,ot,rule,thra,nzz,exprs]=scicos_getvalue('Set parameters',..
 		['Datatype (1=real double  2=complex 3=int32 ...)';'pass first input if: u2>=a (0), u2>a (1), u2~=a (2)';..
 		    'threshold a';'use zero crossing: yes (1), no (0)'],..
 		    list('vec',1,'vec',1,'vec',1,'vec',1),exprs)

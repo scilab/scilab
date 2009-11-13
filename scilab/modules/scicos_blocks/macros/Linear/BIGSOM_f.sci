@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,sgn,exprs]=getvalue('Set sum block parameters',..
+    [ok,sgn,exprs]=scicos_getvalue('Set sum block parameters',..
     			   'Inputs ports signs/gain',list('vec',-1),exprs)
     if ~ok then
       break

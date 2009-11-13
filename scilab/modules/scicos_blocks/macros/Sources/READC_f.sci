@@ -42,7 +42,7 @@ case 'set' then
   fname=exprs(3)
   frmt=exprs(4)
   while %t do
-    [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=getvalue(..
+    [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue(..
 	['Set READC block parameters';
 	 'Read is done on a binary file'],..
 	['Time record selection';

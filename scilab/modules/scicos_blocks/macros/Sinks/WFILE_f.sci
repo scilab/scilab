@@ -39,7 +39,7 @@ case 'set' then
   fname=exprs(2)
   frmt=exprs(3)
   while %t do
-    [ok,in,fname1,frmt1,N,exprs]=getvalue(..
+    [ok,in,fname1,frmt1,N,exprs]=scicos_getvalue(..
 	'Set WFILE block parameters',..
 	['Input size';
 	'Output file name';
