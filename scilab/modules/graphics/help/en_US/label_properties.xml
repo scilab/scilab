@@ -134,7 +134,7 @@
       <varlistentry>
         <term>auto_rotation: </term>
         <listitem>
-          <para>If <literal>"on"</literal>, Scilab computes automaticaly the best angle
+          <para>If <literal>"on"</literal>, Scilab computes automatically the best angle
         to turn the label for the display. If <literal>"off"</literal>, the label
         can be manually turned with the <literal>font_angle</literal> property.</para>
         </listitem>
@@ -151,7 +151,7 @@
       <varlistentry>
         <term>auto_position: </term>
         <listitem>
-          <para>If <literal>"on"</literal>, Scilab computes automaticaly the best
+          <para>If <literal>"on"</literal>, Scilab computes automatically the best
         position in the graphic window for the display. If <literal>"off"</literal>,
         the label can be manually places with the <literal>position</literal>
         property.</para>

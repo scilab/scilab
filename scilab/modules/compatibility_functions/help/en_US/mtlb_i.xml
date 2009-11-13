@@ -24,7 +24,7 @@
     <itemizedlist>
       <listitem>
         <para>
-	When inserting a matrix in a variable: Matlab automaticaly adjusts output
+	When inserting a matrix in a variable: Matlab automatically adjusts output
 	variable to fit with matrix to insert but not Scilab.
 	For example, with A=1, A([1,2,3,4])=[1,2;3,4]) returns an error in Scilab
 	while in Matlab we get A=[1,2,3,4]. If values miss comparing to indexes,
