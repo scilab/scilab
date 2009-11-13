@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho,exprs]=getvalue('Parametres de la bache', ..
+    [ok,Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho,exprs]=scicos_getvalue('Parametres de la bache', ..
         ['Pression dans le ciel de la bache : Patm (Pa)';..
          'Section de la bache : A (m2)';..
          'Altitude du piquage d entrée 1: ze1 (m)';..

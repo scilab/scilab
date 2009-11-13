@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,nin,exprs]=getvalue('Set parameters',..
+    [ok,nin,exprs]=scicos_getvalue('Set parameters',..
 	['number of inputs'],list('vec',1),exprs)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,-ones(nin,1),-1,[],[])

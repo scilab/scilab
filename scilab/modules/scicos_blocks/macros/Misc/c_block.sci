@@ -37,7 +37,7 @@ case 'set' then
  label=graphics.exprs;
   while %t do
     [ok,i,o,rpar,funam,lab]=..
-	getvalue('Set C_block parameters',..
+	scicos_getvalue('Set C_block parameters',..
 	  ['input ports sizes';
 	  'output port sizes';
 	  'System parameters vector';

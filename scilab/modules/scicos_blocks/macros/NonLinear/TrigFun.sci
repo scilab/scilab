@@ -41,7 +41,7 @@ case 'set' then
        'asinh';'acosh';'atanh'];
   %GG=['Choose among '+strcat(%FF(1:4),', ');strcat(%FF(5:$),', ')]
   while %t do
-    [ok,fun,exprs]=getvalue(%GG,'Function',list('str',1),exprs)
+    [ok,fun,exprs]=scicos_getvalue(%GG,'Function',list('str',1),exprs)
     if ~ok then break,end
     if find(%FF==fun)==[] then
       message('Sorry but '+fun +' is not in the list!')

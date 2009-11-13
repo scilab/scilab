@@ -103,7 +103,7 @@ case 'set' then
   exprs=graphics.exprs;
   exprs=exprs(1) //for compatibility
     while %t do
-    [ok,prt,exprs]=getvalue('Set Event Output block parameters',..
+    [ok,prt,exprs]=scicos_getvalue('Set Event Output block parameters',..
 	'Port number',list('vec',1),exprs)
     if ~ok then break,end
     prt=int(prt)

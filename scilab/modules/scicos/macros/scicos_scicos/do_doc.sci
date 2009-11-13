@@ -38,7 +38,7 @@ function scs_m = do_doc(scs_m,%pt)
 		     'would you like to use standard_doc ?'],"modal","question",['yes','no'])
       funname='standard_doc'
       if rep==2 then
-	[ok, funname] = getvalue('Enter the name of the documentation function',..
+	[ok, funname] = scicos_getvalue('Enter the name of the documentation function',..
 				 'fun name',list('str', 1),'standard_doc')
 	if ~ok then return,end
       end

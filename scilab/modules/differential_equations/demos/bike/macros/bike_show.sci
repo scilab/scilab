@@ -5,8 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-function []=show(xx,t,p,f_name)
-//[]=show(xx,t,p,[f_name])
+function []=bike_show(xx,t,p,f_name)
+//[]=bike_show(xx,t,p,[f_name])
 // Just show the bike evolution
 // t and p are the spherical angles of the observation point
 // given in radian

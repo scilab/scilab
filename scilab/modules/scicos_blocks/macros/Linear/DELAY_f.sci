@@ -45,7 +45,7 @@ case 'set' then
   evtdly_exprs=evtdly.graphics.exprs
   exprs=[evtdly_exprs(1);register_exprs]
   while %t do
-    [ok,dt,z0,exprs]=getvalue(['This block implements as a discretised delay';
+    [ok,dt,z0,exprs]=scicos_getvalue(['This block implements as a discretised delay';
 		    'it is consist of a shift register and a clock';
 		    'value of the delay is given by;'
 		    'the discretisation time step multiplied by the';

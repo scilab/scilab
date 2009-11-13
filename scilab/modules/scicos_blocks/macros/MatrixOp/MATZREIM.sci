@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,decomptyp,lab]=getvalue('Set MATZREIM block parameters',['decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)'],list('vec',1),label)
+    [ok,decomptyp,lab]=scicos_getvalue('Set MATZREIM block parameters',['decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)'],list('vec',1),label)
     if ~ok then break,end
     label=lab
 	if (decomptyp==1) then

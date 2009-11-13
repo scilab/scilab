@@ -26,7 +26,7 @@ function [%ok,%1,%2,%3,%4,%5,...
           %16,%17,%18,%19,%20]=x_getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition
 //%Synta%
-//  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
+//  [%ok,%1,..,%11]=scicos_getvalue(desc,labels,typ,ini)
 //%Parameters
 //  desc    : column vector of strings, dialog general comment
 //  labels  : n column vector of strings, labels(i) is the label of
@@ -60,7 +60,7 @@ function [%ok,%1,%2,%3,%4,%5,...
 // before numerical evaluation
 //%Example
 // labels=['magnitude';'frequency';'phase    '];
-// [ampl,freq,ph]=getvalue('define sine signal',labels,..
+// [ampl,freq,ph]=scicos_getvalue('define sine signal',labels,..
 //            list('vec',1,'vec',1,'vec',1),['0.85';'10^2';'%pi/3'])
 //
 //%See also

@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')<9 then exprs(8)='9.81';exprs(9)='0';end
   while %t do
-    [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=getvalue(['Set Bounce Block'],..
+    [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(['Set Bounce Block'],..
 	    ['Mass';'Radius';'[xmin,xmax,ymin,ymax]';'xpos';'xdpos';'ypos';..
 	     'ydpos';'g (gravity)';'C (aerodynamic coeff'],..
 	    list('vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
