@@ -29,8 +29,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
