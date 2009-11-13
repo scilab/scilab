@@ -8,19 +8,28 @@
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH XPAD -->
 //
-// <-- Non-regression test for bug 5269 -->
+// <-- Non-regression test for bug 5224 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=5269
+// http://bugzilla.scilab.org/show_bug.cgi?id=5224
 //
 // <-- Short Description -->
-//    Missing feature in the Text Editor: In Scipad, Ctrl-F1 opened Scilab's help
+//    Maj+Tab modify the text selection
 
 editor()
-// try CTRL-F1
-// shoul load scilab's help page
 
-// CTRL-F1 + selecting a keyword in editor should open the corresponding help page
+// write the 3 following line :
+
+//Eminuit autem inter humilia 
+//  supergressa iam impotentia 
+//  fines mediocrium delictorum
+
+// Select line the whole line 2 & 3
+
+// <Maj+Tab>
+
+// The selection should no more start at the end of the line 1
+
 
 
 

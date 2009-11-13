@@ -27,7 +27,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedMap;
 
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
@@ -38,6 +37,8 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.ColorizationManager;
+import org.scilab.modules.xpad.style.IndentManager;
 
 public class EncodingAction extends DefaultCheckAction {
 
@@ -89,24 +90,26 @@ public class EncodingAction extends DefaultCheckAction {
 	    /* File modified */
 	    if (getEditor().getTextPane().getName() != null) {
 		/* Not untitled */
-		switch (ScilabModalDialog.show(XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
-			IconType.QUESTION_ICON, ButtonType.YES_NO)) {
-			case YES_OPTION : //Yes, continue
-			    break;
-			case NO_OPTION ://No, exit
-			    // Back to previous menu checked
-			    getEditor().updateEncodingMenu();
-			    return;
-		}
-	    }			
+
+
+	    	switch (ScilabModalDialog.show(XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
+	    			IconType.QUESTION_ICON, ButtonType.YES_NO)) {
+	    			case YES_OPTION : //Yes, continue
+	    				break;
+	    			case NO_OPTION ://No, exit
+	    				//Back to previous menu checked
+	    				getEditor().updateEncodingMenu();
+	    				return;
+	    	}
+	    }		
 	}
 
 	// Avoid modifications to be saved
-	styleDocument.getUpdateManager().setUpdater(false);
-	boolean indentMode = styleDocument.getIndentManager().getAutoIndent();
-	styleDocument.getIndentManager().setAutoIndent(false); 
+	styleDocument.setUpdater(false);
+	boolean indentMode = styleDocument.getAutoIndent();
+	styleDocument.setAutoIndent(false); 
 
-	styleDocument.getEncodingManager().setEncoding(encoding);
+	styleDocument.setEncoding(encoding);
 
 	// If file associated then reload
 	EditorKit editorKit = getEditor().getEditorKit();
@@ -114,16 +117,16 @@ public class EncodingAction extends DefaultCheckAction {
 
 	try {
 	    if (fileName != null) {
-		File file = new File(getEditor().getTextPane().getName());
-		if (file.exists()) {
-		    if (styleDocument.getLength() > 0) {
-			styleDocument.getUndoManager().discardAllEdits();
-			styleDocument.disableUndoManager();
-			styleDocument.remove(0, styleDocument.getLength());
-			editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
-			styleDocument.enableUndoManager();
-		    }
-		}
+	    	File file = new File(getEditor().getTextPane().getName());
+	    	if (file.exists()) {
+	    		if (styleDocument.getLength() > 0) {
+	    			styleDocument.getUndoManager().discardAllEdits();
+	    			styleDocument.disableUndoManager();
+	    			styleDocument.remove(0, styleDocument.getLength());
+	    			editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
+	    			styleDocument.enableUndoManager();
+	    		}
+	    	}
 	    }
 	    isSuccess = true;
 	} catch (UnsupportedEncodingException e) {
@@ -139,9 +142,9 @@ public class EncodingAction extends DefaultCheckAction {
 	//getEditor().getTextPane().repaint();
 
 	/* Allow changes to be saved */
-	styleDocument.getColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-	styleDocument.getIndentManager().setAutoIndent(indentMode);
-	styleDocument.getUpdateManager().setUpdater(true);
+	new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+	styleDocument.setAutoIndent(indentMode);
+	styleDocument.setUpdater(true);
 
 	styleDocument.setContentModified(false);
 
@@ -150,5 +153,5 @@ public class EncodingAction extends DefaultCheckAction {
 	    ScilabModalDialog.show(XpadMessages.COULD_NOT_CONVERT_FILE,
 		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 	}
-    }
+  }
 }

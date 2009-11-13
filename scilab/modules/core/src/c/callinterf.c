@@ -91,7 +91,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 54  */ {gw_completion},
 	/* 55  */ {gw_history_manager},
 	/* 56  */ {gw_dynamic_spreadsheet},
-	/* 57  */ {gw_graphic_export},
+	/* 57  */ {gw_dynamic_graphic_export},
 	/* 58  */ {gw_dynamic_umfpack},
 	/* 59  */ {gw_dynamic_matio},
 	/* 60  */ {gw_dynamic_helptools},

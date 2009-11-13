@@ -37,6 +37,7 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.style.ColorizationManager;
 
 public class SetColorsAction extends DefaultAction {
 
@@ -198,18 +199,18 @@ public class SetColorsAction extends DefaultAction {
 				for (int j = 0; j < numberOfTab; j++) {
 					
 					JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-
+					ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
 				
 					for (int i = 0; i < numberOfStyles; i++) {
 						
 						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-				    	Style tempStyle = textPane.getStyledDocument().getStyle(listStylesName.get(i));
+				    	Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
 	
 				    	StyleConstants.setForeground(tempStyle, thisStyleColor);				    
 		
 					}
-					/*without this line we would have needed to type a character to see the update*/	
-			    	((ScilabStyleDocument) textPane.getStyledDocument()).insertUpdate(null);
+						
+					new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 				}
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);

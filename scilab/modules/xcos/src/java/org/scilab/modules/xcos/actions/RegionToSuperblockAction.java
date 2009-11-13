@@ -50,6 +50,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxPoint;
 
 public class RegionToSuperblockAction extends DefaultAction {
 
@@ -143,10 +144,12 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    for (int i = 0 ; i < graph.getSelectionCells().length ; ++i) {
 		mxCell current = (mxCell) graph.getSelectionCells()[i];
-		minX = Math.min(minX, current.getGeometry().getX());
-		minY = Math.min(minY, current.getGeometry().getY());
-		maxX = Math.max(maxX, current.getGeometry().getX());
-		maxY = Math.max(maxY, current.getGeometry().getY());
+		if(current instanceof BasicBlock) {
+		    minX = Math.min(minX, current.getGeometry().getX());
+		    minY = Math.min(minY, current.getGeometry().getY());
+		    maxX = Math.max(maxX, current.getGeometry().getX());
+		    maxY = Math.max(maxY, current.getGeometry().getY());
+		}
 	    }
 
 	    
@@ -163,7 +166,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    //find breaking links, to insert input/output blocks
 	    List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
-	    printBreakingLink(breaks);
+	    //printBreakingLink(breaks);
 	    List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
 	    
 	    //add in/out blocks in SuperBlock
@@ -245,31 +248,29 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	BasicLink newLink = null;
 	    	if(link.getOutGoing()){//old -> new
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)link.getLink().getSource(), (BasicPort)block.getChildAt(0));
-	    		newLink.setGeometry(new mxGeometry(0,0,80,80));
+	    		newLink.setGeometry(link.getLink().getGeometry());
 		    	newLink.setSource((BasicPort)link.getLink().getSource());
 		    	newLink.setTarget((BasicPort)block.getChildAt(0));
 	    	}else{//new -> old
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)block.getChildAt(0), (BasicPort)link.getLink().getTarget());
-	    		newLink.setGeometry(new mxGeometry(0,0,80,80));
+	    		newLink.setGeometry(link.getLink().getGeometry());
 		    	newLink.setSource((BasicPort)block.getChildAt(0));
 		    	newLink.setTarget((BasicPort)link.getLink().getTarget());
 	    	}
-	    	
-	    	diagram.addCells(new Object[]{newLink});
+
+	    	diagram.addCell(newLink);
 	    }
-	    
+
 	    superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	    superBlock.createChildDiagram();
 
 	    graph.clearSelection();
 	    graph.addCell(superBlock);
 	    graph.setSelectionCell(superBlock);
-	    graph.refresh();
-	    graph.getModel().endUpdate();
 	    superBlock.updateExportedPort();
     	//change source or target of old link
 	    
-	    graph.getModel().beginUpdate();
+//	    graph.getModel().beginUpdate();
 	    for(int i = 0 ; i < breaks.size() ; i++){
 	    	BrokenLink link = breaks.get(i);
     		BasicPort source = null;
@@ -302,7 +303,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	}
     		
     		BasicLink newLink = BasicLink.createLinkFromPorts(source, target);
-    		newLink.setGeometry(new mxGeometry(0,0,80,80));
+    		newLink.setGeometry(link.getLink().getGeometry());
         	newLink.setSource(source);
         	newLink.setTarget(target);
         	graph.addCell(newLink);
@@ -311,9 +312,12 @@ public class RegionToSuperblockAction extends DefaultAction {
         	//this function unlink source and target correctly too
         	graph.getModel().remove(link.getLink());
 	    }
-	    graph.getModel().endUpdate();
-	    diagram.refresh();
+
 	    superBlock.closeBlockSettings();
+	    graph.getModel().endUpdate();
+	    graph.refresh();
+	    diagram.refresh();
+
 	    graph.info(XcosMessages.EMPTY_INFO);
 	}
 
