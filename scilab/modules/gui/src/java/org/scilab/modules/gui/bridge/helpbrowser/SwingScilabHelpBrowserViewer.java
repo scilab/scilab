@@ -39,6 +39,7 @@ import org.scilab.modules.localization.Messages;
  *  - Edit in the text editor
  *  - Copy
  *  - Select all
+ *  - History
  */
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
