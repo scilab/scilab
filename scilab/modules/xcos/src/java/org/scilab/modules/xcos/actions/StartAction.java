@@ -47,6 +47,7 @@ public class StartAction  extends DefaultAction {
 	File temp;
 	Xcos.setStartEnabled(false);
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
+	((XcosDiagram) getGraph(null)).getParentTab().getInfoBar().draw();
 	try {
 	    temp = File.createTempFile("xcos",".hdf5");
 	    temp.delete();
