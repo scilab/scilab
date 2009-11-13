@@ -63,7 +63,6 @@ public class ScilabGraph extends mxGraph {
 	public void invoke(Object source, mxEventObject evt) {
 	
 		if (! redoInAction){
-			System.out.println("undoable event occured");
 			undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
 		}
 	}
@@ -157,9 +156,7 @@ public class ScilabGraph extends mxGraph {
 	redoInAction = false;
     }
     
-    public void resetUndoManager() {
-    	undoManager.reset();
-    }
+
 
     public void zoom() {
 	//	this.setScale(2 * this.getScale());
