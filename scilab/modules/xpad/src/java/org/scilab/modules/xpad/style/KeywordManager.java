@@ -12,8 +12,7 @@ public class KeywordManager {
 	private static final String[] QUOTATIONS = {"(\"|')([^\\n])*?(\"|')"};
 
 	private static final String[] BOOLS = {"%T", "%F", "%t", "%f",	"%e","%pi",
-			"%inf", "%i", "%z", "%s", "%nan", "%eps","SCI", "SCIHOME", "TMPDIR", "MSDOS"};
-	
+			"%inf", "%i", "%z", "%s", "%nan", "%eps","SCI", "WSCI", "SCIHOME", "TMPDIR", "MSDOS"};
 	private static final String[] COMMENTS = {"//[^{\n}]*"};
 	
 	private static final String[] OPERATORS = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
