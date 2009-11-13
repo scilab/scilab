@@ -35,9 +35,8 @@ Bug fixes:
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
-* bug 4767 fixed - minreal.sci contained a couple of references to the variable 'T', which was not defined in the function.
-
-* bug 4844 fixed - The help page for the deletefile function did not specify what is the meaning of the output variable.
+* bug 4844 fixed - The help page for the deletefile function did not specify 
+                   what is the meaning of the output variable.
 
 * bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
 
@@ -55,25 +54,32 @@ Bug fixes:
 
 * bug 5235 fixed - Error message added when launching Scicos
 
+* bug 5237 fixed - ATOMS : If the load of an ATOMS toolbox produces an error.
+                   The error is now catched.
+
 * bug 5251 fixed - getversion help page updated.
 
 * bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
 
 * bug 5259 fixed - root_properties help page displayed mis-encoded characters.
 
-* bug 5263 fixed - diary returned incorrect path for automatically numbered filenames.
+* bug 5263 fixed - diary returned incorrect path for automatically numbered
+                   filenames.
 
 * bug 5271 fixed - ATOMS GUI : Frames title was not emphasized
 
-* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some settings in Visual Studio.
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
+                   settings in Visual Studio.
 
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
 
-* bug 5292 fixed -  There was a conflict between bool and scilab header mex.h (with Visual Studio and mex files)
+* bug 5292 fixed - There was a conflict between bool and scilab header mex.h
+                   (with Visual Studio and mex files)
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
-* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x of the cost function.
+* bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
+                   of the cost function.
 
 * bug 5308 fixed - editor did not check input argument type.
 
