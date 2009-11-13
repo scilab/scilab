@@ -10,6 +10,8 @@
 *
 */
 
+#define H5_USE_16_API
+
 #include <hdf5.h>
 #include <stdlib.h>
 #include "MALLOC.h"
