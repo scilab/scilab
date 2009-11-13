@@ -40,6 +40,10 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 3478 fixed - file function returned a wrong error message when file did not exist.
+
+* bug 3593 fixed - macros to read and write csv file format updated.
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4565 fixed - getvalue macro is definied two times.

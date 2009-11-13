@@ -8,9 +8,7 @@ import javax.swing.text.StyledEditorKit;
  public class ScilabEditorKit extends StyledEditorKit {
 
     public ScilabEditorKit() {
-    	//System.err.println("cstor start");
-	super();
-	System.err.println("cstor end");
+    	super();
     }
 
 
@@ -42,17 +40,8 @@ import javax.swing.text.StyledEditorKit;
      * @return the model
      */
     public javax.swing.text.Document createDefaultDocument() {
-    	System.err.println("createDefDoc start");
     	javax.swing.text.Document doc = new org.scilab.modules.xpad.style.ScilabStyleDocument();
-    	System.err.println("createDefDoc end");
-
-	return doc;
-    }
-    
-    public void install(javax.swing.JEditorPane j){
-    	System.err.println("install start");
-    	super.deinstall(j);
-    	System.err.println("install stop");
+    	return doc;
     }
     /**
      * Fetches a factory that is suitable for producing 
