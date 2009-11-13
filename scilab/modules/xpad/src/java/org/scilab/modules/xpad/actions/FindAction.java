@@ -384,7 +384,6 @@ public final class FindAction extends DefaultAction {
 				if (buttonSelection.isSelected()) {
 					ScilabStyleDocument scilabDocument = (ScilabStyleDocument)xpadTextPane.getStyledDocument();
 					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
-					//text = ((ScilabStyleDocument)xpadTextPane.getStyledDocument()).getSelectedDocumentLines(startSelectedLines, endSelectedLines);
 				} else {
 					text = xpadTextPane.getText();
 				}

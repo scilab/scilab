@@ -40,12 +40,12 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import javax.swing.undo.UndoManager;
 import java.nio.charset.Charset;
 
-public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
+public class ScilabStyleDocument extends DefaultStyledDocument {
+
 	
 	private String eventType;
 	
 	private boolean contentModified;
-	private Xpad editor;	
 	/*if you want to add a new style just add it in the xml*/
 	private ArrayList<String> listStylesName;
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
@@ -89,28 +89,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		 this.updater = updaterDisabled;
 	 }
 
-	 public CompoundEdit getCompoundEdit() {
-		 return compoundEdit;
-	 }
-	 
-	 public void setShouldMergeEdits(boolean b) {
-		 if (shouldMergeEdits) {
-			 if (!b) { // ending compound editing
-				 compoundEdit.end();
-				 undo.addEdit(compoundEdit);
-				 compoundEdit = null;
-			 }
-		 } else {
-			 if (b) { // starting compound editing
-				 compoundEdit = new CompoundEdit();
-			 }
-		 }
-		 shouldMergeEdits = b;
-	 }
-	 
-	 public boolean getShouldMergeEdits() {
-		 return shouldMergeEdits;
-	 }
 	 
     private UndoManager undo = new UndoManager() {
     	public void undoableEditHappened(UndoableEditEvent e) {
@@ -135,15 +113,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
-		eventType = new String();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
 
 		//xpadStyles = XpadStyles.getInstance();
-		addDocumentListener(this);
-		this.addUndoableEditListener(this.getUndoManager());
+		//addDocumentListener(this); // TODO: check
+		addUndoableEditListener(undo);
 		defaultStyle = this.addStyle("Default", null);
 		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
 		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName());
@@ -178,102 +155,47 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return res;
 	}
 	
-	
-	/**
-	 * DOCUMENT COLORISATION END
-	 */
-	
 
-
+	public void setShouldMergeEdits(boolean b) {
+	
+		if(shouldMergeEdits){
+			if(!b) { // ending compound editing with a new CaretEdit
+				compoundEdit.end();
+				undo.addEdit(compoundEdit);
+				compoundEdit = null;
+				
+			}
+		} else {
+			if(b) { // starting compound editing
+				compoundEdit = new CompoundEdit();
+			}
+		}
+		shouldMergeEdits = b;
 		
-	/**
-	 * DOCUMENT TABIFY ACTION
-	 */
-	
-	
-	/**
-	 * FIND AND REPLACE END
-	 */
+	}
+	public boolean getShouldMergeEdits() {
+		return shouldMergeEdits;
+	}
+	public boolean getColorize() {
+		//DEBUG("setColorize("+autoColorize+")");
+		return autoColorize;
+	}
 
+	public void setColorize(boolean b) {
+		//DEBUG("setColorize("+b+")");
+		autoColorize = b;
+	}
 
-	/**
-	 * UTILITARIAN FUNCTIONS START
-	 */
-
-	
-	/**
-	 * UTILITARIAN FUNCTIONS END
-	 */
 
 	private final void DEBUG(String msg) {
 		//System.err.println("[DEBUG] "+msg);
 	}
-	
 
-	public void insertUpdate(DocumentEvent e) {
-		
-		if (e != null) {
-			eventType = e.getType().toString();
-		}
-		
-		DEBUG("--- Calling insertUpdate");
-		/* TODO : move to DocumentListener s in ColorizeAction and IndentAction
-		if (!updateManager.isUpdater()) {
 
-			if (autoColorize) {
-				DEBUG("--- Calling insertUpdate -> colorize");
-			    SwingUtilities.invokeLater(ColorizationManager.new ColorUpdater(this, e));
-			}
-			if (autoColorize) {
-			    DEBUG("--- Calling insertUpdate -> indent");
-			    SwingUtilities.invokeLater(IndentManager.new IndentUpdater(this,e));
-			}
-		}
-		*/
-	}
-	
-
-	
-	
-	public void removeUpdate(DocumentEvent e) {
-		
-		eventType = e.getType().toString();
-		//System.err.println("--- Calling ScilabStyleDocument.removeUpdate");
-		/* TODO: put in a DocumentListener in ColorizeAction
-		if (!updateManager.isUpdater()) {
-			if (colorizationManager.isAutoColorize()) {
-			    SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(getScilabDocument(), e));
-			}
-		}
-		*/
-	}
-
-	public void changedUpdate(DocumentEvent arg0) {
-		
-		eventType = arg0.getType().toString();
-		// TODO Auto-generated method stub
-	}
 
 	public UndoManager getUndoManager() {
 		return undo;
 	}
-	
-	public boolean isContentModified() {
-		return contentModified;
-	}
-	
-	public void setContentModified(boolean contentModified) {
-		this.contentModified = contentModified;
-	}
-
-
-	public Xpad getEditor() {
-		return editor;
-	}
-
-	public void setEditor(Xpad editor) {
-		this.editor = editor;
-	}    
 
 	public void disableUndoManager(){
 		this.removeUndoableEditListener(undo);
@@ -283,4 +205,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
         this.addUndoableEditListener(undo);
 	}
 
+	public boolean isContentModified(){
+		return contentModified;
+	}
+	
+	public void setContentModified(boolean contentModified){
+		this.contentModified = contentModified;
+	}
+	
 }

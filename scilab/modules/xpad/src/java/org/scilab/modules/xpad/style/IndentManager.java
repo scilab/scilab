@@ -125,7 +125,7 @@ public IndentManager() {
 		String currentSpace ="";
 		String previousLineContent = "";
 		
-		int finalPosition = scilabDocument.getEditor().getTextPane().getText().length();
+		int finalPosition = scilabDocument.getLength();
 
 		
 		int currentLineStart = scilabDocument.getParagraphElement(startPosition).getStartOffset();

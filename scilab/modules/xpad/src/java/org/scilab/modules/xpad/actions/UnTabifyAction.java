@@ -29,37 +29,32 @@ public class UnTabifyAction extends DefaultAction {
 	private TabManager tabManager = new TabManager();
 	
 	private UnTabifyAction(Xpad editor) {
-	  super(XpadMessages.UNTABIFY_SELECTION, editor);
+		super(XpadMessages.UNTABIFY_SELECTION, editor);
 	}
-	
+
 	public void doAction()
 	{
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
+		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
 		
-		ScilabStyleDocument scilabDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
-		int line_start     = scilabDocument.getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = scilabDocument.getDefaultRootElement().getElementIndex(position_end);
-		 if( line_start == line_end )
+		if( line_start == line_end )
 		{
 			// A part of the line is selected : Delete a Tab at the beginning of the line
 			int offset = tabManager.untabifyLine(scilabDocument, line_start);
-			getEditor().getTextPane().setSelectionStart(position_start-offset);
-			getEditor().getTextPane().setSelectionEnd(position_end-offset);
 		}
-		
+
 		else
 		{
 			// several lines are selected
 			// TODO exact caret position requires API change if we untabify as much lines as possible: we must know if
 			// the line of the caret position was untabified or not.
-			
 			int [] delta = tabManager.untabifyLines(scilabDocument,line_start, line_end);
-			getEditor().getTextPane().setSelectionStart(position_start - delta[0]);
-			getEditor().getTextPane().setSelectionEnd(position_end - delta[1]);
 		}
 	}
-	
+
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,ActionEvent.SHIFT_MASK));
 	}

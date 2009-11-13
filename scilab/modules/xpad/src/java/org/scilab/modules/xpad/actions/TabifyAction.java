@@ -35,11 +35,9 @@ public class TabifyAction extends DefaultAction {
 	{
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		ScilabStyleDocument scilabDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
-
-		int line_start     = scilabDocument.getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = scilabDocument.getDefaultRootElement().getElementIndex(position_end);
-		
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
+		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
 		if( line_start == line_end )
 		{
 			// A part of the line is selected : Insert a Tab at the beginning of the line
