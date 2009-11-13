@@ -39,7 +39,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,FR,exprs]=getvalue('Set voltage source parameter',..
+    [ok,FR,exprs]=scicos_getvalue('Set voltage source parameter',..
     			   ['Frequency (Hz)'],..
 			      list('vec',-1),exprs)
     if ~ok then break,end

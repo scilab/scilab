@@ -37,7 +37,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
-        getvalue('Set GENERIC block parameters',..
+        scicos_getvalue('Set GENERIC block parameters',..
         ['simulation function';
         'function type (0,1,2,..)';
         'input ports sizes';

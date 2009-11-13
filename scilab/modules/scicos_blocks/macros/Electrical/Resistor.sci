@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,R,exprs]=getvalue('Set Resistor block parameter',..
+    [ok,R,exprs]=scicos_getvalue('Set Resistor block parameter',..
     			   'R (ohm)',list('vec',1),exprs)
     if ~ok then break,end
     model.rpar=R

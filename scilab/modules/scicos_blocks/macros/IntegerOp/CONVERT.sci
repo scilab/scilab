@@ -40,7 +40,7 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,it,ot,np,exprs]=getvalue('Set CONVERT block parameters',..
+    [ok,it,ot,np,exprs]=scicos_getvalue('Set CONVERT block parameters',..
 			    ['input type (1= double 3=int32  4=int16 5=int8 ...)';..
 			     'output type (1= double 3=int32  4=int16 5=int8 ...)';..
                              'Do on Overflow(0=Nothing 1=Saturate 2=Error)'],..

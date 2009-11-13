@@ -103,7 +103,7 @@ case 'set' then
   exprs=graphics.exprs;
   if size(exprs,'*')==2 then exprs=exprs(1),end //compatibility
   while %t do
-    [ok,prt,exprs]=getvalue('Set Output block parameters',..
+    [ok,prt,exprs]=scicos_getvalue('Set Output block parameters',..
 	'Port number',list('vec',1),exprs)
     if ~ok then break,end
     prt=int(prt)

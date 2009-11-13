@@ -35,7 +35,7 @@ function [x,y,typ]=HYSTHERESIS(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=getvalue('Set parameters',..
+      [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue('Set parameters',..
 		['switch on at';'switch off at';'output when on';
 		 'output when off';'use zero crossing: yes (1), no (0)'],..
 		    list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1),exprs)

@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,slope,stt,iout,exprs]=getvalue('Set ramp parameters',..
+    [ok,slope,stt,iout,exprs]=scicos_getvalue('Set ramp parameters',..
 	['Slope';'Start time';'Initial output'],list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if stt<0  then

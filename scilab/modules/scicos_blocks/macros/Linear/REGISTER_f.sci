@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,z0,exprs]=getvalue('Set delay parameters',..
+    [ok,z0,exprs]=scicos_getvalue('Set delay parameters',..
 	'Register initial condition',list('vec',-1),exprs)
     if ~ok then break,end
     if prod(size(z0))<2 then

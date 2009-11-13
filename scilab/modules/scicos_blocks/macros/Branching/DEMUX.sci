@@ -35,7 +35,7 @@ function [x,y,typ]=DEMUX(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,out,exprs]=getvalue('Set DEMUX block parameters',..
+      [ok,out,exprs]=scicos_getvalue('Set DEMUX block parameters',..
 			      ['number of output ports or vector of sizes'],list('vec',-1),exprs)
       if ~ok then break,end
       if size(out,'*')==1 then

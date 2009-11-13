@@ -36,7 +36,7 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
     model=arg1.model;
     while %t do
       [ok,nout,exprs]=..
-	  getvalue('Set block parameters',..
+	  scicos_getvalue('Set block parameters',..
 		   ['size of output (-1: if don''t know)'],..
 	  list('vec',1),exprs)
       if ~ok then break,end

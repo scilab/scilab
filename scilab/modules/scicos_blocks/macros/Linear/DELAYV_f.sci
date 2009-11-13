@@ -37,7 +37,7 @@ case 'set' then
   z0=model.dstate;zz0=z0(1:$-1);told=z0($);
  
    while %t do
-    [ok,nin,zz0,T,exprs]=getvalue('Set delay parameters',..
+    [ok,nin,zz0,T,exprs]=scicos_getvalue('Set delay parameters',..
      	['Number of inputs';
 	'Register initial condition';
 	'Max delay'],..
