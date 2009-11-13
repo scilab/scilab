@@ -20,6 +20,7 @@ XCOS_IMPEXP int sci_Xcos(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_xcosNotify(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_warnBlockByUID(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_closeXcosFromScilab(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosDiagramToHDF5(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XCOS__ */
 /*--------------------------------------------------------------------------*/
