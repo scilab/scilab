@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -271,7 +272,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		try {
 			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
 			boolean colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-
 			if(colorStatus == false) {
 				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
 			} else {
