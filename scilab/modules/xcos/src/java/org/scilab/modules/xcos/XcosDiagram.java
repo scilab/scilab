@@ -19,7 +19,6 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.server.UID;
@@ -30,6 +29,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -1171,7 +1171,8 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
-	    FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter("Xcos file (XML)", "xcos");
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", "Xcos file (XML)", 0);
+//	    FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter("Xcos file (XML)", "xcos");
 	    fc.addChoosableFileFilter(xcosFilter);
 	    fc.setFileFilter(xcosFilter);
 	    fc.displayAndWait();
