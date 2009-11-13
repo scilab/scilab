@@ -37,7 +37,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,typ,lab]=..
-        getvalue('Set MATLU block parameters',['Datatype(1=real double  2=Complex)'],list('vec',1),label);
+        scicos_getvalue('Set MATLU block parameters',['Datatype(1=real double  2=Complex)'],list('vec',1),label);
 	if ~ok then break,end
 	if (typ==1) then
 		junction_name='mat_lu';

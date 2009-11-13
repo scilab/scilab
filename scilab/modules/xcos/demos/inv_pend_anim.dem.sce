@@ -7,10 +7,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-thispath = get_absolute_file_path("inv_pend_anim.dem.sce");
+exec("SCI/modules/xcos/demos/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/demos/anim_pen.sci");
 
-exec(thispath+"/PENDULUM_ANIM.sci");
-exec(thispath+"/anim_pen.sci");
-
-xcos(thispath+"/pendulum_anim5.xcos");
-clear thispath;
+xcos("SCI/modules/xcos/demos/pendulum_anim5.xcos");

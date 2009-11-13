@@ -44,7 +44,7 @@ case 'set' then
   fname=exprs(1)
 
   while %t do
-    [ok,fname1,N,swap,exprs]=getvalue(..
+    [ok,fname1,N,swap,exprs]=scicos_getvalue(..
 	['Set READAU block parameters';
 	 'Read is done on a binary .au file'],..
 	['Input file name';

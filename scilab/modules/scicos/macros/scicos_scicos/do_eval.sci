@@ -26,7 +26,7 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
   needcompile1 = max(2,needcompile)
   %mprt = funcprot()
   funcprot(0)
-  getvalue = setvalue;
+  scicos_getvalue = setvalue;
   
   function message(txt)
     messagebox(['In block ' + o.gui + ': ';

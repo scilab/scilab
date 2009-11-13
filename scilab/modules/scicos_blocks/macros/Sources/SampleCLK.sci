@@ -129,7 +129,7 @@ case 'set' then
   model=arg1.model;
   exprs=graphics.exprs
   while %t do
-    [ok,frequ,offset,exprs]=getvalue('Set block parameters',..
+    [ok,frequ,offset,exprs]=scicos_getvalue('Set block parameters',..
 	['Sample time';'Offset'],..
           list('vec',1,'vec',1),exprs)
     if ~ok then break,end

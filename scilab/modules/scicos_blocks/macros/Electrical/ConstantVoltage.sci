@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,V,exprs]=getvalue('Set ConstantVoltage block parameter',..
+    [ok,V,exprs]=scicos_getvalue('Set ConstantVoltage block parameter',..
     			   'V (volt)',list('vec',1),exprs)
     if ~ok then break,end
     model.rpar=V

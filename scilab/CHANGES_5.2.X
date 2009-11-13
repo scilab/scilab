@@ -40,27 +40,22 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5325 fixed - Wrong default path on FileChooser
-
-* bug 5111 fixed - Xcos : "Save As" default path is the current file path
-
-* bug 4670 fixed - ilib_build examples updated with api_scilab.
-
-* bug 5312 fixed - Xcos : adding 'Compile' informations
-
-* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
-
 * bug 4401 fixed - isnum returned wrong values.
 
-* bug 4767 fixed - minreal.sci contained a couple of references to the variable
-                   'T', which was not defined in the function.
+* bug 4565 fixed - getvalue macro is definied two times.
+
+* bug 4670 fixed - ilib_build examples updated with api_scilab.
 
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
+* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
+
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
+
+* bug 5111 fixed - Xcos : "Save As" default path is the current file path
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -99,9 +94,15 @@ Bug fixes:
 
 * bug 5308 fixed - editor did not check input argument type.
 
+* bug 5312 fixed - Xcos : adding 'Compile' informations
+
+* bug 5325 fixed - Wrong default path on FileChooser.
+
 * bug 5326 fixed - graphic_export module was not loaded dynamically.
 
 * bug 5330 fixed - "help str1 str2" returned a error.
+
+* bug 5339 fixed - some macros had multiple definitions.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
