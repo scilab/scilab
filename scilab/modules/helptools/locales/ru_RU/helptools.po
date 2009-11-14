@@ -10,88 +10,22 @@ msgstr ""
 "Project-Id-Version: helptools-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-02 23:09+0000\n"
+"PO-Revision-Date: 2009-11-09 21:06+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
+msgid "\t%s\n"
+msgstr "\t%s\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Несовместимые входные параметра №%d и №%d: ожидались одинаковые "
-"размеры.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: An existing directory expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидался существующий "
-"каталог.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Directory %s does not exist or read access denied."
-msgstr "%s: Каталог %s не существует или отсутствуют права на чтение."
-
-msgid "-- Deleting help files --\n"
-msgstr "-- Удаление файлов справки --\n"
-
-msgid "Scilab 5.0 or more is required."
-msgstr "Требуется версия Scilab 5.0 или выше."
-
-msgid "...demodir must be a directory."
-msgstr "...demodir должна быть каталогом."
-
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: Данная функция поддерживается только в ОС Windows.\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr "%s: hhc.exe не найден.\n"
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr "%s: нет сформированного файла.\n"
-
-msgid "Help chapter"
-msgstr "Раздел справки"
-
-#, c-format
-msgid ""
-"\n"
-"Building the Scilab manual master document for %s.\n"
-msgstr ""
-"\n"
-"Собирается основной документ руководства Scilab для %s.\n"
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tОбработка файла %s.xml\n"
 
 msgid ""
 "\n"
@@ -100,27 +34,13 @@ msgstr ""
 "\n"
 "Формируется основные документы:\n"
 
+#, c-format
 msgid ""
 "\n"
-"Building the master document:\n"
+"Building the Scilab manual master document for %s.\n"
 msgstr ""
 "\n"
-"Формируется основной документ:\n"
-
-#, c-format
-msgid "\t%s\n"
-msgstr "\t%s\n"
-
-msgid "Building the scilab manual file ["
-msgstr "Формируется файл руководства Scilab ["
-
-#, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s не был сформирован."
-
-#, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
-msgstr "%s: %s файл не был перемещён в каталог %s."
+"Собирается основной документ руководства Scilab для %s.\n"
 
 #, c-format
 msgid ""
@@ -142,14 +62,92 @@ msgstr ""
 "Сборка файла руководства [%s]. (Пожалуйста, подождите... это может занять "
 "некоторое время)\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid ""
+"\n"
+"Building the master document:\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+"\n"
+"Формируется основной документ:\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: %s файл не был перемещён в каталог %s."
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s не был сформирован."
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: Не удалось найти или создать рабочий каталог %s.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: Каталог %s не существует или отсутствуют права на чтение."
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: Ошибка при сборке документации: %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Выполнение стека Java %s.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые входные параметра №%d и №%d: ожидались одинаковые "
+"размеры.\n"
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr ""
+"%s: Два типизированных списка на основе матриц не должны иметь одинаковых "
+"полей.\n"
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: Неправильный формат файла CHAPTER в строке %d\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: Справочная  система отключена в режиме %s.\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr "%s: Неправильный формат файла last_successful_build в строке %d\n"
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Данная функция поддерживается только в ОС Windows.\n"
+
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -157,8 +155,53 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался типизированный список на "
+"основе матриц.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+"заканчивается на .last_successful_build.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+"заканчивается на CHAPTER.\n"
 
 #, c-format
 msgid ""
@@ -170,96 +213,53 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалась строк, которая "
-"заканчивается на CHAPTER.\n"
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось допустимое имя "
 "существующего файла.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
-msgstr "%s: Неверный формат файл CHAPTER в строке %d\n"
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-"заканчивается на .last_successful_build.\n"
-
-#, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr "%s: Неверный формат файла last_successful_build в строке %d\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался типизированный список на "
-"основе матриц.\n"
-
-#, c-format
-msgid "%s: The 2 mlist must not have any field in common .\n"
-msgstr ""
-"%s: Два типизированных списка на основе матриц не должны иметь одинаковых "
-"полей.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr "\tОбработка файла %s.xml\n"
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr "Внимание: %s не соответсввует dtd"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s: Справочная  система отключена в режиме %s.\n"
+"%s: Неверное значение входного параметра №%d: ожидался существующий "
+"каталог.\n"
 
 #, c-format
 msgid "%s: help module is not installed.\n"
 msgstr "%s: Справочный модуль не установлен.\n"
 
 #, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: hhc.exe не найден.\n"
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: нет сформированного файла.\n"
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Удаление файлов справки --\n"
+
+msgid "...demodir must be a directory."
+msgstr "...demodir должна быть каталогом."
+
+msgid "Building the scilab manual file ["
+msgstr "Формируется файл руководства Scilab ["
+
+msgid "Help chapter"
+msgstr "Раздел справки"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» не установлен.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgid "Scilab 5.0 or more is required."
+msgstr "Требуется версия Scilab 5.0 или выше."
 
 #, c-format
-msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s: Не удалось найти или создать рабочий каталог %s.\n"
-
-#, c-format
-msgid "%s: Error while building documentation: %s.\n"
-msgstr "%s: Ошибка при сборке документации: %s.\n"
-
-#, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Выполнение стека Java %s.\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "Модуль «%s» выключен в режимах  -nogui и -nwni."
+msgid "Warning %s does not follow the dtd"
+msgstr "Внимание: %s не соответсввует dtd"

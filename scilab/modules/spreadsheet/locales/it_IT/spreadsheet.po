@@ -14,8 +14,50 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Non è possibile aprire il file %s.\n"
+
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s: Fine del file.\n"
+
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr ""
+"%s: Non è stato possibile leggere i dati attesi, forse non è un file xls "
+"valido.\n"
+
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: Il file %s non è un file ole2.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: Il file non è corretto o è danneggiato.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: Non è un file ole2.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: È gestito solo il formato di file BIFF8.\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: Il file non ha una directory Workbook.\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s: Non c'è alcun flusso xls nel file ole2 %s.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -29,61 +71,44 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
-msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
 msgstr ""
-"%s: Non è stato possibile leggere i dati attesi, forse non è un file xls "
-"valido.\n"
+"%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
 
 #, c-format
-msgid "%s: End of file.\n"
-msgstr "%s: Fine del file.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s:%d: OLEUNWRAP_decode_attachment:DEBUG:  allegato %s%s%s dimensione = %d\n"
 
 #, c-format
-msgid "The file %s does not exist.\n"
-msgstr "Il file %s non esiste.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+"%s:%d: OLEUNWRAP_decode_attachment:DEBUG:  chiamata di reporter in corso per "
+"il nome del file"
 
 #, c-format
-msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s: Il file %s non è un file ole2.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
+msgstr ""
+"%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile creare la stringa "
+"nomefile da \"%s\" e \"%s\""
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Non è possibile aprire il file %s.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr ""
+"%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile aprire %s per la "
+"scrittura (%s)\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: Non c'è alcun flusso xls nel file ole2 %s.\n"
-
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s: Non è un file ole2.\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: Il file non ha una directory Workbook.\n"
-
-#, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: Il file non è corretto o è danneggiato.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: È gestito solo il formato di file BIFF8.\n"
-
-msgid "Scilab spreadsheet module not installed.\n"
-msgstr "Il modulo speadsheet di Scilab non è installato.\n"
-
-#, c-format
-msgid "ripOLE: %s\n"
-msgstr "ripOLE: %s\n"
-
-#, c-format
-msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr "%s:%d: OLE_set_debug: il livello di debug è impostato a %d"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+"%s:%d: OLEUNWRAP_save_stream:ERROR: ha scritto solo %d di %d byte nel file "
+"%s\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
@@ -96,21 +121,25 @@ msgstr ""
 "OLE"
 
 #, c-format
-msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
-msgstr "%s:%d: OLE_get_block:ERROR: fallimento nella ricerca (block=%d%d)"
-
-#, c-format
-msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr ""
-"%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
-
-#, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr "%s:%d: OLE_get_block:ERROR: il file OLE è chiuso\n"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
-msgstr "%s:%d: OLE_load_FAT:ERROR: impossibile allocare %d byte\n"
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr "%s:%d: OLE_get_block:ERROR: fallimento nella ricerca (block=%d%d)"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr ""
+"%s:%d: OLE_get_miniblock:ERROR: impossibile allocare memoria sufficiente per "
+"miniChain"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr ""
+"%s:%d: OLE_load_FAT:ERROR: oltrepassato il limite della memoria di confine "
+"FAT %p >= %p"
 
 #, c-format
 msgid ""
@@ -121,27 +150,22 @@ msgstr ""
 "importazione = 0x%x,posizione fat = 0x%x"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr ""
-"%s:%d: OLE_load_FAT:ERROR: oltrepassato il limite della memoria di confine "
-"FAT %p >= %p"
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d: OLE_load_FAT:ERROR: impossibile allocare %d byte\n"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr "%s:%d: OLE_load_FAT:ERROR: la richiesta del settore è negativa (%d)"
 
 #, c-format
-msgid ""
-"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
-msgstr ""
-"%s:%d: OLE_get_miniblock:ERROR: impossibile allocare memoria sufficiente per "
-"miniChain"
-
-#, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
 "%s:%d: OLE_load_chain:ERROR: Load-chain è andata oltre il limite della "
 "memoria"
+
+#, c-format
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr "%s:%d: OLE_open_directory:ERROR: %s"
 
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
@@ -155,8 +179,8 @@ msgstr ""
 "%s:%d: OLE_open_file:ERROR: non è possibile trovare  %s per la lettura (%s)\n"
 
 #, c-format
-msgid "%s:%d:OLE_open_directory:ERROR: %s"
-msgstr "%s:%d: OLE_open_directory:ERROR: %s"
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d: OLE_set_debug: il livello di debug è impostato a %d"
 
 #, c-format
 msgid ""
@@ -195,43 +219,27 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
+"Cannot interpret option \"%s\"\n"
+"%s\n"
 msgstr ""
-"%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile creare la stringa "
-"nomefile da \"%s\" e \"%s\""
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr ""
-"%s:%d: OLEUNWRAP_save_stream:ERROR: ha scritto solo %d di %d byte nel file "
+"Non è possibile interpretare l'opzione \"%s\"\n"
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr ""
-"%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile aprire %s per la "
-"scrittura (%s)\n"
+msgid "Cannot locate input file '%s'"
+msgstr "Non è possibile trovare il file in ingresso \"%s\""
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d: OLEUNWRAP_decode_attachment:DEBUG:  allegato %s%s%s dimensione = %d\n"
+msgid "Decoding filename=%s"
+msgstr "Decodifica in corso nomefile=%s"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr ""
-"%s:%d: OLEUNWRAP_decode_attachment:DEBUG:  chiamata di reporter in corso per "
-"il nome del file"
+msgid "File '%s' is not OLE2 format"
+msgstr "Il file \"%s\" non è in formato OLE2"
 
 #, c-format
-msgid "Unable to decode stream with element string '%s'\n"
-msgstr ""
-"Non è possibile decodificare il flusso con un elemento della stringa \"%s\"\n"
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-Default: %s%s"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -244,39 +252,31 @@ msgstr ""
 "LOGGER_ser_logfile: ERRORE - Non è possibile aprire il logfile \"%s\" (%s)\n"
 
 #, c-format
-msgid "LOGGER-Default: %s%s"
-msgstr "LOGGER-Default: %s%s"
+msgid "OLE input file '%s' is insane"
+msgstr "Il file OLE \"%s\" in ingresso è insensato"
+
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "Il modulo speadsheet di Scilab non è installato.\n"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
+msgid "The file %s does not exist.\n"
+msgstr "Il file %s non esiste.\n"
+
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
 msgstr ""
-"Non è possibile interpretare l'opzione \"%s\"\n"
-"%s\n"
-
-#, c-format
-msgid "Decoding filename=%s"
-msgstr "Decodifica in corso nomefile=%s"
+"Non è possibile decodificare il flusso con un elemento della stringa \"%s\"\n"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE richiede un file in ingresso da decodificare.\n"
 
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
+
 msgid "ripOLE: Cannot allocate memory for OLE object."
 msgstr "ripOLE: non è possibile allocare della memoria per l'oggetto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Non è possibile trovare il file in ingresso \"%s\""
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "Il file \"%s\" non è in formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "Il file OLE \"%s\" in ingresso è insensato"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"

@@ -14,44 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
-
-#
-# File: macros/pbig.sci, line: 30
-# File: macros/psmall.sci, line: 31
-# File: macros/rowcomp.sci, line: 42
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d で不正な値: set {%s} しなければなりません。\n"
-
-#
-# File: macros/squeeze.sci, line: 40
-# File: macros/trace.sci, line: 35
-# File: macros/trace.sci, line: 45
-# File: macros/trace.sci, line: 54
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。\n"
-
-# File: macros/cond.sci, line: 16
-# File: macros/range.sci, line: 21
-# File: macros/trace.sci, line: 17
-# File: macros/trace.sci, line: 23
-# File: macros/trace.sci, line: 31
-# File: macros/trace.sci, line: 41
-# File: macros/trace.sci, line: 50
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
-
-#
-# File: macros/randpencil.sci, line: 30
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
 
 #
 # File: macros/im_inv.sci, line: 22
@@ -60,6 +26,12 @@ msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 小さいサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_bdiag.c, line: 97
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: QRステップの非集合です。\n"
 
 #
 # File: macros/kernel.sci, line: 31
@@ -74,11 +46,16 @@ msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: この特徴は実行されません。\n"
 
 #
-# File: macros/range.sci, line: 18
+# File: macros/randpencil.sci, line: 30
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/randpencil.sci, line: 30
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d または %d を想定します。\n"
 
 #
 # File: macros/givens.sci, line: 24
@@ -93,19 +70,16 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 列ベクトルを想定し�
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
 
-#
-# File: macros/diff.sci, line: 23
-# File: macros/diff.sci, line: 32
+# File: macros/cond.sci, line: 16
+# File: macros/range.sci, line: 21
+# File: macros/trace.sci, line: 17
+# File: macros/trace.sci, line: 23
+# File: macros/trace.sci, line: 31
+# File: macros/trace.sci, line: 41
+# File: macros/trace.sci, line: 50
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
-
-#
-# File: macros/randpencil.sci, line: 30
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数で不正な数: %d または %d を想定します。\n"
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
 
 #
 # File: macros/sqroot.sci, line: 14
@@ -114,25 +88,19 @@ msgid "%s: Wrong size for input argument #%d: Symmetric expected"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 対称を想定します。"
 
 #
-# File: macros/sqroot.sci, line: 18
+# File: macros/squeeze.sci, line: 40
+# File: macros/trace.sci, line: 35
+# File: macros/trace.sci, line: 45
+# File: macros/trace.sci, line: 54
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
-msgstr "%s: 入力引数 #%d で不正な値: 明確な半正定ではありません"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
 
 #
-# File: macros/rowcomp.sci, line: 33
+# File: sci_gateway/c/sci_schur.c, line: 109
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 負数でないスカラーを想定します。\n"
-
-#
-# File: macros/sva.sci, line: 22
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Requested rank is greater than "
-"matrix dimension."
-msgstr "%s: 入力引数 #%d で不正な値: 要求された列は、行列次元よりも大きいです。"
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_backslash.c, line: 62
@@ -174,13 +142,45 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な型: 実、または、複素行列.を想定します。\n"
 
 #
-# File: sci_gateway/c/sci_bdiag.c, line: 97
+# File: macros/pbig.sci, line: 30
+# File: macros/psmall.sci, line: 31
+# File: macros/rowcomp.sci, line: 42
 #, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s: QRステップの非集合です。\n"
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d で不正な値: set {%s} しなければなりません。\n"
 
 #
-# File: sci_gateway/c/sci_schur.c, line: 109
+# File: macros/range.sci, line: 18
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
+
+#
+# File: macros/sqroot.sci, line: 18
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な半正定ではありません"
+
+#
+# File: macros/sva.sci, line: 22
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Requested rank is greater than "
+"matrix dimension."
+msgstr "%s: 入力引数 #%d で不正な値: 要求された列は、行列次元よりも大きいです。"
+
+#
+# File: macros/diff.sci, line: 23
+# File: macros/diff.sci, line: 32
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"
+
+#
+# File: macros/rowcomp.sci, line: 33
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でないスカラーを想定します。\n"

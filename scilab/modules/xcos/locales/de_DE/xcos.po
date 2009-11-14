@@ -8,88 +8,281 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-29 13:51+0000\n"
+"PO-Revision-Date: 2009-11-10 09:47+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: Datei '%s' existiert nicht.\n"
 
 #, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "Fehler beim Exportieren: %s\n"
-
-#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: kein weiterer Speicher.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "Scilab '%s' Modul im -nogui oder .nwmi Modus deaktiviert."
+msgid "?"
+msgstr "?"
 
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' module not installed.\n"
+msgid "About Xcos"
+msgstr "Über Xcos"
 
-msgid "Untitled"
-msgstr "Unbenannt"
+msgid "Add to"
+msgstr "Addieren zu"
+
+msgid "Add to new diagram"
+msgstr "Zum neuen Diagramm hinzufügen"
+
+msgid "Align Blocks"
+msgstr "Blocks abgleichen"
+
+msgid "All rights reserved"
+msgstr "Alle Rechte vorbehalten"
+
+msgid "Block Help"
+msgstr "Block Hilfe"
+
+msgid "Block Parameters"
+msgstr "Block Parameter"
+
+msgid "Border Color"
+msgstr "Rahmenfarbe"
+
+msgid "Bottom"
+msgstr "Unten"
+
+msgid "CVODE"
+msgstr "CVODE"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "CeCILL License"
+msgstr "CeCILL Lizenz"
+
+msgid "Center"
+msgstr "Zentriert"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Code generation"
+msgstr "Code Generierung"
+
+msgid "Command port must be connected to control port"
+msgstr "Kommandoport muß mit dem Kotrollport verbunden sein"
+
+msgid "Commonly Used Blocks"
+msgstr "üblicherweise verwendete Blocks"
+
+msgid "Compile"
+msgstr "Kompilieren"
+
+msgid "Continuous"
+msgstr "Kontinuierlich"
 
 msgid "Copy"
 msgstr "Unbenannt"
 
+msgid "Copyright 2009"
+msgstr "(c) 2009"
+
+msgid "Could not save diagram."
+msgstr "Konnte Diagramm nicht speichern"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Customize"
+msgstr "Anpassen"
+
 msgid "Cut"
 msgstr "Ausschneiden"
 
-msgid "Group"
-msgstr "Gruppe"
-
-msgid "UnGroup"
-msgstr "nicht gruppieren"
-
-msgid "Paste"
-msgstr "Einfügen"
-
-msgid "Redo"
-msgstr "Wiederholen"
-
-msgid "Undo"
-msgstr "Rückgängig machen"
-
-msgid "Zoom In"
-msgstr "Vergrößern"
-
-msgid "Zoom Out"
-msgstr "Verkleinern"
+msgid "Default"
+msgstr "Voreinstellung"
 
 msgid "Delete"
 msgstr "Löschen"
 
-msgid "Select all"
-msgstr "Alle auswählen"
+msgid "Demonstrations Blocks"
+msgstr "Demonstrations Blocks"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Diagram background"
+msgstr "Hintergrund des Diagramms"
+
+msgid "Diagram browser"
+msgstr "Diagramm Browser"
+
+msgid ""
+"Diagram has been modified since last save\n"
+"save it?"
+msgstr ""
+"Diagramm wurde seit dem letzten Speichern verändert\n"
+"Speichern?"
+
+msgid "Discontinuous"
+msgstr "Diskontinuierlich"
+
+msgid "Discrete"
+msgstr "Diskret"
+
+msgid "Do you want a transparent background image?"
+msgstr "Wollen Sie ein transparentes Hintergrundbild?"
+
+msgid "Do you want to overwrite existing file?"
+msgstr "Wollen Sie die existierende Datei überschreiben?"
+
+msgid "Dump"
+msgstr "Speicherauszug"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Electrical"
+msgstr "Elektrisch"
+
+msgid "Events"
+msgstr "Ereignisse"
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Explizierter Dateneingangsport muß mit dem explizitem Datenausgangsport "
+"verbunden sein"
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"explizierter Datenausgangsport muß mit dem explizitem Dateneingangsport "
+"verbunden sein"
+
+msgid "Export"
+msgstr "Exportieren"
+
+msgid "Export to XML"
+msgstr "Exportieren nach XML"
+
+#, c-format
+msgid "FAILED TO EXPORT: %s\n"
+msgstr "Fehler beim Exportieren: %s\n"
+
+msgid "Failed to load Diagram"
+msgstr "Fehler beim Laden der Datei"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Fill Color"
+msgstr "Füllfarbe"
+
+msgid "Final inegration time"
+msgstr "endgültige Integrationszeit"
+
+msgid "Fit diagram to view"
+msgstr "Diagramm an Anzeige anpassen"
+
+msgid "Flip"
+msgstr "Umdrehen"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Generating C Code for SuperBlock"
+msgstr "generoere C  Code für Superblock"
+
+msgid "Get infos"
+msgstr "Informationen holen"
+
+msgid "Grid"
+msgstr "Raster"
+
+msgid "Group"
+msgstr "Gruppe"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "IDA"
+msgstr "IDA"
+
+msgid "Image contains no data."
+msgstr "Image enthält keine Daten"
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr ""
+"Implizierter Dateneingangsport muß mit dem implizitem Datenausgangsport "
+"verbunden sein"
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr ""
+"implizierter Daten Ausgangsport muß mit impliziertem Dateneingangsport "
+"verbunden sein"
+
+msgid "Import from XML"
+msgstr "Importieren nach XML"
+
+msgid "Integer"
+msgstr "Integer"
+
+msgid "Integrator absolute tolerance"
+msgstr "absolute Toleranz des Integrators"
+
+msgid "Integrator relative tolerance"
+msgstr "relative Toleranz des Integrators"
 
 msgid "Invert selection"
 msgstr "Auswahl umkehren"
 
-msgid "Xcos"
-msgstr "Xcos"
+msgid "Left"
+msgstr "Links"
 
-msgid "File"
-msgstr "Datei"
+msgid "Link Style"
+msgstr "Stil des Links"
+
+msgid "Loading diagram"
+msgstr "Lade Diagramm"
+
+msgid "Lookup Tables"
+msgstr "Tabellen ansehen"
+
+msgid "Math Operations"
+msgstr "Mathematische Operationen"
+
+msgid "Matrix"
+msgstr "Matrix"
+
+msgid "Max integration time interval"
+msgstr "maximales Zeitintervall der Integration"
+
+msgid "Middle"
+msgstr "Mittig"
+
+msgid "Modelica"
+msgstr "Modelica"
 
 msgid "New"
 msgstr "Neu"
@@ -100,8 +293,59 @@ msgstr "Neues Diagramm"
 msgid "New palette"
 msgstr "Neue Palette"
 
+msgid "No block selected"
+msgstr "kein Block ausgewählt"
+
+msgid "Normal 100%"
+msgstr "Normal 100%"
+
+msgid "Ok"
+msgstr "Ok"
+
 msgid "Open"
 msgstr "Öffnen"
+
+msgid "Palette browser"
+msgstr "Palette Browser"
+
+msgid "Palettes"
+msgstr "Paletten"
+
+msgid "Paste"
+msgstr "Einfügen"
+
+msgid "Port Action"
+msgstr "Port Aktion"
+
+msgid "Print"
+msgstr "Drucken"
+
+msgid "Quit"
+msgstr "Beenden"
+
+msgid "Real time scaling"
+msgstr "reelle Zeitskalierung"
+
+msgid "Recent Files"
+msgstr "Zuletzt geöffnete Dateien"
+
+msgid "Redo"
+msgstr "Wiederholen"
+
+msgid "Region to superblock"
+msgstr "Region zu Superblock"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Resize"
+msgstr "Größe ändern"
+
+msgid "Right"
+msgstr "Rechts"
+
+msgid "Rotate"
+msgstr "Rotieren"
 
 msgid "Save"
 msgstr "Speichern"
@@ -109,86 +353,64 @@ msgstr "Speichern"
 msgid "Save as"
 msgstr "Speichern als"
 
-msgid "Export"
-msgstr "Exportieren"
-
 msgid "Save as interface function"
 msgstr "Als Interface-Funktion speichern"
-
-msgid "Print"
-msgstr "Drucken"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "Quit"
-msgstr "Beenden"
-
-msgid "Dump"
-msgstr "Speicherauszug"
-
-msgid "View in Scicos"
-msgstr "In scicos zeigen"
-
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Block Parameters"
-msgstr "Block Parameter"
-
-msgid "Region to superblock"
-msgstr "Region zu Superblock"
-
-msgid "Superblock mask"
-msgstr "Superblock Maske"
-
-msgid "Create"
-msgstr "Erstellen"
-
-msgid "Remove"
-msgstr "Entfernen"
-
-msgid "Customize"
-msgstr "Anpassen"
 
 msgid "Save block GUI"
 msgstr "Block GUI speichern"
 
-msgid "View"
-msgstr "Ansicht"
+msgid "Saving diagram"
+msgstr "Speichere Diagramm"
 
-msgid "Fit diagram to view"
-msgstr "Diagramm an Anzeige anpassen"
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 
-msgid "Normal 100%"
-msgstr "Normal 100%"
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' module not installed.\n"
 
-msgid "Palette browser"
-msgstr "Palette Browser"
+msgid "Select all"
+msgstr "Alle auswählen"
 
-msgid "Diagram browser"
-msgstr "Diagramm Browser"
+msgid "Set Context"
+msgstr "Kontext setzen"
 
-msgid "Viewport"
-msgstr "Aktuelle Ansicht"
+msgid "Set Debug Level"
+msgstr "Setzte Fehlersuchestufe"
 
-msgid "Get infos"
-msgstr "Informationen holen"
+msgid "Set Parameters"
+msgstr "Setzte Parameter"
 
-msgid "Details"
-msgstr "Details"
-
-msgid "Browser"
-msgstr "Browser"
-
-msgid "Simulation"
-msgstr "Simulation"
+msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+msgstr "Setzte Fehlersuchestufe (0,1,2,3) </br> es führt scicos_debug(n) aus"
 
 msgid "Setup"
 msgstr "Einstellungen"
 
-msgid "Compile"
-msgstr "Kompilieren"
+msgid "Show/Hide shadow"
+msgstr "Schatten anzeigen/verbergen"
+
+msgid "Signal Processing"
+msgstr "Signal-Verarbeitung"
+
+msgid "Signal Routing"
+msgstr "Signal Routing"
+
+msgid "Simulation"
+msgstr "Simulation"
+
+msgid "Simulation in progress"
+msgstr "Simulation im Fortschritt"
+
+msgid "Sinks"
+msgstr "Sinks"
+
+msgid "Solver 0 (CVODE) - 100 (IDA)"
+msgstr "Löser 0 (CVODE) - 100 (IDA)"
+
+msgid "Sources"
+msgstr "Quellen"
 
 msgid "Start"
 msgstr "Start"
@@ -196,123 +418,14 @@ msgstr "Start"
 msgid "Stop"
 msgstr "Stopp"
 
-msgid "Set Context"
-msgstr "Kontext setzen"
+msgid "Straight"
+msgstr "Gerade"
 
-msgid "Format"
-msgstr "Format"
+msgid "Superblock mask"
+msgstr "Superblock Maske"
 
-msgid "Resize"
-msgstr "Größe ändern"
-
-msgid "Rotate"
-msgstr "Rotieren"
-
-msgid "Flip"
-msgstr "Umdrehen"
-
-msgid "Show/Hide shadow"
-msgstr "Schatten anzeigen/verbergen"
-
-msgid "Grid"
-msgstr "Raster"
-
-msgid "Diagram background"
-msgstr "Hintergrund des Diagramms"
-
-msgid "Tools"
-msgstr "Extras"
-
-msgid "Code generation"
-msgstr "Code Generierung"
-
-msgid "Help"
-msgstr "Hilfe"
-
-msgid "Xcos Help"
-msgstr "Xcos Hilfe"
-
-msgid "Block Help"
-msgstr "Block Hilfe"
-
-msgid "Xcos Demos"
-msgstr "Xcos Demos"
-
-msgid "About Xcos"
-msgstr "Über Xcos"
-
-msgid "Xcos version 1.0"
-msgstr "Xcos version 1.0"
-
-msgid "Palettes"
-msgstr "Paletten"
-
-msgid "Sources"
-msgstr "Quellen"
-
-msgid "Continuous"
-msgstr "Kontinuierlich"
-
-msgid "Discontinuous"
-msgstr "Diskontinuierlich"
-
-msgid "Lookup Tables"
-msgstr "Tabellen ansehen"
-
-msgid "Signal Processing"
-msgstr "Signal-Verarbeitung"
-
-msgid "Threshold"
-msgstr "Schwellenwert"
-
-msgid "Math Operations"
-msgstr "Mathematische Operationen"
-
-msgid "Modelica"
-msgstr "Modelica"
-
-msgid "Integer"
-msgstr "Integer"
-
-msgid "Matrix"
-msgstr "Matrix"
-
-msgid "Sinks"
-msgstr "Sinks"
-
-msgid "Port Action"
-msgstr "Port Aktion"
-
-msgid "Discrete"
-msgstr "Diskret"
-
-msgid "Events"
-msgstr "Ereignisse"
-
-msgid "Signal Routing"
-msgstr "Signal Routing"
-
-msgid "Commonly Used Blocks"
-msgstr "üblicherweise verwendete Blocks"
-
-msgid "User-Defined Functions"
-msgstr "Benutzerdefinierte Funktionen"
-
-msgid "Demonstrations Blocks"
-msgstr "Demonstrations Blocks"
-
-msgid "Electrical"
-msgstr "Elektrisch"
-
-msgid "Thermo-Hydraulics"
-msgstr "Thermo-Hydraulisch"
-
-msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
-msgstr ""
-"Diagramm wurde seit dem letzten Speichern verändert\n"
-"Speichern?"
+msgid "The Scilab Consortium / DIGITEO"
+msgstr "Das Scilab Konsortium / DIGITEO"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -321,11 +434,68 @@ msgstr ""
 "Die Datei %s existiert nicht\n"
 " Wollen Sie diese erzeugen"
 
-msgid "Ok"
-msgstr "Ok"
+msgid "Thermo-Hydraulics"
+msgstr "Thermo-Hydraulisch"
 
-msgid "Cancel"
-msgstr "Abbrechen"
+msgid "Threshold"
+msgstr "Schwellenwert"
+
+msgid "Tolerance on time"
+msgstr "Toleranz in der Zeit"
+
+msgid "Tools"
+msgstr "Extras"
+
+msgid "Top"
+msgstr "Oben"
+
+msgid "UnGroup"
+msgstr "nicht gruppieren"
+
+msgid "Undo"
+msgstr "Rückgängig machen"
+
+msgid "Unknow Diagram Version : "
+msgstr "unbekannte Diagrammversion "
+
+msgid "Untitled"
+msgstr "Unbenannt"
+
+msgid "User-Defined Functions"
+msgstr "Benutzerdefinierte Funktionen"
+
+msgid "Vertical"
+msgstr "Vertikal"
+
+msgid "View"
+msgstr "Ansicht"
+
+msgid "View in Scicos"
+msgstr "In scicos zeigen"
+
+msgid "Viewport"
+msgstr "Aktuelle Ansicht"
+
+msgid "Will try to continue..."
+msgstr "Versuche fortzufahren"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos 1.0"
+msgstr "Xcos 1.0"
+
+msgid "Xcos Demos"
+msgstr "Xcos Demos"
+
+msgid "Xcos Help"
+msgstr "Xcos Hilfe"
+
+msgid "Xcos error"
+msgstr "Xcos Fehler"
+
+msgid "Xcos version 1.0"
+msgstr "Xcos version 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -339,89 +509,14 @@ msgstr ""
 "bestätigt werden (z.B. wenn Sie auf OK klicken, durch Evaluierung und "
 "jedesmal, wenn ein Diagramm geladen wurde.)"
 
-msgid "Failed to load Diagram"
-msgstr "Fehler beim Laden der Datei"
+msgid "Zoom In"
+msgstr "Vergrößern"
 
-msgid "Could not save diagram."
-msgstr "Konnte Diagramm nicht speichern"
-
-msgid "Do you want to overwrite existing file?"
-msgstr "Wollen Sie die existierende Datei überschreiben?"
-
-msgid "Do you want a transparent background image?"
-msgstr "Wollen Sie ein transparentes Hintergrundbild?"
-
-msgid "Image contains no data."
-msgstr "Image enthält keine Daten"
-
-msgid "Xcos error"
-msgstr "Xcos Fehler"
-
-msgid "No block selected"
-msgstr "kein Block ausgewählt"
-
-msgid "Export to XML"
-msgstr "Exportieren nach XML"
-
-msgid "Import from XML"
-msgstr "Importieren nach XML"
-
-msgid "Add to"
-msgstr "Addieren zu"
-
-msgid "Add to new diagram"
-msgstr "Zum neuen Diagramm hinzufügen"
-
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
-msgstr ""
-"Explizierter Dateneingangsport muß mit dem explizitem Datenausgangsport "
-"verbunden sein"
-
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
-msgstr ""
-"Implizierter Dateneingangsport muß mit dem implizitem Datenausgangsport "
-"verbunden sein"
-
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
-msgstr ""
-"explizierter Datenausgangsport muß mit dem explizitem Dateneingangsport "
-"verbunden sein"
-
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
-msgstr ""
-"implizierter Daten Ausgangsport muß mit impliziertem Dateneingangsport "
-"verbunden sein"
-
-msgid "Command port must be connected to control port"
-msgstr "Kommandoport muß mit dem Kotrollport verbunden sein"
+msgid "Zoom Out"
+msgstr "Verkleinern"
 
 msgid "control port must be connected to command port"
 msgstr "Kontrollport muß mit dem Kommandoport verbunden sein"
 
-msgid "Align Blocks"
-msgstr "Blocks abgleichen"
-
-msgid "Left"
-msgstr "Links"
-
-msgid "Right"
-msgstr "Rechts"
-
-msgid "Center"
-msgstr "Zentriert"
-
-msgid "Top"
-msgstr "Oben"
-
-msgid "Bottom"
-msgstr "Unten"
-
-msgid "Middle"
-msgstr "Mittig"
-
-msgid "Line Color"
-msgstr "Linienfarbe"
+msgid "maximum step size (0 means no limit)"
+msgstr "maximale Stufengröße (0 meint kein Limit)"

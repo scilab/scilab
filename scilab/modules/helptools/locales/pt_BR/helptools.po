@@ -14,72 +14,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+msgid "\t%s\n"
+msgstr "\t%s\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
-"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tProcessando arquivo %s.xml\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+"\n"
+"Building master documents:\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
-
-#, c-format
-msgid "%s: Directory %s does not exist or read access denied."
-msgstr "%s: A pasta %s não existe ou seu acesso esta proibido."
-
-msgid "-- Deleting help files --\n"
-msgstr "-- Excluindo arquivos de ajuda --\n"
-
-msgid "Scilab 5.0 or more is required."
-msgstr "É necessário Scilab 5.0 ou superior."
-
-msgid "...demodir must be a directory."
-msgstr "...demodir deve ser um diretório."
-
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: Esta função só está disponível em plataformas Windows.\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr ""
-
-msgid "Help chapter"
-msgstr "Capítulo de ajuda"
 
 #, c-format
 msgid ""
@@ -88,31 +37,6 @@ msgid ""
 msgstr ""
 "\n"
 "Construindo o arquivo-mestre do manual do Scilab %s.\n"
-
-msgid ""
-"\n"
-"Building master documents:\n"
-msgstr ""
-
-msgid ""
-"\n"
-"Building the master document:\n"
-msgstr ""
-
-#, c-format
-msgid "\t%s\n"
-msgstr "\t%s\n"
-
-msgid "Building the scilab manual file ["
-msgstr ""
-
-#, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s não foi gerado"
-
-#, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
-msgstr "%s: O arquivo %s não foi movido no diretório %s."
 
 #, c-format
 msgid ""
@@ -134,105 +58,27 @@ msgstr ""
 "Criando o arquivo de manual [%s]. (Por favor espere ... isso pode levar "
 "algum tempo)\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid existing directory is "
-"expected.\n"
+"\n"
+"Building the master document:\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
-"expected.\n"
-msgstr ""
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: O arquivo %s não foi movido no diretório %s."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The 2 mlist must not have any field in common .\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr "\tProcessando arquivo %s.xml\n"
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr "Alerta %s não segue a definição de tipo de documento"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma string.\n"
-
-#, c-format
-msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s: O navegador de ajuda está desabilitado no modo %s.\n"
-
-#, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s: O módulo de ajuda não está instalado.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo '%s' do Scilab não está instalado.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+msgid "%s: %s has not been generated."
+msgstr "%s: %s não foi gerado"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 "%s: Não foi possível encontrar ou criar o diretório de trabalho %s.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: A pasta %s não existe ou seu acesso esta proibido."
 
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
@@ -243,5 +89,159 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr ""
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "O modulo '%s' do Scilab está desabilitado no modo -nogui ou -nwni."
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: O navegador de ajuda está desabilitado no modo %s.\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Esta função só está disponível em plataformas Windows.\n"
+
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr "%s: O módulo de ajuda não está instalado.\n"
+
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr ""
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Excluindo arquivos de ajuda --\n"
+
+msgid "...demodir must be a directory."
+msgstr "...demodir deve ser um diretório."
+
+msgid "Building the scilab manual file ["
+msgstr ""
+
+msgid "Help chapter"
+msgstr "Capítulo de ajuda"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "O módulo '%s' do Scilab não está instalado.\n"
+
+msgid "Scilab 5.0 or more is required."
+msgstr "É necessário Scilab 5.0 ou superior."
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Alerta %s não segue a definição de tipo de documento"

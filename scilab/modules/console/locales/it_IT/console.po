@@ -8,26 +8,32 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-10-03 17:11+0200\n"
-"PO-Revision-Date: 2009-10-13 13:19+0000\n"
+"PO-Revision-Date: 2009-11-13 14:13+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Out of Screen"
-msgstr "Fuori dei limiti dello schermo"
-
 msgid "Could not change the Console Font."
-msgstr "Non è stato possibile cambiare il carattere del terminale"
+msgstr "Non è stato possibile cambiare il carattere della consolle."
 
 msgid "Could not change the Console Foreground."
-msgstr "Non è stato possibile cambiare l'aspetto del terminale."
+msgstr "Non è stato possibile cambiare l'aspetto della consolle."
 
 msgid "File or Directory"
 msgstr "File o Directory"
+
+msgid "Graphics handle field"
+msgstr "Campo del gestore della grafica"
+
+msgid "No help"
+msgstr "Nessun aiuto"
+
+msgid "Out of Screen"
+msgstr "Fuori dei limiti dello schermo"
 
 msgid "Scilab Command"
 msgstr "Comando di Scilab"
@@ -35,14 +41,8 @@ msgstr "Comando di Scilab"
 msgid "Scilab Function"
 msgstr "Funzione di Scilab"
 
-msgid "Graphics handle field"
-msgstr "Campo del gestore della grafica"
-
 msgid "Scilab Macro"
 msgstr "Macro di Scilab"
 
 msgid "Scilab Variable"
 msgstr "Variabile di Scilab"
-
-msgid "No help"
-msgstr "Nessun aiuto"

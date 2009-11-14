@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,8 +22,16 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s: A ocurrido un error: %s\n"
 
 #, c-format
-msgid "%s: work space (stacksize) is too small d\n"
-msgstr "%s: espacio de trabajo (stacksize) demasiado pequeño\n"
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: Error mientras se creaban los procesos: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay mas memoria.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: No hay tal archivo o directorio.\n"
 
 #, c-format
 msgid "%s: Unknow type or not yet implemented\n"
@@ -34,14 +42,21 @@ msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Primer argumento de entrada incorrecto: Se esperaba '%s' o '%s'.\n"
 
-msgid "Scilab PVM module not installed.\n"
-msgstr "El módulo PVM de Scilab no está instalado.\n"
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s: espacio de trabajo (stacksize) demasiado pequeño\n"
 
-msgid "Unknown Error"
-msgstr "Error desconocido"
+msgid "(group,instance) already exists"
+msgstr "(grupo, instancia) ya existe"
 
-msgid "OK"
-msgstr "OK"
+msgid "Already in group"
+msgstr "Ya está en el grupo"
+
+msgid "Already oing operation"
+msgstr "La operación ya es \"oing\""
+
+msgid "Bad message id"
+msgstr "Identificación de mensaje incorrecta"
 
 msgid "Bad parameter"
 msgstr "Parámetro erróneo"
@@ -49,53 +64,84 @@ msgstr "Parámetro erróneo"
 msgid "Barrier count mismatch"
 msgstr "Inconsistencia en el contador de Barrera"
 
-msgid "Read past end of buffer"
-msgstr "Leer último final del buffer"
-
-msgid "No such host"
-msgstr "No hay tal host"
-
-msgid "No such executable"
-msgstr "No hay tal ejecutable"
+msgid "Can not decode received msg"
+msgstr "No se puede decodificar el mensaje recibido"
 
 msgid "Can not get memory"
 msgstr "No se puede obtener memoria"
 
-msgid "Can not decode received msg"
-msgstr "No se puede decodificar el mensaje recibido"
-
 msgid "Daemon pvmd is not responding"
 msgstr "El demonio pvmd no está respondiendo"
 
-msgid "No current buffer"
-msgstr "No hay buffer actual"
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Error MALLOC (asignación de memoria) en pvm_error\n"
 
-msgid "Bad message id"
-msgstr "Identificación de mensaje incorrecta"
+msgid "Error pvm_halt - signal\n"
+msgstr "Error pvm_halt - signal\n"
 
-msgid "Null group name is illegal"
-msgstr "El nombre del grupo Null es ilegal"
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Error pvm_reduce: No es de tipo escalar\n"
 
-msgid "Already in group"
-msgstr "Ya está en el grupo"
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "Error pvm_reduce: Operación de reducción desconocida %s\n"
 
-msgid "No group with that name"
-msgstr "No hay grupo con ese nombre"
+msgid "Failed to exec new slave pvmd"
+msgstr "Falló la ejecución del nuevo esclavo pvmd"
 
-msgid "Not in group"
-msgstr "No está en el grupo"
+msgid "Function not implemented"
+msgstr "Función no implementada"
 
-msgid "No such instance in group"
-msgstr "No hay tal instancia en el grupo"
+msgid "Host already configured (Duplicate host)"
+msgstr "Ya se configuró el host (Host duplicado)"
 
 msgid "Host failed"
 msgstr "Falló host"
 
+msgid "No current buffer"
+msgstr "No hay buffer actual"
+
+msgid "No group with that name"
+msgstr "No hay grupo con ese nombre"
+
 msgid "No parent task"
 msgstr "No hay tarea padre"
 
-msgid "Function not implemented"
-msgstr "Función no implementada"
+msgid "No such (group,instance)"
+msgstr "No hay tal (grupo, instancia)"
+
+msgid "No such executable"
+msgstr "No hay tal ejecutable"
+
+msgid "No such host"
+msgstr "No hay tal host"
+
+msgid "No such instance in group"
+msgstr "No hay tal instancia en el grupo"
+
+msgid "No such task"
+msgstr "No hay tal tarea"
+
+msgid "Not in group"
+msgstr "No está en el grupo"
+
+msgid "Null group name is illegal"
+msgstr "El nombre del grupo Null es ilegal"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Out of ressources"
+msgstr "Sin más recursos"
+
+msgid "PVM exists"
+msgstr "Existe PVM"
+
+msgid "PVM not found"
+msgstr "No se encontró PVM"
+
+msgid "PVM parallel Toolbox"
+msgstr "Barra de herramientas de la Máquina Virtual Paralela"
 
 msgid "Pvmd system error"
 msgstr "Error del sistema pvmd"
@@ -103,53 +149,15 @@ msgstr "Error del sistema pvmd"
 msgid "Pvmd-pvmd protocol mismatch"
 msgstr "Inconsistencia de protocolo pvmd-pvmd"
 
-msgid "Out of ressources"
-msgstr "Sin más recursos"
+msgid "Read past end of buffer"
+msgstr "Leer último final del buffer"
 
-msgid "Host already configured (Duplicate host)"
-msgstr "Ya se configuró el host (Host duplicado)"
-
-msgid "Failed to exec new slave pvmd"
-msgstr "Falló la ejecución del nuevo esclavo pvmd"
-
-msgid "Already oing operation"
-msgstr "La operación ya es \"oing\""
-
-msgid "No such task"
-msgstr "No hay tal tarea"
-
-msgid "PVM not found"
-msgstr "No se encontró PVM"
-
-msgid "PVM exists"
-msgstr "Existe PVM"
-
-msgid "No such (group,instance)"
-msgstr "No hay tal (grupo, instancia)"
-
-msgid "(group,instance) already exists"
-msgstr "(grupo, instancia) ya existe"
-
-msgid "Error MALLOC in pvm_error\n"
-msgstr "Error MALLOC (asignación de memoria) en pvm_error\n"
+msgid "Scilab PVM module not installed.\n"
+msgstr "El módulo PVM de Scilab no está instalado.\n"
 
 #, c-format
 msgid "The configuration file %s is used.\n"
 msgstr "Se usa el archivo de configuración %s.\n"
-
-#, c-format
-msgid "Warning: PVM_ROOT is set to %s\n"
-msgstr "Advertencia: PVM_ROOT es %s\n"
-
-msgid "but there exists no configuration file:\n"
-msgstr "pero no existe archivo de configuración:\n"
-
-msgid "Warning: PVM_ROOT is not set.\n"
-msgstr "Advertencia: PVM_ROOT no fue asignado.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hay mas memoria.\n"
 
 #, c-format
 msgid ""
@@ -171,6 +179,16 @@ msgstr ""
 "El archivo de configuración estándar $SCI%s%s necesita que las variables de "
 "entorno %s, %s, %s sean configuradas. No se puede iniciar PVM.\n"
 
+msgid "Unknown Error"
+msgstr "Error desconocido"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Advertencia: PVM_ROOT no fue asignado.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Advertencia: PVM_ROOT es %s\n"
+
 #, c-format
 msgid ""
 "Warning: The standard configuration file $SCI%s was not found.\n"
@@ -181,23 +199,5 @@ msgstr ""
 "Suponemos que PVM y scilab están en un lugar estándar de su red\n"
 " (Cf. man pvmd3)\n"
 
-#, c-format
-msgid "%s: No such file or directory.\n"
-msgstr "%s: No hay tal archivo o directorio.\n"
-
-msgid "Error pvm_halt - signal\n"
-msgstr "Error pvm_halt - signal\n"
-
-#, c-format
-msgid "%s: Error while creating processes: %s.\n"
-msgstr "%s: Error mientras se creaban los procesos: %s.\n"
-
-msgid "Error pvm_reduce: Not scalar type\n"
-msgstr "Error pvm_reduce: No es de tipo escalar\n"
-
-#, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Error pvm_reduce: Operación de reducción desconocida %s\n"
-
-msgid "PVM parallel Toolbox"
-msgstr "Barra de herramientas de la Máquina Virtual Paralela"
+msgid "but there exists no configuration file:\n"
+msgstr "pero no existe archivo de configuración:\n"

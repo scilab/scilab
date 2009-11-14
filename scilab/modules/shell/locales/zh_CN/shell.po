@@ -14,58 +14,58 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s：输入参数#%d的值错误。\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s：该功能尚未实现。\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s：该功能尚未实现。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s：输入参数#%d的值错误。\n"
 
 msgid "File or Directory"
 msgstr "文件或目录"
 
-msgid "Scilab Function"
-msgstr "Scilab函数"
+msgid "Graphics handle field"
+msgstr "Scilab句柄域"
 
 msgid "Scilab Command"
 msgstr "Scilab命令"
+
+msgid "Scilab Function"
+msgstr "Scilab函数"
 
 msgid "Scilab Macro"
 msgstr "Scilab宏"
 
 msgid "Scilab Variable"
 msgstr "Scilab变量"
-
-msgid "Graphics handle field"
-msgstr "Scilab句柄域"
 
 #, c-format
 msgid ""

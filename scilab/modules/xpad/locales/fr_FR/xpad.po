@@ -8,20 +8,24 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-10-27 12:30+0000\n"
+"PO-Revision-Date: 2009-11-12 09:33+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid ""
+" has been modified since last save\n"
+"save it?"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
-"est attendue.\n"
+" a été modifié depuis la dernière sauvegarde\n"
+"le sauver ?"
+
+msgid "%s is a directory."
+msgstr "%s est un répertoire."
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -33,213 +37,184 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire réel attendu.\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni."
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"est attendue.\n"
 
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+msgid "?"
+msgstr "?"
 
-msgid "Scilab editor"
-msgstr "Editeur Scilab"
+msgid "ASCII Encoding"
+msgstr "Encodage ASCII"
 
-msgid "File"
-msgstr "Fichier"
+msgid "About"
+msgstr "A propos"
 
-msgid "New"
-msgstr "Nouveau"
+msgid "All"
+msgstr "Tous"
 
-msgid "Open"
-msgstr "Ouvrir"
+msgid "All rights reserved"
+msgstr "Tout droits réservés"
 
-msgid "Recent Files"
-msgstr "Fichiers récents"
+msgid "Auto Reformat Selection"
+msgstr "Reformatage automatique de la sélection"
 
-msgid "Save"
-msgstr "Enregistrer"
+msgid "Backward"
+msgstr "En arrière"
 
-msgid "Save as"
-msgstr "Enregistrer sous"
+msgid "Cancel"
+msgstr "Annuler"
 
-msgid "Page Setup"
-msgstr "Mise en page"
+msgid "Cannot load \"xpadConfiguration.xml\""
+msgstr "Ne peut pas charger \"xpadConfiguration.xml\""
 
-msgid "Print Preview"
-msgstr "Aperçu avant impression"
+msgid "Case sensitive"
+msgstr "Respecter la casse"
 
-msgid "Print"
-msgstr "Imprimer"
+msgid "CeCILL License"
+msgstr "Licence CeCILL"
 
 msgid "Close"
 msgstr "Fermer"
 
-msgid "Exit"
-msgstr "Quitter"
+msgid "Colorization canceled"
+msgstr "Colorisation annulée"
 
-msgid "Edit"
-msgstr "Edition"
-
-msgid "Undo"
-msgstr "Annuler"
-
-msgid "Redo"
-msgstr "Refaire"
-
-msgid "Cut"
-msgstr "Couper"
-
-msgid "Copy"
-msgstr "Copier"
-
-msgid "Paste"
-msgstr "Coller"
-
-msgid "Select All"
-msgstr "Sélectionner Tout"
-
-msgid "Delete"
-msgstr "Supprimer"
+msgid "Colorize"
+msgstr "Coloriser"
 
 msgid "Comment Selection"
 msgstr "Commenter la sélection"
 
-msgid "Uncomment Selection"
-msgstr "Décommenter la sélection"
+msgid "Continue?"
+msgstr "Continuer ?"
 
-msgid "Tabify Selection"
-msgstr "Indenter la sélection"
+msgid "Copy"
+msgstr "Copier"
 
-msgid "Untabify Selection"
-msgstr "Désindenter la sélection"
+msgid "Copyright 2009"
+msgstr "Copyright 2009"
 
-msgid "Indent"
-msgstr "Indenter"
+msgid "Cut"
+msgstr "Couper"
 
-msgid "Search"
+msgid "Default"
+msgstr "Standard"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Direction"
+msgstr "Direction"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Edit"
+msgstr "Edition"
+
+msgid "Editor 1.0"
+msgstr ""
+
+msgid "Editor error"
+msgstr ""
+
+msgid "Encoding"
+msgstr "Encodage"
+
+msgid "Enter line number"
+msgstr "Entrez le numéro de ligne"
+
+msgid "Evaluate Selection"
+msgstr "Evaluer la sélection"
+
+msgid "Execute"
+msgstr "Exécuter"
+
+msgid "Execute File Into Scilab"
+msgstr "Execute le fichier dans Scilab"
+
+msgid "Exit"
+msgstr "Quitter"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "File already exists"
+msgstr "Le fichier existe déjà"
+
+msgid "Find"
 msgstr "Rechercher"
 
 msgid "Find/Replace"
 msgstr "Rechercher/Remplacer"
 
-msgid "Goto line"
-msgstr "Aller à la ligne"
-
-msgid "View"
-msgstr "Affichage"
-
-msgid "Show/Hide ToolBar"
-msgstr "Afficher/Cacher la barre d'outils"
-
-msgid "Highlight current line"
-msgstr "Souligner la ligne courante"
-
-msgid "Word Wrap"
-msgstr "Césure des lignes"
-
-msgid "Line Numbers"
-msgstr "Numéro de ligne"
-
-msgid "Set Colors"
-msgstr "Régler les couleurs"
-
-msgid "Set Font"
-msgstr "Définir la police"
-
-msgid "Reset default font"
-msgstr "Sélectionner les polices par défaut"
-
-msgid "Document"
-msgstr "Document"
-
-msgid "Syntax Type"
-msgstr "Type de syntaxe"
-
-msgid "Scilab"
-msgstr "Scilab"
-
-msgid "Plain Text"
-msgstr "Texte brut"
-
-msgid "XML"
-msgstr "XML"
-
-msgid "Encoding Type"
-msgstr "Type d'encodage"
-
-msgid "UTF-8 Encoding"
-msgstr "Encodage UTF-8"
-
-msgid "ASCII Encoding"
-msgstr "Encodage ASCII"
-
-msgid "Colorize"
-msgstr "Coloriser"
-
-msgid "Auto Indent"
-msgstr "Indentation automatique"
-
-msgid "Execute"
-msgstr "Exécuter"
-
-msgid "Load Into Scilab"
-msgstr "Charger dans Scilab"
-
-msgid "Evaluate Selection"
-msgstr "Evaluer la sélection"
-
-msgid "Execute Into Scilab"
-msgstr "Exécuter dans Scilab"
-
-msgid "Scilab editor Help"
-msgstr "Aide de l'éditeur Scilab"
-
-msgid "About"
-msgstr "A propos"
-
-msgid "Scilab Editor version 1.0"
-msgstr "Editeur Scilab version 1.0"
-
 msgid "Find:"
 msgstr "Rechercher:"
-
-msgid "Find"
-msgstr "Rechercher"
-
-msgid "Replace/Find"
-msgstr "Rechercher/Remplacer"
-
-msgid "Replace With :"
-msgstr "Remplacer par:"
-
-msgid "Direction"
-msgstr "Direction"
 
 msgid "Forward"
 msgstr "En avant"
 
-msgid "Backward"
-msgstr "En arrière"
+msgid "Goto line"
+msgstr "Aller à la ligne"
 
-msgid "Scope"
-msgstr "Scope"
+msgid "Highlight current line"
+msgstr "Souligner la ligne courante"
 
-msgid "All"
-msgstr "Tous"
+msgid "Invalid regular expression : %s"
+msgstr "Expression régulière invalide: %s"
 
-msgid "Selected lines"
-msgstr "Lignes sélectionnées"
+msgid "Line Numbers"
+msgstr "Numéro de ligne"
+
+msgid "Load Into Scilab"
+msgstr "Charger dans Scilab"
+
+msgid "Loading..."
+msgstr "Chargement..."
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Next tab"
+msgstr "Onglet suivant"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Ouvrir"
 
 msgid "Options"
 msgstr "Options"
 
-msgid "Case sensitive"
-msgstr "Respecter la casse"
+msgid "Page Setup"
+msgstr "Mise en page"
 
-msgid "Wrap search"
-msgstr "Recherche cyclique"
+msgid "Paste"
+msgstr "Coller"
 
-msgid "Whole word"
-msgstr "Mot entier"
+msgid "Plain Text"
+msgstr "Texte brut"
+
+msgid "Previous tab"
+msgstr "Onglet précédent"
+
+msgid "Print"
+msgstr "Imprimer"
+
+msgid "Print Preview"
+msgstr "Aperçu avant impression"
+
+msgid "Recent Files"
+msgstr "Fichiers récents"
+
+msgid "Redo"
+msgstr "Refaire"
+
+msgid "Reformat Selection"
+msgstr "Reformatage de la sélection"
 
 msgid "Regular expressions"
 msgstr "Expressions régulières"
@@ -250,14 +225,76 @@ msgstr "Remplacer"
 msgid "Replace All"
 msgstr "Remplacer Tout"
 
-msgid "Invalid regular expression : %s"
-msgstr "Expression régulière invalide: %s"
+msgid "Replace File?"
+msgstr "Remplacer le fichier ?"
 
-msgid "You have reached the end of the document"
-msgstr "Vous avez atteint la fin du document"
+msgid "Replace With :"
+msgstr "Remplacer par:"
+
+msgid "Replace/Find"
+msgstr "Rechercher/Remplacer"
+
+msgid "Reset default font"
+msgstr "Sélectionner les polices par défaut"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Save as"
+msgstr "Enregistrer sous"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+msgid "Scilab Editor version 1.0"
+msgstr "Editeur Scilab version 1.0"
+
+msgid "Scilab editor"
+msgstr "Editeur Scilab"
+
+msgid "Scilab editor Help"
+msgstr "Aide de l'éditeur Scilab"
+
+msgid "Scope"
+msgstr "Scope"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Select All"
+msgstr "Sélectionner Tout"
+
+msgid "Selected lines"
+msgstr "Lignes sélectionnées"
+
+msgid "Set Colors"
+msgstr "Régler les couleurs"
+
+msgid "Set Font"
+msgstr "Définir la police"
+
+msgid "Show/Hide ToolBar"
+msgstr "Afficher/Cacher la barre d'outils"
 
 msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
+
+msgid "Syntax Type"
+msgstr "Type de syntaxe"
+
+msgid "Tabify Selection"
+msgstr "Indenter la sélection"
+
+msgid "The Scilab Consortium / DIGITEO"
+msgstr "Consortium Scilab / DIGITEO"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -266,19 +303,6 @@ msgstr ""
 "Le fichier %s n'existe pas\n"
 "Voulez vous le créer ?"
 
-msgid "close this tab"
-msgstr "fermer cet onglet"
-
-msgid "This file"
-msgstr "Ce fichier"
-
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr ""
-" a été modifié depuis la dernière sauvegarde\n"
-"le sauver ?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -286,29 +310,69 @@ msgstr ""
 "Le fichier %s a été modifié par un autre programme !\n"
 " L'écraser ?"
 
-msgid "Replace File?"
-msgstr "Remplacer le fichier ?"
+msgid "The file could not be converted."
+msgstr "Le fichier n'a pas pu être converti"
 
-msgid "File already exists"
-msgstr "Le fichier existe déjà"
+msgid "The file could not be saved."
+msgstr "Le fichier n'a pas pu être sauvé"
+
+msgid "This file"
+msgstr "Ce fichier"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr ""
+"Ce fichier est binaire, le sauvegarder pourra produire un fichier corrompu"
+
+msgid "UTF-8 Encoding"
+msgstr "Encodage UTF-8"
+
+msgid "Uncomment Selection"
+msgstr "Décommenter la sélection"
+
+msgid "Undo"
+msgstr "Annuler"
+
+msgid "Untabify Selection"
+msgstr "Désindenter la sélection"
 
 msgid "Untitled "
 msgstr "Sans titre "
 
-msgid "Ok"
-msgstr "Ok"
+msgid "View"
+msgstr "Affichage"
 
-msgid "Cancel"
-msgstr "Annuler"
+msgid "Whole word"
+msgstr "Mot entier"
 
-msgid "Default"
-msgstr "Standard"
+msgid "Word Wrap"
+msgstr "Césure des lignes"
 
-msgid "Next tab"
-msgstr "Onglet suivant"
+msgid "Wrap search"
+msgstr "Recherche cyclique"
 
-msgid "Previous tab"
-msgstr "Onglet précédent"
+msgid "XML"
+msgstr "XML"
 
-msgid "Enter line number"
-msgstr "Entrez le numéro de ligne"
+msgid "You have passed the beginning of the document"
+msgstr "Vous avez dépassé le début du document"
+
+msgid "You have passed the end of the document"
+msgstr "Vous avez dépassé la fin du document"
+
+msgid "You have reached the beginning of the document"
+msgstr "Vous avez atteint le début du document"
+
+msgid "You have reached the end of the document"
+msgstr "Vous avez atteint la fin du document"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+"Vous devez sauvegarder vos modifications avant d'exécuter ce fichier dans "
+"Scilab."
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "Vos modifications seront perdues, changer quand même l'encodage ?"
+
+msgid "close this tab"
+msgstr "fermer cet onglet"

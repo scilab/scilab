@@ -14,32 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s: Не удалось добавить путь в java.library.path: %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
 msgstr ""
-"%s: Не удалось добавить URL к системному загрузчику классов (system "
-"classloader) : %s.\n"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
-
-msgid "Console"
-msgstr "Командное окно"
+"\n"
+"Не удалось загрузить динамическую библиотеку JVM (libjava).\n"
 
 #, c-format
 msgid ""
@@ -48,9 +32,6 @@ msgid ""
 msgstr ""
 "\n"
 "Ошибка: невозможно возвратить окружение Scilab Java (JNIEnv_SCILAB).\n"
-
-msgid "Error"
-msgstr "Ошибка"
 
 #, c-format
 msgid ""
@@ -61,23 +42,6 @@ msgstr ""
 "\n"
 "Ошибка: не удалось вернуть Java-окружение Scilab (jvm_SCILAB): проверьте что "
 "Scilab загрузил JVM до вызова этой функции.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Weird error. Calling from Java but haven't been able to find the already "
-"existing JVM.\n"
-msgstr ""
-"\n"
-"Странная ошибка. Вызову из Java не удалось найти существующую JVM.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Could not load JVM dynamic library (libjava).\n"
-msgstr ""
-"\n"
-"Не удалось загрузить динамическую библиотеку JVM (libjava).\n"
 
 #, c-format
 msgid ""
@@ -96,10 +60,6 @@ msgstr ""
 "Неподходящая версия JNI (требуется как минимум JDK 1.4).\n"
 
 #, c-format
-msgid "Error in the creation of the Java VM: %s\n"
-msgstr "Ошибка создания Java VM: %s\n"
-
-#, c-format
 msgid ""
 "\n"
 "JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
@@ -108,26 +68,85 @@ msgstr ""
 "Ошибка JVM в AttachCurrentThread: не удалось подключиться к текущему "
 "потоку.\n"
 
-msgid "Unknown JNI error"
-msgstr "Неизвестная ошибка JNI"
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab не может создать Scilab Java Main-Class (не удалось найти главный "
+"класс Scilab. Проверьте доступны ли Scilab и сторонние пакеты).\n"
 
-msgid "Thread detached from the VM"
-msgstr "Поток отделён от VM"
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab не может открыть библиотеку JVM.\n"
 
-msgid "JNI version error"
-msgstr "Ошибка версии JNI"
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Странная ошибка. Вызову из Java не удалось найти существующую JVM.\n"
 
-msgid "JNI: not enough memory"
-msgstr "JNI: недостаточно памяти"
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr ""
+"%s: Не удалось добавить URL к системному загрузчику классов (system "
+"classloader) : %s.\n"
 
-msgid "VM already created"
-msgstr "VM уже создана"
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s: Не удалось добавить путь в java.library.path: %s.\n"
 
-msgid "JNI: invalid arguments"
-msgstr "JNI: некорректные аргументы"
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
 
-msgid "Undefined error code in the JNI. Weird problem"
-msgstr "Неопределённый код ошибки в JNI. Странная проблема"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+msgid "Console"
+msgstr "Командное окно"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Не удалось получить доступ к главному классу Scilab:\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "Не удалось получить доступ к конструктору главного класса Scilab:\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Не удалось создать главный класс Scilab. Ошибка:\n"
+
+msgid "Error"
+msgstr "Ошибка"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Ошибка: некорректный classpath-файл %s (кодировка не «utf-8»). Найдена "
+"кодировка «%s»\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Ошибка: неправильный path-файл %s (кодировка не «utf-8»). Найдена кодировка "
+"«%s»\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Ошибка создания Java VM: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -145,28 +164,20 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "Ошибка: не удалось сделать грамматический разбор файла %s\n"
 
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr "Неверный формат для %s.\n"
+msgid "JNI version error"
+msgstr "Ошибка версии JNI"
 
-#, c-format
-msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr ""
-"Ошибка: неправильный path-файл %s (кодировка не «utf-8»). Найдена кодировка "
-"«%s»\n"
+msgid "JNI: invalid arguments"
+msgstr "JNI: некорректные аргументы"
 
-#, c-format
-msgid "Warning: could not find classpath declaration file %s.\n"
-msgstr "Внимание: не удалось найти файл объявления classpath %s.\n"
+msgid "JNI: not enough memory"
+msgstr "JNI: недостаточно памяти"
 
-#, c-format
-msgid ""
-"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-"Ошибка: некорректный classpath-файл %s (кодировка не «utf-8»). Найдена "
-"кодировка «%s»\n"
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
+
+msgid "Scilab Java module not installed.\n"
+msgstr "Модуль Java не установлен.\n"
 
 #, c-format
 msgid ""
@@ -178,37 +189,26 @@ msgstr ""
 "Это может привести к неожиданному поведению.\n"
 "Проверьте SCI/etc/classpath.xml.\n"
 
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilab не может открыть библиотеку JVM.\n"
+msgid "Thread detached from the VM"
+msgstr "Поток отделён от VM"
 
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
-"the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available).\n"
-msgstr ""
-"\n"
-"Scilab не может создать Scilab Java Main-Class (не удалось найти главный "
-"класс Scilab. Проверьте доступны ли Scilab и сторонние пакеты).\n"
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Неопределённый код ошибки в JNI. Странная проблема"
 
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "Не удалось получить доступ к главному классу Scilab:\n"
+msgid "Unknown JNI error"
+msgstr "Неизвестная ошибка JNI"
 
-msgid "Could not access to the constructor of the Main Scilab Class:\n"
-msgstr "Не удалось получить доступ к конструктору главного класса Scilab:\n"
-
-msgid "Could not create a Scilab main class. Error:\n"
-msgstr "Не удалось создать главный класс Scilab. Ошибка:\n"
+msgid "VM already created"
+msgstr "VM уже создана"
 
 #, c-format
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr "Внимание: не удалось найти пакет Java «%s».\n"
 
-msgid "Scilab Java module not installed.\n"
-msgstr "Модуль Java не установлен.\n"
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "Внимание: не удалось найти файл объявления classpath %s.\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Неверный формат для %s.\n"

@@ -14,83 +14,267 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: ファイル %s は、存在しません。\n"
 
 #, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "エクスポート失敗: %s\n"
-
-#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: これ以上のメモリはありません。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。"
+msgid "?"
+msgstr ""
 
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' モジュールはインストールされていません。\n"
+msgid "About Xcos"
+msgstr "Xcos情報"
 
-msgid "Untitled"
-msgstr "無題"
+msgid "Add to"
+msgstr "加算"
+
+msgid "Add to new diagram"
+msgstr "新しい図形の追加"
+
+msgid "Align Blocks"
+msgstr "整列ブロック"
+
+msgid "All rights reserved"
+msgstr ""
+
+msgid "Block Help"
+msgstr "ブロックヘルプ"
+
+msgid "Block Parameters"
+msgstr "ブロック パラメーター"
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Bottom"
+msgstr "底"
+
+msgid "CVODE"
+msgstr ""
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "CeCILL License"
+msgstr ""
+
+msgid "Center"
+msgstr "中央"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Code generation"
+msgstr "コード生成"
+
+msgid "Command port must be connected to control port"
+msgstr "コマンドポートは、管理ポートと接続されてなくてはなりません"
+
+msgid "Commonly Used Blocks"
+msgstr "一般に使われたブロック"
+
+msgid "Compile"
+msgstr "コンパイル"
+
+msgid "Continuous"
+msgstr "連続的"
 
 msgid "Copy"
 msgstr "コピー"
 
+msgid "Copyright 2009"
+msgstr ""
+
+msgid "Could not save diagram."
+msgstr "図形を保存できません。"
+
+msgid "Create"
+msgstr "生成"
+
+msgid "Customize"
+msgstr "カスタマイズ"
+
 msgid "Cut"
 msgstr "切り取り"
 
-msgid "Group"
-msgstr "グループ"
-
-msgid "UnGroup"
-msgstr "グループでない"
-
-msgid "Paste"
-msgstr "貼り付け"
-
-msgid "Redo"
-msgstr "やり直し"
-
-msgid "Undo"
-msgstr "元に戻す"
-
-msgid "Zoom In"
-msgstr "ズーム・イン"
-
-msgid "Zoom Out"
-msgstr "ズーム・アウト"
+msgid "Default"
+msgstr ""
 
 msgid "Delete"
 msgstr "削除"
 
-msgid "Select all"
-msgstr "全て選択"
+msgid "Demonstrations Blocks"
+msgstr "証明ブロック"
+
+msgid "Details"
+msgstr "細部"
+
+msgid "Diagram background"
+msgstr "背景図形"
+
+msgid "Diagram browser"
+msgstr "図形 ブラウザー"
+
+msgid ""
+"Diagram has been modified since last save\n"
+"save it?"
+msgstr ""
+"図形は、最後の保存から修正されました\n"
+"保存しますか?"
+
+msgid "Discontinuous"
+msgstr "断続的"
+
+msgid "Discrete"
+msgstr "分離"
+
+msgid "Do you want a transparent background image?"
+msgstr "透明な背景イメージが欲しいですか?"
+
+msgid "Do you want to overwrite existing file?"
+msgstr "既存ファイルを上書きしますか?"
+
+msgid "Dump"
+msgstr "ダンプ"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Electrical"
+msgstr "電気関係"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr "明白なデータ入力ポートは、明白なデータ出力ポートと繋がってなくてはいけません"
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr "明白なデータ出力ポートは、明白なデータ入力ポートと繋がってなくてはいけません"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Export to XML"
+msgstr "XMLへエクスポート"
+
+#, c-format
+msgid "FAILED TO EXPORT: %s\n"
+msgstr "エクスポート失敗: %s\n"
+
+msgid "Failed to load Diagram"
+msgstr "図形ロードが失敗しました"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Fill Color"
+msgstr ""
+
+msgid "Final inegration time"
+msgstr ""
+
+msgid "Fit diagram to view"
+msgstr "適当な表示図形"
+
+msgid "Flip"
+msgstr "はじく"
+
+msgid "Format"
+msgstr "フォーマット"
+
+msgid "Generating C Code for SuperBlock"
+msgstr ""
+
+msgid "Get infos"
+msgstr "情報取得"
+
+msgid "Grid"
+msgstr "グリッド"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "IDA"
+msgstr ""
+
+msgid "Image contains no data."
+msgstr "イメージはデータを含みません。"
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr "暗黙のデータ入力ポートは、暗黙のデータ出力ポートと繋がってなくてはいけません"
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr "暗黙のデータ出力ポートは、暗黙のデータ入力ポートと繋がってなくてはいけません"
+
+msgid "Import from XML"
+msgstr "XMLからインポート"
+
+msgid "Integer"
+msgstr "整数"
+
+msgid "Integrator absolute tolerance"
+msgstr ""
+
+msgid "Integrator relative tolerance"
+msgstr ""
 
 msgid "Invert selection"
 msgstr "反転選択"
 
-msgid "Xcos"
-msgstr "Xcos"
+msgid "Left"
+msgstr "左"
 
-msgid "File"
-msgstr "ファイル"
+msgid "Link Style"
+msgstr ""
+
+msgid "Loading diagram"
+msgstr ""
+
+msgid "Lookup Tables"
+msgstr "ルックアップ・テーブル"
+
+msgid "Math Operations"
+msgstr "数学操作"
+
+msgid "Matrix"
+msgstr "行列"
+
+msgid "Max integration time interval"
+msgstr ""
+
+msgid "Middle"
+msgstr "中間"
+
+msgid "Modelica"
+msgstr "造形"
 
 msgid "New"
 msgstr "新しい"
@@ -101,8 +285,59 @@ msgstr "新しい図形"
 msgid "New palette"
 msgstr "新しいパレット"
 
+msgid "No block selected"
+msgstr "ブロック選択なし"
+
+msgid "Normal 100%"
+msgstr "100% 標準"
+
+msgid "Ok"
+msgstr "OK"
+
 msgid "Open"
 msgstr "開く"
+
+msgid "Palette browser"
+msgstr "パレット ブラウザー"
+
+msgid "Palettes"
+msgstr "パレット"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Port Action"
+msgstr "ポート活動"
+
+msgid "Print"
+msgstr "印刷"
+
+msgid "Quit"
+msgstr "終了"
+
+msgid "Real time scaling"
+msgstr ""
+
+msgid "Recent Files"
+msgstr ""
+
+msgid "Redo"
+msgstr "やり直し"
+
+msgid "Region to superblock"
+msgstr "スーパーブロックの領域,"
+
+msgid "Remove"
+msgstr "末梢"
+
+msgid "Resize"
+msgstr "リサイズ"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Rotate"
+msgstr "循環"
 
 msgid "Save"
 msgstr "保存"
@@ -110,86 +345,64 @@ msgstr "保存"
 msgid "Save as"
 msgstr "保存"
 
-msgid "Export"
-msgstr "エクスポート"
-
 msgid "Save as interface function"
 msgstr "インターフェース関数の保存"
-
-msgid "Print"
-msgstr "印刷"
-
-msgid "Close"
-msgstr "閉じる"
-
-msgid "Quit"
-msgstr "終了"
-
-msgid "Dump"
-msgstr "ダンプ"
-
-msgid "View in Scicos"
-msgstr "Scicosの表示"
-
-msgid "Edit"
-msgstr "編集"
-
-msgid "Block Parameters"
-msgstr "ブロック パラメーター"
-
-msgid "Region to superblock"
-msgstr "スーパーブロックの領域,"
-
-msgid "Superblock mask"
-msgstr "スーパーブロック・マスク"
-
-msgid "Create"
-msgstr "生成"
-
-msgid "Remove"
-msgstr "末梢"
-
-msgid "Customize"
-msgstr "カスタマイズ"
 
 msgid "Save block GUI"
 msgstr "GUIブロックの保存"
 
-msgid "View"
-msgstr "表示"
+msgid "Saving diagram"
+msgstr ""
 
-msgid "Fit diagram to view"
-msgstr "適当な表示図形"
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
 
-msgid "Normal 100%"
-msgstr "100% 標準"
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' モジュールはインストールされていません。\n"
 
-msgid "Palette browser"
-msgstr "パレット ブラウザー"
+msgid "Select all"
+msgstr "全て選択"
 
-msgid "Diagram browser"
-msgstr "図形 ブラウザー"
+msgid "Set Context"
+msgstr "コンテキスト設定"
 
-msgid "Viewport"
-msgstr "表示ポート"
+msgid "Set Debug Level"
+msgstr ""
 
-msgid "Get infos"
-msgstr "情報取得"
+msgid "Set Parameters"
+msgstr ""
 
-msgid "Details"
-msgstr "細部"
-
-msgid "Browser"
-msgstr "ブラウザー"
-
-msgid "Simulation"
-msgstr "シミュレーション"
+msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+msgstr ""
 
 msgid "Setup"
 msgstr "セットアップ"
 
-msgid "Compile"
-msgstr "コンパイル"
+msgid "Show/Hide shadow"
+msgstr "影の表示/非表示"
+
+msgid "Signal Processing"
+msgstr "シグナル処理"
+
+msgid "Signal Routing"
+msgstr "シグナル処理"
+
+msgid "Simulation"
+msgstr "シミュレーション"
+
+msgid "Simulation in progress"
+msgstr ""
+
+msgid "Sinks"
+msgstr "減る"
+
+msgid "Solver 0 (CVODE) - 100 (IDA)"
+msgstr ""
+
+msgid "Sources"
+msgstr "ソース"
 
 msgid "Start"
 msgstr "開始"
@@ -197,123 +410,14 @@ msgstr "開始"
 msgid "Stop"
 msgstr "停止"
 
-msgid "Set Context"
-msgstr "コンテキスト設定"
-
-msgid "Format"
-msgstr "フォーマット"
-
-msgid "Resize"
-msgstr "リサイズ"
-
-msgid "Rotate"
-msgstr "循環"
-
-msgid "Flip"
-msgstr "はじく"
-
-msgid "Show/Hide shadow"
-msgstr "影の表示/非表示"
-
-msgid "Grid"
-msgstr "グリッド"
-
-msgid "Diagram background"
-msgstr "背景図形"
-
-msgid "Tools"
-msgstr "ツール"
-
-msgid "Code generation"
-msgstr "コード生成"
-
-msgid "Help"
-msgstr "ヘルプ"
-
-msgid "Xcos Help"
-msgstr "Xcos ヘルプ"
-
-msgid "Block Help"
-msgstr "ブロックヘルプ"
-
-msgid "Xcos Demos"
-msgstr "Xcosデモ"
-
-msgid "About Xcos"
-msgstr "Xcos情報"
-
-msgid "Xcos version 1.0"
-msgstr "Xcos バージョン 1.0"
-
-msgid "Palettes"
-msgstr "パレット"
-
-msgid "Sources"
-msgstr "ソース"
-
-msgid "Continuous"
-msgstr "連続的"
-
-msgid "Discontinuous"
-msgstr "断続的"
-
-msgid "Lookup Tables"
-msgstr "ルックアップ・テーブル"
-
-msgid "Signal Processing"
-msgstr "シグナル処理"
-
-msgid "Threshold"
-msgstr "閾値"
-
-msgid "Math Operations"
-msgstr "数学操作"
-
-msgid "Modelica"
-msgstr "造形"
-
-msgid "Integer"
-msgstr "整数"
-
-msgid "Matrix"
-msgstr "行列"
-
-msgid "Sinks"
-msgstr "減る"
-
-msgid "Port Action"
-msgstr "ポート活動"
-
-msgid "Discrete"
-msgstr "分離"
-
-msgid "Events"
-msgstr "イベント"
-
-msgid "Signal Routing"
-msgstr "シグナル処理"
-
-msgid "Commonly Used Blocks"
-msgstr "一般に使われたブロック"
-
-msgid "User-Defined Functions"
-msgstr "ユーザ定義関数"
-
-msgid "Demonstrations Blocks"
-msgstr "証明ブロック"
-
-msgid "Electrical"
-msgstr "電気関係"
-
-msgid "Thermo-Hydraulics"
-msgstr "熱-水力学"
-
-msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
+msgid "Straight"
 msgstr ""
-"図形は、最後の保存から修正されました\n"
-"保存しますか?"
+
+msgid "Superblock mask"
+msgstr "スーパーブロック・マスク"
+
+msgid "The Scilab Consortium / DIGITEO"
+msgstr ""
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -322,11 +426,68 @@ msgstr ""
 "ファイル %s は存在しません\n"
 "生成しますか?"
 
-msgid "Ok"
-msgstr "OK"
+msgid "Thermo-Hydraulics"
+msgstr "熱-水力学"
 
-msgid "Cancel"
-msgstr "キャンセル"
+msgid "Threshold"
+msgstr "閾値"
+
+msgid "Tolerance on time"
+msgstr ""
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Top"
+msgstr "上位"
+
+msgid "UnGroup"
+msgstr "グループでない"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Unknow Diagram Version : "
+msgstr ""
+
+msgid "Untitled"
+msgstr "無題"
+
+msgid "User-Defined Functions"
+msgstr "ユーザ定義関数"
+
+msgid "Vertical"
+msgstr ""
+
+msgid "View"
+msgstr "表示"
+
+msgid "View in Scicos"
+msgstr "Scicosの表示"
+
+msgid "Viewport"
+msgstr "表示ポート"
+
+msgid "Will try to continue..."
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos 1.0"
+msgstr ""
+
+msgid "Xcos Demos"
+msgstr "Xcosデモ"
+
+msgid "Xcos Help"
+msgstr "Xcos ヘルプ"
+
+msgid "Xcos error"
+msgstr "Xcos エラー"
+
+msgid "Xcos version 1.0"
+msgstr "Xcos バージョン 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -337,81 +498,14 @@ msgstr ""
 "Scilab命令を利用したブロック定義で使われた象徴的なパラメーターを定義するために、ここにscilab指示を入れることができます。<br/>一旦確認され"
 "ると、これらの命令は評価されます。(すなわち、OKをクリックすると常に図形がロードされて評価されます)"
 
-msgid "Failed to load Diagram"
-msgstr "図形ロードが失敗しました"
+msgid "Zoom In"
+msgstr "ズーム・イン"
 
-msgid "Could not save diagram."
-msgstr "図形を保存できません。"
-
-msgid "Do you want to overwrite existing file?"
-msgstr "既存ファイルを上書きしますか?"
-
-msgid "Do you want a transparent background image?"
-msgstr "透明な背景イメージが欲しいですか?"
-
-msgid "Image contains no data."
-msgstr "イメージはデータを含みません。"
-
-msgid "Xcos error"
-msgstr "Xcos エラー"
-
-msgid "No block selected"
-msgstr "ブロック選択なし"
-
-msgid "Export to XML"
-msgstr "XMLへエクスポート"
-
-msgid "Import from XML"
-msgstr "XMLからインポート"
-
-msgid "Add to"
-msgstr "加算"
-
-msgid "Add to new diagram"
-msgstr "新しい図形の追加"
-
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
-msgstr "明白なデータ入力ポートは、明白なデータ出力ポートと繋がってなくてはいけません"
-
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
-msgstr "暗黙のデータ入力ポートは、暗黙のデータ出力ポートと繋がってなくてはいけません"
-
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
-msgstr "明白なデータ出力ポートは、明白なデータ入力ポートと繋がってなくてはいけません"
-
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
-msgstr "暗黙のデータ出力ポートは、暗黙のデータ入力ポートと繋がってなくてはいけません"
-
-msgid "Command port must be connected to control port"
-msgstr "コマンドポートは、管理ポートと接続されてなくてはなりません"
+msgid "Zoom Out"
+msgstr "ズーム・アウト"
 
 msgid "control port must be connected to command port"
 msgstr "管理ポートは、コマンドポートと接続されてなくてはなりません"
 
-msgid "Align Blocks"
-msgstr "整列ブロック"
-
-msgid "Left"
-msgstr "左"
-
-msgid "Right"
-msgstr "右"
-
-msgid "Center"
-msgstr "中央"
-
-msgid "Top"
-msgstr "上位"
-
-msgid "Bottom"
-msgstr "底"
-
-msgid "Middle"
-msgstr "中間"
-
-msgid "Line Color"
-msgstr "ライン色"
+msgid "maximum step size (0 means no limit)"
+msgstr ""

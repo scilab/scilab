@@ -14,51 +14,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Error(s) : see help powershell"
-msgstr "Error(s) : Veieu help powershell"
-
-msgid "Verify your script without Scilab."
-msgstr "Verifiqueu el vostre script sense l'Scilab."
-
-msgid "Only for Microsoft Windows."
-msgstr "Només per a Microsoft Windows."
-
-msgid "Powershell not found."
-msgstr "No s'ha trobat el Powershell"
-
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte. Han de ser cadenes de "
-"text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
-"text.\n"
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
 msgstr "%s: No s'ha pogut obrir el registre de Windows.\n"
 
 #, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
+#, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: No es pot consultar un valor d'aquest tipus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -67,33 +44,15 @@ msgstr ""
 "text.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hi ha més memòria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: %s.\n"
-msgstr "%s: L'argument d'entrada té un valor incorrecte: %s.\n"
-
-msgid "see help"
-msgstr "Veieu l'ajuda"
-
-msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr "Només en mode Windows, no en mode finestra.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada té un valor incorrecte: Han de ser nombres enters "
-"no-negatius.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -101,5 +60,46 @@ msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un escalar.\n"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada són d'un tipus incorrecte. Han de ser cadenes de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: %s.\n"
+msgstr "%s: L'argument d'entrada té un valor incorrecte: %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada té un valor incorrecte: Han de ser nombres enters "
+"no-negatius.\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "Error(s) : Veieu help powershell"
+
+msgid "Only for Microsoft Windows."
+msgstr "Només per a Microsoft Windows."
+
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "Només en mode Windows, no en mode finestra.\n"
+
+msgid "Powershell not found."
+msgstr "No s'ha trobat el Powershell"
+
+msgid "Verify your script without Scilab."
+msgstr "Verifiqueu el vostre script sense l'Scilab."
+
+msgid "see help"
+msgstr "Veieu l'ajuda"
