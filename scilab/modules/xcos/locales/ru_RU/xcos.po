@@ -191,7 +191,7 @@ msgstr "Файл"
 msgid "Fill Color"
 msgstr "Цвет заливки"
 
-msgid "Final inegration time"
+msgid "Final integration time"
 msgstr "Полное время интеграции"
 
 msgid "Fit diagram to view"

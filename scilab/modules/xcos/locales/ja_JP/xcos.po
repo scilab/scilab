@@ -193,7 +193,7 @@ msgstr "ファイル"
 msgid "Fill Color"
 msgstr ""
 
-msgid "Final inegration time"
+msgid "Final integration time"
 msgstr ""
 
 msgid "Fit diagram to view"

@@ -251,7 +251,7 @@ msgid "Fill Color"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 179
-msgid "Final inegration time"
+msgid "Final integration time"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 66
