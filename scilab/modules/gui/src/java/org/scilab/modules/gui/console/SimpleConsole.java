@@ -202,4 +202,6 @@ public interface SimpleConsole {
 	 * @param cursor the Cursor to set
 	 */
 	void setCursor(Cursor cursor);
+
+	void helpOnTheKeyword();
 }

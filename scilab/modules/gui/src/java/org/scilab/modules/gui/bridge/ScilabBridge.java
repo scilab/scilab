@@ -35,6 +35,7 @@ import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooserBridge;
 import org.scilab.modules.gui.colorchooser.SimpleColorChooser;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
@@ -5228,5 +5229,10 @@ public class ScilabBridge {
 
 	public static SimpleTree createTree(Tree scilabTree) {
 	    return ScilabTreeBridge.createTree(scilabTree);
+	}
+
+	public static void helpOnTheKeyword(ScilabConsole console) {
+		ScilabConsoleBridge.helpOnTheKeyword(console);
+		
 	}
 }

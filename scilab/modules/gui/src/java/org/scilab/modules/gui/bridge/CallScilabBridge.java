@@ -114,6 +114,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -2136,6 +2137,13 @@ public class CallScilabBridge {
 	 */
 	public static void selectAllConsoleContents() {
 		ScilabConsole.getConsole().selectAll();
+	}
+	
+	/**
+	 * Select all the console contents
+	 */
+	public static void helpOnTheKeyword() {
+		ScilabConsole.getConsole().helpOnTheKeyword();
 	}
 
 	/**
