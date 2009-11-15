@@ -249,10 +249,14 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		PropertyChangeListener listenerTextItem = new PropertyChangeListener() {			
 			public void propertyChange(PropertyChangeEvent arg0) {
 				String keyword = accessibleHtml.getSelectedText();
-				if (keyword.length() == 0) {
-					helpMenuItem.setText("Help on a selected text");
+				if (keyword == null) {
+					helpMenuItem.setText(Messages.gettext("Help about a selected text"));
 				} else {
-					helpMenuItem.setText("Help on '" +keyword+"'");
+					int nbOfDisplayedOnlyXChar=10;
+					if (keyword.length() > nbOfDisplayedOnlyXChar) {
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+					}
+					helpMenuItem.setText(Messages.gettext("Help about '") +keyword+"'");
 				}
 			}
 		};

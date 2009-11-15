@@ -125,10 +125,14 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		PropertyChangeListener listener = new PropertyChangeListener() {			
 			public void propertyChange(PropertyChangeEvent arg0) {
 				String keyword = getSelectedText();
-				if (keyword.length() == 0) {
-					helpMenu.setText("Help on a selected text");
+				if (keyword == null || keyword.length() == 0) {
+					helpMenu.setText(Messages.gettext("Help about a selected text"));
 				} else {
-					helpMenu.setText("Help on '" +keyword+"'");
+					int nbOfDisplayedOnlyXChar=10;
+					if (keyword.length() > nbOfDisplayedOnlyXChar) {
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+					}
+					helpMenu.setText(Messages.gettext("Help about '") +keyword+"'");
 				}
 			}
 		};
