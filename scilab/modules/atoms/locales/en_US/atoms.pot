@@ -874,7 +874,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 41
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules'' version should be "
+"%s: Wrong value for input argument #%d: All modules version should be "
 "set.\n"
 msgstr ""
 #

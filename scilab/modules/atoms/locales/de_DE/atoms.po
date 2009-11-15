@@ -551,7 +551,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules'' version should be "
+"%s: Wrong value for input argument #%d: All modules version should be "
 "set.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Alle Module Version sollte "

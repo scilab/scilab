@@ -475,7 +475,7 @@ msgstr "%s: 入力引数 #%d で不正な値: ASC または DESC を想定しま
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules'' version should be "
+"%s: Wrong value for input argument #%d: All modules version should be "
 "set.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 全てのモジュールにバージョンがセットされるべきです。\n"
 
