@@ -13,6 +13,8 @@ package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -231,6 +233,34 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		menuItem.addActionListener(actionListenerSelectAll);
 		popup.add(menuItem);
 
+		/* Edit in the Scilab Text Editor */
+		final JMenuItem helpMenuItem = new JMenuItem("Help on the selected text");
+
+		ActionListener actionListenerHelpOnKeyword= new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				String selection = accessibleHtml.getSelectedText();
+				if (selection == null) {
+					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+				} else {
+					ScilabHelpBrowser.getHelpBrowser().searchKeywork(selection);
+				}
+			}
+		};
+		PropertyChangeListener listenerTextItem = new PropertyChangeListener() {			
+			public void propertyChange(PropertyChangeEvent arg0) {
+				String keyword = accessibleHtml.getSelectedText();
+				if (keyword.length() == 0) {
+					helpMenuItem.setText("Help on a selected text");
+				} else {
+					helpMenuItem.setText("Help on '" +keyword+"'");
+				}
+			}
+		};
+		helpMenuItem.addPropertyChangeListener(listenerTextItem);
+		helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
+		popup.add(helpMenuItem);
+
+					
 		/* Creates the Popupmenu on the component */
 		accessibleHtml.setComponentPopupMenu(popup);
 	}
