@@ -229,7 +229,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 				accessibleHtml.selectAll();
 			}
 		};
-		menuItem = new JMenuItem("Select All");
+		menuItem = new JMenuItem(Messages.gettext("Select All"));
 		menuItem.addActionListener(actionListenerSelectAll);
 		popup.add(menuItem);
 
