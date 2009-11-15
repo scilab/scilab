@@ -14,50 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein strukturiertes Datenfeld "
-"erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected."
-msgstr "%s: falsche Anzahl an Eingangsargumenten: eine gerade Zahl erwartet."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet"
-
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"Zu viele Argumente im Stapel, editieren Sie stack.h und vergrößern Sie "
-"intersiz\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
 " Eine Extraktion einer Hypermatrix muß mindesten zwei Argumente haben. "
-
-msgid " Argument is not an hypermatrix. "
-msgstr " Argument ist keine Hypermatrix. "
-
-msgid " Incompatible hypermatrix extraction. "
-msgstr " Inkompatible Extraktion einer Hypermatrix. "
-
-#, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "Falscher (%d th) Index in der Extraktion einer Hypermatrix. "
 
 msgid " An hypermatrix insertion must have at least 3 arguments "
 msgstr ""
@@ -66,5 +28,43 @@ msgstr ""
 msgid " Argument is not an hypermatrix "
 msgstr " Argument ist keine Hypermatrix "
 
+msgid " Argument is not an hypermatrix. "
+msgstr " Argument ist keine Hypermatrix. "
+
 msgid " Bad hypermatrix insertion. "
 msgstr " Schlechtes Einfügen einer Hypermatrix. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " Inkompatible Extraktion einer Hypermatrix. "
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected."
+msgstr "%s: falsche Anzahl an Eingangsargumenten: eine gerade Zahl erwartet."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein strukturiertes Datenfeld "
+"erwartet.\n"
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "Falscher (%d th) Index in der Extraktion einer Hypermatrix. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Zu viele Argumente im Stapel, editieren Sie stack.h und vergrößern Sie "
+"intersiz\n"

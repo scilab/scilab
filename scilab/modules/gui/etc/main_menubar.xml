@@ -178,14 +178,17 @@
             <submenu label="Scilab &amp;Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
             </submenu>
+            <submenu label="Scilab &amp;ATOMS Web Site">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilabWebSite' type="3"/>
+            </submenu>
             <submenu label="&amp;Contributions">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
             </submenu>
             <submenu label="&amp;Bug And Request database">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
             </submenu>
-            <submenu label="&amp;Newsgroup Archives">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openNewsgroupWebSite' type="3"/>
+            <submenu label="&amp;Mailing lists">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListWebSite' type="3"/>
             </submenu>
         </submenu>
         <separator/>

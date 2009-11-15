@@ -8,47 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-10-28 18:05+0000\n"
+"PO-Revision-Date: 2009-11-12 20:02+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el "
-"intervalo [%s, %s].\n"
+msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
+msgstr "%s: Los argumentos #%d y #%d deben tener el mismo tamaño.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Array of floating point numbers "
-"expected.\n"
+"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
+"less than argument #%d.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
-"números de punto flotante.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
-"polinomio.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
-msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
-"el conjunto {%s}.\n"
+"%s: Argumentos de entrada incompatibles #%d y #%d: Se esperaba que el "
+"argumento #%d sea menor que el argumento #%d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
@@ -58,28 +37,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
 msgstr ""
-"%s: Valores incorrectos de argumentos de entrada #%d: Se esperaban enteros "
-"positivos.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
-"{%s}.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in the interval "
-"[%s, %s].\n"
-msgstr ""
-"%s: Valor incorrecto de argumento del entrada #%d: Los elementos deben estar "
-"en el intervalo [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+"%s: Argumentos de entrada incompatibles #%d y #%d: Se esperaban con el mismo "
+"número de elementos.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -88,32 +50,16 @@ msgstr ""
 "tamaño.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: The first element must be %s and "
-"the last %s.\n"
-msgstr ""
-"%s: Valores incorrectos para el argumento de entrada #%d: El primer elemento "
-"debe ser %s y el último %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
-"%s: Valores incorrectos para el argumento de entrada #%d: Los elementos "
-"deben estar en orden creciente.\n"
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: El argumento de entrada #%d debe ser real.\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: Cambio muy abrupto cerca del final del rango de frecuencia.\n"
 
 #, c-format
-msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
-msgstr "%s: Los argumentos #%d y #%d deben tener el mismo tamaño.\n"
-
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: El argumento de entrada #%d debe ser real.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -121,9 +67,27 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaba %d ó %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz.\n"
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un arreglo "
+"de %d elementos.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"polinomio.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid ""
@@ -134,6 +98,11 @@ msgstr ""
 "de entrada/salida simple.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d:  Linear dynamical system or row "
 "vector of floats expected.\n"
@@ -142,10 +111,32 @@ msgstr ""
 "lineal dinámico o un vector fila de decimales.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
 msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: Los elementos deben "
-"ser positivos.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
+"números de punto flotante.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
+"fracciones racionales.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el "
+"intervalo [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
+"{%s}.\n"
 
 #, c-format
 msgid ""
@@ -157,11 +148,32 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
-"expected.\n"
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
 msgstr ""
-"%s: Argumentos de entrada incompatibles #%d y #%d: Se esperaban con el mismo "
-"número de elementos.\n"
+"%s: Valores incorrectos para el argumento de entrada #%d: Los elementos "
+"deben estar en orden creciente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+"%s: Valor incorrecto de argumento del entrada #%d: Los elementos deben estar "
+"en el intervalo [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgstr ""
+"%s: Valores incorrectos del argumento de entrada #%d: Los elementos deben "
+"ser positivos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valores incorrectos de argumentos de entrada #%d: Se esperaban enteros "
+"positivos.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
@@ -171,30 +183,45 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
-"less than argument #%d.\n"
+"%s: Wrong values for input argument #%d: The first element must be %s and "
+"the last %s.\n"
 msgstr ""
-"%s: Argumentos de entrada incompatibles #%d y #%d: Se esperaba que el "
-"argumento #%d sea menor que el argumento #%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+"%s: Valores incorrectos para el argumento de entrada #%d: El primer elemento "
+"debe ser %s y el último %s.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
-"fracciones racionales.\n"
+"%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
+"el conjunto {%s}.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un arreglo "
-"de %d elementos.\n"
+msgid "Arma identifcation"
+msgstr "Identificación de Arma"
 
 msgid "Signal Processing"
 msgstr "Procesamiento de Señales"
+
+msgid "Spectral power"
+msgstr "Potencia del espectro"
+
+msgid "Theoritical value"
+msgstr "Valor teórico"
+
+msgid "Using macro mese"
+msgstr "Usando un macro mese"
+
+msgid "estimates xf"
+msgstr "xf estimado"
+
+msgid "estimates xs"
+msgstr "xs estimado"
+
+msgid "frequency"
+msgstr "frecuencia"
+
+msgid "real state"
+msgstr "estado real"
+
+msgid "spectral estimate"
+msgstr "espectro estimado"

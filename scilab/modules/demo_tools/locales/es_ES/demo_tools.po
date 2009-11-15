@@ -14,11 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " -- View Code -- "
 msgstr " -- Ver Código -- "
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editar"
 
 msgid "&File"
 msgstr "Archivo (&F)"
@@ -26,17 +32,11 @@ msgstr "Archivo (&F)"
 msgid "&Tools"
 msgstr "Herramien&tas"
 
-msgid "&Edit"
-msgstr "&Editar"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "File"
-msgstr "Archivo"
-
 msgid "Close"
 msgstr "Cerrar"
 
 msgid "Demos"
 msgstr "Demos"
+
+msgid "File"
+msgstr "Archivo"

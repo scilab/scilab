@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-31 10:45+0000\n"
-"Last-Translator: Michael Rybinsky <Unknown>\n"
+"PO-Revision-Date: 2009-11-13 02:10+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:57+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,8 +22,16 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s: Произошла ошибка: %s\n"
 
 #, c-format
-msgid "%s: work space (stacksize) is too small d\n"
-msgstr ""
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: Ошибка при создании процесссов: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: Нет такого файла или каталога.\n"
 
 #, c-format
 msgid "%s: Unknow type or not yet implemented\n"
@@ -31,124 +39,124 @@ msgstr "%s: Неизвестный тип или ещё не реализова�
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
-msgstr "%s: Неверный первый входной аргумент: Ожидался '%s' или '%s'.\n"
+msgstr "%s: Неверный первый входной параметр: ожидался «%s» или «%s».\n"
 
-msgid "Scilab PVM module not installed.\n"
-msgstr "Модуль Scilab PVM не установлен.\n"
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s: рабочее пространство (размер стека) слишком мало d\n"
 
-msgid "Unknown Error"
-msgstr "Неизвестная ошибка"
-
-msgid "OK"
-msgstr "ОК"
-
-msgid "Bad parameter"
-msgstr "Плохой параметр"
-
-msgid "Barrier count mismatch"
-msgstr ""
-
-msgid "Read past end of buffer"
-msgstr "Чтение вышло за конец буфера"
-
-msgid "No such host"
-msgstr "Нет такого узла"
-
-msgid "No such executable"
-msgstr "Нет такого исполняемого файла"
-
-msgid "Can not get memory"
-msgstr "Невозможно получить память"
-
-msgid "Can not decode received msg"
-msgstr "Невозможно декодировать принятое сообщение"
-
-msgid "Daemon pvmd is not responding"
-msgstr "Служба pvmd не отвечает"
-
-msgid "No current buffer"
-msgstr "Нет текущего буфера"
-
-msgid "Bad message id"
-msgstr "Неверный id сообщения"
-
-msgid "Null group name is illegal"
-msgstr "Нулевое имя группы недопустимо"
+msgid "(group,instance) already exists"
+msgstr "(группа,экземпляр) уже существует"
 
 msgid "Already in group"
 msgstr "Уже в группе"
 
-msgid "No group with that name"
-msgstr "Нет группы с таким именем"
+msgid "Already oing operation"
+msgstr "Операция уже выполняется"
 
-msgid "Not in group"
-msgstr "Не в группе"
+msgid "Bad message id"
+msgstr "Неверный id сообщения"
 
-msgid "No such instance in group"
-msgstr "Нет такого экземпляра в группе"
+msgid "Bad parameter"
+msgstr "Неверный параметр"
+
+msgid "Barrier count mismatch"
+msgstr "Количество вызовов pvm_barrier не совпадает"
+
+msgid "Can not decode received msg"
+msgstr "Не удалось декодировать принятое сообщение"
+
+msgid "Can not get memory"
+msgstr "Не удалось получить память"
+
+msgid "Daemon pvmd is not responding"
+msgstr "Служба pvmd не отвечает"
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Ошибка MALLOC в pvm_error\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "Ошибка: получен сигнал pvm_halt\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Ошибка pvm_reduce: не скалярный тип\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "Ошибка pvm_reduce: неизвестная операция сокращения %s\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr "Не удалось запустить подчиненный pvmd"
+
+msgid "Function not implemented"
+msgstr "Функция не реализована"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "Узел уже настроен (Двойной узел)"
 
 msgid "Host failed"
 msgstr "Сбой узла"
 
-msgid "No parent task"
-msgstr ""
+msgid "No current buffer"
+msgstr "Нет текущего буфера"
 
-msgid "Function not implemented"
-msgstr "Функция не реализована"
+msgid "No group with that name"
+msgstr "Нет группы с таким именем"
+
+msgid "No parent task"
+msgstr "Нет задачи-предка"
+
+msgid "No such (group,instance)"
+msgstr "Нет такой группы или экземпляра"
+
+msgid "No such executable"
+msgstr "Нет такого исполняемого файла"
+
+msgid "No such host"
+msgstr "Нет такого узла"
+
+msgid "No such instance in group"
+msgstr "Нет такого экземпляра в группе"
+
+msgid "No such task"
+msgstr "Нет такой задачи"
+
+msgid "Not in group"
+msgstr "Не в группе"
+
+msgid "Null group name is illegal"
+msgstr "Нулевое имя группы недопустимо"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Out of ressources"
+msgstr "Недостаточно ресурсов"
+
+msgid "PVM exists"
+msgstr "PVM существует"
+
+msgid "PVM not found"
+msgstr "PVM не найден"
+
+msgid "PVM parallel Toolbox"
+msgstr "Использование PVM"
 
 msgid "Pvmd system error"
 msgstr "Системная ошибка pvmd"
 
 msgid "Pvmd-pvmd protocol mismatch"
-msgstr ""
+msgstr "Несовпадение протокола pvmd-pvmd"
 
-msgid "Out of ressources"
-msgstr "Недостаточно ресурсов"
+msgid "Read past end of buffer"
+msgstr "Чтение за пределами буфера сообщения"
 
-msgid "Host already configured (Duplicate host)"
-msgstr "Узел уже настроен (Двойной узел)"
-
-msgid "Failed to exec new slave pvmd"
-msgstr ""
-
-msgid "Already oing operation"
-msgstr "Операция уже выполняется"
-
-msgid "No such task"
-msgstr "Нет такой задачи"
-
-msgid "PVM not found"
-msgstr "PVM не найден"
-
-msgid "PVM exists"
-msgstr "PVM существует"
-
-msgid "No such (group,instance)"
-msgstr "Нет такой (группа,экземпляр)"
-
-msgid "(group,instance) already exists"
-msgstr "(группа,экземпляр) уже существует"
-
-msgid "Error MALLOC in pvm_error\n"
-msgstr "Ошибка MALLOC в pvm_error\n"
+msgid "Scilab PVM module not installed.\n"
+msgstr "Модуль PVM не установлен.\n"
 
 #, c-format
 msgid "The configuration file %s is used.\n"
 msgstr "Используется конфигурационный файл %s.\n"
-
-#, c-format
-msgid "Warning: PVM_ROOT is set to %s\n"
-msgstr "Предупреждение: PVM_ROOT установлен в %s\n"
-
-msgid "but there exists no configuration file:\n"
-msgstr "но не существует конфигурационный файл:\n"
-
-msgid "Warning: PVM_ROOT is not set.\n"
-msgstr "Предупреждение: PVM_ROOT не установлен.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid ""
@@ -157,6 +165,11 @@ msgid ""
 "SCI will have to be set on remote hosts\n"
 "in order to spawn scilab\n"
 msgstr ""
+"Будет использован стандартный конфигурационный файл $SCI%s.\n"
+"При SCI=%s\n"
+"Значение переменной окружения SCI необходимо будет установить на удалённых "
+"узлах\n"
+"для того, чтобы вызвать Scilab\n"
 
 #, c-format
 msgid ""
@@ -164,7 +177,17 @@ msgid ""
 "%s, %s to be set. PVM can not be started.\n"
 msgstr ""
 "Стандартный файл конфигурации $SCI%s%s требует задания переменных окружения "
-"%s, %s, %s. Невозможно запустить PVM.\n"
+"%s, %s, %s. Не удалось запустить PVM.\n"
+
+msgid "Unknown Error"
+msgstr "Неизвестная ошибка"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Внимание: PVM_ROOT не установлен.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Внимание: PVM_ROOT установлен в %s\n"
 
 #, c-format
 msgid ""
@@ -172,27 +195,9 @@ msgid ""
 "We supposed that PVM and scilab are in standard place on your net\n"
 " (Cf. man pvmd3)\n"
 msgstr ""
-"Предупреждение: Стандартный файл конфигурации $SCI%s не найден.\n"
-"Мы предполагаем, что PVM и scilab находятся в обычном месте вашей сети\n"
+"Предупреждение: стандартный файл конфигурации $SCI%s не найден.\n"
+"Предполагается, что PVM и scilab находятся в обычном месте вашей сети\n"
 " (Ср. man pvmd3)\n"
 
-#, c-format
-msgid "%s: No such file or directory.\n"
-msgstr "%s: Нет такого файла или каталога.\n"
-
-msgid "Error pvm_halt - signal\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while creating processes: %s.\n"
-msgstr "%s: Ошибка при создании процесссов: %s.\n"
-
-msgid "Error pvm_reduce: Not scalar type\n"
-msgstr "Ошибка pvm_reduce: Не скалярный тип\n"
-
-#, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Ошибка pvm_reduce: Неизвестная операция уменьшения %s\n"
-
-msgid "PVM parallel Toolbox"
-msgstr ""
+msgid "but there exists no configuration file:\n"
+msgstr "но конфигурационный файл не существует в:\n"

@@ -14,8 +14,48 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 無法開啟檔案 %s.\n"
+
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s:  檔案結束.\n"
+
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr "%s: 讀取資料失敗， xls 檔可能不正確.\n"
+
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: 檔案 %s 不是一 ole2 檔.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: 檔案不正確或已毀損.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: 不是一 ole2 檔.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: 只能處理 BIFF8 檔案格式.\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: 檔案內沒有  Workbook 目錄.\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s:  ole2 檔 %s 內沒有 xls 串流 (stream ).\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -26,59 +66,34 @@ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr "%s:%d:讀取之位元數與要求不合. 需求 %d 位元, 得到 %d 位元.\n"
 
 #, c-format
-msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr "%s: 讀取資料失敗， xls 檔可能不正確.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:偵錯: 附件%s:%s:%s 大小= %d\n"
 
 #, c-format
-msgid "%s: End of file.\n"
-msgstr "%s:  檔案結束.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:偵錯: 針對此檔名做一報告"
 
 #, c-format
-msgid "The file %s does not exist.\n"
-msgstr "檔案 %s 不存在.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
+msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤: 無法由字串 '%s' 及 '%s' 產生檔案名稱"
 
 #, c-format
-msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s: 檔案 %s 不是一 ole2 檔.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤:無法開啟檔案 %s 以寫入 (%s)\n"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: 無法開啟檔案 %s.\n"
-
-#, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s:  ole2 檔 %s 內沒有 xls 串流 (stream ).\n"
-
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s: 不是一 ole2 檔.\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: 檔案內沒有  Workbook 目錄.\n"
-
-#, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: 檔案不正確或已毀損.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: 只能處理 BIFF8 檔案格式.\n"
-
-msgid "Scilab spreadsheet module not installed.\n"
-msgstr "未安裝 Scilab spreadsheet 模組.\n"
-
-#, c-format
-msgid "ripOLE: %s\n"
-msgstr "ripOLE: %s\n"
-
-#, c-format
-msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr "%s:%d:OLE_set_debug: 偵錯層級設為  %d"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr "%s:%d:OLEUNWRAP_save_stream:警告: 只寫入 %d 位元而非 %d 位元到檔案 %s 中\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
@@ -89,20 +104,21 @@ msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
 msgstr "%s:%d:OLE_get_block:錯誤: 無法配置 %d 位元給 OLE block"
 
 #, c-format
-msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
-msgstr "%s:%d:OLE_get_block:錯誤: Seek 指令失敗 (block=%d:%d)"
-
-#, c-format
-msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr "%s:%d:讀取之位元數與要求不合. 需求 %d 位元, 得到 %d 位元.\n"
-
-#, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr "%s:%d:OLE_get_block:錯誤: OLE 檔已關閉\n"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
-msgstr "%s:%d:OLE_load_FAT:錯誤: 無法配置 %d 位元\n"
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr "%s:%d:OLE_get_block:錯誤: Seek 指令失敗 (block=%d:%d)"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr "%s:%d:OLE_get_miniblock:錯誤: 無法為 miniChain 配置記憶區."
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr "%s:%d:OLE_load_FAT:錯誤: FAT 記憶超過邊界限制 , %p >= %p"
 
 #, c-format
 msgid ""
@@ -111,21 +127,20 @@ msgid ""
 msgstr "%s:%d:OLE_load_FAT:錯誤: 無法載入區塊,匯入區段 (sector ) =0x%x, fat 位置= 0x%x"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr "%s:%d:OLE_load_FAT:錯誤: FAT 記憶超過邊界限制 , %p >= %p"
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d:OLE_load_FAT:錯誤: 無法配置 %d 位元\n"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr "%s:%d:OLE_load_FAT:錯誤: 要求之區段 (sector ) 為負值(%d)"
 
 #, c-format
-msgid ""
-"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
-msgstr "%s:%d:OLE_get_miniblock:錯誤: 無法為 miniChain 配置記憶區."
-
-#, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr "%s:%d:OLE_load_chain:錯誤:載入鏈 (Load-chain) 超過記憶體邊界"
+
+#, c-format
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr "%s:%d:OLE_open_directory:錯誤: %s"
 
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
@@ -136,8 +151,8 @@ msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
 msgstr "%s:%d:OLE_open_file::錯誤: 無法開啟檔案 '%s' 以讀取 (%s)\n"
 
 #, c-format
-msgid "%s:%d:OLE_open_directory:ERROR: %s"
-msgstr "%s:%d:OLE_open_directory:錯誤: %s"
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d:OLE_set_debug: 偵錯層級設為  %d"
 
 #, c-format
 msgid ""
@@ -167,33 +182,27 @@ msgstr "%s:%d:PLD_strreplace:錯誤: 進行將 '%s' 代以'%s' 時，配置記�
 
 #, c-format
 msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
-msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤: 無法由字串 '%s' 及 '%s' 產生檔案名稱"
+"Cannot interpret option \"%s\"\n"
+"%s\n"
+msgstr ""
+"無法解譯選項 \"%s\"\n"
+"%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr "%s:%d:OLEUNWRAP_save_stream:警告: 只寫入 %d 位元而非 %d 位元到檔案 %s 中\n"
+msgid "Cannot locate input file '%s'"
+msgstr "無法找到輸入檔 '%s'"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤:無法開啟檔案 %s 以寫入 (%s)\n"
+msgid "Decoding filename=%s"
+msgstr "解碼檔名 =%s"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr "%s:%d:OLEUNWRAP_decode_attachment:偵錯: 附件%s:%s:%s 大小= %d\n"
+msgid "File '%s' is not OLE2 format"
+msgstr "檔案 '%s'  不是 OLE2 格式"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr "%s:%d:OLEUNWRAP_decode_attachment:偵錯: 針對此檔名做一報告"
-
-#, c-format
-msgid "Unable to decode stream with element string '%s'\n"
-msgstr "無法解譯串流中之字串元素 '%s'\n"
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-內定: %s%s"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -204,39 +213,30 @@ msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr "LOGGER_set_logfile: 錯誤- 無法開啟紀錄檔 '%s' (%s)\n"
 
 #, c-format
-msgid "LOGGER-Default: %s%s"
-msgstr "LOGGER-內定: %s%s"
+msgid "OLE input file '%s' is insane"
+msgstr "OLE 輸入檔  '%s' 有問題"
+
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "未安裝 Scilab spreadsheet 模組.\n"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"無法解譯選項 \"%s\"\n"
-"%s\n"
+msgid "The file %s does not exist.\n"
+msgstr "檔案 %s 不存在.\n"
 
 #, c-format
-msgid "Decoding filename=%s"
-msgstr "解碼檔名 =%s"
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr "無法解譯串流中之字串元素 '%s'\n"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE  須要一輸入檔以進尋解碼.\n"
 
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
+
 msgid "ripOLE: Cannot allocate memory for OLE object."
 msgstr "ripOLE: 無法配置記憶區給 OLE 物件."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "無法找到輸入檔 '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "檔案 '%s'  不是 OLE2 格式"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "OLE 輸入檔  '%s' 有問題"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"

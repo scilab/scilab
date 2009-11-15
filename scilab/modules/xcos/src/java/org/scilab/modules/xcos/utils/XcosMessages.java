@@ -178,7 +178,7 @@ public final class XcosMessages {
     public static final String SET_DEBUG = Messages.gettext("Set Debug Level");
     
     /* Setup box*/
-    public static final String FINAL_INTEGRATION_TIME  = Messages.gettext("Final inegration time");
+    public static final String FINAL_INTEGRATION_TIME  = Messages.gettext("Final integration time");
     public static final String REAL_TIME_SCALING =  Messages.gettext("Real time scaling");
     public static final String INTEGRATOR_ABSOLUTE_TOLERANCE =  Messages.gettext("Integrator absolute tolerance");
     public static final String INTEGRATOR_RELATIVE_TOLERANCE =  Messages.gettext("Integrator relative tolerance");

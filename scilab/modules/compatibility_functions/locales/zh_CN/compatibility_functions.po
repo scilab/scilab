@@ -14,53 +14,73 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-03 13:56+0000\n"
+"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s：该功能尚未实现。\n"
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr "%s：当变量当多于一行时，Scilab函数%s不能运行。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为列向量。\n"
+msgid "%s: %s is not implemented.\n"
+msgstr "%s：%s尚未实现。\n"
 
 #, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s：''%s''的大小错误：应该为向量。\n"
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s：''%s''已被忽略。\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s：该功能尚未实现：%s\n"
-
-#, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr ""
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s：''%s''尚未实现。\n"
 
 #, c-format
 msgid "%s: ''%s'' only used in 3d mode."
 msgstr "%s：''%s'' 只能用在3D模式。"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Argument of type %d.\n"
-msgstr "%s：该特征尚未实现：类型为%d的参数。\n"
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s：选项''%s''被忽略。\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s：所有的窗口已被删除。\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
 msgstr "%s：无法打开文件''%s''。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s：不能打开''%s''，''%s''和''%s''中任一个。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为%s, %s,''%s''或''%s''。\n"
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr "%s：在所有矩阵读完之前文件结束。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s：在数据读入前已经到达字符串的结尾。\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s：尚未实现。\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s：尚无法处理''%s''类型。\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s：格式''%s''是未知格式。\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
@@ -71,41 +91,49 @@ msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: pencil is not diagonalizable.\n"
-msgstr "%s：铅笔是非对角化的。\n"
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s：该功能尚未实现。\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s：该功能尚未实现：%s\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s：该特征尚未实现：类型为%d的参数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为Matlab字符串向量。\n"
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s：该特征还没有实现：支持高维矩阵。\n"
 
 #, c-format
-msgid "%s: Not yet implemented.\n"
-msgstr "%s：尚未实现。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的个数错误：应该为%d到%d个。\n"
-
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s：选项''%s''被忽略。\n"
-
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s：''%s''中的未知线型->设置为6。\n"
-
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s：在''%s''中发现未知的颜色->设置为黑色。\n"
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s：该特殊的情况尚未实现。\n"
 
 #, c-format
 msgid "%s: Unhandled class ''%s''.\n"
 msgstr "%s：无法处理的类''%s''。\n"
 
 #, c-format
-msgid "%s: This particular case is not implemented.\n"
-msgstr "%s：该特殊的情况尚未实现。\n"
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s：在''%s''中发现未知的颜色->设置为黑色。\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr "%s：''%s''中的未知线型->设置为6。\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s：未知的类型''%s''：已忽略。\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s：未知的类型。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s：输入参数#%d错误：大小不一致。\n"
 
 #, c-format
 msgid ""
@@ -114,8 +142,29 @@ msgid ""
 msgstr "%s：输入参数错误：第一个参数制定的维数跟cell内容不匹配。\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s：输入参数#%d错误：大小不一致。\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s：输入参数的个数错误：应该为%d到%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s：''%s''的大小错误：应该为向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为Matlab字符串向量。\n"
 
 #, c-format
 msgid ""
@@ -124,66 +173,16 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为一个实数、整数或字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s：不能打开''%s''，''%s''和''%s''中任一个。\n"
-
-msgid "Close"
-msgstr "关闭"
-
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s：''%s''已被忽略。\n"
-
-#, c-format
-msgid "%s: All windows deleted.\n"
-msgstr "%s：所有的窗口已被删除。\n"
-
-#, c-format
-msgid "%s: %s is not implemented.\n"
-msgstr "%s：%s尚未实现。\n"
-
-#, c-format
-msgid ""
-"%s: %s Scilab function does not work with more than one row variables.\n"
-msgstr "%s：当变量当多于一行时，Scilab函数%s不能运行。\n"
-
-#, c-format
-msgid "%s: No minor grid in Scilab.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''%s''、''%s''或''%s''。\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
-msgstr "%s：该特征还没有实现：支持高维矩阵。\n"
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为列向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s：格式''%s''是未知格式。\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s：尚无法处理''%s''类型。\n"
-
-#, c-format
-msgid "%s: End of file reached before all matrix is read.\n"
-msgstr "%s：在所有矩阵读完之前文件结束。\n"
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
 
 #, c-format
 msgid ""
@@ -199,12 +198,8 @@ msgid "%s: Wrong type for input arguments: String expected.\n"
 msgstr "%s：输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s：''%s''尚未实现。\n"
-
-#, c-format
-msgid "%s: End of string reached before data has been read.\n"
-msgstr "%s：在数据读入前已经到达字符串的结尾。\n"
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -212,45 +207,15 @@ msgid ""
 "expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为%s、%s、%s、''%s''、''%s''或''%s''。\n"
 
-msgid "Jan"
-msgstr "1月"
-
-msgid "Feb"
-msgstr "2月"
-
-msgid "Mar"
-msgstr "3月"
-
-msgid "Apr"
-msgstr "4月"
-
-msgid "May"
-msgstr "5月"
-
-msgid "Jun"
-msgstr "6月"
-
-msgid "Jul"
-msgstr "7月"
-
-msgid "Aug"
-msgstr "8月"
-
-msgid "Sep"
-msgstr "9月"
-
-msgid "Oct"
-msgstr "10月"
-
-msgid "Nov"
-msgstr "11月"
-
-msgid "Dec"
-msgstr "12月"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为%s, %s,''%s''或''%s''。\n"
 
 #, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr ""
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''、''%s''或''%s''。\n"
 
 #, c-format
 msgid ""
@@ -258,9 +223,44 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个正整数。\n"
 
 #, c-format
-msgid "%s: Unknown type.\n"
-msgstr "%s：未知的类型。\n"
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s：铅笔是非对角化的。\n"
 
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s：未知的类型''%s''：已忽略。\n"
+msgid "Apr"
+msgstr "4月"
+
+msgid "Aug"
+msgstr "8月"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Dec"
+msgstr "12月"
+
+msgid "Feb"
+msgstr "2月"
+
+msgid "Jan"
+msgstr "1月"
+
+msgid "Jul"
+msgstr "7月"
+
+msgid "Jun"
+msgstr "6月"
+
+msgid "Mar"
+msgstr "3月"
+
+msgid "May"
+msgstr "5月"
+
+msgid "Nov"
+msgstr "11月"
+
+msgid "Oct"
+msgstr "10月"
+
+msgid "Sep"
+msgstr "9月"

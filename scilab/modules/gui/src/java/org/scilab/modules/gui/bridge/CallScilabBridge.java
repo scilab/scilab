@@ -114,6 +114,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -2098,6 +2099,13 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Open a Browser on ATOMS Web Site
+	 */
+	public static void openAtomsScilabWebSite() {
+		WebBrowser.openUrl("http://atoms.scilab.org/");
+	}
+
+	/**
 	 * Open a Browser on Contributions Web Site
 	 */
 	public static void openContributionsWebSite() {
@@ -2108,14 +2116,14 @@ public class CallScilabBridge {
 	 * Open a Browser on Bugzilla Web Site
 	 */
 	public static void openBugzillaWebSite() {
-		WebBrowser.openUrl("http://bugzilla.scilab.org/index.cgi");
+		WebBrowser.openUrl("http://bugzilla.scilab.org/");
 	}
 
 	/**
-	 * Open a Browser on Newsgroup Web Site
+	 * Open a Browser on Mailing List Archives
 	 */
-	public static void openNewsgroupWebSite() {
-		WebBrowser.openUrl("http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab");
+	public static void openMailingListWebSite() {
+		WebBrowser.openUrl("http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists");
 	}
 
 	/***************************/
@@ -2129,6 +2137,13 @@ public class CallScilabBridge {
 	 */
 	public static void selectAllConsoleContents() {
 		ScilabConsole.getConsole().selectAll();
+	}
+	
+	/**
+	 * Select all the console contents
+	 */
+	public static void helpOnTheKeyword() {
+		ScilabConsole.getConsole().helpOnTheKeyword();
 	}
 
 	/**

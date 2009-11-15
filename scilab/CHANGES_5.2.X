@@ -20,12 +20,17 @@ Help browser:
 - Copy
 - Select all
 - History
+- Help on the selected text
+
+* In the console, in menu associated to a right button click, the item
+"Help on the selected text" has been added
 
 Localization:
 =============
 
 * Some strings were untranslatable/untranslated (Bug #4124)
 
+* Some typos fixed
 
 Documentation improvements:
 ===========================
@@ -55,23 +60,23 @@ Bug fixes:
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
-* bug 5099 fixed - Xcos : diagram not visible after a "Fit diagram to view"
+* bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5111 fixed - Xcos : "Save As" default path is the current file path
+* bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
-* bug 5213 fixed - ATOMS GUI : Module's author(s) was not displayed
+* bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5235 fixed - Error message added when launching Scicos
 
-* bug 5237 fixed - ATOMS : If the load of an ATOMS toolbox produces an error.
+* bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
                    The error is now catched.
 
 * bug 5251 fixed - getversion help page updated.
@@ -83,7 +88,7 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
 
-* bug 5271 fixed - ATOMS GUI : Frames title was not emphasized
+* bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
                    settings in Visual Studio.
@@ -100,7 +105,7 @@ Bug fixes:
 
 * bug 5308 fixed - editor did not check input argument type.
 
-* bug 5312 fixed - Xcos : adding 'Compile' informations
+* bug 5312 fixed - Xcos: adding 'Compile' informations
 
 * bug 5325 fixed - Wrong default path on FileChooser.
 

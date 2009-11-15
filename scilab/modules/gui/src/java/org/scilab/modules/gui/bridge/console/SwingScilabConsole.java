@@ -13,36 +13,47 @@
 package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
-import java.awt.MouseInfo;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciHistoryManager;
 import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.localization.Messages;
-
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.util.StringConstants;
 
@@ -103,6 +114,29 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 								   "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents", 
 								   ScilabCallBack.JAVA));
 		selectMenu.setMnemonic('S');
+		
+
+		final SwingScilabMenuItem helpMenu = new SwingScilabMenuItem();
+		helpMenu.setText(Messages.gettext("Help on a selected keyword"));
+		helpMenu.setCallback(ScilabCallBack.createCallback(
+								   "org.scilab.modules.gui.bridge.CallScilabBridge.helpOnTheKeyword", 
+								   ScilabCallBack.JAVA));
+		helpMenu.setMnemonic('M');
+		PropertyChangeListener listener = new PropertyChangeListener() {			
+			public void propertyChange(PropertyChangeEvent arg0) {
+				String keyword = getSelectedText();
+				if (keyword == null || keyword.length() == 0) {
+					helpMenu.setText(Messages.gettext("Help about a selected text"));
+				} else {
+					int nbOfDisplayedOnlyXChar=10;
+					if (keyword.length() > nbOfDisplayedOnlyXChar) {
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+					}
+					helpMenu.setText(Messages.gettext("Help about '") +keyword+"'");
+				}
+			}
+		};
+		helpMenu.addPropertyChangeListener(listener);
 
 		menu.add(cutMenu);
 		menu.add(copyMenu);
@@ -116,7 +150,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		menu.addSeparator();
 					
 		menu.add(selectMenu);
-
+		menu.addSeparator();
+		
+		menu.add(helpMenu);
+		
 		((JTextPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
 		((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);
 		((JPanel) getConfiguration().getPromptView()).setComponentPopupMenu(menu);
@@ -366,11 +403,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		output.setSelectionEnd(output.getText().length());
 		// TODO should also select the prompt and the input
 	}
-	
+
 	/**
-	 * Put the console selected text in the clipboard
+	 * Return the selected text in the console
+	 * @return The selected text in the console
 	 */
-	public void copyToClipboard() {
+	private String getSelectedText() {
 		JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
 		JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
 		
@@ -382,7 +420,34 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		if (input.getSelectedText() != null) {
 			selection += input.getSelectedText();
 		}
+		return selection;
 		
+	}
+	
+	/**
+	 * Launch the help on the selected text into the Console
+	 */
+	public void helpOnTheKeyword() {
+		String keyword = getSelectedText();
+		/* Double the quote/double quote in order to avoid
+		 * and error with the call of help()
+		 */
+		keyword=keyword.replaceAll("'", "''");
+		keyword=keyword.replaceAll("\"", "\"\"");
+		
+		/* @TODO: Check if it is possible to call directly
+		 * from the Java engine the help
+		 * Last time I check, we needed some information
+		 * provided by the Scilab native engine
+		 */
+		InterpreterManagement.requestScilabExec("help('"+keyword+"')");
+	}
+
+	/**
+	 * Put the console selected text in the clipboard
+	 */
+	public void copyToClipboard() {
+		String selection = getSelectedText();
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(selection), null);
 
 	}
