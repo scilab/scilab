@@ -20,8 +20,8 @@ public class IndentManager {
 	private Pattern patternQuote;
 
 public IndentManager() {
-	patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
-	patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
+	patternIn = Pattern.compile("(\\b(if|while|for|select|function|try)\\b)"); // do should change nothing to indent
+	patternInOut = Pattern.compile("\\b(else|elseif|case|catch)\\b");
 	patternOut = Pattern.compile("\\b(end|endfunction)\\b");
 	patternComment = Pattern.compile("(.*?)//");
 	patternQuote = Pattern.compile("(\"|')[^\\n]*?(\"|')");
@@ -162,8 +162,8 @@ public IndentManager() {
 			int length = scilabDocument.getParagraphElement(endPosition).getEndOffset() - start;
 			nextLineContent = scilabDocument.getText(start, length-1);
 		}
-		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent	
-		Pattern patternInOut = Pattern.compile("\\b(else|elseif|case)\\b");
+		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function|try)\\b)"); // do should change nothing to indent	
+		Pattern patternInOut = Pattern.compile("\\b(else|elseif|case|catch)\\b");
 		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
 		Pattern patternComment = Pattern.compile("(.*?)//");
 		
