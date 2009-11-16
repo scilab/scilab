@@ -9,11 +9,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 
-import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.actions.ColorizeAction;
-
-import com.sun.org.apache.xpath.internal.compiler.Keywords;
-
 /**
  * This class manages the Colorization aspect
  */
@@ -132,10 +127,13 @@ public class ColorizationManager {
 		return true;
 	}
 	
-	private void resetStyle(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
-//    	DEBUG("resetStyle("+line_start+", "+line_end+")");
+	private void resetStyle(ScilabStyleDocument scilabDocument, int start_offset, int end_offset) {
 	// Reset Color
-		scilabDocument.setCharacterAttributes(line_start, line_end-line_start, scilabDocument.getStyle("Default"), false);
+		scilabDocument.setCharacterAttributes(start_offset, end_offset-start_offset, scilabDocument.getStyle("Default"), false);
+	}
+	
+	public void resetStyle(ScilabStyleDocument scilabDocument) {
+		resetStyle(scilabDocument, 0, scilabDocument.getLength());
 	}
 	
 	private boolean  applyStyle(ScilabStyleDocument scilabDocument, ArrayList<Integer> boundaries, Style style) throws BadLocationException {
@@ -160,9 +158,10 @@ public class ColorizationManager {
 	    
 	    public void run() {
 			//colorize();
-			ColorizeAction.getXpadEditor();
+			//ColorizeAction.getXpadEditor();
 			/* @TODO CHECK THAT */
-			
+				if (scilabDocument.getAutoColorize()) {
+					
 				if (event == null) { // Called from SetFontAction: apply change to the whole document
 					lineStartPosition =  0;
 					lineEndPosition = scilabDocument.getLength();
@@ -173,6 +172,7 @@ public class ColorizationManager {
 			
 				if (lineStartPosition != lineEndPosition) {
 					colorize(scilabDocument, lineStartPosition, lineEndPosition);
+				}
 				}
 	    }
 				/*
