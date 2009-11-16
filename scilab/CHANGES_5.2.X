@@ -115,6 +115,8 @@ Bug fixes:
 
 * bug 5339 fixed - some macros had multiple definitions.
 
+* bug 5376 fixed - tool_skeleton.iss was not updated.
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
