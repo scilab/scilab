@@ -1253,3 +1253,5 @@ Bug fixes:
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 
+* bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
+
