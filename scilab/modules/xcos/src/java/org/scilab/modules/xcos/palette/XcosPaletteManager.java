@@ -534,11 +534,6 @@ public class XcosPaletteManager {
 				allpalettes.addTab(current.Name, xcosPalette);
 			}
 		}
-
-		@Override
-		protected void done() {
-			palettes.getInfoBar().setText(XcosMessages.EMPTY_INFO);
-		}
 	}
 
 	private XcosPaletteManager() {
@@ -557,10 +552,9 @@ public class XcosPaletteManager {
 			allpalettes.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT); /* View all tabs at a time */
 			allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 			((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
+			palettes.setVisible(true);
 			
 			(new UpdatePaletteWorker()).execute();
-			
-			palettes.setVisible(true);
 		}
 		return palettes;
 	}
