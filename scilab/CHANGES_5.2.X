@@ -118,6 +118,8 @@ Bug fixes:
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file is now well displayed
                    at Scilab startup.
 
+* bug 5376 fixed - tool_skeleton.iss was not updated.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1232,6 +1234,8 @@ Bug fixes:
 * bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
 
 * bug 5224 fixed - Maj+Tab modify the text selection.
 
