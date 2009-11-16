@@ -193,11 +193,10 @@ function result = atomsLoad(packages)
 		// =====================================================================
 		[is_loaded,loaded_version] =  atomsIsLoaded(this_package_name);
 		if is_loaded then
-			error_str = msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",this_package_name,loaded_version);
 			if ATOMSAUTOLOAD then
-				mprintf(error_str+"\n");
+				mprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",this_package_name,loaded_version);
 			else
-				error(error_str);
+				error(msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",this_package_name,loaded_version));
 			end
 			continue;
 		end
@@ -318,25 +317,23 @@ function result = atomsLoad(packages)
 		loader_file = pathconvert(this_package_path) + "loader.sce";
 		
 		if fileinfo(loader_file)==[] then
-			error_str = msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file);
 			if ATOMSAUTOLOAD then
-				mprintf(error_str+"\n");
+				mprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file);
 				return;
 			else
-				error("");
+				error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file));
 			end
 		end
 		
 		ierr = exec(loader_file,"errcatch");
 		
 		if ierr > 0 then
-			error_str = msprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
 			if ATOMSAUTOLOAD then
-				mprintf(error_str+"\n");
+				mprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
 				lasterror(%T);
 				continue;
 			else
-				error(error_str);
+				error(msprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
 			end
 		end
 		
