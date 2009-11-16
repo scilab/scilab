@@ -13,7 +13,6 @@
 package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -36,7 +35,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"};
 	private Style defaultStyle;
 
-	private String encoding = Charset.defaultCharset().toString();
+	// Editor's default encoding is UTF-8
+	private String encoding = "UTF-8";
 	private boolean updater;
 	private boolean autoIndent;
 	private boolean autoColorize=true;
