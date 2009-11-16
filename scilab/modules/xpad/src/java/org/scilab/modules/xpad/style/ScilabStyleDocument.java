@@ -16,29 +16,16 @@ import java.awt.Color;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
 
-import org.scilab.modules.xpad.CaretEdit;
-import org.scilab.modules.xpad.ScilabKeywords;
-import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
-import javax.swing.undo.UndoManager;
-import java.nio.charset.Charset;
 
 public class ScilabStyleDocument extends DefaultStyledDocument {
 
@@ -52,7 +39,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private String encoding = Charset.defaultCharset().toString();
 	private boolean updater;
 	private boolean autoIndent;
-	private boolean autoColorize;
+	private boolean autoColorize=true;
 	private volatile boolean shouldMergeEdits;
 	private CompoundEdit compoundEdit;
 
