@@ -117,6 +117,10 @@ Bug fixes:
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file is now well displayed
                    at Scilab startup.
+                   
+* bug 5373 fixed - isalphanum() did not support non ascii chars.
+
+* bug 5375 fixed - isdigit() did not support non ascii chars.
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
