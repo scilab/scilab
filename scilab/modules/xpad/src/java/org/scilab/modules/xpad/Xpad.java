@@ -16,7 +16,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.StringReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,18 +42,18 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.EditorKit;
-import javax.swing.SwingUtilities;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -119,8 +118,8 @@ import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.style.ColorizationManager;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -428,7 +427,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 		
 		documentMenu.addSeparator();
-		documentMenu.add(ColorizeAction.createMenu(editorInstance));
+		documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));
 		documentMenu.add(AutoIndentAction.createCheckBoxMenu(editorInstance));
 		menuBar.add(documentMenu);
 
@@ -898,6 +897,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void setAutoIndent(boolean b) {
 		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoIndent(b);
 	}
+	
+	/**
+	 * Auto-colorize mode management
+	 * @param b true to activate auto-colorize mode
+	 */
+	public void setAutoColorize(boolean b) {
+		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoColorize(b);
+	}
+	
 	/*
 	 * Add or remove '*' prefix in current tab tile according to isContentModified()
 	 */
