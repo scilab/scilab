@@ -50,7 +50,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxPoint;
 
 public class RegionToSuperblockAction extends DefaultAction {
 
@@ -58,7 +57,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 		private BasicLink link; 
 		private mxGeometry geom;
 		private boolean outGoing;
-		private int portNumber = 0;
+		private int portNumber;
 		
 		public BrokenLink(BasicLink link, mxGeometry geom, boolean outGoing) {
 			this.link = link;
@@ -66,15 +65,15 @@ public class RegionToSuperblockAction extends DefaultAction {
 			this.geom = geom;
 		}
 		
-		public boolean getOutGoing(){
+		public boolean getOutGoing() {
 			return outGoing;
 		}
 		
-		public BasicLink getLink(){
+		public BasicLink getLink() {
 			return link;
 		}
 		
-		public mxGeometry getGeometry(){
+		public mxGeometry getGeometry() {
 			return geom;
 		}
 
@@ -97,7 +96,6 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	public void doAction() {
 	    
-	    
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
 	    graph.info(XcosMessages.GENERATE_SUPERBLOCK);
 	    
@@ -108,31 +106,31 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    
 	    //check for missing links or selected ports, to add or exclude them.
-	    for (int i = 0 ; i < graph.getSelectionCells().length ; ++i) {
-		mxCell current = (mxCell) graph.getSelectionCells()[i];
-		if(current instanceof BasicBlock) {
-		    BasicBlock block = (BasicBlock)current;
-		    for(int j = 0 ; j < block.getChildCount() ; j++) {
+	    for (int i = 0; i < graph.getSelectionCells().length; i++) {
+	    mxCell current = (mxCell) graph.getSelectionCells()[i];
+		if (current instanceof BasicBlock) {
+		    BasicBlock block = (BasicBlock) current;
+		    for (int j = 0; j < block.getChildCount(); j++) {
 			if (block.getChildAt(j) instanceof BasicPort) {
 			    BasicPort port = (BasicPort) block.getChildAt(j);
-			    if(port.getEdgeCount() > 0) {
-				if(port.getEdgeAt(0) instanceof BasicLink) {
-				    BasicLink link = (BasicLink)port.getEdgeAt(0);
+			    if (port.getEdgeCount() > 0) {
+				if (port.getEdgeAt(0) instanceof BasicLink) {
+				    BasicLink link = (BasicLink) port.getEdgeAt(0);
 				    BasicBlock otherSide = null;
-				    if(link.getTarget() == port) {
+				    if (link.getTarget() == port) {
 					otherSide = (BasicBlock) link.getSource().getParent();
 				    } else {
 					otherSide = (BasicBlock) link.getTarget().getParent();
-				    }//target == port
+				    } //target == port
 				    
-				    if(isInSelection(graph.getSelectionCells(), otherSide)) {
+				    if (isInSelection(graph.getSelectionCells(), otherSide)) {
 					graph.addSelectionCell(link);
-				    }//isInSelection
-				}//BasicLink
-			    }//Edge > 0
-			}//BasicPort
-		    }//for child
-		} else if(current instanceof BasicPort) {
+				    } //isInSelection
+				} //BasicLink
+			    } //Edge > 0
+			} //BasicPort
+		    } //for child
+		} else if (current instanceof BasicPort) {
 		    //remove orphan port and connected link
 		    graph.removeSelectionCell(current.getEdgeAt(0));
 		    graph.removeSelectionCell(current);
@@ -140,11 +138,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 		    //restart loop
 		    i = -1;
 		}
-	    }//for selection
+	    } //for selection
 	    
-	    for (int i = 0 ; i < graph.getSelectionCells().length ; ++i) {
+	    for (int i = 0; i < graph.getSelectionCells().length; ++i) {
 		mxCell current = (mxCell) graph.getSelectionCells()[i];
-		if(current instanceof BasicBlock) {
+		if (current instanceof BasicBlock) {
 		    minX = Math.min(minX, current.getGeometry().getX());
 		    minY = Math.min(minY, current.getGeometry().getY());
 		    maxX = Math.max(maxX, current.getGeometry().getX());
@@ -154,7 +152,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	    
 	    graph.getModel().beginUpdate();
-	    SuperBlock superBlock = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+	    SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
 	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    superBlock.setStyle("SUPER_f");
 	    superBlock.getGeometry().setX((maxX + minX) / 2.0);
@@ -171,12 +169,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    //add in/out blocks in SuperBlock
 	    
-	    for(int i = 0 ; i < breaks.size() ; i++){
-	    	BrokenLink link = breaks.get(i);
+	    for (BrokenLink link : breaks) { 
 	    	BasicBlock block = null;
 
-	    	if(link.getLink() instanceof ExplicitLink){
-	    		if(link.getOutGoing()){//OUT_f
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		if (link.getOutGoing()) { //OUT_f
 	    			block = BasicBlock.createBlock("OUT_f");
 	    			ExplicitInputPort port = new ExplicitInputPort();
 	    			port.setDataLines(-1);
@@ -185,7 +182,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(0) + 1);
 	    			maxValues.set(0, maxValues.get(0) + 1);
-	    		}else{//IN_f
+	    		} else { //IN_f
 	    			block = BasicBlock.createBlock("IN_f");
 	    			ExplicitOutputPort port = new ExplicitOutputPort();
 	    			port.setDataLines(-1);
@@ -195,8 +192,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    			link.setPortNumber(maxValues.get(1) + 1);
 	    			maxValues.set(1, maxValues.get(1) + 1);
 	    		}
-	    	}else if(link.getLink() instanceof ImplicitLink){
-	    		if(link.getOutGoing()){//OUTIMPL_f
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		if (link.getOutGoing()) { //OUTIMPL_f
 	    			block = BasicBlock.createBlock("OUTIMPL_f");
 	    			ImplicitInputPort port = new ImplicitInputPort();
 	    			port.setDataLines(-1);
@@ -205,7 +202,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(2) + 1);
 	    			maxValues.set(2, maxValues.get(2) + 1);
-	    		}else{//INIMPL_f
+	    		}else{ //INIMPL_f
 	    			block = BasicBlock.createBlock("INIMPL_f");
 	    			ImplicitOutputPort port = new ImplicitOutputPort();
 	    			port.setDataLines(-1);
@@ -215,8 +212,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    			link.setPortNumber(maxValues.get(3) + 1);
 	    			maxValues.set(3, maxValues.get(3) + 1);
 	    		}
-	    	}else if(link.getLink() instanceof CommandControlLink){
-	    		if(link.getOutGoing()){//CLKOUTV_f
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		if (link.getOutGoing()) { //CLKOUTV_f
 	    			block = BasicBlock.createBlock("CLKOUTV_f");
 	    			ControlPort port = new ControlPort();
 	    			port.setDataLines(-1);
@@ -225,7 +222,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    			block.addPort(port);
 	    			link.setPortNumber(maxValues.get(4) + 1);
 	    			maxValues.set(4, maxValues.get(4) + 1);
-	    		}else{//CLKINV_f
+	    		} else { //CLKINV_f
 	    			block = BasicBlock.createBlock("CLKINV_f");
 	    			CommandPort port = new CommandPort();
 	    			port.setDataLines(-1);
@@ -246,16 +243,16 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	
 	    	//create new link in SuperBlock
 	    	BasicLink newLink = null;
-	    	if(link.getOutGoing()){//old -> new
+	    	if (link.getOutGoing()) { //old -> new
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)link.getLink().getSource(), (BasicPort)block.getChildAt(0));
 	    		newLink.setGeometry(link.getLink().getGeometry());
 		    	newLink.setSource((BasicPort)link.getLink().getSource());
 		    	newLink.setTarget((BasicPort)block.getChildAt(0));
-	    	}else{//new -> old
-	    		newLink = BasicLink.createLinkFromPorts((BasicPort)block.getChildAt(0), (BasicPort)link.getLink().getTarget());
+	    	} else { //new -> old
+	    		newLink = BasicLink.createLinkFromPorts((BasicPort) block.getChildAt(0), (BasicPort) link.getLink().getTarget());
 	    		newLink.setGeometry(link.getLink().getGeometry());
-		    	newLink.setSource((BasicPort)block.getChildAt(0));
-		    	newLink.setTarget((BasicPort)link.getLink().getTarget());
+		    	newLink.setSource((BasicPort) block.getChildAt(0));
+		    	newLink.setTarget((BasicPort) link.getLink().getTarget());
 	    	}
 
 	    	diagram.addCell(newLink);
@@ -270,34 +267,33 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    superBlock.updateExportedPort();
     	//change source or target of old link
 	    
-//	    graph.getModel().beginUpdate();
-	    for(int i = 0 ; i < breaks.size() ; i++){
-	    	BrokenLink link = breaks.get(i);
+	    graph.getModel().beginUpdate();
+	    for (BrokenLink link : breaks) {
     		BasicPort source = null;
     		BasicPort target = null;
     		
-    		if(link.getOutGoing()){
-	    		target = (BasicPort)link.getLink().getTarget();
+    		if (link.getOutGoing()) {
+	    		target = (BasicPort) link.getLink().getTarget();
 		    	
-	    		if(link.getLink() instanceof ExplicitLink){
+	    		if (link.getLink() instanceof ExplicitLink) {
 			    	source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else if(link.getLink() instanceof ImplicitLink){
+	    		} else if (link.getLink() instanceof ImplicitLink) {
 			    	source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else if(link.getLink() instanceof CommandControlLink){
+	    		} else if (link.getLink() instanceof CommandControlLink) {
 			    	source = BasicBlockInfo.getAllCommandPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else{
+	    		} else {
 	    			System.err.println("Houston ...");
 	    		}
-	    	}else{
-	    		source = (BasicPort)link.getLink().getSource();
+	    	} else {
+	    		source = (BasicPort) link.getLink().getSource();
 	    		
-	    		if(link.getLink() instanceof ExplicitLink){
+	    		if (link.getLink() instanceof ExplicitLink) {
 	    			target = BasicBlockInfo.getAllExplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else if(link.getLink() instanceof ImplicitLink){
+	    		} else if (link.getLink() instanceof ImplicitLink) {
 	    			target = BasicBlockInfo.getAllImplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else if(link.getLink() instanceof CommandControlLink){
+	    		} else if (link.getLink() instanceof CommandControlLink) {
 	    			target = BasicBlockInfo.getAllControlPorts(superBlock).get(link.getPortNumber() - 1);
-	    		}else{
+	    		} else {
 	    			System.err.println("Houston ...");
 	    		}
 	    	}
@@ -323,24 +319,24 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 
 
-	private List<BrokenLink> getBreakLink(Object objs[]){
+	private List<BrokenLink> getBreakLink(Object[] objs) {
 		List<BrokenLink> breaks = new ArrayList<BrokenLink>();
 		
-		for(int i = 0 ; i < objs.length ; i++){
-			if(objs[i] instanceof BasicBlock){
-				BasicBlock block = (BasicBlock)objs[i];
-				for(int j = 0 ; j < block.getChildCount() ; j++){
-					BasicPort port = (BasicPort)block.getChildAt(j);
-					if(port.getEdgeCount() != 0){
-						BasicLink link = (BasicLink)port.getEdgeAt(0);
-						if(block.getChildAt(j) instanceof InputPort || block.getChildAt(j) instanceof ControlPort){
-							BasicBlock source = (BasicBlock)(link.getSource().getParent());
-							if(!isInSelection(objs, source)){
+		for (int i = 0; i < objs.length; i++) {
+			if (objs[i] instanceof BasicBlock) {
+				BasicBlock block = (BasicBlock) objs[i];
+				for (int j = 0; j < block.getChildCount(); j++) {
+					BasicPort port = (BasicPort) block.getChildAt(j);
+					if (port.getEdgeCount() != 0) {
+						BasicLink link = (BasicLink) port.getEdgeAt(0);
+						if (block.getChildAt(j) instanceof InputPort || block.getChildAt(j) instanceof ControlPort) {
+							BasicBlock source = (BasicBlock) (link.getSource().getParent());
+							if (!isInSelection(objs, source)) {
 								breaks.add(new BrokenLink(link, source.getGeometry(), false));
 							}
-						}else{ //OutputPort or CommandPort
-							BasicBlock target = (BasicBlock)(link.getTarget().getParent());
-							if(!isInSelection(objs, target)){
+						} else { //OutputPort or CommandPort
+							BasicBlock target = (BasicBlock) (link.getTarget().getParent());
+							if (!isInSelection(objs, target)) {
 								breaks.add(new BrokenLink(link, target.getGeometry(), true));
 							}
 						}
@@ -351,10 +347,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 		return breaks;
 	}
 	
-	private boolean isInSelection(Object objs[], Object item){
+	private boolean isInSelection(Object[] objs, Object item) {
 		boolean isFind = false;
-		for(int k = 0 ; k < objs.length ; k++){
-			if(objs[k] == item){
+		for (Object obj : objs) {
+			if (obj == item) {
 				isFind = true;
 				break;
 			}
@@ -362,68 +358,68 @@ public class RegionToSuperblockAction extends DefaultAction {
 		return isFind;
 	}
 	
-	private void printBreakingLink(List<BrokenLink> breaks){
+	private void printBreakingLink(List<BrokenLink> breaks) {
 		System.err.println("breaks count : " + breaks.size());
 		
-		for(int i = 0 ; i < breaks.size() ; i++){
-			System.err.println("Link : " + breaks.get(i).getLink());
-			System.err.println("OutGoing : " + breaks.get(i).getOutGoing());
-			System.err.println("Geometry : " + breaks.get(i).getGeometry());
+		for (BrokenLink brk : breaks) {
+			System.err.println("Link : " + brk.getLink());
+			System.err.println("OutGoing : " + brk.getOutGoing());
+			System.err.println("Geometry : " + brk.getGeometry());
 		}
 	}
 
-	private List<Integer> getMaxBlocksValue(Object blocks[]){
+	private List<Integer> getMaxBlocksValue(Object [] blocks) {
 		List<Integer> values = new ArrayList<Integer>();
 		List<BasicBlock> items[] = new ArrayList[6];
 		
 		//ExplicitInBlock
-		for(int i = 0 ; i < blocks.length ; i++){
-			if(blocks[i] instanceof ExplicitOutBlock){
-				if(items[0] == null){
+		for (int i = 0; i < blocks.length; i++) {
+			if (blocks[i] instanceof ExplicitOutBlock) {
+				if (items[0] == null) {
 					items[0] = new ArrayList<BasicBlock>();
 				}
 				items[0].add((BasicBlock) blocks[i]);
-			}else if(blocks[i] instanceof ExplicitInBlock){
-				if(items[1] == null){
+			} else if (blocks[i] instanceof ExplicitInBlock) {
+				if (items[1] == null) {
 					items[1] = new ArrayList<BasicBlock>();
 				}
 				items[1].add((BasicBlock) blocks[i]);
-			}else if(blocks[i] instanceof ImplicitOutBlock){
-				if(items[2] == null){
+			} else if (blocks[i] instanceof ImplicitOutBlock) {
+				if (items[2] == null) {
 					items[2] = new ArrayList<BasicBlock>();
 				}
 				items[2].add((BasicBlock) blocks[i]);
-			}else if(blocks[i] instanceof ImplicitInBlock){
-				if(items[3] == null){
+			} else if (blocks[i] instanceof ImplicitInBlock) {
+				if (items[3] == null) {
 					items[3] = new ArrayList<BasicBlock>();
 				}
 				items[3].add((BasicBlock) blocks[i]);
-			}else if(blocks[i] instanceof EventOutBlock){
-				if(items[4] == null){
+			} else if (blocks[i] instanceof EventOutBlock) {
+				if (items[4] == null) {
 					items[4] = new ArrayList<BasicBlock>();
 				}
 				items[4].add((BasicBlock) blocks[i]);
-			}else if(blocks[i] instanceof EventInBlock){
-				if(items[5] == null){
+			} else if (blocks[i] instanceof EventInBlock) {
+				if (items[5] == null) {
 					items[5] = new ArrayList<BasicBlock>();
 				}
 				items[5].add((BasicBlock) blocks[i]);
 			} 
 		}
 		
-		for(int i = 0 ; i < 6 ; i++){
+		for (int i = 0; i < 6; i++) {
 			values.add(getMaxValue(items[i]));
 		}
 		
 		return values;
 	}
 	
-	private int getMaxValue(List<BasicBlock> blocks){
+	private int getMaxValue(List<BasicBlock> blocks) {
     	int maxValue = 0;
-    	if(blocks != null){
-	    	for(int i = 0 ; i < blocks.size(); i++){
-	    		if(((BasicBlock)blocks.get(i)).getExprs() instanceof ScilabString){
-	    			maxValue = Math.max(maxValue, Integer.parseInt(((ScilabString)((BasicBlock)blocks.get(i)).getExprs()).getData()[0][0]));
+    	if (blocks != null) {
+	    	for (int i = 0; i < blocks.size(); i++) {
+	    		if (((BasicBlock) blocks.get(i)).getExprs() instanceof ScilabString) {
+	    			maxValue = Math.max(maxValue, Integer.parseInt(((ScilabString) ((BasicBlock) blocks.get(i)).getExprs()).getData()[0][0]));
 	    		}
 	    	}
     	}
