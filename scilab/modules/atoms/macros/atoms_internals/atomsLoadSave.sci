@@ -37,15 +37,17 @@ function  atomsLoadSave(loaded_mat)
 	if ~ isdir(TMPDIR+"/atoms") then
 		status = mkdir( TMPDIR+"/atoms" );
 		if status <> 1 then
-			error_str = msprintf( ..
-							gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
+			if ATOMSAUTOLOAD then
+				mprintf( ..
+					gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
 							"atomsLoadSave", ..
 							TMPDIR+"/atoms");
-			if ATOMSAUTOLOAD then
-				mprintf(error_str+"\n");
 				return;
 			else
-				error(error_str);
+				error(msprintf( ..
+							gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
+							"atomsLoadSave", ..
+							TMPDIR+"/atoms"));
 			end
 		end
 	end

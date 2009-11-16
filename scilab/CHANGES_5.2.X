@@ -45,8 +45,6 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
-
 * bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
@@ -114,6 +112,12 @@ Bug fixes:
 * bug 5330 fixed - "help str1 str2" returned a error.
 
 * bug 5339 fixed - some macros had multiple definitions.
+
+* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file is now well displayed
+                   at Scilab startup.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
