@@ -413,7 +413,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		documentMenu.add(encodingTypeMenu);
 
 		ArrayList<String> encodings = EncodingAction.getEcodings();
-
+		
 		radioTypes = new JRadioButtonMenuItem[encodings.size()];
 		group = new ButtonGroup();
 		for (int i = 0; i < encodings.size(); i++) {
@@ -421,7 +421,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 			group.add(radioTypes[i]);
 			((JMenu) encodingTypeMenu.getAsSimpleMenu()).add(radioTypes[i]);
 			
-			if (encodings.get(i).toString().equals(Charset.defaultCharset().toString())) {
+			// Editor's default encoding is UTF-8
+			if (encodings.get(i).toString().equals("UTF-8")) {
 				radioTypes[i].setSelected(true);
 			}
 		}
