@@ -124,6 +124,8 @@ Bug fixes:
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
