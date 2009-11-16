@@ -12,16 +12,16 @@
 
 package org.scilab.modules.xpad.actions;
 
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
-import org.scilab.modules.xpad.style.ColorizationManager;
 /**
  * Colorization management
  * @author Bruno JOFRET
  */
-public final class ColorizeAction extends DefaultAction {
+public final class ColorizeAction extends DefaultCheckAction {
 
 	private static final long serialVersionUID = -2486375196709197718L;
 
@@ -43,7 +43,13 @@ public final class ColorizeAction extends DefaultAction {
 	 */
 	public void doAction() {
 		ScilabStyleDocument scilabDocument = (ScilabStyleDocument)getEditor().getTextPane().getStyledDocument(); 
-		colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());
+
+		if (this.getState() == false) {
+			colorizationManager.resetStyle(scilabDocument);
+		} else {
+			colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());
+		}
+		getEditor().setAutoColorize(this.getState());
 	}
 
 	/**
@@ -51,14 +57,9 @@ public final class ColorizeAction extends DefaultAction {
 	 * @param editor associated Xpad instance
 	 * @return the menu
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.COLORIZE, null, new ColorizeAction(editor), null);
-	}
-
-	/**
-	 * Get current instance
-	 */
-	public static void getXpadEditor() {
-		//((ScilabStyleDocument) colorEditor.getTextPane().getStyledDocument()).setEditor(colorEditor);
+	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+		CheckBoxMenuItem colorize = createCheckBoxMenu(XpadMessages.COLORIZE, null, new ColorizeAction(editor), null);
+		colorize.setChecked(true);
+    	return colorize;
 	}
 }

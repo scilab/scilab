@@ -1229,6 +1229,8 @@ Bug fixes:
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
+
 * bug 5224 fixed - Maj+Tab modify the text selection.
 
 * bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
