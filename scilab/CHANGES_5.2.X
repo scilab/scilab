@@ -124,6 +124,8 @@ Bug fixes:
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
                    at Scilab startup.
                    
+* bug 5360 fixed - "sciargs" documentation help page updated.
+                   
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
 
 * bug 5375 fixed - isdigit() did not support non ascii chars.
