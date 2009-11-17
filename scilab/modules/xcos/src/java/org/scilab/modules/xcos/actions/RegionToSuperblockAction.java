@@ -135,9 +135,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	     */
 	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    diagram.getModel().beginUpdate();
-	    graph.getModel().beginUpdate();
 	    diagram.addCells(graph.getSelectionCells());
-	    graph.getModel().endUpdate();
 	    diagram.getModel().endUpdate();
 	    
 	    /*
