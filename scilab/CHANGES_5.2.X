@@ -72,6 +72,8 @@ Bug fixes:
 
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
+* bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
 * bug 5235 fixed - Error message added when launching Scicos
 
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
@@ -115,7 +117,7 @@ Bug fixes:
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
 
-* bug 5359 fixed - ATOMS: Path of the non-existing loader file is now well displayed
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
                    at Scilab startup.
                    
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
@@ -123,6 +125,8 @@ Bug fixes:
 * bug 5375 fixed - isdigit() did not support non ascii chars.
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
+
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
