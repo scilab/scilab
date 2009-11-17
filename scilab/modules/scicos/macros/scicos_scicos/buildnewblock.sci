@@ -63,6 +63,11 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
   if MSDOS then
     //**------------ Windows ----------------------------------------------
     //** on Windows we keep the old way : "hard coded" makefile (.mak)
+    if ~haveacompiler() then
+      ok = %f;
+      message([_("Sorry compiling problem");_("A compatible C compiler required.")]);
+      return 
+    end
 
     //** Try to open a file 
     [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 

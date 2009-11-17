@@ -128,6 +128,8 @@ Bug fixes:
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
 
+* bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos tried to call dynamic link functions.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
