@@ -128,7 +128,9 @@ public class XcosDiagram extends ScilabGraph {
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
 	public void invoke(Object source, mxEventObject evt) {
-	    ((Xcos)getParentTab()).setEnabledUndo(true);
+		if (getParentTab() != null) {
+			((Xcos)getParentTab()).setEnabledUndo(true);
+		}
 	}
     };
 
