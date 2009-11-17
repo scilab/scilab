@@ -1550,12 +1550,14 @@ public class XcosDiagram extends ScilabGraph {
 	public void undo() {
 		super.undo();
 		
+		if (getParentTab() != null) {
 		if (undoManager.canUndo()){
 			((Xcos)getParentTab()).setEnabledUndo(true);
 		} else {
 			((Xcos)getParentTab()).setEnabledUndo(false);
 		}
 		((Xcos)getParentTab()).setEnabledRedo(true);
+		}
 		
 		/*
 		if (undoManager.canRedo()){
@@ -1569,6 +1571,7 @@ public class XcosDiagram extends ScilabGraph {
 	public void redo() {
 		super.redo();
 		
+		if (getParentTab() != null) {
 		if (undoManager.canUndo()){
 			((Xcos)getParentTab()).setEnabledUndo(true);
 		} else {
@@ -1579,12 +1582,15 @@ public class XcosDiagram extends ScilabGraph {
 		} else {
 			((Xcos)getParentTab()).setEnabledRedo(false);
 		}
+		}
 	}
 	
     public void resetUndoManager() {
     	undoManager.reset();
+    	if (getParentTab() != null) {
     	((Xcos)getParentTab()).setEnabledRedo(false);
     	((Xcos)getParentTab()).setEnabledUndo(false);
+    	}
     }
 }
 
