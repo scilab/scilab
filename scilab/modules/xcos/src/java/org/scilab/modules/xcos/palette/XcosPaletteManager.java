@@ -476,12 +476,9 @@ public class XcosPaletteManager {
 		 * Any PaletteBlock data (arguments of the
 		 * org.scilab.modules.xcos.palette.XcosPalette#addTemplate)
 		 * 
-		 * @param name
-		 *            The name of the block
-		 * @param icon
-		 *            The icon of the block
-		 * @param block
-		 *            Extracted from PATH/BlockName.hf5
+		 * @param name The name of the block
+		 * @param icon The icon of the block
+		 * @param block Extracted from PATH/BlockName.hf5
 		 */
 		public PaletteBlockData(String name, ImageIcon icon, BasicBlock block) {
 			Name = name;
