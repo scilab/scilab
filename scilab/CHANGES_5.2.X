@@ -45,6 +45,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+
 * bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
