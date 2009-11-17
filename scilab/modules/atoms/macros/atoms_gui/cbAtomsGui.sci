@@ -114,6 +114,42 @@ endfunction
 
 function updateAtomsGui()
 
+    // Operating system detection
+    // =========================================================================
+    
+    if ~MSDOS then
+        OSNAME  = unix_g("uname");
+        MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+        LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+        SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+    else
+        MACOSX  = %F;
+        LINUX   = %F;
+        SOLARIS = %F;
+    end
+    
+    if MSDOS then
+        OSNAME = "windows";
+    elseif LINUX then
+        OSNAME = "linux";
+    elseif MACOSX then
+        OSNAME = "macosx";
+    elseif SOLARIS then
+        OSNAME = "solaris";
+    end
+    
+    // Architecture detection
+    // =========================================================================
+    
+    [dynamic_info,static_info] = getdebuginfo();
+    arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
+    
+    if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
+        ARCH = "64";
+    else
+        ARCH = "32";
+    end
+
     set(findobj("tag", "modulesListbox"), "Enable", "on");
 
     // Get selected module
@@ -123,9 +159,6 @@ function updateAtomsGui()
     // Get the modules list
     allModules = get(findobj("Tag", "atomsFigure"), "userdata");
 
-
-
-
     // Get the modules details
     // =========================================================================
     
@@ -133,14 +166,29 @@ function updateAtomsGui()
     modulesNames (1:2) = [];
     themodule          = allModules(getSelectedModuleName());
     vers               = getfield(1, themodule);
+    moduleDetails      = themodule(vers(3));
+    
+    // Manage size
+    // =========================================================================
+    
+    if isfield(moduleDetails,OSNAME+ARCH+"Size") then
+        sizeHTML       = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
+                         gettext("Download size")                                              + ..
+                         "</div>"                                                              + ..
+                         "<div>"                                                               + ..
+                             atomsSize2human(moduleDetails(OSNAME+ARCH+"Size"))                + ..
+                         "</div>";
+    else
+        sizeHTML       = "";
+    end
     
     // Manage authors
     // ========================================================================= 
     
-    authorMat          = themodule(vers(3)).Author;
+    authorMat          = moduleDetails.Author;
             
     authorHTML         = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                         "  Author(s)" + ..
+                         gettext("Author(s)") + ..
                          "</div>" + ..
                          "<div>";
 
@@ -156,16 +204,17 @@ function updateAtomsGui()
     htmlcode           = "<html>" + ..
                         "<body>" + ..
                         "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                        "  Version" + ..
+                        gettext("Version") + ..
                         "</div>" + ..
-                        "<div>" + themodule(vers(3)).Version  + "</div>" + ..
+                        "<div>" + moduleDetails.Version  + "</div>" + ..
                         authorHTML + ..
                         "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                        "  Description" + ..
+                        gettext("Description") + ..
                         "</div>" + ..  
                         "<div>" + ..
-                        strcat(themodule(vers(3)).Description,"<br>")  + ..
+                        strcat(moduleDetails.Description,"<br>")  + ..
                         "</div>" + ..
+                        sizeHTML + ..
                         "</body>" + ..
                         "</html>";
 
@@ -215,4 +264,21 @@ function updateAtomsGui()
     set(findobj("tag", "updateButton") , "Enable", canUpdate );
     set(findobj("tag", "removeButton") , "Enable", canRemove );
 
+endfunction
+
+function human_str = atomsSize2human(size_str)
+    
+    size_int = strtod(size_str);
+    
+    if size_int < 1024 then
+        human_str = string(size_int) + " " + gettext("Octets");
+
+    elseif size_int < 1024*1024 then
+        human_str = string(round(size_int/1024)) + " " + gettext("Ko");
+    
+    else
+        human_str = string( round((size_int*10)/(1024*1024)) / 10 ) + " " + gettext("Mo");
+    
+    end
+    
 endfunction
