@@ -72,6 +72,8 @@ Bug fixes:
 
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
+* bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
 * bug 5235 fixed - Error message added when launching Scicos
 
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
@@ -115,7 +117,7 @@ Bug fixes:
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
 
-* bug 5359 fixed - ATOMS: Path of the non-existing loader file is now well displayed
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
                    at Scilab startup.
                    
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
