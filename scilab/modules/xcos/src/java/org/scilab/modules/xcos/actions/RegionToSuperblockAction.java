@@ -99,6 +99,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
 	    graph.info(XcosMessages.GENERATE_SUPERBLOCK);
 	    
+	    /*
+	     * Update links selection
+	     */
+	    updateForNotSelectedLinks(graph);
 	    
 	    /*
 	     * Getting selection rectangle
@@ -117,16 +121,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 				maxY = Math.max(maxY, current.getGeometry().getY());
 			}
 		}
-	    
-		/*
-		 * Update links selection
-		 */
-	    updateForNotSelectedLinks(graph);
 
 	    /*
 	     * Creating the superblock
 	     */
-	    graph.getModel().beginUpdate();
 	    SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
 	    superBlock.setStyle("SUPER_f");
 	    superBlock.getGeometry().setX((maxX + minX) / 2.0);
@@ -137,7 +135,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 	     */
 	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    diagram.getModel().beginUpdate();
+	    graph.getModel().beginUpdate();
 	    diagram.addCells(graph.getSelectionCells());
+	    graph.getModel().endUpdate();
+	    diagram.getModel().endUpdate();
 	    
 	    /*
 	     * Find broken links, to insert input/output blocks
@@ -156,16 +157,16 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    /*
 	     * Update the parent
 	     */
+	    graph.getModel().beginUpdate();
 	    graph.clearSelection();
 	    graph.addCell(superBlock);
 	    graph.setSelectionCell(superBlock);
+	    graph.getModel().endUpdate();
 	    superBlock.updateExportedPort();
-    	//change source or target of old link
-	    
-	    graph.getModel().beginUpdate();
+    	
+	    //change source or target of old link
 	    createLinks(graph, superBlock, breaks);
 	    superBlock.closeBlockSettings();
-	    graph.getModel().endUpdate();
 	    
 	    graph.refresh();
 	    diagram.refresh();
@@ -176,6 +177,9 @@ public class RegionToSuperblockAction extends DefaultAction {
      * Check for missing links or selected ports, to add or exclude them.
      */
 	private void updateForNotSelectedLinks(XcosDiagram graph) {
+		
+		graph.getModel().beginUpdate();
+		
 		for (int i = 0; i < graph.getSelectionCells().length; i++) {
 			mxCell current = (mxCell) graph.getSelectionCells()[i];
 			if (current instanceof BasicBlock) {
@@ -212,6 +216,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 				i = -1;
 			}
 		} // for selection
+		
+		graph.getModel().endUpdate();
 	}
 
 	/**
@@ -256,11 +262,16 @@ public class RegionToSuperblockAction extends DefaultAction {
     		newLink.setGeometry(link.getLink().getGeometry());
         	newLink.setSource(source);
         	newLink.setTarget(target);
+        	
+        	graph.getModel().beginUpdate();
         	graph.addCell(newLink);
+        	graph.getModel().endUpdate();
         	
         	//this method don't call CELLS_REMOVED between beginUpdate and endUpdate
         	//this function unlink source and target correctly too
+        	graph.getModel().beginUpdate();
         	graph.getModel().remove(link.getLink());
+        	graph.getModel().endUpdate();
 	    }
 	}
 
@@ -345,7 +356,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	block.setRealParameters(new ScilabDouble());
 	    	block.setIntegerParameters(new ScilabDouble(link.getPortNumber()));
 	    	block.setObjectsParameters(new ScilabList());
+	    	
+	    	diagram.getModel().beginUpdate();
 	    	diagram.addCells(new Object[]{block});
+	    	diagram.getModel().endUpdate();
 	    	
 	    	/*
 	    	 * create new link in SuperBlock
@@ -363,7 +377,9 @@ public class RegionToSuperblockAction extends DefaultAction {
 		    	newLink.setTarget((BasicPort) link.getLink().getTarget());
 	    	}
 
+	    	diagram.getModel().beginUpdate();
 	    	diagram.addCell(newLink);
+	    	diagram.getModel().endUpdate();
 	    }
 		
 	}
