@@ -38,7 +38,10 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class XcosPaletteManager {
+/**
+ * Manage all the Block Palettes.
+ */
+public final class XcosPaletteManager {
 
     private static Thread paletteThread;
     private static boolean paletteLoadStarted;
@@ -525,16 +528,15 @@ public class XcosPaletteManager {
     }
 
     private XcosPaletteManager() {
-    }
+	}
 
     public static Tab loadPalette() {
-
-	if(paletteLoadStarted == false) {
-	    createPaletteWindow();
-	    paletteThread.start();
+		if (paletteLoadStarted == false) {
+			createPaletteWindow();
+			paletteThread.start();
+		}
+		return palettes;
 	}
-	return palettes;
-    }
 
     private static PaletteBlockData[] createPaletteData(String[] blocksNames) {
 
