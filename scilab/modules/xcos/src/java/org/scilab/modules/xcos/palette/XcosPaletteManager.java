@@ -502,8 +502,17 @@ public class XcosPaletteManager {
 				palettes.setVisible(true);
 				
 				for (PaletteStringDescriptor paletteStringDescriptor : allPalettesStringDescriptor) {
-					allpalettes.addTab(paletteStringDescriptor.Name,
-							createPalette(paletteStringDescriptor.Components));
+					/* Doesn't perform UI update */
+					PaletteDescriptor currentDescriptor = new PaletteDescriptor(
+							paletteStringDescriptor.Name,
+							createPaletteData(paletteStringDescriptor.Components));
+					
+					/* Perform UI update */
+					XcosPalette xcosPalette = new XcosPalette();
+					for (PaletteBlockData iter : currentDescriptor.Components) {
+						xcosPalette.addTemplate(iter.Name, iter.Icon, iter.Block);
+					}
+					allpalettes.addTab(currentDescriptor.Name, xcosPalette);
 				}
 
 				synchronized (this) {
@@ -527,35 +536,40 @@ public class XcosPaletteManager {
 	return palettes;
     }
 
-    private static XcosPalette createPalette(String[] blocksNames) {
+    private static PaletteBlockData[] createPaletteData(String[] blocksNames) {
 
-	String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
-	String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
+		PaletteBlockData[] xcosPalette = new PaletteBlockData[blocksNames.length];
 
-	XcosPalette xcosPalette = new XcosPalette();
+		final String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+		final String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
 
-	BasicBlock theBloc = null;
-	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
+		BasicBlock theBloc = null;
 
-//	    Search the bloc in global hashmap
-	    theBloc = allBlocks.get(blocksNames[kBlock]);
+		for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
+			// Search the bloc in global hashmap
+			theBloc = allBlocks.get(blocksNames[kBlock]);
 
-	    // If not found then create it
-	    if (theBloc == null) {
-		theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
-		allBlocks.put(blocksNames[kBlock], theBloc);
-	    }
+			// If not found then create it
+			if (theBloc == null) {
+				theBloc = BlockReader.readBlockFromFile(blocksPath
+						+ blocksNames[kBlock] + ".h5");
+				allBlocks.put(blocksNames[kBlock], theBloc);
+			}
 
-	    if (theBloc.getStyle().compareTo("") == 0) {
-		theBloc.setStyle(theBloc.getInterfaceFunctionName());
-		theBloc.setValue(theBloc.getInterfaceFunctionName());
-	    }
+			if (theBloc.getStyle().compareTo("") == 0) {
+				theBloc.setStyle(theBloc.getInterfaceFunctionName());
+				theBloc.setValue(theBloc.getInterfaceFunctionName());
+			}
 
-	    xcosPalette.addTemplate(blocksNames[kBlock], new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"), theBloc);
+			xcosPalette[kBlock] = new PaletteBlockData(
+					blocksNames[kBlock],
+					new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"),
+					theBloc);
+
+		}
+
+		return xcosPalette;
 	}
-
-	return xcosPalette;
-    }
 
     public static Tab getPalettes() {
         return palettes;
