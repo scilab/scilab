@@ -75,7 +75,7 @@ function packages = atomsGetTOOLBOXES(update)
 	// =========================================================================
 	
 	if (packages_path_info == []) ..
-		| (getdate("s") - packages_path_info(7) > 3600) ..
+		| (getdate("s") - packages_path_info(6) > 3600) ..
 		| (rhs == 1 & update) then
 		
 		// loop on available repositories
