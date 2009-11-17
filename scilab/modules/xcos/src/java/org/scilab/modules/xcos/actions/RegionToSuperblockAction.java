@@ -124,18 +124,20 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    updateForNotSelectedLinks(graph);
 
 	    /*
-	     * Creating the block on the Parent Graph
+	     * Creating the superblock
 	     */
 	    graph.getModel().beginUpdate();
 	    SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
-	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    superBlock.setStyle("SUPER_f");
 	    superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	    superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
+	    /*
+	     * Creating the child graph
+	     */
+	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    diagram.getModel().beginUpdate();
 	    diagram.addCells(graph.getSelectionCells());
-	    diagram.getModel().endUpdate();
 	    
 	    /*
 	     * Find broken links, to insert input/output blocks
@@ -145,9 +147,15 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
 	    updateChildGraph(diagram, breaks, maxValues);
 
+	    /*
+	     * Update block with real parameters 
+	     */
 	    superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	    superBlock.createChildDiagram();
-
+	    
+	    /*
+	     * Update the parent
+	     */
 	    graph.clearSelection();
 	    graph.addCell(superBlock);
 	    graph.setSelectionCell(superBlock);
@@ -156,7 +164,6 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    
 	    graph.getModel().beginUpdate();
 	    createLinks(graph, superBlock, breaks);
-
 	    superBlock.closeBlockSettings();
 	    graph.getModel().endUpdate();
 	    
