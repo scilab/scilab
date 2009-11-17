@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-09 14:22+0100\n"
+"Revision-Date: 2009-11-17 16:13+0100\n"
 
 # File: macros/scicos_scicos/genmoc.sci, line: 79
 #, c-format
@@ -63,8 +63,8 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 32
 # File: macros/scicos_scicos/build_block.sci, line: 83
+# File: macros/scicos_scicos/genmoc.sci, line: 32
 # File: macros/scicos_scicos/MODCOM.sci, line: 77
 # File: macros/scicos_scicos/compile_modelica.sci, line: 28
 #, c-format
@@ -141,6 +141,10 @@ msgstr ""
 # File: macros/scicos_scicos/menu_stuff.sci, line: 27
 # File: macros/scicos_scicos/do_palettes.sci, line: 91
 msgid "&Tools"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos.sci, line: 41
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
 #
 # File: macros/scicos_scicos/do_icon_edit.sci, line: 34
