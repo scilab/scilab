@@ -38,9 +38,12 @@ public class IndentAction extends DefaultAction {
 		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
 		try {
-			indentManager.beautifier(styleDocument, getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+			int selection_start = getEditor().getTextPane().getSelectionStart();
+			int selection_end = getEditor().getTextPane().getSelectionEnd();
+			int final_selection_end = indentManager.beautifier(styleDocument, selection_start, selection_end);
+			getEditor().getTextPane().setSelectionStart(selection_start);
+			getEditor().getTextPane().setSelectionEnd(final_selection_end);
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

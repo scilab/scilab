@@ -290,7 +290,7 @@ public IndentManager() {
 	    }
 	}
 
-	public void beautifier(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) throws BadLocationException{
+	public int beautifier(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) throws BadLocationException{
 		
 		int currentStartOffset = scilabDocument.getParagraphElement(startPosition).getStartOffset();
 		
@@ -305,14 +305,18 @@ public IndentManager() {
 		Element currentElement = null;
 		Element lastElement = scilabDocument.getParagraphElement(endPosition);
 		
+		String toIndent = "";
+		
 		do {
 			currentElement = scilabDocument.getParagraphElement(currentStartOffset);
-			String toIndent= scilabDocument.getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset - 1);//-1 to remove \n			
+			toIndent= scilabDocument.getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset - 1);//-1 to remove \n			
 			String indented = indentLine(toIndent, baseSpaces);
 			scilabDocument.replace(currentStartOffset, toIndent.length(), indented, null);
 			currentStartOffset += indented.length() + 1;
 		} while(currentElement != lastElement);
 		currentStringIndent = "";
 		currentLevelIdent = 0;
+		
+		return currentStartOffset;
 	}
 }

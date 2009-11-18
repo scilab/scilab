@@ -76,7 +76,7 @@ public class XpadMessages {
     public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
-    public static final String AUTO_INDENT = Messages.gettext("Auto Reformat Selection");
+    public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
