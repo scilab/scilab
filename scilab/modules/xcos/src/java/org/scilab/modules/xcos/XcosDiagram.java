@@ -128,7 +128,9 @@ public class XcosDiagram extends ScilabGraph {
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
 	public void invoke(Object source, mxEventObject evt) {
-	    ((Xcos)getParentTab()).setEnabledUndo(true);
+		if (getParentTab() != null) {
+			((Xcos)getParentTab()).setEnabledUndo(true);
+		}
 	}
     };
 
@@ -1542,49 +1544,52 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public void setModified(boolean modified) {
-	super.setModified(modified);
-	updateTabTitle();
-    }
-
+		super.setModified(modified);
+		updateTabTitle();
+	}
 
 	public void undo() {
 		super.undo();
-		
-		if (undoManager.canUndo()){
-			((Xcos)getParentTab()).setEnabledUndo(true);
-		} else {
-			((Xcos)getParentTab()).setEnabledUndo(false);
+
+		if (getParentTab() != null) {
+			if (undoManager.canUndo()) {
+				((Xcos) getParentTab()).setEnabledUndo(true);
+			} else {
+				((Xcos) getParentTab()).setEnabledUndo(false);
+			}
+			((Xcos) getParentTab()).setEnabledRedo(true);
 		}
-		((Xcos)getParentTab()).setEnabledRedo(true);
-		
+
 		/*
-		if (undoManager.canRedo()){
-			((Xcos)getParentTab()).setEnabledRedo(true);
-		} else {
-			((Xcos)getParentTab()).setEnabledRedo(false);
-		}
-*/
+		 * if (undoManager.canRedo()){
+		 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
+		 * ((Xcos)getParentTab()).setEnabledRedo(false); }
+		 */
 	}
-	
+
 	public void redo() {
 		super.redo();
-		
-		if (undoManager.canUndo()){
-			((Xcos)getParentTab()).setEnabledUndo(true);
-		} else {
-			((Xcos)getParentTab()).setEnabledUndo(false);
-		}
-		if (undoManager.canRedo()){
-			((Xcos)getParentTab()).setEnabledRedo(true);
-		} else {
-			((Xcos)getParentTab()).setEnabledRedo(false);
+
+		if (getParentTab() != null) {
+			if (undoManager.canUndo()) {
+				((Xcos) getParentTab()).setEnabledUndo(true);
+			} else {
+				((Xcos) getParentTab()).setEnabledUndo(false);
+			}
+			if (undoManager.canRedo()) {
+				((Xcos) getParentTab()).setEnabledRedo(true);
+			} else {
+				((Xcos) getParentTab()).setEnabledRedo(false);
+			}
 		}
 	}
-	
-    public void resetUndoManager() {
-    	undoManager.reset();
-    	((Xcos)getParentTab()).setEnabledRedo(false);
-    	((Xcos)getParentTab()).setEnabledUndo(false);
-    }
+
+	public void resetUndoManager() {
+		undoManager.reset();
+		if (getParentTab() != null) {
+			((Xcos) getParentTab()).setEnabledRedo(false);
+			((Xcos) getParentTab()).setEnabledUndo(false);
+		}
+	}
 }
 

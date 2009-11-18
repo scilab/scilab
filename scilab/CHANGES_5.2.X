@@ -45,7 +45,9 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+* bug 5348 fixed - Openning a Superblock crash Xcos.
+
+* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
 
 * bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
@@ -73,6 +75,8 @@ Bug fixes:
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
+
+* bug 5214 fixed - ATOMS GUI: The download size was not displayed
 
 * bug 5235 fixed - Error message added when launching Scicos
 
@@ -114,6 +118,26 @@ Bug fixes:
 * bug 5330 fixed - "help str1 str2" returned a error.
 
 * bug 5339 fixed - some macros had multiple definitions.
+
+* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
+                   at Scilab startup.
+                   
+* bug 5360 fixed - "sciargs" documentation help page updated.
+                   
+* bug 5373 fixed - isalphanum() did not support non ascii chars.
+
+* bug 5375 fixed - isdigit() did not support non ascii chars.
+
+* bug 5376 fixed - tool_skeleton.iss was not updated.
+
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+
+* bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
+                   tried to call dynamic link functions.
+
+* bug 5391 fixed - ATOMS : Error message was not well localized
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1229,6 +1253,8 @@ Bug fixes:
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
+
 * bug 5224 fixed - Maj+Tab modify the text selection.
 
 * bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
@@ -1238,4 +1264,6 @@ Bug fixes:
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+
+* bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 

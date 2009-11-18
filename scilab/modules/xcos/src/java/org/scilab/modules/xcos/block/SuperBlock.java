@@ -127,14 +127,13 @@ public class SuperBlock extends BasicBlock {
     public boolean createChildDiagram(){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
-    	    child.getParentTab().getInfoBar().setText(XcosMessages.LOADING_DIAGRAM);
-    	    child.getParentTab().getInfoBar().draw();
+    	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
     	    child.installSuperBlockListeners();
     		child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
-    	    child.getParentTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
+    	    child.info(XcosMessages.EMPTY_INFO);
     	} else {
     		return false;
     	}

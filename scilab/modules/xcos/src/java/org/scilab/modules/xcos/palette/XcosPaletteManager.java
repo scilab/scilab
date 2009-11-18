@@ -45,7 +45,6 @@ public class XcosPaletteManager {
     private static Tab palettes;
     private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
 
-
     /** Palette creation */
     static {
 	paletteThread = new Thread() {

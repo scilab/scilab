@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-09 14:22+0100\n"
+"Revision-Date: 2009-11-17 16:14+0100\n"
 
 # File: macros/xmltoformat.sci, line: 401
 # File: macros/xmltoformat.sci, line: 428
@@ -85,9 +85,6 @@ msgstr ""
 msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 #
-# File: macros/clean_help.sci, line: 72
-# File: macros/clean_help.sci, line: 87
-# File: macros/clean_help.sci, line: 100
 # File: macros/xmltoformat.sci, line: 226
 # File: macros/xmltoformat.sci, line: 243
 # File: macros/xmltoformat.sci, line: 256
@@ -100,6 +97,9 @@ msgstr ""
 # File: macros/xmltoformat.sci, line: 697
 # File: macros/xmltoformat.sci, line: 741
 # File: macros/xmltoformat.sci, line: 770
+# File: macros/clean_help.sci, line: 72
+# File: macros/clean_help.sci, line: 87
+# File: macros/clean_help.sci, line: 100
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr ""
@@ -129,7 +129,7 @@ msgstr ""
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr ""
 #
-# File: macros/help.sci, line: 42
+# File: macros/help.sci, line: 49
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr ""
@@ -152,9 +152,9 @@ msgstr ""
 #
 # File: macros/xmltopdf.sci, line: 28
 # File: macros/xmltojar.sci, line: 28
-# File: macros/xmltops.sci, line: 28
-# File: macros/xmltochm.sci, line: 42
 # File: macros/xmltohtml.sci, line: 28
+# File: macros/xmltochm.sci, line: 42
+# File: macros/xmltops.sci, line: 28
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
@@ -171,11 +171,11 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 #
-# File: macros/add_help_chapter.sci, line: 38
 # File: macros/xmltoformat.sci, line: 1015
 # File: macros/xmltoformat.sci, line: 1090
 # File: macros/xmltoformat.sci, line: 1160
 # File: macros/xmltoformat.sci, line: 1230
+# File: macros/add_help_chapter.sci, line: 38
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr ""
@@ -185,8 +185,8 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/clean_help.sci, line: 44
 # File: macros/xmltoformat.sci, line: 58
+# File: macros/clean_help.sci, line: 44
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -214,7 +214,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 #
-# File: macros/help.sci, line: 24
+# File: macros/help.sci, line: 32
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -226,9 +226,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
 #
+# File: macros/xmltoformat.sci, line: 1696
 # File: macros/add_help_chapter.sci, line: 45
 # File: macros/add_help_chapter.sci, line: 49
-# File: macros/xmltoformat.sci, line: 1696
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
@@ -288,7 +288,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: An existing directory expected.\n"
 msgstr ""
 #
-# File: macros/help.sci, line: 47
+# File: macros/help.sci, line: 53
 #, c-format
 msgid "%s: help module is not installed.\n"
 msgstr ""
