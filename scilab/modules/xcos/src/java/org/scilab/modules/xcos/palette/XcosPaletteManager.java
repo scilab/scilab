@@ -518,7 +518,6 @@ public final class XcosPaletteManager {
 				DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootPalette);
 				TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
 				final JTree paletteTree = new JTree(paletteTreeModel);
-				paletteTree.expandPath(paletteTree.getPathForRow(0));
 				
 				allpalettes.setRightComponent(rootPalette);
 				allpalettes.setLeftComponent(new JScrollPane(paletteTree));
@@ -566,6 +565,13 @@ public final class XcosPaletteManager {
 
 				paletteLoadStarted = true;
 				palettes.getAsSimpleTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
+				
+				/* UI Layout specific operations */
+				paletteTree.expandRow(0);
+				paletteTree.setSelectionRow(1);
+				paletteTree.setRootVisible(false);
+				allpalettes.getLeftComponent().setMinimumSize(paletteTree.getPreferredSize());
+				
 			}
 		};
     }
