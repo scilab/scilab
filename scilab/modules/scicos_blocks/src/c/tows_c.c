@@ -24,6 +24,7 @@
 #include <string.h>
 #include <stdlib.h> /* getenv */
 #include "MALLOC.h"
+#include "expandPathVariable.h"
 
 #if _MSC_VER
 #define NULL    0
@@ -106,9 +107,7 @@ void tows_c(scicos_block *block,int flag)
  char *status;
  int swap = 1;
  double res;
- int out_n;
- long int lout;
- char filename[FILENAME_MAX];
+ char *filename;
  /* for name of file */
  char str[100];
  /* generic pointer */
@@ -626,9 +625,9 @@ void tows_c(scicos_block *block,int flag)
      /* open tmp file */
      status = "wb"; /* "w" : write */
                     /* "b" : binary (required for Windows) */
-     lout   = FILENAME_MAX;
-     C2F(cluni0)(env, filename, &out_n,1,lout);
+		 filename = expandPathVariable(env);
      C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
+		 FREE(filename);
      if (ierr != 0) {
        sciprint("Error when opening file '%s'.\n",str);
        scicos_free(ptr->workt);
