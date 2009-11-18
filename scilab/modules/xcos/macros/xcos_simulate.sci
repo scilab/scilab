@@ -20,6 +20,30 @@ function xcos_simulate(scs_m)
   funcprot(prot);
   //-- end
 
+  //**---- prepare from and to workspace stuff ( "From workspace" block )
+  curdir = pwd() ;
+  chdir(TMPDIR)     ;
+  mkdir("Workspace");
+  chdir("Workspace");
+  %a = who("get")   ;
+  %a = %a(1:$-predef()+1);  //** exclude protected variables
+
+  for %ij=1:size(%a,1)
+    var = %a(%ij)
+    if var<>'ans' & typeof(evstr(var))=='st' then
+      ierr = execstr('x='+var+'.values','errcatch')
+      if ierr==0 then
+        ierr = execstr('t='+var+'.time','errcatch')
+      end
+      if ierr==0 then
+        execstr('save('"'+var+''",x,t)')
+      end
+    end
+  end
+
+  chdir(curdir)
+  //**----- end of /prepare from and to workspace stuff
+
 //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
@@ -320,6 +344,15 @@ function xcos_simulate(scs_m)
     end
     ok = %f;
   end
+  
+  //restore saved variables in Scilab environment ( "To workspace" block )
+  [txt,files]=returntoscilab()
+  n=size(files,1)
+  for i=1:n
+    load(TMPDIR+'/Workspace/'+files(i))
+    execstr(files(i)+'=struct('"values'",x,'"time'",t)')
+  end
+  execstr(txt)
 
   needreplay = resume(needreplay);
 endfunction
