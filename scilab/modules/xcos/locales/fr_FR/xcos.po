@@ -384,9 +384,8 @@ msgstr "Règle le niveau de débuggage"
 msgid "Set Parameters"
 msgstr "Règle les paramètres"
 
-msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-msgstr ""
-"Définir le niveau de débogage (0,1,2,3) </br> celà éffectue scicos_debug(n)"
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
+msgstr "Définir le niveau de débogage (0,1,2,3) <br/> celà éffectue scicos_debug(n)"
 
 msgid "Setup"
 msgstr "Configuration"
@@ -522,3 +521,16 @@ msgstr "Le port de contrôle doit être connecté au port de commande"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "taille de pas maximum (0 signifie pas de limite)"
+
+msgid "No printout nor debug action"
+msgstr "Ni trace d'exécution ni déboguage"
+
+msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgstr "Trace de l'alternance des modes Discret et Continu"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Trace de l'exécution pour chaque block et appels du bloc Debug"
+
+msgid "Debug block calls without trace"
+msgstr "Appels au bloc Debug, sans trace"
+
