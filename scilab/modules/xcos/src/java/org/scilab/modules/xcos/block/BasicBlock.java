@@ -61,7 +61,7 @@ import com.mxgraph.util.mxConstants;
 
 public class BasicBlock extends XcosUIDObject {
 
-	private String interfaceFunctionName = "xcos_block";
+    private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram = null;
@@ -530,6 +530,12 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void openBlockSettings(String context[]) {
+	
+	//prevent to open twice
+	if(isLocked()) {
+	    return;
+	}
+	
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
@@ -563,8 +569,9 @@ public class BasicBlock extends XcosUIDObject {
 		    updateBlockSettings(modifiedBlock);
 		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS);
 		    
-		    //tempOutput.delete();
-		    //tempInput.delete();
+//		    tempOutput.delete();
+//		    tempInput.delete();
+//		    tempContext.delete();
 		    setLocked(false);
 		}
 	    };
@@ -572,7 +579,6 @@ public class BasicBlock extends XcosUIDObject {
 	    setLocked(true);
 
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
