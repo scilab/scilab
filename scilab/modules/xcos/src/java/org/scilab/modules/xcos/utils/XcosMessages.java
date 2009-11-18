@@ -174,8 +174,8 @@ public final class XcosMessages {
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
     
-    public static final String DEBUG_LEVEL_LABEL = "<html>"  + Messages.gettext("Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)") + "</html>";
-    public static final String SET_DEBUG = Messages.gettext("Set Debug Level");
+    public static final String DEBUG_LEVEL_LABEL = "<html>"  + Messages.gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)") + "</html>";
+    public static final String SET_DEBUG = Messages.gettext("Backtrace and Debug");
     
     /* Setup box*/
     public static final String FINAL_INTEGRATION_TIME  = Messages.gettext("Final integration time");
