@@ -12,17 +12,25 @@
 
 #include <hdf5.h>
 #include "h5_fileManagement.h"
+#include "FileExist.h"
+#include "deleteafile.h"
 
 int createHDF5File(char *name) 
 {
   hid_t       file;
 	hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
 	H5Pset_fclose_degree(fapl,H5F_CLOSE_STRONG);
-  /*
+
+	
+	if(FileExist(name))
+	{
+		deleteafile(name);
+	}
+	/*
    * Create a new file using the default properties.
    */
 
-	file = H5Fcreate(name, H5F_ACC_DEBUG | H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
+	file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
   
   return file;
 }
@@ -36,7 +44,7 @@ int openHDF5File(char *name)
   /*
    * Open file.
    */
-	file = H5Fopen (name, H5F_ACC_DEBUG | H5F_ACC_RDONLY, fapl);
+	file = H5Fopen (name, H5F_ACC_RDONLY, fapl);
 
   return file;
 }

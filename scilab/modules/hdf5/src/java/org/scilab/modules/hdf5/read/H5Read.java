@@ -90,13 +90,41 @@ public class H5Read {
      * 
      * @param dataSetId
      * @return all dimensions in a row
-     * @throws HDF5LibraryException
+     * @throws HDF5Exception 
+     * @throws NullPointerException 
      */
-    public static long[] getAllDims(int dataSetId) throws HDF5LibraryException {
-	long[] dims = new long[getNbDims(dataSetId)];
-	long[] maxDims = new long[getNbDims(dataSetId)];
-	H5.H5Sget_simple_extent_dims(H5.H5Dget_space(dataSetId), dims, maxDims);
+    public static int[] getAllDims(int dataSetId) throws NullPointerException, HDF5Exception {
+	int dims[] = new int[2];
+	
+	if(isEmpty(dataSetId)) {
+	    dims[0] = 0;
+	    dims[1] = 0;
+	} else {
+	    dims[0] = readIntAttribute(dataSetId, H5ScilabConstant.SCILAB_CLASS_ROWS);
+	    dims[1] = readIntAttribute(dataSetId, H5ScilabConstant.SCILAB_CLASS_COLS);
+	}
+	
 	return dims;
+    }
+
+    /**
+     * Get list item count.
+     * 
+     * @param dataSetId
+     * @return List item count
+     * @throws HDF5Exception 
+     * @throws NullPointerException 
+     */
+    public static int getListDim(int dataSetId) throws NullPointerException, HDF5Exception {
+	int itemCount = 0;
+	
+	if(isEmpty(dataSetId)) {
+	    itemCount = 0;
+	} else {
+	    itemCount = readIntAttribute(dataSetId, H5ScilabConstant.SCILAB_CLASS_ITEMS);
+	}
+	
+	return itemCount;
     }
 
     public static boolean isEmpty(int dataSetId) throws NullPointerException, HDF5Exception {
@@ -151,6 +179,26 @@ public class H5Read {
     	H5.H5Aclose(attributeId);
 
     	return result;
+    }
+
+    private static int readIntAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
+    	int attributeId = -1;
+    	int data[] = new int[1];
+    	try {
+    		// If there is no attribue do not try to open it
+    		// There _must_ be at least one : SCILAB_CLASS
+    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    			return 0;
+    		}
+    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+    	}
+    	catch (HDF5AttributeException e) {
+    		return 0;
+    	}
+    	H5.H5Aread(attributeId, HDF5Constants.H5T_NATIVE_INT, data);
+    	H5.H5Aclose(attributeId);
+
+    	return data[0];
     }
 
     /**

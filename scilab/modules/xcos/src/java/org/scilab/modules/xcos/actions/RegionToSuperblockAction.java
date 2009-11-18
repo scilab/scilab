@@ -99,77 +99,192 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
 	    graph.info(XcosMessages.GENERATE_SUPERBLOCK);
 	    
+	    /*
+	     * Update links selection
+	     */
+	    updateForNotSelectedLinks(graph);
+	    
+	    /*
+	     * Getting selection rectangle
+	     */
 	    double minX = Double.MAX_VALUE;
-	    double minY = Double.MAX_VALUE;
-	    double maxX = Double.MIN_VALUE;
-	    double maxY = Double.MIN_VALUE;
-	    
-	    
-	    //check for missing links or selected ports, to add or exclude them.
-	    for (int i = 0; i < graph.getSelectionCells().length; i++) {
-	    mxCell current = (mxCell) graph.getSelectionCells()[i];
-		if (current instanceof BasicBlock) {
-		    BasicBlock block = (BasicBlock) current;
-		    for (int j = 0; j < block.getChildCount(); j++) {
-			if (block.getChildAt(j) instanceof BasicPort) {
-			    BasicPort port = (BasicPort) block.getChildAt(j);
-			    if (port.getEdgeCount() > 0) {
-				if (port.getEdgeAt(0) instanceof BasicLink) {
-				    BasicLink link = (BasicLink) port.getEdgeAt(0);
-				    BasicBlock otherSide = null;
-				    if (link.getTarget() == port) {
-					otherSide = (BasicBlock) link.getSource().getParent();
-				    } else {
-					otherSide = (BasicBlock) link.getTarget().getParent();
-				    } //target == port
-				    
-				    if (isInSelection(graph.getSelectionCells(), otherSide)) {
-					graph.addSelectionCell(link);
-				    } //isInSelection
-				} //BasicLink
-			    } //Edge > 0
-			} //BasicPort
-		    } //for child
-		} else if (current instanceof BasicPort) {
-		    //remove orphan port and connected link
-		    graph.removeSelectionCell(current.getEdgeAt(0));
-		    graph.removeSelectionCell(current);
-		    
-		    //restart loop
-		    i = -1;
-		}
-	    } //for selection
-	    
-	    for (int i = 0; i < graph.getSelectionCells().length; ++i) {
-		mxCell current = (mxCell) graph.getSelectionCells()[i];
-		if (current instanceof BasicBlock) {
-		    minX = Math.min(minX, current.getGeometry().getX());
-		    minY = Math.min(minY, current.getGeometry().getY());
-		    maxX = Math.max(maxX, current.getGeometry().getX());
-		    maxY = Math.max(maxY, current.getGeometry().getY());
-		}
-	    }
+		double minY = Double.MAX_VALUE;
+		double maxX = Double.MIN_VALUE;
+		double maxY = Double.MIN_VALUE;
 
-	    
-	    graph.getModel().beginUpdate();
+		for (int i = 0; i < graph.getSelectionCells().length; ++i) {
+			mxCell current = (mxCell) graph.getSelectionCells()[i];
+			if (current instanceof BasicBlock) {
+				minX = Math.min(minX, current.getGeometry().getX());
+				minY = Math.min(minY, current.getGeometry().getY());
+				maxX = Math.max(maxX, current.getGeometry().getX());
+				maxY = Math.max(maxY, current.getGeometry().getY());
+			}
+		}
+
+	    /*
+	     * Creating the superblock
+	     */
 	    SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
-	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    superBlock.setStyle("SUPER_f");
 	    superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	    superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
+	    /*
+	     * Creating the child graph
+	     */
+	    SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 	    diagram.getModel().beginUpdate();
 	    diagram.addCells(graph.getSelectionCells());
 	    diagram.getModel().endUpdate();
 	    
-	    //find breaking links, to insert input/output blocks
+	    /*
+	     * Find broken links, to insert input/output blocks
+	     * And update the child graph
+	     */
 	    List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
-	    //printBreakingLink(breaks);
 	    List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
+	    updateChildGraph(diagram, breaks, maxValues);
+
+	    /*
+	     * Update block with real parameters 
+	     */
+	    superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
+	    superBlock.createChildDiagram();
 	    
-	    //add in/out blocks in SuperBlock
+	    /*
+	     * Update the parent
+	     */
+	    graph.getModel().beginUpdate();
+	    graph.clearSelection();
+	    graph.addCell(superBlock);
+	    graph.setSelectionCell(superBlock);
+	    graph.getModel().endUpdate();
+	    superBlock.updateExportedPort();
+    	
+	    //change source or target of old link
+	    createLinks(graph, superBlock, breaks);
+	    superBlock.closeBlockSettings();
 	    
-	    for (BrokenLink link : breaks) { 
+	    graph.refresh();
+	    diagram.refresh();
+	    graph.info(XcosMessages.EMPTY_INFO);
+	}
+	
+	/**
+     * Check for missing links or selected ports, to add or exclude them.
+     */
+	private void updateForNotSelectedLinks(XcosDiagram graph) {
+		
+		graph.getModel().beginUpdate();
+		
+		for (int i = 0; i < graph.getSelectionCells().length; i++) {
+			mxCell current = (mxCell) graph.getSelectionCells()[i];
+			if (current instanceof BasicBlock) {
+				BasicBlock block = (BasicBlock) current;
+				for (int j = 0; j < block.getChildCount(); j++) {
+					if (block.getChildAt(j) instanceof BasicPort) {
+						BasicPort port = (BasicPort) block.getChildAt(j);
+						if (port.getEdgeCount() > 0) {
+							if (port.getEdgeAt(0) instanceof BasicLink) {
+								BasicLink link = (BasicLink) port.getEdgeAt(0);
+								BasicBlock otherSide = null;
+								if (link.getTarget() == port) {
+									otherSide = (BasicBlock) link.getSource()
+											.getParent();
+								} else {
+									otherSide = (BasicBlock) link.getTarget()
+											.getParent();
+								} // target == port
+
+								if (isInSelection(graph.getSelectionCells(),
+										otherSide)) {
+									graph.addSelectionCell(link);
+								} // isInSelection
+							} // BasicLink
+						} // Edge > 0
+					} // BasicPort
+				} // for child
+			} else if (current instanceof BasicPort) {
+				// remove orphan port and connected link
+				graph.removeSelectionCell(current.getEdgeAt(0));
+				graph.removeSelectionCell(current);
+
+				// restart loop
+				i = -1;
+			}
+		} // for selection
+		
+		graph.getModel().endUpdate();
+	}
+
+	/**
+	 * Re-link the parent Graph
+	 * @param graph The parent graph (modified)
+	 * @param superBlock The added superblock
+	 * @param breaks The broken links
+	 */
+	private void createLinks(XcosDiagram graph, SuperBlock superBlock,
+			List<BrokenLink> breaks) {
+		for (BrokenLink link : breaks) {
+    		BasicPort source = null;
+    		BasicPort target = null;
+    		
+    		if (link.getOutGoing()) {
+	    		target = (BasicPort) link.getLink().getTarget();
+		    	
+	    		if (link.getLink() instanceof ExplicitLink) {
+			    	source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else if (link.getLink() instanceof ImplicitLink) {
+			    	source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else if (link.getLink() instanceof CommandControlLink) {
+			    	source = BasicBlockInfo.getAllCommandPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else {
+	    			System.err.println("Houston ...");
+	    		}
+	    	} else {
+	    		source = (BasicPort) link.getLink().getSource();
+	    		
+	    		if (link.getLink() instanceof ExplicitLink) {
+	    			target = BasicBlockInfo.getAllExplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else if (link.getLink() instanceof ImplicitLink) {
+	    			target = BasicBlockInfo.getAllImplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else if (link.getLink() instanceof CommandControlLink) {
+	    			target = BasicBlockInfo.getAllControlPorts(superBlock).get(link.getPortNumber() - 1);
+	    		} else {
+	    			System.err.println("Houston ...");
+	    		}
+	    	}
+    		
+    		BasicLink newLink = BasicLink.createLinkFromPorts(source, target);
+    		newLink.setGeometry(link.getLink().getGeometry());
+        	newLink.setSource(source);
+        	newLink.setTarget(target);
+        	
+        	graph.getModel().beginUpdate();
+        	graph.addCell(newLink);
+        	graph.getModel().endUpdate();
+        	
+        	//this method don't call CELLS_REMOVED between beginUpdate and endUpdate
+        	//this function unlink source and target correctly too
+        	graph.getModel().beginUpdate();
+        	graph.getModel().remove(link.getLink());
+        	graph.getModel().endUpdate();
+	    }
+	}
+
+	/**
+	 * Add the IN/OUT blocks and links in the child graph 
+	 * @param diagram The child graph
+	 * @param breaks The broken links in the parent graph
+	 * @param maxValues The I/O block values previously used in the parent diagram (must be unique)
+	 */
+	private void updateChildGraph(SuperBlockDiagram diagram, List<BrokenLink> breaks, List<Integer> maxValues) {
+	    
+	    /*
+	     * Add in/out blocks in SuperBlock (Child Graph)
+	     */
+	    for (BrokenLink link : breaks) {
 	    	BasicBlock block = null;
 
 	    	if (link.getLink() instanceof ExplicitLink) {
@@ -239,9 +354,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    	block.setRealParameters(new ScilabDouble());
 	    	block.setIntegerParameters(new ScilabDouble(link.getPortNumber()));
 	    	block.setObjectsParameters(new ScilabList());
-	    	diagram.addCells(new Object[]{block});
 	    	
-	    	//create new link in SuperBlock
+	    	diagram.getModel().beginUpdate();
+	    	diagram.addCells(new Object[]{block});
+	    	diagram.getModel().endUpdate();
+	    	
+	    	/*
+	    	 * create new link in SuperBlock
+	    	 */
 	    	BasicLink newLink = null;
 	    	if (link.getOutGoing()) { //old -> new
 	    		newLink = BasicLink.createLinkFromPorts((BasicPort)link.getLink().getSource(), (BasicPort)block.getChildAt(0));
@@ -255,69 +375,12 @@ public class RegionToSuperblockAction extends DefaultAction {
 		    	newLink.setTarget((BasicPort) link.getLink().getTarget());
 	    	}
 
+	    	diagram.getModel().beginUpdate();
 	    	diagram.addCell(newLink);
+	    	diagram.getModel().endUpdate();
 	    }
-
-	    superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
-	    superBlock.createChildDiagram();
-
-	    graph.clearSelection();
-	    graph.addCell(superBlock);
-	    graph.setSelectionCell(superBlock);
-	    superBlock.updateExportedPort();
-    	//change source or target of old link
-	    
-	    graph.getModel().beginUpdate();
-	    for (BrokenLink link : breaks) {
-    		BasicPort source = null;
-    		BasicPort target = null;
-    		
-    		if (link.getOutGoing()) {
-	    		target = (BasicPort) link.getLink().getTarget();
-		    	
-	    		if (link.getLink() instanceof ExplicitLink) {
-			    	source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else if (link.getLink() instanceof ImplicitLink) {
-			    	source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else if (link.getLink() instanceof CommandControlLink) {
-			    	source = BasicBlockInfo.getAllCommandPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else {
-	    			System.err.println("Houston ...");
-	    		}
-	    	} else {
-	    		source = (BasicPort) link.getLink().getSource();
-	    		
-	    		if (link.getLink() instanceof ExplicitLink) {
-	    			target = BasicBlockInfo.getAllExplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else if (link.getLink() instanceof ImplicitLink) {
-	    			target = BasicBlockInfo.getAllImplicitInputPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else if (link.getLink() instanceof CommandControlLink) {
-	    			target = BasicBlockInfo.getAllControlPorts(superBlock).get(link.getPortNumber() - 1);
-	    		} else {
-	    			System.err.println("Houston ...");
-	    		}
-	    	}
-    		
-    		BasicLink newLink = BasicLink.createLinkFromPorts(source, target);
-    		newLink.setGeometry(link.getLink().getGeometry());
-        	newLink.setSource(source);
-        	newLink.setTarget(target);
-        	graph.addCell(newLink);
-        	
-        	//this method don't call CELLS_REMOVED between beginUpdate and endUpdate
-        	//this function unlink source and target correctly too
-        	graph.getModel().remove(link.getLink());
-	    }
-
-	    superBlock.closeBlockSettings();
-	    graph.getModel().endUpdate();
-	    graph.refresh();
-	    diagram.refresh();
-
-	    graph.info(XcosMessages.EMPTY_INFO);
+		
 	}
-
-
 
 	private List<BrokenLink> getBreakLink(Object[] objs) {
 		List<BrokenLink> breaks = new ArrayList<BrokenLink>();
