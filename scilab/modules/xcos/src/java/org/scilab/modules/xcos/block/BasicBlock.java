@@ -46,6 +46,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -367,22 +368,16 @@ public class BasicBlock extends XcosUIDObject {
         this.locked = locked;
     }
 
-    public void removePort(InputPort port){
+    public void removePort(BasicPort port){
+	if(port.getEdgeCount() != 0) {
+	    System.err.println("remove link");
+	    getParentDiagram().getModel().remove(port.getEdgeAt(0));
+	} else {
+	    System.err.println("no connected link");
+	}
     	remove(port);
     }
     
-    public void removePort(OutputPort port){
-    	remove(port);
-    }
-    
-    public void removePort(CommandPort port){
-    	remove(port);
-    }
-    
-    public void removePort(ControlPort port){
-    	remove(port);
-    }
-
     public void addPort(InputPort port) {
     	insert(port);
     	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
