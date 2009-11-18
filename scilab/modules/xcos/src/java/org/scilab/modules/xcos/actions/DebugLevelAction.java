@@ -37,6 +37,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -98,11 +99,12 @@ public class DebugLevelAction extends DefaultAction {
 		diagram = diagramArgu;
 
 		mainFrame = new JFrame();
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setLayout(new GridBagLayout());
 
 		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
 		debugList = new JList(DebugLevel.values());
+		debugList.setSelectedIndex(diagram.getDebugLevel());
+		debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -159,7 +161,7 @@ public class DebugLevelAction extends DefaultAction {
 
 
 		mainFrame.setMinimumSize(textLabel.getPreferredSize());
-		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainFrame.setTitle(XcosMessages.SET_DEBUG);
 		mainFrame.pack();
 		mainFrame.setLocationRelativeTo(null);
