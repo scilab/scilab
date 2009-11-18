@@ -1468,6 +1468,10 @@ public class XcosDiagram extends ScilabGraph {
     	setChildrenParentDiagram(this);
     }
 
+    /**
+     * For each block in the argument, call its setParentDiagram method
+     * @param diagram The new parent of the blocks.
+     */
     private void setChildrenParentDiagram(XcosDiagram diagram) {
     	for (int i = 0; i < diagram.getModel().getChildCount(diagram.getDefaultParent()); i++) {
     		mxCell cell = (mxCell) diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
@@ -1481,7 +1485,8 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	}
     }
-/**
+    
+    /**
      * Returns the tooltip to be used for the given cell.
      */
     public String getToolTipForCell(Object cell)
@@ -1492,6 +1497,13 @@ public class XcosDiagram extends ScilabGraph {
 	return "";
     }
 
+    /**
+     * Set any text to an Afficheblock specified by its ID.
+     * @param blockID ID of the AfficheBlock to be modified.
+     * @param blockValue Content to be apply to the block.
+     * @param iRows Number of Row in the blockValue.
+     * @param iCols Number of Collumns in the blockValue.
+     */
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
 
        	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
@@ -1543,11 +1555,18 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    /**
+     * Set the current diagram in a modified state
+     * @param modified True or False whether the current diagram must be saved or not. 
+     */
     public void setModified(boolean modified) {
 		super.setModified(modified);
 		updateTabTitle();
 	}
 
+    /**
+     * Revert an action
+     */
 	public void undo() {
 		super.undo();
 
@@ -1567,6 +1586,9 @@ public class XcosDiagram extends ScilabGraph {
 		 */
 	}
 
+	/**
+	 * Apply the previously reverted action
+	 */
 	public void redo() {
 		super.redo();
 
@@ -1584,6 +1606,9 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
 
+	/**
+	 * This function will reset the UndoManager in a stable state.
+	 */
 	public void resetUndoManager() {
 		undoManager.reset();
 		if (getParentTab() != null) {
