@@ -38,17 +38,32 @@ public class H5WriteScilabDouble {
 	}
 
 	private static int writeDoubleDataSet(int fileId, String dataSetName, double[][] data, boolean empty) throws NullPointerException, HDF5Exception {
-		long[] dims = {data.length, data[0].length};
-		int dataspaceId = H5.H5Screate_simple(2, dims, null);
+		int rows = data.length;
+		int cols = data[0].length;
+		long[] dims = {rows * cols};
+		double[] dataOut = new double[rows * cols];
+		
+		int dataspaceId = H5.H5Screate_simple(1, dims, null);
 		int datasetId = H5.H5Dcreate(fileId, "/" + dataSetName,
 				HDF5Constants.H5T_NATIVE_DOUBLE, dataspaceId,
 				HDF5Constants.H5P_DEFAULT);
+		
+		for (int i = 0 ; i < rows ; ++i) { //rows
+		    for (int j = 0 ; j < cols ; ++j) { //columns
+			dataOut[i + j * rows] = data[i][j];
+		    }
+		}
+
 		H5.H5Dwrite(datasetId, HDF5Constants.H5T_NATIVE_DOUBLE,
 				HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
-				HDF5Constants.H5P_DEFAULT, data);
+				HDF5Constants.H5P_DEFAULT, dataOut);
+		
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 		if (empty) {
 			H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_EMPTY, H5ScilabConstant.SCILAB_EMPTY_TRUE);
+		} else {
+		    H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, rows);
+		    H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, cols);
 		}
 		H5.H5Dclose(datasetId);
 		H5.H5Sclose(dataspaceId);
@@ -63,8 +78,8 @@ public class H5WriteScilabDouble {
 		/*
 		 * Create a group named #<dataSetName where '/' became '_'>#
 		 */
-		int group_id = H5.H5Gcreate(fileId, "/#" + dataSetName.replace('/', '_') +"#", HDF5Constants.H5P_DEFAULT);
-		H5.H5Gclose(group_id);
+//		int group_id = H5.H5Gcreate(fileId, "/#" + dataSetName.replace('/', '_') +"#", HDF5Constants.H5P_DEFAULT);
+//		H5.H5Gclose(group_id);
 		writeDoubleDataSet(fileId, dataSetName, data, true);
 	}
 
@@ -89,10 +104,15 @@ public class H5WriteScilabDouble {
 		int datasetId = H5.H5Dcreate(fileId, "/" + dataSetName,
 				HDF5Constants.H5T_STD_REF_OBJ, dataspaceId,
 				HDF5Constants.H5P_DEFAULT);
+		
 		H5.H5Dwrite(datasetId, HDF5Constants.H5T_STD_REF_OBJ,
 				HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
 				HDF5Constants.H5P_DEFAULT, refs);
+		
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, data.length);
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, data[0].length);
+		
 		H5.H5Dclose(datasetId);
 		H5.H5Sclose(dataspaceId);
 	}
@@ -119,11 +139,15 @@ public class H5WriteScilabDouble {
 		int datasetId = H5.H5Dcreate(fileId, "/" + dataSetName,
 				HDF5Constants.H5T_STD_REF_OBJ, dataspaceId,
 				HDF5Constants.H5P_DEFAULT);
+		
 		H5.H5Dwrite(datasetId, HDF5Constants.H5T_STD_REF_OBJ,
 				HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
 				HDF5Constants.H5P_DEFAULT, refs);
+		
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_COMPLEX, H5ScilabConstant.SCILAB_COMPLEX_TRUE);
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, realData.length);
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, realData[0].length);
 		H5.H5Dclose(datasetId);
 		H5.H5Sclose(dataspaceId);
 	}

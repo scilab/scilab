@@ -24,7 +24,8 @@ HDF5_SCILAB_IMPEXP int getDataSetId(int  _iFile);
 
 HDF5_SCILAB_IMPEXP int getDataSetIdFromName(int _iFile, char *_pstName);
 
-HDF5_SCILAB_IMPEXP int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols);
+HDF5_SCILAB_IMPEXP int getDatasetDims(int _iDatasetId, int *_piRows, int *_piCols);
+HDF5_SCILAB_IMPEXP int getListDims(int _iDatasetId, int *_piItem);
 
 HDF5_SCILAB_IMPEXP int getScilabTypeFromDataSet(int _iDatasetId);
 
@@ -63,4 +64,5 @@ HDF5_SCILAB_IMPEXP int getListItemDataset(int _iDatasetId, void* _piItemRef, int
 
 HDF5_SCILAB_IMPEXP int deleteListItemReferences(int _iDatasetId, void* _piItemRef);
 
+HDF5_SCILAB_IMPEXP  void reset_item_count();
 #endif /* !__H5_READDATATOFILE_H__ */

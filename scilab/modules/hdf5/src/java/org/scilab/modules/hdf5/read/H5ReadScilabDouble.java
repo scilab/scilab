@@ -46,11 +46,19 @@ public class H5ReadScilabDouble {
     }
 
     private static double[][] getDoubleMatrix(int dataSetId) throws NullPointerException, HDF5Exception {
-	long[] nbElems = H5Read.getAllDims(dataSetId); 
-	double[][] data = new double[(int) nbElems[0]][(int) nbElems[1]];
-	H5.H5Dread(dataSetId, H5.H5Dget_type(dataSetId),
-		H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
+	int[] nbElems = H5Read.getAllDims(dataSetId); 
+	double[] data = new double[nbElems[0] * nbElems[1]];
+	double[][] result = new double[nbElems[0]][nbElems[1]];
+	
+	H5.H5Dread_double(dataSetId, HDF5Constants.H5T_NATIVE_DOUBLE, H5.H5Dget_space(dataSetId), 
+		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
 	H5.H5Dclose(dataSetId);
-	return data;
+	
+	for(int i = 0 ; i < nbElems[0] ; i++) {
+	    for(int j = 0 ; j < nbElems[1] ; j++) {
+		result[i][j] = data[i+ j * nbElems[0]];
+	    }
+	}
+	return result;
     }
 }

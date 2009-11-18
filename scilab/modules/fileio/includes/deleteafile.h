@@ -15,20 +15,20 @@
 
 #include <wchar.h>
 #include "BOOL.h"
-
+#include "dynlib_fileio.h"
 /**
 * delete a file by filename
 * @param[in] filename
 * @return BOOLEAN TRUE or FALSE
 */
-BOOL deleteafile(char *filename);
+FILEIO_IMPEXP BOOL deleteafile(char *filename);
 
 /**
 * delete a file by filename 
 * @param[in] filenameW wide string
 * @return BOOLEAN TRUE or FALSE
 */
-BOOL deleteafileW(wchar_t *filenameW);
+FILEIO_IMPEXP BOOL deleteafileW(wchar_t *filenameW);
 
 #endif /* __DELETEAFILE_H__ */
 /*--------------------------------------------------------------------------*/

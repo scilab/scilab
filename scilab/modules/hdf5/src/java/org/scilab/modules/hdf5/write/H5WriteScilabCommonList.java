@@ -56,7 +56,9 @@ public class H5WriteScilabCommonList {
 		if(data.size() == 0) {
 			H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_EMPTY, H5ScilabConstant.SCILAB_EMPTY_TRUE);
 		}
+		
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, ListType);
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ITEMS, data.size());
 
 		H5.H5Dclose(datasetId);
 		H5.H5Sclose(dataspaceId);
