@@ -79,6 +79,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
 	
 	private JPanel panel = null;
+	private String name;
 
 	protected JLabel selectedEntry;
 
@@ -86,9 +87,10 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 
 	protected Color gradientColor = Color.LIGHT_GRAY;
 
-	public XcosPalette() {
+	public XcosPalette(String name) {
 			super(new JPanel());
 			panel = (JPanel) getViewport().getComponent(0);
+			this.name = name;
 			setBackground(Color.WHITE);
 			
 			panel.setBackground(Color.WHITE);
@@ -543,5 +545,10 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		}
 
 		public void componentShown(ComponentEvent arg0) {
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
 		}
 	}
