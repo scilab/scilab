@@ -45,6 +45,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+
 * bug 5348 fixed - Openning a Superblock crash Xcos.
 
 * bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
@@ -1267,5 +1269,9 @@ Bug fixes:
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 
+* bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
+
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
+
+* bug 5386 fixed - Wrong title for auto indent action in menu.
 
