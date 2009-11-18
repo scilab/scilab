@@ -45,6 +45,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+
 * bug 5348 fixed - Openning a Superblock crash Xcos.
 
 * bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
