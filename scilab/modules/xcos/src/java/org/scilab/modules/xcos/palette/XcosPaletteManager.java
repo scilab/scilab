@@ -521,8 +521,7 @@ public final class XcosPaletteManager {
 				paletteTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 				paletteTree
 						.addTreeSelectionListener(new TreeSelectionListener() {
-
-							@Override
+							
 							public void valueChanged(TreeSelectionEvent tree) {
 								DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree.getLastSelectedPathComponent();
 
