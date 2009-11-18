@@ -13,7 +13,9 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,6 +32,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -48,8 +51,31 @@ public class DebugLevelAction extends DefaultAction {
 
 	private static XcosDiagram diagram;
 	private static JFrame mainFrame;
-	private static JSpinner debugSpinner;
+	private static JList debugList;
 
+	private enum DebugLevel {
+		ZERO (0, XcosMessages.DEBUGLEVEL_0),
+		ONE (1, XcosMessages.DEBUGLEVEL_1),
+		TWO (2, XcosMessages.DEBUGLEVEL_2),
+		THREE (3, XcosMessages.DEBUGLEVEL_3);
+		
+		private int level;
+		private String debugName;
+		
+		private DebugLevel(int realNumber, String name) {
+			level = realNumber;
+			debugName = name;
+		}
+		
+		public int getValue() {
+			return level;
+		}
+		
+		public String toString() {
+			return debugName;
+		}
+	}
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
@@ -76,13 +102,7 @@ public class DebugLevelAction extends DefaultAction {
 		mainFrame.setLayout(new GridBagLayout());
 
 		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
-		
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getDebugLevel(),0,3, 1);
-		debugSpinner = new JSpinner( );
-		debugSpinner.setModel(spinnerModel);
-		debugSpinner.setEditor(new JSpinner.NumberEditor(debugSpinner,"0"));//0.####E0
-
-
+		debugList = new JList(DebugLevel.values());
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -96,25 +116,22 @@ public class DebugLevelAction extends DefaultAction {
 		buttonPane.add(cancelButton);
 
 		GridBagConstraints gbc = new GridBagConstraints();
-
+		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1.0;
 		gbc.insets = new Insets(10, 10, 10, 10);
-
 		mainFrame.add(textLabel, gbc);
-
+		
 		gbc.gridy = GridBagConstraints.RELATIVE;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 1.0;
-		mainFrame.add(debugSpinner, gbc);
-
-
-
-		gbc.gridheight = gbc.gridwidth = 1;
-
+		mainFrame.add(debugList, gbc);
+		
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
 		gbc.anchor = GridBagConstraints.LAST_LINE_END;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.weighty = 0;
@@ -132,8 +149,9 @@ public class DebugLevelAction extends DefaultAction {
 		okButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				diagram.setDebugLevel((Integer) debugSpinner.getValue());
-				InterpreterManagement.requestScilabExec("scicos_debug("+debugSpinner.getValue()+");");
+				int value = ((DebugLevel)debugList.getSelectedValue()).getValue();
+				diagram.setDebugLevel(value);
+				InterpreterManagement.requestScilabExec("scicos_debug("+value+");");
 		
 				mainFrame.dispose();
 			}

@@ -207,4 +207,9 @@ public final class XcosMessages {
     public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
     
+    /** Debug level messages  */
+    public static final String DEBUGLEVEL_0 = "No printout nor debug action";
+    public static final String DEBUGLEVEL_1 = "Light Simulation trace (Discrete and Continous part switches)";
+    public static final String DEBUGLEVEL_2 = "Per block execution trace and Debug block calls";
+    public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
 }
