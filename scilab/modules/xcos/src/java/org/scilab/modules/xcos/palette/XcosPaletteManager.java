@@ -12,21 +12,17 @@
 
 package org.scilab.modules.xcos.palette;
 
-import java.awt.LayoutManager;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -59,7 +55,7 @@ public final class XcosPaletteManager {
     private static Thread paletteThread;
     private static boolean paletteLoadStarted;
     private static Tab palettes;
-    private static HashMap<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
+    private static Map<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
 
     /**
      * Instantiate all the known names (default configuration)
