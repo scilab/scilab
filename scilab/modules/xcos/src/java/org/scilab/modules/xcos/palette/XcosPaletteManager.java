@@ -12,10 +12,23 @@
 
 package org.scilab.modules.xcos.palette;
 
+import java.awt.LayoutManager;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
@@ -465,6 +478,11 @@ public final class XcosPaletteManager {
 			Name = name;
 			Components = components;
 		}
+		
+		@Override
+		public String toString() {
+			return Name;
+		}
 	}
 
 	/**
@@ -489,15 +507,39 @@ public final class XcosPaletteManager {
 			Block = block;
 		}
 	}
-    
+	
     /** Palette creation */
     static {
 	paletteThread = new Thread() {
 	    public void run() {
 
-				JTabbedPane allpalettes = new JTabbedPane();
-				allpalettes.setTabPlacement(JTabbedPane.BOTTOM);
-				allpalettes.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT); /* View all tabs at a time */
+				final JSplitPane allpalettes = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+				final XcosPalette rootPalette = new XcosPalette(XcosMessages.PALETTES);
+				DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootPalette);
+				TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
+				final JTree paletteTree = new JTree(paletteTreeModel);
+				paletteTree.expandPath(paletteTree.getPathForRow(0));
+				
+				allpalettes.setRightComponent(rootPalette);
+				allpalettes.setLeftComponent(new JScrollPane(paletteTree));
+				
+				paletteTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+				paletteTree
+						.addTreeSelectionListener(new TreeSelectionListener() {
+
+							@Override
+							public void valueChanged(TreeSelectionEvent tree) {
+								DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree.getLastSelectedPathComponent();
+
+								if (node == null)
+									// Nothing is selected.
+									return;
+
+								XcosPalette nodeInfo = (XcosPalette) node.getUserObject();
+								allpalettes.setRightComponent(nodeInfo);
+							}
+
+						});			
 				// Add a default Java bloc in HashMap
 				 allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 				((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
@@ -511,11 +553,11 @@ public final class XcosPaletteManager {
 							createPaletteData(paletteStringDescriptor.Components));
 					
 					/* Perform UI update */
-					XcosPalette xcosPalette = new XcosPalette();
+					XcosPalette xcosPalette = new XcosPalette(paletteStringDescriptor.Name);
 					for (PaletteBlockData iter : currentDescriptor.Components) {
 						xcosPalette.addTemplate(iter.Name, iter.Icon, iter.Block);
 					}
-					allpalettes.addTab(currentDescriptor.Name, xcosPalette);
+					rootNode.add(new DefaultMutableTreeNode(xcosPalette));
 				}
 
 				synchronized (this) {
@@ -523,6 +565,7 @@ public final class XcosPaletteManager {
 				}
 
 				paletteLoadStarted = true;
+				palettes.getAsSimpleTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
 			}
 		};
     }
@@ -533,6 +576,7 @@ public final class XcosPaletteManager {
     public static Tab loadPalette() {
 		if (paletteLoadStarted == false) {
 			createPaletteWindow();
+			palettes.getAsSimpleTab().getInfoBar().setText(XcosMessages.LOADING_PALETTES);
 			paletteThread.start();
 		}
 		return palettes;
