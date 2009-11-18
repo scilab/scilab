@@ -538,6 +538,7 @@ public final class XcosPaletteManager {
 				 allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 				((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
 
+				allpalettes.setVisible(false);
 				palettes.setVisible(true);
 				
 				for (PaletteStringDescriptor paletteStringDescriptor : allPalettesStringDescriptor) {
@@ -566,7 +567,7 @@ public final class XcosPaletteManager {
 				paletteTree.setSelectionRow(1);
 				paletteTree.setRootVisible(false);
 				allpalettes.getLeftComponent().setMinimumSize(paletteTree.getPreferredSize());
-				
+				allpalettes.setVisible(true);
 			}
 		};
     }
