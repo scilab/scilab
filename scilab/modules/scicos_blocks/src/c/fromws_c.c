@@ -29,6 +29,7 @@
 #include <string.h>
 #include <math.h>
 #include "stack-c.h"
+#include "expandPathVariable.h"
 
 
 #if _MSC_VER
@@ -103,9 +104,7 @@ void fromws_c(scicos_block *block,int flag)
   char *status;
   int swap = 1;
   double res;
-  int out_n;
-  long int lout;
-  char filename[FILENAME_MAX];
+  char *filename;
   char str[100];
   int ierr;
 
@@ -161,10 +160,11 @@ void fromws_c(scicos_block *block,int flag)
    status = "rb"; /* "r" : read */
                   /* "b" : binary format (required for Windows) */
 
-   lout=FILENAME_MAX;
-   C2F(cluni0)(env, filename, &out_n,1,lout);
-   C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
+	 filename = expandPathVariable(env);
 
+	 C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
+
+	 FREE(filename);
    if (ierr!=0) {
      sciprint("The '%s' variable does not exist.\n",str);
      set_block_error(-3);
