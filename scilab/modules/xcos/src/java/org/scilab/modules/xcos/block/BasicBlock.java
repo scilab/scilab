@@ -370,10 +370,7 @@ public class BasicBlock extends XcosUIDObject {
 
     public void removePort(BasicPort port){
 	if(port.getEdgeCount() != 0) {
-	    System.err.println("remove link");
 	    getParentDiagram().getModel().remove(port.getEdgeAt(0));
-	} else {
-	    System.err.println("no connected link");
 	}
     	remove(port);
     }
