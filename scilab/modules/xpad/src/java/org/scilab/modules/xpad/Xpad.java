@@ -508,8 +508,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
 			closedTabList.add(Integer.parseInt(closedTabNameIndex));
 		}
+		
+		// correction for bug 5404, closing the last tabPane generate an exception
+		// that's why we need to remove ChangeListeners before closing
+		if ((indexTab == 0) && (getEditor().getTabPane().getTabCount() == 1)) {
+			for (int i = 0; i < tabPane.getChangeListeners().length; i++) {
+				tabPane.removeChangeListener(tabPane.getChangeListeners()[i]);
+			}
+		}
+		
 		tabPane.remove(indexTab);
-
 		return true;
 		
 	}
