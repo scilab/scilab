@@ -549,12 +549,6 @@ static bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-static bool export_boolean_sparse(int *_piVar, char* _pstName)
-{
-	print_type(_pstName);
-	return true;
-}
-
 static bool export_matlab_sparse(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
@@ -801,6 +795,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(iRows != 1 || iCols != 1)
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), "export_to_hdf5", i);
+			Scierror(999,"Type : %dx%d", iRows, iCols);
 			return 0;
 		}
 		

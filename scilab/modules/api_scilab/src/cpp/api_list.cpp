@@ -13,6 +13,7 @@
  * still available and supported in Scilab 6.
  */
 
+#include "stdio.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "call_scilab.h"

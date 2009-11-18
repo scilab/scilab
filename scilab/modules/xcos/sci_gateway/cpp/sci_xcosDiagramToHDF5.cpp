@@ -162,6 +162,7 @@ int sci_xcosDiagramToHDF5(char *fname,unsigned long fname_len)
 	bForceWrite = piForceWrite[0] ? true : false;
 
 	int iRet = Xcos::xcosDiagramToHDF5(getScilabJavaVM(), pstXcosFile, pstH5File, bForceWrite);
+	printf("Xcos::xcosDiagramToHDF5 : %d\n", iRet);
 
 	if(iRet != 0)
 	{
@@ -169,7 +170,7 @@ int sci_xcosDiagramToHDF5(char *fname,unsigned long fname_len)
 		iRet = 1;
 	}
 
-	double dblResult = !iRet;
+	double dblResult = iRet;
 
 	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dblResult);
 	if(sciErr.iErr)

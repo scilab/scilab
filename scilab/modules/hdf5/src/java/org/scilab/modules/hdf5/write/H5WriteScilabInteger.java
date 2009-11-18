@@ -44,14 +44,18 @@ public class H5WriteScilabInteger {
 			dataToWrite = getDataToWrite64(data);
 		}
 
-		long[] dims = {data.getHeight(), data.getWidth()};
-		int dataspaceId = H5.H5Screate_simple(2, dims, null);
+		long[] dims = {data.getHeight() * data.getWidth()};
+		int dataspaceId = H5.H5Screate_simple(1, dims, null);
 		
 		int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName, nativeType, dataspaceId, HDF5Constants.H5P_DEFAULT);
 		H5.H5Dwrite(datasetId, nativeType, HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataToWrite);
 		
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_INT);
 		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_PREC, classType);
+
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, data.getHeight());
+		H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, data.getWidth());
+		
 		H5.H5Dclose(datasetId);
 		H5.H5Sclose(dataspaceId);
 	}
@@ -62,7 +66,7 @@ public class H5WriteScilabInteger {
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i * data.getWidth() + j] = LongData[i][j].byteValue();
+				dataToWrite[i + data.getHeight() * j] = LongData[i][j].byteValue();
 			}
 		}
 		return dataToWrite;
@@ -74,7 +78,7 @@ public class H5WriteScilabInteger {
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i * data.getWidth() + j] = LongData[i][j].shortValue();
+				dataToWrite[i + data.getHeight() * j] = LongData[i][j].shortValue();
 			}
 		}
 		return dataToWrite;
@@ -86,7 +90,7 @@ public class H5WriteScilabInteger {
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i * data.getWidth() + j] = LongData[i][j].intValue();
+				dataToWrite[i + data.getHeight() * j] = LongData[i][j].intValue();
 			}
 		}
 		return dataToWrite;
@@ -98,7 +102,7 @@ public class H5WriteScilabInteger {
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i * data.getWidth() + j] = LongData[i][j].longValue();
+				dataToWrite[i + data.getHeight() * j] = LongData[i][j].longValue();
 			}
 		}
 		return dataToWrite;
