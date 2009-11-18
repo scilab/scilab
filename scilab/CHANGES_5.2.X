@@ -1273,3 +1273,5 @@ Bug fixes:
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
+* bug 5404 fixed - Open & close Editor creates a java exception.
+
