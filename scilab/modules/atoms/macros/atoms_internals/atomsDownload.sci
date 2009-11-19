@@ -19,10 +19,12 @@ function atomsDownload(url_in,file_out,md5sum)
 		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
 		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
 		MACOSX  = %F;
 		LINUX   = %F;
 		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	// Check input parameters number
@@ -93,7 +95,7 @@ function atomsDownload(url_in,file_out,md5sum)
 	else
 		
 		// Default values according to platform
-		if LINUX | SOLARIS then
+		if LINUX | SOLARIS | BSD then
 			
 			// Need to detect under Linux platforms
 			[rep,stat,err] = unix_g("wget --version");
