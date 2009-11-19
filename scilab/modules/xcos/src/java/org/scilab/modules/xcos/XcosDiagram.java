@@ -1553,7 +1553,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param message Error of the message
      */
     public void error(String message) {
-    	JOptionPane.showMessageDialog(getAsComponent(), message);
+    	JOptionPane.showMessageDialog(getAsComponent(), message, null, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
