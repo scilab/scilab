@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -336,7 +335,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 				 */
 				public void mouseClicked(MouseEvent e) {
-					if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger()) {
+					if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+							|| e.isPopupTrigger()
+							|| isMacOsPopupTrigger(e)) {
 						
 						ContextMenu menu = ScilabContextMenu.createContextMenu();
 						
@@ -551,4 +552,14 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		public String toString() {
 			return this.name;
 		}
+		
+		/**
+		 * This function checks for the popup menu activation under MacOS with Java version 1.5
+		 * Related to Scilab bug #5190
+		 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+		 */
+		private boolean isMacOsPopupTrigger(MouseEvent e) {
+			return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+		}
+
 	}

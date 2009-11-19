@@ -12,6 +12,17 @@
 // Export Libraries of Scilab for LCC compiler
 //==========================================
 function bOK = VCtoLCCLib()
+  // Bug 5433
+  // VCtoLCCLib called in dynamic_link.start
+  // We need to be sure that '%c_a_c' is already loaded
+  bCleanVar = %f;
+  if ~isdef('%c_a_c') then
+    ierr = exec(SCI + '/modules/overloading/macros/%c_a_c.sci','errcatch');
+	if ierr == 0 then 
+	  bCleanVar = %t;
+	end
+  end
+  
   // LCC-Win32 only on Windows
   if (findlcccompiler() == %T) then
     bOK = [];
@@ -52,7 +63,6 @@ function bOK = VCtoLCCLib()
     bOK = [bOK , Exportalibrary('MALLOC', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('scicos', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('output_stream', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin',[])];
@@ -66,7 +76,11 @@ function bOK = VCtoLCCLib()
     bOK = [bOK , Exportalibrary('time', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('api_scilab', WSCI+'\bin',[])];
     bOK = [bOK , Exportalibrary('hashtable', WSCI+'\bin',[])];
-    bOK = [bOK , Exportalibrary('scilab_windows', WSCI+'\bin',[])];    
+    bOK = [bOK , Exportalibrary('scilab_windows', WSCI+'\bin',[])];   
+  
+    if bCleanVar == %t then
+      clear %c_a_c;
+	end
 
     chdir(DirCur);
                  

@@ -143,6 +143,8 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
+* bug 5433 fixed - LCC-Win32 did not work with scicos.
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
@@ -1270,6 +1272,8 @@ Bug fixes:
 * bug 5284 fixed - Function "legend" now draws line segments in its box in a corect order.
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+
+* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 

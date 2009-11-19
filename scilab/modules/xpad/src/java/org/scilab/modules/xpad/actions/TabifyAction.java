@@ -38,20 +38,20 @@ public class TabifyAction extends DefaultAction {
 		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
 		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		if( line_start == line_end )
-		{
-			// A part of the line is selected : Insert a Tab at the beginning of the line
-			int offset = tabManager.tabifyLine(scilabDocument, line_start);
-			getEditor().getTextPane().setSelectionStart(position_start + offset);
-			getEditor().getTextPane().setSelectionEnd(position_end + offset);
-		}
-		
-		else
-		{
-			// several lines are selected
-			int offset = tabManager.tabifyLines(scilabDocument, line_start, line_end);
-			getEditor().getTextPane().setSelectionStart(position_start + offset);
-			getEditor().getTextPane().setSelectionEnd(position_end + offset * (line_end - line_start + 1));
+		if(position_start == position_end) {
+			tabManager.insertTab(scilabDocument, position_start);
+		} else {
+			if( line_start == line_end ) {
+				// A part of the line is selected : Insert a Tab at the beginning of the line
+				int offset = tabManager.tabifyLine(scilabDocument, line_start);
+				getEditor().getTextPane().setSelectionStart(position_start + offset);
+				getEditor().getTextPane().setSelectionEnd(position_end + offset);
+			} else {
+				// several lines are selected
+				int offset = tabManager.tabifyLines(scilabDocument, line_start, line_end);
+				getEditor().getTextPane().setSelectionStart(position_start + offset);
+				getEditor().getTextPane().setSelectionEnd(position_end + offset * (line_end - line_start + 1));
+			}
 		}
 	}
 	
