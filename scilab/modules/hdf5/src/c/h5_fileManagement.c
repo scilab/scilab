@@ -17,16 +17,11 @@
 
 int createHDF5File(char *name) 
 {
-  hid_t file;
-	herr_t status			= 0;
-	
-	hid_t fileAccess = H5Pcreate(H5P_FILE_ACCESS);
-	status = H5Pset_fclose_degree(fileAccess, H5F_CLOSE_STRONG);
-	if(status < 0)
-	{
-		return status;
-	}
+  hid_t       file;
+	hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+	H5Pset_fclose_degree(fapl,H5F_CLOSE_STRONG);
 
+	
 	if(FileExist(name))
 	{
 		deleteafile(name);
@@ -35,18 +30,14 @@ int createHDF5File(char *name)
    * Create a new file using the default properties.
    */
 
-	file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fileAccess);
-	H5Pclose(fileAccess);
+	file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
   
   return file;
 }
 
 int openHDF5File(char *name) 
 {
-  hid_t file;
-  /*
-   * Open file.
-   */
+	hid_t           file;
 	file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
 
   return file;
@@ -56,6 +47,7 @@ void closeHDF5File(int file)
 {
 	herr_t status					= 0;
 
+	//	H5Fflush(file, H5F_SCOPE_GLOBAL);
   status = H5Fclose(file);
 	if(status < 0)
 	{
