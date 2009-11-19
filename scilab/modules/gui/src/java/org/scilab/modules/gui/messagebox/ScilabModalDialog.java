@@ -140,8 +140,6 @@ public class ScilabModalDialog {
 	
 	String labels[] = null;
 	
-	Console console = ScilabConsole.getConsole();
-
 	switch(buttonType) {
 	case OK :
 	    labels = new String[]{Messages.gettext("OK")};
