@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1539,12 +1540,19 @@ public class XcosDiagram extends ScilabGraph {
 			if (SwingUtilities.isEventDispatchThread()) {
 				getParentTab().getInfoBar().setText(localMessage);
 			} else {
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						getParentTab().getInfoBar().setText(localMessage);
-					}
-					
-				});
+				try {
+					SwingUtilities.invokeAndWait(new Runnable() {
+						public void run() {
+							getParentTab().getInfoBar().setText(localMessage);
+						}
+					});
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
