@@ -52,7 +52,7 @@ public class H5ReadScilabString {
 	
 	for(int i = 0 ; i < rows ; i++) {
 	    for(int j = 0 ; j < cols ; j++) {
-		result[i][j] = dataRead[i+ j * rows].trim();	
+		result[i][j] = dataRead[i+ j * rows];	
 	    }
 	}
 
