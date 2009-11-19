@@ -49,6 +49,9 @@ Bug fixes:
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
+* bug 3849 fixed - Path selected for graphics export is now memorized and used
+                   as default for next export file selection.
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4565 fixed - getvalue macro is definied two times.
