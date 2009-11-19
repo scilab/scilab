@@ -1358,34 +1358,36 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramFileName file to open
      */
     public void openDiagramFromFile(String diagramFileName) {
+		File theFile = new File(diagramFileName);
+		info(XcosMessages.LOADING_DIAGRAM);
 
-    	File theFile = new File(diagramFileName);
-    	info(XcosMessages.LOADING_DIAGRAM);
-    	
-    	if (theFile.exists()) {
-    		transformAndLoadFile(theFile);
-    	} else {
-    	    AnswerOption answer = ScilabModalDialog.show(String.format(XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()), 
-    		    XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO);
-    	    
-    	    if (answer  == AnswerOption.YES_OPTION) {
-    		try {
-    		    FileWriter writer = new FileWriter(diagramFileName);
-    		    writer.write("");
-    		    writer.flush();
-    		    writer.close();
-    		    setSavedFile(diagramFileName);
-    		    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    		} catch (IOException ioexc) {
-    		    JOptionPane.showMessageDialog(this.getAsComponent() , ioexc);
-    		}
-    	    }	
+		if (theFile.exists()) {
+			transformAndLoadFile(theFile);
+		} else {
+			AnswerOption answer = ScilabModalDialog.show(String.format(
+					XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
+					XcosMessages.XCOS, IconType.QUESTION_ICON,
+					ButtonType.YES_NO);
 
-    	}
-    	//TODO
-    	this.resetUndoManager();
-    	info(XcosMessages.EMPTY_INFO);
-    }
+			if (answer == AnswerOption.YES_OPTION) {
+				try {
+					FileWriter writer = new FileWriter(diagramFileName);
+					writer.write("");
+					writer.flush();
+					writer.close();
+					setSavedFile(diagramFileName);
+					setTitle(theFile.getName().substring(0,
+							theFile.getName().lastIndexOf('.')));
+				} catch (IOException ioexc) {
+					JOptionPane.showMessageDialog(this.getAsComponent(), ioexc);
+				}
+			}
+
+		}
+		// TODO
+		this.resetUndoManager();
+		info(XcosMessages.EMPTY_INFO);
+	}
 
 	/**
 	 * All the filetype recognized by Xcos.
@@ -1497,38 +1499,41 @@ public class XcosDiagram extends ScilabGraph {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case XCOS:
 			Document document = null;
-		    try {
-			document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
-		    } catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		    }
+			try {
+				document = mxUtils.parse(mxUtils.readFile(theFile
+						.getAbsolutePath()));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
-		    XcosCodec codec = new XcosCodec(document);
+			XcosCodec codec = new XcosCodec(document);
 
-		    if (getModel().getChildCount(getDefaultParent()) == 0) {
-			codec.decode(document.getDocumentElement(), this);
-			setModified(false);
-			setSavedFile(theFile.getAbsolutePath());
-			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-			setChildrenParentDiagram();
-		    } else {
-			XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
-			codec.decode(document.getDocumentElement(), xcosDiagram);
-			setSavedFile(theFile.getAbsolutePath());
-			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-			setChildrenParentDiagram(xcosDiagram);
-		    }
-		    break;
-		    
+			if (getModel().getChildCount(getDefaultParent()) == 0) {
+				codec.decode(document.getDocumentElement(), this);
+				setModified(false);
+				setSavedFile(theFile.getAbsolutePath());
+				setTitle(theFile.getName().substring(0,
+						theFile.getName().lastIndexOf('.')));
+				setChildrenParentDiagram();
+			} else {
+				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+				codec.decode(document.getDocumentElement(), xcosDiagram);
+				setSavedFile(theFile.getAbsolutePath());
+				setTitle(theFile.getName().substring(0,
+						theFile.getName().lastIndexOf('.')));
+				setChildrenParentDiagram(xcosDiagram);
+			}
+			break;
+
 		case HF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
-		    setModified(false);
-		    break;
-		    
+			setModified(false);
+			break;
+
 		default:
 			XcosDialogs.couldNotLoadFile();
 			break;
