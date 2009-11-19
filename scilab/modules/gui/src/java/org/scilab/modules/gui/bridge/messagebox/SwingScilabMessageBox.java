@@ -48,6 +48,7 @@ import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
+import org.scilab.modules.gui.tab.Tab;
 
 /**
  * Swing implementation of a Scilab MessageBox
@@ -523,7 +524,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		
 		if (parentWindow == null) {
 			if (ScilabConsole.isExistingConsole()) {
-				System.out.println("la console existe");
 				setLocationRelativeTo((Component) ScilabConsole.getConsole().getAsSimpleConsole());
 			}
 		} else {
@@ -790,5 +790,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private boolean isWindows() {
 		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
+	
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param parent
+	 */
+	public void setParentForLocation(Tab parent) {
+		parentWindow = (Component) parent.getAsSimpleTab();
+	}
+	
 
 }

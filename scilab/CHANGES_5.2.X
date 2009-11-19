@@ -49,6 +49,9 @@ Bug fixes:
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
+* bug 3849 fixed - Path selected for graphics export is now memorized and used
+                   as default for next export file selection.
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4565 fixed - getvalue macro is definied two times.
@@ -81,6 +84,8 @@ Bug fixes:
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
+* bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
 * bug 5235 fixed - Error message added when launching Scicos
 
@@ -141,6 +146,8 @@ Bug fixes:
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
@@ -1236,6 +1243,8 @@ Bug fixes:
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
 * bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
 
 * bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
 

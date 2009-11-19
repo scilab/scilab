@@ -11,6 +11,8 @@
 //
 function compilerpath = getmodelicacpath()
 
+compilerpath = "";
+
 if MSDOS then
   // --- WINDOWS ---
   defaultPath = SCI + "/bin/";
