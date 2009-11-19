@@ -83,6 +83,8 @@ Bug fixes:
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
 
+* bug 5266 fixed - Modelica demos made available in MacOS binary version.
+
 * bug 5235 fixed - Error message added when launching Scicos
 
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
