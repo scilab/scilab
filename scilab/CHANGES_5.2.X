@@ -1243,6 +1243,9 @@ Bug fixes:
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
+		   the frame "Scope" should be checked by default.
+
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
