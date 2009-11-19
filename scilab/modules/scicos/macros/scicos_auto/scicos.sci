@@ -38,9 +38,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
 // SCILAB 5.2 --> XCOS
 
-error(msprintf(gettext("''scicos'' is no more available, please use ''xcos'' instead.\n")));
+//error(msprintf(gettext("''scicos'' is no more available, please use ''xcos'' instead.\n")));
 
-return
+//return
 
 // SCILAB 5.2 --> XCOS
 
