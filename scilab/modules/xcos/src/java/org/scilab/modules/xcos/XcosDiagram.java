@@ -1402,6 +1402,7 @@ public class XcosDiagram extends ScilabGraph {
 		final File fileToLoad = theFile;
 		final XcosFileType filetype = XcosFileType.findFileType(theFile);
 		
+		
 		switch (filetype) {
 		case COSF:
 		case COS:
@@ -1443,6 +1444,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		case HDF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
+			fileToLoad.delete();
 			setModified(false);
 			break;
 
