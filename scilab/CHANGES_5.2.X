@@ -143,6 +143,8 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
+* bug 5433 fixed - LCC-Win32 did not work with scicos.
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
