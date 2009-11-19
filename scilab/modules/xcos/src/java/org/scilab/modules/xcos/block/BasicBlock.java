@@ -58,6 +58,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEventObject;
 
 public class BasicBlock extends XcosUIDObject {
 
@@ -561,13 +562,14 @@ public class BasicBlock extends XcosUIDObject {
 		    ", "+getInterfaceFunctionName()+
 		    ", \"set\""+
 		    ", \""+tempContext.getAbsolutePath()+"\");");
+	    final BasicBlock currentBlock = this;
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(tempInput.getAbsolutePath());
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
-		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS);
+		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
 		    
 //		    tempOutput.delete();
 //		    tempInput.delete();
