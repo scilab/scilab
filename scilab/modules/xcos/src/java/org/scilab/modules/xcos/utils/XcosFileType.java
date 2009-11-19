@@ -13,15 +13,54 @@
 package org.scilab.modules.xcos.utils;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
-	COSF("cosf"),
-	COS("cos"),
+	COSF("cosf") {
+		public File exportToHdf5(File arg0) {
+			File tempOutput = null;
+			try {
+				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+				String cmd = "exec(\"" + arg0.getAbsolutePath() + "\", -1);";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				System.err.println(cmd);
+				InterpreterManagement.requestScilabExec(cmd);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Signal.wait(tempOutput.getAbsolutePath());
+			return tempOutput;
+		}
+	},
+	COS("cos") {
+		public File exportToHdf5(File arg0) {
+			File tempOutput = null;
+			try {
+				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+				String cmd = "load(\"" + arg0.getAbsolutePath() + "\");";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				System.err.println(cmd);
+				InterpreterManagement.requestScilabExec(cmd);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Signal.wait(tempOutput.getAbsolutePath());
+			return tempOutput;
+		}
+	},
 	XCOS("xcos"),
-	HDF5("h5"),
+	HDF5("h5") {
+		public File exportToHdf5(File arg0) {
+			return arg0;
+		}
+	},
 	UNKNOW("");
 	
 	
@@ -70,14 +109,23 @@ public enum XcosFileType {
 	/** 
 	 * @return the Xcos default filetype
 	 */
-	public XcosFileType getDefault() {
+	public static XcosFileType getDefault() {
 		return XcosFileType.XCOS;
 	}
 	
 	/** 
 	 * @return the Scilab default filetype
 	 */
-	public XcosFileType getScilabFileType() {
+	public static XcosFileType getScilabFileType() {
 		return XcosFileType.HDF5;
+	}
+	
+	/**
+	 * Convert the file passed as an argument to Hdf5.
+	 * @param file The file to convert
+	 * @return The created file
+	 */
+	public File exportToHdf5(File file) {
+		return null;
 	}
 }

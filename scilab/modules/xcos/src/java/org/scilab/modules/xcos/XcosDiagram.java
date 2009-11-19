@@ -31,7 +31,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -82,7 +81,6 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
-import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
@@ -1395,56 +1393,26 @@ public class XcosDiagram extends ScilabGraph {
      * @param theFile File to load
      */
 	private void transformAndLoadFile(File theFile) {
-		String fileToLoad = theFile.getAbsolutePath();
-		XcosFileType filetype = XcosFileType.findFileType(theFile);
+		final File fileToLoad = theFile;
+		final XcosFileType filetype = XcosFileType.findFileType(theFile);
+		
 		switch (filetype) {
 		case COSF:
-			try {
-				final File tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-				Thread launchMe = new Thread() {
-					public void run() {
-						Signal.wait(tempOutput.getAbsolutePath());
-						openDiagramFromFile(tempOutput.getAbsolutePath());
-					}
-				};
-				launchMe.start();
-				fileToLoad = tempOutput.getAbsolutePath();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-
 		case COS:
-			final File tempOutput;
-			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-				Thread launchMe = new Thread() {
-					public void run() {
-						Signal.wait(tempOutput.getAbsolutePath());
-						openDiagramFromFile(tempOutput.getAbsolutePath());
-					}
-				};
-				launchMe.start();
-				fileToLoad = tempOutput.getAbsolutePath();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Thread transformAction = new Thread() {
+				public void run() {
+					File newFile;
+					newFile = filetype.exportToHdf5(fileToLoad);
+					transformAndLoadFile(newFile);
+				}
+			};
+			transformAction.start();
 			break;
 
 		case XCOS:
 			Document document = null;
 			try {
-				document = mxUtils.parse(mxUtils.readFile(theFile
-						.getAbsolutePath()));
+				document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1456,21 +1424,19 @@ public class XcosDiagram extends ScilabGraph {
 				codec.decode(document.getDocumentElement(), this);
 				setModified(false);
 				setSavedFile(theFile.getAbsolutePath());
-				setTitle(theFile.getName().substring(0,
-						theFile.getName().lastIndexOf('.')));
+				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram();
 			} else {
 				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
 				codec.decode(document.getDocumentElement(), xcosDiagram);
 				setSavedFile(theFile.getAbsolutePath());
-				setTitle(theFile.getName().substring(0,
-						theFile.getName().lastIndexOf('.')));
+				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram(xcosDiagram);
 			}
 			break;
 
 		case HDF5:
-			openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+			openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
 			setModified(false);
 			break;
 
