@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.messagebox;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -45,6 +46,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 
 /**
@@ -97,6 +99,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private Icon messageIcon; //= new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 	
 	private int scilabDialogType = X_MESSAGE_TYPE;
+	
+	private Component parentWindow;
 
 	private JButton btnOK = new JButton("OK");
 	private JButton btnCancel = new JButton("Cancel");
@@ -516,6 +520,16 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		}
 		pack();
 		super.setModal(modal); /* Must call the JDialog class setModal */
+		
+		if (parentWindow == null) {
+			if (ScilabConsole.isExistingConsole()) {
+				System.out.println("la console existe");
+				setLocationRelativeTo((Component) ScilabConsole.getConsole().getAsSimpleConsole());
+			}
+		} else {
+			setLocationRelativeTo(parentWindow);
+		}
+		
 		setVisible(true);
 		doLayout();
 		
