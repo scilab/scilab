@@ -123,7 +123,7 @@ public final class ExportAction extends DefaultAction {
 		filename = fc.getSelection()[0];
 
 		if (new File(filename).exists()
-			&& ScilabModalDialog.show(XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
+			&& ScilabModalDialog.show(null, XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
 				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			return;
 		}
@@ -144,7 +144,7 @@ public final class ExportAction extends DefaultAction {
 				Color bg = null;
 
 				if ((!extension.equalsIgnoreCase("gif") && !extension.equalsIgnoreCase("png"))
-					|| ScilabModalDialog.show(XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
+					|| ScilabModalDialog.show(null, XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
 						IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 					bg = graphComponent.getBackground();
 				}
