@@ -1357,11 +1357,9 @@ public class XcosDiagram extends ScilabGraph {
     public void openDiagramFromFile(String diagramFileName) {
 
     	File theFile = new File(diagramFileName);
-
     	info(XcosMessages.LOADING_DIAGRAM);
     	
     	if (theFile.exists()) {
-
     		String fileToLoad = diagramFileName;
     		// Try to find file type
     		int dotPos = theFile.getName().lastIndexOf('.');
@@ -1371,9 +1369,8 @@ public class XcosDiagram extends ScilabGraph {
     		}
 
     		if (extension.equals("cosf")) {
-    			final File tempOutput;
     			try {
-    				tempOutput = File.createTempFile("xcos", ".h5");
+    				final File tempOutput = File.createTempFile("xcos", ".h5");
     				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
     				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
     				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
@@ -1387,7 +1384,6 @@ public class XcosDiagram extends ScilabGraph {
     				launchMe.start();
     				fileToLoad = tempOutput.getAbsolutePath();
     			} catch (IOException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
     		} else if (extension.equals("cos")) {
@@ -1464,6 +1460,9 @@ public class XcosDiagram extends ScilabGraph {
     	info(XcosMessages.EMPTY_INFO);
     }
 
+    /**
+     * Update all the children of the current graph.
+     */
     public void setChildrenParentDiagram() {
     	setChildrenParentDiagram(this);
     }
