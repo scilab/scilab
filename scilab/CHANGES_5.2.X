@@ -63,6 +63,8 @@ Bug fixes:
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
 
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
+
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
@@ -82,6 +84,8 @@ Bug fixes:
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
+* bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
 * bug 5235 fixed - Error message added when launching Scicos
 
@@ -1239,6 +1243,8 @@ Bug fixes:
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
 * bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
 
 * bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
 
