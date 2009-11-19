@@ -68,6 +68,8 @@ Bug fixes:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
+
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
