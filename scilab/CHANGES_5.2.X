@@ -49,6 +49,9 @@ Bug fixes:
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
+* bug 3849 fixed - Path selected for graphics export is now memorized and used
+                   as default for next export file selection.
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4565 fixed - getvalue macro is definied two times.
@@ -67,6 +70,8 @@ Bug fixes:
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -137,6 +142,8 @@ Bug fixes:
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.

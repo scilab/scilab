@@ -233,7 +233,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Xpad editorInstance = launchXpad();
 		File f = new File(filePath);
 		if (f.isDirectory()) { /* Bug 5131 */
-		    ScilabModalDialog.show(String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()),
+		    ScilabModalDialog.show(Xpad.getEditor(), String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()),
 			    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 		    xpad();
 		    return;
@@ -269,9 +269,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		JTextPane theTextPane = editorInstance.addEmptyTab();
 		ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 		try {
-			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
+			editorInstance.getEditorKit().read(new StringReader(text), styleDocument, 0);
 			boolean colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-			if(colorStatus == false) {
+			if (!colorStatus) {
 				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
 			} else {
 				editorInstance.getInfoBar().setText("");
@@ -528,7 +528,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return execution status
 	 */
 
-	public boolean save(int indexTab){
+	public boolean save(int indexTab) {
 	    return save(indexTab, false, false);
 	}
 
@@ -539,7 +539,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return execution status
 	 */
 
-	public boolean save(int indexTab, boolean force){
+	public boolean save(int indexTab, boolean force) {
 	    return save(indexTab, force, false);
 	}
 	
@@ -555,42 +555,41 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
-		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified() == false) {
+		if (!((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
 			return true;
 		}
 
-		if(force == false){
+		if (!force) {
 
 		    AnswerOption answer;  
-		    if(scilabClose == true) {
-			answer = ScilabModalDialog.show(editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
+		    if (scilabClose) {
+			answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
 		    } else {
-			answer = ScilabModalDialog.show(editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
+			answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 		    }
 
-		    switch(answer)
-		    {
+		    switch (answer) {
 		    case YES_OPTION : //Yes, continue
-			break;
+		    	break;
 		    case NO_OPTION ://No, exit and returns true
-			return true;
+		    	return true;
 		    case CANCEL_OPTION : //Cancel, exit and return false
-			return false;
+		    	return false;
 		    }
 		}
 		String fileToSave = textPaneAt.getName(); 
 		if (fileToSave == null) {
 			//need a filename, call chooseFileToSave
 			fileToSave = chooseFileToSave();
-		}else{
+		} else {
 			//check if the file has been modified by external software
 			fileToSave = checkExternalModification(fileToSave);
 		}
 
-		if(fileToSave == null){
-			return false;
+		if (fileToSave == null) {
+			return true; /* Bug 5189: The user cancels ==> do not want an error message */
 		}
 
 		File newSavedFile = new File(fileToSave);
@@ -638,8 +637,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public String checkExternalModification(String filename) {
 	    File newSavedFiled = new File(filename);
 
-	    if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
-		if (ScilabModalDialog.show(String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath()), 
+	    if ((lastKnownSavedState != 0) && (newSavedFiled.lastModified() > lastKnownSavedState)) {
+		if (ScilabModalDialog.show(Xpad.getEditor(), String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath()), 
 			XpadMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON, 
 			ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
 		    return chooseFileToSave();
@@ -676,7 +675,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			File f = fileChooser.getSelectedFile();
 			initialDirectoryPath = f.getPath();
 			if (f.exists()) {
-			    if (ScilabModalDialog.show(XpadMessages.REPLACE_FILE_TITLE, 
+			    if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.REPLACE_FILE_TITLE, 
 				    XpadMessages.FILE_ALREADY_EXIST, IconType.QUESTION_ICON,
 				    ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
 				return chooseFileToSave();
@@ -746,10 +745,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 			File f = fileChooser.getSelectedFile();
 			initialDirectoryPath = f.getPath();
 			if (f.exists()) {
-			    if (ScilabModalDialog.show(XpadMessages.REPLACE_FILE_TITLE, 
-				    XpadMessages.FILE_ALREADY_EXIST, IconType.QUESTION_ICON,
-				    ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-				return this.saveAs(this.getTextPane());
+				AnswerOption ans = ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.REPLACE_FILE_TITLE,
+						XpadMessages.FILE_ALREADY_EXIST, 
+						IconType.QUESTION_ICON, ButtonType.YES_NO);
+			    if (ans == AnswerOption.NO_OPTION) {
+			    	return this.saveAs(this.getTextPane());
 			    }
 			}
 
@@ -815,6 +815,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
 
+		} else if (retval == JFileChooser.CANCEL_OPTION) {
+			/* Bug 5189: The user cancels ==> do not want an error message */
+			isSuccess = true;
 		}
 		return isSuccess;
 	}
@@ -1219,7 +1222,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	}
 	
-	private class ReadFileThread extends Thread{
+	private class ReadFileThread extends Thread {
   		
 		private File fileToRead;
 		

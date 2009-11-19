@@ -24,6 +24,7 @@
  *    Scicos block simulator
  *    From workspace block
  */
+#include <MALLOC.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -61,7 +62,7 @@ int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType);
 static char fmtd[3]={'d','l','\000'};
 static char fmti[3]={'i','l','\000'};
 static char fmtl[3]={'l','l','\000'};
-static char fmts[3]={'s','l','\000'}; 
+static char fmts[3]={'s','l','\000'};
 static char fmtc[3]={'c','l','\000'};
 static char fmtul[3]={'u','l','\000'};
 static char fmtus[3]={'u','s','\000'};
@@ -177,7 +178,7 @@ void fromws_c(scicos_block *block,int flag)
    if (Ydim[6]==17) {
      if (!Ishm(&fd,&Ytype,&nPoints,&mY,&nY,&YsubType)) {
        sciprint("Invalid variable type.\n");
-       set_block_error(-3); 
+       set_block_error(-3);
        C2F(mclose)(&fd,&res);
        return;
      }
@@ -418,7 +419,7 @@ void fromws_c(scicos_block *block,int flag)
    }
 
    if ((Ydim[6]!=1) | (Ydim[9]!=0)) {
-     sciprint("The Time vector type is not ""double"".\n"); 
+     sciprint("The Time vector type is not ""double"".\n");
      set_block_error(-3);
      *(block->work)=NULL;
      scicos_free(ptr->work);
