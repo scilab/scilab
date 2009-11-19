@@ -24,7 +24,7 @@ import org.scilab.modules.gui.utils.ConfigManager;
  */
 public class Juigetfile {
 	
-	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.cos*", "*.sci", "*.sc*"};
+	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.xcos", "*.sci", "*.sc*"};
 	public static final String DEFAULT_INITIAL_DIRECTORY = ConfigManager.getLastOpenedDirectory();
 	public static final String DEFAULT_BOX_TITLE_OPEN = "uigetfile";
 	public static final String DEFAULT_BOX_TITLE_SAVE = "uiputfile";
