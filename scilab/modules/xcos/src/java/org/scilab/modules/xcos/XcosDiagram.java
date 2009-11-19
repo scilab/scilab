@@ -1529,13 +1529,13 @@ public class XcosDiagram extends ScilabGraph {
     
     /**
      * Display the message in info bar.
-     * @param message
+     * @param message Informations
      */
     public void info(String message) {
-	if(getParentTab() != null && getParentTab().getInfoBar() != null) {
-	    getParentTab().getInfoBar().setText(message);
+		if (getParentTab() != null && getParentTab().getInfoBar() != null) {
+			getParentTab().getInfoBar().setText(message);
+		}
 	}
-    }
     
     /**
      * Display the message into an error popup
