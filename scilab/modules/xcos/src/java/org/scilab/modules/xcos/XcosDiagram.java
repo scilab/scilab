@@ -808,7 +808,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	    // Context menu
-	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) || arg0.isPopupTrigger()) {
+	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
+	    		|| arg0.isPopupTrigger()
+	    		|| isMacOsPopupTrigger(arg0)) {
 
 		if (cell == null) {
 		    // Display diagram context menu
@@ -1529,20 +1531,30 @@ public class XcosDiagram extends ScilabGraph {
     
     /**
      * Display the message in info bar.
-     * @param message
+     * @param message Informations
      */
     public void info(String message) {
-	if(getParentTab() != null && getParentTab().getInfoBar() != null) {
-	    getParentTab().getInfoBar().setText(message);
+    	final String localMessage = message;
+		if (getParentTab() != null && getParentTab().getInfoBar() != null) {
+			if (SwingUtilities.isEventDispatchThread()) {
+				getParentTab().getInfoBar().setText(localMessage);
+			} else {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						getParentTab().getInfoBar().setText(localMessage);
+					}
+					
+				});
+			}
+		}
 	}
-    }
     
     /**
      * Display the message into an error popup
      * @param message Error of the message
      */
     public void error(String message) {
-    	JOptionPane.showMessageDialog(getAsComponent(), message);
+    	JOptionPane.showMessageDialog(getAsComponent(), message, null, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1623,5 +1635,15 @@ public class XcosDiagram extends ScilabGraph {
 			((Xcos) getParentTab()).setEnabledUndo(false);
 		}
 	}
+	
+	/**
+	 * This function checks for the popup menu activation under MacOS with Java version 1.5
+	 * Related to Scilab bug #5190
+	 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+	 */
+	private boolean isMacOsPopupTrigger(MouseEvent e) {
+		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+	}
+
 }
 
