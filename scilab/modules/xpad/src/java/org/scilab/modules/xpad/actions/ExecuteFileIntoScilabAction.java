@@ -45,18 +45,18 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 	    JTextPane currentPane = getEditor().getTextPane();
 
 	    if (((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).isContentModified()) {
-		if (ScilabModalDialog.show(XpadMessages.EXECUTE_WARNING, XpadMessages.EXECUTE_FILE_INTO_SCILAB, 
-			IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
-		    if (editor.save(getEditor().getTabPane().getSelectedIndex(), false)) {
+			if (ScilabModalDialog.show(XpadMessages.EXECUTE_WARNING, XpadMessages.EXECUTE_FILE_INTO_SCILAB, 
+									   IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
+				if (editor.save(getEditor().getTabPane().getSelectedIndex(), false)) {
+					filePath = editor.getFileFullPath();
+					String cmdToExec = "exec('" + filePath + "', -1)";
+					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+				}
+			} 
+	    } else {
 			filePath = editor.getFileFullPath();
 			String cmdToExec = "exec('" + filePath + "', -1)";
 			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
-		    }
-		} 
-	    } else {
-		filePath = editor.getFileFullPath();
-		String cmdToExec = "exec('" + filePath + "', -1)";
-		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
 	    }
 	}
 	
