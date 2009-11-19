@@ -1540,11 +1540,9 @@ public class XcosDiagram extends ScilabGraph {
 			} else {
 				try {
 					SwingUtilities.invokeAndWait(new Runnable() {
-						@Override
 						public void run() {
 							getParentTab().getInfoBar().setText(localMessage);
 						}
-						
 					});
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
