@@ -62,10 +62,12 @@ function result = atomsInstall(packages,section)
 		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
 		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
 		MACOSX  = %F;
 		LINUX   = %F;
 		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	if MSDOS then
@@ -76,6 +78,8 @@ function result = atomsInstall(packages,section)
 		OSNAME = "macosx";
 	elseif SOLARIS then
 		OSNAME = "solaris";
+	elseif BSD then
+		OSNAME = "bsd";
 	end
 	
 	// Architecture detection
