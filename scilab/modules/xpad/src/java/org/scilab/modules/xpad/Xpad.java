@@ -589,8 +589,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 			fileToSave = checkExternalModification(fileToSave);
 		}
 
-		if(fileToSave == null){
-			return false;
+		if (fileToSave == null) {
+			return true; /* Bug 5189: The user cancels ==> do not want an error message */
 		}
 
 		File newSavedFile = new File(fileToSave);
@@ -815,6 +815,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
 
+		} else if (retval == JFileChooser.CANCEL_OPTION) {
+			/* Bug 5189: The user cancels ==> do not want an error message */
+			isSuccess = true;
 		}
 		return isSuccess;
 	}
