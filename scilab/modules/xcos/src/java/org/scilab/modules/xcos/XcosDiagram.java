@@ -1536,6 +1536,14 @@ public class XcosDiagram extends ScilabGraph {
 	    getParentTab().getInfoBar().setText(message);
 	}
     }
+    
+    /**
+     * Display the message into an error popup
+     * @param message Error of the message
+     */
+    public void error(String message) {
+    	JOptionPane.showMessageDialog(getAsComponent(), message);
+    }
 
     /**
      * Find the block corresponding to the given uid
