@@ -52,8 +52,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.utils.XpadMessages;
 import org.scilab.modules.xpad.style.SearchManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public final class FindAction extends DefaultAction {
 
@@ -134,7 +134,7 @@ public final class FindAction extends DefaultAction {
 		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(300, 510));
-		frame.setMinimumSize(new Dimension(200, 500));
+		frame.setMinimumSize(new Dimension(350, 550));
 		frame.setTitle(XpadMessages.FIND_REPLACE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -250,6 +250,7 @@ public final class FindAction extends DefaultAction {
 		buttonClose = new JButton(XpadMessages.CLOSE);
 
 		buttonFind.setPreferredSize(buttonReplaceFind.getPreferredSize());
+		buttonReplaceFind.setPreferredSize(buttonReplaceFind.getPreferredSize());
 		buttonReplace.setPreferredSize(buttonReplaceFind.getPreferredSize());
 		buttonReplaceAll.setPreferredSize(buttonReplaceFind.getPreferredSize());
 		buttonClose.setPreferredSize(buttonReplaceFind.getPreferredSize());
@@ -532,6 +533,7 @@ public final class FindAction extends DefaultAction {
 		
 		
 		boolean wrapSearchSelected = wrap.isSelected();
+		boolean forwardSearch = buttonForward.isSelected();
 		boolean backwardSearch = buttonBackward.isSelected();
 		boolean caseSensitiveSelected  = caseSensitive.isSelected();
 		boolean wholeWordSelected  = wholeWord.isSelected() &&  wholeWord.isEnabled();
@@ -541,6 +543,8 @@ public final class FindAction extends DefaultAction {
 
 		int saveStart 	= startFindSelection;
 		int saveEnd 	= endFindSelection;
+		
+		
 
 		JTextPane xpadTextPane =  getEditor().getTextPane();
 		ScilabStyleDocument scilabStyle = ((ScilabStyleDocument) xpadTextPane.getStyledDocument());
@@ -557,7 +561,12 @@ public final class FindAction extends DefaultAction {
 		
 		/*case we want to search only into the selected lines*/
 		
+		
 		currentCaretPos =  xpadTextPane.getSelectionStart();
+		
+		if (forwardSearch) {
+			currentCaretPos =  xpadTextPane.getSelectionEnd();
+		}
 		if (backwardSearch) {
 			currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
 		}
@@ -566,7 +575,8 @@ public final class FindAction extends DefaultAction {
 			offsets = searchManager.findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
 					wholeWordSelected, regexpSelected);
 		} else {
-			offsets = searchManager.findWord(scilabStyle, wordToFind, caseSensitiveSelected, wholeWordSelected, regexpSelected);
+			offsets = searchManager.findWord(scilabStyle, wordToFind, 0, scilabStyle.getLength(), caseSensitiveSelected, 
+					wholeWordSelected, regexpSelected);
 		}
 		
 		statusBar.setText("");

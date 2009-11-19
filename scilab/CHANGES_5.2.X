@@ -1240,6 +1240,8 @@ Bug fixes:
 
 * bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
 
+* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
+
 * bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
 
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
