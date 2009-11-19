@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.messagebox;
 
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -60,89 +61,96 @@ public final class ScilabModalDialog {
 
 	/**
 	 * @param messages : messages to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * default icon "scilab"
 	 * default button "OK"
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String[] messages) {
-		return show(messages, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String[] messages) {
+		return show(parent, messages, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
 	}
 
 	/**
 	 * @param message : message to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * default icon "scilab"
 	 * default button "OK"
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String message) {
-		return show(new String[]{message}, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String message) {
+		return show(parent, new String[]{message}, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
 	}
 
 	/**
 	 * @param messages : messages to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * default icon "Warning"
 	 * default button "OK"
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String[] messages, String title) {
-		return show(messages, title, IconType.SCILAB_ICON, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String[] messages, String title) {
+		return show(parent, messages, title, IconType.SCILAB_ICON, ButtonType.OK);
 	}
 
 	/**
 	 * @param message : message to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * default icon "Warning"
 	 * default button "OK"
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String message, String title) {
-		return show(new String[]{message}, title, IconType.SCILAB_ICON, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String message, String title) {
+		return show(parent, new String[]{message}, title, IconType.SCILAB_ICON, ButtonType.OK);
 	}
 
 	/**
 	 * @param messages : messages to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * @param iconType : message box icon ( see IconType )
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String[] messages, String title, ScilabModalDialog.IconType iconType) {
-		return show(messages, title, iconType, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String[] messages, String title, ScilabModalDialog.IconType iconType) {
+		return show(parent, messages, title, iconType, ButtonType.OK);
 	}
 
 	/**
 	 * @param message : message to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * @param iconType : message box icon ( see IconType )
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String message, String title, 
-			ScilabModalDialog.IconType iconType) {
-		return show(new String[]{message}, title, iconType, ButtonType.OK);
+	public static AnswerOption show(Tab parent, String message, String title, ScilabModalDialog.IconType iconType) {
+		return show(parent, new String[]{message}, title, iconType, ButtonType.OK);
 	}
 
 	/**
 	 * @param message : message to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * @param iconType : message box icon ( see IconType )
 	 * @param buttonType : message box type ( see ButtonType )
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String message, String title, 
+	public static AnswerOption show(Tab parent, String message, String title, 
 			ScilabModalDialog.IconType iconType, ScilabModalDialog.ButtonType buttonType) {
-		return show(new String[]{message}, title, iconType, buttonType);
+		return show(parent, new String[]{message}, title, iconType, buttonType);
 	}
-
+	
 	/**
 	 * @param messages : messages to display
+	 * @param parent : tab to be used to set the location of the messagebox
 	 * @param title : title of the message box
 	 * @param iconType : message box icon ( see IconType )
 	 * @param buttonType : message box type ( see ButtonType )
 	 * @return index of the selected button
 	 */
-	public static AnswerOption show(String[] messages, String title, 
+	public static AnswerOption show(Tab parent, String[] messages, String title, 
 			ScilabModalDialog.IconType iconType, ScilabModalDialog.ButtonType buttonType) {
 
 
@@ -195,6 +203,8 @@ public final class ScilabModalDialog {
 		}
 
 		messageBox.setIcon(iconName);
+		
+		messageBox.setParentForLocation(parent);
 
 		messageBox.displayAndWait();
 		int choice = (messageBox.getSelectedButton() - 1); //zero indexed

@@ -5000,6 +5000,15 @@ public class ScilabBridge {
 		ScilabMessageBoxBridge.setIcon(messageBox, name);
 	}
 
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param messageBox the MessageBox we want to set the parent of
+	 * @param parent the tab to be set as parent
+	 */
+	public static void setParentForLocation(MessageBox messageBox, Tab parent) {
+		ScilabMessageBoxBridge.setParentForLocation(messageBox, parent);
+	}
+
 	/******************/
 	/* WaitBar Bridge */
 	/******************/

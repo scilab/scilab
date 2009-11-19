@@ -140,6 +140,8 @@ Bug fixes:
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
 
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
