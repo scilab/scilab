@@ -32,20 +32,20 @@ public final class XcosDialogs {
 	 * Dialog displayed when no  block is selected and one is needed for action
 	 */
 	public static void noBlockSelected() {
-	    ScilabModalDialog.show(XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	    ScilabModalDialog.show(null, XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 
 	/**
 	 * Dialog displayed when saving failed
 	 */
 	public static void couldNotSaveFile() {
-	    ScilabModalDialog.show(XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	    ScilabModalDialog.show(null, XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 	
 	/**
 	 * Dialog displayed when loading failed
 	 */
 	public static void couldNotLoadFile() {
-	    ScilabModalDialog.show(XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	    ScilabModalDialog.show(null, XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 }

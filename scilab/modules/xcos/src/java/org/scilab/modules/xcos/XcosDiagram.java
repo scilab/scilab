@@ -1125,10 +1125,10 @@ public class XcosDiagram extends ScilabGraph {
 	    
 	    AnswerOption answer; 
 	    if(fromScilab == true) {
-		answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+		answer = ScilabModalDialog.show(null, XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
 			IconType.QUESTION_ICON, ButtonType.YES_NO);
 	    } else {
-		answer = ScilabModalDialog.show(XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+		answer = ScilabModalDialog.show(null, XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
 			IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 	    }
 
@@ -1365,7 +1365,7 @@ public class XcosDiagram extends ScilabGraph {
 		if (theFile.exists()) {
 			transformAndLoadFile(theFile);
 		} else {
-			AnswerOption answer = ScilabModalDialog.show(String.format(
+			AnswerOption answer = ScilabModalDialog.show(null, String.format(
 					XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
 					XcosMessages.XCOS, IconType.QUESTION_ICON,
 					ButtonType.YES_NO);
