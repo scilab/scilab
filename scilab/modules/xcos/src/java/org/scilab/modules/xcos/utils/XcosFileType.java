@@ -32,7 +32,14 @@ public enum XcosFileType {
 	}
 	
 	/**
-	 * @return the extension
+	 * @return the extension prefixed with a dot
+	 */
+	public String getDottedExtension() {
+		return "." + extension;
+	}
+	
+	/**
+	 * @return the raw extension
 	 */
 	public String getExtension() {
 		return extension;
