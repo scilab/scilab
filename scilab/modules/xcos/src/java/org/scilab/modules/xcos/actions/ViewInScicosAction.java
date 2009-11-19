@@ -45,7 +45,7 @@ public class ViewInScicosAction  extends DefaultAction {
 			temp = File.createTempFile("xcos",".hdf5");
 			System.err.println("File = "+temp.getAbsolutePath());
 			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos(scs_m);deletefile(\"" + temp.getAbsolutePath()+ "\");");
+			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos(scs_m);");
 			temp.deleteOnExit();
 		} catch (IOException e1) {
 			e1.printStackTrace();

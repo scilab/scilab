@@ -63,8 +63,7 @@ public class StartAction  extends DefaultAction {
 	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 		    +"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
 		    +"xcos_simulate(scs_m);"
-		    +"xcosNotify(\"" + simulationEnd + "\");"
-		    +"deletefile(\"" + temp.getAbsolutePath()+ "\");");
+		    +"xcosNotify(\"" + simulationEnd + "\");");
 	    temp.deleteOnExit();
 	} catch (IOException e1) {
 	    e1.printStackTrace();

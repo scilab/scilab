@@ -52,7 +52,7 @@ public class ViewDetailsAction extends DefaultAction {
 		    int file_id = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
 		    H5Write.closeFile(file_id);
-		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);deletefile(\"" + temp.getAbsolutePath()+ "\");");
+		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);");
 		}
 		catch (Exception e) {
 		    // Do Nothing !!!
@@ -65,8 +65,7 @@ public class ViewDetailsAction extends DefaultAction {
 		    int file_id = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(file_id, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
 		    H5Write.closeFile(file_id);
-		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);deletefile(\"" + temp.getAbsolutePath()+ "\");" );
-		    
+		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);");
 		}
 		catch (Exception e) {
 		    // Do Nothing !!!
