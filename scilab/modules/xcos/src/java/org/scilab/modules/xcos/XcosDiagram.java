@@ -85,6 +85,7 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
@@ -1387,67 +1388,6 @@ public class XcosDiagram extends ScilabGraph {
 		// TODO
 		this.resetUndoManager();
 		info(XcosMessages.EMPTY_INFO);
-	}
-
-	/**
-	 * All the filetype recognized by Xcos.
-	 */
-	private enum XcosFileType {
-		COSF("cosf"),
-		COS("cos"),
-		XCOS("xcos"),
-		HF5("h5"),
-		UNKNOW("");
-		
-		
-		private String extension;
-		
-		XcosFileType (String extension) {
-			this.extension = extension;
-		}
-		
-		/**
-		 * @return the extension
-		 */
-		public String getExtension() {
-			return extension;
-		}
-		
-		/**
-		 * Find a filetype by the filename extension
-		 * @param theFile Current file
-		 * @return The determined filetype
-		 */
-		public static XcosFileType findFileType(File theFile) {
-			int dotPos = theFile.getName().lastIndexOf('.');
-			String extension = "";
-
-			if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
-				extension = theFile.getName().substring(dotPos + 1);
-			}
-			
-			for (XcosFileType currentFileType : XcosFileType.values()) {
-				if (extension.equals(currentFileType.extension)) {
-					return currentFileType;
-				}
-			}
-			
-			return XcosFileType.UNKNOW;
-		}
-		
-		/** 
-		 * @return the Xcos default filetype
-		 */
-		public XcosFileType getDefault() {
-			return XcosFileType.XCOS;
-		}
-		
-		/** 
-		 * @return the Scilab default filetype
-		 */
-		public XcosFileType getScilabFileType() {
-			return XcosFileType.HF5;
-		}
 	}
     
     /**
