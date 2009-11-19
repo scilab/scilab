@@ -1125,10 +1125,10 @@ public class XcosDiagram extends ScilabGraph {
 	    
 	    AnswerOption answer; 
 	    if(fromScilab == true) {
-		answer = ScilabModalDialog.show(null, XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+		answer = ScilabModalDialog.show(getParentTab(), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
 			IconType.QUESTION_ICON, ButtonType.YES_NO);
 	    } else {
-		answer = ScilabModalDialog.show(null, XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
+		answer = ScilabModalDialog.show(getParentTab(), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
 			IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 	    }
 
@@ -1227,7 +1227,7 @@ public class XcosDiagram extends ScilabGraph {
 	    ConfigXcosManager.saveToRecentOpenedFiles(fileName);
 	    setModified(false);
 	} else {
-	    XcosDialogs.couldNotSaveFile();
+	    XcosDialogs.couldNotSaveFile(this);
 	}
 	info(XcosMessages.EMPTY_INFO);
 	return isSuccess;
@@ -1287,7 +1287,7 @@ public class XcosDiagram extends ScilabGraph {
 		setChildrenParentDiagram(xcosDiagram);
 	    }
 	} else {
-	    XcosDialogs.couldNotLoadFile();
+	    XcosDialogs.couldNotLoadFile(this);
 	}
     }
 
@@ -1365,7 +1365,7 @@ public class XcosDiagram extends ScilabGraph {
 		if (theFile.exists()) {
 			transformAndLoadFile(theFile);
 		} else {
-			AnswerOption answer = ScilabModalDialog.show(null, String.format(
+			AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
 					XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
 					XcosMessages.XCOS, IconType.QUESTION_ICON,
 					ButtonType.YES_NO);
@@ -1475,7 +1475,7 @@ public class XcosDiagram extends ScilabGraph {
 			break;
 
 		default:
-			XcosDialogs.couldNotLoadFile();
+			XcosDialogs.couldNotLoadFile(this);
 			break;
 		}
 	}
