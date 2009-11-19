@@ -809,7 +809,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	    // Context menu
-	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0)) || arg0.isPopupTrigger()) {
+	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
+	    		|| arg0.isPopupTrigger()
+	    		|| isMacOsPopupTrigger(arg0)) {
 
 		if (cell == null) {
 		    // Display diagram context menu
@@ -1641,5 +1643,15 @@ public class XcosDiagram extends ScilabGraph {
 			((Xcos) getParentTab()).setEnabledUndo(false);
 		}
 	}
+	
+	/**
+	 * This function checks for the popup menu activation under MacOS with Java version 1.5
+	 * Related to Scilab bug #5190
+	 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+	 */
+	private boolean isMacOsPopupTrigger(MouseEvent e) {
+		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+	}
+
 }
 

@@ -143,6 +143,8 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
+* bug 5433 fixed - LCC-Win32 did not work with scicos.
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
@@ -1241,6 +1243,9 @@ Bug fixes:
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
+		   the frame "Scope" should be checked by default.
+
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
@@ -1268,6 +1273,8 @@ Bug fixes:
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+
+* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 

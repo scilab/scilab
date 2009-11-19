@@ -100,6 +100,15 @@ public final class FindAction extends DefaultAction {
 	public void doAction() {
     	if (!FindAction.windowAlreadyExist) {
         	findReplaceBox();
+        	
+        	// If some text is selected, set radio button "selected lines" at true
+        	// else find and replace action is applied tor the entire document
+        	if (getEditor().getTextPane().getSelectionStart() != getEditor().getTextPane().getSelectionEnd()) {
+        		buttonSelection.setSelected(true);
+			} else {
+				buttonAll.setSelected(true);
+			}
+        	
         	FindAction.windowAlreadyExist = true;
     	} else {
     		frame.setVisible(true);
