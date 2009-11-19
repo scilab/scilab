@@ -42,7 +42,7 @@ public class SaveAction extends DefaultAction {
 
 	public void doAction() {
 	    if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
-		ScilabModalDialog.show(XpadMessages.COULD_NOT_SAVE_FILE,
+		ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
 			XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 	    }
 	}

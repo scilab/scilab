@@ -92,7 +92,7 @@ public class EncodingAction extends DefaultCheckAction {
 		/* Not untitled */
 
 
-	    	switch (ScilabModalDialog.show(XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
+	    	switch (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
 	    			IconType.QUESTION_ICON, ButtonType.YES_NO)) {
 	    			case YES_OPTION : //Yes, continue
 	    				break;
@@ -150,7 +150,7 @@ public class EncodingAction extends DefaultCheckAction {
 
 
 	if (!isSuccess) {
-	    ScilabModalDialog.show(XpadMessages.COULD_NOT_CONVERT_FILE,
+	    ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_CONVERT_FILE,
 		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 	}
   }
