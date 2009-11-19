@@ -34,16 +34,10 @@ public class KeywordManager {
 		String[] commands;
 		String[] functions;
 		String[] macros;
-		if (true) { /* @TODO: update it to allow the text editor as standalone */
-			commands =  ScilabKeywords.GetCommandsName();
-			functions =  ScilabKeywords.GetFunctionsName();
-			macros =  ScilabKeywords.GetMacrosName();
-		} else {
-			commands =  new String[]{""};//ScilabKeywords.GetCommandsName();
-			functions =  new String[]{""};// ScilabKeywords.GetFunctionsName();
-			macros =  new String[]{""};//ScilabKeywords.GetMacrosName();
-			
-		}
+		commands =  ScilabKeywords.GetCommandsName();
+		functions =  ScilabKeywords.GetFunctionsName();
+		macros =  ScilabKeywords.GetMacrosName();
+
 		//String[] variables =  ScilabKeywords.GetVariablesName();
 
 		for (int i = 0; i < macros.length; i++) {
