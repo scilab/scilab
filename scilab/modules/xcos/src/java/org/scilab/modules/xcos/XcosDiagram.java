@@ -1363,83 +1363,7 @@ public class XcosDiagram extends ScilabGraph {
     	info(XcosMessages.LOADING_DIAGRAM);
     	
     	if (theFile.exists()) {
-    		String fileToLoad = diagramFileName;
-    		// Try to find file type
-    		int dotPos = theFile.getName().lastIndexOf('.');
-    		String extension = "";
-    		if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
-    			extension = theFile.getName().substring(dotPos + 1);
-    		}
-
-    		if (extension.equals("cosf")) {
-    			try {
-    				final File tempOutput = File.createTempFile("xcos", ".h5");
-    				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
-    				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-    				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-    				InterpreterManagement.requestScilabExec(cmd);
-    				Thread launchMe = new Thread() {
-    					public void run() {
-    						Signal.wait(tempOutput.getAbsolutePath());
-    						openDiagramFromFile(tempOutput.getAbsolutePath());
-    					}
-    				};
-    				launchMe.start();
-    				fileToLoad = tempOutput.getAbsolutePath();
-    			} catch (IOException e) {
-    				e.printStackTrace();
-    			}
-    		} else if (extension.equals("cos")) {
-    			final File tempOutput;
-    			try {
-    				tempOutput = File.createTempFile("xcos", ".h5");
-    				String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
-    				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-    				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-    				InterpreterManagement.requestScilabExec(cmd);
-    				Thread launchMe = new Thread() {
-    					public void run() {
-    						Signal.wait(tempOutput.getAbsolutePath());
-    						openDiagramFromFile(tempOutput.getAbsolutePath());
-    					}
-    				};
-    				launchMe.start();
-    				fileToLoad = tempOutput.getAbsolutePath();
-    			} catch (IOException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}
-    		} else if (extension.equals("xcos")) {
-    		    Document document = null;
-    		    try {
-    			document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
-    		    } catch (IOException e1) {
-    			// TODO Auto-generated catch block
-    			e1.printStackTrace();
-    		    }
-
-    		    XcosCodec codec = new XcosCodec(document);
-
-    		    if (getModel().getChildCount(getDefaultParent()) == 0) {
-    			codec.decode(document.getDocumentElement(), this);
-    			setModified(false);
-    			setSavedFile(theFile.getAbsolutePath());
-    			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    			setChildrenParentDiagram();
-    		    } else {
-    			XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
-    			codec.decode(document.getDocumentElement(), xcosDiagram);
-    			setSavedFile(theFile.getAbsolutePath());
-    			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-    			setChildrenParentDiagram(xcosDiagram);
-    		    }
-    		} else if (extension.equals("h5")) {
-    		    openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
-    		    setModified(false);
-    		} else {
-    		    XcosDialogs.couldNotLoadFile();
-    		}
-
+    		transformAndLoadFile(theFile);
     	} else {
     	    AnswerOption answer = ScilabModalDialog.show(String.format(XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()), 
     		    XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO);
@@ -1462,6 +1386,154 @@ public class XcosDiagram extends ScilabGraph {
     	this.resetUndoManager();
     	info(XcosMessages.EMPTY_INFO);
     }
+
+	/**
+	 * All the filetype recognized by Xcos.
+	 */
+	private enum XcosFileType {
+		COSF("cosf"),
+		COS("cos"),
+		XCOS("xcos"),
+		HF5("h5"),
+		UNKNOW("");
+		
+		
+		private String extension;
+		
+		XcosFileType (String extension) {
+			this.extension = extension;
+		}
+		
+		/**
+		 * @return the extension
+		 */
+		public String getExtension() {
+			return extension;
+		}
+		
+		/**
+		 * Find a filetype by the filename extension
+		 * @param theFile Current file
+		 * @return The determined filetype
+		 */
+		public static XcosFileType findFileType(File theFile) {
+			int dotPos = theFile.getName().lastIndexOf('.');
+			String extension = "";
+
+			if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
+				extension = theFile.getName().substring(dotPos + 1);
+			}
+			
+			for (XcosFileType currentFileType : XcosFileType.values()) {
+				if (extension.equals(currentFileType.extension)) {
+					return currentFileType;
+				}
+			}
+			
+			return XcosFileType.UNKNOW;
+		}
+		
+		/** 
+		 * @return the Xcos default filetype
+		 */
+		public XcosFileType getDefault() {
+			return XcosFileType.XCOS;
+		}
+		
+		/** 
+		 * @return the Scilab default filetype
+		 */
+		public XcosFileType getScilabFileType() {
+			return XcosFileType.HF5;
+		}
+	}
+    
+    /**
+     * Load a file with different method depending on it extension 
+     * @param theFile File to load
+     */
+	private void transformAndLoadFile(File theFile) {
+		String fileToLoad = theFile.getAbsolutePath();
+		XcosFileType filetype = XcosFileType.findFileType(theFile);
+		switch (filetype) {
+		case COSF:
+			try {
+				final File tempOutput = File.createTempFile("xcos", ".h5");
+				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				InterpreterManagement.requestScilabExec(cmd);
+				Thread launchMe = new Thread() {
+					public void run() {
+						Signal.wait(tempOutput.getAbsolutePath());
+						openDiagramFromFile(tempOutput.getAbsolutePath());
+					}
+				};
+				launchMe.start();
+				fileToLoad = tempOutput.getAbsolutePath();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case COS:
+			final File tempOutput;
+			try {
+				tempOutput = File.createTempFile("xcos", ".h5");
+				String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				InterpreterManagement.requestScilabExec(cmd);
+				Thread launchMe = new Thread() {
+					public void run() {
+						Signal.wait(tempOutput.getAbsolutePath());
+						openDiagramFromFile(tempOutput.getAbsolutePath());
+					}
+				};
+				launchMe.start();
+				fileToLoad = tempOutput.getAbsolutePath();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case XCOS:
+			Document document = null;
+		    try {
+			document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
+		    } catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		    }
+
+		    XcosCodec codec = new XcosCodec(document);
+
+		    if (getModel().getChildCount(getDefaultParent()) == 0) {
+			codec.decode(document.getDocumentElement(), this);
+			setModified(false);
+			setSavedFile(theFile.getAbsolutePath());
+			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+			setChildrenParentDiagram();
+		    } else {
+			XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+			codec.decode(document.getDocumentElement(), xcosDiagram);
+			setSavedFile(theFile.getAbsolutePath());
+			setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+			setChildrenParentDiagram(xcosDiagram);
+		    }
+		    break;
+		    
+		case HF5:
+			openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
+		    setModified(false);
+		    break;
+		    
+		default:
+			XcosDialogs.couldNotLoadFile();
+			break;
+		}
+	}
 
     /**
      * Update all the children of the current graph.
