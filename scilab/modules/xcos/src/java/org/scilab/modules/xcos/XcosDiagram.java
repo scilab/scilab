@@ -62,6 +62,7 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -478,6 +479,8 @@ public class XcosDiagram extends ScilabGraph {
 	    public void invoke(Object source, mxEventObject evt) {
 		getModel().beginUpdate();
 		refresh();
+		BasicBlock updatedBlock = (BasicBlock) evt.getArgAt(0);
+		BlockPositioning.updateBlockView(updatedBlock);
 		getModel().endUpdate();
 	    }
 	});	
@@ -574,6 +577,9 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class SuperBlockUpdateTracker implements mxIEventListener {
     	public void invoke(Object source, mxEventObject evt) {
+    		assert evt.getArgs()[0] instanceof SuperBlock;
+    		SuperBlock updatedBlock = (SuperBlock) evt.getArgs()[0];
+    		BlockPositioning.updateBlockView(updatedBlock);
     		refresh();
     	}
     }

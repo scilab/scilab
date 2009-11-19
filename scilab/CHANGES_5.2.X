@@ -60,6 +60,8 @@ Bug fixes:
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
 
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
+
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
