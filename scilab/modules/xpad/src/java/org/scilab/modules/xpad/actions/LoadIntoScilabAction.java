@@ -20,6 +20,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -34,7 +35,13 @@ public class LoadIntoScilabAction extends DefaultAction {
 	    try {
 	    	ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getText(), true, false);
 	    } catch (NoClassDefFoundError noClass) {
-	    	InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText().replaceAll("\n", ","));
+			try {
+				InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText().replaceAll("\n", ","));
+			} catch (NoClassDefFoundError noAlternateClass) {
+				/* This happens when Xpad is launch as standalone (ie without
+				* Scilab) */
+				ScilabModalDialog.show("Could not find the console nor the InterpreterManagement");
+			}
 	    }
 	}
 	

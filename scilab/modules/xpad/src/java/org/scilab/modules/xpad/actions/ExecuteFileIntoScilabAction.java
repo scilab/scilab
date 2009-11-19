@@ -44,7 +44,13 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 	private void executeFile(Xpad editor) {
 		String filePath = editor.getFileFullPath();
 		String cmdToExec = "exec('" + filePath + "', -1)";
-		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+		try {
+			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+		} catch (NoClassDefFoundError e) {
+			/* This happens when Xpad is launch as standalone (ie without
+			 * Scilab) */
+			ScilabModalDialog.show("Could not find the console nor the InterpreterManagement");
+		}
 	}
 
 	public void doAction() {
