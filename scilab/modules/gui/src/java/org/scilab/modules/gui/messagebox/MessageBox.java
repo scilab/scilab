@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.messagebox;
 
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.uielement.UIElement;
 
 /**
@@ -132,4 +133,10 @@ public interface MessageBox extends UIElement {
 	 * @param name the name of the icon
 	 */
 	void setIcon(String name);
+	
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param parent
+	 */
+	void setParentForLocation(Tab parent);
 }
