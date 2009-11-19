@@ -21,7 +21,7 @@ public enum XcosFileType {
 	COSF("cosf"),
 	COS("cos"),
 	XCOS("xcos"),
-	HF5("h5"),
+	HDF5("h5"),
 	UNKNOW("");
 	
 	
@@ -78,6 +78,6 @@ public enum XcosFileType {
 	 * @return the Scilab default filetype
 	 */
 	public XcosFileType getScilabFileType() {
-		return XcosFileType.HF5;
+		return XcosFileType.HDF5;
 	}
 }

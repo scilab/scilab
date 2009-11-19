@@ -1400,7 +1400,7 @@ public class XcosDiagram extends ScilabGraph {
 		switch (filetype) {
 		case COSF:
 			try {
-				final File tempOutput = File.createTempFile("xcos", XcosFileType.HF5.getDottedExtension());
+				final File tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
 				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
 				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
@@ -1421,7 +1421,7 @@ public class XcosDiagram extends ScilabGraph {
 		case COS:
 			final File tempOutput;
 			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HF5.getDottedExtension());
+				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
 				String cmd = "load(\"" + theFile.getAbsolutePath() + "\");";
 				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
@@ -1469,7 +1469,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 			break;
 
-		case HF5:
+		case HDF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad));
 			setModified(false);
 			break;
