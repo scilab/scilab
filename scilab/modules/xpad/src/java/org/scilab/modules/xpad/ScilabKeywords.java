@@ -22,19 +22,42 @@ public class ScilabKeywords {
 	throw new UnsupportedOperationException();
  }
   public static String[] GetVariablesName() {
-    return ScilabKeywordsJNI.GetVariablesName();
+	  try {
+		  return ScilabKeywordsJNI.GetVariablesName();
+	  } catch (UnsatisfiedLinkError e) {
+		  /* If the JNI connexion has been disable, we trap the exception
+		   * and we return nothing */
+		  return new String[]{""};
+	  }
   }
 
   public static String[] GetCommandsName() {
-    return ScilabKeywordsJNI.GetCommandsName();
+	  try {
+		  return ScilabKeywordsJNI.GetCommandsName();
+	  } catch (UnsatisfiedLinkError e) {
+		  /* If the JNI connexion has been disable, we trap the exception
+		   * and we return nothing */
+		  return new String[]{""};
+	  }
   }
 
   public static String[] GetFunctionsName() {
-    return ScilabKeywordsJNI.GetFunctionsName();
+	  try {
+		  return ScilabKeywordsJNI.GetFunctionsName();
+	  } catch (UnsatisfiedLinkError e) {
+		  /* If the JNI connexion has been disable, we trap the exception
+		   * and we return nothing */
+		  return new String[]{""};
+	  }
   }
 
   public static String[] GetMacrosName() {
-    return ScilabKeywordsJNI.GetMacrosName();
-  }
+	  try {
+		  return ScilabKeywordsJNI.GetMacrosName();
+	  } catch (UnsatisfiedLinkError e) {
+		  /* If the JNI connexion has been disable, we trap the exception
+		   * and we return nothing */
+		  return new String[]{""};
+	  }  }
 
 }
