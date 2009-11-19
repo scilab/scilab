@@ -48,7 +48,10 @@ public class CodeGenerationAction extends DefaultAction {
 
     public void doAction() {
 	Object selectedObj = getGraph(null).getSelectionCell();
-	if (!(selectedObj instanceof SuperBlock)) { return; }
+		if (!(selectedObj instanceof SuperBlock)) {
+			((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
+			return;
+		}
 
 	((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
 	

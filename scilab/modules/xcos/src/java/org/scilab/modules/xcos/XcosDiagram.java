@@ -1357,11 +1357,9 @@ public class XcosDiagram extends ScilabGraph {
     public void openDiagramFromFile(String diagramFileName) {
 
     	File theFile = new File(diagramFileName);
-
     	info(XcosMessages.LOADING_DIAGRAM);
     	
     	if (theFile.exists()) {
-
     		String fileToLoad = diagramFileName;
     		// Try to find file type
     		int dotPos = theFile.getName().lastIndexOf('.');
@@ -1371,9 +1369,8 @@ public class XcosDiagram extends ScilabGraph {
     		}
 
     		if (extension.equals("cosf")) {
-    			final File tempOutput;
     			try {
-    				tempOutput = File.createTempFile("xcos", ".h5");
+    				final File tempOutput = File.createTempFile("xcos", ".h5");
     				String cmd = "exec(\"" + theFile.getAbsolutePath() + "\", -1);";
     				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
     				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
@@ -1387,7 +1384,6 @@ public class XcosDiagram extends ScilabGraph {
     				launchMe.start();
     				fileToLoad = tempOutput.getAbsolutePath();
     			} catch (IOException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
     		} else if (extension.equals("cos")) {
@@ -1464,10 +1460,17 @@ public class XcosDiagram extends ScilabGraph {
     	info(XcosMessages.EMPTY_INFO);
     }
 
+    /**
+     * Update all the children of the current graph.
+     */
     public void setChildrenParentDiagram() {
     	setChildrenParentDiagram(this);
     }
 
+    /**
+     * For each block in the argument, call its setParentDiagram method
+     * @param diagram The new parent of the blocks.
+     */
     private void setChildrenParentDiagram(XcosDiagram diagram) {
     	for (int i = 0; i < diagram.getModel().getChildCount(diagram.getDefaultParent()); i++) {
     		mxCell cell = (mxCell) diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
@@ -1481,7 +1484,8 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	}
     }
-/**
+    
+    /**
      * Returns the tooltip to be used for the given cell.
      */
     public String getToolTipForCell(Object cell)
@@ -1492,6 +1496,13 @@ public class XcosDiagram extends ScilabGraph {
 	return "";
     }
 
+    /**
+     * Set any text to an Afficheblock specified by its ID.
+     * @param blockID ID of the AfficheBlock to be modified.
+     * @param blockValue Content to be apply to the block.
+     * @param iRows Number of Row in the blockValue.
+     * @param iCols Number of Collumns in the blockValue.
+     */
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
 
        	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
@@ -1525,6 +1536,14 @@ public class XcosDiagram extends ScilabGraph {
 	    getParentTab().getInfoBar().setText(message);
 	}
     }
+    
+    /**
+     * Display the message into an error popup
+     * @param message Error of the message
+     */
+    public void error(String message) {
+    	JOptionPane.showMessageDialog(getAsComponent(), message);
+    }
 
     /**
      * Find the block corresponding to the given uid
@@ -1543,11 +1562,18 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    /**
+     * Set the current diagram in a modified state
+     * @param modified True or False whether the current diagram must be saved or not. 
+     */
     public void setModified(boolean modified) {
 		super.setModified(modified);
 		updateTabTitle();
 	}
 
+    /**
+     * Revert an action
+     */
 	public void undo() {
 		super.undo();
 
@@ -1567,6 +1593,9 @@ public class XcosDiagram extends ScilabGraph {
 		 */
 	}
 
+	/**
+	 * Apply the previously reverted action
+	 */
 	public void redo() {
 		super.redo();
 
@@ -1584,6 +1613,9 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
 
+	/**
+	 * This function will reset the UndoManager in a stable state.
+	 */
 	public void resetUndoManager() {
 		undoManager.reset();
 		if (getParentTab() != null) {

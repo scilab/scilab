@@ -45,12 +45,6 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
-
-* bug 5348 fixed - Openning a Superblock crash Xcos.
-
-* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
-
 * bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
@@ -64,6 +58,8 @@ Bug fixes:
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
+* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
@@ -75,6 +71,8 @@ Bug fixes:
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
+
+* bug 5200 fixed - Adding a code generation error message when not applicable
 
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
@@ -123,6 +121,10 @@ Bug fixes:
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
 
+* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+
+* bug 5348 fixed - Openning a Superblock crash Xcos.
+
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
                    at Scilab startup.
                    
@@ -139,7 +141,7 @@ Bug fixes:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
-* bug 5391 fixed - ATOMS : Error message was not well localized
+* bug 5402 fixed - Update status bar contents after saving canceled.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================

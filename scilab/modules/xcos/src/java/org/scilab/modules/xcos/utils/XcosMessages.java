@@ -175,7 +175,7 @@ public final class XcosMessages {
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
     
     public static final String DEBUG_LEVEL_LABEL = "<html>"  + Messages.gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)") + "</html>";
-    public static final String SET_DEBUG = Messages.gettext("Backtrace and Debug");
+    public static final String SET_DEBUG = Messages.gettext("Execution trace and Debug");
     
     /* Setup box*/
     public static final String FINAL_INTEGRATION_TIME  = Messages.gettext("Final integration time");
@@ -203,12 +203,13 @@ public final class XcosMessages {
     public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
     public static final String LOADING_PALETTES = Messages.gettext("Loading palettes" + DOTS);
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
+    public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
     public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
     
     /** Debug level messages  */
-    public static final String DEBUGLEVEL_0 = "No printout nor debug action";
+    public static final String DEBUGLEVEL_0 = "No trace nor debug printing";
     public static final String DEBUGLEVEL_1 = "Light Simulation trace (Discrete and Continous part switches)";
     public static final String DEBUGLEVEL_2 = "Per block execution trace and Debug block calls";
     public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
