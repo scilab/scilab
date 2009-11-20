@@ -180,8 +180,8 @@ public class SciTextRenderer {
 	 * @param blue blue channel
 	 */
 	public void setColor(double red, double green, double blue) {
-		/* Set also for the MathML / LaTeX rendering */
-		speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
@@ -191,8 +191,8 @@ public class SciTextRenderer {
 	 * @param color array of size 3 containing the channels
 	 */
 	public void setColor(double[] color) {
-		/* Set also for the MathML / LaTeX rendering */
-		speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
