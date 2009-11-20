@@ -24,6 +24,7 @@ public class H5ReadScilabDouble {
 	if (H5Read.isEmpty(dataSetId)) {
 	    data.setRealPart(null);
 	    data.setImaginaryPart(null);
+	    H5.H5Dclose(dataSetId);
 	    return;
 	}
 	/* 
@@ -50,15 +51,19 @@ public class H5ReadScilabDouble {
 	double[] data = new double[nbElems[0] * nbElems[1]];
 	double[][] result = new double[nbElems[0]][nbElems[1]];
 	
-	H5.H5Dread_double(dataSetId, HDF5Constants.H5T_NATIVE_DOUBLE, H5.H5Dget_space(dataSetId), 
+	int space = H5.H5Dget_space(dataSetId);
+	H5.H5Dread_double(dataSetId, HDF5Constants.H5T_NATIVE_DOUBLE, space, 
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-	H5.H5Dclose(dataSetId);
+	
 	
 	for(int i = 0 ; i < nbElems[0] ; i++) {
 	    for(int j = 0 ; j < nbElems[1] ; j++) {
 		result[i][j] = data[i+ j * nbElems[0]];
 	    }
 	}
+	
+	H5.H5Sclose(space);
+	H5.H5Dclose(dataSetId);
 	return result;
     }
 }

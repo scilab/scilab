@@ -56,6 +56,8 @@ public class H5ReadScilabString {
 	    }
 	}
 
+	H5.H5Tclose(filetype);
+	H5.H5Tclose(memtype);
 	H5.H5Sclose(space);
 	H5.H5Dclose(dataSetId);
 	return result;
