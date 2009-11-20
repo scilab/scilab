@@ -1481,6 +1481,18 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     /**
+     * Getting the root diagram of a decomposed diagram
+     * @return Root parent of the whole parent
+     */
+    public XcosDiagram getRootDiagram() {
+	XcosDiagram rootGraph = this;
+	while (rootGraph instanceof SuperBlockDiagram) {
+	    rootGraph = ((SuperBlockDiagram) rootGraph).getContainer().getParentDiagram();
+	}
+	return rootGraph;
+    }
+    
+    /**
      * Returns the tooltip to be used for the given cell.
      */
     public String getToolTipForCell(Object cell)
@@ -1527,27 +1539,27 @@ public class XcosDiagram extends ScilabGraph {
      * @param message Informations
      */
     public void info(String message) {
-    	final String localMessage = message;
-		if (getParentTab() != null && getParentTab().getInfoBar() != null) {
-			if (SwingUtilities.isEventDispatchThread()) {
-				getParentTab().getInfoBar().setText(localMessage);
-			} else {
-				try {
-					SwingUtilities.invokeAndWait(new Runnable() {
-						public void run() {
-							getParentTab().getInfoBar().setText(localMessage);
-						}
-					});
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	final String localMessage = message;
+	if (getParentTab() != null && getParentTab().getInfoBar() != null) {
+	    if (SwingUtilities.isEventDispatchThread()) {
+		getParentTab().getInfoBar().setText(localMessage);
+	    } else {
+		try {
+		    SwingUtilities.invokeAndWait(new Runnable() {
+			public void run() {
+			    getParentTab().getInfoBar().setText(localMessage);
 			}
+		    });
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		} catch (InvocationTargetException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
 		}
+	    }
 	}
+    }
     
     /**
      * Display the message into an error popup
