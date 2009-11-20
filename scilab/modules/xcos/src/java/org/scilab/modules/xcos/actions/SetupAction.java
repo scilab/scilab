@@ -15,12 +15,15 @@ package org.scilab.modules.xcos.actions;
 import java.awt.Choice;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -92,10 +95,14 @@ public class SetupAction extends DefaultAction {
 			return;
 		}
 
+		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+
 		mainFrame = new JFrame();
 		windowAlreadyExist = true;
 
 		mainFrame.setLayout(new GridBagLayout());
+		mainFrame.setIconImage(imageForIcon);
 
 		diagram = (XcosDiagram) getGraph(e);
 
