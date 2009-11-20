@@ -15,12 +15,15 @@ package org.scilab.modules.xcos.actions;
 import java.awt.Choice;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -92,11 +95,14 @@ public class SetupAction extends DefaultAction {
 			return;
 		}
 
+		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+
 		mainFrame = new JFrame();
 		windowAlreadyExist = true;
 
-
 		mainFrame.setLayout(new GridBagLayout());
+		mainFrame.setIconImage(imageForIcon);
 
 		diagram = (XcosDiagram) getGraph(e);
 
@@ -291,19 +297,45 @@ public class SetupAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
-					diagram.setSolver(0);
+					if (diagram.getSolver() != 0) {
+						diagram.setSolver(0);
+						diagram.setModified(true);
+					}
 				} else {
-					diagram.setSolver(100); 
+					if (diagram.getSolver() != 100) {
+						diagram.setSolver(100);
+						diagram.setModified(true);
+					}
 				}
 
-				diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
-				diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
-				diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
-				diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
-				diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
-				diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
-
-				diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
+				if (diagram.getFinalIntegrationTime() != (Double) integrationSpinner.getValue()) {
+					diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getRealTimeScaling() != (Double) rtsSpinner.getValue()) {
+					diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getIntegratorAbsoluteTolerance() != (Double) integratorAbsSpinner.getValue()) {
+					diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getIntegratorRelativeTolerance() != (Double) integratorRelSpinner.getValue()) {
+					diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getToleranceOnTime() != (Double) toleranceOnTimeSpinner.getValue()) {
+					diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getMaxIntegrationTimeinterval() != (Double) maxIntegrationTimeSpinner.getValue()) {
+					diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getMaximumStepSize() != ((Integer) maxStepSizeSpinner.getValue()).doubleValue()) {
+					diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
+					diagram.setModified(true);
+				}
 
 				windowAlreadyExist = false;
 				mainFrame.dispose();
@@ -311,12 +343,8 @@ public class SetupAction extends DefaultAction {
 		});
 
 		setContextButton.addActionListener(new ActionListener() {
-
-
-
-
 			public void actionPerformed(ActionEvent e) {
-				SetContextAction.setContextBox(diagram);
+				diagram.getContextAction().actionPerformed(e);
 			}
 		});
 
