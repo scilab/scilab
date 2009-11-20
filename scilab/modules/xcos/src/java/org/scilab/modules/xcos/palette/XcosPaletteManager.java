@@ -249,12 +249,9 @@ public final class XcosPaletteManager {
 	paletteThread = new Thread() {
 	    public void run() {
 
-		final JSplitPane allpalettes = new JSplitPane(
-			JSplitPane.HORIZONTAL_SPLIT);
-		final XcosPalette rootPalette = new XcosPalette(
-			XcosMessages.PALETTES);
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-			rootPalette);
+		final JSplitPane allpalettes = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		final XcosPalette rootPalette = new XcosPalette(XcosMessages.PALETTES);
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootPalette);
 		TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
 		final JTree paletteTree = new JTree(paletteTreeModel);
 
@@ -264,17 +261,15 @@ public final class XcosPaletteManager {
 		paletteTree.getSelectionModel().setSelectionMode(
 			TreeSelectionModel.SINGLE_TREE_SELECTION);
 		paletteTree.addTreeSelectionListener(new TreeSelectionListener() {
-
+		    
 			    public void valueChanged(TreeSelectionEvent tree) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree
-					.getLastSelectedPathComponent();
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree.getLastSelectedPathComponent();
 
 				if (node == null)
 				    // Nothing is selected.
 				    return;
 
-				XcosPalette nodeInfo = (XcosPalette) node
-					.getUserObject();
+				XcosPalette nodeInfo = (XcosPalette) node.getUserObject();
 				allpalettes.setRightComponent(nodeInfo);
 			    }
 
@@ -293,8 +288,7 @@ public final class XcosPaletteManager {
 			    createPaletteData(paletteStringDescriptor.Components));
 
 		    /* Perform UI update */
-		    XcosPalette xcosPalette = new XcosPalette(
-			    paletteStringDescriptor.Name);
+		    XcosPalette xcosPalette = new XcosPalette(paletteStringDescriptor.Name);
 		    for (PaletteData iter : currentDescriptor.Components) {
 			xcosPalette.addTemplate(iter.Name, iter.Icon);
 		    }
