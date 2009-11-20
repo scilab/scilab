@@ -74,7 +74,7 @@ public enum XcosFileType {
 	 */
 	XcosFileType (String extension, String description) {
 		this.extension = extension;
-		this.extension = description;
+		this.description = description;
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public enum XcosFileType {
 		}
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
-			if (extension.equals(currentFileType.extension)) {
+			if (extension.compareToIgnoreCase(currentFileType.extension) == 0) {
 				return currentFileType;
 			}
 		}
@@ -140,7 +140,7 @@ public enum XcosFileType {
 	 * @return The created file
 	 */
 	public File exportToHdf5(File file) {
-		return null;
+	    throw new Error("Not implemented operation");
 	}
 	
 	/**
