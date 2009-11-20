@@ -1541,23 +1541,7 @@ public class XcosDiagram extends ScilabGraph {
     public void info(String message) {
 	final String localMessage = message;
 	if (getParentTab() != null && getParentTab().getInfoBar() != null) {
-	    if (SwingUtilities.isEventDispatchThread()) {
-		getParentTab().getInfoBar().setText(localMessage);
-	    } else {
-		try {
-		    SwingUtilities.invokeAndWait(new Runnable() {
-			public void run() {
-			    getParentTab().getInfoBar().setText(localMessage);
-			}
-		    });
-		} catch (InterruptedException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		} catch (InvocationTargetException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
-	    }
+	    getParentTab().getInfoBar().setText(localMessage);
 	}
     }
     
