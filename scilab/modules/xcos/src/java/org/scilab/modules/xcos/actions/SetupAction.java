@@ -297,19 +297,45 @@ public class SetupAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
-					diagram.setSolver(0);
+					if (diagram.getSolver() != 0) {
+						diagram.setSolver(0);
+						diagram.setModified(true);
+					}
 				} else {
-					diagram.setSolver(100); 
+					if (diagram.getSolver() != 100) {
+						diagram.setSolver(100);
+						diagram.setModified(true);
+					}
 				}
 
-				diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
-				diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
-				diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
-				diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
-				diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
-				diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
-
-				diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
+				if (diagram.getFinalIntegrationTime() != (Double) integrationSpinner.getValue()) {
+					diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getRealTimeScaling() != (Double) rtsSpinner.getValue()) {
+					diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getIntegratorAbsoluteTolerance() != (Double) integratorAbsSpinner.getValue()) {
+					diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getIntegratorRelativeTolerance() != (Double) integratorRelSpinner.getValue()) {
+					diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getToleranceOnTime() != (Double) toleranceOnTimeSpinner.getValue()) {
+					diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getMaxIntegrationTimeinterval() != (Double) maxIntegrationTimeSpinner.getValue()) {
+					diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
+					diagram.setModified(true);
+				}
+				if (diagram.getMaximumStepSize() != ((Integer) maxStepSizeSpinner.getValue()).doubleValue()) {
+					diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
+					diagram.setModified(true);
+				}
 
 				windowAlreadyExist = false;
 				mainFrame.dispose();
