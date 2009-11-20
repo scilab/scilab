@@ -13,9 +13,6 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,18 +24,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
@@ -49,7 +41,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
@@ -66,16 +57,13 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
@@ -106,7 +94,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private static final String SCE_EXTENSION = ".sce";
 	private static final String ALL_SCI_FILES = "*.sci";
 	private static final String ALL_SCE_FILES = "*.sce";
-	private static final int BUTTON_SIZE = 17;
 	
 	private static Xpad editor;
 
@@ -129,7 +116,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	
 	//private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
 	
-	private static ButtonGroup group;
 	private File fileToEncode;
 	 
 	/**
@@ -269,8 +255,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	/**
 	 * Close Xpad instance including all tabs
 	 */
-	public static void closeXpad() {
-		
+	public static void closeXpad() {		
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
@@ -460,6 +445,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    return filename;
 	}
 	
+	/**
+	 * Return through a file selector the name of the selected
+	 * file 
+	 * @return the file picked up by the user 
+	 */
 	public String chooseFileToSave(){
 		String extension = new String();
 
@@ -728,7 +718,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoColorize(b);
 	}
 	
-	/*
+	/**
 	 * Add or remove '*' prefix in current tab tile according to isContentModified()
 	 */
 	public void updateTabTitle(){
@@ -769,6 +759,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 		}
 	}
+	
 	/**
 	 * Redo last modification
 	 */
@@ -980,10 +971,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	}
 	
+	/**
+	 * Return the Full path of the file
+	 * @return the full path
+	 */
 	public String getFileFullPath() {
 		return fileFullPath;
 	}
 	
+	/**
+	 * Dedicated class to read the file
+	 *
+	 */
 	private class ReadFileThread extends Thread{
   		
 		private File fileToRead;
