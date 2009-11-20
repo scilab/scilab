@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -269,6 +270,8 @@ public final class XcosPaletteManager {
 				    // Nothing is selected.
 				    return;
 
+				Dimension size = allpalettes.getLeftComponent().getSize();
+				allpalettes.getLeftComponent().setPreferredSize(size);
 				XcosPalette nodeInfo = (XcosPalette) node.getUserObject();
 				allpalettes.setRightComponent(nodeInfo);
 			    }
@@ -305,10 +308,10 @@ public final class XcosPaletteManager {
 
 		/* UI Layout specific operations */
 		paletteTree.expandRow(0);
+		allpalettes.getLeftComponent().setMinimumSize(paletteTree.getPreferredSize());
 		paletteTree.setSelectionRow(1);
 		paletteTree.setRootVisible(false);
-		allpalettes.getLeftComponent().setMinimumSize(
-			paletteTree.getPreferredSize());
+		allpalettes.setContinuousLayout(true);
 		allpalettes.setVisible(true);
 	    }
 	};
