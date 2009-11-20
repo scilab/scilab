@@ -44,9 +44,10 @@ public class SetContextAction extends DefaultAction {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JTextArea contextArea;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JTextArea contextArea;
+	private boolean windowAlreadyExist;
 	
 	/**
 	 * Constructor
@@ -57,25 +58,32 @@ public class SetContextAction extends DefaultAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		diagram = (XcosDiagram)getGraph(e);
-		setContextBox(diagram);
+		setContextBox(e);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SET_CONTEXT, null, new SetContextAction(scilabGraph), null);
+		SetContextAction action = new SetContextAction(scilabGraph);
+		((XcosDiagram) scilabGraph).setContextAction(action);
+		return createMenu(XcosMessages.SET_CONTEXT, null, action, null);
 	}
 	
-	public static void setContextBox(XcosDiagram diagramArgu){
+	public void setContextBox(ActionEvent e){
 		
-		diagram = diagramArgu;
+		/** Avoid to have this window created two times */
+		if (windowAlreadyExist) {
+			mainFrame.setVisible(true);
+			return;
+		}
 		
+		diagram = (XcosDiagram) getGraph(e);
         mainFrame = new JFrame();
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        windowAlreadyExist = true;
+        
         mainFrame.setLayout(new GridBagLayout());
 
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
         StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0 ; i < diagram.getContext().length ; i++){
+        for (int i = 0; i < diagram.getContext().length ; i++){
         	//System.out.println();
         	contextBuilder.append(diagram.getContext()[i]);
         	contextBuilder.append(System.getProperty("line.separator"));
@@ -127,6 +135,7 @@ public class SetContextAction extends DefaultAction {
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
@@ -154,16 +163,16 @@ public class SetContextAction extends DefaultAction {
 				}
 				
 				diagram.setContext(contextList.toArray(new String[i]));
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
 		
 		
 		mainFrame.setMinimumSize(textLabel.getPreferredSize());
-        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.setTitle(XcosMessages.SET_CONTEXT);
         mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setLocationRelativeTo(diagram.getAsComponent());
         mainFrame.setVisible(true);	
 	}
 }

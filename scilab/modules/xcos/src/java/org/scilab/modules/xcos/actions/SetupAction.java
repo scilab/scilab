@@ -95,7 +95,6 @@ public class SetupAction extends DefaultAction {
 		mainFrame = new JFrame();
 		windowAlreadyExist = true;
 
-
 		mainFrame.setLayout(new GridBagLayout());
 
 		diagram = (XcosDiagram) getGraph(e);
@@ -311,12 +310,8 @@ public class SetupAction extends DefaultAction {
 		});
 
 		setContextButton.addActionListener(new ActionListener() {
-
-
-
-
 			public void actionPerformed(ActionEvent e) {
-				SetContextAction.setContextBox(diagram);
+				diagram.getContextAction().actionPerformed(e);
 			}
 		});
 

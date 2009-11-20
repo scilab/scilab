@@ -125,6 +125,7 @@ public class XcosDiagram extends ScilabGraph {
     
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
+    private SetContextAction action;
     
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
@@ -1639,6 +1640,14 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private boolean isMacOsPopupTrigger(MouseEvent e) {
 		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+	}
+	
+	public void setContextAction(SetContextAction action) {
+		this.action = action;
+	}
+	
+	public SetContextAction getContextAction() {
+		return action;
 	}
 
 }
