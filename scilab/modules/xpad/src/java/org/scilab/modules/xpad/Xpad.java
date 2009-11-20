@@ -565,8 +565,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			    }
 			}
 
-			String doc = this.getTextPane().getText();
-
 			/*we test if the file has already a scilab extension*/
 			boolean hasNoExtension = true;
 
@@ -984,54 +982,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	
 	public String getFileFullPath() {
 		return fileFullPath;
-	}
-	
-	
-
-	/**
-	 * Button displayed on top of tabs
-	 * @author Bruno JOFRET
-	 */
-	private class TabButton extends JButton implements ActionListener {
-		
-		private static final long serialVersionUID = 2643702189238507205L;
-
-		/**
-		 * Constructor 
-		 */
-		public TabButton() {
-			int size = BUTTON_SIZE;
-			setPreferredSize(new Dimension(size, size));
-			setToolTipText(XpadMessages.CLOSE_TAB_TIP);
-
-			setUI(new BasicButtonUI());
-			//Make it transparent
-			setContentAreaFilled(false);
-			//No need to be focusable
-			setFocusable(false);
-			setBorder(BorderFactory.createEtchedBorder());
-			setBorderPainted(false);
-			setRolloverEnabled(true);
-			//Close the proper tab by clicking the button
-			addActionListener(this);            
-		}
-
-		/**
-		 * User actions management
-		 * @param e the action
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
-		public void actionPerformed(ActionEvent e) {
-
-		}
-
-		/**
-		 * Update management
-		 * @see javax.swing.JButton#updateUI()
-		 */
-		public void updateUI() {
-			//we don't want to update UI for this button
-		}
 	}
 	
 	private class ReadFileThread extends Thread{
