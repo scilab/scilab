@@ -183,8 +183,28 @@ public class SetContextAction extends DefaultAction {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
-				diagram.setContext(contextList.toArray(new String[i]));
+				/** Test for modifications */
+				String[] oldContext = diagram.getContext();
+				boolean modified = false;
+				/* I more or less lines --> modified */
+				if (oldContext.length != i) {
+					modified = true;
+				} else {
+					/* Compare line to line */
+					for (int lineNumber = 0; lineNumber < oldContext.length; lineNumber++) {
+						if (!oldContext[lineNumber].equals(contextList.get(lineNumber))) {
+							modified = true;
+						}
+					}
+				}
+				if (modified) {
+					if (i == 0) { /* Empty context */
+						diagram.setContext(new String[]{""});
+					} else {
+						diagram.setContext(contextList.toArray(new String[i]));
+					}
+					diagram.setModified(true);
+				}
 				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
