@@ -306,7 +306,6 @@ static bool export_double(int _iH5File, int *_piVar, char* _pstName)
 			return false;
 		}
 
-//		iRet = test_func(_iH5File, _pstName, iRows, iCols, pdblReal, pdblImg);
 		iRet = writeDoubleComplexMatrix(_iH5File, _pstName, iRows, iCols, pdblReal, pdblImg);
 	}
 	else

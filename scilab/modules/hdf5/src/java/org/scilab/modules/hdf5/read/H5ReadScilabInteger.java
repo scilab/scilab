@@ -48,7 +48,6 @@ public class H5ReadScilabInteger {
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT8 : HDF5Constants.H5T_NATIVE_INT8; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
 		for(int i = 0 ; i < nbElems[0] ; ++i) {
 		    for (int j = 0 ; j < nbElems[1] ; ++j) {
@@ -56,6 +55,7 @@ public class H5ReadScilabInteger {
 		    }
 		}
 		
+		H5.H5Dclose(dataSetId);
 		return result;
 	}
 	
@@ -66,7 +66,6 @@ public class H5ReadScilabInteger {
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT16 : HDF5Constants.H5T_NATIVE_INT16; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
 		for(int i = 0 ; i < nbElems[0] ; ++i) {
 		    for (int j = 0 ; j < nbElems[1] ; ++j) {
@@ -74,6 +73,7 @@ public class H5ReadScilabInteger {
 		    }
 		}
 
+		H5.H5Dclose(dataSetId);
 		return result;
 	}
 	
@@ -84,7 +84,6 @@ public class H5ReadScilabInteger {
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT32 : HDF5Constants.H5T_NATIVE_INT32; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
 		for(int i = 0 ; i < nbElems[0] ; ++i) {
 		    for (int j = 0 ; j < nbElems[1] ; ++j) {
@@ -92,6 +91,7 @@ public class H5ReadScilabInteger {
 		    }
 		}
 
+		H5.H5Dclose(dataSetId);
 		return result;
 	}
 	
@@ -102,7 +102,6 @@ public class H5ReadScilabInteger {
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT64 : HDF5Constants.H5T_NATIVE_INT64; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
 		for(int i = 0 ; i < nbElems[0] ; ++i) {
 		    for (int j = 0 ; j < nbElems[1] ; ++j) {
@@ -110,6 +109,7 @@ public class H5ReadScilabInteger {
 		    }
 		}
 
+		H5.H5Dclose(dataSetId);
 		return result;
 	}
 }
