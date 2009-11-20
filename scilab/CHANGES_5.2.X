@@ -101,6 +101,8 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
 
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
+
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
