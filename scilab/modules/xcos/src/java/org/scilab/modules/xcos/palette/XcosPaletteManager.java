@@ -55,7 +55,6 @@ public final class XcosPaletteManager {
     private static Thread paletteThread;
     private static boolean paletteLoadStarted;
     private static Tab palettes;
-    private static Map<String, BasicBlock> allBlocks = new HashMap<String, BasicBlock>();
 
     /**
      * Instantiate all the known names (default configuration)
@@ -212,14 +211,13 @@ public final class XcosPaletteManager {
      */
 	private static class PaletteDescriptor {
 		public String Name;
-		public PaletteBlockData[] Components;
+		public PaletteData[] Components;
 
-		public PaletteDescriptor(String name, PaletteBlockData[] components) {
+		public PaletteDescriptor(String name, PaletteData[] components) {
 			Name = name;
 			Components = components;
 		}
 		
-		@Override
 		public String toString() {
 			return Name;
 		}
@@ -228,10 +226,9 @@ public final class XcosPaletteManager {
 	/**
 	 * Represent any block data
 	 */
-	private static class PaletteBlockData {
+	private static class PaletteData {
 		public String Name;
 		public ImageIcon Icon;
-		public BasicBlock Block;
 
 		/**
 		 * Any PaletteBlock data (arguments of the
@@ -241,10 +238,9 @@ public final class XcosPaletteManager {
 		 * @param icon The icon of the block
 		 * @param block Extracted from PATH/BlockName.hf5
 		 */
-		public PaletteBlockData(String name, ImageIcon icon, BasicBlock block) {
+		public PaletteData(String name, ImageIcon icon) {
 			Name = name;
 			Icon = icon;
-			Block = block;
 		}
 	}
 	
@@ -279,7 +275,6 @@ public final class XcosPaletteManager {
 
 						});			
 				// Add a default Java bloc in HashMap
-				 allBlocks.put("TEXT_f", new TextBlock("TEXT_f"));
 				((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
 
 				allpalettes.setVisible(false);
@@ -293,8 +288,8 @@ public final class XcosPaletteManager {
 					
 					/* Perform UI update */
 					XcosPalette xcosPalette = new XcosPalette(paletteStringDescriptor.Name);
-					for (PaletteBlockData iter : currentDescriptor.Components) {
-						xcosPalette.addTemplate(iter.Name, iter.Icon, iter.Block);
+					for (PaletteData iter : currentDescriptor.Components) {
+						xcosPalette.addTemplate(iter.Name, iter.Icon);
 					}
 					rootNode.add(new DefaultMutableTreeNode(xcosPalette));
 				}
@@ -328,35 +323,18 @@ public final class XcosPaletteManager {
 		return palettes;
 	}
 
-    private static PaletteBlockData[] createPaletteData(String[] blocksNames) {
+    private static PaletteData[] createPaletteData(String[] blocksNames) {
 
-		PaletteBlockData[] xcosPalette = new PaletteBlockData[blocksNames.length];
+		PaletteData[] xcosPalette = new PaletteData[blocksNames.length];
 
-		final String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 		final String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
 
-		BasicBlock theBloc = null;
+		//BasicBlock theBloc = null;
 
 		for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-			// Search the bloc in global hashmap
-			theBloc = allBlocks.get(blocksNames[kBlock]);
-
-			// If not found then create it
-			if (theBloc == null) {
-				theBloc = BlockReader.readBlockFromFile(blocksPath
-						+ blocksNames[kBlock] + ".h5");
-				allBlocks.put(blocksNames[kBlock], theBloc);
-			}
-
-			if (theBloc.getStyle().compareTo("") == 0) {
-				theBloc.setStyle(theBloc.getInterfaceFunctionName());
-				theBloc.setValue(theBloc.getInterfaceFunctionName());
-			}
-
-			xcosPalette[kBlock] = new PaletteBlockData(
+			xcosPalette[kBlock] = new PaletteData(
 					blocksNames[kBlock],
-					new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"),
-					theBloc);
+					new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"));
 
 		}
 
