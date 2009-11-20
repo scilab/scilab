@@ -27,6 +27,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -72,7 +73,7 @@ public final class OpenAction extends DefaultAction {
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 
 		/* Standard files */
-		String[] mask = new String[]{"*.cos*", "*.xcos"};
+		String[] mask = XcosFileType.getValidFileMask();
 		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
 		
 		fc.setMultipleSelection(false);
