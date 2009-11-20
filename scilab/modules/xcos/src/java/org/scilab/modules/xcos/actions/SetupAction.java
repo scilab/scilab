@@ -30,104 +30,129 @@ import javax.swing.SpinnerNumberModel;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-
+/**
+ * Setup dialog dor Xcos
+ * @author Allan SIMON
+ */
 public class SetupAction extends DefaultAction {
 
-	private static boolean windowAlreadyExist ;
-	private JFrame mainFrame ;
-	private XcosDiagram diagram ;
+	private static final long serialVersionUID = 1L;
+	
+	private boolean windowAlreadyExist;
+	private JFrame mainFrame;
+	private XcosDiagram diagram;
 	private JSpinner integrationSpinner;
 	private JSpinner rtsSpinner;
 	private JSpinner integratorAbsSpinner;
 	private JSpinner integratorRelSpinner;
 	private JSpinner toleranceOnTimeSpinner;
 	private JSpinner maxIntegrationTimeSpinner;
-	private Choice   solverChoice ;
+	private Choice   solverChoice;
 	private JSpinner maxStepSizeSpinner;
 
+	/**
+	 * Constructor
+	 * @param scilabGraph Associated Scilab Graph
+	 */
 	public SetupAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SETUP,scilabGraph);
+		super(XcosMessages.SETUP, scilabGraph);
 	}
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.SETUP, null, new SetupAction(scilabGraph));
-	}
-
+	/**
+	 * Create corresponding menu
+	 * @param scilabGraph Associated Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SETUP, null, new SetupAction(scilabGraph), null);
 	}
 
+	/**
+	 * Action !
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		setupBox(e);
 	}
 
 
-	public void setupBox (ActionEvent e) {
+	/**
+	 * Create the setup Window
+	 * @param e the event
+	 */
+	public void setupBox(ActionEvent e) {
+
+		/** Avoid to have this window created two times */
+		if (windowAlreadyExist) {
+			mainFrame.setVisible(true);
+			return;
+		}
 
 		mainFrame = new JFrame();
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windowAlreadyExist = true;
+
+
 		mainFrame.setLayout(new GridBagLayout());
 
-		diagram = (XcosDiagram)getGraph(e);
-
+		diagram = (XcosDiagram) getGraph(e);
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getFinalIntegrationTime() ,null,null, 0.01);
-		integrationSpinner = new JSpinner( );
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(diagram.getFinalIntegrationTime() , null, null, 0.01);
+		integrationSpinner = new JSpinner();
 		integrationSpinner.setModel(spinnerModel);
-		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner,"0.00"));
+		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner, "0.00"));
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
-		spinnerModel = new SpinnerNumberModel(diagram.getRealTimeScaling() ,null,null, 0.1);
-		rtsSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel(diagram.getRealTimeScaling() , null, null, 0.1);
+		rtsSpinner = new JSpinner();
 		rtsSpinner.setModel(spinnerModel);
-		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner,"0.0"));
+		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner, "0.0"));
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
-		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorAbsoluteTolerance(),null,null, 0.00001);
-		integratorAbsSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorAbsoluteTolerance(), null, null, 0.00001);
+		integratorAbsSpinner = new JSpinner();
 		integratorAbsSpinner.setModel(spinnerModel);
-		integratorAbsSpinner.setEditor(new JSpinner.NumberEditor(integratorAbsSpinner,"0.00000"));
+		integratorAbsSpinner.setEditor(new JSpinner.NumberEditor(integratorAbsSpinner, "0.00000"));
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
-		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorRelativeTolerance(),null,null, 0.0000001);
-		integratorRelSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel(diagram.getIntegratorRelativeTolerance(), null, null, 0.0000001);
+		integratorRelSpinner = new JSpinner();
 		integratorRelSpinner.setModel(spinnerModel);
-		integratorRelSpinner.setEditor(new JSpinner.NumberEditor(integratorRelSpinner,"0.0000000"));
+		integratorRelSpinner.setEditor(new JSpinner.NumberEditor(integratorRelSpinner, "0.0000000"));
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
-		spinnerModel = new SpinnerNumberModel(diagram.getToleranceOnTime(),null,null,1.000E-11);
-		toleranceOnTimeSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel(diagram.getToleranceOnTime(), null, null, 1.000E-11);
+		toleranceOnTimeSpinner = new JSpinner();
 		toleranceOnTimeSpinner.setModel(spinnerModel);
-		toleranceOnTimeSpinner.setEditor(new JSpinner.NumberEditor(toleranceOnTimeSpinner,"0.000E00"));
+		toleranceOnTimeSpinner.setEditor(new JSpinner.NumberEditor(toleranceOnTimeSpinner, "0.000E00"));
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
-		spinnerModel = new SpinnerNumberModel(diagram.getMaxIntegrationTimeinterval(),null,null, 1);
-		maxIntegrationTimeSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel(diagram.getMaxIntegrationTimeinterval(), null, null, 1);
+		maxIntegrationTimeSpinner = new JSpinner();
 		maxIntegrationTimeSpinner.setModel(spinnerModel);
-		maxIntegrationTimeSpinner.setEditor(new JSpinner.NumberEditor(maxIntegrationTimeSpinner,"0"));
+		maxIntegrationTimeSpinner.setEditor(new JSpinner.NumberEditor(maxIntegrationTimeSpinner, "0"));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 		solverChoice = new Choice();
 		solverChoice.addItem(XcosMessages.CVODE);
 		solverChoice.addItem(XcosMessages.IDA);
-		if ( diagram.getSolver() == 0.0 ){
+		if (diagram.getSolver() == 0.0) {
 			solverChoice.select(0);
 		} else {
 			solverChoice.select(1);
 		}
-		
+
 
 
 		JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
-		spinnerModel = new SpinnerNumberModel((int)diagram.getMaximumStepSize(),0,null, 1);
-		maxStepSizeSpinner = new JSpinner( );
+		spinnerModel = new SpinnerNumberModel((int) diagram.getMaximumStepSize(), 0, null, 1);
+		maxStepSizeSpinner = new JSpinner();
 		maxStepSizeSpinner.setModel(spinnerModel);
-		maxStepSizeSpinner.setEditor(new JSpinner.NumberEditor(maxStepSizeSpinner,"0"));//0.####E0
+		maxStepSizeSpinner.setEditor(new JSpinner.NumberEditor(maxStepSizeSpinner, "0"));
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -154,31 +179,31 @@ public class SetupAction extends DefaultAction {
 		gbc.insets = new Insets(0, 10, 0, 0);
 
 
-		mainFrame.add( integrationLabel, gbc);
+		mainFrame.add(integrationLabel, gbc);
 
 		gbc.gridy = 5;
-		mainFrame.add( rtsLabel , gbc);
+		mainFrame.add(rtsLabel, gbc);
 
 		gbc.gridy = 6;
-		mainFrame.add( integratorAbsLabel , gbc);
+		mainFrame.add(integratorAbsLabel, gbc);
 
 		gbc.gridy = 7;
-		mainFrame.add( integratorRelLabel , gbc);
+		mainFrame.add(integratorRelLabel, gbc);
 
 		gbc.gridy = 8;
-		mainFrame.add( toleranceOnTimeLabel , gbc);
+		mainFrame.add(toleranceOnTimeLabel, gbc);
 
 		gbc.gridy = 9;
-		mainFrame.add( maxIntegrationTimeLabel , gbc);
+		mainFrame.add(maxIntegrationTimeLabel, gbc);
 
 		gbc.gridy = 10;
-		mainFrame.add( solverLabel , gbc);
+		mainFrame.add(solverLabel, gbc);
 
 		gbc.gridy = 11;
-		mainFrame.add( maxStepSizeLabel , gbc);
-		
+		mainFrame.add(maxStepSizeLabel, gbc);
+
 		gbc.gridy = 12;
-		mainFrame.add( setContextButton , gbc);
+		mainFrame.add(setContextButton, gbc);
 
 
 		gbc.gridx = 1;
@@ -189,25 +214,25 @@ public class SetupAction extends DefaultAction {
 		mainFrame.add(integrationSpinner, gbc);
 
 		gbc.gridy = 5;
-		mainFrame.add( rtsSpinner , gbc);
+		mainFrame.add(rtsSpinner, gbc);
 
 		gbc.gridy = 6;
-		mainFrame.add( integratorAbsSpinner , gbc);
+		mainFrame.add(integratorAbsSpinner, gbc);
 
 		gbc.gridy = 7;
-		mainFrame.add( integratorRelSpinner , gbc);
+		mainFrame.add(integratorRelSpinner, gbc);
 
 		gbc.gridy = 8;
-		mainFrame.add( toleranceOnTimeSpinner , gbc);
+		mainFrame.add(toleranceOnTimeSpinner, gbc);
 
 		gbc.gridy = 9;
-		mainFrame.add( maxIntegrationTimeSpinner , gbc);
+		mainFrame.add(maxIntegrationTimeSpinner, gbc);
 
 		gbc.gridy = 10;
-		mainFrame.add( solverChoice, gbc);
+		mainFrame.add(solverChoice, gbc);
 
 		gbc.gridy = 11;
-		mainFrame.add( maxStepSizeSpinner , gbc);
+		mainFrame.add(maxStepSizeSpinner, gbc);
 
 
 		gbc.gridx = 1;
@@ -223,7 +248,7 @@ public class SetupAction extends DefaultAction {
 		gbc.weightx = 0.;
 		gbc.insets = new Insets(5, 0, 10, 10);
 		mainFrame.add(cancelButton, gbc);
-		
+
 
 		gbc.gridx = 3;
 		gbc.weightx = 0.;
@@ -234,13 +259,12 @@ public class SetupAction extends DefaultAction {
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				SetupAction.windowAlreadyExist= false ;
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
 
 		defaultButton.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 
 				integrationSpinner.setValue(100000.0);//TODO thou shall not let value hardcoded!
@@ -250,42 +274,38 @@ public class SetupAction extends DefaultAction {
 				toleranceOnTimeSpinner.setValue(1e-10);
 				maxIntegrationTimeSpinner.setValue(100001.0);
 				solverChoice.select(0);
-				maxStepSizeSpinner.setValue(0.0);
+				maxStepSizeSpinner.setValue(0);
 
-				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
-				diagram.setRealTimeScaling((Double)rtsSpinner.getValue())   ;
-				diagram.setIntegratorAbsoluteTolerance((Double)integratorAbsSpinner.getValue() );
-				diagram.setIntegratorRelativeTolerance((Double)integratorRelSpinner.getValue() ) ;
-				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
-				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
-				diagram.setSolver(0) ;
-				diagram.setMaximumStepSize( ((Double)maxStepSizeSpinner.getValue()).doubleValue())  ;
+				diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
+				diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
+				diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
+				diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
+				diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
+				diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
+				diagram.setSolver(0);
+				diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
 			}
 		});
 
 		okButton.addActionListener(new ActionListener() {
-
-
-
-
 			public void actionPerformed(ActionEvent e) {
 
-				if ( solverChoice.getSelectedItem().equals(XcosMessages.CVODE) ){
-					diagram.setSolver(0) ;
+				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
+					diagram.setSolver(0);
 				} else {
 					diagram.setSolver(100); 
 				}
 
-				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
-				diagram.setRealTimeScaling((Double)rtsSpinner.getValue())   ;
-				diagram.setIntegratorAbsoluteTolerance((Double)integratorAbsSpinner.getValue() );
-				diagram.setIntegratorRelativeTolerance((Double)integratorRelSpinner.getValue() ) ;
-				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
-				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
-				
-				diagram.setMaximumStepSize( ((Integer)maxStepSizeSpinner.getValue()).doubleValue())  ;
+				diagram.setFinalIntegrationTime((Double) integrationSpinner.getValue());
+				diagram.setRealTimeScaling((Double) rtsSpinner.getValue());
+				diagram.setIntegratorAbsoluteTolerance((Double) integratorAbsSpinner.getValue());
+				diagram.setIntegratorRelativeTolerance((Double) integratorRelSpinner.getValue());
+				diagram.setToleranceOnTime((Double) toleranceOnTimeSpinner.getValue());
+				diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTimeSpinner.getValue());
 
-				SetupAction.windowAlreadyExist= false ;
+				diagram.setMaximumStepSize(((Integer) maxStepSizeSpinner.getValue()).doubleValue());
+
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
@@ -293,7 +313,7 @@ public class SetupAction extends DefaultAction {
 		setContextButton.addActionListener(new ActionListener() {
 
 
-			
+
 
 			public void actionPerformed(ActionEvent e) {
 				SetContextAction.setContextBox(diagram);
@@ -302,7 +322,7 @@ public class SetupAction extends DefaultAction {
 
 		//display the frame and set some properties
 
-		mainFrame.addWindowListener( new WindowListener(){
+		mainFrame.addWindowListener(new WindowListener() {
 			public void windowClosed(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 
@@ -316,7 +336,7 @@ public class SetupAction extends DefaultAction {
 
 			}
 			public void windowClosing(WindowEvent arg0) {
-				SetupAction.windowAlreadyExist = false ;
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 
 			}
@@ -332,16 +352,11 @@ public class SetupAction extends DefaultAction {
 
 			}
 
-		} );
-
-
+		});
 
 		mainFrame.setTitle(XcosMessages.SETUP_TITLE);
 		mainFrame.pack();
-		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setLocationRelativeTo(getGraph(e).getAsComponent());
 		mainFrame.setVisible(true);	
 	}
-
-
-
 }

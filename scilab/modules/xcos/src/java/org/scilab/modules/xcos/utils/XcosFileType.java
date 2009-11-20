@@ -21,7 +21,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
-	COSF("cosf") {
+	COSF("cosf", XcosMessages.FILE_COSF) {
 		public File exportToHdf5(File arg0) {
 			File tempOutput = null;
 			try {
@@ -38,7 +38,7 @@ public enum XcosFileType {
 			return tempOutput;
 		}
 	},
-	COS("cos") {
+	COS("cos", XcosMessages.FILE_COS) {
 		public File exportToHdf5(File arg0) {
 			File tempOutput = null;
 			try {
@@ -55,19 +55,26 @@ public enum XcosFileType {
 			return tempOutput;
 		}
 	},
-	XCOS("xcos"),
-	HDF5("h5") {
+	XCOS("xcos", XcosMessages.FILE_XCOS),
+	HDF5("h5", XcosMessages.FILE_HDF5) {
 		public File exportToHdf5(File arg0) {
 			return arg0;
 		}
 	},
-	UNKNOW("");
+	UNKNOW("", "");
 	
 	
 	private String extension;
+	private String description;
 	
-	XcosFileType (String extension) {
+	/**
+	 * Default constructor
+	 * @param extension file extension (without the dot)
+	 * @param description file description
+	 */
+	XcosFileType (String extension, String description) {
 		this.extension = extension;
+		this.description = description;
 	}
 	
 	/**
@@ -85,6 +92,13 @@ public enum XcosFileType {
 	}
 	
 	/**
+	 * @return the file description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	
+	/**
 	 * Find a filetype by the filename extension
 	 * @param theFile Current file
 	 * @return The determined filetype
@@ -98,7 +112,7 @@ public enum XcosFileType {
 		}
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
-			if (extension.equals(currentFileType.extension)) {
+			if (extension.compareToIgnoreCase(currentFileType.extension) == 0) {
 				return currentFileType;
 			}
 		}
@@ -126,6 +140,20 @@ public enum XcosFileType {
 	 * @return The created file
 	 */
 	public File exportToHdf5(File file) {
-		return null;
+	    throw new Error("Not implemented operation");
+	}
+	
+	/**
+	 * Get a valid file mask (useable by file selector)
+	 * @return A valid file mask
+	 */
+	public static String[] getValidFileMask() {
+	    String[] result = new String[XcosFileType.values().length-1];
+	    
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = "*." + XcosFileType.values()[i].getExtension();
+	    }
+	    
+	    return result;
 	}
 }
