@@ -1190,7 +1190,8 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
-	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", "Xcos file (XML)", 0);
+	    XcosFileType defaultFileType = XcosFileType.getDefault();
+	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
 //	    FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter("Xcos file (XML)", "xcos");
 	    fc.addChoosableFileFilter(xcosFilter);
 	    fc.setFileFilter(xcosFilter);
