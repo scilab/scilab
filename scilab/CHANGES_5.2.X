@@ -128,6 +128,8 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5336 fixed - xcos palette tabs now loaded fastly.
+
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
