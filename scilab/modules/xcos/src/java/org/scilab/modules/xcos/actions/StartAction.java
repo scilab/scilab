@@ -51,7 +51,7 @@ public class StartAction  extends DefaultAction {
 	try {
 	    temp = File.createTempFile("xcos",".hdf5");
 	    temp.delete();
-	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(simulationEnd);
