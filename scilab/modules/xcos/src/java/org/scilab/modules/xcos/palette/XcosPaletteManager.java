@@ -249,66 +249,75 @@ public final class XcosPaletteManager {
 	paletteThread = new Thread() {
 	    public void run() {
 
-				final JSplitPane allpalettes = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-				final XcosPalette rootPalette = new XcosPalette(XcosMessages.PALETTES);
-				DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootPalette);
-				TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
-				final JTree paletteTree = new JTree(paletteTreeModel);
-				
-				allpalettes.setRightComponent(rootPalette);
-				allpalettes.setLeftComponent(new JScrollPane(paletteTree));
-				
-				paletteTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-				paletteTree
-						.addTreeSelectionListener(new TreeSelectionListener() {
-							
-							public void valueChanged(TreeSelectionEvent tree) {
-								DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree.getLastSelectedPathComponent();
+		final JSplitPane allpalettes = new JSplitPane(
+			JSplitPane.HORIZONTAL_SPLIT);
+		final XcosPalette rootPalette = new XcosPalette(
+			XcosMessages.PALETTES);
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
+			rootPalette);
+		TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
+		final JTree paletteTree = new JTree(paletteTreeModel);
 
-								if (node == null)
-									// Nothing is selected.
-									return;
+		allpalettes.setRightComponent(rootPalette);
+		allpalettes.setLeftComponent(new JScrollPane(paletteTree));
 
-								XcosPalette nodeInfo = (XcosPalette) node.getUserObject();
-								allpalettes.setRightComponent(nodeInfo);
-							}
+		paletteTree.getSelectionModel().setSelectionMode(
+			TreeSelectionModel.SINGLE_TREE_SELECTION);
+		paletteTree.addTreeSelectionListener(new TreeSelectionListener() {
 
-						});			
-				// Add a default Java bloc in HashMap
-				((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
+			    public void valueChanged(TreeSelectionEvent tree) {
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree
+					.getLastSelectedPathComponent();
 
-				allpalettes.setVisible(false);
-				palettes.setVisible(true);
-				
-				for (PaletteStringDescriptor paletteStringDescriptor : allPalettesStringDescriptor) {
-					/* Doesn't perform UI update */
-					PaletteDescriptor currentDescriptor = new PaletteDescriptor(
-							paletteStringDescriptor.Name,
-							createPaletteData(paletteStringDescriptor.Components));
-					
-					/* Perform UI update */
-					XcosPalette xcosPalette = new XcosPalette(paletteStringDescriptor.Name);
-					for (PaletteData iter : currentDescriptor.Components) {
-						xcosPalette.addTemplate(iter.Name, iter.Icon);
-					}
-					rootNode.add(new DefaultMutableTreeNode(xcosPalette));
-				}
+				if (node == null)
+				    // Nothing is selected.
+				    return;
 
-				synchronized (this) {
-					this.notifyAll();
-				}
+				XcosPalette nodeInfo = (XcosPalette) node
+					.getUserObject();
+				allpalettes.setRightComponent(nodeInfo);
+			    }
 
-				paletteLoadStarted = true;
-				palettes.getAsSimpleTab().getInfoBar().setText(XcosMessages.EMPTY_INFO);
-				
-				/* UI Layout specific operations */
-				paletteTree.expandRow(0);
-				paletteTree.setSelectionRow(1);
-				paletteTree.setRootVisible(false);
-				allpalettes.getLeftComponent().setMinimumSize(paletteTree.getPreferredSize());
-				allpalettes.setVisible(true);
-			}
-		};
+			});
+		// Add a default Java bloc in HashMap
+		((SwingScilabTab) palettes.getAsSimpleTab())
+			.setContentPane(allpalettes);
+
+		allpalettes.setVisible(false);
+		palettes.setVisible(true);
+
+		for (PaletteStringDescriptor paletteStringDescriptor : allPalettesStringDescriptor) {
+		    /* Doesn't perform UI update */
+		    PaletteDescriptor currentDescriptor = new PaletteDescriptor(
+			    paletteStringDescriptor.Name,
+			    createPaletteData(paletteStringDescriptor.Components));
+
+		    /* Perform UI update */
+		    XcosPalette xcosPalette = new XcosPalette(
+			    paletteStringDescriptor.Name);
+		    for (PaletteData iter : currentDescriptor.Components) {
+			xcosPalette.addTemplate(iter.Name, iter.Icon);
+		    }
+		    rootNode.add(new DefaultMutableTreeNode(xcosPalette));
+		}
+
+		synchronized (this) {
+		    this.notifyAll();
+		}
+
+		paletteLoadStarted = true;
+		palettes.getAsSimpleTab().getInfoBar().setText(
+			XcosMessages.EMPTY_INFO);
+
+		/* UI Layout specific operations */
+		paletteTree.expandRow(0);
+		paletteTree.setSelectionRow(1);
+		paletteTree.setRootVisible(false);
+		allpalettes.getLeftComponent().setMinimumSize(
+			paletteTree.getPreferredSize());
+		allpalettes.setVisible(true);
+	    }
+	};
     }
 
     private XcosPaletteManager() {
