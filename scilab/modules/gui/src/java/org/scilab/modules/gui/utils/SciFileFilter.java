@@ -16,6 +16,7 @@ import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Generic file filter used for Scilab file selection GUIs
@@ -40,17 +41,17 @@ public class SciFileFilter extends FileFilter {
 		if (maskdescription == null) {
 
 			if (fileMask.equals("*.sci")) {
-				description = "Scilab SCI files (*.sci)";
+				description = Messages.gettext("Scilab SCI files") + "(*.sci)";
 			} else if (fileMask.equals("*.sce")) {
-				description = "Scilab SCE files (*.sce)";
+				description = Messages.gettext("Scilab SCE files") + "(*.sce)";
 			} else if (fileMask.equals("*.bin")) {
-				description = "Scilab binary files (*.bin)";
+				description = Messages.gettext("Scilab binary files") + "(*.bin)";
 			} else if (fileMask.equals("*.sc*")) {
-				description = "All Scilab files (*.sc*)";
-			} else if (fileMask.equals("*.cos*")) {
-				description = "Scicos files (*.cos*)";
+				description = Messages.gettext("All Scilab files") + "(*.sc*)";
+			} else if (fileMask.equals("*.xcos")) {
+				description = Messages.gettext("Xcos files") + "(*.xcos)";
 			} else {
-				description = "All " + fileMask + " files";
+				description = String.format(Messages.gettext("All %s files"), fileMask);
 			}
 
 		} else {

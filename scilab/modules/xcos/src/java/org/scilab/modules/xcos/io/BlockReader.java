@@ -77,7 +77,7 @@ public class BlockReader {
 			return null;
 		} catch (VersionMismatchException e) {
 		    //    UNKNOW_VERSION TRY_TO_CONTINUE
-		    ScilabModalDialog.show(new String[]{XcosMessages.UNKNOW_VERSION + e.getVersion(), 
+		    ScilabModalDialog.show(null, new String[]{XcosMessages.UNKNOW_VERSION + e.getVersion(), 
 			    XcosMessages.TRY_TO_CONTINUE}, XcosMessages.FAIL_LOADING_DIAGRAM, IconType.ERROR_ICON);
 		} 
 

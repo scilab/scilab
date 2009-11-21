@@ -49,6 +49,9 @@ Bug fixes:
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
+* bug 3849 fixed - Path selected for graphics export is now memorized and used
+                   as default for next export file selection.
+
 * bug 4401 fixed - isnum returned wrong values.
 
 * bug 4565 fixed - getvalue macro is definied two times.
@@ -59,6 +62,8 @@ Bug fixes:
                    what is the meaning of the output variable.
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
 
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
@@ -80,6 +85,8 @@ Bug fixes:
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
 
+* bug 5266 fixed - Modelica demos made available in MacOS binary version.
+
 * bug 5235 fixed - Error message added when launching Scicos
 
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
@@ -93,6 +100,8 @@ Bug fixes:
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
+
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
 
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
@@ -119,6 +128,8 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5336 fixed - xcos palette tabs now loaded fastly.
+
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
@@ -140,10 +151,14 @@ Bug fixes:
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
 
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
+
+* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
@@ -1234,6 +1249,8 @@ Bug fixes:
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
 * bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
 
 * bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
 

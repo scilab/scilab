@@ -34,7 +34,7 @@ public class SaveAsAction extends DefaultAction {
     public void doAction() {
 
 	if (!getEditor().saveAs(getEditor().getTextPane())) {
-	    ScilabModalDialog.show(XpadMessages.COULD_NOT_SAVE_FILE,
+	    ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
 		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 	}
 

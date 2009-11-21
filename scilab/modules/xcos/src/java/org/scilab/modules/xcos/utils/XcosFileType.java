@@ -13,22 +13,68 @@
 package org.scilab.modules.xcos.utils;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
-	COSF("cosf"),
-	COS("cos"),
-	XCOS("xcos"),
-	HDF5("h5"),
-	UNKNOW("");
+	COSF("cosf", XcosMessages.FILE_COSF) {
+		public File exportToHdf5(File arg0) {
+			File tempOutput = null;
+			try {
+				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+				String cmd = "exec(\"" + arg0.getAbsolutePath() + "\", -1);";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				System.err.println(cmd);
+				InterpreterManagement.requestScilabExec(cmd);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Signal.wait(tempOutput.getAbsolutePath());
+			return tempOutput;
+		}
+	},
+	COS("cos", XcosMessages.FILE_COS) {
+		public File exportToHdf5(File arg0) {
+			File tempOutput = null;
+			try {
+				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+				String cmd = "load(\"" + arg0.getAbsolutePath() + "\");";
+				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+				System.err.println(cmd);
+				InterpreterManagement.requestScilabExec(cmd);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Signal.wait(tempOutput.getAbsolutePath());
+			return tempOutput;
+		}
+	},
+	XCOS("xcos", XcosMessages.FILE_XCOS),
+	HDF5("h5", XcosMessages.FILE_HDF5) {
+		public File exportToHdf5(File arg0) {
+			return arg0;
+		}
+	},
+	UNKNOW("", "");
 	
 	
 	private String extension;
+	private String description;
 	
-	XcosFileType (String extension) {
+	/**
+	 * Default constructor
+	 * @param extension file extension (without the dot)
+	 * @param description file description
+	 */
+	XcosFileType (String extension, String description) {
 		this.extension = extension;
+		this.description = description;
 	}
 	
 	/**
@@ -46,6 +92,13 @@ public enum XcosFileType {
 	}
 	
 	/**
+	 * @return the file description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	
+	/**
 	 * Find a filetype by the filename extension
 	 * @param theFile Current file
 	 * @return The determined filetype
@@ -59,7 +112,7 @@ public enum XcosFileType {
 		}
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
-			if (extension.equals(currentFileType.extension)) {
+			if (extension.compareToIgnoreCase(currentFileType.extension) == 0) {
 				return currentFileType;
 			}
 		}
@@ -70,14 +123,37 @@ public enum XcosFileType {
 	/** 
 	 * @return the Xcos default filetype
 	 */
-	public XcosFileType getDefault() {
+	public static XcosFileType getDefault() {
 		return XcosFileType.XCOS;
 	}
 	
 	/** 
 	 * @return the Scilab default filetype
 	 */
-	public XcosFileType getScilabFileType() {
+	public static XcosFileType getScilabFileType() {
 		return XcosFileType.HDF5;
+	}
+	
+	/**
+	 * Convert the file passed as an argument to Hdf5.
+	 * @param file The file to convert
+	 * @return The created file
+	 */
+	public File exportToHdf5(File file) {
+	    throw new Error("Not implemented operation");
+	}
+	
+	/**
+	 * Get a valid file mask (useable by file selector)
+	 * @return A valid file mask
+	 */
+	public static String[] getValidFileMask() {
+	    String[] result = new String[XcosFileType.values().length-1];
+	    
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = "*." + XcosFileType.values()[i].getExtension();
+	    }
+	    
+	    return result;
 	}
 }

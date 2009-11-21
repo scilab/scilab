@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
+import org.scilab.modules.gui.tab.Tab;
 
 /**
  * Bridge dedicated to Scilab Message Boxes
@@ -195,6 +196,15 @@ public class ScilabMessageBoxBridge {
 	 */
 	public static void setIcon(MessageBox messageBox, String name) {
 		messageBox.getAsSimpleMessageBox().setIcon(name);
+	}
+	
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param messageBox the MessageBox we want to set the parent of
+	 * @param parent the tab to be set as parent
+	 */
+	public static void setParentForLocation(MessageBox messageBox, Tab parent) {
+		messageBox.getAsSimpleMessageBox().setParentForLocation(parent);
 	}
 
 }
