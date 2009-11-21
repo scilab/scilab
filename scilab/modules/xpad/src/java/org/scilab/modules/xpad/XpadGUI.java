@@ -77,7 +77,7 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class XpadGUI { 
+public class XpadGUI {
 	private static JRadioButtonMenuItem[] radioTypes;
 	private static MenuItem evaluateSelectionMenuItem;
 
@@ -87,7 +87,7 @@ public class XpadGUI {
 		mainWindow.setTitle(title);
 		mainWindow.addTab(editorInstance);
 
-		// Set Xpad Window position /size 
+		// Set Xpad Window position /size
 		mainWindow.setPosition(ConfigXpadManager.getMainWindowPosition());
 		mainWindow.setDims(ConfigXpadManager.getMainWindowSize());
 
@@ -245,8 +245,15 @@ public class XpadGUI {
 		mainWindow.setTitle(title);
 		mainWindow.setVisible(true);
 	}
+
+	/**
+	 * Update the selected item in the encoding pull down menu of the document.
+	 * @param scilabDocument the document for which the encoding menu should
+	 * be updated
+	 */
 	public void updateEncodingMenu(ScilabStyleDocument scilabDocument) {
-		if (radioTypes != null ) {
+
+		if (radioTypes != null) {
 			for (int k = 0; k < radioTypes.length; k++) {
 
 				if (scilabDocument.getScilabDocument() instanceof ScilabStyleDocument) {
