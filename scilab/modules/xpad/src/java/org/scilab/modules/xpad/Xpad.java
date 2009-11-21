@@ -13,9 +13,7 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,18 +25,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
@@ -49,7 +42,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.DefaultEditorKit;
@@ -66,58 +58,25 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.xpad.actions.AboutAction;
-import org.scilab.modules.xpad.actions.AutoIndentAction;
-import org.scilab.modules.xpad.actions.CloseAction;
-import org.scilab.modules.xpad.actions.ColorizeAction;
-import org.scilab.modules.xpad.actions.CommentAction;
-import org.scilab.modules.xpad.actions.CopyAction;
-import org.scilab.modules.xpad.actions.CutAction;
-import org.scilab.modules.xpad.actions.DeleteAction;
-import org.scilab.modules.xpad.actions.EncodingAction;
-import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
-import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
-import org.scilab.modules.xpad.actions.HelpAction;
-import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
-import org.scilab.modules.xpad.actions.IndentAction;
-import org.scilab.modules.xpad.actions.LineNumbersAction;
-import org.scilab.modules.xpad.actions.LoadIntoScilabAction;
-import org.scilab.modules.xpad.actions.NewAction;
-import org.scilab.modules.xpad.actions.OpenAction;
-import org.scilab.modules.xpad.actions.PageSetupAction;
-import org.scilab.modules.xpad.actions.PasteAction;
-import org.scilab.modules.xpad.actions.PrintAction;
-import org.scilab.modules.xpad.actions.PrintPreviewAction;
 import org.scilab.modules.xpad.actions.RecentFileAction;
-import org.scilab.modules.xpad.actions.RedoAction;
-import org.scilab.modules.xpad.actions.ResetFontAction;
-import org.scilab.modules.xpad.actions.SaveAction;
-import org.scilab.modules.xpad.actions.SaveAsAction;
-import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
-import org.scilab.modules.xpad.actions.SetFontAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
-import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
-import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -136,7 +95,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private static final String SCE_EXTENSION = ".sce";
 	private static final String ALL_SCI_FILES = "*.sci";
 	private static final String ALL_SCE_FILES = "*.sce";
-	private static final int BUTTON_SIZE = 17;
 	
 	private static Xpad editor;
 
@@ -157,12 +115,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 	
 	private String fileFullPath = "";
 	
-	private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
+	//private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
 	
-	private static ButtonGroup group;
-	private static JRadioButtonMenuItem[] radioTypes;
 	private File fileToEncode;
-
+	 
 	/**
 	 * Create Xpad instance inside parent Window
 	 * @param parentWindow the parent Window
@@ -276,9 +232,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		JTextPane theTextPane = editorInstance.addEmptyTab();
 		ScilabStyleDocument styleDocument = (ScilabStyleDocument) theTextPane.getStyledDocument();
 		try {
-			editorInstance.getEditorKit().read(new StringReader(text),styleDocument,0);
+			editorInstance.getEditorKit().read(new StringReader(text), styleDocument, 0);
 			boolean colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-			if(colorStatus == false) {
+			if (!colorStatus) {
 				editorInstance.getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
 			} else {
 				editorInstance.getInfoBar().setText("");
@@ -305,8 +261,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	/**
 	 * Close Xpad instance including all tabs
 	 */
-	public static void closeXpad() {
-		
+	public static void closeXpad() {		
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
@@ -376,7 +331,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return execution status
 	 */
 
-	public boolean save(int indexTab){
+	public boolean save(int indexTab) {
 	    return save(indexTab, false, false);
 	}
 
@@ -387,7 +342,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return execution status
 	 */
 
-	public boolean save(int indexTab, boolean force){
+	public boolean save(int indexTab, boolean force) {
 	    return save(indexTab, force, false);
 	}
 	
@@ -403,11 +358,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
-		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified() == false) {
+		if (!((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
 			return true;
 		}
 
-		if(force == false){
+		if (!force) {
 
 		    AnswerOption answer;  
 		    if(scilabClose == true) {
@@ -418,21 +373,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 		    }
 
-		    switch(answer)
-		    {
+		    switch (answer) {
 		    case YES_OPTION : //Yes, continue
-			break;
+		    	break;
 		    case NO_OPTION ://No, exit and returns true
-			return true;
+		    	return true;
 		    case CANCEL_OPTION : //Cancel, exit and return false
-			return false;
+		    	return false;
 		    }
 		}
 		String fileToSave = textPaneAt.getName(); 
 		if (fileToSave == null) {
 			//need a filename, call chooseFileToSave
 			fileToSave = chooseFileToSave();
-		}else{
+		} else {
 			//check if the file has been modified by external software
 			fileToSave = checkExternalModification(fileToSave);
 		}
@@ -496,6 +450,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    return filename;
 	}
 	
+	/**
+	 * Return through a file selector the name of the selected
+	 * file 
+	 * @return the file picked up by the user 
+	 */
 	public String chooseFileToSave(){
 		String extension = new String();
 
@@ -765,7 +724,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoColorize(b);
 	}
 	
-	/*
+	/**
 	 * Add or remove '*' prefix in current tab tile according to isContentModified()
 	 */
 	public void updateTabTitle(){
@@ -806,6 +765,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 		}
 	}
+	
 	/**
 	 * Redo last modification
 	 */
@@ -1017,59 +977,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	}
 	
+	/**
+	 * Return the Full path of the file
+	 * @return the full path
+	 */
 	public String getFileFullPath() {
 		return fileFullPath;
 	}
 	
-	
-
 	/**
-	 * Button displayed on top of tabs
-	 * @author Bruno JOFRET
+	 * Dedicated class to read the file
+	 *
 	 */
-	private class TabButton extends JButton implements ActionListener {
-		
-		private static final long serialVersionUID = 2643702189238507205L;
-
-		/**
-		 * Constructor 
-		 */
-		public TabButton() {
-			int size = BUTTON_SIZE;
-			setPreferredSize(new Dimension(size, size));
-			setToolTipText(XpadMessages.CLOSE_TAB_TIP);
-
-			setUI(new BasicButtonUI());
-			//Make it transparent
-			setContentAreaFilled(false);
-			//No need to be focusable
-			setFocusable(false);
-			setBorder(BorderFactory.createEtchedBorder());
-			setBorderPainted(false);
-			setRolloverEnabled(true);
-			//Close the proper tab by clicking the button
-			addActionListener(this);            
-		}
-
-		/**
-		 * User actions management
-		 * @param e the action
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
-		public void actionPerformed(ActionEvent e) {
-
-		}
-
-		/**
-		 * Update management
-		 * @see javax.swing.JButton#updateUI()
-		 */
-		public void updateUI() {
-			//we don't want to update UI for this button
-		}
-	}
-	
-	private class ReadFileThread extends Thread{
+	private class ReadFileThread extends Thread {
   		
 		private File fileToRead;
 		
@@ -1200,17 +1120,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.editorKit = editorKit;
 	}
 	
-	public void updateEncodingMenu() {
-		for (int k = 0; k < radioTypes.length; k++) {
-
-			if (getTextPane().getStyledDocument() instanceof ScilabStyleDocument) {
-				if (((ScilabStyleDocument)getTextPane().getStyledDocument()).getEncoding().equals(radioTypes[k].getText())) {
-					radioTypes[k].setSelected(true);
-				}
-			}
-		}
-	}
-
 	public File getFileToEncode() {
 		return fileToEncode;
 	}
