@@ -659,9 +659,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        	doc.setContentModified(true);
 		        	Xpad.this.updateTabTitle();
 		        	SwingUtilities.invokeLater( colorizationManager.new ColorUpdater(doc, documentEvent));
-		        }  
-		        
-
+		        } 
 		   }
 	});
 
@@ -688,7 +686,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
 		textPane.grabFocus();
-
+		XpadGUI.createPopupMenu(textPane);
 		return textPane;
 	}
 
