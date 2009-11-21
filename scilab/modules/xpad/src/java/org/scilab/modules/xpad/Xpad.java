@@ -164,6 +164,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.setContentPane(tabPane);
 	}
 
+	public XpadGUI getXpadGUI() {
+		return xpadGUI;
+	}
 	/**
 	 * Return the text editor GUI
 	 * @return The text editor gui
