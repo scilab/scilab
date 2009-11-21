@@ -24,8 +24,9 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+@SuppressWarnings("serial")
 public class LoadIntoScilabAction extends DefaultAction {
-
+	
 	private LoadIntoScilabAction(Xpad editor) {
 		super(XpadMessages.LOAD_INTO_SCILAB, editor);
 	}
@@ -40,7 +41,8 @@ public class LoadIntoScilabAction extends DefaultAction {
 			} catch (NoClassDefFoundError noAlternateClass) {
 				/* This happens when Xpad is launch as standalone (ie without
 				* Scilab) */
-				ScilabModalDialog.show("Could not find the console nor the InterpreterManagement");
+				Xpad editor = getEditor();
+				ScilabModalDialog.show(editor, "Could not find the console nor the InterpreterManagement");
 			}
 	    }
 	}
