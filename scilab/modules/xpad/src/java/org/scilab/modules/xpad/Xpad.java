@@ -563,10 +563,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		    AnswerOption answer;  
 		    if(scilabClose == true) {
-			answer = ScilabModalDialog.show(editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
+				answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
 		    } else {
-			answer = ScilabModalDialog.show(editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
+				answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 		    }
 
