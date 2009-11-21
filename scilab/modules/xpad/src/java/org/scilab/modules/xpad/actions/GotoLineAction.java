@@ -37,6 +37,7 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+@SuppressWarnings("serial")
 public class GotoLineAction extends DefaultAction {
 	
 	private static boolean windowAlreadyExist;

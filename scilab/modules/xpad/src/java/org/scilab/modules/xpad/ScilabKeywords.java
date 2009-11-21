@@ -9,9 +9,8 @@
 package org.scilab.modules.xpad;
 
 
- /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+/**
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class ScilabKeywords {
 
@@ -19,14 +18,14 @@ public class ScilabKeywords {
    * Constructor
    */
  protected ScilabKeywords() {
-	throw new UnsupportedOperationException();
+	 throw new UnsupportedOperationException();
  }
   public static String[] GetVariablesName() {
 	  try {
 		  return ScilabKeywordsJNI.GetVariablesName();
 	  } catch (UnsatisfiedLinkError e) {
-		  /* If the JNI connexion has been disable, we trap the exception
-		   * and we return nothing */
+		  /* If the JNI connexion has been disable, we trap the
+		   * exception and we return nothing */
 		  return new String[]{""};
 	  }
   }
@@ -35,8 +34,8 @@ public class ScilabKeywords {
 	  try {
 		  return ScilabKeywordsJNI.GetCommandsName();
 	  } catch (UnsatisfiedLinkError e) {
-		  /* If the JNI connexion has been disable, we trap the exception
-		   * and we return nothing */
+		  /* If the JNI connexion has been disable, we trap the
+		   * exception and we return nothing */
 		  return new String[]{""};
 	  }
   }
@@ -45,8 +44,8 @@ public class ScilabKeywords {
 	  try {
 		  return ScilabKeywordsJNI.GetFunctionsName();
 	  } catch (UnsatisfiedLinkError e) {
-		  /* If the JNI connexion has been disable, we trap the exception
-		   * and we return nothing */
+		  /* If the JNI connexion has been disable, we trap the
+		   * exception and we return nothing */
 		  return new String[]{""};
 	  }
   }
@@ -55,8 +54,8 @@ public class ScilabKeywords {
 	  try {
 		  return ScilabKeywordsJNI.GetMacrosName();
 	  } catch (UnsatisfiedLinkError e) {
-		  /* If the JNI connexion has been disable, we trap the exception
-		   * and we return nothing */
+		  /* If the JNI connexion has been disable, we trap the
+		   * exception and we return nothing */
 		  return new String[]{""};
 	  }  }
 
