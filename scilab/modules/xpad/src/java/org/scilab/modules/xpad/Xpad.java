@@ -164,17 +164,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.setContentPane(tabPane);
 	}
 
-	public XpadGUI getXpadGUI() {
-		return xpadGUI;
-	}
 	/**
-	 * Return the text editor GUI
+	 * Return the text editor GUI.
 	 * @return The text editor gui
 	 */
 	public final XpadGUI getXpadGUI() {
 		return xpadGUI;
 	}
-	
+
 	/**
 	 * Launch Xpad from command line.
 	 * @param args command line args
@@ -226,7 +223,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Launch Xpad with a provided text (from the help for example)  
+	 * Launch Xpad with a provided text (from the help for example).
 	 * @param text the text which should be modified
 	 */
 	public static void xpadWithText(String text) {
@@ -262,7 +259,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Close Xpad instance including all tabs
+	 * Close Xpad instance including all tabs.
 	 */
 	public static void closeXpad() {		
 		FindAction.closeFindReplaceWindow();
@@ -272,11 +269,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Create Xpad instance
+	 * Create Xpad instance.
 	 * @return the instance
 	 */
 	private static Xpad createEditor() {
-		ConfigXpadManager.createUserCopy();	
+		ConfigXpadManager.createUserCopy();
 		Window mainWindow = ScilabWindow.createWindow();
 
 		Xpad editorInstance = new Xpad(mainWindow);
@@ -288,27 +285,29 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 
 	/**
-	 * Close a tab using its index
+	 * Close a tab using its index.
 	 * @param indexTab the index of the tab
+	 * @return if the tab has been really closed
 	 */
 	public boolean closeTabAt(int indexTab) {
 	    return closeTabAt(indexTab, false);
 	}
-	
+
 	/**
-	 * Close a tab using its index
+	 * Close a tab using its index.
 	 * @param indexTab the index of the tab
-	 * @param scilabClose : if true, save dialog confirmation cannot be canceled
+	 * @param scilabClose if true, save dialog confirmation cannot be canceled
+	 * @return if the tab has been really closed
 	 */
 	public boolean closeTabAt(int indexTab, boolean scilabClose) {
 
-		if(save(indexTab, false, scilabClose) == false){
+		if (!save(indexTab, false, scilabClose)) {
 		    return false;
 		}
 
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		
-		if(textPaneAt.getName() == null) {
+		if (textPaneAt.getName() == null) {
 			String closedTabName = tabPane.getTitleAt(indexTab);
 			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
 			tabList.removeElement(Integer.parseInt(closedTabNameIndex));
@@ -329,28 +328,26 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Save a file
+	 * Save a file.
 	 * @param indexTab the textPane index containing the file contents
 	 * @return execution status
 	 */
-
 	public boolean save(int indexTab) {
 	    return save(indexTab, false, false);
 	}
 
 	/**
-	 * Save a file
+	 * Save a file.
 	 * @param indexTab the textPane index containing the file contents
 	 * @param force : force save without confirmation dialog ( SaveAction )
 	 * @return execution status
 	 */
-
 	public boolean save(int indexTab, boolean force) {
 	    return save(indexTab, force, false);
 	}
-	
+
 	/**
-	 * Save a file
+	 * Save a file.
 	 * @param indexTab the textPane index containing the file contents
 	 * @param force : force save without confirmation dialog ( SaveAction )
 	 * @param scilabClose : if true, save dialog confirmation cannot be canceled
@@ -366,8 +363,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 		if (!force) {
-
-		    AnswerOption answer;  
+		    AnswerOption answer;
 		    if(scilabClose == true) {
 				answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
@@ -383,9 +379,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 		    	return true;
 		    case CANCEL_OPTION : //Cancel, exit and return false
 		    	return false;
+			default:
+				break;
 		    }
 		}
-		String fileToSave = textPaneAt.getName(); 
+
+		String fileToSave = textPaneAt.getName();
 		if (fileToSave == null) {
 			//need a filename, call chooseFileToSave
 			fileToSave = chooseFileToSave();
@@ -400,7 +399,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		File newSavedFile = new File(fileToSave);
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
-		
+
 		BufferedWriter out = null;
 		try {
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), styledDocument.getEncoding()));
@@ -429,16 +428,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 		// Get current file path for Execute file into Scilab 
 		fileFullPath = newSavedFile.getAbsolutePath();
 		lastKnownSavedState = System.currentTimeMillis();
-		
-		
-		textPaneAt.setName(fileToSave); 
+
+		textPaneAt.setName(fileToSave);
 		return true;
 	}
-	
+
 	/**
-	 * Save a file
-	 * @param textPane the textPane containing the file contents
-	 * @return execution status
+	 * Check for external modification. If it is the case, propose
+	 * to select a new file name.
+	 * @param filename The name of the file
+	 * @return the filename where to save
 	 */
 	public String checkExternalModification(String filename) {
 	    File newSavedFiled = new File(filename);
@@ -452,13 +451,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    }
 	    return filename;
 	}
-	
+
 	/**
 	 * Return through a file selector the name of the selected
-	 * file 
-	 * @return the file picked up by the user 
+	 * file.
+	 * @return the file picked up by the user
 	 */
-	public String chooseFileToSave(){
+	public String chooseFileToSave() {
 		String extension = new String();
 
 		String initialDirectoryPath = getTextPane().getName();
@@ -523,7 +522,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Save a file
+	 * Save a file.
 	 * @param textPane the textPane containing the file contents
 	 * @return execution status
 	 */
@@ -588,10 +587,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 				f = new File(f.getPath() + extension);
 			}
-							
+
 			// TODO factor common code with "Save"
 			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
-			
+
 			BufferedWriter out = null;
 			try {
 				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styledDocument.getEncoding()));
@@ -620,7 +619,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			styledDocument.setContentModified(false);
 			lastKnownSavedState = System.currentTimeMillis();
 			isSuccess = true;
-			
+
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
 
@@ -632,7 +631,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Create a new tab in Xpad
+	 * Create a new tab in Xpad.
 	 * @param title the title of the tab
 	 * @return the text component inside the tab
 	 */
@@ -641,18 +640,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setEditorKit(new ScilabEditorKit());
 		textPane.getDocument().addDocumentListener(new DocumentListener() {
 			ColorizationManager colorizationManager = new ColorizationManager();
-			
+
 			public void changedUpdate(DocumentEvent documentEvent) {
 			}
-		      
+
 			public void insertUpdate(DocumentEvent documentEvent) {
 				handleEvent(documentEvent);
 		    }
-		    
+
 		    public void removeUpdate(DocumentEvent documentEvent) {
 		    	handleEvent(documentEvent);
 		    }
-		    
+
 		    private void handleEvent(DocumentEvent documentEvent) {
 		        DocumentEvent.EventType type = documentEvent.getType();
 		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
@@ -684,7 +683,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		TabifyAction.putInInputMap(textPane, this);
 		UnTabifyAction.putInInputMap(textPane, this);
-		
+
 		textPane.setFocusable(true);
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
@@ -694,7 +693,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Create an empty tab inside Xpad
+	 * Create an empty tab inside Xpad.
 	 * @return the text component inside the tab
 	 */
 	public JTextPane addEmptyTab() {
@@ -728,19 +727,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 	
 	/**
-	 * Add or remove '*' prefix in current tab tile according to isContentModified()
+	 * Add or remove '*' prefix in current tab tile according to isContentModified().
 	 */
 	public void updateTabTitle(){
-		StringBuffer newTitle= new StringBuffer();
-		JTextPane textPane = getTextPane();
-		if(((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified()) {
+		StringBuffer newTitle = new StringBuffer();
+		JTextPane currentTextPane = getTextPane();
+		if(((ScilabStyleDocument) currentTextPane.getStyledDocument()).isContentModified()) {
 			newTitle.append('*');
 		}
-		String textPaneName = textPane.getName();
+		String textPaneName = currentTextPane.getName();
 		try {
-			File f= new File(textPaneName);
+			File f = new File(textPaneName);
 			newTitle.append(f.getName());
-		} catch(Exception e) { // not a file name, no path prefix to remove, but maybe a '*'
+		} catch (Exception e) { // not a file name, no path prefix to remove, but maybe a '*'
 			textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
 			newTitle.append(textPaneName.charAt(0)=='*'? textPaneName.substring(1, textPaneName.length()) : textPaneName);
 		}
@@ -748,19 +747,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 	
 	/**
-	 * Undo last modification
+	 * Undo last modification.
 	 */
 	public void undo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
-		synchronized(doc){
+		synchronized (doc) {
 			UndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
 				try {
 					undo.undo();
-					if(!undo.canUndo()){ // remove "*" prefix from tab name
+					if (!undo.canUndo()) { // remove "*" prefix from tab name
 						doc.setContentModified(false);
 						Xpad.this.updateTabTitle();
-					}			
+					}
 					repaint();
 				} catch (CannotUndoException ex) {
 					ex.printStackTrace();
@@ -768,9 +767,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 		}
 	}
-	
+
 	/**
-	 * Redo last modification
+	 * Redo last modification.
 	 */
 	public void redo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
@@ -791,7 +790,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Load a file inside Xpad
+	 * Load a file inside Xpad.
 	 * @param f the file to open
 	 */
 	public void readFile(File f) {
@@ -806,18 +805,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 				break;
 			}
 		}
-		
+
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
 			myReadThread.start();
 		}
-		
-		// Get current file path for Execute file into Scilab 
+
+		// Get current file path for Execute file into Scilab
 		fileFullPath = f.getAbsolutePath();
 	}
-	
+
 	/**
-	 * Load a file inside Xpad
+	 * Load a file inside Xpad.
 	 * @param f the file to open
 	 */
 	public void readFileAndWait(File f) {
@@ -847,7 +846,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get current text component
+	 * Get current text component.
 	 * @return the text component
 	 */
 	public JTextPane getTextPane() {
@@ -860,7 +859,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get Xpad as a Tab
+	 * Get Xpad as a Tab.
 	 * @return Xpad instance
 	 * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()
 	 */
@@ -869,7 +868,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get Xpad parent Window
+	 * Get Xpad parent Window.
 	 * @return parent Window
 	 * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
 	 */
@@ -878,7 +877,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Add a status bar to Xpad
+	 * Add a status bar to Xpad.
 	 * @param infoBarToAdd the status bar to be added
 	 * @see org.scilab.modules.gui.uielement.UIElement#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
@@ -887,7 +886,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Add a menu bar to Xpad
+	 * Add a menu bar to Xpad.
 	 * @param menuBarToAdd the menu bar to be added
 	 * @see org.scilab.modules.gui.uielement.UIElement#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
@@ -896,7 +895,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Add a tool bar to Xpad
+	 * Add a tool bar to Xpad.
 	 * @param toolBarToAdd the tool bar to be added
 	 * @see org.scilab.modules.gui.uielement.UIElement#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
@@ -905,7 +904,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get Xpad main JTabbedPane
+	 * Get Xpad main JTabbedPane.
 	 * @return Xpad main JTabbedPane
 	 */
 	public JTabbedPane getTabPane() {
@@ -913,7 +912,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Set Xpad main JTabbedPane
+	 * Set Xpad main JTabbedPane.
 	 * @param tabPane Xpad main JTabbedPane
 	 */
 	public void setTabPane(JTabbedPane tabPane) {
@@ -921,7 +920,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get the panel used to display line numbers
+	 * Get the panel used to display line numbers.
 	 * @return the panel
 	 */
 	public XpadLineNumberPanel getXln() {
@@ -929,7 +928,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Set the panel used to display line numbers
+	 * Set the panel used to display line numbers.
 	 * @param xln the panel
 	 */
 	public void setXln(XpadLineNumberPanel xln) {
@@ -937,7 +936,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Get recent file menu
+	 * Get recent file menu.
 	 * @return the menu
 	 */
 	public Menu getRecentsMenu() {
@@ -945,7 +944,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Line numbers display status
+	 * Line numbers display status.
 	 * @param display true to view line numbers
 	 */
 	public void displayLineNumbers(boolean display) {
@@ -959,7 +958,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Highlight mode management
+	 * Highlight mode management.
 	 * @param display true to hightlight current line
 	 */
 	public void enableLineHighlight(boolean display) {
@@ -968,7 +967,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	/**
-	 * Update menu displaying recent opened files
+	 * Update menu displaying recent opened files.
 	 */
 	public void updateRecentOpenedFilesMenu() {
 		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
@@ -979,23 +978,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 	}
-	
+
 	/**
-	 * Return the Full path of the file
+	 * Return the Full path of the file.
 	 * @return the full path
 	 */
 	public String getFileFullPath() {
 		return fileFullPath;
 	}
-	
+
 	/**
-	 * Dedicated class to read the file
-	 *
+	 * Dedicated class to read the file.
 	 */
 	private class ReadFileThread extends Thread {
-  		
+
 		private File fileToRead;
-		
+
 		public ReadFileThread(File f) {
 			this.fileToRead = f;
 			setFileToEncode(f);
@@ -1005,10 +1003,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 			readFile(fileToRead);
 			this.stop();
 		}
-	   
+
 		public void readFile(File f) {
 			getInfoBar().setText(XpadMessages.LOADING);
-			
+
 			boolean colorStatus = false;
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
@@ -1102,7 +1100,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					getInfoBar().setText("");
 				} else {
 					getInfoBar().setText("");
-				}	
+				}
 			}
 
 			// Empty the undo Manager
@@ -1137,13 +1135,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public static void closeXpadFromScilab() {
 	    Xpad xpad = getEditor();
-	    if(xpad == null) {
+	    if (xpad == null) {
 		return;
 	    }
 
-	    while(xpad.getTabPane().getComponentCount() > 0) {
-		//close and save all editors if they are modified
-		xpad.closeTabAt(0, true); 
+	    while (xpad.getTabPane().getComponentCount() > 0) {
+	    	//close and save all editors if they are modified
+	    	xpad.closeTabAt(0, true);
 	    }
 	}
 
