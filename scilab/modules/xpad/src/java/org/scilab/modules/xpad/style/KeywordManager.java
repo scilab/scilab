@@ -34,10 +34,18 @@ public class KeywordManager {
 		String[] commands;
 		String[] functions;
 		String[] macros;
-		commands =  ScilabKeywords.GetCommandsName();
-		functions =  ScilabKeywords.GetFunctionsName();
-		macros =  ScilabKeywords.GetMacrosName();
-
+		try {
+			commands =  ScilabKeywords.GetCommandsName();
+			functions =  ScilabKeywords.GetFunctionsName();
+			macros =  ScilabKeywords.GetMacrosName();
+		} catch (UnsatisfiedLinkError e) {
+			/* If Scilab is launched as standalone, it cannot get the JNI
+			 * access 
+			 */
+			commands = new String[]{""};
+			functions = new String[]{""};
+			macros = new String[]{""};
+		}
 		//String[] variables =  ScilabKeywords.GetVariablesName();
 
 		for (int i = 0; i < macros.length; i++) {
