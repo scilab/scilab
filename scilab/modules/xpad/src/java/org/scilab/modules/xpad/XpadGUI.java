@@ -285,7 +285,6 @@ public class XpadGUI {
 	 */
 	public static void createPopupMenu(final JTextPane c) {
 		
-		System.err.println("c : "+c);
 		final JPopupMenu popup = new JPopupMenu();
 
 		JMenuItem menuItem = null; 
