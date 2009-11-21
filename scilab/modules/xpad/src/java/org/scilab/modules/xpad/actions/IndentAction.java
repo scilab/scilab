@@ -24,14 +24,13 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 import org.scilab.modules.xpad.style.IndentManager;
 
+@SuppressWarnings("serial")
 public class IndentAction extends DefaultAction {
 	
-	private static Xpad indent_editor;
 	private IndentManager indentManager = new IndentManager();
 	
 	private IndentAction(Xpad editor) {
 		super(XpadMessages.INDENT, editor);
-		indent_editor = editor;
 	}
 
 	public void doAction() {
@@ -53,6 +52,6 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public static void getXpadEditor(){
-		//((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
+
 	}
 }

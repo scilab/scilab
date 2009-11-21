@@ -23,8 +23,7 @@
 /* JavaDoc for ScilabKeywordsJNI class */
 %pragma(java) jniclassclassmodifiers=%{
  /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class%}
 
@@ -55,8 +54,7 @@ public class%}
 /* JavaDoc for ScilabKeywords class */
 %pragma(java) moduleclassmodifiers="
  /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class";
 

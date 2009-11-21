@@ -24,7 +24,7 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
- * Display about box for Xcos
+ * Display about box for the text editor
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  */

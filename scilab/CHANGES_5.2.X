@@ -11,6 +11,15 @@ Text editor:
 
 * Refactoring of some large part of the source code
 
+* Thanks to a right button click, a popup menu shows the following features:
+- Execute in Scilab
+- Edit selection into a new text editor
+- Copy
+- Select all
+- History
+- Help on the selected text
+
+
 Help browser:
 =============
 
@@ -22,8 +31,8 @@ Help browser:
 - History
 - Help on the selected text
 
-* In the console, in menu associated to a right button click, the item
-"Help on the selected text" has been added
+* In the console and the text editor, in menu associated to a right button
+click, the item "Help on the selected text" has been added
 
 Localization:
 =============
