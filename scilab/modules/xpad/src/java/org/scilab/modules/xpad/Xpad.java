@@ -233,7 +233,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Xpad editorInstance = launchXpad();
 		File f = new File(filePath);
 		if (f.isDirectory()) { /* Bug 5131 */
-		    ScilabModalDialog.show(String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()),
+		    ScilabModalDialog.show(Xpad.getEditor(), String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()),
 			    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
 		    xpad();
 		    return;
@@ -638,8 +638,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public String checkExternalModification(String filename) {
 	    File newSavedFiled = new File(filename);
 
-	    if( (lastKnownSavedState !=0) && (newSavedFiled.lastModified()> lastKnownSavedState)){
-		if (ScilabModalDialog.show(String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath()), 
+	    if ((lastKnownSavedState != 0) && (newSavedFiled.lastModified() > lastKnownSavedState)) {
+		if (ScilabModalDialog.show(Xpad.getEditor(), String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath()), 
 			XpadMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON, 
 			ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
 		    return chooseFileToSave();
@@ -676,7 +676,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			File f = fileChooser.getSelectedFile();
 			initialDirectoryPath = f.getPath();
 			if (f.exists()) {
-			    if (ScilabModalDialog.show(XpadMessages.REPLACE_FILE_TITLE, 
+			    if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.REPLACE_FILE_TITLE, 
 				    XpadMessages.FILE_ALREADY_EXIST, IconType.QUESTION_ICON,
 				    ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
 				return chooseFileToSave();
@@ -746,14 +746,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 			File f = fileChooser.getSelectedFile();
 			initialDirectoryPath = f.getPath();
 			if (f.exists()) {
-			    if (ScilabModalDialog.show(XpadMessages.REPLACE_FILE_TITLE, 
-				    XpadMessages.FILE_ALREADY_EXIST, IconType.QUESTION_ICON,
-				    ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-				return this.saveAs(this.getTextPane());
+				AnswerOption ans = ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.REPLACE_FILE_TITLE,
+						XpadMessages.FILE_ALREADY_EXIST, 
+						IconType.QUESTION_ICON, ButtonType.YES_NO);
+			    if (ans == AnswerOption.NO_OPTION) {
+			    	return this.saveAs(this.getTextPane());
 			    }
 			}
-
-			String doc = this.getTextPane().getText();
 
 			/*we test if the file has already a scilab extension*/
 			boolean hasNoExtension = true;
