@@ -171,6 +171,9 @@ Bug fixes:
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
+* bug 5453 fixed - Sizes was displayed with French units.
+
+
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
 
