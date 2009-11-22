@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xpad;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -20,10 +19,8 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -31,8 +28,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextPane;
 import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.EditorKit;
-
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
@@ -379,7 +374,7 @@ public class XpadGUI {
 				} else {
 					int nbOfDisplayedOnlyXChar=10;
 					if (keyword.length() > nbOfDisplayedOnlyXChar) {
-						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
 					}
 					helpMenuItem.setText(Messages.gettext("Help about '") +keyword+"'");
 				}
@@ -388,10 +383,8 @@ public class XpadGUI {
 		helpMenuItem.addPropertyChangeListener(listenerTextItem);
 		helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
 		popup.add(helpMenuItem);
-
-					
+				
 		/* Creates the Popupmenu on the component */
 		c.setComponentPopupMenu(popup);
-	}
-	
+	}	
 }

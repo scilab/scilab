@@ -13,7 +13,6 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
