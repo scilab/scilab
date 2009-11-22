@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xpad;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -20,10 +19,8 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -31,8 +28,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextPane;
 import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.EditorKit;
-
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
@@ -109,7 +104,6 @@ public class XpadGUI {
 		fileMenu.setMnemonic('F');
 		fileMenu.add(NewAction.createMenu(editorInstance));
 		fileMenu.add(OpenAction.createMenu(editorInstance));
-		//		 recentsMenu = ScilabMenu.createMenu();
 		Menu recentsMenu = editorInstance.getRecentsMenu();
 		recentsMenu.setText(XpadMessages.RECENT_FILES);
 		for (int i = 0; i < recentFiles.size(); i++) {
@@ -166,10 +160,7 @@ public class XpadGUI {
 		Menu viewMenu = ScilabMenu.createMenu();
 		viewMenu.setText(XpadMessages.VIEW);
 		viewMenu.setMnemonic('S');
-//		viewMenu.add(ShowToolBarAction.createCheckBoxMenu(editorInstance));
-//		viewMenu.addSeparator();
 		viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance));
-//		viewMenu.add(WordWrapAction.createCheckBoxMenu(editorInstance));
 		viewMenu.add(LineNumbersAction.createCheckBoxMenu(editorInstance));
 		viewMenu.add(SetColorsAction.createMenu(editorInstance));
 		viewMenu.add(SetFontAction.createMenu(editorInstance));
@@ -181,12 +172,6 @@ public class XpadGUI {
 		documentMenu.setText(XpadMessages.DOCUMENT);
 		documentMenu.setMnemonic('D');
 		Menu syntaxTypeMenu = ScilabMenu.createMenu();
-//		syntaxTypeMenu.setText(XpadMessages.SYNTAX_TYPE);
-//		documentMenu.add(syntaxTypeMenu);
-//		syntaxTypeMenu.add(TextStyleAction.createCheckBoxMenu(editorInstance));
-//		syntaxTypeMenu.add(ScilabStyleAction.createCheckBoxMenu(editorInstance));
-//		syntaxTypeMenu.add(XMLStyleAction.createCheckBoxMenu(editorInstance));
-//		documentMenu.addSeparator();
 		Menu encodingTypeMenu = ScilabMenu.createMenu();
 		encodingTypeMenu.setText(XpadMessages.ENCODING_TYPE);
 		documentMenu.add(encodingTypeMenu);
@@ -236,7 +221,6 @@ public class XpadGUI {
 		toolBar.add(SaveAction.createButton(editorInstance)); // SAVE
 		toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
 		toolBar.addSeparator();
-		//toolBar.add(PrintPreviewAction.createButton(editorInstance)); // PRINT PREVIEW
 		toolBar.add(PrintAction.createButton(editorInstance)); // PRINT
 		toolBar.addSeparator();
 		toolBar.add(UndoAction.createButton(editorInstance));
@@ -263,10 +247,8 @@ public class XpadGUI {
 	 * be updated
 	 */
 	public void updateEncodingMenu(ScilabStyleDocument scilabDocument) {
-
 		if (radioTypes != null) {
 			for (int k = 0; k < radioTypes.length; k++) {
-
 				if (scilabDocument.getScilabDocument() instanceof ScilabStyleDocument) {
 					if ((scilabDocument.getScilabDocument()).getEncoding().equals(radioTypes[k].getText())) {
 						radioTypes[k].setSelected(true);
@@ -275,6 +257,7 @@ public class XpadGUI {
 			}
 		}
 	}
+	
 	public static MenuItem getEvaluateSelectionMenuItem() {
 		return evaluateSelectionMenuItem;
 	}
@@ -346,7 +329,6 @@ public class XpadGUI {
 		popup.add(menuItem); 
 		popup.addSeparator();
 
-
 		/* Select all */
 		ActionListener actionListenerSelectAll = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -370,6 +352,7 @@ public class XpadGUI {
 				}
 			}
 		};
+		
 		/* Not sure it is the best listener */
 		PropertyChangeListener listenerTextItem = new PropertyChangeListener() {			
 			public void propertyChange(PropertyChangeEvent arg0) {
@@ -379,7 +362,7 @@ public class XpadGUI {
 				} else {
 					int nbOfDisplayedOnlyXChar=10;
 					if (keyword.length() > nbOfDisplayedOnlyXChar) {
-						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
 					}
 					helpMenuItem.setText(Messages.gettext("Help about '") +keyword+"'");
 				}
@@ -388,10 +371,8 @@ public class XpadGUI {
 		helpMenuItem.addPropertyChangeListener(listenerTextItem);
 		helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
 		popup.add(helpMenuItem);
-
-					
+				
 		/* Creates the Popupmenu on the component */
 		c.setComponentPopupMenu(popup);
-	}
-	
+	}	
 }

@@ -13,7 +13,6 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -542,9 +541,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 		fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
-		fileChooser .setAcceptAllFileFilterUsed(true);
-		fileChooser .setInitialDirectory(initialDirectoryPath);
-		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
+		fileChooser.setAcceptAllFileFilterUsed(true);
+		fileChooser.setInitialDirectory(initialDirectoryPath);
+		fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);		
 		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
@@ -695,7 +694,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return the text component inside the tab
 	 */
 	public JTextPane addEmptyTab() {
-
 		if (closedTabList.size() > 0) {
 			Object obj = Collections.min(closedTabList);
 			closedTabList.removeElement(Integer.parseInt(obj.toString()));

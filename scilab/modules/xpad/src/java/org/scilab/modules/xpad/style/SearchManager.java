@@ -19,15 +19,15 @@ public class SearchManager {
 		ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
 
 		//If we don't give any word to find
-		if ( (word != null) && !(word.equals("")) ) {
+		if ((word != null) && !(word.equals(""))) {
 			// prepare word for each kind of search
-			if (wholeWord){
+			if (wholeWord) {
 				word = "\\b" + word + "\\b";
 			}
-			if (!caseSensitive){
-				if (useRegexp || wholeWord ){
+			if (!caseSensitive) {
+				if (useRegexp || wholeWord ) {
 					word = "(?i)" + word;
-				} else{
+				} else {
 					fullText = fullText.toLowerCase();
 					word = word.toLowerCase();
 				}
@@ -35,7 +35,7 @@ public class SearchManager {
 
 			//We find matching words ...
 			// ... for regexp or whole words
-			if (useRegexp || wholeWord){
+			if (useRegexp || wholeWord) {
 				word = "(?m)" + word;
 				Pattern pattern = Pattern.compile(word);
 				Matcher matcher = pattern.matcher(fullText);
@@ -59,20 +59,18 @@ public class SearchManager {
 		int startOffset;
 		int endOffset;
 
-		String text = "";
-
 		startOffset = scilabDocument.getParagraphElement(start).getStartOffset();
 		endOffset = scilabDocument.getParagraphElement(end).getEndOffset();
 		//We read the document and put the document into the String text
 
 		try {
 			//Get the document line by line
-			text = scilabDocument.getText(startOffset, endOffset - startOffset);
+			return scilabDocument.getText(startOffset, endOffset - startOffset);
 		} catch (BadLocationException ex) {
 			ex.printStackTrace();
 		}
 
-		return text;
+		return "";
 	}
 
 }

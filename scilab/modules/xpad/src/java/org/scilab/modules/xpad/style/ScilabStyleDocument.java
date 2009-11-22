@@ -126,19 +126,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	}
 
 	public String getText(){
-		String res ="";
-		try{
-			res = getText(0, getLength());
-		}catch(javax.swing.text.BadLocationException e){
-			res= "";
+		try {
+			return getText(0, getLength());
+		} catch(javax.swing.text.BadLocationException e) {
+			return "";
 		}
-		return res;
 	}
 	
 
 	public void setShouldMergeEdits(boolean b) {
 	
-		if(shouldMergeEdits){
+		if(shouldMergeEdits) {
 			if(!b) { // ending compound editing with a new CaretEdit
 				compoundEdit.end();
 				undo.addEdit(compoundEdit);
@@ -153,9 +151,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		shouldMergeEdits = b;
 		
 	}
+	
 	public boolean getShouldMergeEdits() {
 		return shouldMergeEdits;
 	}
+	
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -177,19 +177,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		return undo;
 	}
 
-	public void disableUndoManager(){
+	public void disableUndoManager() {
 		this.removeUndoableEditListener(undo);
 	}
 	
-	public void enableUndoManager(){
+	public void enableUndoManager() {
         this.addUndoableEditListener(undo);
 	}
 
-	public boolean isContentModified(){
+	public boolean isContentModified() {
 		return contentModified;
 	}
 	
-	public void setContentModified(boolean contentModified){
+	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
 	}
 	
