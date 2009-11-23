@@ -98,7 +98,7 @@ savematfile filename var1 var2 ...</synopsis>
               <term>"-v7.3"</term>
               <listitem>
                 <para>A format that MATLAB Version 7.3 and earlier can
-                open (default)</para>
+                open</para>
               </listitem>
             </varlistentry>
           </variablelist>
