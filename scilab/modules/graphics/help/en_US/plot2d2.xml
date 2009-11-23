@@ -58,7 +58,6 @@ plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
 x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
-  // In New graphics only
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();

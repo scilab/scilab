@@ -256,7 +256,6 @@ X = cos(u)'*cos(v);
 Y = cos(u)'*sin(v);
 Z = sin(u)'*ones(v);
 plot3d2(X,Y,Z);
-// New Graphic mode only 
 e=gce();
 e.color_mode=4; // change color
 f=e.data;

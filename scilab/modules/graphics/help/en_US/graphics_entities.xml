@@ -19,11 +19,6 @@
     <refpurpose>description of the graphics
   entities data structures</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="newgraphics">
-    <refname>new graphics </refname>
-    <refpurpose>description of the graphics entities
-  data structures</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Description</title>
     <para> In Scilab,
@@ -32,8 +27,8 @@
     least one child of type Axes. Each Axes entity contains a set of leaf
     entities which are the basic graphics objects like Polylines, Rectangles,
     Arcs, Segs,... It can also contain an Compound type which are recursive
-    sets of entities. The main interest of the new graphic mode is to make
-    property change easier. This new graphics'mode provides a set of
+    sets of entities. The main interest of the graphic mode is to make
+    property change easier. This graphics'mode provides a set of
     high-level graphing routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used
     to control objects' properties such as data, coordinates and scaling,
     color and appearences without requiring to replay the initial graphics
