@@ -83,7 +83,7 @@ public class FileExporter {
 				        saveFileName = fileName + ext;
 				}
 				
-				fileName = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + name + ".svg";
+				fileName = System.getenv("TMPDIR") + System.getProperty("file.separator") + name + ".svg";
 				saveFileType = fileType;
 				fileType = ExportRenderer.SVG_EXPORT;
 			} catch (Exception e) {}
@@ -105,7 +105,9 @@ public class FileExporter {
 		if (saveFileType != -1) {
 		        ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
 		}
-		
+
+		new File(fileName).delete();
+
 		return ExportRenderer.getErrorNumber();		
 	}	
 }
