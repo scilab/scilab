@@ -55,62 +55,37 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 	getContainer().closeBlockSettings();
     }
 
+    public class GenericSuperBlockListener implements mxIEventListener {
+	public void invoke(Object arg0, mxEventObject arg1) {
+	    getContainer().updateAllBlocksColor();
+	    getContainer().updateExportedPort();	    
+	}	
+    }
+    
     public void installSuperBlockListeners() {
-	addListener(XcosEvent.CELLS_ADDED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.CELLS_ADDED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.CELLS_REMOVED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.CELLS_REMOVED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
 
-	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new mxIEventListener() {
-	    public void invoke(Object source, mxEventObject evt) {
-		getContainer().updateAllBlocksColor();
-		getContainer().updateExportedPort();
-	    }
-	});
+	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
     }
 
+    public void setModified(boolean modified) {
+        super.setModified(modified);
+        if (getContainer() != null &&
+        	getContainer().getParentDiagram() != null) {
+            getContainer().getParentDiagram().setModified(modified);
+        }
+    }
+    
 }
