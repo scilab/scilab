@@ -39,8 +39,8 @@
     Axes. Each Axes entity contains a set of leaf entities which are the basic
     graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
     contain a Compound type which are recursive sets of entities.</para>
-    <para>The main interest of the new graphic mode is to make property changes
-    easier. This new graphics'mode provides a set of high-level graphing
+    <para>The main interest of the graphic mode is to make property changes
+    easier. This graphics'mode provides a set of high-level graphing
     routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used to control objects'
     properties such as data, coordinates and scaling, color and appearences
     without requiring to replay the initial graphics commands.</para>
@@ -78,10 +78,6 @@
         <listitem>
           <para>Erase the content of the graphics window. Its action corresponds
         to <literal>clf</literal> routine.</para>
-          <para/>
-          <para/>
-          <para>The last eight items are specially dedicated to the graphic editor
-        :</para>
           <para/>
         </listitem>
       </varlistentry>
