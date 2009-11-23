@@ -37,9 +37,9 @@ import org.scilab.forge.jlatexmath.ParseException;
  */
 public class TeXObjectGL extends SpecialTextObjectGL {
         
-    private final static Component COMPONENT = (Component) new Canvas();
-    private TeXIcon texi;
-    private TeXFormula formula;
+    protected final static Component COMPONENT = (Component) new Canvas();
+    protected TeXIcon texi;
+    protected TeXFormula formula;
     private Color color;
     private float fontSize;
 
@@ -69,6 +69,15 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 
 		COMPONENT.setForeground(color);
 		makeImage();
+    }
+
+    public TeXObjectGL(TeXObjectGL t) {
+	this.width = t.width;
+	this.height = t.height;
+	this.texi = t.texi;
+	this.formula = t.formula;
+	this.color = t.color;
+	this.fontSize = t.fontSize;
     }
         
     /**
