@@ -182,7 +182,7 @@ if bin then
 	P=0
 	T=2
         // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
-	[x,v,mn]=spget(x');
+	[x,v,mn]=spget(x);
 	if it1==0 then
 	  x=[x real(v);[mn 0]]
 	else
