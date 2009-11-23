@@ -80,4 +80,12 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
     }
 
+    public void setModified(boolean modified) {
+        super.setModified(modified);
+        if (getContainer() != null &&
+        	getContainer().getParentDiagram() != null) {
+            getContainer().getParentDiagram().setModified(modified);
+        }
+    }
+    
 }
