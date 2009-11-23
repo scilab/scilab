@@ -87,12 +87,14 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 		}
 
 		// Hide/Show parent window if the viewport is the only tab		
+		if (palette.getParentWindow() != null) {
 		if (palette.getParentWindow().getNbDockedObjects() == 1) {
 		    palette.getParentWindow().setVisible(status);
 		}
 		else {
 		    DockingManager.undock((Dockable) palette.getAsSimpleTab());
 		    palette.setParentWindowId(-1);
+		}
 		}
 		
 		// Hide/Show viewport tab
