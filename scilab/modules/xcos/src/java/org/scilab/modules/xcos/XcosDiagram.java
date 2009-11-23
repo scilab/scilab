@@ -21,7 +21,6 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +29,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -126,9 +124,6 @@ public class XcosDiagram extends ScilabGraph {
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
     private SetContextAction action;
-    
-    /** Undo counter (0 is previous saved state) */
-    private int undo_counter = 0;
     
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
@@ -1602,8 +1597,6 @@ public class XcosDiagram extends ScilabGraph {
 	public void undo() {
 		super.undo();
 		
-		increment_undo();
-		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
 				((Xcos) getParentTab()).setEnabledUndo(true);
@@ -1625,8 +1618,6 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void redo() {
 		super.redo();
-		
-		increment_redo();
 		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
@@ -1669,26 +1660,5 @@ public class XcosDiagram extends ScilabGraph {
 	public SetContextAction getContextAction() {
 		return action;
 	}
-	
-    private void increment_undo() {
-	if (undo_counter >= Integer.MIN_VALUE) {
-	    undo_counter--;
-	    if (undo_counter == 0)
-		setModified(false);
-	    else
-		setModified(true);
-	}
-    }
-
-    private void increment_redo() {
-	if (undo_counter <= Integer.MAX_VALUE) {
-	    undo_counter++;
-	    if (undo_counter == 0)
-		setModified(false);
-	    else
-		setModified(true);
-	}
-    }
-
 }
 
