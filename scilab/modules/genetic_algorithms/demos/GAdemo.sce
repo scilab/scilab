@@ -78,6 +78,8 @@ end
 // Genetic Algorithm //
 ///////////////////////
 
+printf(gettext("%s: optimization starting, please wait ...\n"),"GA");
+
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 if (size(pop_opt(1)',2)==2) then
@@ -119,6 +121,8 @@ ga_params = set_param(ga_params,'mutation_func',mutation_ga_binary);
 ga_params = set_param(ga_params,'codage_func',coding_ga_binary);
 ga_params = add_param(ga_params,'multi_cross',%T);
 ga_params = add_param(ga_params,'multi_cross_nb',3);
+
+printf(gettext("%s: optimization starting, please wait ...\n"),"GA");
 
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 

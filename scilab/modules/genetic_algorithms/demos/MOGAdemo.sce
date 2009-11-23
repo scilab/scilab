@@ -80,6 +80,8 @@ deff('y=fobjs(x)','y = ' + funcname + '(x);');
 // MOGA Algorithm //
 ////////////////////
 
+printf(gettext("%s: optimization starting, please wait ...\n"),"MOGA");
+
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(fobjs, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 [f_pareto,pop_pareto] = pareto_filter(fobj_pop_opt,pop_opt);

@@ -169,6 +169,8 @@ Bug fixes:
 
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
+* bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
