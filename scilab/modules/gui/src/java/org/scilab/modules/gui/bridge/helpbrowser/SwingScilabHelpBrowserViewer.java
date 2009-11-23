@@ -254,7 +254,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 				} else {
 					int nbOfDisplayedOnlyXChar=10;
 					if (keyword.length() > nbOfDisplayedOnlyXChar) {
-						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
 					}
 					helpMenuItem.setText(Messages.gettext("Help about '") +keyword+"'");
 				}
