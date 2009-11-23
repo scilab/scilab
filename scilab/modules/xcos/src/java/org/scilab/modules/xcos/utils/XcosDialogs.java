@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.utils;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.XcosDiagram;
 
 /**
  * Xcos standard dialogs
@@ -31,21 +32,21 @@ public final class XcosDialogs {
 	/**
 	 * Dialog displayed when no  block is selected and one is needed for action
 	 */
-	public static void noBlockSelected() {
-	    ScilabModalDialog.show(XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	public static void noBlockSelected(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 
 	/**
 	 * Dialog displayed when saving failed
 	 */
-	public static void couldNotSaveFile() {
-	    ScilabModalDialog.show(XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	public static void couldNotSaveFile(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 	
 	/**
 	 * Dialog displayed when loading failed
 	 */
-	public static void couldNotLoadFile() {
-	    ScilabModalDialog.show(XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+	public static void couldNotLoadFile(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 }

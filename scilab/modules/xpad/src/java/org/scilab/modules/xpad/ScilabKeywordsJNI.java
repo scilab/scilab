@@ -10,8 +10,7 @@ package org.scilab.modules.xpad;
 
 
  /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class ScilabKeywordsJNI {
 

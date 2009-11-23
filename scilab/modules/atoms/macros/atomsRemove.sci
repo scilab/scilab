@@ -66,10 +66,12 @@ function result = atomsRemove(packages,section)
 		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
 		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
 		MACOSX  = %F;
 		LINUX   = %F;
 		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	// Verbose Mode ?

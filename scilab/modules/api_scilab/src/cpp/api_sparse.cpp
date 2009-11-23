@@ -120,6 +120,17 @@ SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRow
 	int iOffset			= 0;
 	int* piAddr			= NULL;
 
+		//header + offset
+	int iMemSize = (5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2)) / 2;
+	//+ items size
+	iMemSize += _iNbItem * (_iComplex + 1); 
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return sciErr;
+	}
+
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
 	sciErr = fillCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
@@ -229,6 +240,17 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex
 
   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
+
+	//header + offset
+	int iMemSize = (5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2)) / 2;
+	//+ items size
+	iMemSize += _iNbItem * (_iComplex + 1); 
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return sciErr;
+	}
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 

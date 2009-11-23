@@ -52,10 +52,12 @@ public class H5ReadScilabString {
 	
 	for(int i = 0 ; i < rows ; i++) {
 	    for(int j = 0 ; j < cols ; j++) {
-		result[i][j] = dataRead[i+ j * rows].trim();	
+		result[i][j] = dataRead[i+ j * rows];	
 	    }
 	}
 
+	H5.H5Tclose(filetype);
+	H5.H5Tclose(memtype);
 	H5.H5Sclose(space);
 	H5.H5Dclose(dataSetId);
 	return result;

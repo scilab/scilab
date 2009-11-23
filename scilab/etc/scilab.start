@@ -108,6 +108,13 @@ else
 end
 setenv("VERSION",getversion());
 
+// ATOMS ===============================================================
+if with_module('atoms') then
+  atomsSystemInit();
+  atomsAutoload();
+  clear atomsSystemInit atomsAutoload
+end
+
 // Protect variable previously defined  ================================
 predef("all");
 
@@ -126,13 +133,6 @@ if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   global %toolboxes_dir;
   exec(SCI+'/contrib/loader.sce');
   clear %toolboxes %toolboxes_dir;
-end
-
-// ATOMS ===============================================================
-if with_module('atoms') then
-  atomsSystemInit();
-  atomsAutoload();
-  clear atomsSystemInit atomsAutoload
 end
 
 // calling user initialization =========================================

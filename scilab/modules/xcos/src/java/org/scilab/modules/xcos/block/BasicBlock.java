@@ -46,6 +46,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -57,10 +58,11 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEventObject;
 
 public class BasicBlock extends XcosUIDObject {
 
-	private String interfaceFunctionName = "xcos_block";
+    private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram = null;
@@ -367,22 +369,13 @@ public class BasicBlock extends XcosUIDObject {
         this.locked = locked;
     }
 
-    public void removePort(InputPort port){
+    public void removePort(BasicPort port){
+	if(port.getEdgeCount() != 0) {
+	    getParentDiagram().getModel().remove(port.getEdgeAt(0));
+	}
     	remove(port);
     }
     
-    public void removePort(OutputPort port){
-    	remove(port);
-    }
-    
-    public void removePort(CommandPort port){
-    	remove(port);
-    }
-    
-    public void removePort(ControlPort port){
-    	remove(port);
-    }
-
     public void addPort(InputPort port) {
     	insert(port);
     	BlockPositioning.updatePortsPosition(this, mxConstants.DIRECTION_EAST);
@@ -538,6 +531,12 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void openBlockSettings(String context[]) {
+	
+	//prevent to open twice
+	if(isLocked()) {
+	    return;
+	}
+	
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
@@ -563,16 +562,18 @@ public class BasicBlock extends XcosUIDObject {
 		    ", "+getInterfaceFunctionName()+
 		    ", \"set\""+
 		    ", \""+tempContext.getAbsolutePath()+"\");");
+	    final BasicBlock currentBlock = this;
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(tempInput.getAbsolutePath());
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
-		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS);
+		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
 		    
-		    //tempOutput.delete();
-		    //tempInput.delete();
+//		    tempOutput.delete();
+//		    tempInput.delete();
+//		    tempContext.delete();
 		    setLocked(false);
 		}
 	    };
@@ -580,7 +581,6 @@ public class BasicBlock extends XcosUIDObject {
 	    setLocked(true);
 
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }

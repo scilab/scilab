@@ -122,10 +122,12 @@ function updateAtomsGui()
         MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
         LINUX   = (strcmpi(OSNAME,"linux")  == 0);
         SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+        BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
     else
         MACOSX  = %F;
         LINUX   = %F;
         SOLARIS = %F;
+        BSD     = %F;
     end
     
     if MSDOS then
@@ -136,6 +138,8 @@ function updateAtomsGui()
         OSNAME = "macosx";
     elseif SOLARIS then
         OSNAME = "solaris";
+    elseif BSD then
+        OSNAME = "bsd";
     end
     
     // Architecture detection
@@ -271,13 +275,13 @@ function human_str = atomsSize2human(size_str)
     size_int = strtod(size_str);
     
     if size_int < 1024 then
-        human_str = string(size_int) + " " + gettext("Octets");
+        human_str = string(size_int) + " " + gettext("Bytes");
 
     elseif size_int < 1024*1024 then
-        human_str = string(round(size_int/1024)) + " " + gettext("Ko");
+        human_str = string(round(size_int/1024)) + " " + gettext("KB");
     
     else
-        human_str = string( round((size_int*10)/(1024*1024)) / 10 ) + " " + gettext("Mo");
+        human_str = string( round((size_int*10)/(1024*1024)) / 10 ) + " " + gettext("MB");
     
     end
     

@@ -61,7 +61,12 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		this.parameters.setParameter(Parameter.MATHCOLOR, color);
 		this.parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
 		this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
+		this.isColored = false;
 		makeImage();
+		if(content.contains("color") || content.contains("background") ||
+			content.contains("mathcolor") || content.contains("mathbackground")){
+		    this.isColored = true;
+		}
     }
         
     /**

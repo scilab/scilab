@@ -65,10 +65,12 @@ function dir_created = atomsExtract(archive_in,dir_out)
 		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
 		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
 		MACOSX  = %F;
 		LINUX   = %F;
 		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	// Get the list of directories before the extraction
@@ -78,7 +80,7 @@ function dir_created = atomsExtract(archive_in,dir_out)
 	// Build the extract command
 	// =========================================================================
 	
-	if ( LINUX | MACOSX | SOLARIS ) & regexp(archive_in,"/(\.tar\.gz|\.tgz)$/","o") <> [] then
+	if ( LINUX | MACOSX | SOLARIS | BSD ) & regexp(archive_in,"/(\.tar\.gz|\.tgz)$/","o") <> [] then
 		
 		extract_cmd = "tar xzf "+ archive_in + " -C """+ dir_out + """";
 		

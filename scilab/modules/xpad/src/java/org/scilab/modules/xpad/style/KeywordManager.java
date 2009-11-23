@@ -34,15 +34,17 @@ public class KeywordManager {
 		String[] commands;
 		String[] functions;
 		String[] macros;
-		if (true) { /* @TODO: update it to allow the text editor as standalone */
+		try {
 			commands =  ScilabKeywords.GetCommandsName();
 			functions =  ScilabKeywords.GetFunctionsName();
 			macros =  ScilabKeywords.GetMacrosName();
-		} else {
-			commands =  new String[]{""};//ScilabKeywords.GetCommandsName();
-			functions =  new String[]{""};// ScilabKeywords.GetFunctionsName();
-			macros =  new String[]{""};//ScilabKeywords.GetMacrosName();
-			
+		} catch (UnsatisfiedLinkError e) {
+			/* If Scilab is launched as standalone, it cannot get the JNI
+			 * access 
+			 */
+			commands = new String[]{""};
+			functions = new String[]{""};
+			macros = new String[]{""};
 		}
 		//String[] variables =  ScilabKeywords.GetVariablesName();
 

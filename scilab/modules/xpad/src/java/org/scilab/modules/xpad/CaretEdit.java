@@ -4,30 +4,25 @@ import javax.swing.text.JTextComponent;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
-public class CaretEdit extends javax.swing.undo.AbstractUndoableEdit
-{
+public class CaretEdit extends javax.swing.undo.AbstractUndoableEdit {
   private int mark;
   private int dot;
   private JTextComponent textComponent;
   
   // save current caret position to be restored with undo.
-  public CaretEdit(JTextComponent t)
-  {
+  public CaretEdit(JTextComponent t) {
 	  javax.swing.text.Caret c = t.getCaret();  
 	  mark = c.getMark();
 	  dot = c.getDot();
 	  textComponent = t;
   }
-  public boolean isSignificant()
-  {
+  public boolean isSignificant() {
     return true;
   }
-  public String getPresentationName()
-  {
+  public String getPresentationName() {
     return "caret move";
   }
-  public void undo() throws CannotUndoException
-  {
+  public void undo() throws CannotUndoException {
 	    super.undo();
 	    try
 	    {

@@ -11,6 +11,15 @@ Text editor:
 
 * Refactoring of some large part of the source code
 
+* Thanks to a right button click, a popup menu shows the following features:
+- Execute in Scilab
+- Edit selection into a new text editor
+- Copy
+- Select all
+- History
+- Help on the selected text
+
+
 Help browser:
 =============
 
@@ -22,8 +31,8 @@ Help browser:
 - History
 - Help on the selected text
 
-* In the console, in menu associated to a right button click, the item
-"Help on the selected text" has been added
+* In the console and the text editor, in menu associated to a right button
+click, the item "Help on the selected text" has been added
 
 Localization:
 =============
@@ -45,15 +54,12 @@ Compilation:
 Bug fixes:
 ==========
 
-* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
-
-* bug 5348 fixed - Openning a Superblock crash Xcos.
-
-* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
-
 * bug 3478 fixed - file function returned a wrong error message when file did not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
+
+* bug 3849 fixed - Path selected for graphics export is now memorized and used
+                   as default for next export file selection.
 
 * bug 4401 fixed - isnum returned wrong values.
 
@@ -64,6 +70,10 @@ Bug fixes:
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
+* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
+
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
 * bug 5106 fixed - mopen help page did not contain any example.
@@ -72,13 +82,19 @@ Bug fixes:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
+
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
+* bug 5200 fixed - Adding a code generation error message when not applicable
+
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
+* bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
 * bug 5235 fixed - Error message added when launching Scicos
 
@@ -93,6 +109,8 @@ Bug fixes:
 
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
+
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
 
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
@@ -119,9 +137,15 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5336 fixed - xcos palette tabs now loaded fastly.
+
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+
+* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+
+* bug 5348 fixed - Openning a Superblock crash Xcos.
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
                    at Scilab startup.
@@ -136,10 +160,19 @@ Bug fixes:
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
 
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
-* bug 5391 fixed - ATOMS : Error message was not well localized
+* bug 5402 fixed - Update status bar contents after saving canceled.
+
+* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5433 fixed - LCC-Win32 did not work with scicos.
+
+* bug 5453 fixed - Sizes was displayed with French units.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1229,6 +1262,8 @@ Bug fixes:
 
 * bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
 
+* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
+
 * bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
 
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
@@ -1238,6 +1273,9 @@ Bug fixes:
 * bug 5074 fixed - French help star showed mis-encoded characters.
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
+
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
+		   the frame "Scope" should be checked by default.
 
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
@@ -1269,5 +1307,13 @@ Bug fixes:
 
 * bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 
+* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
+
+* bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
+
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
+
+* bug 5386 fixed - Wrong title for auto indent action in menu.
+
+* bug 5404 fixed - Open & close Editor creates a java exception.
 

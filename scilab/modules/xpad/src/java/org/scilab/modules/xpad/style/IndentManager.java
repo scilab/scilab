@@ -63,7 +63,6 @@ public IndentManager() {
 
 	public String indentLine (String lineToIndent, String baseSpaces) {
 		
-		 int lineLength =  lineToIndent.length();
 		 Matcher matcherSpace = patternSpace.matcher(lineToIndent);
 		 if (matcherSpace.find()) {
 			 lineToIndent = lineToIndent.replaceFirst(matcherSpace.group(), "");
@@ -125,9 +124,6 @@ public IndentManager() {
 		String currentSpace ="";
 		String previousLineContent = "";
 		
-		int finalPosition = scilabDocument.getLength();
-
-		
 		int currentLineStart = scilabDocument.getParagraphElement(startPosition).getStartOffset();
 		int currentLineLength =  scilabDocument.getParagraphElement(startPosition).getEndOffset() - currentLineStart - 1;
 		String currentLineContent = scilabDocument.getText(currentLineStart, currentLineLength);
@@ -180,8 +176,6 @@ public IndentManager() {
 		Matcher matcherOut = patternOut.matcher(lineWithoutComment);
 			
 		String tabToAdd = "";
-		String tabToRemove = "";
-
 
 		/*apply change */
 			
@@ -290,7 +284,7 @@ public IndentManager() {
 	    }
 	}
 
-	public void beautifier(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) throws BadLocationException{
+	public int beautifier(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) throws BadLocationException{
 		
 		int currentStartOffset = scilabDocument.getParagraphElement(startPosition).getStartOffset();
 		
@@ -305,14 +299,18 @@ public IndentManager() {
 		Element currentElement = null;
 		Element lastElement = scilabDocument.getParagraphElement(endPosition);
 		
+		String toIndent = "";
+		
 		do {
 			currentElement = scilabDocument.getParagraphElement(currentStartOffset);
-			String toIndent= scilabDocument.getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset - 1);//-1 to remove \n			
+			toIndent= scilabDocument.getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset - 1);//-1 to remove \n			
 			String indented = indentLine(toIndent, baseSpaces);
 			scilabDocument.replace(currentStartOffset, toIndent.length(), indented, null);
 			currentStartOffset += indented.length() + 1;
 		} while(currentElement != lastElement);
 		currentStringIndent = "";
 		currentLevelIdent = 0;
+		
+		return currentStartOffset;
 	}
 }

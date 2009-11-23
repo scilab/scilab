@@ -24,23 +24,25 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 import org.scilab.modules.xpad.style.IndentManager;
 
+@SuppressWarnings("serial")
 public class IndentAction extends DefaultAction {
 	
-	private static Xpad indent_editor;
 	private IndentManager indentManager = new IndentManager();
 	
 	private IndentAction(Xpad editor) {
 		super(XpadMessages.INDENT, editor);
-		indent_editor = editor;
 	}
 
 	public void doAction() {
 		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
 		try {
-			indentManager.beautifier(styleDocument, getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+			int selection_start = getEditor().getTextPane().getSelectionStart();
+			int selection_end = getEditor().getTextPane().getSelectionEnd();
+			int final_selection_end = indentManager.beautifier(styleDocument, selection_start, selection_end);
+			getEditor().getTextPane().setSelectionStart(selection_start);
+			getEditor().getTextPane().setSelectionEnd(final_selection_end);
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -50,6 +52,6 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public static void getXpadEditor(){
-		//((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
+
 	}
 }
