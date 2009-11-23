@@ -157,9 +157,11 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static void xcos(String fileName) {
-	XcosDiagram diagram = createEmptyDiagram();
 	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
-	diagram.openDiagramFromFile(fileName);
+	if (Xcos.focusOnExistingFile(fileName) == false) {
+	    XcosDiagram diagram = createEmptyDiagram();
+	    diagram.openDiagramFromFile(fileName);
+	}
     }
     
 
@@ -617,6 +619,22 @@ public class Xcos extends SwingScilabTab implements Tab {
     	return diagrams;
     }    
     
+    /**
+     * Try to focus to an already openned file
+     * @param filename
+     * @return True when found and focused, False otherwise
+     */
+    public static boolean focusOnExistingFile(String filename) {
+	for (XcosDiagram diagram : diagrams) {
+	    if (diagram.getSavedFile() != null) {
+		if (diagram.getSavedFile().compareTo(filename) == 0) {
+		    diagram.getParentTab().setCurrent();
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
     
     /**
      * Look in each diagram to find the block corresponding to the given uid
