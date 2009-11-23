@@ -4,27 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-
 // <-- TEST WITH XPAD -->
-// <-- INTERACTIVE TEST -->
 //
-// <-- Non-regression test for bug 5317 -->
+// <-- Non-regression test for bug 5172 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=5317
+// http://bugzilla.scilab.org/show_bug.cgi?id=5172
 //
 // <-- Short Description -->
-// Inserting a tab inside a line tabifies the whole line instead of only its queue.
-
-editor()
-// Type some text
-// Insert a tab at the middle of the text
-// A tabulation must be inserted.
-
-// If we select a part or the entire text, the text is right-shifted.
-
-
-
-
-
+// when i try to open a file, editor indicates that it is already modified + sometimes we have exceptions.
+editor SCI/modules/helptools/macros/xmltoformat.sci

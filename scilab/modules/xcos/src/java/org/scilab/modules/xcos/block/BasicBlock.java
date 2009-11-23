@@ -528,6 +528,17 @@ public class BasicBlock extends XcosUIDObject {
     		}
     	}
     	getParentDiagram().getModel().endUpdate();
+    	
+    	/*
+    	 * If the block is in a superblock then update it.
+    	 */
+	if (getParentDiagram() instanceof SuperBlockDiagram) {
+	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+		    .getContainer();
+	    parentBlock.getParentDiagram().fireEvent(
+		    XcosEvent.SUPER_BLOCK_UPDATED,
+		    new mxEventObject(new Object[] { parentBlock }));
+	}
     }
 
     public void openBlockSettings(String context[]) {

@@ -577,12 +577,21 @@ public class XcosDiagram extends ScilabGraph {
      *  to update current sub-diagram (i.e SuperBlock) representation.
      */
     private class SuperBlockUpdateTracker implements mxIEventListener {
-    	public void invoke(Object source, mxEventObject evt) {
-    		assert evt.getArgs()[0] instanceof SuperBlock;
-    		SuperBlock updatedBlock = (SuperBlock) evt.getArgs()[0];
-    		BlockPositioning.updateBlockView(updatedBlock);
-    		refresh();
-    	}
+	public void invoke(Object source, mxEventObject evt) {
+	    assert evt.getArgs()[0] instanceof SuperBlock;
+	    SuperBlock updatedBlock = (SuperBlock) evt.getArgs()[0];
+	    updatedBlock.setRealParameters(BlockWriter
+		    .convertDiagramToMList(updatedBlock.getChild()));
+	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
+		SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
+			.getParentDiagram()).getContainer();
+		parentBlock.getParentDiagram().fireEvent(
+			XcosEvent.SUPER_BLOCK_UPDATED,
+			new mxEventObject(new Object[] { parentBlock }));
+	    }
+	    BlockPositioning.updateBlockView(updatedBlock);
+	    refresh();
+	}
     }
 
     /**
