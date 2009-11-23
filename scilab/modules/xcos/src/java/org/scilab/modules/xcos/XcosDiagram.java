@@ -127,6 +127,9 @@ public class XcosDiagram extends ScilabGraph {
     private CheckBoxMenuItem gridMenu;
     private SetContextAction action;
     
+    /** Undo counter (0 is previous saved state) */
+    private int undo_counter = 0;
+    
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
 	public void invoke(Object source, mxEventObject evt) {
@@ -1200,7 +1203,9 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
-	    fc.setSelectedFile(new File(this.getSavedFile()));
+	    if (this.getSavedFile() != null) {
+		fc.setSelectedFile(new File(this.getSavedFile()));
+	    }
 	    XcosFileType defaultFileType = XcosFileType.getDefault();
 	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
 	    fc.addChoosableFileFilter(xcosFilter);
@@ -1596,7 +1601,9 @@ public class XcosDiagram extends ScilabGraph {
      */
 	public void undo() {
 		super.undo();
-
+		
+		increment_undo();
+		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
 				((Xcos) getParentTab()).setEnabledUndo(true);
@@ -1618,7 +1625,9 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void redo() {
 		super.redo();
-
+		
+		increment_redo();
+		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
 				((Xcos) getParentTab()).setEnabledUndo(true);
@@ -1660,6 +1669,26 @@ public class XcosDiagram extends ScilabGraph {
 	public SetContextAction getContextAction() {
 		return action;
 	}
+	
+    private void increment_undo() {
+	if (undo_counter >= Integer.MIN_VALUE) {
+	    undo_counter--;
+	    if (undo_counter == 0)
+		setModified(false);
+	    else
+		setModified(true);
+	}
+    }
+
+    private void increment_redo() {
+	if (undo_counter <= Integer.MAX_VALUE) {
+	    undo_counter++;
+	    if (undo_counter == 0)
+		setModified(false);
+	    else
+		setModified(true);
+	}
+    }
 
 }
 
