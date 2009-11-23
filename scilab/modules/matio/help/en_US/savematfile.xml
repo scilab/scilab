@@ -28,6 +28,7 @@ savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
 savematfile(..., '-v4')
 savematfile(..., '-v6')
 savematfile(..., '-v7')
+savematfile(..., '-v7.3')
 savematfile filename var1 var2 ...</synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -90,6 +91,13 @@ savematfile filename var1 var2 ...</synopsis>
               <term>"-v7"</term>
               <listitem>
                 <para>A format that MATLAB Version 7 and earlier can
+                open (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v7.3"</term>
+              <listitem>
+                <para>A format that MATLAB Version 7.3 and earlier can
                 open (default)</para>
               </listitem>
             </varlistentry>
