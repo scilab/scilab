@@ -21,7 +21,6 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +29,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.undo.UndoManager;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -127,9 +124,6 @@ public class XcosDiagram extends ScilabGraph {
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
     private SetContextAction action;
-    
-    /** Undo counter (0 is previous saved state) */
-    private int undo_counter = 1;
     
     protected mxIEventListener undoEnabler = new mxIEventListener()
     {
