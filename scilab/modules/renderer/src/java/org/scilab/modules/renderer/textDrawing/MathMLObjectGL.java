@@ -40,14 +40,15 @@ import org.xml.sax.SAXException;
  * @author Calixte Denizet
  */
 public class MathMLObjectGL extends SpecialTextObjectGL {
-
+    
+    protected JEuclidView jev;
+    
     private final static Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
 
     private final static String MMLBEGIN = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\"><math mode=\"display\" xmlns=\"http://www.w3.org/1998/Math/MathML\">";
     private final static String MMLEND = "</math>";
     
     private Document doc;
-    private JEuclidView jev;
     private MutableLayoutContext parameters;
 
     /** 
@@ -67,6 +68,14 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 			content.contains("mathcolor") || content.contains("mathbackground")){
 		    this.isColored = true;
 		}
+    }
+
+    public MathMLObjectGL(MathMLObjectGL m) {
+          	this.doc = m.doc;
+		this.jev = m.jev;
+		this.parameters = m.parameters;
+		this.width = m.width;
+		this.height = m.height;
     }
         
     /**
