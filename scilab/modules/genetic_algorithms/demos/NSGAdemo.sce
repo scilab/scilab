@@ -82,6 +82,8 @@ deff('y=fobjs(x)','y = ' + funcname + '(x);');
 // NSGA Algorithm //
 ////////////////////
 
+printf(gettext("%s: optimization starting, please wait ...\n"),"NSGA");
+
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(fobjs, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params, Sigma, Pow);
 
 [f_pareto,pop_pareto] = pareto_filter(fobj_pop_opt,pop_opt);
