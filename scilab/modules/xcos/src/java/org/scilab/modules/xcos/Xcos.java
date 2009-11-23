@@ -17,6 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -115,7 +116,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
+	private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
 	private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
 
 	private static List<Menu> recentsMenus = new ArrayList<Menu>();
@@ -612,9 +613,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     	return XcosPaletteManager.getPalettes();
     }
     
-    public static ArrayList<XcosDiagram> getDiagrams() {
+    public static List<XcosDiagram> getDiagrams() {
     	return diagrams;
-    }
+    }    
+    
     
     /**
      * Look in each diagram to find the block corresponding to the given uid
@@ -625,7 +627,7 @@ public class Xcos extends SwingScilabTab implements Tab {
      */
     public static void warnCellByUID(String UID, String message) {
 	// Try to find a block with given index (UID)
-	ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
 	for (int i = 0; i < allDiagrams.size(); ++i) {
 	    allDiagrams.get(i).warnCellByUID(UID, message);
 	}
