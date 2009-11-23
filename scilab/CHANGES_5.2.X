@@ -167,6 +167,8 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
+* bug 5405 fixed - Update the whole diagram when a superblock is modified
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
