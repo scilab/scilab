@@ -1365,6 +1365,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramFileName file to open
      */
     public void openDiagramFromFile(String diagramFileName) {
+	if (Xcos.focusOnExistingFile(diagramFileName) == false) {
 		File theFile = new File(diagramFileName);
 		info(XcosMessages.LOADING_DIAGRAM);
 
@@ -1395,6 +1396,7 @@ public class XcosDiagram extends ScilabGraph {
 		this.resetUndoManager();
 		info(XcosMessages.EMPTY_INFO);
 	}
+    }
     
     /**
      * Load a file with different method depending on it extension 
