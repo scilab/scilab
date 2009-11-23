@@ -156,4 +156,18 @@ public enum XcosFileType {
 	    
 	    return result;
 	}
+	
+	/**
+	 * Get a valid file description (useable by file selector)
+	 * @return A valid file mask
+	 */
+	public static String[] getValidFileDescription() {
+	    String[] result = new String[XcosFileType.values().length-1];
+	    
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = XcosFileType.values()[i].getDescription() + " (*." + XcosFileType.values()[i].getExtension() + ")";
+	    }
+	    
+	    return result;
+	}
 }
