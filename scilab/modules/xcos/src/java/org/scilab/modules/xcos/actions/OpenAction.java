@@ -74,7 +74,8 @@ public final class OpenAction extends DefaultAction {
 
 		/* Standard files */
 		String[] mask = XcosFileType.getValidFileMask();
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
+		String[] desc = XcosFileType.getValidFileDescription();
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , desc);
 		
 		fc.setMultipleSelection(false);
 		fc.displayAndWait();
