@@ -75,8 +75,12 @@ public class ConfigXcosManager {
 	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
 	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 	    /* Create a local copy of the configuration file */
-	    copyFile(new File(XCOS_CONFIG_FILE),
-		    new File(USER_XCOS_CONFIG_FILE));
+	    try {
+		copyFile(new File(XCOS_CONFIG_FILE), new File(
+			USER_XCOS_CONFIG_FILE));
+	    } catch (IOException e) {
+		System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    }
 
 	}
     }
@@ -98,8 +102,10 @@ public class ConfigXcosManager {
      *            src file
      * @param out
      *            dest file
+     * @throws IOException
+     *             When an error occurs
      */
-    private static void copyFile(File in, File out) {
+    private static void copyFile(File in, File out) throws IOException {
 	FileInputStream fis = null;
 	try {
 	    fis = new FileInputStream(in);
@@ -107,22 +113,15 @@ public class ConfigXcosManager {
 	    e.printStackTrace();
 	}
 	FileOutputStream fos = null;
-	try {
-	    fos = new FileOutputStream(out);
+	fos = new FileOutputStream(out);
 
-	    byte[] buf = new byte[BUFSIZE];
-	    int i = 0;
-	    while ((i = fis.read(buf)) != -1) {
-		fos.write(buf, 0, i);
-	    }
-	    fis.close();
-	    fos.close();
-
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    e.printStackTrace();
+	byte[] buf = new byte[BUFSIZE];
+	int i = 0;
+	while ((i = fis.read(buf)) != -1) {
+	    fos.write(buf, 0, i);
 	}
+	fis.close();
+	fos.close();
 	/* TODO */
     }
 
@@ -135,27 +134,30 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
-	Element root = document.getDocumentElement();
+	if (document != null) {
+	    Element root = document.getDocumentElement();
 
-	NodeList profiles = root.getElementsByTagName(PROFILE);
-	Element XCOSProfile = (Element) profiles.item(0);
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element XCOSProfile = (Element) profiles.item(0);
 
-	NodeList allPositionElements = XCOSProfile
-		.getElementsByTagName(MAINWINPOSITION);
-	Element mainWindowPosition = (Element) allPositionElements.item(0);
-	if (mainWindowPosition != null) {
-	    int x = Integer.parseInt(mainWindowPosition.getAttribute(XCOORD));
-	    int y = Integer.parseInt(mainWindowPosition.getAttribute(YCOORD));
-	    /* Avoid XCOS Main Window to be out of the screen */
-	    if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
-		    && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
-		return new Position(x, y);
-	    } else {
-		return new Position(0, 0);
+	    NodeList allPositionElements = XCOSProfile
+		    .getElementsByTagName(MAINWINPOSITION);
+	    Element mainWindowPosition = (Element) allPositionElements.item(0);
+	    if (mainWindowPosition != null) {
+		int x = Integer.parseInt(mainWindowPosition
+			.getAttribute(XCOORD));
+		int y = Integer.parseInt(mainWindowPosition
+			.getAttribute(YCOORD));
+		/* Avoid XCOS Main Window to be out of the screen */
+		if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
+			&& y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
+		    return new Position(x, y);
+		} else {
+		    return new Position(0, 0);
+		}
 	    }
-	} else {
-	    return new Position(0, 0);
 	}
+	return new Position(0, 0);
 
 	/* TODO */
     }
@@ -171,22 +173,24 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
-	Element root = document.getDocumentElement();
+	if (document != null) {
+	    Element root = document.getDocumentElement();
 
-	NodeList profiles = root.getElementsByTagName(PROFILE);
-	Element XCOSProfile = (Element) profiles.item(0);
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element XCOSProfile = (Element) profiles.item(0);
 
-	NodeList allPositionElements = XCOSProfile
-		.getElementsByTagName(MAINWINPOSITION);
-	Element mainWindowPosition = (Element) allPositionElements.item(0);
+	    NodeList allPositionElements = XCOSProfile
+		    .getElementsByTagName(MAINWINPOSITION);
+	    Element mainWindowPosition = (Element) allPositionElements.item(0);
 
-	mainWindowPosition.setAttribute(XCOORD, Integer.toString(position
-		.getX()));
-	mainWindowPosition.setAttribute(YCOORD, Integer.toString(position
-		.getY()));
+	    mainWindowPosition.setAttribute(XCOORD, Integer.toString(position
+		    .getX()));
+	    mainWindowPosition.setAttribute(YCOORD, Integer.toString(position
+		    .getY()));
 
-	/* Save changes */
-	writeDocument();
+	    /* Save changes */
+	    writeDocument();
+	}
     }
 
     /**
@@ -200,21 +204,24 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
-	Element root = document.getDocumentElement();
+	if (document != null) {
+	    Element root = document.getDocumentElement();
 
-	NodeList profiles = root.getElementsByTagName(PROFILE);
-	Element XCOSProfile = (Element) profiles.item(0);
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element XCOSProfile = (Element) profiles.item(0);
 
-	NodeList allPositionElements = XCOSProfile
-		.getElementsByTagName(MAINWINSIZE);
-	Element mainWindowSize = (Element) allPositionElements.item(0);
+	    NodeList allPositionElements = XCOSProfile
+		    .getElementsByTagName(MAINWINSIZE);
+	    Element mainWindowSize = (Element) allPositionElements.item(0);
 
-	mainWindowSize.setAttribute(WIDTH, Integer.toString(size.getWidth()));
-	mainWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
+	    mainWindowSize.setAttribute(WIDTH, Integer
+		    .toString(size.getWidth()));
+	    mainWindowSize.setAttribute(HEIGHT, Integer.toString(size
+		    .getHeight()));
 
-	/* Save changes */
-	writeDocument();
-
+	    /* Save changes */
+	    writeDocument();
+	}
     }
 
     /**
@@ -227,21 +234,23 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
-	Element root = document.getDocumentElement();
+	if (document != null) {
 
-	NodeList profiles = root.getElementsByTagName(PROFILE);
-	Element XCOSProfile = (Element) profiles.item(0);
+	    Element root = document.getDocumentElement();
 
-	NodeList allSizeElements = XCOSProfile
-		.getElementsByTagName(MAINWINSIZE);
-	Element mainWindowSize = (Element) allSizeElements.item(0);
-	if (mainWindowSize != null) {
-	    return new Size(Integer
-		    .parseInt(mainWindowSize.getAttribute(WIDTH)), Integer
-		    .parseInt(mainWindowSize.getAttribute(HEIGHT)));
-	} else {
-	    return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element XCOSProfile = (Element) profiles.item(0);
+
+	    NodeList allSizeElements = XCOSProfile
+		    .getElementsByTagName(MAINWINSIZE);
+	    Element mainWindowSize = (Element) allSizeElements.item(0);
+	    if (mainWindowSize != null) {
+		return new Size(Integer.parseInt(mainWindowSize
+			.getAttribute(WIDTH)), Integer.parseInt(mainWindowSize
+			.getAttribute(HEIGHT)));
+	    }
 	}
+	return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     /**
@@ -255,24 +264,26 @@ public class ConfigXcosManager {
 
 	readDocument();
 
-	Element root = (Element) document.getDocumentElement()
-		.getElementsByTagName("recentFiles").item(0);
-	if (root != null) {
-	    NodeList recentFiles = root.getElementsByTagName("document");
+	if (document != null) {
+	    Element root = (Element) document.getDocumentElement()
+		    .getElementsByTagName("recentFiles").item(0);
+	    if (root != null) {
+		NodeList recentFiles = root.getElementsByTagName("document");
 
-	    for (int i = 0; i < recentFiles.getLength(); ++i) {
-		Element style = (Element) recentFiles.item(i);
+		for (int i = 0; i < recentFiles.getLength(); ++i) {
+		    Element style = (Element) recentFiles.item(i);
 
-		File temp = new File(style.getAttribute("path"));
+		    File temp = new File(style.getAttribute("path"));
 
-		if (temp.exists()) {
-		    files.add(temp);
-		} else {
-		    root.removeChild((Node) style);
+		    if (temp.exists()) {
+			files.add(temp);
+		    } else {
+			root.removeChild((Node) style);
+		    }
+
+		    /* Save changes */
+		    writeDocument();
 		}
-
-		/* Save changes */
-		writeDocument();
 	    }
 	}
 	return files;
@@ -288,35 +299,37 @@ public class ConfigXcosManager {
 
 	readDocument();
 
-	Element root = (Element) document.getDocumentElement()
-		.getElementsByTagName("recentFiles").item(0);
-	NodeList recentFiles = root.getElementsByTagName("document");
-	int numberOfFiles = recentFiles.getLength();
+	if (document != null) {
+	    Element root = (Element) document.getDocumentElement()
+		    .getElementsByTagName("recentFiles").item(0);
+	    NodeList recentFiles = root.getElementsByTagName("document");
+	    int numberOfFiles = recentFiles.getLength();
 
-	// we remove all the duplicate
-	for (int i = 0; i < recentFiles.getLength(); ++i) {
-	    Element style = (Element) recentFiles.item(i);
+	    // we remove all the duplicate
+	    for (int i = 0; i < recentFiles.getLength(); ++i) {
+		Element style = (Element) recentFiles.item(i);
 
-	    if (filePath.equals(style.getAttribute("path"))) {
-		root.removeChild((Node) style);
-		numberOfFiles--;
+		if (filePath.equals(style.getAttribute("path"))) {
+		    root.removeChild((Node) style);
+		    numberOfFiles--;
+		}
+
 	    }
 
+	    // if we have reached the maximun , we remove the oldest files
+	    while (recentFiles.getLength() >= MAX_RECENT_FILES) {
+		root.removeChild(root.getFirstChild());
+	    }
+
+	    Element newFile = document.createElement("document");
+
+	    newFile.setAttribute("path", filePath);
+
+	    root.appendChild((Node) newFile);
+
+	    /* Save changes */
+	    writeDocument();
 	}
-
-	// if we have reached the maximun , we remove the oldest files
-	while (recentFiles.getLength() >= MAX_RECENT_FILES) {
-	    root.removeChild(root.getFirstChild());
-	}
-
-	Element newFile = document.createElement("document");
-
-	newFile.setAttribute("path", filePath);
-
-	root.appendChild((Node) newFile);
-
-	/* Save changes */
-	writeDocument();
 
     }
 
@@ -338,11 +351,11 @@ public class ConfigXcosManager {
 	    document = docBuilder.parse(xml);
 
 	} catch (ParserConfigurationException pce) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	} catch (SAXException se) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	} catch (IOException ioe) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	}
 
     }
@@ -356,9 +369,9 @@ public class ConfigXcosManager {
 	try {
 	    transformer = TransformerFactory.newInstance().newTransformer();
 	} catch (TransformerConfigurationException e1) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	} catch (TransformerFactoryConfigurationError e1) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	}
 	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
@@ -367,7 +380,7 @@ public class ConfigXcosManager {
 	try {
 	    transformer.transform(source, result);
 	} catch (TransformerException e) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	}
 
     }
