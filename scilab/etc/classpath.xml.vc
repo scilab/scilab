@@ -69,9 +69,11 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>	
 </path>
 <path value="$SCILAB/thirdparty/js.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -85,10 +87,12 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <path value="$SCILAB/thirdparty/jlatexmath-0.6.jar" load="onUse">
 	<load on="graphics_latex_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>	
 </path>
 
 <!-- PDF doc generation -->
@@ -99,10 +103,12 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <path value="$SCILAB/thirdparty/fop.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- helptools module doc generation -->

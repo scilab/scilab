@@ -52,7 +52,6 @@ int gw_graphic_export(void)
                            || strcmp(Tab[Fin-1].name, "xs2pdf")==0
                            || strcmp(Tab[Fin-1].name, "xs2ps")==0))
           {
-			  printf("ici");
             loadOnUseClassPath("pdf_ps_eps_graphic_export");
             loadedDepVectorialExport = TRUE;
           }
