@@ -1333,3 +1333,5 @@ Bug fixes:
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
+* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
+
