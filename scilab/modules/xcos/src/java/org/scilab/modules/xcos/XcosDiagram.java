@@ -1230,6 +1230,7 @@ public class XcosDiagram extends ScilabGraph {
 	try {
 	    mxUtils.writeFile(xml, fileName);
 	    isSuccess = true;
+	    resetUndoCounter();
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	    isSuccess = false;
@@ -1606,6 +1607,7 @@ public class XcosDiagram extends ScilabGraph {
 			((Xcos) getParentTab()).setEnabledRedo(true);
 		}
 
+		updateUndoModifiedState();
 		/*
 		 * if (undoManager.canRedo()){
 		 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
@@ -1613,11 +1615,15 @@ public class XcosDiagram extends ScilabGraph {
 		 */
 	}
 
+    
+
 	/**
 	 * Apply the previously reverted action
 	 */
 	public void redo() {
 		super.redo();
+		
+		updateUndoModifiedState();
 		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
@@ -1638,11 +1644,24 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void resetUndoManager() {
 		undoManager.reset();
+		
+		resetUndoCounter();
+		
 		if (getParentTab() != null) {
 			((Xcos) getParentTab()).setEnabledRedo(false);
 			((Xcos) getParentTab()).setEnabledUndo(false);
 		}
 	}
+	
+	private void updateUndoModifiedState() {
+		if (isZeroUndoCounter()) {
+		    setModified(false);
+		}
+		else
+		{
+		    setModified(true);
+		}
+	    }
 	
 	/**
 	 * This function checks for the popup menu activation under MacOS with Java version 1.5

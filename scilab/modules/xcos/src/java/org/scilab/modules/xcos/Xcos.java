@@ -145,7 +145,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
-		createEmptyDiagram();
+		xcos();
 	    }
 	});
     }

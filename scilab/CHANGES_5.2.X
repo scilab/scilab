@@ -51,6 +51,9 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
+* In some cases, under !Windows, the detection of libjogl.* was failling
+  because of a missing explicit link against libGL.*
+
 Bug fixes:
 ==========
 
@@ -174,6 +177,8 @@ Bug fixes:
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+
+* bug 5445 fixed - Xcos: update modified state on undo/redo
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
