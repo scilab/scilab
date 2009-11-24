@@ -179,6 +179,8 @@ Bug fixes:
 
 * bug 5453 fixed - Sizes was displayed with French units.
 
+* bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -668,8 +670,8 @@ tests:
 
 * test_run() now accepts Sub-Modules (See SEP #31)
 
-Internationalization:
-=====================
+Internationalization and Characters Encoding:
+=============================================
 
 * Portugues do Brazil localization added (Thanks Daniel de Souza Grilo and others)
 
@@ -682,6 +684,18 @@ Internationalization:
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
 * Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
+* Characters encoding:
+
+  Strings manipulations functions updated to use wide characters.
+  This feature add ability to manipulate any language on any system regardless of the system code page.
+
+  Internal C functions added: readNamedMatrixOfWideString, createNamedMatrixOfWideString,
+                              getMatrixOfWideString, createMatrixOfWideString in api_string.h
+                              to manage wide characters with scilab API.
+
+  input/output files functions also updated to use wide characters.
+  Default file format encoding used by Scilab is UTF-8.
 
 Bugs:
 
@@ -1320,4 +1334,6 @@ Bug fixes:
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 

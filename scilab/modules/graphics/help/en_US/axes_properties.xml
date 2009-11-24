@@ -131,7 +131,7 @@
                   </listitem>
                   <listitem>
                     <para><literal>"origin"</literal>. In this case the x axis is drawn
-                at the position nearest to the 0 y coordinates.</para>
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -156,7 +156,7 @@
                   </listitem>
                   <listitem>
                     <para><literal>"origin"</literal>. In this case the y axis is drawn
-                at the position nearest to the 0 x coordinates.</para>
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
