@@ -47,6 +47,7 @@ public class ScilabGraph extends mxGraph {
     private Tab parentTab;
     private boolean opened = false;
     private boolean redoInAction = false ;
+    private int undoCounter = 0;
     
     /**
      * 
@@ -64,6 +65,7 @@ public class ScilabGraph extends mxGraph {
 	
 		if (! redoInAction){
 			undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
+			incrementUndoCounter();
 		}
 	}
     };
@@ -145,18 +147,38 @@ public class ScilabGraph extends mxGraph {
     }
 
     public void undo() {
+	decrementUndoCounter();
     redoInAction = true;
 	undoManager.undo();
 	redoInAction = false;
     }
 
     public void redo() {
+	incrementUndoCounter();
     redoInAction = true;
 	undoManager.redo();
 	redoInAction = false;
     }
     
+    private void incrementUndoCounter() {
+	if (undoCounter < Integer.MAX_VALUE) {
+	    undoCounter++;
+	}
+    }
 
+    private void decrementUndoCounter() {
+	if (undoCounter > Integer.MIN_VALUE) {
+	    undoCounter--;
+	}
+    }
+    
+    protected boolean isZeroUndoCounter() {
+	return (undoCounter == 0);
+    }
+    
+    protected void resetUndoCounter() {
+	undoCounter = 0;
+    }
 
     public void zoom() {
 	//	this.setScale(2 * this.getScale());
