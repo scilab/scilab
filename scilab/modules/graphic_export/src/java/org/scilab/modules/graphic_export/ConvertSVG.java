@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Calixte Denizet
+ * Copyright (C) 2009 - Calixte Denizet
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,22 +31,22 @@ import org.apache.avalon.framework.configuration.DefaultConfiguration;
  */
 public class ConvertSVG {
     
-    private final static PDFTranscoder PDFtrans = new PDFTranscoder();
-    private final static PSTranscoder PStrans = new PSTranscoder();
-    private final static EPSTranscoder EPStrans = new EPSTranscoder();
+    private final static PDFTranscoder PDFtrans;
+    private final static PSTranscoder PStrans;
+    private final static EPSTranscoder EPStrans;
 
     public static void SVGTo(String in, String out, int fileType) {
 	if (GL2PSRenderer.checkWritePermission(new File(out)) == ExportRenderer.SUCCESS) {
 	    AbstractFOPTranscoder trans = null;
 	    switch (fileType) {
 	    case ExportRenderer.PDF_EXPORT :
-		trans = PDFtrans;
+		trans = new PDFTranscoder();
 		break;
 	    case ExportRenderer.PS_EXPORT :
-		trans = PStrans;
+		trans = new PSTranscoder();
 		break;
 	    case ExportRenderer.EPS_EXPORT :
-		trans = EPStrans;
+		trans = new EPSTranscoder();
 		break;
 	    }
 
