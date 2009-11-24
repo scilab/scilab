@@ -25,40 +25,44 @@ import org.apache.fop.svg.AbstractFOPTranscoder;
 import org.apache.avalon.framework.configuration.DefaultConfiguration;
 
 /**
- * Static class to convert a SVG file into a PDF file using FOP and Batik
+ * Static class to convert a SVG file into a vectorial file using FOP and Batik
  * @author Calixte Denizet
  *
  */
 public class ConvertSVG {
     
-    private final static PDFTranscoder PDFtrans;
-    private final static PSTranscoder PStrans;
-    private final static EPSTranscoder EPStrans;
-
+/**
+ * Convert a SVG to 
+ *
+ * @param in the input file
+ * @param out the PDF transformed file
+ * @param fileType The type (can be PDF_EXPORT, PS_EXPORT or EPS_EXPORT)
+ */
     public static void SVGTo(String in, String out, int fileType) {
 	if (GL2PSRenderer.checkWritePermission(new File(out)) == ExportRenderer.SUCCESS) {
 	    AbstractFOPTranscoder trans = null;
 	    switch (fileType) {
-	    case ExportRenderer.PDF_EXPORT :
-		trans = new PDFTranscoder();
-		break;
-	    case ExportRenderer.PS_EXPORT :
-		trans = new PSTranscoder();
-		break;
-	    case ExportRenderer.EPS_EXPORT :
-		trans = new EPSTranscoder();
-		break;
+			case ExportRenderer.PDF_EXPORT :
+				trans = new PDFTranscoder();
+				break;
+			case ExportRenderer.PS_EXPORT :
+				trans = new PSTranscoder();
+				break;
+			case ExportRenderer.EPS_EXPORT :
+				trans = new EPSTranscoder();
+				break;
 	    }
 
 	    try {
-		TranscoderInput input = new TranscoderInput(new FileInputStream(in));
-		FileOutputStream os = new FileOutputStream(out);
-		TranscoderOutput output = new TranscoderOutput(os);
-		trans.transcode(input, output);
-		os.flush();
-		os.close();
+			TranscoderInput input = new TranscoderInput(new FileInputStream(in));
+			FileOutputStream os = new FileOutputStream(out);
+			TranscoderOutput output = new TranscoderOutput(os);
+			trans.transcode(input, output);
+			os.flush();
+			os.close();
 	    } catch (Exception e) {
-		ExportRenderer.setErrorNumber(ExportRenderer.INVALID_FILE);
+			System.err.println("Error while converting from SVG: "+e.getLocalizedMessage());
+			ExportRenderer.setErrorNumber(ExportRenderer.INVALID_FILE);
 	    }
 	} else {
 	    ExportRenderer.setErrorNumber(ExportRenderer.INVALID_FILE);
