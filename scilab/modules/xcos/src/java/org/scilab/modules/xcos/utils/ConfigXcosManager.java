@@ -254,26 +254,26 @@ public class ConfigXcosManager {
 	readDocument();
 
 	if (document != null) {
-	Element root = (Element) document.getDocumentElement()
-		.getElementsByTagName("recentFiles").item(0);
-	if (root != null) {
-	    NodeList recentFiles = root.getElementsByTagName("document");
+	    Element root = (Element) document.getDocumentElement()
+		    .getElementsByTagName("recentFiles").item(0);
+	    if (root != null) {
+		NodeList recentFiles = root.getElementsByTagName("document");
 
-	    for (int i = 0; i < recentFiles.getLength(); ++i) {
-		Element style = (Element) recentFiles.item(i);
+		for (int i = 0; i < recentFiles.getLength(); ++i) {
+		    Element style = (Element) recentFiles.item(i);
 
-		File temp = new File(style.getAttribute("path"));
+		    File temp = new File(style.getAttribute("path"));
 
-		if (temp.exists()) {
-		    files.add(temp);
-		} else {
-		    root.removeChild((Node) style);
+		    if (temp.exists()) {
+			files.add(temp);
+		    } else {
+			root.removeChild((Node) style);
+		    }
+
+		    /* Save changes */
+		    writeDocument();
 		}
-
-		/* Save changes */
-		writeDocument();
 	    }
-	}
 	}
 	return files;
     }
