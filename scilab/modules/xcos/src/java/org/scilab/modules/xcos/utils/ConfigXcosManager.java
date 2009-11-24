@@ -75,8 +75,12 @@ public class ConfigXcosManager {
 	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
 	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 	    /* Create a local copy of the configuration file */
-	    copyFile(new File(XCOS_CONFIG_FILE),
+	    try {
+		copyFile(new File(XCOS_CONFIG_FILE),
 		    new File(USER_XCOS_CONFIG_FILE));
+	    } catch (IOException e) {
+		System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    }
 
 	}
     }
@@ -98,8 +102,9 @@ public class ConfigXcosManager {
      *            src file
      * @param out
      *            dest file
+     * @throws IOException When an error occurs
      */
-    private static void copyFile(File in, File out) {
+    private static void copyFile(File in, File out) throws IOException {
 	FileInputStream fis = null;
 	try {
 	    fis = new FileInputStream(in);
@@ -107,7 +112,6 @@ public class ConfigXcosManager {
 	    e.printStackTrace();
 	}
 	FileOutputStream fos = null;
-	try {
 	    fos = new FileOutputStream(out);
 
 	    byte[] buf = new byte[BUFSIZE];
@@ -117,12 +121,6 @@ public class ConfigXcosManager {
 	    }
 	    fis.close();
 	    fos.close();
-
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
 	/* TODO */
     }
 
