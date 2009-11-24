@@ -109,15 +109,15 @@ public class ConfigXcosManager {
 	FileOutputStream fos = null;
 	try {
 	    fos = new FileOutputStream(out);
-	
-	byte[] buf = new byte[BUFSIZE];
-	int i = 0;
+
+	    byte[] buf = new byte[BUFSIZE];
+	    int i = 0;
 	    while ((i = fis.read(buf)) != -1) {
 		fos.write(buf, 0, i);
 	    }
 	    fis.close();
 	    fos.close();
-	    
+
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	} catch (IOException e) {
