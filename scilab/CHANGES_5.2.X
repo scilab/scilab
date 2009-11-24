@@ -179,6 +179,8 @@ Bug fixes:
 
 * bug 5453 fixed - Sizes was displayed with French units.
 
+* bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
