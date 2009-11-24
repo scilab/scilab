@@ -253,6 +253,7 @@ public class ConfigXcosManager {
 
 	readDocument();
 
+	if (document != null) {
 	Element root = (Element) document.getDocumentElement()
 		.getElementsByTagName("recentFiles").item(0);
 	if (root != null) {
@@ -272,6 +273,7 @@ public class ConfigXcosManager {
 		/* Save changes */
 		writeDocument();
 	    }
+	}
 	}
 	return files;
     }
