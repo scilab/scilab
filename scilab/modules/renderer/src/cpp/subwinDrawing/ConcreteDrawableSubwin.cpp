@@ -196,6 +196,17 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   m_pYBoundsStrategy->applyScaleModification(userYBounds, bestYBounds);
   m_pZBoundsStrategy->applyScaleModification(userZBounds, bestZBounds);
 
+  // if the X axis are origin and we are not in zoom mode
+  // we need to add 0
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.xdir == 'o' && !isZoomed) {
+    addZeroInRange(bestYBounds);
+  }
+
+  // same for Y axis
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.ydir == 'o' && !isZoomed) {
+    addZeroInRange(bestXBounds);
+  }
+
   // fit them if needed
   // for a more accurate zoom, tigth limits are enable if the zoom
   // is enable
@@ -519,6 +530,17 @@ void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double y
 
   sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
   getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::addZeroInRange(double range[2]) {
+  if (range[0] > 0.0 && range[1] > 0.0) {
+  // both are greater than 0, so put the lowest to 0
+    range[0] = 0.0;
+  }
+  else if (range[0] < 0.0 && range[1] < 0.0) {
+  // both are lower than 0, so put the gretestt to 0
+    range[1] = 0.0;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::computeConcealedCornerIndex(void)

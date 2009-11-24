@@ -34,17 +34,6 @@ public:
    * Get the two bounds of this axis.
    */
   virtual void getAxisBounds(double startBound[3], double endBound[3]);
-
-protected:
-
-  /**
-   * Compute the Y coordinate of the X axis segment
-   * Select the one which on the back of the screen
-   * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
-   * @return Y coordinate of the segment to draw
-   */
-  double findOriginYCoordinate(double zCoordinate);
-
 };
 
 }
