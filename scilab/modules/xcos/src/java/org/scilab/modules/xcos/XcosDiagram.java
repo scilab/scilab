@@ -21,7 +21,6 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +29,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -1200,7 +1198,9 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
-	    fc.setSelectedFile(new File(this.getSavedFile()));
+	    if (this.getSavedFile() != null) {
+		fc.setSelectedFile(new File(this.getSavedFile()));
+	    }
 	    XcosFileType defaultFileType = XcosFileType.getDefault();
 	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
 	    fc.addChoosableFileFilter(xcosFilter);
@@ -1596,7 +1596,7 @@ public class XcosDiagram extends ScilabGraph {
      */
 	public void undo() {
 		super.undo();
-
+		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
 				((Xcos) getParentTab()).setEnabledUndo(true);
@@ -1618,7 +1618,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void redo() {
 		super.redo();
-
+		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
 				((Xcos) getParentTab()).setEnabledUndo(true);
@@ -1660,6 +1660,5 @@ public class XcosDiagram extends ScilabGraph {
 	public SetContextAction getContextAction() {
 		return action;
 	}
-
 }
 
