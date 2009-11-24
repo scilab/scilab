@@ -51,6 +51,9 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
+* In some cases, under !Windows, the detection of libjogl.* was failling
+  because of a missing explicit link against libGL.*
+
 Bug fixes:
 ==========
 
@@ -178,6 +181,8 @@ Bug fixes:
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
+
+* bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
@@ -1332,4 +1337,6 @@ Bug fixes:
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
