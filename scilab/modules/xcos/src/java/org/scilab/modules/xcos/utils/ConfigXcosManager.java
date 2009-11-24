@@ -79,7 +79,7 @@ public class ConfigXcosManager {
 		copyFile(new File(XCOS_CONFIG_FILE),
 		    new File(USER_XCOS_CONFIG_FILE));
 	    } catch (IOException e) {
-		System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+		System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	    }
 
 	}
@@ -336,11 +336,11 @@ public class ConfigXcosManager {
 	    document = docBuilder.parse(xml);
 
 	} catch (ParserConfigurationException pce) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	} catch (SAXException se) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	} catch (IOException ioe) {
-	    System.out.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_READ + USER_XCOS_CONFIG_FILE);
 	}
 
     }
@@ -354,9 +354,9 @@ public class ConfigXcosManager {
 	try {
 	    transformer = TransformerFactory.newInstance().newTransformer();
 	} catch (TransformerConfigurationException e1) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	} catch (TransformerFactoryConfigurationError e1) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	}
 	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
@@ -365,7 +365,7 @@ public class ConfigXcosManager {
 	try {
 	    transformer.transform(source, result);
 	} catch (TransformerException e) {
-	    System.out.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+	    System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
 	}
 
     }
