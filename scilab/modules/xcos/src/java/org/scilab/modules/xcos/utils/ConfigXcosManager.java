@@ -133,6 +133,7 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
+	if (document != null) {
 	Element root = document.getDocumentElement();
 
 	NodeList profiles = root.getElementsByTagName(PROFILE);
@@ -151,9 +152,9 @@ public class ConfigXcosManager {
 	    } else {
 		return new Position(0, 0);
 	    }
-	} else {
-	    return new Position(0, 0);
 	}
+	}
+	    return new Position(0, 0);
 
 	/* TODO */
     }
@@ -169,6 +170,7 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
+	if (document != null) {
 	Element root = document.getDocumentElement();
 
 	NodeList profiles = root.getElementsByTagName(PROFILE);
@@ -185,6 +187,7 @@ public class ConfigXcosManager {
 
 	/* Save changes */
 	writeDocument();
+	}
     }
 
     /**
@@ -198,6 +201,7 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
+	if (document != null) {
 	Element root = document.getDocumentElement();
 
 	NodeList profiles = root.getElementsByTagName(PROFILE);
@@ -212,7 +216,7 @@ public class ConfigXcosManager {
 
 	/* Save changes */
 	writeDocument();
-
+	}
     }
 
     /**
@@ -225,6 +229,8 @@ public class ConfigXcosManager {
 	/* Load file */
 	readDocument();
 
+	if (document != null) {
+	    
 	Element root = document.getDocumentElement();
 
 	NodeList profiles = root.getElementsByTagName(PROFILE);
@@ -237,9 +243,9 @@ public class ConfigXcosManager {
 	    return new Size(Integer
 		    .parseInt(mainWindowSize.getAttribute(WIDTH)), Integer
 		    .parseInt(mainWindowSize.getAttribute(HEIGHT)));
-	} else {
-	    return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
+    }
+	    return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     /**
@@ -288,6 +294,7 @@ public class ConfigXcosManager {
 
 	readDocument();
 
+	if (document != null) {
 	Element root = (Element) document.getDocumentElement()
 		.getElementsByTagName("recentFiles").item(0);
 	NodeList recentFiles = root.getElementsByTagName("document");
@@ -317,6 +324,7 @@ public class ConfigXcosManager {
 
 	/* Save changes */
 	writeDocument();
+	}
 
     }
 
