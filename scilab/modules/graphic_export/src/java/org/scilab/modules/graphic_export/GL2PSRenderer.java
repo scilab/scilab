@@ -64,19 +64,24 @@ public class GL2PSRenderer extends ExportRenderer {
 	public int setGL2PSFile(String fileName, int fileType) {
 				
 		switch (getFileType()) {
-		case ExportRenderer.EPS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".eps");
-									   format = GL2PS.GL2PS_EPS;
-		break;
-		case ExportRenderer.PDF_EXPORT:  setFileName(ExportRenderer.getFileName() + ".pdf");
-									   format = GL2PS.GL2PS_PDF;
-		break;
-		case ExportRenderer.SVG_EXPORT:  setFileName(ExportRenderer.getFileName() + ".svg");
-									   format = GL2PS.GL2PS_SVG;
-		break;				  
-		case ExportRenderer.PS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".ps");
-		   							   format = GL2PS.GL2PS_PS;
-		break;	
-		default: return ExportRenderer.INVALID_FILE;
+			case ExportRenderer.EPS_EXPORT: 
+				setFileName(ExportRenderer.getFileName() + ".eps");
+				format = GL2PS.GL2PS_EPS;
+				break;
+			case ExportRenderer.PDF_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".pdf");
+				format = GL2PS.GL2PS_PDF;
+				break;
+			case ExportRenderer.SVG_EXPORT:
+				setFileName(ExportRenderer.getFileName() + ".svg");
+				format = GL2PS.GL2PS_SVG;
+				break;			  
+			case ExportRenderer.PS_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".ps");
+				format = GL2PS.GL2PS_PS;
+				break;	
+			default: 
+				return ExportRenderer.INVALID_FILE;
 		}
 		return ExportRenderer.SUCCESS;			
 	}
