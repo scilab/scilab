@@ -178,6 +178,8 @@ Bug fixes:
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
+* bug 5445 fixed - Xcos: update modified state on undo/redo
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
