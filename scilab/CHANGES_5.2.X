@@ -182,6 +182,8 @@ Bug fixes:
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
+* bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
+
 * bug 5453 fixed - Sizes was displayed with French units.
 
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
