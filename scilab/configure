@@ -11588,7 +11588,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used 
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
-				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/ -lGL"
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/ -L/usr/lib -L/usr/lib64 -lGL "
 				   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl" >&5
 $as_echo_n "checking for glTexParameterf in -ljogl... " >&6; }
 if test "${ac_cv_lib_jogl_glTexParameterf+set}" = set; then :
