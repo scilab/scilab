@@ -178,9 +178,14 @@ Bug fixes:
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
+* bug 5445 fixed - Xcos: update modified state on undo/redo
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
+
+* bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
+                   source did not exist and then aliasing had not been performed.
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
