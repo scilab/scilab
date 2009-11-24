@@ -45,12 +45,12 @@ public class MathMLObjectSVG extends MathMLObjectGL {
      * @param fontSize the size of the font
      */
     public MathMLObjectSVG(MathMLObjectGL t) {
-	        super(t);
+		super(t);
 		makeImage();
     }
 
     public String getCode() {
-	        return code;
+		return code;
     }
         
     public void makeImage() {
@@ -72,9 +72,9 @@ public class MathMLObjectSVG extends MathMLObjectGL {
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		
 		try {
-		        g2d.stream(new OutputStreamWriter(buf), true);
+			g2d.stream(new OutputStreamWriter(buf), true);
 		} catch (Exception e) {
-		        System.out.println(e.toString());
+			System.out.println(e.toString());
 		}
 				
 		code = buf.toString();
