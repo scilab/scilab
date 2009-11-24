@@ -54,9 +54,9 @@ public class MathMLObjectSVG extends MathMLObjectGL {
     }
         
     public void makeImage() {
-	        width = (int) Math.ceil(jev.getWidth()) + 2;
-		final int ascent = (int) Math.ceil(jev.getAscentHeight());
-		height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
+		width = (int) Math.ceil(this.getJev().getWidth()) + 2;
+		final int ascent = (int) Math.ceil(this.getJev().getAscentHeight());
+		height = (int) Math.ceil(this.getJev().getDescentHeight()) + ascent;
 			
 		SVGGraphics2D g2d = new SVGGraphics2D(dom.createDocument("", "svg", null));
 	
@@ -67,7 +67,7 @@ public class MathMLObjectSVG extends MathMLObjectGL {
 		g2d.setColor(new Color(255, 255, 255, 0));
 		g2d.fillRect(0, 0, (int) width, (int) height);
 		
-		jev.draw(g2d, 0, ascent);
+		this.getJev().draw(g2d, 0, ascent);
 		
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		
