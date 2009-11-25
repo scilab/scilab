@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -33,7 +35,16 @@ public class LinkStyleAction extends DefaultAction {
     }
 
     public static MenuItem createMenu(ScilabGraph scilabGraph, String title, String value) {
-	return createMenu(title, null, new LinkStyleAction(scilabGraph, title, value), null);
+	char mnemonic = ' ';
+	if (value.compareTo(mxConstants.SHAPE_CONNECTOR) == 0) {
+	    mnemonic = 's';
+	} else if (value.compareToIgnoreCase(mxConstants.ELBOW_HORIZONTAL) == 0) {
+	    mnemonic = 'h';
+	} else if (value.compareToIgnoreCase(mxConstants.ELBOW_VERTICAL) == 0) {
+	    mnemonic = 'v';
+	}
+	
+	return createMenu(title, null, new LinkStyleAction(scilabGraph, title, value), KeyStroke.getKeyStroke(mnemonic));
     }
 
     public void doAction() {
