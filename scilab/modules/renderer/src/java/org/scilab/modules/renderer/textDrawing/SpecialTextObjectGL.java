@@ -21,6 +21,8 @@ public abstract class SpecialTextObjectGL {
     protected float width;
     protected int idTexture;
 
+    protected boolean isColored;
+
     public SpecialTextObjectGL() {
     }
 
@@ -65,6 +67,21 @@ public abstract class SpecialTextObjectGL {
 		/* The buffer is set to null since GL put it into the buffer of the video card */
 		this.buffer = null;
     }	
+
+    /**
+     * Return the isColored property
+     */
+    public boolean getIsColored() {
+		return isColored;
+    }
+
+    /**
+     * Set the isColored property
+     * @param isColored the isColored property of the content
+     */
+    public void setIsColored(boolean isColored) {
+		this.isColored = isColored;
+    }
 
     /**
      * Set the color of the content

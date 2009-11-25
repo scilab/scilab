@@ -30,35 +30,14 @@ OriginXAxisPositioner::~OriginXAxisPositioner(void)
 void OriginXAxisPositioner::getAxisBounds(double startBound[3], double endBound[3])
 {
   double zCoordinate = findUpperZCoordinate();
-  double yCoordinate = findOriginYCoordinate(zCoordinate);
 
   startBound[0] = m_dXmin;
-  startBound[1] = yCoordinate;
+  startBound[1] = 0;
   startBound[2] = zCoordinate;
 
   endBound[0] = m_dXmax;
-  endBound[1] = yCoordinate;
+  endBound[1] = 0;
   endBound[2] = zCoordinate;
-}
-/*------------------------------------------------------------------------------------------*/
-double OriginXAxisPositioner::findOriginYCoordinate(double zCoordinate)
-{
-  // find if 0 is in the range of Y coordinates
-  // if so then one of yMax or yMax is <= 0 and the other is not
-  if (m_dYmin * m_dYmax <= 0.0)
-  {
-    return 0.0;
-  }
-  else if (m_dYmax < 0.0)
-  {
-  // both bounds are negative
-  return m_dYmax;
-  }
-  else
-  {
-    // both bounds are positive
-    return m_dYmin;
-  }
 }
 /*------------------------------------------------------------------------------------------*/
 

@@ -369,7 +369,6 @@ public class SuperBlock extends BasicBlock {
     	updateExportedExplicitOutputPort();
     	updateExportedImplicitOutputPort();
     	updateExportedEventOutputPort();
-    	setRealParameters(BlockWriter.convertDiagramToMList(child));
     	getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED, new mxEventObject(new Object[] {this}));
     }
 

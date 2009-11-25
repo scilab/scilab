@@ -63,7 +63,6 @@ public IndentManager() {
 
 	public String indentLine (String lineToIndent, String baseSpaces) {
 		
-		 int lineLength =  lineToIndent.length();
 		 Matcher matcherSpace = patternSpace.matcher(lineToIndent);
 		 if (matcherSpace.find()) {
 			 lineToIndent = lineToIndent.replaceFirst(matcherSpace.group(), "");
@@ -125,9 +124,6 @@ public IndentManager() {
 		String currentSpace ="";
 		String previousLineContent = "";
 		
-		int finalPosition = scilabDocument.getLength();
-
-		
 		int currentLineStart = scilabDocument.getParagraphElement(startPosition).getStartOffset();
 		int currentLineLength =  scilabDocument.getParagraphElement(startPosition).getEndOffset() - currentLineStart - 1;
 		String currentLineContent = scilabDocument.getText(currentLineStart, currentLineLength);
@@ -180,8 +176,6 @@ public IndentManager() {
 		Matcher matcherOut = patternOut.matcher(lineWithoutComment);
 			
 		String tabToAdd = "";
-		String tabToRemove = "";
-
 
 		/*apply change */
 			

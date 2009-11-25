@@ -8,6 +8,7 @@ import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -67,7 +68,7 @@ public class BlockPalette extends JLabel {
 
 		    ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-		    final ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+		    final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
 
 		    if (allDiagrams.size() == 0) {
 			// No diagram opened: should never happen if Xcos opens an empty diagram when it is launched

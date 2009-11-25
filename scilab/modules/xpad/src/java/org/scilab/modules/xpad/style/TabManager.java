@@ -60,7 +60,7 @@ public class TabManager {
 	
 	/*
 	 * Delete a tab just after position if possible.
-	 * returns the nb of deleted characters.
+	 * @return the nb of deleted characters.
 	 */
 	public synchronized int deleteTab(ScilabStyleDocument scilabDocument, int position)	{
 		String tab = getTabulation(); 
@@ -140,11 +140,7 @@ public class TabManager {
             scilabDocument.setAutoIndent(indentMode);
             scilabDocument.setAutoColorize(colorizeMode);
             scilabDocument.setShouldMergeEdits(mergeEditsMode);
-/*
-			setAutoIndent(indentMode);
-			setColorize(colorizeMode);
-			setShouldMergeEdits(mergeEditsMode);
-			*/
+
 		}
 		return res;
 	}

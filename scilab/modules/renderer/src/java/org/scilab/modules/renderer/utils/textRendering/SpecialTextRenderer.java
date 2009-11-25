@@ -166,14 +166,16 @@ public class SpecialTextRenderer {
 		gl.glPushAttrib(GL.GL_ALL_ATTRIB_BITS);
 		gl.glPushMatrix();
 
-		/* The above code handles the case where the label is colored */
-		float[] currentColor = new float[4];
-		gl.glGetFloatv(GL.GL_CURRENT_COLOR, currentColor, 0);
-		currentColor[0] = 1 - currentColor[0];
-		currentColor[1] = 1 - currentColor[1];
-		currentColor[2] = 1 - currentColor[2];
-		gl.glTexEnvfv(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_COLOR, currentColor, 0);
-		gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_BLEND);
+		/* The following code handles the case where the label is colored */
+
+		gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+
+		/* required to correctly render pre-colored text */
+		if(spe.getIsColored()){
+			gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+		}
+
+		gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_ADD);
 
 		gl.glTranslatef(x, y, z);
 		gl.glBindTexture(gl.GL_TEXTURE_2D, spe.getIdTexture());

@@ -10,12 +10,12 @@
  *
  */
 
-
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,13 +42,18 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+/**
+ * Opens context settings Window
+ * @author Allan SIMON
+ */
 public class SetContextAction extends DefaultAction {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JTextArea contextArea;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JTextArea contextArea;
+	private boolean windowAlreadyExist;
 	
 	/**
 	 * Constructor
@@ -56,35 +63,60 @@ public class SetContextAction extends DefaultAction {
 		super(XcosMessages.SET_CONTEXT, scilabGraph);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		diagram = (XcosDiagram)getGraph(e);
-		setContextBox(diagram);
-	}
-
+	/**
+	 * Create the associated menu
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SET_CONTEXT, null, new SetContextAction(scilabGraph), null);
+		SetContextAction action = new SetContextAction(scilabGraph);
+		((XcosDiagram) scilabGraph).setContextAction(action);
+		return createMenu(XcosMessages.SET_CONTEXT, null, action, null);
 	}
 	
-	public static void setContextBox(XcosDiagram diagramArgu){
-		
-		diagram = diagramArgu;
-		
-        mainFrame = new JFrame();
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setLayout(new GridBagLayout());
+	/**
+	 * Action !
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		setContextBox(e);
+	}
 
+	/**
+	 * Window creation
+	 * @param e the event
+	 */
+	public void setContextBox(ActionEvent e) {
+		
+		/** Avoid to have this window created two times */
+		if (windowAlreadyExist) {
+			mainFrame.setVisible(true);
+			return;
+		}
+		
+		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+
+		diagram = (XcosDiagram) getGraph(e);
+        
+		mainFrame = new JFrame();
+        windowAlreadyExist = true;
+        
+        mainFrame.setLayout(new GridBagLayout());
+        mainFrame.setIconImage(imageForIcon);
+        
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
         StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0 ; i < diagram.getContext().length ; i++){
-        	//System.out.println();
+        for (int i = 0; i < diagram.getContext().length; i++) {
         	contextBuilder.append(diagram.getContext()[i]);
         	contextBuilder.append(System.getProperty("line.separator"));
         }
         
         contextArea = new JTextArea(contextBuilder.toString());
       
-        JScrollPane contextAreaScroll = new JScrollPane(contextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        															 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane contextAreaScroll = new JScrollPane(contextArea, 
+        		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -115,7 +147,8 @@ public class SetContextAction extends DefaultAction {
 		
 
 
-		gbc.gridheight = gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		
 		gbc.anchor = GridBagConstraints.LAST_LINE_END;
         gbc.fill = GridBagConstraints.NONE;
@@ -127,6 +160,7 @@ public class SetContextAction extends DefaultAction {
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
@@ -135,35 +169,52 @@ public class SetContextAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> contextList = new ArrayList<String>();
-				int i = 0 ;
-				try
-				{
+				int i = 0;
+				try {
 					StringReader stringReader = new StringReader(contextArea.getText());
 					BufferedReader bufferReader = new BufferedReader(stringReader);
 					String nextLine = "";
 
-					while ((nextLine = bufferReader.readLine()) != null){
-						contextList.add(nextLine) ;
+					while ((nextLine = bufferReader.readLine()) != null) {
+						contextList.add(nextLine);
 						i++;
 					}
 
-				}
-				catch (IOException e1)
-				{
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
-				diagram.setContext(contextList.toArray(new String[i]));
+				/** Test for modifications */
+				String[] oldContext = diagram.getContext();
+				boolean modified = false;
+				/* I more or less lines --> modified */
+				if (oldContext.length != i) {
+					modified = true;
+				} else {
+					/* Compare line to line */
+					for (int lineNumber = 0; lineNumber < oldContext.length; lineNumber++) {
+						if (!oldContext[lineNumber].equals(contextList.get(lineNumber))) {
+							modified = true;
+						}
+					}
+				}
+				if (modified) {
+					if (i == 0) { /* Empty context */
+						diagram.setContext(new String[]{""});
+					} else {
+						diagram.setContext(contextList.toArray(new String[i]));
+					}
+					diagram.setModified(true);
+				}
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
 		
 		
 		mainFrame.setMinimumSize(textLabel.getPreferredSize());
-        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.setTitle(XcosMessages.SET_CONTEXT);
         mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setLocationRelativeTo(diagram.getAsComponent());
         mainFrame.setVisible(true);	
 	}
 }

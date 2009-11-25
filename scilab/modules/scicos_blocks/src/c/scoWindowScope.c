@@ -720,37 +720,52 @@ void scoDelCoupleOfPolylines(ScopeMemory * pScopeMemory)
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
         {
           pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-          NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
-          if(NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) > scoGetLongDrawSize(pScopeMemory,i))
-            {
-              //We realloc because maybe if we add the shortdraw the size would be bigger than the longdraw size
-              for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-                {
-                  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-                  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i), 1000);
-                }
-              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) + 1000);
-            }
+		  if (pLongDraw)
+		  {
+			  NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+			  if(NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) > scoGetLongDrawSize(pScopeMemory,i))
+			  {
+				  //We realloc because maybe if we add the shortdraw the size would be bigger than the longdraw size
+				  for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+				  {
+					  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+					  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i), 1000);
+				  }
+				  scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) + 1000);
+			  }
+		  }
       
           pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+		  if (pShortDraw)
+		  {
+			  NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+		  }
+
           pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-          NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+		  if (pLongDraw)
+		  {
+			NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+		  }
+
       
           for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
             {
               pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
               pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-              //Here we copy values in memory
-              C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
-              C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
 
-              pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong + NbrPtsShort;
-              pPOLYLINE_FEATURE(pShortDraw)->n1 = 0;
-              //Destruction of the polyline - no presence in the menu editor anymore
-              DestroyPolyline(pShortDraw);
-	      //** TEST
-              forceRedraw(pLongDraw);
+			  if (pShortDraw && pLongDraw)
+			  {
+				  //Here we copy values in memory
+				  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
+				  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
+
+				  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong + NbrPtsShort;
+				  pPOLYLINE_FEATURE(pShortDraw)->n1 = 0;
+				  //Destruction of the polyline - no presence in the menu editor anymore
+				  DestroyPolyline(pShortDraw);
+				  //** TEST
+				  forceRedraw(pLongDraw);
+			  }
             }
         }
        //** sciSetUsedWindow(scoGetWindowID(pScopeMemory));

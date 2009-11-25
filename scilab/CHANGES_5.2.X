@@ -11,6 +11,15 @@ Text editor:
 
 * Refactoring of some large part of the source code
 
+* Thanks to a right button click, a popup menu shows the following features:
+- Execute in Scilab
+- Edit selection into a new text editor
+- Copy
+- Select all
+- History
+- Help on the selected text
+
+
 Help browser:
 =============
 
@@ -22,8 +31,8 @@ Help browser:
 - History
 - Help on the selected text
 
-* In the console, in menu associated to a right button click, the item
-"Help on the selected text" has been added
+* In the console and the text editor, in menu associated to a right button
+click, the item "Help on the selected text" has been added
 
 Localization:
 =============
@@ -41,6 +50,9 @@ Compilation:
 ============
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
+
+* In some cases, under !Windows, the detection of libjogl.* was failling
+  because of a missing explicit link against libGL.*
 
 Bug fixes:
 ==========
@@ -128,6 +140,8 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5336 fixed - xcos palette tabs now loaded fastly.
+
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
@@ -156,7 +170,27 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
+* bug 5405 fixed - Update the whole diagram when a superblock is modified
+
+* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
+
+* bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
+
+* bug 5445 fixed - Xcos: update modified state on undo/redo
+
+* bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
+
+* bug 5453 fixed - Sizes was displayed with French units.
+
+* bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
+                   source did not exist and then aliasing had not been performed.
+
+* bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -646,8 +680,8 @@ tests:
 
 * test_run() now accepts Sub-Modules (See SEP #31)
 
-Internationalization:
-=====================
+Internationalization and Characters Encoding:
+=============================================
 
 * Portugues do Brazil localization added (Thanks Daniel de Souza Grilo and others)
 
@@ -660,6 +694,18 @@ Internationalization:
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
 * Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
+* Characters encoding:
+
+  Strings manipulations functions updated to use wide characters.
+  This feature add ability to manipulate any language on any system regardless of the system code page.
+
+  Internal C functions added: readNamedMatrixOfWideString, createNamedMatrixOfWideString,
+                              getMatrixOfWideString, createMatrixOfWideString in api_string.h
+                              to manage wide characters with scilab API.
+
+  input/output files functions also updated to use wide characters.
+  Default file format encoding used by Scilab is UTF-8.
 
 Bugs:
 
@@ -1298,4 +1344,6 @@ Bug fixes:
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 

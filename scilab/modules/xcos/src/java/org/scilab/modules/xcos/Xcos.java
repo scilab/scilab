@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
@@ -109,7 +110,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static ArrayList<XcosDiagram> diagrams = new ArrayList<XcosDiagram>();
+	private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
 	private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
 	private static HashMap<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
@@ -139,7 +140,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
-		createEmptyDiagram();
+		xcos();
 	    }
 	});
     }
@@ -151,9 +152,11 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static void xcos(String fileName) {
-	XcosDiagram diagram = createEmptyDiagram();
 	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
-	diagram.openDiagramFromFile(fileName);
+	if (Xcos.focusOnExistingFile(fileName) == false) {
+	    XcosDiagram diagram = createEmptyDiagram();
+	    diagram.openDiagramFromFile(fileName);
+	}
     }
     
 
@@ -279,7 +282,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 		//view.add(ViewGetinfosAction.createMenu(scilabGraph));
 		view.add(ViewDetailsAction.createMenu(scilabGraph));
 		
-		if(XcosPaletteManager.isVisible()) {
+		if(XcosPaletteManager.isVisible() == false) {
 		    ViewPaletteBrowserAction.setPalettesVisible(true);
 		}
 
@@ -597,8 +600,25 @@ public class Xcos extends SwingScilabTab implements Tab {
     	return XcosPaletteManager.getPalettes();
     }
     
-    public static ArrayList<XcosDiagram> getDiagrams() {
+    public static List<XcosDiagram> getDiagrams() {
     	return diagrams;
+    }    
+    
+    /**
+     * Try to focus to an already openned file
+     * @param filename
+     * @return True when found and focused, False otherwise
+     */
+    public static boolean focusOnExistingFile(String filename) {
+	for (XcosDiagram diagram : diagrams) {
+	    if (diagram.getSavedFile() != null) {
+		if (diagram.getSavedFile().compareTo(filename) == 0) {
+		    diagram.getParentTab().setCurrent();
+		    return true;
+		}
+	    }
+	}
+	return false;
     }
     
     /**
@@ -610,7 +630,7 @@ public class Xcos extends SwingScilabTab implements Tab {
      */
     public static void warnCellByUID(String UID, String message) {
 	// Try to find a block with given index (UID)
-	ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
 	for (int i = 0; i < allDiagrams.size(); ++i) {
 	    allDiagrams.get(i).warnCellByUID(UID, message);
 	}
@@ -656,7 +676,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 
         public static void xcosDiagramOpen(String UID, boolean show) {
             BasicBlock block = null;
-            ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+            List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
             for(XcosDiagram diagram : allDiagrams) {
         	//exclude SuperBlock from parsing 
         	if(diagram instanceof SuperBlockDiagram) {

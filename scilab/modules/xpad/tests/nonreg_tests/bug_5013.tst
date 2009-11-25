@@ -1,4 +1,4 @@
-// =============================================================================
+﻿// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
 //
@@ -7,6 +7,7 @@
 
 
 // <-- TEST WITH XPAD -->
+// <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 5013 -->
 //

@@ -215,8 +215,8 @@ public final class XcosMessages {
     public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
     
     /** File description */
-    public static final String FILE_COSF = "Scicos file (scilab script)";
-    public static final String FILE_COS = "Scicos file (raw data)";
-    public static final String FILE_XCOS = "Xcos file (XML)";
-    public static final String FILE_HDF5 = "Scilab file (HDF5)";
+    public static final String FILE_COSF = "Scicos file";
+    public static final String FILE_COS = "Scicos file";
+    public static final String FILE_XCOS = "Xcos file";
+    public static final String FILE_HDF5 = "Scilab file";
 }

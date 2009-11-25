@@ -36,27 +36,37 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 	private ExecuteFileIntoScilabAction(Xpad editor) {
 		super(XpadMessages.EXECUTE_FILE_INTO_SCILAB, editor);
 	}
+	
+	/**
+	 * Execute the file into Scilab
+	 * @param editor the Scilab editor
+	 */
+	private void executeFile(Xpad editor) {
+		String filePath = editor.getFileFullPath();
+		String cmdToExec = "exec('" + filePath + "', -1)";
+		try {
+			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+		} catch (NoClassDefFoundError e) {
+			/* This happens when Xpad is launch as standalone (ie without
+			 * Scilab) */
+			ScilabModalDialog.show(editor, "Could not find the console nor the InterpreterManagement");
+		}
+	}
 
 	public void doAction() {
 	    /* Will execute the document file (file sould be saved)*/
 
-	    String filePath = "";
 	    Xpad editor = getEditor();
-	    JTextPane currentPane = getEditor().getTextPane();
 
 	    if (((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).isContentModified()) {
 		if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXECUTE_WARNING, XpadMessages.EXECUTE_FILE_INTO_SCILAB, 
 			IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
 		    if (editor.save(getEditor().getTabPane().getSelectedIndex(), false)) {
-			filePath = editor.getFileFullPath();
-			String cmdToExec = "exec('" + filePath + "', -1)";
-			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+				this.executeFile(editor);
 		    }
 		} 
 	    } else {
-		filePath = editor.getFileFullPath();
-		String cmdToExec = "exec('" + filePath + "', -1)";
-		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
+			this.executeFile(editor);
 	    }
 	}
 	

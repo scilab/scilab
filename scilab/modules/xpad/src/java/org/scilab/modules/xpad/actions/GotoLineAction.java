@@ -25,6 +25,7 @@ import java.awt.event.WindowListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,6 +37,7 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+@SuppressWarnings("serial")
 public class GotoLineAction extends DefaultAction {
 	
 	private static boolean windowAlreadyExist;
@@ -66,6 +68,7 @@ public class GotoLineAction extends DefaultAction {
 	public void gotoLineBox () {
 
 	        mainFrame = new JFrame();
+	        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        mainFrame.setLayout(new GridBagLayout());
 

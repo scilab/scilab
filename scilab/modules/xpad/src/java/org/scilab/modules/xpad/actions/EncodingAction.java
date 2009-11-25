@@ -98,7 +98,7 @@ public class EncodingAction extends DefaultCheckAction {
 	    				break;
 	    			case NO_OPTION ://No, exit
 	    				//Back to previous menu checked
-	    				getEditor().updateEncodingMenu();
+	    				getEditor().getXpadGUI().updateEncodingMenu(styleDocument);
 	    				return;
 	    	}
 	    }		

@@ -1075,7 +1075,7 @@ msgid "Installing..."
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 277
-msgid "Ko"
+msgid "KB"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 77
@@ -1087,7 +1087,7 @@ msgid "Maintainer(s)"
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 280
-msgid "Mo"
+msgid "MB"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 114
@@ -1103,7 +1103,7 @@ msgid "No module selected"
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 274
-msgid "Octets"
+msgid "Bytes"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 67
