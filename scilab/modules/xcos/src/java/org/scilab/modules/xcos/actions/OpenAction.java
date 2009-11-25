@@ -26,6 +26,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -92,6 +93,6 @@ public final class OpenAction extends DefaultAction {
 		else {
 			((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
 		}
-		Xcos.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
+		XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 	}
 }
