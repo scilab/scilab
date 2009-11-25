@@ -27,7 +27,9 @@ static gw_generic_table Tab[] = {
   {sci_xcosNotify, "xcosNotify"},
   {sci_warnBlockByUID, "warnBlockByUID"},
   {sci_closeXcosFromScilab, "closeXcos"},
-  {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"}
+  {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
+  {sci_xcosDiagramOpen, "xcosDiagramOpen"},
+  {sci_xcosDiagramClose, "xcosDiagramClose"}
 };
 
 /*--------------------------------------------------------------------------*/

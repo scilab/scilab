@@ -47,8 +47,8 @@ public class ViewDetailsAction extends DefaultAction {
 	for (int i = 0; i < selectedCells.length ; ++i) {
 	    if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
 		try {
-		    File temp = File.createTempFile("xcos",".hdf5");
-		    temp.delete();
+		    File temp = File.createTempFile("xcos",".h5");
+		    temp.deleteOnExit();
 		    int file_id = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
 		    H5Write.closeFile(file_id);
@@ -60,8 +60,8 @@ public class ViewDetailsAction extends DefaultAction {
 	    }
 	    if (selectedCells[i] instanceof BasicLink) {
 		try {
-		    File temp = File.createTempFile("xcos",".hdf5");
-		    temp.delete();
+		    File temp = File.createTempFile("xcos",".h5");
+		    temp.deleteOnExit();
 		    int file_id = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(file_id, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
 		    H5Write.closeFile(file_id);

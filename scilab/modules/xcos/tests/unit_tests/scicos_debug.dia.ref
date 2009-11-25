@@ -1,0 +1,4 @@
+level = 2;
+scicos_debug(level);
+res = scicos_debug();
+if res <> level then bugmes();quit;end
