@@ -33,14 +33,15 @@
     volée uniquement quand nécessaire), le moteur MathML est plus lent à
     charger que celui LaTeX.</para>
 
-    <programlisting>// Example with LaTeX / MathML ticks:
+    <programlisting role="example"><![CDATA[ 
+// Example with LaTeX / MathML ticks:
 plot2d();
 a=gca();
 
-mathml="&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mfrac&gt;&lt;/mrow&gt;";
+mathml="<mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
 // LaTeX and MathML mixed expression
 a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -56,16 +57,16 @@ xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
 <para>JLaTeXMath fournit plusieurs polices utilisables avec les commandes <literal>\mathbb</literal>, <literal>\mathscr</literal>, <literal>\mathcal</literal>, <literal>\mathbf</literal>, <literal>\mathit</literal>, <literal>\mathsf</literal>, <literal>\mathtt</literal>, <literal>\mathfrak</literal>, <literal>\mathds</literal>, <literal>\mathrm</literal>, ainsi que leurs versions grasses quand elles existent activables avec la commande <literal>\boldsymbol</literal> :
 </para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\mathbb{SCILAB}\ \mathsf{or}\ \boldsymbol{\mathfrak{Scilab}}$')
 xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
-</programlisting>
+ ]]></programlisting>
 <para>Différents packages LaTeX sont disponibles : <replaceable>amsmath</replaceable>, <replaceable>amssymb</replaceable>, <replaceable>stmaryrd</replaceable>, <replaceable>amsxtra</replaceable> et <replaceable>accents</replaceable> ainsi que quelques commandes de <replaceable>graphics</replaceable>. La plupart des commandes de ces packages sont disponibles (il en manque quelques unes d'<replaceable>amsmath</replaceable> en l'occurence).
 </para>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
 xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
-xtitle('$\begin{pmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{bmatrix}$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
 xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
 xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
 xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
@@ -76,10 +77,10 @@ xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\ma
 
 <para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
 xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -93,13 +94,15 @@ xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B
     utilisation, le moteur peut prendre jusqu'à quelques secondes à se
     charger. Toutefois, les utilisations suivantes seront très rapides.</para>
 
-    <programlisting>plot3d();
+    <programlisting role="example"><![CDATA[ 
+plot3d();
 a=get("current_axes");
 a.x_label.font_size= 5;
-a.x_label.text="&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;&lt;/mo&gt;&lt;mfenced open=""{"" close=""}""&gt; ..
-&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt; ..
-&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfenced&gt;&lt;/mrow&gt;"</programlisting>
-  </refsection>
+a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
+<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
+<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+ ]]></programlisting>
+</refsection>
   <refsection>
     <title>Voir aussi</title>
 

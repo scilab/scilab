@@ -31,14 +31,15 @@
     <para>On the first use (these libraries are loading on the fly only when
     needed), note that the MathML engine is slower to load than LaTeX.</para>
 
-    <programlisting>// Example with LaTeX / MathML ticks:
+    <programlisting role="example"><![CDATA[ 
+// Example with LaTeX / MathML ticks:
 plot2d();
 a=gca();
 
-mathml="&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mfrac&gt;&lt;/mrow&gt;";
+mathml="<mrow>;<mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
 // LaTeX and MathML mixed expression
 a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -50,12 +51,12 @@ a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
     missing). On the contrary, TeX commands, like <literal>\over are not
     supported.</literal></para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
 xtitle('$\big(\bigg)$')
 xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
 xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
-</programlisting>
+ ]]></programlisting>
 
     <para>JLaTeXMath provides several fonts with the commands
     <literal>\mathbb</literal>, <literal>\mathscr</literal>,
@@ -66,10 +67,10 @@ xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
     versions when they are available with the command
     <literal>\boldsymbol</literal> :</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\mathbb{SCILAB}\ \mathsf{or}\ \boldsymbol{\mathfrak{Scilab}}$')
 xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
-</programlisting>
+ ]]></programlisting>
 
     <para>Different LaTeX packages are available:
     <replaceable>amsmath</replaceable>, <replaceable>amssymb</replaceable>,
@@ -79,25 +80,25 @@ xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
     packages are available (some of <replaceable>amsmath</replaceable> are
     missing for example).</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
 xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
-xtitle('$\begin{pmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&amp;\alpha\\\mathbb{A}&amp;\mathcal{A}\end{bmatrix}$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
 xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
 xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
 xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
 xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
 xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
 xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
-</programlisting>
+ ]]></programlisting>
 
     <para>It is also possible to define new commands or new
     environments:</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
 xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -111,12 +112,14 @@ xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B
     take up to a few seconds to load. However, next uses are much
     faster.</para>
 
-    <programlisting>plot3d();
+    <programlisting role="example"><![CDATA[ 
+plot3d();
 a=get("current_axes");
 a.x_label.font_size= 5;
-a.x_label.text="&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;&lt;/mo&gt;&lt;mfenced open=""{"" close=""}""&gt; ..
-&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt; ..
-&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfenced&gt;&lt;/mrow&gt;"</programlisting>
+a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
+<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
+<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
