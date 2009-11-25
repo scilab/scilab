@@ -191,6 +191,8 @@ Bug fixes:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5484 fixed - LCC-Win32 did not work with attached example.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
