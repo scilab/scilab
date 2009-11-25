@@ -299,13 +299,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return if the tab has been really closed
 	 */
 	public boolean closeTabAt(int indexTab, boolean scilabClose) {
-
-		if (!save(indexTab, false, scilabClose)) {
-		    return false;
-		}
-
+		
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		
+		/* Test for modification added after bug 5103 fix: do not ask the user for an Untitled not-modified file saving when closing Xpad */
+		if (((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
+			if (!save(indexTab, false, scilabClose)) {
+				return false;
+			}
+		}
+
 		if (textPaneAt.getName() == null) {
 			String closedTabName = tabPane.getTitleAt(indexTab);
 			String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
@@ -357,13 +360,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
-		if (!((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified()) {
+		if (!((ScilabStyleDocument) textPaneAt.getStyledDocument()).isContentModified() 
+				&& (textPaneAt.getName() != null)) { /* Bug 5103 fix */
 			return true;
 		}
-
+		
 		if (!force) {
 		    AnswerOption answer;
-		    if(scilabClose == true) {
+		    if (scilabClose == true) {
 				answer = ScilabModalDialog.show(Xpad.getEditor(), editor.getTabPane().getTitleAt(indexTab) + XpadMessages.MODIFIED, 
 				XpadMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
 		    } else {

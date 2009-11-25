@@ -79,6 +79,9 @@ Bug fixes:
 
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
+* bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
+                   files even if they are not modified.
+
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
