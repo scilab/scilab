@@ -306,8 +306,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		    for (Object cell : cells) {
 			if (cell instanceof BasicBlock) {
 			    BasicBlock block = (BasicBlock) cell;
-			    mxGeometry geo = block.getGeometry().translate(
-				    xIncrement, yIncrement);
+			    mxGeometry geo = block.getGeometry();
+			    geo.translate(xIncrement, yIncrement);
 			    block.setGeometry(geo);
 			}
 		    }
@@ -351,7 +351,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    yIncrement *= diagram.getZoomFactor();
 
 	    repetitionTimer.start();
-	    doMove.actionPerformed(null);
 	}
 
 	public void keyReleased(KeyEvent arg0) {
