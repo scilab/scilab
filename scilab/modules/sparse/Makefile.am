@@ -82,13 +82,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -104,8 +102,7 @@ src/fortran/dsosp.f \
 src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
-src/fortran/dspmin.f \
-src/fortran/writebuf.f
+src/fortran/dspmin.f 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \
 sci_gateway/c/sci_full.c \

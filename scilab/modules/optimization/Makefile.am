@@ -75,7 +75,9 @@ src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
 src/fortran/qpgen1sci.f \
-src/fortran/intreadmps.f
+src/fortran/intreadmps.f \
+src/fortran/rdmps1.f \
+src/fortran/rdmpsz.f
 
 MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
