@@ -129,7 +129,7 @@ public class XcosDiagram extends ScilabGraph {
     {
 	public void invoke(Object source, mxEventObject evt) {
 		if (getParentTab() != null) {
-			((Xcos)getParentTab()).setEnabledUndo(true);
+			((XcosTab)getParentTab()).setEnabledUndo(true);
 		}
 	}
     };
@@ -615,7 +615,7 @@ public class XcosDiagram extends ScilabGraph {
 					// Store all AfficheBlocks in a dedicated HasMap
 					if (cells[i] instanceof AfficheBlock) {
 						AfficheBlock affich = (AfficheBlock) cells[i];
-						Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+						XcosTab.getAfficheBlocks().put(affich.getHashCode(), affich);
 					}
 					// Update parent on cell addition
 					((BasicBlock) cells[i]).setParentDiagram(diagram);
@@ -1167,7 +1167,7 @@ public class XcosDiagram extends ScilabGraph {
 		xcosWindow.removeTab(getParentTab());
 		viewPort.close();
 	    }
-	    Xcos.closeDiagram(this);
+	    XcosTab.closeDiagram(this);
 	    setOpened(false);
 	}
     }
@@ -1375,7 +1375,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramFileName file to open
      */
     public void openDiagramFromFile(String diagramFileName) {
-	if (Xcos.focusOnExistingFile(diagramFileName) == false) {
+	if (XcosTab.focusOnExistingFile(diagramFileName) == false) {
 		File theFile = new File(diagramFileName);
 		info(XcosMessages.LOADING_DIAGRAM);
 
@@ -1487,7 +1487,7 @@ public class XcosDiagram extends ScilabGraph {
     			block.setParentDiagram(diagram);
     			if (block instanceof AfficheBlock) {
     				AfficheBlock affich = (AfficheBlock) block;
-    				Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+    				XcosTab.getAfficheBlocks().put(affich.getHashCode(), affich);
     			}
     		}
     	}
@@ -1525,7 +1525,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
 
-       	AfficheBlock block = Xcos.getAfficheBlocks().get(blockID);
+       	AfficheBlock block = XcosTab.getAfficheBlocks().get(blockID);
     	if (block == null) {
     		System.err.println("block == null");
     		return;
@@ -1600,11 +1600,11 @@ public class XcosDiagram extends ScilabGraph {
 		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
-				((Xcos) getParentTab()).setEnabledUndo(true);
+				((XcosTab) getParentTab()).setEnabledUndo(true);
 			} else {
-				((Xcos) getParentTab()).setEnabledUndo(false);
+				((XcosTab) getParentTab()).setEnabledUndo(false);
 			}
-			((Xcos) getParentTab()).setEnabledRedo(true);
+			((XcosTab) getParentTab()).setEnabledRedo(true);
 		}
 
 		updateUndoModifiedState();
@@ -1627,14 +1627,14 @@ public class XcosDiagram extends ScilabGraph {
 		
 		if (getParentTab() != null) {
 			if (undoManager.canUndo()) {
-				((Xcos) getParentTab()).setEnabledUndo(true);
+				((XcosTab) getParentTab()).setEnabledUndo(true);
 			} else {
-				((Xcos) getParentTab()).setEnabledUndo(false);
+				((XcosTab) getParentTab()).setEnabledUndo(false);
 			}
 			if (undoManager.canRedo()) {
-				((Xcos) getParentTab()).setEnabledRedo(true);
+				((XcosTab) getParentTab()).setEnabledRedo(true);
 			} else {
-				((Xcos) getParentTab()).setEnabledRedo(false);
+				((XcosTab) getParentTab()).setEnabledRedo(false);
 			}
 		}
 	}
@@ -1648,8 +1648,8 @@ public class XcosDiagram extends ScilabGraph {
 		resetUndoCounter();
 		
 		if (getParentTab() != null) {
-			((Xcos) getParentTab()).setEnabledRedo(false);
-			((Xcos) getParentTab()).setEnabledUndo(false);
+			((XcosTab) getParentTab()).setEnabledRedo(false);
+			((XcosTab) getParentTab()).setEnabledUndo(false);
 		}
 	}
 	
