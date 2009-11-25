@@ -7,14 +7,66 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  
-function str = prettyprint(a, fmt, delim, processByElement, isWrapped)
-//a is a Scilab variable
-//fmt is the format, if omitted 'latex' is used by default, it can be 'latex', 'tex' or 'mathml'.
-//processByElement is a boolean to indicate if the resulting matrix must be converted into a single string.
-//isWrapped is a boolean to indicate if the result must be wrapped inside delimiters ('$' for latex and tex or nothing for mathml) to be used with xstring or xtitle 
-// delim is a string indicating the delimiter to use for the resulting matrix, it's only used if isWrapped is true. The delimiter can be '(', '{', '[', '|', '||' or ')'
+function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapped)
+// From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats
+//
+// Calling Sequence
+// str = prettyprint(a) // Show the variable a with the default format (LaTeX)
+// str = prettyprint(a,exportFormat) // Show the variable a a with the specified format
+// str = prettyprint(a,exportFormat, delim) // As above but change the delimiter 
+// str = prettyprint(a,exportFormat, delim, processByElement) // As above but process each element independently
+// str = prettyprint(a,exportFormat, delim, processByElement, isWrapped) // As above Add the special keyword of Tex or LaTeX export 
+//
+// Parameters
+// a: is a Scilab variable
+//exportFormat: is the format, if omitted 'latex' is used by default, it can be 'latex', 'tex' or 'mathml'.
+// delimiter: is a string indicating the delimiter to use for the resulting matrix, it's only used if isWrapped is true. The delimiter can be '(', '{', '[', '|', '||' or ')'
+//processByElement: is a boolean to indicate if the resulting matrix must be converted into a single string.
+//isWrapped: is a boolean to indicate if the result must be wrapped inside delimiters ('$' for latex and tex or nothing for mathml) to be used with xstring or xtitle 
+//str: the representation of the variable a
 //If the type of a is not handled, then an error is returned. If a user wants to handle the type foo when exporting with latex, he must define the function foo2latex.
- 
+//
+// Description
+// Taking a variable, the prettyprint function will provide a formated representation of it. 
+// Formats can be TeX, LaTeX or MathML.
+// They can be used in third party applications but also within Scilab with the most of the 
+// <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.
+// The following types are handled by this function:
+//  <itemizedlist>
+//    <listitem>Real / Complex matrices</listitem>
+//    <listitem>Polynomial types</listitem>
+//    <listitem>Boolean</listitem>
+//    <listitem>Integer</listitem>
+//    <listitem>String</listitem>
+//    <listitem>Tlist</listitem>
+//    <listitem>Rationnal</listitem>
+//    <listitem>Cell</listitem>
+//  </itemizedlist>
+//
+// Examples
+// str = prettyprint(rand(3,3)) // Return the LaTeX representation of a 3,3 matrix
+// xstring(0.2,0.2,str) // Show the representation in a graphic Windows
+//
+// prettyprint(rand(3,4),"mathml") // Return the MathML representation of a 3,4 matrix
+// prettyprint(rand(3,4),"mathml","[") // Return the MathML representation of a 3,4 matrix with '[' as delimiter
+//
+// s=poly(0,'s'); G=[1,s;1+s^2,3*s^3]; 
+// xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynom through a LaTeX representation
+//
+// See also
+// math_rendering_features_in_graphic
+// xtitle
+// axes_properties
+// label_properties
+// legend_properties
+// text_properties
+// xstringb
+// xstringl
+// xstring
+//
+// Authors
+// Calixte Denizet
+  
   nargs = argn(2);
  
   select nargs
