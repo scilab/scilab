@@ -408,6 +408,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_readmps.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_semidef.c"
 				>
 			</File>
