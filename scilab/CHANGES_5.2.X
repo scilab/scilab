@@ -34,6 +34,19 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+Text rendering:
+===============
+
+* New function "prettyprint" added
+This function provides the capability to represent a Scilab variable to LaTeX,
+TeX and Mathml. 
+See SEP #36 for more information
+
+* pol2tex is now obsolete. Please use prettyprint instead
+
+* texprint is now obsolete. Please use prettyprint instead
+
+
 Localization:
 =============
 
