@@ -132,7 +132,8 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	wcompa.lo lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo \
 	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
 	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
-	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo
+	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
+	writebuf.lo
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -519,7 +520,8 @@ src/fortran/dsosp.f \
 src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
-src/fortran/dspmin.f 
+src/fortran/dspmin.f \
+src/fortran/writebuf.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \
 sci_gateway/c/sci_full.c \
@@ -1305,6 +1307,9 @@ lspis.lo: src/fortran/lspis.f
 
 dspmin.lo: src/fortran/dspmin.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmin.lo `test -f 'src/fortran/dspmin.f' || echo '$(srcdir)/'`src/fortran/dspmin.f
+
+writebuf.lo: src/fortran/writebuf.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
 sci_spcompa.lo: sci_gateway/fortran/sci_spcompa.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_spcompa.lo `test -f 'sci_gateway/fortran/sci_spcompa.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_spcompa.f
