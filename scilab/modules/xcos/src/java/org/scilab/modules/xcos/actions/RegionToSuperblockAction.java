@@ -131,20 +131,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
-	/*
-	 * Update the parent
-	 */
-	graph.getModel().beginUpdate();
-	graph.removeCells(graph.getSelectionCells());
 
 	/*
 	 * Creating the child graph
 	 */
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
-	Object[] cellsCopy = graph.getSelectionCells().clone();
 
 	diagram.getModel().beginUpdate();
-	diagram.addCells(cellsCopy);
+	diagram.addCells(graph.getSelectionCells());
 	diagram.getModel().endUpdate();
 
 	/*
@@ -158,10 +152,13 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Update block with real parameters
 	 */
-	superBlock
-		.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
+	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	superBlock.createChildDiagram();
 
+	/*
+	 * Update the parent
+	 */
+	graph.getModel().beginUpdate();
 	graph.addCell(superBlock);
 	graph.setSelectionCell(superBlock);
 	graph.getModel().endUpdate();

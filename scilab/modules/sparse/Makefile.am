@@ -68,7 +68,6 @@ src/fortran/lij2sp.f \
 src/fortran/lspcsp.f \
 src/fortran/wspis.f \
 src/fortran/dspmsp.f \
-src/fortran/intreadmps.f \
 src/fortran/dsposp.f \
 src/fortran/wsmsp.f \
 src/fortran/wspms.f \
@@ -130,7 +129,6 @@ sci_gateway/c/sci_spchol.c \
 sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
-sci_gateway/c/sci_readmps.c \
 sci_gateway/c/gw_sparse.c \
 sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \
