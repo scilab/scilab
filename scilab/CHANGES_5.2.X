@@ -187,6 +187,8 @@ Bug fixes:
 
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
+* bug 5413 fixed - An error was triggered when < or > where used in the comments
+
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
