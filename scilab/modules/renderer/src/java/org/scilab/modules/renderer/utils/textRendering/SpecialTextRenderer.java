@@ -161,8 +161,8 @@ public class SpecialTextRenderer {
 			return;
 	        }
 		
-		float width = spe.getWidth() * scaleFactor;
-		float height = spe.getHeight() * scaleFactor;
+		float width = spe.getWidth();
+		float height = spe.getHeight();
 		gl.glPushAttrib(GL.GL_ALL_ATTRIB_BITS);
 		gl.glPushMatrix();
 
