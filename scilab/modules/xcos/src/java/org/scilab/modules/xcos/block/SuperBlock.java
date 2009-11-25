@@ -134,7 +134,7 @@ public class SuperBlock extends BasicBlock {
     	    child = new SuperBlockDiagram(this);
     	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
-    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters(), false));
     	    child.installSuperBlockListeners();
     	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();

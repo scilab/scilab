@@ -34,6 +34,19 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+Text rendering:
+===============
+
+* New function "prettyprint" added
+This function provides the capability to represent a Scilab variable to LaTeX,
+TeX and Mathml. 
+See SEP #36 for more information
+
+* pol2tex is now obsolete. Please use prettyprint instead
+
+* texprint is now obsolete. Please use prettyprint instead
+
+
 Localization:
 =============
 
@@ -180,6 +193,8 @@ Bug fixes:
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5413 fixed - An error was triggered when < or > where used in the comments
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 

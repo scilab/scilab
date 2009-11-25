@@ -3,17 +3,17 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //
 // Calling Sequence
 //  help_from_sci() // generate an empty function template
-//  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci 
+//  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci. 
 //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
-//  help_from_sci(dirname,helpdir,helpdir) // as above but also creating helpdir/*.dem.sce demo files.
+//  help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
 //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
 // Parameters
 //  funname: the name of a single .sci source file to be processed.
 //  dirname: directory name where all .sci files will be processed.
 //  helpdir: optional path where the .xml help file will be created.
 //  demodir: optional path where .dem.sce demo files will be created based on code from the Examples section.
-//  helptxt: returns the XML help code if helpdir is empty, or the path to the new .xml file. 
-//  demotxt: returns the demo code if demodir is empty, or the path to the new .dem.sc file. 
+//  helptxt: returns the XML help code if helpdir is empty, or the path to the .xml file. 
+//  demotxt: returns the demo code if demodir is empty, or the path to the .dem.sce file. 
 //
 // Description
 //  help_from_sci is a revised version of the help_skeleton function.
@@ -37,7 +37,8 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //    <listitem><literal>Parameters</literal> - separate parameter name and
 //    description by a ":". Keep the description of each parameter on the same line.</listitem>
 //    <listitem><literal>Description</literal> - formatting of the text can be done 
-//    using XML commands. 
+//    using XML commands. Compare the output of head_comments('help_from_sci') with help('help_from_sci')
+//    to get some hints.
 //    Adding an empty comment line in the Description section is interpreted as the 
 //    start of a new paragraph.</listitem>
 //    <listitem><literal>See also</literal> - list one function name pr line.</listitem>
@@ -69,11 +70,11 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 // See also
 //  help
 //  help_skeleton
-//  xmltohtml
+//  head_comments
 // Authors
-//  T. Pettersen ; torbjorn.pettersen@broadpark.no
+//  T. Pettersen ; top@tpett.com
 
-//  Copyright Torbjørn Pettersen  2008
+//  Copyright T. Pettersen  2008-2009
 //
 //  This software is a toolbox for Scilab
 //
@@ -103,12 +104,14 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //  The fact that you are presently reading this means that you have had
 //  knowledge of the CeCILL license and that you accept its terms.
 
+//  $Id: help_from_sci.sci,v 1.20 2009-11-24 20:36:12+01 torbjørn_pettersen Exp torbjørn_pettersen $
+
 if execstr("getversion(""scilab"");","errcatch") <> 0 then
-	error(gettext("Scilab 5.0 or more is required."));
+  error(sprintf(gettext("%s: Scilab 5.0 or more is required.\n"),"help_from_sci"));
 end
 
 if argn(2)==0 then
-  template=[ ..
+  template=[..
     'function [z]=function_template(x,y)'
     '// Short description on the first line following the function header.'
     '//'
@@ -124,11 +127,16 @@ if argn(2)==0 then
     '// Here is a description of the function.'
     '// Add an empty comment line to format the text into separate paragraphs.'
     '//'
+    '// Programlisting:'
+    '//   <programlisting>z=test_fun(x,y)</programlisting>'
+    '//'
     '// XML format commands may also be used directly in the text.'
     '// <itemizedlist>'
     '// <listitem>An itemized list is shown here</listitem>'
     '// </itemizedlist>'
-    '// See the source code for help_from_sci.sci for more examples on how to write the initial comment section.'
+    '// The help text for help_from_sci was generated from the head comments section of help_from_sci.sci'
+    '// Compare the output from head_comments(''help_from_sci'') and help(''help_from_sci'')'
+    '// to see more examples on how to write the head comments section.'
     '//'
     '// Examples'
     '// [z]=test_fun(1,2) // examples of use'
@@ -157,30 +165,30 @@ end
 
 if argn(2)<3 then demodir=[]; end
 if argn(2)<2 then helpdir=[]; end
-
+  
 if ~isempty(demodir) & ~isdir(demodir) then 
-  error(gettext("...demodir must be a directory."));
+  error(sprintf(gettext("%s: Wrong type for input argument #%d: demodir must be a directory.\n"),"help_from_sci",3,));
 end
 
 if isdir(funname) then
-  printf('\nReading from directory %s \n',funname);
+  printf(gettext("%s: Reading from directory %s\n"),"help_from_sci",funname);
   files=findfiles(funname,'*.sci');   // read *.sci files.
   for i=1:size(files,'r'),
     [tmp,out]=fileparts(files(i));
     if isempty(helpdir) then
       help_from_sci(funname+filesep()+files(i),'.',demodir);
-      printf(' ...reading %s/%s.sci ... writing %s.xml',funname,out,out);
+      printf(gettext(" ...reading %s/%s.sci ... writing %s.xml"),funname,out,out);
     else
       help_from_sci(funname+filesep()+files(i),helpdir,demodir);
-      printf(' ...reading %s/%s.sci ... writing %s/%s.xml',funname,out,helpdir,out);
+      printf(gettext(" ...reading %s/%s.sci ... writing %s/%s.xml"),funname,out,helpdir,out);
     end
     if ~isempty(demodir) then 
-      printf(' and %s/%s.dem.sce\n',demodir,out); 
+      printf(gettext(" and %s/%s.dem.sce\n"),demodir,out); 
     else
       printf('\n');
     end
   end
-  printf('help_from_sci processed %i files.\n',i);
+  printf(gettext("%s: processed %i files.\n"),"help_from_sci",i);
   helptxt=''; return;
 end
 
@@ -195,7 +203,7 @@ demotxt=['mode(1)'
 
 verno=ver(); verno=verno(1,2);
 helptxt=[
-'<?xml version=""1.0"" encoding=""ISO-8859-1""?>'
+'<?xml version=""1.0"" encoding=""UTF-8""?>'
 ''
 '<!--'
 ' * '
@@ -218,9 +226,13 @@ helptxt=[
 ]
 
 if isempty(strindex(funname,'.sci')) then funname=funname+'.sci'; end;
-if isempty(fileinfo(funname)) then error(funname+' does not exists'); end;
+if isempty(fileinfo(funname)) then 
+	error(sprintf(gettext("%s: The file %s does not exist.\n"),"help_from_sci",funname)); 
+end;
 f=mopen(funname,'r');
-if isempty(f) then error('Failed to read '+funname+'.sci'); end
+if isempty(f) then 
+	error(sprintf(gettext("%s: Cannot open file %s.\n"),"help_from_sci",funname+'.sci')); 
+end
 line=' '; doc=[]; 
 
 while isempty(strindex(line,'function ')) & ~meof(f), line=mgetl(f,1); end 
@@ -246,6 +258,12 @@ while (~isempty(stripblanks(line)) & ~meof(f)),
   else 
     in=strsplit(line,i(1)+1); 
     in=stripblanks(in(2)); 
+    code=in;  // store original line for the demos.
+    in=strsubst(in,'&','&amp;'); // remove elements that make xml crash.
+    in=strsubst(in,'< ','&lt;'); 
+    if strindex(in,'<') then if isempty(regexp(in,'/\<*[a-z]\>/')) then in=strsubst(in,'<','&lt;'); end; end    
+    in=strsubst(in,' >','&gt;');    
+    if strindex(in,'>') then if isempty(regexp(in,'/\<*[a-z]\>/')) then in=strsubst(in,'>','&gt;'); end; end    
   end
 
   IN=convstr(in,'u');
@@ -271,8 +289,11 @@ while (~isempty(stripblanks(line)) & ~meof(f)),
     elseif doing=='Description' then
       helptxt=[helptxt;in];
     elseif doing=='Examples' & convstr(in,'u')~='EXAMPLES' then
-      demotxt=[demotxt;in];
-      if isempty(stripblanks(in)) then demotxt=[demotxt;'halt()   // Press return to continue']; end
+      if isempty(stripblanks(in)) then 
+        demotxt=[demotxt;'halt()   // Press return to continue';' ']; 
+      else
+        demotxt=[demotxt;code];
+      end
       helptxt=[helptxt;in];
     elseif doing=='See also' & convstr(in,'u')~='SEE ALSO' & ~isempty(stripblanks(in)) then
       helptxt=[helptxt;'   <member><link linkend=""'+in+'"">'+in+'</link></member>'];
@@ -284,7 +305,6 @@ while (~isempty(stripblanks(line)) & ~meof(f)),
         helptxt=[helptxt;'   <varlistentry><term>'+name+'</term><listitem><para>'+ref+'</para></listitem></varlistentry>'];
       end
     elseif doing=='Bibliography' & convstr(in,'u')~='BIBLIOGRAPHY' & ~isempty(stripblanks(in)) then
-
       helptxt=[helptxt;'   <para>'+in+'</para>'];
     elseif doing=='Used functions' & convstr(in,'u')~='USED FUNCTIONS' & ~isempty(stripblanks(in)) then
       helptxt=[helptxt;'   <para>'+in+'</para>'];
@@ -295,15 +315,33 @@ end
 helptxt=[helptxt;change_activity(doing,'FINISHED')];
 mclose(f);
 if ~isempty(helpdir) then
-  mputl(helptxt,pathconvert(helpdir,%t,%f)+out+'.xml');
-  helptxt=pathconvert(helpdir,%t,%f)+out+'.xml'
+  fnme=pathconvert(helpdir,%t,%f)+out+'.xml'; answ=1;
+  if ~isempty(fileinfo(fnme)) then  // shit - file exists...
+    answ=messagebox(fnme+' exists!', "Warning - help_from_sci", "warning", ["Create anyway" "Skip file"], "modal");
+  end
+  if answ==1 then
+    mputl(helptxt,fnme);
+    helptxt=fnme;
+  else
+    printf(gettext("...user skipped %s."),out+'.xml');
+	helptxt="";
+  end
 end
 demotxt=[demotxt;'//========= E N D === O F === D E M O =========//'];
 if ~isempty(demodir) then
-  f=mopen(demodir+filesep()+out+'.dem.sce','w'); 
-  mfprintf(f,'%s\n',demotxt); 
-  mclose(f);  
-  demotxt=demodir+filesep()+out+'.dem.sce';
+  fnme=demodir+filesep()+out+'.dem.sce'; answ=1;
+  if ~isempty(fileinfo(fnme)) then
+    answ=messagebox(fnme+' exists!', "Warning - help_from_sci", "warning", ["Create anyway" "Skip file"], "modal");
+  end
+  if answ==1 then
+    f=mopen(fnme,'w'); 
+    mfprintf(f,'%s\n',demotxt); 
+    mclose(f);  
+    demotxt=fnme;
+  else
+    printf(gettext("...user skipped %s."),out+'.demo.sce');
+	demotxt="";
+  end
 end
 endfunction
 
@@ -330,7 +368,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'DESCRIPTION' then
       txt=['</para>';'</refsection>'];
     case 'EXAMPLES' then
-      txt=['   </programlisting>';'</refsection>'];      
+      txt=['   ]]></programlisting>';'</refsection>'];      
     case 'SEE ALSO' then
       txt=['   </simplelist>';'</refsection>'];
     case 'AUTHORS' then
@@ -351,7 +389,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'DESCRIPTION'
       txt=[txt;'';'<refsection>';'   <title>Description</title>';'   <para>'];
     case 'EXAMPLES'
-      txt=[txt;'';'<refsection>';'   <title>Examples</title>';'   <programlisting role=""example"">'];
+      txt=[txt;'';'<refsection>';'   <title>Examples</title>';'   <programlisting role=""example""><![CDATA['];
     case 'SEE ALSO'
       txt=[txt;'';'<refsection>';'   <title>See also</title>';'   <simplelist type=""inline"">'];
     case 'AUTHORS'

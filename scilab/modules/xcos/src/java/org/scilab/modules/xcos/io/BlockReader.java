@@ -62,9 +62,13 @@ public class BlockReader {
     }
 
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
+	return convertMListToDiagram(data, true);
+    }
+    
+    public static HashMap<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
 
 	try {
-	    isAValidScs_mStructure(data);
+	    isAValidScs_mStructure(data, checkVersion);
 	} catch (WrongTypeException e2) {
 	    WARNING("Invalid data structure !!");
 	    e2.printStackTrace();
@@ -262,15 +266,7 @@ public class BlockReader {
 
 		    textBlocks.add(currentText);
 		    minX = Math.min(minX, currentText.getGeometry().getX());
-		    minY = Math.min(minY, currentText.getGeometry().getY()/*
-									   * -
-									   * currentBlock
-									   * .
-									   * getGeometry
-									   * ().
-									   * getHeight
-									   * ()
-									   */);
+		    minY = Math.min(minY, currentText.getGeometry().getY());
 		} else {
 		    // for minX and minY
 		}
@@ -314,8 +310,6 @@ public class BlockReader {
 	links.put("Ports", linkPorts);
 	links.put("Points", linkPoints);
 	result.put("Links", links);
-
-	result.put("Blocks", blocks);
 
 	return result;
     }
@@ -391,7 +385,14 @@ public class BlockReader {
 	// ct = [color, type] 1 : data , -1 event
 	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
 	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
-	int io = (int) ((ScilabDouble) link.get(6)).getRealPart()[0][2];
+	
+	int io = 0;
+	//implicit way
+	if(((ScilabDouble) link.get(6)).getRealPart()[0].length == 2) {
+	    io = 0;
+	} else {
+	    io = (int) ((ScilabDouble) link.get(6)).getRealPart()[0][2];
+	}
 
 	return getPortType(type, io);
     }
@@ -426,7 +427,14 @@ public class BlockReader {
 	// ct = [color, type] 1 : data , -1 event
 	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
 	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
-	int io = (int) ((ScilabDouble) link.get(7)).getRealPart()[0][2];
+	int io = 0;
+	
+	//implicit way
+	if(((ScilabDouble) link.get(7)).getRealPart()[0].length == 2) {
+	    io = 1;
+	} else {
+	    io = (int) ((ScilabDouble) link.get(7)).getRealPart()[0][2];
+	}
 
 	return getPortType(type, io);
     }
@@ -452,6 +460,8 @@ public class BlockReader {
 	    return PortType.CONTROL;
 	}
 
+	System.err.println("type : " + type);
+	System.err.println("io : " + io);
 	throw new WrongTypeException();
     }
 
@@ -541,7 +551,7 @@ public class BlockReader {
 	return ((ScilabString) blockFields.get(1)).getData()[0][0];
     }
 
-    private static void isAValidScs_mStructure(ScilabMList data)
+    private static void isAValidScs_mStructure(ScilabMList data, boolean checkVersion)
 	    throws WrongTypeException, VersionMismatchException,
 	    WrongStructureException {
 
@@ -577,11 +587,6 @@ public class BlockReader {
 	    throw new WrongTypeException();
 	}
 
-	// the second field must contain list of props
-	if (!(data.get(1) instanceof ScilabTList)) {
-	    throw new WrongTypeException();
-	}
-
 	// the third field must contains lists of blocks and links
 	if (!(data.get(2) instanceof ScilabList)) {
 	    throw new WrongTypeException();
@@ -592,9 +597,11 @@ public class BlockReader {
 	    throw new WrongTypeException();
 	}
 
-	String scicosVersion = ((ScilabString) data.get(3)).getData()[0][0];
-	if (!scicosVersion.equals(realScicosVersion)) {
-	    throw new VersionMismatchException(scicosVersion);
+	if(checkVersion) {
+	    String scicosVersion = ((ScilabString) data.get(3)).getData()[0][0];
+	    if (!scicosVersion.equals(realScicosVersion)) {
+		throw new VersionMismatchException(scicosVersion);
+	    }
 	}
     }
 
