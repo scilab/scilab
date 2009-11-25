@@ -129,11 +129,11 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	lspasp.lo dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo \
 	dspmsp.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo \
 	wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo \
-	wcompa.lo lspxsp.lo spisp.lo rdmps1.lo dperm.lo spind.lo \
-	dspe2.lo wspasp.lo wij2sp.lo rdmpsz.lo wspcsp.lo lspops.lo \
-	spifp.lo isort1.lo dspis.lo wspxs.lo lspe2.lo wspisp.lo \
-	dsmsp.lo dspms.lo spord.lo dsosp.lo dspmat.lo wspmsp.lo \
-	lspis.lo dspmin.lo writebuf.lo
+	wcompa.lo lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo \
+	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
+	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
+	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
+	writebuf.lo
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -500,13 +500,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -1247,9 +1245,6 @@ lspxsp.lo: src/fortran/lspxsp.f
 spisp.lo: src/fortran/spisp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spisp.lo `test -f 'src/fortran/spisp.f' || echo '$(srcdir)/'`src/fortran/spisp.f
 
-rdmps1.lo: src/fortran/rdmps1.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmps1.lo `test -f 'src/fortran/rdmps1.f' || echo '$(srcdir)/'`src/fortran/rdmps1.f
-
 dperm.lo: src/fortran/dperm.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dperm.lo `test -f 'src/fortran/dperm.f' || echo '$(srcdir)/'`src/fortran/dperm.f
 
@@ -1264,9 +1259,6 @@ wspasp.lo: src/fortran/wspasp.f
 
 wij2sp.lo: src/fortran/wij2sp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wij2sp.lo `test -f 'src/fortran/wij2sp.f' || echo '$(srcdir)/'`src/fortran/wij2sp.f
-
-rdmpsz.lo: src/fortran/rdmpsz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmpsz.lo `test -f 'src/fortran/rdmpsz.f' || echo '$(srcdir)/'`src/fortran/rdmpsz.f
 
 wspcsp.lo: src/fortran/wspcsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wspcsp.lo `test -f 'src/fortran/wspcsp.f' || echo '$(srcdir)/'`src/fortran/wspcsp.f

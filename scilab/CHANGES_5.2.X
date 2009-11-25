@@ -88,15 +88,22 @@ Bug fixes:
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
 
+* bug 5037 fixed - The link style menu doesn't have mnemonics
+
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
+
+* bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
+                   files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5189 fixed - No more give an error when the user cancels file selection for saving.
 

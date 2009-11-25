@@ -23,14 +23,21 @@ public class ScilabString implements ScilabType {
     }
     
     public ScilabString(String[] data) {
-    	this.data = new String[1][data.length];
-    	for (int i = 0 ; i < data.length ; i++){
-        	this.data[0][i] = data[i] ;
-    	}
-
+	if(data == null || data.length == 0) {
+	    this.data = new String[1][1];
+	    this.data[0][0] = "";
+	} else {
+	    this.data = new String[1][data.length];
+	    for (int i = 0 ; i < data.length ; i++){
+		this.data[0][i] = data[i] ;
+	    }
+	}
     }
     
     public ScilabString(String string) {
+	if(string == null) {
+	    System.err.println("string == null");
+	}
 	this.data = new String[1][1];
 	this.data[0][0] = string;
     }

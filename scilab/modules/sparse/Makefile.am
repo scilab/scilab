@@ -82,13 +82,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
