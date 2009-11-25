@@ -541,12 +541,12 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempOutput = File.createTempFile("xcos",".hdf5");
-	    tempInput = File.createTempFile("xcos",".hdf5");
-	    tempContext = File.createTempFile("xcos",".hdf5");
-	    tempOutput.delete();
-	    tempInput.delete();
-	    tempContext.delete();
+	    tempOutput = File.createTempFile("xcos",".h5");
+	    tempInput = File.createTempFile("xcos",".h5");
+	    tempContext = File.createTempFile("xcos",".h5");
+	    tempOutput.deleteOnExit();
+	    tempInput.deleteOnExit();
+	    tempContext.deleteOnExit();
 	    // Write scs_m
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -570,10 +570,6 @@ public class BasicBlock extends XcosUIDObject {
 		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
 		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
-		    
-//		    tempOutput.delete();
-//		    tempInput.delete();
-//		    tempContext.delete();
 		    setLocked(false);
 		}
 	    };
