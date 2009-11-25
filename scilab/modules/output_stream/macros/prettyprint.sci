@@ -68,36 +68,36 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
 // Calixte Denizet
   
   nargs = argn(2);
- 
+  
   select nargs
   case 0 then
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."),"prettyprint",1,4));
   case 1 then
-    fmt='latex';
-    delim = '(';
+    exportFormat='latex';
+    delimiter = '(';
     processByElement = %F;
     isWrapped = %T;
   case 2 then
-    if type(fmt) <> 10 then
+    if type(exportFormat) <> 10 then
       error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
     end
-    delim = '(';
+    delimiter = '(';
     processByElement = %F;
     isWrapped = %T;    
   case 3 then
-    if type(fmt) <> 10 then 
+    if type(exportFormat) <> 10 then 
       error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
     end
-    if type(delim) <> 10 | (delim <> '(' &  delim <> '[' & delim <> '|' & delim <> '||' & delim <> '{' & delim <> '') then
+    if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
     end
     processByElement = %F;          
     isWrapped = %T;
   case 4 then
-    if type(fmt) <> 10 then 
+    if type(exportFormat) <> 10 then 
       error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
     end
-    if type(delim) <> 10 | (delim <> '(' &  delim <> '[' & delim <> '|' & delim <> '||' & delim <> '{' & delim <> '') then
+    if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
     end
     if type(processByElement) <> 4 then 
@@ -105,10 +105,10 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     end
     isWrapped = %T;
   case 5
-    if type(fmt) <> 10 then 
+    if type(exportFormat) <> 10 then 
       error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
     end
-    if type(delim) <> 10 | (delim <> '(' &  delim <> '[' & delim <> '|' & delim <> '||' & delim <> '{' & delim <> '') then
+    if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
     end      
     if type(processByElement) <> 4 then
@@ -121,9 +121,9 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected"),"prettyprint",1,4));    
   end
   try
-    execstr('[plus,minus,img,op,cp,ow,cw,d2s]=' + fmt + 'conf()');
+    execstr('[plus,minus,img,op,cp,ow,cw,d2s]=' + exportFormat + 'conf()');
   catch 
-    error(msprintf(gettext("%s: Wrong export format: %s"),"prettyprint",fmt));
+    error(msprintf(gettext("%s: Wrong export format: %s"),"prettyprint",exportFormat));
   end
   
   typ = type(a);
@@ -144,7 +144,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     maxd = max(degree(a));
     str = emptystr(a);
     for i = 0:maxd do
-      execstr('expo=' + fmt + 'exp(x,i)');
+      execstr('expo=' + exportFormat + 'exp(x,i)');
       A = C(1:m,(1 + i * n):((i + 1) * n));
       if norm(imag(A)) <= %eps * norm(real(A)) then
         str = str + comp2coef(real(A),expo,plus,minus,img,op,cp,d2s);
@@ -166,7 +166,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
   case 4 then
     str = 'F' + emptystr(a);
     str(a) = 'T';
-    execstr('str=' + fmt + 'exp(str,1)');
+    execstr('str=' + exportFormat + 'exp(str,1)');
   //Int type  
   case 8 then
     str = d2s(a);
@@ -179,14 +179,14 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     select t(1)
     //Rationnal type
     case 'r' then
-      num = prettyprint(a('num'),fmt,'(',%T,%F);
-      den = prettyprint(a('den'),fmt,'(',%T,%F);
-      execstr('str=rational2' + fmt + '(num,den)');
+      num = prettyprint(a('num'),exportFormat,'(',%T,%F);
+      den = prettyprint(a('den'),exportFormat,'(',%T,%F);
+      execstr('str=rational2' + exportFormat + '(num,den)');
     //Linear state space type
     case 'lss' then
-      execstr('str=lss2' + fmt + '(a)');
+      execstr('str=lss2' + exportFormat + '(a)');
     else
-      str = unknown_type(t(1),a,fmt);
+      str = unknown_type(t(1),a,exportFormat);
       return;
     end      
   case 17  then
@@ -197,27 +197,27 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
       dim = double(a.dims);
       L = length(dim);
       if L >= 3 then
-        str = unknown_type('ce',a,fmt);
+        str = unknown_type('ce',a,exportFormat);
         return;
       end
       str = emptystr(dim(1),dim(2));
       for i = 1:dim(1) do
         for j = 1:dim(2) do
-          str(i,j) = prettyprint(a(i,j).entries,fmt,delim,%F,%F);
+          str(i,j) = prettyprint(a(i,j).entries,exportFormat,delimiter,%F,%F);
         end
       end
     else
-      str = unknown_type(a1(1),a,fmt);
+      str = unknown_type(a1(1),a,exportFormat);
       return;
     end
   else
-    str = unknown_type(typeof(a),a,fmt);
+    str = unknown_type(typeof(a),a,exportFormat);
     return;
   end
   
   [m,n] = size(a);
   if m*n <> 1 & ~processByElement then
-    execstr('str=' + fmt + 'matrix(str,''' + delim + ''')');
+    execstr('str=' + exportFormat + 'matrix(str,''' + delimiter + ''')');
   end
 
   if isWrapped then
@@ -273,11 +273,11 @@ function str = mathmldbl2str(x)
 endfunction  
 
 //This function generates a matrix with the given delimiter
-function str = mathmlmatrix(mat,delim)
+function str = mathmlmatrix(mat,delimiter)
   if argn(2) == 1 then
-    delim = '(';
+    delimiter = '(';
   end
-  select delim
+  select delimiter
   case '[' then
     com = '<mfenced open=""["" close=""]"">';
   case '(' then
@@ -371,11 +371,11 @@ function str = lss2latex(sys)
   end
 endfunction
         
-function str = latexmatrix(mat,delim)
+function str = latexmatrix(mat,delimiter)
   if argn(2) == 1 then
-    delim = '(';
+    delimiter = '(';
   end
-  select delim
+  select delimiter
   case '[' then
     com = 'bmatrix';
   case '(' then
@@ -441,11 +441,11 @@ function str = lss2tex(sys)
   end
 endfunction
         
-function str = texmatrix(mat,delim)
+function str = texmatrix(mat,delimiter)
   if argn(2) == 1 then
-    delim = '(';
+    delimiter = '(';
   end
-  select delim
+  select delimiter
   case '[' then
     com = 'bmatrix';
   case '(' then
@@ -557,11 +557,11 @@ function str = comp2coef(z,var,plus,minus,img,op,cp,d2s)
   end
 endfunction
 
-function str = unknown_type(typ,a,fmt)
+function str = unknown_type(typ,a,exportFormat)
   try
-    execstr('str=' + typ + '2' + fmt + '(a)');
+    execstr('str=' + typ + '2' + exportFormat + '(a)');
   catch
-    error(msprintf(gettext("%s: Type %s is not handled : Define the function %s2%s."),"prettyprint",typ,typ,fmt))
+    error(msprintf(gettext("%s: Type %s is not handled : Define the function %s2%s."),"prettyprint",typ,typ,exportFormat))
   end
 endfunction 
  
