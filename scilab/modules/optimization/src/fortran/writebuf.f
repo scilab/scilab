@@ -88,12 +88,3 @@ c     ====================================
      
       end
 c     ====================================      
-      subroutine writebufspc(buffer,finval)
-      
-      character*(*) buffer
-      integer finval
-      
-      write(buffer(1:4),'(i4)') finval
-      
-      end
-c     ====================================      
