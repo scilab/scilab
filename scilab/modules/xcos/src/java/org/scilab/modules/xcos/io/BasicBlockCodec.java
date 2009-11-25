@@ -17,9 +17,11 @@ import java.util.Map;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.model.mxCell;
 
 public class BasicBlockCodec extends XcosObjectCodec {
 
@@ -44,14 +46,23 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	}
 
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
-		((BasicBlock) obj).setSimulationFunctionType(
-				BasicBlock.SimulationFunctionType.valueOf((((Element) node) .getAttribute(SIMULATION_FUNCTION_TYPE))));
-		
-		if (obj instanceof SuperBlock) {
-			((SuperBlock) obj).setChild(null);
+	    ((BasicBlock) obj).setSimulationFunctionType(
+		    BasicBlock.SimulationFunctionType.valueOf((((Element) node) .getAttribute(SIMULATION_FUNCTION_TYPE))));
+
+	    if (obj instanceof SuperBlock) {
+		((SuperBlock) obj).setChild(null);
+	    }
+
+	    NamedNodeMap attrs = node.getAttributes();
+	    for (int i = 0; i < attrs.getLength(); i++) {
+		Node attr = attrs.item(i);
+		if (attr.getNodeName().compareToIgnoreCase("id") == 0) {
+		    ((mxCell) obj).setId(attr.getNodeValue());
 		}
-		return super.afterDecode(dec, node, obj);
+	    }
+	    
+	    return super.afterDecode(dec, node, obj);
 	}
-	
+
 
 }

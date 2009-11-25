@@ -18,9 +18,19 @@ import com.mxgraph.model.mxCell;
 
 public class XcosUIDObject extends mxCell {
 
+    private static final long serialVersionUID = 1L;
+
     public XcosUIDObject() {
 	super();
 	setId((new UID()).toString());
     }
-    
+
+    public void setId() {
+	setId(new UID().toString());
+    }
+
+    public void setId(String UID) {
+	//System.err.println(getId() + " -> " + UID);
+	super.setId(UID);
+    }
 }

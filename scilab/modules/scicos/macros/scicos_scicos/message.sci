@@ -19,13 +19,27 @@
 // See the file ../license.txt
 //
 
-function num=message(strings ,buttons)
+function num=message(strings ,buttons, modal)
 //interface to message primitive to allow simple overloading for live demo 
-[lhs,rhs]=argn(0)
-if rhs==2 then
-  num=messagebox(strings,"modal","scilab",buttons);
-else
-  num=1
-  messagebox(strings,"modal","scilab");
-end
+    [lhs,rhs]=argn(0)
+    if rhs==3 then
+        if modal == %t then
+            if buttons == "" then
+                num=messagebox(strings, "modal", "scilab");
+            else
+                num=messagebox(strings, "modal", "scilab", buttons);
+            end
+        else //non modal messagebox
+            if buttons == "" then
+                num=messagebox(strings,"scilab");
+            else
+                num=messagebox(strings, "scilab", buttons);
+            end
+        end
+    elseif rhs==2 then
+        num=messagebox(strings, "modal", "scilab", buttons);
+    else
+        num=1
+        messagebox(strings, "modal", "scilab");
+    end
 endfunction
