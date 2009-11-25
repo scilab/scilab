@@ -167,7 +167,7 @@ if argn(2)<3 then demodir=[]; end
 if argn(2)<2 then helpdir=[]; end
   
 if ~isempty(demodir) & ~isdir(demodir) then 
-  error(sprintf(gettext("%s: Wrong type for input argument #%d: demodir must be a directory.\n"),"help_from_sci",3,));
+  error(sprintf(gettext("%s: Wrong value for input argument #%d: A valid existing directory is expected.\n"),"help_from_sci",3,));
 end
 
 if isdir(funname) then
@@ -177,13 +177,13 @@ if isdir(funname) then
     [tmp,out]=fileparts(files(i));
     if isempty(helpdir) then
       help_from_sci(funname+filesep()+files(i),'.',demodir);
-      printf(gettext(" ...reading %s/%s.sci ... writing %s.xml"),funname,out,out);
+      printf(gettext("%s: Processing file: %s to %s\n"),"help_from_sci",funname+"/"+out,out);
     else
       help_from_sci(funname+filesep()+files(i),helpdir,demodir);
-      printf(gettext(" ...reading %s/%s.sci ... writing %s/%s.xml"),funname,out,helpdir,out);
+      printf(gettext("%s: Processing file: %s to %s\n"),"help_from_sci",funname+"/"+out,helpdir+"/"+out);
     end
     if ~isempty(demodir) then 
-      printf(gettext(" and %s/%s.dem.sce\n"),demodir,out); 
+      printf(gettext("%s: Processing file: %s\n"),"help_from_sci",demodir+"/"+out+".dem.sce");
     else
       printf('\n');
     end
@@ -323,7 +323,7 @@ if ~isempty(helpdir) then
     mputl(helptxt,fnme);
     helptxt=fnme;
   else
-    printf(gettext("...user skipped %s."),out+'.xml');
+    printf(gettext("%s: File skipped %s."),"help_from_sci",out+'.xml');
 	helptxt="";
   end
 end
@@ -339,7 +339,7 @@ if ~isempty(demodir) then
     mclose(f);  
     demotxt=fnme;
   else
-    printf(gettext("...user skipped %s."),out+'.demo.sce');
+    printf(gettext("%s: File skipped %s."),"help_from_sci",out+'.demo.sce');
 	demotxt="";
   end
 end
