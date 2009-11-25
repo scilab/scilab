@@ -91,6 +91,7 @@ import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
+import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -245,6 +246,13 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 	xcosDiagram.setOpened(true);
 	xcosDiagram.setVisible(true);
+	
+	/*
+	 * Superblock specific customizations
+	 */
+	if (xcosDiagram instanceof SuperBlockDiagram) {
+	    tab.setSimulationActionEnabled(false);
+	}
     }
 
     /**
@@ -668,5 +676,15 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     public void setEnabledUndo(boolean status) {
 	undoAction.setEnabled(status);
+    }
+    
+    /**
+     * Enable or Disable simulation related actions
+     * @param state True if it have to be enabled, flase otherwise
+     */
+    public void setSimulationActionEnabled(boolean state) {
+	simulate.setEnabled(state);
+	startAction.setEnabled(state);
+	stopAction.setEnabled(state);
     }
 }
