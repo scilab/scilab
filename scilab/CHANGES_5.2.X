@@ -192,6 +192,8 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
+* bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
 * bug 5413 fixed - An error was triggered when < or > where used in the comments

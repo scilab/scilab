@@ -38,7 +38,8 @@
 plot2d();
 a=gca();
 
-mathml="<mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
+mathml="<mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac>..
+<mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
 // LaTeX and MathML mixed expression
 a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
  ]]></programlisting>
@@ -66,7 +67,8 @@ xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
     <programlisting role="example"><![CDATA[ 
 xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
 xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
-xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }..
+\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
 xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
 xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
 xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')

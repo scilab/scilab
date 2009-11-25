@@ -33,14 +33,14 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
 // <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.
 // The following types are handled by this function:
 //  <itemizedlist>
-//    <listitem>Real / Complex matrices</listitem>
-//    <listitem>Polynomial types</listitem>
-//    <listitem>Boolean</listitem>
-//    <listitem>Integer</listitem>
-//    <listitem>String</listitem>
-//    <listitem>Tlist</listitem>
-//    <listitem>Rationnal</listitem>
-//    <listitem>Cell</listitem>
+//    <listitem><para>Real / Complex matrices</para></listitem>
+//    <listitem><para>Polynomial types</para></listitem>
+//    <listitem><para>Boolean</para></listitem>
+//    <listitem><para>Integer</para></listitem>
+//    <listitem><para>String</para></listitem>
+//    <listitem><para>Tlist</para></listitem>
+//    <listitem><para>Rationnal</para></listitem>
+//    <listitem><para>Cell</para></listitem>
 //  </itemizedlist>
 //
 // Examples
