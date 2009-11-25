@@ -31,14 +31,14 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
 public class Xcos {
 
-	private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
+    private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
-	/** Palette creation */
+    /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
 	InterpreterManagement.requestScilabExec("loadScicosLibs();");
     }
-    
+
     /**
      * @param args
      */
@@ -79,7 +79,7 @@ public class Xcos {
 
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-	for (XcosDiagram diagram :  diagrams) {
+	for (XcosDiagram diagram : diagrams) {
 	    diagram.closeDiagram();
 	}
 	ViewPaletteBrowserAction.setPalettesVisible(false);
@@ -141,39 +141,42 @@ public class Xcos {
 	return 0;
     }
 
-        public static void xcosDiagramOpen(String UID, boolean show) {
-            BasicBlock block = null;
-            List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-            for(XcosDiagram diagram : allDiagrams) {
-        	//exclude SuperBlock from parsing 
-        	if(diagram instanceof SuperBlockDiagram) {
-        	    continue;
-        	}
+    public static void xcosDiagramOpen(String UID, boolean show) {
+	BasicBlock block = null;
+	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	for (XcosDiagram diagram : allDiagrams) {
+	    // exclude SuperBlock from parsing
+	    if (diagram instanceof SuperBlockDiagram) {
+		continue;
+	    }
 
-        	block = diagram.getChildById(UID);
-        	if(block != null) {
-        	    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
-        	    newSP.setRealParameters(block.getRealParameters());
-        	    newSP.setParentDiagram(block.getParentDiagram());
-        	    if(show == true) {
-        		newSP.openBlockSettings(null);
-        		//lock cells and change background to gray to show read-only
-        		newSP.getChild().setCellsLocked(true);
-        		newSP.getChild().getAsComponent().setBackground(new Color(204,204,204));
-        		//look to disable open setting dialog on double click too
-        	    }
-        	    openedSuperBlock.put(UID, newSP);
-        	    break;
-        	}
-            }
-        }
+	    block = diagram.getChildById(UID);
+	    if (block != null) {
+		SuperBlock newSP = (SuperBlock) BasicBlock
+			.createBlock("SUPER_f");
+		newSP.setRealParameters(block.getRealParameters());
+		newSP.setParentDiagram(block.getParentDiagram());
+		if (show == true) {
+		    newSP.openBlockSettings(null);
+		    // lock cells and change background to gray to show
+		    // read-only
+		    newSP.getChild().setCellsLocked(true);
+		    newSP.getChild().getAsComponent().setBackground(
+			    new Color(204, 204, 204));
+		    // look to disable open setting dialog on double click too
+		}
+		openedSuperBlock.put(UID, newSP);
+		break;
+	    }
+	}
+    }
 
-        public static void xcosDiagramClose(String UID) {
-            SuperBlock SP = openedSuperBlock.get(UID);
-            if(SP != null) {
-        	openedSuperBlock.remove(UID);
-        	SP.closeBlockSettings();
-        	SP = null;
-            }
-        }
+    public static void xcosDiagramClose(String UID) {
+	SuperBlock SP = openedSuperBlock.get(UID);
+	if (SP != null) {
+	    openedSuperBlock.remove(UID);
+	    SP.closeBlockSettings();
+	    SP = null;
+	}
+    }
 }
