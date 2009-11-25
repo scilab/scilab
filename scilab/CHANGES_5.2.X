@@ -79,11 +79,16 @@ Bug fixes:
 
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
 
+* bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
+                   files even if they are not modified.
+
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5189 fixed - No more give an error when the user cancels file selection for saving.
 
@@ -190,6 +195,8 @@ Bug fixes:
                    source did not exist and then aliasing had not been performed.
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5484 fixed - LCC-Win32 did not work with attached example.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

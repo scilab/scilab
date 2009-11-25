@@ -340,37 +340,32 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   end
   OTHERLIBS = strsubst(OTHERLIBS,'/',filesep());
 
-  try
-    MAKEFILE_LCC = mgetl(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC');
-  catch
+  ierr = execstr("MAKEFILE_LCC = mgetl(SCI+''/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'');", "errcatch");
+  if ierr <> 0 then
     MAKEFILE_LCC = '';
-  end
+    warning(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'+ ' ' + _('not found.') );
+  else
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LDFLAGS__" , LDFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCI__" , SCIDIR);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCIDIR1__" , SCIDIR1);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LCCLIBDIR__" , LCCLIBDIR);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LIBRARY__" , LIBRARY);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FILES_SRC__" , FILES_SRC);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OTHERSLIBS__" , OTHERLIBS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__CFLAGS__" , CFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXCFLAGS__" , MEXCFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FFLAGS__" , FFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXFFLAGS__" , MEXFFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OBJS__" , OBJS);
 
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LDFLAGS__" , LDFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCI__" , SCIDIR);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCIDIR1__" , SCIDIR1);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LCCLIBDIR__" , LCCLIBDIR);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LIBRARY__" , LIBRARY);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FILES_SRC__" , FILES_SRC);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OTHERSLIBS__" , OTHERLIBS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__CFLAGS__" , CFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXCFLAGS__" , MEXCFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FFLAGS__" , FFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXFFLAGS__" , MEXFFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OBJS__" , OBJS);
-  
-  if ( MAKEFILE_LCC <> '') then
     fd = mopen(Makename, "wt");
     mputl(MAKEFILE_LCC, fd);
     mclose(fd);
-    
     if ilib_verbose() > 1 then
       disp(mgetl(Makename));
     end
-  else
-    // TEMPLATE_MAKEFILE.LCC not found
-    warning(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'+ _('not found.') );
+
   end
- 
+
 endfunction
 //---------------------------------------------------------------------------------------

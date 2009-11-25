@@ -68,7 +68,6 @@ src/fortran/lij2sp.f \
 src/fortran/lspcsp.f \
 src/fortran/wspis.f \
 src/fortran/dspmsp.f \
-src/fortran/intreadmps.f \
 src/fortran/dsposp.f \
 src/fortran/wsmsp.f \
 src/fortran/wspms.f \
@@ -83,13 +82,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -105,8 +102,7 @@ src/fortran/dsosp.f \
 src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
-src/fortran/dspmin.f \
-src/fortran/writebuf.f
+src/fortran/dspmin.f 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \
 sci_gateway/c/sci_full.c \
@@ -130,7 +126,6 @@ sci_gateway/c/sci_spchol.c \
 sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
-sci_gateway/c/sci_readmps.c \
 sci_gateway/c/gw_sparse.c \
 sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \

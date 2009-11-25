@@ -10,11 +10,13 @@
  *
  */
 
-#include "gw_sparse.h"
+#include "gw_optimization.h"
+#include "stack-c.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(intreadmps)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_readmps)(char *fname,unsigned long fname_len)
+int sci_readmps(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intreadmps)(id);
