@@ -15,8 +15,34 @@ function xcos_simulate(scs_m)
 //-- BJ : Alias Warning Function
   prot = funcprot();
   funcprot(0);
-  hilite_obj = xcosShowBlockWarning;
-  unhilite_obj = xcosClearBlockWarning;
+//  hilite_obj = xcosShowBlockWarning;
+//  unhilite_obj = xcosClearBlockWarning;
+//  scs_show = xcos_open;
+
+//    function ret = fake_gcf() 
+//        disp("fake_gcf");
+//        ret = [];
+//    endfunction;
+//    gcf = fake_gcf;
+
+//    function ret = fake_scf(id) 
+//        disp("fake_scf");
+//        ret = [];
+//    endfunction;
+//    scf = fake_scf;
+
+//    function ret = fake_gca() 
+//        disp("fake_gca");
+//        ret = [];
+//    endfunction;
+//    gca = fake_gca;
+
+//    function ret = fake_sca(id) 
+//        disp("fake_sca");
+//        ret = [];
+//    endfunction;
+//    sca = fake_sca;
+
   funcprot(prot);
   //-- end
 

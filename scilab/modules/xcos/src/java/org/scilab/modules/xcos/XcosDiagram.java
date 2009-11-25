@@ -53,6 +53,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
@@ -600,18 +601,18 @@ public class XcosDiagram extends ScilabGraph {
     		
     		diagram.getModel().beginUpdate();
     		for (int i = 0; i < cells.length; ++i) {
-    			
-    			((mxCell) cells[i]).setId((new UID()).toString());
+//    		    ((mxCell) cells[i]).setId((new UID()).toString());
+//    		    System.err.println("AddCell setId : " + ((mxCell) cells[i]).getId());
 
-				if (cells[i] instanceof BasicBlock) {
-					// Store all AfficheBlocks in a dedicated HasMap
-					if (cells[i] instanceof AfficheBlock) {
-						AfficheBlock affich = (AfficheBlock) cells[i];
-						Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
-					}
-					// Update parent on cell addition
-					((BasicBlock) cells[i]).setParentDiagram(diagram);
-				}
+    		    if (cells[i] instanceof BasicBlock) {
+    			// Store all AfficheBlocks in a dedicated HasMap
+    			if (cells[i] instanceof AfficheBlock) {
+    			    AfficheBlock affich = (AfficheBlock) cells[i];
+    			    Xcos.getAfficheBlocks().put(affich.getHashCode(), affich);
+    			}
+    			// Update parent on cell addition
+    			((BasicBlock) cells[i]).setParentDiagram(diagram);
+    		    }
     		}
     		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
     		diagram.getModel().endUpdate();
@@ -1190,7 +1191,11 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
-	    fc.setSelectedFile(new File(this.getSavedFile()));
+	    if(this.getSavedFile() != null)
+	    {
+		fc.setSelectedFile(new File(this.getSavedFile()));
+	    }
+	    
 	    XcosFileType defaultFileType = XcosFileType.getDefault();
 	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
 	    fc.addChoosableFileFilter(xcosFilter);
@@ -1364,36 +1369,39 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramFileName file to open
      */
     public void openDiagramFromFile(String diagramFileName) {
-		File theFile = new File(diagramFileName);
-		info(XcosMessages.LOADING_DIAGRAM);
+	File theFile = new File(diagramFileName);
+	info(XcosMessages.LOADING_DIAGRAM);
 
-		if (theFile.exists()) {
-			transformAndLoadFile(theFile);
-		} else {
-			AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
-					XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
-					XcosMessages.XCOS, IconType.QUESTION_ICON,
-					ButtonType.YES_NO);
+	if (theFile.exists()) {
+	    transformAndLoadFile(theFile);
+	} else {
+	    AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
+		    XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
+		    XcosMessages.XCOS, IconType.QUESTION_ICON,
+		    ButtonType.YES_NO);
 
-			if (answer == AnswerOption.YES_OPTION) {
-				try {
-					FileWriter writer = new FileWriter(diagramFileName);
-					writer.write("");
-					writer.flush();
-					writer.close();
-					setSavedFile(diagramFileName);
-					setTitle(theFile.getName().substring(0,
-							theFile.getName().lastIndexOf('.')));
-				} catch (IOException ioexc) {
-					JOptionPane.showMessageDialog(this.getAsComponent(), ioexc);
-				}
-			}
-
+	    if (answer == AnswerOption.YES_OPTION) {
+		try {
+		    FileWriter writer = new FileWriter(diagramFileName);
+		    writer.write("");
+		    writer.flush();
+		    writer.close();
+		    setSavedFile(diagramFileName);
+		    setTitle(theFile.getName().substring(0,
+			    theFile.getName().lastIndexOf('.')));
+		} catch (IOException ioexc) {
+		    JOptionPane.showMessageDialog(this.getAsComponent(), ioexc);
 		}
-		// TODO
-		this.resetUndoManager();
-		info(XcosMessages.EMPTY_INFO);
+	    }
+
 	}
+	
+	// TODO
+	//open all SuperBlocks to assign a UID
+
+	this.resetUndoManager();
+	info(XcosMessages.EMPTY_INFO);
+    }
     
     /**
      * Load a file with different method depending on it extension 
@@ -1422,7 +1430,6 @@ public class XcosDiagram extends ScilabGraph {
 			try {
 				document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -1441,11 +1448,14 @@ public class XcosDiagram extends ScilabGraph {
 				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram(xcosDiagram);
 			}
+			generateUID();
+			setModified(false);
 			break;
 
 		case HDF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
 			fileToLoad.delete();
+			generateUID();
 			setModified(false);
 			break;
 
@@ -1455,6 +1465,24 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
 
+	public void generateUID() {
+	    for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+		if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
+		    BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
+		    if(block.getRealParameters() instanceof ScilabMList) {
+			//we have a hidden SuperBlock, create a real one
+			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			newSP.setRealParameters(block.getRealParameters());
+			newSP.createChildDiagram(true);
+			newSP.setParentDiagram(this);
+			block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
+		    } else if(block.getId() == null || block.getId().compareTo("") == 0) {
+			block.setId();
+		    }
+		}
+	    }
+	}
+	
     /**
      * Update all the children of the current graph.
      */
@@ -1564,6 +1592,11 @@ public class XcosDiagram extends ScilabGraph {
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    if (getModel().getChildAt(getDefaultParent(), i) instanceof mxCell) {
 		if (((mxCell) getModel().getChildAt(getDefaultParent(), i)).getId().compareTo(uid) == 0) {
+		    //to put on top, only for new message, no for reset
+		    if(message.compareTo("") != 0) {
+			setVisible(true);
+		    }
+		    
 		    getAsComponent().setCellWarning(getModel().getChildAt(getDefaultParent(), i), message);
 		}
 	    }
@@ -1582,64 +1615,106 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Revert an action
      */
-	public void undo() {
-		super.undo();
+    public void undo() {
+	super.undo();
 
-		if (getParentTab() != null) {
-			if (undoManager.canUndo()) {
-				((Xcos) getParentTab()).setEnabledUndo(true);
-			} else {
-				((Xcos) getParentTab()).setEnabledUndo(false);
-			}
-			((Xcos) getParentTab()).setEnabledRedo(true);
-		}
-
-		/*
-		 * if (undoManager.canRedo()){
-		 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
-		 * ((Xcos)getParentTab()).setEnabledRedo(false); }
-		 */
+	if (getParentTab() != null) {
+	    if (undoManager.canUndo()) {
+		((Xcos) getParentTab()).setEnabledUndo(true);
+	    } else {
+		((Xcos) getParentTab()).setEnabledUndo(false);
+	    }
+	    ((Xcos) getParentTab()).setEnabledRedo(true);
 	}
 
-	/**
-	 * Apply the previously reverted action
+	/*
+	 * if (undoManager.canRedo()){
+	 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
+	 * ((Xcos)getParentTab()).setEnabledRedo(false); }
 	 */
-	public void redo() {
-		super.redo();
+    }
 
-		if (getParentTab() != null) {
-			if (undoManager.canUndo()) {
-				((Xcos) getParentTab()).setEnabledUndo(true);
-			} else {
-				((Xcos) getParentTab()).setEnabledUndo(false);
+    /**
+     * Apply the previously reverted action
+     */
+    public void redo() {
+	super.redo();
+
+	if (getParentTab() != null) {
+	    if (undoManager.canUndo()) {
+		((Xcos) getParentTab()).setEnabledUndo(true);
+	    } else {
+		((Xcos) getParentTab()).setEnabledUndo(false);
+	    }
+	    if (undoManager.canRedo()) {
+		((Xcos) getParentTab()).setEnabledRedo(true);
+	    } else {
+		((Xcos) getParentTab()).setEnabledRedo(false);
+	    }
+	}
+    }
+
+    /**
+     * This function will reset the UndoManager in a stable state.
+     */
+    public void resetUndoManager() {
+	undoManager.reset();
+	if (getParentTab() != null) {
+	    ((Xcos) getParentTab()).setEnabledRedo(false);
+	    ((Xcos) getParentTab()).setEnabledUndo(false);
+	}
+    }
+
+    /**
+     * This function checks for the popup menu activation under MacOS with Java version 1.5
+     * Related to Scilab bug #5190
+     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+     */
+    private boolean isMacOsPopupTrigger(MouseEvent e) {
+	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+    }
+    
+    protected BasicBlock getChildById(String uid) {
+	BasicBlock returnBlock = null;
+	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+	    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
+		BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
+		if (block.getId().compareTo(uid) == 0) { //find it
+		    returnBlock = block;
+		} else {
+		    if(block instanceof SuperBlock) {
+			boolean created = false;
+			if(((SuperBlock)block).getChild() == null) { 
+			    //create temporary SuperBlock to find child
+			    ((SuperBlock)block).createChildDiagram();
+			    created = true;
 			}
-			if (undoManager.canRedo()) {
-				((Xcos) getParentTab()).setEnabledRedo(true);
-			} else {
-				((Xcos) getParentTab()).setEnabledRedo(false);
+
+			//search in child
+			returnBlock = ((SuperBlock)block).getChild().getChildById(uid);
+
+			if(created) { //if temporary, destroy it
+			    ((SuperBlock)block).getChild().closeDiagram();
 			}
+		    } else if(block.getRealParameters() instanceof ScilabMList) { 
+			//we have a hidden SuperBlock, create a real one
+			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			newSP.setParentDiagram(block.getParentDiagram());
+			newSP.setRealParameters(block.getRealParameters());
+			newSP.createChildDiagram();
+			//search in child
+			returnBlock = newSP.getChild().getChildById(uid);
+			newSP.getChild().closeDiagram();
+			newSP = null;
+		    }
 		}
+	    }
+	    
+	    if(returnBlock != null) {
+		return returnBlock;
+	    }
 	}
-
-	/**
-	 * This function will reset the UndoManager in a stable state.
-	 */
-	public void resetUndoManager() {
-		undoManager.reset();
-		if (getParentTab() != null) {
-			((Xcos) getParentTab()).setEnabledRedo(false);
-			((Xcos) getParentTab()).setEnabledUndo(false);
-		}
-	}
-	
-	/**
-	 * This function checks for the popup menu activation under MacOS with Java version 1.5
-	 * Related to Scilab bug #5190
-	 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
-	 */
-	private boolean isMacOsPopupTrigger(MouseEvent e) {
-		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-	}
-
+	return returnBlock;
+    }
 }
 

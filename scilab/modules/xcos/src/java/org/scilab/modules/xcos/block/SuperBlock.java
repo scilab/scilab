@@ -125,18 +125,27 @@ public class SuperBlock extends BasicBlock {
     }
     
     public boolean createChildDiagram(){
+	return createChildDiagram(false);
+    }
+
+    public boolean createChildDiagram(boolean generatedUID){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
     	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
     	    child.installSuperBlockListeners();
-    		child.setChildrenParentDiagram();
+    	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
     	    child.info(XcosMessages.EMPTY_INFO);
+    	    //only for loading and generate sub block UID
+    	    if(generatedUID) {
+    		child.generateUID();
+    	    }
     	} else {
     		return false;
     	}
+    	
     	return true;
     }
     
