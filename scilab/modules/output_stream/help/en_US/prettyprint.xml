@@ -77,7 +77,7 @@ The following types are handled by this function:
 
 <refsection>
    <title>Examples</title>
-   <programlisting role="example"><![CDATA[
+   <programlisting role="example"><![CDATA[ 
 str = prettyprint(rand(3,3)) // Return the LaTeX representation of a 3,3 matrix
 xstring(0.2,0.2,str) // Show the representation in a graphic Windows
 
@@ -86,8 +86,7 @@ prettyprint(rand(3,4),"mathml","[") // Return the MathML representation of a 3,4
 
 s=poly(0,'s'); G=[1,s;1+s^2,3*s^3];
 xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynom through a LaTeX representation
-
-   ]]></programlisting>
+ ]]></programlisting>
 </refsection>
 
 <refsection>
