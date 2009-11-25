@@ -44,7 +44,6 @@
 <PRIMITIVE gatewayId="27" primitiveId="7" primitiveName="luget" />
 <PRIMITIVE gatewayId="27" primitiveId="9" primitiveName="nnz" />
 <PRIMITIVE gatewayId="27" primitiveId="13" primitiveName="spchol" />
-<PRIMITIVE gatewayId="27" primitiveId="14" primitiveName="readmps" />
 <PRIMITIVE gatewayId="27" primitiveId="15" primitiveName="fadj2sp" />
 <PRIMITIVE gatewayId="27" primitiveId="16" primitiveName="spcompack" />
 <PRIMITIVE gatewayId="27" primitiveId="17" primitiveName="ordmmd" />
