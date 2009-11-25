@@ -132,7 +132,9 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosNotify.lo \
 	libscixcos_la-sci_warnBlockByUID.lo \
 	libscixcos_la-sci_closeXcosFromScilab.lo \
-	libscixcos_la-sci_xcosDiagramToHDF5.lo
+	libscixcos_la-sci_xcosDiagramToHDF5.lo \
+	libscixcos_la-sci_xcosDiagramOpen.lo \
+	libscixcos_la-sci_xcosDiagramClose.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
 	libscixcos_la-Signal.lo libscixcos_la-GiwsException.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
@@ -435,11 +437,14 @@ src/jni/XcosUtils.giws.xml
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp \
-sci_gateway/cpp/sci_warnBlockByUID.cpp \
-sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
-sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_Xcos.cpp \
+	sci_gateway/cpp/sci_xcosNotify.cpp \
+	sci_gateway/cpp/sci_warnBlockByUID.cpp \
+	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
+	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
+	sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
 libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -915,6 +920,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramToHDF5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosNotify.Plo@am__quote@
 
@@ -1008,6 +1015,20 @@ libscixcos_la-sci_xcosDiagramToHDF5.lo: sci_gateway/cpp/sci_xcosDiagramToHDF5.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp' object='libscixcos_la-sci_xcosDiagramToHDF5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramToHDF5.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp
+
+libscixcos_la-sci_xcosDiagramOpen.lo: sci_gateway/cpp/sci_xcosDiagramOpen.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosDiagramOpen.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Tpo -c -o libscixcos_la-sci_xcosDiagramOpen.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramOpen.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramOpen.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Tpo $(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosDiagramOpen.cpp' object='libscixcos_la-sci_xcosDiagramOpen.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramOpen.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramOpen.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramOpen.cpp
+
+libscixcos_la-sci_xcosDiagramClose.lo: sci_gateway/cpp/sci_xcosDiagramClose.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosDiagramClose.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Tpo -c -o libscixcos_la-sci_xcosDiagramClose.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramClose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramClose.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Tpo $(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosDiagramClose.cpp' object='libscixcos_la-sci_xcosDiagramClose.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramClose.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramClose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
 libscixcos_la-callxcos.lo: src/cpp/callxcos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-callxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-callxcos.Tpo -c -o libscixcos_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp

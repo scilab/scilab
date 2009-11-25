@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.File;
 import java.util.ArrayList;
@@ -93,6 +94,9 @@ import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -108,6 +112,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	private static final long serialVersionUID = 1L;
 	private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
 	private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
+	private static HashMap<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
 	private static List<Menu> recentsMenus = new ArrayList<Menu>();
 	private static List<MenuItem> startMenuItems = new ArrayList<MenuItem>();
@@ -445,21 +450,11 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static void closeDiagram(XcosDiagram diagram) {
-	
-//	System.err.println("Xcos::closeDiagram : " + diagram);
-	
 	diagram.closeChildren();
 	diagrams.remove(diagram);
-
-	
-//	for(int i = 0 ; i < diagrams.size(); i++){
-//	    System.err.println("diagrams[" + i + "] : " + diagrams.get(i).getClass());
-//	}
     	if (diagrams.size() == 0) {
-//    	    System.err.println("close session");
     	    closeSession();
     	}
-    	
     }
     
     
@@ -678,4 +673,40 @@ public class Xcos extends SwingScilabTab implements Tab {
 	diagram.closeDiagram();
 	return 0;
     }
+
+        public static void xcosDiagramOpen(String UID, boolean show) {
+            BasicBlock block = null;
+            List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+            for(XcosDiagram diagram : allDiagrams) {
+        	//exclude SuperBlock from parsing 
+        	if(diagram instanceof SuperBlockDiagram) {
+        	    continue;
+        	}
+
+        	block = diagram.getChildById(UID);
+        	if(block != null) {
+        	    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+        	    newSP.setRealParameters(block.getRealParameters());
+        	    newSP.setParentDiagram(block.getParentDiagram());
+        	    if(show == true) {
+        		newSP.openBlockSettings(null);
+        		//lock cells and change background to gray to show read-only
+        		newSP.getChild().setCellsLocked(true);
+        		newSP.getChild().getAsComponent().setBackground(new Color(204,204,204));
+        		//look to disable open setting dialog on double click too
+        	    }
+        	    openedSuperBlock.put(UID, newSP);
+        	    break;
+        	}
+            }
+        }
+
+        public static void xcosDiagramClose(String UID) {
+            SuperBlock SP = openedSuperBlock.get(UID);
+            if(SP != null) {
+        	openedSuperBlock.remove(UID);
+        	SP.closeBlockSettings();
+        	SP = null;
+            }
+        }
 }

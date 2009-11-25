@@ -86,7 +86,7 @@ function scs_m=delete_unconnected(scs_m);
        mxwin = maxi(winsid());
        for k=1:size(path,'*')
          //** hilite entity path(k)
-         hilite_obj(path(k))
+         xcosShowBlockWarning(path(k))
          //** recurcively store contents of super block in
          //** scs_m_s structure
          scs_m_s = scs_m_s.objs(path(k)).model.rpar;
@@ -103,12 +103,12 @@ function scs_m=delete_unconnected(scs_m);
    if ind_k<>[] then
      k=k(ind_k)
     //** hilite entities k
-     hilite_obj(k)
+     xcosShowBlockWarning(k)
     //** display an error message
     message(['Hilited block(s) or link(s) are ignored because of'
             'undefined input(s)'])
     //** unhilite entities k
-    unhilite_obj(k)
+    xcosClearBlockWarning(k)
    end
 
    for k=size(path,'*'):-1:1 //** close figure of super_block(s)
@@ -123,7 +123,7 @@ function scs_m=delete_unconnected(scs_m);
 
    //** unhilite super block entity in active window
    if path<>[] then
-     unhilite_obj(path(1))
+     xcosClearBlockWarning(path(1))
    end
  end
 

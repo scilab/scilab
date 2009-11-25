@@ -60,15 +60,14 @@ public class CompileAction extends DefaultAction {
 				public void run() {
 					File temp;
 					try {
-						temp = File.createTempFile("xcos", ".hdf5");
-						temp.delete();
+						temp = File.createTempFile("xcos", ".h5");
+						temp.deleteOnExit();
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						InterpreterManagement.requestScilabExec(
 								"import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
 								"xcos_compile(scs_m);" +
 								"xcosNotify(\""+compilationEnd+"\");"
 						);
-						temp.deleteOnExit();
 						Signal.wait(compilationEnd);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					} catch (IOException e) {
