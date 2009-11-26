@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function myNode = createNode(label, icon, callback)
+function myNode = uiCreateNode(label, icon, callback)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <= 0 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "createNode",1,3));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "uiCreateNode",1,3));
 		return;
 	end
 
@@ -24,7 +24,7 @@ function myNode = createNode(label, icon, callback)
 			myIcon = "";
 			myCallback = "";
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "createNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "uiCreateNode",1));
 			return;
 		end
 		// Check 2nd input : icon
@@ -33,7 +33,7 @@ function myNode = createNode(label, icon, callback)
 				myIcon = icon;	
 				myCallback = "";
 			else
-				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "createNode",2));
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "uiCreateNode",2));
 				return;				
 			end
 			// Check 3rd input : callback
@@ -41,7 +41,7 @@ function myNode = createNode(label, icon, callback)
 				if (type(callback) == 10) then
 					myCallback = callback;
 				else
-					error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "createNode",3));
+					error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "uiCreateNode",3));
 					return;				
 				end
 			end
