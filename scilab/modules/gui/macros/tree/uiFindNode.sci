@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function nodeList = findNode(tree, node, value)
+function nodeList = uiFindNode(tree, node, value)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "findNode",2,3));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "uiFindNode",2,3));
 		return;
 	end
 
@@ -25,7 +25,7 @@ function nodeList = findNode(tree, node, value)
 			isPosition = %F;
 			isProperty = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "findNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiFindNode",1));
 			return;
 		end
 		
@@ -39,7 +39,7 @@ function nodeList = findNode(tree, node, value)
 			myPosition = node;
 			isPosition = %T;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "findNode",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiFindNode",2));
 			return;				
 		end
 					
@@ -51,11 +51,11 @@ function nodeList = findNode(tree, node, value)
 					myValue = value;
 					isProperty = %T;
 				else
-					error(msprintf(gettext("%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or ''callback''.\n"), "findNode",2));
+					error(msprintf(gettext("%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or ''callback''.\n"), "uiFindNode",2));
 					return;
 				end
 			else
-				error(msprintf(gettext("%s: Wrong type for input argument #%d or #%d: String expected.\n"), "findNode",2,3));
+				error(msprintf(gettext("%s: Wrong type for input argument #%d or #%d: String expected.\n"), "uiFindNode",2,3));
 				return;	
 			end
 		end
@@ -64,7 +64,7 @@ function nodeList = findNode(tree, node, value)
 	// Find matching node(s)
 	function r = internalFindNode(myTree, myNode, r)
 	
-		if equalsTree(myTree, myNode) then
+		if uiEqualsTree(myTree, myNode) then
 			r($+1) = myTree;
 		end
 
@@ -112,10 +112,10 @@ function nodeList = findNode(tree, node, value)
 		// List of matching nodes
 		nodeList = internalFindNode(myTree, myNode, r);	
 		if (size(nodeList) > 1) then
-			warning(msprintf(gettext("%s:  #%d matching nodes.\n"), "findNode",size(nodeList)));	
+			warning(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiFindNode",size(nodeList)));	
 			return;
 		elseif (size(nodeList) == 0) then
-			warning(msprintf(gettext("%s: No results founded.\n"), "findNode"));
+			warning(msprintf(gettext("%s: No results founded.\n"), "uiFindNode"));
 			return;
 		end
 	end
@@ -125,7 +125,7 @@ function nodeList = findNode(tree, node, value)
 		// List of matching nodes
 		nodeList = findPos(myTree, myPosition, r, "root");
 		if size(nodeList) == 0 then 
-			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "findNode",myPosition));
+			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "uiFindNode",myPosition));
 			return;
 		end
 	end
@@ -135,11 +135,11 @@ function nodeList = findNode(tree, node, value)
 		// List of matching nodes
 		nodeList = findProperty(myTree, myProperty, myValue, r)
 		if size(nodeList) == 0 then 
-			warning(msprintf(gettext("%s: No results founded for property ''%s'' and value ''%s''.\n"), "findNode",myProperty, myValue));
+			warning(msprintf(gettext("%s: No results founded for property ''%s'' and value ''%s''.\n"), "uiFindNode",myProperty, myValue));
 			return;
 		else	
 			if (size(nodeList) > 1) then
-				warning(msprintf(gettext("%s:  #%d matching nodes.\n"), "findNode",size(nodeList)));	
+				warning(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiFindNode",size(nodeList)));	
 				return;
 			end
 		end
