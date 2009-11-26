@@ -60,7 +60,7 @@ function tree_show(x,titletop)
 Path = 'root'
 tree = createNode("Root");
 tree = crlist3(x,Path, tree);
-displaytree(tree);
+uiDisplayTree(tree);
 
 //-- TCL_EvalStr(' .ss.t bindText <Double-1> {ppx}')
 //-- TCL_EvalStr(' .ss.t bindText <3> {qqx}')
