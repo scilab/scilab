@@ -97,11 +97,15 @@ Bug fixes:
 * bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
                    files even if they are not modified.
 
+* bug 5104 fixed - Xcos: Update the block view on undo/redo
+
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
 
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
