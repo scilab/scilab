@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-11 15:18+0000\n"
+"PO-Revision-Date: 2009-11-26 12:59+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -112,6 +112,10 @@ msgid ""
 msgstr ""
 "%s: unmöglich den Vertex #%d/%d bei [%s] in ungleiche Bedingungen zu "
 "skalieren"
+
+#, c-format
+msgid "%s: Initial guess [%s] is not feasible."
+msgstr "%s: unsprünglicher Vermuting [%s] nicht realisierbar."
 
 #, c-format
 msgid "%s: Initial guess not feasible.\n"

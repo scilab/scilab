@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-09 18:25+0000\n"
+"PO-Revision-Date: 2009-11-20 15:45+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -32,37 +32,41 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
+"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
+"erano attese le stesse dimensioni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
 "reale.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"di stringhe.\n"
 
 msgid "?"
-msgstr "?"
+msgstr "_?"
 
 msgid "ASCII Encoding"
 msgstr "Codifica ASCII"
 
 msgid "About"
-msgstr "Informazioni"
+msgstr "I_nformazioni"
 
 msgid "All"
 msgstr "Tutto"
 
-msgid "All rights reserved"
-msgstr "Tutti i diritti sono riservati"
-
 msgid "Auto Reformat Selection"
-msgstr "Riformatta automaticamente la selezione"
+msgstr "_Riformatta automaticamente la selezione"
 
 msgid "Backward"
-msgstr "Indietro"
+msgstr "_Indietro"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -71,49 +75,49 @@ msgid "Cannot load \"xpadConfiguration.xml\""
 msgstr "Non è possibile caricare \"xpadConfiguration.xml\""
 
 msgid "Case sensitive"
-msgstr "Distingui maiuscole"
-
-msgid "CeCILL License"
-msgstr "Licanza CeCILL"
+msgstr "Distingui fra maiuscolo e minuscolo"
 
 msgid "Close"
-msgstr "Chiudi"
+msgstr "_Chiudi"
 
 msgid "Colorization canceled"
 msgstr "Colorazione annullata"
 
 msgid "Colorize"
-msgstr "Colora"
+msgstr "_Colora"
 
 msgid "Comment Selection"
-msgstr "Commenta la selezione"
+msgstr "_Commenta la selezione"
 
 msgid "Continue?"
 msgstr "Continuare?"
 
 msgid "Copy"
-msgstr "Copia"
+msgstr "_Copia"
 
-msgid "Copyright 2009"
-msgstr "Diritto d'autore 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr "Diritto d'autore (c) 2009 (INRIA)"
+
+msgid "Correct Indentation"
+msgstr "Correggi l'indentazione"
 
 msgid "Cut"
-msgstr "Taglia"
+msgstr "_Taglia"
 
 msgid "Default"
 msgstr "Predefinito"
 
 msgid "Delete"
-msgstr "Elimina"
+msgstr "Eli_mina"
 
 msgid "Direction"
 msgstr "Direzione"
 
 msgid "Document"
-msgstr "Documento"
+msgstr "_Documento"
 
 msgid "Edit"
-msgstr "Modifica"
+msgstr "_Modifica"
 
 msgid "Editor 1.0"
 msgstr "Editor 1.0"
@@ -122,100 +126,97 @@ msgid "Editor error"
 msgstr "Errore dell'editor"
 
 msgid "Encoding"
-msgstr "Codifica"
+msgstr "_Codifica"
 
 msgid "Enter line number"
-msgstr "Inserire il numero di riga"
+msgstr "Inserire il numero della riga"
 
 msgid "Evaluate Selection"
-msgstr "Valuta la selezione"
+msgstr "_Valuta la selezione"
 
 msgid "Execute"
-msgstr "Esegui"
+msgstr "_Esegui"
 
 msgid "Execute File Into Scilab"
-msgstr "Esegui un file in Scilab"
+msgstr "Esegui un _file in Scilab"
 
 msgid "Exit"
-msgstr "Esci"
+msgstr "_Esci"
 
 msgid "File"
-msgstr "File"
+msgstr "_File"
 
 msgid "File already exists"
 msgstr "Il file già esiste"
 
 msgid "Find"
-msgstr "Trova"
+msgstr "Tr_ova"
 
 msgid "Find/Replace"
-msgstr "Trova/Sostituisci"
+msgstr "Trova/Sostit_uisci"
 
 msgid "Find:"
-msgstr "Trova:"
+msgstr "Cerca:"
 
 msgid "Forward"
 msgstr "Avanti"
 
 msgid "Goto line"
-msgstr "Vai alla linea"
+msgstr "_Vai alla linea"
 
 msgid "Highlight current line"
-msgstr "Evidenzia la riga attuale"
+msgstr "_Evidenzia la riga attuale"
 
 msgid "Invalid regular expression : %s"
 msgstr "Espressione regolare non valida : %s"
 
 msgid "Line Numbers"
-msgstr "Numeri di riga"
+msgstr "_Numeri di riga"
 
 msgid "Load Into Scilab"
-msgstr "Carica in Scilab"
+msgstr "_Carica in Scilab"
 
 msgid "Loading..."
 msgstr "Caricamento in corso..."
 
 msgid "New"
-msgstr "Nuovo"
+msgstr "_Nuovo"
 
 msgid "Next tab"
-msgstr "Scheda successiva"
+msgstr "Scheda s_uccessiva"
 
 msgid "Ok"
 msgstr "Ok"
 
 msgid "Open"
-msgstr "Apri"
+msgstr "_Apri"
 
 msgid "Options"
 msgstr "Opzioni"
 
 msgid "Page Setup"
-msgstr "Impostazione pagina"
+msgstr "_Imposta pagina"
 
 msgid "Paste"
-msgstr "Incolla"
+msgstr "_Incolla"
 
 msgid "Plain Text"
 msgstr "Testo semplice"
 
 msgid "Previous tab"
-msgstr "Scheda precedente"
+msgstr "Scheda pr_ecedente"
 
 msgid "Print"
-msgstr "Stampa"
+msgstr "Stam_pa"
 
 msgid "Print Preview"
-msgstr "Anteprima di stampa"
+msgstr "Antepri_ma di stampa"
 
 msgid "Recent Files"
-msgstr "File recenti"
+msgstr "File _recenti"
 
 msgid "Redo"
-msgstr "Rifai"
-
-msgid "Reformat Selection"
-msgstr "Riformatta la selszione"
+msgstr "_Ripeti"
 
 msgid "Regular expressions"
 msgstr "Espressioni regolari"
@@ -236,13 +237,13 @@ msgid "Replace/Find"
 msgstr "Sostituisci/Cerca"
 
 msgid "Reset default font"
-msgstr "Reimposta il font preddefinito"
+msgstr "_Reimposta il font predefinito"
 
 msgid "Save"
-msgstr "Salva"
+msgstr "_Salva"
 
 msgid "Save as"
-msgstr "Salva come"
+msgstr "Sal_va come"
 
 msgid "Scilab"
 msgstr "Scilab"
@@ -256,32 +257,35 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Editor di Scilab versione 1.0"
+msgid "Scilab text editor"
+msgstr "Editor di testo di Scilab"
 
-msgid "Scilab editor"
-msgstr "Editor di Scilab"
-
-msgid "Scilab editor Help"
-msgstr "Aiuto dell'editor di Scilab"
+msgid "Scilab text editor help"
+msgstr "_Aiuto dell'editor di testo di Scilab"
 
 msgid "Scope"
 msgstr "Contesto"
 
 msgid "Search"
-msgstr "Cerca"
+msgstr "_Cerca"
 
 msgid "Select All"
-msgstr "Seleziona tutto"
+msgstr "_Seleziona tutto"
 
 msgid "Selected lines"
 msgstr "Righe selezionate"
 
 msgid "Set Colors"
-msgstr "Imposta i colori"
+msgstr "Imposta i co_lori"
 
 msgid "Set Font"
-msgstr "Imposta il Font"
+msgstr "Imposta il tipo di carattere"
+
+msgid "Shift Left"
+msgstr "Sposta a si_nistra"
+
+msgid "Shift Right"
+msgstr "Sposta a _destra"
 
 msgid "Show/Hide ToolBar"
 msgstr "Mostra/Nascondi Barra degli strumenti"
@@ -292,11 +296,8 @@ msgstr "La stringa %s non è stata trovata"
 msgid "Syntax Type"
 msgstr "Tipo di sintassi"
 
-msgid "Tabify Selection"
-msgstr ""
-
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "Il consorzio Scilab / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Il Consorzio Scilab (DIGITEO)"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -330,19 +331,16 @@ msgid "UTF-8 Encoding"
 msgstr "Codifica UTF-8"
 
 msgid "Uncomment Selection"
-msgstr ""
+msgstr "_Togli il commento alla selezione"
 
 msgid "Undo"
-msgstr "Annulla"
-
-msgid "Untabify Selection"
-msgstr ""
+msgstr "_Annulla"
 
 msgid "Untitled "
 msgstr "Senza nome "
 
 msgid "View"
-msgstr "Visualizza"
+msgstr "_Visualizza"
 
 msgid "Whole word"
 msgstr "Parola intera"
@@ -366,7 +364,7 @@ msgid "You have reached the beginning of the document"
 msgstr "È stato raggiunto l'inizio del documento"
 
 msgid "You have reached the end of the document"
-msgstr "Raggiunta a fine del documento"
+msgstr "Raggiunta la fine del documento"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
@@ -377,4 +375,4 @@ msgid "Your modifications will be lost, change encoding anyway?"
 msgstr "Le modifiche saranno perse, cambiare comunque la codifica?"
 
 msgid "close this tab"
-msgstr "Chiudere questa scheda"
+msgstr "chiudi questa scheda"

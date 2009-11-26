@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-10 09:23+0000\n"
+"PO-Revision-Date: 2009-11-18 10:44+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:18+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,6 +86,10 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: '%s' ist nicht installiert.\n"
 
 #, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr "%s: ein Fehler ist während des Ladens von '%s - %s' aufgetreten\n"
+
+#, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: eine andere Version des Pakets %s ist bereits geladen: %s\n"
 
@@ -138,8 +142,10 @@ msgstr ""
 "Sitzung geladen werden:\n"
 
 #, c-format
-msgid "%s: The config file ("
-msgstr "%s: die Konfigurationsdatei ("
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr ""
+"%s: die Konfigurationsdatei ('%s') ist in Zeile %d nicht richtig "
+"formatiert.\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -245,8 +251,8 @@ msgid "%s: The following module is not installed:\n"
 msgstr "%s: das folgende Module ist nicht installiert:\n"
 
 #, c-format
-msgid "%s: The following modules is not installed:\n"
-msgstr "%s: das folgende Module ist nicht installiert:\n"
+msgid "%s: The following modules are not installed:\n"
+msgstr "%s: die folgenden Module sind nicht installiert:\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -551,11 +557,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be "
-"set.\n"
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Alle Module Version sollte "
-"gesetzt sein.\n"
+"%s: falscher Wert für Eingangsargument #%d: alle Module sollten eingestellt "
+"sein.\n"
 
 #, c-format
 msgid ""
@@ -667,9 +672,6 @@ msgstr "Autor(en)"
 msgid "Automaticaly Installed"
 msgstr "automatisch installiert"
 
-msgid "Available Modules"
-msgstr "Verfügbare Module"
-
 msgid "Category(ies)"
 msgstr "Kategorie(n)"
 
@@ -681,6 +683,9 @@ msgstr "Abhängig"
 
 msgid "Description"
 msgstr "Beschreibung"
+
+msgid "Download size"
+msgstr "Herunterladegröße"
 
 msgid "Entity"
 msgstr "Instanz"
@@ -703,20 +708,29 @@ msgstr "Installation fehlgeschlagen!"
 msgid "Installing..."
 msgstr "Installiere..."
 
+msgid "Ko"
+msgstr "Ko"
+
 msgid "License"
 msgstr "Lizenz"
 
 msgid "Maintainer(s)"
 msgstr "Unterstüze(r)"
 
-msgid "Module Description"
-msgstr "Modul Beschreibung"
+msgid "Mo"
+msgstr "Mo"
+
+msgid "Modules"
+msgstr "Module"
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr "keine Atoms Module verfügbar. Überprüfen Sie die Internetverbindung."
 
 msgid "No module selected"
 msgstr "Keine Module ausgewählt"
+
+msgid "Octets"
+msgstr "Oketete"
 
 msgid "Package"
 msgstr "Paket"

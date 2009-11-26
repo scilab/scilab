@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-25 07:36+0000\n"
+"PO-Revision-Date: 2009-11-16 16:23+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -131,25 +131,21 @@ msgstr ""
 msgid "     Total number of elements = %d\n"
 msgstr "     要素の総数 = %d\n"
 
-#
-# File: macros/pcg.sci, line: 220
 #, c-format
 msgid "  Iteration #%s/%s residual : %s\n"
-msgstr "  繰り返し #%s/%s 剰余 : %s\n"
+msgstr "  反復 #%s/%s 残差 : %s\n"
 
-#
-# File: macros/pcg.sci, line: 214
 #, c-format
 msgid "  New residual = %s < tol = %s => break\n"
-msgstr "  新しい剰余 = %s < tol = %s => break\n"
+msgstr "  新しい残差 = %s < tol = %s => break\n"
 
 #, c-format
 msgid "  Type of preconditionning #1 : %d\n"
-msgstr "  型 の調整 #1 : %d\n"
+msgstr "  前処理の種類 #1 : %d\n"
 
 #, c-format
 msgid "  Type of preconditionning #2 : %d\n"
-msgstr "  型 の調整 #2 : %d\n"
+msgstr "  前処理の種類 #2 : %d\n"
 
 #
 # File: src/c/lu.c, line: 121
@@ -309,17 +305,13 @@ msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定
 msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ベクトルを想定します。\n"
 
-#
-# File: macros/pcg.sci, line: 265
 #, c-format
 msgid "Algorithm fails\n"
-msgstr "アルゴリズム不正\n"
+msgstr "異常終了\n"
 
-#
-# File: macros/pcg.sci, line: 274
 #, c-format
 msgid "Algorithm pass\n"
-msgstr "アルゴリズム透過\n"
+msgstr "正常終了\n"
 
 #
 # File: macros/pcg.sci, line: 72
@@ -334,11 +326,9 @@ msgstr "引数:\n"
 msgid "Columns %1d to %1d.\n"
 msgstr "列 %1d から %1d へ\n"
 
-#
-# File: macros/pcg.sci, line: 264
 #, c-format
 msgid "Final residual = %s > tol =%s\n"
-msgstr "最終の剰余 = %s > tol =%s\n"
+msgstr "最終の残差 = %s > tol =%s\n"
 
 #
 # File: src/c/spOutput.c, line: 176
@@ -386,11 +376,9 @@ msgstr "行列は複雑です。\n"
 msgid "Matrix is real.\n"
 msgstr "行列は実です。\n"
 
-#
-# File: macros/pcg.sci, line: 187
 #, c-format
 msgid "Norm of right-hand side : %s\n"
-msgstr "右手側の標準 : %s\n"
+msgstr "右辺ベクトルのノルム : %s\n"
 
 #
 # File: src/c/spOutput.c, line: 334
@@ -440,11 +428,9 @@ msgstr "行列の最も小さい要素 = %-1.4lg.\n"
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr "最も小さい軸の要素 = %-1.4lg.\n"
 
-#
-# File: macros/pcg.sci, line: 191
 #, c-format
 msgid "Special processing where the right-hand side is zero.\n"
-msgstr "右手の側がゼロであるところの特別の加工\n"
+msgstr "右辺ベクトルがゼロの特別な加工\n"
 
 #
 # File: src/c/spOutput.c, line: 417

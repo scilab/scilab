@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,6 +86,10 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: 另一個 %s 套件已經被載入: %s\n"
 
@@ -132,7 +136,7 @@ msgid ""
 msgstr "%s: 在同一個 scilab session 中同時載入多個不同版本的 (%s) 套件:\n"
 
 #, c-format
-msgid "%s: The config file ("
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
 msgstr ""
 
 #, c-format
@@ -224,7 +228,7 @@ msgid "%s: The following module is not installed:\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The following modules is not installed:\n"
+msgid "%s: The following modules are not installed:\n"
 msgstr ""
 
 #, c-format
@@ -462,8 +466,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be "
-"set.\n"
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
 
 #, c-format
@@ -559,9 +562,6 @@ msgstr "作者"
 msgid "Automaticaly Installed"
 msgstr "自動安裝"
 
-msgid "Available Modules"
-msgstr ""
-
 msgid "Category(ies)"
 msgstr "種類"
 
@@ -573,6 +573,9 @@ msgstr "依據"
 
 msgid "Description"
 msgstr "描述"
+
+msgid "Download size"
+msgstr ""
 
 msgid "Entity"
 msgstr "實體"
@@ -595,19 +598,28 @@ msgstr ""
 msgid "Installing..."
 msgstr ""
 
+msgid "Ko"
+msgstr ""
+
 msgid "License"
 msgstr "授權條款"
 
 msgid "Maintainer(s)"
 msgstr "維護者"
 
-msgid "Module Description"
+msgid "Mo"
+msgstr ""
+
+msgid "Modules"
 msgstr ""
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr ""
 
 msgid "No module selected"
+msgstr ""
+
+msgid "Octets"
 msgstr ""
 
 msgid "Package"

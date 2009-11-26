@@ -52,8 +52,8 @@ public class Xcos {
 
     public static void xcos() {
 	XcosPaletteManager.loadPalette();
-	ViewPaletteBrowserAction.setPalettesVisible(true);
 	createEmptyDiagram();
+	ViewPaletteBrowserAction.setPalettesVisible(true);
     }
 
     public static void xcos(String fileName) {
