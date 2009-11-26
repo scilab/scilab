@@ -779,4 +779,34 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	startAction.setEnabled(state);
 	stopAction.setEnabled(state);
     }
+    
+    /**
+     * Enable or disable all actions
+     * @param status True if they have to be enabled, false otherwise
+     */
+    public void setActionsEnabled(boolean status) {
+	fileMenu.setEnabled(status);
+	edit.setEnabled(status);
+	view.setEnabled(status);
+	simulate.setEnabled(status);
+	format.setEnabled(status);
+	alignMenu.setEnabled(status);
+	linkStyle.setEnabled(status);
+	tools.setEnabled(status);
+	help.setEnabled(status);
+	openAction.setEnabled(status);
+	saveAction.setEnabled(status);
+	printAction.setEnabled(status);
+	newDiagramAction.setEnabled(status);
+	deleteAction.setEnabled(status);
+	undoAction.setEnabled(status);
+	redoAction.setEnabled(status);
+	fitDiagramToViewAction.setEnabled(status);
+	startAction.setEnabled(status);
+	stopAction.setEnabled(status);
+	zoomInAction.setEnabled(status);
+	zoomOutAction.setEnabled(status);
+	xcosDemonstrationAction.setEnabled(status);
+	xcosDocumentationAction.setEnabled(status);
+    }
 }
