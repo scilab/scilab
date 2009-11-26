@@ -1451,6 +1451,7 @@ public class XcosDiagram extends ScilabGraph {
 				public void run() {
 					File newFile;
 					newFile = filetype.exportToHdf5(fileToLoad);
+					System.err.println("export to hdf5 OK");
 					transformAndLoadFile(newFile);
 				}
 			};
@@ -1486,7 +1487,6 @@ public class XcosDiagram extends ScilabGraph {
 
 		case HDF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
-			fileToLoad.delete();
 			generateUID();
 			setModified(false);
 			break;
