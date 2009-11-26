@@ -25,6 +25,7 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
 import com.mxgraph.swing.handler.mxRubberband;
+import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
@@ -74,6 +75,16 @@ public class ScilabGraph extends mxGraph {
     };
 
     public ScilabGraph() {
+	super();
+	
+	/*
+	 * Disabling the default connected action and event listeners.
+	 */
+	mxGraphActions.getSelectNextAction().setEnabled(false);
+	mxGraphActions.getSelectPreviousAction().setEnabled(false);
+	mxGraphActions.getSelectChildAction().setEnabled(false);
+	mxGraphActions.getSelectParentAction().setEnabled(false);
+	
 	// Undo / Redo capabilities
 	getModel().addListener(mxEvent.UNDO, undoHandler);
 	getView().addListener(mxEvent.UNDO, undoHandler);

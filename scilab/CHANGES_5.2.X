@@ -34,6 +34,19 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+Text rendering:
+===============
+
+* New function "prettyprint" added
+This function provides the capability to represent a Scilab variable to LaTeX,
+TeX and Mathml. 
+See SEP #36 for more information
+
+* pol2tex is now obsolete. Please use prettyprint instead
+
+* texprint is now obsolete. Please use prettyprint instead
+
+
 Localization:
 =============
 
@@ -75,15 +88,24 @@ Bug fixes:
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
 
+* bug 5037 fixed - The link style menu doesn't have mnemonics
+
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
 * bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
+
+* bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
+                   files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
+
+* bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5189 fixed - No more give an error when the user cancels file selection for saving.
 
@@ -172,7 +194,11 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
+* bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5413 fixed - An error was triggered when < or > where used in the comments
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
@@ -190,6 +216,8 @@ Bug fixes:
                    source did not exist and then aliasing had not been performed.
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5484 fixed - LCC-Win32 did not work with attached example.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

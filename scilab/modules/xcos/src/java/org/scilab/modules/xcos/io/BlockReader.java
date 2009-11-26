@@ -62,9 +62,13 @@ public class BlockReader {
     }
 
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
+	return convertMListToDiagram(data, true);
+    }
+    
+    public static HashMap<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
 
 	try {
-	    isAValidScs_mStructure(data);
+	    isAValidScs_mStructure(data, checkVersion);
 	} catch (WrongTypeException e2) {
 	    WARNING("Invalid data structure !!");
 	    e2.printStackTrace();
@@ -262,15 +266,7 @@ public class BlockReader {
 
 		    textBlocks.add(currentText);
 		    minX = Math.min(minX, currentText.getGeometry().getX());
-		    minY = Math.min(minY, currentText.getGeometry().getY()/*
-									   * -
-									   * currentBlock
-									   * .
-									   * getGeometry
-									   * ().
-									   * getHeight
-									   * ()
-									   */);
+		    minY = Math.min(minY, currentText.getGeometry().getY());
 		} else {
 		    // for minX and minY
 		}
@@ -314,8 +310,6 @@ public class BlockReader {
 	links.put("Ports", linkPorts);
 	links.put("Points", linkPoints);
 	result.put("Links", links);
-
-	result.put("Blocks", blocks);
 
 	return result;
     }
@@ -391,7 +385,14 @@ public class BlockReader {
 	// ct = [color, type] 1 : data , -1 event
 	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
 	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
-	int io = (int) ((ScilabDouble) link.get(6)).getRealPart()[0][2];
+	
+	int io = 0;
+	//implicit way
+	if(((ScilabDouble) link.get(6)).getRealPart()[0].length == 2) {
+	    io = 0;
+	} else {
+	    io = (int) ((ScilabDouble) link.get(6)).getRealPart()[0][2];
+	}
 
 	return getPortType(type, io);
     }
@@ -426,7 +427,14 @@ public class BlockReader {
 	// ct = [color, type] 1 : data , -1 event
 	int type = (int) ((ScilabDouble) link.get(5)).getRealPart()[0][1];
 	// from = [ blockId, portNumber, I/O] 0 : Output , 1 : Input
-	int io = (int) ((ScilabDouble) link.get(7)).getRealPart()[0][2];
+	int io = 0;
+	
+	//implicit way
+	if(((ScilabDouble) link.get(7)).getRealPart()[0].length == 2) {
+	    io = 1;
+	} else {
+	    io = (int) ((ScilabDouble) link.get(7)).getRealPart()[0][2];
+	}
 
 	return getPortType(type, io);
     }
@@ -452,6 +460,8 @@ public class BlockReader {
 	    return PortType.CONTROL;
 	}
 
+	System.err.println("type : " + type);
+	System.err.println("io : " + io);
 	throw new WrongTypeException();
     }
 
@@ -541,7 +551,7 @@ public class BlockReader {
 	return ((ScilabString) blockFields.get(1)).getData()[0][0];
     }
 
-    private static void isAValidScs_mStructure(ScilabMList data)
+    private static void isAValidScs_mStructure(ScilabMList data, boolean checkVersion)
 	    throws WrongTypeException, VersionMismatchException,
 	    WrongStructureException {
 
@@ -577,11 +587,6 @@ public class BlockReader {
 	    throw new WrongTypeException();
 	}
 
-	// the second field must contain list of props
-	if (!(data.get(1) instanceof ScilabTList)) {
-	    throw new WrongTypeException();
-	}
-
 	// the third field must contains lists of blocks and links
 	if (!(data.get(2) instanceof ScilabList)) {
 	    throw new WrongTypeException();
@@ -592,9 +597,11 @@ public class BlockReader {
 	    throw new WrongTypeException();
 	}
 
-	String scicosVersion = ((ScilabString) data.get(3)).getData()[0][0];
-	if (!scicosVersion.equals(realScicosVersion)) {
-	    throw new VersionMismatchException(scicosVersion);
+	if(checkVersion) {
+	    String scicosVersion = ((ScilabString) data.get(3)).getData()[0][0];
+	    if (!scicosVersion.equals(realScicosVersion)) {
+		throw new VersionMismatchException(scicosVersion);
+	    }
 	}
     }
 
@@ -1453,17 +1460,12 @@ public class BlockReader {
 	}
 
 	if (modelFields.get(1) instanceof ScilabString) {
-	    newBlock
-		    .setSimulationFunctionName(getBlockSimulationFunctionName(modelFields));
+	    newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields));
 	}
 
 	if ((modelFields.get(1) instanceof ScilabList)) {
-	    newBlock
-		    .setSimulationFunctionName(((ScilabString) ((ScilabList) modelFields
-			    .get(1)).get(0)).getData()[0][0]);
-	    newBlock
-		    .setSimulationFunctionType((int) ((ScilabDouble) ((ScilabList) modelFields
-			    .get(1)).get(1)).getRealPart()[0][0]);
+	    newBlock.setSimulationFunctionName(((ScilabString) ((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);
+	    newBlock.setSimulationFunctionType((int) ((ScilabDouble) ((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);
 	}
 
 	// fill inputPort (in , in2 , intyp)
@@ -1494,34 +1496,36 @@ public class BlockReader {
 		}
 		if (dataType.getRealPart() != null) {
 		    int type = (int) dataType.getRealPart()[0][0];
-		    tempInputPort
-			    .setDataType(DataType.convertScilabValue(type));
+		    tempInputPort.setDataType(DataType.convertScilabValue(type));
 		}
 		newBlock.addPort(tempInputPort);
 	    }
 	} else {
-	    String[][] implicitExplicitInArray = ((ScilabString) graphicsStructure
-		    .get(12)).getData();
+	    String[][] implicitExplicitInArray = ((ScilabString) graphicsStructure.get(12)).getData();
 
 	    for (int i = 0; i < size; i++) {
 		InputPort tempInputPort = null;
 		// "E" -> Explicit
-		if (graphicsStructure.get(12).getHeight() > graphicsStructure
-			.get(12).getWidth()) {
+		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth() && 
+			i < graphicsStructure.get(12).getHeight()) {
 		    if (implicitExplicitInArray[i][0].equals("E")) {
 			tempInputPort = new ExplicitInputPort();
 		    }
 		    if (implicitExplicitInArray[i][0].equals("I")) {
 			tempInputPort = new ImplicitInputPort();
 		    }
-		} else {
+		} else if(i < graphicsStructure.get(12).getWidth()){
 		    if (implicitExplicitInArray[0][i].equals("E")) {
 			tempInputPort = new ExplicitInputPort();
 		    }
 		    if (implicitExplicitInArray[0][i].equals("I")) {
 			tempInputPort = new ImplicitInputPort();
 		    }
+		} else {
+		    //we have more declared ports than definition
+		    tempInputPort = new ExplicitInputPort();
 		}
+
 		ScilabDouble dataLines = (ScilabDouble) modelFields.get(2);
 		ScilabDouble dataColumns = (ScilabDouble) modelFields.get(3);
 		ScilabDouble dataType = (ScilabDouble) modelFields.get(4);
@@ -1536,8 +1540,7 @@ public class BlockReader {
 		}
 		if (dataType.getRealPart() != null) {
 		    int type = (int) dataType.getRealPart()[0][0];
-		    tempInputPort
-			    .setDataType(DataType.convertScilabValue(type));
+		    tempInputPort.setDataType(DataType.convertScilabValue(type));
 		}
 		newBlock.addPort(tempInputPort);
 	    }
@@ -1571,26 +1574,28 @@ public class BlockReader {
 		newBlock.addPort(tempOutputPort);
 	    }
 	} else {
-	    String[][] implicitExplicitInArray = ((ScilabString) graphicsStructure
-		    .get(13)).getData();
-
+	    String[][] implicitExplicitOutArray = ((ScilabString) graphicsStructure.get(13)).getData();
+	    
 	    for (int i = 0; i < size; i++) {
 		OutputPort tempOutputPort = null;
-		if (graphicsStructure.get(13).getHeight() > graphicsStructure
-			.get(13).getWidth()) {
-		    if (implicitExplicitInArray[i][0].equals("E")) {
+		if (graphicsStructure.get(13).getHeight() > graphicsStructure.get(13).getWidth() 
+			&& i < graphicsStructure.get(13).getHeight()) {
+		    if (implicitExplicitOutArray[i][0].equals("E")) {
 			tempOutputPort = new ExplicitOutputPort();
 		    }
-		    if (implicitExplicitInArray[i][0].equals("I")) {
+		    if (implicitExplicitOutArray[i][0].equals("I")) {
+			tempOutputPort = new ImplicitOutputPort();
+		    }
+		} else if(i < graphicsStructure.get(13).getWidth()){
+		    if (implicitExplicitOutArray[0][i].equals("E")) {
+			tempOutputPort = new ExplicitOutputPort();
+		    }
+		    if (implicitExplicitOutArray[0][i].equals("I")) {
 			tempOutputPort = new ImplicitOutputPort();
 		    }
 		} else {
-		    if (implicitExplicitInArray[0][i].equals("E")) {
-			tempOutputPort = new ExplicitOutputPort();
-		    }
-		    if (implicitExplicitInArray[0][i].equals("I")) {
-			tempOutputPort = new ImplicitOutputPort();
-		    }
+		    //we have more declared ports than definition
+		    tempOutputPort = new ExplicitOutputPort();
 		}
 
 		ScilabDouble dataLines = (ScilabDouble) modelFields.get(5);
