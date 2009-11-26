@@ -84,35 +84,67 @@ public class DropFilesListener implements DropTargetListener {
 		// TODO Auto-generated method stub
 		arg0.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 		Transferable transferable = arg0.getTransferable();
-		if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-			try {
-				java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+		
+		try {
+			DataFlavor uriListFlavor = new DataFlavor("text/uri-list;class=java.lang.String");
+			if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+				try {
+					java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+					for (int i = 0; i < data.size(); i++) {
+						Xpad.xpad(data.get(i).toString());
+					} 
+				} catch (UnsupportedFlavorException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				}
+				
+			} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
+				// http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4899516
+				String URIdata;
+				try {
+					URIdata = (String)transferable.getTransferData(uriListFlavor);
+				} catch (UnsupportedFlavorException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				}
+				java.util.List data = textURIListToFileList(URIdata);
 				for (int i = 0; i < data.size(); i++) {
 					Xpad.xpad(data.get(i).toString());
-				} 
-			} catch (UnsupportedFlavorException e) {
-				// TODO Auto-generated catch block
-				arg0.dropComplete(false);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				arg0.dropComplete(false);
+				}
 			}
-			
-		} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-			try {
-				String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-				StyledDocument doc = pane.getStyledDocument();
-				doc.insertString(doc.getLength(), dropString, doc.getStyle(dropString));
-				
-			} catch (UnsupportedFlavorException e) {
-				// TODO Auto-generated catch block
-				arg0.dropComplete(false);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				arg0.dropComplete(false);
-			} catch (BadLocationException e) {
-				arg0.dropComplete(false);
+			else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+				try {
+					String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+					StyledDocument doc = pane.getStyledDocument();
+					doc.insertString(doc.getLength(), dropString, doc.getStyle(dropString));
+					
+				} catch (UnsupportedFlavorException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					arg0.dropComplete(false);
+					return;
+				} catch (BadLocationException e) {
+					arg0.dropComplete(false);
+					return;
+				}
 			}
+		
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			arg0.dropComplete(false);
 		}
 		
 	}
@@ -124,4 +156,32 @@ public class DropFilesListener implements DropTargetListener {
 	public void dropActionChanged(DropTargetDragEvent arg0) {
 		// TODO Auto-generated method stub
 	}
+
+	/**
+	 * textURIListToFileList
+	 * @param data String URI
+	 * @return java.util.List
+	 */
+	private static java.util.List textURIListToFileList(String data) {
+        java.util.List list = new java.util.ArrayList(1);
+        for (java.util.StringTokenizer st = new java.util.StringTokenizer(data, "\r\n");
+                st.hasMoreTokens();) {
+            String s = st.nextToken();
+            if (s.startsWith("#")) {
+                // the line is a comment (as per the RFC 2483)
+                continue;
+            }
+            try {
+                java.net.URI uri = new java.net.URI(s);
+                java.io.File file = new java.io.File(uri);
+                list.add(file);
+            } catch (java.net.URISyntaxException e) {
+                // malformed URI
+            } catch (IllegalArgumentException e) {
+                // the URI is not a valid 'file:' URI
+            }
+        }
+        return list;
+    }
+
 }
