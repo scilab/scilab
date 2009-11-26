@@ -610,7 +610,7 @@ msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr "Les matrices Fi, i=1,...,m sont linéairement dépendantes.\n"
 
 msgid "Optimization and Simulation"
-msgstr "Optimization et Simulation"
+msgstr "Optimisation et Simulation"
 
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
