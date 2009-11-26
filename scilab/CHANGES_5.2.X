@@ -251,6 +251,8 @@ Bug fixes:
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
 
+* bug 5497 fixed - Editor: selection drag is now available.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================

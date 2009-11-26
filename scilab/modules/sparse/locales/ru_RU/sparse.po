@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-05 20:47+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2009-11-20 01:09+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -101,123 +101,123 @@ msgstr "     Общее число элементов = %d\n"
 
 #, c-format
 msgid "  Iteration #%s/%s residual : %s\n"
-msgstr "  Итерация #%s/%s остаток: %s\n"
+msgstr "  Итерация №%s/%s невязка: %s\n"
 
 #, c-format
 msgid "  New residual = %s < tol = %s => break\n"
-msgstr "  Новый остаток= %s < tol = %s => останов\n"
+msgstr "  Новая невязка = %s < tol = %s => завершение\n"
 
 #, c-format
 msgid "  Type of preconditionning #1 : %d\n"
-msgstr "  Тип предварительной обработки №1 : %d\n"
+msgstr "  Тип предобусловливания №1: %d\n"
 
 #, c-format
 msgid "  Type of preconditionning #2 : %d\n"
-msgstr "  Тип предварительной обработки №2 : %d\n"
+msgstr "  Тип предобусловливания №2: %d\n"
 
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
-msgstr "%s: НА диагонали матрицы был встречен ноль.\n"
+msgstr "%s: На диагонали матрицы встречен нуль.\n"
 
 #, c-format
 msgid "%s: Convergence error.\n"
-msgstr "%s: Ошибка схождения.\n"
+msgstr "%s: Ошибка сходимости.\n"
 
 #, c-format
 msgid "%s: Did not converge.\n"
-msgstr "%s: Не сошлось.\n"
+msgstr "%s: Нет сходимости.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
-"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
+"%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be same size as input argument "
 "#%d"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Должен быть тот же размер, как у "
-"входного аргумента #%d."
+"%s: Неверный размер входного параметра №%d: ожидался одинаковый размер с "
+"входным параметром №%d."
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Ожидался тот же размер, как у "
-"входного аргумента #%d.\n"
+"%s: Неверный размер входного параметра №%d: ожидался одинаковый размер с "
+"входным параметром №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Ожидалась квадратная матрица.\n"
+"%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного аргумента #%d.\n"
+msgstr "%s: Неверный тип входного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидался вектор-столбец.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидался тот же размер, как у "
-"входного аргумента #%d.\n"
+"%s: Неверный тип входного параметра №%d: ожидался одинаковый размер с "
+"входным параметром №%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидался тот же размер, как у "
-"входного аргумента #%d.\n"
+"%s: Неверный тип входного параметра №%d: ожидался одинаковый размер с "
+"входным параметром №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидался скаляр.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалась квадратная матрица.\n"
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалось транспонирование функции "
+"%s: Неверный тип входного параметра №%d: ожидалось транспонирование функции "
 "%s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента #%d: Ожидался вектор-столбец.\n"
+"%s: Неверное значение входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента #%d: Ожидалось транспонирование "
+"%s: Неверное значение входного параметра №%d: ожидалось транспонирование "
 "функции %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидался вектор.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор.\n"
 
 #, c-format
 msgid "Algorithm fails\n"
@@ -225,11 +225,11 @@ msgstr "Сбой алгоритма\n"
 
 #, c-format
 msgid "Algorithm pass\n"
-msgstr "Алгоритм прошел\n"
+msgstr "Алгоритм пройден\n"
 
 #, c-format
 msgid "Arguments:\n"
-msgstr "Аргументы:\n"
+msgstr "Параметры:\n"
 
 #, c-format
 msgid "Columns %1d to %1d.\n"
@@ -237,7 +237,7 @@ msgstr "Стосбцы с %1d по %1d.\n"
 
 #, c-format
 msgid "Final residual = %s > tol =%s\n"
-msgstr "Окончательный остаток = %s > tol =%s\n"
+msgstr "Окончательная невязка = %s > tol =%s\n"
 
 #, c-format
 msgid ""
@@ -265,11 +265,11 @@ msgstr "Матрица не была факторизована.\n"
 
 #, c-format
 msgid "Matrix is complex.\n"
-msgstr "Это комплексная матрица.\n"
+msgstr "Матрица является комплексной.\n"
 
 #, c-format
 msgid "Matrix is real.\n"
-msgstr "Это вещественная матрица.\n"
+msgstr "Матрица является вещественной.\n"
 
 #, c-format
 msgid "Norm of right-hand side : %s\n"
@@ -313,11 +313,11 @@ msgstr "Специальная обработка там, где правая с
 
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"
-msgstr "Внимание: Следующая матрица факторизована к LU форме.\n"
+msgstr "Внимание: следующая матрица факторизована к LU форме.\n"
 
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "sparse: замешательство в файле `%s' в строке %d.\n"
+msgstr "sparse: ошибка в файле «%s» в строке %d.\n"
 
 #, c-format
 msgid "|||  Starting new matrix  |||\n"

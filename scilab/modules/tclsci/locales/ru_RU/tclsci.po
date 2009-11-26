@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-06 20:28+0000\n"
+"PO-Revision-Date: 2009-11-20 22:34+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " Flushing starts for queued commands.\n"
@@ -38,7 +38,7 @@ msgstr "%s: Невозможно прочесть переменную Tcl.\n"
 
 #, c-format
 msgid "%s: Error TCL interpreter not initialized.\n"
-msgstr "%s: Ошибка: Интерпретатор TCL не инициализирован.\n"
+msgstr "%s: Ошибка: интерпретатор TCL не инициализирован.\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
@@ -62,47 +62,48 @@ msgstr "%s: Ведомый интерпретатор уже существуе�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидался хотя бы один.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось не менее одного.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Неверный тип аргумента #%d или #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалось логическое выражение.\n"
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалась строка или вектор строк.\n"
+"%s: Неверный тип входного параметра №%d: ожидалась строка или вектор строк.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Неверное значение аргумента #%d: Ожидалось '%s'.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
 
 msgid "&?"
 msgstr "&Справка"
@@ -159,7 +160,7 @@ msgid "Impossible to set system encoding."
 msgstr "Невозможно задать системную кодировку."
 
 msgid "Scilab TCL/TK module not installed.\n"
-msgstr "Модуль Scilab TCL/TK не установлен.\n"
+msgstr "Модуль TCL/TK не установлен.\n"
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -199,7 +200,7 @@ msgstr "Ошибка Tcl: Ошибка во время инициализаци�
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
 msgstr ""
-"Ошибка Tcl: Невозможно создать интерпретатор Tcl (Tcl_CreateInterp).\n"
+"Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
 
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "Tcl/TK интерфейс отключён в режиме -nogui.\n"
@@ -229,7 +230,7 @@ msgid ""
 "Check your SCI environment variable.\n"
 "Tcl initialisation failed !"
 msgstr ""
-"Невозможно найти скрипт инициализации Tcl.\n"
+"Не удалось найти скрипт инициализации Tcl.\n"
 "Проверьте вашу переменную окружения SCI.\n"
 "Сбой инициализации Tcl!"
 
@@ -237,7 +238,7 @@ msgid "Unknown Release"
 msgstr "Неизвестная версия"
 
 msgid "Updating, please wait"
-msgstr "Обновление, пожалуйста, подождите"
+msgstr "Идёт обновление, пожалуйста, подождите"
 
 msgid "Variable too long.\n"
 msgstr "Слишком длинная переменная.\n"
@@ -246,7 +247,7 @@ msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr "Внимание: проблемы с интерфейсом TCL/TK. Интерфейс недоступен.\n"
 
 msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Предупреждение: Слишком много обратных вызовов в очереди!\n"
+msgstr "Внимание: слишком много обратных вызовов в очереди!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] не работает с Tcl/Tk.\n"

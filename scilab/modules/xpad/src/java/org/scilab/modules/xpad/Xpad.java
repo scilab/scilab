@@ -695,6 +695,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
 		textPane.grabFocus();
+		textPane.setDragEnabled(true); /* Bug 5497 */
 		
 		DropFilesListener dndTarget = new DropFilesListener(textPane);
 		
