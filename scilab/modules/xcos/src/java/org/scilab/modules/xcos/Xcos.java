@@ -85,8 +85,9 @@ public class Xcos {
 
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-	for (XcosDiagram diagram : diagrams) {
-	    diagram.closeDiagram();
+
+	while(diagrams.size() > 0) {
+	    diagrams.get(0).closeDiagram();
 	}
 	ViewPaletteBrowserAction.setPalettesVisible(false);
     }

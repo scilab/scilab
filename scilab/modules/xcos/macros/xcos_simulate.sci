@@ -222,10 +222,8 @@ function xcos_simulate(scs_m)
           if kfun<>0 then //** block error
             path = corinv(kfun)
             //** get error cmd for the block
-            cmd = get_errorcmd(path,'End problem.',str_err);
-            //** send error cmd to scicos via the Scicos_commands global variable
-            global Scicos_commands ; 
-            Scicos_commands = cmd;
+            get_errorcmd(path,'End problem.',str_err);
+
           else //** simulator error
             message(["End problem:";str_err])
             //scf(curwin);
@@ -278,15 +276,13 @@ function xcos_simulate(scs_m)
       if kfun<>0 then  //** block error
         path=corinv(kfun)
         //** get error cmd for the block
-        cmd=get_errorcmd(path,'Initialisation problem.',str_err);
-        //** send error cmd to scicos via the Scicos_commands global variable
-        global Scicos_commands
-        Scicos_commands=cmd;
+        get_errorcmd(path,'Initialisation problem.',str_err);
 
       else //** simulator error
         message(['Initialisation problem:';str_err])
         //scf(curwin);
       end
+
       ok = %f;
       //xset('window',curwin)
       return
@@ -336,10 +332,7 @@ function xcos_simulate(scs_m)
         if kfun<>0 then //** block error
           path = corinv(kfun)
           //** get error cmd for the block
-          cmd = get_errorcmd(path,'End problem.',str_err);
-          //** send error cmd to scicos via the Scicos_commands global variable
-          global Scicos_commands
-          Scicos_commands = cmd;
+          get_errorcmd(path,'End problem.',str_err);
         else //** simulator error
           message(['End problem:';str_err])
           //scf(curwin);
@@ -359,11 +352,7 @@ function xcos_simulate(scs_m)
     if kfun<>0 then //** block error
       path = corinv(kfun);
       //** get error cmd for the block
-      cmd = get_errorcmd(path,"Simulation problem.",str_err);
-      //** send error cmd to scicos via the Scicos_commands global variable
-      global Scicos_commands;
-      Scicos_commands = cmd;
-
+      get_errorcmd(path,"Simulation problem.",str_err);
     else //** simulateur error
       message(['Simulation problem:';str_err])
       //scf(curwin);
