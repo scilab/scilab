@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function myNewTree = deleteNode(tree, position)
+function myNewTree = uiDeleteNode(tree, position)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "deleteNode",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiDeleteNode",2));
 		return;
 	end
 	
@@ -24,7 +24,7 @@ function myNewTree = deleteNode(tree, position)
 			isPosition = %F;
 			isNode = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "deleteNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiDeleteNode",1));
 			return;
 		end
 		
@@ -36,7 +36,7 @@ function myNewTree = deleteNode(tree, position)
 			myNode = position;
 			isNode = %T;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "deleteNode",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "uiDeleteNode",2));
 			return;				
 		end
 	end
@@ -60,7 +60,7 @@ function myNewTree = deleteNode(tree, position)
 	// Find the node at the given position and delete it
 	function r = findAndDelete(myTree, atPosition, curpos)
 		
-		r = createTree(myTree);
+		r = uiCreateTree(myTree);
 		for index = 3:size(myTree)
 		
 			if curpos ~= "root" then
@@ -72,7 +72,7 @@ function myNewTree = deleteNode(tree, position)
 			// We don't do the concatenation for the given position
 			// What means making a deletion
 			if localpos <> atPosition then
-				r = concatTree(r,findAndDelete(myTree(index), atPosition, localpos));
+				r = uiConcatTree(r,findAndDelete(myTree(index), atPosition, localpos));
 			end
 		end
 	endfunction
@@ -87,7 +87,7 @@ function myNewTree = deleteNode(tree, position)
 		if existPos then
 			myNewTree = findAndDelete(myTree, myPosition, "root");
 		else
-			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "deleteNode",myPosition));
+			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "uiDeleteNode",myPosition));
 		end
 	end
 	
@@ -95,11 +95,11 @@ function myNewTree = deleteNode(tree, position)
 	if isNode then
 		
 		// Check if the given node is valid(exists in the tree OR too many matching nodes) 
-		r = findNode(myTree, myNode);
+		r = uiFindNode(myTree, myNode);
 		
 		if (size(r) == 1) then
 		
-			nodePosList = getNodePosition(myTree, myNode);
+			nodePosList = uiGetNodePosition(myTree, myNode);
 		
 			if size(nodePosList) == 1 then
 				nodePos = nodePosList(1);
@@ -107,18 +107,18 @@ function myNewTree = deleteNode(tree, position)
 				myNewTree = findAndDelete(myTree, nodePos, "root");
 			
 			elseif size(nodePosList) > 1 then
-				error(msprintf(gettext("%s:  #%d matching nodes.\n"), "deleteNode",size(nodePosList)));
+				error(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiDeleteNode",size(nodePosList)));
 				return;
 			else
-				error(msprintf(gettext("%s: Invalid node.\n"), "deleteNode"));
+				error(msprintf(gettext("%s: Invalid node.\n"), "uiDeleteNode"));
 				return;
 			end
 
 		elseif (size(r) > 1) then
-			error(msprintf(gettext("%s:  #%d matching nodes.\n"), "deleteNode",size(r)));	
+			error(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiDeleteNode",size(r)));	
 			return;
 		elseif (size(r) == 0) then
-			error(msprintf(gettext("%s: No matching node.\n"), "deleteNode"));
+			error(msprintf(gettext("%s: No matching node.\n"), "uiDeleteNode"));
 			return;
 		end
 	end

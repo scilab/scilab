@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function parentNode = getParentNode(tree, node)
+function parentNode = uiGetParentNode(tree, node)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "getParentNode",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiGetParentNode",2));
 		return;
 	end
 
@@ -24,7 +24,7 @@ function parentNode = getParentNode(tree, node)
 			isNode = %F;
 			isPosition = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getParentNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiGetParentNode",1));
 			return;
 		end
 		
@@ -37,7 +37,7 @@ function parentNode = getParentNode(tree, node)
 			isPosition = %T;
 				
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "getParentNode",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiGetParentNode",2));
 			return;				
 		end
 	end
@@ -49,7 +49,7 @@ function parentNode = getParentNode(tree, node)
 		found = %f;
 		parentNode = list();
 		// if the son tree exist
-		if equalsTree(myTree, sonNode) then
+		if uiEqualsTree(myTree, sonNode) then
 			found = %t;
 		end
 
@@ -61,7 +61,7 @@ function parentNode = getParentNode(tree, node)
 				end
 				if found then
 					found = %f;
-					parentNode = createTree(myTree);
+					parentNode = uiCreateTree(myTree);
 					break;
 				end
 			end
@@ -71,12 +71,12 @@ function parentNode = getParentNode(tree, node)
 	
 	if isNode then
 		// First find if the node exist and if we have multiple matching nodes
-		result = findNode(myTree, myNode)
+		result = uiFindNode(myTree, myNode)
 	end
 	
 	if isPosition then
 		// First find if the position exist and if we have multiple matching nodes
-		result = findNode(myTree, myPosition)	
+		result = uiFindNode(myTree, myPosition)	
 	end
 	
 	if (size(result) == 1) then
@@ -84,7 +84,7 @@ function parentNode = getParentNode(tree, node)
 	
 		[parentNode, found] = findParent(myTree, sonNode)
 	else
-		error(msprintf(gettext("%s:  #%d matching nodes.\n"), "getParentNode", size(result)));
+		error(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiGetParentNode", size(result)));
 		return;
 	end
 

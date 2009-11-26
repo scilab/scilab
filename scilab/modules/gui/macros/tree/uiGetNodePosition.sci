@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function position = getNodePosition(tree, node)
+function position = uiGetNodePosition(tree, node)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "getNodePosition",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiGetNodePosition",2));
 		return;
 	end
 
@@ -22,14 +22,14 @@ function position = getNodePosition(tree, node)
 		if (typeof(tree) == 'Tree') then
 			myTree = tree;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getNodePosition",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiGetNodePosition",1));
 			return;
 		end
 		
 		if (typeof(node) == 'Tree') then
 			myNode = node;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getNodePosition",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiGetNodePosition",2));
 			return;				
 		end
 	end
@@ -37,7 +37,7 @@ function position = getNodePosition(tree, node)
 	// Find node(s) position(s)
 	function r = findPos(myTree, myNode, r, curpos)
 	
-		if equalsTree(myTree, myNode) then
+		if uiEqualsTree(myTree, myNode) then
 			r($+1) = curpos;
 		end
 		
