@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -687,14 +687,14 @@ msgstr "&Carrega l'entorn..."
 msgid "&Load..."
 msgstr "&Carrega..."
 
+msgid "&Mailing lists"
+msgstr ""
+
 msgid "&Matlab to Scilab translator"
 msgstr "Traductor de &Matlab a Scilab"
 
 msgid "&New figure..."
 msgstr "&Nova figura..."
-
-msgid "&Newsgroup Archives"
-msgstr "Arxius de &notícies"
 
 msgid "&Open a file..."
 msgstr "&Obre un fitxer..."
@@ -787,9 +787,6 @@ msgstr ""
 msgid "All files"
 msgstr "Tots els fitxers"
 
-msgid "All rights reserved"
-msgstr ""
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -827,6 +824,9 @@ msgstr ""
 "Autors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
 "\n"
+
+msgid "Back"
+msgstr ""
 
 msgid "C&lose"
 msgstr "&Tanca"
@@ -882,7 +882,10 @@ msgstr "Control Plot3d"
 msgid "Copy"
 msgstr "Copia"
 
-msgid "Copyright 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr ""
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 
 msgid "Cut"
@@ -892,6 +895,9 @@ msgid "Display selection"
 msgstr ""
 
 msgid "Do you relly want to quit Scilab?"
+msgstr ""
+
+msgid "Edit in the Scilab Text Editor"
 msgstr ""
 
 msgid "Encapsulated PostScript image (EPS)"
@@ -914,6 +920,9 @@ msgstr "Error a l'exportació"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Error. S'ha capturat una senyal.\n"
+
+msgid "Execute into Scilab"
+msgstr ""
 
 msgid "Execution done.\n"
 msgstr "Execució realitzada.\n"
@@ -942,6 +951,9 @@ msgstr "El fitxer ja existeix"
 msgid "File already exists"
 msgstr "El fitxer ja existeix"
 
+msgid "Forward"
+msgstr ""
+
 msgid "GIF image"
 msgstr "Imatge GIF"
 
@@ -951,7 +963,13 @@ msgstr "IGU"
 msgid "Help Browser"
 msgstr "Navegador de l'ajuda"
 
-msgid "INRIA / ENPC / Contributors"
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
+msgid "Help on a selected keyword"
 msgstr ""
 
 msgid "Impossible to get current look and feel"
@@ -1011,6 +1029,9 @@ msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr "No existeix la propietat '%s' per a uicontrols de l'estil: %s.\n"
 
 msgid "No color selected."
+msgstr ""
+
+msgid "No text selected"
 msgstr ""
 
 msgid "OK"
@@ -1077,6 +1098,9 @@ msgid "SVG image"
 msgstr "Imatge SVG"
 
 msgid "Save and execute"
+msgstr ""
+
+msgid "Scilab &ATOMS Web Site"
 msgstr ""
 
 msgid "Scilab &Demonstrations"
@@ -1186,7 +1210,7 @@ msgstr ""
 msgid "Sub-menu 2-2"
 msgstr ""
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid "Tree Overview"

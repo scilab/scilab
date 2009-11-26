@@ -34,6 +34,19 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+Text rendering:
+===============
+
+* New function "prettyprint" added
+This function provides the capability to represent a Scilab variable to LaTeX,
+TeX and Mathml. 
+See SEP #36 for more information
+
+* pol2tex is now obsolete. Please use prettyprint instead
+
+* texprint is now obsolete. Please use prettyprint instead
+
+
 Localization:
 =============
 
@@ -54,10 +67,30 @@ Compilation:
 * In some cases, under !Windows, the detection of libjogl.* was failling
   because of a missing explicit link against libGL.*
 
+
+
+Tree functions :
+================
+
+* Rename tree functions:
+- insertNode      → uiInsertNode
+- getParentNode   → uiGetParentNode
+- getNodePosition → uiGetNodePosition
+- getChildrenNode → uiGetChildrenNode
+- findNode        → uiFindNode
+- equalsTree      → uiEqualsTree
+- dumpTree        → uiDumpTree
+- deleteNode      → uiDeleteNode
+- createTree      → uiCreateTree
+- createNode      → uiCreateNode
+- concatTree      → uiConcatTree
+- displaytree     → uiDisplayTree
+
 Bug fixes:
 ==========
 
-* bug 3478 fixed - file function returned a wrong error message when file did not exist.
+* bug 3478 fixed - file function returned a wrong error message when file did
+                   not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
@@ -84,15 +117,22 @@ Bug fixes:
 * bug 5103 fixed - Xpad: File→Save now opens the "Save" dialog box for Untitled 
                    files even if they are not modified.
 
+* bug 5104 fixed - Xcos: Update the block view on undo/redo
+
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
+
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
-* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
+* bug 5189 fixed - No more give an error when the user cancels file selection
+                   for saving.
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -120,14 +160,16 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
 
-* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
+                   right cross.
 
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
                    settings in Visual Studio.
 
-* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
+* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
+                   hangs.
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
@@ -140,6 +182,8 @@ Bug fixes:
 * bug 5308 fixed - editor did not check input argument type.
 
 * bug 5312 fixed - Xcos: adding 'Compile' informations
+
+* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
 * bug 5325 fixed - Wrong default path on FileChooser.
 
@@ -157,8 +201,8 @@ Bug fixes:
 
 * bug 5348 fixed - Openning a Superblock crash Xcos.
 
-* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
-                   at Scilab startup.
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
+                   displayed at Scilab startup.
                    
 * bug 5360 fixed - "sciargs" documentation help page updated.
                    
@@ -168,7 +212,8 @@ Bug fixes:
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
-* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
+                   Windows.
 
 * bug 5388 fixed - Editor dialogs are now centered on editor main window.
 
@@ -179,7 +224,11 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
+* bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5413 fixed - An error was triggered when < or > where used in the comments
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
@@ -199,6 +248,8 @@ Bug fixes:
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
+
+* bug 5497 fixed - Editor: selection drag is now available.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

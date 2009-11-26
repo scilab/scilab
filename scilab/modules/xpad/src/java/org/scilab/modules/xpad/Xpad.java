@@ -79,6 +79,7 @@ import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.DropFilesListener;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -552,6 +553,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
 		fileChooser.setTitle(XpadMessages.SAVE_AS); /* Bug 4869 */
+		
+		if (textPane.getName() != null) { /* Bug 5319 */
+			fileChooser.setSelectedFile(new File(textPane.getName()));
+		}
+		
 		int retval = fileChooser.showSaveDialog(this);
 
 		if (retval == JFileChooser.APPROVE_OPTION) {
@@ -689,6 +695,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
 		textPane.grabFocus();
+		textPane.setDragEnabled(true); /* Bug 5497 */
+		
+		DropFilesListener dndTarget = new DropFilesListener(textPane);
+		
 		XpadGUI.createPopupMenu(textPane);
 		return textPane;
 	}
@@ -999,6 +1009,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			setFileToEncode(f);
 		}
 
+		@SuppressWarnings("deprecation")
 		public void run() {
 			readFile(fileToRead);
 			this.stop();

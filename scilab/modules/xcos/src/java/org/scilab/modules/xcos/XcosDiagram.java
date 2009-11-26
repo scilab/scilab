@@ -95,7 +95,9 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
+import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -473,6 +475,10 @@ public class XcosDiagram extends ScilabGraph {
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
 	
+	// Update the blocks view on undo/redo
+	undoManager.addListener(mxEvent.UNDO, new UndoUpdateTracker());
+	undoManager.addListener(mxEvent.REDO, new UndoUpdateTracker());
+	
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
@@ -757,7 +763,25 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
-
+    /**
+     * Update the modified block on undo/redo
+     */
+   private class UndoUpdateTracker implements mxIEventListener {
+        public void invoke(Object source, mxEventObject evt) {
+            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            Object[] changedCells = getSelectionCellsForChanges(changes);
+            getModel().beginUpdate();
+            for (Object object : changedCells) {
+		if (object instanceof BasicBlock) {
+		    BasicBlock current = (BasicBlock) object;
+		    BlockPositioning.updateBlockView(current);
+		}
+	    }
+            getModel().endUpdate();
+            refresh();
+        }
+    };
+    
     /**
      * MouseListener inner class
      */
@@ -1427,6 +1451,7 @@ public class XcosDiagram extends ScilabGraph {
 				public void run() {
 					File newFile;
 					newFile = filetype.exportToHdf5(fileToLoad);
+					System.err.println("export to hdf5 OK");
 					transformAndLoadFile(newFile);
 				}
 			};
@@ -1462,7 +1487,6 @@ public class XcosDiagram extends ScilabGraph {
 
 		case HDF5:
 			openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
-			fileToLoad.delete();
 			generateUID();
 			setModified(false);
 			break;
@@ -1749,6 +1773,42 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		}
 		return returnBlock;
+	    }
+	    
+	    public boolean isChildVisible() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			XcosDiagram diag = ((SuperBlock) child).getChild();
+			if (diag != null && diag.isOpened()) {
+			    // if child or sub child is visible
+			    if (diag.isChildVisible() || diag.isVisible()) {
+				return true;
+			    }
+			}
+		    }
+		}
+		return false;
+	    }
+
+	    public boolean canClose() {
+		if (isChildVisible() == false) {
+		    return true;
+		}
+		return false;
+	    }
+
+	    public void closeChildren() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			SuperBlock diag = (SuperBlock) child;
+
+			if (diag.getChild() != null && diag.getChild().isOpened()) {
+			    diag.closeBlockSettings();
+			}
+		    }
+		}
 	    }
 }
 

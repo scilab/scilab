@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2009-10-09 17:29+0000\n"
+"PO-Revision-Date: 2009-11-23 17:03+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -80,10 +80,13 @@ msgstr "%s: ファイルは、ワークブック・ディレクトリーを持�
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: OLE２ファイル %s に xlsストリームがありません。\n"
 
-# File: macros/sci2excel.sci, line: 23
 #, c-format
-msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d が不正: ''%s'' または ''%s'' を想定します。\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ''%s'' または ''%s'' を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_xls_read.c, line: 39
@@ -92,11 +95,23 @@ msgstr "%s: 入力引数 #%d が不正: ''%s'' または ''%s'' を想定しま�
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
 #
 # File: src/c/ripole/ole.c, line: 372
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr "%s:%d:バイト読み込みが合いません、%d を要求して %d が得られました。\n"
+msgstr "%s:%d:バイト読み込みが一致しません、%d を要求して %d が得られました。\n"
 
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 281
@@ -118,7 +133,7 @@ msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: ファイル名のレポ
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
 "'%s' and '%s'"
-msgstr "%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字列を作成できません"
+msgstr "%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字を作成できません"
 
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 175
@@ -133,7 +148,7 @@ msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み(%4$s)で %3$s �
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
-"%1$s:%2$d:OLEUNWRAP_save_stream:警告: 単に、ファイル %5$s に、 %4$d バイトの %3$d を書きました。\n"
+"%1$s:%2$d:OLEUNWRAP_save_stream:警告: 単に、ファイル %5$s へ %4$d バイトの %3$d を書きました。\n"
 
 #
 # File: src/c/ripole/ole.c, line: 333
@@ -229,7 +244,7 @@ msgstr "%s:%d:OLE_set_debug: デバックレベルを %d に設定"
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
 "and '%s'"
-msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から満足なファイル名文字列を作成できません"
+msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から満足なファイル名文字を作成できません"
 
 #
 # File: src/c/ripole/ole.c, line: 1557
@@ -311,7 +326,7 @@ msgstr "LOGGER_set_logfile: エラー - ログファイル '%s' (%s) を開け�
 # File: src/c/ripole/ripole.c, line: 352
 #, c-format
 msgid "OLE input file '%s' is insane"
-msgstr "OLE入力ファイル '%s' は、正気ではありません"
+msgstr "OLE入力ファイル '%s' は、正しくありません"
 
 #
 # File: src/nospreadsheet/nospreadsheet.c, line: 19

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-11-12 09:23+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-11-23 12:54+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -90,7 +90,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Cette fonctionnalité n'a pas été implémentée: %s.\n"
+msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s.\n"
 
 #, c-format
 msgid ""
@@ -105,15 +105,15 @@ msgstr "%s: Erreur inconnue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendus.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments de sortie: %d attendus.\n"
+msgstr "%s : Mauvais nombre d'arguments de sortie : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character expected.\n"
@@ -143,13 +143,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un entier attendu.\n"
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
@@ -168,14 +168,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
 "caractère non vide attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
+"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
@@ -184,7 +184,7 @@ msgstr "%s: Mauvaise taille pour le(s) argument(s) en entrée.\n"
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour les arguments en entrée: Même taille attendue.\n"
+"%s : Mauvaise taille pour les arguments d'entrée : Même taille attendue.\n"
 
 #, c-format
 msgid ""
@@ -196,7 +196,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
@@ -214,7 +214,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un booléen attendu.\n"
+"%s : Mauvais type pour l'argument d'entrée n° %d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character expected.\n"
@@ -237,13 +237,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
+"%s : Mauvais type pour l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
@@ -265,7 +265,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice de chaîne de "
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
 
 #, c-format
@@ -287,7 +287,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice réelle "
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une matrice réelle "
 "attendue.\n"
 
 #, c-format
@@ -317,13 +317,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
@@ -338,7 +338,7 @@ msgstr "%s: Mauvais type pour le(s) argument(s) en entrée.\n"
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Chaîne de caractère attendue.\n"
+"%s : Mauvais type pour l'argument d'entrée : Chaîne de caractère attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -348,17 +348,17 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' attendu.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : ''%s'' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' ou ''%s'' "
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : ''%s'' ou ''%s'' "
 "attendu.\n"
 
 #, c-format
@@ -391,7 +391,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être entre %d et "
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être entre %d et "
 "%d.\n"
 
 #, c-format
