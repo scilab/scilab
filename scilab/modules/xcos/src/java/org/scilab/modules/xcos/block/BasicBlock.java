@@ -428,116 +428,86 @@ public class BasicBlock extends XcosUIDObject {
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 
-    	setDependsOnT(modifiedBlock.dependsOnT());
-    	setDependsOnU(modifiedBlock.dependsOnU());
-    	setExprs(modifiedBlock.getExprs());
+	setDependsOnT(modifiedBlock.dependsOnT());
+	setDependsOnU(modifiedBlock.dependsOnU());
+	setExprs(modifiedBlock.getExprs());
 
-    	setRealParameters(modifiedBlock.getRealParameters());
-    	setIntegerParameters(modifiedBlock.getIntegerParameters());
-    	setObjectsParameters(modifiedBlock.getObjectsParameters());
+	setRealParameters(modifiedBlock.getRealParameters());
+	setIntegerParameters(modifiedBlock.getIntegerParameters());
+	setObjectsParameters(modifiedBlock.getObjectsParameters());
 
-    	setState(modifiedBlock.getState());
-    	setDState(modifiedBlock.getDState());
-    	setODState(modifiedBlock.getODState());
+	setState(modifiedBlock.getState());
+	setDState(modifiedBlock.getDState());
+	setODState(modifiedBlock.getODState());
 
-    	setEquations(modifiedBlock.getEquations());
+	setEquations(modifiedBlock.getEquations());
 
-    	getParentDiagram().getModel().beginUpdate();
-    	// Check if new input port have been added
-    	if (BasicBlockInfo.getAllInputPorts(modifiedBlock).size() > BasicBlockInfo.getAllInputPorts(this).size()) {
-    		int nbInputPorts = BasicBlockInfo.getAllInputPorts(this).size();
-    		for(int i = BasicBlockInfo.getAllInputPorts(modifiedBlock).size() - 1 ; i >= nbInputPorts ; --i)
-    		{
-    			addPort(BasicBlockInfo.getAllInputPorts(modifiedBlock).get(i));
-    		}
-    	}
-    	// Check if input ports have been removed
-    	else if (BasicBlockInfo.getAllInputPorts(modifiedBlock).size() < BasicBlockInfo.getAllInputPorts(this).size()) {
-    		List<InputPort> removedPorts = new ArrayList<InputPort>();
-    		for(int i = BasicBlockInfo.getAllInputPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllInputPorts(this).size() ; ++i)
-    		{
-    			removedPorts.add(BasicBlockInfo.getAllInputPorts(this).get(i));
-    		}
-    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
-    			remove(removedPorts.get(i));
-    			BasicBlockInfo.getAllInputPorts(this).remove(removedPorts.get(i));
-    		}
-    	}
+	getParentDiagram().getModel().beginUpdate();
+	
+	List modifiedPorts = null;
+	List ports = null;
+	
+	// Check if new input port have been added
+	if ((modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock)).size() > (ports = BasicBlockInfo.getAllInputPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllInputPorts(this)).size() < modifiedPorts.size()) {
+		addPort((InputPort)modifiedPorts.get(ports.size()));
+	    }
+	}
+	// Check if input ports have been removed
+	else if ((modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock)).size() < (ports = BasicBlockInfo.getAllInputPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllInputPorts(this)).size() > modifiedPorts.size()) {
+		removePort((BasicPort)ports.get(ports.size() - 1));
+	    }
+	}
 
-    	// Check if new output port have been added
-    	if (BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() > BasicBlockInfo.getAllOutputPorts(this).size()) {
-    		int nbOutputPorts = BasicBlockInfo.getAllOutputPorts(this).size();
-    		for(int i = BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() - 1 ; i >=  nbOutputPorts ; --i)
-    		{
-    			addPort(BasicBlockInfo.getAllOutputPorts(modifiedBlock).get(i));
-    		}
-    	}
-    	// Check if output ports have been removed
-    	else if (BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() < BasicBlockInfo.getAllOutputPorts(this).size()) {
-    		List<OutputPort> removedPorts = new ArrayList<OutputPort>();
-    		for(int i = BasicBlockInfo.getAllOutputPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllOutputPorts(this).size() ; ++i)
-    		{
-    			removedPorts.add(BasicBlockInfo.getAllOutputPorts(this).get(i));
-    		}
-    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
-    			remove(removedPorts.get(i));
-    			BasicBlockInfo.getAllOutputPorts(this).remove(removedPorts.get(i));
-    		}
-    	}
+	// Check if new output port have been added
+	if ((modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock)).size() > (ports = BasicBlockInfo.getAllOutputPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllOutputPorts(this)).size() < modifiedPorts.size()) {
+		addPort((OutputPort)modifiedPorts.get(ports.size()));
+	    }
+	}
+	// Check if output ports have been removed
+	else if ((modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock)).size() < (ports = BasicBlockInfo.getAllOutputPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllOutputPorts(this)).size() > modifiedPorts.size()) {
+		removePort((BasicPort)ports.get(ports.size() - 1));
+	    }
+	}
 
 
-    	// Check if new command port have been added
-    	if (BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() > BasicBlockInfo.getAllCommandPorts(this).size()) {
-    		int nbCommandPorts = BasicBlockInfo.getAllCommandPorts(this).size();
-    		for(int i = BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() - 1 ; i >= nbCommandPorts ; --i)
-    		{
-    			addPort(BasicBlockInfo.getAllCommandPorts(modifiedBlock).get(i));
-    		}
-    	}
-    	// Check if output ports have been removed
-    	else if (BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() < BasicBlockInfo.getAllCommandPorts(this).size()) {
-    		List<CommandPort> removedPorts = new ArrayList<CommandPort>();
-    		for(int i = BasicBlockInfo.getAllCommandPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllCommandPorts(this).size() ; --i)
-    		{
-    			removedPorts.add(BasicBlockInfo.getAllCommandPorts(this).get(i));
-    		}
-    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
-    			remove(removedPorts.get(i));
-    			BasicBlockInfo.getAllCommandPorts(this).remove(removedPorts.get(i));
-    		}
-    	}
+	// Check if new command port have been added
+	if ((modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock)).size() > (ports = BasicBlockInfo.getAllCommandPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllCommandPorts(this)).size() < modifiedPorts.size()) {
+		addPort((CommandPort)modifiedPorts.get(ports.size()));
+	    }
+	}
+	// Check if command ports have been removed
+	else if ((modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock)).size() < (ports = BasicBlockInfo.getAllCommandPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllCommandPorts(this)).size() > modifiedPorts.size()) {
+		removePort((BasicPort)ports.get(ports.size() - 1));
+	    }
+	}
 
-    	// Check if new control port have been added
-    	if (BasicBlockInfo.getAllControlPorts(modifiedBlock).size() > BasicBlockInfo.getAllControlPorts(this).size()) {
-    		int nbControlPorts = BasicBlockInfo.getAllControlPorts(this).size();
-    		for(int i = BasicBlockInfo.getAllControlPorts(modifiedBlock).size() - 1 ; i >= nbControlPorts ; --i)
-    		{
-    			addPort(BasicBlockInfo.getAllControlPorts(modifiedBlock).get(i));
-    		}
-    	}
-    	// Check if output ports have been removed
-    	else if (BasicBlockInfo.getAllControlPorts(modifiedBlock).size() < BasicBlockInfo.getAllControlPorts(this).size()) {
-    		List<ControlPort> removedPorts = new ArrayList<ControlPort>();
-    		for(int i = BasicBlockInfo.getAllControlPorts(modifiedBlock).size() ; i < BasicBlockInfo.getAllControlPorts(this).size() ; ++i)
-    		{
-    			removedPorts.add(BasicBlockInfo.getAllControlPorts(this).get(i));
-    		}
-    		for(int i = 0 ; i < removedPorts.size() ; ++i) {
-    			remove(removedPorts.get(i));
-    			BasicBlockInfo.getAllControlPorts(this).remove(removedPorts.get(i));
-    		}
-    	}
-    	getParentDiagram().getModel().endUpdate();
-    	
-    	/*
-    	 * If the block is in a superblock then update it.
-    	 */
+	// Check if new control port have been added
+	if ((modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock)).size() > (ports = BasicBlockInfo.getAllControlPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllControlPorts(this)).size() < modifiedPorts.size()) {
+		addPort((ControlPort)modifiedPorts.get(ports.size()));
+	    }
+	}
+	// Check if control ports have been removed
+	else if ((modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock)).size() < (ports = BasicBlockInfo.getAllControlPorts(this)).size()) {
+	    while((ports = BasicBlockInfo.getAllControlPorts(this)).size() > modifiedPorts.size()) {
+		removePort((BasicPort)ports.get(ports.size() - 1));
+	    }
+	}
+
+	getParentDiagram().getModel().endUpdate();
+
+	/*
+	 * If the block is in a superblock then update it.
+	 */
 	if (getParentDiagram() instanceof SuperBlockDiagram) {
-	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
-		    .getContainer();
-	    parentBlock.getParentDiagram().fireEvent(
-		    XcosEvent.SUPER_BLOCK_UPDATED,
-		    new mxEventObject(new Object[] { parentBlock }));
+	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
+	    parentBlock.getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED,new mxEventObject(new Object[] { parentBlock }));
 	}
     }
 
