@@ -103,6 +103,8 @@ Bug fixes:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5189 fixed - No more give an error when the user cancels file selection for saving.
