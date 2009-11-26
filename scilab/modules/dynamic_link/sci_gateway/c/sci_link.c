@@ -166,6 +166,9 @@ int sci_link(char *fname,unsigned long fname_len)
 
 		if (SharedLibraryName) { FREE(SharedLibraryName); SharedLibraryName=NULL;}
 	}
+
+	if (param3flag) {FREE(param3flag); param3flag=NULL;}
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
