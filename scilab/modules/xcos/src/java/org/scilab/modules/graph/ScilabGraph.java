@@ -18,9 +18,6 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.block.SuperBlock;
-
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
@@ -226,41 +223,5 @@ public class ScilabGraph extends mxGraph {
 	}
 
 	return false;
-    }
-
-    public boolean isChildVisible() {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-	    Object child = getModel().getChildAt(getDefaultParent(), i);
-	    if (child instanceof SuperBlock) {
-		XcosDiagram diag = ((SuperBlock) child).getChild();
-		if (diag != null && diag.isOpened()) {
-		    // if child or sub child is visible
-		    if (diag.isChildVisible() || diag.isVisible()) {
-			return true;
-		    }
-		}
-	    }
-	}
-	return false;
-    }
-
-    public boolean canClose() {
-	if (isChildVisible() == false) {
-	    return true;
-	}
-	return false;
-    }
-
-    public void closeChildren() {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-	    Object child = getModel().getChildAt(getDefaultParent(), i);
-	    if (child instanceof SuperBlock) {
-		SuperBlock diag = (SuperBlock) child;
-
-		if (diag.getChild() != null && diag.getChild().isOpened()) {
-		    diag.closeBlockSettings();
-		}
-	    }
-	}
     }
 }

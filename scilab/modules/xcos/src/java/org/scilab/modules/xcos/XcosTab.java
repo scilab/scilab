@@ -248,7 +248,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	/*
 	 * VIEW PORT
 	 */
-	tab.createViewPort(xcosDiagram);
+	XcosTab.createViewPort(xcosDiagram);
 
 	/*
 	 * INFO BAR
@@ -711,7 +711,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return toolBar;
     }
 
-    public void createViewPort(ScilabGraph xcosDiagramm) {
+    public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
 

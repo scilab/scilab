@@ -46,11 +46,18 @@
   </para>
   </refsection>
   <refsection>
+    <title>Exemple</title>
+    <programlisting role="example"><![CDATA[ 
+plot3d();
+h = gcf();
+h.color_map = jetcolormap(16);
+addcolor(name2rgb('grey')/255);
+ ]]></refsection>
+  <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="colormap">colormap</link>
-      </member>
+      <member><link linkend="colormap">colormap</link></member>
+      <member><link linkend="name2rgb">name2rgb</link></member>
     </simplelist>
   </refsection>
 </refentry>
