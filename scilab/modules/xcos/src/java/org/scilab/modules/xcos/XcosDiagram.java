@@ -1774,5 +1774,41 @@ public class XcosDiagram extends ScilabGraph {
 		}
 		return returnBlock;
 	    }
+	    
+	    public boolean isChildVisible() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			XcosDiagram diag = ((SuperBlock) child).getChild();
+			if (diag != null && diag.isOpened()) {
+			    // if child or sub child is visible
+			    if (diag.isChildVisible() || diag.isVisible()) {
+				return true;
+			    }
+			}
+		    }
+		}
+		return false;
+	    }
+
+	    public boolean canClose() {
+		if (isChildVisible() == false) {
+		    return true;
+		}
+		return false;
+	    }
+
+	    public void closeChildren() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			SuperBlock diag = (SuperBlock) child;
+
+			if (diag.getChild() != null && diag.getChild().isOpened()) {
+			    diag.closeBlockSettings();
+			}
+		    }
+		}
+	    }
 }
 
