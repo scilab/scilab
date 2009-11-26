@@ -67,10 +67,30 @@ Compilation:
 * In some cases, under !Windows, the detection of libjogl.* was failling
   because of a missing explicit link against libGL.*
 
+
+
+Tree functions :
+================
+
+* Rename tree functions:
+- insertNode      → uiInsertNode
+- getParentNode   → uiGetParentNode
+- getNodePosition → uiGetNodePosition
+- getChildrenNode → uiGetChildrenNode
+- findNode        → uiFindNode
+- equalsTree      → uiEqualsTree
+- dumpTree        → uiDumpTree
+- deleteNode      → uiDeleteNode
+- createTree      → uiCreateTree
+- createNode      → uiCreateNode
+- concatTree      → uiConcatTree
+- displaytree     → uiDisplayTree
+
 Bug fixes:
 ==========
 
-* bug 3478 fixed - file function returned a wrong error message when file did not exist.
+* bug 3478 fixed - file function returned a wrong error message when file did
+                   not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
@@ -107,9 +127,12 @@ Bug fixes:
 
 * bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
 
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
-* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
+* bug 5189 fixed - No more give an error when the user cancels file selection
+                   for saving.
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -137,14 +160,16 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
 
-* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
+                   right cross.
 
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
                    settings in Visual Studio.
 
-* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
+* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
+                   hangs.
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
@@ -174,8 +199,8 @@ Bug fixes:
 
 * bug 5348 fixed - Openning a Superblock crash Xcos.
 
-* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
-                   at Scilab startup.
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
+                   displayed at Scilab startup.
                    
 * bug 5360 fixed - "sciargs" documentation help page updated.
                    
@@ -185,7 +210,8 @@ Bug fixes:
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
-* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
+                   Windows.
 
 * bug 5388 fixed - Editor dialogs are now centered on editor main window.
 
