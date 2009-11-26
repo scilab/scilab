@@ -103,7 +103,7 @@ Path = 'root'
 java = createNode("Palettes")
 //--[java, tt]= crlist(scs_m, Path, tt, java);
 java = crlist(scs_m, Path, java);
-displaytree(java);
+uiDisplayTree(java);
 //-- tt = [tt;' $wxx.t bindImage <B1-Motion> {pp}'];
 //-- tt = [tt;' $wxx.t bindText  <B1-Motion> {pp}'];
 //-- tt = [tt;' $wxx.t bindImage <Double-1> {pp}'];

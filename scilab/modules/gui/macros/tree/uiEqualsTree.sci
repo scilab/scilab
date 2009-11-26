@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function b = equalsTree(tree1, tree2)
+function b = uiEqualsTree(tree1, tree2)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "equalsTree",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiEqualsTree",2));
 		return;
 	end
 
@@ -22,14 +22,14 @@ function b = equalsTree(tree1, tree2)
 		if (typeof(tree1) == 'Tree') then
 			myTree1 = tree1;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "equalsTree",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiEqualsTree",1));
 			return;
 		end
 		
 		if (typeof(tree2) == 'Tree') then
 			myTree2 = tree2;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "equalsTree",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiEqualsTree",2));
 			return;				
 		end
 	end

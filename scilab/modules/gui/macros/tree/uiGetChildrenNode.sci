@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function childrenNode = getChildrenNode(tree, node)
+function childrenNode = uiGetChildrenNode(tree, node)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "getChildrenNode",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiGetChildrenNode",2));
 		return;
 	end
 
@@ -24,7 +24,7 @@ function childrenNode = getChildrenNode(tree, node)
 			isNode = %F;
 			isPosition = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getChildrenNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiGetChildrenNode",1));
 			return;
 		end
 		
@@ -37,7 +37,7 @@ function childrenNode = getChildrenNode(tree, node)
 			isPosition = %T;
 				
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "getChildrenNode",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiGetChildrenNode",2));
 			return;				
 		end
 	end
@@ -55,12 +55,12 @@ function childrenNode = getChildrenNode(tree, node)
 
 	if isNode then
 		// First find if the node exists and if we have multiple matching nodes
-		result = findNode(myTree, myNode)
+		result = uiFindNode(myTree, myNode)
 	end
 	
 	if isPosition then
 		// First find if the position exists and if we have multiple matching nodes
-		result = findNode(myTree, myPosition)	
+		result = uiFindNode(myTree, myPosition)	
 	end
 
 	if (size(result) == 1) then

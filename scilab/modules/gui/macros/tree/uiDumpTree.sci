@@ -7,13 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function dumpTree(tree, b)
+function uiDumpTree(tree, b)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <= 0 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "dumpTree",1,2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "uiDumpTree",1,2));
 		return;
 	end
 
@@ -23,7 +23,7 @@ function dumpTree(tree, b)
 			myTree = tree;
 			myB = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "dumpTree",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiDumpTree",1));
 			return;
 		end
 		// Check 2nd input : b
@@ -31,7 +31,7 @@ function dumpTree(tree, b)
 			if (type(b) == 4) then
 				myB = b;
 			else
-				error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"), "dumpTree",2));
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"), "uiDumpTree",2));
 				return;
 			end
 		end
