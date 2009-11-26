@@ -45,7 +45,7 @@ public final class XcosMessages {
     public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
-    public static final String QUIT = Messages.gettext("Quit");
+    public static final String QUIT = Messages.gettext("Quit Xcos");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
 
     public static final String DUMP = Messages.gettext("Dump");
