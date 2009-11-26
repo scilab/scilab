@@ -1362,6 +1362,8 @@ Bug fixes:
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
 
+* bug 5054 fixed - Remove ports on a block, remove the connected links.
+
 * bug 5074 fixed - French help star showed mis-encoded characters.
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
@@ -1409,7 +1411,7 @@ Bug fixes:
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
-* bug 5437 fixed - Remove ports on a block, remove the connected links.
+* bug 5437 fixed - Show error message during xcos simulation initialization.
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
