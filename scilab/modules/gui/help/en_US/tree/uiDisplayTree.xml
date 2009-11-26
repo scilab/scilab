@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.1-subset Scilab" xml:lang="en" xml:id="displaytree">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.1-subset Scilab" xml:lang="en" xml:id="uiDisplayTree">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>displaytree</refname>
+    <refname>uiDisplayTree</refname>
     <refpurpose> Printing a Tree in GUI mode</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>displaytree(tree)
+    <synopsis>uiDisplayTree(tree)
 	</synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -31,34 +31,34 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // We should create nodes(subTrees) before creating trees	
-leaf11 = createNode('leaf 1.1')
-leaf12 = createNode('leaf 1.2')
-leaf31 = createNode('leaf 3.1')
-leaf32 = createNode('leaf 3.2')
-node1 = createNode('Node 1')
-node2 = createNode('Node 2')
-node3 = createNode('Node 3')
-root = createNode('Root')
+leaf11 = uiCreateNode('leaf 1.1')
+leaf12 = uiCreateNode('leaf 1.2')
+leaf31 = uiCreateNode('leaf 3.1')
+leaf32 = uiCreateNode('leaf 3.2')
+node1 = uiCreateNode('Node 1')
+node2 = uiCreateNode('Node 2')
+node3 = uiCreateNode('Node 3')
+root = uiCreateNode('Root')
 
-treeNode1 = createTree(node1, leaf11, leaf12)
-treeNode3 = createTree(node3, leaf31, leaf32)
+treeNode1 = uiCreateTree(node1, leaf11, leaf12)
+treeNode3 = uiCreateTree(node3, leaf31, leaf32)
 
-treeRoot = createTree( root, treeNode1, node2, treeNode3)
+treeRoot = uiCreateTree( root, treeNode1, node2, treeNode3)
 
-displaytree(treeRoot)
+uiDisplayTree(treeRoot)
  ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="createNode">createNode</link> 
+        <link linkend="uiCreateNode">uiCreateNode</link> 
       </member>
       <member>
-        <link linkend="createTree">createTree</link> 
+        <link linkend="uiCreateTree">uiCreateTree</link> 
       </member>
       <member>
-        <link linkend="dumpTree">dumpTree</link>
+        <link linkend="uiDumpTree">uiDumpTree</link>
       </member>
     </simplelist>
   </refsection>

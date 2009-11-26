@@ -7,13 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function myTree = createTree(parentNode, varargin)
+function myTree = uiCreateTree(parentNode, varargin)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs == 0 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "createTree",1));
+		error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1));
 		return;
 	end
 
@@ -26,12 +26,12 @@ function myTree = createTree(parentNode, varargin)
 				if (typeof(varargin(subTreesIndex)) == 'Tree') then
 					myTree(subTreesIndex + 2) = varargin(subTreesIndex)
 				else
-					error(msprintf(gettext("%s: Wrong type for input arguments from #%d: Tree expected.\n"), "createTree",2));
+					error(msprintf(gettext("%s: Wrong type for input arguments from #%d: Tree expected.\n"), "uiCreateTree",2));
 					return;
 				end
 			end
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "createTree",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiCreateTree",1));
 			return;
 		end
 	end

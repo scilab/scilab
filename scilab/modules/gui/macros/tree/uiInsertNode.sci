@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function myNewTree = insertNode(tree, position, node)
+function myNewTree = uiInsertNode(tree, position, node)
 
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "insertNode",3));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiInsertNode",3));
 		return;
 	end
 
@@ -24,7 +24,7 @@ function myNewTree = insertNode(tree, position, node)
 			isPosition = %F;
 			isParentNode = %F;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "insertNode",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiInsertNode",1));
 			return;
 		end
 		
@@ -36,14 +36,14 @@ function myNewTree = insertNode(tree, position, node)
 			myParentNode = position;
 			isParentNode = %T;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "insertNode",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "uiInsertNode",2));
 			return;				
 		end
 			
 		if (typeof(node) == 'Tree') then
 			myNode = node;
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "insertNode",3));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiInsertNode",3));
 			return;				
 		end
 	end
@@ -98,7 +98,7 @@ function myNewTree = insertNode(tree, position, node)
 		
 		// Previous position of "0" or "root" returns an error		
 		if myPosition == '0' | myPosition == 'root' then
-			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "insertNode",myPosition));
+			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "uiInsertNode",myPosition));
 			return;
 		end
 			
@@ -124,7 +124,7 @@ function myNewTree = insertNode(tree, position, node)
 	// Find a node and do the insertion with existing position
 	function r = findAndInsert(myTree, atPosition, curpos, node)
 		
-		r = createTree(myTree);
+		r = uiCreateTree(myTree);
 		for index = 3:size(myTree)
 		
 			if curpos ~= "root" then
@@ -134,9 +134,9 @@ function myNewTree = insertNode(tree, position, node)
 			end
 			
 			if localpos == atPosition then
-				r = concatTree(r, node);
+				r = uiConcatTree(r, node);
 			end
-			r = concatTree(r,findAndInsert(myTree(index), atPosition, localpos, node));
+			r = uiConcatTree(r,findAndInsert(myTree(index), atPosition, localpos, node));
 		end
 
 	endfunction
@@ -144,7 +144,7 @@ function myNewTree = insertNode(tree, position, node)
 	// Insertion in a node which the position don't exists
 	function r = findAndConcat(myTree, atPosition, curpos, node)
 		
-		r = createTree(myTree);
+		r = uiCreateTree(myTree);
 		for index = 3:size(myTree)
 		
 			if curpos ~= "root" then
@@ -153,9 +153,9 @@ function myNewTree = insertNode(tree, position, node)
 				localpos = string(index-2);
 			end
 			
-			r = concatTree(r,findAndConcat(myTree(index), atPosition, localpos, node));
+			r = uiConcatTree(r,findAndConcat(myTree(index), atPosition, localpos, node));
 			if localpos == atPosition
-				r = concatTree(r, node);
+				r = uiConcatTree(r, node);
 			end
 		end
 
@@ -179,13 +179,13 @@ function myNewTree = insertNode(tree, position, node)
 		
 		elseif (existPos == %F & existPrevPos == %T) then
 	
-			parentNode = getParentNode(myTree, prevPos);
+			parentNode = uiGetParentNode(myTree, prevPos);
 			parentNode($+1) = myNode;
 	
 			myNewTree = findAndConcat(myTree, prevPos, "root", myNode);
 			
 		else
-			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "insertNode",myPosition));
+			error(msprintf(gettext("%s: Invalid position ''%s''.\n"), "uiInsertNode",myPosition));
 			return;
 		end
 	
@@ -194,7 +194,7 @@ function myNewTree = insertNode(tree, position, node)
 	// Insertion with a parent node	
 	if isParentNode then
 	
-		nodePosList = getNodePosition(myTree, myParentNode);
+		nodePosList = uiGetNodePosition(myTree, myParentNode);
 		
 		if size(nodePosList) == 1 then
 			parentNodePos = nodePosList(1);
@@ -202,10 +202,10 @@ function myNewTree = insertNode(tree, position, node)
 			myNewTree = findAndConcat(myTree, parentNodePos, "root", myNode);
 			
 		elseif size(nodePosList) > 1 then
-			error(msprintf(gettext("%s:  #%d matching parent nodes.\n"), "insertNode",size(nodePosList)));
+			error(msprintf(gettext("%s:  #%d matching parent nodes.\n"), "uiInsertNode",size(nodePosList)));
 			return;
 		else
-			error(msprintf(gettext("%s: Invalid parent node.\n"), "insertNode"));
+			error(msprintf(gettext("%s: Invalid parent node.\n"), "uiInsertNode"));
 			return;
 		end
 	end

@@ -27,7 +27,7 @@ function do_browser(scs_m)
   //-- mputl(tt,scs_m.props.title(1)+'.tcl');
   //-- chdir(cur_wd)
   //-- TCL_EvalFile(TMPDIR+'/'+scs_m.props.title(1)+'.tcl')
-  displaytree(tt);
+  uiDisplayTree(tt);
 endfunction
 
 function tt = scs_TreeView(scs_m)

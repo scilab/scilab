@@ -95,7 +95,9 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
+import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -473,6 +475,10 @@ public class XcosDiagram extends ScilabGraph {
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
 	
+	// Update the blocks view on undo/redo
+	undoManager.addListener(mxEvent.UNDO, new UndoUpdateTracker());
+	undoManager.addListener(mxEvent.REDO, new UndoUpdateTracker());
+	
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
@@ -757,7 +763,25 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
-
+    /**
+     * Update the modified block on undo/redo
+     */
+   private class UndoUpdateTracker implements mxIEventListener {
+        public void invoke(Object source, mxEventObject evt) {
+            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            Object[] changedCells = getSelectionCellsForChanges(changes);
+            getModel().beginUpdate();
+            for (Object object : changedCells) {
+		if (object instanceof BasicBlock) {
+		    BasicBlock current = (BasicBlock) object;
+		    BlockPositioning.updateBlockView(current);
+		}
+	    }
+            getModel().endUpdate();
+            refresh();
+        }
+    };
+    
     /**
      * MouseListener inner class
      */
