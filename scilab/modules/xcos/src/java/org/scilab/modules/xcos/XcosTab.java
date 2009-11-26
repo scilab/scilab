@@ -238,6 +238,15 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	if (xcosDiagram instanceof SuperBlockDiagram) {
 	    tab.setSimulationActionEnabled(false);
 	}
+	
+	/*
+	 * Set buttons enabled
+	 */
+	tab.setActionsEnabled(true);
+	
+	// Disabling undo/redo at startup
+	tab.setEnabledRedo(false);
+	tab.setEnabledUndo(false);
     }
 
     /**
@@ -371,11 +380,14 @@ public class XcosTab extends SwingScilabTab implements Tab {
     private PushButton zoomOutAction;
     private PushButton xcosDemonstrationAction;
     private PushButton xcosDocumentationAction;
+    
+    private boolean actionsEnabled;
 
     public XcosTab(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
 
 	this.diagram = diagram;
+	this.actionsEnabled = false;
 
 	this.setCallback(new CloseAction(diagram));
 	this.setContentPane(diagram.getAsComponent());
@@ -640,13 +652,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	toolBar.addSeparator();
 
 	// UNDO / REDO
-	// we disable undo/redo buttons at the beginning because it's irrelevant
-	// to undo/redo
-	// when nothing has been done
 	undoAction = UndoAction.undoButton(scilabGraph);
 	redoAction = RedoAction.redoButton(scilabGraph);
-	undoAction.setEnabled(false);
-	redoAction.setEnabled(false);
 	toolBar.add(undoAction);
 	toolBar.add(redoAction);
 
@@ -738,11 +745,15 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     public void setEnabledRedo(boolean status) {
+	if (actionsEnabled) {
 	redoAction.setEnabled(status);
+	}
     }
 
     public void setEnabledUndo(boolean status) {
+	if (actionsEnabled) {
 	undoAction.setEnabled(status);
+	}
     }
     
     /**
@@ -750,9 +761,11 @@ public class XcosTab extends SwingScilabTab implements Tab {
      * @param state True if it have to be enabled, flase otherwise
      */
     public void setSimulationActionEnabled(boolean state) {
-	simulate.setEnabled(state);
-	startAction.setEnabled(state);
-	stopAction.setEnabled(state);
+	if (actionsEnabled) {
+    	simulate.setEnabled(state);
+    	startAction.setEnabled(state);
+    	stopAction.setEnabled(state);
+	}
     }
     
     /**
@@ -783,5 +796,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	zoomOutAction.setEnabled(status);
 	xcosDemonstrationAction.setEnabled(status);
 	xcosDocumentationAction.setEnabled(status);
+	
+	actionsEnabled = status;
     }
 }
