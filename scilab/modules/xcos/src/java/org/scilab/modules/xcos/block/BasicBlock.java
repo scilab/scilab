@@ -371,9 +371,9 @@ public class BasicBlock extends XcosUIDObject {
 
     public void removePort(BasicPort port){
 	if(port.getEdgeCount() != 0) {
-	    getParentDiagram().getModel().remove(port.getEdgeAt(0));
+	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
-    	remove(port);
+	remove(port);
     }
     
     public void addPort(InputPort port) {
@@ -442,8 +442,7 @@ public class BasicBlock extends XcosUIDObject {
 
 	setEquations(modifiedBlock.getEquations());
 
-	getParentDiagram().getModel().beginUpdate();
-	
+
 	List modifiedPorts = null;
 	List ports = null;
 	
@@ -499,8 +498,6 @@ public class BasicBlock extends XcosUIDObject {
 		removePort((BasicPort)ports.get(ports.size() - 1));
 	    }
 	}
-
-	getParentDiagram().getModel().endUpdate();
 
 	/*
 	 * If the block is in a superblock then update it.
