@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-05 20:43+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2009-11-18 21:45+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -23,11 +23,11 @@ msgstr "%s: Не реализовано в этом режиме.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr "%s: Эта функциональность ещё не реализована в этом режиме.\n"
+msgstr "%s: Эта функциональность не реализована в этом режиме.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Эта функциональная возможность ещё не реализована.\n"
+msgstr "%s: Эта функциональность не реализована.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -35,19 +35,19 @@ msgstr "%s: Неверное количество выходных параме�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Неверное значение аргумента #%d.\n"
+msgstr "%s: Неверное значение входного параметра №%d.\n"
 
 msgid "File or Directory"
 msgstr "Файл или Каталог"

@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-06-09 23:55+0000\n"
+"PO-Revision-Date: 2009-11-18 20:46+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid " %s.mo cannot be compiled\n"
-msgstr " %s.mo не может быть скомпилирован\n"
+msgstr " Не удалось скомпилировать %s.mo\n"
 
 #, c-format
 msgid " %s.mo compilation forced\n"
-msgstr " %s.mo компилируется принудительно\n"
+msgstr " Вынужденная компиляция %s.mo\n"
 
 #, c-format
 msgid " %s.mo must be recompiled\n"
@@ -31,12 +31,11 @@ msgstr " %s.mo должен быть перекомпилирован\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr "%s: Произошла ошибка во время компиляции блока Modelica."
+msgstr "%s: Произошла ошибка при компиляции блока Modelica."
 
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr ""
-"%s: Невозможно найти какие-либо MO файлы в следующем местоположении: %s.\n"
+msgstr "%s: Не удалось найти какие-либо MO файлы по следующему адресу: %s.\n"
 
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
@@ -52,15 +51,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error : the following command line failed to execute: %s.\n"
-msgstr "%s: Ошибка: не удалось выполнить следующую командную строку: %s.\n"
+msgstr "%s: Ошибка: не удалось выполнить следующую команду: %s.\n"
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: Ошибка: Блок scifunc не определён."
+msgstr "%s: Ошибка: блок scifunc не определён."
 
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr "%s: Ошибка: Компилятор Modelica (MODELICAC) недоступен."
+msgstr "%s: Ошибка: компилятор Modelica (MODELICAC) недоступен."
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
@@ -72,37 +71,37 @@ msgstr "%s: Порты вывода не пронумерованы правил
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr "%s: Неверный число входных аргументов. Должно быть между %d и %d.\n"
+msgstr "%s: Неверный количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Ожидалась одиночная строка.\n"
+"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Ожидалась одиночная строка.\n"
+"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: Неверный размер входных аргументов #%d и #%d.\n"
+msgstr "%s: Неверный размер входных параметров №%d и №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидалось целое число.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 msgid "&?"
 msgstr "&Справка"
@@ -116,12 +115,15 @@ msgstr "&Файл"
 msgid "&Tools"
 msgstr "&Инструменты"
 
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr "«scicos» более недоступен, используйте «xcos».\n"
+
 msgid "Only one block can be selected in current window for this operation."
 msgstr "Только один блок может быть выбран в текущем окне для этой операции."
 
 #, c-format
 msgid "Problem while building library %s\n"
-msgstr "Проблема при компоновке библиотеки %s\n"
+msgstr "Проблема при сборке библиотеки %s\n"
 
 msgid "The current icon depends on block parameter\n"
-msgstr "Текущая иконка зависит от параметров блока\n"
+msgstr "Текущий значок зависит от параметра блока\n"

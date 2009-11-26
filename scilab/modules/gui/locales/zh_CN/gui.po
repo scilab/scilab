@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -558,14 +558,14 @@ msgstr "装载运行环境...(&L)"
 msgid "&Load..."
 msgstr "载入(&L)..."
 
+msgid "&Mailing lists"
+msgstr ""
+
 msgid "&Matlab to Scilab translator"
 msgstr "Matlab到Scilab转换器(&M)"
 
 msgid "&New figure..."
 msgstr "新Figure...(&N)"
-
-msgid "&Newsgroup Archives"
-msgstr "新闻组(&N)"
 
 msgid "&Open a file..."
 msgstr "打开文件...(&O)"
@@ -656,9 +656,6 @@ msgstr ""
 msgid "All files"
 msgstr "全部文件"
 
-msgid "All rights reserved"
-msgstr ""
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -696,6 +693,9 @@ msgstr ""
 "作者：\n"
 "Scilab协会 / INRIA / ENPC / 其他贡献者\n"
 "\n"
+
+msgid "Back"
+msgstr ""
 
 msgid "C&lose"
 msgstr "关闭(&l)"
@@ -751,7 +751,10 @@ msgstr "控制Plot3d"
 msgid "Copy"
 msgstr "复制"
 
-msgid "Copyright 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr ""
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 
 msgid "Cut"
@@ -761,6 +764,9 @@ msgid "Display selection"
 msgstr ""
 
 msgid "Do you relly want to quit Scilab?"
+msgstr ""
+
+msgid "Edit in the Scilab Text Editor"
 msgstr ""
 
 msgid "Encapsulated PostScript image (EPS)"
@@ -783,6 +789,9 @@ msgstr "导出时发生错误"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
+
+msgid "Execute into Scilab"
+msgstr ""
 
 msgid "Execution done.\n"
 msgstr "执行完毕\n"
@@ -811,6 +820,9 @@ msgstr "文件已经存在"
 msgid "File already exists"
 msgstr "文件已存在"
 
+msgid "Forward"
+msgstr ""
+
 msgid "GIF image"
 msgstr "GIF 图像"
 
@@ -820,7 +832,13 @@ msgstr "GUI"
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-msgid "INRIA / ENPC / Contributors"
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
+msgid "Help on a selected keyword"
 msgstr ""
 
 msgid "Impossible to get current look and feel"
@@ -876,6 +894,9 @@ msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr "不存在属性'%s'，此属性用于风格为%s的uicontrol。\n"
 
 msgid "No color selected."
+msgstr ""
+
+msgid "No text selected"
 msgstr ""
 
 msgid "OK"
@@ -942,6 +963,9 @@ msgid "SVG image"
 msgstr "SVG图像"
 
 msgid "Save and execute"
+msgstr ""
+
+msgid "Scilab &ATOMS Web Site"
 msgstr ""
 
 msgid "Scilab &Demonstrations"
@@ -1049,7 +1073,7 @@ msgstr ""
 msgid "Sub-menu 2-2"
 msgstr ""
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid "Tree Overview"

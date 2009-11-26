@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -30,12 +30,17 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个实数标量。\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
 
 msgid "?"
 msgstr ""
@@ -48,9 +53,6 @@ msgstr "关于"
 
 msgid "All"
 msgstr "全部"
-
-msgid "All rights reserved"
-msgstr ""
 
 msgid "Auto Reformat Selection"
 msgstr ""
@@ -66,9 +68,6 @@ msgstr ""
 
 msgid "Case sensitive"
 msgstr "区分大小写"
-
-msgid "CeCILL License"
-msgstr ""
 
 msgid "Close"
 msgstr "关闭"
@@ -88,7 +87,10 @@ msgstr ""
 msgid "Copy"
 msgstr "复制"
 
-msgid "Copyright 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr ""
+
+msgid "Correct Indentation"
 msgstr ""
 
 msgid "Cut"
@@ -208,9 +210,6 @@ msgstr "最近的文件"
 msgid "Redo"
 msgstr "重做"
 
-msgid "Reformat Selection"
-msgstr ""
-
 msgid "Regular expressions"
 msgstr "正则表达式"
 
@@ -249,14 +248,11 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Scilab编辑器 版本1.0"
+msgid "Scilab text editor"
+msgstr ""
 
-msgid "Scilab editor"
-msgstr "Scilab编辑器"
-
-msgid "Scilab editor Help"
-msgstr "Scilab编辑器帮助"
+msgid "Scilab text editor help"
+msgstr ""
 
 msgid "Scope"
 msgstr "范围"
@@ -276,6 +272,12 @@ msgstr "设置颜色"
 msgid "Set Font"
 msgstr "设置字体"
 
+msgid "Shift Left"
+msgstr ""
+
+msgid "Shift Right"
+msgstr ""
+
 msgid "Show/Hide ToolBar"
 msgstr "显示/隐藏工具栏"
 
@@ -285,10 +287,7 @@ msgstr "没有发现字符串 %s"
 msgid "Syntax Type"
 msgstr "语法类型"
 
-msgid "Tabify Selection"
-msgstr "用制表符替换空格"
-
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid ""
@@ -325,9 +324,6 @@ msgstr "取消选区注释"
 
 msgid "Undo"
 msgstr "撤销"
-
-msgid "Untabify Selection"
-msgstr "用空格替换制表符"
 
 msgid "Untitled "
 msgstr "未命名 "

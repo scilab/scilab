@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-13 17:00+0000\n"
+"PO-Revision-Date: 2009-11-25 15:20+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -88,6 +88,10 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: ''%s'' はインストールされていません。\n"
 
 #, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr "%s: ''%s-%s'' ロード中にエラーが起きました。\n"
+
+#, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: パッケージ %s の別のバージョンが既にインストールされています: %s\n"
 
@@ -113,15 +117,15 @@ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しい�
 
 #, c-format
 msgid "%s: Module ''%s - %s'' is not installed.\n"
-msgstr "%s: モジュール ''%s - %s''  はインストールされていません。\n"
+msgstr "%s: モジュール ''%s - %s'' はインストールされていません。\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
-msgstr "%s: モジュール ''%s''  はインストールされていません(''%s'' セクション)\n"
+msgstr "%s: モジュール ''%s'' はインストールされていません(''%s'' セクション)\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed.\n"
-msgstr "%s: モジュール ''%s''  はインストールされていません。\n"
+msgstr "%s: モジュール ''%s'' はインストールされていません。\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
@@ -134,8 +138,8 @@ msgid ""
 msgstr "%s: パッケージ (%s) のいくつかのバージョンは、同じ scilabセッション でロードできません:\n"
 
 #, c-format
-msgid "%s: The config file ("
-msgstr "%s: 構成ファイル ("
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr "%s: 構成ファイル (''%s'') は 行 %d でフォーマットできません\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -178,7 +182,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
-msgstr "%s: ダウンロードされたファイルは、MD５SUMで確認されません。\n"
+msgstr "%s: ダウンロードされたファイルは、MD５SUMで確認できません。\n"
 
 #, c-format
 msgid "%s: The extraction of the archive ''%s'' has failed.\n"
@@ -190,14 +194,14 @@ msgstr "%s: ファイル %s は存在しないか、または、読み取るこ�
 
 #, c-format
 msgid "%s: The file %s is not well formated at line %d\n"
-msgstr "%s: ファイル %s はライン %d で十分にフォーマットされません。\n"
+msgstr "%s: ファイル %s はライン %d で適切にフォーマットされていません。\n"
 
 #, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
 "the ScilabVersion field\n"
 msgstr ""
-"%s: ファイル %s は十分にフォーマットされません、ツールボックス %s - %s はScilabVersionフィールドを含みません。\n"
+"%s: ファイル %s は適切にフォーマットされていません、ツールボックス %s - %s はScilabVersionフィールドを含みません。\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -213,11 +217,11 @@ msgstr "%s: ファイル ''%s'' が存在しないか、読み取り可能では
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
-msgstr "%s: 以下のファイルは、コピーされませんでした:\n"
+msgstr "%s: 以下のファイルは、コピーできませんでした:\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been downloaded:\n"
-msgstr "%s: 以下のファイルは、ダウンロードされませんでした:\n"
+msgstr "%s: 以下のファイルは、ダウンロードできませんでした:\n"
 
 #, c-format
 msgid ""
@@ -231,7 +235,7 @@ msgid "%s: The following module is not installed:\n"
 msgstr "%s: 以下のモジュールはインストールされていません:\n"
 
 #, c-format
-msgid "%s: The following modules is not installed:\n"
+msgid "%s: The following modules are not installed:\n"
 msgstr "%s: 以下のモジュールはインストールされていません:\n"
 
 #, c-format
@@ -475,9 +479,8 @@ msgstr "%s: 入力引数 #%d で不正な値: ASC または DESC を想定しま
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be "
-"set.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 全てのモジュールにバージョンがセットされるべきです。\n"
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 全てのモジュールにバージョンがセットされなくてはなりません\n"
 
 #, c-format
 msgid ""
@@ -524,11 +527,11 @@ msgstr "%s: 入力引数 #%d で不正な値: ''error'' または ''warning'' �
 #, c-format
 msgid ""
 "%s: You have not enought rights to remove any version of the package %s.\n"
-msgstr "%s: あなたは、パッケージ %s のどのようなバージョンも抹消する権利を持ちません。\n"
+msgstr "%s: パッケージ %s のどのようなバージョンも取り除く権限を持ちません。\n"
 
 #, c-format
 msgid "%s: You have not enought rights to remove the package %s (%s).\n"
-msgstr "%s: パッケージ %s(%s) を抹消する権限がありません。\n"
+msgstr "%s: パッケージ %s(%s) を取り除く権限がありません。\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -572,9 +575,6 @@ msgstr "作者(s)"
 msgid "Automaticaly Installed"
 msgstr "自動インストール"
 
-msgid "Available Modules"
-msgstr "モジュール有効"
-
 msgid "Category(ies)"
 msgstr "種類"
 
@@ -587,6 +587,9 @@ msgstr "依存"
 msgid "Description"
 msgstr "記述"
 
+msgid "Download size"
+msgstr "ダウンロード・サイズ"
+
 msgid "Entity"
 msgstr "本体"
 
@@ -597,7 +600,7 @@ msgid "Install"
 msgstr "インストール"
 
 msgid "Install Directory"
-msgstr "ディレクトリー・ディレクトリ"
+msgstr "インストール・ディレクトリ"
 
 msgid "Installation done !"
 msgstr "インストール完了!"
@@ -608,20 +611,29 @@ msgstr "インストール失敗!"
 msgid "Installing..."
 msgstr "インストール..."
 
+msgid "Ko"
+msgstr "Ko"
+
 msgid "License"
 msgstr "ライセンス"
 
 msgid "Maintainer(s)"
-msgstr "維持者(s)"
+msgstr "維持者達"
 
-msgid "Module Description"
-msgstr "モジュール記述"
+msgid "Mo"
+msgstr "Mo"
+
+msgid "Modules"
+msgstr "モジュール"
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr "Atom モジュールは無効です。インターネット接続を調べて下さい。"
 
 msgid "No module selected"
 msgstr "モジュール選択なし"
+
+msgid "Octets"
+msgstr "8進"
 
 msgid "Package"
 msgstr "パッケージ"

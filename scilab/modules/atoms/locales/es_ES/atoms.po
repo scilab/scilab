@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-12 19:05+0000\n"
+"PO-Revision-Date: 2009-11-20 17:56+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:18+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,6 +86,10 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: ''%s'' no está instalado.\n"
 
 #, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr "%s: Ocurrió un error al cargar «'%s-%s»'.\n"
+
+#, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: Otra versión del paquete %s ya está cargada : %s\n"
 
@@ -139,8 +143,10 @@ msgstr ""
 "de Scilab :\n"
 
 #, c-format
-msgid "%s: The config file ("
-msgstr "%s: El archivo de configuración ("
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr ""
+"%s: El archivo de configuración (''%s'') no tiene el formato correcto en la "
+"línea %d\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -244,7 +250,7 @@ msgid "%s: The following module is not installed:\n"
 msgstr "%s: El siguiente módulo no está instalado:\n"
 
 #, c-format
-msgid "%s: The following modules is not installed:\n"
+msgid "%s: The following modules are not installed:\n"
 msgstr "%s: Los siguientes módulos no están instalados:\n"
 
 #, c-format
@@ -564,9 +570,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be "
-"set.\n"
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Deben asignarse las "
+"versiones de todos los módulos.\n"
 
 #, c-format
 msgid ""
@@ -678,9 +685,6 @@ msgstr "Autor(es)"
 msgid "Automaticaly Installed"
 msgstr "Instalado Automáticamente"
 
-msgid "Available Modules"
-msgstr "Módulos Disponibles"
-
 msgid "Category(ies)"
 msgstr "Categoría(s)"
 
@@ -692,6 +696,9 @@ msgstr "Depende"
 
 msgid "Description"
 msgstr "Descripción"
+
+msgid "Download size"
+msgstr "Tamaño de descarga"
 
 msgid "Entity"
 msgstr "Entidad"
@@ -714,20 +721,29 @@ msgstr "¡Falló la instalación!"
 msgid "Installing..."
 msgstr "Instalando..."
 
+msgid "Ko"
+msgstr "Ko"
+
 msgid "License"
 msgstr "Licencia"
 
 msgid "Maintainer(s)"
 msgstr "Mantenedor(es)"
 
-msgid "Module Description"
-msgstr "Descripción del Módulo"
+msgid "Mo"
+msgstr "Mo"
+
+msgid "Modules"
+msgstr "Módulos"
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr "No hay módulos de Atoms disponibles. Revise su conexión a Internet."
 
 msgid "No module selected"
 msgstr "No se seleccionó ningún módulo"
+
+msgid "Octets"
+msgstr "Octetos"
 
 msgid "Package"
 msgstr "Paquete"

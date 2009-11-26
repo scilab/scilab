@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2009-11-13 18:45+0000\n"
+"PO-Revision-Date: 2009-11-16 16:15+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -127,11 +127,9 @@ msgstr "%s: ルートオブジェクトで　プロパティ '%s' を読み込�
 msgid "%s: Each handle should not appear twice.\n"
 msgstr "%s: それぞれのハンドルは、２度現れるべきではありません。\n"
 
-#
-# File: macros/plot.sci, line: 217
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
-msgstr "%s: エラー: 入力関数 \"%s\" を評価できません。"
+msgstr "%s: エラー : 入力関数 \"%s\" を評価できません。"
 
 #
 # File: macros/plot.sci, line: 219
@@ -151,11 +149,9 @@ msgstr "%s: 入力引数 #%d でエラー: 指定された界は正しくあり�
 msgid "%s: Handle %d cannot be glued (invalid parent).\n"
 msgstr "%s: ハンドル%dは付けられません、(無効な親)\n"
 
-#
-# File: sci_gateway/c/sci_glue.c, line: 88
 #, c-format
 msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: ハンドル%dは付けられません、(無効なタイプ)\n"
+msgstr "%s: ハンドル%dは付けられません、(無効な型)\n"
 
 #
 # File: sci_gateway/c/sci_show_window.c, line: 62
@@ -604,14 +600,11 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: %d-by-%d または %d-by-%d 行列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_show_window.c, line: 54
-# File: sci_gateway/c/sci_show_window.c, line: 80
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実のスカラー、または  '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 実スカラー、または  '%s' ハンドルを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 87
@@ -853,14 +846,11 @@ msgid ""
 "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列の2D配列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_show_window.c, line: 68
-# File: sci_gateway/c/sci_show_window.c, line: 99
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実のスカラー、または '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実スカラー、または '%s' ハンドルを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 79
@@ -869,12 +859,9 @@ msgstr "%s: 入力引数 #%d で不正な型: 実のスカラー、または '%s
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 'Text'ハンドルを想定します。\n"
 
-#
-# File: macros/ged.sci, line: 26
-# File: macros/ged.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型です: 実を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_rubberbox.c, line: 199
@@ -890,14 +877,9 @@ msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します�
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
 
-#
-# File: macros/getcolor.sci, line: 18
-# File: macros/getcolor.sci, line: 26
-# File: sci_gateway/c/sci_xlfont.c, line: 130
-# File: sci_gateway/c/sci_xlfont.c, line: 216
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
 # File: macros/xbasc.sci, line: 25
@@ -1053,11 +1035,9 @@ msgstr "%s: 入力引数 %d で不正な型: \"軸\" ハンドルを想定しま
 msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
 msgstr "%s: 入力引数 ''%s'' で不正な型: 実行列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_xtitle.c, line: 88
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: 入力引数の不正な型です。\n"
+msgstr "%s: 入力引数で不正な型です。\n"
 
 #
 # File: sci_gateway/c/sci_showalluimenushandles.c, line: 42
@@ -1093,13 +1073,9 @@ msgstr "%s: 入力引数で型が不正: ハンドル、または、二つのベ
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr "%s: 引数で不正な値: '%s' または '%s' を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_delete.c, line: 75
-# File: sci_gateway/c/sci_move.c, line: 52
-# File: sci_gateway/c/sci_xstringb.c, line: 71
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: 入力引数 #%d 不正な値: %s を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_xpoly.c, line: 59
@@ -2083,10 +2059,8 @@ msgstr "警告: プロパティ '%s' で不正な値: インデックス外の�
 msgid "Warning : Nax does not work with logarithmic scaling\n"
 msgstr "警告 : Nax は、対数尺に使えません。\n"
 
-#
-# File: src/c/Plo2dn.c, line: 201
 msgid "Warning : Nax does not work with logarithmic scaling.\n"
-msgstr "警告 :Nax は、対数尺に使えません。\n"
+msgstr "警告 : Nax は、対数尺に使えません。\n"
 
 #
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 73
@@ -2348,17 +2322,13 @@ msgstr "プロパティ '%s' で不正な値:  %d と %d の間の整数を想�
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
 msgstr "プロパティ '%s' で不正な値: '%s' でなくてはなりません。\n"
 
-#
-# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
-msgstr "%s プロパティで不正な値: -1 または 適切なカラーインデックスでなくてはなりません。\n"
+msgstr "プロパティ '%s' で不正な値: -1 または 適切なカラーインデックスでなくてはなりません。\n"
 
-#
-# File: src/c/SetProperty.c, line: 762
 #, c-format
 msgid "Wrong value for '%s' property: Must be a handle on a axes.\n"
-msgstr "プロパティ %s で不正な値: 軸のハンドル である必要があります。\n"
+msgstr "プロパティ '%s' で不正な値: 軸のハンドル である必要があります。\n"
 
 #
 # File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
@@ -2372,11 +2342,9 @@ msgstr "プロパティ '%s' で不正な値: 適切なカラーインデック�
 msgid "Wrong value for '%s' property: Must be a valid handle.\n"
 msgstr "プロパティ '%s' で不正な値: 明確なハンドルでなくてはなりません。\n"
 
-#
-# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
 #, c-format
 msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "プロパティ %s で不正な値: %dと%dの間でなくてはなりません。\n"
+msgstr "プロパティ '%s' で不正な値: %dと%dの間でなくてはなりません。\n"
 
 #
 # File: src/c/SetProperty.c, line: 762
