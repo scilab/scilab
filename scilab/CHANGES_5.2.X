@@ -183,6 +183,8 @@ Bug fixes:
 
 * bug 5312 fixed - Xcos: adding 'Compile' informations
 
+* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
+
 * bug 5325 fixed - Wrong default path on FileChooser.
 
 * bug 5326 fixed - graphic_export module was not loaded dynamically.
