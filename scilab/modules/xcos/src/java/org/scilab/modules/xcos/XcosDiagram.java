@@ -1324,9 +1324,10 @@ public class XcosDiagram extends ScilabGraph {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		loadDiagram(diagramm);
 	    } else {
-		XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
+		XcosTab.createTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
@@ -1476,15 +1477,18 @@ public class XcosDiagram extends ScilabGraph {
 				setSavedFile(theFile.getAbsolutePath());
 				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram();
+				generateUID();
 			} else {
-				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+				XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
+				xcosDiagram.info(XcosMessages.LOADING_DIAGRAM);
 				codec.decode(document.getDocumentElement(), xcosDiagram);
-				setSavedFile(theFile.getAbsolutePath());
-				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
+				xcosDiagram.setModified(false);
+				xcosDiagram.setSavedFile(theFile.getAbsolutePath());
+				xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram(xcosDiagram);
+				XcosTab.showTabFromDiagram(xcosDiagram);
+				xcosDiagram.generateUID();
 			}
-			generateUID();
-			setModified(false);
 			break;
 
 		case HDF5:
