@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-10 22:50+0000\n"
+"PO-Revision-Date: 2009-11-17 22:41+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -30,13 +30,20 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался вещественный скаляр.\n"
+"%s: Неверный размер входных параметров №%d и №%d: ожидались одинаковые "
+"размерности.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
 
 msgid "?"
 msgstr "Справка"
@@ -49,9 +56,6 @@ msgstr "О текстовом редакторе"
 
 msgid "All"
 msgstr "Весь документ"
-
-msgid "All rights reserved"
-msgstr "Все права защищены"
 
 msgid "Auto Reformat Selection"
 msgstr "Автоматический отступ"
@@ -67,9 +71,6 @@ msgstr "Не удалось загрузить \"xpadConfiguration.xml\""
 
 msgid "Case sensitive"
 msgstr "Учитывать регистр"
-
-msgid "CeCILL License"
-msgstr "Лицензия CeCILL"
 
 msgid "Close"
 msgstr "Закрыть"
@@ -89,8 +90,11 @@ msgstr "Продолжить?"
 msgid "Copy"
 msgstr "Копировать"
 
-msgid "Copyright 2009"
-msgstr "Авторское право 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr "Авторское право (c) 2009 (INRIA)"
+
+msgid "Correct Indentation"
+msgstr "Исправить отступы"
 
 msgid "Cut"
 msgstr "Вырезать"
@@ -144,7 +148,7 @@ msgid "Find"
 msgstr "Найти"
 
 msgid "Find/Replace"
-msgstr "Найти/Заменить"
+msgstr "Найти/заменить"
 
 msgid "Find:"
 msgstr "Найти:"
@@ -209,9 +213,6 @@ msgstr "Недавние файлы"
 msgid "Redo"
 msgstr "Повторить"
 
-msgid "Reformat Selection"
-msgstr "Форматировать выделенное"
-
 msgid "Regular expressions"
 msgstr "Регулярные выражения"
 
@@ -228,7 +229,7 @@ msgid "Replace With :"
 msgstr "Заменить на:"
 
 msgid "Replace/Find"
-msgstr "Заменить/Найти"
+msgstr "Заменить/найти"
 
 msgid "Reset default font"
 msgstr "Установить шрифт по умолчанию"
@@ -250,13 +251,10 @@ msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» не установлен.\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Текстовый редактор Scilab версия 1.0"
-
-msgid "Scilab editor"
+msgid "Scilab text editor"
 msgstr "Текстовый редактор"
 
-msgid "Scilab editor Help"
+msgid "Scilab text editor help"
 msgstr "Справка по текстовому редактору"
 
 msgid "Scope"
@@ -277,6 +275,12 @@ msgstr "Цвета"
 msgid "Set Font"
 msgstr "Шрифт"
 
+msgid "Shift Left"
+msgstr "Убрать отступ"
+
+msgid "Shift Right"
+msgstr "Сделать отступ"
+
 msgid "Show/Hide ToolBar"
 msgstr "Показать/скрыть панель инструментов"
 
@@ -286,10 +290,7 @@ msgstr "Фраза %s не найдена"
 msgid "Syntax Type"
 msgstr "Режим подсветки синтаксиса"
 
-msgid "Tabify Selection"
-msgstr "Сделать отступ"
-
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорциум Scilab (DIGITEO)"
 
 msgid ""
@@ -326,9 +327,6 @@ msgstr "Удалить комментарии"
 
 msgid "Undo"
 msgstr "Отменить"
-
-msgid "Untabify Selection"
-msgstr "Убрать отступ"
 
 msgid "Untitled "
 msgstr "Безымянный документ "

@@ -104,20 +104,20 @@ public final class XcosMessages {
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
-    public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
+    public static final String CONTINUOUS_PAL = Messages.gettext("Continuous time systems");
     public static final String IMPLICIT_PAL = Messages.gettext("Implicit");
     public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuities");
     public static final String LOOKUPTABLES_PAL = Messages.gettext("Lookup Tables");
     public static final String SIGNALPROCESSING_PAL = Messages.gettext("Signal Processing");
-    public static final String THRESHOLD_PAL = Messages.gettext("Threshold");
-    public static final String MATHSOPS_PAL = Messages.gettext("Math Operations");
+    public static final String THRESHOLD_PAL = Messages.gettext("Zero crossing detection");
+    public static final String MATHSOPS_PAL = Messages.gettext("Mathematical Operations");
     public static final String INTEGER_PAL = Messages.gettext("Integer");
     public static final String MATRIX_PAL = Messages.gettext("Matrix");
     public static final String SINKS_PAL = Messages.gettext("Sinks");
     public static final String PORTACTION_PAL = Messages.gettext("Port & Subsystem");
     public static final String ANNOTATIONS_PAL = Messages.gettext("Annotations");
-    public static final String DISCRETE_PAL = Messages.gettext("Discrete");
-    public static final String EVENTS_PAL = Messages.gettext("Events");
+    public static final String DISCRETE_PAL = Messages.gettext("Discrete time systems");
+    public static final String EVENTS_PAL = Messages.gettext("Event handling");
     public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
     public static final String COMMONUSED_PAL = Messages.gettext("Commonly Used Blocks");
     public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");

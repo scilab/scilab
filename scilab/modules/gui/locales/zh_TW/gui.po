@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -559,14 +559,14 @@ msgstr "將軟體環境載入(&L)...."
 msgid "&Load..."
 msgstr "載入(&L)"
 
+msgid "&Mailing lists"
+msgstr ""
+
 msgid "&Matlab to Scilab translator"
 msgstr "Matlab 轉 Scilab 工具(&M)"
 
 msgid "&New figure..."
 msgstr "新圖(&F)"
-
-msgid "&Newsgroup Archives"
-msgstr "新聞群組檔案櫃(&N)"
 
 msgid "&Open a file..."
 msgstr "開啟檔案(&O)..."
@@ -657,9 +657,6 @@ msgstr "在 listbox 中加入顏色"
 msgid "All files"
 msgstr "所有檔案"
 
-msgid "All rights reserved"
-msgstr "版權所有"
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -697,6 +694,9 @@ msgstr ""
 "作者:\n"
 "Scilab 協會 / INRIA / ENPC / 其他貢獻者\n"
 "\n"
+
+msgid "Back"
+msgstr ""
 
 msgid "C&lose"
 msgstr "關閉(&L)"
@@ -752,8 +752,11 @@ msgstr "控制 Plot3d"
 msgid "Copy"
 msgstr "複製"
 
-msgid "Copyright 1989 - 2009"
-msgstr "版權 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr ""
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr ""
 
 msgid "Cut"
 msgstr "剪下"
@@ -763,6 +766,9 @@ msgstr "選擇顯示器"
 
 msgid "Do you relly want to quit Scilab?"
 msgstr "您確定要離開 Scilab?"
+
+msgid "Edit in the Scilab Text Editor"
+msgstr ""
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "封裝 PostScript(EPS) 影像"
@@ -784,6 +790,9 @@ msgstr "匯出時發生錯誤"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "錯誤. 捕捉到一錯誤訊號.\n"
+
+msgid "Execute into Scilab"
+msgstr ""
 
 msgid "Execution done.\n"
 msgstr "結束執行.\n"
@@ -812,6 +821,9 @@ msgstr "檔案已經存在"
 msgid "File already exists"
 msgstr "檔案已經存在"
 
+msgid "Forward"
+msgstr ""
+
 msgid "GIF image"
 msgstr "GIF 影像"
 
@@ -821,8 +833,14 @@ msgstr "圖形使用者介面"
 msgid "Help Browser"
 msgstr "線上文件瀏覽器"
 
-msgid "INRIA / ENPC / Contributors"
-msgstr "INRIA / ENPC / 貢獻者群"
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
+msgid "Help on a selected keyword"
+msgstr ""
 
 msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
@@ -878,6 +896,9 @@ msgstr "屬性 '%s' 不屬於在  uicontrols 之型態: %s .\n"
 
 msgid "No color selected."
 msgstr "未選定顏色"
+
+msgid "No text selected"
+msgstr ""
 
 msgid "OK"
 msgstr "確定"
@@ -944,6 +965,9 @@ msgstr "SVG 影像"
 
 msgid "Save and execute"
 msgstr "儲存和執行"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr ""
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab 範例(&D)"
@@ -1050,8 +1074,8 @@ msgstr "子選單 2-1"
 msgid "Sub-menu 2-2"
 msgstr "子選單 2-2"
 
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr ""
 
 msgid "Tree Overview"
 msgstr "樹狀式概覽"

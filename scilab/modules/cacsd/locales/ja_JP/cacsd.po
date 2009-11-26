@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-22 15:45+0000\n"
+"PO-Revision-Date: 2009-11-16 16:12+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -37,26 +37,17 @@ msgstr "%s: %s は、見つからないようです。\n"
 msgid "%s:  %s is not stabilizable.\n"
 msgstr "%s: %s は安定化可能ではありません。\n"
 
-#
-# File: macros/h_inf.sci, line: 124
-# File: macros/h_inf.sci, line: 133
 #, c-format
 msgid "%s: %s has a zero on/close the imaginary axis.\n"
-msgstr "%s: %sはゼロを持つ　オン/閉じる　想像上の軸\n"
+msgstr "%s: %sはゼロを持つ　オン/閉じる　虚部軸\n"
 
-#
-# File: macros/gamitg.sci, line: 227
-# File: macros/gamitg.sci, line: 241
 #, c-format
 msgid "%s: %s has pure imaginary eigenvalue(s).\n"
-msgstr "%s: %s は、想像上の純粋な固有値(s)を持っています。\n"
+msgstr "%s: %s は、純粋な虚部固有値(s)を持っています。\n"
 
-#
-# File: macros/gamitg.sci, line: 110
-# File: macros/gamitg.sci, line: 118
 #, c-format
 msgid "%s: %s has zero(s) near the imaginary axis.\n"
-msgstr "%s: %s は、想像上の軸の近くの ゼロ(s) を持っています。\n"
+msgstr "%s: %s は、虚部軸の近くの ゼロ(s) を持っています。\n"
 
 #
 # File: macros/h_inf.sci, line: 116
@@ -111,11 +102,9 @@ msgstr "%s: %s は安定化可能です。\n"
 msgid "%s: %s must be of dimension (%s, %s).\n"
 msgstr "%s: %s は、次元(%s、%s) でなくてはなりません。\n"
 
-#
-# File: macros/leqr.sci, line: 92
 #, c-format
 msgid "%s: %s non symmetric.\n"
-msgstr "%s: %s は比対称です。\n"
+msgstr "%s: %s は非対称です。\n"
 
 #
 # File: macros/h_inf_st.sci, line: 33
@@ -144,12 +133,9 @@ msgstr "%s: そのすべての方法はほとんど最小ではありません |
 msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
 msgstr "%s: %s(管理)の固有値が想像上の軸に近いです。\n"
 
-#
-# File: macros/h_inf.sci, line: 369
-# File: macros/h_inf.sci, line: 490
 #, c-format
 msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
-msgstr "%s: %s(観察)の固有値が想像上の軸に近いです。\n"
+msgstr "%s: %s(観察)の固有値が虚部軸に近いです。\n"
 
 #
 # File: macros/flts.sci, line: 50
@@ -174,19 +160,14 @@ msgstr "%s: 悪い条件付けです。\n"
 msgid "%s: Bad conditionning.\n"
 msgstr "%s: 悪い状態です。\n"
 
-#
-# File: macros/sm2des.sci, line: 29
-# File: macros/sm2ss.sci, line: 30
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
-msgstr "%s: 状態次元を見つけることができません。\n"
+msgstr "%s: 次元状態を見つけることができません。\n"
 
-#
-# File: macros/gamitg.sci, line: 336
 #, c-format
 msgid ""
 "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
-msgstr "%s: %s の管理 と 識別モード(s)は、想像上の軸の近くです。\n"
+msgstr "%s: %s の管理 と 識別モード(s)は、虚部軸の近くです。\n"
 
 #
 # File: macros/linfn.sci, line: 209
@@ -238,19 +219,9 @@ msgstr "%s: ナイキスト周波数を越える周波数は、無視されま�
 msgid "%s: Hybrid system not implemented.\n"
 msgstr "%s: 混成システムは装備されていません。\n"
 
-#
-# File: macros/narsimul.sci, line: 51
-# File: macros/narsimul.sci, line: 84
-# File: macros/narsimul.sci, line: 94
-# File: macros/narsimul.sci, line: 99
-# File: macros/narsimul.sci, line: 109
-# File: macros/narsimul.sci, line: 114
-# File: macros/syslin.sci, line: 111
-# File: macros/ui_observer.sci, line: 71
-# File: macros/ui_observer.sci, line: 76
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: 入力引数 #%d と #%d の互換性がありません: "
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: "
 
 #
 # File: macros/black.sci, line: 83
@@ -463,14 +434,9 @@ msgstr "%s: ある出力は、不確定です。\n"
 msgid "%s: Square but singular system.\n"
 msgstr "%s: 平方で、しかし珍しいシステムです。\n"
 
-#
-# File: macros/leqr.sci, line: 48
-# File: macros/leqr.sci, line: 77
-# File: macros/lqr.sci, line: 38
-# File: macros/lqr.sci, line: 62
 #, c-format
 msgid "%s: Stable subspace is too small.\n"
-msgstr "%s: 安定した空間部分はあまりにも小さいです。\n"
+msgstr "%s: 安定空間部分はあまりにも小さいです。\n"
 
 #
 # File: macros/armax.sci, line: 117
@@ -479,11 +445,9 @@ msgstr "%s: 安定した空間部分はあまりにも小さいです。\n"
 msgid "%s: Standard deviation of the estimator %s:\n"
 msgstr "%s: %s 評価の標準偏差:\n"
 
-#
-# File: macros/ric_desc.sci, line: 56
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
-msgstr "%s: 動かないリカッチ解明は失敗しました。\n"
+msgstr "%s: 静止リカッチ解明に失敗しました。\n"
 
 #
 # File: macros/h_norm.sci, line: 43
@@ -513,11 +477,9 @@ msgstr "%s: 計算された値、 || G || 不正確かもしれません。\n"
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: 型 ''%s'' が未定義です。\n"
 
-#
-# File: macros/linfn.sci, line: 111
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
-msgstr "%s: 警告: 行列は、想像上の軸の近くの固有値を持っています。\n"
+msgstr "%s: 警告: 行列は、虚部軸の近くの固有値を持っています。\n"
 
 #
 # File: macros/riccati.sci, line: 34
@@ -581,12 +543,9 @@ msgstr "%s: 入力引数で不正な数: %d または %d を想定します。\n
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
 
-#
-# File: macros/inistate.sci, line: 58
-# File: macros/inistate.sci, line: 108
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 最少量で、%d を想定します。\n"
+msgstr "%s: 入力引数の不正な数: 最小の %d を想定します。\n"
 
 #
 # File: macros/flts.sci, line: 34
@@ -609,14 +568,9 @@ msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s: 出力引数で不正な数: %d または %d を想定します。\n"
 
-#
-# File: macros/findABCD.sci, line: 106
-# File: macros/findABCD.sci, line: 109
-# File: macros/findAC.sci, line: 73
-# File: macros/findBDK.sci, line: 119
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%1$s: 出力引数で不正な数:　%3$d への %2$d　を想定します。\n"
+msgstr "%1$s: 出力引数で不正な数: %3$d への %2$dを想定します。\n"
 
 #
 # File: macros/findx0BD.sci, line: 64
@@ -696,14 +650,12 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定しま�
 msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 平方システムを想定します。\n"
 
-#
-# File: macros/trzeros.sci, line: 49
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Square system expected.\n"
 "'),"
 msgstr ""
-"%s: 入力引数 #%d で不正な値: 立方のシステムを想定します。\n"
+"%s: 入力引数 #%d で不正なサイズ: 平方のシステムを想定します。\n"
 "'),"
 
 #
@@ -715,11 +667,9 @@ msgid ""
 "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 列次元は、%d と等しくなければなりません。\n"
 
-#
-# File: macros/bloc2ss.sci, line: 181
 #, c-format
 msgid "%s: Wrong size for link from block %s.\n"
-msgstr "%s: ブロック %s からのリンクにとって誤っているサイズです。\n"
+msgstr "%s: ブロック %s のリンクは誤っているサイズです。\n"
 
 #
 # File: macros/armac.sci, line: 36
@@ -747,14 +697,9 @@ msgid ""
 "polynomial expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 動的線システム、または、多項式を想定します。\n"
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: 入力引数 #%d で不整な型: リストを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: リストを想定します。\n"
 
 #
 # File: macros/dscr.sci, line: 15
@@ -799,17 +744,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 線の動的システムを想定�
 msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
 msgstr "%s: 入力引数 #%d で不正な型: 動的線システムを想定します。\n"
 
-#
-# File: macros/abinv.sci, line: 51
-# File: macros/ctr_gram.sci, line: 55
-# File: macros/h_norm.sci, line: 30
-# File: macros/obsv_mat.sci, line: 26
-# File: macros/plzr.sci, line: 42
-# File: macros/repfreq.sci, line: 17
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 線の動的システムを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 動的線システムを想定します。\n"
 
 #
 # File: macros/black.sci, line: 101
@@ -999,19 +937,15 @@ msgstr "%s: 入力引数 #%d で不正な値: {%s} に設定しなくてはな�
 msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 適切なシステムを想定します。\n"
 
-#
-# File: macros/nehari.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 純粋な虚極を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 純粋な虚部極を想定します。\n"
 
-#
-# File: macros/hankelsv.sci, line: 26
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 純虚極を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 純粋な虚部極を想定します。\n"
 
 #
 # File: macros/evans.sci, line: 45
@@ -1082,12 +1016,10 @@ msgid ""
 "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 別個の時間システムを想定します。\n"
 
-#
-# File: macros/dtsi.sci, line: 127
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適切な移転関数を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切な変換関数を想定します。\n"
 
 #
 # File: macros/arhnk.sci, line: 23
@@ -1095,24 +1027,18 @@ msgstr "%s: 入力引数 #%d で不正な値: 適切な移転関数を想定し�
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 安定システムを想定します。\n"
 
-#
-# File: macros/statgain.sci, line: 30
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 行列状態 - 目は奇怪です。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列状態 - 目は奇妙です。\n"
 
-#
-# File: macros/statgain.sci, line: 25
 #, c-format
 msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 行列状態は奇怪です。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 行列状態は奇妙です。\n"
 
-#
-# File: macros/dtsi.sci, line: 39
 #, c-format
 msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値:  適切な要素を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適切な要素を想定します。\n"
 
 #
 # File: macros/ssrand.sci, line: 193
@@ -1190,11 +1116,8 @@ msgstr "周波数 (Hz)"
 msgid "Gain :"
 msgstr "ゲイン :"
 
-#
-# File: macros/evans.sci, line: 179
-# File: macros/plzr.sci, line: 98
 msgid "Imaginary axis"
-msgstr "虚軸"
+msgstr "虚部軸"
 
 #
 # File: macros/trfmod.sci, line: 101

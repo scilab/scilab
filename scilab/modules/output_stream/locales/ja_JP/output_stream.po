@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2009-10-25 03:36+0000\n"
+"PO-Revision-Date: 2009-11-16 16:21+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:20+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -168,15 +168,13 @@ msgstr "%s: 悪い変換です、 'l' または 'h' フラグは、's' 指令と
 msgid "%s: Bounds and initial guess are incompatible.\n"
 msgstr "%s: 界と初期推測は、互換性がありません。\n"
 
-#
-# File: src/c/msgs.c, line: 967
 #, c-format
 msgid ""
 "%s: Failure when looking for the intersection with domains boundaries.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
 "%s: 領域境界で共有部分を見たときに失敗しました。\n"
-"   前の計算状態を解決策として返しました。\n"
+"   前の計算状態を解決策として返します。\n"
 
 #
 # File: src/c/errmsg.c, line: 1316
@@ -184,15 +182,13 @@ msgstr ""
 msgid "%s: First argument cannot be a number.\n"
 msgstr "%s: 最初の引数は、数字にできません。\n"
 
-#
-# File: src/c/msgs.c, line: 961
 #, c-format
 msgid ""
 "%s: Impossible to reach required order.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
 "%s: 要求の状態に達することができません。\n"
-"   前の計算状態を解決策として返しました。\n"
+"   前の計算状態を解決策として返します。\n"
 
 #
 # File: src/c/errmsg.c, line: 959
@@ -261,15 +257,13 @@ msgstr "%s: シミュレーターから停止要求(ind=0)\n"
 msgid "%s: Th colocation matrix is singular.\n"
 msgstr "%s: 関連度行列は単独です。\n"
 
-#
-# File: src/c/msgs.c, line: 973
 #, c-format
 msgid ""
 "%s: Too many solutions found.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
-"%s: 多すぎる解決方法が見つかれました。\n"
-"  前の計算状態を解決策として返しました。\n"
+"%s: 多すぎる解決方法が見つかりました。\n"
+"  前の計算状態を解決策として返します。\n"
 
 #
 # File: src/c/errmsg.c, line: 924
@@ -879,10 +873,8 @@ msgstr "ホストは応答しません...\n"
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr "最新のリスタート: 動作テーブルの次元(引数 n:%d)\n"
 
-#
-# File: src/c/msgs.c, line: 812
 msgid "Imaginary part\n"
-msgstr "架空の部分\n"
+msgstr "虚部の部分\n"
 
 #
 # File: src/c/msgs.c, line: 1025
@@ -1220,10 +1212,8 @@ msgstr "最適化失敗: 最初の点に戻ります。\n"
 msgid "Optimization stops because too small variations for x.\n"
 msgstr "x のとても小さい変化のため最適化を中断します。\n"
 
-#
-# File: src/c/msgs.c, line: 720
 msgid "Pause mode: enter empty lines to continue.\n"
-msgstr "休止モード: 空行で続きます。\n"
+msgstr "休止モード: エンターキーで実行を続けます。\n"
 
 #
 # File: src/c/errmsg.c, line: 177

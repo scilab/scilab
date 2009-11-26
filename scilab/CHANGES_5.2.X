@@ -245,9 +245,13 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been performed.
 
+* bug 5464 fixed - Xcos: Actions are disabled on file loading
+
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
+
+* bug 5497 fixed - Editor: selection drag is now available.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
@@ -1404,6 +1408,8 @@ Bug fixes:
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5437 fixed - Remove ports on a block, remove the connected links.
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 

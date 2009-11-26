@@ -8,25 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-25 07:36+0000\n"
+"PO-Revision-Date: 2009-11-25 15:22+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: src/c/sp.c, line: 446
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
 "\n"
-"    最初のオブジェクト、二重オブジェクト、二重空間 \n"
+"    primal obj.  dual obj.  dual. gap \n"
 
 #
 # File: macros/lmisolver.sci, line: 135
@@ -92,27 +90,27 @@ msgstr "%s: costf(x0,6) からコスト関数を評価することができま�
 
 #, c-format
 msgid "%s: Empty function (use -function option)."
-msgstr "%s: 空の関数(-function オプション使用)"
+msgstr "%s: 空関数(-function オプション使用)"
 
 #, c-format
 msgid "%s: Expected boolean but got %s instead"
-msgstr ""
+msgstr "%s: ブーリアンを期待しましたが %s を代わりに得ました"
 
 #, c-format
 msgid "%s: Expected function but got %s instead"
-msgstr ""
+msgstr "%s: 関数を期待しましたが %s を代わりに得ました"
 
 #, c-format
 msgid "%s: Expected real variable but got %s instead"
-msgstr ""
+msgstr "%s: 実変数を期待しましたが %s を代わりに得ました"
 
 #, c-format
 msgid "%s: Expected string variable but got %s instead"
-msgstr ""
+msgstr "%s: 文字列変数を期待しましたが %s を代わりに得ました"
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
-msgstr "%s: 履歴無効; -storehistory オプション有効。"
+msgstr "%s: 履歴無効 ; -storehistory オプション有効。"
 
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
@@ -121,7 +119,11 @@ msgstr "%s: 履歴無効 ; -storehistory オプションで設定"
 #, c-format
 msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
-msgstr "%1$s: 不等式制約へ [%4$s] で頂点 #%2$d/%3$d へ登ることができません。"
+msgstr "%1$s: 不等式制約へ [%4$s] で頂点 #%2$d/%3$d へ到達できません。"
+
+#, c-format
+msgid "%s: Initial guess [%s] is not feasible."
+msgstr "%s:  最初の推測[%s]は、実行できません。"
 
 #
 # File: macros/fit_dat.sci, line: 100
@@ -137,7 +139,7 @@ msgstr "%s: 作業整列の範囲は、あまりにも短いです。\n"
 
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
-msgstr ""
+msgstr "%s: ロギングの開始中にログファイル・ハンドルはゼロではありません。"
 
 #, c-format
 msgid "%s: Logging already started."
@@ -149,11 +151,11 @@ msgstr "%s: ロギングを開始できません。"
 
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
-msgstr "%s: 負の繰り返しインデックス %d は、許されません。"
+msgstr "%s: 負の反復インデックス %d は、許されません。"
 
 #, c-format
 msgid "%s: Negative iteration index are not allowed."
-msgstr "%s: 負の繰り返しインデックスは、許されません。"
+msgstr "%s: 負の反復インデックスは、許されません。"
 
 #, c-format
 msgid ""
@@ -167,30 +169,30 @@ msgstr "%s: 出力関数は定義されていません。"
 
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
-msgstr ""
+msgstr "%s: fv の列の数は、 %d です、1と違います。"
 
 #, c-format
 msgid ""
 "%s: Number of columns of x is %d, which is different from dimension = %d."
-msgstr ""
+msgstr "%s: 次元 = %d から x の列の数は、%dと異ります。"
 
 #, c-format
 msgid ""
 "%s: Number of rows of fv is %d, which is different from number of vertices = "
 "%d."
-msgstr ""
+msgstr "%s: 頂点 = %d の数から fv の行の数は、%d と異ります。"
 
 #, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
-msgstr ""
+msgstr "%s: 頂点 = %d の数から x の列の数は、%d と異なります。"
 
 #, c-format
 msgid ""
 "%s: Odd number of arguments : the first argument is expected to be a struct, "
 "but is a %s"
-msgstr "%s: 引数の奇数 : 最初の引数は、構造だと予想しますが %s です"
+msgstr "%s: 引数の奇数 : 最初の引数は、構造を予想しますが %s です"
 
 #
 # File: macros/derivative.sci, line: 49
@@ -209,13 +211,13 @@ msgstr "%s: 問題は制約を持っています、しかし、変数アルゴ�
 #, c-format
 msgid ""
 "%s: Problem has no constraints, but Box algorithm is designed for them."
-msgstr "%s:  問題は制約を持っていません、しかし、ボックスアルゴリズムは、それらのためにデザインされます。"
+msgstr "%s: 問題は制約を持っていません、しかし、ボックスアルゴリズムは、それらのためにデザインされます。"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 174
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
-msgstr "%s: Qは、対称的な明確な定義ではありません。\n"
+msgstr "%s: Qは、非対称な完全定義ではありません。\n"
 
 #, c-format
 msgid ""
@@ -252,7 +254,7 @@ msgstr "%s: 引数 #%d の要素は、 [%d %d] でなくてはなりません。
 
 #, c-format
 msgid "%s: The exclusion index vector has %d rows instead of 1."
-msgstr ""
+msgstr "%s: 排他インデックス・ベクトルは、１でなく %d を持っています。"
 
 #, c-format
 msgid ""
@@ -292,18 +294,22 @@ msgid ""
 "1."
 msgstr "%s: 値配列が %d である関数の列の数、1を予想します。"
 
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 81
 #, c-format
 msgid "%s: The number of columns in x is %d, while expected %d."
-msgstr ""
+msgstr "%1$s: %3$d が予想されましたが、列の数が %2$d です。"
 
 #, c-format
 msgid ""
 "%s: The number of rows in the function value array is %d, while expected %d."
 msgstr "%s: 値配列が %d である関数の数、%d を予想します。"
 
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 81
 #, c-format
 msgid "%s: The number of rows in x is %d, while expected %d."
-msgstr ""
+msgstr "%1$s: %3$d が予想されましたが、行の数が %2$d です。"
 
 #, c-format
 msgid "%s: The number of variable is zero."
@@ -331,12 +337,12 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
-msgstr ""
+msgstr "%s: ''OutputFcn'' オプション の値は、ノルム関数リストではありません。"
 
 #, c-format
 msgid ""
 "%s: The value of the ''PlotFcns'' option is neither a function nor a list."
-msgstr ""
+msgstr "%s: ''PlotFcns'' オプション の値は、ノルム関数リストではありません。"
 
 #, c-format
 msgid ""
@@ -350,17 +356,13 @@ msgid ""
 "%d"
 msgstr "%s: x0ベクトルは、行の行列と予想します、しかし、現在の形は、%d x %d です"
 
-#
-# File: sci_gateway/c/sci_qld.c, line: 148
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s: 多すぎる繰り返し(%d 以上)。\n"
+msgstr "%s: 多すぎる反復(%d 以上)。\n"
 
-#
-# File: macros/karmarkar.sci, line: 56
 #, c-format
 msgid "%s: Unbounded problem!"
-msgstr "%s:果てしない問題!"
+msgstr "%s: 果てしない問題!"
 
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
@@ -368,11 +370,11 @@ msgstr "%s: 関数評価 %s の思いがけない最大数です。"
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
-msgstr "%s: 繰り返し %s の思いがけない最大数です。"
+msgstr "%s: 反復 %s の思いがけない最大数です。"
 
 #, c-format
 msgid "%s: Unexpected negative value %s for %s option"
-msgstr ""
+msgstr "%1$s: %3$s オプション の想定しない負の値 %2$s"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -485,7 +487,7 @@ msgstr "%s: 未知の刻み %s です"
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
-msgstr ""
+msgstr "%1$s: %3$s オプション の未知の値 %2$s"
 
 #, c-format
 msgid "%s: Unknown value %s for -scalingsimplex0 option"

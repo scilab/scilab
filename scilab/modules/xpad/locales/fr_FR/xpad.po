@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-12 09:33+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-11-23 13:38+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -29,18 +29,24 @@ msgstr "%s est un répertoire."
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Plus de mémoire disponible.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire réel attendu.\n"
+"%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d : Mêmes "
+"dimensions attendues.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s : Mauvais type pour l'argument %d : matrice réelle attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
-"est attendue.\n"
+"%s : Mauvais type pour l'argument n°%d : Matrice de chaînes de caractères "
+"attendue.\n"
 
 msgid "?"
 msgstr "?"
@@ -53,9 +59,6 @@ msgstr "A propos"
 
 msgid "All"
 msgstr "Tous"
-
-msgid "All rights reserved"
-msgstr "Tout droits réservés"
 
 msgid "Auto Reformat Selection"
 msgstr "Reformatage automatique de la sélection"
@@ -71,9 +74,6 @@ msgstr "Ne peut pas charger \"xpadConfiguration.xml\""
 
 msgid "Case sensitive"
 msgstr "Respecter la casse"
-
-msgid "CeCILL License"
-msgstr "Licence CeCILL"
 
 msgid "Close"
 msgstr "Fermer"
@@ -93,8 +93,11 @@ msgstr "Continuer ?"
 msgid "Copy"
 msgstr "Copier"
 
-msgid "Copyright 2009"
-msgstr "Copyright 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr "Copyright (c) 2009 (INRIA)"
+
+msgid "Correct Indentation"
+msgstr "Indentation correcte"
 
 msgid "Cut"
 msgstr "Couper"
@@ -115,10 +118,10 @@ msgid "Edit"
 msgstr "Edition"
 
 msgid "Editor 1.0"
-msgstr ""
+msgstr "Editeur 1.0"
 
 msgid "Editor error"
-msgstr ""
+msgstr "Erreur Editeur"
 
 msgid "Encoding"
 msgstr "Encodage"
@@ -211,10 +214,7 @@ msgid "Recent Files"
 msgstr "Fichiers récents"
 
 msgid "Redo"
-msgstr "Refaire"
-
-msgid "Reformat Selection"
-msgstr "Reformatage de la sélection"
+msgstr "Rétablir"
 
 msgid "Regular expressions"
 msgstr "Expressions régulières"
@@ -254,14 +254,11 @@ msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Editeur Scilab version 1.0"
+msgid "Scilab text editor"
+msgstr "Editeur de texte de Scilab"
 
-msgid "Scilab editor"
-msgstr "Editeur Scilab"
-
-msgid "Scilab editor Help"
-msgstr "Aide de l'éditeur Scilab"
+msgid "Scilab text editor help"
+msgstr "Aide de l'éditeur de texte de Scilab"
 
 msgid "Scope"
 msgstr "Scope"
@@ -281,6 +278,12 @@ msgstr "Régler les couleurs"
 msgid "Set Font"
 msgstr "Définir la police"
 
+msgid "Shift Left"
+msgstr "Maj. gauche"
+
+msgid "Shift Right"
+msgstr "Maj. droit"
+
 msgid "Show/Hide ToolBar"
 msgstr "Afficher/Cacher la barre d'outils"
 
@@ -290,11 +293,8 @@ msgstr "Chaîne %s non trouvée"
 msgid "Syntax Type"
 msgstr "Type de syntaxe"
 
-msgid "Tabify Selection"
-msgstr "Indenter la sélection"
-
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "Consortium Scilab / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Scilab Consortium (DIGITEO)"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -331,9 +331,6 @@ msgstr "Décommenter la sélection"
 
 msgid "Undo"
 msgstr "Annuler"
-
-msgid "Untabify Selection"
-msgstr "Désindenter la sélection"
 
 msgid "Untitled "
 msgstr "Sans titre "
