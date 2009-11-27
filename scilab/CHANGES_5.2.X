@@ -1403,6 +1403,8 @@ Bug fixes:
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 
+* bug 5351 fixed - Remove ports on a block, remove the connected links. 
+
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
