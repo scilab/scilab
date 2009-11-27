@@ -259,6 +259,7 @@ Bug fixes:
 
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
+* bug 5507 fixed - whereis(bin2dec) returned a error.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
