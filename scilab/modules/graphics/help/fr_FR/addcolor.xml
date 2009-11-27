@@ -52,7 +52,9 @@ plot3d();
 h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
- ]]></refsection>
+  ]]>
+ </programlisting>
+ </refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
