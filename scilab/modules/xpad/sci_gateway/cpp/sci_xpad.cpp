@@ -96,7 +96,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 
 		for(i = 0; i < m1 * n1; i++)
 		{
-			pStVarOne[i] = (wchar_t *)MALLOC(sizeof(wchar_t *) * (lenStVarOne[i] + 1));
+			pStVarOne[i] = (wchar_t *)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
 		}
   
 		/* get strings */
