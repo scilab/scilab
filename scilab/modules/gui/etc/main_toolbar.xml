@@ -64,6 +64,13 @@
 
     <separator/>
 
+    <!-- Xcos -->
+    <button icon="utilities-system-monitor.png" tooltiptext="Xcos">
+        <callback instruction='xcos();' type="0"/>
+    </button>
+
+    <separator/>
+
     <!-- Démos -->
     <button icon="applications-system.png" tooltiptext="Scilab Demonstrations">
         <callback instruction='demo_gui();' type="0"/>
