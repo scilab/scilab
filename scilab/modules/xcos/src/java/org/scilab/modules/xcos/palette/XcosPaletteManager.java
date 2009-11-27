@@ -94,10 +94,10 @@ public final class XcosPaletteManager {
 	    new PaletteStringDescriptor(XcosMessages.EVENTS_PAL, new String[] {
 		    "ANDBLK", "ANDLOG_f", "CEVENTSCOPE", "CLKFROM", "CLKGOTO",
 		    "CLKGotoTagVisibility", "CLKOUTV_f", "CLKSOMV_f",
-		    "CLOCK_c", "EDGE_TRIGGER", "ESELECT_f", "EVTDLY_c",
+		    "CLOCK_c", "EDGE_TRIGGER","ENDBLK", "END_c", "ESELECT_f", "EVTDLY_c",
 		    "EVTGEN_f", "EVTVARDLY", "Extract_Activation", "HALT_f",
 		    "IFTHEL_f", "M_freq", "MCLOCK_f", "MFCLCK_f", "REGISTER",
-		    "SampleCLK", "freq_div", "ENDBLK", "END_c"}),
+		    "SampleCLK", "freq_div"}),
 
 	    /** MATH OPERATIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.MATHSOPS_PAL,
@@ -167,8 +167,8 @@ public final class XcosPaletteManager {
 	    new PaletteStringDescriptor(XcosMessages.SINKS_PAL, new String[] {
 		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CMAT3D",
 		    "CMATVIEW", "CMSCOPE", "CSCOPE", "CSCOPXY", "CSCOPXY3D",
-		    "HALT_f", "TOWS_c", "TRASH_f", "WFILE_f", "WRITEAU_f",
-		    "WRITEC_f", "ENDBLK", "END_c"}),
+		    "ENDBLK", "END_c", "HALT_f", "TOWS_c", "TRASH_f",
+		    "WFILE_f", "WRITEAU_f", "WRITEC_f" }),
 
 	    /** SOURCES palette */
 	    new PaletteStringDescriptor(XcosMessages.SOURCES_PAL, new String[] {
