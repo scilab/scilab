@@ -236,6 +236,8 @@ Bug fixes:
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
+* bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5445 fixed - Xcos: update modified state on undo/redo
@@ -254,6 +256,8 @@ Bug fixes:
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
 
 * bug 5497 fixed - Editor: selection drag is now available.
+
+* bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

@@ -71,18 +71,9 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-
 	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 	if (lenStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
-		return 0;
-	}
-
-	pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
-	if (pStVarOne == NULL)
-	{
-		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
@@ -103,7 +94,36 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	for (i = 0; i< m1 * n1; i++)
+	pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
+	if (pStVarOne == NULL)
+	{
+		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
+
+	for (i = 0; i < m1 * n1; i++)
+	{
+		pStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
+		if (pStVarOne[i] == NULL)
+		{
+			freeArrayOfWideString(pStVarOne, m1 * n1);
+			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			return 0;
+		}
+	}
+
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if(sciErr.iErr)
+	{
+		freeArrayOfWideString(pStVarOne, m1 * n1);
+		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	for (i = 0; i < m1 * n1; i++)
 	{
 		wchar_t *expandedPath = expandPathVariableW(pStVarOne[i]);
 		if (expandedPath)

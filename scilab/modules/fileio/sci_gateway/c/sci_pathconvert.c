@@ -89,7 +89,6 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-
 		pStVarFour = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarFour + 1));
 		if (pStVarFour == NULL)
 		{
@@ -282,14 +281,6 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
-		if (pStVarOne == NULL)
-		{
-			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
-			return 0;
-		}
-
 		results = (wchar_t **)MALLOC(sizeof(wchar_t*) * (m1 * n1));
 
 		if (results == NULL)
@@ -298,6 +289,33 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
+		}
+
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
+		if (pStVarOne == NULL)
+		{
+			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			return 0;
+		}
+
+		for( i = 0; i < m1 * n1; i++)
+		{
+			pStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne[i] + 1));
+			if (pStVarOne[i] == NULL)
+			{
+				if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+				freeArrayOfWideString(pStVarOne, m1 * n1);
+				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				return 0;
+			}
 		}
 
 		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
@@ -324,6 +342,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		freeArrayOfWideString(results, m1 * n1);
+		freeArrayOfWideString(pStVarOne, m1 * n1);
 	}
 	else
 	{

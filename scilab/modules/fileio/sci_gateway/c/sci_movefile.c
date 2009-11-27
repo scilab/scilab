@@ -80,6 +80,14 @@ int sci_movefile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
+	// get lenStVarOne
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
 	// get value of first argument only now (+ 2 if we add file separator @ the end)
 	pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 2));
 	if (pStVarOne == NULL)
@@ -127,6 +135,13 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+		return 0;
+	}
+
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
