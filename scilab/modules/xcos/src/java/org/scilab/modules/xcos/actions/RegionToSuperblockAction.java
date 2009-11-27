@@ -50,6 +50,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.view.mxGraph;
 
 public class RegionToSuperblockAction extends DefaultAction {
 
@@ -99,12 +100,22 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	graph.info(XcosMessages.GENERATE_SUPERBLOCK);
+	graph.getModel().beginUpdate();
 
 	/*
 	 * Update links selection
 	 */
 	updateForNotSelectedLinks(graph);
-
+	
+	/*
+	 * Clone cells and generate a translation matrix between old and new mxCells
+	 */
+	Object[] cellsCopy = getGraph(null).cloneCells(getGraph(null).getSelectionCells());
+	Object[] translationMatrix = new Object[cellsCopy.length]; 
+	for (int i = 0; i < translationMatrix.length; i++) {
+	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
+	}
+	
 	/*
 	 * Getting selection rectangle
 	 */
@@ -113,8 +124,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (int i = 0; i < graph.getSelectionCells().length; ++i) {
-	    mxCell current = (mxCell) graph.getSelectionCells()[i];
+	for (int i = 0; i < cellsCopy.length; ++i) {
+	    mxCell current = (mxCell) cellsCopy[i];
 	    if (current instanceof BasicBlock) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
@@ -138,17 +149,22 @@ public class RegionToSuperblockAction extends DefaultAction {
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 
 	diagram.getModel().beginUpdate();
-	diagram.addCells(graph.getSelectionCells());
+	diagram.addCells(cellsCopy);
 	diagram.getModel().endUpdate();
 
 	/*
 	 * Find broken links, to insert input/output blocks And update the child
 	 * graph
 	 */
-	List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
+	List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells(), cellsCopy);
 	List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
 	updateChildGraph(diagram, breaks, maxValues);
 
+	/*
+	 * Delete the selected cells from the parent graph
+	 */
+	graph.removeCells(graph.getSelectionCells());
+	
 	/*
 	 * Update block with real parameters
 	 */
@@ -168,6 +184,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	createLinks(graph, superBlock, breaks);
 	superBlock.closeBlockSettings();
 
+	graph.getModel().endUpdate();
 	graph.refresh();
 	diagram.refresh();
 	graph.info(XcosMessages.EMPTY_INFO);
@@ -407,8 +424,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     }
 
-    private List<BrokenLink> getBreakLink(Object[] objs) {
-	List<BrokenLink> breaks = new ArrayList<BrokenLink>();
+    private List<BrokenLink> getBreakLink(Object[] objs, Object[] copiedCells) {
+	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	for (int i = 0; i < objs.length; i++) {
 	    if (objs[i] instanceof BasicBlock) {
@@ -422,15 +439,16 @@ public class RegionToSuperblockAction extends DefaultAction {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
 			    if (!isInSelection(objs, source)) {
-				breaks.add(new BrokenLink(link, source
-					.getGeometry(), false));
+				BasicLink copiedLink = (BasicLink) ((BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j)).getEdgeAt(0);
+				BasicBlock copiedSource = (BasicBlock) (link.getSource().getParent());
+				breaks.add(new BrokenLink(copiedLink, copiedSource.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
-			    BasicBlock target = (BasicBlock) (link.getTarget()
-				    .getParent());
+			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
 			    if (!isInSelection(objs, target)) {
-				breaks.add(new BrokenLink(link, target
-					.getGeometry(), true));
+				BasicLink copiedLink = (BasicLink) ((BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j)).getEdgeAt(0);
+				BasicBlock copiedTarget = (BasicBlock) (link.getTarget().getParent());
+				breaks.add(new BrokenLink(copiedLink, copiedTarget.getGeometry(), true));
 			    }
 			}
 		    }
