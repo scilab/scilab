@@ -8,7 +8,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-function libn = ilib_compile(lib_name,makename,files, ..
+function libn = ilib_compile_scicos(lib_name,makename,files, ..
 				                         ldflags, ..
 				                         cflags, ..
 				                         fflags, ..
@@ -97,6 +97,9 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	      cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
 	  end
 	  cflags=" -I"+SCI+"/libs/MALLOC/includes/ " + cflags;
+
+	  // path for scicos_block.h
+	  cflags = cflags+" -I"+SCI+"/routines/";
 
  	  for x = defaultModulesFHeader(:)' 
 	  	  fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
