@@ -42,11 +42,8 @@ public class PortCheck extends mxMultiplicity {
     }
 
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
-    {
-	//System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
-	//System.err.println("Versus : "+sourceTemplate.getClass().getSimpleName()+" -> "+targetTemplate.getClass().getSimpleName());
+    {	
 	if (isTypeCompatible(source, target)) { return null; }
-
 	return errorMessage;
     }
 
@@ -63,6 +60,7 @@ public class PortCheck extends mxMultiplicity {
 	    if (secondPort instanceof BasicPort) {
 		BasicPort port = (BasicPort) secondPort;
 		if (port.getEdgeCount() > 0) {
+		    System.err.println("Port already connected !!");
 		    return false;
 		}
 	    }

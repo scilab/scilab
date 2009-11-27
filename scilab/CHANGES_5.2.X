@@ -131,6 +131,8 @@ Bug fixes:
 
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
+* bug 5184 fixed - Xcos: Setup menu values are localized
+
 * bug 5189 fixed - No more give an error when the user cancels file selection
                    for saving.
 
@@ -233,6 +235,8 @@ Bug fixes:
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+
+* bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
@@ -1404,6 +1408,8 @@ Bug fixes:
 * bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
+
+* bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
