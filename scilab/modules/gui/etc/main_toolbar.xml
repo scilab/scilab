@@ -66,7 +66,7 @@
 
     <!-- Xcos -->
     <button icon="utilities-system-monitor.png" tooltiptext="Xcos">
-        <callback instruction='xcos();' type="0"/>
+        <callback instruction='if with_module("xcos") then xcos(); else disp(gettext("Please install xcos module.")); end' type="0"/>
     </button>
 
     <separator/>

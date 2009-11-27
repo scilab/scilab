@@ -152,11 +152,11 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Xcos">
-            <callback instruction='xcos();' type="0"/>
+            <callback instruction='if with_module("xcos") then xcos(); else disp(gettext("Please install xcos module.")); end' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Matlab to Scilab translator">
-            <callback instruction='mfile2sci();' type="0"/>
+            <callback instruction='if with_module("m2sci") then mfile2sci(); else disp(gettext("Please install m2sci module.")); end' type="0"/>
         </submenu>
         <separator/>
         <submenu label="M&amp;odule manager - ATOMS">
