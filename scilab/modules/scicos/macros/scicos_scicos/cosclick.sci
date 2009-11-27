@@ -44,10 +44,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   if rhs==1 then
     [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
   else
-    [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:      
+    [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop: 
   end                                        //**    CLEAR ANY PREVIOUS
   //**--------------------------------------------------------------------------- //
-
   %pt = [xc,yc] ; //** acquire the position  
   //**--------------------------------------------------------------------------
   //** cosclick() filter and command association 
@@ -74,7 +73,6 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     CmenSave=Cmenu;
     execstr(str);Cmenu=CmenSave;
   end
-
   
   //**----- 
   // If the event is a TCL event then win=[]

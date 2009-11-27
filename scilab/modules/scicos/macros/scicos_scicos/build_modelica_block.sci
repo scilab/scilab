@@ -60,7 +60,6 @@ end
 //## compile modelica files
 [ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=compile_modelica(path+name+'.mo',Mblocks);
 
-
 if ~ok then return,end
 
 //nx is the state dimension

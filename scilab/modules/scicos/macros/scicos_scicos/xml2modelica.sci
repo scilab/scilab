@@ -19,18 +19,26 @@
 // See the file ../license.txt
 //
 function  ok=xml2modelica(xmlfile,Flati)
+
 //Scilab interface  with external tool modelicac.exe
   tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
   xmlfile=pathconvert(xmlfile,%f,%t);  
   Flati=pathconvert(Flati,%f,%t);  
   
-  exe='""'+pathconvert(SCI+'/bin/xml2modelica.exe',%f,%t)+'""'
+  exe='""'+pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)+'"" '
   
   in='""'+xmlfile+'""'
-  out='-o ""'+Flati+'""'
-  Errfile= '>""'+tmpdir+'ixml2modelica.err""'
+  out=' -o ""'+Flati+'"" '
+  Errfile= ' > ""'+tmpdir+'ixml2modelica.err""'
   instr=strcat([exe in out Errfile],' ')
  "'    
+ 
+  origin_xmlfile = mgetl(xmlfile);
+  modif_xml = strsubst(origin_xmlfile,'<fixed_orig>false</fixed_orig>','');
+  modif_xml(modif_xml == '')= [];
+  mputl(modif_xml,xmlfile)
+
+
   if MSDOS then, 
     mputl(instr,tmpdir+'igenx.bat');
     instr=tmpdir+'igenx.bat';

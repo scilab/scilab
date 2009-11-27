@@ -32,7 +32,7 @@ function ilib_gen_Make_unix(names,   ..
 	end
 
   if isdef('tables') then 
-  
+
 	/// Check tables ... the second element should be the file name
 	if typeof(tables)<>'list' then 
 	  tables=list(tables)
@@ -53,10 +53,9 @@ function ilib_gen_Make_unix(names,   ..
 	  end
 	end
 	
-	end // isdef('tables')
+  end // isdef('tables')
 
-		
-	originPath  = pwd();
+ 	originPath  = pwd();
 	linkBuildDir    = TMPDIR;
 	commandpath = SCI+"/modules/dynamic_link/src/scripts";
 	[fd,ierr] = mopen(commandpath+"/write.test","w+");
@@ -182,6 +181,7 @@ function ilib_gen_Make_unix(names,   ..
 		mdelete(linkBuildDir+"/Makefile.orig");
 		generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
 	else
+	
 		// Reuse existing Makefile.orig because compilation flags are all empty 
 		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkBuildDir);
 
@@ -203,7 +203,7 @@ function ilib_gen_Make_unix(names,   ..
 		sleep(1000);
 		unix_g("touch Makefile");
 	end
-	
+
 	// Alter the Makefile in order to compile the right files
 	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make");

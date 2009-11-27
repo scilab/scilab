@@ -12,6 +12,8 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 //------------------------------------
 // generate a Makefile for gateway
 
+  pause
+
   [lhs,rhs] = argn(0);
   if rhs < 4 then
     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_Make"));

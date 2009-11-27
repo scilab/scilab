@@ -19,6 +19,8 @@
 // See the file ../license.txt
 //
 function ok=Compute_cic(method,Nunknowns)
+
+
   %_winId=TCL_GetVar("IHMLoc");
   global icpr
   

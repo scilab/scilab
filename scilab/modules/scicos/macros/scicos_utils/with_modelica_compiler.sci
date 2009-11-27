@@ -41,6 +41,6 @@ function r = with_modelica_compiler()
   
   // TEMP. WORKAROUND SINCE WE DONT HAVE MODELICA
   
-  r = %f
+//  r = %f
 endfunction
 

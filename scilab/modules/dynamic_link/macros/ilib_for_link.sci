@@ -20,6 +20,7 @@ function libn = ilib_for_link(names, ..
                               cflags, ..
                               fflags, ..
                               cc)
+ 
 
   [lhs,rhs] = argn(0);
   if rhs < 4 then
@@ -69,6 +70,7 @@ function libn = ilib_for_link(names, ..
     mprintf(gettext("   Running the Makefile\n"));
   end
   if (libname == "") then libname = names(1);end
+
   libn = ilib_compile('lib' + libname, makename, files);
   
   if ( ilib_verbose() <> 0 ) then

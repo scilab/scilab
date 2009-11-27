@@ -37,6 +37,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
+
   //** if an error has ocurred in do_update
   //** then we exit from do_run
   if ~ok then
@@ -79,6 +80,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     [alreadyran,%cpr]=do_terminate()
     choix=[]
   end
+
 
   //** switch appropriate solver
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
@@ -205,9 +207,9 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       //return;
     end
 
-    
     ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
                  '''start'',tolerances)','errcatch')
+
 
     %cpr.state=state
     //** error case
@@ -242,11 +244,12 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   stopmenu.Enable='on';
   //setmenu(curwin,_("Stop"))
   needreplay=%t
-
+  
   //** run scicosim via 'start' flag
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	       '''run'',tolerances)','errcatch')
  
+
   %cpr.state=state
   //** no error
   if ierr==0 then
@@ -260,6 +263,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       //[alreadyran,%cpr]=do_terminate()
       needstart=%t
       alreadyran=%f
+  
       //** run scicosim via 'finish' flag
       ierr=execstr('[state,t]=scicosim(%cpr.state,tf,tf,%cpr.sim,'+..
                    '''finish'',tolerances)','errcatch')

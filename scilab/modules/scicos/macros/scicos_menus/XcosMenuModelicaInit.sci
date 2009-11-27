@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function XcosMenuModelicainitialize()
+function XcosMenuModelicaInit()
 // Copyright INRIA
   Cmenu=[]
 
@@ -32,6 +32,7 @@ function XcosMenuModelicainitialize()
   path=TMPDIR+'/';
   path=pathconvert(stripblanks(path),%t,%t)
   
+
   mofile=path+name+'.mo';
   xmlfile=path+name+'f_init.xml';
 //========================================

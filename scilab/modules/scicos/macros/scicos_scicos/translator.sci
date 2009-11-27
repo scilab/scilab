@@ -26,7 +26,7 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 // - the flat Modelica model file in outpath+name+'f.mo'
 // - the flat xml representation file in  outpath+name+'f_init.xml'
 // - the flat xml  file in  outpath+name+'f_relations.xml'
-   
+  
   mlibs=pathconvert(modelica_libs,%f,%t)
   filemo=pathconvert(filemo,%f,%t) 
   Flat=pathconvert(Flat,%f,%t) 
@@ -34,7 +34,6 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
   name=basename(filemo)
   namef=name+'f';
 
- 
   molibs=[]
   mlibsM=pathconvert(TMPDIR+'/Modelica/',%f,%t)      
   for k=1:size(Mblocks,'r')
@@ -80,10 +79,15 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
   exe='""'+pathconvert(SCI+'/bin/translator.exe',%f,%t)+'"" '
   out=' -o ""'+Flat+'""' //flat modelica
   Errfile=outpath+'S_translator.err""';
-    
-  instr=exe+translator_libs+out+' -command ""'+name+' '+namef+';"" >""'+Errfile
-  if MSDOS then,   mputl(instr,tmpdir+'gent.bat'), instr=tmpdir+'gent.bat';end
-  if execstr('unix_s(instr)','errcatch')<>0 then
+
+  // instr=exe+translator_libs+out+' -command ""'+name+' '+namef+';"" >""'+Errfile
+
+  instr=exe+translator_libs+out+' -with-init -command ""'+name+' '+namef+';"" >""'+Errfile
+
+ if MSDOS then,   mputl(instr,tmpdir+'gent.bat'), instr=tmpdir+'gent.bat';end
+ 
+
+ if execstr('unix_s(instr)','errcatch')<>0 then
     messagebox([_('-------Modelica translator error message:-----');
 		mgetl(outpath+'S_translator.err')],'error','modal');
     ok=%f,

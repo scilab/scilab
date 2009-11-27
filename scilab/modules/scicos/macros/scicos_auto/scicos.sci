@@ -125,9 +125,19 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
     %zoom    = 1.4      ; //** original value by Ramine
     pal_mode = %f       ;  // Palette edition mode
 
+
+
+
+
+
+
+    TCL_EvalFile(SCI+"/modules/scicos/macros/scicos_scicos/MIHM.tcl")
+
+
+
     //**---- Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
-    scilab5fonts = xlfont() ; //** recover the full font list
-    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one
+//    scilab5fonts = xlfont() ; //** recover the full font list
+//    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one
  
     
     //---- Load user's customization files

@@ -31,6 +31,7 @@ function  [ok]=Link_modelica_C(Cfile)
   //below newest(Cfile,Ofile) is used instead of  updateC in case where
   //Cfile has been manually modified (debug,...)
   if newest(Cfile,Ofile)==1 then
+
     //  build the list of external functions libraries
     // remove repreated directories from mlibs
     rep=[];
@@ -70,6 +71,9 @@ function  [ok]=Link_modelica_C(Cfile)
 
     //** build shared library with the C code
     files = name;
+
+    // [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_superblock42(all_scs_m,numk,atomicflag)
+
     //## buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cflags)
     ok = buildnewblock(name,files,'','',libs,TMPDIR,'',E2);
     if ~ok then return, end

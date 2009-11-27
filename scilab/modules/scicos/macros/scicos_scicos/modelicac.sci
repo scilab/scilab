@@ -20,6 +20,7 @@
 //
 function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,init)
 //Scilab interface  with external tool modelicac.exe
+
   if argn(2)<7 then init=%f,end
   incidence=''
   tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
@@ -47,7 +48,7 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,in
     Errfile= '>""'+tmpdir+'S_modelicac.err""'
   end
   instr=strcat([exe,Flat,Flat_functions,XMLfiles,out,JAC,Errfile],' ')
-  
+ 
   if MSDOS then,
     if init then
       mputl(instr,tmpdir+'igenm.bat'), 
@@ -67,7 +68,5 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,in
     ok=%f,
     return
   end     
-  //S. Steer: modelicac produce incorrect include path for Scilab5 fix it
-  //the modelicac code has to be changed when available
-  mputl(strsubst(mgetl(Cfile),'scicos/scicos_block.h','scicos_block.h'), Cfile)
+
 endfunction

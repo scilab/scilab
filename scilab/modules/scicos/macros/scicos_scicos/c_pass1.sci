@@ -51,6 +51,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
 //           it is used only in the Codegeneration case.
 // Fady Nassif 2007. INRIA.
 //c_pass1;
+
 if argn(2)<=1 then flgcdgen=-1, end
 freof=[];
 MaxBlock=countblocks(scs_m);
@@ -238,19 +239,13 @@ else // mixed diagram
 
   [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,TMPDIR+'/');
 
-
-
   if ~ok then
 
    return
 
   end
 
-
-
   blklst(nr+1)=model;
-
-
 
   //make compiled modelica block refer to the set of corresponding
 
@@ -259,8 +254,6 @@ else // mixed diagram
   corinv(nr+1)=corinvm //it may be useful to adapt function making use
 
   //of corinv
-
-
 
   //adjust the numbering of regular block in sco_mat
 

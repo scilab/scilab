@@ -152,3 +152,21 @@ function [scs_m,edited,needcompile,Cmenu,ok]=do_CodeGen(scs_m,%pt)
    end
 
 endfunction
+
+
+function scs_m = goto_target_scs_m(scs_m)
+  //## look if we want generate a sblock
+  //## contained in a sblock
+  kk=super_path
+
+  //## scs_temp becomes the scs_m of the upper-level sblock
+  if size(kk,'*')>1 then
+    while size(kk,'*')>1 do
+      scs_m=scs_m.objs(kk(1)).model.rpar
+      kk(1)=[];
+    end
+    scs_m=scs_m.objs(kk).model.rpar
+  elseif size(kk,'*')>0 then
+    scs_m=scs_m.objs(kk).model.rpar
+  end
+endfunction

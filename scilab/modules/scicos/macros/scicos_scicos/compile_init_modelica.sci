@@ -19,7 +19,8 @@
 // See the file ../license.txt
 //
 function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)  
-  //called by Initilization IHM
+
+   //called by Initilization IHM
   lines(0)
   %_winId=TCL_GetVar("IHMLoc");
   global icpr;
@@ -34,15 +35,56 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
   FlatCi=outpath+xmlmodel+'i.c';
   incidencei=outpath+xmlmodel+'i_incidence_matrix.xml';
   Flat_functions=outpath+xmlmodel+'_functions'+'.mo';
-  
+ 
   //--------------------------------------------------------------------
   ok=xml2modelica(xmlfile,Flati)
   if ~ok then return,end
-  ok=modelicac(Flati,Flat_functions,xmlfileTMP,jaco,FlatCi,%f)
-  if ~ok then return,end
-  mprintf('%s\n',' Init C code   : '+FlatCi);
- 
+
+//  ok=modelicac(Flati,Flat_functions,xmlfileTMP,jaco,FlatCi,%f)
+
+  if jaco=='0' then   
+    JAC='';
+  else
+    JAC=' -jac ';
+  end
+
+ // tmpdir=TMPDIR+'\'; tmpdir=pathconvert(tmpdir,%f,%t) 
+
+ tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
+
+ exe='""'+pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'""'
   
+ Flati=' ""'+Flati+'""'
+
+
+ instr=exe+Flati+' ""'+Flat_functions+'"" '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
+
+ //instr='""modelicac.exe"" ""'+Flati+'"" '+Flat_functions+' '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
+
+//  if ~ok then return,end
+//  mprintf('%s\n',' Init C code   : '+FlatCi);
+
+
+ if MSDOS then, mputl(instr,tmpdir+'igenm.bat'); instr=tmpdir+'igenm.bat'; end
+  if execstr('unix_s(instr)','errcatch')==0 then
+    mprintf('%s',' Init C code   : '+FlatCi); mprintf('\n\r');
+
+    ok=Link_modelica_C(FlatCi)
+    [nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=reading_incidence(incidencei)
+
+    if (~ok) then, 
+      TCL_EvalStr("Compile_finished nok "+ %_winId); 
+      return; 
+    end
+  else
+    MSG3= mgetl(tmpdir+'imodelicac.err');
+    // x_message(['-------Modelica compiler error flat2C:-------';MSG3;'Please read the error message in the Scilab window']);
+    disp(['-------Modelica compiler error flat2C:-------';MSG3;'Please read the error message in the Scilab window']);
+    ok=%f,
+    TCL_EvalStr("Compile_finished nok "+ %_winId); 
+    return	         
+  end
+
   //build model data structure of the block equivalent to the implicit
   bllst=bllst;nblock=length(bllst);
   mdl=bllst(nblock)
@@ -78,6 +120,7 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
       end
     end
   end
+
   TCL_EvalStr("Compile_finished ok "+ %_winId); 
 endfunction
 //-----------------------------------------------------------------------------
