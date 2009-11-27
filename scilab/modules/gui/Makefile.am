@@ -32,6 +32,8 @@ etc/main_menubar.xml \
 etc/main_toolbar.xml \
 etc/flexdock-themes.xml
 
+#### gui : tree functions ####
+MACROSDIRSEXT = macros/tree
 
 include $(top_srcdir)/Makefile.incl.am
 
