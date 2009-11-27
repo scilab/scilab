@@ -411,7 +411,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	//Output data port
 	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
-	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
 
 	//Control port
 	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort(), new CommandControlLink()}, XcosMessages.LINK_ERROR_EVENT_IN);
