@@ -324,6 +324,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		freeArrayOfWideString(results, m1 * n1);
+		freeArrayOfWideString(pStVarOne, m1 * n1);
 	}
 	else
 	{
