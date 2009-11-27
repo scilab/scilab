@@ -8,11 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function C=tree2code(P,prettyprint)
+function C=tree2code(P,bprettyprintformat)
 // Convert a tree returned by macr2tree() to a macro code
 // Input: 
 // - P: 'program' tlist
-// - prettyprint: boolean value, if FALSE (default value), generated code is not formated else it is
+// - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formated else it is
 // Output:
 // - C: character string matrix (colum vector)
 
@@ -24,7 +24,7 @@ end
 // Default value
 rhs = argn(2);
 if rhs==1 then
-  prettyprint=%F
+  bprettyprintformat=%F
 end
 
 C=""
@@ -55,12 +55,12 @@ end
 
 // For each statement, generate corresponding code
 for i=1:size(I)-2 // -2 to ignore last return+EOL
-  if prettyprint then
-    C=cat_code(C,"  "+instruction2code(I(i),prettyprint));
+  if bprettyprintformat then
+    C=cat_code(C,"  "+instruction2code(I(i),bprettyprintformat));
   else
-    C=cat_code(C,instruction2code(I(i),prettyprint));
+    C=cat_code(C,instruction2code(I(i),bprettyprintformat));
   end
-  C = format_txt(C,I(i),prettyprint,I(i+1));
+  C = format_txt(C,I(i),bprettyprintformat,I(i+1));
 end
 
 if P.name<>"" then // Not a batch file

@@ -315,6 +315,7 @@ images/icons/edit-undo.png \
 images/icons/media-floppy.png \
 images/icons/aboutscilab.png \
 images/icons/package-x-generic.png \
+images/icons/utilities-system-monitor.png \
 images/icons/applications-system.png
 
 
