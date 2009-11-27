@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
+import org.scilab.modules.xcos.utils.XcosMessages;
+
 import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
@@ -43,6 +45,7 @@ public class PortCheck extends mxMultiplicity {
 
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
     {	
+	if (isPortNonConnected(source, target)) { return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;}
 	if (isTypeCompatible(source, target)) { return null; }
 	return errorMessage;
     }
@@ -50,21 +53,6 @@ public class PortCheck extends mxMultiplicity {
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
 
 	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    if (firstPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) firstPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-
-	    if (secondPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) secondPort;
-		if (port.getEdgeCount() > 0) {
-		    System.err.println("Port already connected !!");
-		    return false;
-		}
-	    }
-
 	    for (int i = 0; i < targetTemplate.length; ++i) {
 		if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
 		    // We found something compatible !!
@@ -78,5 +66,21 @@ public class PortCheck extends mxMultiplicity {
 	// This rule is not applicable so we want it to be silent.
 	return true;
     }
-
+    
+    private boolean isPortNonConnected(Object firstPort, Object secondPort) {
+	    if (firstPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) firstPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
+	
+	    if (secondPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) secondPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
+	return true;
+    }
 }
