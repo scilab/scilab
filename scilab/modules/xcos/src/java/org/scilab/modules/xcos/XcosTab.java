@@ -186,7 +186,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     }
 
-    public static void showDiagram(XcosDiagram xcosDiagram) {
+    public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
@@ -206,7 +206,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	XcosTab tab = new XcosTab(xcosDiagram);
 	tab.setName(XcosMessages.UNTITLED);
 	xcosDiagram.setParentTab(tab);
-	main.setVisible(true);
 	main.addTab(tab);
 	/*
 	 * MENU BAR
@@ -230,25 +229,33 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 	xcosDiagram.setOpened(true);
-	xcosDiagram.setVisible(true);
 	
+	main.setVisible(true);
+    }
+    
+    public static void showTabFromDiagram(XcosDiagram xcosDiagram) {
+	assert xcosDiagram.isOpened() == true;
+	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
+	
+	xcosDiagram.setVisible(true);
+
 	/*
 	 * Superblock specific customizations
 	 */
 	if (xcosDiagram instanceof SuperBlockDiagram) {
 	    tab.setSimulationActionEnabled(false);
 	}
-	
+
 	/*
 	 * Set buttons enabled
 	 */
 	tab.setActionsEnabled(true);
-	
+
 	// Disabling undo/redo at startup
 	tab.setEnabledRedo(false);
 	tab.setEnabledUndo(false);
     }
-
+    
     /**
      * Update menu displaying recent opened files
      */

@@ -80,7 +80,8 @@ public class SuperBlock extends BasicBlock {
 
 	if(createChildDiagram() == true) {
 	    getChild().setModified(false);
-	    XcosTab.showDiagram(getChild());
+	    XcosTab.createTabFromDiagram(getChild());
+	    XcosTab.showTabFromDiagram(getChild());
 	} else {
 	    getChild().setVisible(true);
 	}
@@ -132,13 +133,11 @@ public class SuperBlock extends BasicBlock {
     public boolean createChildDiagram(boolean generatedUID){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
-    	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters(), false));
     	    child.installSuperBlockListeners();
     	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
-    	    child.info(XcosMessages.EMPTY_INFO);
     	    //only for loading and generate sub block UID
     	    if(generatedUID) {
     		child.generateUID();

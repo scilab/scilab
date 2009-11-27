@@ -65,9 +65,15 @@ public class Xcos {
     }
 
     public static XcosDiagram createEmptyDiagram() {
+	XcosDiagram xcosDiagramm = createANotShownDiagram();
+	XcosTab.showTabFromDiagram(xcosDiagramm);
+	return xcosDiagramm;
+    }
+    
+    public static XcosDiagram createANotShownDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
-	XcosTab.showDiagram(xcosDiagramm);
+	XcosTab.createTabFromDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
 

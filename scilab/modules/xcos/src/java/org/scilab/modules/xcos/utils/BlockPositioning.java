@@ -249,7 +249,24 @@ public final class BlockPositioning {
      * @param newBlockDirection
      */
     public static void updateBlockDirection(BasicBlock block, String newBlockDirection) {
+	
+	
 	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block}, mxConstants.STYLE_DIRECTION, newBlockDirection);
+	int angle = getAngleFromDirection(newBlockDirection);
+	
+	if(angle == 90 || angle == 270) {
+	    mxGeometry newGeom = new mxGeometry();
+	    mxGeometry oldGeom = block.getGeometry();
+	    
+	    newGeom.setX(oldGeom.getCenterX() - oldGeom.getHeight()/2);
+	    newGeom.setY(oldGeom.getCenterY() - oldGeom.getWidth()/2);
+	    newGeom.setWidth(oldGeom.getHeight());
+	    newGeom.setHeight(oldGeom.getWidth());
+	    
+	    block.setGeometry(newGeom);
+	}
+	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block},
+		mxConstants.STYLE_ROTATION, new Integer(angle).toString());
 
 	rotatePorts(block, BasicBlockInfo.getAllInputPorts(block), getDataPortsDirection(newBlockDirection));
 	rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block), getDataPortsDirection(newBlockDirection));
@@ -302,5 +319,13 @@ public final class BlockPositioning {
 
 	updatePortsPosition(block, getNextAntiClockwiseDirection(currentBlockDirection));
 	updateBlockDirection(block, getNextAntiClockwiseDirection(currentBlockDirection));
+    }
+    
+    public static int getAngleFromDirection(String direction) {
+	    if (direction.compareTo(mxConstants.DIRECTION_EAST) == 0) { return 0; }
+	    if (direction.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return 270; }
+	    if (direction.compareTo(mxConstants.DIRECTION_WEST) == 0) { return 180; }
+	    if (direction.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return 90; }
+	    return 0;
     }
 }
