@@ -257,6 +257,10 @@ Bug fixes:
 
 * bug 5497 fixed - Editor: selection drag is now available.
 
+* bug 5499 fixed - tbx_build_loader() automatically added a test about version in 
+                   the loader.sce even if the toolbox 100% written in Scilab
+                   code.
+
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 * bug 5507 fixed - whereis(bin2dec) returned a error.
