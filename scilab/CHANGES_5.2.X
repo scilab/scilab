@@ -131,6 +131,8 @@ Bug fixes:
 
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
+* bug 5184 fixed - Xcos: Setup menu values are localized
+
 * bug 5189 fixed - No more give an error when the user cancels file selection
                    for saving.
 
