@@ -75,9 +75,6 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
-<path value="$SCILAB/thirdparty/js.jar" load="onUse">
-	<load on="documentationGeneration"/>
-</path>
 <path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
