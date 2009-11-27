@@ -26,7 +26,15 @@ clear modules i WITH_HELPTOOLS WITH_DEMOS
 
 // ====================================================================
 // free all dynamics libraries
-ulink();
+
+// If the environment variable PROFILE_SCILAB_DYNAMIC_LINK is set, then we don't release 
+// the dynamic libraries to allow valgrind to perform the final analysis 
+// and give valuable informations
+
+ierr = execstr('getenv(''PROFILE_SCILAB_DYNAMIC_LINK'')','errcatch');
+if (ierr~=0) then
+  ulink();
+end
 // ====================================================================
 // close diary
 diary(0)
