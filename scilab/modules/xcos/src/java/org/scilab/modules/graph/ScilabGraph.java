@@ -14,24 +14,19 @@ package org.scilab.modules.graph;
 
 import java.util.List;
 
-import javax.swing.undo.UndoManager;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.block.SuperBlockDiagram;
-
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
 import com.mxgraph.swing.handler.mxRubberband;
+import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
 import com.mxgraph.util.mxUndoableEdit;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxGraph;
 
 public class ScilabGraph extends mxGraph {
@@ -46,50 +41,56 @@ public class ScilabGraph extends mxGraph {
     private boolean modified = false;
     private Tab parentTab;
     private boolean opened = false;
-    private boolean redoInAction = false ;
-    
+    private boolean redoInAction = false;
+    private int undoCounter = 0;
+
     /**
      * 
      */
-    protected mxIEventListener changeTracker = new mxIEventListener()
-    {
+    protected mxIEventListener changeTracker = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
 	    setModified(true);
 	}
-    };   
+    };
 
-    protected mxIEventListener undoHandler = new mxIEventListener()
-    {
+    protected mxIEventListener undoHandler = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
-	
-		if (! redoInAction){
-			undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
-		}
+
+	    if (!redoInAction) {
+		undoManager.undoableEditHappened((mxUndoableEdit) evt
+			.getArgAt(0));
+		incrementUndoCounter();
+	    }
 	}
     };
-    
-	mxIEventListener selectionHandler = new mxIEventListener()
-	{
-		public void invoke(Object source, mxEventObject evt)
-		{
-			List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
-			setSelectionCells(getSelectionCellsForChanges(changes));
-		}
-	};
 
+    mxIEventListener selectionHandler = new mxIEventListener() {
+	public void invoke(Object source, mxEventObject evt) {
+	    List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+	    setSelectionCells(getSelectionCellsForChanges(changes));
+	}
+    };
 
     public ScilabGraph() {
+	super();
+	
+	/*
+	 * Disabling the default connected action and event listeners.
+	 */
+	mxGraphActions.getSelectNextAction().setEnabled(false);
+	mxGraphActions.getSelectPreviousAction().setEnabled(false);
+	mxGraphActions.getSelectChildAction().setEnabled(false);
+	mxGraphActions.getSelectParentAction().setEnabled(false);
+	
 	// Undo / Redo capabilities
 	getModel().addListener(mxEvent.UNDO, undoHandler);
 	getView().addListener(mxEvent.UNDO, undoHandler);
-    	
-    
+
 	// Keeps the selection in sync with the command history
 
 	undoManager.addListener(mxEvent.UNDO, selectionHandler);
 	undoManager.addListener(mxEvent.REDO, selectionHandler);
 
-	
 	component = new mxGraphComponent(this);
 
 	// Adds rubberband selection
@@ -98,28 +99,26 @@ public class ScilabGraph extends mxGraph {
 	// Modified property change
 	getModel().addListener(mxEvent.CHANGE, changeTracker);
 
-	//addKeyListener(new XcosShortCut());
-	//setMarqueeHandler(new XcosPortAction());
-	//getGraphLayoutCache().setFactory(new DiagrammFactory());
-	//setPortsScaled(true);
-	//setVisible(true);
+	// addKeyListener(new XcosShortCut());
+	// setMarqueeHandler(new XcosPortAction());
+	// getGraphLayoutCache().setFactory(new DiagrammFactory());
+	// setPortsScaled(true);
+	// setVisible(true);
 	// Control-drag should clone selection
-	//this.setCloneable(true);
-	//this.setPortsVisible(true);
+	// this.setCloneable(true);
+	// this.setPortsVisible(true);
 
 	// Enable edit without final RETURN keystroke
-	//this.setInvokesStopCellEditing(true);
+	// this.setInvokesStopCellEditing(true);
     }
 
     public String getSavedFile() {
-        return savedFile;
+	return savedFile;
     }
 
     public void setSavedFile(String savedFile) {
-        this.savedFile = savedFile;
+	this.savedFile = savedFile;
     }
-
-
 
     public boolean isModified() {
 	return modified;
@@ -133,11 +132,11 @@ public class ScilabGraph extends mxGraph {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+	this.title = title;
     }
-    
+
     public String getTitle() {
-        return title;
+	return title;
     }
 
     public mxGraphComponent getAsComponent() {
@@ -145,31 +144,51 @@ public class ScilabGraph extends mxGraph {
     }
 
     public void undo() {
-    redoInAction = true;
+	decrementUndoCounter();
+	redoInAction = true;
 	undoManager.undo();
 	redoInAction = false;
     }
 
     public void redo() {
-    redoInAction = true;
+	incrementUndoCounter();
+	redoInAction = true;
 	undoManager.redo();
 	redoInAction = false;
     }
-    
 
+    private void incrementUndoCounter() {
+	if (undoCounter < Integer.MAX_VALUE) {
+	    undoCounter++;
+	}
+    }
+
+    private void decrementUndoCounter() {
+	if (undoCounter > Integer.MIN_VALUE) {
+	    undoCounter--;
+	}
+    }
+
+    protected boolean isZeroUndoCounter() {
+	return (undoCounter == 0);
+    }
+
+    protected void resetUndoCounter() {
+	undoCounter = 0;
+    }
 
     public void zoom() {
-	//	this.setScale(2 * this.getScale());
+	// this.setScale(2 * this.getScale());
     }
 
     public void unzoom() {
-	//	this.setScale(this.getScale() / 2);
+	// this.setScale(this.getScale() / 2);
     }
 
     public void delete() {
-	//	if (!isSelectionEmpty()) {
-	//	    getModel().remove(getDescendants(getSelectionCells()));
-	//	}
+	// if (!isSelectionEmpty()) {
+	// getModel().remove(getDescendants(getSelectionCells()));
+	// }
     }
 
     public Tab getParentTab() {
@@ -180,65 +199,29 @@ public class ScilabGraph extends mxGraph {
 	this.parentTab = parentTab;
     }
 
-
     public void setOpened(boolean opened) {
 	this.opened = opened;
     }
-    
+
     public boolean isOpened() {
 	return opened;
     }
 
-    public void  setVisible(boolean visible) {
-	if(parentTab != null) {
-	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
+    public void setVisible(boolean visible) {
+	if (parentTab != null) {
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
+		    .getCorrespondingUIElement(parentTab.getParentWindowId());
 	    xcosWindow.setVisible(visible);
 	}
     }
 
     public boolean isVisible() {
-	if(parentTab != null) {
-	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
+	if (parentTab != null) {
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
+		    .getCorrespondingUIElement(parentTab.getParentWindowId());
 	    return xcosWindow.isVisible();
 	}
 
 	return false;
     }
-    
-    public boolean isChildVisible() {
-	for( int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
-	    Object child = getModel().getChildAt(getDefaultParent(), i);
-	    if(child instanceof SuperBlock){
-		XcosDiagram diag = ((SuperBlock)child).getChild();
-		if(diag != null && diag.isOpened()) {
-		    //if child or sub child is visible
-		    if(diag.isChildVisible() || diag.isVisible()) {
-			return true;
-		    }
-		}
-	    }
-	}
-	return false;
-    }
-    
-    public boolean canClose() {
-	if(isChildVisible() == false) {
-	    return true;
-	}
-	return false;
-    }
-
-    public void closeChildren() {
-	for( int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
-	    Object child = getModel().getChildAt(getDefaultParent(), i);
-	    if(child instanceof SuperBlock){
-		SuperBlock diag = (SuperBlock)child;
-		
-		if(diag.getChild() != null && diag.getChild().isOpened()) {
-		    diag.closeBlockSettings();
-		}
-	    }
-	}
-    }
 }
-

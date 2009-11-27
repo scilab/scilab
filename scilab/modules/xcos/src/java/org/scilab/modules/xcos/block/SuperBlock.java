@@ -24,6 +24,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
@@ -79,7 +80,8 @@ public class SuperBlock extends BasicBlock {
 
 	if(createChildDiagram() == true) {
 	    getChild().setModified(false);
-	    Xcos.showDiagram(getChild());
+	    XcosTab.createTabFromDiagram(getChild());
+	    XcosTab.showTabFromDiagram(getChild());
 	} else {
 	    getChild().setVisible(true);
 	}
@@ -104,7 +106,7 @@ public class SuperBlock extends BasicBlock {
 	    xcosWindow.removeTab(getChild().getParentTab());
 	    getChild().getViewPort().close();
 	    getChild().setOpened(false);
-	    Xcos.closeDiagram(getChild());
+	    XcosTab.closeDiagram(getChild());
 	    if(getParentDiagram().isOpened() && getParentDiagram().isVisible() == false) {
 		getParentDiagram().closeDiagram();
 	    }
@@ -125,18 +127,25 @@ public class SuperBlock extends BasicBlock {
     }
     
     public boolean createChildDiagram(){
+	return createChildDiagram(false);
+    }
+
+    public boolean createChildDiagram(boolean generatedUID){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
-    	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
-    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters(), false));
     	    child.installSuperBlockListeners();
-    		child.setChildrenParentDiagram();
+    	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
-    	    child.info(XcosMessages.EMPTY_INFO);
+    	    //only for loading and generate sub block UID
+    	    if(generatedUID) {
+    		child.generateUID();
+    	    }
     	} else {
     		return false;
     	}
+    	
     	return true;
     }
     

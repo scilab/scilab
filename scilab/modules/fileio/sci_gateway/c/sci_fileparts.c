@@ -73,6 +73,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
+	// get value of lenStVarOne
 	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
@@ -122,6 +123,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
+		// get value of lenStVarTwo
 		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(sciErr.iErr)
 		{

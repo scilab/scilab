@@ -67,6 +67,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
+		// get value of lenStVarOne
 		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(sciErr.iErr)
 		{
@@ -137,14 +138,14 @@ int sci_chdir(char *fname,unsigned long fname_len)
 
 		if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
 		{	
-			BOOL *bOuput = (BOOL*)MALLOC(sizeof(BOOL));
+			BOOL *bOutput = (BOOL*)MALLOC(sizeof(BOOL));
 
 			int ierr = scichdirW(expandedPath);
 
-			if (ierr) bOuput[0] = FALSE;
-			else bOuput[0] = TRUE; 
+			if (ierr) bOutput[0] = FALSE;
+			else bOutput[0] = TRUE; 
 
-			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOuput);
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOutput);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -154,6 +155,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			LhsVar(1) = Rhs + 1;
 			C2F(putlhsvar)();
 			
+			if (bOutput) {FREE(bOutput); bOutput=NULL;}
 		}
 		else /* cd output string current path */
 		{

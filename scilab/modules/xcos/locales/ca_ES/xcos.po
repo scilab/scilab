@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -24,6 +24,10 @@ msgstr "%s: No existeix el fitxer ''%s''.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -54,7 +58,10 @@ msgstr "Afegeix a un diagrama nou"
 msgid "Align Blocks"
 msgstr "Alinea els blocs"
 
-msgid "All rights reserved"
+msgid "Annotations"
+msgstr ""
+
+msgid "Based on Scicos"
 msgstr ""
 
 msgid "Block Help"
@@ -75,9 +82,6 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "CeCILL License"
-msgstr ""
-
 msgid "Center"
 msgstr "Centrat"
 
@@ -93,6 +97,10 @@ msgstr "Un port de comanda ha d'estar connectat a un port de control"
 msgid "Commonly Used Blocks"
 msgstr "Blocs utilitzats habitualment"
 
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+
 msgid "Compile"
 msgstr "Compila"
 
@@ -102,7 +110,7 @@ msgstr "Continu"
 msgid "Copy"
 msgstr "Copia"
 
-msgid "Copyright 2009"
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 
 msgid "Could not save diagram."
@@ -142,8 +150,8 @@ msgstr ""
 "El diagrama s'ha modificat des de l'últim cop que es va desar\n"
 "El voleu desar?"
 
-msgid "Discontinuous"
-msgstr "Discontinu"
+msgid "Discontinuities"
+msgstr ""
 
 msgid "Discrete"
 msgstr "Discret"
@@ -209,6 +217,9 @@ msgstr "Volteja"
 msgid "Format"
 msgstr "Format"
 
+msgid "Generate SuperBlock, please wait ..."
+msgstr ""
+
 msgid "Generating C Code for SuperBlock"
 msgstr ""
 
@@ -229,6 +240,9 @@ msgstr ""
 
 msgid "Image contains no data."
 msgstr "La imatge no conté dades."
+
+msgid "Implicit"
+msgstr ""
 
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
@@ -281,9 +295,6 @@ msgstr ""
 msgid "Middle"
 msgstr "Centre"
 
-msgid "Modelica"
-msgstr "Modelica"
-
 msgid "New"
 msgstr "Nou"
 
@@ -314,8 +325,8 @@ msgstr "Paletes"
 msgid "Paste"
 msgstr "Enganxa"
 
-msgid "Port Action"
-msgstr "Acció de port"
+msgid "Port & Subsystem"
+msgstr ""
 
 msgid "Print"
 msgstr "Imprimeix"
@@ -388,6 +399,9 @@ msgstr ""
 msgid "Setup"
 msgstr "Configura"
 
+msgid "Show parent diagram"
+msgstr ""
+
 msgid "Show/Hide shadow"
 msgstr "Mostra/amaga les ombres"
 
@@ -424,7 +438,7 @@ msgstr ""
 msgid "Superblock mask"
 msgstr "Màscara de superbloc"
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid ""

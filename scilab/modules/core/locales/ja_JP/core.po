@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-11-13 17:49+0000\n"
+"PO-Revision-Date: 2009-11-19 17:18+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:20+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
@@ -49,7 +49,7 @@ msgstr " そして、%2$10d を超えた変数 %1$10d です。\n"
 # File: includes/stack-c.h, line: 315
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " 結果は不正確かもしれません。状態 = %s1\n"
+msgstr " 結果は不正確かもしれません。条件数 = %s1\n"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 236
@@ -140,13 +140,13 @@ msgstr "%s: %s は不正な長さ %d をもっています, (%d) を想定しま
 # File: src/c/stack2.c, line: 2993
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: %s 互換性がない次元 (%dx%d) # (%dx%d) を持っています。\n"
+msgstr "%s: %s は次元 (%dx%d) # (%dx%d) の不一致です。\n"
 
 #
 # File: src/c/stack2.c, line: 3001
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: %s 互換性がない次元を持っています。\n"
+msgstr "%s: %s は次元の不一致です。\n"
 
 #
 # File: macros/edit.sci, line: 34
@@ -239,7 +239,7 @@ msgstr "%s: ファイルは存在しません: %s"
 # File: sci_gateway/c/sci_readgateway.c, line: 114
 #, c-format
 msgid "%s: Impossible to read %s gateway.\n"
-msgstr "%s: 入り口 %s を読むことができません。\n"
+msgstr "%s: 入口 %s を読むことができません。\n"
 
 #
 # File: src/c/stack1.c, line: 2961
@@ -336,12 +336,9 @@ msgstr "%s: オプションの引数 name=val は、終わりにあるべきで�
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr "%s: 値を越えています。[%lu,%lu] ではないです。\n"
 
-#
-# File: src/c/intmacr2tree.c, line: 112
-# File: src/c/intmacr2tree.c, line: 240
 #, c-format
 msgid "%s: Out of code.\n"
-msgstr "%s: コードから\n"
+msgstr "%s: コード外です\n"
 
 #
 # File: macros/check_versions.sci, line: 28
@@ -356,7 +353,7 @@ msgstr "%s: 確認してください: %s.\n"
 # File: src/c/stack2.c, line: 2201
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
-msgstr "%s: 回帰問題、、すみません....\n"
+msgstr "%s: 再帰呼び出しの問題、、すみません....\n"
 
 #
 # File: macros/edit.sci, line: 18
@@ -479,12 +476,10 @@ msgstr "%s: %s のファイルバージョンが不正です。\n"
 msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: 不明な値 %s で不正です。\n"
 
-#
-# File: macros/add_demo.sci, line: 15
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr "%s: 入力引数が正しくありません #%d: scilabスクリプト・ファイルへのPathを予想しました。\n"
+msgstr "%s: 入力引数が正しくありません #%d: scilabスクリプト・ファイルへのPathを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 227
@@ -493,35 +488,31 @@ msgstr "%s: 入力引数が正しくありません #%d: scilabスクリプト�
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: %s モジュール名が不正です。\n"
 
-#
-# File: src/c/stack2.c, line: 80
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の不正な数値です。: %d が予想されます。\n"
+msgstr "%s: 入力引数の数が違います: %d を想定します。\n"
 
-#
-# File: src/c/stack2.c, line: 82
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の不正な数値です。: %d から %d が予想されます。\n"
+msgstr "%1$s:入力引数の数が違います: %3$d への %2$d を想定します。\n"
 
 #
 # File: macros/edit.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の不正な数値です: 少なくとも %d が予想されます。\n"
+msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
 
 #
 # File: sci_gateway/c/sci_where.c, line: 23
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: 不正な数値の入力引数です。\n"
+msgstr "%s: 入力引数の不正な数値です。\n"
 
 #
 # File: macros/whos.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 不正な番号の入力引数です: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の不正な数値です: %d または %d を想定します。\n"
 
 #
 # File: macros/perl.sci, line: 72
@@ -529,17 +520,13 @@ msgstr "%s: 不正な番号の入力引数です: %d または %d を想定し�
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の不正な数値です: 少なくとも %d が予想されます。\n"
 
-#
-# File: src/c/stack2.c, line: 98
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の不正な数値です。: %d が予想されます。\n"
+msgstr "%s: 出力引数の数が違います: %d を想定します。\n"
 
-#
-# File: src/c/stack2.c, line: 100
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 出力引数の不正な数値です。: %d から %d が予想されます。\n"
+msgstr "%s: 出力引数の数が違います: %d から %d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 181
@@ -547,7 +534,7 @@ msgstr "%s: 出力引数の不正な数値です。: %d から %d が予想さ�
 # File: sci_gateway/c/sci_where.c, line: 29
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数で不正な番号: %d を想定します。\n"
+msgstr "%s: 出力引数の不正な数値です: %d を想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 1007
@@ -555,27 +542,13 @@ msgstr "%s: 出力引数で不正な番号: %d を想定します。\n"
 msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr "%s: 入力引数 %d で不正なサイズ: %d を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 155
-# File: src/c/stack1.c, line: 606
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: 入力引数 %d で不正なサイズ:  (%d,%d) を想定します。\n"
+msgstr "%s: 入力引数 %d で不正なサイズ: (%d,%d) を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 571
-# File: src/c/stack1.c, line: 765
-# File: src/c/stack1.c, line: 1031
-# File: src/c/stack1.c, line: 1100
-# File: src/c/stack1.c, line: 1162
-# File: src/c/stack1.c, line: 2372
-# File: src/c/stack1.c, line: 2429
-# File: src/c/stack1.c, line: 2485
-# File: src/c/stack1.c, line: 2521
-# File: src/c/stack1.c, line: 3147
 #, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: スカラー、最少量 %d を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: 少なくとも %d が予想されます。\n"
 
 #
 # File: sci_gateway/c/sci_error.c, line: 87
@@ -610,26 +583,20 @@ msgstr "%s: 入力引数で不正なサイズです。\n"
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr "%s: 引数 #%d で不正な型: スカラー、 '%s' または '%s' を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 625
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: ブール行列を想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: ブール行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 2539
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
-msgstr "%s: 入力引数 %d で不正な型(要素リスト: %d): 箱矢印 を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型(要素リスト: %d): ボックス・ポインタ を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 456
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: 数値行列を想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: 整数行列を想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 3181
@@ -639,54 +606,40 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 %d で不正な型(要素リスト: %d): ハンドルの行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 1191
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of strings "
 "expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: 文字列、または行列を想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: 文字列、または行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 172
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
 "expected.\n"
-msgstr "%s: 入力引数 %d で不正な型(要素リスト: %d): 実数 または複素行列を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型(要素リスト: %d): 実 または複素行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 2380
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: 行ベクトルを想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: 行ベクトルを想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 1041
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: スカラーを想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: スカラーを想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 819
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: 疎行列を想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: 疎行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 1214
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: 文字行列を想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: 文字行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 946
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
-msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: ベクトルを想定します。\n"
+msgstr "%s: 入力引数 %d (要素リスト: %d) で不正な型: ベクトルを想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 2051
@@ -694,17 +647,13 @@ msgstr "%s: 入力引数  %d (要素リスト: %d) で不正な型: ベクトル
 msgid "%s: Wrong type for argument %d : Polygon expected.\n"
 msgstr "%s: 入力引数 %d で不正な型: ポリゴンを想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 627
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: 入力引数  %d で不正な型: ブール行列を想定します。\n"
+msgstr "%s: 入力引数  %d で不正な型: ブーリアン行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 2541
 #, c-format
 msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 箱矢印 を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: ボックス・ポインタ を想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 2469
@@ -731,7 +680,7 @@ msgstr "%s: 入力引数 %d で不正な型: リストを想定します。\n"
 # File: src/c/stack1.c, line: 422
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: サイズのリストは、最も小さな %d と予想しました。\n"
+msgstr "%s: 入力引数 %d で不正な型: サイズのリストは、少なくとも %d と想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 2857
@@ -766,18 +715,13 @@ msgstr "%s: 入力引数 %d で不正な型: 多項式行列を想定します�
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s: 入力引数 %d で不正な型: 実行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 174
-# File: src/c/stack1.c, line: 458
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 実数 または複素行列を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: 実 または複素行列を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 987
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 実数ベクトルを想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: 実ベクトルを想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 2411
@@ -791,11 +735,9 @@ msgstr "%s: 入力引数 %d で不正な型: 行ベクトルを想定します�
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 %d で不正な型: スカラー、'%s' または '%s'を想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 821
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr "%s: 入力引数  %d で不正な型: 疎行列を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: 疎行列を想定します。\n"
 
 #
 # File: src/c/stack1.c, line: 1216
@@ -809,11 +751,9 @@ msgstr "%s: 入力引数 %d で不正な型: 文字行列を想定します。\n
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
 msgstr "%s: 入力引数 %d で不正な型: ベクトルを想定します。\n"
 
-#
-# File: src/c/stack1.c, line: 2210
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 働く数値行列を想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: 動作整数行列を想定します。\n"
 
 #
 # File: src/c/stack2.c, line: 1270
@@ -821,11 +761,9 @@ msgstr "%s: 入力引数 %d で不正な型: 働く数値行列を想定しま�
 msgid "%s: Wrong type for argument: Complex expected.\n"
 msgstr "%s: 引数で不正な型: 複素行列\n"
 
-#
-# File: sci_gateway/c/sci_error.c, line: 95
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数のための不正な型です #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
 
 #
 # File: macros/powershell.sci, line: 42
@@ -914,47 +852,26 @@ msgstr "%s: 入力引数 #%d で不正な型: 編集マクロを想定します�
 msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 名前変数を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 128
-# File: sci_gateway/c/sci_gstacksize.c, line: 223
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラー、 '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラー、'%s' または '%s' を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 230
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラー '%s' または '%s' です。\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラー、'%s' または '%s' です。\n"
 
-#
-# File: macros/powershell.sci, line: 42
-# File: macros/powershell.sci, line: 45
-# File: sci_gateway/c/sci_chdir.c, line: 59
-# File: sci_gateway/c/sci_clearfun.c, line: 65
-# File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_getmd5.c, line: 138
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 59
-# File: sci_gateway/c/sci_getversion.c, line: 239
-# File: sci_gateway/c/sci_readgateway.c, line: 124
-# File: sci_gateway/c/sci_warning.c, line: 98
-# File: sci_gateway/c/sci_with_module.c, line: 47
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数のための不正な型です #%d: 文字列が予想されます。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-#
-# File: macros/perl.sci, line: 24
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: 入力引数の不正な型です #%d: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_error.c, line: 209
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: 入力引数のための不正な型です。\n"
+msgstr "%s: 入力引数の不正な型です。\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 325
@@ -974,12 +891,9 @@ msgstr "%s: 入力引数 #%d または #%d で不正な型: 文字列を想定�
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: 入力引数で不正な型です。\n"
 
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 95
-# File: sci_gateway/c/sci_libraryinfo.c, line: 92
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 1091
@@ -987,12 +901,9 @@ msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\
 msgid "%s: Wrong type value.\n"
 msgstr "%s: 型の値が不正です。\n"
 
-#
-# File: sci_gateway/c/sci_getversion.c, line: 319
-# File: sci_gateway/c/sci_who.c, line: 138
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s' が想定されます。\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 53
@@ -1034,11 +945,9 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s' または '%s'。
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_format.c, line: 215
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '0' or '1' が想定されます。\n"
+msgstr "%s: 入力引数 #%d で不正な値: '0' または '1' を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_format.c, line: 215
@@ -1046,11 +955,9 @@ msgstr "%s: 入力引数 #%d で不正な値: '0' or '1' が想定されます�
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 1,2 または 3 を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_format.c, line: 221
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 数値を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 整数を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_format.c, line: 221
@@ -1058,11 +965,9 @@ msgstr "%s: 入力引数 #%d で不正な値: 数値を想定します。\n"
 msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 整数 を想定します。\n"
 
-#
-# File: macros/typeof.sci, line: 12
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr "%s: 入力引数ための値が不正です #%d: 定義変数が予想されます。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 定義変数を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_newfun.c, line: 92
@@ -1133,11 +1038,9 @@ msgstr "%s: 引数 %d>(%d) 列ベクトルであるべきです。\n"
 msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr "%s: 引数 %d は、最も小さなサイズ %d のリストであるべきです。\n"
 
-#
-# File: src/c/stack2.c, line: 3047
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s:引数 %d(%d) 不正 %s 範囲 (%d), 予想 (%d).\n"
+msgstr "%s: 引数 %d(%d) 不正 %s 範囲 (%d), 予想 (%d).\n"
 
 #
 # File: src/c/stack3.c, line: 283
@@ -1237,7 +1140,7 @@ msgstr "%s: intersiz はあまりにも小さいです。\n"
 # File: src/c/stack1.c, line: 3059
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-msgstr "%s: スタックサイを超えました(使用した stacksize を増やすと作用します)\n"
+msgstr "%s: スタックサイズを超えました(stacksize を増やしてください)\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 1990
@@ -1278,7 +1181,7 @@ msgstr "ファイル(&F)"
 #
 # File: etc/scilab.start, line: 177
 msgid "&Preferences"
-msgstr "お気に入り(&P)"
+msgstr "設定(&P)"
 
 #
 # File: etc/scilab.start, line: 196
@@ -1397,33 +1300,27 @@ msgstr "エラー: メモリ割り当て。\n"
 
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
-msgstr "エラー: 適当な入り口の ID %d ではありません。\n"
+msgstr "エラー: 適当な入口の ID %d ではありません。\n"
 
-#
-# File: src/c/readGateway.c, line: 216
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
-msgstr "エラー: 妥当な入口のファイル %s ではありません('UTF-8'ではありません) エンコーディング '%s' が見つかりました。\n"
+msgstr "エラー: 適当な入口のファイル %s ではありません('UTF-8'ではありません) エンコーディング '%s' が見つかりました。\n"
 
-#
-# File: src/c/readGateway.c, line: 202
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
-"エラー: 妥当な入口のファイル %s ではありません(<GATEWAY>で始まり、<PRIMITIVE gatewayId='' "
+"エラー: 適当な入口のファイル %s ではありません(<GATEWAY>で始まり、<PRIMITIVE gatewayId='' "
 "primitiveId='' primitiveName=''>を含みます)\n"
 
-#
-# File: src/c/getmodules.c, line: 232
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
-"エラー: 妥当なモジュールファイル %s ではありません(エンコーディング '%s' でありません) エンコーディング '%s' が見つかりません。\n"
+"エラー: 適当なモジュールファイル %s ではありません(エンコーディング '%s' でありません) エンコーディング '%s' が見つかりません。\n"
 
 #, c-format
 msgid "Error: Not a valid primitive ID %d.\n"
@@ -1438,14 +1335,12 @@ msgid ""
 msgstr ""
 "エラー: ファイル　%s のバージョンがはっきりしません('UTF-8'ではありません) エンコーディング '%s' が見つかりません。\n"
 
-#
-# File: src/c/loadversion.c, line: 130
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"エラー: 妥当な入口のファイル %s ではありません(<MODULE_VERSION>で始まり、<VERSION major='' minor='' "
+"エラー: 適当な入口のファイル %s ではありません(<MODULE_VERSION>で始まり、<VERSION major='' minor='' "
 "maintenance='' revision='' string=''>を含みます)\n"
 
 #
@@ -1482,7 +1377,7 @@ msgstr "空き仮想メモリ(キロバイト): %*I64d"
 #
 # File: src/c/run.c, line: 510
 msgid "Functions compiled with very old versions are no more handled."
-msgstr "とても古いバージョンで編集された機能は、もはや取り扱われません。"
+msgstr "とても古いバージョンで編集された関数は、もはや取り扱われません。"
 
 #
 # File: src/c/stack2.c, line: 3160
@@ -1519,10 +1414,8 @@ msgstr "%s ライブラリをロードできません: %s\n"
 msgid "Internal Functions:\n"
 msgstr "内部関数:\n"
 
-#
-# File: sci_gateway/c/sci_what.c, line: 87
 msgid "Introduction"
-msgstr "序論"
+msgstr "概要"
 
 #
 # File: src/c/stack2.c, line: 2384
@@ -1592,17 +1485,12 @@ msgstr "オプションの引数リスト: \n"
 msgid "PCRE Version: %d.%d"
 msgstr "PCRE バージョン: %d.%d"
 
-#
-# File: src/c/getstaticDebugInfo_Windows.c, line: 126
 #, c-format
 msgid "Path separator: %s"
-msgstr "PATHセパレータ: %s"
+msgstr "PATH セパレータ: %s"
 
-#
-# File: src/c/inisci-c.c, line: 82
-# File: src/c/inisci-c.c, line: 84
 msgid "SCI environment variable not defined.\n"
-msgstr "SCI環境変数が見つかりません。\n"
+msgstr "SCI 環境変数が見つかりません。\n"
 
 #
 # File: src/c/inisci-c.c, line: 135
@@ -1720,10 +1608,8 @@ msgstr "変数 %s は定義されていません。\n"
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "思いがけないオペレーションコードです、どうぞScilabバグ追跡へ報告して下さい。"
 
-#
-# File: macros/who_user.sci, line: 45
 msgid "User variables are:"
-msgstr "ユーザー変数は:"
+msgstr "ユーザー変数:"
 
 #
 # File: macros/who_user.sci, line: 49
@@ -1768,11 +1654,9 @@ msgstr "警告: %s\n"
 msgid "Warning"
 msgstr "警告"
 
-#
-# File: sci_gateway/c/sci_getmodules.c, line: 29
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr "警告: %sの問題があります。\n"
+msgstr "警告: %s の問題があります。\n"
 
 #
 # File: src/c/banier.c, line: 44
@@ -1789,25 +1673,17 @@ msgstr ""
 msgid "XML version: %s"
 msgstr "XML バージョン: %s"
 
-#
-# File: sci_gateway/c/sci_who.c, line: 320
 msgid "Your global variables are:"
-msgstr "あなたの全体変数:"
+msgstr "全体変数:"
 
-#
-# File: sci_gateway/c/sci_who.c, line: 313
 msgid "Your variables are:"
-msgstr "あなたの変数:"
+msgstr "変数:"
 
-#
-# File: src/c/stack2.c, line: 3035
 msgid "a column vector"
-msgstr "欄ベクトル"
-
-#
-# File: src/c/stack2.c, line: 3030
-msgid "a row vector"
 msgstr "列ベクトル"
+
+msgid "a row vector"
+msgstr "行ベクトル"
 
 #
 # File: src/c/stack2.c, line: 3040
@@ -1858,15 +1734,11 @@ msgstr "第4"
 msgid "second"
 msgstr "次に"
 
-#
-# File: src/c/stack2.c, line: 2952
 msgid "should be a column vector"
-msgstr "欄ベクトルであるべきです"
-
-#
-# File: src/c/stack2.c, line: 2947
-msgid "should be a row vector"
 msgstr "列ベクトルであるべきです"
+
+msgid "should be a row vector"
+msgstr "行ベクトルであるべきです"
 
 #
 # File: src/c/stack2.c, line: 2957

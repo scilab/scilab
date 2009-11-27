@@ -29,7 +29,6 @@ static gw_generic_table Tab[]=
 	{C2F(sci_spmin),"spmin"},
 	{C2F(sci_spmatrix),"spmatrix"},
 	{C2F(sci_spchol),"spchol"},
-	{C2F(sci_readmps),"readmps"},
 	{C2F(sci_fadj2sp),"fadj2sp"},
 	{C2F(sci_spcompa),"spcompa"},
 	{C2F(sci_ordmmd),"ordmmd"},

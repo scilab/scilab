@@ -527,6 +527,9 @@ etc/main_toolbar.xml \
 etc/flexdock-themes.xml
 
 
+#### gui : tree functions ####
+MACROSDIRSEXT = macros/tree
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -845,6 +848,7 @@ images/icons/edit-undo.png \
 images/icons/media-floppy.png \
 images/icons/aboutscilab.png \
 images/icons/package-x-generic.png \
+images/icons/utilities-system-monitor.png \
 images/icons/applications-system.png
 
 @GUI_TRUE@USEANT = 1

@@ -50,6 +50,10 @@ int sci_whereis(char *fname,unsigned long fname_len)
 
 	if ( (iType1 == sci_u_function) || (iType1 == sci_c_function) )
 	{
+		/* bug 5507 */
+		/* getVarDimension does not (yet) manage theses scilab types. */
+		
+		/*
 		int m = 0, n = 0;
 
 		sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
@@ -58,12 +62,13 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			printError(&sciErr, 0);
 			return 0;
 		}
-
+		
 		if ( (m != n) && (n != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A function-name expected.\n"),fname,1);
 			return 0;
 		}
+		*/
 
 		/* to rewrite with new API when it will be possible */
 		C2F(whereismacro)();
@@ -115,7 +120,6 @@ int sci_whereis(char *fname,unsigned long fname_len)
 				printError(&sciErr, 0);
 				return 0;
 			}
-
 		}
 		else
 		{
@@ -128,7 +132,6 @@ int sci_whereis(char *fname,unsigned long fname_len)
 				printError(&sciErr, 0);
 				return 0;
 			}
-
 		}
 
 		LhsVar(1) = Rhs + 1;

@@ -52,9 +52,9 @@ function [scs_m] = prt_align(scs_m)
 
   //TOBEDONE
   if get_connected(scs_m,k2)<>[] then
-    hilite_obj(k2)  //** new
+    xcosShowBlockWarning(k2)  //** new
     message('Connected block can''t be aligned')
-    unhilite_obj(k2)  //** new
+    xcosClearBlockWarning(k2)  //** new
     return
   end
 

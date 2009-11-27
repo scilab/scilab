@@ -28,16 +28,19 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/skinlf.jar"/>
-<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
-<path value="$SCILAB/thirdparty/jhall.jar"/>
-<path value="$SCILAB/thirdparty/jgraphx.jar"/>
 
-<!-- Load when needed -->
+<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
+
+<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
+	<load on="XCos"/>
+</path>
+
 
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
@@ -73,9 +76,12 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 </path>
-<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
+<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="graphics_mathml_textrendering"/>
+</path>
+<path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
+	<load on="documentationGeneration"/>
 </path>
 <path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>

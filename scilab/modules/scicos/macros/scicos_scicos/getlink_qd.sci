@@ -146,9 +146,9 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     i_ImplIndx = find(graphics1.in_implicit=='I');
 
     if xout==[] then
-        hilite_obj(kfrom);
+        xcosShowBlockWarning(kfrom);
         message("This block has no output port"); 
-        unhilite_obj(kfrom);
+        xcosClearBlockWarning(kfrom);
       return ; //** EXIT 
     end
 
@@ -172,11 +172,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       port_number = k ;
       link_dir = "h" ; //** output port starts horizontal link
       if op(port_number)<>0 then
-          hilite_obj(kfrom)
+          xcosShowBlockWarning(kfrom)
            message(["Selected port is already connected.";..
                     "To start a link off another link, place the cursor";..
                     "on the split point and double click, or type l."])
-          unhilite_obj(kfrom); 
+          xcosClearBlockWarning(kfrom); 
         return
       end
       typpfrom='out'
@@ -185,11 +185,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       //** TODO : in case of Modelica port the choice is not yet clear :(  
       link_dir = "h" ; //** use the default 
       if op(port_number)<>0 then
-          hilite_obj(kfrom);
+          xcosShowBlockWarning(kfrom);
           message(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."])
-          unhilite_obj(kfrom); 
+          xcosClearBlockWarning(kfrom); 
         return
       end
       typpfrom='out'
@@ -200,11 +200,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       //** TODO : in case of Modelica port the choice is not yet clear :(  
       link_dir = "h" ; //** use the default
       if impi(port_number)<>0 then
-          hilite_obj(kfrom) ; 
+          xcosShowBlockWarning(kfrom) ; 
           message(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."])
-          unhilite_obj(kfrom) ;
+          xcosClearBlockWarning(kfrom) ;
         return
       end
       typpfrom='in'
@@ -214,11 +214,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       link_dir = "v" ; //** 
 
       if cop(port_number)<>0 then
-          hilite_obj(kfrom);
+          xcosShowBlockWarning(kfrom);
           message(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."])
-          unhilite_obj(kfrom);
+          xcosClearBlockWarning(kfrom);
         return ; 
       end
       typpfrom = 'evtout' ;
@@ -345,7 +345,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
       //** check connection
       if xin==[] then
-         hilite_obj(kto)
+         xcosShowBlockWarning(kto)
           message("This block has no input port.");
          p_size = size(gh_axes.children);
          d_size = p_size(1) - o_size(1);
@@ -356,7 +356,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
          if %scicos_debug_gr then
            disp("d2");   //** Debug
          end
-         unhilite_obj(kto);
+         xcosClearBlockWarning(kto);
          drawnow(); //** update the diagram 
          return;      //** EXIT point : link failed ! 
       end
@@ -374,7 +374,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
       //** check connection for "type"
       if typo<>typi
-        hilite_obj(kto)
+        xcosShowBlockWarning(kto)
         message(["Selected ports don''t have the same type"
                  "The port at the origin of the link has type "+string(typo);
                  "the port at the end has type "+string(typin(k))+'.'])
@@ -387,7 +387,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
           if %scicos_debug_gr then
              disp("d3"); //** Debug
           end
-          unhilite_obj(kto)
+          xcosClearBlockWarning(kto)
           drawnow(); 
           return; //** EXIT point from the function
       end
@@ -396,7 +396,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       if typi==1  then // regular input port
         port_number = k ;
         if ip(port_number)<>0 then
-             hilite_obj(kto)
+             xcosShowBlockWarning(kto)
              message(["Selected port is already connected.";..
                       "To start a link off another link, place the cursor";..
                       "on the split point and double click, or type l."]),
@@ -409,7 +409,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
              if %scicos_debug_gr then
                disp("d4");//** Debug
              end
-             unhilite_obj(kto);
+             xcosClearBlockWarning(kto);
              drawnow();
            return
         end
@@ -442,12 +442,12 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
         end
 
         if need_warning then
-            hilite_obj(kto)
+            xcosShowBlockWarning(kto)
             message(["Warning :";
                      "Selected ports don''t have the same size";
                      "The port at the origin of the link has size " + sci2exp(szout);
                      "the port at the end has size " + sci2exp(szin)+"."])
-            unhilite_obj(kto)
+            xcosClearBlockWarning(kto)
         end
 
         // get port data type
@@ -458,14 +458,14 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
             tt_typ=['double';'complex';'int32';'int16';
                     'int8';'uint32';'uint16';'uint8']
 
-            hilite_obj(kto)
+            xcosShowBlockWarning(kto)
             message(["Warning :";
                      "Selected ports don''t have the same data type";
                      "The port at the origin of the link has datatype "+...
                       tt_typ(szouttyp)+' ('+sci2exp(szouttyp)+')';
                      "the port at the end has datatype "+...
                       tt_typ(szintyp)+' ('+sci2exp(szintyp)+')'+'.'])
-            unhilite_obj(kto);
+            xcosClearBlockWarning(kto);
           end
         end
 
@@ -534,7 +534,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
         port_number = k-size(ip,'*');
 
         if cip(port_number)<>0 then
-            hilite_obj(kto)
+            xcosShowBlockWarning(kto)
             message(["Selected port is already connected.";..
                      "To start a link off another link, place the cursor";..
                      "on the split point and double click."]),
@@ -547,7 +547,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
             if %scicos_debug_gr then
               disp("d7");//** Debug
             end
-            unhilite_obj(kto)
+            xcosClearBlockWarning(kto)
             drawnow();
             return; //** Exit point
         end

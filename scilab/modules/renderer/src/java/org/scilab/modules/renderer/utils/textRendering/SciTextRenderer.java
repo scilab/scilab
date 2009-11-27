@@ -204,18 +204,21 @@ public class SciTextRenderer {
 	 */
 	public Rectangle2D getBounds(String str) {
 		Rectangle2D res; 
+		float tmpFactor;
 		
 		/* Set also for the MathML / LaTeX rendering */
 		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
 		    res = speRenderer.getBounds(str);
+		    tmpFactor = 1.0f;
 		} else {
 		    res = renderer.getBounds(str);
+		    tmpFactor = scaleFactor;
 		}
 		
 		// apply scale factor to the bounds
 		res.setRect(res.getX(), res.getY(),
-					res.getWidth() * scaleFactor,
-					res.getHeight() * scaleFactor);
+					res.getWidth() * tmpFactor,
+					res.getHeight() * tmpFactor);
 		return res;
 	}
 	

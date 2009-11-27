@@ -101,7 +101,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
   for (i = 0; i < n;i++)
   {
-    handelsvalue = (unsigned long) (hstk(l1))[i];
+    handelsvalue = (unsigned long) (hstk(l1))[n-1-i];
 
     if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) 
 	{

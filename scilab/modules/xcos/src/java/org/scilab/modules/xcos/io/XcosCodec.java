@@ -75,6 +75,7 @@ public class XcosCodec extends mxCodec {
 		//"ordering",
 		//"interfaceFunctionName",
 		//"simulationFunctionName",
+
 		"simulationFunctionType",
 		"SimulationFunctionType"
 			};
@@ -120,10 +121,10 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
+	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile", "multiplicities"};
 	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "container"};
+	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "container"};
 	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 

@@ -170,10 +170,13 @@ void cscope(scicos_block * block,int flag)
 	    for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	       {
 	         pShortDraw  = scoGetPointerShortDraw(pScopeMemory,0,i);
-	         NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
-	         pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 if (pShortDraw)
+			 {
+				NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+				pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
+				pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
+				pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 }
   	       }
 	    // End of Cannot
 

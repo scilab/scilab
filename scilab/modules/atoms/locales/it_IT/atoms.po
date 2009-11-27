@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-12 17:55+0000\n"
+"PO-Revision-Date: 2009-11-21 17:52+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,6 +86,10 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: ''%s'' non è installato.\n"
 
 #, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr "%s: Si è verificato un errore durante il caricamento di \"%s-%s\".\n"
+
+#, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: È già caricata un'altra versione del pacchetto %s : %s\n"
 
@@ -97,7 +101,7 @@ msgstr ""
 #, c-format
 msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
 msgstr ""
-"%s: Errore durante la copiatura del file \"%s\" alla directory \"%s\".\n"
+"%s: Errore durante la copiatura del file \"%s\" nella directory \"%s\".\n"
 
 #, c-format
 msgid "%s: Error while creating the directory ''%s''.\n"
@@ -127,7 +131,7 @@ msgstr "%s: Il modulo \"%s\" non è installato.\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr "%s: Non trovato Wget né Curl: installare uno dei due\n"
+msgstr "%s: Non è stato trovato né Wget né Curl: installare uno dei due\n"
 
 #, c-format
 msgid ""
@@ -138,12 +142,12 @@ msgstr ""
 "stessa sessione di Scilab:\n"
 
 #, c-format
-msgid "%s: The config file ("
-msgstr ""
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr "%s: Il file config (\"%s\") non è formattato bene alla riga %d\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
-msgstr ""
+msgstr "%s: L'albero delle dipendenze non può essere risolto.\n"
 
 #, c-format
 msgid "%s: The description is not well formated at line %d\n"
@@ -154,8 +158,8 @@ msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
 msgstr ""
-"%s: La cartella %s non può essere creata, controllare se è possibile "
-"accedervi in scrittura.\n"
+"%s: La directory %s non può essere creata, controllare i permessi di accesso "
+"in scrittura alla directory.\n"
 
 #, c-format
 msgid "%s: The directory %s doesn''t exist.\n"
@@ -175,7 +179,7 @@ msgid ""
 "if you have write access on this directory : %s.\n"
 msgstr ""
 "%s: La directory di questo pacchetto (%s-%s) non può essere eliminata, "
-"controllare i permessi di accesso in scrittura a questa directory : %s.\n"
+"controllare i permessi di accesso in scrittura alla directory : %s.\n"
 
 #, c-format
 msgid ""
@@ -242,8 +246,8 @@ msgid "%s: The following module is not installed:\n"
 msgstr "%s: Il seguente modulo non è installato:\n"
 
 #, c-format
-msgid "%s: The following modules is not installed:\n"
-msgstr "%s: I seguenti moduli non sono installati:\n"
+msgid "%s: The following modules are not installed:\n"
+msgstr "%s: I seguenti moduli non sono installati\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -259,8 +263,8 @@ msgid ""
 "check if you have write access on this directory : %s.\n"
 msgstr ""
 "%s: La directory principale di questo pacchetto (%s-%s) non può essere "
-"eliminata, controllare i permessi di accesso in scrittura a questa directory "
-": %s.\n"
+"eliminata, controllare i permessi di accesso in scrittura alla directory : "
+"%s.\n"
 
 #, c-format
 msgid ""
@@ -273,7 +277,7 @@ msgid ""
 "%s: Wrong length for input argument #%d: A string which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una lunghezza sbagliata: era atteso una "
+"%s: L'argomento in ingresso #%d ha una lunghezza sbagliata: era attesa una "
 "stringa lunga 32 caratteri.\n"
 
 #, c-format
@@ -296,14 +300,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: dovrebbero essere "
-"%d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: dovrebbe essere da %d "
-"a %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -358,8 +361,8 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso una "
-"matrice di stringa mx1 o mx2\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice di stringhe mx1 o mx2.\n"
 
 #, c-format
 msgid ""
@@ -420,7 +423,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
-"booleano o una stringa singola.\n"
+"booleano o una singola stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -437,7 +440,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno struct.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una struct.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
@@ -454,8 +457,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: dovrebbe essere un "
-"array di tipo stringa.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -466,12 +469,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno struct.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una struct.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa attesa una "
+"lista tipizzata orientata alle matrici.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
@@ -496,6 +501,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
 "''official'' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"all\", "
+"\"user\", \"allusers\" o \"official\".\n"
 
 #, c-format
 msgid ""
@@ -508,28 +515,32 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
-"\"user'\", \"allusers\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"user'\" "
+"o \"allusers\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: L'argomento #%d in ingresso ha un valore sbagliato: era atteso "
-"\"utente\" \"tutti gli utenti\" o \"tutto\".\n"
+"%s: L'argomento #%d in ingresso ha un valore sbagliato: era atteso \"user\" "
+"o \"alluser\" o \"all\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"user\", "
+"\"allusers\" o \"all\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"\"user'\", \"allusers\" o \"all\".\n"
 
 #, c-format
 msgid ""
@@ -553,7 +564,7 @@ msgid ""
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa che inizia per ''http://'',''ftp://'' or ''file://'' .\n"
+"stringa che inizia per ''http://'',''ftp://'' o ''file://'' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
@@ -563,9 +574,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be "
-"set.\n"
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"impostata la versione di tutti i moduli.\n"
 
 #, c-format
 msgid ""
@@ -594,10 +606,12 @@ msgid ""
 "%s: Wrong value for input argument #%d: The matrix oriented typed list is "
 "not well formatted.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: la lista tipizzata "
+"orientata alle matrici non è formattata bene.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
-msgstr ""
+msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato: questo ("
 
 #, c-format
 msgid ""
@@ -618,6 +632,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"error\" "
+"o \"warning\".\n"
 
 #, c-format
 msgid ""
@@ -674,9 +690,6 @@ msgstr "Autore(i)"
 msgid "Automaticaly Installed"
 msgstr "Installato automaticamente"
 
-msgid "Available Modules"
-msgstr "Moduli disponibili"
-
 msgid "Category(ies)"
 msgstr "Categoria(e)"
 
@@ -684,16 +697,19 @@ msgid "Close"
 msgstr "Chiudi"
 
 msgid "Depend"
-msgstr ""
+msgstr "Dipende"
 
 msgid "Description"
 msgstr "Descrizione"
+
+msgid "Download size"
+msgstr "Dimensione del download"
 
 msgid "Entity"
 msgstr "Entità"
 
 msgid "File"
-msgstr "_File"
+msgstr "File"
 
 msgid "Install"
 msgstr "Installa"
@@ -710,14 +726,20 @@ msgstr "Installazione fallita !"
 msgid "Installing..."
 msgstr "Installazione in corso..."
 
+msgid "Ko"
+msgstr "Kb"
+
 msgid "License"
 msgstr "Licenza"
 
 msgid "Maintainer(s)"
-msgstr ""
+msgstr "Curatore(i)"
 
-msgid "Module Description"
-msgstr "DEscrizione del modulo"
+msgid "Mo"
+msgstr "Mb"
+
+msgid "Modules"
+msgstr "Moduli"
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr ""
@@ -725,6 +747,9 @@ msgstr ""
 
 msgid "No module selected"
 msgstr "Nessun modulo selezionato"
+
+msgid "Octets"
+msgstr "Ottetti"
 
 msgid "Package"
 msgstr "Pacchetto"
