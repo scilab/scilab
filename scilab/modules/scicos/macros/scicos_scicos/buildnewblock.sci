@@ -181,8 +181,8 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
      // ierr=execstr('libn=ilib_compile(''lib''+blknamint,Makename)','errcatch')
 
 
-     // 3 arguments pour ilib_compile
-     ierr=execstr('libn = ilib_compile(''lib''+blknamint,Makename,files)','errcatch')
+     // ilib_compile_scicos needs 3 arguments
+     ierr=execstr('libn = ilib_compile_scicos(''lib''+blknamint,Makename,files)','errcatch')
 
 
      if ierr<>0 then
