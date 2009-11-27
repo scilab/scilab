@@ -52,7 +52,6 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-
 		sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
 		if(sciErr.iErr)
 		{
@@ -199,6 +198,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
+			// get lenStVarOne
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
 			// get value of first argument only now
 			pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
 			if (pStVarOne == NULL)
@@ -310,6 +317,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					return 0;
 				}
 				
+				// get lenStVarTwo
 				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
 				if(sciErr.iErr)
 				{
@@ -323,6 +331,17 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					if (lenStVarTwo) {FREE(lenStVarTwo); lenStVarTwo = NULL;}
 					Scierror(999,_("%s : Memory allocation error.\n"), fname);
 					return 0;
+				}
+
+				for (k = 0; k < m * n; k++)
+				{
+					pStVarTwo[k] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo[k] + 1));
+					if (pStVarTwo[k] == NULL)
+					{
+						freeArrayOfWideString(pStVarTwo, m * n);
+						Scierror(999,_("%s : Memory allocation error.\n"), fname);
+						return 0;
+					}
 				}
 
 				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
