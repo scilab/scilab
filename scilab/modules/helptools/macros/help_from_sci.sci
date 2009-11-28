@@ -273,7 +273,7 @@ while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(lin
     helptxt=[helptxt;add_txt];
   else
     if doing=='Calling Sequence' then
-      helptxt=[helptxt;'   <synopsis>'+in+'</synopsis>'];
+      helptxt=[helptxt;'   '+in];
     elseif doing=='Parameters' then
       i=strindex(in,':'); 
       if ~isempty(i) then
@@ -301,9 +301,9 @@ while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(lin
     elseif doing=='Authors' & convstr(in,'u')~='AUTHORS' & ~isempty(stripblanks(in)) then
       [name,ref]=chop(in,';');
       if isempty(ref) then
-        helptxt=[helptxt;'   <varlistentry><term>'+name+'</term></varlistentry>'];
+        helptxt=[helptxt;'   <member>'+name+'</member>'];
       else
-        helptxt=[helptxt;'   <varlistentry><term>'+name+'</term><listitem><para>'+ref+'</para></listitem></varlistentry>'];
+        helptxt=[helptxt;'   <member>'+name+'</member><listitem><para>'+ref+'</para></listitem>'];
       end
     elseif doing=='Bibliography' & convstr(in,'u')~='BIBLIOGRAPHY' & ~isempty(stripblanks(in)) then
       helptxt=[helptxt;'   <para>'+in+'</para>'];
@@ -363,7 +363,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
   doing=start_doing; 
   select convstr(currently_doing,"u")
     case 'CALLING SEQUENCE' then
-      txt=['</refsynopsisdiv>'];
+      txt=['   </synopsis>';'</refsynopsisdiv>'];
     case 'PARAMETERS' then
       txt=['   </variablelist>';'</refsection>'];
     case 'DESCRIPTION' then
@@ -384,7 +384,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
 
   select convstr(start_doing,"u"),
       case 'CALLING SEQUENCE'
-      txt=[txt;'';'<refsynopsisdiv>';'   <title>Calling Sequence</title>'];
+      txt=[txt;'';'<refsynopsisdiv>';'   <title>Calling Sequence</title>';'   <synopsis>'];
     case 'PARAMETERS'
       txt=[txt;'';'<refsection>';'   <title>Parameters</title>';'   <variablelist>'];
     case 'DESCRIPTION'
@@ -403,3 +403,4 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
       txt=[txt;'</refentry>'];
   end
 endfunction
+
