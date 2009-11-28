@@ -373,7 +373,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'SEE ALSO' then
       txt=['   </simplelist>';'</refsection>'];
     case 'AUTHORS' then
-      txt=['   </variablelist>';'</refsection>'];
+      txt=['   </simplelist>';'</refsection>'];
     case 'BIBLIOGRAPHY' then
       txt=['</refsection>'];
     case 'USED FUNCTIONS' then
@@ -394,7 +394,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'SEE ALSO'
       txt=[txt;'';'<refsection>';'   <title>See also</title>';'   <simplelist type=""inline"">'];
     case 'AUTHORS'
-      txt=[txt;'';'<refsection>';'   <title>Authors</title>';'   <variablelist>'];
+      txt=[txt;'';'<refsection>';'   <title>Authors</title>';'   <simplelist type=""vert"">'];
     case 'BIBLIOGRAPHY'
       txt=[txt;'';'<refsection>';'   <title>Bibliography</title>'];
     case 'USED FUNCTIONS'
