@@ -248,7 +248,8 @@ cmds=['CALLING SEQUENCE','PARAMETERS','DESCRIPTION','EXAMPLES','SEE ALSO',..
 
 doing='search'; i=strindex(line,'//');
 line=mgetl(f,1); 
-while (~isempty(stripblanks(line)) & ~meof(f)),
+// Continue until empty line or end of file or a scilab command line (Bug#5487)
+while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(line),'/^\/\/*/')),
   if stripblanks(line)=='//' then 
     if doing=='Description' then 
       in='new_descr_param'; 
