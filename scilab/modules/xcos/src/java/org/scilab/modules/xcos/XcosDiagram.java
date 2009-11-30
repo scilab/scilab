@@ -98,6 +98,7 @@ import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -772,7 +773,7 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {
@@ -1344,8 +1345,8 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramm
      */
     public void loadDiagram(HashMap<String, Object> diagramm) {
-	List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-	List<TextBlock> allTextBlocks = (List) diagramm.get("TextBlocks");
+	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
+	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
