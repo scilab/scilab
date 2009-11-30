@@ -50,6 +50,7 @@ int gw_graphic_export(void)
 		}
 		if (!loadedDepVectorialExport && (strcmp(Tab[Fin-1].name, "xs2eps")==0
                            || strcmp(Tab[Fin-1].name, "xs2pdf")==0
+                           || strcmp(Tab[Fin-1].name, "xs2svg")==0
                            || strcmp(Tab[Fin-1].name, "xs2ps")==0))
           {
             loadOnUseClassPath("pdf_ps_eps_graphic_export");

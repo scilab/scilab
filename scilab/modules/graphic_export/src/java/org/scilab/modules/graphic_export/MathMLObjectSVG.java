@@ -45,18 +45,19 @@ public class MathMLObjectSVG extends MathMLObjectGL {
      * @param fontSize the size of the font
      */
     public MathMLObjectSVG(MathMLObjectGL t) {
-	        super(t);
+		super(t);
 		makeImage();
     }
 
     public String getCode() {
-	        return code;
+		return code;
     }
         
     public void makeImage() {
-	        width = (int) Math.ceil(jev.getWidth()) + 2;
-		final int ascent = (int) Math.ceil(jev.getAscentHeight());
-		height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
+/* @TODO: why 2 ? */
+		width = (int) Math.ceil(this.getJev().getWidth()) + 2;
+		final int ascent = (int) Math.ceil(this.getJev().getAscentHeight());
+		height = (int) Math.ceil(this.getJev().getDescentHeight()) + ascent;
 			
 		SVGGraphics2D g2d = new SVGGraphics2D(dom.createDocument("", "svg", null));
 	
@@ -67,14 +68,14 @@ public class MathMLObjectSVG extends MathMLObjectGL {
 		g2d.setColor(new Color(255, 255, 255, 0));
 		g2d.fillRect(0, 0, (int) width, (int) height);
 		
-		jev.draw(g2d, 0, ascent);
+		this.getJev().draw(g2d, 0, ascent);
 		
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		
 		try {
-		        g2d.stream(new OutputStreamWriter(buf), true);
+			g2d.stream(new OutputStreamWriter(buf), true);
 		} catch (Exception e) {
-		        System.out.println(e.toString());
+			System.err.println(e.getLocalizedMessage());
 		}
 				
 		code = buf.toString();

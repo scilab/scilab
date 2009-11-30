@@ -403,30 +403,34 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[9];
+	mxMultiplicity[] multiplicities = new mxMultiplicity[10];
 
+	
 	// Input data port
-	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort(), new ExplicitLink()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
-	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort(), new ImplicitInputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
+	multiplicities[0] = new PortCheck(ExplicitInputPort.class, new Class[] {ExplicitOutputPort.class, ExplicitLink.class}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
+	multiplicities[1] = new PortCheck(ImplicitInputPort.class, new Class[] {ImplicitOutputPort.class, ImplicitInputPort.class, ImplicitLink.class}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
 
 	//Output data port
-	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
-	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+	multiplicities[2] = new PortCheck(ExplicitOutputPort.class, new Class[] {ExplicitInputPort.class}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
+	multiplicities[3] = new PortCheck(ImplicitOutputPort.class, new Class[] {ImplicitInputPort.class, ImplicitOutputPort.class, ImplicitLink.class}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
 
 	//Control port
-	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort(), new CommandControlLink()}, XcosMessages.LINK_ERROR_EVENT_IN);
+	multiplicities[4] = new PortCheck(ControlPort.class, new Class[] {CommandPort.class, CommandControlLink.class}, XcosMessages.LINK_ERROR_EVENT_IN);
 
 	//Command port
-	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[5] = new PortCheck(CommandPort.class, new Class[] {ControlPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//ExplicitLink connections
-	multiplicities[6] = new PortCheck(new ExplicitLink(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[6] = new PortCheck(ExplicitLink.class, new Class[] {ExplicitInputPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//ImplicitLink connections
-	multiplicities[7] = new PortCheck(new ImplicitLink(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[7] = new PortCheck(ImplicitLink.class, new Class[] {ImplicitInputPort.class, ImplicitOutputPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//CommandControlLink connections
-	multiplicities[8] = new PortCheck(new CommandControlLink(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[8] = new PortCheck(CommandControlLink.class, new Class[] {ControlPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	
+	// Already connected port
+	multiplicities[9] = new PortCheck(BasicPort.class, new Class[] {BasicPort.class}, XcosMessages.LINK_ERROR_ALREADY_CONNECTED);
 
 	setMultiplicities(multiplicities);
 	

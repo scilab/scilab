@@ -48,16 +48,16 @@ public class TeXObjectSVG extends TeXObjectGL {
      * @param fontSize the size of the font
      */
     public TeXObjectSVG(TeXObjectGL t) {
-	        super(t);
+		super(t);
 		makeImage();
     }
 
     public String getCode() {
-	        return code;
+		return code;
     }
         
     public void makeImage() {
-	        texi.setInsets(new Insets(1, 1, 1, 1));
+		texi.setInsets(new Insets(1, 1, 1, 1));
 		width = texi.getIconWidth();
 		height = texi.getIconHeight();
 
@@ -79,9 +79,9 @@ public class TeXObjectSVG extends TeXObjectGL {
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		
 		try {
-		        g2d.stream(new OutputStreamWriter(buf), true);
+			g2d.stream(new OutputStreamWriter(buf), true);
 		} catch (Exception e) {
-		        System.out.println(e.toString());
+			System.out.println(e.toString());
 		}
 				
 		code = buf.toString();

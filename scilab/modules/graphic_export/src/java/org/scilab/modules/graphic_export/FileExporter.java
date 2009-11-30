@@ -59,34 +59,35 @@ public class FileExporter {
 		exportedFig.setInfoMessage(exportingMessage);
 
 		if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
-		        try {
-			        String ext = "";
-
-				switch (fileType) {
+			String ext = "";
+					
+			switch (fileType) {
 				case ExportRenderer.PDF_EXPORT:
-				    ext = ".pdf";
-				    break;
+					ext = ".pdf";
+					break;
 				case ExportRenderer.EPS_EXPORT:
-				    ext = ".eps";
-				    break;
+					ext = ".eps";
+					break;
 				case ExportRenderer.PS_EXPORT:
-				    ext = ".ps";
-				    break;
-				}
-			    
-				String name = new File(fileName).getName();
-				int dot = name.lastIndexOf(".");
-				if (dot > 0) {
-				        name = name.substring(0, dot);
-					saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
-				} else {
-				        saveFileName = fileName + ext;
-				}
+					ext = ".ps";
+					break;
+				default: /* Do not the extension. Probably an error */
+					return ExportRenderer.IOEXCEPTION_ERROR;
+			}
+					
+			String name = new File(fileName).getName();
+			int dotPosition = name.lastIndexOf(".");
+			if (dotPosition > 0) {
+				name = name.substring(0, dotPosition);
+				saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
+			} else {
+				saveFileName = fileName + ext;
+			}
 				
-				fileName = System.getenv("TMPDIR") + System.getProperty("file.separator") + name + ".svg";
-				saveFileType = fileType;
-				fileType = ExportRenderer.SVG_EXPORT;
-			} catch (Exception e) {}
+			/* Temporary SVG file which will be used to convert to PDF */
+			fileName = System.getenv("TMPDIR") + System.getProperty("file.separator") + name + ".svg";
+			saveFileType = fileType;
+			fileType = ExportRenderer.SVG_EXPORT;
 		}
 		
 		ExportRenderer export;		
