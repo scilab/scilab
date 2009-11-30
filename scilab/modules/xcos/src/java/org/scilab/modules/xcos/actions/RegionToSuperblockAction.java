@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.lang.annotation.Target;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ import org.scilab.modules.xcos.block.ExplicitInBlock;
 import org.scilab.modules.xcos.block.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.ImplicitInBlock;
 import org.scilab.modules.xcos.block.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -113,7 +115,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.getModel().beginUpdate();
 
 	/*
-	 * Update links selection
+	 * Update selection
 	 */
 	updateForNotSelectedLinks(graph);
 	
@@ -230,6 +232,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 					otherSide)) {
 				    graph.addSelectionCell(link);
 				} // isInSelection
+				
+				if (otherSide instanceof SplitBlock) {
+				    graph.addSelectionCell(otherSide);
+				    
+				    // restart loop
+				    i = -1;
+				} // otherSide is a SplitBlock
+
 			    } // BasicLink
 			} // Edge > 0
 		    } // BasicPort
@@ -246,7 +256,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	graph.getModel().endUpdate();
     }
-
+    
     /**
      * Re-link the parent Graph
      * 
