@@ -12,7 +12,11 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.lang.annotation.Target;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -29,6 +33,7 @@ import org.scilab.modules.xcos.block.ExplicitInBlock;
 import org.scilab.modules.xcos.block.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.ImplicitInBlock;
 import org.scilab.modules.xcos.block.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -110,7 +115,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.getModel().beginUpdate();
 
 	/*
-	 * Update links selection
+	 * Update selection
 	 */
 	updateForNotSelectedLinks(graph);
 	
@@ -163,8 +168,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 * Find broken links, to insert input/output blocks And update the child
 	 * graph
 	 */
-	List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells(), cellsCopy);
-	List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
+	List<BrokenLink> breaks = getBrokenLinks(graph.getSelectionCells(), cellsCopy);
+	List<Integer> maxValues = getMaxBlocksValues(graph.getSelectionCells());
 	updateChildGraph(diagram, breaks, maxValues);
 
 	/*
@@ -227,6 +232,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 					otherSide)) {
 				    graph.addSelectionCell(link);
 				} // isInSelection
+				
+				if (otherSide instanceof SplitBlock) {
+				    graph.addSelectionCell(otherSide);
+				    
+				    // restart loop
+				    i = -1;
+				} // otherSide is a SplitBlock
+
 			    } // BasicLink
 			} // Edge > 0
 		    } // BasicPort
@@ -243,7 +256,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	graph.getModel().endUpdate();
     }
-
+    
     /**
      * Re-link the parent Graph
      * 
@@ -431,7 +444,13 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     }
 
-    private List<BrokenLink> getBreakLink(Object[] objs, Object[] copiedCells) {
+    /**
+     * Getting the broken links on the diagram and construct a list of these links
+     * @param objs The selected cells
+     * @param copiedCells The copy of the selected cells
+     * @return all the broken links in the diagram
+     */
+    private List<BrokenLink> getBrokenLinks(Object[] objs, Object[] copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	for (int i = 0; i < objs.length; i++) {
@@ -463,15 +482,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 	return breaks;
     }
 
+    /**
+     * Check if an object is in a collection
+     * @param objs collection
+     * @param item the searched item
+     * @return 
+     */
     private boolean isInSelection(Object[] objs, Object item) {
-	boolean isFind = false;
-	for (Object obj : objs) {
-	    if (obj == item) {
-		isFind = true;
-		break;
-	    }
-	}
-	return isFind;
+	return Arrays.asList(objs).contains(item);
     }
 
     private void printBreakingLink(List<BrokenLink> breaks) {
@@ -484,7 +502,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
     }
 
-    private List<Integer> getMaxBlocksValue(Object[] blocks) {
+    private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	List<BasicBlock> items[] = new ArrayList[6];
 
