@@ -818,7 +818,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
-			myReadThread.start();
+			//myReadThread.start();
+			SwingUtilities.invokeLater(myReadThread);
 		}
 
 		// Get current file path for Execute file into Scilab

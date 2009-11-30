@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,28 +13,25 @@
 package org.scilab.modules.xpad.actions;
 
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class CloseAction extends DefaultAction {
+public class CloseAllAction extends DefaultAction {
     
     /**
-	 * 
+	 * serialVersionUID
 	 */
-	private static final long serialVersionUID = 3575152401442746355L;
+	private static final long serialVersionUID = 7134703185408271944L;
 
-	private CloseAction(Xpad editor) {
-        super(XpadMessages.CLOSE, editor);
+	private CloseAllAction(Xpad editor) {
+        super(XpadMessages.CLOSEALL, editor);
     }
     
     public void doAction() {
-    	getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex());
+    	while (getEditor().getTabPane().getTabCount() != 0) {
+    		getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex());
+    	}
     	
     	// Close the last opened file create a new file named "Untitled 1"
     	if (getEditor().getTabPane().getTabCount() == 0) {
@@ -43,6 +40,7 @@ public class CloseAction extends DefaultAction {
     }
     
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.CLOSE, null, new CloseAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	return createMenu(XpadMessages.CLOSEALL, null, new CloseAllAction(editor),null);
     }
 }
+

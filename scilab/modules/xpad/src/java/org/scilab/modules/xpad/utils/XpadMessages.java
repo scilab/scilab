@@ -33,6 +33,8 @@ public class XpadMessages {
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
+    public static final String CLOSEALL = Messages.gettext("Close All");
+    public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
     public static final String EXIT = Messages.gettext("Exit");
     public static final String QUESTION_MARK = Messages.gettext("?");
     
