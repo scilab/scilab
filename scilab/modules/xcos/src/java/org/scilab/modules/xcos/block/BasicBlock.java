@@ -707,10 +707,7 @@ public class BasicBlock extends XcosUIDObject {
     				clone.addPort((ControlPort) getChildAt(i).clone());
     			}
     		}
-
-    		/* Make the block appear into the diagram */
-    		clone.getGeometry().setX(10);
-    		clone.getGeometry().setY(10);
+    		
     		return clone;
     	} catch (CloneNotSupportedException e) {
     		e.printStackTrace();

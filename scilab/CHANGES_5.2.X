@@ -78,6 +78,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5184 fixed - Xcos: Setup menu values are localized
@@ -261,6 +263,17 @@ Bug fixes:
                    source did not exist and then aliasing had not been performed.
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
+
+* bug 5487 fixed - help_from_sci was taking the first line of code as author
+  	  	   		   when no empty line was provided
+
+* bug 5488 fixed - When the documentation was extracted from a .sci file using
+  	  	   		   help_from_sci function, the docbook refsynopsisdiv section
+				   was incorrect.
+
+* bug 5489 fixed - When the documentation was extracted from a .sci file using
+  	  	   		   help_from_sci function, the docbook Author refsection
+				   section was not correct.
 
 * bug 5497 fixed - Editor: selection drag is now available.
 

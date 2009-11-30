@@ -79,7 +79,10 @@ public class BlockPalette extends JLabel {
 			    private static final long serialVersionUID = 1185879440137756636L;
 
 			    public void callBack() {
-				Xcos.createEmptyDiagram().addCell(BlockPalette.this.getBlock().createClone());
+				BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				block.getGeometry().setX(10);
+				block.getGeometry().setY(10);
+				Xcos.createEmptyDiagram().addCell(block);
 			    }
 			});
 
@@ -95,7 +98,10 @@ public class BlockPalette extends JLabel {
 			    private static final long serialVersionUID = 1185879440137756636L;
 
 			    public void callBack() {
-				theDiagram.addCell(BlockPalette.this.getBlock().createClone());
+				BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				block.getGeometry().setX(10);
+				block.getGeometry().setY(10);
+				theDiagram.addCell(block);
 			    }
 			});
 
@@ -115,7 +121,10 @@ public class BlockPalette extends JLabel {
 				private static final long serialVersionUID = -3138430622029406470L;
 
 				public void callBack() {
-				    theDiagram.addCell(BlockPalette.this.getBlock().createClone());
+				    BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				    block.getGeometry().setX(10);
+				    block.getGeometry().setY(10);
+				    theDiagram.addCell(block);
 				}
 			    });
 			    addTo.add(diagram);
