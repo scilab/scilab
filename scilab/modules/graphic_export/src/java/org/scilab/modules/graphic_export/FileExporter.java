@@ -104,9 +104,9 @@ public class FileExporter {
 
 		if (saveFileType != -1) {
 		        ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
+				new File(fileName).delete();
 		}
 
-		new File(fileName).delete();
 
 		return ExportRenderer.getErrorNumber();		
 	}	
