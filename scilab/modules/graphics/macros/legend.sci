@@ -78,7 +78,8 @@ options_codes=[1;2;3;
   
   // the number of labels might be lower than the number of polylines
   nbLeg = min(size(H, '*'), size(leg, '*'));
-  H = H(1:nbLeg);
+  first_handle=size(H, '*')-nbLeg+1;
+  H = H(first_handle:size(H, '*'));
   leg = leg(1:nbLeg);
   
   
@@ -116,9 +117,9 @@ function h=getvalidchildren(A)
       h=[h;a]
      case 'Axes'
       ax=a.children
-      h=[h;getvalidchildren(ax($:-1:1))]
+      h=[h;getvalidchildren(ax)]
     case 'Compound'
-      for k=size(a.children,'*'):-1:1
+     for k=1:1:size(a.children,'*')
 	h=[h;getvalidchildren(a.children(k))]
 
       end

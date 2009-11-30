@@ -156,12 +156,29 @@ public class H5Read {
     private static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
     	int attributeId = -1;
     	try {
+    		int attrCount = H5.H5Aget_num_attrs(dataSetId); 
     		// If there is no attribue do not try to open it
     		// There _must_ be at least one : SCILAB_CLASS
-    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    		if (attrCount <= 0) {
     			return "";
     		}
-    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+
+    		for(int i = 0 ; i < attrCount ; i++) {
+    			attributeId = H5.H5Aopen_idx(dataSetId, i);
+    			String[] buf = new String[1];
+    			H5.H5Aget_name(attributeId, 64, buf);
+    			if(buf[0].compareTo(attributeName) == 0) {
+    				break;
+    			}
+    			
+    			H5.H5Aclose(attributeId);
+    			attributeId = -1;
+    		}
+    		
+    		if(attributeId == -1) {
+    			//not found
+    			return "";
+    		}
     	}
     	catch (HDF5AttributeException e) {
     		return "";
@@ -182,12 +199,29 @@ public class H5Read {
     	int attributeId = -1;
     	int data[] = new int[1];
     	try {
+    		int attrCount = H5.H5Aget_num_attrs(dataSetId); 
     		// If there is no attribue do not try to open it
     		// There _must_ be at least one : SCILAB_CLASS
-    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    		if (attrCount <= 0) {
     			return 0;
     		}
-    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+
+    		for(int i = 0 ; i < attrCount ; i++) {
+    			attributeId = H5.H5Aopen_idx(dataSetId, i);
+    			String[] buf = new String[1];
+    			H5.H5Aget_name(attributeId, 64, buf);
+    			if(buf[0].compareTo(attributeName) == 0) {
+    				break;
+    			}
+    			
+    			H5.H5Aclose(attributeId);
+    			attributeId = -1;
+    		}
+    		
+    		if(attributeId == -1) {
+    			//not found
+    			return 0;
+    		}
     	}
     	catch (HDF5AttributeException e) {
     		return 0;

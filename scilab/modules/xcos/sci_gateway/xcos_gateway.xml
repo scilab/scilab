@@ -28,4 +28,6 @@
 <PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="warnBlockByUID" />
 <PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="closeXcos" />
 <PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosDiagramToHDF5" />
+<PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosDiagramOpen" />
+<PRIMITIVE gatewayId="64" primitiveId="7" primitiveName="xcosDiagramClose" />
 </GATEWAY>

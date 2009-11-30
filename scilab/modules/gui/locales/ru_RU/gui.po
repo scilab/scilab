@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-10 23:45+0000\n"
+"PO-Revision-Date: 2009-11-24 20:35+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:20+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -591,7 +591,7 @@ msgid "&Edit"
 msgstr "&Правка"
 
 msgid "&Editor"
-msgstr "&Текстовый редактор Xpad"
+msgstr "&Текстовый редактор"
 
 msgid "&Empty clipboard"
 msgstr "&Очистить буфер обмена"
@@ -629,14 +629,14 @@ msgstr "&Загрузить окружение..."
 msgid "&Load..."
 msgstr "З&агрузить..."
 
+msgid "&Mailing lists"
+msgstr "Сп&иски рассылки"
+
 msgid "&Matlab to Scilab translator"
 msgstr "&Преобразование из MATLAB в Scilab"
 
 msgid "&New figure..."
 msgstr "&Новое графическое окно"
-
-msgid "&Newsgroup Archives"
-msgstr "&Архив группы новостей"
 
 msgid "&Open a file..."
 msgstr "&Открыть файл..."
@@ -729,9 +729,6 @@ msgstr "Добавить цвет в список"
 msgid "All files"
 msgstr "Все файлы"
 
-msgid "All rights reserved"
-msgstr "Все права защищены"
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -769,6 +766,9 @@ msgstr ""
 "Авторы:\n"
 "Консорциум Scilab / INRIA / ENPC / Участники\n"
 "\n"
+
+msgid "Back"
+msgstr "Назад"
 
 msgid "C&lose"
 msgstr "&Закрыть"
@@ -824,8 +824,11 @@ msgstr "Управление Plot3d"
 msgid "Copy"
 msgstr "Копировать"
 
-msgid "Copyright 1989 - 2009"
-msgstr "Авторское право 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr "Авторское право (c) 1989-2007 (ENPC)"
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Авторское право (c) 1989-2009 (INRIA)"
 
 msgid "Cut"
 msgstr "Вырезать"
@@ -835,6 +838,9 @@ msgstr "Отобразить выделенное"
 
 msgid "Do you relly want to quit Scilab?"
 msgstr "Вы действительно желаете выйти из Scilab?"
+
+msgid "Edit in the Scilab Text Editor"
+msgstr "Изменить в текстовом редакторе"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Изображение Encapsulated PostScript (EPS)"
@@ -856,6 +862,9 @@ msgstr "Ошибка при экспорте"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Ошибка. Был получен сигнал.\n"
+
+msgid "Execute into Scilab"
+msgstr "Выполнить в Scilab"
 
 msgid "Execution done.\n"
 msgstr "Выполнение завершено.\n"
@@ -884,6 +893,9 @@ msgstr "Файл уже существует"
 msgid "File already exists"
 msgstr "Файл уже существует"
 
+msgid "Forward"
+msgstr "Вперёд"
+
 msgid "GIF image"
 msgstr "Изображение GIF"
 
@@ -893,8 +905,14 @@ msgstr "Графический интерфейс"
 msgid "Help Browser"
 msgstr "Справка"
 
-msgid "INRIA / ENPC / Contributors"
-msgstr "INRIA / ENPC / Участники"
+msgid "Help about '"
+msgstr "Справка по '"
+
+msgid "Help about a selected text"
+msgstr "Справка по выделенному тексту"
+
+msgid "Help on a selected keyword"
+msgstr "Справка по выделенной команде"
 
 msgid "Impossible to get current look and feel"
 msgstr "Текущий внешний вид получить невозможно"
@@ -953,6 +971,9 @@ msgstr "Не существует свойства «%s» для uicontrol'ов 
 
 msgid "No color selected."
 msgstr "Нет выбранного цвета."
+
+msgid "No text selected"
+msgstr "Нет выделенного текста"
 
 msgid "OK"
 msgstr "OK"
@@ -1019,6 +1040,9 @@ msgstr "Изображение SVG"
 
 msgid "Save and execute"
 msgstr "Сохранить и выполнить"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "&Веб-сайт Atoms"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Примеры"
@@ -1125,11 +1149,11 @@ msgstr "Подменю 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Подменю 2-2"
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорциум Scilab (DIGITEO)"
 
 msgid "Tree Overview"
-msgstr "Обзор дерева"
+msgstr "Обзор информации"
 
 msgid "Uicontrols demo"
 msgstr "Пример uicontrols"

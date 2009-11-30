@@ -24,6 +24,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -45,18 +46,18 @@ public class StartAction  extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	File temp;
-	Xcos.setStartEnabled(false);
+	XcosTab.setStartEnabled(false);
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
 	((XcosDiagram) getGraph(null)).getParentTab().getInfoBar().draw();
 	try {
-	    temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
+	    temp = File.createTempFile("xcos",".h5");
+	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(simulationEnd);
 		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		    Xcos.setStartEnabled(true);
+		    XcosTab.setStartEnabled(true);
 		}
 	    };
 	    launchMe.start();
@@ -65,10 +66,9 @@ public class StartAction  extends DefaultAction {
 		    +"xcos_simulate(scs_m);"
 		    +"xcosNotify(\"" + simulationEnd + "\");"
 		    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
-	    temp.deleteOnExit();
 	} catch (IOException e1) {
 	    e1.printStackTrace();
-	    Xcos.setStartEnabled(true);
+	    XcosTab.setStartEnabled(true);
 	}
     }
 }

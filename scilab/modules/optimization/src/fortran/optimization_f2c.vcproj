@@ -36,7 +36,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -85,7 +85,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib"
+				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="optimization_f.def"
@@ -134,7 +134,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -179,7 +179,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib"
+				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="optimization_f.def"
@@ -223,7 +223,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -265,7 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib"
+				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="optimization_f.def"
@@ -312,7 +312,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -355,7 +355,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib"
+				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="optimization_f.def"
@@ -617,6 +617,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\intreadmps.c"
+				>
+			</File>
+			<File
 				RelativePath=".\minpack\lmder.c"
 				>
 			</File>
@@ -734,6 +738,14 @@
 			</File>
 			<File
 				RelativePath=".\minpack\r1updt.c"
+				>
+			</File>
+			<File
+				RelativePath=".\rdmps1.c"
+				>
+			</File>
+			<File
+				RelativePath=".\rdmpsz.c"
 				>
 			</File>
 			<File
@@ -1137,6 +1149,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rdmps1.f"
+				>
+			</File>
+			<File
+				RelativePath=".\rdmpsz.f"
+				>
+			</File>
+			<File
 				RelativePath=".\rednor.f"
 				>
 			</File>
@@ -1187,6 +1207,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath=".\intreadmps.f"
 			>
 		</File>
 		<File

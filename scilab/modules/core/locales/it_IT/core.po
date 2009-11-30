@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-11-09 17:48+0000\n"
+"PO-Revision-Date: 2009-11-18 15:12+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:20+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -63,19 +63,19 @@ msgstr "argomento %s e argomento %d"
 
 #, c-format
 msgid "%s called at line %s of %s"
-msgstr "%s: chiamato/a alla linea %s di %s"
+msgstr "%s: chiamato alla riga %s di %s"
 
 #, c-format
 msgid "%s called at line %s of %s instruction."
-msgstr "%s chiamato/a alla linea %s della istruzione %s."
+msgstr "%s chiamato alla riga %s della istruzione %s."
 
 #, c-format
 msgid "%s called at line %s of macro %s"
-msgstr "%s chiamato/a alla linea %s della macro %s"
+msgstr "%s chiamato alla riga %s della macro %s"
 
 #, c-format
 msgid "%s called under %s"
-msgstr "%s chiamato/a  sotto %s"
+msgstr "%s chiamato  sotto %s"
 
 #, c-format
 msgid "%s module not found.\n"
@@ -261,11 +261,13 @@ msgstr "%s: %s è sbagliato ha valore %d invece di %d.\n"
 
 #, c-format
 msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: La VERSIONE %s del file è sbagliata.\n"
+msgstr ""
+"%s: Il file VERSION %s è sbagliato\n"
+".\n"
 
 #, c-format
 msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: VERSIONE di file sbagliata in %s.\n"
+msgstr "%s: C'è un file VERSION sbagliato un %s.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -338,13 +340,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha unadimensione sbagliata: era attesa "
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
 "(%d,%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era atteso "
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
 "almeno %d.\n"
 
 #, c-format
@@ -503,7 +505,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso una matrice "
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
 #, c-format
@@ -552,7 +554,7 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
-"di tipo stringa.\n"
+"di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -644,8 +646,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attese delle "
+"stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -989,7 +991,7 @@ msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"Errore: %s non è una versione di file valida (la codifica non è \"utf-8\"), "
+"Errore: %s non è un file di versione valido (la codifica non è \"utf-8\"), "
 "trovata la codifica \"%s\"\n"
 
 #, c-format
@@ -997,7 +999,7 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"Errore: %s non è una versione di file valida (dovrebbe iniziare con "
+"Errore: %s non è un file di versione valido (dovrebbe iniziare con "
 "<MODULE_VERSION> e contiene <VERSION major=\" minor=\" maintenance=\" "
 "revision=\" string=\">)\n"
 
@@ -1058,7 +1060,7 @@ msgid "Invalid %c,%c matrices.\n"
 msgstr "Le matrici %c,%c non sono valide.\n"
 
 msgid "Invalid system.\n"
-msgstr "Sistema non valido\n"
+msgstr "Sistema non valido.\n"
 
 msgid "Invalid time domain.\n"
 msgstr "Il dominio temporale non è valido.\n"
@@ -1165,7 +1167,7 @@ msgstr ""
 "Scilab."
 
 msgid "User variables are:"
-msgstr "Le variabili utente sono:"
+msgstr "Le variabili dell'utente sono:"
 
 #, c-format
 msgid "Using %s elements ouf of %s"
@@ -1177,7 +1179,7 @@ msgstr "Versione: %s"
 
 #, c-format
 msgid "Video card driver version: %s"
-msgstr "Versione del diver della scheda video: %s"
+msgstr "Versione del driver della scheda video: %s"
 
 #, c-format
 msgid "Video card: %s"

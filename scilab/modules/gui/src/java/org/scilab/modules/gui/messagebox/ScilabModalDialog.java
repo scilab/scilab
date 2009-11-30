@@ -29,6 +29,7 @@ public final class ScilabModalDialog {
 		OK_CANCEL,
 		YES_NO,
 		YES_NO_CANCEL,
+		YES_NO_DONTQUIT,
 		CANCEL_OR_SAVE_AND_EXECUTE
 	}
 
@@ -172,6 +173,9 @@ public final class ScilabModalDialog {
 			break;
 		case YES_NO_CANCEL :
 			labels = new String[]{Messages.gettext("Yes"), Messages.gettext("No"), Messages.gettext("Cancel")};
+			break;
+		case YES_NO_DONTQUIT :
+			labels = new String[]{Messages.gettext("Yes"), Messages.gettext("No"), Messages.gettext("Do not leave")};
 			break;
 		case CANCEL_OR_SAVE_AND_EXECUTE :
 			labels = new String[]{Messages.gettext("Cancel"), Messages.gettext("Save and execute")};

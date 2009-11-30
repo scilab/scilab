@@ -14,14 +14,16 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
+import org.scilab.modules.xcos.utils.XcosMessages;
+
 import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
 public class PortCheck extends mxMultiplicity {
 
-    private mxCell sourceTemplate = null;
-    private mxCell[] targetTemplate = null;
+    private Class<? extends mxCell> sourceTemplate = null;
+    private Class<? extends mxCell>[] targetTemplate = null;
     private String errorMessage = null;
 
     public PortCheck(boolean source, String type, String attr, String value,
@@ -30,8 +32,8 @@ public class PortCheck extends mxMultiplicity {
 	super(source, type, attr, value, min, max, validNeighbors, countError,
 		typeError, validNeighborsAllowed); 
     }
-
-    public PortCheck(mxCell sourceTemplate, mxCell[] targetTemplate, String errorMessage) {
+    
+    public PortCheck(Class<? extends mxCell> sourceTemplate, Class<? extends mxCell>[] targetTemplate, String errorMessage) {
 	// We complitely override mxMultiplicity
 	super(true, null, null, null, 0, null, null, null, null, false);
 	this.sourceTemplate = sourceTemplate;
@@ -42,33 +44,18 @@ public class PortCheck extends mxMultiplicity {
     }
 
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
-    {
-	//System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
-	//System.err.println("Versus : "+sourceTemplate.getClass().getSimpleName()+" -> "+targetTemplate.getClass().getSimpleName());
+    {	
+	// maybe there is a better way to check this
+	if (!isPortNonConnected(source, target)) { if (errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;}
 	if (isTypeCompatible(source, target)) { return null; }
-
 	return errorMessage;
     }
 
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
 
-	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    if (firstPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) firstPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-
-	    if (secondPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) secondPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-
+	if (sourceTemplate.getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
 	    for (int i = 0; i < targetTemplate.length; ++i) {
-		if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
+		if (targetTemplate[i].getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
 		    // We found something compatible !!
 		    return true;
 		}
@@ -80,5 +67,21 @@ public class PortCheck extends mxMultiplicity {
 	// This rule is not applicable so we want it to be silent.
 	return true;
     }
-
+    
+    protected boolean isPortNonConnected(Object firstPort, Object secondPort) {
+	    if (firstPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) firstPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
+	
+	    if (secondPort instanceof BasicPort) {
+		BasicPort port = (BasicPort) secondPort;
+		if (port.getEdgeCount() > 0) {
+		    return false;
+		}
+	    }
+	return true;
+    }
 }

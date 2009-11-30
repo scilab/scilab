@@ -72,11 +72,10 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
   end
 
   //** save the current figure handle
-  gh_wins = gcf();
+  //gh_wins = gcf();
 
   if path_in==-1 then
-    //** hilite_obj(scs_m.objs(path_out)); //**
-    hilite_obj(path_out); //** new
+    xcosShowBlockWarning(path_out);
     if typ==0 then
       message(['Hilited block has connected ports ';
                'with  incompatible sizes'])
@@ -84,125 +83,44 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       message(['Hilited block has connected ports ';
                'with  incompatible types'])
     end
-    unhilite_obj(path_out); //** new
+    xcosClearBlockWarning(path_out); //** new
     return;
   end
 
-  //[lhs,rhs]=argn(0)
-  if prt_in <> -1 then  //two connected blocks
-    lp=mini(size(path_out,'*'),size(path_in,'*'))
-    k=find(path_out(1:lp)<>path_in(1:lp))
-    path=path_out(1:k(1)-1) // common superbloc path
-    path_out=path_out(k(1)) // "from" block number
-    path_in=path_in(k(1))   // "to" block number
+    //[lhs,rhs]=argn(0)
+    if prt_in <> -1 then  //two connected blocks
+        lp=mini(size(path_out,'*'),size(path_in,'*'))
+        k=find(path_out(1:lp)<>path_in(1:lp))
+        path=path_out(1:k(1)-1) // common superbloc path
+        path_out=path_out(k(1)) // "from" block number
+        path_in=path_in(k(1))   // "to" block number
 
-    if path==[] then
-      //** hilite_obj(scs_m.objs(path_out)) //** set
-      hilite_obj(path_out); //**
-      if or(path_in<>path_out) then
-          //** hilite_obj(scs_m.objs(path_in))
-          hilite_obj(path_in)
-      end
-
-      if typ==0 then
-        message(['Hilited block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
-                 ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)]);
-      else
-        message(['Hilited block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)]);
-
-      end
-      unhilite_obj(path_out);
-      if or(path_in<>path_out) then unhilite_obj(path_in),end
-      //** hilite_obj(scs_m.objs(path_out))
-      //** if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-    else
-      mxwin=maxi(winsid())
-//*****************************************
-      for k=1:size(path,'*')
-	//** hilite_obj(scs_m.objs(path(k))) //**
-	hilite_obj(path(k)) ; //**
-	scs_m=scs_m.objs(path(k)).model.rpar;
-	scs_show(scs_m,mxwin+k)  //** WARNING !
-      end
-      //** hilite_obj(scs_m.objs(path_out)) //**
-      hilite_obj(path_out) ; //**
-      if or(path_in<>path_out) then
-        //** hilite_obj(scs_m.objs(path_in))
-        hilite_obj(path_in)
-      end
-//*****************************************
-      if typ==0 then
-        message(['Hilited block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 string(prt_out)+' output port size is :'+sci2exp(nout);
-                 string(prt_in)+' input port size is  :'+sci2exp(nin)]);
-      else
-        message(['Hilited block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)]);
-      end
-      for k=size(path,'*'):-1:1
-        //** select the mxwin+k window and get the handle
-        gh_del = scf(mxwin+k);
-        //** delete the window
-        delete(gh_del)
-        //xdel(mxwin+k) //** WARNING !
-      end
-
-      //** restore the active window
-      scf(gh_wins);
-
-      //scs_m=null()
-      //** unhilite_obj(scs_m.objs(path(1))) //** WARNING
-      unhilite_obj(path(1))
-    end
-  else // connected links do not verify block contraints
-    mess=prt_out;
-    if type(path_out)==15 then //problem with implicit block
-      message('Problem with the block generated from modelica blocks')
-    else
-      path=path_out(1:$-1) // superbloc path
-      path_out=path_out($) //  block number
-      if path==[] then
-	//** hilite_obj(scs_m.objs(path_out)) ;//** set
-	hilite_obj(path_out) ;//** set
-	message(mess)
-	//** hilite_obj(scs_m.objs(path_out)) //** clear
-        unhilite_obj(path_out) ;
-      else
-	mxwin=maxi(winsid())
-	for k=1:size(path,'*')
-	  //** hilite_obj(scs_m.objs(path(k))) //**
-	  hilite_obj(path(k)) ; //**
-	  scs_m=scs_m.objs(path(k)).model.rpar;
-	  scs_show(scs_m,mxwin+k) //**
-	end
-	//** hilite_obj(scs_m.objs(path_out)) //**
-	hilite_obj(path_out) ; //**
-	message(mess)
-	for k=size(path,'*'):-1:1
-          //**WARNING: xdel(mxwin+k) //** delete (mxwin+k) graphic window
-          //** select the mxwin+k window and get the handle
-          gh_del = scf(mxwin+k);
-          //** delete the window
-          delete(gh_del)
+        msg = [];
+        if typ==0 then
+            msg = ['Hilited block(s) have connected ports ';
+            'with  incompatible sizes';
+            ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
+            ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)];
+        else
+            msg = ['Hilited block(s) have connected ports ';
+            'with  incompatible type';
+            ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
+            ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)];
         end
 
-        //** restore the active window
-        scf(gh_wins);
-
-        //scs_m=null()
-        //** unhilite_obj(scs_m.objs(path(1))) //**
-        unhilite_obj(path(1))
-      end
+        if path==[] then
+            errorDiagramPath(path, [path_out, path_in], msg, "", %t);
+        else
+            errorDiagramPath(path, [path_out, path_in], msg, "", %t);
+        end
+    else // connected links do not verify block contraints
+        mess=prt_out;
+        if type(path_out)==15 then //problem with implicit block
+            message('Problem with the block generated from modelica blocks')
+        else
+            path=path_out(1:$-1) // superbloc path
+            path_out=path_out($) //  block number
+            errorDiagramPath(path, path_out, mess, "", %t);
+        end
     end
-  end
-
-  
 endfunction

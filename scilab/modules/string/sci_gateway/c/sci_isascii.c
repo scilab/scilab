@@ -167,6 +167,7 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 		BOOL *bOutputMatrix = NULL;
 		int i = 0;
 		int lengthAllStrings = 0;
+
 		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
 		if(sciErr.iErr)
 		{
@@ -179,12 +180,13 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 			printError(&sciErr, 0);
 			return 0;
 		}
+
 		pwcStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*)*(m1 * n1));
 		for (i = 0; i < (m1 * n1); i++)
 		{
 			lengthAllStrings = lengthAllStrings + lenStVarOne[i];
 
-			pwcStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * lenStVarOne[i]);
+			pwcStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i]+1));
 
 			if (pwcStVarOne[i] == NULL)
 			{

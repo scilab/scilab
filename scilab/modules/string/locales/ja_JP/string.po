@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-10-25 04:27+0000\n"
+"PO-Revision-Date: 2009-11-16 16:24+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -89,17 +89,13 @@ msgstr "%s: %d 番目の引数要素は、増加順序でなくてはなりま�
 msgid "%s: Given expression has no value.\n"
 msgstr "%s: 与えられた表現はいかなる値も持っていません。\n"
 
-#
-# File: src/c/pcre_error.c, line: 49
 #, c-format
 msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
-msgstr "%s: DFA一致の一致限界が適切でありません、無視します。\n"
+msgstr "%s: DFA等価の等価限界が適切でありません、無視します。\n"
 
-#
-# File: src/c/pcre_error.c, line: 55
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
-msgstr "%s: 一致させたテキストはバッファ限界を超えます。\n"
+msgstr "%s: 大量のテキストはバッファ限界を超えます。\n"
 
 #
 # File: sci_gateway/c/sci_code2str.c, line: 59
@@ -144,18 +140,14 @@ msgstr "%s: 部分一致はサポートされません。\n"
 msgid "%s: Returned count is too big for offset size.\n"
 msgstr "%s: オフセットサイズの戻りカウントが大きすぎます。\n"
 
-#
-# File: macros/expression2code.sci, line: 324
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: この特徴は実行されませんでした。: %s\n"
+msgstr "%s: この特徴は装備されていません。: %s\n"
 
-#
-# File: macros/sci2exp.sci, line: 93
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
-msgstr "%s: この特徴は実行されません: 型 %s の翻訳変数\n"
+msgstr "%s: この特徴は装備されていません: 型 %s の翻訳変数\n"
 
 #
 # File: src/c/pcre_error.c, line: 58
@@ -286,17 +278,13 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、�
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d で不正な型です。\n"
 
-#
-# File: sci_gateway/c/sci_regexp.c, line: 222
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: '%s' を想定します。\n"
 
-#
-# File: macros/tree2code.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: \"%s\" を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: \"%s\" を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strcat.c, line: 104
@@ -488,11 +476,9 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列ベクトルを想定し�
 msgid "%s: Wrong type for input argument(s).\n"
 msgstr "%s: 入力引数(s)で不正な型です。.\n"
 
-#
-# File: macros/arobasestring2strings.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s: 入力引数で、不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 56
@@ -532,11 +518,19 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) を想定します。\n"
 
+#
+# File: sci_gateway/c/sci_convstr.c, line: 71
+# File: sci_gateway/c/sci_strindex.c, line: 141
+# File: sci_gateway/c/sci_strsubst.c, line: 97
+# File: sci_gateway/c/sci_strsubst.c, line: 107
+# File: sci_gateway/c/sci_strtok.c, line: 53
+# File: sci_gateway/c/sci_strtok.c, line: 73
+# File: sci_gateway/c/sci_tokens.c, line: 146
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
 "Encoding problem).\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d で不正な値: 適当な文字列を想定します(UTF-8 エンコーディング問題)\n"
 
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 56
@@ -608,7 +602,7 @@ msgstr "警告: \n"
 
 #, c-format
 msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告: %s 関数は廃れました。\n"
+msgstr "警告: %s 関数はもう使われません。\n"
 
 #, c-format
 msgid "WARNING: Please use %s instead.\n"

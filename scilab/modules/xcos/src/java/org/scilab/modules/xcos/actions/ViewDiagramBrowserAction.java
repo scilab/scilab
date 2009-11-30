@@ -35,13 +35,12 @@ public class ViewDiagramBrowserAction extends DefaultAction {
 	
 	   public void doAction() {
 		try {
-		    File temp = File.createTempFile("xcos",".hdf5");
-		    temp.delete();
+		    File temp = File.createTempFile("xcos",".h5");
+		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 			    +"tree_show(scs_m);"
 			    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
-		    temp.deleteOnExit();
 		} catch (IOException e1) {
 		    e1.printStackTrace();
 		}

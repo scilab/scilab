@@ -249,7 +249,12 @@ public final class BlockPositioning {
      * @param newBlockDirection
      */
     public static void updateBlockDirection(BasicBlock block, String newBlockDirection) {
+	
+	
 	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block}, mxConstants.STYLE_DIRECTION, newBlockDirection);
+	
+//	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block},
+//		mxConstants.STYLE_ROTATION, new Integer(angle).toString());
 
 	rotatePorts(block, BasicBlockInfo.getAllInputPorts(block), getDataPortsDirection(newBlockDirection));
 	rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block), getDataPortsDirection(newBlockDirection));
@@ -287,7 +292,14 @@ public final class BlockPositioning {
 
 	mxCellState state = block.getParentDiagram().getView().getState(block);
 	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
+	String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
+	if(currentFlip.compareTo("true") == 0) {
+		currentFlip = "false";
+	} else {
+		currentFlip = "true";
+	}
+	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block}, XcosConstants.STYLE_FLIP, currentFlip);
+	
 	updatePortsPosition(block, getNextFlipDirection(currentBlockDirection));
 	updateBlockDirection(block, getNextFlipDirection(currentBlockDirection));
     }
@@ -302,5 +314,13 @@ public final class BlockPositioning {
 
 	updatePortsPosition(block, getNextAntiClockwiseDirection(currentBlockDirection));
 	updateBlockDirection(block, getNextAntiClockwiseDirection(currentBlockDirection));
+    }
+    
+    public static int getAngleFromDirection(String direction) {
+	    if (direction.compareTo(mxConstants.DIRECTION_EAST) == 0) { return 0; }
+	    if (direction.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return 270; }
+	    if (direction.compareTo(mxConstants.DIRECTION_WEST) == 0) { return 180; }
+	    if (direction.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return 90; }
+	    return 0;
     }
 }
