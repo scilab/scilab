@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -327,12 +328,15 @@ public class BlockReader {
 
 	    return convertMListToDiagram(data);
 	} catch (HDF5LibraryException e) {
-	    return null;
+	    System.err.println("An error occurred while working with the HDF5 library "+e.getLocalizedMessage());
 	} catch (WrongStructureException e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Wrong Structure: "+e.getLocalizedMessage());
+	} catch (HDF5JavaException e) {
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	} catch (HDF5Exception e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	}
+	return null;
     }
 
     private static int getStartBlockIndex(ScilabMList link)
