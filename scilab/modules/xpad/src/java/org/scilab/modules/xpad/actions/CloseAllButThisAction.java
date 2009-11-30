@@ -34,9 +34,9 @@ public class  CloseAllButThisAction extends DefaultAction {
 			while(getEditor().getTabPane().getTabCount() != 1) {
 				int currentIndex = getEditor().getTabPane().getSelectedIndex();
 				if (currentIndex != 0) {
-					getEditor().closeTabAt(0);
+					getEditor().closeTabAt(0, true);
 				} else {
-					getEditor().closeTabAt(1);
+					getEditor().closeTabAt(1, true);
 				}
 			}
 		}
