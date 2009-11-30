@@ -54,6 +54,7 @@ public class MathMLObjectSVG extends MathMLObjectGL {
     }
         
     public void makeImage() {
+/* @TODO: why 2 ? */
 		width = (int) Math.ceil(this.getJev().getWidth()) + 2;
 		final int ascent = (int) Math.ceil(this.getJev().getAscentHeight());
 		height = (int) Math.ceil(this.getJev().getDescentHeight()) + ascent;
@@ -74,7 +75,7 @@ public class MathMLObjectSVG extends MathMLObjectGL {
 		try {
 			g2d.stream(new OutputStreamWriter(buf), true);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.err.println(e.getLocalizedMessage());
 		}
 				
 		code = buf.toString();
