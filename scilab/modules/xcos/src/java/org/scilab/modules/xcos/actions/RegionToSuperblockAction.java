@@ -50,18 +50,21 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.view.mxGraph;
 
 public class RegionToSuperblockAction extends DefaultAction {
 
     private class BrokenLink {
 	private BasicLink link;
+	private BasicPort edge;
 	private mxGeometry geom;
 	private boolean outGoing;
 	private int portNumber;
 
-	public BrokenLink(BasicLink link, mxGeometry geom, boolean outGoing) {
+	public BrokenLink(BasicLink link, BasicPort edge, mxGeometry geom, boolean outGoing) {
 	    this.link = link;
+	    this.edge = edge;
 	    this.outGoing = outGoing;
 	    this.geom = geom;
 	}
@@ -72,6 +75,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	public BasicLink getLink() {
 	    return link;
+	}
+	
+	public BasicPort getCopiedEdge() {
+	    return edge;
 	}
 
 	public mxGeometry getGeometry() {
@@ -407,14 +414,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 			.createLinkFromPorts((BasicPort) link.getLink()
 				.getSource(), (BasicPort) block.getChildAt(0));
 		newLink.setGeometry(link.getLink().getGeometry());
-		newLink.setSource((BasicPort) link.getLink().getSource());
+		newLink.setSource((BasicPort) link.getCopiedEdge());
 		newLink.setTarget((BasicPort) block.getChildAt(0));
 	    } else { // new -> old
 		newLink = BasicLink.createLinkFromPorts((BasicPort) block
 			.getChildAt(0), (BasicPort) link.getLink().getTarget());
 		newLink.setGeometry(link.getLink().getGeometry());
 		newLink.setSource((BasicPort) block.getChildAt(0));
-		newLink.setTarget((BasicPort) link.getLink().getTarget());
+		newLink.setTarget((BasicPort) link.getCopiedEdge());
 	    }
 
 	    diagram.getModel().beginUpdate();
@@ -439,16 +446,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
 			    if (!isInSelection(objs, source)) {
-				BasicLink copiedLink = (BasicLink) ((BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j)).getEdgeAt(0);
-				BasicBlock copiedSource = (BasicBlock) (link.getSource().getParent());
-				breaks.add(new BrokenLink(copiedLink, copiedSource.getGeometry(), false));
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
 			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
 			    if (!isInSelection(objs, target)) {
-				BasicLink copiedLink = (BasicLink) ((BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j)).getEdgeAt(0);
-				BasicBlock copiedTarget = (BasicBlock) (link.getTarget().getParent());
-				breaks.add(new BrokenLink(copiedLink, copiedTarget.getGeometry(), true));
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
 			    }
 			}
 		    }

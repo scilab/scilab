@@ -78,6 +78,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5184 fixed - Xcos: Setup menu values are localized
