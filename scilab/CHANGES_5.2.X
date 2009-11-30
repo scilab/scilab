@@ -46,6 +46,8 @@ See SEP #36 for more information
 
 * texprint is now obsolete. Please use prettyprint instead
 
+* bug #5303 fixed. pol2tex() cannot be used straightforwardly with the new "$...$" LaTeX feature.
+
 
 Localization:
 =============
