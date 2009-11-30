@@ -30,13 +30,14 @@ public class  CloseAllButThisAction extends DefaultAction {
 	    
 	public void doAction() {
 		int nbTabCount = getEditor().getTabPane().getTabCount();
+		boolean bContinue = true;
 		if (nbTabCount > 1) {
-			while(getEditor().getTabPane().getTabCount() != 1) {
+			while( (getEditor().getTabPane().getTabCount() != 1) & (bContinue)) {
 				int currentIndex = getEditor().getTabPane().getSelectedIndex();
 				if (currentIndex != 0) {
-					getEditor().closeTabAt(0);
+					bContinue = getEditor().closeTabAt(0);
 				} else {
-					getEditor().closeTabAt(1);
+					bContinue = getEditor().closeTabAt(1);
 				}
 			}
 		}

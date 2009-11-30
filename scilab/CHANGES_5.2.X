@@ -46,6 +46,8 @@ See SEP #36 for more information
 
 * texprint is now obsolete. Please use prettyprint instead
 
+* bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new "$...$" LaTeX feature.
+
 
 Localization:
 =============
@@ -101,6 +103,8 @@ Xcos:
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
+
+* bug 5403 fixed - Xcos: now creates graphic windows only when needed.
 
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
 
@@ -216,6 +220,10 @@ Bug fixes:
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
+
+* bug 5295 fixed - configure: LibGL.so should be included at link time when linking with libjogl.so.
+
+* bug 5298 fixed - Obsolete Makefile in the mexlib module
 
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
                    of the cost function.
