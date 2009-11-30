@@ -235,9 +235,6 @@ public class RegionToSuperblockAction extends DefaultAction {
 				
 				if (otherSide instanceof SplitBlock) {
 				    graph.addSelectionCell(otherSide);
-				    
-				    // restart loop
-				    i = -1;
 				} // otherSide is a SplitBlock
 
 			    } // BasicLink
