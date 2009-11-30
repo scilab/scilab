@@ -17,14 +17,14 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 1 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Buildingthemasterdocument:
+Construit le document maître:
 	SCI/modules/helptools/examples/example_1/help/fr_FR
 
-Constructiondufichiermanuel[html]dansSCI/modules/helptools/examples/example_1/help/fr_FR.(Veuillezpatienter...celapeutprendreuncertaintemps)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_1/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
---Suppressiondesfichiersd'aide--
+-- Suppression des fichiers d'aide --
 ...
 // Build the english help
 setlanguage("en_US");
@@ -32,14 +32,14 @@ my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 1 [en_US]";
 xmltohtml(my_english_help_dir,my_english_help_title,'en_US');
 
-Buildingthemasterdocument:
+Building the master document:
 	SCI/modules/helptools/examples/example_1/help/en_US
 
-Buildingthemanualfile[html]inSCI/modules/helptools/examples/example_1/help/en_US.(Pleasewaitbuilding...thiscantakeawhile)
+Building the manual file [html] in SCI/modules/helptools/examples/example_1/help/en_US. (Please wait building ... this can take a while)
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);
---Deletinghelpfiles--
+-- Deleting help files --
 ...
 // TEST 2 (example_2_function_2 and example_2_function_4 are missing in the
 //         french help)
@@ -51,14 +51,14 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 2 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,'fr_FR');
 
-Buildingthemasterdocument:
+Construit le document maître:
 	SCI/modules/helptools/examples/example_2/help/fr_FR
 
-Constructiondufichiermanuel[html]dansSCI/modules/helptools/examples/example_2/help/fr_FR.(Veuillezpatienter...celapeutprendreuncertaintemps)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_2/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
---Suppressiondesfichiersd'aide--
+-- Suppression des fichiers d'aide --
 ...
 // Build the english help
 setlanguage("en_US");
@@ -66,14 +66,14 @@ my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 2 [en_US]";
 xmltohtml(my_english_help_dir,my_english_help_title,'en_US');
 
-Buildingthemasterdocument:
+Building the master document:
 	SCI/modules/helptools/examples/example_2/help/en_US
 
-Buildingthemanualfile[html]inSCI/modules/helptools/examples/example_2/help/en_US.(Pleasewaitbuilding...thiscantakeawhile)
+Building the manual file [html] in SCI/modules/helptools/examples/example_2/help/en_US. (Please wait building ... this can take a while)
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);
---Deletinghelpfiles--
+-- Deleting help files --
 ...
 // TEST 3 (example_3_function_3 and example_3_function_4 are missing in the
 //         english help)
@@ -85,14 +85,14 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 3 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Buildingthemasterdocument:
+Construit le document maître:
 	SCI/modules/helptools/examples/example_3/help/fr_FR
 
-Constructiondufichiermanuel[html]dansSCI/modules/helptools/examples/example_3/help/fr_FR.(Veuillezpatienter...celapeutprendreuncertaintemps)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_3/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
---Suppressiondesfichiersd'aide--
+-- Suppression des fichiers d'aide --
 ...
 // Build the english help
 setlanguage("en_US");
@@ -100,12 +100,12 @@ my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 3 [en_US]";
 xmltohtml(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
 
-Buildingthemasterdocument:
+Building the master document:
 	SCI/modules/helptools/examples/example_3/help/en_US
 
-Buildingthemanualfile[html]inSCI/modules/helptools/examples/example_3/help/en_US.(Pleasewaitbuilding...thiscantakeawhile)
+Building the manual file [html] in SCI/modules/helptools/examples/example_3/help/en_US. (Please wait building ... this can take a while)
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);
---Deletinghelpfiles--
+-- Deleting help files --
 ...
