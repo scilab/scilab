@@ -31,6 +31,8 @@ import javax.swing.text.DefaultEditorKit;
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
+import org.scilab.modules.xpad.actions.CloseAllAction;
+import org.scilab.modules.xpad.actions.CloseAllButThisAction;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.actions.CommentAction;
 import org.scilab.modules.xpad.actions.CopyAction;
@@ -121,6 +123,8 @@ public class XpadGUI {
 		fileMenu.add(PrintAction.createMenu(editorInstance));
 		fileMenu.addSeparator();
 		fileMenu.add(CloseAction.createMenu(editorInstance));
+		fileMenu.add(CloseAllAction.createMenu(editorInstance));
+		fileMenu.add(CloseAllButThisAction.createMenu(editorInstance));
 		fileMenu.addSeparator();
 		fileMenu.add(ExitAction.createMenu(editorInstance));
 		menuBar.add(fileMenu);
