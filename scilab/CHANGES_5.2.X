@@ -262,6 +262,17 @@ Bug fixes:
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
 
+* bug 5487 fixed - help_from_sci was taking the first line of code as author
+  	  	   		   when no empty line was provided
+
+* bug 5488 fixed - When the documentation was extracted from a .sci file using
+  	  	   		   help_from_sci function, the docbook refsynopsisdiv section
+				   was incorrect.
+
+* bug 5489 fixed - When the documentation was extracted from a .sci file using
+  	  	   		   help_from_sci function, the docbook Author refsection
+				   section was not correct.
+
 * bug 5497 fixed - Editor: selection drag is now available.
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about version in 

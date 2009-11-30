@@ -18,6 +18,9 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.utils.XcosComponent;
+
+import com.mxgraph.canvas.mxICanvas;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
@@ -27,6 +30,7 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
 import com.mxgraph.util.mxUndoableEdit;
+import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
 
 public class ScilabGraph extends mxGraph {
@@ -34,7 +38,8 @@ public class ScilabGraph extends mxGraph {
     protected mxUndoManager undoManager = new mxUndoManager();
     protected mxGraphOutline graphOutline = null;
     protected mxKeyboardHandler keyboardHandler = null;
-    protected mxGraphComponent component = null;
+    protected XcosComponent component = null;
+//    protected mxGraphComponent component = null;
 
     private String title = Messages.gettext("Untitled");
     private String savedFile = null;
@@ -91,7 +96,8 @@ public class ScilabGraph extends mxGraph {
 	undoManager.addListener(mxEvent.UNDO, selectionHandler);
 	undoManager.addListener(mxEvent.REDO, selectionHandler);
 
-	component = new mxGraphComponent(this);
+	component = new XcosComponent(this);
+//	component = new mxGraphComponent(this);
 
 	// Adds rubberband selection
 	new mxRubberband(component);
@@ -112,7 +118,7 @@ public class ScilabGraph extends mxGraph {
 	// this.setInvokesStopCellEditing(true);
     }
 
-    public String getSavedFile() {
+	public String getSavedFile() {
 	return savedFile;
     }
 
@@ -224,4 +230,5 @@ public class ScilabGraph extends mxGraph {
 
 	return false;
     }
+
 }
