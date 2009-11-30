@@ -71,6 +71,15 @@ public class LinkStyleAction extends DefaultAction {
 	}
 	if (value.compareToIgnoreCase(mxConstants.SHAPE_CONNECTOR) == 0) {
 	    graph.setCellStyles(mxConstants.STYLE_EDGE, "", links.toArray());
+	    
+	    for (int i = 0 ; i < links.size() ; i++){
+	    	BasicLink currentLink = ((BasicLink)links.get(i));
+	    	int numberOfPoints = currentLink.getPointCount();
+	    	for(int j = 0 ; j < numberOfPoints ; j++){
+	    		currentLink.removePoint(0);
+	    	}
+	    }
+	    graph.refresh();
 	}
     }
 }

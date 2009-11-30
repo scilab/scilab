@@ -87,7 +87,7 @@ start_debug_kdbg() {
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
+	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all -v --trace-redir=yes --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
