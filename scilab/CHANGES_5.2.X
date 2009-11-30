@@ -219,6 +219,8 @@ Bug fixes:
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
 
+* bug 5298 fixed - Obsolete Makefile in the mexlib module
+
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
                    of the cost function.
 
