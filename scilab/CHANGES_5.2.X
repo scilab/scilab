@@ -104,6 +104,8 @@ Xcos:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
+* bug 5403 fixed - Xcos: now creates graphic windows only when needed.
+
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
 
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
