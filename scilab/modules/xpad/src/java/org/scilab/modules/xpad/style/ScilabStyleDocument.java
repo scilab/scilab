@@ -37,8 +37,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	// Editor's default encoding is UTF-8
 	private String encoding = "UTF-8";
-	private boolean updater;
-	private boolean autoIndent;
+	private boolean updater= true;
+	private boolean autoIndent =true;
 	private boolean autoColorize = true;
 	private volatile boolean shouldMergeEdits;
 	private CompoundEdit compoundEdit;
