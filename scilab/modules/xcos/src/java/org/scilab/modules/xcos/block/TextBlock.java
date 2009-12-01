@@ -56,4 +56,20 @@ public class TextBlock extends BasicBlock {
     public int getFontSize() {
 	return Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]);
     }
+    
+    /**
+     * Disabling BlockSettings action
+     */
+    @Override
+    public void openBlockSettings(String context[]) {
+	// NOTHING TO BE DONE
+    }
+    
+    /**
+     * Disabling BlockSettings action
+     */
+    @Override
+    public void updateBlockSettings(BasicBlock modifiedBlock) {
+	// NOTHING TO BE DONE
+    }
 }
