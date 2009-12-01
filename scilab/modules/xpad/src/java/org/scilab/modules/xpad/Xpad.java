@@ -80,6 +80,7 @@ import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.DropFilesListener;
+import org.scilab.modules.xpad.utils.SaveFile;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -402,28 +403,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 		File newSavedFile = new File(fileToSave);
+		
+		if (SaveFile.doSave(textPaneAt, newSavedFile, editorKit) == false) return false;
+
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
-
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newSavedFile), styledDocument.getEncoding()));
-			try {
-				editorKit.write(out, styledDocument, 0, styledDocument.getLength());
-				out.flush();
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-		} catch (UnsupportedEncodingException e2) {
-			e2.printStackTrace();
-			return false;
-		} catch (FileNotFoundException e2) {
-			e2.printStackTrace();
-			return false;
-		}
-
 		styledDocument.setContentModified(false);
 
 		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
@@ -600,23 +583,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			// TODO factor common code with "Save"
 			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
-			BufferedWriter out = null;
-			try {
-				out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styledDocument.getEncoding()));
-				try {
-					editorKit.write(out, styledDocument, 0, styledDocument.getLength());
-					out.flush();
-					out.close();
-				} catch (IOException e) {
-					return false;
-				} catch (BadLocationException e) {
-					return false;
-				}
-			} catch (UnsupportedEncodingException e2) {
-				return false;
-			} catch (FileNotFoundException e2) {
-				return false;
-			}
+			if (SaveFile.doSave(textPane, f, editorKit) == false) return false;
 
 			ConfigManager.saveLastOpenedDirectory(f.getPath());
 			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
