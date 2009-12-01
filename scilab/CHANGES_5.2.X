@@ -112,6 +112,8 @@ Xcos:
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
+* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
@@ -123,6 +125,8 @@ Xcos:
 * bug 5464 fixed - Xcos: Actions are disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
 
 
 Tree functions :
