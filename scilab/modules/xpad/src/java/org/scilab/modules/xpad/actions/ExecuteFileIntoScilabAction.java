@@ -49,7 +49,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 		} catch (NoClassDefFoundError e) {
 			/* This happens when Xpad is launch as standalone (ie without
 			 * Scilab) */
-			ScilabModalDialog.show(editor, "Could not find the console nor the InterpreterManagement");
+			ScilabModalDialog.show(editor, XpadMessages.COULD_NOT_FIND_CONSOLE);
 		}
 	}
 
