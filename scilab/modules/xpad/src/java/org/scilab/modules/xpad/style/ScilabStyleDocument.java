@@ -37,19 +37,37 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	// Editor's default encoding is UTF-8
 	private String encoding = "UTF-8";
-	private boolean updater;
-	private boolean autoIndent;
-	private boolean autoColorize=true;
+	private boolean updater= true;
+	private boolean autoIndent =true;
+	private boolean autoColorize = true;
 	private volatile boolean shouldMergeEdits;
 	private CompoundEdit compoundEdit;
+	
+	private String eolStyle = System.getProperty("line.separator");
 
-	public String getEncoding(){
+	public String getEncoding() {
 		return encoding;
 	}
-	public void setEncoding(String encoding){
+	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
 
+	/**
+	 * set end of line value
+	 * @param eol
+	 */
+	public void setEOL(String eol) {
+		this.eolStyle = eol;
+	}
+	
+	/**
+	 * get end of line
+	 * @return end of line
+	 */
+	public String getEOL() {
+		return this.eolStyle;
+	}
+	
 	public boolean getAutoColorize() {
 		return autoColorize;
 	}

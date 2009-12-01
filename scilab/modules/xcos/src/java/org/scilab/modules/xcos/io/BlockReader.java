@@ -444,9 +444,9 @@ public class BlockReader {
 	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
-	} finally {
-	    return newBlock;
+	    newBlock = null;
 	}
+	return newBlock;
     }
 
     public static int getNbObjs(ScilabMList data) {

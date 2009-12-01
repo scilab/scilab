@@ -112,7 +112,7 @@ public class SetupAction extends DefaultAction {
 		diagram = (XcosDiagram) getGraph(e);
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, null, null, 0.01);
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0.0, null, null, 0.01);
 		integrationSpinner = new JSpinner();
 		integrationSpinner.setModel(spinnerModel);
 		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner, "0.00"));
@@ -120,7 +120,7 @@ public class SetupAction extends DefaultAction {
 		spinnerModel.setValue(diagram.getFinalIntegrationTime());
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
-		spinnerModel = new SpinnerNumberModel(0, null, null, 0.1);
+		spinnerModel = new SpinnerNumberModel(0.1, null, null, 0.1);
 		rtsSpinner = new JSpinner();
 		rtsSpinner.setModel(spinnerModel);
 		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner, "0.0"));
@@ -128,7 +128,7 @@ public class SetupAction extends DefaultAction {
 		spinnerModel.setValue(diagram.getRealTimeScaling());
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
-		spinnerModel = new SpinnerNumberModel(0, null, null, 0.00001);
+		spinnerModel = new SpinnerNumberModel(0.0, null, null, 0.00001);
 		integratorAbsSpinner = new JSpinner();
 		integratorAbsSpinner.setModel(spinnerModel);
 		integratorAbsSpinner.setEditor(new JSpinner.NumberEditor(integratorAbsSpinner, "0.00000"));
@@ -136,7 +136,7 @@ public class SetupAction extends DefaultAction {
 		spinnerModel.setValue(diagram.getIntegratorAbsoluteTolerance());
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
-		spinnerModel = new SpinnerNumberModel(0, null, null, 0.0000001);
+		spinnerModel = new SpinnerNumberModel(0.0, null, null, 0.0000001);
 		integratorRelSpinner = new JSpinner();
 		integratorRelSpinner.setModel(spinnerModel);
 		integratorRelSpinner.setEditor(new JSpinner.NumberEditor(integratorRelSpinner, "0.0000000"));
@@ -144,7 +144,7 @@ public class SetupAction extends DefaultAction {
 		spinnerModel.setValue(diagram.getIntegratorRelativeTolerance());
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
-		spinnerModel = new SpinnerNumberModel(0, null, null, 1.000E-11);
+		spinnerModel = new SpinnerNumberModel(0.0, null, null, 1.000E-11);
 		toleranceOnTimeSpinner = new JSpinner();
 		toleranceOnTimeSpinner.setModel(spinnerModel);
 		toleranceOnTimeSpinner.setEditor(new JSpinner.NumberEditor(toleranceOnTimeSpinner, "0.000E00"));

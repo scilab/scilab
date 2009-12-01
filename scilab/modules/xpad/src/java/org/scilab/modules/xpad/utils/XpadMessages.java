@@ -79,6 +79,11 @@ public class XpadMessages {
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
     public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
+    public static final String EOL_TYPE = Messages.gettext("End Of Line");
+    public static final String EOL_AUT0 = Messages.gettext("Auto (Default)");
+    public static final String EOL_WINDOWS = Messages.gettext("Windows (CR + LF)");
+    public static final String EOL_MACOS = Messages.gettext("Mac OS (CR)");
+    public static final String EOL_LINUX = Messages.gettext("Linux (LF)");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
@@ -153,4 +158,7 @@ public class XpadMessages {
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
     public static final String CONTINUE = Messages.gettext("Continue?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"xpadConfiguration.xml\"");
+    
+    public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
+    public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
 }

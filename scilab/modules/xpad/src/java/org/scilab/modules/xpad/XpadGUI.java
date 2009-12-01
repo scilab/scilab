@@ -51,6 +51,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EncodingAction;
+import org.scilab.modules.xpad.actions.EndOfLineAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
 import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
@@ -193,6 +194,34 @@ public class XpadGUI {
 				radioTypes[i].setSelected(true);
 			}
 		}
+		
+		// create End Of Line sub Menu
+		
+		Menu eolTypeMenu = ScilabMenu.createMenu();
+		eolTypeMenu.setText(XpadMessages.EOL_TYPE);
+		documentMenu.add(eolTypeMenu);
+		
+		JRadioButtonMenuItem[] radioEolTypes = new JRadioButtonMenuItem[4];
+		ButtonGroup groupEol = new ButtonGroup();
+		
+		radioEolTypes[0] =  (new EndOfLineAction(XpadMessages.EOL_AUT0, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[0]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[0]);
+		
+		radioEolTypes[1] =  (new EndOfLineAction(XpadMessages.EOL_LINUX, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[1]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[1]);
+		
+		radioEolTypes[2] =  (new EndOfLineAction(XpadMessages.EOL_WINDOWS, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[2]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[2]);
+		
+		radioEolTypes[3] =  (new EndOfLineAction(XpadMessages.EOL_MACOS, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[3]);		
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[3]);
+		
+		// Auto selected by default
+		radioEolTypes[0].setSelected(true);
 		
 		documentMenu.addSeparator();
 		documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));

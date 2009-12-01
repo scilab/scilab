@@ -97,20 +97,20 @@ public class ColorizationManager {
 	
 	
 
-	public boolean colorize(ScilabStyleDocument scilabDocument, int lineStartPosition, int lineEndPosition) {
-	    //System.err.println("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
+	public boolean colorize(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
+	    //System.err.println("--> Calling colorize("+startOffset+", "+endOffset+")");	
 	    //Timer timer = new Timer();
 		//DEBUG("Colorize [before parse] : " + timer.top());
 		singleLine = false;
 		
 		// We parse all words which are susceptible to be colored
 		ArrayList<ArrayList<Integer>> boundaries_list = 
-			this.parse(scilabDocument, lineStartPosition, lineEndPosition);
+			this.parse(scilabDocument, startOffset, endOffset);
 		//DEBUG("Colorize [after parse] : " + timer.top());
 		if (!colorizeInprogress) {
 			//colorizeInprogress = true;
 			scilabDocument.disableUndoManager();
-			resetStyle(scilabDocument, lineStartPosition, lineEndPosition);
+			resetStyle(scilabDocument, startOffset, endOffset);
 			try {
 				if(applyStyle(scilabDocument, boundaries_list.get(VARIABLES), scilabDocument.getStyle("Variable")) == false){ return false;}
 				if(applyStyle(scilabDocument, boundaries_list.get(COMMANDS), scilabDocument.getStyle("Command")) == false){ return false;}
@@ -155,22 +155,27 @@ public class ColorizationManager {
 	    private int startOffset, endOffset;
 	    
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
-	    	this(scilabDocument
-	    			, (event != null)?event.getOffset() : 0
-	    			, (event != null)?event.getOffset()+event.getLength() : scilabDocument.getLength());
+	    	super();
+	    	this.scilabDocument = scilabDocument;
+	    	if(event != null && event.getType() == DocumentEvent.EventType.INSERT ){
+	    		this.startOffset = scilabDocument.getParagraphElement(event.getOffset()).getStartOffset();
+	    		this.endOffset = scilabDocument.getParagraphElement(event.getOffset()+event.getLength()).getEndOffset();
+	    	}else{	    	
+	    		this.startOffset = this.endOffset = 0;
+	    	}
 	    }
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
-	    	startOffset = scilabDocument.getParagraphElement(startOffset).getStartOffset();
-	    	endOffset= scilabDocument.getParagraphElement(endOffset).getEndOffset();
+	    	this.startOffset = scilabDocument.getParagraphElement(startOffset).getStartOffset();
+	    	this.endOffset= scilabDocument.getParagraphElement(endOffset).getEndOffset();
 	    }
 	    
 	    public void run() {
-			if (scilabDocument.getAutoColorize()) {
-				if (lineStartPosition != lineEndPosition) {
-					colorize(scilabDocument, startOffset, endOffset);
-				}
+			if (scilabDocument.getAutoColorize() && (startOffset != endOffset)) {
+				//if (lineStartPosition != lineEndPosition) {
+					colorize(scilabDocument, startOffset, java.lang.Math.min(endOffset, scilabDocument.getLength()));
+				//}
 			}
 	    }
 	}
@@ -192,7 +197,7 @@ public class ColorizationManager {
 		quotationsBoundaries;
 		try {
 			millis = System.currentTimeMillis();
-			String text= scilabDocument.getText(start, end - start);
+			String text= scilabDocument.getText(start, end - start);	
 		boolsBoundaries = findBoundaries(boolsPattern, start, text);
 		//chrono("findBoundaries bools:");
 		commandsBoundaries = findBoundaries(commandsPattern, start, text);
