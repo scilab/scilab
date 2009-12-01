@@ -79,6 +79,11 @@ public class XpadMessages {
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
     public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
+    public static final String EOL_TYPE = Messages.gettext("End Of Line");
+    public static final String EOL_AUT0 = Messages.gettext("Auto (Default)");
+    public static final String EOL_WINDOWS = Messages.gettext("Windows (CR + LF)");
+    public static final String EOL_MACOS = Messages.gettext("Mac OS (CR)");
+    public static final String EOL_LINUX = Messages.gettext("Linux (LF)");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
