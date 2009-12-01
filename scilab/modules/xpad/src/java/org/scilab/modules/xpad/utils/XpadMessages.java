@@ -158,4 +158,7 @@ public class XpadMessages {
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
     public static final String CONTINUE = Messages.gettext("Continue?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"xpadConfiguration.xml\"");
+    
+    public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
+    public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
 }
