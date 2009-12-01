@@ -192,6 +192,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 		if (isdir(filename)) {
 			/* Delete recursively */
 			DeleteDirectory(filename);
+			if (filename) {FREE(filename);filename=NULL;}
 		} else {
 			/* Not a directory... It must be a file (at least, I hope it is a file */
 			if (remove(filename) != 0) {
@@ -203,6 +204,9 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 	if (rmdir(refcstrRootDirectory) != 0) {
 		sciprint(_("Warning: Could not remove directory %s: %s\n"),refcstrRootDirectory, strerror(errno));
 	}
+	
+	if (dir) {FREE(dir);dir = NULL;}
+
 	return 0;
 }
 #endif

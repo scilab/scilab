@@ -103,6 +103,10 @@ BOOL InitializeLocalization(void)
 	}
 #endif
 
+	if (previousPathLocales) FREE(previousPathLocales);
+	if (pathLocales) FREE(pathLocales);
+	if (SCIpath) FREE(SCIpath);
+
 	return TRUE;
 #else
 	fprintf(stderr, "Localization: setlocale didn't exist on the computer used to compile Scilab ! This is abnormal ! No localization will be working for this distribution of Scilab.\n");
