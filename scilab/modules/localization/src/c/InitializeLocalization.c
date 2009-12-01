@@ -72,10 +72,12 @@ BOOL InitializeLocalization(void)
 			fprintf(stderr, "Warning: Localization issue: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
 			FREE(previousPathLocales);
 			FREE(pathLocales);
+			FREE(SCIpath);
 			return FALSE;
 		}
 		FREE(previousPathLocales);
 		FREE(pathLocales);
+		FREE(SCIpath);
 		
 	}
 

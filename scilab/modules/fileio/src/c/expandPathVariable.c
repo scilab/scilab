@@ -182,6 +182,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 				}
 			}
 		}
+		if (varname) {FREE(varname);varname = NULL;}
 	}
 	return VARVALUE;
 }
