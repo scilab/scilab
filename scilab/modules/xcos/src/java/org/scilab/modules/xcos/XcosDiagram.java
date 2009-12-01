@@ -1332,7 +1332,7 @@ public class XcosDiagram extends ScilabGraph {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.createTabFromDiagram(xcosDiagram);
+		XcosTab.showTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
