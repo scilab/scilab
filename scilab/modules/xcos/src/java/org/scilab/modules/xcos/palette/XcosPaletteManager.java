@@ -73,7 +73,7 @@ public final class XcosPaletteManager {
 	    new PaletteStringDescriptor(XcosMessages.CONTINUOUS_PAL,
 		    new String[] { "CLINDUMMY_f", "CLR", "CLSS", "DERIV",
 			    "INTEGRAL_f", "INTEGRAL_m", "PID", "TCLSS",
-			    "TIME_DELAY", "VARIABLE_DELAY" }),
+			    "TIME_DELAY", "VARIABLE_DELAY", "PDE" }),
 
 	    /** DISCONTINUOUS palette */
 	    new PaletteStringDescriptor(XcosMessages.DISCONTINUOUS_PAL,
@@ -83,8 +83,9 @@ public final class XcosPaletteManager {
 
 	    /** DISCRETE palette */
 	    new PaletteStringDescriptor(XcosMessages.DISCRETE_PAL,
-		    new String[] { "DELAYV_f", "DELAY_f", "DLR", "DLRADAPT_f",
-			    "DLSS", "DOLLAR_f", "SAMPHOLD_m", "TCLSS" }),
+		    new String[] { "AUTOMAT", "DELAYV_f", "DELAY_f", "DLR",
+			    "DLRADAPT_f", "DLSS", "DOLLAR_f", "SAMPHOLD_m",
+			    "TCLSS" }),
 
 	    /** LOOKUP TABLES palette */
 	    new PaletteStringDescriptor(XcosMessages.LOOKUPTABLES_PAL,
@@ -94,10 +95,10 @@ public final class XcosPaletteManager {
 	    new PaletteStringDescriptor(XcosMessages.EVENTS_PAL, new String[] {
 		    "ANDBLK", "ANDLOG_f", "CEVENTSCOPE", "CLKFROM", "CLKGOTO",
 		    "CLKGotoTagVisibility", "CLKOUTV_f", "CLKSOMV_f",
-		    "CLOCK_c", "EDGE_TRIGGER","ENDBLK", "END_c", "ESELECT_f", "EVTDLY_c",
-		    "EVTGEN_f", "EVTVARDLY", "Extract_Activation", "HALT_f",
-		    "IFTHEL_f", "M_freq", "MCLOCK_f", "MFCLCK_f", "REGISTER",
-		    "SampleCLK", "freq_div"}),
+		    "CLOCK_c", "EDGE_TRIGGER", "ENDBLK", "END_c", "ESELECT_f",
+		    "EVTDLY_c", "EVTGEN_f", "EVTVARDLY", "Extract_Activation",
+		    "HALT_f", "IFTHEL_f", "M_freq", "MCLOCK_f", "MFCLCK_f",
+		    "REGISTER", "SampleCLK", "freq_div" }),
 
 	    /** MATH OPERATIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.MATHSOPS_PAL,
@@ -157,7 +158,7 @@ public final class XcosPaletteManager {
 
 	    /** IMPLICIT palette */
 	    new PaletteStringDescriptor(XcosMessages.IMPLICIT_PAL,
-		    new String[] { "CONSTRAINT_f", "DIFF_f"}),
+		    new String[] { "CONSTRAINT_f", "DIFF_f" }),
 
 	    /** ANNOTATIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.ANNOTATIONS_PAL,
@@ -185,8 +186,7 @@ public final class XcosPaletteManager {
 
 	    /** DEMO-BLOCKS palette */
 	    new PaletteStringDescriptor(XcosMessages.DEMOBLOCKS_PAL,
-		    new String[] { "AUTOMAT", "BOUNCE", "BOUNCEXY",
-			    "BPLATFORM", "PDE" }),
+		    new String[] { "BOUNCE", "BOUNCEXY", "BPLATFORM" }),
 
 	    /** USER-DEFINED FUNCTIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.USERDEFINEDFUNCTIONS_PAL,

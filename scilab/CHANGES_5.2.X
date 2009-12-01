@@ -112,6 +112,8 @@ Xcos:
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
+* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
