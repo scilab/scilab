@@ -15,15 +15,38 @@ package org.scilab.modules.xcos.block;
 import java.util.Map;
 
 import org.scilab.modules.graph.actions.DefaultAction;
-import org.scilab.modules.gui.contextmenu.ContextMenu;
-import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 
+import com.mxgraph.util.mxConstants;
+
 public class TextBlock extends BasicBlock {
+    
+    /**
+     * Font list from http://www.w3.org/TR/CSS2/fonts.html#generic-font-families
+     * Scicos has a number descriptor < 7 and > 0 
+     */
+    enum Font {
+	SERIF("serif"),
+	SANS_SERIF("sans-serif"),
+	CURSIVE("cursive"),
+	FANTASY("fantasy"),
+	MONOSPACE("monospace"),
+	ARIAL("Arial");
+	
+	private String name;
+	
+	private Font(String name) {
+	    this.name = name;
+	}
+	
+	public String getName() {
+	    return name;
+	}
+    }
 
     public TextBlock() {
 	super();
@@ -46,15 +69,37 @@ public class TextBlock extends BasicBlock {
     /**
      * @return the fontNumber
      */
-    public int getFontNumber() {
-	return Integer.parseInt(((ScilabString) getExprs()).getData()[1][0]);
+    private Font getFont() {
+	int number = Integer.parseInt(((ScilabString) getExprs()).getData()[1][0]);
+	return Font.values()[number-1];
     }
 
     /**
      * @return the fontSize
      */
-    public int getFontSize() {
+    private int getFontSize() {
 	return Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]);
+    }
+    
+    /**
+     * Apply style on setExprs
+     */
+    @Override
+    public void setExprs(ScilabType exprs) {
+        super.setExprs(exprs);
+        
+        StringBuilder str = new StringBuilder();
+        str.append("[;");
+        str.append(mxConstants.STYLE_FONTFAMILY);
+        str.append("=");
+        str.append(getFont().getName());
+        str.append(";");
+        str.append(mxConstants.STYLE_FONTSIZE);
+        str.append("=");
+        str.append(getFontSize());
+        str.append(";]");
+        
+        setStyle(str.toString());
     }
     
     /**
@@ -78,7 +123,7 @@ public class TextBlock extends BasicBlock {
      */
     @Override
     protected void customizeMenu(
-            Map<Class<? extends DefaultAction>, Menu> menuList) {
+            Map<Class<? extends DefaultAction>, MenuItem> menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
     }

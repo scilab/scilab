@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.port.output;
 
 public class ExplicitOutputPort extends OutputPort {
 
+    private static final long serialVersionUID = -8199491929829046860L;
+
     public ExplicitOutputPort() {
 	super("ExplicitOutputPort");
     }

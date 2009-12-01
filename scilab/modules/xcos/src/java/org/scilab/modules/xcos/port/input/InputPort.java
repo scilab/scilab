@@ -16,25 +16,10 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 public abstract class InputPort extends BasicPort {
 
-	protected InputPort(String type) {
-		super(type);
-	}
+    private static final long serialVersionUID = -7724677905288260857L;
 
-	public void updateStyle(int angle){
-		
-		switch(angle){
-		case 0 :
-			setStyle("ExplicitInputPort180");
-			break;
-		case 90 :
-			setStyle("ExplicitInputPort270");
-			break;
-		case 180 :
-			setStyle("ExplicitInputPort");
-			break;
-		case 270 :
-			setStyle("ExplicitInputPort90");
-			break;
-		}
-	}
+    protected InputPort(String type) {
+	super(type);
+	setInitialAngle(0);
+    }
 }
