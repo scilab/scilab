@@ -58,7 +58,7 @@ public class BlockReader {
     }
 
     private static void DEBUG(String msg) {
-	System.err.println("[DEBUG] BlockReader : "+msg);
+	// System.err.println("[DEBUG] BlockReader : "+msg);
     }
 
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
@@ -445,10 +445,10 @@ public class BlockReader {
 	} catch (Exception e) {
 	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
+	    e.printStackTrace();
 	    newBlock = null;
-	} finally {
-	    return newBlock;
 	}
+	return newBlock;
     }
 
     public static int getNbObjs(ScilabMList data) {

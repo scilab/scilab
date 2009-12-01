@@ -76,6 +76,7 @@ import org.scilab.modules.xpad.actions.RecentFileAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
+import org.scilab.modules.xpad.actions.LineBeautifierAction;
 import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -656,7 +657,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		TabifyAction.putInInputMap(textPane, this);
 		UnTabifyAction.putInInputMap(textPane, this);
-
+		LineBeautifierAction.putInInputMap(textPane);
+		
 		textPane.setFocusable(true);
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
