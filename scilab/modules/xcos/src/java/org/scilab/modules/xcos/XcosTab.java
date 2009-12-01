@@ -73,6 +73,7 @@ import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.MirrorAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -565,6 +566,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 	format.add(RotateAction.createMenu(scilabGraph));
 	format.add(FlipAction.createMenu(scilabGraph));
+	format.add(MirrorAction.createMenu(scilabGraph));
 	format.add(ShowHideShadowAction.createMenu(scilabGraph));
 
 	format.addSeparator();

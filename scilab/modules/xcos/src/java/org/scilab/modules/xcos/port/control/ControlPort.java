@@ -16,29 +16,16 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 public class ControlPort extends BasicPort {
 
+    private static final long serialVersionUID = -7919292589336989591L;
+
     public ControlPort() {
 	super("ControlPort");
+	setInitialAngle(90);
     }
 
     public Type getType() {
 	return null;
     }
     
-	public void updateStyle(int angle){
-		
-		switch(angle){
-		case 0 :
-			setStyle("ControlPort270");
-			break;
-		case 90 :
-			setStyle("ControlPort");
-			break;
-		case 180 :
-			setStyle("ControlPort90");
-			break;
-		case 270 :
-			setStyle("ControlPort180");
-			break;
-		}
-	}
+    
 }
