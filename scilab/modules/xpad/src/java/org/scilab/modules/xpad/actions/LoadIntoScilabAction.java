@@ -18,11 +18,11 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.UUID;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.xpad.Xpad;
@@ -39,6 +39,7 @@ public class LoadIntoScilabAction extends DefaultAction {
 
 	public void doAction() {
 		boolean bDoExec = false;
+		String TMP_FILENAME = "LOAD_INTO_SCILAB-" + UUID.randomUUID().toString() + ".sce";
 		String TMP_FULLFILENAME = System.getenv("TMPDIR") + System.getProperty("file.separator") + TMP_FILENAME;
 		// save file as UTF-8
 		File f = new File(TMP_FULLFILENAME);
