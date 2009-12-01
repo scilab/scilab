@@ -190,6 +190,8 @@ Bug fixes:
 
 * bug 5200 fixed - Adding a code generation error message when not applicable
 
+* bug 5211 fixed - A non reg test was failing with the binary of Scilab
+
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
