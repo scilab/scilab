@@ -22,15 +22,12 @@
 int sci_ulink(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
-	char * ValgrindEnv = NULL;
 
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
-	ValgrindEnv = getenv("PROFILE_SCILAB_DYNAMIC_LINK");
-
-	if (ValgrindEnv==NULL)
+	if (getenv("PROFILE_SCILAB_DYNAMIC_LINK")==NULL)
 	{
 		if (Rhs == 0)
 		{	
