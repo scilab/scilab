@@ -185,5 +185,7 @@ void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name,
 		buffer = NULL;
 	}
 	FREE(wcext); wcext = NULL;
+
+	FREE(wcdrv); wcdrv = NULL;
 }
 /*--------------------------------------------------------------------------*/ 

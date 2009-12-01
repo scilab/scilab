@@ -580,7 +580,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 				f = new File(f.getPath() + extension);
 			}
 
-			// TODO factor common code with "Save"
 			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
 			if (SaveFile.doSave(textPane, f, editorKit) == false) return false;

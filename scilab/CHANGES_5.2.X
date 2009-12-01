@@ -124,6 +124,8 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
+
 
 Tree functions :
 ================
@@ -296,6 +298,8 @@ Bug fixes:
 * bug 5507 fixed - whereis(bin2dec) returned a error.
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
