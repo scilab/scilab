@@ -72,4 +72,14 @@ public class TextBlock extends BasicBlock {
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	// NOTHING TO BE DONE
     }
+    
+    /**
+     * Customize menu
+     */
+    @Override
+    protected void customizeMenu(
+            Map<Class<? extends DefaultAction>, Menu> menuList) {
+        menuList.get(BlockParametersAction.class).setEnabled(false);
+        menuList.get(RegionToSuperblockAction.class).setEnabled(false);
+    }
 }
