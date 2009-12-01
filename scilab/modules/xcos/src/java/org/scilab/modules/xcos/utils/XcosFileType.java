@@ -55,12 +55,12 @@ public enum XcosFileType {
 			return tempOutput;
 		}
 	},
-	XCOS("xcos", XcosMessages.FILE_XCOS),
 	HDF5("h5", XcosMessages.FILE_HDF5) {
 		public File exportToHdf5(File arg0) {
 			return arg0;
 		}
 	},
+	XCOS("xcos", XcosMessages.FILE_XCOS),
 	UNKNOW("", "");
 	
 	
