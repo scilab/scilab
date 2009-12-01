@@ -73,7 +73,7 @@ public final class XcosPaletteManager {
 	    new PaletteStringDescriptor(XcosMessages.CONTINUOUS_PAL,
 		    new String[] { "CLINDUMMY_f", "CLR", "CLSS", "DERIV",
 			    "INTEGRAL_f", "INTEGRAL_m", "PID", "TCLSS",
-			    "TIME_DELAY", "VARIABLE_DELAY" }),
+			    "TIME_DELAY", "VARIABLE_DELAY", "PDE" }),
 
 	    /** DISCONTINUOUS palette */
 	    new PaletteStringDescriptor(XcosMessages.DISCONTINUOUS_PAL,
@@ -83,7 +83,7 @@ public final class XcosPaletteManager {
 
 	    /** DISCRETE palette */
 	    new PaletteStringDescriptor(XcosMessages.DISCRETE_PAL,
-		    new String[] { "DELAYV_f", "DELAY_f", "DLR", "DLRADAPT_f",
+		    new String[] { "AUTOMAT", "DELAYV_f", "DELAY_f", "DLR", "DLRADAPT_f",
 			    "DLSS", "DOLLAR_f", "SAMPHOLD_m", "TCLSS" }),
 
 	    /** LOOKUP TABLES palette */
@@ -185,8 +185,8 @@ public final class XcosPaletteManager {
 
 	    /** DEMO-BLOCKS palette */
 	    new PaletteStringDescriptor(XcosMessages.DEMOBLOCKS_PAL,
-		    new String[] { "AUTOMAT", "BOUNCE", "BOUNCEXY",
-			    "BPLATFORM", "PDE" }),
+		    new String[] { "BOUNCE", "BOUNCEXY",
+			    "BPLATFORM" }),
 
 	    /** USER-DEFINED FUNCTIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.USERDEFINEDFUNCTIONS_PAL,
