@@ -25,8 +25,20 @@ ulink()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>
-    see <literal>link</literal></para>
+    <para>see <literal>link</literal></para>
+    <para>If you plan to use <literal>valgrind</literal> to profile
+    your toolbox, you must first set the environment
+    variable <literal>PROFILE_SCILAB_DYNAMIC_LINK</literal> before
+    starting scilab:</para>
+    <programlisting role="example"><![CDATA[ 
+# under bash shell:
+export PROFILE_SCILAB_DYNAMIC_LINK=1
+export SCILAB_VALGRIND_OPT="--db-attach=no --show-below-main=yes  --log-fd=2 --log-file=scilab.txt --num-callers=50 -v --trace-redir=yes --read-var-info=yes --trace-children=yes --show-reachable=yes --smc-check=all --child-silent-after-fork=no --leak-check=full --track-origins=yes"
+scilab -nwni -profile 
+ ]]></programlisting>
+    <para>This environment variable force Scilab not to release the
+    loaded dynamic libraries. This will
+    allow <literal>valgrind</literal> to perform its sum-up analysis.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
