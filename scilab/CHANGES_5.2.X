@@ -124,6 +124,8 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
+
 
 Tree functions :
 ================
