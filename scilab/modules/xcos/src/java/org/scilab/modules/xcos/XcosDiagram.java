@@ -1459,6 +1459,7 @@ public class XcosDiagram extends ScilabGraph {
 				public void run() {
 					File newFile;
 					newFile = filetype.exportToHdf5(fileToLoad);
+					/* @TODO removed that when it is useless */
 					System.err.println("export to hdf5 OK");
 					transformAndLoadFile(newFile);
 				}
