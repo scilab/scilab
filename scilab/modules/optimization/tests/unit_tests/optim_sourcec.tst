@@ -57,7 +57,7 @@ mputl(C,'rosenc.c');
 // compile the C code
 libpath=ilib_for_link('rosenc','rosenc.c',[],'c');
 // incremental linking
-linkid=link(libpath,'rosenc','c');
+exec loader.sce;
 chdir(cur_dir);
 //solve the problem
 valtd=100;
@@ -78,6 +78,4 @@ for verbose=verboselevels
     if abs(f-1+norm(x-xopt) ) > Leps then pause,end
   end
 end
-// Clean-up
-ulink(linkid);
 
