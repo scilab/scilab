@@ -618,9 +618,9 @@ public class BasicBlock extends XcosUIDObject {
 
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
-		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
+		Map<Class<? extends DefaultAction>, MenuItem> menuList = new HashMap<Class<? extends DefaultAction>, MenuItem>();
 		
-		Menu value = BlockParametersAction.createMenu(graph);
+		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
 		menu.add(value);
 		/*--- */
@@ -673,7 +673,6 @@ public class BasicBlock extends XcosUIDObject {
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
-		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
@@ -700,7 +699,7 @@ public class BasicBlock extends XcosUIDObject {
      * Override this to customize contextual menu
      * @param menuList
      */
-    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, MenuItem> menuList) {
 	// To be overridden by sub-classes
     }
     

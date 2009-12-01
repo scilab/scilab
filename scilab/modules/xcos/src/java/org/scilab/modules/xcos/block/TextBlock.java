@@ -15,11 +15,8 @@ package org.scilab.modules.xcos.block;
 import java.util.Map;
 
 import org.scilab.modules.graph.actions.DefaultAction;
-import org.scilab.modules.gui.contextmenu.ContextMenu;
-import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 
@@ -78,7 +75,7 @@ public class TextBlock extends BasicBlock {
      */
     @Override
     protected void customizeMenu(
-            Map<Class<? extends DefaultAction>, Menu> menuList) {
+            Map<Class<? extends DefaultAction>, MenuItem> menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
     }
