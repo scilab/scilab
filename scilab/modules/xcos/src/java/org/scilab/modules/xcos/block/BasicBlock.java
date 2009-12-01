@@ -16,18 +16,23 @@ package org.scilab.modules.xcos.block;
 import java.awt.MouseInfo;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
@@ -610,21 +615,32 @@ public class BasicBlock extends XcosUIDObject {
 	ContextMenu menu = createContextMenu(graph);
 	menu.setVisible(true);
     }
-    
+
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
+		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
 		
-		menu.add(BlockParametersAction.createMenu(graph));
+		Menu value = BlockParametersAction.createMenu(graph);
+		menuList.put(BlockParametersAction.class, value);
+		menu.add(value);
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
-		menu.add(CutAction.cutMenu(graph));
-		menu.add(CopyAction.copyMenu(graph));
-		menu.add(DeleteAction.createMenu(graph));
+		value = CutAction.cutMenu(graph);
+		menuList.put(CutAction.class, value);
+		menu.add(value);
+		value = CopyAction.copyMenu(graph);
+		menuList.put(CopyAction.class, value);
+		menu.add(value);
+		value = DeleteAction.createMenu(graph);
+		menuList.put(DeleteAction.class, value);
+		menu.add(value);
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
-		menu.add(RegionToSuperblockAction.createMenu(graph));
+		value = RegionToSuperblockAction.createMenu(graph);
+		menuList.put(RegionToSuperblockAction.class, value);
+		menu.add(value);
 //		Menu mask = ScilabMenu.createMenu();
 //		mask.setText(XcosMessages.SUPERBLOCK_MASK);
 //		menu.add(mask);
@@ -636,9 +652,15 @@ public class BasicBlock extends XcosUIDObject {
 		Menu format = ScilabMenu.createMenu();
 		format.setText(XcosMessages.FORMAT);
 		menu.add(format);
-		format.add(RotateAction.createMenu(graph));
-		format.add(FlipAction.createMenu(graph));
-		format.add(ShowHideShadowAction.createMenu(graph));
+		value = RotateAction.createMenu(graph);
+		menuList.put(RotateAction.class, value);
+		format.add(value);
+		value = FlipAction.createMenu(graph);
+		menuList.put(FlipAction.class, value);
+		format.add(value);
+		value = ShowHideShadowAction.createMenu(graph);
+		menuList.put(ShowHideShadowAction.class, value);
+		format.add(value);
 		/*--- */
 		format.addSeparator();
 		/*--- */
@@ -651,6 +673,7 @@ public class BasicBlock extends XcosUIDObject {
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
@@ -668,7 +691,17 @@ public class BasicBlock extends XcosUIDObject {
 
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		
+		customizeMenu(menuList);
+		
 		return menu;
+    }
+    
+    /**
+     * Override this to customize contextual menu
+     * @param menuList
+     */
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
+	// To be overridden by sub-classes
     }
     
 	public void setFlip(boolean flip) {
