@@ -240,14 +240,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 		target = (BasicPort) link.getLink().getTarget();
 
 		if (link.getLink() instanceof ExplicitLink) {
-		    source = BasicBlockInfo.getAllExplicitOutputPorts(
-			    superBlock).get(link.getPortNumber() - 1);
+		    source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else if (link.getLink() instanceof ImplicitLink) {
-		    source = BasicBlockInfo.getAllImplicitOutputPorts(
-			    superBlock).get(link.getPortNumber() - 1);
+		    source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else if (link.getLink() instanceof CommandControlLink) {
-		    source = BasicBlockInfo.getAllCommandPorts(superBlock).get(
-			    link.getPortNumber() - 1);
+		    source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else {
 		    System.err.println("Houston ...");
 		}
@@ -255,16 +252,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 		source = (BasicPort) link.getLink().getSource();
 
 		if (link.getLink() instanceof ExplicitLink) {
-		    target = BasicBlockInfo
-			    .getAllExplicitInputPorts(superBlock).get(
-				    link.getPortNumber() - 1);
+		    target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else if (link.getLink() instanceof ImplicitLink) {
-		    target = BasicBlockInfo
-			    .getAllImplicitInputPorts(superBlock).get(
-				    link.getPortNumber() - 1);
+		    target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else if (link.getLink() instanceof CommandControlLink) {
-		    target = BasicBlockInfo.getAllControlPorts(superBlock).get(
-			    link.getPortNumber() - 1);
+		    target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
 		} else {
 		    System.err.println("Houston ...");
 		}

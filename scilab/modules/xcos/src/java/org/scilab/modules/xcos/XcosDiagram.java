@@ -1565,6 +1565,8 @@ public class XcosDiagram extends ScilabGraph {
     {
 	if (cell instanceof BasicBlock) {
 	    return ((BasicBlock) cell).getToolTipText();
+	} else if(cell instanceof BasicPort) {
+	    return ((BasicPort) cell).getToolTipText();
 	}
 	return "";
     }
