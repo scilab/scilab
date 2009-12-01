@@ -375,7 +375,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
-    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this);
+    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -395,7 +395,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
-    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this);
+    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -412,7 +412,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
-    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this);
+    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -429,7 +429,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
-    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this);
+    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -449,7 +449,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
-    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this);
+    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -466,7 +466,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
-    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this);
+    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this, false);
 
     	int portCount = ports.size();
 

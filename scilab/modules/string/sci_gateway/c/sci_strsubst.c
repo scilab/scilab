@@ -131,6 +131,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 					{
 						isRegExp = FALSE;
 					}
+					FREE(pStVarFour); pStVarFour = NULL;
 				}
 				else
 				{
@@ -336,8 +337,10 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 
 						FREE(pStVarThree); pStVarThree = NULL;
 						FREE(pStVarTwo); pStVarTwo = NULL;
+						freeArrayOfString(pStVarOne, mOne* nOne);
 
 						sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, mOne, nOne, Output_StringMatrix);
+						freeArrayOfString(Output_StringMatrix,mOne * nOne);
 						if(sciErr.iErr)
 						{
 							printError(&sciErr, 0);
