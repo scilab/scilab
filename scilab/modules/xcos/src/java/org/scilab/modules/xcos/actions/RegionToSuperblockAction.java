@@ -12,7 +12,11 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.lang.annotation.Target;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -29,6 +33,7 @@ import org.scilab.modules.xcos.block.ExplicitInBlock;
 import org.scilab.modules.xcos.block.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.ImplicitInBlock;
 import org.scilab.modules.xcos.block.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -50,17 +55,21 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
+import com.mxgraph.view.mxGraph;
 
 public class RegionToSuperblockAction extends DefaultAction {
 
     private class BrokenLink {
 	private BasicLink link;
+	private BasicPort edge;
 	private mxGeometry geom;
 	private boolean outGoing;
 	private int portNumber;
 
-	public BrokenLink(BasicLink link, mxGeometry geom, boolean outGoing) {
+	public BrokenLink(BasicLink link, BasicPort edge, mxGeometry geom, boolean outGoing) {
 	    this.link = link;
+	    this.edge = edge;
 	    this.outGoing = outGoing;
 	    this.geom = geom;
 	}
@@ -71,6 +80,10 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	public BasicLink getLink() {
 	    return link;
+	}
+	
+	public BasicPort getCopiedEdge() {
+	    return edge;
 	}
 
 	public mxGeometry getGeometry() {
@@ -99,12 +112,22 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	graph.info(XcosMessages.GENERATE_SUPERBLOCK);
+	graph.getModel().beginUpdate();
 
 	/*
-	 * Update links selection
+	 * Update selection
 	 */
 	updateForNotSelectedLinks(graph);
-
+	
+	/*
+	 * Clone cells and generate a translation matrix between old and new mxCells
+	 */
+	Object[] cellsCopy = getGraph(null).cloneCells(getGraph(null).getSelectionCells());
+	Object[] translationMatrix = new Object[cellsCopy.length]; 
+	for (int i = 0; i < translationMatrix.length; i++) {
+	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
+	}
+	
 	/*
 	 * Getting selection rectangle
 	 */
@@ -113,8 +136,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (int i = 0; i < graph.getSelectionCells().length; ++i) {
-	    mxCell current = (mxCell) graph.getSelectionCells()[i];
+	for (int i = 0; i < cellsCopy.length; ++i) {
+	    mxCell current = (mxCell) cellsCopy[i];
 	    if (current instanceof BasicBlock) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
@@ -138,17 +161,22 @@ public class RegionToSuperblockAction extends DefaultAction {
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 
 	diagram.getModel().beginUpdate();
-	diagram.addCells(graph.getSelectionCells());
+	diagram.addCells(cellsCopy);
 	diagram.getModel().endUpdate();
 
 	/*
 	 * Find broken links, to insert input/output blocks And update the child
 	 * graph
 	 */
-	List<BrokenLink> breaks = getBreakLink(graph.getSelectionCells());
-	List<Integer> maxValues = getMaxBlocksValue(graph.getSelectionCells());
+	List<BrokenLink> breaks = getBrokenLinks(graph.getSelectionCells(), cellsCopy);
+	List<Integer> maxValues = getMaxBlocksValues(graph.getSelectionCells());
 	updateChildGraph(diagram, breaks, maxValues);
 
+	/*
+	 * Delete the selected cells from the parent graph
+	 */
+	graph.removeCells(graph.getSelectionCells());
+	
 	/*
 	 * Update block with real parameters
 	 */
@@ -168,6 +196,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	createLinks(graph, superBlock, breaks);
 	superBlock.closeBlockSettings();
 
+	graph.getModel().endUpdate();
 	graph.refresh();
 	diagram.refresh();
 	graph.info(XcosMessages.EMPTY_INFO);
@@ -203,6 +232,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 					otherSide)) {
 				    graph.addSelectionCell(link);
 				} // isInSelection
+				
+				if (otherSide instanceof SplitBlock) {
+				    graph.addSelectionCell(otherSide);
+				} // otherSide is a SplitBlock
+
 			    } // BasicLink
 			} // Edge > 0
 		    } // BasicPort
@@ -219,7 +253,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	graph.getModel().endUpdate();
     }
-
+    
     /**
      * Re-link the parent Graph
      * 
@@ -382,14 +416,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 			.createLinkFromPorts((BasicPort) link.getLink()
 				.getSource(), (BasicPort) block.getChildAt(0));
 		newLink.setGeometry(link.getLink().getGeometry());
-		newLink.setSource((BasicPort) link.getLink().getSource());
+		newLink.setSource((BasicPort) link.getCopiedEdge());
 		newLink.setTarget((BasicPort) block.getChildAt(0));
 	    } else { // new -> old
 		newLink = BasicLink.createLinkFromPorts((BasicPort) block
 			.getChildAt(0), (BasicPort) link.getLink().getTarget());
 		newLink.setGeometry(link.getLink().getGeometry());
 		newLink.setSource((BasicPort) block.getChildAt(0));
-		newLink.setTarget((BasicPort) link.getLink().getTarget());
+		newLink.setTarget((BasicPort) link.getCopiedEdge());
 	    }
 
 	    diagram.getModel().beginUpdate();
@@ -399,8 +433,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     }
 
-    private List<BrokenLink> getBreakLink(Object[] objs) {
-	List<BrokenLink> breaks = new ArrayList<BrokenLink>();
+    /**
+     * Getting the broken links on the diagram and construct a list of these links
+     * @param objs The selected cells
+     * @param copiedCells The copy of the selected cells
+     * @return all the broken links in the diagram
+     */
+    private List<BrokenLink> getBrokenLinks(Object[] objs, Object[] copiedCells) {
+	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	for (int i = 0; i < objs.length; i++) {
 	    if (objs[i] instanceof BasicBlock) {
@@ -414,15 +454,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
 			    if (!isInSelection(objs, source)) {
-				breaks.add(new BrokenLink(link, source
-					.getGeometry(), false));
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
-			    BasicBlock target = (BasicBlock) (link.getTarget()
-				    .getParent());
+			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
 			    if (!isInSelection(objs, target)) {
-				breaks.add(new BrokenLink(link, target
-					.getGeometry(), true));
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
 			    }
 			}
 		    }
@@ -432,15 +471,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 	return breaks;
     }
 
+    /**
+     * Check if an object is in a collection
+     * @param objs collection
+     * @param item the searched item
+     * @return 
+     */
     private boolean isInSelection(Object[] objs, Object item) {
-	boolean isFind = false;
-	for (Object obj : objs) {
-	    if (obj == item) {
-		isFind = true;
-		break;
-	    }
-	}
-	return isFind;
+	return Arrays.asList(objs).contains(item);
     }
 
     private void printBreakingLink(List<BrokenLink> breaks) {
@@ -453,7 +491,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
     }
 
-    private List<Integer> getMaxBlocksValue(Object[] blocks) {
+    private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	List<BasicBlock> items[] = new ArrayList[6];
 

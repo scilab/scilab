@@ -46,6 +46,8 @@ See SEP #36 for more information
 
 * texprint is now obsolete. Please use prettyprint instead
 
+* bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new "$...$" LaTeX feature.
+
 
 Localization:
 =============
@@ -78,6 +80,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
+
 * bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
 
 * bug 5184 fixed - Xcos: Setup menu values are localized
@@ -99,6 +103,8 @@ Xcos:
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
+
+* bug 5403 fixed - Xcos: now creates graphic windows only when needed.
 
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
 
@@ -184,6 +190,8 @@ Bug fixes:
 
 * bug 5200 fixed - Adding a code generation error message when not applicable
 
+* bug 5211 fixed - A non reg test was failing with the binary of Scilab
+
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
@@ -214,6 +222,10 @@ Bug fixes:
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
+
+* bug 5295 fixed - configure: LibGL.so should be included at link time when linking with libjogl.so.
+
+* bug 5298 fixed - Obsolete Makefile in the mexlib module
 
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
                    of the cost function.
@@ -282,6 +294,9 @@ Bug fixes:
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 * bug 5507 fixed - whereis(bin2dec) returned a error.
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================

@@ -24,7 +24,12 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class CloseAction extends DefaultAction {
     
-    private CloseAction(Xpad editor) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3575152401442746355L;
+
+	private CloseAction(Xpad editor) {
         super(XpadMessages.CLOSE, editor);
     }
     

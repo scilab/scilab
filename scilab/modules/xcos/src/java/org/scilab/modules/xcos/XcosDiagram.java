@@ -98,6 +98,7 @@ import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -403,30 +404,34 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[9];
+	mxMultiplicity[] multiplicities = new mxMultiplicity[10];
 
+	
 	// Input data port
-	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort(), new ExplicitLink()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
-	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort(), new ImplicitInputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
+	multiplicities[0] = new PortCheck(ExplicitInputPort.class, new Class[] {ExplicitOutputPort.class, ExplicitLink.class}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
+	multiplicities[1] = new PortCheck(ImplicitInputPort.class, new Class[] {ImplicitOutputPort.class, ImplicitInputPort.class, ImplicitLink.class}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
 
 	//Output data port
-	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
-	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+	multiplicities[2] = new PortCheck(ExplicitOutputPort.class, new Class[] {ExplicitInputPort.class}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
+	multiplicities[3] = new PortCheck(ImplicitOutputPort.class, new Class[] {ImplicitInputPort.class, ImplicitOutputPort.class, ImplicitLink.class}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
 
 	//Control port
-	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort(), new CommandControlLink()}, XcosMessages.LINK_ERROR_EVENT_IN);
+	multiplicities[4] = new PortCheck(ControlPort.class, new Class[] {CommandPort.class, CommandControlLink.class}, XcosMessages.LINK_ERROR_EVENT_IN);
 
 	//Command port
-	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[5] = new PortCheck(CommandPort.class, new Class[] {ControlPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//ExplicitLink connections
-	multiplicities[6] = new PortCheck(new ExplicitLink(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[6] = new PortCheck(ExplicitLink.class, new Class[] {ExplicitInputPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//ImplicitLink connections
-	multiplicities[7] = new PortCheck(new ImplicitLink(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[7] = new PortCheck(ImplicitLink.class, new Class[] {ImplicitInputPort.class, ImplicitOutputPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
 
 	//CommandControlLink connections
-	multiplicities[8] = new PortCheck(new CommandControlLink(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	multiplicities[8] = new PortCheck(CommandControlLink.class, new Class[] {ControlPort.class}, XcosMessages.LINK_ERROR_EVENT_OUT);
+	
+	// Already connected port
+	multiplicities[9] = new PortCheck(BasicPort.class, new Class[] {BasicPort.class}, XcosMessages.LINK_ERROR_ALREADY_CONNECTED);
 
 	setMultiplicities(multiplicities);
 	
@@ -768,7 +773,7 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {
@@ -808,8 +813,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
 	    {
 		getModel().beginUpdate();
-		if (cell instanceof BasicBlock 
-			&& !(cell instanceof TextBlock)) {
+		if (cell instanceof BasicBlock) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(buildEntireContext());
@@ -892,7 +896,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		} else {
 		    // Display object context menu
-		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
@@ -1327,7 +1331,7 @@ public class XcosDiagram extends ScilabGraph {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.createTabFromDiagram(xcosDiagram);
+		XcosTab.showTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
@@ -1340,8 +1344,8 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramm
      */
     public void loadDiagram(HashMap<String, Object> diagramm) {
-	List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-	List<TextBlock> allTextBlocks = (List) diagramm.get("TextBlocks");
+	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
+	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 

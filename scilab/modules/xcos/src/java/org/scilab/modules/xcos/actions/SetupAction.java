@@ -100,6 +100,8 @@ public class SetupAction extends DefaultAction {
 
 		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+		DecimalFormatSymbols formatSymbol = new DecimalFormatSymbols();
+		formatSymbol.setDecimalSeparator('.');
 
 		mainFrame = new JFrame();
 		windowAlreadyExist = true;
@@ -114,7 +116,7 @@ public class SetupAction extends DefaultAction {
 		integrationSpinner = new JSpinner();
 		integrationSpinner.setModel(spinnerModel);
 		integrationSpinner.setEditor(new JSpinner.NumberEditor(integrationSpinner, "0.00"));
-		((NumberEditor) integrationSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) integrationSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getFinalIntegrationTime());
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
@@ -122,7 +124,7 @@ public class SetupAction extends DefaultAction {
 		rtsSpinner = new JSpinner();
 		rtsSpinner.setModel(spinnerModel);
 		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner, "0.0"));
-		((NumberEditor) rtsSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) rtsSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getRealTimeScaling());
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
@@ -130,7 +132,7 @@ public class SetupAction extends DefaultAction {
 		integratorAbsSpinner = new JSpinner();
 		integratorAbsSpinner.setModel(spinnerModel);
 		integratorAbsSpinner.setEditor(new JSpinner.NumberEditor(integratorAbsSpinner, "0.00000"));
-		((NumberEditor) integratorAbsSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) integratorAbsSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getIntegratorAbsoluteTolerance());
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
@@ -138,7 +140,7 @@ public class SetupAction extends DefaultAction {
 		integratorRelSpinner = new JSpinner();
 		integratorRelSpinner.setModel(spinnerModel);
 		integratorRelSpinner.setEditor(new JSpinner.NumberEditor(integratorRelSpinner, "0.0000000"));
-		((NumberEditor) integratorRelSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) integratorRelSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getIntegratorRelativeTolerance());
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
@@ -146,7 +148,7 @@ public class SetupAction extends DefaultAction {
 		toleranceOnTimeSpinner = new JSpinner();
 		toleranceOnTimeSpinner.setModel(spinnerModel);
 		toleranceOnTimeSpinner.setEditor(new JSpinner.NumberEditor(toleranceOnTimeSpinner, "0.000E00"));
-		((NumberEditor) toleranceOnTimeSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) toleranceOnTimeSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getToleranceOnTime());
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
@@ -154,7 +156,7 @@ public class SetupAction extends DefaultAction {
 		maxIntegrationTimeSpinner = new JSpinner();
 		maxIntegrationTimeSpinner.setModel(spinnerModel);
 		maxIntegrationTimeSpinner.setEditor(new JSpinner.NumberEditor(maxIntegrationTimeSpinner, "0"));
-		((NumberEditor) maxIntegrationTimeSpinner.getEditor()).getFormat().setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+		((NumberEditor) maxIntegrationTimeSpinner.getEditor()).getFormat().setDecimalFormatSymbols(formatSymbol);
 		spinnerModel.setValue(diagram.getMaxIntegrationTimeinterval());
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);

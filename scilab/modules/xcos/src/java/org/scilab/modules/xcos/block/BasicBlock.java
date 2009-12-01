@@ -15,18 +15,22 @@ package org.scilab.modules.xcos.block;
 
 import java.awt.MouseInfo;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
@@ -614,21 +618,32 @@ public class BasicBlock extends XcosUIDObject {
 	ContextMenu menu = createContextMenu(graph);
 	menu.setVisible(true);
     }
-    
+
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
+		Map<Class<? extends DefaultAction>, MenuItem> menuList = new HashMap<Class<? extends DefaultAction>, MenuItem>();
 		
-		menu.add(BlockParametersAction.createMenu(graph));
+		MenuItem value = BlockParametersAction.createMenu(graph);
+		menuList.put(BlockParametersAction.class, value);
+		menu.add(value);
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
-		menu.add(CutAction.cutMenu(graph));
-		menu.add(CopyAction.copyMenu(graph));
-		menu.add(DeleteAction.createMenu(graph));
+		value = CutAction.cutMenu(graph);
+		menuList.put(CutAction.class, value);
+		menu.add(value);
+		value = CopyAction.copyMenu(graph);
+		menuList.put(CopyAction.class, value);
+		menu.add(value);
+		value = DeleteAction.createMenu(graph);
+		menuList.put(DeleteAction.class, value);
+		menu.add(value);
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
-		menu.add(RegionToSuperblockAction.createMenu(graph));
+		value = RegionToSuperblockAction.createMenu(graph);
+		menuList.put(RegionToSuperblockAction.class, value);
+		menu.add(value);
 //		Menu mask = ScilabMenu.createMenu();
 //		mask.setText(XcosMessages.SUPERBLOCK_MASK);
 //		menu.add(mask);
@@ -640,10 +655,18 @@ public class BasicBlock extends XcosUIDObject {
 		Menu format = ScilabMenu.createMenu();
 		format.setText(XcosMessages.FORMAT);
 		menu.add(format);
-		format.add(RotateAction.createMenu(graph));
-		format.add(FlipAction.createMenu(graph));
-		format.add(MirrorAction.createMenu(graph));
-		format.add(ShowHideShadowAction.createMenu(graph));
+		value = RotateAction.createMenu(graph);
+		menuList.put(RotateAction.class, value);
+		format.add(value);
+		value = MirrorAction.createMenu(graph);
+		menuList.put(MirrorAction.class, value);
+		format.add(value);
+		value = FlipAction.createMenu(graph);
+		menuList.put(FlipAction.class, value);
+		format.add(value);
+		value = ShowHideShadowAction.createMenu(graph);
+		menuList.put(ShowHideShadowAction.class, value);
+		format.add(value);
 		/*--- */
 		format.addSeparator();
 		/*--- */
@@ -673,9 +696,10 @@ public class BasicBlock extends XcosUIDObject {
 
 		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		
+		customizeMenu(menuList);
+		
 		return menu;
     }
-    
     
     public void setFlip(boolean flip) {
 	if(getParentDiagram() != null) {
@@ -686,6 +710,15 @@ public class BasicBlock extends XcosUIDObject {
 	    }
 	}
     }
+
+    /**
+     * Override this to customize contextual menu
+     * @param menuList
+     */
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, MenuItem> menuList) {
+	// To be overridden by sub-classes
+    }
+    
 
     public boolean getMirror(){
 	if(getParentDiagram() != null) {
@@ -755,9 +788,6 @@ public class BasicBlock extends XcosUIDObject {
 		}
 	    }
 
-	    /* Make the block appear into the diagram */
-	    clone.getGeometry().setX(10);
-	    clone.getGeometry().setY(10);
 	    return clone;
 	} catch (CloneNotSupportedException e) {
 	    e.printStackTrace();
