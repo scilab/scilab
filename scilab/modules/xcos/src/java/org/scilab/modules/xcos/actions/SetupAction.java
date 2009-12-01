@@ -120,7 +120,7 @@ public class SetupAction extends DefaultAction {
 		spinnerModel.setValue(diagram.getFinalIntegrationTime());
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
-		spinnerModel = new SpinnerNumberModel(0.0, null, null, 0.1);
+		spinnerModel = new SpinnerNumberModel(0.1, null, null, 0.1);
 		rtsSpinner = new JSpinner();
 		rtsSpinner.setModel(spinnerModel);
 		rtsSpinner.setEditor(new JSpinner.NumberEditor(rtsSpinner, "0.0"));
