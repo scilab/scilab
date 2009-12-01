@@ -280,8 +280,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
      */
     private class ArrowKeysListener implements KeyListener {
 
-	private final double DEFAULT_PIXEL_MOVE = 5;
-	private final int DEFAULT_DELAY = 800; // milliseconds
+	private static final double DEFAULT_PIXEL_MOVE = 5;
+	private static final int DEFAULT_DELAY = 800; // milliseconds
 
 	private double xIncrement = 0;
 	private double yIncrement = 0;
@@ -314,32 +314,42 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	}
 
 	public void keyPressed(KeyEvent arg0) {
+	    double realMove;
+	    
 	    mxGraphComponent diagram = (mxGraphComponent) arg0.getSource();
 	    graph = diagram.getGraph();
+	    
+	    if (graph.isGridEnabled()) {
+		realMove = graph.getGridSize();
+	    } else {
+		realMove = DEFAULT_PIXEL_MOVE;
+	    }
 
 	    switch (arg0.getKeyCode()) {
 	    case KeyEvent.VK_UP:
-		yIncrement = -DEFAULT_PIXEL_MOVE;
+		yIncrement = -realMove;
 		break;
 
 	    case KeyEvent.VK_DOWN:
-		yIncrement = DEFAULT_PIXEL_MOVE;
+		yIncrement = realMove;
 		break;
 
 	    case KeyEvent.VK_RIGHT:
-		xIncrement = DEFAULT_PIXEL_MOVE;
+		xIncrement = realMove;
 		break;
 
 	    case KeyEvent.VK_LEFT:
-		xIncrement = -DEFAULT_PIXEL_MOVE;
+		xIncrement = -realMove;
 		break;
 
 	    default:
 		break;
 	    }
 
-	    xIncrement *= diagram.getZoomFactor();
-	    yIncrement *= diagram.getZoomFactor();
+	    if (graph.isGridEnabled() != true) {
+		xIncrement *= diagram.getZoomFactor();
+		yIncrement *= diagram.getZoomFactor();
+	    }
 
 	    repetitionTimer.start();
 	}
@@ -798,7 +808,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	redoAction.setEnabled(status);
 	fitDiagramToViewAction.setEnabled(status);
 	startAction.setEnabled(status);
-	stopAction.setEnabled(status);
+	stopAction.setEnabled(false);
 	zoomInAction.setEnabled(status);
 	zoomOutAction.setEnabled(status);
 	xcosDemonstrationAction.setEnabled(status);
