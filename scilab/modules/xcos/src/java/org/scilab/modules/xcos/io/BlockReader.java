@@ -422,8 +422,6 @@ public class BlockReader {
 	    return PortType.CONTROL;
 	}
 
-	System.err.println("type : " + type);
-	System.err.println("io : " + io);
 	throw new WrongTypeException();
     }
 

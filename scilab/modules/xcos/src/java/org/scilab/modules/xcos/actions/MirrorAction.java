@@ -31,7 +31,7 @@ public class MirrorAction extends DefaultAction {
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.MIRROR, null, new MirrorAction(scilabGraph),
-		KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), true));
     }
 
     /**
