@@ -83,7 +83,6 @@ BOOL loadOnUseClassPath(char *tag)
 						/* we found the tag value  & load the jar */
 						/* replaces $SCILAB by current path of SCI */
 						#define KEYWORDSCILAB "$SCILAB" 
-						char *sciPath = getSCIpath();
 						char *FullClasspath = NULL;
 						char *classpath = (char*)attrib->children->content;
 					
@@ -119,6 +118,9 @@ BOOL loadOnUseClassPath(char *tag)
 	{
 		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), classpathfile);
 	}
+
+	if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+	if (sciPath) {FREE(sciPath); sciPath = NULL;}
 
 	return FALSE;	
 }
