@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -189,8 +190,7 @@ public class XpadGUI {
 			group.add(radioTypes[i]);
 			((JMenu) encodingTypeMenu.getAsSimpleMenu()).add(radioTypes[i]);
 			
-			// Editor's default encoding is UTF-8
-			if (encodings.get(i).toString().equals("UTF-8")) {
+			if (encodings.get(i).toString().equals(Charset.defaultCharset().toString())) {
 				radioTypes[i].setSelected(true);
 			}
 		}
