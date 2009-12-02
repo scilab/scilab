@@ -67,7 +67,7 @@ public final class XcosPaletteManager {
 			    "CONVERT", "CSCOPXY", "DEMUX", "DOLLAR_f",
 			    "INTEGRAL_f", "IN_f", "LOGICAL_OP", "MUX",
 			    "NRMSOM_f", "OUT_f", "PRODUCT", "RELATIONALOP",
-			    "SATURATION", "SWITCH2_m" }),
+			    "SATURATION", "SWITCH2_m", "TEXT_f" }),
 
 	    /** CONTINUOUS palette */
 	    new PaletteStringDescriptor(XcosMessages.CONTINUOUS_PAL,
@@ -162,7 +162,7 @@ public final class XcosPaletteManager {
 
 	    /** ANNOTATIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.ANNOTATIONS_PAL,
-		    new String[] {}),
+		    new String[] { "TEXT_f" }),
 
 	    /** SINKS palette */
 	    new PaletteStringDescriptor(XcosMessages.SINKS_PAL, new String[] {
