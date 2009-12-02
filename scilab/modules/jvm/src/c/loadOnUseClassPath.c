@@ -61,6 +61,7 @@ BOOL loadOnUseClassPath(char *tag)
 		if (doc == NULL) 
 		{
 			fprintf(stderr,_("Error: could not parse file %s\n"), classpathfile);
+			if (XPath) {FREE(XPath); XPath = NULL;}
 			return bOK;
 		}
 
@@ -110,8 +111,9 @@ BOOL loadOnUseClassPath(char *tag)
 		{
 			fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
 		}
-		if(xpathObj) xmlXPathFreeObject(xpathObj);
-		if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+		if (xpathObj) xmlXPathFreeObject(xpathObj);
+		if (xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+		if (XPath) {FREE(XPath); XPath = NULL;}
 
 	} 
 	else
