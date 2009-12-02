@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -126,27 +127,27 @@ public class SetupAction extends DefaultAction {
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
 		integration = new JFormattedTextField(currentFormat);
-		integration.setValue(diagram.getFinalIntegrationTime());
+		integration.setValue(new BigDecimal(diagram.getFinalIntegrationTime()));
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
 		rts = new JFormattedTextField(currentFormat);
-		rts.setValue(diagram.getRealTimeScaling());
+		rts.setValue(new BigDecimal(diagram.getRealTimeScaling()));
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
 		integrator = new JFormattedTextField(currentFormat);
-		integrator.setValue(diagram.getIntegratorAbsoluteTolerance());
+		integrator.setValue(new BigDecimal(diagram.getIntegratorAbsoluteTolerance()));
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
 		integratorRel = new JFormattedTextField(currentFormat);
-		integratorRel.setValue(diagram.getIntegratorRelativeTolerance());
+		integratorRel.setValue(new BigDecimal(diagram.getIntegratorRelativeTolerance()));
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
 		toleranceOnTime = new JFormattedTextField(currentFormat);
-		toleranceOnTime.setValue(diagram.getToleranceOnTime());
+		toleranceOnTime.setValue(new BigDecimal(diagram.getToleranceOnTime()));
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
 		maxIntegrationTime = new JFormattedTextField(currentFormat);
-		maxIntegrationTime.setValue(diagram.getMaxIntegrationTimeinterval());
+		maxIntegrationTime.setValue(new BigDecimal(diagram.getMaxIntegrationTimeinterval()));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 		solverChoice = new Choice();
@@ -279,12 +280,12 @@ public class SetupAction extends DefaultAction {
 		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				integration.setValue(100000.0);//TODO thou shall not let value hardcoded!
-				rts.setValue(0.0);
-				integrator.setValue(1e-4);
-				integratorRel.setValue(1e-6);
-				toleranceOnTime.setValue(1e-10);
-				maxIntegrationTime.setValue(100001.0);
+				integration.setValue(new BigDecimal(100000.0));//TODO thou shall not let value hardcoded!
+				rts.setValue(new BigDecimal(0.0));
+				integrator.setValue(new BigDecimal(1e-4));
+				integratorRel.setValue(new BigDecimal(1e-6));
+				toleranceOnTime.setValue(new BigDecimal(1e-10));
+				maxIntegrationTime.setValue(new BigDecimal(100001.0));
 				solverChoice.select(0);
 				maxStepSize.setValue(0);
 
@@ -314,28 +315,28 @@ public class SetupAction extends DefaultAction {
 					}
 				}
 
-				if (diagram.getFinalIntegrationTime() != (Double) integration.getValue()) {
-					diagram.setFinalIntegrationTime((Double) integration.getValue());
+				if (diagram.getFinalIntegrationTime() != ((BigDecimal)integration.getValue()).doubleValue()) {
+					diagram.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getRealTimeScaling() != (Double) rts.getValue()) {
-					diagram.setRealTimeScaling((Double) rts.getValue());
+				if (diagram.getRealTimeScaling() != ((BigDecimal) rts.getValue()).doubleValue()) {
+					diagram.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getIntegratorAbsoluteTolerance() != (Double) integrator.getValue()) {
-					diagram.setIntegratorAbsoluteTolerance((Double) integrator.getValue());
+				if (diagram.getIntegratorAbsoluteTolerance() != ((BigDecimal) integrator.getValue()).doubleValue()) {
+					diagram.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getIntegratorRelativeTolerance() != (Double) integratorRel.getValue()) {
-					diagram.setIntegratorRelativeTolerance((Double) integratorRel.getValue());
+				if (diagram.getIntegratorRelativeTolerance() != ((BigDecimal) integratorRel.getValue()).doubleValue()) {
+					diagram.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getToleranceOnTime() != (Double) toleranceOnTime.getValue()) {
-					diagram.setToleranceOnTime((Double) toleranceOnTime.getValue());
+				if (diagram.getToleranceOnTime() != ((BigDecimal) toleranceOnTime.getValue()).doubleValue()) {
+					diagram.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getMaxIntegrationTimeinterval() != (Double) maxIntegrationTime.getValue()) {
-					diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTime.getValue());
+				if (diagram.getMaxIntegrationTimeinterval() != ((BigDecimal) maxIntegrationTime.getValue()).doubleValue()) {
+					diagram.setMaxIntegrationTimeinterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
 				if (diagram.getMaximumStepSize() != ((Integer) maxStepSize.getValue()).doubleValue()) {
