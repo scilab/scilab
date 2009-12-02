@@ -329,6 +329,7 @@ public class SetupAction extends DefaultAction {
 
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			    if(((JButton)e.getSource()).hasFocus()) {
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
 					if (diagram.getSolver() != 0) {
 						diagram.setSolver(0);
@@ -372,6 +373,7 @@ public class SetupAction extends DefaultAction {
 
 				windowAlreadyExist = false;
 				mainFrame.dispose();
+			    }
 			}
 		});
 
