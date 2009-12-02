@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -311,10 +312,6 @@ public final class XcosPaletteManager {
 		    rootNode.add(new DefaultMutableTreeNode(xcosPalette));
 		}
 
-		synchronized (this) {
-		    this.notifyAll();
-		}
-
 		paletteLoadStarted = true;
 		palettes.getAsSimpleTab().getInfoBar().setText(
 			XcosMessages.EMPTY_INFO);
@@ -335,6 +332,9 @@ public final class XcosPaletteManager {
     }
 
     public static Tab loadPalette() {
+	synchronized (paletteThread) {
+	    paletteThread.notifyAll();
+	}
 	if (paletteLoadStarted == false) {
 	    createPaletteWindow();
 	    palettes.getAsSimpleTab().getInfoBar().setText(
