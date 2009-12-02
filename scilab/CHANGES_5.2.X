@@ -128,6 +128,8 @@ Xcos:
 
 * bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
 
+* bug 5533 fixed - SetupAction doesn't valid inputs
+
 
 Tree functions :
 ================
