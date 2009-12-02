@@ -78,8 +78,6 @@ Xcos:
 
 * bug 5104 fixed - Xcos: Update the block view on undo/redo
 
-* bug 5180 fixed - TEXT_f block removed from palettes (use double click)
-
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
 * bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
