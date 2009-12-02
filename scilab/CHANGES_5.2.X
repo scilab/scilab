@@ -118,6 +118,8 @@ Xcos:
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
 
+* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+
 * bug 5445 fixed - Xcos: update modified state on undo/redo
 
 * bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
