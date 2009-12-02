@@ -143,7 +143,7 @@ int sci_isfile(char *fname,unsigned long fname_len)
 
 	LhsVar(1) = Rhs + 1;
 
-	if (results) {FREE(lenStVarOne); lenStVarOne = NULL;}
+	if (results) {FREE(results); results = NULL;}
 	
 	C2F(putlhsvar)();
 	return 0;
