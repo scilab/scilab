@@ -118,6 +118,8 @@ Xcos:
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
 
+* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+
 * bug 5445 fixed - Xcos: update modified state on undo/redo
 
 * bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
@@ -127,6 +129,8 @@ Xcos:
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
 * bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
+
+* bug 5533 fixed - SetupAction doesn't valid inputs
 
 
 Tree functions :
