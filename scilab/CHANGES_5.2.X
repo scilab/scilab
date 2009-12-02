@@ -112,6 +112,8 @@ Xcos:
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
+* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
@@ -123,6 +125,8 @@ Xcos:
 * bug 5464 fixed - Xcos: Actions are disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
 
 
 Tree functions :
@@ -296,6 +300,10 @@ Bug fixes:
 * bug 5507 fixed - whereis(bin2dec) returned a error.
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
+
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

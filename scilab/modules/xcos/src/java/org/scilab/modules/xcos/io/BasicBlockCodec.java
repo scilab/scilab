@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -46,8 +47,15 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	}
 
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
-	    ((BasicBlock) obj).setSimulationFunctionType(
-		    BasicBlock.SimulationFunctionType.valueOf((((Element) node) .getAttribute(SIMULATION_FUNCTION_TYPE))));
+	    ((BasicBlock) obj).setSimulationFunctionType(SimulationFunctionType.DEFAULT);
+
+	    String functionType = (((Element) node).getAttribute(SIMULATION_FUNCTION_TYPE));
+	    if(functionType != null && functionType.compareTo("") != 0) {
+		SimulationFunctionType type = BasicBlock.SimulationFunctionType.valueOf(functionType);
+		if(type != null) {
+		    ((BasicBlock) obj).setSimulationFunctionType(type);
+		}
+	    }
 
 	    if (obj instanceof SuperBlock) {
 		((SuperBlock) obj).setChild(null);
@@ -60,9 +68,10 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		    ((mxCell) obj).setId(attr.getNodeValue());
 		}
 	    }
+
+	    //update style to replace direction by rotation
+	    ((BasicBlock)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE)));
 	    
 	    return super.afterDecode(dec, node, obj);
 	}
-
-
 }

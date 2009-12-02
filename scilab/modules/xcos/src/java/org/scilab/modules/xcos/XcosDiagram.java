@@ -813,8 +813,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
 	    {
 		getModel().beginUpdate();
-		if (cell instanceof BasicBlock 
-			&& !(cell instanceof TextBlock)) {
+		if (cell instanceof BasicBlock) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(buildEntireContext());
@@ -897,7 +896,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		} else {
 		    // Display object context menu
-		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
@@ -1332,7 +1331,7 @@ public class XcosDiagram extends ScilabGraph {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.createTabFromDiagram(xcosDiagram);
+		XcosTab.showTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
@@ -1571,6 +1570,8 @@ public class XcosDiagram extends ScilabGraph {
     {
 	if (cell instanceof BasicBlock) {
 	    return ((BasicBlock) cell).getToolTipText();
+	} else if(cell instanceof BasicPort) {
+	    return ((BasicPort) cell).getToolTipText();
 	}
 	return "";
     }

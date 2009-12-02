@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.utils;
 
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.List;
 
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -21,7 +23,6 @@ import org.scilab.modules.xcos.port.BasicPort;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxCellState;
 
 public final class BlockPositioning {
 
@@ -104,162 +105,135 @@ public final class BlockPositioning {
      * @param block : block target
      * @param blockDirection : new block orientation
      */
-    public static void updatePortsPosition(BasicBlock block, String blockDirection) {
+    public static void updatePortsPosition(BasicBlock block) {
 	// Block -> EAST
 	// East <=> Out / North <=> Control / West <=> In / South <=> Command
-	if (blockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) {
-	    if (block.getFlip()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
+	if (block.getAngle() == 0) {
+	    if(block.getMirror()) {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
 	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
+	    }
+	    
+	    if (block.getFlip()) {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
+	    } else {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
 	    }
 	}
 	// Block -> NORTH
 	// East <=> Command / North <=> Out / West <=> Control / South <=> In
-	if (blockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) {
-	    if(block.getFlip()) {
-		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
+	if (block.getAngle() == 270) {
+	    if(block.getMirror()) {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
 	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
+		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
+	    }
+	    
+	    if(block.getFlip()) {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
+	    } else {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
 	    }
 	}
 	// Block -> WEST
 	// East <=> In / North <=> Command / West <=> Out / South <=> Control
-	if (blockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) {
-	    if (block.getFlip()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
+	if (block.getAngle() == 180) {
+	    if(block.getMirror()) {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
 	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
+	    }
+	
+	    if (block.getFlip()) {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
+	    } else {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
 	    }
 	}
 	// Block -> SOUTH
 	// East <=> Control / North <=> In / West <=> Command / South <=> Out
-	if (blockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) {
-	    if (block.getFlip()) {
-		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
+	if (block.getAngle() == 90) {
+	    if(block.getMirror()) {
+		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
 	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block));
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block));
+		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
+		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
+	    }
+
+	    if (block.getFlip()) {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
+	    } else {
+		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
+		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
 	    }
 	}
     }    
-
-    /**
-     * @param currentBlockDirection : current block orientation
-     * @return : new orientation
-     */
-    public static String getNextAntiClockwiseDirection(String currentBlockDirection) {
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	return null;
-    }
-
-    /**
-     * @param currentBlockDirection : current block orientation
-     * @return : new orientation
-     */
-    public static String getNextClockwiseDirection(String currentBlockDirection) {
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	return null;
-    }
-
-    /**
-     * @param currentBlockDirection : current block orientation
-     * @return : new orientation
-     */
-    public static String getNextFlipDirection(String currentBlockDirection) {
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_WEST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_EAST; }
-	if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_NORTH; }
-	return null;
-    }
-
-    /**
-     * @param block : block target
-     * @param currentBlockDirection : current block orientation
-     * @return : event ports orientation
-     */
-    public static String getEventPortsDirection(BasicBlock block, String currentBlockDirection) {
-	if (block.getFlip()) {
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	    return null;
-	} else {
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_EAST) == 0) { return mxConstants.DIRECTION_SOUTH; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return mxConstants.DIRECTION_EAST; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_WEST) == 0) { return mxConstants.DIRECTION_NORTH; }
-	    if (currentBlockDirection.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return mxConstants.DIRECTION_WEST; }
-	    return null;
-	}
-    }
-
-
-    /**
-     * @param currentBlockDirection
-     * @return block orientation
-     */
-    public static String getDataPortsDirection(String currentBlockDirection) {
-	return currentBlockDirection;
-    }
 
     /**
      * @param block
      * @param ports
      * @param portOrientation
      */
-    public static void rotatePorts(BasicBlock block, List ports , String portOrientation) {
-	for (int i = 0 ; i < ports.size() ; ++i) {
-	    mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {ports.get(i)}, mxConstants.STYLE_DIRECTION, portOrientation);
+    public static void rotatePorts(BasicBlock block, List ports , int angle) {
+
+	int newAngle = angle;
+	if(block.getFlip()) {
+	    newAngle += 180;
+	    newAngle %= 360;
+	}
+
+	if(block.getMirror()) {
+	    newAngle += 180;
+	    newAngle %= 360;
+	}
+	
+	for(Object obj : ports) {
+
+	    if(obj instanceof BasicPort) {
+		BasicPort port = (BasicPort) obj;
+		port.setAngle(newAngle);
+		int newAngle2 = port.getAngle(); 
+		mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {port}, mxConstants.STYLE_ROTATION, new Integer(newAngle2).toString());
+	    }
 	}
     }
 
-    /**
-     * @param block
-     * @param newBlockDirection
-     */
-    public static void updateBlockDirection(BasicBlock block, String newBlockDirection) {
-	
-	
-	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block}, mxConstants.STYLE_DIRECTION, newBlockDirection);
-	
-//	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block},
-//		mxConstants.STYLE_ROTATION, new Integer(angle).toString());
+    public static int getDataPortsAngle(BasicBlock block) {
+	if(block.getMirror()) {
+	    return (block.getAngle() + 180) % 360;
+	} else {
+	    return block.getAngle();   
+	}
+    }
 
-	rotatePorts(block, BasicBlockInfo.getAllInputPorts(block), getDataPortsDirection(newBlockDirection));
-	rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block), getDataPortsDirection(newBlockDirection));
-	rotatePorts(block, BasicBlockInfo.getAllCommandPorts(block), getEventPortsDirection(block, newBlockDirection));
-	rotatePorts(block, BasicBlockInfo.getAllControlPorts(block), getEventPortsDirection(block, newBlockDirection));
+    public static int getEventPortsAngle(BasicBlock block) {
+	if(block.getFlip()) {
+	    return (block.getAngle() + 90) % 360;
+	} else {
+	    return (block.getAngle() + 270) % 360;
+	}
+    }
+    
+    public static void rotateAllPorts(BasicBlock block) {
+	rotatePorts(block, BasicBlockInfo.getAllInputPorts(block, false), getDataPortsAngle(block));
+	rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block, false), getDataPortsAngle(block));
+	rotatePorts(block, BasicBlockInfo.getAllCommandPorts(block, false), getEventPortsAngle(block));
+	rotatePorts(block, BasicBlockInfo.getAllControlPorts(block, false), getEventPortsAngle(block));
     }
 
     /**
@@ -272,14 +246,8 @@ public final class BlockPositioning {
 		&& block.getParentDiagram().getView() != null 
 		&& block.getParentDiagram().getView().getState(block) != null) {
 	    
-	    mxCellState state = block.getParentDiagram().getView().getState(block);
-	    String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-	    //currentBlockDirection = mxConstants.DIRECTION_EAST;
-	    BlockPositioning.updatePortsPosition(block, currentBlockDirection);
-	    rotatePorts(block, BasicBlockInfo.getAllInputPorts(block), getDataPortsDirection(currentBlockDirection));
-	    rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block), getDataPortsDirection(currentBlockDirection));
-	    rotatePorts(block, BasicBlockInfo.getAllCommandPorts(block), getEventPortsDirection(block, currentBlockDirection));
-	    rotatePorts(block, BasicBlockInfo.getAllControlPorts(block), getEventPortsDirection(block, currentBlockDirection));
+	    updatePortsPosition(block);
+	    rotateAllPorts(block);
 	}
     }
 
@@ -289,38 +257,72 @@ public final class BlockPositioning {
     public static void toggleFlip(BasicBlock block) {
 
 	block.setFlip(!block.getFlip());
-
-	mxCellState state = block.getParentDiagram().getView().getState(block);
-	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-	String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
-	if(currentFlip.compareTo("true") == 0) {
-		currentFlip = "false";
-	} else {
-		currentFlip = "true";
-	}
-	mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {block}, XcosConstants.STYLE_FLIP, currentFlip);
-	
-	updatePortsPosition(block, getNextFlipDirection(currentBlockDirection));
-	updateBlockDirection(block, getNextFlipDirection(currentBlockDirection));
+	updateBlockView(block);
     }
 
+    /**
+     * @param block
+     */
+    public static void toggleMirror(BasicBlock block) {
+
+	block.setMirror(!block.getMirror());
+	updateBlockView(block);
+    }
 
     /**
      * @param block
      */
     public static void toggleAntiClockwiseRotation(BasicBlock block) {
-	mxCellState state = block.getParentDiagram().getView().getState(block);
-	String currentBlockDirection = mxUtils.getString(state.getStyle(), mxConstants.STYLE_DIRECTION, mxConstants.DIRECTION_EAST);
-
-	updatePortsPosition(block, getNextAntiClockwiseDirection(currentBlockDirection));
-	updateBlockDirection(block, getNextAntiClockwiseDirection(currentBlockDirection));
+	
+	block.setAngle(getNextAntiClockwiseAngle(block));
+	updateBlockView(block);
     }
     
-    public static int getAngleFromDirection(String direction) {
-	    if (direction.compareTo(mxConstants.DIRECTION_EAST) == 0) { return 0; }
-	    if (direction.compareTo(mxConstants.DIRECTION_NORTH) == 0) { return 270; }
-	    if (direction.compareTo(mxConstants.DIRECTION_WEST) == 0) { return 180; }
-	    if (direction.compareTo(mxConstants.DIRECTION_SOUTH) == 0) { return 90; }
-	    return 0;
+    public static int getNextAntiClockwiseAngle(BasicBlock block) {
+	if (block.getAngle() == 0) { return 270; }
+	if (block.getAngle() == 90) { return 0; }
+	if (block.getAngle() == 180) { return 90; }
+	if (block.getAngle() == 270) { return 180; }
+	return 0;
+    }
+
+    public static int getNextClockwiseAngle(BasicBlock block) {
+	if (block.getAngle() == 0) { return 90; }
+	if (block.getAngle() == 90) { return 180; }
+	if (block.getAngle() == 180) { return 270; }
+	if (block.getAngle() == 270) { return 0; }
+	return 0;
+    }
+   
+    public static Rectangle rotateRectangle(Rectangle rect, int angle) {
+	Point tl = new Point(-rect.width / 2, -rect.height / 2); //top left
+	Point tr = new Point(tl.x + rect.width, tl.y); //top right
+	Point br = new Point(tr.x, tr.y + rect.height); //bottom right
+	Point bl = new Point(tl.x, br.y); //bottom left 
+
+	Point tl2 = rotatePoint(tl, angle);
+	Point tr2 = rotatePoint(tr, angle);
+	Point bl2 = rotatePoint(bl, angle);
+	Point br2 = rotatePoint(br, angle);
+	
+	int x = Math.min(tl2.x, Math.min(tr2.x, Math.min(br2.x, bl2.x)));
+	int y = Math.min(tl2.y, Math.min(tr2.y, Math.min(br2.y, bl2.y)));
+	int width = Math.max(tl2.x, Math.max(tr2.x, Math.max(br2.x, bl2.x))) - x;
+	int height = Math.max(tl2.y, Math.max(tr2.y, Math.max(br2.y, bl2.y))) - y;
+
+	Rectangle result = new Rectangle(x,y,width, height);
+	return result;
+    }
+    
+    private static Point rotatePoint(Point point, int angle) {
+    
+	double angleRad = (angle * Math.PI ) / 180;
+	int x = 0;
+	int y = 0;
+	
+	x = (int)(point.getX() * Math.cos(angleRad) - point.getY() * Math.sin(angleRad));
+	y = (int)(point.getX() * Math.sin(angleRad) + point.getY() * Math.cos(angleRad));
+	Point result = new Point(x,y);
+	return result;
     }
 }

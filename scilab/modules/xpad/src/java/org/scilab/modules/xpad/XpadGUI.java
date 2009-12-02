@@ -17,9 +17,8 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
-
-import org.scilab.modules.gui.window.Window;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -28,6 +27,20 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextPane;
 import javax.swing.text.DefaultEditorKit;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
@@ -39,6 +52,7 @@ import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
 import org.scilab.modules.xpad.actions.EncodingAction;
+import org.scilab.modules.xpad.actions.EndOfLineAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
 import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
@@ -67,20 +81,6 @@ import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
-
-import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ScilabToolBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.localization.Messages;
-
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -88,6 +88,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public class XpadGUI {
 	private static JRadioButtonMenuItem[] radioTypes;
 	private static MenuItem evaluateSelectionMenuItem;
+	private static TextBox infoBar;
 
 	public XpadGUI(Window mainWindow, Xpad editorInstance, String title) {
 		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
@@ -189,11 +190,38 @@ public class XpadGUI {
 			group.add(radioTypes[i]);
 			((JMenu) encodingTypeMenu.getAsSimpleMenu()).add(radioTypes[i]);
 			
-			// Editor's default encoding is UTF-8
-			if (encodings.get(i).toString().equals("UTF-8")) {
+			if (encodings.get(i).toString().equals(Charset.defaultCharset().toString())) {
 				radioTypes[i].setSelected(true);
 			}
 		}
+		
+		// create End Of Line sub Menu
+		
+		Menu eolTypeMenu = ScilabMenu.createMenu();
+		eolTypeMenu.setText(XpadMessages.EOL_TYPE);
+		documentMenu.add(eolTypeMenu);
+		
+		JRadioButtonMenuItem[] radioEolTypes = new JRadioButtonMenuItem[4];
+		ButtonGroup groupEol = new ButtonGroup();
+		
+		radioEolTypes[0] =  (new EndOfLineAction(XpadMessages.EOL_AUT0, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[0]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[0]);
+		
+		radioEolTypes[1] =  (new EndOfLineAction(XpadMessages.EOL_LINUX, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[1]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[1]);
+		
+		radioEolTypes[2] =  (new EndOfLineAction(XpadMessages.EOL_WINDOWS, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[2]);
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[2]);
+		
+		radioEolTypes[3] =  (new EndOfLineAction(XpadMessages.EOL_MACOS, editorInstance)).createRadioButtonMenuItem(editorInstance);
+		groupEol.add(radioEolTypes[3]);		
+		((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[3]);
+		
+		// Auto selected by default
+		radioEolTypes[0].setSelected(true);
 		
 		documentMenu.addSeparator();
 		documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));
@@ -236,7 +264,7 @@ public class XpadGUI {
 		toolBar.addSeparator();
 		toolBar.add(FindAction.createButton(editorInstance)); // FIND / REPLACE
 
-		TextBox infoBar = ScilabTextBox.createTextBox();
+		infoBar = ScilabTextBox.createTextBox();
 
 		editorInstance.setMenuBar(menuBar);
 		editorInstance.setToolBar(toolBar);
@@ -281,7 +309,7 @@ public class XpadGUI {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String selection = c.getSelectedText();
 				if (selection == null) {
-					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+					infoBar.setText(Messages.gettext("No text selected"));
 				} else {
 					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true /* display */, true /* store in history */);
 				}
@@ -300,7 +328,7 @@ public class XpadGUI {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String selection = c.getSelectedText();
 				if (selection == null) {
-					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+					infoBar.setText(Messages.gettext("No text selected"));
 				} else {
 					Xpad.xpadWithText(selection);
 				}
@@ -346,13 +374,24 @@ public class XpadGUI {
 		/* Edit in the Scilab Text Editor */
 		final JMenuItem helpMenuItem = new JMenuItem("Help on the selected text");
 
-		ActionListener actionListenerHelpOnKeyword= new ActionListener() {
+		ActionListener actionListenerHelpOnKeyword = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String selection = c.getSelectedText();
 				if (selection == null) {
-					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+					infoBar.setText(Messages.gettext("No text selected"));
 				} else {
-					ScilabHelpBrowser.getHelpBrowser().searchKeywork(selection);
+					/* Double the quote/double quote in order to avoid
+					 * and error with the call of help()
+					 */
+					selection = selection.replaceAll("'", "''");
+					selection = selection.replaceAll("\"", "\"\"");
+					
+					/* @TODO: Check if it is possible to call directly
+					 * from the Java engine the help
+					 * Last time I check, we needed some information
+					 * provided by the Scilab native engine
+					 */
+					InterpreterManagement.requestScilabExec("help('" + selection + "')");
 				}
 			}
 		};
@@ -364,11 +403,11 @@ public class XpadGUI {
 				if (keyword == null) {
 					helpMenuItem.setText(Messages.gettext("Help about a selected text"));
 				} else {
-					int nbOfDisplayedOnlyXChar=10;
+					int nbOfDisplayedOnlyXChar = 10;
 					if (keyword.length() > nbOfDisplayedOnlyXChar) {
 						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
 					}
-					helpMenuItem.setText(Messages.gettext("Help about '") +keyword+"'");
+					helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
 				}
 			}
 		};
