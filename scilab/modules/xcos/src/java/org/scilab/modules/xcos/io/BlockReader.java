@@ -427,7 +427,7 @@ public class BlockReader {
 
     public static BasicBlock readBlockFromFile(String hdf5file) {
 	ScilabMList data = new ScilabMList();
-	BasicBlock newBlock = BasicBlock.createBlock("FAILED !!");
+	BasicBlock newBlock;
 
 	try {
 	    int fileId = H5Read.openFile(hdf5file);
