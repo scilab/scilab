@@ -29,6 +29,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -60,6 +61,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
@@ -97,7 +99,6 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -1298,10 +1299,25 @@ public class XcosDiagram extends ScilabGraph {
     
     public void setContext(String[] context) {
 	this.context = context;
+	updateCellsContext();
     }
 
     public String[] getContext() {
 	return context;
+    }
+
+    public void updateCellsContext() {
+	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+	    Object obj = getModel().getChildAt(getDefaultParent(), i);
+	    if ( obj instanceof ContextUpdate) {
+		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    } else if (obj instanceof SuperBlock) {
+		SuperBlock superBlock = (SuperBlock)obj;
+		if(superBlock.getChild() != null) {
+		    superBlock.getChild().updateCellsContext();
+		}
+	    }
+	}
     }
 
     public String getVersion() {

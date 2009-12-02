@@ -85,6 +85,9 @@ public class SuperBlock extends BasicBlock {
 	} else {
 	    getChild().setVisible(true);
 	}
+	
+	
+	getChild().updateCellsContext();
     }
 
     public void closeBlockSettings() {
@@ -263,27 +266,6 @@ public class SuperBlock extends BasicBlock {
 	return list; 
     }
 
-    protected int getBlocksWithValueCount(List<mxCell> blocks, String checkValue){
-	int count = 0;
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		count++;
-	    }
-	}
-	return count;
-    }
-
-    protected List<mxCell> getBlocksWithValue(List<mxCell> blocks, String checkValue){
-	List<mxCell> list = new ArrayList<mxCell>();
-
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		list.add((BasicBlock)blocks.get(i));
-	    }
-	}
-	return list;
-    }
-
     protected int getBlocksConsecutiveUniqueValueCount(List<mxCell> blocks){
     	if(blocks == null){
     		return 0;
@@ -299,7 +281,7 @@ public class SuperBlock extends BasicBlock {
     	
     	//populate
     	for(int i = 0 ; i < array.length; i++){
-    		int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    		int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     		if(index <= array.length){
     			array[index - 1] = 1;	
     		}
@@ -344,7 +326,7 @@ public class SuperBlock extends BasicBlock {
 
 
     		for(int i = 0 ; i < blocks.size() ; i++){
-    			int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    			int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     			if(index > countUnique || isDone[index - 1] == true){
     				child.getAsComponent().setCellWarning(blocks.get(i), "Wrong port number");
     			}else{
