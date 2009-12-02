@@ -257,9 +257,9 @@ Bug fixes:
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
                    displayed at Scilab startup.
-                   
+
 * bug 5360 fixed - "sciargs" documentation help page updated.
-                   
+
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
 
 * bug 5375 fixed - isdigit() did not support non ascii chars.
@@ -285,15 +285,15 @@ Bug fixes:
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
-  	  	   		   when no empty line was provided
+                   when no empty line was provided
 
 * bug 5488 fixed - When the documentation was extracted from a .sci file using
-  	  	   		   help_from_sci function, the docbook refsynopsisdiv section
-				   was incorrect.
+                   help_from_sci function, the docbook refsynopsisdiv section
+                   was incorrect.
 
 * bug 5489 fixed - When the documentation was extracted from a .sci file using
-  	  	   		   help_from_sci function, the docbook Author refsection
-				   section was not correct.
+                   help_from_sci function, the docbook Author refsection
+                   section was not correct.
 
 * bug 5497 fixed - Editor: selection drag is now available.
 
@@ -304,6 +304,8 @@ Bug fixes:
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 * bug 5507 fixed - whereis(bin2dec) returned a error.
+
+* bug 5513 fixed - input("message") did not restore the original prompt after the input job is done.
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
