@@ -166,9 +166,9 @@ public final class XcosPaletteManager {
 
 	    /** SINKS palette */
 	    new PaletteStringDescriptor(XcosMessages.SINKS_PAL, new String[] {
-		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CMAT3D",
+		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CLKOUTV_f", "CMAT3D",
 		    "CMATVIEW", "CMSCOPE", "CSCOPE", "CSCOPXY", "CSCOPXY3D",
-		    "ENDBLK", "END_c", "HALT_f", "TOWS_c", "TRASH_f",
+		    "ENDBLK", "END_c", "HALT_f", "OUTIMPL_f", "OUT_f", "TOWS_c", "TRASH_f",
 		    "WFILE_f", "WRITEAU_f", "WRITEC_f" }),
 
 	    /** SOURCES palette */
