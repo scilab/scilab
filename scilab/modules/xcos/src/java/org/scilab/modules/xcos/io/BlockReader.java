@@ -422,14 +422,12 @@ public class BlockReader {
 	    return PortType.CONTROL;
 	}
 
-	System.err.println("type : " + type);
-	System.err.println("io : " + io);
 	throw new WrongTypeException();
     }
 
     public static BasicBlock readBlockFromFile(String hdf5file) {
 	ScilabMList data = new ScilabMList();
-	BasicBlock newBlock = BasicBlock.createBlock("FAILED !!");
+	BasicBlock newBlock;
 
 	try {
 	    int fileId = H5Read.openFile(hdf5file);
@@ -446,9 +444,9 @@ public class BlockReader {
 	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
-	} finally {
-	    return newBlock;
+	    newBlock = null;
 	}
+	return newBlock;
     }
 
     public static int getNbObjs(ScilabMList data) {

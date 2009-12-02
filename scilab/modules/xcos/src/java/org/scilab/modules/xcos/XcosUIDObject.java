@@ -30,7 +30,6 @@ public class XcosUIDObject extends mxCell {
     }
 
     public void setId(String UID) {
-	//System.err.println(getId() + " -> " + UID);
 	super.setId(UID);
     }
 }

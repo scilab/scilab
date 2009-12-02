@@ -47,7 +47,7 @@ public class RotateAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), true));
 	}
 
 	/**

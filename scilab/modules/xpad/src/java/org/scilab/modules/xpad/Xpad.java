@@ -76,8 +76,10 @@ import org.scilab.modules.xpad.actions.RecentFileAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
+import org.scilab.modules.xpad.actions.LineBeautifierAction;
 import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.style.CompoundUndoManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.DropFilesListener;
 import org.scilab.modules.xpad.utils.SaveFile;
@@ -656,7 +658,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		TabifyAction.putInInputMap(textPane, this);
 		UnTabifyAction.putInInputMap(textPane, this);
-
+		LineBeautifierAction.putInInputMap(textPane);
+		
 		textPane.setFocusable(true);
 		textPane.setRequestFocusEnabled(true);
 		textPane.requestFocus();
@@ -722,15 +725,43 @@ public class Xpad extends SwingScilabTab implements Tab {
 		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
 	}
 	
+	class CaretUpdater implements Runnable {
+		private JTextPane jtc;
+		private int offset;
+		
+		CaretUpdater(JTextPane jtc, DocumentEvent e){
+			this.jtc= jtc;
+			this.offset = e.getOffset() + e.getLength();
+			
+		}
+		public void run(){
+			jtc.setCaretPosition(Math.min(offset, jtc.getDocument().getLength()));
+		}	
+	}
+	
+	class CaretUpdateListener implements DocumentListener {
+		public void insertUpdate(final DocumentEvent e)
+		{
+			SwingUtilities.invokeLater(new CaretUpdater(getTextPane(), e));
+		}
+		public void removeUpdate(DocumentEvent e)
+		{
+			getTextPane().setCaretPosition(e.getOffset());
+		}
+		public void changedUpdate(DocumentEvent e) {}
+	}
+
 	/**
 	 * Undo last modification.
 	 */
 	public void undo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
 		synchronized (doc) {
-			UndoManager undo = doc.getUndoManager();
+			CompoundUndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
+				CaretUpdateListener cl = new CaretUpdateListener();
 				try {
+					doc.addDocumentListener(cl);
 					undo.undo();
 					if (!undo.canUndo()) { // remove "*" prefix from tab name
 						doc.setContentModified(false);
@@ -739,6 +770,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 					repaint();
 				} catch (CannotUndoException ex) {
 					ex.printStackTrace();
+				}finally{
+					doc.removeDocumentListener(cl);
 				}
 			}
 		}
@@ -752,7 +785,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized(doc){
 			UndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
+				CaretUpdateListener cl = new CaretUpdateListener();
 				try {
+					doc.addDocumentListener(cl);
 					redo.redo();
 					if(!doc.isContentModified()){
 						doc.setContentModified(true);
@@ -760,6 +795,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 					}
 				} catch (CannotRedoException ex) {
 					ex.printStackTrace();
+				}finally{
+					doc.removeDocumentListener(cl);
 				}
 			}
 		}

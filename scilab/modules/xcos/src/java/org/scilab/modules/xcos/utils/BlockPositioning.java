@@ -311,7 +311,6 @@ public final class BlockPositioning {
 	int height = Math.max(tl2.y, Math.max(tr2.y, Math.max(br2.y, bl2.y))) - y;
 
 	Rectangle result = new Rectangle(x,y,width, height);
-	System.err.println("rect : " + result);
 	return result;
     }
     
@@ -324,7 +323,6 @@ public final class BlockPositioning {
 	x = (int)(point.getX() * Math.cos(angleRad) - point.getY() * Math.sin(angleRad));
 	y = (int)(point.getX() * Math.sin(angleRad) + point.getY() * Math.cos(angleRad));
 	Point result = new Point(x,y);
-	//System.err.println("point : " + result);
 	return result;
     }
 }

@@ -128,6 +128,8 @@ Xcos:
 
 * bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
 
+* bug 5533 fixed - SetupAction doesn't valid inputs
+
 
 Tree functions :
 ================
@@ -302,6 +304,8 @@ Bug fixes:
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
 * bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
+
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
