@@ -20,6 +20,7 @@ import java.awt.Insets;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.math.BigDecimal;
@@ -32,6 +33,7 @@ import java.util.Locale;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -69,13 +71,30 @@ public class SetupAction extends DefaultAction {
 	private JSpinner maxStepSize;
 
 	private static final DecimalFormatSymbols formatSymbol = new DecimalFormatSymbols();
-	private static final DecimalFormat currentFormat = new DecimalFormat("0.0####E00", formatSymbol);
+	private static final DecimalFormat currentFormat = new DecimalFormat("0.0####E00;0", formatSymbol);
 	static {
         	formatSymbol.setDecimalSeparator('.');
         	currentFormat.setDecimalFormatSymbols(formatSymbol);
         	currentFormat.setParseIntegerOnly(false);
         	currentFormat.setParseBigDecimal(true);
 	}
+	
+	private static final InputVerifier validatePositiveDouble = new InputVerifier() {
+	    public boolean verify(javax.swing.JComponent arg0) {
+		boolean ret = false;
+		JFormattedTextField textField = (JFormattedTextField) arg0;
+		try {
+        		BigDecimal value = new BigDecimal(textField.getText());
+        		if (value.compareTo(new BigDecimal(0)) >= 0) {
+        		    ret = true;
+        		}
+		} catch (NumberFormatException e) {
+		    // ret is false so does nothing
+		}
+		return ret;
+		
+	    };
+	};
 	
 	/**
 	 * Constructor
@@ -129,26 +148,32 @@ public class SetupAction extends DefaultAction {
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
 		integration = new JFormattedTextField(currentFormat);
+		integration.setInputVerifier(validatePositiveDouble);
 		integration.setValue(new BigDecimal(diagram.getFinalIntegrationTime()));
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
 		rts = new JFormattedTextField(currentFormat);
+		rts.setInputVerifier(validatePositiveDouble);
 		rts.setValue(new BigDecimal(diagram.getRealTimeScaling()));
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
 		integrator = new JFormattedTextField(currentFormat);
+		integrator.setInputVerifier(validatePositiveDouble);
 		integrator.setValue(new BigDecimal(diagram.getIntegratorAbsoluteTolerance()));
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
 		integratorRel = new JFormattedTextField(currentFormat);
+		integratorRel.setInputVerifier(validatePositiveDouble);
 		integratorRel.setValue(new BigDecimal(diagram.getIntegratorRelativeTolerance()));
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
 		toleranceOnTime = new JFormattedTextField(currentFormat);
+		toleranceOnTime.setInputVerifier(validatePositiveDouble);
 		toleranceOnTime.setValue(new BigDecimal(diagram.getToleranceOnTime()));
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
 		maxIntegrationTime = new JFormattedTextField(currentFormat);
+		maxIntegrationTime.setInputVerifier(validatePositiveDouble);
 		maxIntegrationTime.setValue(new BigDecimal(diagram.getMaxIntegrationTimeinterval()));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
@@ -304,7 +329,6 @@ public class SetupAction extends DefaultAction {
 
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
 					if (diagram.getSolver() != 0) {
 						diagram.setSolver(0);
