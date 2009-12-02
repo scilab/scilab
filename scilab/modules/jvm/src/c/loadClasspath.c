@@ -179,7 +179,7 @@ BOOL LoadClasspath(char *xmlfilename)
 
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
-
+			if(XPath) {FREE(XPath); XPath = NULL;}
 		}
 		else
 		{
