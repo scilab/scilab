@@ -68,6 +68,15 @@ public class SetupAction extends DefaultAction {
 	private Choice   solverChoice;
 	private JSpinner maxStepSize;
 
+	private static final DecimalFormatSymbols formatSymbol = new DecimalFormatSymbols();
+	private static final DecimalFormat currentFormat = new DecimalFormat("0.0####E00", formatSymbol);
+	static {
+        	formatSymbol.setDecimalSeparator('.');
+        	currentFormat.setDecimalFormatSymbols(formatSymbol);
+        	currentFormat.setParseIntegerOnly(false);
+        	currentFormat.setParseBigDecimal(true);
+	}
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph Associated Scilab Graph
@@ -109,13 +118,6 @@ public class SetupAction extends DefaultAction {
 
 		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
-		
-		DecimalFormatSymbols formatSymbol = new DecimalFormatSymbols();
-		formatSymbol.setDecimalSeparator('.');
-		final DecimalFormat currentFormat = new DecimalFormat("0.0####E00", formatSymbol);
-		currentFormat.setDecimalFormatSymbols(formatSymbol);
-		currentFormat.setParseIntegerOnly(false);
-		currentFormat.setParseBigDecimal(true);
 
 		mainFrame = new JFrame();
 		windowAlreadyExist = true;
