@@ -189,15 +189,15 @@ public class BlockPalette extends JLabel {
 	
 	if(block == null) {
 	    if (getText().compareTo("TEXT_f") != 0) {
-	    String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+		String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
-	    // Search the bloc in global hashmap
-	    block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
+		// Search the bloc in global hashmap
+		block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
 
-	    if (block.getStyle().compareTo("") == 0) {
-		block.setStyle(block.getInterfaceFunctionName());
-		block.setValue(block.getInterfaceFunctionName());
-	    }
+		if (block.getStyle().compareTo("") == 0) {
+		    block.setStyle(block.getInterfaceFunctionName());
+		    block.setValue(block.getInterfaceFunctionName());
+		}
 	    } else {
 		block = new TextBlock("Edit me!!!");
 	    }
