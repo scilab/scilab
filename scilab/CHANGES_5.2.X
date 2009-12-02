@@ -78,6 +78,8 @@ Xcos:
 
 * bug 5104 fixed - Xcos: Update the block view on undo/redo
 
+* bug 5180 fixed - TEXT_f block removed from palettes (use double click)
+
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
 * bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
@@ -117,6 +119,8 @@ Xcos:
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
+
+* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
 
 * bug 5445 fixed - Xcos: update modified state on undo/redo
 
