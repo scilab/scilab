@@ -14,44 +14,49 @@ package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class ImplicitOutBlock extends BasicBlock {
+public class ImplicitOutBlock extends ContextUpdate {
 
-	public ImplicitOutBlock() {
-		super();
-		setVertex(false);
-		setVisible(false);
+     private static final long serialVersionUID = 3573293528173540817L;
+
+    public ImplicitOutBlock() {
+	super();
+	setVertex(false);
+	setVisible(false);
+    }
+
+    public ImplicitOutBlock(String label) {
+	super(label);
+	setInterfaceFunctionName("OUTIMPL_f");
+	setSimulationFunctionName("outimpl");
+	setNbZerosCrossing(new ScilabDouble(0));
+	setNmode(new ScilabDouble(0));
+	setODState(new ScilabList());
+	setValue(1);
+    }
+
+    public void setExprs(ScilabType exprs) {
+	super.setExprs(exprs);
+	//setValue(((ScilabString) getExprs()).getData()[0][0]);
+    }
+
+    public void updateBlockSettings(BasicBlock modifiedBlock) {
+
+	double oldValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+	super.updateBlockSettings(modifiedBlock);
+	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+
+	if(oldValue != newValue){
+	    getParentDiagram().fireEvent(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 	}
+    }
 
-	public ImplicitOutBlock(String label) {
-		super(label);
-		setInterfaceFunctionName("OUTIMPL_f");
-		setSimulationFunctionName("outimpl");
-		setNbZerosCrossing(new ScilabDouble(0));
-		setNmode(new ScilabDouble(0));
-		setODState(new ScilabList());
-		setValue("1");
-	}
-
-	public void setExprs(ScilabType exprs) {
-		super.setExprs(exprs);
-		setValue(((ScilabString) getExprs()).getData()[0][0]);
-	}
-
-	public void updateBlockSettings(BasicBlock modifiedBlock) {
-
-		String oldValue = (String)getValue();
-   		super.updateBlockSettings(modifiedBlock);
-		String newValue = (String)getValue();
-   		
-		if(oldValue.compareTo(newValue) != 0){
-			getParentDiagram().fireEvent(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
-		}
-   		
-	}
+    public void setIntegerParameters(ScilabType integerParameters) {
+	super.setIntegerParameters(integerParameters);
+	setValue((int)((ScilabDouble)getIntegerParameters()).getRealPart()[0][0]);
+    }
 }
