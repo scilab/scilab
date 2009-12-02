@@ -28,6 +28,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -187,6 +188,7 @@ public class BlockPalette extends JLabel {
 	}
 	
 	if(block == null) {
+	    if (getText().compareTo("TEXT_f") != 0) {
 	    String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
 	    // Search the bloc in global hashmap
@@ -195,6 +197,9 @@ public class BlockPalette extends JLabel {
 	    if (block.getStyle().compareTo("") == 0) {
 		block.setStyle(block.getInterfaceFunctionName());
 		block.setValue(block.getInterfaceFunctionName());
+	    }
+	    } else {
+		block = new TextBlock("Edit me!!!");
 	    }
 	}
 	return block;
