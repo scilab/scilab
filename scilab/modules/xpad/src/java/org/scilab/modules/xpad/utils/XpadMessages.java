@@ -29,6 +29,7 @@ public class XpadMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String SAVE_ALL = Messages.gettext("Save All");
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
@@ -79,7 +80,7 @@ public class XpadMessages {
     public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
     public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
-    public static final String EOL_TYPE = Messages.gettext("End Of Line");
+    public static final String EOL_TYPE = Messages.gettext("Convert Line Delimeters To");
     public static final String EOL_AUT0 = Messages.gettext("Auto (Default)");
     public static final String EOL_WINDOWS = Messages.gettext("Windows (CR + LF)");
     public static final String EOL_MACOS = Messages.gettext("Mac OS (CR)");
