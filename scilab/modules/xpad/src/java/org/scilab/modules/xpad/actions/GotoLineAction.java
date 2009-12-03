@@ -65,6 +65,10 @@ public class GotoLineAction extends DefaultAction {
 	    	}
 	}
 	
+	private boolean isWindows() {
+			return System.getProperty("os.name").toLowerCase().contains("windows");
+		}
+	 
 	public void gotoLineBox () {
 
 	        mainFrame = new JFrame();
@@ -87,9 +91,6 @@ public class GotoLineAction extends DefaultAction {
 	        gbc.gridwidth = 1;
 	        gbc.insets = new Insets(0, 10, 0, 0);
 
-
-
-
 	        gbc.gridx = 0;
 	        gbc.gridy = 4;
 	        gbc.gridheight = 1;
@@ -105,20 +106,36 @@ public class GotoLineAction extends DefaultAction {
 	        mainFrame.add(enterLineNumberField, gbc);
 
 
-	        gbc.gridx = 1;
-	        gbc.gridy = 5;
-	        gbc.gridheight = 1;
-	        gbc.gridwidth = 1;
-	        gbc.weightx = 1.;
-	        gbc.fill = GridBagConstraints.NONE;
-	        gbc.insets = new Insets(5, 0, 10, 5);
-	        mainFrame.add(cancelButton, gbc);
+	        if (isWindows()) {
+		        gbc.gridx = 1;
+		        gbc.gridy = 5;
+		        gbc.gridheight = 1;
+		        gbc.gridwidth = 1;
+		        gbc.weightx = 1.;
+		        gbc.fill = GridBagConstraints.NONE;
+		        gbc.insets = new Insets(5, 0, 10, 10);
+		        mainFrame.add(okButton, gbc);	      
 
+		        gbc.gridx = 2;
+		        gbc.weightx = 0.;
+		        gbc.insets = new Insets(5, 0, 10, 5);
+		        mainFrame.add(cancelButton, gbc);
+	        }
+	        else {
+		        gbc.gridx = 1;
+		        gbc.gridy = 5;
+		        gbc.gridheight = 1;
+		        gbc.gridwidth = 1;
+		        gbc.weightx = 1.;
+		        gbc.fill = GridBagConstraints.NONE;
+		        gbc.insets = new Insets(5, 0, 10, 5);
+		        mainFrame.add(cancelButton, gbc);
 
-	        gbc.gridx = 2;
-	        gbc.weightx = 0.;
-	        gbc.insets = new Insets(5, 0, 10, 10);
-	        mainFrame.add(okButton, gbc);
+		        gbc.gridx = 2;
+		        gbc.weightx = 0.;
+		        gbc.insets = new Insets(5, 0, 10, 10);
+		        mainFrame.add(okButton, gbc);
+	        }
 
 		
 			cancelButton.addActionListener(new ActionListener() {
