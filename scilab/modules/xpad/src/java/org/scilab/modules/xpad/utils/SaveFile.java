@@ -33,6 +33,8 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
  */
 public class SaveFile {
 
+	private static final String LINE_SEPARATOR = "line.separator";
+	
 	/**
 	 * save text in JTextPane
 	 * @param textPane JTextPane
@@ -40,10 +42,7 @@ public class SaveFile {
 	 * @param editorKit EditorKit
 	 * @return true if saved
 	 */
-	
 	public static boolean doSave(JTextPane textPane, File fOut, EditorKit editorKit) {
-		
-		private static final String LINE_SEPARATOR = "line.separator";
 		
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
