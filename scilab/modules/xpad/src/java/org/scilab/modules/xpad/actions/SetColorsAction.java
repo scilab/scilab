@@ -12,6 +12,7 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,6 +23,7 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -73,15 +75,18 @@ public class SetColorsAction extends DefaultAction {
     private void changeColorsBox () {
     	
 		jframe = new JFrame();
-		
+		jframe.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		
 		JPanel panel = new JPanel(new GridBagLayout());
 		jframe.setContentPane(panel);
+		jframe.setPreferredSize(new Dimension(250, 470));
+		jframe.setMinimumSize(new Dimension(250, 470));
+		jframe.setMaximumSize(new Dimension(250, 470));
 		
 		JPanel changePanel = new JPanel(new GridBagLayout());
 		JPanel validationPanel = new JPanel(new GridBagLayout());
 		
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;		
 		gbc.insets = new Insets(10, 5, 10, 5);

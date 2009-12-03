@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -75,6 +76,10 @@ public class GotoLineAction extends DefaultAction {
 	        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        mainFrame.setLayout(new GridBagLayout());
+	        
+	        mainFrame.setPreferredSize(new Dimension(305, 105));
+	        mainFrame.setMinimumSize(new Dimension(305, 105));
+	        mainFrame.setMaximumSize(new Dimension(305, 105));
 
 	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
