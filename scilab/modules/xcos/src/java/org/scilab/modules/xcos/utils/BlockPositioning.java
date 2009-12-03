@@ -42,12 +42,15 @@ public final class BlockPositioning {
 	if (blockGeom == null) {
 	    return;
 	}
+	
+	beginUpdate(block);
 	for (int i = 0 ; i < ports.size() ; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX(- portGeom.getWidth());
 	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
 		    - (portGeom.getHeight() / 2.0));
 	}
+	endUpdate(block);
     }
 
     /**
@@ -59,12 +62,15 @@ public final class BlockPositioning {
 	if (blockGeom == null) {
 	    return;
 	}
+	
+	beginUpdate(block);
 	for (int i = 0 ; i < ports.size() ; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
 		    - (portGeom.getWidth() / 2.0));
 	    portGeom.setY(- portGeom.getHeight());
 	}
+	endUpdate(block);
     }
 
     /**
@@ -76,12 +82,15 @@ public final class BlockPositioning {
 	if (blockGeom == null) {
 	    return;
 	}
+	
+	beginUpdate(block);
 	for (int i = 0 ; i < ports.size() ; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX(blockGeom.getWidth());
 	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
 		    - (portGeom.getHeight() / 2.0));
 	}
+	endUpdate(block);
     }
 
     /**
@@ -93,12 +102,15 @@ public final class BlockPositioning {
 	if (blockGeom == null) {
 	    return;
 	}
+	
+	beginUpdate(block);
 	for (int i = 0 ; i < ports.size() ; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
 		    - (portGeom.getWidth() / 2.0));
 	    portGeom.setY(blockGeom.getHeight());
 	}
+	endUpdate(block);
     }
 
     /**
@@ -202,6 +214,7 @@ public final class BlockPositioning {
 	    newAngle %= 360;
 	}
 	
+	beginUpdate(block);
 	for(Object obj : ports) {
 
 	    if(obj instanceof BasicPort) {
@@ -211,6 +224,7 @@ public final class BlockPositioning {
 		mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {port}, mxConstants.STYLE_ROTATION, new Integer(newAngle2).toString());
 	    }
 	}
+	endUpdate(block);
     }
 
     public static int getDataPortsAngle(BasicBlock block) {
@@ -245,7 +259,6 @@ public final class BlockPositioning {
 		&& block.getParentDiagram() != null 
 		&& block.getParentDiagram().getView() != null 
 		&& block.getParentDiagram().getView().getState(block) != null) {
-	    
 	    updatePortsPosition(block);
 	    rotateAllPorts(block);
 	}
@@ -273,7 +286,6 @@ public final class BlockPositioning {
      * @param block
      */
     public static void toggleAntiClockwiseRotation(BasicBlock block) {
-	
 	block.setAngle(getNextAntiClockwiseAngle(block));
 	updateBlockView(block);
     }
@@ -324,5 +336,17 @@ public final class BlockPositioning {
 	y = (int)(point.getX() * Math.sin(angleRad) + point.getY() * Math.cos(angleRad));
 	Point result = new Point(x,y);
 	return result;
+    }
+    
+    private static void beginUpdate(BasicBlock block) {
+	if (block != null && block.getParentDiagram() != null) {
+	    block.getParentDiagram().getModel().beginUpdate();
+	}
+    }
+    
+    private static void endUpdate(BasicBlock block) {
+	if (block != null && block.getParentDiagram() != null) {
+	    block.getParentDiagram().getModel().endUpdate();
+	}
     }
 }
