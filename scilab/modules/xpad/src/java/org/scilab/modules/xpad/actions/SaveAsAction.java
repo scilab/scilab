@@ -64,7 +64,7 @@ public final class SaveAsAction extends DefaultAction {
     public static MenuItem createMenu(Xpad editor) {
     	return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor),
     			KeyStroke.getKeyStroke(KeyEvent.VK_S, 
-    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.SHIFT_MASK));
+    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.ALT_MASK));
     }
 
     
