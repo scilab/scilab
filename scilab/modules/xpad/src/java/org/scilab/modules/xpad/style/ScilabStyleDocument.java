@@ -41,6 +41,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private boolean autoIndent =true;
 	private boolean autoColorize = true;
 	private volatile boolean shouldMergeEdits;
+	private boolean undoManagerEnabled;
 	
 	private String eolStyle = System.getProperty("line.separator");
 
@@ -105,6 +106,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		//xpadStyles = XpadStyles.getInstance();
 		//addDocumentListener(this); // TODO: check
 		addUndoableEditListener(undo);
+		undoManagerEnabled = true;
 		defaultStyle = this.addStyle("Default", null);
 		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
 		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName());
@@ -185,11 +187,21 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	}
 
 	public void disableUndoManager() {
-		this.removeUndoableEditListener(undo);
+		if (undoManagerEnabled) {
+			this.removeUndoableEditListener(undo);
+			undoManagerEnabled = false;
+		} else {
+			System.out.println("Already disabled");
+		}
 	}
 	
 	public void enableUndoManager() {
-        this.addUndoableEditListener(undo);
+		if (!undoManagerEnabled) {
+			undoManagerEnabled = true;
+			this.addUndoableEditListener(undo);
+		} else {
+			System.out.println("Already enabled");
+		}
 	}
 
 	public boolean isContentModified() {

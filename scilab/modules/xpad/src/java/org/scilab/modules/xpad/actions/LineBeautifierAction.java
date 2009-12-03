@@ -47,7 +47,8 @@ public class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
 			//System.err.println("startOfPreviousLine:"+startOfPreviousLine+ "endOfNewLine:"+endOfNewLine);
 			boolean autoColorize= doc.getAutoColorize();
 			doc.setAutoColorize(false);
-		try {
+			doc.disableUndoManager();
+			try {
 				//
 				indentManager.beautifier(doc,startOfPreviousLine, endOfNewLine);
 				// hard to compute safe start offset :(
@@ -57,6 +58,7 @@ public class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
 			} finally {
 				doc.setAutoColorize(autoColorize);
 			}
+			doc.enableUndoManager();
 		}
 	}
 	public static void putInInputMap(JComponent textPane) {
