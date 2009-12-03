@@ -29,6 +29,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -60,6 +61,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
@@ -97,7 +99,7 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -772,7 +774,7 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {
@@ -812,8 +814,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
 	    {
 		getModel().beginUpdate();
-		if (cell instanceof BasicBlock 
-			&& !(cell instanceof TextBlock)) {
+		if (cell instanceof BasicBlock) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(buildEntireContext());
@@ -896,7 +897,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		} else {
 		    // Display object context menu
-		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
@@ -1298,10 +1299,25 @@ public class XcosDiagram extends ScilabGraph {
     
     public void setContext(String[] context) {
 	this.context = context;
+	updateCellsContext();
     }
 
     public String[] getContext() {
 	return context;
+    }
+
+    public void updateCellsContext() {
+	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+	    Object obj = getModel().getChildAt(getDefaultParent(), i);
+	    if ( obj instanceof ContextUpdate) {
+		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    } else if (obj instanceof SuperBlock) {
+		SuperBlock superBlock = (SuperBlock)obj;
+		if(superBlock.getChild() != null) {
+		    superBlock.getChild().updateCellsContext();
+		}
+	    }
+	}
     }
 
     public String getVersion() {
@@ -1331,7 +1347,7 @@ public class XcosDiagram extends ScilabGraph {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.createTabFromDiagram(xcosDiagram);
+		XcosTab.showTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
@@ -1344,8 +1360,8 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramm
      */
     public void loadDiagram(HashMap<String, Object> diagramm) {
-	List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-	List<TextBlock> allTextBlocks = (List) diagramm.get("TextBlocks");
+	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
+	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
@@ -1569,6 +1585,8 @@ public class XcosDiagram extends ScilabGraph {
     {
 	if (cell instanceof BasicBlock) {
 	    return ((BasicBlock) cell).getToolTipText();
+	} else if(cell instanceof BasicPort) {
+	    return ((BasicPort) cell).getToolTipText();
 	}
 	return "";
     }

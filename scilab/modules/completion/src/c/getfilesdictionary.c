@@ -191,6 +191,8 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path)
 			FREE(dictionary[i]);
 			dictionary[i] = newPath;
 		}
+
+		if (pathextended) {FREE(pathextended); pathextended = NULL;}
 	}
 	return dictionary;
 }

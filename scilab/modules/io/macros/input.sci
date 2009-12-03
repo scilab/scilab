@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,50 +9,51 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function [x]=input(msg,flag)
+function [x] = input(msg, flag)
 
-	if type(msg) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",1));
-	end
-	
-	if size(msg,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",1));
-	end
-
-  fmt="%["+ascii(32)+"-"+ascii(254)+"]";// a tricky way to get all ascii codes  sequences
-  n=size(msg,"*")
-  for k=1:n-1
-    mprintf(msg(k)+"\n")
+  if type(msg) <> 10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",1));
   end
-  if argn(2)==2 then
-    
-    // Manage \n in last msg entry
-    t = sprintf(msg(n) + "\n");
-    tsize=size(t,"*")
-    for k=1:tsize-1
-      mprintf(t(k)+"\n")
+
+  if size(msg, "*") <> 1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",1));
+  end
+  
+  // a tricky way to get all ascii codes  sequences
+  fmt = "%[" + ascii(32) + "-" + ascii(254) + "]";
+  
+  currentprompt = prompt();
+  
+  if argn(2) == 2 then
+    if type(flag) <> 10 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",2));
     end
     
-    prompt(t(tsize));
+    if size(flag, "*") <> 1 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",2));
+    end
     
-    x=mscanf(fmt) 
+    if (flag <> 's' & flag <> 'string') then
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' value expected.\n"),"input",2,'string'));
+    end
+
+    prompt(msg);
+    x = mscanf(fmt);
+    
   else
     while %t
-      
-      // Manage \n in last msg entry
-      t = sprintf(msg(n) + "\n");
-      tsize=size(t,"*")
-      for k=1:tsize-1
-	mprintf(t(k)+"\n")
+      prompt(msg);
+      x = mscanf(fmt);
+      if length(x) == 0 then 
+        x = "[]";
       end
-      
-      prompt(t(tsize));
-
-      x=stripblanks(mscanf(fmt))
-      if length(x)==0 then x="[]",end
-      ierr=execstr("x="+x,"errcatch")
-      if ierr==0 then break,end
-      mprintf(strcat(lasterror(),"\n"))
+      ierr = execstr("x=" + x,"errcatch");
+      if ierr == 0 then 
+        break;
+      end
+      mprintf(strcat(lasterror(),"\n"));
     end
+    
   end
+  prompt(currentprompt);
 endfunction

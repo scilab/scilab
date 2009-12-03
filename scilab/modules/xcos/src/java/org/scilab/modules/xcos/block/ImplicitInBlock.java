@@ -14,13 +14,14 @@ package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class ImplicitInBlock extends BasicBlock {
+public class ImplicitInBlock extends ContextUpdate {
+
+    private static final long serialVersionUID = 4280002965735451155L;
 
 	public ImplicitInBlock() {
 		super();
@@ -35,23 +36,27 @@ public class ImplicitInBlock extends BasicBlock {
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
 		setODState(new ScilabList());
-		setValue("1");
-	}
+		setValue(1);
+	    }
 
-	public void setExprs(ScilabType exprs) {
+	    public void setExprs(ScilabType exprs) {
 		super.setExprs(exprs);
-		setValue(((ScilabString) getExprs()).getData()[0][0]);
-	}
+		//setValue(((ScilabString) getExprs()).getData()[0][0]);
+	    }
 
-	public void updateBlockSettings(BasicBlock modifiedBlock) {
+	    public void updateBlockSettings(BasicBlock modifiedBlock) {
 
-		String oldValue = (String)getValue();
-   		super.updateBlockSettings(modifiedBlock);
-		String newValue = (String)getValue();
-   		
-		if(oldValue.compareTo(newValue) != 0){
-			getParentDiagram().fireEvent(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+		double oldValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+		super.updateBlockSettings(modifiedBlock);
+		double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+
+		if(oldValue != newValue){
+		    getParentDiagram().fireEvent(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 		}
-   		
-	}
+	    }
+
+	    public void setIntegerParameters(ScilabType integerParameters) {
+		super.setIntegerParameters(integerParameters);
+		setValue((int)((ScilabDouble)getIntegerParameters()).getRealPart()[0][0]);
+	    }
 }

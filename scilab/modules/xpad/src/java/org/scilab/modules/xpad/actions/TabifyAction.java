@@ -20,8 +20,8 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.utils.XpadMessages;
 import org.scilab.modules.xpad.style.TabManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class TabifyAction extends DefaultAction {
 

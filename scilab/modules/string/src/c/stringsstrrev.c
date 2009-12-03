@@ -76,6 +76,7 @@ char* scistrrev(char* str)
 		}
 		revstr = wide_string_to_UTF8(wcstr);
 #endif
+		if (wcstr) {FREE(wcstr); wcstr = NULL;}
 	}
 	return revstr;
 }

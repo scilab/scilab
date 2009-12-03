@@ -28,6 +28,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -187,14 +188,18 @@ public class BlockPalette extends JLabel {
 	}
 	
 	if(block == null) {
-	    String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+	    if (getText().compareTo("TEXT_f") != 0) {
+		String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
-	    // Search the bloc in global hashmap
-	    block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
+		// Search the bloc in global hashmap
+		block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
 
-	    if (block.getStyle().compareTo("") == 0) {
-		block.setStyle(block.getInterfaceFunctionName());
-		block.setValue(block.getInterfaceFunctionName());
+		if (block.getStyle().compareTo("") == 0) {
+		    block.setStyle(block.getInterfaceFunctionName());
+		    block.setValue(block.getInterfaceFunctionName());
+		}
+	    } else {
+		block = new TextBlock("Edit me!!!");
 	    }
 	}
 	return block;

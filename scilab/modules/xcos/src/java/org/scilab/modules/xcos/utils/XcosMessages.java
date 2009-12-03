@@ -85,6 +85,7 @@ public final class XcosMessages {
     public static final String RESIZE = Messages.gettext("Resize");
     public static final String ROTATE = Messages.gettext("Rotate");
     public static final String FLIP = Messages.gettext("Flip");
+    public static final String MIRROR = Messages.gettext("Mirror");
     public static final String SHOWHIDE_SHADOW = Messages.gettext("Show/Hide shadow");
     public static final String GRID = Messages.gettext("Grid");
     public static final String DIAGRAM_BACKGROUND = Messages.gettext("Diagram background") + DOTS;
@@ -157,7 +158,7 @@ public final class XcosMessages {
     public static final String LINK_ERROR_IMPLICIT_OUT = Messages.gettext("Implicit data output port must be connected to implicit data input port");
     public static final String LINK_ERROR_EVENT_IN = Messages.gettext("Command port must be connected to control port");
     public static final String LINK_ERROR_EVENT_OUT = Messages.gettext("control port must be connected to command port");
-    public static final String LINK_ERROR_ALREADY_CONNECTED = Messages.gettext("Port is already connected, please select the link.");
+    public static final String LINK_ERROR_ALREADY_CONNECTED = Messages.gettext("Port is already connected, please select an unconnected port or a valid link.");
 
     public static final String ALIGN_BLOCKS = Messages.gettext("Align Blocks");
     public static final String ALIGN_LEFT = Messages.gettext("Left");

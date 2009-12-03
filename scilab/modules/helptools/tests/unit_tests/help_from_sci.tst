@@ -5,11 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
-// <-- NO CHECK ERROR OUTPUT -->
+// <-- JVM NOT MANDATORY -->
 
 // help_from_sci
-
 
 my_path = SCI+"/modules/helptools/tests/unit_tests/";
 my_macros = "macrosExample.sci";

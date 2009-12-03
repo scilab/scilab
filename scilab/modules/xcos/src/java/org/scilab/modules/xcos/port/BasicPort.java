@@ -14,16 +14,20 @@ package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 
 import com.mxgraph.model.mxGeometry;
 
 public abstract class BasicPort extends XcosUIDObject {
 
+    private static final long serialVersionUID = -5022701071026919015L;
     private int ordering = 0;
     private int connectedLinkId = 0;
     private int dataLines = 0;
     private int dataColumns = 0;
     private DataType dataType = DataType.REAL_MATRIX;
+    private int initialAngle = 0;
+    private int angle = 0;
 
     public enum Type { 
 	IMPLICIT,
@@ -60,7 +64,6 @@ public abstract class BasicPort extends XcosUIDObject {
     			return 1;
     		case COMPLEX_MATRIX:
     			return 2;
-    			//TODO
     		default:
     			return 0;
     		}
@@ -129,9 +132,31 @@ public abstract class BasicPort extends XcosUIDObject {
 
     public abstract Type getType();
 
-	public abstract void updateStyle(int angle);
-	
-	public void setStyle(String style){
-		super.setStyle(style);
-	}
+    public void setStyle(String style){
+	super.setStyle(style);
+    }
+
+    public void setInitialAngle(int initialAngle) {
+	this.initialAngle = initialAngle;
+    }
+
+    public int getInitialAngle() {
+	return initialAngle;
+    }
+
+    public void setAngle(int angle) {
+	this.angle = (initialAngle + angle) % 360;
+    }
+
+    public int getAngle() {
+	return angle;
+    }
+
+    public String getToolTipText() {
+	StringBuffer result = new StringBuffer();
+	result.append("<html>");
+	result.append("Port number : " + getOrdering() + "<br>");
+	result.append("</html>");
+	return result.toString();
+    }
 }

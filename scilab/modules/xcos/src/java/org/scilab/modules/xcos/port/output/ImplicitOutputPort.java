@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.port.output;
 
 public class ImplicitOutputPort extends OutputPort {
 
+    private static final long serialVersionUID = 4210196486062437007L;
+
     public ImplicitOutputPort() {
 	super("ImplicitOutputPort");
     }
@@ -22,7 +24,4 @@ public class ImplicitOutputPort extends OutputPort {
     public Type getType() {
 	return Type.IMPLICIT;
     }
-    
-	public void updateStyle(int angle){
-	}
 }

@@ -211,6 +211,7 @@ static int sci_strcat_three_rhs(char *fname)
 			Output_String[Col_One]=NULL;
 			for (j= 0 ; j < Col_One ; j++) 
 			{
+				int lenMax = 0;
 				/* length of col j */ 
 				nchars = 0;
 				for ( i = 0 ; i < Row_One ; i++ ) 
@@ -219,7 +220,26 @@ static int sci_strcat_three_rhs(char *fname)
 				}
 				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
 
-				Output_String[j] = strdup(Input_String_One[j*Row_One]);
+				lenMax = 0;
+				if (Input_String_One[j*Row_One])
+				{
+					lenMax = lenMax + (int)strlen(Input_String_One[j*Row_One]) + 1;
+				}
+
+				if (Input_String_Two)
+				{
+					lenMax = lenMax + (int)strlen(Input_String_Two) + 1;
+				}
+
+				if (Input_String_One[i+ Row_One*j])
+				{
+				        for ( i = 1 ; i < Row_One ; i++ ) 
+				        {
+					        lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]) + 1;
+					}
+				}
+
+				Output_String[j] = (char*) MALLOC(sizeof(char)*lenMax);
 
 				if ( Output_String[j] == NULL) 
 				{
@@ -228,7 +248,7 @@ static int sci_strcat_three_rhs(char *fname)
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
-
+				strcpy(Output_String[j],Input_String_One[j*Row_One]);
 				for ( i = 1 ; i < Row_One ; i++ ) 
 				{
 					strcat(Output_String[j],Input_String_Two); 

@@ -9,7 +9,6 @@ public class XcosComponent extends mxGraphComponent{
 
 	public XcosComponent(mxGraph graph) {
 		super(graph);
-		// TODO Auto-generated constructor stub
 	}
 
 	public XcosCanvas createCanvas()
