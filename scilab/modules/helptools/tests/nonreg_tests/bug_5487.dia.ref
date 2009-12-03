@@ -10,13 +10,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5487
 //
 // <-- Short Description -->
-// "help toto tata" returns a error
+// Missing space in a macro was causing the first message to be included
+// into the documentation
 docFile = help_from_sci(SCI+"/modules/helptools/tests/nonreg_tests/bug_5487.sci",TMPDIR);
 fd_r = mopen(docFile,'rt');
 content = mgetl(fd_r);
-wrongString = "<varlistentry><term>a=1+2</term></varlistentry>"
- wrongString  =
- 
- <varlistentry><term>a=1+2</term></varlistentry>   
+wrongString = "<varlistentry><term>a=1+2</term></varlistentry>";
 position = grep(content, wrongString);
 if position <> [] then bugmes();quit;end
