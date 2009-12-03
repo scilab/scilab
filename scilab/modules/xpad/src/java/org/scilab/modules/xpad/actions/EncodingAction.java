@@ -35,9 +35,9 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
-import org.scilab.modules.xpad.style.ColorizationManager;
 
 
 /**

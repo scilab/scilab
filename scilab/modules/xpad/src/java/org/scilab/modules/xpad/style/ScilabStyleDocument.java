@@ -16,13 +16,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import javax.swing.event.UndoableEditEvent;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.undo.CompoundEdit;
-import javax.swing.undo.UndoManager;
-import javax.swing.undo.UndoableEdit;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -37,7 +34,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	// Editor's default encoding is UTF-8
 	private String encoding = "UTF-8";
-	private boolean updater= true;
+	private boolean updater = true;
 	private boolean autoIndent;
 	private boolean autoColorize = true;
 	private volatile boolean shouldMergeEdits;
@@ -124,12 +121,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
 		
-		contentModified=false;
+		contentModified = false;
 
 	}
 	public Style getStyle(String styleString){
 		Style style = super.getStyle(styleString);
-		if(style == null) {
+		if (style == null) {
 			super.getStyle("Default");
 		}
 		return style;
@@ -142,7 +139,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	public String getText(){
 		try {
 			return getText(0, getLength());
-		} catch(javax.swing.text.BadLocationException e) {
+		} catch (BadLocationException e) {
 			return "";
 		}
 	}
@@ -150,12 +147,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	public void setShouldMergeEdits(boolean b) {
 	
-		if(shouldMergeEdits) {
-			if(!b) { // ending compound editing with a new CaretEdit
+		if (shouldMergeEdits) {
+			if (!b) { // ending compound editing with a new CaretEdit
 				undo.endCompoundEdit();
 			}
 		} else {
-			if(b) { // starting compound editing
+			if (b) { // starting compound editing
 				undo.startCompoundEdit();
 			}
 		}
@@ -192,8 +189,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		if (undoManagerEnabled) {
 			this.removeUndoableEditListener(undo);
 			undoManagerEnabled = false;
-		} else {
-			System.out.println("Already disabled");
 		}
 	}
 	
@@ -201,8 +196,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		if (!undoManagerEnabled) {
 			undoManagerEnabled = true;
 			this.addUndoableEditListener(undo);
-		} else {
-			System.out.println("Already enabled");
+			undoManagerEnabled = true;
 		}
 	}
 

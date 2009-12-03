@@ -15,7 +15,6 @@ package org.scilab.modules.xpad.actions;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
