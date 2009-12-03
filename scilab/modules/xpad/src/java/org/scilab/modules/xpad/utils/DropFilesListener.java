@@ -105,9 +105,9 @@ public class DropFilesListener implements DropTargetListener {
 				
 			} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
 				// http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4899516
-				String URIdata;
+				String uriData;
 				try {
-					URIdata = (String)transferable.getTransferData(uriListFlavor);
+					uriData = (String) transferable.getTransferData(uriListFlavor);
 				} catch (UnsupportedFlavorException e) {
 					// TODO Auto-generated catch block
 					arg0.dropComplete(false);
@@ -117,12 +117,11 @@ public class DropFilesListener implements DropTargetListener {
 					arg0.dropComplete(false);
 					return;
 				}
-				java.util.List data = textURIListToFileList(URIdata);
+				java.util.List data = textURIListToFileList(uriData);
 				for (int i = 0; i < data.size(); i++) {
 					Xpad.xpad(data.get(i).toString());
 				}
-			}
-			else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+			} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 				try {
 					String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
 					StyledDocument doc = pane.getStyledDocument();

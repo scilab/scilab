@@ -24,22 +24,49 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class SaveAction extends DefaultAction {
+/**
+ * SaveAction class
+ * @author Bruno JOFRET
+ *
+ */
+public final class SaveAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1638973738114812027L;
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private SaveAction(Xpad editor) {
 		super(XpadMessages.SAVE, editor);
 
 	}
 
+	/**
+	 * Create Menu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.SAVE, null, new SaveAction(editor),
 				KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
+	/**
+	 * Create Button
+	 * @param editor Xpad
+	 * @return PushButton
+	 */
 	public static PushButton createButton(Xpad editor) {
 		return createButton(XpadMessages.SAVE, "media-floppy.png", new SaveAction(editor));
 	}
 
+	/**
+	 * DoAction
+	 */
 	public void doAction() {
 	    if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
 		ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
