@@ -2,7 +2,6 @@ package org.scilab.modules.xpad.style;
 
 import javax.swing.text.BadLocationException;
 
-import org.scilab.modules.gui.dockable.ScilabDockable;
 
 public class TabManager {
 	private static String tabulation = "  ";

@@ -160,6 +160,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 					
 					// Update encoding menu
 					xpadGUI.updateEncodingMenu((ScilabStyleDocument) getTextPane().getStyledDocument());
+					
+					// Update End Of Line  menu					
+					xpadGUI.updateEolMenu((ScilabStyleDocument) getTextPane().getStyledDocument());
 				}
 			}
 		});

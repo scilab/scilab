@@ -15,9 +15,12 @@ package org.scilab.modules.xcos.block;
 
 import java.awt.MouseInfo;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
@@ -526,27 +529,23 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempOutput = File.createTempFile("xcos",".h5");
 	    tempInput = File.createTempFile("xcos",".h5");
-	    tempContext = File.createTempFile("xcos",".h5");
-	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
-	    tempContext.deleteOnExit();
+
 	    // Write scs_m
-	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
-	    H5Write.closeFile(file_id);
-
+	    tempOutput = exportBlockStruct();
 	    // Write context
-	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
-	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
-	    H5Write.closeFile(context_file_id);
+	    tempContext = exportContext(context);
 
-	    InterpreterManagement.putCommandInScilabQueue("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
-		    ", \""+tempInput.getAbsolutePath()+"\""+
-		    ", "+getInterfaceFunctionName()+
-		    ", \"set\""+
-		    ", \""+tempContext.getAbsolutePath()+"\");");
+	    String cmd;
+	    
+	    cmd = "xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\"";
+	    cmd += ", \""+tempInput.getAbsolutePath()+"\"";
+	    cmd += ", "+getInterfaceFunctionName();
+	    cmd += ", \"set\"";
+	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
+	    
+	    InterpreterManagement.putCommandInScilabQueue(cmd);
 	    final BasicBlock currentBlock = this;
 	    Thread launchMe = new Thread() {
 		public void run() {
@@ -561,11 +560,48 @@ public class BasicBlock extends XcosUIDObject {
 	    launchMe.start();
 	    setLocked(true);
 
-	} catch (Exception e) {
+	} catch (IOException e) {
 	    e.printStackTrace();
 	}
     }
 
+    protected File exportBlockStruct() {
+
+	// Write scs_m
+	File tempOutput;
+	try {
+	    tempOutput = File.createTempFile("xcos",".h5");
+	    tempOutput.deleteOnExit();
+	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
+	    H5Write.closeFile(file_id);
+	    return tempOutput;
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (HDF5Exception e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+    
+    protected File exportContext(String[] context) {
+
+	// Write context
+	try {
+	    File tempContext = File.createTempFile("xcos",".h5");
+	    tempContext.deleteOnExit();
+	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
+	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
+	    H5Write.closeFile(context_file_id);
+	    return tempContext;
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (HDF5Exception e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+    
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
@@ -723,11 +759,13 @@ public class BasicBlock extends XcosUIDObject {
     public boolean getMirror(){
 	if(getParentDiagram() != null) {
 	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
-	    if(currentMirror.compareTo("true") == 0) {
-		return true;
-	    } else {
-		return false;
+	    if(state != null) {
+		String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
+		if(currentMirror.compareTo("true") == 0) {
+		    return true;
+		} else {
+		    return false;
+		}
 	    }
 	}
 	return false;
@@ -745,11 +783,13 @@ public class BasicBlock extends XcosUIDObject {
     public boolean getFlip(){
 	if(getParentDiagram() != null) {
 	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
-	    if(currentFlip.compareTo("true") == 0) {
-		return true;
-	    } else {
-		return false;
+	    if(state != null) {
+		String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
+		if(currentFlip.compareTo("true") == 0) {
+		    return true;
+		} else {
+		    return false;
+		}
 	    }
 	}
 	return false;
@@ -798,8 +838,10 @@ public class BasicBlock extends XcosUIDObject {
     public int getAngle() {
 	if(getParentDiagram() != null) {
 	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
-	    return Integer.parseInt(currentAngle);
+	    if(state != null) {
+		String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
+		return Integer.parseInt(currentAngle);
+	    }
 	}
 	return 0;
     }

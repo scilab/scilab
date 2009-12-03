@@ -92,6 +92,13 @@ public enum XcosFileType {
 	}
 	
 	/**
+	 * @return the mask of this file
+	 */
+	public String getFileMask() {
+		return "*." + getExtension();
+	}
+	
+	/**
 	 * @return the file description
 	 */
 	public String getDescription() {
@@ -151,7 +158,7 @@ public enum XcosFileType {
 	    String[] result = new String[XcosFileType.values().length-1];
 	    
 	    for (int i = 0; i < result.length; i++) {
-		result[i] = "*." + XcosFileType.values()[i].getExtension();
+		result[i] = XcosFileType.values()[i].getFileMask();
 	    }
 	    
 	    return result;

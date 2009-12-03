@@ -60,7 +60,7 @@ BOOL InitializeLocalization(void)
 	{ 
 		/* source tree and classic build */
 		previousPathLocales = strdup(pathLocales);
-		FREE(pathLocales);
+		if (pathLocales) {FREE(pathLocales); pathLocales = NULL;}
 
 		pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen("/..")+strlen(PATHLOCALIZATIONFILE)+1));
 		strcpy(pathLocales, SCIpath);
@@ -70,14 +70,14 @@ BOOL InitializeLocalization(void)
 		{ 
 			/* when it is installed on the system for example /usr/share/locale/ */
 			fprintf(stderr, "Warning: Localization issue: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
-			FREE(previousPathLocales);
-			FREE(pathLocales);
-			FREE(SCIpath);
+			if (previousPathLocales) {FREE(previousPathLocales); previousPathLocales = NULL;}
+			if (pathLocales) {FREE(pathLocales); pathLocales = NULL;}
+			if (SCIpath) {FREE(SCIpath); SCIpath = NULL;}
 			return FALSE;
 		}
-		FREE(previousPathLocales);
-		FREE(pathLocales);
-		FREE(SCIpath);
+		if (previousPathLocales) {FREE(previousPathLocales); previousPathLocales = NULL;}
+		if (pathLocales) {FREE(pathLocales); pathLocales = NULL;}
+		if (SCIpath) {FREE(SCIpath); SCIpath = NULL;}
 		
 	}
 

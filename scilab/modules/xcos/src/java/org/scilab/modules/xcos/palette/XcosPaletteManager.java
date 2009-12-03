@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -166,10 +167,11 @@ public final class XcosPaletteManager {
 
 	    /** SINKS palette */
 	    new PaletteStringDescriptor(XcosMessages.SINKS_PAL, new String[] {
-		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CMAT3D",
-		    "CMATVIEW", "CMSCOPE", "CSCOPE", "CSCOPXY", "CSCOPXY3D",
-		    "ENDBLK", "END_c", "HALT_f", "TOWS_c", "TRASH_f",
-		    "WFILE_f", "WRITEAU_f", "WRITEC_f" }),
+		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CLKOUTV_f",
+		    "CMAT3D", "CMATVIEW", "CMSCOPE", "CSCOPE", "CSCOPXY",
+		    "CSCOPXY3D", "ENDBLK", "END_c", "HALT_f", "OUTIMPL_f",
+		    "OUT_f", "TOWS_c", "TRASH_f", "WFILE_f", "WRITEAU_f",
+		    "WRITEC_f" }),
 
 	    /** SOURCES palette */
 	    new PaletteStringDescriptor(XcosMessages.SOURCES_PAL, new String[] {
@@ -198,61 +200,67 @@ public final class XcosPaletteManager {
      * Represent a palette configuration values
      */
     private static class PaletteStringDescriptor {
-		public String Name;
-		public String[] Components;
+	public String Name;
+	public String[] Components;
 
-		public PaletteStringDescriptor(String name, String[] components) {
-			Name = name;
-			Components = components;
-		}
+	public PaletteStringDescriptor(String name, String[] components) {
+	    Name = name;
+	    Components = components;
 	}
+    }
 
     /**
      * Represent the instanciation of the configurations values
      */
-	private static class PaletteDescriptor {
-		public String Name;
-		public PaletteData[] Components;
+    private static class PaletteDescriptor {
+	public String Name;
+	public PaletteData[] Components;
 
-		public PaletteDescriptor(String name, PaletteData[] components) {
-			Name = name;
-			Components = components;
-		}
-		
-		public String toString() {
-			return Name;
-		}
+	public PaletteDescriptor(String name, PaletteData[] components) {
+	    Name = name;
+	    Components = components;
 	}
+
+	public String toString() {
+	    return Name;
+	}
+    }
+
+    /**
+     * Represent any block data
+     */
+    private static class PaletteData {
+	public String Name;
+	public ImageIcon Icon;
 
 	/**
-	 * Represent any block data
+	 * Any PaletteBlock data (arguments of the
+	 * org.scilab.modules.xcos.palette.XcosPalette#addTemplate)
+	 * 
+	 * @param name
+	 *            The name of the block
+	 * @param icon
+	 *            The icon of the block
+	 * @param block
+	 *            Extracted from PATH/BlockName.hf5
 	 */
-	private static class PaletteData {
-		public String Name;
-		public ImageIcon Icon;
-
-		/**
-		 * Any PaletteBlock data (arguments of the
-		 * org.scilab.modules.xcos.palette.XcosPalette#addTemplate)
-		 * 
-		 * @param name The name of the block
-		 * @param icon The icon of the block
-		 * @param block Extracted from PATH/BlockName.hf5
-		 */
-		public PaletteData(String name, ImageIcon icon) {
-			Name = name;
-			Icon = icon;
-		}
+	public PaletteData(String name, ImageIcon icon) {
+	    Name = name;
+	    Icon = icon;
 	}
-	
+    }
+
     /** Palette creation */
     static {
 	paletteThread = new Thread() {
 	    public void run() {
 
-		final JSplitPane allpalettes = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		final XcosPalette rootPalette = new XcosPalette(XcosMessages.PALETTES);
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(rootPalette);
+		final JSplitPane allpalettes = new JSplitPane(
+			JSplitPane.HORIZONTAL_SPLIT);
+		final XcosPalette rootPalette = new XcosPalette(
+			XcosMessages.PALETTES);
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
+			rootPalette);
 		TreeModel paletteTreeModel = new DefaultTreeModel(rootNode);
 		final JTree paletteTree = new JTree(paletteTreeModel);
 
@@ -261,18 +269,23 @@ public final class XcosPaletteManager {
 
 		paletteTree.getSelectionModel().setSelectionMode(
 			TreeSelectionModel.SINGLE_TREE_SELECTION);
-		paletteTree.addTreeSelectionListener(new TreeSelectionListener() {
-		    
+		paletteTree
+			.addTreeSelectionListener(new TreeSelectionListener() {
+
 			    public void valueChanged(TreeSelectionEvent tree) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree.getLastSelectedPathComponent();
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) paletteTree
+					.getLastSelectedPathComponent();
 
 				if (node == null)
 				    // Nothing is selected.
 				    return;
 
-				Dimension size = allpalettes.getLeftComponent().getSize();
-				allpalettes.getLeftComponent().setPreferredSize(size);
-				XcosPalette nodeInfo = (XcosPalette) node.getUserObject();
+				Dimension size = allpalettes.getLeftComponent()
+					.getSize();
+				allpalettes.getLeftComponent()
+					.setPreferredSize(size);
+				XcosPalette nodeInfo = (XcosPalette) node
+					.getUserObject();
 				allpalettes.setRightComponent(nodeInfo);
 			    }
 
@@ -291,15 +304,12 @@ public final class XcosPaletteManager {
 			    createPaletteData(paletteStringDescriptor.Components));
 
 		    /* Perform UI update */
-		    XcosPalette xcosPalette = new XcosPalette(paletteStringDescriptor.Name);
+		    XcosPalette xcosPalette = new XcosPalette(
+			    paletteStringDescriptor.Name);
 		    for (PaletteData iter : currentDescriptor.Components) {
 			xcosPalette.addTemplate(iter.Name, iter.Icon);
 		    }
 		    rootNode.add(new DefaultMutableTreeNode(xcosPalette));
-		}
-
-		synchronized (this) {
-		    this.notifyAll();
 		}
 
 		paletteLoadStarted = true;
@@ -308,7 +318,8 @@ public final class XcosPaletteManager {
 
 		/* UI Layout specific operations */
 		paletteTree.expandRow(0);
-		allpalettes.getLeftComponent().setMinimumSize(paletteTree.getPreferredSize());
+		allpalettes.getLeftComponent().setMinimumSize(
+			paletteTree.getPreferredSize());
 		paletteTree.setSelectionRow(1);
 		paletteTree.setRootVisible(false);
 		allpalettes.setContinuousLayout(true);
@@ -318,78 +329,82 @@ public final class XcosPaletteManager {
     }
 
     private XcosPaletteManager() {
-	}
+    }
 
     public static Tab loadPalette() {
-		if (paletteLoadStarted == false) {
-			createPaletteWindow();
-			palettes.getAsSimpleTab().getInfoBar().setText(XcosMessages.LOADING_PALETTES);
-			paletteThread.start();
-		}
-		return palettes;
+	synchronized (paletteThread) {
+	    paletteThread.notifyAll();
 	}
+	if (paletteLoadStarted == false) {
+	    createPaletteWindow();
+	    palettes.getAsSimpleTab().getInfoBar().setText(
+		    XcosMessages.LOADING_PALETTES);
+	    paletteThread.start();
+	}
+	return palettes;
+    }
 
     private static PaletteData[] createPaletteData(String[] blocksNames) {
 
-		PaletteData[] xcosPalette = new PaletteData[blocksNames.length];
+	PaletteData[] xcosPalette = new PaletteData[blocksNames.length];
 
-		final String palImagesPath = System.getenv("SCI") + "/modules/xcos/images/palettes/";
+	final String palImagesPath = System.getenv("SCI")
+		+ "/modules/xcos/images/palettes/";
 
-		//BasicBlock theBloc = null;
+	// BasicBlock theBloc = null;
 
-		for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
-			xcosPalette[kBlock] = new PaletteData(
-					blocksNames[kBlock],
-					new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"));
+	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
+	    xcosPalette[kBlock] = new PaletteData(blocksNames[kBlock],
+		    new ImageIcon(palImagesPath + blocksNames[kBlock] + ".jpg"));
 
-		}
-
-		return xcosPalette;
 	}
+
+	return xcosPalette;
+    }
 
     public static Tab getPalettes() {
-        return palettes;
+	return palettes;
     }
-    
+
     private static void createPaletteWindow() {
-		paletteLoadStarted = false;
-		// Add a default Java bloc in HashMap
-		// Xcos.getAllBlocks().put("TEXT_f", new TextBlock("TEXT_f"));
+	paletteLoadStarted = false;
+	// Add a default Java bloc in HashMap
+	// Xcos.getAllBlocks().put("TEXT_f", new TextBlock("TEXT_f"));
 
-		Window palWin = ScilabWindow.createWindow();
-		palWin.setDims(new Size(700, 600));
-		palWin.setVisible(true);
-		palettes = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
+	Window palWin = ScilabWindow.createWindow();
+	palWin.setDims(new Size(700, 600));
+	palWin.setVisible(true);
+	palettes = ScilabTab.createTab(XcosMessages.PALETTE_BROWSER);
 
-		palettes.setCallback(new ClosePalettesAction(null));
+	palettes.setCallback(new ClosePalettesAction(null));
 
-		/** Create the menubar */
-		MenuBar palMenuBar = ScilabMenuBar.createMenuBar();
-		palettes.addMenuBar(palMenuBar);
+	/** Create the menubar */
+	MenuBar palMenuBar = ScilabMenuBar.createMenuBar();
+	palettes.addMenuBar(palMenuBar);
 
-		Menu palMenu = ScilabMenu.createMenu();
-		palMenu.setText(XcosMessages.PALETTES);
-		palMenu.setMnemonic('P');
-		palMenuBar.add(palMenu);
+	Menu palMenu = ScilabMenu.createMenu();
+	palMenu.setText(XcosMessages.PALETTES);
+	palMenu.setMnemonic('P');
+	palMenuBar.add(palMenu);
 
-		palMenu.add(ClosePalettesAction.createMenu(null));
+	palMenu.add(ClosePalettesAction.createMenu(null));
 
-		/** Create the toolbar */
-		ToolBar palToolbar = ScilabToolBar.createToolBar();
-		palettes.addToolBar(palToolbar);
-		palToolbar.add(NewDiagramAction.createButton(null));
-		palToolbar.add(OpenAction.createButton(null));
+	/** Create the toolbar */
+	ToolBar palToolbar = ScilabToolBar.createToolBar();
+	palettes.addToolBar(palToolbar);
+	palToolbar.add(NewDiagramAction.createButton(null));
+	palToolbar.add(OpenAction.createButton(null));
 
-		/** Create the infobar */
-		palettes.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+	/** Create the infobar */
+	palettes.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 
-		palWin.addTab(palettes);
-	}
-    
+	palWin.addTab(palettes);
+    }
+
     public static boolean isVisible() {
-		if (palettes != null && palettes.isVisible() == true) {
-			return true;
-		}
-		return false;
+	if (palettes != null && palettes.isVisible() == true) {
+	    return true;
 	}
+	return false;
+    }
 }
