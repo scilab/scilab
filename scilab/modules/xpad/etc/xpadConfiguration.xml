@@ -20,15 +20,17 @@
 		<ScrollableBlockIncrement useCache="true" value="20"/>
 		<VerticalWrapAllowed useCache="true" value="false"/>
 		<HorizontalWrapAllowed useCache="true" value="false"/>
+    <AutoIndent default="true" useCach="true" value="true" />
+    <DefaultEncoding value="UTF-8"/>
 
 		<styles>
-		
-		  <FontName default="Monospaced" useCache="true" value="Monospaced"/>			
+
+		  <FontName default="Monospaced" useCache="true" value="Monospaced"/>
 		  <FontSize default="14" useCache="true" value="14"/>
 
 		  <MainWindowPosition useCache="true" x="150" y="50"/>
 		  <MainWindowSize height="550" useCache="true" width="650"/>
-		
+
 		  <style name="Default">
 		    <BackgroundColor default="#FFFFFF" useCache="true" value="#FFFFFF"/>
 		    <ForegroundColor default="#000000" useCache="true" value="#000000"/>
@@ -45,18 +47,18 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
 
       </style>
-      
+
       <style name="String">
 		    <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
-      
+
       <style name="Variable">
 		    <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
 
       </style>
-      
+
       <style name="Comment">
 		    <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
@@ -67,7 +69,7 @@
 		    <ForegroundColor default="#d550d5" useCache="true" value="#d550d5"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
-      
+
       <style name="Macro">
 		    <ForegroundColor default="#ff9933" useCache="true" value="#ff9933"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
@@ -77,9 +79,9 @@
     <!-- Recent Opened Files Section  -->
     <recentFiles>
 
-</recentFiles>  
-      
-      
+</recentFiles>
+
+
 
 	</Profile>
 </Setting>
