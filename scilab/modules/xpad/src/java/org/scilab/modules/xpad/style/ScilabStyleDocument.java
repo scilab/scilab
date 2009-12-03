@@ -38,7 +38,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	// Editor's default encoding is UTF-8
 	private String encoding = "UTF-8";
 	private boolean updater= true;
-	private boolean autoIndent =true;
+	private boolean autoIndent;
 	private boolean autoColorize = true;
 	private volatile boolean shouldMergeEdits;
 	private boolean undoManagerEnabled;
@@ -98,6 +98,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
+		
+		autoIndent = ConfigXpadManager.getAutoIndent();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
