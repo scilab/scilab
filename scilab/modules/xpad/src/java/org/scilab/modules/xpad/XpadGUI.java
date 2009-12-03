@@ -73,6 +73,7 @@ import org.scilab.modules.xpad.actions.RecentFileAction;
 import org.scilab.modules.xpad.actions.RedoAction;
 import org.scilab.modules.xpad.actions.ResetFontAction;
 import org.scilab.modules.xpad.actions.SaveAction;
+import org.scilab.modules.xpad.actions.SaveAllAction;
 import org.scilab.modules.xpad.actions.SaveAsAction;
 import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
@@ -93,8 +94,6 @@ public class XpadGUI {
 
 	public XpadGUI(Window mainWindow, Xpad editorInstance, String title) {
 		
-		
-
 		mainWindow.setTitle(title);
 		mainWindow.addTab(editorInstance);
 
@@ -346,6 +345,7 @@ public class XpadGUI {
 		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(editorInstance));
 		fileMenu.add(SaveAsAction.createMenu(editorInstance));
+		fileMenu.add(SaveAllAction.createMenu(editorInstance));
 		fileMenu.addSeparator();
 		fileMenu.add(PageSetupAction.createMenu(editorInstance));
 		fileMenu.add(PrintPreviewAction.createMenu(editorInstance));

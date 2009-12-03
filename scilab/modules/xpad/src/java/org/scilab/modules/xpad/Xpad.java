@@ -274,6 +274,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		editor = null;
 	}
 
+
 	/**
 	 * Create Xpad instance.
 	 * @return the instance

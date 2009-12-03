@@ -33,6 +33,8 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
  */
 public class SaveFile {
 
+	private static final String LINE_SEPARATOR = "line.separator";
+	
 	/**
 	 * save text in JTextPane
 	 * @param textPane JTextPane
@@ -40,18 +42,16 @@ public class SaveFile {
 	 * @param editorKit EditorKit
 	 * @return true if saved
 	 */
-	
 	public static boolean doSave(JTextPane textPane, File fOut, EditorKit editorKit) {
 		
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
 		// get default eol
-		String defaultEol = System.getProperty("line.separator");
+		String defaultEol = System.getProperty(LINE_SEPARATOR);
 
 		// set eol used to save file 
-		if (styledDocument.getEOL().compareTo(defaultEol) != 0)
-		{
-			System.setProperty("line.separator", styledDocument.getEOL());
+		if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
+			System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
 		}
 
 		BufferedWriter out = null;
@@ -63,24 +63,24 @@ public class SaveFile {
 				out.close();
 				
 				// restore default eol
-				System.setProperty("line.separator", defaultEol);
+				System.setProperty(LINE_SEPARATOR, defaultEol);
 				
 			} catch (IOException e) {
 				// restore default eol
-				System.setProperty("line.separator", defaultEol);
+				System.setProperty(LINE_SEPARATOR, defaultEol);
 				return false;
 			} catch (BadLocationException e) {
 				// restore default eol
-				System.setProperty("line.separator", defaultEol);
+				System.setProperty(LINE_SEPARATOR, defaultEol);
 				return false;
 			}
 		} catch (UnsupportedEncodingException e) {
 			// restore default eol
-			System.setProperty("line.separator", defaultEol);
+			System.setProperty(LINE_SEPARATOR, defaultEol);
 			return false;
 		} catch (FileNotFoundException e) {
 			// restore default eol
-			System.setProperty("line.separator", defaultEol);
+			System.setProperty(LINE_SEPARATOR, defaultEol);
 			return false;
 		}
 		return true;

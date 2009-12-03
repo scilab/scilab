@@ -25,26 +25,55 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class SaveAsAction extends DefaultAction {
+/**
+ * 
+ * @author Bruno JOFRET
+ *
+ */
+public final class SaveAsAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 8327808176820789884L;
+
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
     private SaveAsAction(Xpad editor) {
 	super(XpadMessages.SAVE_AS, editor);
     }
 
+    /**
+     * DoAction
+     */
     public void doAction() {
-
-	if (!getEditor().saveAs(getEditor().getTextPane())) {
-	    ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
-		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
-	}
-
+    	if (!getEditor().saveAs(getEditor().getTextPane())) {
+    		ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
+    				XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+    	}
     }
 
+    /**
+     * CreateMenu
+     * @param editor Xpad
+     * @return MenuItem
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
+    	return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor),
+    			KeyStroke.getKeyStroke(KeyEvent.VK_S, 
+    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.SHIFT_MASK));
     }
 
+    
+    /**
+     * Create Button
+     * @param editor Xpad
+     * @return PushButton
+     */
     public static PushButton createButton(Xpad editor) {
-	return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
+    	return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
     }
 }

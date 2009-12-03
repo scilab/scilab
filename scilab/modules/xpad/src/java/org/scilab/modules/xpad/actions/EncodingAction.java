@@ -38,29 +38,50 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.IndentManager;
 
+
+/**
+ * EncodingAction Class
+ * @author Bruno JOFRET
+ *
+ */
 public class EncodingAction extends DefaultCheckAction {
 
     private String encoding;
 
+    /**
+     * Constructor
+     * @param encodingName Encoding Name
+     * @param editor Xpad
+     */
     public EncodingAction(String encodingName, Xpad editor) {
 	super(encodingName, editor);
 	encoding = encodingName;
     }
 
+    /**
+     * createRadioButtonMenuItem
+     * @param editor Xpad 
+     * @return JRadioButtonMenuItem
+     */
     public JRadioButtonMenuItem createRadioButtonMenuItem(Xpad editor) {
-	JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
-	radio.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) {
-		doAction();
-	    }
-	});
-	return radio;
+    	JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
+    	radio.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent arg0) {
+    			doAction();
+    		}
+    	});
+    	
+    	return radio;
     }
 
+    /**
+     * getEcodings
+     * @return ArrayList<String>
+     */
     public static ArrayList<String> getEcodings() {
-	SortedMap<String,Charset> charsetList = Charset.availableCharsets();
+    	
+	SortedMap<String, Charset> charsetList = Charset.availableCharsets();
 	Set cles = charsetList.keySet();
 	Iterator iterator = cles.iterator();
 	ArrayList<String> completEncodingList = new ArrayList<String>();
@@ -70,8 +91,8 @@ public class EncodingAction extends DefaultCheckAction {
 	}
 
 	for (int i = 0; i < completEncodingList.size(); i++) {
-	    if (completEncodingList.get(i).toLowerCase().startsWith("ibm") ||
-		    completEncodingList.get(i).toLowerCase().startsWith("x-")) {
+	    if (completEncodingList.get(i).toLowerCase().startsWith("ibm") 
+	    	|| completEncodingList.get(i).toLowerCase().startsWith("x-")) {
 		continue;
 	    } else {
 		encodingList.add(completEncodingList.get(i));
@@ -81,18 +102,20 @@ public class EncodingAction extends DefaultCheckAction {
 	return encodingList;
     }
 
+    /**
+     * doAction
+     */
     public void doAction() {
-	boolean isSuccess = false;
+    	boolean isSuccess = false;
 
-	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+    	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
 
-	if (styleDocument.isContentModified()) {
-	    /* File modified */
-	    if (getEditor().getTextPane().getName() != null) {
-		/* Not untitled */
-
-
-	    	switch (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
+    	if (styleDocument.isContentModified()) {
+    		/* File modified */
+    		if (getEditor().getTextPane().getName() != null) {
+	    	/* Not untitled */
+	    	switch (ScilabModalDialog.show(Xpad.getEditor(), 
+	    			XpadMessages.MODIFICATIONS_WILL_BE_LOST, XpadMessages.CONTINUE,
 	    			IconType.QUESTION_ICON, ButtonType.YES_NO)) {
 	    			case YES_OPTION : //Yes, continue
 	    				break;
@@ -123,7 +146,7 @@ public class EncodingAction extends DefaultCheckAction {
 	    			styleDocument.getUndoManager().discardAllEdits();
 	    			styleDocument.disableUndoManager();
 	    			styleDocument.remove(0, styleDocument.getLength());
-	    			editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file),encoding)), styleDocument, 0);
+	    			editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding)), styleDocument, 0);
 	    			styleDocument.enableUndoManager();
 	    		}
 	    	}
