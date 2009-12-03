@@ -516,15 +516,17 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent textPane) {
 		try {
 			Rectangle r = textPane.modelToView(textPane.getCaretPosition());
-			if (isHighlighted == true) {
+			if (isHighlighted) {
 				g.setColor(currentLineHighlightColor);
 			} else {
 				g.setColor(textPane.getBackground());
 			}
 			g.fillRect(0, r.y, textPane.getWidth(), r.height);
-		}
-		catch(BadLocationException ex) {
-			ex.printStackTrace();
+		} catch (BadLocationException ex) {
+			// Bug 5125
+			// This exception occurs because the user removed text from the textPane 
+			// while updating the LineNumberPanel 
+			return;
 		}
 	}
 
