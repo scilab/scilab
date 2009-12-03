@@ -12,22 +12,16 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
-
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.utils.XpadMessages;
-import org.scilab.modules.xpad.style.IndentManager;
-import java.awt.event.ActionEvent;
 import javax.swing.JComponent;
-import javax.swing.KeyStroke;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.ScilabEditorKit;
+import org.scilab.modules.xpad.style.IndentManager;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 
 public class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
