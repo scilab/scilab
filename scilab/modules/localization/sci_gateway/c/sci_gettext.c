@@ -30,9 +30,8 @@ int sci_gettext(char *fname,unsigned long fname_len)
 			char *msgid2=NULL;
 			char *TranslatedString1=NULL;
 			char *TranslatedString2=NULL;
-                        
                         int revertStrsub = FALSE;
-                        
+		                        
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			msgid1=cstk(l1);
 
@@ -78,7 +77,11 @@ int sci_gettext(char *fname,unsigned long fname_len)
 			n1=1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(TranslatedString1), &m1),&n1,&TranslatedString1);
 			LhsVar(1)=Rhs+1;
-
+			if (revertStrsub)
+			{
+				FREE(msgid1);
+				FREE(TranslatedString1);
+			}
 			C2F(putlhsvar)();
 			return 0;
 		}
