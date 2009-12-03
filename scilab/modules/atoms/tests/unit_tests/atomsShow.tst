@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 

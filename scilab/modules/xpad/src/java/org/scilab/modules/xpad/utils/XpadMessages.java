@@ -73,18 +73,16 @@ public class XpadMessages {
     public static final String DOCUMENT = Messages.gettext("Document");
     public static final String SYNTAX_TYPE = Messages.gettext("Syntax Type");
     public static final String SCILAB_STYLE = Messages.gettext("Scilab");
-    public static final String PLAIN_TEXT_STYLE = Messages.gettext("Plain Text");
-    public static final String XML_STYLE = Messages.gettext("XML");
+    public static final String PLAIN_TEXT_STYLE = "Plain Text";
+    public static final String XML_STYLE = "XML";
     public static final String ENCODING_TYPE = Messages.gettext("Encoding");
-    public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
-    public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
     public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
-    public static final String EOL_TYPE = Messages.gettext("Convert Line Delimeters To");
+    public static final String EOL_TYPE = Messages.gettext("Line Endings");
     public static final String EOL_AUT0 = Messages.gettext("Auto (Default)");
-    public static final String EOL_WINDOWS = Messages.gettext("Windows (CR + LF)");
-    public static final String EOL_MACOS = Messages.gettext("Mac OS (CR)");
-    public static final String EOL_LINUX = Messages.gettext("Linux (LF)");
+    public static final String EOL_WINDOWS = Messages.gettext("Windows/DOS (CR + LF)");
+    public static final String EOL_MACOS = Messages.gettext("Mac Classic (CR)");
+    public static final String EOL_LINUX = Messages.gettext("Unix (LF)");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
@@ -143,14 +141,14 @@ public class XpadMessages {
     public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
     
     /* Status bar messages */
-    public static final String LOADING = Messages .gettext("Loading...");
+    public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     
     
     /* About box */
-    public static final String VERSION = Messages.gettext("Editor 1.0");
-    public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c) 2009 (INRIA)");
+    public static final String VERSION = Messages.gettext("Editor") + " 1.0";
+    public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009 (INRIA)";
     
     public static final String XPAD_ERROR = Messages.gettext("Editor error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");

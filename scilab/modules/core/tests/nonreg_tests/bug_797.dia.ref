@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 797 -->
 //
 // <-- Bugzilla URL -->
@@ -6,10 +12,10 @@
 // <-- Short Description -->
 //    Toutes les versions
 //
-//    Objet : Comportemment étrange avec format
+//    Objet : Comportemment ï¿½trange avec format
 //    REF  01062004-1545
 //
-//    voici un comportement étrange avec format (testé sous la
+//    voici un comportement ï¿½trange avec format (testï¿½ sous la
 //    2.7.2 sur Win 2000), celui-ci est il volontaire ?
 //
 //    ----------------------------------------------------------
@@ -23,11 +29,11 @@
 //    -->J
 //    J =
 //
-//    .001 <- OK c'est bien ce qu'on souhaite
+//    .001 <- OK c'est bien ce qu'on souhaite 
 // ...
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 1er juin 2005
 J=0.001;
 format("v",7);
 diary(TMPDIR+"/bug797.dia");
+disp(J);
+ 
+    0.001  
