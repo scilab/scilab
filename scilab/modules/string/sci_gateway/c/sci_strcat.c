@@ -223,20 +223,21 @@ static int sci_strcat_three_rhs(char *fname)
 				lenMax = 0;
 				if (Input_String_One[j*Row_One])
 				{
-					lenMax = lenMax + (int)strlen(Input_String_One[j*Row_One]);
+					lenMax = lenMax + (int)strlen(Input_String_One[j*Row_One]) + 1;
 				}
 
 				if (Input_String_Two)
 				{
-					lenMax = lenMax + (int)strlen(Input_String_Two);
+					lenMax = lenMax + (int)strlen(Input_String_Two) + 1;
 				}
 
 				if (Input_String_One[i+ Row_One*j])
 				{
-					lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]);
+				        for ( i = 1 ; i < Row_One ; i++ ) 
+				        {
+					        lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]) + 1;
+					}
 				}
-
-				lenMax++;
 
 				Output_String[j] = (char*) MALLOC(sizeof(char)*lenMax);
 
