@@ -65,6 +65,7 @@ public final class ConfigXpadManager {
 	private static final String YCOORD = "y";
 	private static final String MAINWINPOSITION = "MainWindowPosition";
 	private static final String MAINWINSIZE = "MainWindowSize";
+	private static final String AUTOINDENT = "AutoIndent";
 	
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -73,8 +74,11 @@ public final class ConfigXpadManager {
 	private static final String NAME = "name";
 	
 	private static final String PROFILE = "Profile";
+	
+	//private static final String XPAD_CONFIG_FILE = "/home/allan/scilab5-2/scilab/modules/xpad/etc/xpadConfiguration.xml";
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
 	
+	//private static final String USER_XPAD_CONFIG_FILE = "/home/allan/Bureau/xpadConfiguration.xml";
     private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
@@ -417,6 +421,62 @@ public final class ConfigXpadManager {
 		/* Save changes */
 		writeDocument();	
 		
+	}
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveAutoIndent(boolean activated) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+			System.out.println("autoattribute should have been created now");
+		    Element autoIndent = document.createElement(AUTOINDENT);
+
+		    autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
+
+		    xpadProfile.appendChild((Node) autoIndent);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static boolean getAutoIndent() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
+		Element autoIndent = (Element) allSizeElements.item(0);
+		
+		if(autoIndent == null){
+			return true;
+		} else {
+			return new Boolean(autoIndent.getAttribute(VALUE));
+		}
 	}
 	
 	
