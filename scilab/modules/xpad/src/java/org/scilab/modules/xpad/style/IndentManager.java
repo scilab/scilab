@@ -44,7 +44,7 @@ public IndentManager() {
 	 */
 	public void indent(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) {
 		if (!indentInprogress) {
-			scilabDocument.setUpdater(false);
+			scilabDocument.disableUndoManager();
 			
 			indentInprogress = true;
 			//resetStyle(startPosition, startPosition);
@@ -57,7 +57,7 @@ public IndentManager() {
 			//applySelectionIndent();
 			
 			indentInprogress = false;
-			scilabDocument.setUpdater(true);
+			scilabDocument.enableUndoManager();
 		}
 	}
 
