@@ -18,35 +18,54 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.xpad.ScilabEditorKit;
 import org.scilab.modules.xpad.style.IndentManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
-
-public class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
+/**
+ * LineBeautifierAction Class
+ * @author Bernard HUGUENEY
+ *
+ */
+public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
 	
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -8313095922543576108L;
 	private IndentManager indentManager = new IndentManager();
 	
-	public void actionPerformed( ActionEvent ev) {
+	/**
+	 * Constructor
+	 */
+	private LineBeautifierAction() {
+		
+	}
+	
+	/**
+	 * actionPerformed
+	 * @param ev ActionEvent
+	 */
+	public void actionPerformed(ActionEvent ev) {
 		super.actionPerformed(ev);
 		JTextPane textPane = (JTextPane) ev.getSource();
-		ScilabStyleDocument doc =  (ScilabStyleDocument)textPane.getStyledDocument();
+		ScilabStyleDocument doc =  (ScilabStyleDocument) textPane.getStyledDocument();
 		javax.swing.text.Element root = doc.getDefaultRootElement();
 		int newLine =  root.getElementIndex(textPane.getCaretPosition());
 		int startOfPreviousLine = root.getElement((newLine > 1) ? newLine - 2 : newLine - 1).getStartOffset();
-		int endOfNewLine = root.getElement(newLine).getEndOffset();// should be textPane.getCaretPosition()
-//		System.err.println("doc.isUpdater()"+doc.isUpdater()+ "doc.getAutoIndent()"+doc.getAutoIndent());
+		int endOfNewLine = root.getElement(newLine).getEndOffset(); // should be textPane.getCaretPosition()
+
 		if (doc.isUpdater() && doc.getAutoIndent()) {
-			//System.err.println("startOfPreviousLine:"+startOfPreviousLine+ "endOfNewLine:"+endOfNewLine);
-			boolean autoColorize= doc.getAutoColorize();
+			boolean autoColorize = doc.getAutoColorize();
 			doc.setAutoColorize(false);
 			doc.disableUndoManager();
 			try {
-				//
-				indentManager.beautifier(doc,startOfPreviousLine, endOfNewLine);
+				indentManager.beautifier(doc, startOfPreviousLine, endOfNewLine);
 				// hard to compute safe start offset :(
-			} catch (Exception e) {
+			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
@@ -55,8 +74,12 @@ public class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
 			doc.enableUndoManager();
 		}
 	}
+	
+	/**
+	 * putInInputMap
+	 * @param textPane JComponent
+	 */
 	public static void putInInputMap(JComponent textPane) {
-		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0), new LineBeautifierAction());
-		return;
+		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), new LineBeautifierAction());
 	}
 }

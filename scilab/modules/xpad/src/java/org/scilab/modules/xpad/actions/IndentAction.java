@@ -24,34 +24,49 @@ import org.scilab.modules.xpad.style.IndentManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * IndentAction Class
+ * @author Bruno JOFRET
+ *
+ */
 @SuppressWarnings("serial")
-public class IndentAction extends DefaultAction {
+public final class IndentAction extends DefaultAction {
 	
 	private IndentManager indentManager = new IndentManager();
 	
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private IndentAction(Xpad editor) {
 		super(XpadMessages.INDENT, editor);
 	}
 
+	/**
+	 * doAction
+	 */
 	public void doAction() {
 		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
 		try {
-			int selection_start = getEditor().getTextPane().getSelectionStart();
-			int selection_end = getEditor().getTextPane().getSelectionEnd();
-			int final_selection_end = indentManager.beautifier(styleDocument, selection_start, selection_end);
-			getEditor().getTextPane().setSelectionStart(selection_start);
-			getEditor().getTextPane().setSelectionEnd(final_selection_end);
+			int selectionStart = getEditor().getTextPane().getSelectionStart();
+			int selectionEnd = getEditor().getTextPane().getSelectionEnd();
+			int finalSelectionEnd = indentManager.beautifier(styleDocument, selectionStart, selectionEnd);
+			getEditor().getTextPane().setSelectionStart(selectionStart);
+			getEditor().getTextPane().setSelectionEnd(finalSelectionEnd);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.INDENT, null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
-
-	public static void getXpadEditor(){
-
+		return createMenu(XpadMessages.INDENT, null, 
+				new IndentAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 }
