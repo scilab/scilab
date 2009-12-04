@@ -162,6 +162,8 @@ Tree functions :
 
 Bug fixes:
 ==========
+* bug 2588 fixed - Calling a function with no input argument contained in an mlist
+                   generates an error.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.

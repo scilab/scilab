@@ -1435,6 +1435,8 @@ static int CreateOperationTList(int *data,int *index2)
   dest = Top - nb_operands;
   VCopyObj("CreateOperationTList",&orig,&dest,20L);
 
+  freeArrayOfString(operator,1); 
+
   return 0;
 }
 

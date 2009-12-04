@@ -661,6 +661,7 @@ int sci_fftw(char *fname,unsigned long fname_len)
 	    {
 	      FREE(n);
 	      FREE(nspn);
+	      n_and_nspn_allocated = FALSE;
 	    }
 	}
       else 
