@@ -307,7 +307,7 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
   PAPT->flags = A->flags;
 
   len    = (int*) MALLOC(n * sizeof(int));
-  colptr = (int*) MALLOC(n * sizeof(int));
+  //colptr = (int*) MALLOC(n * sizeof(int));
 
   for (j=0; j<n; j++) len[j] = 0;
 
@@ -361,7 +361,9 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
       len[J] ++;
     }
   }
-  
+
+  if (len) {FREE(len); len = NULL;}
+
   return PAPT;
 }
 
@@ -1751,6 +1753,8 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
   FREE(column_to_sn_map);
   FREE(next_child);
   FREE(first_child);
+  FREE(ipostorder);
+
   return 0;
 }
 
@@ -1789,7 +1793,7 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
 						   bitmap,
 						   A,snL,fail);
     if (*fail) { 
-      if (my_matrix) supernodal_frontal_free(my_matrix);
+      if (child_matrix) supernodal_frontal_free(child_matrix);
       return NULL;
     }
 
