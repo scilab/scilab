@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xpad;
 
 import java.awt.BorderLayout;
@@ -15,6 +27,7 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -25,23 +38,46 @@ import javax.swing.border.MatteBorder;
 
 import org.scilab.modules.xpad.actions.PageSetupAction;
 import org.scilab.modules.xpad.actions.PrintAction;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * XpadPrintPreviewWindow Class
+ * @author Sylvestre Koumar
+ *
+ */
 public class XpadPrintPreviewWindow extends JDialog {
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 7083356779238081674L;
 	private int previewWidht;
 	private int previewHeight;
 	private JComboBox scalesComboBox;
 	private PreviewContainer previewContainer;
 
 
+	/**
+	 * Construtor
+	 * @param printableComponent Printable
+	 * @param editor Xpad
+	 */
 	public XpadPrintPreviewWindow(Printable printableComponent, Xpad editor) {
 		this(printableComponent, "Print Preview", editor);
 	}
 
+	/**
+	 * Construtor
+	 * @param printableComponent Printable
+	 * @param title String
+	 * @param editor Xpad
+	 */
 	public XpadPrintPreviewWindow(Printable printableComponent, String title, final Xpad editor) {
 
 		// Preview JDialog
 		setModal(true); // set focus priority on the JDialog
 		setTitle(title);
+		setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		setSize(640, 940);
 
 		// Tool bar of the preview window 
@@ -49,24 +85,24 @@ public class XpadPrintPreviewWindow extends JDialog {
 		JButton printButton = new JButton("Print");
 
 		// Launch the print action
-		ActionListener action_listener = new ActionListener() { 
+		ActionListener actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				PrintAction.printXpadDocument(editor);
 			}
 		};
-		printButton.addActionListener(action_listener);
+		printButton.addActionListener(actionListener);
 		printButton.setAlignmentY(0.5f);
 		printButton.setMargin(new Insets(4,6,4,6));
 		toolbar.add(printButton);
 
 		// Close the preview window
-		printButton = new JButton("Close");
-		action_listener = new ActionListener() { 
+		printButton = new JButton(XpadMessages.CLOSE);
+		actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				dispose();
 			}
 		};
-		printButton.addActionListener(action_listener);
+		printButton.addActionListener(actionListener);
 		printButton.setAlignmentY(0.5f);
 		printButton.setMargin(new Insets(2,6,2,6));
 		toolbar.add(printButton);
@@ -76,7 +112,7 @@ public class XpadPrintPreviewWindow extends JDialog {
 		scalesComboBox = new JComboBox(scales);
 		// Default scale is 100% (index 3 of scales)
 		scalesComboBox.setSelectedItem(scales[3]);
-		action_listener = new ActionListener() { 
+		actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				Thread runner = new Thread() {
 					public void run() {
@@ -96,8 +132,8 @@ public class XpadPrintPreviewWindow extends JDialog {
 							return; 
 						}
 
-						int w = (int) (previewWidht * scale/100);
-						int h = (int) (previewHeight * scale/100);
+						int w = (int) (previewWidht * scale / 100);
+						int h = (int) (previewHeight * scale / 100);
 
 						Component[] comps = previewContainer.getComponents();
 						for (int i = 0; i < comps.length; i++) {
@@ -116,7 +152,7 @@ public class XpadPrintPreviewWindow extends JDialog {
 			}
 		};
 
-		scalesComboBox.addActionListener(action_listener);
+		scalesComboBox.addActionListener(actionListener);
 		scalesComboBox.setMaximumSize(scalesComboBox.getPreferredSize());
 		scalesComboBox.setEditable(true);
 		toolbar.addSeparator();
@@ -141,8 +177,8 @@ public class XpadPrintPreviewWindow extends JDialog {
 
 		// Default scale is 100%
 		int scale = 100;
-		int w = (int) (previewWidht * scale/100); /* @TODO 100/100 ? */
-		int h = (int) (previewHeight * scale/100); /* @TODO 100/100 ? */
+		int w = (int) (previewWidht * scale / 100); /* @TODO 100/100 ? */
+		int h = (int) (previewHeight * scale / 100); /* @TODO 100/100 ? */
 
 		int pageIndex = 0;
 		// Creating the preview image
@@ -170,11 +206,32 @@ public class XpadPrintPreviewWindow extends JDialog {
 		setVisible(true);
 	}
 
-	private class PreviewContainer extends JPanel {
+	/**
+	 * PreviewContainer Class
+	 * @author Sylvestre Koumar
+	 *
+	 */
+	private final class PreviewContainer extends JPanel {
+		
+		/**
+		 * serialVersionUID
+		 */
+		private static final long serialVersionUID = 8827199538436951675L;
+
+		/**
+		 * Constructor
+		 */
+		private PreviewContainer() {
+			
+		}
 		// Gap beetwen previews, a preview is an image of the JTextpane
 		protected int LEFT_RIGHT_GAP = 16;
 		protected int UP_DOWN_GAP = 10;
 
+		/**
+		 * getPreferredSize
+		 * @return Dimension
+		 */
 		public Dimension getPreferredSize() {
 			int numberOfComponents = getComponentCount();
 			if (numberOfComponents == 0) {
@@ -200,14 +257,26 @@ public class XpadPrintPreviewWindow extends JDialog {
 		}
 
 		// Get dimensions for PreviewContainer
+		/**
+		 * getMaximumSize
+		 * @return Dimension
+		 */
 		public Dimension getMaximumSize() {
 			return getPreferredSize();
 		}
+
+		/**
+		 * getMinimumSize
+		 * @return Dimension
+		 */
 
 		public Dimension getMinimumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * doLayout
+		 */
 		public void doLayout() {
 			Insets insets = getInsets();
 			int x = insets.left + LEFT_RIGHT_GAP;
@@ -246,23 +315,44 @@ public class XpadPrintPreviewWindow extends JDialog {
 		}
 	}
 
-	private class ElementPreview extends JPanel {
-		// Dimensions of element to preview
-		protected int elementWidth;
-		protected int elementHeight;
-		protected Image elementImage;
-		protected Image printOfComponent;
 
+	/**
+	 * ElementPreview
+	 * @author  Sylvestre Koumar
+	 *
+	 */
+	private class ElementPreview extends JPanel {
+		/**
+		 * serialVersionUID
+		 */
+		private static final long serialVersionUID = -6070895261774446253L;
+		// Dimensions of element to preview
+		private int elementWidth;
+		private int elementHeight;
+		private Image elementImage;
+		private Image printOfComponent;
+
+		/**
+		 * ElementPreview
+		 * @param w w 
+		 * @param h h 
+		 * @param img Image
+		 */
 		public ElementPreview(int w, int h, Image img) {
 			elementWidth = w;
 			elementHeight = h;
-			printOfComponent= img;
+			printOfComponent = img;
 			elementImage = printOfComponent.getScaledInstance(elementWidth, elementHeight, Image.SCALE_SMOOTH);
 			elementImage.flush();
 			setBackground(Color.white);
 			setBorder(new MatteBorder(1, 1, 2, 2, Color.black));
 		}
 
+		/**
+		 * setScaledSize
+		 * @param w int 
+		 * @param h int 
+		 */
 		public void setScaledSize(int w, int h) {
 			elementWidth = w;
 			elementHeight = h;
@@ -270,20 +360,36 @@ public class XpadPrintPreviewWindow extends JDialog {
 			repaint();
 		}
 
+		/**
+		 * getPreferredSize
+		 * @return Dimension
+		 */
 		public Dimension getPreferredSize() {
 			Insets insets = getInsets();
 			return new Dimension((elementWidth + insets.left + insets.right), (elementHeight + insets.top + insets.bottom));
 		}
 
-		// Get dimensions for ElementPreview	
+		// Get dimensions for ElementPreview
+		/**
+		 * getMaximumSize
+		 * @return Dimension
+		 */
 		public Dimension getMaximumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * getMinimumSize
+		 * @return Dimension
+		 */
 		public Dimension getMinimumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * paint
+		 * @param g Graphics
+		 */
 		public void paint(Graphics g) {
 			g.setColor(getBackground());
 			g.fillRect(0, 0, getWidth(), getHeight());

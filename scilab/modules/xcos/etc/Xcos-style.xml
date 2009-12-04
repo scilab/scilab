@@ -1103,7 +1103,7 @@
   <add as="Counter" extend="blockWithLabel">
     <!-- FIXME : Show parameters over block  -->
     <add as="displayedLabel" value="Counter&lt;BR&gt;
-				    0 &amp;rarr; 2"/>
+				    0 &amp;#8594; 2"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>

@@ -64,7 +64,7 @@ int sci_gettext(char *fname,unsigned long fname_len)
                         /* Add removed slashes */
                         if (revertStrsub)
                           {
-                            TranslatedString2=strsub(TranslatedString1, "\\", "\\\\"); FREE(TranslatedString1); /* backslash */
+                            TranslatedString2=strsub(TranslatedString1, "\\", "\\\\"); /* backslash */
                             TranslatedString1=strsub(TranslatedString2, "\"", "\\\""); FREE(TranslatedString2); /* double quote */
                             TranslatedString2=strsub(TranslatedString1, "\n", "\\n");  FREE(TranslatedString1); /* linefeed */
                             TranslatedString1=strsub(TranslatedString2, "\t", "\\t");  FREE(TranslatedString2); /* horizontal tab */

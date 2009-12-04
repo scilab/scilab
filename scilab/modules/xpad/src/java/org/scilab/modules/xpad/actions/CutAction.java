@@ -23,20 +23,48 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class CutAction extends DefaultAction {
+/**
+ * CutAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class CutAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -4831313579986185630L;
+
+	/**
+	 * Constructor 
+	 * @param editor Xpad
+	 */
     private CutAction(Xpad editor) {
 	super(XpadMessages.CUT, editor);
     }
     
+    /**
+     * doAction
+     */
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
     }
 
+    /**
+     * createMenu
+     * @param editor Xpad 
+     * @return MenuItem
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.CUT, null, new CutAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	return createMenu(XpadMessages.CUT, null, new CutAction(editor), 
+			KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
+    /**
+     * createButton
+     * @param editor Xpad
+     * @return PushButton
+     */
     public static PushButton createButton(Xpad editor) {
 	return createButton(XpadMessages.CUT, "edit-cut.png", new CutAction(editor));
     }

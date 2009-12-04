@@ -80,6 +80,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+
 * bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
 
 * bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
@@ -109,6 +111,8 @@ Xcos:
 * bug 5403 fixed - Xcos: now creates graphic windows only when needed.
 
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+
+* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
 
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 

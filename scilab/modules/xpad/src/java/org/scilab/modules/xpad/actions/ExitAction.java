@@ -24,12 +24,29 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class ExitAction extends DefaultAction {
+/**
+ * ExitAction class
+ * @author Bruno JOFRET
+ *
+ */
+public final class ExitAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -6434487252794798547L;
+
+	/**
+	 * Constructor 
+	 * @param editor Xpad
+	 */
     private ExitAction(Xpad editor) {
 	super(XpadMessages.EXIT, editor);
     }
 
+    /**
+     * doAction
+     */
     public void doAction() {
     	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
 
@@ -37,22 +54,28 @@ public class ExitAction extends DefaultAction {
 
     	boolean wantToClose = true;
     	int k = 0;
-    	for ( int i = 0 ; i < numberOfTab ; i++){
+    	for (int i = 0; i < numberOfTab; i++) {
     		//close and save all editors if they are modified
     		boolean response = getEditor().closeTabAt(k); 
-    		if(response == false){
+    		if (!response) {
     			k++;
     		}
     		wantToClose &= response;  
     	}
 
-    	if(wantToClose == true){
+    	if (wantToClose) {
     		xpadWindow.getAsSimpleWindow().removeTab(getEditor());
     		Xpad.closeXpad();
     	}
     }
     
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @return MenuItem
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), 
+			KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 }
