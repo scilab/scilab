@@ -281,6 +281,8 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 		*sizeArrayReturned = 0;
 	}
 
+	freeArrayOfString(dictionaryVariables, sizedictionaryVariables);
+
 	return ListWords;
 }
 /*--------------------------------------------------------------------------*/
