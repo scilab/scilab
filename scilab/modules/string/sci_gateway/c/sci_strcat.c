@@ -98,23 +98,23 @@ static int sci_strcat_three_rhs(char *fname)
 	}
 
 	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
-	mn = Row_One*Col_One;  
+	mn = Row_One * Col_One;  
 
 	if (Rhs >= 2) 
 	{ 
 		/* second argument always a string and not a matrix of string */
 		int l2 = 0;
 		int Row_Two = 0,Col_Two = 0;
-		GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
+		GetRhsVar(2, STRING_DATATYPE, &Row_Two, &Col_Two, &l2);
 		Input_String_Two = cstk(l2);
 	}
 
 	if (Rhs >= 3) 
 	{
-		int Row_Three = 0,Col_Three = 0;
+		int Row_Three = 0, Col_Three = 0;
 		int l3 = 0;
-		GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3);
-		if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
+		GetRhsVar(3, STRING_DATATYPE, &Row_Three, &Col_Three, &l3);
+		if (Row_Three * Col_Three != 0) typ = cstk(l3)[0];
 		if (typ != COL && typ != ROW ) 
 		{
 			freeArrayOfString(Input_String_One,mn);
@@ -185,7 +185,6 @@ static int sci_strcat_three_rhs(char *fname)
 					strcat(Output_String[i],Input_String_Two); 
 					strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
 				}
-
 			}
 
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &one, Output_String);
@@ -233,9 +232,9 @@ static int sci_strcat_three_rhs(char *fname)
 
 				if (Input_String_One[i+ Row_One*j])
 				{
-				        for ( i = 1 ; i < Row_One ; i++ ) 
-				        {
-					        lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]) + 1;
+					for ( i = 1 ; i < Row_One ; i++ ) 
+					{
+						lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]) + 1;
 					}
 				}
 
@@ -248,11 +247,20 @@ static int sci_strcat_three_rhs(char *fname)
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
-				strcpy(Output_String[j],Input_String_One[j*Row_One]);
+
+				strcpy(Output_String[j], Input_String_One[j*Row_One]);
+
 				for ( i = 1 ; i < Row_One ; i++ ) 
 				{
-					strcat(Output_String[j],Input_String_Two); 
-					strcat(Output_String[j],Input_String_One[i+ Row_One*j]);
+					if (Input_String_Two)
+					{
+						strcat(Output_String[j], Input_String_Two); 
+					}
+
+					if (Input_String_One[i+ Row_One*j])
+					{
+						strcat(Output_String[j], Input_String_One[i+ Row_One*j]);
+					}
 				}
 			}
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &one, &Col_One, Output_String);
