@@ -219,9 +219,11 @@ public final class BlockPositioning {
 
 	    if(obj instanceof BasicPort) {
 		BasicPort port = (BasicPort) obj;
+		if (port.getAngle() != newAngle)  {
 		port.setAngle(newAngle);
 		int newAngle2 = port.getAngle(); 
 		mxUtils.setCellStyles(block.getParentDiagram().getModel(), new Object[] {port}, mxConstants.STYLE_ROTATION, new Integer(newAngle2).toString());
+		}
 	    }
 	}
 	endUpdate(block);
