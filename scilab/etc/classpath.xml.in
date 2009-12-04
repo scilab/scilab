@@ -78,6 +78,7 @@ The option is "disableUnderMode" and can be:
 </path>
 <path value="@FOP@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@SAXON@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -85,28 +86,34 @@ The option is "disableUnderMode" and can be:
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@XML_APIS_EXT@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- PDF doc generation -->
 <path value="@COMMONS_IO@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
 <path value="@XMLGRAPHICS_COMMONS@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@AVALON_FRAMEWORK@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <path value="@JLATEXMATH@" load="onUse">
 		<load on="graphics_latex_textrendering"/>
+		<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- helptools module doc generation -->

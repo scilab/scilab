@@ -19,6 +19,8 @@ import java.nio.ByteBuffer;
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
+import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
+import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 
 import com.sun.opengl.util.j2d.TextRenderer;
 
@@ -63,9 +65,14 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 						   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
 						   (float) Math.toDegrees(angle));
 			} else {
-			        ByteBuffer buf = ByteBuffer.allocateDirect(spe.getBuffer().capacity());
-				buf.put((ByteBuffer)spe.getBuffer());
-				gl2ps.gl2psDrawPixels((int) spe.getWidth(), (int) spe.getHeight(), gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, buf);
+			    String SVGcode;
+			    if (str.charAt(0) == '<') {
+				    SVGcode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
+			    } else {
+				    SVGcode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
+			    }
+			    /* the fontsize is set to 0 to include directly the svg code (see gl2ps.c) */
+			    gl2ps.gl2psTextOpt(SVGcode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
 			}
 		    
 			return;

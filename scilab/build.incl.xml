@@ -86,6 +86,10 @@
 
 		<pathelement location="${fop.jar}"/>
 
+		<pathelement location="${avalon-framework.jar}"/>
+
+		<pathelement location="${avalon-framework-impl.jar}"/>
+
 		<pathelement location="${jeuclid-core.jar}"/>
 
 		<pathelement location="${jlatexmath.jar}"/>
