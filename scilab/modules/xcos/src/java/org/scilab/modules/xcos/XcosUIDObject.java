@@ -15,10 +15,12 @@ package org.scilab.modules.xcos;
 import java.rmi.server.UID;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosUIDObject extends mxCell {
+public class XcosUIDObject extends mxCell{
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2915277403393545917L;
 
     public XcosUIDObject() {
 	super();

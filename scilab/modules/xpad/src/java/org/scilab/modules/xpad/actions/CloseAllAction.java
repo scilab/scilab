@@ -17,20 +17,32 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class CloseAllAction extends DefaultAction {
+/**
+ * CloseAllAction Class
+ * @author Allan CORNET
+ *
+ */
+public final class CloseAllAction extends DefaultAction {
     
     /**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 7134703185408271944L;
 
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private CloseAllAction(Xpad editor) {
         super(XpadMessages.CLOSEALL, editor);
     }
     
+	/**
+	 * doAction
+	 */
     public void doAction() {
     	while (getEditor().getTabPane().getTabCount() != 0) {
-    		if (getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex()) == false) {
+    		if (!getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex())) {
     			return;
     		}
     	}
@@ -41,8 +53,13 @@ public class CloseAllAction extends DefaultAction {
     	}
     }
     
+    /**
+     * Create menu
+     * @param editor Xpad
+     * @return MenuItem 
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.CLOSEALL, null, new CloseAllAction(editor),null);
+	return createMenu(XpadMessages.CLOSEALL, null, new CloseAllAction(editor), null);
     }
 }
 

@@ -15,9 +15,13 @@ package org.scilab.modules.xcos.block;
 
 import java.awt.MouseInfo;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
@@ -74,6 +78,11 @@ public class BasicBlock extends XcosUIDObject {
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram = null;
+    
+    private transient int angle = 0;
+    private transient boolean isFlipped = false;
+    private transient boolean isMirrored = false;
+    
 
     // TODO :
     // Must make this types evolve, but for now keep a strong link to Scilab
@@ -526,27 +535,23 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempOutput = File.createTempFile("xcos",".h5");
 	    tempInput = File.createTempFile("xcos",".h5");
-	    tempContext = File.createTempFile("xcos",".h5");
-	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
-	    tempContext.deleteOnExit();
+
 	    // Write scs_m
-	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
-	    H5Write.closeFile(file_id);
-
+	    tempOutput = exportBlockStruct();
 	    // Write context
-	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
-	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
-	    H5Write.closeFile(context_file_id);
+	    tempContext = exportContext(context);
 
-	    InterpreterManagement.putCommandInScilabQueue("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\""+
-		    ", \""+tempInput.getAbsolutePath()+"\""+
-		    ", "+getInterfaceFunctionName()+
-		    ", \"set\""+
-		    ", \""+tempContext.getAbsolutePath()+"\");");
+	    String cmd;
+	    
+	    cmd = "xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\"";
+	    cmd += ", \""+tempInput.getAbsolutePath()+"\"";
+	    cmd += ", "+getInterfaceFunctionName();
+	    cmd += ", \"set\"";
+	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
+	    
+	    InterpreterManagement.putCommandInScilabQueue(cmd);
 	    final BasicBlock currentBlock = this;
 	    Thread launchMe = new Thread() {
 		public void run() {
@@ -561,11 +566,48 @@ public class BasicBlock extends XcosUIDObject {
 	    launchMe.start();
 	    setLocked(true);
 
-	} catch (Exception e) {
+	} catch (IOException e) {
 	    e.printStackTrace();
 	}
     }
 
+    protected File exportBlockStruct() {
+
+	// Write scs_m
+	File tempOutput;
+	try {
+	    tempOutput = File.createTempFile("xcos",".h5");
+	    tempOutput.deleteOnExit();
+	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
+	    H5Write.closeFile(file_id);
+	    return tempOutput;
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (HDF5Exception e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+    
+    protected File exportContext(String[] context) {
+
+	// Write context
+	try {
+	    File tempContext = File.createTempFile("xcos",".h5");
+	    tempContext.deleteOnExit();
+	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
+	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
+	    H5Write.closeFile(context_file_id);
+	    return tempContext;
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (HDF5Exception e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+    
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
@@ -721,18 +763,10 @@ public class BasicBlock extends XcosUIDObject {
     
 
     public boolean getMirror(){
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
-	    if(currentMirror.compareTo("true") == 0) {
-		return true;
-	    } else {
-		return false;
-	    }
-	}
-	return false;
+	return isMirrored;
     }
     public void setMirror(boolean mirror) {
+	isMirrored = mirror;
 	if(getParentDiagram() != null) {
 	    if(mirror == true) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
@@ -743,19 +777,11 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public boolean getFlip(){
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
-	    if(currentFlip.compareTo("true") == 0) {
-		return true;
-	    } else {
-		return false;
-	    }
-	}
-	return false;
+	return isFlipped;
     }
 
     public void toggleFlip() {
+	isFlipped = !isFlipped;
 	BlockPositioning.toggleFlip(this);
     }
 
@@ -796,17 +822,46 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public int getAngle() {
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
-	    return Integer.parseInt(currentAngle);
-	}
-	return 0;
+	return angle;
     }
 
     public void setAngle(int angle) {
+	this.angle = angle;
+	
 	if(getParentDiagram() != null) {
 	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_ROTATION, new Integer(angle).toString());
 	}
+    }
+
+    /**
+     * Usefull when we need to update local properties with mxCell style properties 
+     */
+    public void updateFieldsFromStyle() {
+	if (getParentDiagram() != null) {
+	    mxCellState state = getParentDiagram().getView().getState(this);
+	    if(state != null) {
+		// Angle field
+		String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
+		this.angle = Integer.parseInt(currentAngle);
+	    
+		// Flip field
+		String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
+		if (currentFlip.compareTo("true") == 0) {
+		    isFlipped = true;
+		} else {
+		    isFlipped = false;
+		}
+		
+		// Mirror field
+		String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
+		if (currentMirror.compareTo("true") == 0) {
+		    isMirrored = true;
+		} else {
+		    isMirrored = false;
+		}
+	    }
+	    
+	}
+	
     }
 }

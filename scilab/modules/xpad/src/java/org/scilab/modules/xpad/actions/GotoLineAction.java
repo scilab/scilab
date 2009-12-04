@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -65,12 +66,20 @@ public class GotoLineAction extends DefaultAction {
 	    	}
 	}
 	
+	private boolean isWindows() {
+			return System.getProperty("os.name").toLowerCase().contains("windows");
+		}
+	 
 	public void gotoLineBox () {
 
 	        mainFrame = new JFrame();
 	        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        mainFrame.setLayout(new GridBagLayout());
+	        
+	        mainFrame.setPreferredSize(new Dimension(305, 105));
+	        mainFrame.setMinimumSize(new Dimension(305, 105));
+	        mainFrame.setMaximumSize(new Dimension(305, 105));
 
 	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
@@ -87,9 +96,6 @@ public class GotoLineAction extends DefaultAction {
 	        gbc.gridwidth = 1;
 	        gbc.insets = new Insets(0, 10, 0, 0);
 
-
-
-
 	        gbc.gridx = 0;
 	        gbc.gridy = 4;
 	        gbc.gridheight = 1;
@@ -105,20 +111,36 @@ public class GotoLineAction extends DefaultAction {
 	        mainFrame.add(enterLineNumberField, gbc);
 
 
-	        gbc.gridx = 1;
-	        gbc.gridy = 5;
-	        gbc.gridheight = 1;
-	        gbc.gridwidth = 1;
-	        gbc.weightx = 1.;
-	        gbc.fill = GridBagConstraints.NONE;
-	        gbc.insets = new Insets(5, 0, 10, 5);
-	        mainFrame.add(cancelButton, gbc);
+	        if (isWindows()) {
+		        gbc.gridx = 1;
+		        gbc.gridy = 5;
+		        gbc.gridheight = 1;
+		        gbc.gridwidth = 1;
+		        gbc.weightx = 1.;
+		        gbc.fill = GridBagConstraints.NONE;
+		        gbc.insets = new Insets(5, 0, 10, 10);
+		        mainFrame.add(okButton, gbc);	      
 
+		        gbc.gridx = 2;
+		        gbc.weightx = 0.;
+		        gbc.insets = new Insets(5, 0, 10, 5);
+		        mainFrame.add(cancelButton, gbc);
+	        }
+	        else {
+		        gbc.gridx = 1;
+		        gbc.gridy = 5;
+		        gbc.gridheight = 1;
+		        gbc.gridwidth = 1;
+		        gbc.weightx = 1.;
+		        gbc.fill = GridBagConstraints.NONE;
+		        gbc.insets = new Insets(5, 0, 10, 5);
+		        mainFrame.add(cancelButton, gbc);
 
-	        gbc.gridx = 2;
-	        gbc.weightx = 0.;
-	        gbc.insets = new Insets(5, 0, 10, 10);
-	        mainFrame.add(okButton, gbc);
+		        gbc.gridx = 2;
+		        gbc.weightx = 0.;
+		        gbc.insets = new Insets(5, 0, 10, 10);
+		        mainFrame.add(okButton, gbc);
+	        }
 
 		
 			cancelButton.addActionListener(new ActionListener() {

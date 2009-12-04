@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.UUID;
 
@@ -28,41 +29,66 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-@SuppressWarnings("serial")
-public class LoadIntoScilabAction extends DefaultAction {
+/**
+ * LoadIntoScilabAction class
+ * @author Allan CORNET
+ *
+ */
+public final class LoadIntoScilabAction extends DefaultAction {
 	
-	public static final String TMP_FILENAME = "LINES_LOAD_INTO_SCILAB.sce"; 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -5659317486404897280L;
 	
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private LoadIntoScilabAction(Xpad editor) {
 		super(XpadMessages.LOAD_INTO_SCILAB, editor);
 	}
 
+	/**
+	 * doAction
+	 */
 	public void doAction() {
 		boolean bDoExec = false;
-		String TMP_FILENAME = "LOAD_INTO_SCILAB-" + UUID.randomUUID().toString() + ".sce";
-		String TMP_FULLFILENAME = System.getenv("TMPDIR") + System.getProperty("file.separator") + TMP_FILENAME;
-		// save file as UTF-8
-		File f = new File(TMP_FULLFILENAME);
-		try {
-			OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
-			out.write(getEditor().getTextPane().getText());
-			out.flush();
-			out.close();
-			bDoExec = true;
-		}
-		catch(Exception e) {
-			bDoExec = false;
-		}
-
-		if (bDoExec && f.exists()) {
-			String cmdToExec = "exec('" + TMP_FULLFILENAME + "')";
-			InterpreterManagement.requestScilabExec(cmdToExec);
-		} else {
-			ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_FIND_TMPFILE);	
+		String text = getEditor().getTextPane().getText();
+		
+		if (text.compareTo("") != 0) {
+			String tmpFilename = "LOAD_INTO_SCILAB-" + UUID.randomUUID().toString() + ".sce";
+			String tmpFullFilename = System.getenv("TMPDIR") + System.getProperty("file.separator") + tmpFilename;
+			// save file as UTF-8
+			File f = new File(tmpFullFilename);
+			try {
+				OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
+				out.write(text);
+				out.flush();
+				out.close();
+				bDoExec = true;
+			} catch (IOException e) {
+				bDoExec = false;
+			}
+			
+			if (bDoExec && f.exists()) {
+				String cmdToExec = "exec('" + tmpFullFilename + "')";
+				InterpreterManagement.requestScilabExec(cmdToExec);
+			} else {
+				ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_FIND_TMPFILE);	
+			}
 		}
 	}
 	
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, new LoadIntoScilabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, 
+				new LoadIntoScilabAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }

@@ -29,6 +29,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -60,6 +61,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
@@ -91,13 +93,13 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
+import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -779,6 +781,14 @@ public class XcosDiagram extends ScilabGraph {
             for (Object object : changedCells) {
 		if (object instanceof BasicBlock) {
 		    BasicBlock current = (BasicBlock) object;
+		    
+		    // When we change the style property we have to update some
+		    // BasiBlock fields
+		    if (changes.get(0) instanceof mxStyleChange) {
+			current.updateFieldsFromStyle();
+		    }
+		    
+		    // Update the block position
 		    BlockPositioning.updateBlockView(current);
 		}
 	    }
@@ -1298,10 +1308,25 @@ public class XcosDiagram extends ScilabGraph {
     
     public void setContext(String[] context) {
 	this.context = context;
+	updateCellsContext();
     }
 
     public String[] getContext() {
 	return context;
+    }
+
+    public void updateCellsContext() {
+	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+	    Object obj = getModel().getChildAt(getDefaultParent(), i);
+	    if ( obj instanceof ContextUpdate) {
+		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    } else if (obj instanceof SuperBlock) {
+		SuperBlock superBlock = (SuperBlock)obj;
+		if(superBlock.getChild() != null) {
+		    superBlock.getChild().updateCellsContext();
+		}
+	    }
+	}
     }
 
     public String getVersion() {
