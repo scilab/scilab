@@ -23,6 +23,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
@@ -72,6 +73,10 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    return;
+	}
+
 	if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
 	    // This means we have a SuperBlock and we generated C code for it.
 	    this.setLocked(false);
@@ -121,11 +126,15 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = createContextMenu(graph);
-	
-	menu.getAsSimpleContextMenu().addSeparator();
-	menu.add(CodeGenerationAction.createMenu(graph));
-	
+	ContextMenu menu = null;
+
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    menu = createPaletteContextMenu(graph);
+	} else { 
+	    menu = createContextMenu(graph);
+	    menu.getAsSimpleContextMenu().addSeparator();
+	    menu.add(CodeGenerationAction.createMenu(graph));
+	}
 	menu.setVisible(true);
     }
     

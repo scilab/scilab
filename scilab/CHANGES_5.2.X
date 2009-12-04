@@ -1475,3 +1475,5 @@ Bug fixes:
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
+

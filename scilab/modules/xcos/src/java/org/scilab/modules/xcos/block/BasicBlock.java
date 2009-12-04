@@ -31,14 +31,18 @@ import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.xcos.PaletteDiagram;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.AlignBlockAction;
@@ -53,6 +57,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.palette.BlockPalette;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -520,6 +525,10 @@ public class BasicBlock extends XcosUIDObject {
 
     public void openBlockSettings(String context[]) {
 	
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    return;
+	}
+	
 	//prevent to open twice
 	if(isLocked()) {
 	    return;
@@ -605,54 +614,148 @@ public class BasicBlock extends XcosUIDObject {
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
-	//result.append("Block Address : " + this + "<br>");
 	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
 	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
-	result.append("UID : "+ getId() + "<br>");
-	result.append("Block Style : " + getStyle() + "<br>");
-	result.append("Flip : " + getFlip() + "<br>");
-	result.append("Mirror : " + getMirror() + "<br>");
-	result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + "<br>");
-	result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + "<br>");
-	result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + "<br>");
-	result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + "<br>");
-//	result.append("Diagram : " + getParentDiagram() + "<br>");
-//	//exprs
-//	if (getExprs() != null) {
-//	    result.append("Exprs : "+getExprs().toString()+"<br>");
-//	}
-//	else {
-//	    result.append("Exprs : (null)<br>");
-//	}
-//	//ipar
-//	if (getIntegerParameters() != null ) {
-//	    result.append("Ipar : "+getIntegerParameters().toString()+"<br>");
-//	}
-//	else {
-//	    result.append("Ipar : (null)<br>");
-//	}
-//	//rpar
-//	if (getRealParameters() != null) {
-//	    result.append("Rpar : "+getRealParameters().toString()+"<br>");
-//	}
-//	else {
-//	    result.append("Rpar : (null)<br>");
-//	}
-//	//opar
-//	if (getObjectsParameters() != null) {
-//	    result.append("Opar : "+getObjectsParameters().toString()+"<br>");
-//	}
-//	else {
-//	    result.append("Opar : (null)<br>");
-//	}
-	
+
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    if(getIntegerParameters() != null) {
+		result.append("Integer parameters : "+ getIntegerParameters() + "<br>");
+	    }
+	    
+	    if(getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
+		result.append("Real parameters : "+ getRealParameters() + "<br>");
+	    }
+	    
+	    if(getObjectsParameters() != null) {
+		result.append("Object parameters : "+ getObjectsParameters() + "<br>");
+	    }
+	} else {
+	    result.append("UID : "+ getId() + "<br>");
+	    result.append("Block Style : " + getStyle() + "<br>");
+	    result.append("Flip : " + getFlip() + "<br>");
+	    result.append("Mirror : " + getMirror() + "<br>");
+	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + "<br>");
+	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + "<br>");
+	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + "<br>");
+	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + "<br>");
+	}
+
+	result.append("x : " + getGeometry().getX() + "<br>");
+	result.append("y : " + getGeometry().getY() + "<br>");
+	result.append("w : " + getGeometry().getWidth() + "<br>");
+	result.append("h : " + getGeometry().getHeight() + "<br>");
 	result.append("</html>");
 	return result.toString();
     }
 
     public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = createContextMenu(graph);
+	ContextMenu menu = null;
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    menu = createPaletteContextMenu(graph);
+	} else {
+	    menu = createContextMenu(graph);
+	}
 	menu.setVisible(true);
+    }
+
+    public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
+	ContextMenu menu = ScilabContextMenu.createContextMenu();
+
+	final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+
+	if (allDiagrams.size() == 0) {
+	    // No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
+	    MenuItem addTo = ScilabMenuItem.createMenuItem();
+
+	    addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
+	    addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
+		private static final long serialVersionUID = 8370536280449900878L;
+
+		public void callBack() {
+		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
+		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
+		    mxGeometry geom = BasicBlock.this.getGeometry();
+		    geom.setX(10);
+		    geom.setY(10);
+		    theDiagram.getModel().setGeometry(block, geom);
+		    BlockPositioning.updateBlockView(block);
+		}
+	    });
+
+	    menu.add(addTo);
+
+	} else if (allDiagrams.size() == 1) {
+	    // A single diagram opened: add to this diagram
+	    MenuItem addTo = ScilabMenuItem.createMenuItem();
+
+	    addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
+	    final XcosDiagram theDiagram = allDiagrams.get(0);
+	    addTo.setCallback(new CallBack(theDiagram.getTitle()) {
+		private static final long serialVersionUID = -99601763227525686L;
+
+		public void callBack() {
+		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
+		    mxGeometry geom = BasicBlock.this.getGeometry();
+		    geom.setX(10);
+		    geom.setY(10);
+		    theDiagram.getModel().setGeometry(block, geom);
+		    BlockPositioning.updateBlockView(block);
+		}
+	    });
+
+	    menu.add(addTo);
+
+	} else {
+	    // The user has to choose
+	    Menu addTo = ScilabMenu.createMenu();
+
+	    addTo.setText(XcosMessages.ADDTO);
+
+	    for (int i = 0; i < allDiagrams.size(); i++) {
+		MenuItem diagram = ScilabMenuItem.createMenuItem();
+		final XcosDiagram theDiagram = allDiagrams.get(i);
+		diagram.setText(allDiagrams.get(i).getParentTab().getName());
+		diagram.setCallback(new CallBack(theDiagram.getTitle()) {
+		    private static final long serialVersionUID = 3345416658377835057L;
+
+		    public void callBack() {
+			BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
+			mxGeometry geom = BasicBlock.this.getGeometry();
+			geom.setX(10);
+			geom.setY(10);
+			theDiagram.getModel().setGeometry(block, geom);
+			BlockPositioning.updateBlockView(block);
+		    }
+		});
+		addTo.add(diagram);
+	    }
+
+	    menu.add(addTo);
+	}
+
+
+	menu.getAsSimpleContextMenu().addSeparator();
+
+	MenuItem help = ScilabMenuItem.createMenuItem();
+	help.setText(XcosMessages.BLOCK_DOCUMENTATION);
+	help.setCallback(new CallBack(XcosMessages.BLOCK_DOCUMENTATION) {
+	    private static final long serialVersionUID = -1480947262397441951L;
+
+	    public void callBack() {
+		InterpreterManagement.requestScilabExec("help " + getInterfaceFunctionName());
+	    }
+	});
+	menu.add(help);
+
+	menu.setVisible(true);
+
+	((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+		MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+	
+	return menu;
     }
 
     public ContextMenu createContextMenu(ScilabGraph graph) {

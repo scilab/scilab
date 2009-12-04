@@ -37,6 +37,7 @@ import javax.swing.JScrollPane;
 import javax.swing.TransferHandler;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxConstants;
@@ -46,10 +47,7 @@ import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends JScrollPane implements ComponentListener {
-    private static final long serialVersionUID = 1L;
-    private static final int HMARGIN = 5;
-    private static final int VMARGIN = 5;
-    private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
+    private static final long serialVersionUID = 5693635134906513755L;
 
     private JPanel panel = null;
     private String name;
@@ -67,15 +65,15 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	setBackground(Color.WHITE);
 
 	panel.setBackground(Color.WHITE);
-	panel.setLayout(new FlowLayout(FlowLayout.LEADING, HMARGIN, VMARGIN));
-	panel.setPreferredSize(new Dimension(DEFAULT_NB_COLS * (BlockPalette.BLOCK_WIDTH + HMARGIN), 0));
+	panel.setLayout(new FlowLayout(FlowLayout.LEADING, XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+	panel.setPreferredSize(new Dimension((XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN), 0));
 
-	getVerticalScrollBar().setBlockIncrement(BlockPalette.BLOCK_HEIGHT + VMARGIN);
-	getVerticalScrollBar().setUnitIncrement(BlockPalette.BLOCK_HEIGHT + VMARGIN);
+	getVerticalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
+	getVerticalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
 
 	//getHorizontalScrollBar().setVisible(false);
-	getHorizontalScrollBar().setBlockIncrement(BlockPalette.BLOCK_WIDTH + HMARGIN);
-	getHorizontalScrollBar().setUnitIncrement(BlockPalette.BLOCK_WIDTH + HMARGIN);
+	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 
 	addComponentListener(this);
 	// Clears the current selection when the background is clicked
@@ -289,9 +287,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 		panelWidth -=  getVerticalScrollBar().getWidth();
 	    }
 
-	    int numberOfCols = panelWidth / (BlockPalette.BLOCK_WIDTH + HMARGIN);
+	    int numberOfCols = panelWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 	    double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
-	    int preferedHeight = (int) ((BlockPalette.BLOCK_HEIGHT + VMARGIN) * Math.ceil(numberOfRows));
+	    int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math.ceil(numberOfRows));
 
 	    panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
 	}

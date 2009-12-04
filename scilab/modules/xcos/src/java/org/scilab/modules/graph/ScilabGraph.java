@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph;
 
+import java.awt.Color;
 import java.util.List;
 
 import org.scilab.modules.gui.tab.Tab;
@@ -39,7 +40,7 @@ public class ScilabGraph extends mxGraph {
     protected mxGraphOutline graphOutline = null;
     protected mxKeyboardHandler keyboardHandler = null;
     protected XcosComponent component = null;
-//    protected mxGraphComponent component = null;
+    //    protected mxGraphComponent component = null;
 
     private String title = Messages.gettext("Untitled");
     private String savedFile = null;
@@ -48,6 +49,9 @@ public class ScilabGraph extends mxGraph {
     private boolean opened = false;
     private boolean redoInAction = false;
     private int undoCounter = 0;
+    private boolean readOnly = false;
+    private Color originalColor = null;
+    private mxRubberband rubberBand;
 
     /**
      * 
@@ -62,8 +66,7 @@ public class ScilabGraph extends mxGraph {
 	public void invoke(Object source, mxEventObject evt) {
 
 	    if (!redoInAction) {
-		undoManager.undoableEditHappened((mxUndoableEdit) evt
-			.getArgAt(0));
+		undoManager.undoableEditHappened((mxUndoableEdit) evt.getArgAt(0));
 		incrementUndoCounter();
 	    }
 	}
@@ -78,7 +81,7 @@ public class ScilabGraph extends mxGraph {
 
     public ScilabGraph() {
 	super();
-	
+
 	/*
 	 * Disabling the default connected action and event listeners.
 	 */
@@ -86,7 +89,7 @@ public class ScilabGraph extends mxGraph {
 	mxGraphActions.getSelectPreviousAction().setEnabled(false);
 	mxGraphActions.getSelectChildAction().setEnabled(false);
 	mxGraphActions.getSelectParentAction().setEnabled(false);
-	
+
 	// Undo / Redo capabilities
 	getModel().addListener(mxEvent.UNDO, undoHandler);
 	getView().addListener(mxEvent.UNDO, undoHandler);
@@ -97,10 +100,10 @@ public class ScilabGraph extends mxGraph {
 	undoManager.addListener(mxEvent.REDO, selectionHandler);
 
 	component = new XcosComponent(this);
-//	component = new mxGraphComponent(this);
+	//	component = new mxGraphComponent(this);
 
 	// Adds rubberband selection
-	new mxRubberband(component);
+	rubberBand = new mxRubberband(component);
 
 	// Modified property change
 	getModel().addListener(mxEvent.CHANGE, changeTracker);
@@ -118,7 +121,7 @@ public class ScilabGraph extends mxGraph {
 	// this.setInvokesStopCellEditing(true);
     }
 
-	public String getSavedFile() {
+    public String getSavedFile() {
 	return savedFile;
     }
 
@@ -215,20 +218,48 @@ public class ScilabGraph extends mxGraph {
 
     public void setVisible(boolean visible) {
 	if (parentTab != null) {
-	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
-		    .getCorrespondingUIElement(parentTab.getParentWindowId());
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
 	    xcosWindow.setVisible(visible);
 	}
     }
 
     public boolean isVisible() {
 	if (parentTab != null) {
-	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
-		    .getCorrespondingUIElement(parentTab.getParentWindowId());
+	    ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(parentTab.getParentWindowId());
 	    return xcosWindow.isVisible();
 	}
 
 	return false;
     }
 
+    public void setReadOnly(boolean readOnly) {
+	this.readOnly = readOnly;
+	
+	setCellsLocked(readOnly);
+	if(isReadonly()) {
+	    setOriginalColor(getAsComponent().getBackground());
+	    getAsComponent().setBackground(new Color(240, 240, 240));
+	} else {
+	    getAsComponent().setBackground(getOriginalColor());
+	}
+    }
+
+    public boolean isReadonly() {
+	return readOnly;
+    }
+
+    public void setOriginalColor(Color originalColor) {
+	this.originalColor = originalColor;
+    }
+
+    public Color getOriginalColor() {
+	if(originalColor != null){
+	    return originalColor;
+	}
+	return Color.WHITE;
+    }
+
+    public mxRubberband getRubberBand() {
+        return rubberBand;
+    }
 }
