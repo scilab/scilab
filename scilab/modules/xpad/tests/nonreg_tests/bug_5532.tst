@@ -5,18 +5,20 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
 // <-- INTERACTIVE TEST -->
-
-// <-- Non-regression test for bug 4012 -->
+// <-- TEST WITH XPAD -->
+//
+// <-- Non-regression test for bug 5532 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4012
+// http://bugzilla.scilab.org/show_bug.cgi?id=5532
 //
 // <-- Short Description -->
-// glitch for console is wrong processing system month and week in
-// sessions starts and ends while browsing history
+// added a menu "Save All" to save all modified file by editor 
 
-// setdefaultlanguage('ru_RU')
-// restart scilab
-// checks history line "// Начало сессии"
+// launch editor
+// opens many files
+// modify three files and click on menu "Save All"
+// modified should saved
+
+

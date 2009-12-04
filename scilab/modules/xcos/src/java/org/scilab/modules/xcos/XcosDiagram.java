@@ -93,6 +93,7 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
+import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
@@ -779,6 +780,14 @@ public class XcosDiagram extends ScilabGraph {
             for (Object object : changedCells) {
 		if (object instanceof BasicBlock) {
 		    BasicBlock current = (BasicBlock) object;
+		    
+		    // When we change the style property we have to update some
+		    // BasiBlock fields
+		    if (changes.get(0) instanceof mxStyleChange) {
+			current.updateFieldsFromStyle();
+		    }
+		    
+		    // Update the block position
 		    BlockPositioning.updateBlockView(current);
 		}
 	    }

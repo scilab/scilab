@@ -33,7 +33,11 @@ c
       data minus/46/,plus/45/
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/
-      
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+
       r = rstk(pt)
 c     
       if (ddt .eq. 4) then
@@ -303,7 +307,8 @@ c       %% next lines added  for runtime set rhs args number
 
 c     
 c     eval function or variable arguments
- 38   call getsym
+ 38   continue
+      call getsym
       if(.not.dotsep.and.sym.eq.rparen) then
          if(char1.eq.dot.or.char1.eq.lparen) then
             call error(250)
@@ -312,9 +317,9 @@ c     eval function or variable arguments
 c     .  function has no input parameter
          if(rstk(pt).lt.0) then
 c     .    a(...)()
-            call error(21)
-            if (err .gt. 0) return
+            goto 461
          endif
+
          excnt=-1
          goto 45
       endif
@@ -453,6 +458,7 @@ c     end of argument sequence or recursive extraction ?
 c     
  45   continue
 c     end of argument sequence or recursive extraction 
+
       call getsym
       recurs=.false.
       if( sym .eq. dot.and.(abs(char1) .lt. blank.or.
@@ -518,10 +524,13 @@ c     .     form  list with individual indexes
       endif
 
  46   continue
+
 c     all arguments evaluated
       call putid(id,ids(1,pt))
       lhs=pstk(pt)
       pt=pt-1
+ 
+      
       if (id(1) .eq. blank) then
          if(lhs.ne.excnt) then
             call error(41)
@@ -533,7 +542,21 @@ c     all arguments evaluated
          endif
          go to 60
       endif
-      rhs = excnt
+c     skip empty argument list portion
+      goto 463
+
+
+c     empty argument list   a(...)()
+ 461  excnt=excnt+1
+      call getsym
+      lhs=pstk(pt)
+      call putid(id,ids(1,pt))
+      if ( eptover(1,psiz-1))  return
+      rstk(pt)=314
+      pstk(pt)=lhs
+
+
+ 463  rhs = excnt
 
 c     get function or variable to be evaluated for computed arguments
       fin=0
@@ -563,7 +586,7 @@ C next line added serge 06/08/08: it is not useful to scan funtab
          endif
       endif
       if(fin.gt.0) goto 50
-      if(rhs.eq.0) goto 60
+      if(rstk(pt+1).ge.0.and.rhs.eq.0) goto 60
 
       call isafunptr(top,id,ifun,ifin)
  
@@ -584,6 +607,29 @@ c
 c     *call* allops(extrac)
       return
  48   pt=pt-1
+      if(rstk(pt).eq.314) then
+c     .  a(...)()
+c     .  a(...) has been put on the top of the stack
+         lhs=pstk(pt)
+         pt=pt-2
+         rhs=0
+         call isafunptr(top,id,ifun,ifin)
+         if(ifun.ne.0) then
+c     .     a(...) is a funpr
+            top=top-1
+            fun=ifun
+            fin=ifin
+            goto 53
+         endif
+
+         il=iadr(lstk(top))
+         if (istk(il).eq.-13.or.istk(il).eq.-11) then
+c     .    a(...) is a reference to a macro
+            fin=istk(il+1)
+            top=top-1
+            goto 50
+         endif
+      endif
       goto 60
 c     
 c     --- variable is macro : execution
@@ -599,7 +645,7 @@ c     *call* macro
       pt=pt-1
       go to 60
 c     
-c     evaluate matrix function
+c     evaluate function
  53   if ( eptover(1,psiz-1))  return
       rstk(pt) = 309
       icall=9
@@ -609,7 +655,6 @@ c     *call* matfns
       go to 60
 c     
  60   continue
-
 c     check for ', .'  **,  ^ and .^
 
       if (sym .ne. quote) go to 63

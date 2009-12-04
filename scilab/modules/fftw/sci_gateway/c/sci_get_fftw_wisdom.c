@@ -58,12 +58,14 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 			if (Str1 == NULL) 
 			{
 				Scierror(999,_("%s: No more memory.\n"),fname);
+				if (Str) {FREE(Str); Str = NULL;}
 				return(0);
 			}
 			len = i-j;
 			if ((Str1[n1-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
 			{
 				freeArrayOfString(Str1,n1-1);
+				if (Str) {FREE(Str); Str = NULL;}
 				Scierror(999,_("%s: No more memory.\n"),fname);
 				return(0);
 			}
@@ -85,11 +87,13 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	if (Str1 == NULL) 
 	{
 		Scierror(999,_("%s: No more memory.\n"),fname);
+		if (Str) {FREE(Str); Str = NULL;}
 		return(0);
 	}
 	if ((Str1[n1-1] = (char *)MALLOC(sizeof(char))) == NULL) 
 	{
 		freeArrayOfString(Str1,n1-1);
+		if (Str) {FREE(Str); Str = NULL;}
 		Scierror(999,_("%s: No more memory.\n"),fname);
 		return(0);
 	}
@@ -100,6 +104,8 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	PutLhsVar();
 
 	freeArrayOfString(Str1,n1);
+	if (Str) {FREE(Str); Str = NULL;}
+
 	return(0);
 }
 /*--------------------------------------------------------------------------*/

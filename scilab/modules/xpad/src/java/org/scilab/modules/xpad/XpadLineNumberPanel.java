@@ -280,16 +280,15 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int availableWidth = getSize().width - insets.left - insets.right;
 
 		//  Determine the rows to draw within the clipped bounds.
-		javax.swing.text.StyledDocument doc= textPane.getStyledDocument();
-		synchronized(doc){
+		javax.swing.text.StyledDocument doc = textPane.getStyledDocument();
+		synchronized (doc) {
 			Rectangle clip = g.getClipBounds();
 			int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
 			int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
 
 			while (rowStartOffset <= endOffset) {
 				try {
-					if (isCurrentLine(rowStartOffset))
-					{
+					if (isCurrentLine(rowStartOffset)) {
 						g.setColor(getCurrentLineForeground());
 					} else {
 						g.setColor(getForeground());
@@ -306,10 +305,11 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 					//  Move to the next row
 					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
-				}
-				catch(Exception ex) {
-					ex.printStackTrace();
-					rowStartOffset = endOffset; // break loop when an exception is thrown
+				} catch (BadLocationException e) {
+					// Bug 5125
+					// This exception occurs because the user removed text from the textPane 
+					// while updating the LineNumberPanel 
+					return;
 				}
 			}
 		}
@@ -516,15 +516,17 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent textPane) {
 		try {
 			Rectangle r = textPane.modelToView(textPane.getCaretPosition());
-			if (isHighlighted == true) {
+			if (isHighlighted) {
 				g.setColor(currentLineHighlightColor);
 			} else {
 				g.setColor(textPane.getBackground());
 			}
 			g.fillRect(0, r.y, textPane.getWidth(), r.height);
-		}
-		catch(BadLocationException ex) {
-			ex.printStackTrace();
+		} catch (BadLocationException ex) {
+			// Bug 5125
+			// This exception occurs because the user removed text from the textPane 
+			// while updating the LineNumberPanel 
+			return;
 		}
 	}
 

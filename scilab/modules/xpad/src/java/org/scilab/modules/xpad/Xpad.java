@@ -72,14 +72,14 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
+import org.scilab.modules.xpad.actions.LineBeautifierAction;
 import org.scilab.modules.xpad.actions.RecentFileAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
-import org.scilab.modules.xpad.actions.LineBeautifierAction;
 import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.style.CompoundUndoManager;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.DropFilesListener;
 import org.scilab.modules.xpad.utils.SaveFile;
@@ -273,6 +273,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		SetColorsAction.closeSetColorsWindow();
 		editor = null;
 	}
+
 
 	/**
 	 * Create Xpad instance.
@@ -773,7 +774,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					repaint();
 				} catch (CannotUndoException ex) {
 					ex.printStackTrace();
-				}finally{
+				} finally {
 					doc.removeDocumentListener(cl);
 				}
 			}
@@ -785,20 +786,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public void redo() {
 		ScilabStyleDocument doc = (ScilabStyleDocument) getTextPane().getStyledDocument();
-		synchronized(doc){
-			UndoManager redo = doc.getUndoManager();
+		synchronized (doc) {
+			CompoundUndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
 				CaretUpdateListener cl = new CaretUpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					redo.redo();
-					if(!doc.isContentModified()){
+					if (!doc.isContentModified()) {
 						doc.setContentModified(true);
 						Xpad.this.updateTabTitle();
 					}
 				} catch (CannotRedoException ex) {
 					ex.printStackTrace();
-				}finally{
+				} finally {
 					doc.removeDocumentListener(cl);
 				}
 			}

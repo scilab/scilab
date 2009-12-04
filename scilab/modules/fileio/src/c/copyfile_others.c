@@ -272,6 +272,8 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
 		if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
 	}
 
+	if (dir) closedir(dir);
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

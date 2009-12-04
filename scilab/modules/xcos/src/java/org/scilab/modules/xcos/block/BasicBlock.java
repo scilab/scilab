@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block;
 import java.awt.MouseInfo;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +83,11 @@ public class BasicBlock extends XcosUIDObject {
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram = null;
+    
+    private transient int angle = 0;
+    private transient boolean isFlipped = false;
+    private transient boolean isMirrored = false;
+    
 
     // TODO :
     // Must make this types evolve, but for now keep a strong link to Scilab
@@ -860,20 +866,10 @@ public class BasicBlock extends XcosUIDObject {
     
 
     public boolean getMirror(){
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    if(state != null) {
-		String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
-		if(currentMirror.compareTo("true") == 0) {
-		    return true;
-		} else {
-		    return false;
-		}
-	    }
-	}
-	return false;
+	return isMirrored;
     }
     public void setMirror(boolean mirror) {
+	isMirrored = mirror;
 	if(getParentDiagram() != null) {
 	    if(mirror == true) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
@@ -884,21 +880,11 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public boolean getFlip(){
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    if(state != null) {
-		String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
-		if(currentFlip.compareTo("true") == 0) {
-		    return true;
-		} else {
-		    return false;
-		}
-	    }
-	}
-	return false;
+	return isFlipped;
     }
 
     public void toggleFlip() {
+	isFlipped = !isFlipped;
 	BlockPositioning.toggleFlip(this);
     }
 
@@ -939,19 +925,46 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public int getAngle() {
-	if(getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    if(state != null) {
-		String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
-		return Integer.parseInt(currentAngle);
-	    }
-	}
-	return 0;
+	return angle;
     }
 
     public void setAngle(int angle) {
+	this.angle = angle;
+	
 	if(getParentDiagram() != null) {
 	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_ROTATION, new Integer(angle).toString());
 	}
+    }
+
+    /**
+     * Usefull when we need to update local properties with mxCell style properties 
+     */
+    public void updateFieldsFromStyle() {
+	if (getParentDiagram() != null) {
+	    mxCellState state = getParentDiagram().getView().getState(this);
+	    if(state != null) {
+		// Angle field
+		String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
+		this.angle = Integer.parseInt(currentAngle);
+	    
+		// Flip field
+		String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
+		if (currentFlip.compareTo("true") == 0) {
+		    isFlipped = true;
+		} else {
+		    isFlipped = false;
+		}
+		
+		// Mirror field
+		String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
+		if (currentMirror.compareTo("true") == 0) {
+		    isMirrored = true;
+		} else {
+		    isMirrored = false;
+		}
+	    }
+	    
+	}
+	
     }
 }

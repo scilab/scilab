@@ -80,6 +80,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+
 * bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
 
 * bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
@@ -110,17 +112,23 @@ Xcos:
 
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
 
+* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
 
 * bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
 
+* bug 5418 fixed - DEBUG_SCICOS block has been added to the palette.
+
 * bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
 
 * bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
 
 * bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+
+* bug 5442 fixed - Undo a Mirror Action works as expected
 
 * bug 5445 fixed - Xcos: update modified state on undo/redo
 
@@ -156,6 +164,8 @@ Tree functions :
 
 Bug fixes:
 ==========
+* bug 2588 fixed - Calling a function with no input argument contained in an mlist
+                   generates an error.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
@@ -188,6 +198,8 @@ Bug fixes:
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
+
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
 
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
 
@@ -241,7 +253,6 @@ Bug fixes:
                    of the cost function.
 
 * bug 5308 fixed - editor did not check input argument type.
-
 
 * bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
@@ -311,7 +322,7 @@ Bug fixes:
 
 * bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
 
-* bug 5140 fixed - "Load into Scilab" was executed line by line.
+* bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab

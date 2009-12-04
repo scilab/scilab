@@ -1,22 +1,25 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009 - DIGITEO - Allan SIMON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
 // <-- INTERACTIVE TEST -->
-
-// <-- Non-regression test for bug 4012 -->
+// <-- TEST WITH XPAD -->
+//
+// <-- Non-regression test for bug 5516 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4012
+// http://bugzilla.scilab.org/show_bug.cgi?id=5516
 //
 // <-- Short Description -->
-// glitch for console is wrong processing system month and week in
-// sessions starts and ends while browsing history
+// Encoding preference is not saved
 
-// setdefaultlanguage('ru_RU')
-// restart scilab
-// checks history line "// Начало сессии"
+
+//xpad()
+//choose "Menu→Document→Encoding US-ASCII"
+//close xpad
+//xpad()
+//=> "Menu→Document→Encoding" should be US-ASCII
+
