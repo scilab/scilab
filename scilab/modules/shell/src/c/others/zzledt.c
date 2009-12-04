@@ -852,9 +852,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 						FREE(new_line); new_line = NULL;
 					}
 				}
-				FREE(common);
-				common = NULL;
 			}
+			if (common) {FREE(common); common = NULL;}
 		}
 	}
 }

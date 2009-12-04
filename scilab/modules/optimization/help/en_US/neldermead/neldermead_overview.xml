@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="neldermead_overview" xml:lang="fr"
+<refentry 
+	version="5.0-subset Scilab" 
+	xml:id="neldermead_overview" 
+	xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -10,7 +13,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
+    <pubdate>$LastChangedDate: 4-11-2009 $</pubdate>
   </info>
 
   <refnamediv>
@@ -49,27 +52,38 @@
 
     <itemizedlist>
       <listitem>
-        <para>&#8220;neldermead&#8221; provides various Nelder-Mead variants
+        <para><literal>neldermead</literal> provides various Nelder-Mead variants
         and manages for Nelder-Mead specific settings, such as the method to
         compute the initial simplex, the specific termination criteria,</para>
       </listitem>
 
       <listitem>
-        <para>&#8220;fminsearch&#8221; provides a Scilab commands which aims
-        at behaving as Matlab's fminsearch. Specific terminations criteria,
-        initial simplex and auxiliary settings are automatically configured so
-        that the behaviour of Matlab's fminsearch is exactly
-        reproduced.</para>
+        <para>
+	<literal>fminsearch</literal> provides a simplified Nelder-Mead algorithm.
+        Specific terminations criteria, initial simplex and auxiliary settings are automatically configured.
+	</para>
       </listitem>
 
       <listitem>
-        <para>&#8220;optimset&#8221;, &#8220;optimget&#8221; provides Scilab
-        commands to emulate their Matlab counterparts.</para>
+        <para>
+	<literal>optimset</literal>, <literal>optimget</literal> provide Scilab
+        commands to emulate their Matlab counterparts.
+	</para>
       </listitem>
 
       <listitem>
-        <para>&#8220;nmplot&#8221; provides a high-level component which
-        provides directly output pictures for Nelder-Mead algorithm.</para>
+        <para>
+	<literal>optimplotfunccount</literal>, <literal>optimplotx</literal>
+	and <literal>optimplotfval</literal> provide plotting features for the 
+	<literal>fminsearch</literal> function.
+	</para>
+      </listitem>
+
+      <listitem>
+        <para>
+	<literal>nmplot</literal> provides a high-level component which
+        provides directly output pictures for Nelder-Mead algorithm.
+	</para>
       </listitem>
     </itemizedlist>
 
@@ -78,7 +92,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>&#8220;optimbase&#8221; provides an abstract class for a general
+        <para><literal>optimbase</literal> provides an abstract class for a general
         optimization component, including the number of variables, the minimum
         and maximum bounds, the number of non linear inequality constraints,
         the loggin system, various termination criteria, the cost function,
@@ -86,7 +100,7 @@
       </listitem>
 
       <listitem>
-        <para>&#8220;optimsimplex&#8221; provides a class to manage a simplex
+        <para><literal>optimsimplex</literal> provides a class to manage a simplex
         made of an arbitrary number of vertices, including the computation of
         a simplex by various methods (axes, regular, Pfeffer's, randomized
         bounds), the computation of the size by various methods (diameter,
@@ -102,6 +116,30 @@
     algorithm currently provides :</para>
 
     <itemizedlist>
+    
+     <listitem>
+        <para>Provides 3 algorithms, including</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Spendley et al. fixed shaped algorithm,</para>
+          </listitem>
+
+          <listitem>
+            <para>Nelder-Mead variable shape algorithm,</para>
+          </listitem>
+
+          <listitem>
+            <para>
+	    Box "complex" algorithm managing bounds and nonlinear inequality
+        constraints based on arbitrary number of vertices in the
+        simplex.
+	</para>
+          </listitem>
+
+        </itemizedlist>
+      </listitem>
+
       <listitem>
         <para>Manage various simplex initializations</para>
 
@@ -200,10 +238,6 @@
       </listitem>
 
       <listitem>
-        <para>Spendley et al. fixed shaped algorithm,</para>
-      </listitem>
-
-      <listitem>
         <para>Kelley restart based on simplex gradient,</para>
       </listitem>
 
@@ -211,30 +245,7 @@
         <para>O'Neill restart based on factorial search around optimum,</para>
       </listitem>
 
-      <listitem>
-        <para>Box-like method managing bounds and nonlinear inequality
-        constraints based on arbitrary number of vertices in the
-        simplex.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-
-  <refsection>
-    <title>TODO</title>
-
-    <itemizedlist>
-        <listitem>
-          <para>implement "optimget"</para>
-        </listitem>
-
-        <listitem>
-          <para>provide the original Box method</para>
-        </listitem>
-
-        <listitem>
-          <para>implement parabolic line search</para>
-        </listitem>
-      </itemizedlist>
+     </itemizedlist>
   </refsection>
 
   <refsection>
@@ -338,4 +349,45 @@ nm = neldermead_destroy(nm);
     <para>&#8220;Algorithm AS47 - Function minimization using a simplex
     procedure, O'Neill, R., 1971, Applied Statistics</para>
   </refsection>
+  
+    <refsection>
+    <title>TODO</title>
+
+    <itemizedlist>
+        <listitem>
+          <para>
+	  include Multi-Directionnal Search algorithm in the release
+	  </para>
+        </listitem>
+	
+        <listitem>
+          <para>
+	  include parabolic interpolation in the release
+	  </para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a neldermead_outputfunction to make nice and easy outputs
+	  </para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a stopping feature to the cost function and manage the <literal>stop</literal>
+	output argument to the output functions of <literal>fminsearch</literal>
+	</para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a (quadratic) penalized version of <literal>neldermead</literal> for 
+	  bound constrained problems
+	</para>
+        </listitem>
+
+      </itemizedlist>
+  </refsection>
+
 </refentry>
+
