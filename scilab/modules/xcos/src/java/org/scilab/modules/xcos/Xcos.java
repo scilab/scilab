@@ -165,12 +165,7 @@ public class Xcos {
 		newSP.setParentDiagram(block.getParentDiagram());
 		if (show == true) {
 		    newSP.openBlockSettings(null);
-		    // lock cells and change background to gray to show
-		    // read-only
-		    newSP.getChild().setCellsLocked(true);
-		    newSP.getChild().getAsComponent().setBackground(
-			    new Color(204, 204, 204));
-		    // look to disable open setting dialog on double click too
+		    newSP.getChild().setReadOnly(true);
 		}
 		openedSuperBlock.put(UID, newSP);
 		break;

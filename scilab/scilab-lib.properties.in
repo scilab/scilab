@@ -27,6 +27,10 @@ antlr.jar=@ANTLR@
 
 jlatexmath.jar=@JLATEXMATH@
 
+; To build the export through the Java
+avalon-framework.jar=@AVALON_FRAMEWORK@
+
+
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar
 

@@ -117,6 +117,7 @@ import com.mxgraph.view.mxGraph;
  */
 public class XcosTab extends SwingScilabTab implements Tab {
 
+    private static final long serialVersionUID = -290453474673387812L;
     /*
      * Static fields
      */
