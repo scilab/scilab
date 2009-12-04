@@ -110,6 +110,8 @@ Xcos:
 
 * bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
 
+* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
+
 * bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
 
 * bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.

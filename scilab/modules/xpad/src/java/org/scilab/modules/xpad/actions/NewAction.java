@@ -52,7 +52,8 @@ public final class NewAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.NEW, null, new NewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.NEW, null, new NewAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

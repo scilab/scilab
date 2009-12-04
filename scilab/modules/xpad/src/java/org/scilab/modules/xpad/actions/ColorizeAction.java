@@ -25,8 +25,8 @@ public final class ColorizeAction extends DefaultCheckAction {
 
 	private static final long serialVersionUID = -2486375196709197718L;
 
-	private static Xpad colorEditor;
-	private ColorizationManager colorizationManager= new ColorizationManager();
+
+	private ColorizationManager colorizationManager = new ColorizationManager();
 
 	/**
 	 * Constructor
@@ -34,7 +34,6 @@ public final class ColorizeAction extends DefaultCheckAction {
 	 */
 	private ColorizeAction(Xpad editor) {
 		super(XpadMessages.COLORIZE, editor);
-		colorEditor = editor;
 	}
 
 	/**
@@ -42,9 +41,9 @@ public final class ColorizeAction extends DefaultCheckAction {
 	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		ScilabStyleDocument scilabDocument = (ScilabStyleDocument)getEditor().getTextPane().getStyledDocument(); 
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument(); 
 
-		if (this.getState() == false) {
+		if (!this.getState()) {
 			colorizationManager.resetStyle(scilabDocument);
 		} else {
 			colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());

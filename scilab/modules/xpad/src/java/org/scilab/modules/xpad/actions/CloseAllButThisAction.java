@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO -  Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,23 +16,34 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class  CloseAllButThisAction extends DefaultAction {
-	    
+/**
+ * CloseAllButThisAction Class
+ * @author Allan CORNET
+ *
+ */
+public final class  CloseAllButThisAction extends DefaultAction {
 
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -9052217229357472945L;
 
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private CloseAllButThisAction(Xpad editor) {
 	        super(XpadMessages.CLOSEALLBUTTHIS, editor);
 	}
-	    
+	
+	/**
+	 * doAction
+	 */
 	public void doAction() {
 		int nbTabCount = getEditor().getTabPane().getTabCount();
 		boolean bContinue = true;
 		if (nbTabCount > 1) {
-			while( (getEditor().getTabPane().getTabCount() != 1) & (bContinue)) {
+			while ((getEditor().getTabPane().getTabCount() != 1) & (bContinue)) {
 				int currentIndex = getEditor().getTabPane().getSelectedIndex();
 				if (currentIndex != 0) {
 					bContinue = getEditor().closeTabAt(0);
@@ -48,7 +59,12 @@ public class  CloseAllButThisAction extends DefaultAction {
 	   	}
 	}
 	    
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.CLOSEALLBUTTHIS, null, new CloseAllButThisAction(editor),null);
+		return createMenu(XpadMessages.CLOSEALLBUTTHIS, null, new CloseAllButThisAction(editor), null);
 	}
 }
