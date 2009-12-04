@@ -10,7 +10,6 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3598
 //
 // Short description:
-// stripblanks(1) returns "stripblank : Pas assez de mémoire."
 //==============================================================
 ierr = execstr('r = stripblanks(1);','errcatch');
 if ierr <> 999 then bugmes();quit;end

@@ -134,6 +134,11 @@ int sci_regexp(char *fname,unsigned long fname_len)
 		if ( m3*n3 != 0) typ = cstk(l3)[0];
 		if (typ != STR_ONCE)
 		{
+		        if (values_start) {FREE(values_start); values_start = NULL;}
+			if (values_end) {FREE(values_end); values_end = NULL;}
+			if (wcvalues_start) {FREE(wcvalues_start); wcvalues_start = NULL;}
+			if (wcvalues_end) {FREE(wcvalues_end); wcvalues_end = NULL;}
+
 			freeArrayOfString(Str,mn);
 			freeArrayOfString(Str2,mn2);
 			Scierror(999,_("%s: Wrong type for input argument #%d: '%s' expected.\n"),fname,3,"o");
@@ -239,6 +244,11 @@ int sci_regexp(char *fname,unsigned long fname_len)
 						if (answer != NO_MATCH)
 						{
 							pcre_error(fname,answer);
+							if (values_start) {FREE(values_start); values_start = NULL;}
+							if (values_end) {FREE(values_end); values_end = NULL;}
+							if (wcvalues_start) {FREE(wcvalues_start); wcvalues_start = NULL;}
+							if (wcvalues_end) {FREE(wcvalues_end); wcvalues_end = NULL;}
+							if (save) {FREE(save); save = NULL;}
 							freeArrayOfString(Str,mn);
 							freeArrayOfString(Str2,mn2);
 							return 0;
@@ -246,16 +256,20 @@ int sci_regexp(char *fname,unsigned long fname_len)
 					}
 				}
 				while( (answer == PCRE_FINISHED_OK) && (*pointer != '\0') &&  (typ != STR_ONCE) );
-
-				if (save) {FREE(save);save=NULL;}
 			}
 			else
 			{
+			        if (values_start) {FREE(values_start); values_start = NULL;}
+				if (values_end) {FREE(values_end); values_end = NULL;}
+				if (wcvalues_start) {FREE(wcvalues_start); wcvalues_start = NULL;}
+				if (wcvalues_end) {FREE(wcvalues_end); wcvalues_end = NULL;}
+				if (save) {FREE(save); save = NULL;}
 				freeArrayOfString(Str,mn);
 				freeArrayOfString(Str2,mn2);
 				Scierror(999, _("%s: No more memory.\n"),fname);
 				return 0;
 			}
+			if (save) {FREE(save); save = NULL;}
 		}
 	}
 
@@ -288,6 +302,10 @@ int sci_regexp(char *fname,unsigned long fname_len)
 
 			if (match == NULL)
 			{
+			        if (values_start) {FREE(values_start); values_start = NULL;}
+				if (values_end) {FREE(values_end); values_end = NULL;}
+				if (wcvalues_start) {FREE(wcvalues_start); wcvalues_start = NULL;}
+				if (wcvalues_end) {FREE(wcvalues_end); wcvalues_end = NULL;}
 				freeArrayOfString(Str, mn);
 				freeArrayOfString(Str2, mn2);
 
