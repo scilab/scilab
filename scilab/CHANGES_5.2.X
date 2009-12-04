@@ -80,6 +80,8 @@ Xcos:
 
 * bug 5111 fixed - Xcos: "Save As" default path is the current file path
 
+* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+
 * bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
 
 * bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
@@ -160,6 +162,8 @@ Tree functions :
 
 Bug fixes:
 ==========
+* bug 2588 fixed - Calling a function with no input argument contained in an mlist
+                   generates an error.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
