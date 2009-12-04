@@ -51,7 +51,6 @@ int sci_strindex(char *fname,unsigned long fname_len)
 	BOOL bStrindex_with_pattern = FALSE;
 	int outIndex = 0;
 	int numRow = 1;
-    int *next = NULL;
 	int i = 0;
 
 	CheckRhs(2,3);
@@ -164,6 +163,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 
 		if ( (m2 != 1) && (n2 != 1) )
 		{
+		        if (wStrings_Input1) {FREE(wStrings_Input1); wStrings_Input1 = NULL;}
 			freeArrayOfString(Strings_Input1,m1n1);
 			freeArrayOfString(Strings_Input2,m2n2);
 			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of strings or column vector of strings expected.\n"),fname,2);
@@ -213,6 +213,9 @@ int sci_strindex(char *fname,unsigned long fname_len)
 				{
 					if (w != NO_MATCH)
 					{
+					        if (wStrings_Input1) {FREE(wStrings_Input1); wStrings_Input1 = NULL;}
+						if (values) {FREE(values); values = NULL;}
+						freeArrayOfWideString(wStrings_Input2,m2n2);
 						freeArrayOfString(Strings_Input1,m1n1);
 						freeArrayOfString(Strings_Input2,m2n2);
 						pcre_error(fname,w);
@@ -236,9 +239,10 @@ int sci_strindex(char *fname,unsigned long fname_len)
 				int w = 0;
 				if ( wcslen(wStrings_Input2[x]) == 0 )
 				{
+  				        if (wStrings_Input1) {FREE(wStrings_Input1); wStrings_Input1 = NULL;}
+					freeArrayOfWideString(wStrings_Input2,m2n2);
 					freeArrayOfString(Strings_Input2,m2n2);
 					freeArrayOfString(Strings_Input1,m1n1);
-					if (next) {FREE(next); next = NULL;}
 					if (values) {FREE(values); values = NULL;}
 					Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname,2);
 					return 0;
@@ -264,7 +268,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 			}
 		}
 
-		FREE(wStrings_Input1);
+		if (wStrings_Input1) {FREE(wStrings_Input1); wStrings_Input1 = NULL;}
 		freeArrayOfWideString(wStrings_Input2, m2n2);
 		freeArrayOfString(Strings_Input1,m1n1);
 		freeArrayOfString(Strings_Input2,m2n2);

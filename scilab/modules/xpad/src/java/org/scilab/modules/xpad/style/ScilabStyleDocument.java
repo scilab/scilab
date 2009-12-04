@@ -97,6 +97,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		setAsynchronousLoadPriority(2);
 		
 		autoIndent = ConfigXpadManager.getAutoIndent();
+		encoding = ConfigXpadManager.getDefaultEncoding();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;

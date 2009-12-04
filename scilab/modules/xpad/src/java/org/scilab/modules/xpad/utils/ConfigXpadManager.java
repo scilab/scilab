@@ -66,6 +66,7 @@ public final class ConfigXpadManager {
 	private static final String MAINWINPOSITION = "MainWindowPosition";
 	private static final String MAINWINSIZE = "MainWindowSize";
 	private static final String AUTOINDENT = "AutoIndent";
+	private static final String DEFAULTENCONDING = "DefaultEncoding";
 	
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -440,7 +441,6 @@ public final class ConfigXpadManager {
 		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
 		Element xpadAutoIndent = (Element) allSizeElements.item(0);
 		if (xpadAutoIndent == null){
-			System.out.println("autoattribute should have been created now");
 		    Element autoIndent = document.createElement(AUTOINDENT);
 
 		    autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
@@ -479,6 +479,61 @@ public final class ConfigXpadManager {
 		}
 	}
 	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveDefaultEncoding(String encoding) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+		    Element defaultEncoding = document.createElement(DEFAULTENCONDING);
+
+		    defaultEncoding.setAttribute(VALUE, encoding);
+
+		    xpadProfile.appendChild((Node) defaultEncoding);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, encoding  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static String getDefaultEncoding() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
+		Element defaultEncoding = (Element) allSizeElements.item(0);
+		
+		if(defaultEncoding == null){
+			return "UTF-8";
+		} else {
+			return defaultEncoding.getAttribute(VALUE);
+		}
+	}
 	
 	/**
 	 * Get all the foreground Colors 

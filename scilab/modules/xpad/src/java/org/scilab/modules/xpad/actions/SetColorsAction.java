@@ -12,6 +12,7 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,7 +23,9 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,7 +44,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SetColorsAction extends DefaultAction {
 
-	private static JFrame frame;
+	private static JFrame jframe;
 	private static boolean windowAlreadyExist;
 	
 	private ArrayList<JLabel> stylesNamesLabelList;
@@ -71,16 +74,19 @@ public class SetColorsAction extends DefaultAction {
     
     private void changeColorsBox () {
     	
-		frame = new JFrame();
+		jframe = new JFrame();
+		jframe.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		
 		JPanel panel = new JPanel(new GridBagLayout());
-		frame.setContentPane(panel);
-		
-		
+		jframe.setContentPane(panel);
+		jframe.setPreferredSize(new Dimension(250, 470));
+		jframe.setMinimumSize(new Dimension(250, 470));
+		jframe.setMaximumSize(new Dimension(250, 470));
 		
 		JPanel changePanel = new JPanel(new GridBagLayout());
 		JPanel validationPanel = new JPanel(new GridBagLayout());
 		
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;		
 		gbc.insets = new Insets(10, 5, 10, 5);
@@ -122,7 +128,7 @@ public class SetColorsAction extends DefaultAction {
 			    	/*update label color*/
 			    	
 
-					frame.setFocusable(true);
+			    	jframe.setFocusable(true);
 				}
 			};
 	
@@ -149,7 +155,7 @@ public class SetColorsAction extends DefaultAction {
 		    gbc.gridx = 4;
 		    gbc.gridwidth = GridBagConstraints.REMAINDER;
 		    
-		    JButton changeStyleColorButton  = new JButton("Change color");
+		    JButton changeStyleColorButton  = new JButton(XpadMessages.CHANGE_COLOR);
 		    changeStyleColorButton.addActionListener(changeColorListener);
 
 		    changePanel.add(changeStyleColorButton, gbc);
@@ -215,7 +221,7 @@ public class SetColorsAction extends DefaultAction {
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);
 				SetColorsAction.windowAlreadyExist = false;
-				frame.dispose();
+				jframe.dispose();
 			}
 		});
 		
@@ -224,7 +230,7 @@ public class SetColorsAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 				SetColorsAction.windowAlreadyExist = false;
-				frame.dispose();
+				jframe.dispose();
 			}
 		});
 		
@@ -253,7 +259,7 @@ public class SetColorsAction extends DefaultAction {
 		
 		//display the frame and set some properties
 		
-		frame.addWindowListener(new WindowListener() {
+		jframe.addWindowListener(new WindowListener() {
 			public void windowClosed(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 				
@@ -268,7 +274,7 @@ public class SetColorsAction extends DefaultAction {
 			}
 			public void windowClosing(WindowEvent arg0) {
 				SetColorsAction.windowAlreadyExist = false;
-				frame.dispose();
+				jframe.dispose();
 				
 			}
 			public void windowDeactivated(WindowEvent arg0) {
@@ -285,17 +291,17 @@ public class SetColorsAction extends DefaultAction {
 			
 		});
 		
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setTitle("Change Colors");
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);	
+		jframe.setDefaultCloseOperation(jframe.DO_NOTHING_ON_CLOSE);
+		jframe.setTitle(XpadMessages.CHANGE_COLORS);
+		jframe.pack();
+		jframe.setLocationRelativeTo(null);
+		jframe.setVisible(true);	
 		
     }
 
 	public static void closeSetColorsWindow(){
     	if (SetColorsAction.windowAlreadyExist) {
-    		frame.dispose();
+    		jframe.dispose();
     		SetColorsAction.windowAlreadyExist = false;
         	
     	}
