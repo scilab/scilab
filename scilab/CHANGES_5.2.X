@@ -122,6 +122,8 @@ Xcos:
 
 * bug 5440 fixed - Adding OUT* blocks to the sinks palette 
 
+* bug 5442 fixed - Undo a Mirror Action works as expected
+
 * bug 5445 fixed - Xcos: update modified state on undo/redo
 
 * bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
