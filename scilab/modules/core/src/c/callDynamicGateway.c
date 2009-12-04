@@ -65,10 +65,15 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 			sprintf(pathToLib,"%s%s%s%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
 
 			*hlib = LoadDynLibrary(pathToLib);
+		      
 			if (*hlib == NULL) 
 			{
+			        if (SciPath) {FREE(SciPath); SciPath = NULL;}
+			        if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
 				return DYN_GW_LOAD_LIBRARY_ERROR;
 			}
+			if (SciPath) {FREE(SciPath); SciPath = NULL;}
+			if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
 		}
 #endif
 	}
@@ -76,7 +81,10 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 	if (*ptrGateway == NULL)
 	{
 		*ptrGateway = (PROC_GATEWAY) GetDynLibFuncPtr(*hlib,gw_name);
-		if (*ptrGateway == NULL) return DYN_GW_PTR_FUNCTION_ERROR ;
+		if (*ptrGateway == NULL) 
+		  {
+		    return DYN_GW_PTR_FUNCTION_ERROR ;
+		  }
 	}
 
 	if ( (*hlib) && (*ptrGateway) )
@@ -84,6 +92,7 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 		(*ptrGateway)();
 		return DYN_GW_NO_ERROR;
 	}
+
 	return DYN_GW_CALL_FUNCTION_ERROR;
 }
 /*--------------------------------------------------------------------------*/

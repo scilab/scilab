@@ -11,11 +11,11 @@
  */
 package org.scilab.modules.xpad.style;
 
-import javax.swing.undo.UndoManager;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.undo.CompoundEdit;
-import javax.swing.text.AbstractDocument;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.text.AbstractDocument;
+import javax.swing.undo.CompoundEdit;
+import javax.swing.undo.UndoManager;
 
 public class CompoundUndoManager extends UndoManager {
 

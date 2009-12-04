@@ -12,21 +12,20 @@
 
 package org.scilab.modules.xpad.utils;
 
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DnDConstants;
-import java.awt.datatransfer.Transferable;
 import java.io.IOException;
 
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.datatransfer.DataFlavor;
 
 import org.scilab.modules.xpad.Xpad;
 
@@ -105,9 +104,9 @@ public class DropFilesListener implements DropTargetListener {
 				
 			} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
 				// http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4899516
-				String URIdata;
+				String uriData;
 				try {
-					URIdata = (String)transferable.getTransferData(uriListFlavor);
+					uriData = (String) transferable.getTransferData(uriListFlavor);
 				} catch (UnsupportedFlavorException e) {
 					// TODO Auto-generated catch block
 					arg0.dropComplete(false);
@@ -117,12 +116,11 @@ public class DropFilesListener implements DropTargetListener {
 					arg0.dropComplete(false);
 					return;
 				}
-				java.util.List data = textURIListToFileList(URIdata);
+				java.util.List data = textURIListToFileList(uriData);
 				for (int i = 0; i < data.size(); i++) {
 					Xpad.xpad(data.get(i).toString());
 				}
-			}
-			else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+			} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 				try {
 					String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
 					StyledDocument doc = pane.getStyledDocument();

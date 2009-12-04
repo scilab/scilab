@@ -189,6 +189,8 @@ Bug fixes:
 
 * bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
 
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
+
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
 
 * bug 5189 fixed - No more give an error when the user cancels file selection
@@ -241,7 +243,6 @@ Bug fixes:
                    of the cost function.
 
 * bug 5308 fixed - editor did not check input argument type.
-
 
 * bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
@@ -311,7 +312,7 @@ Bug fixes:
 
 * bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
 
-* bug 5140 fixed - "Load into Scilab" was executed line by line.
+* bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
