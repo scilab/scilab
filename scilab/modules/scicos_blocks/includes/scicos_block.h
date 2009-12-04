@@ -74,8 +74,9 @@ double get_scicos_time();
 int get_block_number();
 void set_block_error(int);
 void set_pointer_xproperty(int* pointer);
-double Get_Jacobian_cj(void);
-double Get_Jacobian_ci(void);
+// double Get_Jacobian_cj(void);
+// double Get_Jacobian_ci(void);
+double Get_Jacobian_parameter(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 

@@ -184,7 +184,8 @@ int *block_error = NULL;
 double scicos_time = 0.;
 int phase = 0;
 int Jacobian_Flag = 0;
-double CI = 0., CJ = 0.;
+// double CI = 0., CJ = 0.;  // doubles returned by Get_Jacobian_ci and Get_Jacobian_cj respectively 
+double  CJJ = 0.;            // returned by Get_Jacobian_parameter
 double SQuround = 0.;
 /* Jacobian*/
 static int AJacobian_block = 0;
@@ -235,6 +236,10 @@ static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 extern int C2F(dcopy)(int *,double *,int *,double *,int *);
+/*--------------------------------------------------------------------------*/
+void putevs(double *t, int *evtnb, int *ierr1);
+void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job);
+int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata);
 /*--------------------------------------------------------------------------*/
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 			 void **work,int *zptr,int *modptr_in,
@@ -1624,10 +1629,12 @@ static void cossimdaskr(double *told)
   int cnt = 0, N_iters = 0;
   maxord = 5;
 
+
   /* Set extension of Sundials for scicos */
   set_sundials_with_extension(TRUE);
 
-  CI=1.0;
+  // CI=1.0;   /* for function Get_Jacobian_ci */  
+  jroot=NULL;
   if (ng!=0) {
     if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
       *ierr =10000;
@@ -1636,6 +1643,7 @@ static void cossimdaskr(double *told)
   }
   for ( jj = 0 ; jj < ng ; jj++ )  jroot[jj] = 0 ;
 
+  zcros=NULL;
   if (ng!=0) {
     if((zcros=MALLOC(sizeof(int)*ng))== NULL ){
       *ierr =10000;
@@ -1658,6 +1666,7 @@ static void cossimdaskr(double *told)
   abstol = (realtype) Atol;  /*  Ith(abstol,1) = realtype) Atol;*/
 
   if (*neq>0) {
+    yy=NULL;
     yy = N_VNewEmpty_Serial(*neq);
     if(check_flag((void *)yy, "N_VNew_Serial", 0)){
       if (ng!=0) FREE(jroot);
@@ -1666,6 +1675,7 @@ static void cossimdaskr(double *told)
     }
     NV_DATA_S(yy)=x;
 
+    yp=NULL;
     yp = N_VNewEmpty_Serial(*neq);
     if(check_flag((void *)yp, "N_VNew_Serial", 0)){
       if (*neq>0) N_VDestroy_Serial(yy);
@@ -1676,6 +1686,7 @@ static void cossimdaskr(double *told)
     }
     NV_DATA_S(yp)=xd;
 
+    IDx = NULL;
     IDx = N_VNew_Serial(*neq); 
     if (check_flag((void *)IDx, "N_VNew_Serial", 0)) {
       *ierr=10000;
@@ -1688,6 +1699,7 @@ static void cossimdaskr(double *told)
     }
 
     /* Call IDACreate and IDAMalloc to initialize IDA memory */
+    ida_mem = NULL;
     ida_mem = IDACreate();
     if(check_flag((void *)ida_mem, "IDACreate", 0)) {      
       if (*neq>0) N_VDestroy_Serial(IDx);
@@ -1741,6 +1753,7 @@ static void cossimdaskr(double *told)
       return;
     }
 
+    data=NULL;
     if ((data = (UserData) MALLOC(sizeof(*data)))==NULL){
       *ierr=10000;
       if (*neq>0)IDAFree(&ida_mem);
@@ -2009,7 +2022,7 @@ static void cossimdaskr(double *told)
 	    if (xprop[jj] ==  1) scicos_xproperty[jj] = ONE;
 	    if (xprop[jj] == -1) scicos_xproperty[jj] = ZERO;
 	  }	  
-	  CI=0.0;CJ=100.0;
+	  /* CI=0.0;CJ=100.0; // for functions Get_Jacobian_ci and Get_Jacobian_cj
 	  Jacobians(*neq, (realtype) (*told), yy, yp,	bidon, (realtype) CJ, data, TJacque, tempv1, tempv2, tempv3);	    
 	  for (jj=0;jj<*neq;jj++){
 	    Jacque_col=DENSE_COL(TJacque,jj);
@@ -2026,23 +2039,36 @@ static void cossimdaskr(double *told)
 	      }
 	    }	    
 	    if (CI>=ZERO){  scicos_xproperty[jj]=CI;}else{fprintf(stderr,"\nWarinng! Xproperties are not match for i=%d!",jj);}
-	  }
+	    } */
 	  /* printf("\n"); for(jj=0;jj<*neq;jj++) { printf("x%d=%g ",jj,scicos_xproperty[jj]); }*/
+
 	  flag=IDASetId(ida_mem,IDx);
 	  if (check_flag(&flag, "IDASetId", 1)) {
 	    *ierr=200+(-flag); 
 	    freeallx
 	      return;
 	  }
-	  CI=1.0; 
+	  // CI=1.0;  // for function Get_Jacobian_ci
 	  /*--------------------------------------------*/
-	  maxnj=100; /* setting the maximum number of Jacobian evaluation during a Newton step */
-	  flag=IDASetMaxNumJacsIC(ida_mem, maxnj);
-	  if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) {*ierr=200+(-flag);freeallx;return;};
-	  flag=IDASetLineSearchOffIC(ida_mem,FALSE);  /* (def=false)  */
-	  if (check_flag(&flag, "IDASetLineSearchOffIC", 1)) { *ierr=200+(-flag);freeallx;return;};
-	  flag=IDASetMaxNumItersIC(ida_mem, 10);/* (def=10) setting the maximum number of Newton iterations in any one attemp to solve CIC */
-	  if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) { *ierr=200+(-flag);freeallx;return;};
+	  // maxnj=100; /* setting the maximum number of Jacobian evaluation during a Newton step */
+	  // flag=IDASetMaxNumJacsIC(ida_mem, maxnj);
+	  // if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) {
+	  //   *ierr=200+(-flag);
+	  //   freeallx;
+	  //   return;
+	  // };
+	  // flag=IDASetLineSearchOffIC(ida_mem,FALSE);  /* (def=false)  */
+	  // if (check_flag(&flag, "IDASetLineSearchOffIC", 1)) { 
+	  //   *ierr=200+(-flag);
+	  //   freeallx;
+	  //   return;
+	  // };
+	  // flag=IDASetMaxNumItersIC(ida_mem, 10);/* (def=10) setting the maximum number of Newton iterations in any one attemp to solve CIC */
+	  // if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) { 
+	  //   *ierr=200+(-flag);
+	  //   freeallx;
+	  //   return;
+	  // };
 
 	  N_iters=4+nmod*4;
 	  for(j=0;j<=N_iters;j++){/* counter to reevaluate the
@@ -2075,7 +2101,9 @@ static void cossimdaskr(double *told)
 	    phase=2; /* IDACalcIC: PHI-> yy0: if (ok) yy0_cic-> PHI*/
 	    copy_IDA_mem->ida_kk=1;
 
+	    // the initial conditons y0 and yp0 do not satisfy the DAE
 	    flagr=IDACalcIC(ida_mem, IDA_YA_YDP_INIT, (realtype)(t));
+
 	    phase=1;
 	    flag = IDAGetConsistentIC(ida_mem, yy, yp); /* PHI->YY */
 
@@ -2124,7 +2152,11 @@ static void cossimdaskr(double *told)
 		IDASetLineSearchOffIC(ida_mem,TRUE);  /* (def=false)  */
 		/* IDASetNonlinConvCoefIC(mem,1.01);*/ /* (def=0.01-0.33*/
 		flag=IDASetMaxNumItersIC(ida_mem, 1000);
-		if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) {*ierr=200+(-flag); freeallx; return;};
+		if (check_flag(&flag, "IDASetMaxNumItersIC", 1)) {
+		  *ierr=200+(-flag); 
+		  freeallx; 
+		  return;
+		};
 	      }
 	    }
 	  }/* mode-CIC  counter*/
@@ -2941,7 +2973,12 @@ static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval,
   alpha=ZERO;
   for (jj=0;jj<qlast;jj++)
     alpha=alpha -ONE/(jj+1);
-  if (hh!=0) CJ=-alpha/hh; else {*ierr= 217;return (*ierr);}
+  if (hh!=0) 
+    // CJ=-alpha/hh;  // For function Get_Jacobian_cj 
+    CJJ=-alpha/hh; 
+  else {
+    *ierr= 217;return (*ierr);
+  }
   xc=(double *)  NV_DATA_S(yy);
   xcdot= (double *) NV_DATA_S(yp);
   residual=(double *) NV_DATA_S(resval);
@@ -4405,6 +4442,7 @@ int get_phase_simulation(void)
 void do_cold_restart(void)
 {
   hot = 0;
+  return;
 }
 /*--------------------------------------------------------------------------*/
 /* get_scicos_time : return the current
@@ -4477,6 +4515,7 @@ int get_block_error()
 void end_scicos_sim()
 {
   C2F(coshlt).halt =2;
+  return;
 }
 /*--------------------------------------------------------------------------*/
 /* get_pointer_xproperty */
@@ -4504,16 +4543,25 @@ void set_pointer_xproperty(int* pointer)
 void Set_Jacobian_flag(int flag)
 {
   Jacobian_Flag = flag;
+  return;
 }
 /*--------------------------------------------------------------------------*/
-double Get_Jacobian_ci(void)
+/* Get_Jacobian_ci et Get_Jacobian_cj were called by the C file only produced
+ by Modelicac v 1.11.2 */
+/* double Get_Jacobian_ci(void)
 {
   return CI;
-}
+  } */
 /*--------------------------------------------------------------------------*/
-double Get_Jacobian_cj(void)
+ /* double Get_Jacobian_cj(void)
 {
   return CJ;
+} */
+/*--------------------------------------------------------------------------*/
+/* Fonction called by the C file produced by Modelicac 1.7.3 and 1.12.1 */
+double Get_Jacobian_parameter(void)
+{
+  return CJJ;
 }
 /*--------------------------------------------------------------------------*/
 double Get_Scicos_SQUR(void)
@@ -4560,7 +4608,9 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   xcdot  =(double *) N_VGetArrayPointer(yp);
   /*residual=(double *) NV_DATA_S(resvec);*/
   ttx=(double)tt;
-  CJ=(double)cj;
+  // CJ=(double)cj;  // for fonction Get_Jacobian_cj 
+  CJJ=(double)cj;    // returned by Get_Jacobian_parameter
+
   srur =(double) RSqrt(UNIT_ROUNDOFF);
 
   if (AJacobian_block>0) {
@@ -4616,13 +4666,15 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
     if (hh*xpi < ZERO) inc = -inc;
     inc = (xi + inc) - xi;
 
-    if (CI==0) {
+    /* if (CI==0) {
       inc = MAX( srur * ABS(hh*xpi),ONE );
       if (hh*xpi < ZERO) inc = -inc;
       inc = (xpi + inc) - xi;
-    }
-    xc[i] += CI*inc;
-    xcdot[i] += CJ*inc;
+      } */
+    // xc[i] += CI*inc;
+    // xcdot[i] += CJ*inc;
+    xc[i] += inc;
+    xcdot[i] += CJJ*inc;
     /*a= max(abs(H[0]*xcdot[i]),abs(1.0/Ewt[i]));
       b= max(1.0,abs(xc[i]));
       del=SQUR[0]*max(a,b);    */
@@ -4790,7 +4842,7 @@ static int read_id(ezxml_t *elements,char *id,double *value)
   }
 }
 /*--------------------------------------------------------------------------*/
-int Convert_number (char *s, double *out)
+int Convert_number(char *s, double *out)
 {
   char *endp = NULL;
   double d = 0.;
