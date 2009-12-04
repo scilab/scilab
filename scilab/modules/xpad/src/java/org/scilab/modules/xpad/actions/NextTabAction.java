@@ -21,18 +21,42 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class NextTabAction extends DefaultAction {
+/**
+ * NextTabAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class NextTabAction extends DefaultAction {
 
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 3283491475309953312L;
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private NextTabAction(Xpad editor) {
 		super(XpadMessages.NEXT_TAB, editor);
 	}
 	
+	/**
+	 * doAction
+	 */
 	public void doAction() {
 		int index = this.getEditor().getTabPane().getSelectedIndex();
 	}
 	
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.NEXT_TAB, null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.NEXT_TAB, null, new NextTabAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 	
 }

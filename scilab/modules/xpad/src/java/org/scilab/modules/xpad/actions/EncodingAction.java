@@ -48,7 +48,11 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public class EncodingAction extends DefaultCheckAction {
 
-    private String encoding;
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -5421313717126859924L;
+	private String encoding;
 
     /**
      * Constructor
@@ -78,7 +82,7 @@ public class EncodingAction extends DefaultCheckAction {
 
     /**
      * getEcodings
-     * @return ArrayList<String>
+     * @return ArrayList String 
      */
     public static ArrayList<String> getEcodings() {
     	
@@ -124,6 +128,8 @@ public class EncodingAction extends DefaultCheckAction {
 	    				//Back to previous menu checked
 	    				getEditor().getXpadGUI().updateEncodingMenu(styleDocument);
 	    				return;
+	    			default:
+	    				break;
 	    	}
 	    }		
 	}
@@ -164,15 +170,12 @@ public class EncodingAction extends DefaultCheckAction {
 	    isSuccess = false;
 	}
 
-	//getEditor().getTextPane().repaint();
-
 	/* Allow changes to be saved */
 	new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 	styleDocument.setAutoIndent(indentMode);
 	styleDocument.setUpdater(true);
 
 	styleDocument.setContentModified(false);
-
 
 	if (!isSuccess) {
 	    ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_CONVERT_FILE,
