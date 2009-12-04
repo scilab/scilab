@@ -192,7 +192,7 @@ public final class XcosPaletteManager {
 
 	    /** USER-DEFINED FUNCTIONS palette */
 	    new PaletteStringDescriptor(XcosMessages.USERDEFINEDFUNCTIONS_PAL,
-		    new String[] { "CBLOCK", "EXPRESSION", "MBLOCK", "PDE",
+		    new String[] { "CBLOCK", "DEBUG_SCICOS.h5", "EXPRESSION", "MBLOCK", "PDE",
 			    "SUPER_f", "c_block", "fortran_block",
 			    "generic_block3", "scifunc_block_m" }) };
 
