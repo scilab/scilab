@@ -107,7 +107,7 @@ case "set" then
     end
 
     if ok then
-      model.ipar = [font;fontsize;colr;xget('window');nt;nd;in(1,1)];
+      model.ipar = [font;fontsize;colr;nt;nd;in(1,1)];
       model.dstate = [-1;0;0;1;1;0;zeros(in(1,1)*in(1,2),1)]
       model.evtin = ones(1-herit,1)
       graphics.exprs = exprs;

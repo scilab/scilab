@@ -47,7 +47,7 @@ public class FlipAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.FLIP, null, new FlipAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), true));
 	}
 
 	/**
@@ -59,11 +59,13 @@ public class FlipAction extends DefaultAction {
 
 			Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
+			getGraph(null).getModel().beginUpdate();
 			for (int i = 0 ; i < allCells.length ; ++i) {
 				if (allCells[i] instanceof BasicBlock) {
 					((BasicBlock) allCells[i]).toggleFlip();
 				}
 			}
+			getGraph(null).getModel().endUpdate();
 		}
 	}
 

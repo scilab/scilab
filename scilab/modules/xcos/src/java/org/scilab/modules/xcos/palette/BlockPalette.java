@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -28,7 +27,9 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.util.mxGraphTransferable;
@@ -36,10 +37,7 @@ import com.mxgraph.util.mxRectangle;
 
 public class BlockPalette extends JLabel {
 
-    private static final long serialVersionUID = 1L;
-    public static int BLOCK_WIDTH = 100;
-    public static int BLOCK_HEIGHT = 100;
-
+    private static final long serialVersionUID = 2045511112700166300L;
     private BasicBlock block;
     private XcosPalette palette;
     private mxGraphTransferable transferable;
@@ -64,7 +62,7 @@ public class BlockPalette extends JLabel {
 	    public void mouseClicked(MouseEvent e) {
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
 			|| e.isPopupTrigger()
-			|| isMacOsPopupTrigger(e)) {
+			|| XcosMessages.isMacOsPopupTrigger(e)) {
 
 		    ContextMenu menu = ScilabContextMenu.createContextMenu();
 
@@ -79,7 +77,10 @@ public class BlockPalette extends JLabel {
 			    private static final long serialVersionUID = 1185879440137756636L;
 
 			    public void callBack() {
-				Xcos.createEmptyDiagram().addCell(BlockPalette.this.getBlock().createClone());
+				BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				block.getGeometry().setX(10);
+				block.getGeometry().setY(10);
+				Xcos.createEmptyDiagram().addCell(block);
 			    }
 			});
 
@@ -95,7 +96,10 @@ public class BlockPalette extends JLabel {
 			    private static final long serialVersionUID = 1185879440137756636L;
 
 			    public void callBack() {
-				theDiagram.addCell(BlockPalette.this.getBlock().createClone());
+				BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				block.getGeometry().setX(10);
+				block.getGeometry().setY(10);
+				theDiagram.addCell(block);
 			    }
 			});
 
@@ -115,7 +119,10 @@ public class BlockPalette extends JLabel {
 				private static final long serialVersionUID = -3138430622029406470L;
 
 				public void callBack() {
-				    theDiagram.addCell(BlockPalette.this.getBlock().createClone());
+				    BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+				    block.getGeometry().setX(10);
+				    block.getGeometry().setY(10);
+				    theDiagram.addCell(block);
 				}
 			    });
 			    addTo.add(diagram);
@@ -178,14 +185,18 @@ public class BlockPalette extends JLabel {
 	}
 	
 	if(block == null) {
-	    String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
+	    if (getText().compareTo("TEXT_f") != 0) {
+		String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
-	    // Search the bloc in global hashmap
-	    block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
+		// Search the bloc in global hashmap
+		block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
 
-	    if (block.getStyle().compareTo("") == 0) {
-		block.setStyle(block.getInterfaceFunctionName());
-		block.setValue(block.getInterfaceFunctionName());
+		if (block.getStyle().compareTo("") == 0) {
+		    block.setStyle(block.getInterfaceFunctionName());
+		    block.setValue(block.getInterfaceFunctionName());
+		}
+	    } else {
+		block = new TextBlock("Edit me!!!");
 	    }
 	}
 	return block;
@@ -218,7 +229,7 @@ public class BlockPalette extends JLabel {
 
     public void setPalette(XcosPalette palette) {
 	this.palette = palette;
-	setPreferredSize(new Dimension(BLOCK_WIDTH, BLOCK_HEIGHT));
+	setPreferredSize(new Dimension(XcosConstants.PALETTE_BLOCK_WIDTH, XcosConstants.PALETTE_BLOCK_HEIGHT));
 	setBackground(palette.getBackground().brighter());
 	setFont(new Font(getFont().getFamily(), 0, 12));
 
@@ -239,12 +250,4 @@ public class BlockPalette extends JLabel {
 	this.transferable = transferable;
     }
 
-    /**
-     * This function checks for the popup menu activation under MacOS with Java version 1.5
-     * Related to Scilab bug #5190
-     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
-     */
-    private boolean isMacOsPopupTrigger(MouseEvent e) {
-	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-    }
 }

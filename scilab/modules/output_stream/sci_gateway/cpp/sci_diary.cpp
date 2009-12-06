@@ -755,6 +755,16 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 				}
 				else
 				{
+					for (int i = 0; i < m1 * n1;i++)
+					{
+						wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
+						if (wcFilenames[i] == NULL)
+						{
+							Scierror(999,_("%s : Memory allocation error.\n"),fname);
+							*ierror = 1;
+						}
+					}
+
 					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
 					if(sciErr.iErr)
 					{
@@ -821,6 +831,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 		}
 		else
 		{
+			// get length lenStVarTwo
 			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
 			if(sciErr.iErr)
 			{
@@ -828,10 +839,19 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 				return 0;
 			}
 
+			wcInputArgumentTwo = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo + 1));
+
 			if (wcInputArgumentTwo == NULL)
 			{
 				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				*ierror = 1;
+			}
+
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
 			}
 		}
 	}
@@ -908,6 +928,11 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 				}
 				else
 				{
+					for (int i = 0; i < m3 * n3; i++)
+					{
+						wcInputArgumentThree[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarThree[i] + 1));
+					}
+
 					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
 					if(sciErr.iErr)
 					{

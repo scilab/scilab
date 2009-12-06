@@ -235,6 +235,10 @@ protected:
   /*---------------------------------------------------------------------*/
 
 private:
+  /**
+   * Modify the range for include 0
+   */
+  void addZeroInRange(double range[2]);
 
   /**
    * Compute concealed corner

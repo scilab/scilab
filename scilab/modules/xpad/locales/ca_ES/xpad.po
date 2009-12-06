@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -32,16 +32,17 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
-"real.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
 
 msgid "?"
 msgstr ""
@@ -54,9 +55,6 @@ msgstr "Quant a"
 
 msgid "All"
 msgstr "Tot"
-
-msgid "All rights reserved"
-msgstr ""
 
 msgid "Auto Reformat Selection"
 msgstr ""
@@ -72,9 +70,6 @@ msgstr ""
 
 msgid "Case sensitive"
 msgstr "Distingeix majúscules i minúscules"
-
-msgid "CeCILL License"
-msgstr ""
 
 msgid "Close"
 msgstr "Tanca"
@@ -94,7 +89,10 @@ msgstr ""
 msgid "Copy"
 msgstr "Copia"
 
-msgid "Copyright 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr ""
+
+msgid "Correct Indentation"
 msgstr ""
 
 msgid "Cut"
@@ -214,9 +212,6 @@ msgstr "Fitxers recents"
 msgid "Redo"
 msgstr "Refés"
 
-msgid "Reformat Selection"
-msgstr ""
-
 msgid "Regular expressions"
 msgstr "Expressions regulars"
 
@@ -255,14 +250,11 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Versió de l'editor d'Scilab 1.0"
+msgid "Scilab text editor"
+msgstr ""
 
-msgid "Scilab editor"
-msgstr "Editor d'Scilab"
-
-msgid "Scilab editor Help"
-msgstr "Ajuda de l'editor d'Scilab"
+msgid "Scilab text editor help"
+msgstr ""
 
 msgid "Scope"
 msgstr "Àmbit"
@@ -282,6 +274,12 @@ msgstr "Determina els colors"
 msgid "Set Font"
 msgstr "Establir font"
 
+msgid "Shift Left"
+msgstr ""
+
+msgid "Shift Right"
+msgstr ""
+
 msgid "Show/Hide ToolBar"
 msgstr "Mostra/amaga la barra d'eines"
 
@@ -291,10 +289,7 @@ msgstr "No s'ha trobat la cadena %s"
 msgid "Syntax Type"
 msgstr "Tipus de sintaxi"
 
-msgid "Tabify Selection"
-msgstr "Indenta la selecció"
-
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid ""
@@ -331,9 +326,6 @@ msgstr "Descomenta la selecció"
 
 msgid "Undo"
 msgstr "Desfés"
-
-msgid "Untabify Selection"
-msgstr "Desindenta la selecció"
 
 msgid "Untitled "
 msgstr "Sense títol "

@@ -47,7 +47,7 @@ public class RotateAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.ROTATE, null, new RotateAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), true));
 	}
 
 	/**
@@ -59,11 +59,13 @@ public class RotateAction extends DefaultAction {
 		
 		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 		
+		getGraph(null).getModel().beginUpdate();
 		for (int i = 0 ; i < allCells.length ; ++i) {
 		    if (allCells[i] instanceof BasicBlock) {
 			((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
 		    }
 		}
+		getGraph(null).getModel().endUpdate();
 	    }
 	}
 }

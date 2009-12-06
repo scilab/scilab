@@ -211,6 +211,7 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
 		if (env_name) {FREE(env_name); env_name = NULL;}
+		if (env_value) {FREE(env_value); env_value = NULL;}
 
 	}
 	return 0;

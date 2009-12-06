@@ -57,10 +57,10 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile("xcos",".hdf5");;
-	    final File tempInput = File.createTempFile("xcos",".hdf5");;
-	    tempOutput.delete();
-	    tempInput.delete();
+	    final File tempOutput = File.createTempFile("xcos",".h5");;
+	    final File tempInput = File.createTempFile("xcos",".h5");;
+	    tempOutput.deleteOnExit();
+	    tempInput.deleteOnExit();
 	    // Write scs_m
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
@@ -82,8 +82,6 @@ public class CodeGenerationAction extends DefaultAction {
 			    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		    block.setValue(block.getSimulationFunctionName());
 		    block.setChild(null);
-		    //tempOutput.delete();
-		    //tempInput.delete();
 		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		}
 	    };

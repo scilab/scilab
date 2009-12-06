@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-01 15:36+0000\n"
+"PO-Revision-Date: 2009-11-25 15:19+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -24,25 +24,30 @@ msgid ""
 "save it?"
 msgstr ""
 " 最後の保存の後で修正されました\n"
-"保存しますか?"
+"再度保存しますか?"
 
 msgid "%s is a directory."
-msgstr ""
+msgstr "%s はディレクトリです"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: これ以上のメモリはありません。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実スカラーを想定します。\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じ次元を想定します。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 引数 %d で不正な型: 実行列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: 引数 %d で不正な型: 文字行列を想定します。\n"
 
 msgid "?"
-msgstr ""
+msgstr "?"
 
 msgid "ASCII Encoding"
 msgstr "ASCIIエンコードィング"
@@ -53,47 +58,44 @@ msgstr "バージョン情報"
 msgid "All"
 msgstr "全て"
 
-msgid "All rights reserved"
-msgstr ""
-
 msgid "Auto Reformat Selection"
-msgstr ""
+msgstr "自動再フォーマット選択"
 
 msgid "Backward"
-msgstr "後へ"
+msgstr "戻る"
 
 msgid "Cancel"
 msgstr "キャンセル"
 
 msgid "Cannot load \"xpadConfiguration.xml\""
-msgstr ""
+msgstr "\"xpadConfiguration.xm\" をロードできません"
 
 msgid "Case sensitive"
-msgstr "大／小文字の区別"
-
-msgid "CeCILL License"
-msgstr ""
+msgstr "大/小文字の区別"
 
 msgid "Close"
 msgstr "閉じる"
 
 msgid "Colorization canceled"
-msgstr ""
+msgstr "色付けは取り消されました"
 
 msgid "Colorize"
-msgstr "カラー化"
+msgstr "色付け"
 
 msgid "Comment Selection"
 msgstr "コメント選択"
 
 msgid "Continue?"
-msgstr ""
+msgstr "続けますか?"
 
 msgid "Copy"
 msgstr "コピー"
 
-msgid "Copyright 2009"
-msgstr ""
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr "Copyright (c) 2009 (INRIA)"
+
+msgid "Correct Indentation"
+msgstr "正しい刻み"
 
 msgid "Cut"
 msgstr "切り取り"
@@ -114,16 +116,16 @@ msgid "Edit"
 msgstr "編集"
 
 msgid "Editor 1.0"
-msgstr ""
+msgstr "エディタ 1.0"
 
 msgid "Editor error"
-msgstr ""
+msgstr "エディッタ エラー"
 
 msgid "Encoding"
-msgstr ""
+msgstr "エンコーディング"
 
 msgid "Enter line number"
-msgstr "ライン番号を入力してください"
+msgstr "行番号を入力してください"
 
 msgid "Evaluate Selection"
 msgstr "選択の評価"
@@ -132,7 +134,7 @@ msgid "Execute"
 msgstr "実行"
 
 msgid "Execute File Into Scilab"
-msgstr ""
+msgstr "Scilabへ取り込んで実行"
 
 msgid "Exit"
 msgstr "終了"
@@ -153,10 +155,10 @@ msgid "Find:"
 msgstr "検索:"
 
 msgid "Forward"
-msgstr "先へ"
+msgstr "進む"
 
 msgid "Goto line"
-msgstr "ラインへ跳ぶ"
+msgstr "行へ移動"
 
 msgid "Highlight current line"
 msgstr "現在の行をハイライト"
@@ -165,13 +167,13 @@ msgid "Invalid regular expression : %s"
 msgstr "正規表現の不正 : %s"
 
 msgid "Line Numbers"
-msgstr "ライン番号"
+msgstr "行番号"
 
 msgid "Load Into Scilab"
 msgstr "Scilabへロード"
 
 msgid "Loading..."
-msgstr ""
+msgstr "ローディング..."
 
 msgid "New"
 msgstr "新規"
@@ -212,9 +214,6 @@ msgstr "最近のファイル"
 msgid "Redo"
 msgstr "やり直す"
 
-msgid "Reformat Selection"
-msgstr ""
-
 msgid "Regular expressions"
 msgstr "正規表現"
 
@@ -228,7 +227,7 @@ msgid "Replace File?"
 msgstr "ファイルを変更しますか?"
 
 msgid "Replace With :"
-msgstr "取り替えます :"
+msgstr "取り替え :"
 
 msgid "Replace/Find"
 msgstr "変更/検索"
@@ -247,20 +246,17 @@ msgstr "Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' モジュールはインストールされていません。\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Scilaエディターバージョン 1.0"
+msgid "Scilab text editor"
+msgstr "Scilabテキストエディッタ"
 
-msgid "Scilab editor"
-msgstr "Scilabエディター"
-
-msgid "Scilab editor Help"
-msgstr "Scilabエディター・ヘルプ"
+msgid "Scilab text editor help"
+msgstr "Scilabテキストエディッタ ヘルプ"
 
 msgid "Scope"
 msgstr "範囲"
@@ -272,13 +268,19 @@ msgid "Select All"
 msgstr "全て選択"
 
 msgid "Selected lines"
-msgstr "ライン選択"
+msgstr "行選択"
 
 msgid "Set Colors"
-msgstr "カラー設定"
+msgstr "色の設定"
 
 msgid "Set Font"
 msgstr "フォント設定"
+
+msgid "Shift Left"
+msgstr "左シフト"
+
+msgid "Shift Right"
+msgstr "右シフト"
 
 msgid "Show/Hide ToolBar"
 msgstr "ツールバーの表示/非表示"
@@ -289,11 +291,8 @@ msgstr "文字列 %s は見つかりません"
 msgid "Syntax Type"
 msgstr "文法型"
 
-msgid "Tabify Selection"
-msgstr "タブ選択"
-
-msgid "The Scilab Consortium / DIGITEO"
-msgstr ""
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Scilab コンソーシアム (DIGITEO)"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -310,16 +309,16 @@ msgstr ""
 "上書きしますか?"
 
 msgid "The file could not be converted."
-msgstr ""
+msgstr "ファイルは変換できませんでした。"
 
 msgid "The file could not be saved."
-msgstr ""
+msgstr "ファイルは保存できませんでした。"
 
 msgid "This file"
 msgstr "ファイル"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr ""
+msgstr "ファイルはバイナリです、保存は正しい結果にならないかもしれません。"
 
 msgid "UTF-8 Encoding"
 msgstr "UTF-8エンコーディング"
@@ -329,9 +328,6 @@ msgstr "コメントなし選択"
 
 msgid "Undo"
 msgstr "元に戻す"
-
-msgid "Untabify Selection"
-msgstr "タブなし選択"
 
 msgid "Untitled "
 msgstr "無題 "
@@ -346,29 +342,29 @@ msgid "Word Wrap"
 msgstr "ワードラップ"
 
 msgid "Wrap search"
-msgstr "Warp 検索"
+msgstr "ラップ検索"
 
 msgid "XML"
 msgstr "XML"
 
 msgid "You have passed the beginning of the document"
-msgstr ""
+msgstr "ドキュメントの始まりを通り過ぎました"
 
 msgid "You have passed the end of the document"
-msgstr ""
+msgstr "ドキュメントの終りを通り過ぎました"
 
 msgid "You have reached the beginning of the document"
-msgstr ""
+msgstr "ドキュメントの初めに達しました"
 
 msgid "You have reached the end of the document"
 msgstr "ドキュメントの終りに達しました"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
+msgstr "このファイルをScilabへ取り込んで実行する前に修正を保存する必要があります。"
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr ""
+msgstr "修正内容を失うかもしれません、エンコーディングを変えますか?"
 
 msgid "close this tab"
 msgstr "このタブを閉じる"

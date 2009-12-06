@@ -41,7 +41,7 @@ import org.xml.sax.SAXException;
  */
 public class MathMLObjectGL extends SpecialTextObjectGL {
     
-    protected JEuclidView jev;
+    private JEuclidView jev;
     
     private final static Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
 
@@ -77,6 +77,13 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		this.width = m.width;
 		this.height = m.height;
     }
+
+	/**
+	 * Return the Jeuclid View 
+	 */
+	public JEuclidView getJev() {
+		return jev;
+	}
         
     /**
      * Set the color of the content

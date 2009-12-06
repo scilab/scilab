@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-13 14:23+0000\n"
+"PO-Revision-Date: 2009-11-20 15:49+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:20+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -505,6 +505,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere \"label\", "
+"\"icon\" o \"callback\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -697,14 +699,14 @@ msgstr "&Carica ambiente..."
 msgid "&Load..."
 msgstr "&Carica..."
 
+msgid "&Mailing lists"
+msgstr "&Mailing list"
+
 msgid "&Matlab to Scilab translator"
 msgstr "&Traduttore Matlab Scilab"
 
 msgid "&New figure..."
 msgstr "&Nuova figura"
-
-msgid "&Newsgroup Archives"
-msgstr "Archivi &Newsgroup"
 
 msgid "&Open a file..."
 msgstr "&Apri un file..."
@@ -797,9 +799,6 @@ msgstr "Aggiungere un colore"
 msgid "All files"
 msgstr "Tutti i file"
 
-msgid "All rights reserved"
-msgstr ""
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -837,6 +836,9 @@ msgstr ""
 "Autori:\n"
 "Consorzio Scilab / INRIA / ENPC / Contributori\n"
 "\n"
+
+msgid "Back"
+msgstr "Indietro"
 
 msgid "C&lose"
 msgstr "&Chiudi"
@@ -892,8 +894,11 @@ msgstr "Controllare Plot3d"
 msgid "Copy"
 msgstr "Copia"
 
-msgid "Copyright 1989 - 2009"
-msgstr "Diritti d'autore 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr "Diritto d'autore (c) 1989-2007 (ENPC)"
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Diritto d'autore (c) 1989-2009 (INRIA)"
 
 msgid "Cut"
 msgstr "Taglia"
@@ -903,6 +908,9 @@ msgstr "Mostra la selezione"
 
 msgid "Do you relly want to quit Scilab?"
 msgstr "Uscire veramente da Scilab?"
+
+msgid "Edit in the Scilab Text Editor"
+msgstr "Modifica nell'editor di testo di Scilab"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Immagine PostScript incapsulata (EPS)"
@@ -924,6 +932,9 @@ msgstr "Errore durante l'esportazione"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "ERRORE. È stato catturato un segnale.\n"
+
+msgid "Execute into Scilab"
+msgstr "Esegui in Scilab"
 
 msgid "Execution done.\n"
 msgstr "Esecuzione effettuata.\n"
@@ -952,6 +963,9 @@ msgstr "Il file già esiste"
 msgid "File already exists"
 msgstr "Il file già esiste"
 
+msgid "Forward"
+msgstr "Avanti"
+
 msgid "GIF image"
 msgstr "Immagine GIF"
 
@@ -961,8 +975,14 @@ msgstr "GUI"
 msgid "Help Browser"
 msgstr "Visualizzatore dell'aiuto"
 
-msgid "INRIA / ENPC / Contributors"
+msgid "Help about '"
 msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
+msgid "Help on a selected keyword"
+msgstr "Aiuto sulla parola-chiave"
 
 msgid "Impossible to get current look and feel"
 msgstr "Impossibile ottenere l'aspetto e il comportamento correnti"
@@ -994,7 +1014,7 @@ msgid "Loading help browser..."
 msgstr "Browser di aiuto in caricamento..."
 
 msgid "M&odule manager - ATOMS"
-msgstr ""
+msgstr "Gestore dei m&oduli - ATOMS"
 
 msgid "Menu"
 msgstr "Menù"
@@ -1022,6 +1042,9 @@ msgstr "Non c'è la proprietà \"%s\" per questi uicontrol di stile: %s.\n"
 
 msgid "No color selected."
 msgstr "Nessun colore selezionato."
+
+msgid "No text selected"
+msgstr "Nessun testo selezionato"
 
 msgid "OK"
 msgstr "OK"
@@ -1088,6 +1111,9 @@ msgstr "Immagine SVG"
 
 msgid "Save and execute"
 msgstr "Salva ed esegui"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Sito internet Scilab &Atoms"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Dimostrazioni di Scilab"
@@ -1197,8 +1223,8 @@ msgstr "Sotto-menu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Sotto-menu 2-2"
 
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "Il consorzio Scilab / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr ""
 
 msgid "Tree Overview"
 msgstr "Anteprima dell'albero"
@@ -1434,6 +1460,8 @@ msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
 msgstr ""
+"La proprietà ''%s'' ha un valore sbagliato: era atteso ''light'', "
+"''normal'', ''demi'' o ''bold''.\n"
 
 #, c-format
 msgid ""
@@ -1472,7 +1500,7 @@ msgstr "Sì"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr ""
+msgstr "È stato fatto un clic sul menù \"%s\"."
 
 #, c-format
 msgid "You selected ''%s''."
@@ -1509,19 +1537,19 @@ msgid ""
 msgstr ""
 
 msgid "green"
-msgstr ""
+msgstr "verde"
 
 msgid "http://www.scilab.org/"
 msgstr "http://www.scilab.org/"
 
 msgid "item1|item2|item3|item4"
-msgstr ""
+msgstr "oggetto1|oggetto2|oggetto3|oggetto4"
 
 msgid "red"
-msgstr ""
+msgstr "rosso"
 
 msgid "unchecked"
 msgstr ""
 
 msgid "yellow"
-msgstr ""
+msgstr "giallo"

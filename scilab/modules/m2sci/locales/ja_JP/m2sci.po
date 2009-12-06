@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-13 18:45+0000\n"
+"PO-Revision-Date: 2009-11-24 20:03+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -45,12 +45,10 @@ msgstr " -- 一時ファイルを置きます: %s -- "
 msgid " may be replaced by:"
 msgstr " これと取り替えられるかもしれません:"
 
-#
-# File: macros/mfile2sci.sci, line: 268
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
-msgstr "%d Matlab関数はまだ変換されませんでした、元の呼び出し順で使われました:"
+msgstr "%d Matlab関数はまだ変換されていません、元の呼び出し順で使われました:"
 
 #
 # File: macros/mfile2sci.sci, line: 271
@@ -241,7 +239,7 @@ msgstr "-all オプションを無視しました。"
 # File: macros/kernel/m2sci.sci, line: 265
 # File: macros/kernel/m2sci.sci, line: 267
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
-msgstr "// dims(i,:) の i 番目は 出力引数 の 次元ベクトルです。"
+msgstr "// dims(i,:) の i 番目は出力引数の次元ベクトルです。"
 
 #
 # File: macros/kernel/m2sci.sci, line: 269
@@ -511,10 +509,8 @@ msgstr "ファイル"
 msgid "File %s is an empty file ! Nothing done..."
 msgstr "ファイル%sは、空っぽのファイルです!完了したものはありません..."
 
-#
-# File: macros/mfile2sci.sci, line: 327
 msgid "File contains no instruction, no translation made..."
-msgstr "ファイルはいかなる指示も含みません、いかなる翻訳も作りませんでした..."
+msgstr "ファイルはいかなる指示も含みません、翻訳をしません..."
 
 #
 # File: macros/m2sci_gui.sci, line: 397
@@ -538,10 +534,8 @@ msgstr "Scilab sparse() のための、入力値は、同じサイズを持っ�
 msgid "Generate formated code:"
 msgstr "フォーマットされたコードを生成:"
 
-#
-# File: macros/m2sci_gui.sci, line: 100
 msgid "Generate pretty printed code: "
-msgstr "綺麗に書かれたコードを生成: "
+msgstr "整形されたコードを生成: "
 
 #
 # File: macros/sci_files/sci_global.sci, line: 31
@@ -643,11 +637,9 @@ msgstr "ツリー変換へのマクロ: 完了"
 msgid "Matlab exist(), mtlb_exist() is called."
 msgstr "Matlab exist(), mtlb_exist() は呼ばれました。"
 
-#
-# File: macros/kernel/default_trad.sci, line: 41
 #, c-format
 msgid "Matlab function %s not yet converted, original calling sequence used."
-msgstr "Matlab 関数 %s はまだ変換されていません、元の呼び出し順で使われました。"
+msgstr "Matlab関数 %s はまだ変換されていません、元の呼び出し順で使われました。"
 
 #
 # File: macros/kernel/get_unknown.sci, line: 22
@@ -769,12 +761,12 @@ msgstr "１つのオペランドが空行列です: %s , 結果を [] に設定�
 #
 # File: macros/mfile2sci.sci, line: 127
 msgid "Only double values used in M-file:"
-msgstr "単に M-file で、倍精度実数値 は使われました:"
+msgstr "単に M-file で、倍精度実数値を使う:"
 
 #
 # File: macros/m2sci_gui.sci, line: 200
 msgid "Only double values used: "
-msgstr "単に 倍精度実数値 は使われました: "
+msgstr "単に倍精度実数値を使う:: "
 
 #
 # File: macros/sci_files/sci_save.sci, line: 28
@@ -797,9 +789,6 @@ msgstr "オプション"
 msgid "Output directory"
 msgstr "出力ディレクトリ"
 
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 215
-# File: macros/kernel/sci_m2scideclare.sci, line: 294
 #, c-format
 msgid ""
 "Property current value and m2scideclare statements conflict for: %s\n"
@@ -808,19 +797,15 @@ msgid ""
 "   m2scideclare IGNORED"
 msgstr ""
 "現在の値プロパティとm2scideclare文が矛盾: %s\n"
-"   m2scideclare の与えられた型: %s\n"
+"   m2scideclare に与えられた型: %s\n"
 "   現在の値の型: %s\n"
 "   m2scideclareを無視しました"
 
-#
-# File: macros/m2sci_gui.sci, line: 237
 msgid "Recursive conversion: "
-msgstr "帰納的な転換: "
+msgstr "再帰変換: "
 
-#
-# File: macros/mfile2sci.sci, line: 126
 msgid "Recursive mode:"
-msgstr "帰納モード:"
+msgstr "再帰モード:"
 
 #
 # File: macros/mfile2sci.sci, line: 125
@@ -921,9 +906,6 @@ msgstr ""
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr "翻訳は誤っているかもしれません(//!!コメントを見て下さい)"
 
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 206
-# File: macros/kernel/sci_m2scideclare.sci, line: 287
 #, c-format
 msgid ""
 "Type current value and m2scideclare statements conflict for: %s\n"
@@ -932,7 +914,7 @@ msgid ""
 "   m2scideclare IGNORED"
 msgstr ""
 "現在の値型とm２scideclare文が矛盾します: %s\n"
-"   m2scideclare 与えた型: %s\n"
+"   m2scideclare 与えられた型: %s\n"
 "   現在の型: %s\n"
 "   m2scideclareを無視しました"
 
@@ -1173,10 +1155,8 @@ msgstr "これは実です。"
 msgid "is a scalar."
 msgstr "これはスカラーです。"
 
-#
-# File: macros/sci_files/sci_reshape.sci, line: 27
 msgid "is not a character string matrix."
-msgstr "これは文字列行列ではありません。"
+msgstr "これは文字行列ではありません。"
 
 #
 # File: macros/sci_files/sci_isequal.sci, line: 17
@@ -1235,7 +1215,7 @@ msgstr "m2sciassume はもう使われません, 代わりに m2scideclare を�
 # File: macros/kernel/M2scivar.sci, line: 25
 #, c-format
 msgid "matname must be a string instead of a: %s."
-msgstr "matname は、文字列でなくてはなりません: %s"
+msgstr "matname は、文字でなくてはなりません: %s"
 
 #
 # File: macros/sci_files/sci_warning.sci, line: 30
@@ -1260,7 +1240,7 @@ msgstr "mtlb_exist() は、Matlab exist() 関数のエミュレーションの�
 # File: macros/kernel/Variable.sci, line: 20
 #, c-format
 msgid "name must be a string instead of a: %s."
-msgstr "name は、文字列でなくてはなりません: %s"
+msgstr "name は、文字でなくてはなりません: %s"
 
 #
 # File: macros/kernel/sci_m2scideclare.sci, line: 53
@@ -1297,25 +1277,19 @@ msgstr "operator は、文字列でなくてはなりません: %s"
 msgid "out must be a list instead of a: %s."
 msgstr "out は、リストでなくてはなりません: %s"
 
-#
-# File: macros/percent/%e2sci.sci, line: 76
 #, c-format
 msgid "recursive extraction from a variable %s of type %s."
-msgstr "型 %2$s の変数 %1$s から、帰納抽出"
+msgstr "型 %2$s の変数 %1$s から、再帰抽出"
 
-#
-# File: macros/kernel/expression2sci.sci, line: 110
 #, c-format
 msgid ""
 "recursive extraction with one index of type %s is not yet implemented."
-msgstr "１つのインデックスをもつ帰納抽出、型 %s は、まだ装備されていません。"
+msgstr "１つのインデックスをもつ再帰抽出、型 %s は、まだ装備されていません。"
 
-#
-# File: macros/percent/%i2sci.sci, line: 145
 #, c-format
 msgid ""
 "recursive insertion in a variable which is not a Cell nor a Struct: %s."
-msgstr "変数の帰納挿入、構造でもセルでも、どちらでもありません: %s"
+msgstr "変数の再帰挿入、構造でもセルでも、どちらでもありません: %s"
 
 #
 # File: macros/mfile2sci.sci, line: 247

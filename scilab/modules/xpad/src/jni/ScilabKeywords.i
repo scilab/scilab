@@ -44,9 +44,11 @@ public class%}
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library xpad does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+	} catch (UnsatisfiedLinkError e) {
+	  	if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
+		   System.err.println("The native library xpad does not exist or cannot be found.");
+		   e.printStackTrace(System.err);
+		}
     }
   }
 %}

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-10 09:39+0000\n"
+"PO-Revision-Date: 2009-11-18 10:46+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -32,14 +32,20 @@ msgid "%s: No more memory.\n"
 msgstr "%s: kein weiterer Speicher.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real Scalar expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein reeller Skalar erwartet.\n"
+"%s: falsche Größe für Eingangsargument #%d und #%d. Gleiche Dimensionen "
+"erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: falscher Typ für Argument %d: reelle Matrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+"%s: falscher Typ für Argument %d: Matrix von Zeichenketten erwartet.\n"
 
 msgid "?"
 msgstr "?"
@@ -52,9 +58,6 @@ msgstr "Über"
 
 msgid "All"
 msgstr "Alle"
-
-msgid "All rights reserved"
-msgstr "Alle Rechte vorbehalten"
 
 msgid "Auto Reformat Selection"
 msgstr "Auto-Reformatierungsauswahl"
@@ -70,9 +73,6 @@ msgstr "Kann \"xpadConfiguration.xml\" nicht laden"
 
 msgid "Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
-
-msgid "CeCILL License"
-msgstr "CeCILL Lizenz"
 
 msgid "Close"
 msgstr "Schließen"
@@ -92,8 +92,11 @@ msgstr "Fortsetzen?"
 msgid "Copy"
 msgstr "kopieren"
 
-msgid "Copyright 2009"
-msgstr "(c) 2009"
+msgid "Copyright (c) 2009 (INRIA)"
+msgstr "Copyright (c) 2009 (INRIA)"
+
+msgid "Correct Indentation"
+msgstr "korrekter Einschnitt"
 
 msgid "Cut"
 msgstr "Ausschneiden"
@@ -212,9 +215,6 @@ msgstr "Zuletzt geöffnete Dateien"
 msgid "Redo"
 msgstr "Wiederholen"
 
-msgid "Reformat Selection"
-msgstr "Reformatierungsauswahl"
-
 msgid "Regular expressions"
 msgstr "Reguläre Ausdrücke"
 
@@ -253,14 +253,11 @@ msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
 
-msgid "Scilab Editor version 1.0"
-msgstr "Scilab Editor Version 1.0"
+msgid "Scilab text editor"
+msgstr "Scilab Text Editor"
 
-msgid "Scilab editor"
-msgstr "Scilab Editor"
-
-msgid "Scilab editor Help"
-msgstr "Scilab Editor Hilfe"
+msgid "Scilab text editor help"
+msgstr "Hilfe für Scilab Text Editor"
 
 msgid "Scope"
 msgstr "Gültigkeit"
@@ -280,6 +277,12 @@ msgstr "Farben einstellen"
 msgid "Set Font"
 msgstr "Schriftart wählen"
 
+msgid "Shift Left"
+msgstr "Umschalttaste links"
+
+msgid "Shift Right"
+msgstr "Umschalttaste rechts"
+
 msgid "Show/Hide ToolBar"
 msgstr "Zusatzleiste zeigen/verstecken"
 
@@ -289,11 +292,8 @@ msgstr "Zeichenkette %s nicht gefunden"
 msgid "Syntax Type"
 msgstr "Syntax Typ"
 
-msgid "Tabify Selection"
-msgstr "Auswahl in Registerkarten öffnen"
-
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "Das Scilab Konsortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Das Scilab Konsortium (DIGITEO)"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -330,9 +330,6 @@ msgstr "Auswahl nicht kommentieren"
 
 msgid "Undo"
 msgstr "Rückgängig machen"
-
-msgid "Untabify Selection"
-msgstr "Auswahl nicht in Registerkarten öffnen"
 
 msgid "Untitled "
 msgstr "Unbenannt "

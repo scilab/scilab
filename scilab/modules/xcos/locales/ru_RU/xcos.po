@@ -8,22 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-14 09:39+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2009-11-24 21:01+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: Файл ''%s'' не существует.\n"
+msgstr "%s: Файл «%s» не существует.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr "%s: Не удалось импортировать файл Xcos %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -52,29 +56,29 @@ msgstr "Добавить к новой диаграмме"
 msgid "Align Blocks"
 msgstr "Выровнять блоки"
 
-msgid "All rights reserved"
-msgstr "Все права защищены"
+msgid "Annotations"
+msgstr "Примечания"
+
+msgid "Based on Scicos"
+msgstr "Основан на Scicos"
 
 msgid "Block Help"
 msgstr "Справка по блоку"
 
 msgid "Block Parameters"
-msgstr "Свойства блока"
+msgstr "Параметры блока"
 
 msgid "Border Color"
 msgstr "Цвет границы"
 
 msgid "Bottom"
-msgstr "Вниз"
+msgstr "По нижнему краю"
 
 msgid "CVODE"
 msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Отменить"
-
-msgid "CeCILL License"
-msgstr "Лицензия CeCILL"
 
 msgid "Center"
 msgstr "По центру"
@@ -83,25 +87,30 @@ msgid "Close"
 msgstr "Закрыть"
 
 msgid "Code generation"
-msgstr "Генерация кода"
+msgstr "Сформировать код"
 
 msgid "Command port must be connected to control port"
-msgstr "Порт команд должен быть подключен к порту управления"
+msgstr "Командный порт должен быть подключен к управляющему порту"
 
 msgid "Commonly Used Blocks"
-msgstr "Часто используемые блоки"
+msgstr "Общеупотребительные блоки"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+"Идёт компиляция, результаты будут сохранены в переменной «scicos_cpr»"
 
 msgid "Compile"
 msgstr "Компилировать"
 
 msgid "Continuous"
-msgstr "Непрерывный"
+msgstr "C непрерывными характеристиками"
 
 msgid "Copy"
 msgstr "Копировать"
 
-msgid "Copyright 2009"
-msgstr "Авторское право 2009"
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Авторское право (c) 1989-2009 (INRIA)"
 
 msgid "Could not save diagram."
 msgstr "Не удалось сохранить диаграмму"
@@ -116,41 +125,39 @@ msgid "Cut"
 msgstr "Вырезать"
 
 msgid "Default"
-msgstr "По-умолчанию"
+msgstr "По умолчанию"
 
 msgid "Delete"
 msgstr "Удалить"
 
 msgid "Demonstrations Blocks"
-msgstr "Демонстрационные блоки"
+msgstr "Примеры блоков"
 
 msgid "Details"
-msgstr "Детали"
+msgstr "Информация о блоке"
 
 msgid "Diagram background"
 msgstr "Фон диаграммы"
 
 msgid "Diagram browser"
-msgstr "Браузер диаграмм"
+msgstr "Информация о диаграмме"
 
 msgid ""
 "Diagram has been modified since last save\n"
 "save it?"
-msgstr ""
-"Диаграмма была изменена с момента последнего сохранения\n"
-"сохранить её?"
+msgstr "Диаграмма была изменена. Сохранить изменения?"
 
-msgid "Discontinuous"
-msgstr "Прерывистый"
+msgid "Discontinuities"
+msgstr "С прерывными характеристиками"
 
 msgid "Discrete"
-msgstr ""
+msgstr "Дискретные блоки"
 
 msgid "Do you want a transparent background image?"
-msgstr "Вы хотите сделать фоновое изображение прозрачным?"
+msgstr "Вы желаете сделать фоновое изображение прозрачным?"
 
 msgid "Do you want to overwrite existing file?"
-msgstr "Вы хотите перезаписать существующий файл?"
+msgstr "Вы желаете перезаписать существующий файл?"
 
 msgid "Dump"
 msgstr "Дамп"
@@ -159,7 +166,7 @@ msgid "Edit"
 msgstr "Правка"
 
 msgid "Electrical"
-msgstr "Электрические"
+msgstr "Электрические блоки"
 
 msgid "Events"
 msgstr "События"
@@ -167,23 +174,27 @@ msgstr "События"
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
 msgstr ""
+"Входной порт явных данных должен быть подключен к выходному порту явных "
+"данных"
 
 msgid ""
 "Explicit data output port must be connected to explicit data input port"
 msgstr ""
+"Выходной порт явных данных должен быть подключен к входному порту явных "
+"данных"
 
 msgid "Export"
 msgstr "Экспортировать"
 
 msgid "Export to XML"
-msgstr "Экспорт в XML"
+msgstr "Экспортировать в XML"
 
 #, c-format
 msgid "FAILED TO EXPORT: %s\n"
-msgstr "НЕВОЗМОЖНО ЭКСПОРТИРОВАТЬ: %s\n"
+msgstr "Не удалось экспортировать: %s\n"
 
 msgid "Failed to load Diagram"
-msgstr "Сбой загрузки диаграммы"
+msgstr "Не удалось загрузить диаграмму"
 
 msgid "File"
 msgstr "Файл"
@@ -192,31 +203,34 @@ msgid "Fill Color"
 msgstr "Цвет заливки"
 
 msgid "Final integration time"
-msgstr "Полное время интеграции"
+msgstr "Конечное время интегрирования"
 
 msgid "Fit diagram to view"
-msgstr ""
+msgstr "Уместить диаграмму в окне"
 
 msgid "Flip"
-msgstr "Отразить"
+msgstr "Отразить по вертикали"
 
 msgid "Format"
 msgstr "Формат"
 
+msgid "Generate SuperBlock, please wait ..."
+msgstr "Формируется суперблок..."
+
 msgid "Generating C Code for SuperBlock"
-msgstr "Генерировать C код для Суперблока"
+msgstr "Формируется код на C для суперблока..."
 
 msgid "Get infos"
-msgstr ""
+msgstr "Получить информацию"
 
 msgid "Grid"
 msgstr "Сетка"
 
 msgid "Group"
-msgstr "Группировать"
+msgstr "Сгруппировать"
 
 msgid "Horizontal"
-msgstr "Горизонтальная"
+msgstr "Горизонтальный"
 
 msgid "IDA"
 msgstr "IDA"
@@ -224,55 +238,59 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "Изображение не содержит данных"
 
+msgid "Implicit"
+msgstr "Блоки неявных данных"
+
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
 msgstr ""
+"Входной порт неявных данных должен быть подключен к выходному порту неявных "
+"данных"
 
 msgid ""
 "Implicit data output port must be connected to implicit data input port"
 msgstr ""
+"Выходной порт неявных данных должен быть подключен к входному порту неявных "
+"данных"
 
 msgid "Import from XML"
-msgstr "Импорт из XML"
+msgstr "Импортировать из XML"
 
 msgid "Integer"
-msgstr "Целое"
+msgstr "Целые числа"
 
 msgid "Integrator absolute tolerance"
-msgstr "Абсолютный допуск интегратора"
+msgstr "Абсолютная погрешность интегрирования"
 
 msgid "Integrator relative tolerance"
-msgstr "Относительный допуск интегратора"
+msgstr "Относительная погрешность интегрирования"
 
 msgid "Invert selection"
 msgstr "Инвертировать выделение"
 
 msgid "Left"
-msgstr "Влево"
+msgstr "По левому краю"
 
 msgid "Link Style"
-msgstr "Стиль ссылок"
+msgstr "Стиль связей"
 
 msgid "Loading diagram"
-msgstr "Загрузка диаграммы"
+msgstr "Загружается диаграмма"
 
 msgid "Lookup Tables"
-msgstr "Таблицы поиска"
+msgstr "Задание табличных значений"
 
 msgid "Math Operations"
 msgstr "Математические операции"
 
 msgid "Matrix"
-msgstr "Матрица"
+msgstr "Матричные операции"
 
 msgid "Max integration time interval"
-msgstr "Максимальный интервал времени интегрирования"
+msgstr "Максимальный временной интервал интегрирования"
 
 msgid "Middle"
 msgstr "По середине"
-
-msgid "Modelica"
-msgstr "Modelica"
 
 msgid "New"
 msgstr "Создать"
@@ -284,10 +302,10 @@ msgid "New palette"
 msgstr "Новая палитра"
 
 msgid "No block selected"
-msgstr "Блок не выбран"
+msgstr "Нет выбранного блока"
 
 msgid "Normal 100%"
-msgstr "Нормальный 100%"
+msgstr "Нормальный размер"
 
 msgid "Ok"
 msgstr "ОК"
@@ -296,7 +314,7 @@ msgid "Open"
 msgstr "Открыть"
 
 msgid "Palette browser"
-msgstr "Браузер палитр"
+msgstr "Палитры блоков"
 
 msgid "Palettes"
 msgstr "Палитры"
@@ -304,8 +322,8 @@ msgstr "Палитры"
 msgid "Paste"
 msgstr "Вставить"
 
-msgid "Port Action"
-msgstr ""
+msgid "Port & Subsystem"
+msgstr "Порты и подсистемы"
 
 msgid "Print"
 msgstr "Печать"
@@ -314,7 +332,7 @@ msgid "Quit"
 msgstr "Выход"
 
 msgid "Real time scaling"
-msgstr "Масштабирование в реальном времени"
+msgstr "Количество секунд в единице времени"
 
 msgid "Recent Files"
 msgstr "Недавние файлы"
@@ -323,7 +341,7 @@ msgid "Redo"
 msgstr "Повторить"
 
 msgid "Region to superblock"
-msgstr "Регион в суперблок"
+msgstr "Выделение в суперблок"
 
 msgid "Remove"
 msgstr "Удалить"
@@ -332,7 +350,7 @@ msgid "Resize"
 msgstr "Изменить размер"
 
 msgid "Right"
-msgstr "Вправо"
+msgstr "По правому краю"
 
 msgid "Rotate"
 msgstr "Вращать"
@@ -344,10 +362,10 @@ msgid "Save as"
 msgstr "Сохранить как"
 
 msgid "Save as interface function"
-msgstr ""
+msgstr "Сохранить как интерфейсную функцию"
 
 msgid "Save block GUI"
-msgstr ""
+msgstr "Сохранить как блок GUI"
 
 msgid "Saving diagram"
 msgstr "Сохранение диаграммы"
@@ -364,19 +382,24 @@ msgid "Select all"
 msgstr "Выделить всё"
 
 msgid "Set Context"
-msgstr "Установить контекст"
+msgstr "Задать символьные параметры"
 
 msgid "Set Debug Level"
 msgstr "Задать уровень отладки"
 
 msgid "Set Parameters"
-msgstr "Задать параметры"
+msgstr "Параметры моделирования"
 
 msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
 msgstr ""
+"Выберите уровень отладки</br> (для выполнения scicos_debug(n), где "
+"n=(0,1,2,3))"
 
 msgid "Setup"
-msgstr "Установка"
+msgstr "Параметры"
+
+msgid "Show parent diagram"
+msgstr "Показать основную диаграмму"
 
 msgid "Show/Hide shadow"
 msgstr "Показать/скрыть тень"
@@ -385,7 +408,7 @@ msgid "Signal Processing"
 msgstr "Обработка сигналов"
 
 msgid "Signal Routing"
-msgstr "Маршрутизация сигнала"
+msgstr "Маршрутизация сигналов"
 
 msgid "Simulation"
 msgstr "Моделирование"
@@ -394,27 +417,27 @@ msgid "Simulation in progress"
 msgstr "Выполняется моделирование"
 
 msgid "Sinks"
-msgstr ""
+msgstr "Регистрирующие устройства"
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr ""
+msgstr "Метод решения"
 
 msgid "Sources"
-msgstr "Источники"
+msgstr "Источники сигналов и воздействий"
 
 msgid "Start"
-msgstr "Старт"
+msgstr "Запустить"
 
 msgid "Stop"
-msgstr "Стоп"
+msgstr "Завершить"
 
 msgid "Straight"
-msgstr ""
+msgstr "Прямой"
 
 msgid "Superblock mask"
 msgstr "Маска суперблока"
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорциум Scilab (DIGITEO)"
 
 msgid ""
@@ -422,22 +445,22 @@ msgid ""
 " Do you want to create it?"
 msgstr ""
 "Файл %s не существует.\n"
-" Создать его?"
+"Создать файл?"
 
 msgid "Thermo-Hydraulics"
-msgstr "Термо-гидравлические"
+msgstr "Термогидравлические блоки"
 
 msgid "Threshold"
-msgstr "Порог"
+msgstr "Пороговые блоки"
 
 msgid "Tolerance on time"
-msgstr "Допуск по времени"
+msgstr "Погрешность по времени"
 
 msgid "Tools"
 msgstr "Инструменты"
 
 msgid "Top"
-msgstr "Вверх"
+msgstr "По верхнему краю"
 
 msgid "UnGroup"
 msgstr "Разгруппировать"
@@ -449,28 +472,28 @@ msgid "Unknow Diagram Version : "
 msgstr "Неизвестная версия диаграммы: "
 
 msgid "Untitled"
-msgstr "Безымянный"
+msgstr "Безымянная диаграмма"
 
 msgid "User-Defined Functions"
 msgstr "Пользовательские функции"
 
 msgid "Vertical"
-msgstr "По вертикали"
+msgstr "Вертикальный"
 
 msgid "View"
 msgstr "Вид"
 
 msgid "View in Scicos"
-msgstr "Посмотреть в Scicos"
+msgstr "Просмотреть в Scicos"
 
 msgid "Viewport"
 msgstr "Окно просмотра"
 
 msgid "Will try to continue..."
-msgstr "Попытаться продолжить..."
+msgstr "Попытаюсь продолжить..."
 
 msgid "Xcos"
-msgstr "Xcos"
+msgstr "Визуальное моделирование Xcos"
 
 msgid "Xcos 1.0"
 msgstr "Xcos 1.0"
@@ -485,7 +508,7 @@ msgid "Xcos error"
 msgstr "Ошибка Xcos"
 
 msgid "Xcos version 1.0"
-msgstr "Xcos версии 1.0"
+msgstr "Xcos версия 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -493,6 +516,11 @@ msgid ""
 "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
 "diagram is loaded.)"
 msgstr ""
+"Вы можете ввести здесь Scilab инструкции для задания символьных "
+"параметров,<br/>которые потом можно будет использовать в качестве значений "
+"параметров блоков.<br/>Эти инструкции вычисляются один раз после "
+"подтверждения (т.е. при нажатии на ОК,<br/>при вызове Eval и каждый раз при "
+"загрузке диаграммы)."
 
 msgid "Zoom In"
 msgstr "Увеличить"
@@ -501,7 +529,7 @@ msgid "Zoom Out"
 msgstr "Уменьшить"
 
 msgid "control port must be connected to command port"
-msgstr "Порт управления должен быть подключен к порту команд"
+msgstr "Управляющий порт должен быть подключен к командному порту"
 
 msgid "maximum step size (0 means no limit)"
-msgstr "максимальный размер шага (0 - без ограничений)"
+msgstr "Максимальный размер шага (0 - без ограничений)"

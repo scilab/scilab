@@ -149,9 +149,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
       else // if_translator_exists
         messagebox(['-------Modelica compiler error (without the translator):-------'; ..
                    MSG1; ..
-                   'Please read the error message in the Scilab window'; ..
-                   ' '; ..
-                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again'],"modal","error");
+                   'Please read the error message in the Scilab window.'],"modal","error");
         ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
       end // if_translator_exists
     end // if_modelicac_fails_then_use_translator

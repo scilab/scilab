@@ -134,6 +134,7 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 				}
 
 				freeArrayOfString(InputString_Parameter, mn);
+				if (results) {FREE(results); results = NULL;}
 
 				C2F(putlhsvar)();
 			}

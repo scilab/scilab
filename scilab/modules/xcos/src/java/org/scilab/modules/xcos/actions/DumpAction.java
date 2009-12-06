@@ -41,8 +41,8 @@ public class DumpAction extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	try {
-	    File temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
+	    File temp = File.createTempFile("xcos",".h5");
+	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");deletefile(\"" + temp.getAbsolutePath()+"\");");
 	} catch (IOException e1) {

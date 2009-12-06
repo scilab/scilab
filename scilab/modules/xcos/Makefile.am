@@ -44,11 +44,14 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp \
-sci_gateway/cpp/sci_warnBlockByUID.cpp \
-sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
-sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_Xcos.cpp \
+	sci_gateway/cpp/sci_xcosNotify.cpp \
+	sci_gateway/cpp/sci_warnBlockByUID.cpp \
+	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
+	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
+	sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -236,6 +239,8 @@ images/palettes/DLRADAPT_f.jpg \
 images/palettes/DLSS.jpg \
 images/palettes/DOLLAR_f.jpg \
 images/palettes/EDGE_TRIGGER.jpg \
+images/palettes/ENDBLK.jpg \
+images/palettes/END_c.jpg \
 images/palettes/ESELECT_f.jpg \
 images/palettes/EVTDLY_c.jpg \
 images/palettes/EVTGEN_f.jpg \

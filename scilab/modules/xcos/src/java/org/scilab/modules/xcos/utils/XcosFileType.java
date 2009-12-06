@@ -55,12 +55,12 @@ public enum XcosFileType {
 			return tempOutput;
 		}
 	},
-	XCOS("xcos", XcosMessages.FILE_XCOS),
 	HDF5("h5", XcosMessages.FILE_HDF5) {
 		public File exportToHdf5(File arg0) {
 			return arg0;
 		}
 	},
+	XCOS("xcos", XcosMessages.FILE_XCOS),
 	UNKNOW("", "");
 	
 	
@@ -89,6 +89,13 @@ public enum XcosFileType {
 	 */
 	public String getExtension() {
 		return extension;
+	}
+	
+	/**
+	 * @return the mask of this file
+	 */
+	public String getFileMask() {
+		return "*." + getExtension();
 	}
 	
 	/**
@@ -151,7 +158,7 @@ public enum XcosFileType {
 	    String[] result = new String[XcosFileType.values().length-1];
 	    
 	    for (int i = 0; i < result.length; i++) {
-		result[i] = "*." + XcosFileType.values()[i].getExtension();
+		result[i] = XcosFileType.values()[i].getFileMask();
 	    }
 	    
 	    return result;

@@ -1078,11 +1078,11 @@
   <add as="EVTDLY_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_f.gif"/>
   </add>
-  <add as="END_c" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/END_c.gif"/>
+  <add as="END_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="END"/>
   </add>
-  <add as="ENDBLK" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/ENDBLK.gif"/>
+  <add as="ENDBLK" extend="blockWithLabel">
+    <add as="displayedLabel" value="END"/>
   </add>
   <add as="EDGETRIGGER" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/EDGETRIGGER.gif"/>
@@ -1103,7 +1103,7 @@
   <add as="Counter" extend="blockWithLabel">
     <!-- FIXME : Show parameters over block  -->
     <add as="displayedLabel" value="Counter&lt;BR&gt;
-				    0 &amp;rarr; 2"/>
+				    0 &amp;#8594; 2"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif"/>

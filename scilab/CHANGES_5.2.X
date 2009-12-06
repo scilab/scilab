@@ -34,6 +34,21 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+Text rendering:
+===============
+
+* New function "prettyprint" added
+This function provides the capability to represent a Scilab variable to LaTeX,
+TeX and Mathml. 
+See SEP #36 for more information
+
+* pol2tex is now obsolete. Please use prettyprint instead
+
+* texprint is now obsolete. Please use prettyprint instead
+
+* bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new "$...$" LaTeX feature.
+
+
 Localization:
 =============
 
@@ -51,10 +66,109 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
+* In some cases, under !Windows, the detection of libjogl.* was failling
+  because of a missing explicit link against libGL.*
+
+Xcos:
+=====
+
+* Icon added in the main Scilab tool bar
+
+* bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
+
+* bug 5104 fixed - Xcos: Update the block view on undo/redo
+
+* bug 5111 fixed - Xcos: "Save As" default path is the current file path
+
+* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+
+* bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
+
+* bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
+
+* bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
+
+* bug 5184 fixed - Xcos: Setup menu values are localized
+
+* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
+                   right cross.
+
+* bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
+
+* bug 5312 fixed - Xcos: adding 'Compile' informations
+
+* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+
+* bug 5336 fixed - xcos palette tabs now loaded much faster and uses less memory
+
+* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+
+* bug 5348 fixed - Openning a Superblock crash Xcos.
+
+* bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
+                   tried to call dynamic link functions.
+
+* bug 5403 fixed - Xcos: now creates graphic windows only when needed.
+
+* bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+
+* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
+
+* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+
+* bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
+
+* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+
+* bug 5418 fixed - DEBUG_SCICOS block has been added to the palette.
+
+* bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+
+* bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
+
+* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+
+* bug 5442 fixed - Undo a Mirror Action works as expected
+
+* bug 5445 fixed - Xcos: update modified state on undo/redo
+
+* bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
+
+* bug 5464 fixed - Xcos: Actions are disabled on file loading
+
+* bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
+
+* bug 5533 fixed - SetupAction doesn't valid inputs
+
+
+Tree functions :
+================
+
+* Rename tree functions:
+- insertNode      => uiInsertNode
+- getParentNode   => uiGetParentNode
+- getNodePosition => uiGetNodePosition
+- getChildrenNode => uiGetChildrenNode
+- findNode        => uiFindNode
+- equalsTree      => uiEqualsTree
+- dumpTree        => uiDumpTree
+- deleteNode      => uiDeleteNode
+- createTree      => uiCreateTree
+- createNode      => uiCreateNode
+- concatTree      => uiConcatTree
+- displaytree     => uiDisplayTree
+
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+
 Bug fixes:
 ==========
+* bug 2588 fixed - Calling a function with no input argument contained in an mlist
+                   generates an error.
 
-* bug 3478 fixed - file function returned a wrong error message when file did not exist.
+* bug 3478 fixed - file function returned a wrong error message when file did
+                   not exist.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
@@ -72,23 +186,33 @@ Bug fixes:
 
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
 
+* bug 5037 fixed - The link style menu doesn't have mnemonics
+
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
-* bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
+* bug 5103 fixed - Xpad: File=>Save now opens the "Save" dialog box for Untitled 
+                   files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5111 fixed - Xcos: "Save As" default path is the current file path
+* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
 
-* bug 5189 fixed - No more give an error when the user cancels file selection for saving.
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
+
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+
+* bug 5189 fixed - No more give an error when the user cancels file selection
+                   for saving.
 
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
 
 * bug 5200 fixed - Adding a code generation error message when not applicable
+
+* bug 5211 fixed - A non reg test was failing with the binary of Scilab
 
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
@@ -110,26 +234,27 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames.
 
-* bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper right cross.
-
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
                    settings in Visual Studio.
 
-* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab hangs.
+* bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
+                   hangs.
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
 
-* bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
+* bug 5295 fixed - configure: LibGL.so should be included at link time when linking with libjogl.so.
+
+* bug 5298 fixed - Obsolete Makefile in the mexlib module
 
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
                    of the cost function.
 
 * bug 5308 fixed - editor did not check input argument type.
 
-* bug 5312 fixed - Xcos: adding 'Compile' informations
+* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
 * bug 5325 fixed - Wrong default path on FileChooser.
 
@@ -137,47 +262,67 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
-* bug 5336 fixed - xcos palette tabs now loaded fastly.
-
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
 
-* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
+                   displayed at Scilab startup.
 
-* bug 5348 fixed - Openning a Superblock crash Xcos.
-
-* bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well displayed
-                   at Scilab startup.
-                   
 * bug 5360 fixed - "sciargs" documentation help page updated.
-                   
+
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
 
 * bug 5375 fixed - isdigit() did not support non ascii chars.
 
 * bug 5376 fixed - tool_skeleton.iss was not updated.
 
-* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on Windows.
-
-* bug 5388 fixed - Editor dialogs are now centered on editor main window.
-
-* bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
-                   tried to call dynamic link functions.
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
+                   Windows.
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
-* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
-
-* bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
-
-* bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+* bug 5413 fixed - An error was triggered when < or > where used in the comments
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
+
+* bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
+                   source did not exist and then aliasing had not been performed.
+
+* bug 5484 fixed - LCC-Win32 did not work with attached example.
+
+* bug 5487 fixed - help_from_sci was taking the first line of code as author
+                   when no empty line was provided
+
+* bug 5488 fixed - When the documentation was extracted from a .sci file using
+                   help_from_sci function, the docbook refsynopsisdiv section
+                   was incorrect.
+
+* bug 5489 fixed - When the documentation was extracted from a .sci file using
+                   help_from_sci function, the docbook Author refsection
+                   section was not correct.
+
+* bug 5497 fixed - Editor: selection drag is now available.
+
+* bug 5499 fixed - tbx_build_loader() automatically added a test about version in 
+                   the loader.sce even if the toolbox 100% written in Scilab
+                   code.
+
+* bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
+
+* bug 5507 fixed - whereis(bin2dec) returned a error.
+
+* bug 5513 fixed - input("message") did not restore the original prompt after the input job is done.
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
+
+* bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
@@ -668,8 +813,8 @@ tests:
 
 * test_run() now accepts Sub-Modules (See SEP #31)
 
-Internationalization:
-=====================
+Internationalization and Characters Encoding:
+=============================================
 
 * Portugues do Brazil localization added (Thanks Daniel de Souza Grilo and others)
 
@@ -682,6 +827,18 @@ Internationalization:
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
 * Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
+* Characters encoding:
+
+  Strings manipulations functions updated to use wide characters.
+  This feature add ability to manipulate any language on any system regardless of the system code page.
+
+  Internal C functions added: readNamedMatrixOfWideString, createNamedMatrixOfWideString,
+                              getMatrixOfWideString, createMatrixOfWideString in api_string.h
+                              to manage wide characters with scilab API.
+
+  input/output files functions also updated to use wide characters.
+  Default file format encoding used by Scilab is UTF-8.
 
 Bugs:
 
@@ -1276,6 +1433,8 @@ Bug fixes:
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
 
+* bug 5054 fixed - Remove ports on a block, remove the connected links.
+
 * bug 5074 fixed - French help star showed mis-encoded characters.
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
@@ -1315,9 +1474,17 @@ Bug fixes:
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 
+* bug 5351 fixed - Remove ports on a block, remove the connected links. 
+
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5437 fixed - Show error message during xcos simulation initialization.
+
+* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 

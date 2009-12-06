@@ -13,8 +13,6 @@
 
 package org.scilab.modules.graphic_export;
 
-import java.io.File;
-
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
@@ -44,9 +42,6 @@ public class FileExporter {
 	 *         depending on the kind of error
 	 */
 	public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
-	        int saveFileType = -1;
-		String saveFileName = "";
-		
 		DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
 
 		if (exportedFig == null) {
@@ -57,37 +52,6 @@ public class FileExporter {
 		//When the graphic-export is too long, we inform the user that the figure is exporting
 		String oldInfoMessage = exportedFig.getInfoMessage();
 		exportedFig.setInfoMessage(exportingMessage);
-
-		if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
-		        try {
-			        String ext = "";
-
-				switch (fileType) {
-				case ExportRenderer.PDF_EXPORT:
-				    ext = ".pdf";
-				    break;
-				case ExportRenderer.EPS_EXPORT:
-				    ext = ".eps";
-				    break;
-				case ExportRenderer.PS_EXPORT:
-				    ext = ".ps";
-				    break;
-				}
-			    
-				String name = new File(fileName).getName();
-				int dot = name.lastIndexOf(".");
-				if (dot > 0) {
-				        name = name.substring(0, dot);
-					saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
-				} else {
-				        saveFileName = fileName + ext;
-				}
-				
-				fileName = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + name + ".svg";
-				saveFileType = fileType;
-				fileType = ExportRenderer.SVG_EXPORT;
-			} catch (Exception e) {}
-		}
 		
 		ExportRenderer export;		
 		export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
@@ -101,10 +65,6 @@ public class FileExporter {
 		
 		//Put back the old infoMessage
 		exportedFig.setInfoMessage(oldInfoMessage);
-
-		if (saveFileType != -1) {
-		        ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
-		}
 		
 		return ExportRenderer.getErrorNumber();		
 	}	

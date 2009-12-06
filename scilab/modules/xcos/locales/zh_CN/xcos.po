@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:22+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -24,6 +24,10 @@ msgstr "%s：文件''%s''不存在。\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -52,7 +56,10 @@ msgstr "添加到新图表"
 msgid "Align Blocks"
 msgstr ""
 
-msgid "All rights reserved"
+msgid "Annotations"
+msgstr ""
+
+msgid "Based on Scicos"
 msgstr ""
 
 msgid "Block Help"
@@ -73,9 +80,6 @@ msgstr ""
 msgid "Cancel"
 msgstr "取消"
 
-msgid "CeCILL License"
-msgstr ""
-
 msgid "Center"
 msgstr "居中"
 
@@ -91,6 +95,10 @@ msgstr "命令端口必须跟控制端口相连"
 msgid "Commonly Used Blocks"
 msgstr ""
 
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+
 msgid "Compile"
 msgstr "编译"
 
@@ -100,7 +108,7 @@ msgstr "连续信号"
 msgid "Copy"
 msgstr "复制"
 
-msgid "Copyright 2009"
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 
 msgid "Could not save diagram."
@@ -138,8 +146,8 @@ msgid ""
 "save it?"
 msgstr ""
 
-msgid "Discontinuous"
-msgstr "不连续信号"
+msgid "Discontinuities"
+msgstr ""
 
 msgid "Discrete"
 msgstr ""
@@ -201,6 +209,9 @@ msgstr "翻转"
 msgid "Format"
 msgstr "格式"
 
+msgid "Generate SuperBlock, please wait ..."
+msgstr ""
+
 msgid "Generating C Code for SuperBlock"
 msgstr ""
 
@@ -221,6 +232,9 @@ msgstr ""
 
 msgid "Image contains no data."
 msgstr "图像中没有数据。"
+
+msgid "Implicit"
+msgstr ""
 
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
@@ -269,9 +283,6 @@ msgstr ""
 msgid "Middle"
 msgstr "垂直居中"
 
-msgid "Modelica"
-msgstr ""
-
 msgid "New"
 msgstr "新建"
 
@@ -302,7 +313,7 @@ msgstr "组件盘"
 msgid "Paste"
 msgstr "粘贴"
 
-msgid "Port Action"
+msgid "Port & Subsystem"
 msgstr ""
 
 msgid "Print"
@@ -376,6 +387,9 @@ msgstr ""
 msgid "Setup"
 msgstr "设置"
 
+msgid "Show parent diagram"
+msgstr ""
+
 msgid "Show/Hide shadow"
 msgstr "显示/隐藏阴影"
 
@@ -412,7 +426,7 @@ msgstr ""
 msgid "Superblock mask"
 msgstr ""
 
-msgid "The Scilab Consortium / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
 msgid ""

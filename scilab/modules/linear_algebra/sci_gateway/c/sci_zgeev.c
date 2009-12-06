@@ -73,6 +73,7 @@ int sci_zgeev(char *fname, unsigned long fname_len)
 	if (iRows!=iCols)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblData);
 		return 0;
 	}
 	if (iCols==0)
@@ -82,6 +83,7 @@ int sci_zgeev(char *fname, unsigned long fname_len)
 			int lD;
 			CreateVar(2,MATRIX_OF_COMPLEX_DATATYPE,&iCols,&iCols,&lD);
 			LhsVar(1) = 2;
+			vFreeDoubleComplexFromPointer(pdblData);
 			return 0;
 		}
 		else if (Lhs==2)
@@ -92,12 +94,14 @@ int sci_zgeev(char *fname, unsigned long fname_len)
 			CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,&iCols,&iCols,&lV);
 			LhsVar(1) = 2;
 			LhsVar(2) = 3;
+			vFreeDoubleComplexFromPointer(pdblData);
 			return 0;
 		}
 	}
 	if (C2F(vfiniteComplex)(&totalsize,pdblData)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblData);
 		return 0;
 	}
 	if (Lhs==1)
