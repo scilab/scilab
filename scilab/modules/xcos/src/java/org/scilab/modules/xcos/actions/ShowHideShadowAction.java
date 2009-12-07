@@ -63,7 +63,7 @@ public class ShowHideShadowAction extends DefaultAction {
 		    if (allCells[i] instanceof BasicBlock) {
 			//((BasicBlock) allCells[i])
 				mxCellState state = getGraph(null).getView().getState(allCells[i]);
-				Hashtable style = (state != null) ? state.getStyle() : getGraph(null).getCellStyle(allCells[i]);
+				Hashtable<String, Object> style = (state != null) ? state.getStyle() : getGraph(null).getCellStyle(allCells[i]);
 
 				if (style != null)
 				{

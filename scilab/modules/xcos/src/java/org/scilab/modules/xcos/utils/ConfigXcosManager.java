@@ -82,7 +82,6 @@ public class ConfigXcosManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-	/* TODO */
 	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
 	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 	    /* Create a local copy of the configuration file */
@@ -102,7 +101,6 @@ public class ConfigXcosManager {
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
-	/* TODO */
 	return USER_XCOS_CONFIG_FILE;
     }
 
@@ -133,7 +131,6 @@ public class ConfigXcosManager {
 	}
 	fis.close();
 	fos.close();
-	/* TODO */
     }
 
     /**
@@ -169,8 +166,6 @@ public class ConfigXcosManager {
 	    }
 	}
 	return new Position(0, 0);
-
-	/* TODO */
     }
 
     /**
@@ -180,7 +175,6 @@ public class ConfigXcosManager {
      *            the position of XCOS main Window
      */
     public static void saveMainWindowPosition(Position position) {
-	/* TODO */
 	/* Load file */
 	readDocument();
 
@@ -211,7 +205,6 @@ public class ConfigXcosManager {
      *            the size of XCOS main Window
      */
     public static void saveMainWindowSize(Size size) {
-	/* TODO */
 	/* Load file */
 	readDocument();
 

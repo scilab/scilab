@@ -60,7 +60,6 @@ public final class BlockWriter {
 	try {
 	    H5Write.writeInDataSet(fileId, "scs_m", data);
 	} catch (HDF5Exception e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	H5Write.closeFile(fileId);

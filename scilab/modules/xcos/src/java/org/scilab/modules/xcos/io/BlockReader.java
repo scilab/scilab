@@ -46,7 +46,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 
 public class BlockReader {
 
@@ -216,7 +215,6 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isLabel(data, i)) {
-		    // TODO
 		    INFO("Reading Label " + i);
 		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
@@ -445,7 +443,6 @@ public class BlockReader {
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
 	    newBlock = null;
@@ -1678,15 +1675,19 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(22));
     }
 
+    
     private static class BlockReaderException extends Exception {
     };
 
+    
     private static class WrongTypeException extends BlockReaderException {
     };
 
+    
     private static class WrongStructureException extends BlockReaderException {
     };
 
+    
     private static class VersionMismatchException extends BlockReaderException {
 	private String version;
 

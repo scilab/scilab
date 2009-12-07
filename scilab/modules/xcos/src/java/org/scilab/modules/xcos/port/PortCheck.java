@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -23,21 +24,21 @@ import com.mxgraph.view.mxMultiplicity;
 public class PortCheck extends mxMultiplicity {
 
     private Class<? extends mxCell> sourceTemplate = null;
-    private Class<? extends mxCell>[] targetTemplate = null;
+    private List<Class<? extends mxCell>> targetTemplateList = null;
     private String errorMessage = null;
 
     public PortCheck(boolean source, String type, String attr, String value,
-	    int min, String max, Collection validNeighbors, String countError,
+	    int min, String max, Collection<String> validNeighbors, String countError,
 	    String typeError, boolean validNeighborsAllowed) {
 	super(source, type, attr, value, min, max, validNeighbors, countError,
 		typeError, validNeighborsAllowed); 
     }
     
-    public PortCheck(Class<? extends mxCell> sourceTemplate, Class<? extends mxCell>[] targetTemplate, String errorMessage) {
+    public PortCheck(Class<? extends mxCell> sourceTemplate, List<Class<? extends mxCell>> targetTemplate, String errorMessage) {
 	// We complitely override mxMultiplicity
 	super(true, null, null, null, 0, null, null, null, null, false);
 	this.sourceTemplate = sourceTemplate;
-	this.targetTemplate = targetTemplate;
+	this.targetTemplateList = targetTemplate;
 	this.errorMessage = errorMessage;
 	this.max = "n";
 
@@ -54,9 +55,8 @@ public class PortCheck extends mxMultiplicity {
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
 
 	if (sourceTemplate.getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    for (int i = 0; i < targetTemplate.length; ++i) {
-		if (targetTemplate[i].getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
-		    // We found something compatible !!
+	    for (Class<? extends mxCell> iterable_element : targetTemplateList) {
+		if (iterable_element.getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
 		    return true;
 		}
 	    }

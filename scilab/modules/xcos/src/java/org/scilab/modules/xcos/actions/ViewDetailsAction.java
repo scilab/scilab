@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+
 public class ViewDetailsAction extends DefaultAction {
 
     private ViewDetailsAction(ScilabGraph scilabGraph) {

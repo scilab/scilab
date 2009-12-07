@@ -15,9 +15,6 @@ package org.scilab.modules.xcos.actions;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 

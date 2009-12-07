@@ -14,11 +14,9 @@ package org.scilab.modules.xcos.palette;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.List;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;

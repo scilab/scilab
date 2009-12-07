@@ -6,7 +6,6 @@ import java.awt.Composite;
 import java.awt.Paint;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.util.Hashtable;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
@@ -127,7 +126,6 @@ public class XcosCanvas extends mxInteractiveCanvas{
 
     public void drawRect(int x, int y, int w, int h, Color fillColor,
 	    Paint fillPaint, Color penColor, boolean shadow, boolean rounded) {
-	// TODO Auto-generated method stub
 	super.drawRect(x, y, w, h, fillColor, fillPaint, penColor, shadow, rounded);
     }
 }

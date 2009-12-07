@@ -25,6 +25,7 @@ import com.mxgraph.util.mxUtils;
 
 public class ColorAction extends DefaultAction {
 
+    private static final long serialVersionUID = -1253470374053230723L;
     private String key = null;
     private String title = null;
     

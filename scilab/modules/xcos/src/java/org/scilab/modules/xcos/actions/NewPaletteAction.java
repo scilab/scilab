@@ -17,6 +17,7 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+
 public class NewPaletteAction extends DefaultAction {
 
 	private NewPaletteAction(ScilabGraph scilabGraph) {

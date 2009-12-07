@@ -19,6 +19,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class AlignBlockAction extends DefaultAction {
 
+    private static final long serialVersionUID = 6004051237556006262L;
     private String align;
     
     private AlignBlockAction(ScilabGraph scilabGraph) {

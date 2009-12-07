@@ -21,7 +21,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
-import com.mxgraph.canvas.mxICanvas;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
@@ -31,7 +30,7 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
 import com.mxgraph.util.mxUndoableEdit;
-import com.mxgraph.view.mxCellState;
+import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraph;
 
 public class ScilabGraph extends mxGraph {
@@ -74,7 +73,7 @@ public class ScilabGraph extends mxGraph {
 
     mxIEventListener selectionHandler = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
-	    List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+	    List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
 	    setSelectionCells(getSelectionCellsForChanges(changes));
 	}
     };
