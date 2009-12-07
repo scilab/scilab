@@ -64,19 +64,24 @@ public class GL2PSRenderer extends ExportRenderer {
 	public int setGL2PSFile(String fileName, int fileType) {
 				
 		switch (getFileType()) {
-		case ExportRenderer.EPS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".eps");
-									   format = GL2PS.GL2PS_EPS;
-		break;
-		case ExportRenderer.PDF_EXPORT:  setFileName(ExportRenderer.getFileName() + ".pdf");
-									   format = GL2PS.GL2PS_PDF;
-		break;
-		case ExportRenderer.SVG_EXPORT:  setFileName(ExportRenderer.getFileName() + ".svg");
-									   format = GL2PS.GL2PS_SVG;
-		break;				  
-		case ExportRenderer.PS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".ps");
-		   							   format = GL2PS.GL2PS_PS;
-		break;	
-		default: return ExportRenderer.INVALID_FILE;
+			case ExportRenderer.EPS_EXPORT: 
+				setFileName(ExportRenderer.getFileName() + ".eps");
+				format = GL2PS.GL2PS_EPS;
+				break;
+			case ExportRenderer.PDF_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".pdf");
+				format = GL2PS.GL2PS_PDF;
+				break;
+			case ExportRenderer.SVG_EXPORT:
+				setFileName(ExportRenderer.getFileName() + ".svg");
+				format = GL2PS.GL2PS_SVG;
+				break;			  
+			case ExportRenderer.PS_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".ps");
+				format = GL2PS.GL2PS_PS;
+				break;	
+			default: 
+				return ExportRenderer.INVALID_FILE;
 		}
 		return ExportRenderer.SUCCESS;			
 	}
@@ -111,16 +116,8 @@ public class GL2PSRenderer extends ExportRenderer {
 				exportOrientation = 0;
 			}						
 			
-			/* Modified by Calixte to enable blending (for alpha channel) when exporting LaTeX or MathML
-			   labels (which are pixmap).
-			   I'm obliged to put the enabling here because, the property g2lps->blending is set in
-			   gl2psBeginPage.
-			   Perhaps, it would be a good idea to modify gl2ps.c to enable blending by default (it's the case for SVG export)...
-			 */
 			GL gl = gLDrawable.getGL();
-			gl.glEnable(gl.GL_BLEND);
-			/* End */
-
+			
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
 					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
@@ -225,7 +222,8 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * @param file exported file
 	 * @return permission status
 	 */
-	public int checkWritePermission(File file) {
+        /* Calixte added a static */
+	public static int checkWritePermission(File file) {
 		try {
 			file.createNewFile();			
 			if (!file.canWrite()) {

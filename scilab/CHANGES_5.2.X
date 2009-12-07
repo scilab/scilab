@@ -34,6 +34,7 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+
 Text rendering:
 ===============
 
@@ -56,10 +57,12 @@ Localization:
 
 * Some typos fixed
 
+
 Documentation improvements:
 ===========================
 
 * More examples with LaTeX use-cases (colors, etc)
+
 
 Compilation:
 ============
@@ -69,33 +72,32 @@ Compilation:
 * In some cases, under !Windows, the detection of libjogl.* was failling
   because of a missing explicit link against libGL.*
 
+
 Xcos:
 =====
 
 * Icon added in the main Scilab tool bar
 
-* bug 5099 fixed - Xcos: diagram not visible after a "Fit diagram to view"
+* bug 5099 fixed - diagram not visible after a "Fit diagram to view"
 
-* bug 5104 fixed - Xcos: Update the block view on undo/redo
+* bug 5104 fixed - Update the block view on undo/redo
 
-* bug 5111 fixed - Xcos: "Save As" default path is the current file path
+* bug 5111 fixed - "Save As" default path is the current file path
 
-* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
-
-* bug 5159 fixed - Xcos: the region to superblock action can be undone/redone.
+* bug 5159 fixed - the region to superblock action can be undone/redone.
 
 * bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
 
-* bug 5183 fixed - Xcos: disable Simulation menu on a superblock diagram
+* bug 5183 fixed - disable Simulation menu on a superblock diagram
 
-* bug 5184 fixed - Xcos: Setup menu values are localized
+* bug 5184 fixed - Setup menu values are localized
 
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
-* bug 5312 fixed - Xcos: adding 'Compile' informations
+* bug 5312 fixed - adding 'Compile' informations
 
 * bug 5388 fixed - Editor dialogs are now centered on editor main window.
 
@@ -108,37 +110,37 @@ Xcos:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
-* bug 5403 fixed - Xcos: now creates graphic windows only when needed.
+* bug 5403 fixed - now creates graphic windows only when needed.
 
-* bug 5407 fixed - Xcos: now you can use the arrow keys to move a block
+* bug 5407 fixed - now you can use the arrow keys to move a block
 
 * bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
 
-* bug 5412 fixed - Xcos: Context modifications were not saved for Superblocks.
+* bug 5412 fixed - Context modifications were not saved for Superblocks.
 
-* bug 5416 fixed - Xcos: Blocks modifications were not saved for Superblocks.
+* bug 5416 fixed - Blocks modifications were not saved for Superblocks.
 
 * bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
 
 * bug 5418 fixed - DEBUG_SCICOS block has been added to the palette.
 
-* bug 5422 fixed - Xcos: A file is a unique diagram instance (not openned twice)
+* bug 5422 fixed - A file is a unique diagram instance (not openned twice)
 
-* bug 5428 fixed - Xcos: Connecting Implicit I/O port to Link must be allowed
+* bug 5428 fixed - Connecting Implicit I/O port to Link must be allowed
 
 * bug 5440 fixed - Adding OUT* blocks to the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action works as expected
 
-* bug 5445 fixed - Xcos: update modified state on undo/redo
+* bug 5445 fixed - Update modified state on undo/redo
 
-* bug 5449 fixed - Xcos: Do not change palette tab position if it is visible
+* bug 5449 fixed - Do not change palette tab position if it is visible
 
-* bug 5464 fixed - Xcos: Actions are disabled on file loading
+* bug 5464 fixed - Actions are disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
-* bug 5531 fixed - Xcos: Setup values are strongly typed (use of spinner)
+* bug 5531 fixed - Setup values are strongly typed (use of spinner)
 
 * bug 5533 fixed - SetupAction doesn't valid inputs
 
@@ -190,14 +192,16 @@ Bug fixes:
 
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
-* bug 5103 fixed - Xpad: File=>Save now opens the "Save" dialog box for Untitled 
+* bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for Untitled 
                    files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5137 fixed - Xpad: drag & drop on editor was not enabled.
+* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+
+* bug 5137 fixed - Editor: drag & drop on editor was not enabled.
 
 * bug 5140 fixed - "Load into Scilab" was executed line by line.
 
@@ -1485,4 +1489,6 @@ Bug fixes:
 * bug 5437 fixed - Show error message during xcos simulation initialization.
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 

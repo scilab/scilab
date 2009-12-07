@@ -440,8 +440,7 @@ public class XcosDiagram extends ScilabGraph {
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 	
-	setGridEnabled(true);
-	getAsComponent().setGridVisible(true);
+	setGridVisible(true);
 	
 	((mxCell) getDefaultParent()).setId((new UID()).toString());
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
@@ -835,7 +834,7 @@ public class XcosDiagram extends ScilabGraph {
 		refresh();
 	    }
 
-	    // Ctrl + Shift + Right Double Click : for debug !!
+	    // Ctrl + Shift + Right Middle Click : for debug !!
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(arg0)
 	    		&& arg0.isShiftDown() && arg0.isControlDown())
 	    {
@@ -844,7 +843,7 @@ public class XcosDiagram extends ScilabGraph {
 	    	    System.err.println("[DEBUG] Click on diagram");
 	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
 	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-	    	    System.err.println("getParentWindow : " + getParentTab().getParentWindow());
+	    	    System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
 	    	} else {
 	    	    System.err.println("[DEBUG] Click on : " + cell);
 	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
@@ -864,7 +863,7 @@ public class XcosDiagram extends ScilabGraph {
 	    // Context menu
 	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
 	    		|| arg0.isPopupTrigger()
-	    		|| isMacOsPopupTrigger(arg0)) {
+	    		|| XcosMessages.isMacOsPopupTrigger(arg0)) {
 
 		if (cell == null) {
 		    // Display diagram context menu
@@ -919,11 +918,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
 	}
 
 	public void mouseExited(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
 	}
 
 	public void mousePressed(MouseEvent arg0) {
@@ -954,6 +951,13 @@ public class XcosDiagram extends ScilabGraph {
 
 	public boolean isCellClonable(Object cell) {
 		return true;
+	}
+	
+	public boolean isCellSelectable(Object cell) {
+	    if(cell instanceof BasicPort) {
+		return false;
+	    }
+	    return super.isCellSelectable(cell);
 	}
 	
 	public boolean isCellMovable(Object cell) {
@@ -1129,22 +1133,17 @@ public class XcosDiagram extends ScilabGraph {
      * @param status new status
      */
     public void setGridVisible(boolean status) {
-    	setGridEnabled(status);
-    	getAsComponent().setGridVisible(status);
-    	getAsComponent().repaint();
+	setGridEnabled(status);
+	getAsComponent().setGridVisible(status);
+	getAsComponent().repaint();
 
-    	// (Un)Check the corresponding menu
-    	gridMenu.setChecked(status);
+	// (Un)Check the corresponding menu
+	if(gridMenu != null) {
+	    gridMenu.setChecked(status);
+	}
     }
 
-//	public mxRectangle getCellBounds(Object cell, boolean includeEdges,
-//			boolean includeDescendants, boolean boundingBox) {
-//    	//mxRectangle rect = super.getCellBounds(cell, includeEdges, includeDescendants, boundingBox);
-//		mxRectangle rect = super.getCellBounds(cell, includeEdges, false, boundingBox);
-//		return rect;
-//	}
-
-	/**
+    /**
      * Set menu used to manage Grid visibility
      * @param menu the menu
      */
@@ -1467,11 +1466,12 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
     
+
     /**
      * Load a file with different method depending on it extension 
      * @param theFile File to load
      */
-	private void transformAndLoadFile(File theFile) {
+	protected void transformAndLoadFile(File theFile) {
 		final File fileToLoad = theFile;
 		final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 		
@@ -1479,16 +1479,10 @@ public class XcosDiagram extends ScilabGraph {
 		switch (filetype) {
 		case COSF:
 		case COS:
-			Thread transformAction = new Thread() {
-				public void run() {
-					File newFile;
-					newFile = filetype.exportToHdf5(fileToLoad);
-					System.err.println("export to hdf5 OK");
-					transformAndLoadFile(newFile);
-				}
-			};
-			transformAction.start();
-			break;
+		    File newFile;
+		    newFile = filetype.exportToHdf5(fileToLoad);
+		    transformAndLoadFile(newFile);
+		    break;
 
 		case XCOS:
 			Document document = null;
@@ -1751,15 +1745,6 @@ public class XcosDiagram extends ScilabGraph {
 		    setModified(true);
 		}
 	    }
-	
-	/**
-	 * This function checks for the popup menu activation under MacOS with Java version 1.5
-	 * Related to Scilab bug #5190
-	 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
-	 */
-	private boolean isMacOsPopupTrigger(MouseEvent e) {
-		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-	}
 	
 	public void setContextAction(SetContextAction action) {
 		this.action = action;

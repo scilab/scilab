@@ -29,6 +29,7 @@ import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.util.mxGraphTransferable;
@@ -36,10 +37,7 @@ import com.mxgraph.util.mxRectangle;
 
 public class BlockPalette extends JLabel {
 
-    private static final long serialVersionUID = 1L;
-    public static int BLOCK_WIDTH = 100;
-    public static int BLOCK_HEIGHT = 100;
-
+    private static final long serialVersionUID = 2045511112700166300L;
     private BasicBlock block;
     private XcosPalette palette;
     private mxGraphTransferable transferable;
@@ -64,7 +62,7 @@ public class BlockPalette extends JLabel {
 	    public void mouseClicked(MouseEvent e) {
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
 			|| e.isPopupTrigger()
-			|| isMacOsPopupTrigger(e)) {
+			|| XcosMessages.isMacOsPopupTrigger(e)) {
 
 		    ContextMenu menu = ScilabContextMenu.createContextMenu();
 
@@ -231,7 +229,7 @@ public class BlockPalette extends JLabel {
 
     public void setPalette(XcosPalette palette) {
 	this.palette = palette;
-	setPreferredSize(new Dimension(BLOCK_WIDTH, BLOCK_HEIGHT));
+	setPreferredSize(new Dimension(XcosConstants.PALETTE_BLOCK_WIDTH, XcosConstants.PALETTE_BLOCK_HEIGHT));
 	setBackground(palette.getBackground().brighter());
 	setFont(new Font(getFont().getFamily(), 0, 12));
 
@@ -252,12 +250,4 @@ public class BlockPalette extends JLabel {
 	this.transferable = transferable;
     }
 
-    /**
-     * This function checks for the popup menu activation under MacOS with Java version 1.5
-     * Related to Scilab bug #5190
-     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
-     */
-    private boolean isMacOsPopupTrigger(MouseEvent e) {
-	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-    }
 }
