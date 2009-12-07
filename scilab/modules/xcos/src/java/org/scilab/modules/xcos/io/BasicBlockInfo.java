@@ -45,7 +45,7 @@ public final class BasicBlockInfo {
      * @param ports : list of links
      * @return array of links id
      */
-    public static ScilabDouble getAllLinkId(List ports) {
+    public static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -63,7 +63,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data lines
      */
-    public static ScilabDouble getAllPortsDataLines(List ports) {
+    public static ScilabDouble getAllPortsDataLines(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -79,7 +79,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data columns
      */
-    public static ScilabDouble getAllPortsDataColumns(List ports) {
+    public static ScilabDouble getAllPortsDataColumns(List<? extends BasicPort> ports) {
 	boolean allZeros = true;
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -104,7 +104,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data type
      */
-    public static ScilabType getAllPortsDataType(List ports) {
+    public static ScilabType getAllPortsDataType(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -120,7 +120,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports type
      */
-    public static ScilabType getAllPortsType(List ports) {
+    public static ScilabType getAllPortsType(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}

@@ -37,7 +37,7 @@ public final class BlockPositioning {
      * Dispatch ports on Block's _WEST_ side.
      * @param ports
      */
-    public static void updateWestPortsPosition(BasicBlock block, List ports) {
+    public static void updateWestPortsPosition(BasicBlock block, List<? extends BasicPort> ports) {
 	mxGeometry blockGeom = block.getGeometry();
 	if (blockGeom == null) {
 	    return;
@@ -57,7 +57,7 @@ public final class BlockPositioning {
      * Dispatch ports on Block's _NORTH_ side.
      * @param ports
      */
-    public static void updateNorthPortsPosition(BasicBlock block, List ports) {
+    public static void updateNorthPortsPosition(BasicBlock block, List<? extends BasicPort> ports) {
 	mxGeometry blockGeom = block.getGeometry();
 	if (blockGeom == null) {
 	    return;
@@ -77,7 +77,7 @@ public final class BlockPositioning {
      * Dispatch ports on Block's _EAST_ side.
      * @param ports
      */
-    public static void updateEastPortsPosition(BasicBlock block, List ports) {
+    public static void updateEastPortsPosition(BasicBlock block, List<? extends BasicPort> ports) {
 	mxGeometry blockGeom = block.getGeometry();
 	if (blockGeom == null) {
 	    return;
@@ -97,7 +97,7 @@ public final class BlockPositioning {
      * Dispatch ports on Block's _SOUTH_ side.
      * @param ports
      */
-    public static void updateSouthPortsPosition(BasicBlock block, List ports) {
+    public static void updateSouthPortsPosition(BasicBlock block, List<? extends BasicPort> ports) {
 	mxGeometry blockGeom = block.getGeometry();
 	if (blockGeom == null) {
 	    return;
@@ -201,7 +201,7 @@ public final class BlockPositioning {
      * @param ports
      * @param portOrientation
      */
-    public static void rotatePorts(BasicBlock block, List ports , int angle) {
+    public static void rotatePorts(BasicBlock block, List<? extends BasicPort> ports , int angle) {
 
 	int newAngle = angle;
 	if(block.getFlip()) {

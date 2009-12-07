@@ -46,7 +46,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 
 public class BlockReader {
 
@@ -1678,15 +1677,19 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(22));
     }
 
+    @SuppressWarnings("serial")
     private static class BlockReaderException extends Exception {
     };
 
+    @SuppressWarnings("serial")
     private static class WrongTypeException extends BlockReaderException {
     };
 
+    @SuppressWarnings("serial")
     private static class WrongStructureException extends BlockReaderException {
     };
 
+    @SuppressWarnings("serial")
     private static class VersionMismatchException extends BlockReaderException {
 	private String version;
 
