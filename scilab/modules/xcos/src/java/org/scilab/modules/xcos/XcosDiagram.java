@@ -280,6 +280,7 @@ public class XcosDiagram extends ScilabGraph {
     	BasicPort linkSource =  (BasicPort) link.getSource();
     	BasicPort linkTarget =  (BasicPort) link.getTarget();
 
+    	getModel().beginUpdate();
     	if (dragPos == null) {
     		dragPos = new mxPoint();
 
@@ -351,7 +352,9 @@ public class XcosDiagram extends ScilabGraph {
     	addCell(newLink3);
 
     	dragPos = null;
-		refresh();
+	refresh();
+	getModel().endUpdate();
+	
     	return splitBlock;
     }
     
@@ -369,7 +372,6 @@ public class XcosDiagram extends ScilabGraph {
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 
@@ -1519,8 +1521,7 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		}
 	    }
-	    // TODO
-	    //open all SuperBlocks to assign a UID
+	    // TODO: open all SuperBlocks to assign a UID
 
 	    info(XcosMessages.EMPTY_INFO);
 	    ((XcosTab) getParentTab()).setActionsEnabled(true);

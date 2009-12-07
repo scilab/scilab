@@ -489,7 +489,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
-	List<BasicBlock> items[] = new ArrayList[6];
+	List<BasicBlock> items[] = new List[6];
 
 	// ExplicitInBlock
 	for (int i = 0; i < blocks.length; i++) {

@@ -221,16 +221,16 @@ public final class XcosMessages {
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
     
     /** Debug level messages  */
-    public static final String DEBUGLEVEL_0 = "No trace nor debug printing";
-    public static final String DEBUGLEVEL_1 = "Light Simulation trace (Discrete and Continous part switches)";
-    public static final String DEBUGLEVEL_2 = "Per block execution trace and Debug block calls";
-    public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
+    public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
+    public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     
     /** File description */
-    public static final String FILE_COSF = "Scicos file";
-    public static final String FILE_COS = "Scicos file";
-    public static final String FILE_XCOS = "Xcos file";
-    public static final String FILE_HDF5 = "Scilab file";
+    public static final String FILE_COSF = Messages.gettext("Scicos file");
+    public static final String FILE_COS = Messages.gettext("Scicos file");
+    public static final String FILE_XCOS = Messages.gettext("Xcos file");
+    public static final String FILE_HDF5 = Messages.gettext("Scilab file");
 
 
     /**

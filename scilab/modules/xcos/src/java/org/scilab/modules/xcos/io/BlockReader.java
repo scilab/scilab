@@ -215,7 +215,6 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isLabel(data, i)) {
-		    // TODO
 		    INFO("Reading Label " + i);
 		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
@@ -444,7 +443,6 @@ public class BlockReader {
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
 	    newBlock = null;
