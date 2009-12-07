@@ -14,15 +14,14 @@ package org.scilab.modules.xcos.palette;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.List;
 import java.awt.MouseInfo;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
@@ -36,7 +35,6 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -54,18 +52,12 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.PaletteDiagram;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.LoadAsPalAction;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
-
-import com.mxgraph.model.mxGeometry;
 
 /**
  * Manage all the Block Palettes.
@@ -306,6 +298,8 @@ public final class XcosPaletteManager {
 		    }
 
 		    public void mouseClicked(MouseEvent arg0) {
+			
+			//Right click
 			if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
 				|| arg0.isPopupTrigger()
 				|| XcosMessages.isMacOsPopupTrigger(arg0)) {
@@ -323,6 +317,17 @@ public final class XcosPaletteManager {
 
 				public void callBack() {
 				    DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)(path.getLastPathComponent());
+				    
+				    //remove palette from ConfigXcosManager
+				    if(currentNode.getUserObject() instanceof XcosComponent) {
+					XcosComponent comp = (XcosComponent)currentNode.getUserObject();
+					if(comp.getGraph() instanceof PaletteDiagram) {
+					    PaletteDiagram diagram = (PaletteDiagram)comp.getGraph();
+					    String fileName = diagram.getFileName();
+					    ConfigXcosManager.removeUserDefinedPalettes(fileName);
+					}
+				    }
+				    
 				    paletteTreeModel.removeNodeFromParent(currentNode);
 				    if(userDefinedNode != null && userDefinedNode.getChildCount() == 0) {
 					paletteTreeModel.removeNodeFromParent(userDefinedNode);
@@ -403,6 +408,12 @@ public final class XcosPaletteManager {
 			xcosPalette.addTemplate(iter.Name, iter.Icon);
 		    }
 		    rootNode.add(new DefaultMutableTreeNode(xcosPalette));
+		}
+
+		//load user defined palette
+		ArrayList<String> files = ConfigXcosManager.getUserDefinedPalettes();
+		for(String file : files) {
+		    loadUserPalette(file);
 		}
 
 		paletteLoadStarted = true;
