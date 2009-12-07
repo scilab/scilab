@@ -19,6 +19,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 public class AfficheBlock extends BasicBlock {
 
+    private static final long serialVersionUID = 6874403612919831380L;
+    
 	private int hashCode = 0;
 	
 	public AfficheBlock() {

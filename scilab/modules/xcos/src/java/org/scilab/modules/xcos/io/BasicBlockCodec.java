@@ -33,7 +33,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	}
 
 
-	public BasicBlockCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+	public BasicBlockCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
 

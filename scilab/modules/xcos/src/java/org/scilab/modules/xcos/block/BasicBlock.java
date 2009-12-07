@@ -16,7 +16,6 @@ package org.scilab.modules.xcos.block;
 import java.awt.MouseInfo;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +63,7 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.BlockChange;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -71,8 +71,11 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
@@ -446,9 +449,29 @@ public class BasicBlock extends XcosUIDObject {
 	return data;
     }
 
-
+    /**
+     * Does the block update and register on the undo manager 
+     * @param modifiedBlock the new settings
+     */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
+	
+	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
+	    public void dispatch()
+		{
+			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
+					new mxEventObject(new Object[] { changes }));
+		}
+	};
+	edit.add(new BlockChange(modifiedBlock, this));
+	
+	doUpdateBlockSettings(modifiedBlock);
+    }
 
+    /**
+     * Does the block update without using the undo manager 
+     * @param modifiedBlock the new settings
+     */
+    public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
 	setDependsOnT(modifiedBlock.dependsOnT());
 	setDependsOnU(modifiedBlock.dependsOnU());
 	setExprs(modifiedBlock.getExprs());
@@ -464,8 +487,8 @@ public class BasicBlock extends XcosUIDObject {
 	setEquations(modifiedBlock.getEquations());
 
 
-	List modifiedPorts = null;
-	List ports = null;
+	List<? extends BasicPort> modifiedPorts = null;
+	List<? extends BasicPort> ports = null;
 	
 	// Check if new input port have been added
 	if ((modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false)).size() > (ports = BasicBlockInfo.getAllInputPorts(this, false)).size()) {
@@ -527,6 +550,7 @@ public class BasicBlock extends XcosUIDObject {
 	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
 	    parentBlock.getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED,new mxEventObject(new Object[] { parentBlock }));
 	}
+	
     }
 
     public void openBlockSettings(String context[]) {

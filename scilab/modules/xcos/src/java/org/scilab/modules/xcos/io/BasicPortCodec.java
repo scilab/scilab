@@ -15,14 +15,11 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.model.mxCell;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
@@ -32,7 +29,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 	super(template);
     }
 
-    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 

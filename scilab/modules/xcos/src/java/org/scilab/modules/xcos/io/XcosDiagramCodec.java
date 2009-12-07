@@ -30,7 +30,7 @@ public class XcosDiagramCodec extends mxObjectCodec {
 	
 	
 	public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs,
-			Map mapping)
+			Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
 		

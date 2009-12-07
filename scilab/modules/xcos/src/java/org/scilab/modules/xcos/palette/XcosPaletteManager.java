@@ -15,8 +15,6 @@ package org.scilab.modules.xcos.palette;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -60,8 +58,6 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.LoadAsPalAction;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
