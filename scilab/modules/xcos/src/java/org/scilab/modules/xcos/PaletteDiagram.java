@@ -7,6 +7,7 @@ import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
@@ -16,7 +17,8 @@ public class PaletteDiagram extends XcosDiagram {
 
     private static int BLOCK_MAX_WIDTH  = (int) (XcosConstants.PALETTE_BLOCK_WIDTH * 0.8); //80% of the max size
     private static int BLOCK_MAX_HEIGHT = (int) (XcosConstants.PALETTE_BLOCK_HEIGHT * 0.8); //80% of the max size
-    private String name = "";
+    private String name;
+    private String fileName;
     private double windowWidth = 0;
 
     public PaletteDiagram() {
@@ -37,7 +39,8 @@ public class PaletteDiagram extends XcosDiagram {
 	
 	if (theFile.exists()) {
 	    transformAndLoadFile(theFile);
-	    name = theFile.getName();
+	    setName(theFile.getName());
+	    setFileName(theFile.getAbsolutePath());
 	    getRubberBand().setEnabled(false);
 
 	    /*change some diagram parameters*/
@@ -49,6 +52,7 @@ public class PaletteDiagram extends XcosDiagram {
 		    i--;
 		}
 	    }
+	    ConfigXcosManager.saveUserDefinedPalettes(diagramFileName);
 	    return true;
 	}
 	return false;
@@ -115,8 +119,21 @@ public class PaletteDiagram extends XcosDiagram {
 	return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public boolean isCellConnectable(Object cell) {
 	return false;
+    }
+
+    public void setFileName(String fileName) {
+	System.err.println("setFileName : " + fileName);
+	this.fileName = fileName;
+    }
+
+    public String getFileName() {
+	return fileName;
     }
 
 }

@@ -17,6 +17,6 @@ prot=funcprot();funcprot(0)
 function y=sinm(x),y=x+1,endfunction
 if sinm(1)<>2 then bugmes();quit;end
 //restore it
-elementary_functionlib.sinm
+sinm = elementary_functionslib.sinm
 if sinm(1)<>ref then bugmes();quit;end
 funcprot(prot)
