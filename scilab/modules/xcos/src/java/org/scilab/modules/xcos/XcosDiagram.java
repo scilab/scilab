@@ -1242,7 +1242,7 @@ public class XcosDiagram extends ScilabGraph {
 			IconType.QUESTION_ICON, ButtonType.YES_NO);
 	    } else {
 		answer = ScilabModalDialog.show(getParentTab(), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
-			IconType.QUESTION_ICON, ButtonType.YES_NO_DONTQUIT);
+			IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 	    }
 
 	    switch(answer) {
