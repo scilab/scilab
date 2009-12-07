@@ -25,6 +25,8 @@ import com.mxgraph.util.mxConstants;
 
 public class TextBlock extends BasicBlock {
     
+    private static final long serialVersionUID = -4279562884443733433L;
+
     /**
      * Font list from http://www.w3.org/TR/CSS2/fonts.html#generic-font-families
      * Scicos has a number descriptor < 7 and > 0 

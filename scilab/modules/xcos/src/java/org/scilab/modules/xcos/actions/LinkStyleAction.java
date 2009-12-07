@@ -25,6 +25,7 @@ import org.scilab.modules.xcos.link.BasicLink;
 
 import com.mxgraph.util.mxConstants;
 
+
 public class LinkStyleAction extends DefaultAction {
 
     private String value = null;

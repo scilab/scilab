@@ -108,7 +108,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	return obj;
     }
 
-    @SuppressWarnings("serial")
+    
     private class UnrecognizeFormatException extends Exception {}
 
 }

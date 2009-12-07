@@ -1677,19 +1677,19 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(22));
     }
 
-    @SuppressWarnings("serial")
+    
     private static class BlockReaderException extends Exception {
     };
 
-    @SuppressWarnings("serial")
+    
     private static class WrongTypeException extends BlockReaderException {
     };
 
-    @SuppressWarnings("serial")
+    
     private static class WrongStructureException extends BlockReaderException {
     };
 
-    @SuppressWarnings("serial")
+    
     private static class VersionMismatchException extends BlockReaderException {
 	private String version;
 

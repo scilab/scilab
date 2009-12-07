@@ -122,7 +122,7 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 		return obj;
 	}
 
-	@SuppressWarnings("serial")
+	
 	private class UnrecognizeFormatException extends Exception { }
 
 

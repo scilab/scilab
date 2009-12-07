@@ -40,7 +40,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxGraph;
 
 /**
  * Diagram export management
@@ -81,19 +80,22 @@ public final class ExportAction extends DefaultAction {
 
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 		
+		/* TODO: The read formats and writer formats can be different */
 		// Adds a filter for each supported image format
-		Object[] imageFormats = ImageIO.getReaderFormatNames();
+		String[] imageFormats = ImageIO.getReaderFormatNames();
 
+		/* TODO: There is a better way to get a unique extension collection */
 		// Finds all distinct extensions
-		HashSet formats = new HashSet();
+		HashSet<String> formats = new HashSet<String>();
 
 		for (int i = 0; i < imageFormats.length; i++) {
 			String ext = imageFormats[i].toString().toLowerCase();
 			formats.add(ext);
 		}
 
-		imageFormats = formats.toArray();
+		imageFormats = (String[]) formats.toArray();
 
+		/* TODO: why hardcoded ? */
 		String[] mask = new String[imageFormats.length + 3];
 		mask[0] = ".svg";
 		mask[1] = ".html";

@@ -30,6 +30,8 @@ import com.mxgraph.model.mxGeometry;
 
 public class SplitBlock extends BasicBlock {
 
+    private static final long serialVersionUID = 5817243367840540106L;
+
 	public SplitBlock() {
 		super();
 		setVertex(false);
