@@ -6,7 +6,6 @@ import java.awt.Composite;
 import java.awt.Paint;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.util.Hashtable;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;

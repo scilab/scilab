@@ -13,9 +13,6 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Dimension;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -44,9 +41,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.OpenAction;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**

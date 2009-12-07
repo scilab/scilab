@@ -50,6 +50,8 @@ import com.mxgraph.util.mxRectangle;
 
 public abstract class BasicLink extends XcosUIDObject {
 
+    private static final long serialVersionUID = 8557979393361216098L;
+
 	public BasicLink(String style) {
 		super();
 		setVertex(false);
@@ -156,7 +158,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	public void addPoint(double x, double y) {
 		mxPoint point = new mxPoint(x, y);
 		if (getGeometry().getPoints() == null) {
-			getGeometry().setPoints(new ArrayList());
+			getGeometry().setPoints(new ArrayList<mxPoint>());
 		}
 		getGeometry().getPoints().add(point);
 	}
@@ -164,7 +166,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	public void insertPoint(double x, double y) {
 		mxPoint point = new mxPoint(x, y);
 		if (getGeometry().getPoints() == null) {
-			getGeometry().setPoints(new ArrayList());
+			getGeometry().setPoints(new ArrayList<mxPoint>());
 			getGeometry().getPoints().add(point);
 		} else {
 			//check to delete an old point before try to insert

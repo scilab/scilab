@@ -27,7 +27,7 @@ public class PortCheck extends mxMultiplicity {
     private String errorMessage = null;
 
     public PortCheck(boolean source, String type, String attr, String value,
-	    int min, String max, Collection validNeighbors, String countError,
+	    int min, String max, Collection<String> validNeighbors, String countError,
 	    String typeError, boolean validNeighborsAllowed) {
 	super(source, type, attr, value, min, max, validNeighbors, countError,
 		typeError, validNeighborsAllowed); 

@@ -40,7 +40,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 
 
     public XcosObjectCodec(Object template, String[] exclude, String[] idrefs,
-	    Map mapping) {
+	    Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
