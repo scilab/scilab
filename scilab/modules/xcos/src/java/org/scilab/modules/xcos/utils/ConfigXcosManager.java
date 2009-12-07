@@ -36,7 +36,6 @@ public class ConfigXcosManager {
 
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
-    private static final String VALUE = "value";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
     private static final String XCOORD = "x";
