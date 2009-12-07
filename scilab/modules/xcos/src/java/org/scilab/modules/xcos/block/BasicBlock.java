@@ -454,14 +454,15 @@ public class BasicBlock extends XcosUIDObject {
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	
-	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
-	    public void dispatch()
-		{
-			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
-					new mxEventObject(new Object[] { changes }));
-		}
-	};
-	edit.add(new BlockChange(modifiedBlock, this));
+	/* TODO: emit changes on update */
+//	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
+//	    public void dispatch()
+//		{
+//			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
+//					new mxEventObject(new Object[] { changes }));
+//		}
+//	};
+//	edit.add(new BlockChange(modifiedBlock, this));
 	
 	doUpdateBlockSettings(modifiedBlock);
     }
