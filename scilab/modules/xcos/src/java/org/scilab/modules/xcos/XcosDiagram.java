@@ -280,6 +280,7 @@ public class XcosDiagram extends ScilabGraph {
     	BasicPort linkSource =  (BasicPort) link.getSource();
     	BasicPort linkTarget =  (BasicPort) link.getTarget();
 
+    	getModel().beginUpdate();
     	if (dragPos == null) {
     		dragPos = new mxPoint();
 
@@ -351,7 +352,9 @@ public class XcosDiagram extends ScilabGraph {
     	addCell(newLink3);
 
     	dragPos = null;
-		refresh();
+	refresh();
+	getModel().endUpdate();
+	
     	return splitBlock;
     }
     
