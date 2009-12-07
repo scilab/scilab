@@ -111,14 +111,6 @@ function [ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=com
     //---------------------------------------------------------------------
     ok=modelicac(Flat,Flat_functions,xmlfileTMP,%Jacobian,Cfile,running=="1")
 
-    // the version 1.12.1 of modelicac write Get_Jacobian_parameter() in 
-    // the C file wich is not a known function
-    // replace the unknown function Get_Jacobian_parameter() in the
-    // C file with Get_Jacobian_cj
-    // origin_Cfile = mgetl(Cfile);
-    // modif_Cfile = strsubst(origin_Cfile,'Get_Jacobian_parameter()','Get_Jacobian_cj()');
-    // mputl(modif_Cfile,Cfile);
-
     if ~ok then return,end
     mprintf(' Simulation C code :%s\n', Cfile);
     //---------------------------------------------------------------------

@@ -119,9 +119,15 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
   copyfile(files+'.c','toto'+'/'+files+'.c')
   mdelete(files+'.c');
   chdir('toto')
-
-  cflags = cflags+" -I"+SCI+'/routines/';
-
+  
+  if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+    //** Binary version
+    cflags = cflags+" -I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+  else	  
+    //** it is a source version 
+    cflags = cflags+" -I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
+  end
+  
   ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch')
 
   copyfile('lib'+blknam+getdynlibext(),TMPDIR)
@@ -174,16 +180,12 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
        ulink(b);
        [a,b]=c_link(blknamint+'_sci');
      end
-
-
      
      //## compile Makefile
      // ierr=execstr('libn=ilib_compile(''lib''+blknamint,Makename)','errcatch')
 
-
-     // ilib_compile_scicos needs 3 arguments
-     ierr=execstr('libn = ilib_compile_scicos(''lib''+blknamint,Makename,files)','errcatch')
-
+     // ilib_compile needs 3 arguments
+     ierr=execstr('libn = ilib_compile(''lib''+blknamint,Makename,files)','errcatch')
 
      if ierr<>0 then
        ok=%f;
