@@ -18,6 +18,6 @@ prot=funcprot();funcprot(0)
 function y=sinm(x),y=x+1,endfunction
 if sinm(1)<>2 then pause,end
 //restore it
-elementary_functionlib.sinm
+sinm = elementary_functionslib.sinm
 if sinm(1)<>ref then pause,end
 funcprot(prot)
