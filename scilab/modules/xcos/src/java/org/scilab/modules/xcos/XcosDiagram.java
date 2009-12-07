@@ -407,6 +407,21 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
+	setMultiplicities();
+	
+	// Add a listener to track when model is changed
+	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
+	
+	setGridVisible(true);
+	
+	((mxCell) getDefaultParent()).setId((new UID()).toString());
+	((mxCell) getModel().getRoot()).setId((new UID()).toString());
+    }
+
+    /**
+     * Install the multiplicities (use for link checking)
+     */
+    private void setMultiplicities() {
 	mxMultiplicity[] multiplicities = new mxMultiplicity[10];
 
 	
@@ -494,14 +509,6 @@ public class XcosDiagram extends ScilabGraph {
 		}), XcosMessages.LINK_ERROR_ALREADY_CONNECTED);
 
 	setMultiplicities(multiplicities);
-	
-	// Add a listener to track when model is changed
-	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
-	
-	setGridVisible(true);
-	
-	((mxCell) getDefaultParent()).setId((new UID()).toString());
-	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
     /**
