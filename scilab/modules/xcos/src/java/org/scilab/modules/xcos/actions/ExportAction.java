@@ -40,7 +40,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxGraph;
 
 /**
  * Diagram export management

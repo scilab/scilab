@@ -645,10 +645,7 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CELLS_REMOVED is fired.
      */
     private class CellRemovedTracker implements mxIEventListener {
-    	private XcosDiagram diagram = null;
-
     	public CellRemovedTracker(XcosDiagram diagram) {
-    		this.diagram = diagram;
     	}
 
     	public void invoke(Object source, mxEventObject evt) {

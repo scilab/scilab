@@ -111,7 +111,7 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	return obj;
     }
 
-    @SuppressWarnings("serial")
+    
     private class UnrecognizeFormatException extends Exception {}
 
 }

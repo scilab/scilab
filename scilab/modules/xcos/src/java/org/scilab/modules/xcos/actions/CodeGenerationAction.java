@@ -25,7 +25,6 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.Signal;
-import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -33,6 +32,8 @@ import com.mxgraph.util.mxUtils;
 
 
 public class CodeGenerationAction extends DefaultAction {
+
+    private static final long serialVersionUID = -7756467773530338202L;
 
     public CodeGenerationAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.CODE_GENERATION,scilabGraph);

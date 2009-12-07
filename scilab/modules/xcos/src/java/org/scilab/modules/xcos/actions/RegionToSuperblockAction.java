@@ -12,11 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.lang.annotation.Target;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -55,8 +52,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxICell;
-import com.mxgraph.view.mxGraph;
+
 
 public class RegionToSuperblockAction extends DefaultAction {
 

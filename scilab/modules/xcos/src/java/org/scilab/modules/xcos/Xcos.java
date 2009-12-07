@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.File;
 import java.util.HashMap;
@@ -25,7 +24,6 @@ import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
-
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 

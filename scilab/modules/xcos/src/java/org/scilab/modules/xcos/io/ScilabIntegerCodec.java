@@ -65,7 +65,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	    NamedNodeMap attrs = node.getAttributes();
 	    int heightXMLPosition = -1;
 	    int widthXMLPosition = -1;
-		int bUnsignedXMLPosition = -1;
+	    int bUnsignedXMLPosition = -1;
 	    for (int i = 0; i < attrs.getLength(); i++)
 	    {
 		Node attr = attrs.item(i);
@@ -111,7 +111,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	return obj;
     }
 
-    @SuppressWarnings("serial")
+    
     private class UnrecognizeFormatException extends Exception { }
 
 }
