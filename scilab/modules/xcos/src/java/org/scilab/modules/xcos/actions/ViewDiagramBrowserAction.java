@@ -23,6 +23,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+
 public class ViewDiagramBrowserAction extends DefaultAction {
 
 	private ViewDiagramBrowserAction(ScilabGraph scilabGraph) {

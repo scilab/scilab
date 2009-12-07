@@ -27,6 +27,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class DumpAction extends DefaultAction {
 
+    private static final long serialVersionUID = 3912361255175611532L;
+
     public DumpAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.DUMP, scilabGraph);
     }
