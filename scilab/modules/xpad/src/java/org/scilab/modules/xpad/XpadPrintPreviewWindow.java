@@ -77,7 +77,9 @@ public class XpadPrintPreviewWindow extends JDialog {
 		// Preview JDialog
 		setModal(true); // set focus priority on the JDialog
 		setTitle(title);
-		setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		// Java 1.5
+		((java.awt.Frame)this.getOwner()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		//setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		setSize(640, 940);
 
 		// Tool bar of the preview window 
