@@ -535,10 +535,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	// view.add(ViewGetinfosAction.createMenu(scilabGraph));
 	view.add(ViewDetailsAction.createMenu(scilabGraph));
 
-	if (XcosPaletteManager.isVisible() == false) {
-	    ViewPaletteBrowserAction.setPalettesVisible(true);
-	}
-
 	/** Simulation menu */
 	simulate = ScilabMenu.createMenu();
 	simulate.setText(XcosMessages.SIMULATION);
