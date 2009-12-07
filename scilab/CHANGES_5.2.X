@@ -310,6 +310,9 @@ Bug fixes:
                    help_from_sci function, the docbook Author refsection
                    section was not correct.
 
+* bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set stack to 
+                   minimun size if it fails.
+
 * bug 5497 fixed - Editor: selection drag is now available.
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about version in 
