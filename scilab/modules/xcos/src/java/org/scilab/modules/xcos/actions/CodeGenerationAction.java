@@ -90,7 +90,6 @@ public class CodeGenerationAction extends DefaultAction {
 	}
 	
 	catch (Exception e) {
-	    // TODO: handle exception
 	    e.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}

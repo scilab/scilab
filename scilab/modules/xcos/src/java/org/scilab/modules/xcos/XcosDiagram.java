@@ -369,7 +369,6 @@ public class XcosDiagram extends ScilabGraph {
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 
@@ -1519,8 +1518,7 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		}
 	    }
-	    // TODO
-	    //open all SuperBlocks to assign a UID
+	    // TODO: open all SuperBlocks to assign a UID
 
 	    info(XcosMessages.EMPTY_INFO);
 	    ((XcosTab) getParentTab()).setActionsEnabled(true);

@@ -71,7 +71,6 @@ public class CompileAction extends DefaultAction {
 						Signal.wait(compilationEnd);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
