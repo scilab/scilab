@@ -33,7 +33,6 @@ public class ImportFromXMLAction extends DefaultAction {
 	try {
 	    document = mxUtils.parse(mxUtils.readFile( sci + "/testexport.xml"));
 	} catch (final IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
 

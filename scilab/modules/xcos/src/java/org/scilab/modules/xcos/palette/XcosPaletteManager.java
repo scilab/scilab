@@ -17,6 +17,7 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -52,6 +53,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.actions.LoadAsPalAction;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -294,6 +296,8 @@ public final class XcosPaletteManager {
 		    }
 
 		    public void mouseClicked(MouseEvent arg0) {
+			
+			//Right click
 			if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
 				|| arg0.isPopupTrigger()
 				|| XcosMessages.isMacOsPopupTrigger(arg0)) {
@@ -311,6 +315,17 @@ public final class XcosPaletteManager {
 
 				public void callBack() {
 				    DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)(path.getLastPathComponent());
+				    
+				    //remove palette from ConfigXcosManager
+				    if(currentNode.getUserObject() instanceof XcosComponent) {
+					XcosComponent comp = (XcosComponent)currentNode.getUserObject();
+					if(comp.getGraph() instanceof PaletteDiagram) {
+					    PaletteDiagram diagram = (PaletteDiagram)comp.getGraph();
+					    String fileName = diagram.getFileName();
+					    ConfigXcosManager.removeUserDefinedPalettes(fileName);
+					}
+				    }
+				    
 				    paletteTreeModel.removeNodeFromParent(currentNode);
 				    if(userDefinedNode != null && userDefinedNode.getChildCount() == 0) {
 					paletteTreeModel.removeNodeFromParent(userDefinedNode);
@@ -391,6 +406,12 @@ public final class XcosPaletteManager {
 			xcosPalette.addTemplate(iter.Name, iter.Icon);
 		    }
 		    rootNode.add(new DefaultMutableTreeNode(xcosPalette));
+		}
+
+		//load user defined palette
+		ArrayList<String> files = ConfigXcosManager.getUserDefinedPalettes();
+		for(String file : files) {
+		    loadUserPalette(file);
 		}
 
 		paletteLoadStarted = true;

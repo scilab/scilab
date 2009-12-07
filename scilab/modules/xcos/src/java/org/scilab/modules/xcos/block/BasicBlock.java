@@ -62,7 +62,6 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.BlockChange;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -70,11 +69,8 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
@@ -91,8 +87,7 @@ public class BasicBlock extends XcosUIDObject {
     private transient boolean isMirrored = false;
     
 
-    // TODO :
-    // Must make this types evolve, but for now keep a strong link to Scilab
+    // TODO : Must make this types evolve, but for now keep a strong link to Scilab
     // !! WARNING !!
     // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
@@ -454,14 +449,15 @@ public class BasicBlock extends XcosUIDObject {
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	
-	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
-	    public void dispatch()
-		{
-			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
-					new mxEventObject(new Object[] { changes }));
-		}
-	};
-	edit.add(new BlockChange(modifiedBlock, this));
+	/* TODO: emit changes on update */
+//	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
+//	    public void dispatch()
+//		{
+//			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
+//					new mxEventObject(new Object[] { changes }));
+//		}
+//	};
+//	edit.add(new BlockChange(modifiedBlock, this));
 	
 	doUpdateBlockSettings(modifiedBlock);
     }

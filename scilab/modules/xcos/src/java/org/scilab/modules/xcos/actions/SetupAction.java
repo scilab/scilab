@@ -377,35 +377,18 @@ public class SetupAction extends DefaultAction {
 		//display the frame and set some properties
 
 		mainFrame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void windowClosed(WindowEvent arg0) {}
+			public void windowDeiconified(WindowEvent arg0) {}
+			public void windowActivated(WindowEvent arg0) {}
+			
 			public void windowClosing(WindowEvent arg0) {
 				windowAlreadyExist = false;
 				mainFrame.dispose();
-
 			}
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-			public void windowIconified(WindowEvent arg0) {
-
-			};
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
+			
+			public void windowDeactivated(WindowEvent arg0) {}
+			public void windowIconified(WindowEvent arg0) {};
+			public void windowOpened(WindowEvent arg0) {}
 		});
 
 		mainFrame.setTitle(XcosMessages.SETUP_TITLE);

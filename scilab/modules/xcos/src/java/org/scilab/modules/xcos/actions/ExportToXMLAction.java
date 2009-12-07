@@ -32,7 +32,6 @@ public class ExportToXMLAction extends DefaultAction {
 	try {
 	    mxUtils.writeFile(xml, sci + "/testexport.xml");
 	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
     }
