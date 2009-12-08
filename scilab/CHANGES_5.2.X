@@ -79,72 +79,74 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
-* bug 5099 fixed - diagram not visible after a "Fit diagram to view"
+* bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
-* bug 5104 fixed - Update the block view on undo/redo
+* bug 5104 fixed - The block view was not updated on undo/redo
 
-* bug 5111 fixed - "Save As" default path is the current file path
+* bug 5111 fixed - "Save As" default path wasn't the current file path
 
-* bug 5159 fixed - the region to superblock action can be undone/redone.
+* bug 5159 fixed - The region to superblock action couldn't be undone/redone.
 
-* bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
+* bug 5180 fixed - TEXT_f was not selectable on the palette.
 
-* bug 5183 fixed - disable Simulation menu on a superblock diagram
+* bug 5183 fixed - Simulation menu wasn't disabled on a superblock diagram
 
-* bug 5184 fixed - Setup menu values are localized
+* bug 5184 fixed - Setup menu values weren't localized
+
+* bug 5196 fixed - Openning a SuperBlock modified some positions.
 
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
-* bug 5312 fixed - adding 'Compile' informations
+* bug 5312 fixed - 'Compile' informations was not displayed
 
-* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+* bug 5388 fixed - Editor dialogs wasn't centered on editor main window.
 
 * bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
                    memory.
 
-* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+* bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
-* bug 5348 fixed - Openning a Superblock crash Xcos.
+* bug 5348 fixed - Openning a Superblock crashed Xcos.
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
-* bug 5403 fixed - now creates graphic windows only when needed.
+* bug 5403 fixed - A graphic windows wasn't created only when needed.
 
-* bug 5407 fixed - now you can use the arrow keys to move a block
+* bug 5407 fixed - It was impossible to use the arrow keys to move a block
 
-* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
+* bug 5410 fixed - Html4.0 specific symbols were used.
 
 * bug 5412 fixed - Context modifications were not saved for Superblocks.
 
 * bug 5416 fixed - Blocks modifications were not saved for Superblocks.
 
-* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+* bug 5417 fixed - AUTOMAT and PDE blocks were in demo blocks
 
-* bug 5418 fixed - DEBUG_SCICOS block has been added to the palette.
+* bug 5418 fixed - DEBUG_SCICOS block were not in the palette.
 
-* bug 5422 fixed - A file is a unique diagram instance (not openned twice)
+* bug 5422 fixed - A file was not a unique diagram instance (openned twice)
 
-* bug 5428 fixed - Connecting Implicit I/O port to Link must be allowed
+* bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+* bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
-* bug 5442 fixed - Undo a Mirror Action works as expected
+* bug 5442 fixed - Undo a Mirror Action didn't work as expected
 
-* bug 5445 fixed - Update modified state on undo/redo
+* bug 5445 fixed - The modified state was not updated on undo/redo
 
-* bug 5449 fixed - Do not change palette tab position if it is visible
+* bug 5449 fixed - The palette tab position was modified even if invisible
 
-* bug 5464 fixed - Actions are disabled on file loading
+* bug 5464 fixed - Actions were not disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
-* bug 5531 fixed - Setup values are strongly typed (use of spinner)
+* bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
-* bug 5533 fixed - SetupAction doesn't valid inputs
+* bug 5533 fixed - SetupAction didn't valid inputs
 
 
 Tree functions :

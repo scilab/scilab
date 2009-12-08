@@ -19,7 +19,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class ExplicitInBlock extends ContextUpdate {
+public final class ExplicitInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = -5872963017904352162L;
 
