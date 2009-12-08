@@ -19,7 +19,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class SuperBlockDiagram extends XcosDiagram implements Serializable {
+public final class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
     private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container = null;

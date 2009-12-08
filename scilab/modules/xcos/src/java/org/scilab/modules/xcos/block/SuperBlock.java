@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
-public class SuperBlock extends BasicBlock {
+public final class SuperBlock extends BasicBlock {
 
     private static final long serialVersionUID = 3005281208417373333L;
     private SuperBlockDiagram child = null;
