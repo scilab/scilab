@@ -14,5 +14,5 @@ stacksize(80000000);
 A = rand(1000,100,'n');
 
 // <-- BENCH START -->
-B=pca(A,[1 2],%t);
+[lambda,facpr,comprinc] = pca(A);
 // <-- BENCH END -->
