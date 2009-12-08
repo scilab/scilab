@@ -17,10 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.CommentManager;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -63,6 +65,7 @@ public class UnCommentAction extends DefaultAction {
 			getEditor().getTextPane().setSelectionStart(position_start);
 			getEditor().getTextPane().setSelectionEnd(position_end-1);
 		}
+		SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(scilabDocument, position_start, position_end) );
 	}
 	
 	public static MenuItem createMenu(Xpad editor)

@@ -743,16 +743,24 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}	
 	}
 	
-	class CaretUpdateListener implements DocumentListener {
+	class UpdateListener implements DocumentListener {
 		public void insertUpdate(final DocumentEvent e)
 		{
+			updateColor(e);
 			SwingUtilities.invokeLater(new CaretUpdater(getTextPane(), e));
 		}
 		public void removeUpdate(DocumentEvent e)
 		{
+			updateColor(e);
 			getTextPane().setCaretPosition(e.getOffset());
 		}
 		public void changedUpdate(DocumentEvent e) {}
+		
+		void updateColor(DocumentEvent e){
+			if( e.getType() != DocumentEvent.EventType.CHANGE) {
+				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
+			}
+		}
 	}
 
 	/**
@@ -763,7 +771,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					undo.undo();
@@ -789,7 +797,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					redo.redo();
