@@ -180,7 +180,7 @@ function atomsGui()
     removeButton = uicontrol( ..
         "Parent"             , atomsfig,..
         "Style"              , "pushbutton",..
-        "Position"           , [listboxFrameWidth+2*margin margin buttonWidth 20],..
+        "Position"           , [listboxFrameWidth+2*margin margin buttonWidth widgetHeight],..
         "String"             , gettext("Remove"),..
         "Callback"           , "cbAtomsGui", ..
         "Enable"             , "off",..
