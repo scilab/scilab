@@ -22,10 +22,12 @@ public class CompoundUndoManager extends UndoManager {
 	CompoundEdit compoundEdit=null;
 	
 	void startCompoundEdit(){
+		//System.err.println("starting compound edit");
 		compoundEdit = new CompoundEdit();
 		addEdit(compoundEdit);
 	}
 	void endCompoundEdit(){
+		//System.err.println("ending compound edit");
 		compoundEdit.end();
 		compoundEdit = null;
 	}
@@ -40,6 +42,7 @@ public class CompoundUndoManager extends UndoManager {
 			// do not store change events
 			return;
 		}
+		//System.err.println("storing an edit");
 		addEdit( e.getEdit() );
 	}
 }

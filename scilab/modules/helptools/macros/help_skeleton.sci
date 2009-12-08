@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,275 +8,178 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function txt=help_skeleton(funname,path,language)
+function txt = help_skeleton(funname, path, language)
   
+  [lhs,rhs] = argn(0);
   
-// Vérification des paramètres
-// --------------------------------------------------------------------------------
+  if rhs > 3 | rhs < 1 then 
+    error(39);
+  end
   
-  [lhs,rhs]=argn(0);
+  if type(funname) <> 10 then
+    error(999,msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),'help_skeleton',1));
+  end
   
-  if rhs > 3 | rhs < 1 then error(39); end
-  if type(funname)<>10 then error('argument should be a function name'); end
+  if size(funname, '*') <> 1 then
+    error(999,msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),'help_skeleton',1));
+  end
   
   if rhs > 1 then
-    if type(path) <> 10 then error(55,2); end
+    if type(path) <> 10 then
+      error(55,2); 
+    end
   end
-  
+
+  previouslangage = getlanguage();
+
   if rhs == 3 then
-    if type(language) <> 10 then error(55,3); end
-  else
+    if type(language) <> 10 then 
+      error(55,3); 
+    end
+    setlanguage(language);
+  else 
     language = getlanguage();
   end
-  
-  txt=[];
-  vars=macrovar(evstr(funname));
-  inputs=vars(1);
-  outputs=vars(2);
-  context=vars(3);
-  Call='';
-  
-  if size(outputs,'*')==1 then
-    Call=outputs+' = '
-  elseif size(outputs,'*')>1 then
-    Call='['+strcat(outputs,',')+'] = '
+
+  txt = [];
+  vars = macrovar(evstr(funname));
+  inputs = vars(1);
+  outputs = vars(2);
+  context = vars(3);
+  Call = '';
+
+  if size(outputs,'*') == 1 then
+    Call = outputs + ' = '
+  elseif size(outputs,'*') > 1 then
+    Call = '['+strcat(outputs,',')+'] = ';
   end
-  
-  Call=Call+funname
-  
-  if size(inputs,'*')>=1 then
-    Call=Call+'('+strcat(inputs,',')+')'
+
+  Call = Call + funname;
+
+  if size(inputs,'*') >= 1 then
+    Call = Call+'('+strcat(inputs,',')+')';
   end
-  
-  args=[inputs(:);outputs(:)]
-  
-  // Gestion de la date
+
+  args = [inputs(:);outputs(:)];
+
+  // date management
   // --------------------------------------------------------------------------------
   w = getdate();
-  xml_date = msprintf("%02d-%02d-%04d",w(6),w(2),w(1));
+  xml_date = msprintf(_("%02d-%02d-%04d"),w(6),w(2),w(1));
   
-  xmlns='xmlns=""http://docbook.org/ns/docbook""'
-  xlink='xmlns:xlink=""http://www.w3.org/1999/xlink""'
-  svg='xmlns:svg=""http://www.w3.org/2000/svg""'
-  mml=' xmlns:mml=""http://www.w3.org/1998/Math/MathML""'
-  db='xmlns:db=""http://docbook.org/ns/docbook""'
-  vers='version=""5.0-subset Scilab""'
-  refs=strcat([xmlns xlink svg mml db vers],' ')
-  select language
-    
-    // --------------------------------------------------------------------------------
-    // FRENCH
-    // --------------------------------------------------------------------------------
-  case 'fr_FR' then
-    //header
-    txt=['<?xml version=""1.0"" encoding='"ISO-8859-1""?>'
-	 '<!--'
-	 ' * Ajouter ici d''éventuels commentaires sur le fichier XML'
-	 '-->'
-	 '<refentry '+refs+' xml:lang=""fr"" xml:id=""'+funname+'"">'
-	 '  <info>'
-	 '    <pubdate>$LastChangedDate: '+xml_date+' $</pubdate>'
-	 '  </info>'
-	 '  <refnamediv>'
-	 '    <refname>'+funname+'</refname>'
-	 '    <refpurpose>  Ajouter ici une description rapide de la fonction </refpurpose>'
-	 '  </refnamediv>'
-	 '  <refsynopsisdiv>'
-	 '    <title>Séquence d''appel</title>'
-	 '    <synopsis>'+Call+'</synopsis>'
-	 '  </refsynopsisdiv>'];
+  //header
+  // --------------------------------------------------------------------------------
+  xmlns = 'xmlns=""http://docbook.org/ns/docbook""'
+  xlink = 'xmlns:xlink=""http://www.w3.org/1999/xlink""'
+  svg = 'xmlns:svg=""http://www.w3.org/2000/svg""'
+  mml = ' xmlns:mml=""http://www.w3.org/1998/Math/MathML""'
+  db = 'xmlns:db=""http://docbook.org/ns/docbook""'
+  vers = 'version=""5.0-subset Scilab""'
+  refs = strcat([xmlns xlink svg mml db vers],' ')
+
+  txt=['<?xml version=""1.0"" encoding='"UTF-8""?>'
+   '<!--'
+ _(' * Add some comments about XML file');
+   '-->'
+   '<refentry ' + refs + ' xml:lang=""'+ language + '"" xml:id=""' + funname + '"">'
+   '  <info>'
+   '    <pubdate>$LastChangedDate: ' + xml_date + ' $</pubdate>'
+   '  </info>'
+   '  <refnamediv>'
+   '    <refname>'+ funname + '</refname>'
+   '    <refpurpose>' + _('Add short description here.') + ' </refpurpose>'
+   '  </refnamediv>'
+   '  <refsynopsisdiv>'
+   '    <title>' + _('Calling Sequence') + '</title>'
+   '    <synopsis>' + Call + '</synopsis>'
+   '  </refsynopsisdiv>'];
     //Arguments
     if size(args,'*') >0 then
       txt=[txt;
-	   '  <refsection>'
-	   '    <title>Paramètres</title>'
-	   '    <variablelist>'];
+     '  <refsection>'
+     '    <title>' + _('Parameters') + '</title>'
+     '    <variablelist>']
       for a=args'
-	txt=[txt;
-	     '      <varlistentry>'
-	     '        <term>'+a+'</term>'
-	     '        <listitem>'
-	     '          <para>'
-	     '            Ajouter ici la description du paramètre'
-	     '          </para>'
-	     '        </listitem>'
-	     '      </varlistentry>'];
+       txt=[txt;
+       '      <varlistentry>'
+       '        <term>' + a + '</term>'
+       '        <listitem>'
+       '          <para>'
+     _('            Add here the parameter description.')
+       '          </para>'
+       '        </listitem>'
+       '      </varlistentry>']
       end
       txt=[txt;
-	   '    </variablelist>'
-	   '  </refsection>'];
+     '    </variablelist>'
+     '  </refsection>'];
     end
     //Description
     txt=[txt;
-	 '  <refsection>'
-	 '    <title>Description</title>'
-	 '    <para>'
-	 '          Ajouter ici un paragraphe sur la description détaillée de la fonction.'
-	 '          D''autres paragraphes peuvent être ajoutés."
-	 '    </para>'
-	 '  </refsection>'];
-    //Exemple
-    txt=[txt;
-	 '  <refsection>'
-	 '    <title>Exemples</title>'
-	 '    <programlisting role=""example""><![CDATA['
-	 '       Ajouter ici les instructions et commentaires scilab'
-	 '    ]]></programlisting>'
-	 '  </refsection>'];
+   '  <refsection>'
+   '    <title>' + _('Description') + '</title>'
+   '    <para>'
+ _('          Add here a paragraph of the function description. ')
+ _('          Other paragraph can be added ')
+   '    </para>'
+   '  </refsection>'];
+    //Example
+   txt=[txt;
+   '  <refsection>'
+   '    <title>' + _('Examples') + '</title>'
+   '    <programlisting role=""example""><![CDATA['
+ _('        Add here scilab instructions and comments')
+   '    ]]></programlisting>'
+   '  </refsection>'];
     //See Also
     txt=[txt;
-	 '  <refsection>'
-	 '    <title>Voir aussi</title>'
-	 '    <simplelist type=""inline"">'
-	 '      <member>'
-	 '        <link linkend=""ajouter le nom d''une référence"">Ajouter ici une référence</link>'
-	 '      </member>'
-	 '      <member>'
-	 '        <link linkend=""ajouter le nom d''une référence"">Ajouter ici une référence</link>'
-	 '      </member>'
-	 '    </simplelist>'
-	 '  </refsection>'];
+   '  <refsection>'
+   '    <title>' + _('See Also') + '</title>'
+   '    <simplelist type=""inline"">'
+   '      <member>'
+   '        <link linkend=""' + _('add a reference name') + '"" >' + _('add a reference') + '</link>'
+   '      </member>'
+   '      <member>'
+   '        <link linkend=""' + _('add a reference name') + '"">' + _('add a reference') + '</link>'
+   '      </member>'
+   '    </simplelist>'
+   '  </refsection>'];
     //Authors
     txt=[txt;
-	 '  <refsection>'
-	 '    <title>Auteurs</title>'
-	 '    <simplelist type=""vert"">'
-	 '      <member>ajouter le nom et les références de l''auteur</member>'
-	 '      <member>ajouter le nom et les références d''un autre auteur</member>'
-	 '    </simplelist>'
-	 '  </refsection>'];
-    //Bibliography
-    txt=[txt;
-	 '  <refsection>'
-	 '     <title>Bibliographie</title>'
-	 '       <para>'
-	 '         ajouter ici la bibliographie relative à la fonction'
-	 '       </para>'
-	 '     </refsection>'];
-    //Used functions
-    txt=[txt;
-	 '  <refsection>'
-	 '     <title>Fonctions utilisées</title>'
-	 '       <para>'
-	 '         ajouter les références des codes Scilab,C,... utilisés'
-	 '       </para>'
-	 '   </refsection>'];
+   '  <refsection>'
+   '    <title>' + _('Authors') + '</title>'
+   '    <simplelist type=""vert"">'
+   '      <member>' + _('add the author name and author reference') + '</member>'
+   '      <member>' + _('add another author name and it''s reference') + '</member>'
+   '    </simplelist>'
+   '  </refsection>'];
 
-    
-    //footer
-    txt=[txt;
-	 '</refentry>'];
-    
-    
-    // --------------------------------------------------------------------------------
-    // ENGLISH (par défaut)
-    // --------------------------------------------------------------------------------
-    
-  else
-    //header
-    txt=['<?xml version=""1.0"" encoding='"ISO-8859-1""?>'
-	 '<!--'
-	 ' * Ajouter ici d''éventuels commentaires sur le fichier XML'
-	 '-->'
-	 '<refentry '+refs+' xml:lang=""fr"" xml:id=""'+funname+'"">'
-	 '  <info>'
-	 '    <pubdate>$LastChangedDate: '+xml_date+' $</pubdate>'
-	 '  </info>'
-	 '  <refnamediv>'
-	 '    <refname>'+funname+'</refname>'
-	 '    <refpurpose>  Add short description here. </refpurpose>'
-	 '  </refnamediv>'
-	 '  <refsynopsisdiv>'
-	 '    <title>Calling Sequence</title>'
-	 '    <synopsis>'+Call+'</synopsis>'
-	 '  </refsynopsisdiv>'];
-    //Arguments
-    if size(args,'*') >0 then
-      txt=[txt;
-	   '  <refsection>'
-	   '    <title>Parameters</title>'
-	   '    <variablelist>']
-      for a=args'
-	txt=[txt;
-	     '      <varlistentry>'
-	     '        <term>'+a+'</term>'
-	     '        <listitem>'
-	     '          <para>'
-	     '            Add here the parameter description'
-	     '          </para>'
-	     '        </listitem>'
-	     '      </varlistentry>']
-      end
-      txt=[txt;
-	   '    </variablelist>'
-	   '  </refsection>'];
-    end
-    //Description
-    txt=[txt;
-	 '  <refsection>'
-	 '    <title>Description</title>'
-	 '    <para>'
-	 '          Add here a paragraph of the function description. '
-	 '          Other paragraph can be added "
-	 '    </para>'
-	 '  </refsection>'];
-    //Exemple
-    txt=[txt;
-	 '  <refsection>'
-	 '    <title>Examples</title>'
-	 '    <programlisting role=""example""><![CDATA['
-	 '        Add here scilab instructions and comments'
-	 '    ]]></programlisting>'
-	 '  </refsection>'];
-    //See Also
-    txt=[txt;
-	 '  <refsection>'
-	 '    <title>See Also</title>'
-	 '    <simplelist type=""inline"">'
-	 '      <member>'
-	 '        <link linkend=""add a reference name"" >add a reference</link>'
-	 '      </member>'
-	 '      <member>'
-	 '        <link linkend=""add a reference name"">add a reference</link>'
-	 '      </member>'
-	 '    </simplelist>'
-	 '  </refsection>'];
-    //Authors
-    txt=[txt;
-	 '  <refsection>'
-	 '    <title>Authors</title>'
-	 '    <simplelist type=""vert"">'
-	 '      <member>add the author name and author reference</member>'
-	 '      <member>add another author name and it''s reference</member>'
-	 '    </simplelist>'
-	 '  </refsection>'];
     //Bibliography
-    txt=[txt;
-	 '  <refsection>'
-	 '     <title>Bibliography</title>'
-	 '       <para>'
-	 '         Add here the function bibliography'
-	 '       </para>'
-	 '     </refsection>'];
+   txt = [txt;
+   '  <refsection>'
+   '     <title>' + _('Bibliography') + '</title>'
+   '       <para>'
+ _('         Add here the function bibliography')
+   '       </para>'
+   '     </refsection>'];
     //Used functions
     txt=[txt;
-	 '  <refsection>'
-	 '     <title>Used Functions</title>'
-	 '       <para>'
-	 '         Add here the Scilab, C,... used code references'
-	 '       </para>'
-	 '     </refsection>'];
+   '  <refsection>'
+   '     <title>' + _('Used Functions') + '</title>'
+   '       <para>'
+ _('         Add here the Scilab, C,... used code references')
+   '       </para>'
+   '     </refsection>'];
 
     //footer
     txt=[txt;
-	 '</refentry>'];		
+   '</refentry>'];
 
-    
-  end
-  
+  setlanguage(previouslangage);
+
   if rhs >= 2 then
-    mputl(txt,pathconvert(path,%t,%f)+funname+'.xml');
-    txt=pathconvert(path,%t,%f)+funname+'.xml'
+    mputl(txt, pathconvert(path,%t,%f) + funname + '.xml');
+    txt = pathconvert(path,%t,%f) + funname + '.xml';
   end
-  
+
 endfunction
