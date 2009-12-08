@@ -86,19 +86,31 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
     }
 
+    /**
+     * This function set the SuperBlock diagram and all its parents in a 
+     * modified state or not.
+     */
     public void setModified(boolean modified) {
         super.setModified(modified);
-        /* FIXME: The modified state must not be passed to the parent when :
-         * 	- We are closing the diagram and thus saving it (child is not modified but parent is modified)
-         * 	- When opening a superblock and the parent is modified, then the parent is modified and child not
-         *      - When opening a superblock and the parent is not modified, then the parent neither child are not modified
-         *      
-         * But in general, when editing, the modified state is shared (thus when modifying the child the parent is set to modified)   
-         */
+
         if (getContainer() != null &&
         	getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);
         }
     }
+    
+    /**
+     * This function set the SuperBlock diagram in a modified state or not.
+     * 
+     * It doesn't perform recursively on the parent diagrams. If you want such
+     * a behavior use setModified instead.
+     * 
+     * @see setModified
+     */
+    public void setModifiedNonRecursively(boolean modified) {
+	super.setModified(modified);
+    }
+    
+    
     
 }
