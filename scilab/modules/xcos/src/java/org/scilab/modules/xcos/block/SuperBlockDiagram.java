@@ -76,6 +76,13 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
     public void setModified(boolean modified) {
         super.setModified(modified);
+        /* FIXME: The modified state must not be passed to the parent when :
+         * 	- We are closing the diagram and thus saving it (child is not modified but parent is modified)
+         * 	- When opening a superblock and the parent is modified, then the parent is modified and child not
+         *      - When opening a superblock and the parent is not modified, then the parent neither child are not modified
+         *      
+         * But in general, when editing, the modified state is shared (thus when modifying the child the parent is set to modified)   
+         */
         if (getContainer() != null &&
         	getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);
