@@ -9,6 +9,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 
+
 /**
  * This class manages the Colorization aspect
  */
@@ -150,6 +151,7 @@ public class ColorizationManager {
 		return false;
 	}
 
+	
 	public class ColorUpdater implements Runnable {
 	    private ScilabStyleDocument scilabDocument;
 	    private int startOffset, endOffset;
@@ -163,6 +165,9 @@ public class ColorizationManager {
 	    	}else{	    	
 	    		this.startOffset = this.endOffset = 0;
 	    	}
+	    }
+	    public ColorUpdater(DocumentEvent event) {
+	    	this((ScilabStyleDocument)event.getDocument(), event);
 	    }
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
 	    	super();
