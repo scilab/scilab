@@ -159,9 +159,12 @@ public class ColorizationManager {
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
-	    	if(event != null && event.getType() == DocumentEvent.EventType.INSERT ){
+	    	if(event != null && event.getType() != DocumentEvent.EventType.CHANGE ){
 	    		this.startOffset = scilabDocument.getParagraphElement(event.getOffset()).getStartOffset();
-	    		this.endOffset = scilabDocument.getParagraphElement(event.getOffset()+event.getLength()).getEndOffset();
+	    		// when inserting we must colorize until the end of the last line
+	    		// when removing edit length is not considered there is only one line in the end
+	    		this.endOffset = scilabDocument.getParagraphElement(event.getOffset()+
+	    				(( event.getType() ==  DocumentEvent.EventType.INSERT) ? event.getLength() : 0) ).getEndOffset();
 	    	}else{	    	
 	    		this.startOffset = this.endOffset = 0;
 	    	}
