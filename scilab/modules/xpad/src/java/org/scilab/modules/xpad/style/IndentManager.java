@@ -416,9 +416,15 @@ public IndentManager() {
 			System.err.println(e);
 		}
 	}
+	/*
+	 * returns the ^\s* prefix of a String. 
+	 */
+	private String prefixSpace(String str){
+		Matcher m = patternSpace.matcher(str);
+		return m.find() ? m.group() : "";
+	}
 	
 	public int beautifier(ScilabStyleDocument scilabDocument, int startPosition, int endPosition) throws BadLocationException{
-		
 		int currentStartOffset = scilabDocument.getParagraphElement(startPosition).getStartOffset();
 		
 		int endOfFirstLine = scilabDocument.getParagraphElement(startPosition).getEndOffset();
@@ -438,7 +444,7 @@ public IndentManager() {
 			currentElement = scilabDocument.getParagraphElement(currentStartOffset);
 			toIndent= scilabDocument.getText(currentStartOffset, currentElement.getEndOffset()- currentStartOffset - 1);//-1 to remove \n			
 			String indented = indentLine(toIndent, baseSpaces);
-			scilabDocument.replace(currentStartOffset, toIndent.length(), indented, null);
+			scilabDocument.replace(currentStartOffset, prefixSpace(toIndent).length(), prefixSpace(indented), null);
 			currentStartOffset += indented.length() + 1;
 		} while(currentElement != lastElement);
 		currentStringIndent = "";
