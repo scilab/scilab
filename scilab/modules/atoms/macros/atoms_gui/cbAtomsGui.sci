@@ -30,9 +30,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Installing..."));
     
         if execstr("atomsInstall(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Installation failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Installation failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Installation done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Installation done! Please restart Scilab to take changes into account."), gettext("Atoms"), "info");
         end
     
         updateAtomsGui();
@@ -48,9 +48,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Removing..."));
 
         if execstr("atomsRemove(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Remove failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Remove failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Remove done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Remove done! Please restart Scilab to take changes into account. "), gettext("Atoms"), "info");
         end
 
         updateAtomsGui();
@@ -66,9 +66,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Updating..."));
         
         if execstr("atomsRemove(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Update failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Update failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Update done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Update done! Please restart Scilab to take changes into account."), gettext("Atoms"), "info");
         end
 
         updateAtomsGui();
