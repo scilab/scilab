@@ -227,6 +227,7 @@ images/palettes/CurrentSensor.jpg \
 images/palettes/CURV_f.jpg \
 images/palettes/CVS.jpg \
 images/palettes/DEADBAND.jpg \
+images/palettes/DEBUG_SCICOS.jpg \
 images/palettes/DELAY_f.jpg \
 images/palettes/DELAYV_f.jpg \
 images/palettes/DEMUX.jpg \
