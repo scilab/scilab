@@ -2,20 +2,14 @@ package org.scilab.modules.xcos.block;
 
 import java.io.Serializable;
 
-import javax.swing.JOptionPane;
-
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.utils.XcosEvent;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxEventObject;
 
 public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
+    private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container = null;
 
     public SuperBlockDiagram() {

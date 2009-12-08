@@ -21,6 +21,8 @@ import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
+import org.scilab.modules.xcos.block.GainBlock;
+import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -33,12 +35,9 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
-import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
 public class XcosCodec extends mxCodec {
@@ -75,6 +74,7 @@ public class XcosCodec extends mxCodec {
 		//"ordering",
 		//"interfaceFunctionName",
 		//"simulationFunctionName",
+
 		"simulationFunctionType",
 		"SimulationFunctionType"
 			};
@@ -115,15 +115,19 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(afficheBlockCodec);
 	XcosObjectCodec superBlockCodec = new BasicBlockCodec(new SuperBlock(), ignore, refs, null);
 	mxCodecRegistry.register(superBlockCodec);
+	XcosObjectCodec gainBlockCodec = new BasicBlockCodec(new GainBlock(), ignore, refs, null);
+	mxCodecRegistry.register(gainBlockCodec);
+	XcosObjectCodec splitBlockCodec = new BasicBlockCodec(new SplitBlock(), ignore, refs, null);
+	mxCodecRegistry.register(splitBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities"};
+	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile", "multiplicities"};
 	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "container"};
+	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "container"};
 	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 

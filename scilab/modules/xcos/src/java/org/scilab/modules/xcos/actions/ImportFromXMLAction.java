@@ -14,30 +14,31 @@ import org.w3c.dom.Document;
 
 import com.mxgraph.util.mxUtils;
 
+
 public class ImportFromXMLAction extends DefaultAction {
-    public ImportFromXMLAction(ScilabGraph scilabGraph) {
+    
+    public ImportFromXMLAction(final ScilabGraph scilabGraph) {
 	super(XcosMessages.IMPORT_FROM_XML,scilabGraph);
     }
 
-    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+    public static MenuItem createMenu(final ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.IMPORT_FROM_XML, null, new ImportFromXMLAction(scilabGraph), null);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
 	Document document = null;
 
-	String sci = System.getenv("SCI");
+	final String sci = System.getenv("SCI");
 
 	try {
 	    document = mxUtils.parse(mxUtils.readFile( sci + "/testexport.xml"));
-	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
+	} catch (final IOException e1) {
 	    e1.printStackTrace();
 	}
 
-	XcosCodec codec2 = new XcosCodec(document);
+	final XcosCodec codec2 = new XcosCodec(document);
 	
-	XcosDiagram diagram = Xcos.createEmptyDiagram();
+	final XcosDiagram diagram = Xcos.createEmptyDiagram();
 	//diagram.getModel().beginUpdate();
 	codec2.decode(document.getDocumentElement(), diagram);
 	//diagram.getModel().endUpdate();

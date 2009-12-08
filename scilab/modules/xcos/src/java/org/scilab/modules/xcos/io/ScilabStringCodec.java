@@ -38,7 +38,7 @@ public class ScilabStringCodec extends XcosObjectCodec {
     }
 
 
-    public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map mapping) {
+    public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
@@ -107,12 +107,11 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	    ((ScilabString) obj).setData(data);
 	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
-	} finally {
-	    return obj;
 	}
-
+	return obj;
     }
 
+    
     private class UnrecognizeFormatException extends Exception {}
 
 }

@@ -248,7 +248,8 @@ cmds=['CALLING SEQUENCE','PARAMETERS','DESCRIPTION','EXAMPLES','SEE ALSO',..
 
 doing='search'; i=strindex(line,'//');
 line=mgetl(f,1); 
-while (~isempty(stripblanks(line)) & ~meof(f)),
+// Continue until empty line or end of file or a scilab command line (Bug#5487)
+while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(line),'/^\/\/*/')),
   if stripblanks(line)=='//' then 
     if doing=='Description' then 
       in='new_descr_param'; 
@@ -272,7 +273,7 @@ while (~isempty(stripblanks(line)) & ~meof(f)),
     helptxt=[helptxt;add_txt];
   else
     if doing=='Calling Sequence' then
-      helptxt=[helptxt;'   <synopsis>'+in+'</synopsis>'];
+      helptxt=[helptxt;'   '+in];
     elseif doing=='Parameters' then
       i=strindex(in,':'); 
       if ~isempty(i) then
@@ -300,9 +301,9 @@ while (~isempty(stripblanks(line)) & ~meof(f)),
     elseif doing=='Authors' & convstr(in,'u')~='AUTHORS' & ~isempty(stripblanks(in)) then
       [name,ref]=chop(in,';');
       if isempty(ref) then
-        helptxt=[helptxt;'   <varlistentry><term>'+name+'</term></varlistentry>'];
+        helptxt=[helptxt;'   <member>'+name+'</member>'];
       else
-        helptxt=[helptxt;'   <varlistentry><term>'+name+'</term><listitem><para>'+ref+'</para></listitem></varlistentry>'];
+        helptxt=[helptxt;'   <member>'+name+'</member><listitem><para>'+ref+'</para></listitem>'];
       end
     elseif doing=='Bibliography' & convstr(in,'u')~='BIBLIOGRAPHY' & ~isempty(stripblanks(in)) then
       helptxt=[helptxt;'   <para>'+in+'</para>'];
@@ -362,7 +363,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
   doing=start_doing; 
   select convstr(currently_doing,"u")
     case 'CALLING SEQUENCE' then
-      txt=['</refsynopsisdiv>'];
+      txt=['   </synopsis>';'</refsynopsisdiv>'];
     case 'PARAMETERS' then
       txt=['   </variablelist>';'</refsection>'];
     case 'DESCRIPTION' then
@@ -372,7 +373,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'SEE ALSO' then
       txt=['   </simplelist>';'</refsection>'];
     case 'AUTHORS' then
-      txt=['   </variablelist>';'</refsection>'];
+      txt=['   </simplelist>';'</refsection>'];
     case 'BIBLIOGRAPHY' then
       txt=['</refsection>'];
     case 'USED FUNCTIONS' then
@@ -383,7 +384,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
 
   select convstr(start_doing,"u"),
       case 'CALLING SEQUENCE'
-      txt=[txt;'';'<refsynopsisdiv>';'   <title>Calling Sequence</title>'];
+      txt=[txt;'';'<refsynopsisdiv>';'   <title>Calling Sequence</title>';'   <synopsis>'];
     case 'PARAMETERS'
       txt=[txt;'';'<refsection>';'   <title>Parameters</title>';'   <variablelist>'];
     case 'DESCRIPTION'
@@ -393,7 +394,7 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
     case 'SEE ALSO'
       txt=[txt;'';'<refsection>';'   <title>See also</title>';'   <simplelist type=""inline"">'];
     case 'AUTHORS'
-      txt=[txt;'';'<refsection>';'   <title>Authors</title>';'   <variablelist>'];
+      txt=[txt;'';'<refsection>';'   <title>Authors</title>';'   <simplelist type=""vert"">'];
     case 'BIBLIOGRAPHY'
       txt=[txt;'';'<refsection>';'   <title>Bibliography</title>'];
     case 'USED FUNCTIONS'
@@ -402,3 +403,4 @@ function [txt,doing]=change_activity(currently_doing,start_doing)
       txt=[txt;'</refentry>'];
   end
 endfunction
+

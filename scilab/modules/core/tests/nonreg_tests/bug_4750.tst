@@ -13,8 +13,8 @@
 // <-- Short Description -->
 //error in catenation of boolean arrays
 
-p1=[%F %F %F;%F %F %F;%F %F %T];
-cp2=[%F %F %F;%F %F %F;%F %F %F];
+cp1 = [%F %F %F;%F %F %F;%F %F %T];
+cp2 = [%F %F %F;%F %F %F;%F %F %F];
 o1=or(cp1,1);
 if or(o1<>[%f,%f,%t]) then pause,end
 o2=or(cp2,1);

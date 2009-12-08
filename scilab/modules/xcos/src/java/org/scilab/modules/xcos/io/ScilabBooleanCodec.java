@@ -26,7 +26,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     }
 
 
-    public ScilabBooleanCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+    public ScilabBooleanCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 
@@ -104,12 +104,11 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    ((ScilabBoolean) obj).setData(data);
 	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
-	} finally {
-	    return obj;
 	}
-
+	return obj;
     }
 
+    
     private class UnrecognizeFormatException extends Exception {}
 
 }

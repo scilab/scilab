@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -45,7 +46,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 
 public class BlockReader {
 
@@ -115,30 +115,18 @@ public class BlockReader {
 	    try {
 		if (isBlock(data, i)) {
 		    INFO("Reading Block " + i);
-		    BasicBlock currentBlock = fillBlockStructure(getBlockAt(
-			    data, i));
+		    BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
 		    currentBlock.setOrdering(i);
 		    indexedBlock.put(i + 1, currentBlock);
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle(currentBlock
-			    .getInterfaceFunctionName()
-			    + currentBlock.getStyle());
+		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);
 		    minX = Math.min(minX, currentBlock.getGeometry().getX());
-		    minY = Math.min(minY, currentBlock.getGeometry().getY()/*
-									    * -
-									    * currentBlock
-									    * .
-									    * getGeometry
-									    * (
-									    * ).
-									    * getHeight
-									    * ()
-									    */);
+		    minY = Math.min(minY, currentBlock.getGeometry().getY());
 		}
 	    } catch (BlockReaderException e) {
 		WARNING(" Fail reading Block " + (i + 1));
@@ -167,53 +155,35 @@ public class BlockReader {
 		    int endPortIndex = getEndPortIndex(link);// 7.1
 		    PortType endPortType = getEndPortType(link);// 5.1
 
-		    DEBUG("Start : [" + startBlockIndex + ", " + startPortIndex
-			    + ", " + startPortType + "]");
-		    DEBUG("End : [" + endBlockIndex + ", " + endPortIndex
-			    + ", " + endPortType + "]");
+		    DEBUG("Start : [" + startBlockIndex + ", " + startPortIndex + ", " + startPortType + "]");
+		    DEBUG("End : [" + endBlockIndex + ", " + endPortIndex + ", " + endPortType + "]");
 		    switch (startPortType) {
 		    case INPUT:
-			startingPort = BasicBlockInfo.getAllInputPorts(
-				indexedBlock.get(startBlockIndex)).get(
-				startPortIndex - 1);
+			startingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
 			break;
 		    case OUTPUT:
-			startingPort = BasicBlockInfo.getAllOutputPorts(
-				indexedBlock.get(startBlockIndex)).get(
-				startPortIndex - 1);
+			startingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
 			break;
 		    case COMMAND:
-			startingPort = BasicBlockInfo.getAllCommandPorts(
-				indexedBlock.get(startBlockIndex)).get(
-				startPortIndex - 1);
+			startingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
 			break;
 		    case CONTROL:
-			startingPort = BasicBlockInfo.getAllControlPorts(
-				indexedBlock.get(startBlockIndex)).get(
-				startPortIndex - 1);
+			startingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
 			break;
 		    }
 
 		    switch (endPortType) {
 		    case INPUT:
-			endingPort = BasicBlockInfo.getAllInputPorts(
-				indexedBlock.get(endBlockIndex)).get(
-				endPortIndex - 1);
+			endingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
 			break;
 		    case OUTPUT:
-			endingPort = BasicBlockInfo.getAllOutputPorts(
-				indexedBlock.get(endBlockIndex)).get(
-				endPortIndex - 1);
+			endingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
 			break;
 		    case COMMAND:
-			endingPort = BasicBlockInfo.getAllCommandPorts(
-				indexedBlock.get(endBlockIndex)).get(
-				endPortIndex - 1);
+			endingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
 			break;
 		    case CONTROL:
-			endingPort = BasicBlockInfo.getAllControlPorts(
-				indexedBlock.get(endBlockIndex)).get(
-				endPortIndex - 1);
+			endingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
 			break;
 		    }
 
@@ -221,10 +191,8 @@ public class BlockReader {
 		    linkPorts.add(startAndEnd);
 
 		    // First and last value -> start and end point
-		    if (link.get(1).getHeight() > 2
-			    || link.get(1).getWidth() > 2) {
-			int maxDim = Math.max(link.get(1).getHeight(), link
-				.get(1).getWidth());
+		    if (link.get(1).getHeight() > 2 || link.get(1).getWidth() > 2) {
+			int maxDim = Math.max(link.get(1).getHeight(), link.get(1).getWidth());
 			double[][] linkPoint = new double[maxDim - 2][2];
 			for (int point = 0; point < maxDim - 2; point++) {
 			    linkPoint[point] = getLinkPoint(link, point);
@@ -247,10 +215,8 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isLabel(data, i)) {
-		    // TODO
 		    INFO("Reading Label " + i);
-		    TextBlock currentText = fillTextStructure(getBlockAt(data,
-			    i));
+		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
 
 		    // tips to set block direction at load
@@ -260,8 +226,7 @@ public class BlockReader {
 		    if (isEmptyField(currentText.getRealParameters())) {
 			currentText.setValue("");
 		    } else {
-			currentText.setValue(((ScilabString) currentText
-				.getRealParameters()).getData()[0][0]);
+			currentText.setValue(((ScilabString) currentText.getRealParameters()).getData()[0][0]);
 		    }
 
 		    textBlocks.add(currentText);
@@ -282,10 +247,8 @@ public class BlockReader {
 	double offsetY = -minY + 20;
 
 	for (int i = 0; i < blocks.size(); ++i) {
-	    blocks.get(i).getGeometry().setX(
-		    blocks.get(i).getGeometry().getX() + offsetX);
-	    blocks.get(i).getGeometry().setY(
-		    blocks.get(i).getGeometry().getY() + offsetY);
+	    blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
+	    blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + offsetY);
 	}
 
 	for (int i = 0; i < linkPoints.size(); i++) {
@@ -298,10 +261,8 @@ public class BlockReader {
 	}
 
 	for (int i = 0; i < textBlocks.size(); ++i) {
-	    textBlocks.get(i).getGeometry().setX(
-		    textBlocks.get(i).getGeometry().getX() + offsetX);
-	    textBlocks.get(i).getGeometry().setY(
-		    textBlocks.get(i).getGeometry().getY() + offsetY);
+	    textBlocks.get(i).getGeometry().setX(textBlocks.get(i).getGeometry().getX() + offsetX);
+	    textBlocks.get(i).getGeometry().setY(textBlocks.get(i).getGeometry().getY() + offsetY);
 	}
 
 	// put all data
@@ -327,12 +288,15 @@ public class BlockReader {
 
 	    return convertMListToDiagram(data);
 	} catch (HDF5LibraryException e) {
-	    return null;
+	    System.err.println("An error occurred while working with the HDF5 library "+e.getLocalizedMessage());
 	} catch (WrongStructureException e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Wrong Structure: "+e.getLocalizedMessage());
+	} catch (HDF5JavaException e) {
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	} catch (HDF5Exception e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	}
+	return null;
     }
 
     private static int getStartBlockIndex(ScilabMList link)
@@ -460,14 +424,12 @@ public class BlockReader {
 	    return PortType.CONTROL;
 	}
 
-	System.err.println("type : " + type);
-	System.err.println("io : " + io);
 	throw new WrongTypeException();
     }
 
     public static BasicBlock readBlockFromFile(String hdf5file) {
 	ScilabMList data = new ScilabMList();
-	BasicBlock newBlock = BasicBlock.createBlock("FAILED !!");
+	BasicBlock newBlock;
 
 	try {
 	    int fileId = H5Read.openFile(hdf5file);
@@ -481,12 +443,11 @@ public class BlockReader {
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
-	} finally {
-	    return newBlock;
+	    newBlock = null;
 	}
+	return newBlock;
     }
 
     public static int getNbObjs(ScilabMList data) {
@@ -715,13 +676,11 @@ public class BlockReader {
 	ArrayList<String> context = new ArrayList<String>();
 	if (params.get(5).getHeight() >= params.get(5).getWidth()) {
 	    for (int i = 0; i < params.get(5).getHeight(); i++) {
-		context.add(((ScilabString) params.get(5)).getData()[i][0]
-			+ ";");
+		context.add(((ScilabString) params.get(5)).getData()[i][0]);
 	    }
 	} else {
 	    for (int i = 0; i < params.get(5).getWidth(); i++) {
-		context.add(((ScilabString) params.get(5)).getData()[0][i]
-			+ ";");
+		context.add(((ScilabString) params.get(5)).getData()[0][i]);
 	    }
 
 	}
@@ -836,8 +795,7 @@ public class BlockReader {
 	if (!(blockFields.get(3) instanceof ScilabString)) {
 	    throw new WrongTypeException();
 	}
-	BasicBlock newBlock = BasicBlock
-		.createBlock(getBlockInterfaceName(blockFields));
+	BasicBlock newBlock = BasicBlock.createBlock(getBlockInterfaceName(blockFields));
 	// newBlock.setValue(getBlockInterfaceName (blockFields));
 	newBlock.setInterfaceFunctionName(getBlockInterfaceName(blockFields));
 
@@ -989,45 +947,13 @@ public class BlockReader {
 	theta %= 360;
 
 	if (theta > 315 || theta <= 45) {
-	    if (newBlock.getFlip()) {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_WEST);
-	    } else {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_EAST);
-	    }
+	    newBlock.setAngle(0);
 	} else if (theta > 45 && theta <= 135) {
-	    if (newBlock.getFlip()) {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_SOUTH);
-	    } else {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_NORTH);
-	    }
+	    newBlock.setAngle(90);
 	} else if (theta > 135 && theta <= 225) {
-	    if (newBlock.getFlip()) {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_EAST);
-	    } else {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_WEST);
-	    }
+	    newBlock.setAngle(180);
 	} else if (theta > 225 && theta <= 315) {
-	    if (newBlock.getFlip()) {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_NORTH);
-	    } else {
-		newBlock.setStyle(newBlock.getStyle() + ";"
-			+ mxConstants.STYLE_DIRECTION + "="
-			+ mxConstants.DIRECTION_SOUTH);
-	    }
+	    newBlock.setAngle(270);
 	}
 
 	// exprs
@@ -1360,7 +1286,7 @@ public class BlockReader {
 	if (modelFields.get(15) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(15))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock);
+		    .getAllCommandPorts(newBlock, false);
 	    if (modelFields.get(15).getHeight() >= modelFields.get(15)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {
@@ -1696,7 +1622,7 @@ public class BlockReader {
 	if (modelFields.get(17) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(17))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock);
+		    .getAllCommandPorts(newBlock, false);
 	    if (modelFields.get(17).getHeight() >= modelFields.get(17)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {
@@ -1749,15 +1675,19 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(22));
     }
 
+    
     private static class BlockReaderException extends Exception {
     };
 
+    
     private static class WrongTypeException extends BlockReaderException {
     };
 
+    
     private static class WrongStructureException extends BlockReaderException {
     };
 
+    
     private static class VersionMismatchException extends BlockReaderException {
 	private String version;
 

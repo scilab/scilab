@@ -18,16 +18,38 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class DeleteAction extends DefaultAction {
+/**
+ * 
+ * @author Bruno JOFRET
+ *
+ */
+public final class DeleteAction extends DefaultAction {
 
-    private DeleteAction(Xpad editor) {
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -1818764947112443369L;
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
+	private DeleteAction(Xpad editor) {
 	super(XpadMessages.DELETE, editor);
     }
     
+	/**
+	 * DoAction
+	 */
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.deleteNextCharAction).actionPerformed(null);
     }
 
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @return MenuItem
+     */
     public static MenuItem createMenu(Xpad editor) {
 	return createMenu(XpadMessages.DELETE, null, new DeleteAction(editor), null);
     }

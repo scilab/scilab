@@ -73,6 +73,7 @@ import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.MirrorAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -116,6 +117,7 @@ import com.mxgraph.view.mxGraph;
  */
 public class XcosTab extends SwingScilabTab implements Tab {
 
+    private static final long serialVersionUID = -290453474673387812L;
     /*
      * Static fields
      */
@@ -174,44 +176,19 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return diagrams;
     }
 
-    /**
-     * Get recent file menu
-     * 
-     * @return the menu List
-     */
-    public static List<Menu> getRecentsMenu() {
-	return recentsMenus;
-    }
-
-    public static List<MenuItem> getStartMenuItems() {
-	return startMenuItems;
-    }
-
-    public static List<PushButton> getStartPushButtons() {
-	return startPushButtons;
-    }
-
-    public static List<MenuItem> getStopMenuItems() {
-	return stopMenuItems;
-    }
-
-    public static List<PushButton> getStopPushButtons() {
-	return stopPushButtons;
-    }
-
     public static void setStartEnabled(boolean status) {
-	for (int i = 0; i < getStartMenuItems().size(); i++) {
-	    getStartMenuItems().get(i).setEnabled(status);
-	    getStartPushButtons().get(i).setEnabled(status);
+	for (int i = 0; i < startMenuItems.size(); i++) {
+	    startMenuItems.get(i).setEnabled(status);
+	    startPushButtons.get(i).setEnabled(status);
 	    startEnabled = status;
 
-	    getStopMenuItems().get(i).setEnabled(!status);
-	    getStopPushButtons().get(i).setEnabled(!status);
+	    stopMenuItems.get(i).setEnabled(!status);
+	    stopPushButtons.get(i).setEnabled(!status);
 	}
 
     }
 
-    public static void showDiagram(XcosDiagram xcosDiagram) {
+    public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
 
@@ -231,7 +208,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	XcosTab tab = new XcosTab(xcosDiagram);
 	tab.setName(XcosMessages.UNTITLED);
 	xcosDiagram.setParentTab(tab);
-	main.setVisible(true);
 	main.addTab(tab);
 	/*
 	 * MENU BAR
@@ -248,23 +224,40 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	/*
 	 * VIEW PORT
 	 */
-	tab.createViewPort(xcosDiagram);
+	XcosTab.createViewPort(xcosDiagram);
 
 	/*
 	 * INFO BAR
 	 */
 	tab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
 	xcosDiagram.setOpened(true);
-	xcosDiagram.setVisible(true);
 	
+	main.setVisible(true);
+    }
+    
+    public static void showTabFromDiagram(XcosDiagram xcosDiagram) {
+	assert xcosDiagram.isOpened() == true;
+	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
+	
+	xcosDiagram.setVisible(true);
+
 	/*
 	 * Superblock specific customizations
 	 */
 	if (xcosDiagram instanceof SuperBlockDiagram) {
 	    tab.setSimulationActionEnabled(false);
 	}
-    }
 
+	/*
+	 * Set buttons enabled
+	 */
+	tab.setActionsEnabled(true);
+
+	// Disabling undo/redo at startup
+	tab.setEnabledRedo(false);
+	tab.setEnabledUndo(false);
+    }
+    
     /**
      * Update menu displaying recent opened files
      */
@@ -272,12 +265,12 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	ArrayList<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
 
-	for (int j = 0; j < getRecentsMenu().size(); j++) {
-	    ((SwingScilabMenu) getRecentsMenu().get(j).getAsSimpleMenu())
+	for (int j = 0; j < recentsMenus.size(); j++) {
+	    ((SwingScilabMenu) recentsMenus.get(j).getAsSimpleMenu())
 		    .removeAll();
 
 	    for (int i = 0; i < recentFiles.size(); i++) {
-		getRecentsMenu().get(j).add(
+		recentsMenus.get(j).add(
 			RecentFileAction.createMenu(scilabGraph, recentFiles
 				.get(i)));
 	    }
@@ -289,8 +282,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
      */
     private class ArrowKeysListener implements KeyListener {
 
-	private final double DEFAULT_PIXEL_MOVE = 5;
-	private final int DEFAULT_DELAY = 800; // milliseconds
+	private static final double DEFAULT_PIXEL_MOVE = 5;
+	private static final int DEFAULT_DELAY = 800; // milliseconds
 
 	private double xIncrement = 0;
 	private double yIncrement = 0;
@@ -323,32 +316,42 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	}
 
 	public void keyPressed(KeyEvent arg0) {
+	    double realMove;
+	    
 	    mxGraphComponent diagram = (mxGraphComponent) arg0.getSource();
 	    graph = diagram.getGraph();
+	    
+	    if (graph.isGridEnabled()) {
+		realMove = graph.getGridSize();
+	    } else {
+		realMove = DEFAULT_PIXEL_MOVE;
+	    }
 
 	    switch (arg0.getKeyCode()) {
 	    case KeyEvent.VK_UP:
-		yIncrement = -DEFAULT_PIXEL_MOVE;
+		yIncrement = -realMove;
 		break;
 
 	    case KeyEvent.VK_DOWN:
-		yIncrement = DEFAULT_PIXEL_MOVE;
+		yIncrement = realMove;
 		break;
 
 	    case KeyEvent.VK_RIGHT:
-		xIncrement = DEFAULT_PIXEL_MOVE;
+		xIncrement = realMove;
 		break;
 
 	    case KeyEvent.VK_LEFT:
-		xIncrement = -DEFAULT_PIXEL_MOVE;
+		xIncrement = -realMove;
 		break;
 
 	    default:
 		break;
 	    }
 
-	    xIncrement *= diagram.getZoomFactor();
-	    yIncrement *= diagram.getZoomFactor();
+	    if (graph.isGridEnabled() != true) {
+		xIncrement *= diagram.getZoomFactor();
+		yIncrement *= diagram.getZoomFactor();
+	    }
 
 	    repetitionTimer.start();
 	}
@@ -396,11 +399,14 @@ public class XcosTab extends SwingScilabTab implements Tab {
     private PushButton zoomOutAction;
     private PushButton xcosDemonstrationAction;
     private PushButton xcosDocumentationAction;
+    
+    private boolean actionsEnabled;
 
     public XcosTab(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
 
 	this.diagram = diagram;
+	this.actionsEnabled = false;
 
 	this.setCallback(new CloseAction(diagram));
 	this.setContentPane(diagram.getAsComponent());
@@ -529,10 +535,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	// view.add(ViewGetinfosAction.createMenu(scilabGraph));
 	view.add(ViewDetailsAction.createMenu(scilabGraph));
 
-	if (XcosPaletteManager.isVisible() == false) {
-	    ViewPaletteBrowserAction.setPalettesVisible(true);
-	}
-
 	/** Simulation menu */
 	simulate = ScilabMenu.createMenu();
 	simulate.setText(XcosMessages.SIMULATION);
@@ -561,6 +563,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 	format.add(RotateAction.createMenu(scilabGraph));
 	format.add(FlipAction.createMenu(scilabGraph));
+	format.add(MirrorAction.createMenu(scilabGraph));
 	format.add(ShowHideShadowAction.createMenu(scilabGraph));
 
 	format.addSeparator();
@@ -665,13 +668,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	toolBar.addSeparator();
 
 	// UNDO / REDO
-	// we disable undo/redo buttons at the beginning because it's irrelevant
-	// to undo/redo
-	// when nothing has been done
 	undoAction = UndoAction.undoButton(scilabGraph);
 	redoAction = RedoAction.redoButton(scilabGraph);
-	undoAction.setEnabled(false);
-	redoAction.setEnabled(false);
 	toolBar.add(undoAction);
 	toolBar.add(redoAction);
 
@@ -711,7 +709,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return toolBar;
     }
 
-    public void createViewPort(ScilabGraph xcosDiagramm) {
+    public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
 
@@ -763,11 +761,15 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     public void setEnabledRedo(boolean status) {
+	if (actionsEnabled) {
 	redoAction.setEnabled(status);
+	}
     }
 
     public void setEnabledUndo(boolean status) {
+	if (actionsEnabled) {
 	undoAction.setEnabled(status);
+	}
     }
     
     /**
@@ -775,8 +777,42 @@ public class XcosTab extends SwingScilabTab implements Tab {
      * @param state True if it have to be enabled, flase otherwise
      */
     public void setSimulationActionEnabled(boolean state) {
-	simulate.setEnabled(state);
-	startAction.setEnabled(state);
-	stopAction.setEnabled(state);
+	if (actionsEnabled) {
+    	simulate.setEnabled(state);
+    	startAction.setEnabled(state);
+    	stopAction.setEnabled(state);
+	}
+    }
+    
+    /**
+     * Enable or disable all actions
+     * @param status True if they have to be enabled, false otherwise
+     */
+    public void setActionsEnabled(boolean status) {
+	fileMenu.setEnabled(status);
+	edit.setEnabled(status);
+	view.setEnabled(status);
+	simulate.setEnabled(status);
+	format.setEnabled(status);
+	alignMenu.setEnabled(status);
+	linkStyle.setEnabled(status);
+	tools.setEnabled(status);
+	help.setEnabled(status);
+	openAction.setEnabled(status);
+	saveAction.setEnabled(status);
+	printAction.setEnabled(status);
+	newDiagramAction.setEnabled(status);
+	deleteAction.setEnabled(status);
+	undoAction.setEnabled(status);
+	redoAction.setEnabled(status);
+	fitDiagramToViewAction.setEnabled(status);
+	startAction.setEnabled(status);
+	stopAction.setEnabled(false);
+	zoomInAction.setEnabled(status);
+	zoomOutAction.setEnabled(status);
+	xcosDemonstrationAction.setEnabled(status);
+	xcosDocumentationAction.setEnabled(status);
+	
+	actionsEnabled = status;
     }
 }

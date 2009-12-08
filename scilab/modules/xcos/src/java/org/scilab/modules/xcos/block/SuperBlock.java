@@ -22,8 +22,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -36,13 +35,13 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 public class SuperBlock extends BasicBlock {
 
+    private static final long serialVersionUID = 3005281208417373333L;
     private SuperBlockDiagram child = null;
  
     public SuperBlock(){
@@ -72,6 +71,10 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    return;
+	}
+
 	if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
 	    // This means we have a SuperBlock and we generated C code for it.
 	    this.setLocked(false);
@@ -80,10 +83,14 @@ public class SuperBlock extends BasicBlock {
 
 	if(createChildDiagram() == true) {
 	    getChild().setModified(false);
-	    XcosTab.showDiagram(getChild());
+	    XcosTab.createTabFromDiagram(getChild());
+	    XcosTab.showTabFromDiagram(getChild());
 	} else {
 	    getChild().setVisible(true);
 	}
+	
+	
+	getChild().updateCellsContext();
     }
 
     public void closeBlockSettings() {
@@ -117,11 +124,15 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = createContextMenu(graph);
-	
-	menu.getAsSimpleContextMenu().addSeparator();
-	menu.add(CodeGenerationAction.createMenu(graph));
-	
+	ContextMenu menu = null;
+
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    menu = createPaletteContextMenu(graph);
+	} else { 
+	    menu = createContextMenu(graph);
+	    menu.getAsSimpleContextMenu().addSeparator();
+	    menu.add(CodeGenerationAction.createMenu(graph));
+	}
 	menu.setVisible(true);
     }
     
@@ -132,13 +143,11 @@ public class SuperBlock extends BasicBlock {
     public boolean createChildDiagram(boolean generatedUID){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
-    	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
     	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters(), false));
     	    child.installSuperBlockListeners();
     	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
-    	    child.info(XcosMessages.EMPTY_INFO);
     	    //only for loading and generate sub block UID
     	    if(generatedUID) {
     		child.generateUID();
@@ -264,27 +273,6 @@ public class SuperBlock extends BasicBlock {
 	return list; 
     }
 
-    protected int getBlocksWithValueCount(List<mxCell> blocks, String checkValue){
-	int count = 0;
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		count++;
-	    }
-	}
-	return count;
-    }
-
-    protected List<mxCell> getBlocksWithValue(List<mxCell> blocks, String checkValue){
-	List<mxCell> list = new ArrayList<mxCell>();
-
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		list.add((BasicBlock)blocks.get(i));
-	    }
-	}
-	return list;
-    }
-
     protected int getBlocksConsecutiveUniqueValueCount(List<mxCell> blocks){
     	if(blocks == null){
     		return 0;
@@ -300,7 +288,7 @@ public class SuperBlock extends BasicBlock {
     	
     	//populate
     	for(int i = 0 ; i < array.length; i++){
-    		int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    		int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     		if(index <= array.length){
     			array[index - 1] = 1;	
     		}
@@ -345,7 +333,7 @@ public class SuperBlock extends BasicBlock {
 
 
     		for(int i = 0 ; i < blocks.size() ; i++){
-    			int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    			int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     			if(index > countUnique || isDone[index - 1] == true){
     				child.getAsComponent().setCellWarning(blocks.get(i), "Wrong port number");
     			}else{
@@ -376,7 +364,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
-    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this);
+    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -396,7 +384,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
-    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this);
+    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -413,7 +401,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
-    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this);
+    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -430,7 +418,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
-    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this);
+    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -450,7 +438,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
-    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this);
+    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -467,7 +455,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
-    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this);
+    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this, false);
 
     	int portCount = ports.size();
 

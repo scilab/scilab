@@ -32,7 +32,7 @@ int sci_mprintf(char *fname,unsigned long fname_len)
 	
 	if ( Rhs < 1 )
 	{
-		Scierror(999,_("%s: Wrong number of input arguments: Must be > 0.\n"),fname);
+		Scierror(999,_("%s: Wrong number of input arguments: at least %d expected.\n"),fname,1);
 		return 0;
 	}
 	

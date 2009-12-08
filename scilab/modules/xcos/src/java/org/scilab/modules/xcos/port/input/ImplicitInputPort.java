@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.port.input;
 
 public class ImplicitInputPort extends InputPort {
 
+    private static final long serialVersionUID = 8711291857895989304L;
+
     public ImplicitInputPort() {
 	super("ImplicitInputPort");
     }

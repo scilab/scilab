@@ -113,7 +113,7 @@ case "set" then
     end
     
     if ok then
-      model.ipar  = [font;fontsize;colr;xget('window');nt;nd];
+      model.ipar  = [font;fontsize;colr;nt;nd];
       model.evtin = ones(1-herit,1)
       graphics.exprs = exprs;
       x.graphics = graphics;

@@ -27,7 +27,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
     }
 
 
-    public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map mapping) {
+    public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
@@ -65,7 +65,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	    NamedNodeMap attrs = node.getAttributes();
 	    int heightXMLPosition = -1;
 	    int widthXMLPosition = -1;
-		int bUnsignedXMLPosition = -1;
+	    int bUnsignedXMLPosition = -1;
 	    for (int i = 0; i < attrs.getLength(); i++)
 	    {
 		Node attr = attrs.item(i);
@@ -107,12 +107,11 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	    ((ScilabInteger) obj).setData(data, bUnsigned);
 	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
-	} finally {
-	    return obj;
 	}
-
+	return obj;
     }
 
+    
     private class UnrecognizeFormatException extends Exception { }
 
 }

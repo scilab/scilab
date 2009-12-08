@@ -17,6 +17,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 public class GainBlock extends BasicBlock {
 
+     private static final long serialVersionUID = 7762548847345910801L;
+
     public GainBlock() {
 	super();
 	setVertex(false);

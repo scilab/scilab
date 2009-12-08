@@ -23,12 +23,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -60,6 +62,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
@@ -91,13 +94,14 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
+import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 public class XcosDiagram extends ScilabGraph {
@@ -276,6 +280,7 @@ public class XcosDiagram extends ScilabGraph {
     	BasicPort linkSource =  (BasicPort) link.getSource();
     	BasicPort linkTarget =  (BasicPort) link.getTarget();
 
+    	getModel().beginUpdate();
     	if (dragPos == null) {
     		dragPos = new mxPoint();
 
@@ -347,7 +352,9 @@ public class XcosDiagram extends ScilabGraph {
     	addCell(newLink3);
 
     	dragPos = null;
-		refresh();
+	refresh();
+	getModel().endUpdate();
+	
     	return splitBlock;
     }
     
@@ -365,7 +372,6 @@ public class XcosDiagram extends ScilabGraph {
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 
@@ -403,41 +409,108 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().getViewport().setOpaque(false);
 	getAsComponent().setBackground(Color.WHITE);
 
-	mxMultiplicity[] multiplicities = new mxMultiplicity[9];
-
-	// Input data port
-	multiplicities[0] = new PortCheck(new ExplicitInputPort(), new mxCell[] {new ExplicitOutputPort(), new ExplicitLink()}, XcosMessages.LINK_ERROR_EXPLICIT_IN);
-	multiplicities[1] = new PortCheck(new ImplicitInputPort(), new mxCell[] {new ImplicitOutputPort(), new ImplicitInputPort(), new ImplicitLink()}, XcosMessages.LINK_ERROR_IMPLICIT_IN);
-
-	//Output data port
-	multiplicities[2] = new PortCheck(new ExplicitOutputPort(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EXPLICIT_OUT);
-	multiplicities[3] = new PortCheck(new ImplicitOutputPort(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_IMPLICIT_OUT);
-
-	//Control port
-	multiplicities[4] = new PortCheck(new ControlPort(), new mxCell[] {new CommandPort(), new CommandControlLink()}, XcosMessages.LINK_ERROR_EVENT_IN);
-
-	//Command port
-	multiplicities[5] = new PortCheck(new CommandPort(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
-
-	//ExplicitLink connections
-	multiplicities[6] = new PortCheck(new ExplicitLink(), new mxCell[] {new ExplicitInputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
-
-	//ImplicitLink connections
-	multiplicities[7] = new PortCheck(new ImplicitLink(), new mxCell[] {new ImplicitInputPort(), new ImplicitOutputPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
-
-	//CommandControlLink connections
-	multiplicities[8] = new PortCheck(new CommandControlLink(), new mxCell[] {new ControlPort()}, XcosMessages.LINK_ERROR_EVENT_OUT);
-
-	setMultiplicities(multiplicities);
+	setMultiplicities();
 	
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 	
-	setGridEnabled(true);
-	getAsComponent().setGridVisible(true);
+	setGridVisible(true);
 	
 	((mxCell) getDefaultParent()).setId((new UID()).toString());
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
+    }
+
+    /**
+     * Install the multiplicities (use for link checking)
+     */
+    private void setMultiplicities() {
+	mxMultiplicity[] multiplicities = new mxMultiplicity[10];
+
+	
+	// Input data port
+	multiplicities[0] = new PortCheck(ExplicitInputPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ExplicitOutputPort.class);
+			add(ExplicitLink.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EXPLICIT_IN);
+	multiplicities[1] = new PortCheck(ImplicitInputPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ImplicitOutputPort.class);
+			add(ImplicitInputPort.class);
+			add(ImplicitLink.class);
+		    }
+		}), XcosMessages.LINK_ERROR_IMPLICIT_IN);
+
+	// Output data port
+	multiplicities[2] = new PortCheck(ExplicitOutputPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ExplicitInputPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EXPLICIT_OUT);
+	multiplicities[3] = new PortCheck(ImplicitOutputPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ImplicitInputPort.class);
+			add(ImplicitOutputPort.class);
+			add(ImplicitLink.class);
+		    }
+		}), XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+
+	// Control port
+	multiplicities[4] = new PortCheck(ControlPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(CommandPort.class);
+			add(CommandControlLink.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EVENT_IN);
+
+	// Command port
+	multiplicities[5] = new PortCheck(CommandPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ControlPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	// ExplicitLink connections
+	multiplicities[6] = new PortCheck(ExplicitLink.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ExplicitInputPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	// ImplicitLink connections
+	multiplicities[7] = new PortCheck(ImplicitLink.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ImplicitInputPort.class);
+			add(ImplicitOutputPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	// CommandControlLink connections
+	multiplicities[8] = new PortCheck(CommandControlLink.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(ControlPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+
+	// Already connected port
+	multiplicities[9] = new PortCheck(BasicPort.class, Collections
+		.unmodifiableList(new ArrayList<Class<? extends mxCell>>() {
+		    {
+			add(BasicPort.class);
+		    }
+		}), XcosMessages.LINK_ERROR_ALREADY_CONNECTED);
+
+	setMultiplicities(multiplicities);
     }
 
     /**
@@ -639,10 +712,7 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CELLS_REMOVED is fired.
      */
     private class CellRemovedTracker implements mxIEventListener {
-    	private XcosDiagram diagram = null;
-
     	public CellRemovedTracker(XcosDiagram diagram) {
-    		this.diagram = diagram;
     	}
 
     	public void invoke(Object source, mxEventObject evt) {
@@ -768,12 +838,20 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {
 		if (object instanceof BasicBlock) {
 		    BasicBlock current = (BasicBlock) object;
+		    
+		    // When we change the style property we have to update some
+		    // BasiBlock fields
+		    if (changes.get(0) instanceof mxStyleChange) {
+			current.updateFieldsFromStyle();
+		    }
+		    
+		    // Update the block position
 		    BlockPositioning.updateBlockView(current);
 		}
 	    }
@@ -808,8 +886,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
 	    {
 		getModel().beginUpdate();
-		if (cell instanceof BasicBlock 
-			&& !(cell instanceof TextBlock)) {
+		if (cell instanceof BasicBlock) {
 		    BasicBlock block = (BasicBlock) cell;
 		    arg0.consume();
 		    block.openBlockSettings(buildEntireContext());
@@ -821,7 +898,7 @@ public class XcosDiagram extends ScilabGraph {
 		refresh();
 	    }
 
-	    // Ctrl + Shift + Right Double Click : for debug !!
+	    // Ctrl + Shift + Right Middle Click : for debug !!
 	    if (arg0.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(arg0)
 	    		&& arg0.isShiftDown() && arg0.isControlDown())
 	    {
@@ -830,7 +907,7 @@ public class XcosDiagram extends ScilabGraph {
 	    	    System.err.println("[DEBUG] Click on diagram");
 	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
 	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-	    	    System.err.println("getParentWindow : " + getParentTab().getParentWindow());
+	    	    System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
 	    	} else {
 	    	    System.err.println("[DEBUG] Click on : " + cell);
 	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
@@ -850,7 +927,7 @@ public class XcosDiagram extends ScilabGraph {
 	    // Context menu
 	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
 	    		|| arg0.isPopupTrigger()
-	    		|| isMacOsPopupTrigger(arg0)) {
+	    		|| XcosMessages.isMacOsPopupTrigger(arg0)) {
 
 		if (cell == null) {
 		    // Display diagram context menu
@@ -892,7 +969,7 @@ public class XcosDiagram extends ScilabGraph {
 
 		} else {
 		    // Display object context menu
-		    if (cell instanceof BasicBlock && !(cell instanceof TextBlock)) {
+		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
 		    }
@@ -905,11 +982,9 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
 	}
 
 	public void mouseExited(MouseEvent arg0) {
-	    // TODO Auto-generated method stub
 	}
 
 	public void mousePressed(MouseEvent arg0) {
@@ -940,6 +1015,13 @@ public class XcosDiagram extends ScilabGraph {
 
 	public boolean isCellClonable(Object cell) {
 		return true;
+	}
+	
+	public boolean isCellSelectable(Object cell) {
+	    if(cell instanceof BasicPort) {
+		return false;
+	    }
+	    return super.isCellSelectable(cell);
 	}
 	
 	public boolean isCellMovable(Object cell) {
@@ -1115,22 +1197,17 @@ public class XcosDiagram extends ScilabGraph {
      * @param status new status
      */
     public void setGridVisible(boolean status) {
-    	setGridEnabled(status);
-    	getAsComponent().setGridVisible(status);
-    	getAsComponent().repaint();
+	setGridEnabled(status);
+	getAsComponent().setGridVisible(status);
+	getAsComponent().repaint();
 
-    	// (Un)Check the corresponding menu
-    	gridMenu.setChecked(status);
+	// (Un)Check the corresponding menu
+	if(gridMenu != null) {
+	    gridMenu.setChecked(status);
+	}
     }
 
-//	public mxRectangle getCellBounds(Object cell, boolean includeEdges,
-//			boolean includeDescendants, boolean boundingBox) {
-//    	//mxRectangle rect = super.getCellBounds(cell, includeEdges, includeDescendants, boundingBox);
-//		mxRectangle rect = super.getCellBounds(cell, includeEdges, false, boundingBox);
-//		return rect;
-//	}
-
-	/**
+    /**
      * Set menu used to manage Grid visibility
      * @param menu the menu
      */
@@ -1294,10 +1371,25 @@ public class XcosDiagram extends ScilabGraph {
     
     public void setContext(String[] context) {
 	this.context = context;
+	updateCellsContext();
     }
 
     public String[] getContext() {
 	return context;
+    }
+
+    public void updateCellsContext() {
+	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
+	    Object obj = getModel().getChildAt(getDefaultParent(), i);
+	    if ( obj instanceof ContextUpdate) {
+		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    } else if (obj instanceof SuperBlock) {
+		SuperBlock superBlock = (SuperBlock)obj;
+		if(superBlock.getChild() != null) {
+		    superBlock.getChild().updateCellsContext();
+		}
+	    }
+	}
     }
 
     public String getVersion() {
@@ -1324,9 +1416,10 @@ public class XcosDiagram extends ScilabGraph {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		loadDiagram(diagramm);
 	    } else {
-		XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.loadDiagram(diagramm);
 		setChildrenParentDiagram(xcosDiagram);
+		XcosTab.showTabFromDiagram(xcosDiagram);
 	    }
 	} else {
 	    XcosDialogs.couldNotLoadFile(this);
@@ -1339,8 +1432,8 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramm
      */
     public void loadDiagram(HashMap<String, Object> diagramm) {
-	List<BasicBlock> allBlocks = (List) diagramm.get("Blocks");
-	List<TextBlock> allTextBlocks = (List) diagramm.get("TextBlocks");
+	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
+	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
 	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
 
@@ -1404,6 +1497,7 @@ public class XcosDiagram extends ScilabGraph {
 	if (XcosTab.focusOnExistingFile(diagramFileName) == false) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
+	    ((XcosTab) getParentTab()).setActionsEnabled(false);
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile);
@@ -1427,19 +1521,20 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		}
 	    }
-	    // TODO
-	    //open all SuperBlocks to assign a UID
+	    // TODO: open all SuperBlocks to assign a UID
 
-	    this.resetUndoManager();
 	    info(XcosMessages.EMPTY_INFO);
+	    ((XcosTab) getParentTab()).setActionsEnabled(true);
+	    this.resetUndoManager();
 	}
     }
     
+
     /**
      * Load a file with different method depending on it extension 
      * @param theFile File to load
      */
-	private void transformAndLoadFile(File theFile) {
+	protected void transformAndLoadFile(File theFile) {
 		final File fileToLoad = theFile;
 		final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 		
@@ -1447,16 +1542,10 @@ public class XcosDiagram extends ScilabGraph {
 		switch (filetype) {
 		case COSF:
 		case COS:
-			Thread transformAction = new Thread() {
-				public void run() {
-					File newFile;
-					newFile = filetype.exportToHdf5(fileToLoad);
-					System.err.println("export to hdf5 OK");
-					transformAndLoadFile(newFile);
-				}
-			};
-			transformAction.start();
-			break;
+		    File newFile;
+		    newFile = filetype.exportToHdf5(fileToLoad);
+		    transformAndLoadFile(newFile);
+		    break;
 
 		case XCOS:
 			Document document = null;
@@ -1474,15 +1563,18 @@ public class XcosDiagram extends ScilabGraph {
 				setSavedFile(theFile.getAbsolutePath());
 				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram();
+				generateUID();
 			} else {
-				XcosDiagram xcosDiagram = Xcos.createEmptyDiagram();
+				XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
+				xcosDiagram.info(XcosMessages.LOADING_DIAGRAM);
 				codec.decode(document.getDocumentElement(), xcosDiagram);
-				setSavedFile(theFile.getAbsolutePath());
-				setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
+				xcosDiagram.setModified(false);
+				xcosDiagram.setSavedFile(theFile.getAbsolutePath());
+				xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 				setChildrenParentDiagram(xcosDiagram);
+				XcosTab.showTabFromDiagram(xcosDiagram);
+				xcosDiagram.generateUID();
 			}
-			generateUID();
-			setModified(false);
 			break;
 
 		case HDF5:
@@ -1559,6 +1651,8 @@ public class XcosDiagram extends ScilabGraph {
     {
 	if (cell instanceof BasicBlock) {
 	    return ((BasicBlock) cell).getToolTipText();
+	} else if(cell instanceof BasicPort) {
+	    return ((BasicPort) cell).getToolTipText();
 	}
 	return "";
     }
@@ -1715,15 +1809,6 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	
-	/**
-	 * This function checks for the popup menu activation under MacOS with Java version 1.5
-	 * Related to Scilab bug #5190
-	 * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
-	 */
-	private boolean isMacOsPopupTrigger(MouseEvent e) {
-		return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-	}
-	
 	public void setContextAction(SetContextAction action) {
 		this.action = action;
 	}
@@ -1773,6 +1858,42 @@ public class XcosDiagram extends ScilabGraph {
 		    }
 		}
 		return returnBlock;
+	    }
+	    
+	    public boolean isChildVisible() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			XcosDiagram diag = ((SuperBlock) child).getChild();
+			if (diag != null && diag.isOpened()) {
+			    // if child or sub child is visible
+			    if (diag.isChildVisible() || diag.isVisible()) {
+				return true;
+			    }
+			}
+		    }
+		}
+		return false;
+	    }
+
+	    public boolean canClose() {
+		if (isChildVisible() == false) {
+		    return true;
+		}
+		return false;
+	    }
+
+	    public void closeChildren() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+		    Object child = getModel().getChildAt(getDefaultParent(), i);
+		    if (child instanceof SuperBlock) {
+			SuperBlock diag = (SuperBlock) child;
+
+			if (diag.getChild() != null && diag.getChild().isOpened()) {
+			    diag.closeBlockSettings();
+			}
+		    }
+		}
 	    }
 }
 

@@ -145,4 +145,9 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 
   end
 
+ //execude cmd error ( bug 5437 )
+  for i = 1 : size(cmd, "*")
+      execstr(cmd(i))
+  end
+  cmd = [];
 endfunction

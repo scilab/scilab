@@ -17,6 +17,8 @@ import org.scilab.modules.xcos.link.BasicLink;
 
 public class ImplicitLink extends BasicLink {
     
+    private static final long serialVersionUID = 1006434636942664464L;
+
     public ImplicitLink() {
 	super("ImplicitLink");
     }

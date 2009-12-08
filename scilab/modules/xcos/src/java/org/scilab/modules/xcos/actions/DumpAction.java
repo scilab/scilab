@@ -27,6 +27,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class DumpAction extends DefaultAction {
 
+    private static final long serialVersionUID = 3912361255175611532L;
+
     public DumpAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.DUMP, scilabGraph);
     }
@@ -46,7 +48,6 @@ public class DumpAction extends DefaultAction {
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");deletefile(\"" + temp.getAbsolutePath()+"\");");
 	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
     }

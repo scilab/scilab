@@ -176,16 +176,22 @@ static int intzggev_complex(char *fname)
 	if (iRowsA!=iColsA)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (iRowsB!=iColsB)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (iRowsA!=iRowsB)
 	{
 		SciError(267);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 
@@ -194,12 +200,16 @@ static int intzggev_complex(char *fname)
 		if (Lhs==1)
 		{
 			LhsVar(1) = 1;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==2)
 		{
 			LhsVar(1) = 1;
 			LhsVar(2) = 2;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==3)
@@ -210,6 +220,8 @@ static int intzggev_complex(char *fname)
 			LhsVar(1) = 1;
 			LhsVar(2) = 2;
 			LhsVar(3) = 3;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==4)
@@ -223,6 +235,8 @@ static int intzggev_complex(char *fname)
 			LhsVar(2) = 2;
 			LhsVar(3) = 3;
 			LhsVar(4) = 4;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 	}
@@ -230,11 +244,15 @@ static int intzggev_complex(char *fname)
 	if (C2F(vfiniteComplex)(&totalsize,pdblMatrixA)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (C2F(vfiniteComplex)(&totalsize,pdblMatrixB)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	iAllocComplexMatrixOfDouble(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
@@ -420,16 +438,22 @@ static int intzggev_real(char *fname)
 	if (iRowsA!=iColsA)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (iRowsB!=iColsB)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (iRowsA!=iRowsB)
 	{
 		SciError(267);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 
@@ -438,12 +462,16 @@ static int intzggev_real(char *fname)
 		if (Lhs==1)
 		{
 			LhsVar(1) = 1;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==2)
 		{
 			LhsVar(1) = 1;
 			LhsVar(2) = 2;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==3)
@@ -454,6 +482,8 @@ static int intzggev_real(char *fname)
 			LhsVar(1) = 1;
 			LhsVar(2) = 2;
 			LhsVar(3) = 3;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 		else if (Lhs==4)
@@ -467,6 +497,8 @@ static int intzggev_real(char *fname)
 			LhsVar(2) = 2;
 			LhsVar(3) = 3;
 			LhsVar(4) = 4;
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
 			return 0;
 		}
 	}
@@ -474,11 +506,15 @@ static int intzggev_real(char *fname)
 	if (C2F(vfiniteComplex)(&totalsize,pdblMatrixA)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	if (C2F(vfiniteComplex)(&totalsize,pdblMatrixB)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblMatrixA);
+		vFreeDoubleComplexFromPointer(pdblMatrixB);
 		return 0;
 	}
 	iAllocComplexMatrixOfDouble(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
@@ -526,6 +562,9 @@ static int intzggev_real(char *fname)
 		else
 		{
 			SciError(24);
+			vFreeDoubleComplexFromPointer(pdblMatrixA);
+			vFreeDoubleComplexFromPointer(pdblMatrixB);
+			FREE(pdblWork);
 			return 0;
 		}
 	}
@@ -570,6 +609,7 @@ static int intzggev_real(char *fname)
 	{
 		FREE(pdblLeftvectors);
 	}
+	FREE(pdblWork);
 	vFreeDoubleComplexFromPointer(pdblMatrixA);
 	vFreeDoubleComplexFromPointer(pdblMatrixB);
 	return 0;

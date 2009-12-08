@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.File;
 import java.util.HashMap;
@@ -25,7 +24,6 @@ import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
-
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
@@ -52,8 +50,8 @@ public class Xcos {
 
     public static void xcos() {
 	XcosPaletteManager.loadPalette();
-	ViewPaletteBrowserAction.setPalettesVisible(true);
 	createEmptyDiagram();
+	ViewPaletteBrowserAction.setPalettesVisible(true);
     }
 
     public static void xcos(String fileName) {
@@ -65,9 +63,15 @@ public class Xcos {
     }
 
     public static XcosDiagram createEmptyDiagram() {
+	XcosDiagram xcosDiagramm = createANotShownDiagram();
+	XcosTab.showTabFromDiagram(xcosDiagramm);
+	return xcosDiagramm;
+    }
+    
+    public static XcosDiagram createANotShownDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
-	XcosTab.showDiagram(xcosDiagramm);
+	XcosTab.createTabFromDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
 
@@ -79,8 +83,9 @@ public class Xcos {
 
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-	for (XcosDiagram diagram : diagrams) {
-	    diagram.closeDiagram();
+
+	while(diagrams.size() > 0) {
+	    diagrams.get(0).closeDiagram();
 	}
 	ViewPaletteBrowserAction.setPalettesVisible(false);
     }
@@ -158,12 +163,7 @@ public class Xcos {
 		newSP.setParentDiagram(block.getParentDiagram());
 		if (show == true) {
 		    newSP.openBlockSettings(null);
-		    // lock cells and change background to gray to show
-		    // read-only
-		    newSP.getChild().setCellsLocked(true);
-		    newSP.getChild().getAsComponent().setBackground(
-			    new Color(204, 204, 204));
-		    // look to disable open setting dialog on double click too
+		    newSP.getChild().setReadOnly(true);
 		}
 		openedSuperBlock.put(UID, newSP);
 		break;

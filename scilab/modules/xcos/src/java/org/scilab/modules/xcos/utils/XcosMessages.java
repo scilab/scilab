@@ -11,6 +11,10 @@
  */
 package org.scilab.modules.xcos.utils;
 
+import java.awt.event.MouseEvent;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.localization.Messages;
 
 
@@ -45,8 +49,13 @@ public final class XcosMessages {
     public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
-    public static final String QUIT = Messages.gettext("Quit");
+    public static final String QUIT = Messages.gettext("Quit Xcos");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
+
+    /** Palette menu in palette browser*/
+    public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
+    public static final String USER_DEFINED = Messages.gettext("User-Defined");
+    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove user defined palette");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -85,6 +94,7 @@ public final class XcosMessages {
     public static final String RESIZE = Messages.gettext("Resize");
     public static final String ROTATE = Messages.gettext("Rotate");
     public static final String FLIP = Messages.gettext("Flip");
+    public static final String MIRROR = Messages.gettext("Mirror");
     public static final String SHOWHIDE_SHADOW = Messages.gettext("Show/Hide shadow");
     public static final String GRID = Messages.gettext("Grid");
     public static final String DIAGRAM_BACKGROUND = Messages.gettext("Diagram background") + DOTS;
@@ -104,20 +114,20 @@ public final class XcosMessages {
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
-    public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
+    public static final String CONTINUOUS_PAL = Messages.gettext("Continuous time systems");
     public static final String IMPLICIT_PAL = Messages.gettext("Implicit");
     public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuities");
     public static final String LOOKUPTABLES_PAL = Messages.gettext("Lookup Tables");
     public static final String SIGNALPROCESSING_PAL = Messages.gettext("Signal Processing");
-    public static final String THRESHOLD_PAL = Messages.gettext("Threshold");
-    public static final String MATHSOPS_PAL = Messages.gettext("Math Operations");
+    public static final String THRESHOLD_PAL = Messages.gettext("Zero crossing detection");
+    public static final String MATHSOPS_PAL = Messages.gettext("Mathematical Operations");
     public static final String INTEGER_PAL = Messages.gettext("Integer");
     public static final String MATRIX_PAL = Messages.gettext("Matrix");
     public static final String SINKS_PAL = Messages.gettext("Sinks");
     public static final String PORTACTION_PAL = Messages.gettext("Port & Subsystem");
     public static final String ANNOTATIONS_PAL = Messages.gettext("Annotations");
-    public static final String DISCRETE_PAL = Messages.gettext("Discrete");
-    public static final String EVENTS_PAL = Messages.gettext("Events");
+    public static final String DISCRETE_PAL = Messages.gettext("Discrete time systems");
+    public static final String EVENTS_PAL = Messages.gettext("Event handling");
     public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
     public static final String COMMONUSED_PAL = Messages.gettext("Commonly Used Blocks");
     public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");
@@ -157,6 +167,7 @@ public final class XcosMessages {
     public static final String LINK_ERROR_IMPLICIT_OUT = Messages.gettext("Implicit data output port must be connected to implicit data input port");
     public static final String LINK_ERROR_EVENT_IN = Messages.gettext("Command port must be connected to control port");
     public static final String LINK_ERROR_EVENT_OUT = Messages.gettext("control port must be connected to command port");
+    public static final String LINK_ERROR_ALREADY_CONNECTED = Messages.gettext("Port is already connected, please select an unconnected port or a valid link.");
 
     public static final String ALIGN_BLOCKS = Messages.gettext("Align Blocks");
     public static final String ALIGN_LEFT = Messages.gettext("Left");
@@ -202,6 +213,7 @@ public final class XcosMessages {
     public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
     public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
     public static final String LOADING_PALETTES = Messages.gettext("Loading palettes" + DOTS);
+    public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes" + DOTS);
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
@@ -209,14 +221,24 @@ public final class XcosMessages {
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
     
     /** Debug level messages  */
-    public static final String DEBUGLEVEL_0 = "No trace nor debug printing";
-    public static final String DEBUGLEVEL_1 = "Light Simulation trace (Discrete and Continous part switches)";
-    public static final String DEBUGLEVEL_2 = "Per block execution trace and Debug block calls";
-    public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
+    public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
+    public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     
     /** File description */
-    public static final String FILE_COSF = "Scicos file";
-    public static final String FILE_COS = "Scicos file";
-    public static final String FILE_XCOS = "Xcos file";
-    public static final String FILE_HDF5 = "Scilab file";
+    public static final String FILE_COSF = Messages.gettext("Scicos file");
+    public static final String FILE_COS = Messages.gettext("Scicos file");
+    public static final String FILE_XCOS = Messages.gettext("Xcos file");
+    public static final String FILE_HDF5 = Messages.gettext("Scilab file");
+
+
+    /**
+     * This function checks for the popup menu activation under MacOS with Java version 1.5
+     * Related to Scilab bug #5190
+     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+     */
+    public static boolean isMacOsPopupTrigger(MouseEvent e) {
+	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+    }
 }

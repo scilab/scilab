@@ -25,7 +25,7 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 		super(template);
 	}
 
-	public ScilabDoubleCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+	public ScilabDoubleCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
 
@@ -118,12 +118,11 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 
 		} catch (UnrecognizeFormatException e) {
 			e.printStackTrace();
-		} finally {
-			return obj;
 		}
-
+		return obj;
 	}
 
+	
 	private class UnrecognizeFormatException extends Exception { }
 
 

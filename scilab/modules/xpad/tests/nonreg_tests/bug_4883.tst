@@ -1,16 +1,25 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+// Copyright (C) 2009 - DIGITEO - Allan SIMON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- INTERACTIVE TEST -->
 // <-- TEST WITH XPAD -->
 //
-// <-- Non-regression test for bug 5172 -->
+// <-- Non-regression test for bug 4883 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=5172
+// http://bugzilla.scilab.org/show_bug.cgi?id=4883
 //
 // <-- Short Description -->
-// when i try to open a file, editor indicates that it is already modified + sometimes we have exceptions.
-editor SCI/modules/helptools/macros/xmltoformat.sci
+// "Menu→Document→Auto Indent" preference is not saved.
+
+
+//xpad()
+//uncheck "Menu→Document→Auto Indent"
+//close xpad
+//xpad()
+//=> "Menu→Document→Auto Indent" should stay unchecked
+

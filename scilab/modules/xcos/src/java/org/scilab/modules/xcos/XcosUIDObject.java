@@ -16,9 +16,9 @@ import java.rmi.server.UID;
 
 import com.mxgraph.model.mxCell;
 
-public class XcosUIDObject extends mxCell {
+public class XcosUIDObject extends mxCell{
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2915277403393545917L;
 
     public XcosUIDObject() {
 	super();
@@ -30,7 +30,6 @@ public class XcosUIDObject extends mxCell {
     }
 
     public void setId(String UID) {
-	//System.err.println(getId() + " -> " + UID);
 	super.setId(UID);
     }
 }

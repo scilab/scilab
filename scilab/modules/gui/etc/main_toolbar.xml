@@ -64,6 +64,13 @@
 
     <separator/>
 
+    <!-- Xcos -->
+    <button icon="utilities-system-monitor.png" tooltiptext="Xcos">
+        <callback instruction='if with_module("xcos") then xcos(); else disp(gettext("Please install xcos module.")); end' type="0"/>
+    </button>
+
+    <separator/>
+
     <!-- Démos -->
     <button icon="applications-system.png" tooltiptext="Scilab Demonstrations">
         <callback instruction='demo_gui();' type="0"/>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-12 19:28+0000\n"
+"PO-Revision-Date: 2009-11-20 18:04+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -676,14 +676,14 @@ msgstr "Cargar entorno (&l)..."
 msgid "&Load..."
 msgstr "Cargar..."
 
+msgid "&Mailing lists"
+msgstr "Listas de correo"
+
 msgid "&Matlab to Scilab translator"
 msgstr "Traductor de &Matlab a Scilab"
 
 msgid "&New figure..."
 msgstr "&Nueva figura..."
-
-msgid "&Newsgroup Archives"
-msgstr "Archivos de grupos de &noticias"
 
 msgid "&Open a file..."
 msgstr "Abrir archiv&o..."
@@ -776,9 +776,6 @@ msgstr "Añadir color en la lista"
 msgid "All files"
 msgstr "Todos los archivos"
 
-msgid "All rights reserved"
-msgstr "Todos los derechos reservados"
-
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -817,6 +814,9 @@ msgstr ""
 "Consorcio Scilab / INRIA / ENPC / Contribuyentes\n"
 "\n"
 
+msgid "Back"
+msgstr "Volver"
+
 msgid "C&lose"
 msgstr "Cerrar (&l)"
 
@@ -851,7 +851,7 @@ msgid "Close"
 msgstr "Cerrar"
 
 msgid "Colors list edition"
-msgstr "Edition de lista de colores"
+msgstr "Editar la lista de colores"
 
 msgid "Console &Background..."
 msgstr "Fondo de Consola..."
@@ -871,8 +871,11 @@ msgstr "Control Plot3d"
 msgid "Copy"
 msgstr "Copiar"
 
-msgid "Copyright 1989 - 2009"
-msgstr "Copyright 1989 - 2009"
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr "Copyright (c) 1989-2007 (ENPC)"
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Copyright (c) 1989-2009 (INRIA)"
 
 msgid "Cut"
 msgstr "Cortar"
@@ -881,7 +884,10 @@ msgid "Display selection"
 msgstr "Mostrar selección"
 
 msgid "Do you relly want to quit Scilab?"
-msgstr "¿Realmente deseas salir de Scilab?"
+msgstr "¿Realmente desea salir de Scilab?"
+
+msgid "Edit in the Scilab Text Editor"
+msgstr "Editar con el editor de textos de Scilab"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Imagen PostScript Encapsulada (EPS)"
@@ -903,6 +909,9 @@ msgstr "Error al exportar"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Error. Se a capturado una señal.\n"
+
+msgid "Execute into Scilab"
+msgstr "Ejecutar en Scilab"
 
 msgid "Execution done.\n"
 msgstr "Ejecución completa.\n"
@@ -931,6 +940,9 @@ msgstr "El archivo ya existe"
 msgid "File already exists"
 msgstr "El archivo ya existe"
 
+msgid "Forward"
+msgstr "Adelantar"
+
 msgid "GIF image"
 msgstr "Imagen GIF"
 
@@ -940,8 +952,14 @@ msgstr "IGU"
 msgid "Help Browser"
 msgstr "Navegador de ayuda"
 
-msgid "INRIA / ENPC / Contributors"
-msgstr "INRIA / ENPC / Contribuyentes"
+msgid "Help about '"
+msgstr "Ayuda acerca de '"
+
+msgid "Help about a selected text"
+msgstr "Ayuda acerca del texto seleccionado"
+
+msgid "Help on a selected keyword"
+msgstr "Ayuda acerca de la palabra clave seleccionada"
 
 msgid "Impossible to get current look and feel"
 msgstr "Imposible adquirir el look and feel actual"
@@ -1001,6 +1019,9 @@ msgstr ""
 
 msgid "No color selected."
 msgstr "No se seleccionó un color."
+
+msgid "No text selected"
+msgstr "No hay texto seleccionado"
 
 msgid "OK"
 msgstr "OK"
@@ -1067,6 +1088,9 @@ msgstr "Imagen SVG"
 
 msgid "Save and execute"
 msgstr "Guardar y ejecutar"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Sitio Web de Scilab &ATOMS"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Demostraciones de Scilab"
@@ -1175,8 +1199,8 @@ msgstr "Sub-menú 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Sub-menú 2-2"
 
-msgid "The Scilab Consortium / DIGITEO"
-msgstr "Consorcio Scilab / DIGITEO"
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "The Scilab Consortium (DIGITEO)"
 
 msgid "Tree Overview"
 msgstr "Vista del Árbol"

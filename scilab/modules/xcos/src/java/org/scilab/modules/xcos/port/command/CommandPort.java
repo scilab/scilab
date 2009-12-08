@@ -15,11 +15,13 @@ package org.scilab.modules.xcos.port.command;
 import org.scilab.modules.xcos.port.BasicPort;
 
 public class CommandPort extends BasicPort {
-    
+
+    private static final long serialVersionUID = 8098231554414576405L;
     private double initialState = -1.0;
     
     public CommandPort() {
 	super("CommandPort");
+	setInitialAngle(90);
     }
 
     public Type getType() {
@@ -33,23 +35,4 @@ public class CommandPort extends BasicPort {
     public double getInitialState() {
 	return initialState;
     }
-
-	public void updateStyle(int angle){
-		
-		switch(angle){
-		case 0 :
-			setStyle("CommandPort90");
-			break;
-		case 90 :
-			setStyle("CommandPort180");
-			break;
-		case 180 :
-			setStyle("CommandPort270");
-			break;
-		case 270 :
-			setStyle("CommandPort");
-			break;
-		}
-	}
-    
 }

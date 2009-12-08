@@ -29,10 +29,13 @@ public class XpadMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String SAVE_ALL = Messages.gettext("Save All");
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
+    public static final String CLOSEALL = Messages.gettext("Close All");
+    public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
     public static final String EXIT = Messages.gettext("Exit");
     public static final String QUESTION_MARK = Messages.gettext("?");
     
@@ -70,13 +73,16 @@ public class XpadMessages {
     public static final String DOCUMENT = Messages.gettext("Document");
     public static final String SYNTAX_TYPE = Messages.gettext("Syntax Type");
     public static final String SCILAB_STYLE = Messages.gettext("Scilab");
-    public static final String PLAIN_TEXT_STYLE = Messages.gettext("Plain Text");
-    public static final String XML_STYLE = Messages.gettext("XML");
+    public static final String PLAIN_TEXT_STYLE = "Plain Text";
+    public static final String XML_STYLE = "XML";
     public static final String ENCODING_TYPE = Messages.gettext("Encoding");
-    public static final String UTF8_ENCODING = Messages.gettext("UTF-8 Encoding");
-    public static final String ASCII_ENCODING = Messages.gettext("ASCII Encoding");
     public static final String COLORIZE = Messages.gettext("Colorize");
     public static final String AUTO_INDENT = Messages.gettext("Enable Auto Reformat");
+    public static final String EOL_TYPE = Messages.gettext("Line Endings");
+    public static final String EOL_AUT0 = Messages.gettext("Auto (Default)");
+    public static final String EOL_WINDOWS = Messages.gettext("Windows/DOS (CR + LF)");
+    public static final String EOL_MACOS = Messages.gettext("Mac Classic (CR)");
+    public static final String EOL_LINUX = Messages.gettext("Unix (LF)");
     
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
@@ -135,14 +141,14 @@ public class XpadMessages {
     public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
     
     /* Status bar messages */
-    public static final String LOADING = Messages .gettext("Loading...");
+    public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     
     
     /* About box */
-    public static final String VERSION = Messages.gettext("Editor 1.0");
-    public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c) 2009 (INRIA)");
+    public static final String VERSION = Messages.gettext("Editor") + " 1.0";
+    public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009 (INRIA)";
     
     public static final String XPAD_ERROR = Messages.gettext("Editor error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
@@ -151,4 +157,10 @@ public class XpadMessages {
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
     public static final String CONTINUE = Messages.gettext("Continue?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"xpadConfiguration.xml\"");
+    
+    public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
+    public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
+    
+    public static final String CHANGE_COLORS =  Messages.gettext("Change Colors");
+    public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
 }
