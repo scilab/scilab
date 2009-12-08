@@ -727,6 +727,7 @@ public class BasicBlock extends XcosUIDObject {
 		    geom.setY(10);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
+		    block.setParentDiagram(theDiagram);
 		}
 	    });
 

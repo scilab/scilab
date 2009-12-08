@@ -50,7 +50,7 @@ public class ScilabGraph extends mxGraph {
     private int undoCounter = 0;
     private boolean readOnly = false;
     private Color originalColor = null;
-    private mxRubberband rubberBand;
+    private transient mxRubberband rubberBand;
 
     /**
      * 
