@@ -279,14 +279,14 @@ public class ConfigXcosManager {
 		    File temp = new File(style.getAttribute(PATH));
 
 		    if (temp.exists()) {
-			files.add(temp);
+			files.add(0, temp);
 		    } else {
 			root.removeChild((Node) style);
 		    }
 
-		    /* Save changes */
-		    writeDocument();
 		}
+		/* Save changes */
+		writeDocument();
 	    }
 	}
 	return files;
@@ -300,40 +300,42 @@ public class ConfigXcosManager {
      */
     public static void saveToRecentOpenedFiles(String filePath) {
 
-	readDocument();
-
-	if (document != null) {
-	    Element root = (Element) document.getDocumentElement()
-		    .getElementsByTagName(RECENT_FILES).item(0);
-	    NodeList recentFiles = root.getElementsByTagName(DOCUMENT);
-	    int numberOfFiles = recentFiles.getLength();
-
-	    // we remove all the duplicate
-	    for (int i = 0; i < recentFiles.getLength(); ++i) {
-		Element style = (Element) recentFiles.item(i);
-
-		if (filePath.equals(style.getAttribute(PATH))) {
-		    root.removeChild((Node) style);
-		    numberOfFiles--;
-		}
-
-	    }
-
-	    // if we have reached the maximun , we remove the oldest files
-	    while (recentFiles.getLength() >= MAX_RECENT_FILES) {
-		root.removeChild(root.getFirstChild());
-	    }
-
-	    Element newFile = document.createElement(DOCUMENT);
-
-	    newFile.setAttribute(PATH, filePath);
-
-	    root.appendChild((Node) newFile);
-
-	    /* Save changes */
-	    writeDocument();
+	Node root = getXcosRoot();
+	if(root == null) {
+	    return;
+	}
+	
+	Node recentFiles = getNodeChild(root, RECENT_FILES);
+	if(recentFiles == null) {
+	    recentFiles = document.createElement(RECENT_FILES);
+	    root.appendChild(recentFiles);
 	}
 
+	ArrayList<Node> recentFile = getNodeChildren(recentFiles, DOCUMENT);
+
+	//if file already in file no need to add it
+	for(Node item : recentFile) {
+	    if (filePath.compareTo(((Element)item).getAttribute(PATH)) == 0) {
+		return;
+	    }
+	}
+
+	//limit number of recent files
+	if(recentFile.size() >= MAX_RECENT_FILES) {
+	    int itemCount = recentFile.size() - (MAX_RECENT_FILES - 1);
+	    for(int i = 0 ; i < itemCount ; i++) {
+		recentFiles.removeChild(recentFiles.getFirstChild());
+	    }
+	}
+
+	Element newFile = document.createElement(DOCUMENT);
+
+	newFile.setAttribute(PATH, filePath);
+
+	recentFiles.appendChild((Node) newFile);
+
+	/* Save changes */
+	writeDocument();
     }
 
     /**
