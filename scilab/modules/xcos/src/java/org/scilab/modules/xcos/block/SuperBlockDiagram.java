@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.block;
 
 import java.io.Serializable;
@@ -76,6 +88,13 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
     public void setModified(boolean modified) {
         super.setModified(modified);
+        /* FIXME: The modified state must not be passed to the parent when :
+         * 	- We are closing the diagram and thus saving it (child is not modified but parent is modified)
+         * 	- When opening a superblock and the parent is modified, then the parent is modified and child not
+         *      - When opening a superblock and the parent is not modified, then the parent neither child are not modified
+         *      
+         * But in general, when editing, the modified state is shared (thus when modifying the child the parent is set to modified)   
+         */
         if (getContainer() != null &&
         	getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);

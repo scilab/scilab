@@ -93,6 +93,8 @@ Xcos:
 
 * bug 5184 fixed - Setup menu values are localized
 
+* bug 5196 fixed - Openning a SuperBlock modified some positions.
+
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
