@@ -14,7 +14,10 @@ package org.scilab.modules.xcos.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -24,6 +27,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.EventInBlock;
 import org.scilab.modules.xcos.block.EventOutBlock;
 import org.scilab.modules.xcos.block.ExplicitInBlock;
@@ -489,45 +493,45 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
-	List<BasicBlock> items[] = new List[6];
+	Map<ContextUpdate.SubClasses, List<BasicBlock>> items = new EnumMap<ContextUpdate.SubClasses, List<BasicBlock>>(ContextUpdate.SubClasses.class);
 
 	// ExplicitInBlock
 	for (int i = 0; i < blocks.length; i++) {
 	    if (blocks[i] instanceof ExplicitOutBlock) {
-		if (items[0] == null) {
-		    items[0] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.ExplicitOutBlock)) {
+		    items.put(ContextUpdate.SubClasses.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[0].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.ExplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ExplicitInBlock) {
-		if (items[1] == null) {
-		    items[1] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.ExplicitInBlock)) {
+		    items.put(ContextUpdate.SubClasses.ExplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items[1].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.ExplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitOutBlock) {
-		if (items[2] == null) {
-		    items[2] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.ImplicitOutBlock)) {
+		    items.put(ContextUpdate.SubClasses.ImplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[2].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.ImplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitInBlock) {
-		if (items[3] == null) {
-		    items[3] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.ImplicitInBlock)) {
+		    items.put(ContextUpdate.SubClasses.ImplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items[3].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.ImplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventOutBlock) {
-		if (items[4] == null) {
-		    items[4] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.EventOutBlock)) {
+		    items.put(ContextUpdate.SubClasses.EventOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[4].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.EventOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventInBlock) {
-		if (items[5] == null) {
-		    items[5] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(ContextUpdate.SubClasses.EventInBlock)) {
+		    items.put(ContextUpdate.SubClasses.EventInBlock, new ArrayList<BasicBlock>());
 		}
-		items[5].add((BasicBlock) blocks[i]);
+		items.get(ContextUpdate.SubClasses.EventInBlock).add((BasicBlock) blocks[i]);
 	    }
 	}
 
-	for (int i = 0; i < 6; i++) {
-	    values.add(getMaxValue(items[i]));
+	for (ContextUpdate.SubClasses klass : ContextUpdate.SubClasses.values()) {
+	    values.add(getMaxValue(items.get(klass)));
 	}
 
 	return values;
