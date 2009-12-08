@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,7 +29,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
-import org.scilab.modules.xcos.block.ContextUpdate.SubClasses;
+import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.EventInBlock;
 import org.scilab.modules.xcos.block.EventOutBlock;
 import org.scilab.modules.xcos.block.ExplicitInBlock;
@@ -493,44 +495,44 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
-	Map<ContextUpdate.SubClasses, List<BasicBlock>> items = new EnumMap<ContextUpdate.SubClasses, List<BasicBlock>>(ContextUpdate.SubClasses.class);
+	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
 	for (int i = 0; i < blocks.length; i++) {
 	    if (blocks[i] instanceof ExplicitOutBlock) {
-		if (!items.containsKey(SubClasses.ExplicitInBlock)) {
-		    items.put(SubClasses.ExplicitOutBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.ExplicitOutBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ExplicitInBlock) {
-		if (!items.containsKey(SubClasses.ExplicitInBlock)) {
-		    items.put(SubClasses.ExplicitInBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		    items.put(IOBlocks.ExplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.ExplicitInBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitOutBlock) {
-		if (!items.containsKey(SubClasses.ImplicitOutBlock)) {
-		    items.put(SubClasses.ImplicitOutBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.ImplicitOutBlock)) {
+		    items.put(IOBlocks.ImplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.ImplicitOutBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitInBlock) {
-		if (!items.containsKey(SubClasses.ImplicitInBlock)) {
-		    items.put(SubClasses.ImplicitInBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.ImplicitInBlock)) {
+		    items.put(IOBlocks.ImplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.ImplicitInBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventOutBlock) {
-		if (!items.containsKey(SubClasses.EventOutBlock)) {
-		    items.put(SubClasses.EventOutBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.EventOutBlock)) {
+		    items.put(IOBlocks.EventOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.EventOutBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventInBlock) {
-		if (!items.containsKey(SubClasses.EventInBlock)) {
-		    items.put(SubClasses.EventInBlock, new ArrayList<BasicBlock>());
+		if (!items.containsKey(IOBlocks.EventInBlock)) {
+		    items.put(IOBlocks.EventInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(SubClasses.EventInBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventInBlock).add((BasicBlock) blocks[i]);
 	    }
 	}
 
-	for (SubClasses klass : ContextUpdate.SubClasses.values()) {
+	for (IOBlocks klass : ContextUpdate.IOBlocks.values()) {
 	    values.add(getMaxValue(items.get(klass)));
 	}
 
