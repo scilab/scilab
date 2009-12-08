@@ -499,6 +499,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	// ExplicitInBlock
 	for (int i = 0; i < blocks.length; i++) {
+	    if (blocks[i] instanceof ContextUpdate) {
 	    if (blocks[i] instanceof ExplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
 		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
@@ -529,6 +530,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 		    items.put(IOBlocks.EventInBlock, new ArrayList<BasicBlock>());
 		}
 		items.get(IOBlocks.EventInBlock).add((BasicBlock) blocks[i]);
+	    }
 	    }
 	}
 
