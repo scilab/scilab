@@ -298,10 +298,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		    graph.getModel().beginUpdate();
 		    for (Object cell : cells) {
 			if (cell instanceof BasicBlock) {
-			    BasicBlock block = (BasicBlock) cell;
-			    mxGeometry geo = block.getGeometry();
-			    geo.translate(xIncrement, yIncrement);
-			    block.setGeometry(geo);
+			    graph.translateCell(cell, xIncrement, yIncrement);
 			}
 		    }
 		    graph.getModel().endUpdate();
