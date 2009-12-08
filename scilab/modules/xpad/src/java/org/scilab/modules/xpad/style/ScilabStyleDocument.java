@@ -37,7 +37,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private boolean updater = true;
 	private boolean autoIndent;
 	private boolean autoColorize = true;
-	private volatile boolean shouldMergeEdits;
+	private volatile boolean shouldMergeEdits = false;
 	private boolean undoManagerEnabled;
 	
 	private String eolStyle = System.getProperty("line.separator");
