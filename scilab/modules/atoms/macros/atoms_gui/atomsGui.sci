@@ -14,9 +14,10 @@ function atomsGui()
     end
 
     // Test connection
-    allModules = atomsGetTOOLBOXES();
+    allModules = [];
+    errStatus = execstr("allModules = atomsGetTOOLBOXES();", "errcatch");
 
-    if size(allModules, "*") == 0 then
+    if errStatus<>0 | size(allModules, "*") == 0 then
         messagebox(gettext("No Atoms module available. Check your Internet connection."), gettext("Atoms error"), "error");
         return
     end
