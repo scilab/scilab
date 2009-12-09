@@ -165,7 +165,7 @@ images/blocks/VoltageSensor.gif \
 images/icons/document-new.png \
 images/icons/document-open.png \
 images/icons/document-print.png \
-images/icons/document-save.png \
+images/icons/document-save-as.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
 images/icons/edit-delete.png \
@@ -174,6 +174,7 @@ images/icons/edit-redo.png \
 images/icons/edit-undo.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
+images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \

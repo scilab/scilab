@@ -59,7 +59,7 @@ public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakActio
 			boolean autoColorize = doc.getAutoColorize();
 			doc.setAutoColorize(false);
 			boolean mergeEdits = doc.getShouldMergeEdits();
-			indentManager.beautifyLine(doc, line);
+			indentManager.beautifyLine(doc, line, true);
 			doc.setAutoColorize(autoColorize);
 			doc.setShouldMergeEdits(mergeEdits);
 		}
