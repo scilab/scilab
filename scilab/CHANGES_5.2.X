@@ -95,6 +95,10 @@ Xcos:
 
 * bug 5196 fixed - Openning a SuperBlock modified some positions.
 
+* bug 5202 fixed - The description of a module is now scrollable.
+
+* bug 5218 fixed - Uicontrols of style 'text' are now scrollable.
+
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 

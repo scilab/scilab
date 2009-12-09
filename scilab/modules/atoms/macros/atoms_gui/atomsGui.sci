@@ -110,18 +110,17 @@ function atomsGui()
         
     // Frame title
 
-    descFrameHTML            = "<html>" + ..
-                               "<body>" + ..
-                               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;font-size:105%;"">" + gettext("Modules") + "</div>" + ..
-                               "</body>" + ..
-                               "</html>";
+    descFrameHTML            = gettext("Modules");
 
     modulesListboxFrameTitle = uicontrol( ..
         "Parent"              , atomsfig,..
         "Style"               , "text",..
-        "Position"            , [2*margin figheight-2*margin 110 widgetHeight],..
+        "Position"            , [2*margin figheight-2.5*margin 110 widgetHeight],..
         "HorizontalAlignment" , "center",..
+        "VerticalAlignment"   , "middle",..
         "String"              , descFrameHTML, ..
+	"FontWeight"          , "bold",..
+	"FontSize"            , 12,..
         "Background"          , [1 1 1],..
         "Tag"                 , "modulesListboxFrameTitle")
 
@@ -155,9 +154,12 @@ function atomsGui()
     modulesDescFrameTitle    = uicontrol( ..
         "Parent"             , atomsfig,..
         "Style"              , "text",..
-        "Position"           , [listboxFrameWidth+3*margin figheight-2*margin 0 widgetHeight],..
+        "Position"           , [listboxFrameWidth+3*margin figheight-2.5*margin 0 widgetHeight],..
         "HorizontalAlignment", "center",..
+        "VerticalAlignment"  , "middle",..
         "String"             , "", ..
+	"FontWeight"         , "bold",..
+	"FontSize"           , 12,..
         "Background"         , [1 1 1],..
         "Tag"                , "modulesDescFrameTitle")
 
