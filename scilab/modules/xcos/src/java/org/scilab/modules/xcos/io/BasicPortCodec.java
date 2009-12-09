@@ -53,8 +53,17 @@ public class BasicPortCodec extends XcosObjectCodec {
 
 
 	//update style to replace direction by rotation
-	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE)));
+	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicPort) obj));
 	return super.afterDecode(dec, node, obj);
+    }
+
+    private String formatStyle(String style, BasicPort obj) {
+	formatStyle(style);
+	
+	if (style.compareTo("") == 0) {
+	    style = obj.getTypeName();
+	}
+	return style;
     }
 
 }
