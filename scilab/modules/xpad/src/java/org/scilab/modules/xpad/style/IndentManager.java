@@ -284,22 +284,6 @@ public IndentManager() {
 	    }
 	}
 	/*
-	 * dump document on stderr with line positions 
-	 */
-	private void dumpDoc( ScilabStyleDocument doc){
-		try{
-		Element root = doc.getDefaultRootElement();
-		for(int i = 0; i!=root.getElementCount() ; ++i){
-			Element e= root.getElement(i);
-			int start = e.getStartOffset();
-			int end = e.getEndOffset();
-			System.err.println("line "+i+ " from: "+start +"to: "+end+ ":|"+doc.getText(start, end-start)+"|");
-		}
-		} catch (BadLocationException e) {
-			System.err.println(e);
-		}
-	}
-	/*
 	 * update indentation level for current line and remaining lines
 	 * keywords impacting indentation levels are in 3 kinds:
 	 *  in : 'if' opening a new nesting block : no impact on current level but remaining lines are indented  
@@ -375,7 +359,7 @@ public IndentManager() {
 	public void beautifyLine(ScilabStyleDocument doc, int line){
 		String baseSpaces = "";
 		String tabulation = TabManager.getTabulation();
-		//dumpDoc(doc);
+		//doc.dump();
 		try {
 		Element root = doc.getDefaultRootElement();
 		int[] indentLevels = {0,0};
