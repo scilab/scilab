@@ -26,6 +26,7 @@ public abstract class BasicPort extends XcosUIDObject {
     private DataType dataType = DataType.REAL_MATRIX;
     private int initialAngle = 0;
     private int angle = 0;
+    private transient String typeName;
 
     public enum Type { 
 	IMPLICIT,
@@ -84,6 +85,7 @@ public abstract class BasicPort extends XcosUIDObject {
 	super();
 	setVertex(true);
 	setStyle(style);
+	setTypeName(style);
 	setGeometry(new mxGeometry(0, 0, 8, 8));
     }
 
@@ -156,5 +158,19 @@ public abstract class BasicPort extends XcosUIDObject {
 	result.append("Port number : " + getOrdering() + "<br>");
 	result.append("</html>");
 	return result.toString();
+    }
+
+    /**
+     * @param typeName the typeName to set
+     */
+    private void setTypeName(String typeName) {
+	this.typeName = typeName;
+    }
+
+    /**
+     * @return the typeName
+     */
+    public String getTypeName() {
+	return typeName;
     }
 }

@@ -225,14 +225,7 @@ function updateAtomsGui()
 
     set(descZone, "String", htmlcode);
 
-
-
-    descFrameHTML    = "<html>" + ..
-                        "<body>" + ..
-                        "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;font-size:105%;"">" + themodule(vers(3)).Title + "</div>" + ..
-                        "</body>" + ..
-                        "</html>";
-
+    descFrameHTML    = themodule(vers(3)).Title;
    
     descFramePos     = get(descFrameTitle, "Position");
     descFramePos(3)  = 300;

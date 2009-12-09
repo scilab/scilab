@@ -23,7 +23,7 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 
 import com.mxgraph.util.mxConstants;
 
-public class TextBlock extends BasicBlock {
+public final class TextBlock extends BasicBlock {
     
     private static final long serialVersionUID = -4279562884443733433L;
 
