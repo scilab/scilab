@@ -184,6 +184,8 @@ Bug fixes:
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
 
+* bug 3675 fixed - Issues when saving/loading gui (uicontrols,figure...) fixed.
+
 * bug 3593 fixed - macros to read and write csv file format updated.
 
 * bug 3849 fixed - Path selected for graphics export is now memorized and used
