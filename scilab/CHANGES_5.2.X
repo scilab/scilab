@@ -345,6 +345,9 @@ Bug fixes:
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
 
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
+
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
 * bug 5482 fixed - added a menu to choose EOL type when you save a file with
