@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.block;
 
 import java.io.Serializable;
@@ -7,7 +19,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class SuperBlockDiagram extends XcosDiagram implements Serializable {
+public final class SuperBlockDiagram extends XcosDiagram implements Serializable {
 
     private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container = null;
@@ -74,12 +86,31 @@ public class SuperBlockDiagram extends XcosDiagram implements Serializable {
 	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
     }
 
+    /**
+     * This function set the SuperBlock diagram and all its parents in a 
+     * modified state or not.
+     */
     public void setModified(boolean modified) {
         super.setModified(modified);
+
         if (getContainer() != null &&
         	getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);
         }
     }
+    
+    /**
+     * This function set the SuperBlock diagram in a modified state or not.
+     * 
+     * It doesn't perform recursively on the parent diagrams. If you want such
+     * a behavior use setModified instead.
+     * 
+     * @see setModified
+     */
+    public void setModifiedNonRecursively(boolean modified) {
+	super.setModified(modified);
+    }
+    
+    
     
 }

@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -527,9 +528,11 @@ public final class ConfigXpadManager {
 		
 		NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
 		Element defaultEncoding = (Element) allSizeElements.item(0);
-		
-		if(defaultEncoding == null){
-			return "UTF-8";
+
+		if (defaultEncoding == null || defaultEncoding.getAttribute(VALUE).equals("")) {
+			// If no default encoding read then used system default
+			saveDefaultEncoding(Charset.defaultCharset().name());
+			return Charset.defaultCharset().name();
 		} else {
 			return defaultEncoding.getAttribute(VALUE);
 		}

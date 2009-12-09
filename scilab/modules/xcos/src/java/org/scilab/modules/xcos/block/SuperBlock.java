@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
-public class SuperBlock extends BasicBlock {
+public final class SuperBlock extends BasicBlock {
 
     private static final long serialVersionUID = 3005281208417373333L;
     private SuperBlockDiagram child = null;
@@ -82,7 +82,7 @@ public class SuperBlock extends BasicBlock {
 	}
 
 	if(createChildDiagram() == true) {
-	    getChild().setModified(false);
+	    getChild().setModifiedNonRecursively(false);
 	    XcosTab.createTabFromDiagram(getChild());
 	    XcosTab.showTabFromDiagram(getChild());
 	} else {
@@ -98,8 +98,8 @@ public class SuperBlock extends BasicBlock {
 	// Do not ask the user, the diagram is saved and closed
 	if (getChild().isModified()) {
 	    setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
-	    getParentDiagram().setModified(true);
-	    getChild().setModified(false);
+	    getChild().setModified(true);
+	    getChild().setModifiedNonRecursively(false);
 	}
 
 	if(getChild().canClose() == false) {

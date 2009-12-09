@@ -875,6 +875,9 @@
   <add as="fortran_block" extend="blockWithLabel">
     <add as="displayedLabel" value="Fortran"/>
   </add>
+  <add as="DEBUG_SCICOS" extend="blockWithLabel">
+    <add as="displayedLabel" value="Debug"/>
+  </add>
   <add as="EXPRESSION" extend="blockWithLabel">
     <add as="displayedLabel" value="Mathematical&lt;BR&gt;
 				    expression"/>
@@ -1094,9 +1097,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DIFF_f.gif"/>
   </add>
   <add as="DEMUX_f" extend="DEMUX"/>
-  <add as="DEBUG_SCICOS" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEBUG_SCICOS.gif"/>
-  </add>
   <add as="DEADBAND" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif"/>
   </add>

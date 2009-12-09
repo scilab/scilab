@@ -38,7 +38,7 @@ public class PaletteDiagram extends XcosDiagram {
 	//int windowHeight = getAsComponent().getHeight();
 	
 	if (theFile.exists()) {
-	    transformAndLoadFile(theFile);
+	    transformAndLoadFile(theFile, true);
 	    setName(theFile.getName());
 	    setFileName(theFile.getAbsolutePath());
 	    getRubberBand().setEnabled(false);

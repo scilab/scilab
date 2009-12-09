@@ -23,7 +23,7 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 
 import com.mxgraph.util.mxConstants;
 
-public class TextBlock extends BasicBlock {
+public final class TextBlock extends BasicBlock {
     
     private static final long serialVersionUID = -4279562884443733433L;
 
@@ -80,7 +80,8 @@ public class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-	return Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]);
+	// After investigations, the 1pt of scicos is equivalent to a 10 real pt 
+	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0])*10);
     }
     
     /**
