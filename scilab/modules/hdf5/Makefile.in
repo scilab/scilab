@@ -119,7 +119,8 @@ am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 	sci_gateway/cpp/sci_no_hdf5.cpp \
 	sci_gateway/cpp/sci_export_to_hdf5.cpp \
 	sci_gateway/cpp/sci_import_from_hdf5.cpp \
-	sci_gateway/c/gw_hdf5.c
+	sci_gateway/c/gw_hdf5.c src/jni/jhdf5.hxx src/jni/jhdf5.cpp \
+	src/jni/GiwsException.hxx src/jni/GiwsException.cpp
 @HDF5_TRUE@am__objects_1 = libscihdf5_la-h5_fileManagement.lo \
 @HDF5_TRUE@	libscihdf5_la-h5_writeDataToFile.lo \
 @HDF5_TRUE@	libscihdf5_la-h5_readDataFromFile.lo
@@ -127,8 +128,10 @@ am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 @HDF5_TRUE@am__objects_2 = libscihdf5_la-sci_export_to_hdf5.lo \
 @HDF5_TRUE@	libscihdf5_la-sci_import_from_hdf5.lo
 @HDF5_TRUE@am__objects_3 = libscihdf5_la-gw_hdf5.lo
+@HDF5_TRUE@am__objects_4 = libscihdf5_la-jhdf5.lo \
+@HDF5_TRUE@	libscihdf5_la-GiwsException.lo
 am_libscihdf5_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	$(am__objects_3) $(am__objects_4)
 libscihdf5_la_OBJECTS = $(am_libscihdf5_la_OBJECTS)
 libscihdf5_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(libscihdf5_la_CXXFLAGS) \
@@ -404,19 +407,28 @@ top_srcdir = @top_srcdir@
 @HDF5_TRUE@src/c/h5_writeDataToFile.c \
 @HDF5_TRUE@src/c/h5_readDataFromFile.c
 
+@HDF5_TRUE@HDF5_CPP_SOURCES = src/jni/jhdf5.hxx \
+@HDF5_TRUE@src/jni/jhdf5.cpp \
+@HDF5_TRUE@src/jni/GiwsException.hxx \
+@HDF5_TRUE@src/jni/GiwsException.cpp
+
 @HDF5_FALSE@GATEWAY_C_SOURCES = 
 @HDF5_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 @HDF5_FALSE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 @HDF5_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 @HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp 
 
+GIWS_WRAPPERS = src/jni/jhdf5.giws.xml
+@GIWS_TRUE@BUILT_SOURCES = giws
 
 #### hdf5 : include files ####
 libscihdf5_la_CXXFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+                -I$(top_srcdir)/modules/jvm/includes/ \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -434,7 +446,7 @@ libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 pkglib_LTLIBRARIES = libscihdf5.la
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -518,7 +530,8 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -592,10 +605,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-gw_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_fileManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_readDataFromFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_writeDataToFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-jhdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_import_from_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_no_hdf5.Plo@am__quote@
@@ -690,6 +705,20 @@ libscihdf5_la-sci_import_from_hdf5.lo: sci_gateway/cpp/sci_import_from_hdf5.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_import_from_hdf5.cpp' object='libscihdf5_la-sci_import_from_hdf5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_import_from_hdf5.lo `test -f 'sci_gateway/cpp/sci_import_from_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_import_from_hdf5.cpp
+
+libscihdf5_la-jhdf5.lo: src/jni/jhdf5.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-jhdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-jhdf5.Tpo -c -o libscihdf5_la-jhdf5.lo `test -f 'src/jni/jhdf5.cpp' || echo '$(srcdir)/'`src/jni/jhdf5.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-jhdf5.Tpo $(DEPDIR)/libscihdf5_la-jhdf5.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/jhdf5.cpp' object='libscihdf5_la-jhdf5.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-jhdf5.lo `test -f 'src/jni/jhdf5.cpp' || echo '$(srcdir)/'`src/jni/jhdf5.cpp
+
+libscihdf5_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-GiwsException.Tpo -c -o libscihdf5_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-GiwsException.Tpo $(DEPDIR)/libscihdf5_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihdf5_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -841,13 +870,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -872,6 +903,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -948,7 +980,7 @@ uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	uninstall-libscihdf5_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
