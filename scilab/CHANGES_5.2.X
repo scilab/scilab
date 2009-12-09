@@ -346,6 +346,8 @@ Bug fixes:
 * bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
                    ISO-8859-1 and not in UTF-8.
 
+* bug 5586 fixed - getscilabkeyworgs was broken.
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
