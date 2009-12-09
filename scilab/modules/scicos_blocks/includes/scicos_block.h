@@ -22,6 +22,7 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
+#define NULL 0
 
 typedef void (*voidg)();
 
