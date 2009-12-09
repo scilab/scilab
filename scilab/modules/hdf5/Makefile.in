@@ -429,6 +429,7 @@ libscihdf5_la_CXXFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
