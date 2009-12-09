@@ -130,4 +130,24 @@ public final class TextBlock extends BasicBlock {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
     }
+    
+    @Override
+    public String getStyle() {
+        String style = super.getStyle();
+
+        /*
+         * Automatically add mxConstants.STYLE_SHAPE if not present  
+         */
+        if (!style.contains(mxConstants.STYLE_SHAPE)) {
+            StringBuilder str = new StringBuilder(style);
+            str.append(";");
+            str.append(mxConstants.STYLE_SHAPE);
+            str.append("=");
+            str.append(mxConstants.SHAPE_LABEL);
+            str.append(";");
+            style = str.toString();
+        }
+        
+        return style;
+    }
 }
