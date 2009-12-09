@@ -136,6 +136,9 @@ Xcos:
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
+
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
@@ -147,6 +150,8 @@ Xcos:
 * bug 5464 fixed - Actions were not disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
+
+* bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
@@ -180,6 +185,8 @@ Bug fixes:
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
+
+* bug 3675 fixed - Issues when saving/loading gui (uicontrols,figure...) fixed.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
@@ -339,6 +346,9 @@ Bug fixes:
 
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
+
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 

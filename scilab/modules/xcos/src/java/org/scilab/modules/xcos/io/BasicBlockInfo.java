@@ -142,11 +142,9 @@ public final class BasicBlockInfo {
 	ScilabMList graphics = new ScilabMList(graphicsFields);
 
 	// Adjust block cause Scilab(0,0) is bottom left
-	block.getGeometry().setY(
-		block.getGeometry().getY()
-			+ block.getGeometry().getHeight());
+	double y = block.getGeometry().getY() + block.getGeometry().getHeight();
 	
-	double[][] orig = {{block.getGeometry().getX(), - block.getGeometry().getY()}};
+	double[][] orig = {{block.getGeometry().getX(), - y}};
 	graphics.add(new ScilabDouble(orig)); // orig
 
 	double[][] sz = {{block.getGeometry().getWidth(), block.getGeometry().getHeight()}};
