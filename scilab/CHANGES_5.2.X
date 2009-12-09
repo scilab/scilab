@@ -151,6 +151,8 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
 * bug 5533 fixed - SetupAction didn't valid inputs
