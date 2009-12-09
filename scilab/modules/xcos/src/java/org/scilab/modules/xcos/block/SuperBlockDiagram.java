@@ -61,29 +61,49 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	getContainer().closeBlockSettings();
     }
 
-    public class GenericSuperBlockListener implements mxIEventListener {
+    private static class GenericSuperBlockListener implements mxIEventListener {
+	static GenericSuperBlockListener instance=null;
+	
+	/**
+	 * Reduce constructor visibility
+	 */
+	private GenericSuperBlockListener() {
+	    super();
+	}
+	
+	/**
+	 * Mono-threaded singleton implementation getter
+	 * @return The unique instance
+	 */
+	public static GenericSuperBlockListener getInstance() {
+	    if (instance == null) {
+		instance = new GenericSuperBlockListener();
+	    }
+	    return instance;
+	}
+	
 	public void invoke(Object arg0, mxEventObject arg1) {
-	    getContainer().updateAllBlocksColor();
-	    getContainer().updateExportedPort();	    
-	}	
+	    ((SuperBlockDiagram) arg0).getContainer().updateAllBlocksColor();
+	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();	    
+	}
     }
     
     public void installSuperBlockListeners() {
-	addListener(XcosEvent.CELLS_ADDED, new GenericSuperBlockListener());
+	addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.CELLS_REMOVED, new GenericSuperBlockListener());
+	addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, new GenericSuperBlockListener());
+	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
     }
 
     /**
