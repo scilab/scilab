@@ -23,6 +23,7 @@ import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
@@ -69,7 +70,12 @@ public class BasicPortCodec extends XcosObjectCodec {
 	    if (previousBlock instanceof SplitBlock) {
 		SplitBlock block = (SplitBlock) previousBlock;
 		if (previousBlock.getChildCount() != 4) {
-		    block.insert(new mxCell());
+		    try {
+			block.insert((mxICell) block.getChildAt(1).clone());
+		    } catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
 		}
 	    }
 
