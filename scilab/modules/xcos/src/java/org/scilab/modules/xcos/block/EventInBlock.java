@@ -19,7 +19,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public class EventInBlock extends ContextUpdate {
+public final class EventInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = 2799781225262685322L;
 
