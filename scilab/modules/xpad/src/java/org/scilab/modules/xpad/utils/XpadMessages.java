@@ -163,4 +163,6 @@ public class XpadMessages {
     
     public static final String CHANGE_COLORS =  Messages.gettext("Change Colors");
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
+    
+    public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close Text Editor ?");
 }

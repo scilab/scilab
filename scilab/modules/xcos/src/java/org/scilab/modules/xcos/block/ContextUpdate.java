@@ -17,21 +17,22 @@ public abstract class ContextUpdate extends BasicBlock{
      *
      * It is used to easily loop over a BasicBlock I/O blocks
      */
-    public enum SubClasses {
+    public enum IOBlocks {
 	EventInBlock(EventInBlock.class),
 	EventOutBlock(EventOutBlock.class),
 	ExplicitInBlock(ExplicitInBlock.class),
 	ExplicitOutBlock(ExplicitOutBlock.class),
 	ImplicitInBlock(ImplicitInBlock.class),
-	ImplicitOutBlock(ImplicitOutBlock.class);
+	ImplicitOutBlock(ImplicitOutBlock.class),
+	Unknow(ContextUpdate.class);
 	
 	private Class<? extends ContextUpdate> klass;
 	
-	private SubClasses(Class<? extends ContextUpdate> klass) {
+	private IOBlocks(Class<? extends ContextUpdate> klass) {
 	    this.klass = klass;
 	}
 	
-	public Class<? extends ContextUpdate> getClasse() {
+	public Class<? extends ContextUpdate> getReferencedClass() {
 	    return klass;
 	}
     }

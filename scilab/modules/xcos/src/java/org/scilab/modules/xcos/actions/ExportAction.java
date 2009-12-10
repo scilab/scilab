@@ -82,18 +82,18 @@ public final class ExportAction extends DefaultAction {
 		
 		/* TODO: The read formats and writer formats can be different */
 		// Adds a filter for each supported image format
-		String[] imageFormats = ImageIO.getReaderFormatNames();
+		Object[] imageFormats = ImageIO.getReaderFormatNames();
 
 		/* TODO: There is a better way to get a unique extension collection */
 		// Finds all distinct extensions
-		HashSet<String> formats = new HashSet<String>();
+		HashSet formats = new HashSet();
 
 		for (int i = 0; i < imageFormats.length; i++) {
 			String ext = imageFormats[i].toString().toLowerCase();
 			formats.add(ext);
 		}
 
-		imageFormats = (String[]) formats.toArray();
+		imageFormats = formats.toArray();
 
 		/* TODO: why hardcoded ? */
 		String[] mask = new String[imageFormats.length + 3];

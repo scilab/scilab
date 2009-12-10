@@ -56,7 +56,7 @@ public final class SaveAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.SAVE, "document-save.png", new SaveAction(scilabGraph));
+		return createButton(XcosMessages.SAVE, "media-floppy.png", new SaveAction(scilabGraph));
 	}
 	
 	/**
