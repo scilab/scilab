@@ -347,8 +347,7 @@ public final class SuperBlock extends BasicBlock {
     }
 
     public void updateExportedPort(){
-    	if(child == null){
-    		System.err.println("child == null");
+    	if (child == null){
     		return;
     	}
 
