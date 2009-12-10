@@ -21,7 +21,8 @@
 		<VerticalWrapAllowed useCache="true" value="false"/>
 		<HorizontalWrapAllowed useCache="true" value="false"/>
     <AutoIndent default="true" useCach="true" value="true" />
-    <DefaultEncoding value=""/> <!-- Initialized to system default at first launch --> 
+    <AutoColorize default="true" useCach="true" value="true" />
+    <DefaultEncoding value=""/> <!-- Initialized to system default at first launch -->
 
 		<styles>
 
