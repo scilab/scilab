@@ -28,10 +28,13 @@ import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
-public class Xcos {
+public final class Xcos {
 
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
+    /* Static class */
+    private Xcos() {}
+    
     /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
