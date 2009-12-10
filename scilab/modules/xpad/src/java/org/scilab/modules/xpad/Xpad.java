@@ -786,7 +786,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		
 		void updateColor(DocumentEvent e){
 			if( e.getType() != DocumentEvent.EventType.CHANGE) {
-				System.err.println("colorize update");
 				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
 			}
 		}
@@ -862,8 +861,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
-			//myReadThread.start();
-			SwingUtilities.invokeLater(myReadThread);
+			myReadThread.start();
 		}
 
 		// Get current file path for Execute file into Scilab
@@ -1090,8 +1088,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 						} catch (BadLocationException e) {
 							e.printStackTrace();
 						}
-						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.setUpdater(true);
 					}
@@ -1103,11 +1099,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 
-				if(colorStatus == false) {
-					getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
-				} else {
-					getInfoBar().setText("");
-				}
+				getInfoBar().setText("");
 
 				xpadGUI.updateEncodingMenu((ScilabStyleDocument)getTextPane().getStyledDocument());
 				
