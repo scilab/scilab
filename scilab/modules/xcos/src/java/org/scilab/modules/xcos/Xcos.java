@@ -52,9 +52,9 @@ public class Xcos {
     public static void xcos() {
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
-	XcosPaletteManager.loadPalette();
-	createEmptyDiagram();
-	ViewPaletteBrowserAction.setPalettesVisible(true);
+		XcosPaletteManager.loadPalette();
+		createEmptyDiagram();
+		ViewPaletteBrowserAction.setPalettesVisible(true);
 	    }
 	});
     }
@@ -63,11 +63,11 @@ public class Xcos {
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
-	ConfigXcosManager.saveToRecentOpenedFiles(filename);
-	if (XcosTab.focusOnExistingFile(filename) == false) {
-	    XcosDiagram diagram = createEmptyDiagram();
-	    diagram.openDiagramFromFile(filename);
-	}
+		ConfigXcosManager.saveToRecentOpenedFiles(filename);
+		if (XcosTab.focusOnExistingFile(filename) == false) {
+		    XcosDiagram diagram = createEmptyDiagram();
+		    diagram.openDiagramFromFile(filename);
+		}
 	    }
 	});
     }
@@ -77,7 +77,7 @@ public class Xcos {
 	XcosTab.showTabFromDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
-    
+
     public static XcosDiagram createANotShownDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
@@ -94,7 +94,7 @@ public class Xcos {
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
 
-	while(diagrams.size() > 0) {
+	while (diagrams.size() > 0) {
 	    diagrams.get(0).closeDiagram();
 	}
 	ViewPaletteBrowserAction.setPalettesVisible(false);
