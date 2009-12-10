@@ -8,7 +8,7 @@
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH XCOS -->
 //
-// <-- Non-regression test for bug 5183 -->
+// <-- Non-regression test for bug 5444 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=5444
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // On a superblock diagram, start a simulation is not applicable.
 
-// start xcos(SCI + "/modules/xcos/tests\nonreg_tests\bug_5444.xcos")
+// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.xcos")
 
 // start simulation
 

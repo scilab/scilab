@@ -548,7 +548,7 @@ images/blocks/VoltageSensor.gif \
 images/icons/document-new.png \
 images/icons/document-open.png \
 images/icons/document-print.png \
-images/icons/document-save.png \
+images/icons/document-save-as.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
 images/icons/edit-delete.png \
@@ -557,6 +557,7 @@ images/icons/edit-redo.png \
 images/icons/edit-undo.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
+images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \
@@ -610,6 +611,7 @@ images/palettes/CurrentSensor.jpg \
 images/palettes/CURV_f.jpg \
 images/palettes/CVS.jpg \
 images/palettes/DEADBAND.jpg \
+images/palettes/DEBUG_SCICOS.jpg \
 images/palettes/DELAY_f.jpg \
 images/palettes/DELAYV_f.jpg \
 images/palettes/DEMUX.jpg \

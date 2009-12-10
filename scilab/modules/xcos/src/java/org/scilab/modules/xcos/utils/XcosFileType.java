@@ -29,7 +29,6 @@ public enum XcosFileType {
 				String cmd = "exec(\"" + arg0.getAbsolutePath() + "\", -1);";
 				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				System.err.println(cmd);
 				InterpreterManagement.requestScilabExec(cmd);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -46,7 +45,6 @@ public enum XcosFileType {
 				String cmd = "load(\"" + arg0.getAbsolutePath() + "\");";
 				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
 				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				System.err.println(cmd);
 				InterpreterManagement.requestScilabExec(cmd);
 			} catch (IOException e) {
 				e.printStackTrace();

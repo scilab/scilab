@@ -86,3 +86,4 @@ public final class CommentAction extends DefaultAction {
 				KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }
+ 

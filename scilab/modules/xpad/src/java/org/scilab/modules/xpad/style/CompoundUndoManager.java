@@ -20,14 +20,40 @@ import javax.swing.undo.UndoManager;
 public class CompoundUndoManager extends UndoManager {
 
 	CompoundEdit compoundEdit=null;
+	private int nbEdits = 0;
 	
 	void startCompoundEdit(){
+		//System.err.println("starting compound edit");
 		compoundEdit = new CompoundEdit();
 		addEdit(compoundEdit);
 	}
 	void endCompoundEdit(){
+		//System.err.println("ending compound edit");
 		compoundEdit.end();
 		compoundEdit = null;
+	}
+	
+	public void undo(){
+		--nbEdits;
+		super.undo();
+	}
+
+	public void redo(){
+		++nbEdits;
+		super.redo();
+	}
+
+	public boolean isAtReference(){
+		return nbEdits == 0;
+	}
+	
+	public void setReference(){
+		nbEdits = 0;
+	}
+	
+	public void discardAllEdits() {
+		super.discardAllEdits();
+		setReference();
 	}
 	
 	public void undoableEditHappened(UndoableEditEvent e) {
@@ -40,7 +66,9 @@ public class CompoundUndoManager extends UndoManager {
 			// do not store change events
 			return;
 		}
+		//System.err.println("storing an edit");
 		addEdit( e.getEdit() );
+		++nbEdits;
 	}
 }
 		

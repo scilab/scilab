@@ -169,6 +169,7 @@ public class BasicBlock extends XcosUIDObject {
     public static BasicBlock createBlock(String label) {
     	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
     	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
+    	if(label.compareTo("DSUPER") == 0) { return new SuperBlock(label, true); }
     	if(label.compareTo("CONST_m") == 0
     		|| label.compareTo("CONST") == 0
     		|| label.compareTo("CONST_f") == 0) {
@@ -727,6 +728,7 @@ public class BasicBlock extends XcosUIDObject {
 		    geom.setY(10);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
+		    block.setParentDiagram(theDiagram);
 		}
 	    });
 
@@ -785,7 +787,7 @@ public class BasicBlock extends XcosUIDObject {
 
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
-		Map<Class<? extends DefaultAction>, MenuItem> menuList = new HashMap<Class<? extends DefaultAction>, MenuItem>();
+		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
 		
 		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
@@ -843,6 +845,7 @@ public class BasicBlock extends XcosUIDObject {
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
@@ -879,7 +882,7 @@ public class BasicBlock extends XcosUIDObject {
      * Override this to customize contextual menu
      * @param menuList
      */
-    protected void customizeMenu(Map<Class<? extends DefaultAction>, MenuItem> menuList) {
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
 	// To be overridden by sub-classes
     }
     

@@ -28,7 +28,7 @@ import com.mxgraph.model.mxGeometry;
 
 
 
-public class SplitBlock extends BasicBlock {
+public final class SplitBlock extends BasicBlock {
 
     private static final long serialVersionUID = 5817243367840540106L;
 

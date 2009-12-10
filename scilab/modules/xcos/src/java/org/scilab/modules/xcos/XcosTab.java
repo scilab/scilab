@@ -100,6 +100,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -191,7 +192,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
-
+	main.setDims(new Size(600, 500));
+	
 	// Get the palettes position
 	if (XcosPaletteManager.isVisible()) { // If at Xcos startup
 	    Position palPosition = XcosPaletteManager.getPalettes()
@@ -297,11 +299,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 		    graph.getModel().beginUpdate();
 		    for (Object cell : cells) {
-			if (cell instanceof BasicBlock) {
-			    BasicBlock block = (BasicBlock) cell;
-			    mxGeometry geo = block.getGeometry();
-			    geo.translate(xIncrement, yIncrement);
-			    block.setGeometry(geo);
+			if (cell instanceof BasicBlock || cell instanceof BasicLink) {
+			    graph.translateCell(cell, xIncrement, yIncrement);
 			}
 		    }
 		    graph.getModel().endUpdate();
@@ -387,6 +386,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     
     private PushButton openAction;
     private PushButton saveAction;
+    private PushButton saveAsAction;
     private PushButton printAction;
     private PushButton newDiagramAction;
     private PushButton deleteAction;
@@ -652,8 +652,13 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 	openAction = OpenAction.createButton(scilabGraph);
 	toolBar.add(openAction);
+	
+	toolBar.addSeparator();
+	
 	saveAction = SaveAction.createButton(scilabGraph);
 	toolBar.add(saveAction);
+	saveAsAction = SaveAsAction.createButton(scilabGraph);
+	toolBar.add(saveAsAction);
 
 	toolBar.addSeparator();
 
@@ -800,6 +805,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	help.setEnabled(status);
 	openAction.setEnabled(status);
 	saveAction.setEnabled(status);
+	saveAsAction.setEnabled(status);
 	printAction.setEnabled(status);
 	newDiagramAction.setEnabled(status);
 	deleteAction.setEnabled(status);

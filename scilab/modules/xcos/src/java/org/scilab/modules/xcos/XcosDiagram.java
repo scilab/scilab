@@ -117,7 +117,6 @@ public class XcosDiagram extends ScilabGraph {
     private double maximumStepSize = 0;
     private int debugLevel = 0;
     private String[] context = new String[]{""};
-    private List doc = null;
     private String version = "scicos4.2";
     //private Window palette;
     private Tab viewPort;
@@ -1500,7 +1499,7 @@ public class XcosDiagram extends ScilabGraph {
 	    ((XcosTab) getParentTab()).setActionsEnabled(false);
 
 	    if (theFile.exists()) {
-		transformAndLoadFile(theFile);
+		transformAndLoadFile(theFile, false);
 	    } else {
 		AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
 			XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
@@ -1534,7 +1533,7 @@ public class XcosDiagram extends ScilabGraph {
      * Load a file with different method depending on it extension 
      * @param theFile File to load
      */
-	protected void transformAndLoadFile(File theFile) {
+	protected void transformAndLoadFile(File theFile, boolean wait) {
 		final File fileToLoad = theFile;
 		final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 		
@@ -1542,9 +1541,21 @@ public class XcosDiagram extends ScilabGraph {
 		switch (filetype) {
 		case COSF:
 		case COS:
-		    File newFile;
-		    newFile = filetype.exportToHdf5(fileToLoad);
-		    transformAndLoadFile(newFile);
+		    System.err.println("wait : " + wait);
+		    if(wait) {
+			File newFile;
+			newFile = filetype.exportToHdf5(fileToLoad);
+			transformAndLoadFile(newFile, wait);
+		    } else {
+			Thread transformAction = new Thread() {
+			    public void run() {
+				File newFile;
+				newFile = filetype.exportToHdf5(fileToLoad);
+				transformAndLoadFile(newFile, false);
+			    }
+			};
+			transformAction.start();	
+		    }
 		    break;
 
 		case XCOS:

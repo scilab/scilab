@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,7 +16,9 @@ package org.scilab.modules.xcos.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -24,6 +28,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.ContextUpdate;
+import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.EventInBlock;
 import org.scilab.modules.xcos.block.EventOutBlock;
 import org.scilab.modules.xcos.block.ExplicitInBlock;
@@ -267,29 +273,25 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    BasicPort target = null;
 
 	    if (link.getOutGoing()) {
-		target = (BasicPort) link.getLink().getTarget();
+	    	target = (BasicPort) link.getLink().getTarget();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    } else {
-		source = (BasicPort) link.getLink().getSource();
+	    	source = (BasicPort) link.getLink().getSource();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    }
 
 	    BasicLink newLink = BasicLink.createLinkFromPorts(source, target);
@@ -489,45 +491,47 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     private List<Integer> getMaxBlocksValues(Object[] blocks) {
 	List<Integer> values = new ArrayList<Integer>();
-	List<BasicBlock> items[] = new List[6];
+	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
 	for (int i = 0; i < blocks.length; i++) {
+	    if (blocks[i] instanceof ContextUpdate) {
 	    if (blocks[i] instanceof ExplicitOutBlock) {
-		if (items[0] == null) {
-		    items[0] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[0].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ExplicitInBlock) {
-		if (items[1] == null) {
-		    items[1] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		    items.put(IOBlocks.ExplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items[1].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitOutBlock) {
-		if (items[2] == null) {
-		    items[2] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.ImplicitOutBlock)) {
+		    items.put(IOBlocks.ImplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[2].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof ImplicitInBlock) {
-		if (items[3] == null) {
-		    items[3] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.ImplicitInBlock)) {
+		    items.put(IOBlocks.ImplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items[3].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventOutBlock) {
-		if (items[4] == null) {
-		    items[4] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.EventOutBlock)) {
+		    items.put(IOBlocks.EventOutBlock, new ArrayList<BasicBlock>());
 		}
-		items[4].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventOutBlock).add((BasicBlock) blocks[i]);
 	    } else if (blocks[i] instanceof EventInBlock) {
-		if (items[5] == null) {
-		    items[5] = new ArrayList<BasicBlock>();
+		if (!items.containsKey(IOBlocks.EventInBlock)) {
+		    items.put(IOBlocks.EventInBlock, new ArrayList<BasicBlock>());
 		}
-		items[5].add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventInBlock).add((BasicBlock) blocks[i]);
+	    }
 	    }
 	}
 
-	for (int i = 0; i < 6; i++) {
-	    values.add(getMaxValue(items[i]));
+	for (IOBlocks klass : ContextUpdate.IOBlocks.values()) {
+	    values.add(getMaxValue(items.get(klass)));
 	}
 
 	return values;

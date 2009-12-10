@@ -12,6 +12,31 @@ public abstract class ContextUpdate extends BasicBlock{
     private static final long serialVersionUID = 6076826729067963560L;
     private static Object _mutex_ = new Object();
     
+    /**
+     * This enum represent all the subclasses of ContextUpdate .
+     *
+     * It is used to easily loop over a BasicBlock I/O blocks
+     */
+    public enum IOBlocks {
+	EventInBlock(EventInBlock.class),
+	EventOutBlock(EventOutBlock.class),
+	ExplicitInBlock(ExplicitInBlock.class),
+	ExplicitOutBlock(ExplicitOutBlock.class),
+	ImplicitInBlock(ImplicitInBlock.class),
+	ImplicitOutBlock(ImplicitOutBlock.class),
+	Unknow(ContextUpdate.class);
+	
+	private Class<? extends ContextUpdate> klass;
+	
+	private IOBlocks(Class<? extends ContextUpdate> klass) {
+	    this.klass = klass;
+	}
+	
+	public Class<? extends ContextUpdate> getReferencedClass() {
+	    return klass;
+	}
+    }
+    
     public ContextUpdate() {
 	super();
     }

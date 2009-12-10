@@ -26,7 +26,9 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
 #include "stack-def.h"
+#include "getScilabJavaVM.h"
 }
+#include "forceJHDF5load.hxx"
 
 
 //#define PRINT_DEBUG
@@ -61,6 +63,10 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	char *pstVarName		= NULL;
 	bool bImport				= false;
 	SciErr sciErr;
+
+#ifndef _MSC_VER
+	forceJHDF5load();
+#endif
 
 	iCloseList = 0;
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);

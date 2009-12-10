@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos;
 
 import java.io.File;
@@ -28,6 +40,8 @@ public class PaletteDiagram extends XcosDiagram {
 	setGridVisible(false);
 	setCellsDeletable(false);
 	setCellsEditable(false);
+	
+	undoManager.setEventsEnabled(false);
     }
 
     public boolean openDiagramAsPal(String diagramFileName) {
@@ -36,7 +50,7 @@ public class PaletteDiagram extends XcosDiagram {
 	//int windowHeight = getAsComponent().getHeight();
 	
 	if (theFile.exists()) {
-	    transformAndLoadFile(theFile);
+	    transformAndLoadFile(theFile, true);
 	    setName(theFile.getName());
 	    setFileName(theFile.getAbsolutePath());
 	    getRubberBand().setEnabled(false);
@@ -73,6 +87,7 @@ public class PaletteDiagram extends XcosDiagram {
 	windowWidth = newWidth;
 	int blockCount = 0;
 
+	getModel().beginUpdate();
 	for(int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
 	    Object obj = getModel().getChildAt(getDefaultParent(), i); 
 	    if(obj instanceof BasicBlock){
@@ -82,8 +97,8 @@ public class PaletteDiagram extends XcosDiagram {
 		blockCount++;
 	    }
 	}
+	getModel().endUpdate();
 	refresh();
-	undoManager.reset();
 	setModified(false);
     }
     
@@ -125,7 +140,6 @@ public class PaletteDiagram extends XcosDiagram {
     }
 
     public void setFileName(String fileName) {
-	System.err.println("setFileName : " + fileName);
 	this.fileName = fileName;
     }
 

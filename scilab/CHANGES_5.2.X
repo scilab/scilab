@@ -47,7 +47,8 @@ See SEP #36 for more information
 
 * texprint is now obsolete. Please use prettyprint instead
 
-* bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new "$...$" LaTeX feature.
+* bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new 
+                   "$...$" LaTeX feature.
 
 
 Localization:
@@ -78,71 +79,90 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
-* bug 5099 fixed - diagram not visible after a "Fit diagram to view"
+* bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
-* bug 5104 fixed - Update the block view on undo/redo
+* bug 5104 fixed - The block view was not updated on undo/redo
 
-* bug 5111 fixed - "Save As" default path is the current file path
+* bug 5111 fixed - "Save As" default path wasn't the current file path
 
-* bug 5159 fixed - the region to superblock action can be undone/redone.
+* bug 5159 fixed - The region to superblock action couldn't be undone/redone.
 
-* bug 5180 fixed - TEXT_f is a special block and hasn't a .h5 file descriptor
+* bug 5179 fixed - The accented letters used in text in Scicos diagram are not 
+                   visible with xcos at least under Linux
 
-* bug 5183 fixed - disable Simulation menu on a superblock diagram
+* bug 5180 fixed - TEXT_f was not selectable on the palette.
 
-* bug 5184 fixed - Setup menu values are localized
+* bug 5183 fixed - Simulation menu wasn't disabled on a superblock diagram
+
+* bug 5184 fixed - Setup menu values weren't localized
+
+* bug 5196 fixed - Openning a SuperBlock modified some positions.
+
+* bug 5202 fixed - The description of a module is now scrollable.
+
+* bug 5218 fixed - Uicontrols of style 'text' are now scrollable.
 
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
-* bug 5312 fixed - adding 'Compile' informations
+* bug 5312 fixed - 'Compile' informations was not displayed
 
-* bug 5388 fixed - Editor dialogs are now centered on editor main window.
+* bug 5388 fixed - Editor dialogs wasn't centered on editor main window.
 
-* bug 5336 fixed - xcos palette tabs now loaded much faster and uses less memory
+* bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
+                   memory.
 
-* bug 5347 fixed - the 'Region to superblock' action crash Xcos. 
+* bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
-* bug 5348 fixed - Openning a Superblock crash Xcos.
+* bug 5348 fixed - Openning a Superblock crashed Xcos.
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
-* bug 5403 fixed - now creates graphic windows only when needed.
+* bug 5403 fixed - A graphic windows wasn't created only when needed.
 
-* bug 5407 fixed - now you can use the arrow keys to move a block
+* bug 5407 fixed - It was impossible to use the arrow keys to move a block
 
-* bug 5410 fixed - Html4.0 specific symbol changed to html unicode symbol.
+* bug 5410 fixed - Html4.0 specific symbols were used.
 
 * bug 5412 fixed - Context modifications were not saved for Superblocks.
 
 * bug 5416 fixed - Blocks modifications were not saved for Superblocks.
 
-* bug 5417 fixed - AUTOMAT and PDE blocks are not demo blocks
+* bug 5417 fixed - AUTOMAT and PDE blocks were in demo blocks
 
-* bug 5418 fixed - DEBUG_SCICOS block has been added to the palette.
+* bug 5418 fixed - DEBUG_SCICOS block were not in the palette.
 
-* bug 5422 fixed - A file is a unique diagram instance (not openned twice)
+* bug 5422 fixed - A file was not a unique diagram instance (openned twice)
 
-* bug 5428 fixed - Connecting Implicit I/O port to Link must be allowed
+* bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5440 fixed - Adding OUT* blocks to the sinks palette 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
 
-* bug 5442 fixed - Undo a Mirror Action works as expected
+* bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
-* bug 5445 fixed - Update modified state on undo/redo
+* bug 5442 fixed - Undo a Mirror Action didn't work as expected
 
-* bug 5449 fixed - Do not change palette tab position if it is visible
+* bug 5445 fixed - The modified state was not updated on undo/redo
 
-* bug 5464 fixed - Actions are disabled on file loading
+* bug 5449 fixed - The palette tab position was modified even if invisible
+
+* bug 5464 fixed - Actions were not disabled on file loading
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
-* bug 5531 fixed - Setup values are strongly typed (use of spinner)
+* bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
 
-* bug 5533 fixed - SetupAction doesn't valid inputs
+* bug 5531 fixed - Setup values were not strongly typed (use of spinner)
+
+* bug 5533 fixed - SetupAction didn't valid inputs
+
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+
+* bug 5594 fixed - The links didn't move on arrow key typing.
 
 
 Tree functions :
@@ -162,15 +182,18 @@ Tree functions :
 - concatTree      => uiConcatTree
 - displaytree     => uiDisplayTree
 
-* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other 
+                   tree functions.
 
 Bug fixes:
 ==========
-* bug 2588 fixed - Calling a function with no input argument contained in an mlist
-                   generates an error.
+* bug 2588 fixed - Calling a function with no input argument contained in an 
+                   mlist generates an error.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
+
+* bug 3675 fixed - Issues when saving/loading gui (uicontrols,figure...) fixed.
 
 * bug 3593 fixed - macros to read and write csv file format updated.
 
@@ -179,6 +202,8 @@ Bug fixes:
 
 * bug 4401 fixed - isnum returned wrong values.
 
+* bug 4435 fixed - bench_run is now documented.
+
 * bug 4565 fixed - getvalue macro is definied two times.
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
@@ -186,26 +211,29 @@ Bug fixes:
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
-* bug 5025 fixed - The Tabbed palette manager must become a Tree palette manager.
+* bug 5025 fixed - The Tabbed palette manager must become a Tree palette
+                   manager.
 
 * bug 5037 fixed - The link style menu doesn't have mnemonics
 
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
-* bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for Untitled 
-                   files even if they are not modified.
+* bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for
+                   Untitled files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5125 fixed - Editor: No more get an infinite loop when using the Undo functionnality.
+* bug 5125 fixed - Editor: No more get an infinite loop when using the 
+                   Undo functionnality.
 
 * bug 5137 fixed - Editor: drag & drop on editor was not enabled.
 
 * bug 5140 fixed - "Load into Scilab" was executed line by line.
 
-* bug 5170 fixed - displaytree() name wasn't homogeneous with other tree functions
+* bug 5170 fixed - displaytree() name wasn't homogeneous with other 
+                   tree functions.
 
 * bug 5189 fixed - No more give an error when the user cancels file selection
                    for saving.
@@ -240,7 +268,7 @@ Bug fixes:
 
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
-* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some 
+* bug 5283 fixed - Intel Fortran 11 compiler did not require to import some
                    settings in Visual Studio.
 
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
@@ -249,7 +277,8 @@ Bug fixes:
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
 
-* bug 5295 fixed - configure: LibGL.so should be included at link time when linking with libjogl.so.
+* bug 5295 fixed - configure: LibGL.so should be included at link time when
+                   linking with libjogl.so.
 
 * bug 5298 fixed - Obsolete Makefile in the mexlib module
 
@@ -295,7 +324,8 @@ Bug fixes:
 * bug 5453 fixed - Sizes was displayed with French units.
 
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
-                   source did not exist and then aliasing had not been performed.
+                   source did not exist and then aliasing had not been 
+                   performed.
 
 * bug 5484 fixed - LCC-Win32 did not work with attached example.
 
@@ -310,23 +340,36 @@ Bug fixes:
                    help_from_sci function, the docbook Author refsection
                    section was not correct.
 
+* bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
+                   stack to minimun size if it fails.
+
 * bug 5497 fixed - Editor: selection drag is now available.
 
-* bug 5499 fixed - tbx_build_loader() automatically added a test about version in 
-                   the loader.sce even if the toolbox 100% written in Scilab
-                   code.
+* bug 5499 fixed - tbx_build_loader() automatically added a test about
+                   version in the loader.sce even if the toolbox 100% 
+                   written in Scilab code.
 
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 * bug 5507 fixed - whereis(bin2dec) returned a error.
 
-* bug 5513 fixed - input("message") did not restore the original prompt after the input job is done.
+* bug 5513 fixed - input("message") did not restore the original prompt after
+                   the input job is done.
+
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with editor.
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with
+                   editor.
 
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
+
+* bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
+                   ISO-8859-1 and not in UTF-8.
+
+* bug 5586 fixed - getscilabkeyworgs was broken.
 
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
