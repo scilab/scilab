@@ -665,7 +665,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
 		        	doc.setContentModified(true);
 		        	Xpad.this.updateTabTitle();
-		        	SwingUtilities.invokeLater( colorizationManager.new ColorUpdater(doc, documentEvent));
 		        } 
 		   }
 	});
