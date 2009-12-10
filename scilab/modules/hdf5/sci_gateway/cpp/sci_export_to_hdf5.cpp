@@ -57,14 +57,6 @@ static char fname[]			= "export_to_hdf5";
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
-	//CheckRhs(2,1000000);//input parameters
-	CheckLhs(1,1);//output parameter
-
-#ifndef _MSC_VER
-	forceJHDF5load();
-#endif
-
-
 	int iRet						= 0;
 	int iNbVar					= 0;
 	int iLen						= 0;
@@ -75,7 +67,11 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
 	SciErr sciErr;
 
+	CheckLhs(1,1);//output parameter
+
+#ifndef _MSC_VER
 	forceJHDF5load();
+#endif
 
 	/*get input data*/
 	if(Rhs < 2)
