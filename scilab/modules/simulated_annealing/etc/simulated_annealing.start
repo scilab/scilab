@@ -16,11 +16,3 @@ load("SCI/modules/simulated_annealing/macros/lib");
 if WITH_HELPTOOLS then
 	add_module_help_chapter("simulated_annealing");
 end
-
-// Add demos
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/simulated_annealing/demos/simulated_annealing.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Simulated Annealing"),pathdemos);
-	clear pathdemos;
-end

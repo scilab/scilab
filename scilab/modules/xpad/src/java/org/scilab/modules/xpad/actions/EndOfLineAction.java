@@ -70,7 +70,10 @@ public class EndOfLineAction  extends DefaultCheckAction {
     	if (styleDocument.getEOL().compareTo(newOel) != 0) {
     		styleDocument.setEOL(newOel);
         	styleDocument.setContentModified(true);
+        	// changing such a property dicards undo
+        	styleDocument.getUndoManager().discardAllEdits();
         	getEditor().updateTabTitle();	
     	}
+    	
     }
 }

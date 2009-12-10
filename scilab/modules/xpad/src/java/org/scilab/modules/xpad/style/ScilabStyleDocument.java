@@ -202,12 +202,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		}
 	}
 
+
 	public boolean isContentModified() {
-		return contentModified;
+		return contentModified && ! undo.isAtReference();
 	}
+
 	
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
+		if (contentModified == false) {
+			undo.setReference();
+		}
 	}
 	/*
 	 * dump document on stderr with line positions 

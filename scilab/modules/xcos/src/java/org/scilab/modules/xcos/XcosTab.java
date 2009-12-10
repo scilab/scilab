@@ -100,6 +100,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -297,7 +298,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 		    graph.getModel().beginUpdate();
 		    for (Object cell : cells) {
-			if (cell instanceof BasicBlock) {
+			if (cell instanceof BasicBlock || cell instanceof BasicLink) {
 			    graph.translateCell(cell, xIncrement, yIncrement);
 			}
 		    }
