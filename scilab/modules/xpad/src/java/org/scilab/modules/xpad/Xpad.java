@@ -663,6 +663,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        DocumentEvent.EventType type = documentEvent.getType();
 		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
 		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
+		        	if(doc.getAutoColorize()) {
+		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
+		        	}
 		        	doc.setContentModified(true);
 		        	Xpad.this.updateTabTitle();
 		        } 
@@ -783,6 +786,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		
 		void updateColor(DocumentEvent e){
 			if( e.getType() != DocumentEvent.EventType.CHANGE) {
+				System.err.println("colorize update");
 				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
 			}
 		}
