@@ -36,8 +36,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_HDF5_JHDF5__
-#define __ORG_SCILAB_MODULES_HDF5_JHDF5__
+#ifndef __ORG_SCILAB_MODULES_HDF5_JHDF5LOAD__
+#define __ORG_SCILAB_MODULES_HDF5_JHDF5LOAD__
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -48,7 +48,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_hdf5 {
 
-class jhdf5 {
+class jhdf5load {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -69,17 +69,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-jhdf5(JavaVM * jvm_);
+jhdf5load(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-jhdf5(JavaVM * jvm_, jobject JObj);
+jhdf5load(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~jhdf5();
+~jhdf5load();
 
 // Generic method
 // Synchronization methods
@@ -106,7 +106,7 @@ static void forceLoad(JavaVM * jvm_);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/hdf5/jhdf5";
+                return "org/scilab/modules/hdf5/jhdf5load";
                 }
                 
 };
