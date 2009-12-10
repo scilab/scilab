@@ -176,7 +176,8 @@ public class EncodingAction extends DefaultCheckAction {
 	styleDocument.setUpdater(true);
 
 	styleDocument.setContentModified(false);
-
+	// changing such a property dicards undo
+	styleDocument.getUndoManager().discardAllEdits();
 	if (!isSuccess) {
 	    ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_CONVERT_FILE,
 		    XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
