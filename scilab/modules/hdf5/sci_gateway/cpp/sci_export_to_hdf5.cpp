@@ -27,10 +27,9 @@ extern "C"
 #ifdef _MSC_VER
  #include "strdup_windows.h"
 #endif
-#include "getScilabJavaVM.h"
+#include "scilabmode.h"
 }
-#include "jhdf5.hxx"
-
+#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 int iLevel = 0;
@@ -54,25 +53,10 @@ static bool export_lufact_pointer(int *_piVar, char* _pstName);
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
 
-using namespace org_scilab_modules_hdf5;
-
 static char fname[]			= "export_to_hdf5";
-static BOOL alreadyLoadedJava = FALSE;
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
-	CheckRhs(2,1000000);//input parameters
-	CheckLhs(1,1);//output parameter
-
-/* On the first use of this function make sure we are calling the Java HDF5 
- * API. 
- * This a workaround for bug #5481
- */
-	if (!alreadyLoadedJava) {
-		jhdf5::forceLoad(getScilabJavaVM());
-		alreadyLoadedJava=TRUE;
-	}
-
 	int iRet						= 0;
 	int iNbVar					= 0;
 	int iLen						= 0;
@@ -82,13 +66,25 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	bool bExport				= false;
 
 	SciErr sciErr;
+
+	CheckLhs(1,1);//output parameter
+
+#ifndef _MSC_VER
+	forceJHDF5load();
+#endif
+
 	/*get input data*/
+	if(Rhs < 2)
+	{
+		Scierror(999,_("%s: Wrong number of input argument(s): At most %d expected.\n"), fname, 2);
+		return 0;
+	}
+
 	pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
 	iNbVar = extractVarNameList(1, Rhs, pstNameList);
-
 	if(iNbVar == 0)
 	{
-		Scierror(999,_("sdgtrfhyjty"));
+		FREE(pstNameList);
 		return 0;
 	}
 
@@ -782,7 +778,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return false;
+			return 0;
 		}
 
 		//get filename
@@ -790,7 +786,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return false;
+			return 0;
 		}
 
 		if(iType != sci_strings)
@@ -803,7 +799,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return false;
+			return 0;
 		}
 
 		if(iRows != 1 || iCols != 1)
@@ -817,7 +813,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return false;
+			return 0;
 		}
 
 		_pstNameList[iCount] = (char*)MALLOC((iLen + 1) * sizeof(char));//+1 for null termination
@@ -825,7 +821,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return false;
+			return 0;
 		}
 
 		iCount++;

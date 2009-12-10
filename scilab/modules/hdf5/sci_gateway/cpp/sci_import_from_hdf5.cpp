@@ -27,9 +27,9 @@ extern "C"
 #include "intmacr2tree.h"
 #include "stack-def.h"
 #include "getScilabJavaVM.h"
-
 }
-#include "jhdf5.hxx"
+#include "forceJHDF5load.hxx"
+
 
 //#define PRINT_DEBUG
 //#define TIME_DEBUG
@@ -49,8 +49,6 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
-using namespace org_scilab_modules_hdf5;
-static BOOL alreadyLoadedJava = FALSE;
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
@@ -66,15 +64,9 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	bool bImport				= false;
 	SciErr sciErr;
 
-
-/* On the first use of this function make sure we are calling the Java HDF5 
- * API. 
- * This a workaround for bug #5481
- */
-	if (!alreadyLoadedJava) {
-		jhdf5::forceLoad(getScilabJavaVM());
-		alreadyLoadedJava=TRUE;
-	}
+#ifndef _MSC_VER
+	forceJHDF5load();
+#endif
 
 	iCloseList = 0;
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);

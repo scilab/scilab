@@ -14,17 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:13+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
-# File: sci_gateway/c/sci_PlaySound.c, line: 81
 # File: sci_gateway/c/sci_beep.c, line: 92
+# File: sci_gateway/c/sci_PlaySound.c, line: 81
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
 # File: macros/savewave.sci, line: 146
 # File: macros/savewave.sci, line: 185
-# File: macros/sound.sci, line: 41
 # File: macros/wavread.sci, line: 82
 # File: macros/wavread.sci, line: 87
 # File: macros/wavread.sci, line: 102
@@ -53,6 +52,7 @@ msgstr ""
 # File: macros/auwrite.sci, line: 125
 # File: macros/auwrite.sci, line: 143
 # File: macros/auwrite.sci, line: 147
+# File: macros/sound.sci, line: 41
 # File: sci_gateway/c/sci_PlaySound.c, line: 110
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -79,9 +79,9 @@ msgid "%s: Audio capabilities not available.\n"
 msgstr ""
 #
 # File: macros/savewave.sci, line: 242
+# File: macros/loadwave.sci, line: 32
 # File: macros/wavread.sci, line: 49
 # File: macros/auread.sci, line: 43
-# File: macros/loadwave.sci, line: 32
 # File: macros/auwrite.sci, line: 68
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -126,17 +126,17 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
 # File: macros/playsnd.sci, line: 33
-# File: sci_gateway/c/sci_PlaySound.c, line: 74
 # File: sci_gateway/c/sci_beep.c, line: 85
+# File: sci_gateway/c/sci_PlaySound.c, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/playsnd.sci, line: 29
 # File: macros/savewave.sci, line: 228
 # File: macros/loadwave.sci, line: 27
-# File: sci_gateway/c/sci_PlaySound.c, line: 61
+# File: macros/playsnd.sci, line: 29
 # File: sci_gateway/c/sci_beep.c, line: 72
+# File: sci_gateway/c/sci_PlaySound.c, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
