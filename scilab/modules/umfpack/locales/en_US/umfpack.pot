@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:13+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: macros/cond2sp.sci, line: 75
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 msgid "                                                     "
 msgstr ""
 #
-# File: src/c/taucs_scilab.c, line: 588
+# File: src/c/taucs_scilab.c, line: 590
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
 msgstr ""
@@ -57,7 +57,7 @@ msgstr ""
 msgid "           then re enter scisptdemo()                "
 msgstr ""
 #
-# File: src/c/taucs_scilab.c, line: 587
+# File: src/c/taucs_scilab.c, line: 589
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
 msgstr ""
 #
@@ -113,10 +113,10 @@ msgstr ""
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 103
-# File: sci_gateway/c/sci_umf_lufact.c, line: 120
 # File: sci_gateway/c/sci_umfpack.c, line: 160
 # File: sci_gateway/c/sci_umfpack.c, line: 192
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
 msgstr ""
@@ -131,18 +131,18 @@ msgstr ""
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_umf_luget.c, line: 218
 # File: sci_gateway/c/sci_taucs_chget.c, line: 107
+# File: sci_gateway/c/sci_umf_luget.c, line: 218
 #, c-format
 msgid ""
 "%s: No more memory : increase stacksize %d supplementary words needed.\n"
 msgstr ""
 #
-# File: src/c/taucs_scilab.c, line: 256
-# File: src/c/taucs_scilab.c, line: 2122
+# File: sci_gateway/c/sci_taucs_chget.c, line: 86
 # File: sci_gateway/c/sci_umf_luget.c, line: 210
 # File: sci_gateway/c/sci_taucs_chfact.c, line: 98
-# File: sci_gateway/c/sci_taucs_chget.c, line: 86
+# File: src/c/taucs_scilab.c, line: 256
+# File: src/c/taucs_scilab.c, line: 2126
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -183,11 +183,11 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
-# File: sci_gateway/c/sci_umf_lufact.c, line: 89
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 118
 # File: sci_gateway/c/sci_umfpack.c, line: 116
 # File: sci_gateway/c/sci_umfpack.c, line: 123
+# File: sci_gateway/c/sci_umf_lufact.c, line: 89
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -230,9 +230,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 93
 # File: sci_gateway/c/sci_umf_ludel.c, line: 100
 # File: sci_gateway/c/sci_umf_luget.c, line: 95
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 93
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
@@ -356,8 +356,8 @@ msgstr ""
 msgid "small tests for condestsp"
 msgstr ""
 #
+# File: sci_gateway/c/sci_umfpack.c, line: 160
 # File: sci_gateway/c/sci_umf_lufact.c, line: 103
 # File: sci_gateway/c/sci_umf_lufact.c, line: 120
-# File: sci_gateway/c/sci_umfpack.c, line: 160
 msgid "symbolic factorization"
 msgstr ""
