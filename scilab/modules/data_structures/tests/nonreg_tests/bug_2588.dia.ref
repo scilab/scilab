@@ -12,6 +12,7 @@
 // <-- Short Description -->
 //Calling a function with no input arugment contained in an mlist
 //generates an error
+// <-- ENGLISH IMPOSED -->
 M=[];
 function y=foo(a)
   if argn(2)==0 then
@@ -27,8 +28,6 @@ function [x,y]=foo(a,b)
   x=a*b
   y=a-b
 endfunction
-Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
-
 M.fun=foo;
 [u,v]=M.fun(2,3);
 if u<>2*3|v<>2-3 then bugmes();quit;end
