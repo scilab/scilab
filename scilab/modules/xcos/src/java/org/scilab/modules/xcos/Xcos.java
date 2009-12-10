@@ -12,11 +12,12 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.EventQueue;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.tab.Tab;
@@ -41,7 +42,7 @@ public class Xcos {
      * @param args
      */
     public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
+	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		xcos();
 	    }
@@ -49,17 +50,26 @@ public class Xcos {
     }
 
     public static void xcos() {
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
 	XcosPaletteManager.loadPalette();
 	createEmptyDiagram();
 	ViewPaletteBrowserAction.setPalettesVisible(true);
+	    }
+	});
     }
 
     public static void xcos(String fileName) {
-	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
-	if (XcosTab.focusOnExistingFile(fileName) == false) {
+	final String filename = fileName;
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
+	ConfigXcosManager.saveToRecentOpenedFiles(filename);
+	if (XcosTab.focusOnExistingFile(filename) == false) {
 	    XcosDiagram diagram = createEmptyDiagram();
-	    diagram.openDiagramFromFile(fileName);
+	    diagram.openDiagramFromFile(filename);
 	}
+	    }
+	});
     }
 
     public static XcosDiagram createEmptyDiagram() {
