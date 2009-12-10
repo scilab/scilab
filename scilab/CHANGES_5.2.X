@@ -199,6 +199,8 @@ Bug fixes:
 
 * bug 4401 fixed - isnum returned wrong values.
 
+* bug 4435 fixed - bench_run is now documented.
+
 * bug 4565 fixed - getvalue macro is definied two times.
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
