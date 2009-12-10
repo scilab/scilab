@@ -14,11 +14,7 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "scilabmode.h"
-#include "loadOnUseClassPath.h"
 
-
-static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
@@ -31,12 +27,6 @@ static gw_generic_table Tab[] =
 int gw_hdf5(void)
 {
 	Rhs = Max(0,Rhs);
-
-	if (!loadedDep && getScilabMode() != SCILAB_NWNI) 
-	{
-		loadOnUseClassPath("HDF5");
-		loadedDep = TRUE;
-	}
 
 	if(pvApiCtx == NULL)
 	{

@@ -27,11 +27,9 @@ extern "C"
 #ifdef _MSC_VER
  #include "strdup_windows.h"
 #endif
-#include "getScilabJavaVM.h"
 #include "scilabmode.h"
 }
-#include "jhdf5.hxx"
-
+#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 int iLevel = 0;
@@ -55,10 +53,7 @@ static bool export_lufact_pointer(int *_piVar, char* _pstName);
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
 
-using namespace org_scilab_modules_hdf5;
-
 static char fname[]			= "export_to_hdf5";
-static BOOL alreadyLoadedJava = FALSE;
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
@@ -66,17 +61,9 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);//output parameter
 
 #ifndef _MSC_VER
-	/* On the first use of this function make sure we are calling the Java HDF5 
-	* API. 
-	* This a workaround for bug #5481
-	*/
-
-	if(!alreadyLoadedJava && (getScilabMode() != SCILAB_NWNI))
-	{
-		jhdf5::forceLoad(getScilabJavaVM());
-		alreadyLoadedJava = TRUE;
-	}
+	forceJHDF5load();
 #endif
+
 
 	int iRet						= 0;
 	int iNbVar					= 0;
@@ -87,6 +74,9 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	bool bExport				= false;
 
 	SciErr sciErr;
+
+	forceJHDF5load();
+
 	/*get input data*/
 	if(Rhs < 2)
 	{
