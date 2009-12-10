@@ -157,6 +157,8 @@ Xcos:
 
 * bug 5533 fixed - SetupAction didn't valid inputs
 
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+
 
 Tree functions :
 ================
