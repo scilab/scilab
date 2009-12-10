@@ -15,4 +15,4 @@
 f = gcf();
 delete(f);
 if execstr("save(TMPDIR+""/bug_2165.tst"");", "errcatch")<>0 then bugmes();quit;end
-WARNING : save_graphichandle: handle no more valid ignored.
+ATTENTION : save_graphichandle : handle plus valide ignoré.
