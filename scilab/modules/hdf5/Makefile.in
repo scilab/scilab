@@ -113,7 +113,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihdf5_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 	src/c/h5_writeDataToFile.c src/c/h5_readDataFromFile.c \
 	sci_gateway/cpp/sci_no_hdf5.cpp \
@@ -429,6 +430,7 @@ libscihdf5_la_CXXFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -455,7 +457,8 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order 
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/modules/jvm/libscijvm.la
 
 #### Target ######
 modulename = hdf5

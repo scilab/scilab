@@ -54,6 +54,7 @@ libscihdf5_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
@@ -84,7 +85,8 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order 
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/modules/jvm/libscijvm.la
 #### Target ######
 modulename=hdf5
 
