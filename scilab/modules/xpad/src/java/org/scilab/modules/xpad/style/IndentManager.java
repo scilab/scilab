@@ -179,9 +179,12 @@ public IndentManager() {
 		Element root = doc.getDefaultRootElement();
 		int startLine = root.getElementIndex(startPosition);
 		int endLine = root.getElementIndex(endPosition);
+		boolean merge = doc.getShouldMergeEdits();
+		doc.setShouldMergeEdits(true);
 		for( int i = startLine; i<=endLine; ++i){
 			beautifyLine(doc, i, false);
 		}
+		doc.setShouldMergeEdits(merge);
 		return root.getElement(endLine).getEndOffset();
 	}
 }
