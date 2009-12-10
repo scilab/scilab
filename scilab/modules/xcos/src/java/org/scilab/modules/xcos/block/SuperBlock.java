@@ -152,12 +152,12 @@ public class SuperBlock extends BasicBlock {
 	    
 	    Menu maskMenu = ScilabMenu.createMenu();
 	    maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
-	    menu.add(maskMenu);
 	    
 	    /* FIXME: It is not possible to use Mask. So enable only mask removing.
 	     */
 	    if (isMasked()) {
 		maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
+		menu.add(maskMenu);
 	    } else {
 		// See fixme
 		// maskMenu.add(SuperblockMaskCreateAction.createMenu(graph));
