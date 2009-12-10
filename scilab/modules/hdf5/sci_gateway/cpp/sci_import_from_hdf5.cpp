@@ -27,6 +27,7 @@ extern "C"
 #include "intmacr2tree.h"
 #include "stack-def.h"
 #include "getScilabJavaVM.h"
+#include "scilabmode.h"
 
 }
 #include "jhdf5.hxx"
@@ -66,15 +67,17 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	bool bImport				= false;
 	SciErr sciErr;
 
-
+#ifndef _MSC_VER
 /* On the first use of this function make sure we are calling the Java HDF5 
  * API. 
  * This a workaround for bug #5481
  */
-	if (!alreadyLoadedJava) {
+	if(!alreadyLoadedJava && (getScilabMode() != SCILAB_NWNI))
+	{
 		jhdf5::forceLoad(getScilabJavaVM());
-		alreadyLoadedJava=TRUE;
+		alreadyLoadedJava = TRUE;
 	}
+#endif
 
 	iCloseList = 0;
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
