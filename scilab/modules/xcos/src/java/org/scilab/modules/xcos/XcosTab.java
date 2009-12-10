@@ -298,10 +298,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		    graph.getModel().beginUpdate();
 		    for (Object cell : cells) {
 			if (cell instanceof BasicBlock) {
-			    BasicBlock block = (BasicBlock) cell;
-			    mxGeometry geo = block.getGeometry();
-			    geo.translate(xIncrement, yIncrement);
-			    block.setGeometry(geo);
+			    graph.translateCell(cell, xIncrement, yIncrement);
 			}
 		    }
 		    graph.getModel().endUpdate();
@@ -387,6 +384,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     
     private PushButton openAction;
     private PushButton saveAction;
+    private PushButton saveAsAction;
     private PushButton printAction;
     private PushButton newDiagramAction;
     private PushButton deleteAction;
@@ -652,8 +650,13 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 	openAction = OpenAction.createButton(scilabGraph);
 	toolBar.add(openAction);
+	
+	toolBar.addSeparator();
+	
 	saveAction = SaveAction.createButton(scilabGraph);
 	toolBar.add(saveAction);
+	saveAsAction = SaveAsAction.createButton(scilabGraph);
+	toolBar.add(saveAsAction);
 
 	toolBar.addSeparator();
 
@@ -800,6 +803,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	help.setEnabled(status);
 	openAction.setEnabled(status);
 	saveAction.setEnabled(status);
+	saveAsAction.setEnabled(status);
 	printAction.setEnabled(status);
 	newDiagramAction.setEnabled(status);
 	deleteAction.setEnabled(status);

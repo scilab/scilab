@@ -28,6 +28,8 @@ public class PaletteDiagram extends XcosDiagram {
 	setGridVisible(false);
 	setCellsDeletable(false);
 	setCellsEditable(false);
+	
+	undoManager.setEventsEnabled(false);
     }
 
     public boolean openDiagramAsPal(String diagramFileName) {
@@ -36,7 +38,7 @@ public class PaletteDiagram extends XcosDiagram {
 	//int windowHeight = getAsComponent().getHeight();
 	
 	if (theFile.exists()) {
-	    transformAndLoadFile(theFile);
+	    transformAndLoadFile(theFile, true);
 	    setName(theFile.getName());
 	    setFileName(theFile.getAbsolutePath());
 	    getRubberBand().setEnabled(false);
@@ -73,6 +75,7 @@ public class PaletteDiagram extends XcosDiagram {
 	windowWidth = newWidth;
 	int blockCount = 0;
 
+	getModel().beginUpdate();
 	for(int i = 0 ; i < getModel().getChildCount(getDefaultParent()) ; i++) {
 	    Object obj = getModel().getChildAt(getDefaultParent(), i); 
 	    if(obj instanceof BasicBlock){
@@ -82,8 +85,8 @@ public class PaletteDiagram extends XcosDiagram {
 		blockCount++;
 	    }
 	}
+	getModel().endUpdate();
 	refresh();
-	undoManager.reset();
 	setModified(false);
     }
     

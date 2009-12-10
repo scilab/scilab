@@ -1,4 +1,4 @@
-/*
+/*9
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  *
@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -69,6 +70,7 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -267,7 +269,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	/**
 	 * Close Xpad instance including all tabs.
 	 */
-	public static void closeXpad() {		
+	public static void closeXpad() {
+		
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
@@ -286,10 +289,33 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Xpad editorInstance = new Xpad(mainWindow);
 
 		xpadGUI = new XpadGUI(mainWindow, editorInstance, XPAD);
-		editorInstance.setCallback(ExitAction.createMenu(editorInstance).getCallback());
+		editorInstance.setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
+			/**
+			 * serialVersionUID
+			 */
+			private static final long serialVersionUID = -4121140054209319523L;
+
+			/**
+			 * Action callback on Exit menu
+			 */
+			public void callBack() {
+				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXIT_CONFIRM, XpadMessages.EXIT, 
+		    			IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+						ExitAction.doExit(Xpad.getEditor());						
+				}
+			}
+			
+			/**
+			 * actionPerformed
+			 * @param e ActionEvent
+			 */
+			public void actionPerformed(ActionEvent e) {
+				callBack();
+			} 
+		});
+			
 		return editorInstance;
 	}
-
 
 	/**
 	 * Close a tab using its index.
@@ -743,16 +769,24 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}	
 	}
 	
-	class CaretUpdateListener implements DocumentListener {
+	class UpdateListener implements DocumentListener {
 		public void insertUpdate(final DocumentEvent e)
 		{
+			updateColor(e);
 			SwingUtilities.invokeLater(new CaretUpdater(getTextPane(), e));
 		}
 		public void removeUpdate(DocumentEvent e)
 		{
+			updateColor(e);
 			getTextPane().setCaretPosition(e.getOffset());
 		}
 		public void changedUpdate(DocumentEvent e) {}
+		
+		void updateColor(DocumentEvent e){
+			if( e.getType() != DocumentEvent.EventType.CHANGE) {
+				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
+			}
+		}
 	}
 
 	/**
@@ -763,7 +797,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					undo.undo();
@@ -789,7 +823,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					redo.redo();

@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
+import javax.swing.text.Position;
 
 /**
  * This class manages the Colorization aspect
@@ -102,7 +103,11 @@ public class ColorizationManager {
 	    //Timer timer = new Timer();
 		//DEBUG("Colorize [before parse] : " + timer.top());
 		singleLine = false;
-		
+		/*try {
+		System.err.println("colorizing:|"+scilabDocument.getText(startOffset, endOffset-startOffset)+"|");
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}*/
 		// We parse all words which are susceptible to be colored
 		ArrayList<ArrayList<Integer>> boundaries_list = 
 			this.parse(scilabDocument, startOffset, endOffset);
@@ -150,32 +155,49 @@ public class ColorizationManager {
 		return false;
 	}
 
+	
 	public class ColorUpdater implements Runnable {
 	    private ScilabStyleDocument scilabDocument;
-	    private int startOffset, endOffset;
-	    
+	    private Position startPosition, endPosition;
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
-	    	if(event != null && event.getType() == DocumentEvent.EventType.INSERT ){
-	    		this.startOffset = scilabDocument.getParagraphElement(event.getOffset()).getStartOffset();
-	    		this.endOffset = scilabDocument.getParagraphElement(event.getOffset()+event.getLength()).getEndOffset();
+	    	if(event != null && event.getType() != DocumentEvent.EventType.CHANGE ){
+	    		try{
+	    	
+	    		this.startPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(event.getOffset()).getStartOffset());
+	    		// when inserting we must colorize until the end of the last line
+	    		// when removing edit length is not considered there is only one line in the end
+	    		this.endPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(event.getOffset()+
+	    				(( event.getType() ==  DocumentEvent.EventType.INSERT) ? event.getLength() : 0) ).getEndOffset());
+	    		} catch (BadLocationException e) {
+	    			e.printStackTrace();
+	    			this.startPosition = this.endPosition = null;
+	    		} 
 	    	}else{	    	
-	    		this.startOffset = this.endOffset = 0;
+	    		this.startPosition = this.endPosition = null;
 	    	}
+	    }
+	    public ColorUpdater(DocumentEvent event) {
+	    	this((ScilabStyleDocument)event.getDocument(), event);
 	    }
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
-	    	this.startOffset = scilabDocument.getParagraphElement(startOffset).getStartOffset();
-	    	this.endOffset= scilabDocument.getParagraphElement(endOffset).getEndOffset();
+	    	try{
+	    	this.startPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(startOffset).getStartOffset());
+	    	this.endPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(endOffset).getEndOffset()-1);
+	    } catch (BadLocationException e) {
+			e.printStackTrace();
+			this.startPosition = this.endPosition = null;
+		} 
 	    }
 	    
 	    public void run() {
-			if (scilabDocument.getAutoColorize() && (startOffset != endOffset)) {
-				//if (lineStartPosition != lineEndPosition) {
-					colorize(scilabDocument, startOffset, java.lang.Math.min(endOffset, scilabDocument.getLength()));
-				//}
+			if (scilabDocument.getAutoColorize() && (startPosition != null) && (endPosition != null)) {
+				int startOffset = startPosition.getOffset();
+				int endOffset = endPosition.getOffset();
+				colorize(scilabDocument, startOffset, java.lang.Math.min(endOffset, scilabDocument.getLength()));				
 			}
 	    }
 	}
@@ -188,7 +210,7 @@ public class ColorizationManager {
 	 * This function is used for the syntactic colorization
 	 */
 	private ArrayList<ArrayList<Integer>> parse(ScilabStyleDocument scilabDocument, int start, int end) {
-
+		//System.err.println("parse start"+start+" end:"+end);
 //	    	Timer timer = new Timer();
 		ArrayList<ArrayList<Integer>>  boundaries_list = null;
 	    ArrayList<Integer> boolsBoundaries, commandsBoundaries, 

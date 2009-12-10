@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET 
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,15 +49,23 @@ public final class ExitAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-    	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
+    	doExit(getEditor());
+    }
+    
+    /**
+     * doExit
+     * @param editor Xpad
+     */
+    public static void doExit(Xpad editor) {
+    	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(editor.getParentWindowId());
 
-    	int numberOfTab = getEditor().getTabPane().getComponentCount();
+    	int numberOfTab = editor.getTabPane().getComponentCount();
 
     	boolean wantToClose = true;
     	int k = 0;
     	for (int i = 0; i < numberOfTab; i++) {
     		//close and save all editors if they are modified
-    		boolean response = getEditor().closeTabAt(k); 
+    		boolean response = editor.closeTabAt(k); 
     		if (!response) {
     			k++;
     		}
@@ -64,7 +73,7 @@ public final class ExitAction extends DefaultAction {
     	}
 
     	if (wantToClose) {
-    		xpadWindow.getAsSimpleWindow().removeTab(getEditor());
+    		xpadWindow.getAsSimpleWindow().removeTab(editor);
     		Xpad.closeXpad();
     	}
     }

@@ -54,24 +54,14 @@ public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakActio
 		JTextPane textPane = (JTextPane) ev.getSource();
 		ScilabStyleDocument doc =  (ScilabStyleDocument) textPane.getStyledDocument();
 		javax.swing.text.Element root = doc.getDefaultRootElement();
-		int newLine =  root.getElementIndex(textPane.getCaretPosition());
-		int startOfPreviousLine = root.getElement((newLine > 1) ? newLine - 2 : newLine - 1).getStartOffset();
-		int endOfNewLine = root.getElement(newLine).getEndOffset(); // should be textPane.getCaretPosition()
-
+		int line =  root.getElementIndex(textPane.getCaretPosition())-1;
 		if (doc.isUpdater() && doc.getAutoIndent()) {
 			boolean autoColorize = doc.getAutoColorize();
 			doc.setAutoColorize(false);
-			doc.disableUndoManager();
-			try {
-				indentManager.beautifier(doc, startOfPreviousLine, endOfNewLine);
-				// hard to compute safe start offset :(
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				doc.setAutoColorize(autoColorize);
-			}
-			doc.enableUndoManager();
+			boolean mergeEdits = doc.getShouldMergeEdits();
+			indentManager.beautifyLine(doc, line, true);
+			doc.setAutoColorize(autoColorize);
+			doc.setShouldMergeEdits(mergeEdits);
 		}
 	}
 	
