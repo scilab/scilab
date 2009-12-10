@@ -273,29 +273,25 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    BasicPort target = null;
 
 	    if (link.getOutGoing()) {
-		target = (BasicPort) link.getLink().getTarget();
+	    	target = (BasicPort) link.getLink().getTarget();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    } else {
-		source = (BasicPort) link.getLink().getSource();
+	    	source = (BasicPort) link.getLink().getSource();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    }
 
 	    BasicLink newLink = BasicLink.createLinkFromPorts(source, target);

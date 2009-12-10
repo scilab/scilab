@@ -12,9 +12,13 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
@@ -26,5 +30,11 @@ public class SuperblockMaskRemoveAction extends DefaultAction {
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
+	    block.unmask();
 	}
 }

@@ -1091,7 +1091,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 							e.printStackTrace();
 						}
 						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+						if (styleDocument.getAutoColorize()) {
+							colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+						}
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.setUpdater(true);
 					}

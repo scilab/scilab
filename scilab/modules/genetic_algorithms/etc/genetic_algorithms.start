@@ -16,11 +16,3 @@ load("SCI/modules/genetic_algorithms/macros/lib");
 if WITH_HELPTOOLS then
 	add_module_help_chapter("genetic_algorithms");
 end
-
-// Add demos
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Genetic Algorithms"),pathdemos);
-	clear pathdemos;
-end

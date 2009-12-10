@@ -8,16 +8,17 @@
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH XCOS -->
 //
-// <-- Non-regression test for bug 5444 -->
+// <-- Non-regression test for bug 5179 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=5444
+// http://bugzilla.scilab.org/show_bug.cgi?id=5179
 //
 // <-- Short Description -->
-// On a superblock diagram, start a simulation is not applicable.
+// The accented letters used in text in Scicos diagram are not visible with xcos at least under Linux.
 
-// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.xcos")
+// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5179.cos")
 
-// start simulation
+// Check that accented characters are visible in the diagram.
 
-// After the first error message, check that superblock is highlighted and in the new window, MUX and DEMUX blocks are highlighted too.
+// Start simulation (just to check loading work well).
+
