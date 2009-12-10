@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:13+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: src/c/msgs.c, line: 906
 #, c-format
@@ -84,11 +84,12 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 630
 # File: sci_gateway/cpp/sci_diary.cpp, line: 738
 # File: sci_gateway/cpp/sci_diary.cpp, line: 753
-# File: sci_gateway/cpp/sci_diary.cpp, line: 833
-# File: sci_gateway/cpp/sci_diary.cpp, line: 891
-# File: sci_gateway/cpp/sci_diary.cpp, line: 906
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1161
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1204
+# File: sci_gateway/cpp/sci_diary.cpp, line: 763
+# File: sci_gateway/cpp/sci_diary.cpp, line: 846
+# File: sci_gateway/cpp/sci_diary.cpp, line: 911
+# File: sci_gateway/cpp/sci_diary.cpp, line: 926
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1186
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1229
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
@@ -199,8 +200,6 @@ msgstr ""
 msgid "%s: Loop on two orders detected.\n"
 msgstr ""
 #
-# File: src/c/sciprint_full.c, line: 50
-# File: src/c/sciprint_full.c, line: 60
 # File: sci_gateway/c/sci_msprintf.c, line: 125
 # File: sci_gateway/c/sci_msprintf.c, line: 130
 # File: sci_gateway/c/sci_msprintf.c, line: 140
@@ -208,6 +207,8 @@ msgstr ""
 # File: sci_gateway/c/sci_msprintf.c, line: 171
 # File: sci_gateway/c/sci_msprintf.c, line: 178
 # File: sci_gateway/c/sci_msprintf.c, line: 189
+# File: src/c/sciprint_full.c, line: 50
+# File: src/c/sciprint_full.c, line: 60
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -249,9 +250,24 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
+# File: macros/prettyprint.sci, line: 564
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 126
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+#
 # File: src/c/errmsg.c, line: 924
 #, c-format
 msgid "%s: Wrong input parameters.\n"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 74
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 559
@@ -259,10 +275,15 @@ msgstr ""
 msgid "%s: Wrong number of input arguments.\n"
 msgstr ""
 #
+# File: macros/prettyprint.sci, line: 121
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+#
 # File: sci_gateway/c/sci_msprintf.c, line: 41
 # File: sci_gateway/c/sci_mprintf.c, line: 35
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_msprintf.c, line: 71
@@ -294,23 +315,30 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 303
 # File: sci_gateway/cpp/sci_diary.cpp, line: 730
-# File: sci_gateway/cpp/sci_diary.cpp, line: 883
+# File: sci_gateway/cpp/sci_diary.cpp, line: 903
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 819
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1302
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1370
+# File: sci_gateway/cpp/sci_diary.cpp, line: 829
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1327
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1395
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 680
-# File: sci_gateway/cpp/sci_diary.cpp, line: 771
-# File: sci_gateway/cpp/sci_diary.cpp, line: 924
+# File: sci_gateway/cpp/sci_diary.cpp, line: 781
+# File: sci_gateway/cpp/sci_diary.cpp, line: 949
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 104
+# File: macros/prettyprint.sci, line: 115
+# File: macros/prettyprint.sci, line: 118
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1107
@@ -397,11 +425,19 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 777
-# File: sci_gateway/cpp/sci_diary.cpp, line: 840
-# File: sci_gateway/cpp/sci_diary.cpp, line: 930
+# File: sci_gateway/cpp/sci_diary.cpp, line: 787
+# File: sci_gateway/cpp/sci_diary.cpp, line: 860
+# File: sci_gateway/cpp/sci_diary.cpp, line: 955
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 82
+# File: macros/prettyprint.sci, line: 89
+# File: macros/prettyprint.sci, line: 98
+# File: macros/prettyprint.sci, line: 109
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 348
@@ -413,48 +449,57 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 #
+# File: macros/prettyprint.sci, line: 92
+# File: macros/prettyprint.sci, line: 101
+# File: macros/prettyprint.sci, line: 112
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%"
+"s'' or ''%s'' expected.\n"
+msgstr ""
+#
 # File: sci_gateway/cpp/sci_diary.cpp, line: 228
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 944
+# File: sci_gateway/cpp/sci_diary.cpp, line: 969
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 961
+# File: sci_gateway/cpp/sci_diary.cpp, line: 986
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1025
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1050
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 991
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1016
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1081
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1106
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1054
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1079
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1139
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1164
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1111
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1136
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
@@ -482,15 +527,15 @@ msgid "%s: error can not close diary.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 253
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1261
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1334
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1286
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1359
 #, c-format
 msgid "%s: error can not create diary.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 248
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1256
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1329
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1281
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1354
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
 msgstr ""

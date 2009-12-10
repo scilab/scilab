@@ -56,7 +56,8 @@ The option is "disableUnderMode" and can be:
 
 <!-- XCOS -->
 <path value="@JHDF5@" load="onUse">
-        <load on="XCos"/>
+	<load on="XCos"/>
+	<load on="HDF5"/>
 </path>
 
 <path value="@JGRAPHX@" load="onUse">
