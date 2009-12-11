@@ -28,14 +28,14 @@ Known incompatibilities:
 
 - Scipad has been removed from the Scilab distribution and replaced by an other
 Scilab text editor.
-This was due to the Tcl/Tk problem under Mac OS X. 
+This was due to the Tcl/Tk problem under Mac OS X and UI consistency.
 Scipad remains available through ATOMS:
 atomsInstall("scipad");
 atomsLoad("scipad");
 scipad();
 
 - Metanet has been removed from the Scilab distribution.
-Scipad remains available through ATOMS:
+Metanet remains available and maintained through ATOMS:
 atomsInstall("metanet");
 atomsLoad("metanet");
 
