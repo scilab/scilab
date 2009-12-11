@@ -19,11 +19,27 @@ Text editor:
 - History
 - Help on the selected text
 
-* Performance enhancements for colorization (notable speed-up on opening large scripts Bug #4886)
+* bug 4873 fixed - "undo" doesn't work if the last action affects several lines. 
 
-* Better Undo/Redo support (works across "Save"/ "Save as.." Bug #5465, undo / redo multiple edits on a region in one go )
+* bug 4883 fixed - "Menu->Document->Auto Indent" preference is not saved.
 
-* Better multi-thread correctness wrt Event Dispatching Thread. (i.e. Bug #5173)
+* bug 4886 fixed - Performance enhancements for colorization
+  (notable speed-up on opening large scripts)
+
+* bug 5013 fixed - Find/Replace dialog box: Buttons are resized after the search.
+
+* bug 5125 fixed - No more get an infinite loop when using the 
+                   Undo functionnality.
+
+* bug 5137 fixed - Drag & drop on editor was not enabled.
+
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
+
+* bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
+  Thread.
+
+* bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
+  undo / redo multiple edits on a region in one go )
 
 Help browser:
 =============
@@ -60,7 +76,7 @@ Graphic export:
 ===============
 
 Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
-through :
+through FOP/Batik:
 
 * Improved quality of the vectorial export
 
@@ -91,7 +107,7 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
-* In some cases, under !Windows, the detection of libjogl.* was failling
+* In some cases, under !Windows, the detection of libjogl.* was failing
   because of a missing explicit link against libGL.*
 
 
@@ -100,13 +116,30 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
+* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
+
+* bug 5052 fixed - The context variables defined at a upper level are not known at a lower one.
+
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
+
+* bug 5054 fixed - Remove ports on a block, remove the connected links.
+
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
+		   the frame "Scope" should be checked by default.
+
 * bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
 * bug 5104 fixed - The block view was not updated on undo/redo
 
 * bug 5111 fixed - "Save As" default path wasn't the current file path
 
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
+
+* bug 5167 fixed - xcos*.h5 and xcos*.h5 were not deleted
 
 * bug 5179 fixed - The accented letters used in text in Scicos diagram are not 
                    visible with xcos at least under Linux
@@ -142,6 +175,8 @@ Xcos:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
+* bug 5395 fixed - The xcos block AFFICH_m do not bother with the max
+                   number of digits.
 * bug 5403 fixed - A graphic windows wasn't created only when needed.
 
 * bug 5407 fixed - It was impossible to use the arrow keys to move a block
@@ -160,9 +195,6 @@ Xcos:
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
-                   warning and return softly.
-
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
@@ -173,6 +205,8 @@ Xcos:
 
 * bug 5464 fixed - Actions were not disabled on file loading
 
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working
+
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
@@ -181,12 +215,12 @@ Xcos:
 
 * bug 5533 fixed - SetupAction didn't valid inputs
 
-* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab
+                   execution thread.
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
-
 
 Tree functions :
 ================
@@ -213,6 +247,8 @@ Bug fixes:
 * bug 2588 fixed - Calling a function with no input argument contained in an 
                    mlist generates an error.
 
+* bug 3200 fixed - the add_help_chapter function returns a boolean.
+
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
 
@@ -231,6 +267,8 @@ Bug fixes:
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
+* bug 4767 fixed - Typo in minreal were causing errors in some cases
+
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
@@ -239,7 +277,7 @@ Bug fixes:
 
 * bug 5037 fixed - The link style menu doesn't have mnemonics
 
-* bug 5053 fixed - Update the layout of in/out port of a block when modified
+* bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
 
 * bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for
                    Untitled files even if they are not modified.
@@ -248,12 +286,8 @@ Bug fixes:
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5125 fixed - Editor: No more get an infinite loop when using the 
-                   Undo functionnality.
-
-* bug 5137 fixed - Editor: drag & drop on editor was not enabled.
-
-* bug 5140 fixed - "Load into Scilab" was executed line by line.
+* bug 5163 fixed - Incorrectly resized text after having performed
+  	  	   		 magnification+demagnification
 
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other 
                    tree functions.
@@ -340,7 +374,10 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
-* bug 5413 fixed - An error was triggered when < or > where used in the comments
+* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
+
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
@@ -349,6 +386,11 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with
+                   editor.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -382,18 +424,19 @@ Bug fixes:
 * bug 5519 fixed - added a message asking the user if he wants to exit the 
                    editor when he clicks on the cross.
 
-* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
-
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
-
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
 * bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
                    ISO-8859-1 and not in UTF-8.
+ 
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
 * bug 5586 fixed - getscilabkeyworgs was broken.
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
+                   of x0 and len for "axes" simplex.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -478,14 +521,14 @@ xstring(6,1.4,'$\leftarrow f \left( x \right) = 1 + \sin \left( \frac{x \cdot 4 
 See demos => Graphics => LaTeX/MathML
 Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rendering (project JLaTeXMath)
 
-* New features
-  - Antialiasing on graphics
-    This new feature improves the quality of graphic rendering.
-    It can be activated with the following commands: 
-    df = gdf(); df.anti_aliasing = "8x"; plot3d();
-    The rationnal and performance tests are available in SEP #16 or can be
-    requested in Scilab bugtracker as bug #2984.
-  - Add transparency to markdrawing.
+* Antialiasing on graphics
+  This new feature improves the quality of graphic rendering.
+  It can be activated with the following commands: 
+  df = gdf(); df.anti_aliasing = "8x"; plot3d();
+  The rationnal and performance tests are available in SEP #16 or can be
+  seen in Scilab bugtracker as bug #2984.
+
+* Add transparency to markdrawing.
 
 * 'xbasc' is obsolete. See 'clf'
 
@@ -1052,6 +1095,9 @@ Bug fixes:
 
 * bug 3184 fixed - Ticks of colorbar have disappeared
 
+* bug 3200 fixed - add_help_chapter returns a boolean result which was
+                   not explained in the help page.
+
 * bug 3201 fixed - Help page for the function del_help_chapter added
 
 * bug 3264 fixed - More explicit message when too many files have been
@@ -1100,6 +1146,9 @@ Bug fixes:
 
 * bug 4181 fixed - AdCommunications help page removed
 
+* bug 4183 fixed - the function readmps has been moved to the
+                   optimization folder
+
 * bug 4184 fixed - Style of the examples corrected
 
 * bug 4217 fixed - gsort sorted complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
@@ -1143,6 +1192,8 @@ Bug fixes:
 * bug 4364 fixed - stacksize('max') + stacksize(required_mem) did not work
 
 * bug 4365 fixed - Completion failed on a wrong path
+
+* bug 4366 fixed - The test dsaupd.tst was not working
 
 * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
                    the second possible value was 'clipgrf' instead of 'cliprf'
@@ -1349,6 +1400,9 @@ Bug fixes:
 
 * bug 4630 fixed - Problem with the Xcos/Scicos block affich
 
+* bug 4634 fixed - The expression "old graphic" has been removed from
+                   the graphics help pages
+
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
 * bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version 
@@ -1410,6 +1464,8 @@ Bug fixes:
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives moved in "functions" modules
 
+* bug 4746 fixed - Some ID for constraint linkend were missing.
+
 * bug 4750 fixed - Error boolean catenation
 
 * bug 4752 fixed - ci2exp produced erroneous code when applied to boolean matrices (; are missing)
@@ -1443,6 +1499,8 @@ Bug fixes:
 * bug 4816 fixed - plot did not manage autoclear correctly
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in Scilab 5.x)
+
+* bug 4820 fixed - the help page for the function csgn has been added
 
 * bug 4826 fixed - The type of the 'dims' entry of an hypermat was not always the same
 
@@ -1484,40 +1542,32 @@ Bug fixes:
 
 * bug 4966 fixed - execstr([]) return []
 
+* bug 4970 fixed - Some link ID's were not correct in the doc of the
+                   current master
+
 * bug 4974 fixed - exec('') crashed Scilab
 
 * bug 4983 fixed - When Scilab was started in nw mode, the addmenu examples were failing with a weird error message
 
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
-* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
-
-* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
-
-* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
-
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
-
-* bug 5054 fixed - Remove ports on a block, remove the connected links.
 
 * bug 5074 fixed - French help star showed mis-encoded characters.
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
-* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
-		   the frame "Scope" should be checked by default.
-
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
+
+* bug 5121 fixed - Gui associated to PDE block has been localized
 
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
-
-* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
@@ -1541,11 +1591,16 @@ Bug fixes:
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 
+* bug 5349 fixed - the file predator.cos was not openable.
+
 * bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
+
+* bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
+                   number of digits.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
@@ -1553,7 +1608,5 @@ Bug fixes:
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
-* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
-
-* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
 

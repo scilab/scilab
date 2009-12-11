@@ -20,3 +20,8 @@ Known incompatibilities:
    'xgetfile' to replace by 'uigetfile'.
    'tk_getfile' to replace by 'uigetfile'.
    'x_message' to replace by 'messagebox'.
+
+
+- Graphic export with accented chars will fail with Scilab based on the OpenJDK
+  this works with the Sun proprietary JVM.
+  See bug 4578.

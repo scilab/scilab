@@ -29,7 +29,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.ColorAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
