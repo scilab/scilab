@@ -70,8 +70,20 @@ See bug #5387
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
 
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - It was not possible to choose EOL type
+
+* bug 5497 fixed - Selection drag was not available.
+
+* bug 5515 fixed - Encoding was not well managed.
+                   Now:
+                   - default encoding is the system default one
+                   - user defined enconding save in Editor configuration file
+
 * bug 5519 fixed - added a message asking the user if he wants to exit the 
                    editor when he clicks on the cross.
+
 
 
 Help browser:
@@ -162,7 +174,7 @@ Xcos:
 * bug 5054 fixed - Remove ports on a block, remove the connected links.
 
 * bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
-		   the frame "Scope" should be checked by default.
+                   the frame "Scope" should be checked by default.
 
 * bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
@@ -182,7 +194,7 @@ Xcos:
 * bug 5180 fixed - TEXT_f was not selectable on the palette.
 
 * bug 5182 fixed - In some cases, the main diagram dialog no more respond
-  	  	   		   neither to the "validate" nor "cancel" menu
+                   neither to the "validate" nor "cancel" menu
 
 * bug 5183 fixed - Simulation menu wasn't disabled on a superblock diagram
 
@@ -206,13 +218,13 @@ Xcos:
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
 
 * bug 5299 fixed - When saving an xcos diagram, when the selected file were
-  	  	   		   already existing and doesn't contain the .xcos extension
-				   (~/foo), the 'Remplace file' dialog appeared but did not
-				   overwrite the file.
+                   already existing and doesn't contain the .xcos extension
+                   (~/foo), the 'Remplace file' dialog appeared but did not
+                   overwrite the file.
 
 * bug 5301 fixed - When one created a superblock with the region to superblock,
-  	  	   		   not selected internal links were not included into the
-				   superblocks but were also not considered as IN_f OUT_F.
+                   not selected internal links were not included into the
+                   superblocks but were also not considered as IN_f OUT_F.
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
@@ -305,6 +317,9 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5480 fixed - When creating a Superblock, input and output links were removed
+                   and input and output ports were not created.
+
 * bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
 
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
@@ -387,7 +402,7 @@ Bug fixes:
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
 * bug 5163 fixed - Incorrectly resized text after having performed
-  	  	   		 magnification+demagnification
+                   magnification+demagnification
 
 * bug 5190 fixed - context menus are now available under MacOS
 
@@ -505,6 +520,10 @@ Bug fixes:
 
 * bug 5482 fixed - added a menu to choose EOL type when you save a file with
                    editor.
+* bug 5469 fixed - Force origin presence on an axes with location property set 
+                   to 'origin'.
+
+* bug 5470 fixed - the addcolor function help page didn't contain example.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -522,15 +541,18 @@ Bug fixes:
 * bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
                    stack to minimun size if it fails.
 
-* bug 5497 fixed - Editor: selection drag is now available.
-
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
                    version in the loader.sce even if the toolbox 100% 
                    written in Scilab code.
 
+* bug 5505 fixed - getdebuginfo() output in french was partially translated,
+                   with few errors
+
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
 * bug 5507 fixed - whereis(bin2dec) returned a error.
+
+* bug 5511 fixed - printf_conversion help page was unclear.
 
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
@@ -1688,8 +1710,6 @@ Bug fixes:
 
 * bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
                    number of digits.
-
-* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
 

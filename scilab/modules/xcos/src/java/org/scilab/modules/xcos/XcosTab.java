@@ -84,7 +84,6 @@ import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
-import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
@@ -103,6 +102,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
