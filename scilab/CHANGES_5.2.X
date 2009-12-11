@@ -62,8 +62,14 @@ Text editor:
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
 
+* bug 5515 fixed - Encoding was not well managed.
+                   Now:
+                   - default encoding is the system default one
+                   - user defined enconding save in Editor configuration file
+
 * bug 5519 fixed - added a message asking the user if he wants to exit the 
                    editor when he clicks on the cross.
+
 
 
 Help browser:
