@@ -580,9 +580,9 @@ public class XcosDiagram extends ScilabGraph {
 	// Property change Listener
 	// Will say if a diagram has been modified or not.
 	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
-	    public void propertyChange(PropertyChangeEvent arg0) {
-		if (arg0.getPropertyName().compareTo("modified") == 0) {
-		    if ((Boolean) arg0.getOldValue() != (Boolean) arg0.getNewValue()) {
+	    public void propertyChange(PropertyChangeEvent e) {
+		if (e.getPropertyName().compareTo("modified") == 0) {
+		    if ((Boolean) e.getOldValue() != (Boolean) e.getNewValue()) {
 			updateTabTitle();
 		    }
 		}
@@ -959,39 +959,39 @@ public class XcosDiagram extends ScilabGraph {
 	    this.diagram = diagram;
 	}
 
-	public void mouseClicked(MouseEvent arg0) {
-	    Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
+	public void mouseClicked(MouseEvent e) {
+	    Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
 
 	    // Double Click within empty diagram Area
-	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell == null) {
+	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
 		TextBlock textBlock = new TextBlock("Edit me !!!");
-		textBlock.getGeometry().setX(arg0.getX() - textBlock.getGeometry().getWidth() / 2.0);
-		textBlock.getGeometry().setY(arg0.getY() - textBlock.getGeometry().getWidth() / 2.0);
+		textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
+		textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
 		addCell(textBlock);
 		return;
 	    }
 
 	    // Double Click within some component
-	    if (arg0.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(arg0) && cell != null)
+	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
 	    {
 		getModel().beginUpdate();
 		if (cell instanceof BasicBlock) {
 		    BasicBlock block = (BasicBlock) cell;
-		    arg0.consume();
+		    e.consume();
 		    block.openBlockSettings(buildEntireContext());
 		}
 		if (cell instanceof BasicLink) {
-		    ((BasicLink) cell).insertPoint(arg0.getX(), arg0.getY());
+		    ((BasicLink) cell).insertPoint(e.getX(), e.getY());
 		}
 		getModel().endUpdate();
 		refresh();
 	    }
 
 	    // Ctrl + Shift + Right Middle Click : for debug !!
-	    if (arg0.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(arg0)
-	    		&& arg0.isShiftDown() && arg0.isControlDown())
+	    if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
+	    		&& e.isShiftDown() && e.isControlDown())
 	    {
-	    	System.err.println("[DEBUG] Click at position : " + arg0.getX() + " , " + arg0.getY());
+	    	System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
 	    	if (cell == null) {
 	    	    System.err.println("[DEBUG] Click on diagram");
 	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
@@ -1014,9 +1014,9 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 
 	    // Context menu
-	    if ((arg0.getClickCount() == 1 && SwingUtilities.isRightMouseButton(arg0))
-	    		|| arg0.isPopupTrigger()
-	    		|| XcosMessages.isMacOsPopupTrigger(arg0)) {
+	    if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+	    		|| e.isPopupTrigger()
+	    		|| XcosMessages.isMacOsPopupTrigger(e)) {
 
 		if (cell == null) {
 		    // Display diagram context menu
@@ -1070,13 +1070,13 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	}
 
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent e) {
 	}
 
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
 	}
 
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 	}
 
 	public void mouseReleased(MouseEvent e) {
