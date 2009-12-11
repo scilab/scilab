@@ -150,16 +150,22 @@ public class SuperBlock extends BasicBlock {
 	    menu.getAsSimpleContextMenu().addSeparator();
 	    menu.add(CodeGenerationAction.createMenu(graph));
 	    
+	    /* FIXME: It is not possible to use Mask. So remove any possibility.
+	     * Mask removing only option is not applicable : if remove the mask
+	     * you have no way to edit the values anymore.
+	     */
+	    /*
 	    Menu maskMenu = ScilabMenu.createMenu();
 	    maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
-	    menu.add(maskMenu);
 	    
 	    if (isMasked()) {
 		maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
+		menu.add(maskMenu);
 	    } else {
 		maskMenu.add(SuperblockMaskCreateAction.createMenu(graph));
 	    }
 	    maskMenu.add(SuperblockMaskCustomizeAction.createMenu(graph));
+	    */
 	}
 	menu.setVisible(true);
     }

@@ -192,7 +192,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
-
+	main.setDims(new Size(600, 500));
+	
 	// Get the palettes position
 	if (XcosPaletteManager.isVisible()) { // If at Xcos startup
 	    Position palPosition = XcosPaletteManager.getPalettes()
