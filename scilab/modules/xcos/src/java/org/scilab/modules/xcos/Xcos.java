@@ -144,19 +144,26 @@ public final class Xcos {
      */
     public static int xcosDiagramToHDF5(String xcosFile, String h5File,
 	    boolean forceOverwrite) {
-	XcosDiagram diagram = createHiddenDiagram();
-	diagram.openDiagramFromFile(xcosFile);
-	File temp = new File(h5File);
+	final String file = xcosFile;
+	final File temp = new File(h5File);
+	final boolean overwrite = forceOverwrite;
+	
 	if (temp.exists()) {
-	    if (forceOverwrite == false) {
+	    if (overwrite == false) {
 		return 1;
 	    } else {
 		temp.delete();
 	    }
 	}
-
+	
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
+	XcosDiagram diagram = createHiddenDiagram();
+	diagram.openDiagramFromFile(file);
 	diagram.dumpToHdf5File(temp.getAbsolutePath());
 	diagram.closeDiagram();
+	    }
+	});
 	return 0;
     }
 
