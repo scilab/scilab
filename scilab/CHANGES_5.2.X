@@ -60,9 +60,11 @@ Text editor:
 * bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
-  undo / redo multiple edits on a region in one go )
+                   undo / redo multiple edits on a region in one go )
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
 
 * bug 5482 fixed - It was not possible to choose EOL type
 
@@ -450,6 +452,8 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
+
+* bug 5462 fixed - savematfile() didn't save correctly sparse matrixes.
 
 * bug 5469 fixed - Force origin presence on an axes with location property set 
                    to 'origin'.
@@ -1655,6 +1659,3 @@ Bug fixes:
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
 * bug 5437 fixed - Show error message during xcos simulation initialization.
-
-* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
