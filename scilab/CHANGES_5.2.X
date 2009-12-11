@@ -649,9 +649,6 @@ Input/Output functions:
 
 * Input arguments of fprintf are now checked 
 
-* save / load are now based on the HDF5 file format. The specification of the
-formats is going to be released in a near future. 
-
 * Rewrite:
     + getenv
     + diary - SEP 23
