@@ -397,11 +397,11 @@ public class BasicBlock extends XcosUIDObject {
 	this.equations = equations;
     }
 
-    public boolean isLocked() {
+    public synchronized boolean isLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public synchronized void setLocked(boolean locked) {
         this.locked = locked;
     }
 
