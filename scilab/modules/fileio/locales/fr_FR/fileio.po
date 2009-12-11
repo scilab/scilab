@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2009-11-23 12:17+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -38,19 +38,22 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s : Une erreur s'est produite : %s\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s : Une erreur est survenue : le champ %d est trop long (< %d) pour la "
 "directive %%c.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s : Une erreur est survenue : le champ %d est trop long (< %d) pour la "
 "directive %%s.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s : Une erreur est survenue : le champ %d est trop long (> %d) for la "
 "directive %%[.\n"
@@ -61,7 +64,8 @@ msgstr "%s : Une erreur est survenue : le format est trop long (> %d).\n"
 
 #, c-format
 msgid "%s: An error occurred: too many (> %d) conversion required.\n"
-msgstr "%s : Une erreur est survenue : trop (> %d) de conversion demandées.\n"
+msgstr ""
+"%s : Une erreur est survenue : trop (> %d) de conversion demandées.\n"
 
 #, c-format
 msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
@@ -121,7 +125,8 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s : Erreur pendant l'ouverture, la lecture ou l'écriture.\n"
 
 #, c-format
-msgid "%s: Error while trying to retrieve the name of the current directory.\n"
+msgid ""
+"%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr ""
 "%s : Erreur pendant la tentative de récupération du nom du répertoire "
 "courant.\n"
@@ -293,7 +298,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée : Scalaire attendu.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée : Scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -322,10 +328,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un entier ou une chaîne de "
 "caractères attendu.\n"
@@ -392,11 +400,12 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d (%s) : '%s' ou '%s' ou '%"
-"s' attendu.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d (%s) : '%s' ou '%s' ou "
+"'%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d ('%s') : Format non "
 "reconnu.\n"
@@ -419,7 +428,8 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"

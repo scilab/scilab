@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
 "PO-Revision-Date: 2009-11-23 12:09+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -22,7 +22,8 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s : Une erreur s'est produite : %s\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes tailles "
 "attendues.\n"
@@ -56,7 +57,8 @@ msgstr ""
 "est attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : une table de dimension N "
 "attendue.\n"

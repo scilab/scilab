@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 17:16+0100\n"
 "PO-Revision-Date: 2009-11-23 12:02+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"

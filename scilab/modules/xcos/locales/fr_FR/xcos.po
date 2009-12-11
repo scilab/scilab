@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2009-11-26 12:51+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -33,12 +33,6 @@ msgstr "%s: Impossible d'importer le fichier xcos %s.\n"
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s : Mauvais nombre d'argument(s) en entrée : %d attendu.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -53,11 +47,6 @@ msgstr ""
 
 msgid "?"
 msgstr "?"
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
-msgid "A SuperBlock must be selected to generate code"
-msgstr ""
 
 msgid "About Xcos"
 msgstr "À propos de Xcos"
@@ -119,8 +108,7 @@ msgstr ""
 msgid "Compile"
 msgstr "Compiler"
 
-#, fuzzy
-msgid "Continuous time systems"
+msgid "Continuous"
 msgstr "Continu"
 
 msgid "Copy"
@@ -141,11 +129,6 @@ msgstr "Personnaliser"
 msgid "Cut"
 msgstr "Couper"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
-msgid "Debug block calls without trace"
-msgstr ""
-
 msgid "Default"
 msgstr "Standard"
 
@@ -164,8 +147,9 @@ msgstr "Fond du schéma"
 msgid "Diagram browser"
 msgstr "Navigateur de schémas"
 
-#, fuzzy
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save\n"
+"save it?"
 msgstr ""
 "Le schéma a été modifié depuis la dernière sauvegarde\n"
 "Le sauver ?"
@@ -173,10 +157,8 @@ msgstr ""
 msgid "Discontinuities"
 msgstr "Fonctions discontinues"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 129
-msgid "Discrete time systems"
-msgstr ""
+msgid "Discrete"
+msgstr "Discret"
 
 msgid "Do you want a transparent background image?"
 msgstr "Voulez-vous une image de fond transparente ?"
@@ -193,22 +175,17 @@ msgstr "Edition"
 msgid "Electrical"
 msgstr "Électrique"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 130
-msgid "Event handling"
-msgstr ""
+msgid "Events"
+msgstr "Evènement"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 189
-msgid "Execution trace and Debug"
-msgstr ""
-
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Le port d'entrée de données explicite doit être connecté à un port de sortie "
 "de données explicite"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Le port de sortie de données explicite doit être connecté à un port d'entrée "
 "de données explicite"
@@ -271,12 +248,14 @@ msgstr "L'image ne contient pas de données."
 msgid "Implicit"
 msgstr "Implicite"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Le port de d'entrée de données implicite doit être connecté à un port de "
 "sortie de données implicite"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Le port de sorte de données implicite doit être connecté à un port d'entrée "
 "de données implicite"
@@ -299,36 +278,16 @@ msgstr "Inverser la sélection"
 msgid "Left"
 msgstr "Gauche"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 225
-msgid "Light Simulation trace (Discrete and Continous part switches)"
-msgstr ""
-
 msgid "Link Style"
 msgstr "Style du lien"
-
-#, fuzzy
-msgid "Load as palette"
-msgstr "Nouvelle palette"
 
 msgid "Loading diagram"
 msgstr "Charger un diagramme"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
-msgid "Loading palettes"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
-msgid "Loading user defined palettes"
-msgstr ""
-
 msgid "Lookup Tables"
 msgstr "Interpolation"
 
-#, fuzzy
-msgid "Mathematical Operations"
+msgid "Math Operations"
 msgstr "Opérations math."
 
 msgid "Matrix"
@@ -339,11 +298,6 @@ msgstr "Interval max de temps d'intégration"
 
 msgid "Middle"
 msgstr "Milieu"
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 97
-msgid "Mirror"
-msgstr ""
 
 msgid "New"
 msgstr "Nouveau"
@@ -356,11 +310,6 @@ msgstr "Nouvelle palette"
 
 msgid "No block selected"
 msgstr "Pas de bloc sélectionné"
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 224
-msgid "No trace nor debug printing"
-msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normal 100%"
@@ -380,26 +329,14 @@ msgstr "Palettes"
 msgid "Paste"
 msgstr "Coller"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
-msgid "Per block execution trace and Debug block calls"
-msgstr ""
-
 msgid "Port & Subsystem"
 msgstr "Port & Sous systeme"
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 170
-msgid ""
-"Port is already connected, please select an unconnected port or a valid link."
-msgstr ""
 
 msgid "Print"
 msgstr "Imprimer"
 
-#, fuzzy
-msgid "Quit Xcos"
-msgstr "À propos de Xcos"
+msgid "Quit"
+msgstr "Quitter"
 
 msgid "Real time scaling"
 msgstr "Mise à l'échelle temps réel"
@@ -415,11 +352,6 @@ msgstr "Zone vers superbloc"
 
 msgid "Remove"
 msgstr "Supprimer"
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 58
-msgid "Remove user defined palette"
-msgstr ""
 
 msgid "Resize"
 msgstr "Redimensionner"
@@ -445,12 +377,6 @@ msgstr "Sauvegarder l'UI du bloc"
 msgid "Saving diagram"
 msgstr "Sauve le diagramme"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 230
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 231
-msgid "Scicos file"
-msgstr ""
-
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
@@ -459,22 +385,19 @@ msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 233
-msgid "Scilab file"
-msgstr ""
-
 msgid "Select all"
 msgstr "Tout sélectionner"
 
 msgid "Set Context"
 msgstr "Modifier le Contexte"
 
+msgid "Set Debug Level"
+msgstr "Règle le niveau de débuggage"
+
 msgid "Set Parameters"
 msgstr "Règle les paramètres"
 
-#, fuzzy
-msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
+msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
 msgstr ""
 "Définir le niveau de débogage (0,1,2,3) </br> celà éffectue scicos_debug(n)"
 
@@ -533,6 +456,9 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr "Thermo-Hydrauliques"
 
+msgid "Threshold"
+msgstr "Seuil"
+
 msgid "Tolerance on time"
 msgstr "Tolérance sur le temps"
 
@@ -553,10 +479,6 @@ msgstr "Version du diagramme inconnue: "
 
 msgid "Untitled"
 msgstr "Sans titre"
-
-#, fuzzy
-msgid "User-Defined"
-msgstr "Fonctions définies par l'utilisateur"
 
 msgid "User-Defined Functions"
 msgstr "Fonctions définies par l'utilisateur"
@@ -591,10 +513,6 @@ msgstr "Aide Xcos"
 msgid "Xcos error"
 msgstr "Erreur Xcos"
 
-#, fuzzy
-msgid "Xcos file"
-msgstr "Aide Xcos"
-
 msgid "Xcos version 1.0"
 msgstr "Xcos version 1.0"
 
@@ -609,11 +527,6 @@ msgstr ""
 "évaluées une fois confirmées (i.e. à chaque fois que vous cliquez sur OK, à "
 "chaque évaluation, à chaque fois que le schéma est chargé)."
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 122
-msgid "Zero crossing detection"
-msgstr ""
-
 msgid "Zoom In"
 msgstr "Zoom avant"
 
@@ -625,18 +538,3 @@ msgstr "Le port de contrôle doit être connecté au port de commande"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "taille de pas maximum (0 signifie pas de limite)"
-
-#~ msgid "Discrete"
-#~ msgstr "Discret"
-
-#~ msgid "Events"
-#~ msgstr "Evènement"
-
-#~ msgid "Quit"
-#~ msgstr "Quitter"
-
-#~ msgid "Set Debug Level"
-#~ msgstr "Règle le niveau de débuggage"
-
-#~ msgid "Threshold"
-#~ msgstr "Seuil"
