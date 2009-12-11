@@ -76,8 +76,6 @@ See bug #5387
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
-* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
 * bug 5482 fixed - It was not possible to choose EOL type
 
 * bug 5497 fixed - Selection drag was not available.
@@ -111,9 +109,9 @@ Text rendering:
 ===============
 
 * New function "prettyprint" added
-This function provides the capability to represent a Scilab variable to LaTeX,
-TeX and Mathml. 
-See SEP #36 for more information
+  This function provides the capability to represent a Scilab variable to LaTeX,
+  TeX and Mathml. 
+  See SEP #36 for more information
 
 * pol2tex is now obsolete. Please use prettyprint instead
 
@@ -123,7 +121,7 @@ See SEP #36 for more information
                    "$...$" LaTeX feature.
 
 * bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
-  	  	   		   feature.
+                   feature.
 
 Graphic export:
 ===============
@@ -169,18 +167,22 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
-* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents
+                   when the users close Scilab.
 
-* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
+* bug 5026 fixed - now palette browser appears only with a new diagram or by the
+                   menu View->Palette browser.
 
-* bug 5052 fixed - The context variables defined at a upper level are not known at a lower one.
+* bug 5052 fixed - The context variables defined at a upper level are not known
+                   at a lower one.
 
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
 * bug 5054 fixed - Remove ports on a block, remove the connected links.
 
-* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
-                   the frame "Scope" should be checked by default.
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog
+                   box, the radiobox "Selected lines" in the frame "Scope" should
+                   be checked by default.
 
 * bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
@@ -188,7 +190,8 @@ Xcos:
 
 * bug 5111 fixed - "Save As" default path wasn't the current file path
 
-* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside
+                   SuperBlock
 
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
 
@@ -206,7 +209,8 @@ Xcos:
 
 * bug 5184 fixed - Setup menu values weren't localized
 
-* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up
+                   menu of the diagram.
 
 * bug 5196 fixed - Openning a SuperBlock modified some positions.
 
@@ -221,7 +225,8 @@ Xcos:
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
-* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos
+                   start.
 
 * bug 5299 fixed - When saving an xcos diagram, when the selected file were
                    already existing and doesn't contain the .xcos extension
@@ -239,9 +244,10 @@ Xcos:
 * bug 5312 fixed - 'Compile' informations was not displayed
 
 * bug 5313 fixed - Clicking repeatedly and quickly on a block in a diagram
-  	  	   		   were causing Scilab to quit.
+                   were causing Scilab to quit.
 
-* bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
+* bug 5327 fixed - When indenting a block, the selection area is shifted one 
+                   line down with respect to the previously selected one. 
 
 * bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
                    memory.
@@ -266,7 +272,9 @@ Xcos:
 * bug 5395 fixed - The xcos block AFFICH_m do not bother with the max
                    number of digits.
 
-* bug 5397 fixed - If there is an unconnected block in a superblock, the simulation did not start and the "Simulate/start" menu remained disabled.
+* bug 5397 fixed - If there is an unconnected block in a superblock, the 
+                   simulation did not start and the "Simulate/start" menu
+                   remained disabled.
 
 * bug 5403 fixed - A graphic windows wasn't created only when needed.
 
@@ -294,7 +302,8 @@ Xcos:
 
 * bug 5424 fixed - French translation issues
 
-* bug 5426 fixed - The icon of modelica blocks Resistor Inductor, ... was not rotated while the block was
+* bug 5426 fixed - The icon of modelica blocks Resistor Inductor, ... was not 
+                   rotated while the block was
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
@@ -313,7 +322,8 @@ Xcos:
 
 * bug 5449 fixed - The palette tab position was modified even if invisible
 
-* bug 5450 fixed - The Signal Builder demos did not work (xcos/demos/Signal_Builder.xcos does not exist)
+* bug 5450 fixed - The Signal Builder demos did not work
+                   (xcos/demos/Signal_Builder.xcos does not exist)
 
 * bug 5459 fixed - Editor "block" scilab with example
 
@@ -328,9 +338,11 @@ Xcos:
 
 * bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
 
-* bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+* bug 5529 fixed - The parent diagram was not updated when performing undo/redo
+                   on a SuperBlockDiagram.
 
-* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as parameter
+* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as
+                   parameter
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
@@ -445,7 +457,8 @@ Bug fixes:
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some
                    settings in Visual Studio.
 
-* bug 5284 fixed - Function "legend" draws line segments in its box were in a reverse order
+* bug 5284 fixed - Function "legend" draws line segments in its box were in a
+                   reverse order
 
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
                    hangs.
@@ -471,7 +484,8 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
-* bug 5331 fixed - There were no example in the help page of matfile_* loadmatfile or savematfile
+* bug 5331 fixed - There were no example in the help page of matfile_* 
+                   loadmatfile or savematfile
 
 * bug 5339 fixed - some macros had multiple definitions.
 
@@ -488,7 +502,8 @@ Bug fixes:
 
 * bug 5367 fixed - Incorrect %nan multiplication with vectors on 64-bit Vista
 
-* bug 5368 fixed - input() behaves weird on carriage return response to prompt on 64-bit
+* bug 5368 fixed - input() behaves weird on carriage return response to prompt
+                   on 64-bit
 
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
 
@@ -503,7 +518,8 @@ Bug fixes:
 
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
-* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
+* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used
+                   in the comments
 
 * bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
                    warning and return softly.
@@ -1716,5 +1732,3 @@ Bug fixes:
 
 * bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
                    number of digits.
-
-* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
