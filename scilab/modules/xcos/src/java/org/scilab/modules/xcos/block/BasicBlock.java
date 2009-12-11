@@ -167,38 +167,54 @@ public class BasicBlock extends XcosUIDObject {
     };
 
     public static BasicBlock createBlock(String label) {
-    	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
-    	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
-    	if(label.compareTo("DSUPER") == 0) { return new SuperBlock(label, true); }
-    	if(label.compareTo("CONST_m") == 0
-    		|| label.compareTo("CONST") == 0
-    		|| label.compareTo("CONST_f") == 0) {
-    	    return new ConstBlock(label);
-    	}
-    	if(label.compareTo("AFFICH_m") == 0
-    		|| label.compareTo("AFFICH_f") == 0) {
-    	    return new AfficheBlock(label); 
-    	}
-    	if(label.compareTo("GAINBLK_f") == 0
-    		|| label.compareTo("GAINBLK") == 0
-    		|| label.compareTo("GAIN_f") == 0) {
-    	    return new GainBlock(label);
-    	}
-    	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
-    	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
-    	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
-    	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
-    	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
-    	if(label.compareTo("CLKOUTV_f") == 0
-    		|| label.compareTo("CLKOUT_f") == 0) { return new EventOutBlock(label); }
-    	if(label.compareTo("SPLIT_f") == 0 || 
-    		label.compareTo("IMPSPLIT_f") == 0 ||
-    		label.compareTo("CLKSPLIT_f") == 0) {
-    	    return new SplitBlock(label);
-    	}
-    	else { 
-    		return new BasicBlock(label); 
-    	}
+	if (label.compareTo("TEXT_f") == 0) {
+	    return new TextBlock(label);
+	}
+	if (label.compareTo("SUPER_f") == 0) {
+	    return new SuperBlock(label);
+	}
+	if (label.compareTo("DSUPER") == 0) {
+	    return new SuperBlock(label, true);
+	}
+	if (label.compareTo("CONST_m") == 0 || label.compareTo("CONST") == 0
+		|| label.compareTo("CONST_f") == 0) {
+	    return new ConstBlock(label);
+	}
+	if (label.compareTo("AFFICH_m") == 0
+		|| label.compareTo("AFFICH_f") == 0) {
+	    return new AfficheBlock(label);
+	}
+	if (label.compareTo("GAINBLK_f") == 0
+		|| label.compareTo("GAINBLK") == 0
+		|| label.compareTo("GAIN_f") == 0) {
+	    return new GainBlock(label);
+	}
+	if (label.compareTo("IN_f") == 0) {
+	    return new ExplicitInBlock(label);
+	}
+	if (label.compareTo("OUT_f") == 0) {
+	    return new ExplicitOutBlock(label);
+	}
+	if (label.compareTo("INIMPL_f") == 0) {
+	    return new ImplicitInBlock(label);
+	}
+	if (label.compareTo("OUTIMPL_f") == 0) {
+	    return new ImplicitOutBlock(label);
+	}
+	if (label.compareTo("CLKINV_f") == 0) {
+	    return new EventInBlock(label);
+	}
+	if (label.compareTo("CLKOUTV_f") == 0
+		|| label.compareTo("CLKOUT_f") == 0) {
+	    return new EventOutBlock(label);
+	}
+	if (label.compareTo("SPLIT_f") == 0
+		|| label.compareTo("IMPSPLIT_f") == 0
+		|| label.compareTo("CLKSPLIT_f") == 0) {
+	    return new SplitBlock(label);
+	} else {
+	    return new BasicBlock(label);
+	}
     }
 
     public BasicBlock() {
