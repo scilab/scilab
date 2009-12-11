@@ -1159,6 +1159,8 @@ Bug fixes:
 
 * bug 4365 fixed - Completion failed on a wrong path
 
+* bug 4366 fixed - The test dsaupd.tst was not working
+
 * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
                    the second possible value was 'clipgrf' instead of 'cliprf'
 
@@ -1364,6 +1366,9 @@ Bug fixes:
 
 * bug 4630 fixed - Problem with the Xcos/Scicos block affich
 
+* bug 4634 fixed - The expression "old graphic" has been removed from
+                   the graphics help pages
+
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
 * bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version 
@@ -1424,6 +1429,8 @@ Bug fixes:
 * bug 4737 fixed - Completion failed on file extension search
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives moved in "functions" modules
+
+* bug 4746 fixed - Some ID for constraint linkend were missing.
 
 * bug 4750 fixed - Error boolean catenation
 
