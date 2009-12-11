@@ -12,10 +12,14 @@
 //
 // <-- Short Description -->
 // xbasc() doesn't clear the current graphics window.
-//
+// 
 x = 1:10;
 plot(x);
 xbasc();
+AVERTISSEMENT : La fonction xbasc est obsolète.
+AVERTISSEMENT : Utilisez plutôt clf s'il vous plait.
+AVERTISSEMENT : Cette fonction va être définitivement enlevée de Scilab 5.3
+
 // check that there only an axes below the current figure
 fig = gcf();
 // only axes
@@ -27,6 +31,10 @@ plot(x);
 plot3d(x,x,cos(x)'*sin(x));
 // erase all figure with index from 0 to 3
 xbasc(0:3);
+AVERTISSEMENT : La fonction xbasc est obsolète.
+AVERTISSEMENT : Utilisez plutôt clf s'il vous plait.
+AVERTISSEMENT : Cette fonction va être définitivement enlevée de Scilab 5.3
+
 // we should have only empty figures
 for i=0:3,
   fig = get_figure_handle(i);

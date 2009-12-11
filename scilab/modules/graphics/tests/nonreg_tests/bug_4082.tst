@@ -26,4 +26,4 @@ load(TMPDIR+'/foo.scg') //or xload
 
 f = gcf();
 
-if f.figure_name <> "Figure %d" then pause,end
+if f.figure_name <> "Figure n°%d" then pause,end

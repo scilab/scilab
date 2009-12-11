@@ -35,6 +35,7 @@ tics_segment = "on"
 tics_style = "v"
 sub_tics = 2
 tics_labels = ["2cm","3cm","4cm","5cm","6cm","7cm"]
+format_n = "%0.0fcm"
 labels_font_size = 0
 labels_font_color = -1
 fractional_font = "off"

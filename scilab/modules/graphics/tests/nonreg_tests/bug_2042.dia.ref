@@ -37,3 +37,23 @@ if( z_label_visible ~= a.z_label.visible ) then bugmes();quit;end
 delete(gcf());
 subplot(211);
 plot3d();
+e = gce();
+subplot(212);
+a = gca();
+// Save axes properties that should not be modified.
+axes_visible = a.axes_visible;
+box = a.box;
+margins = a.margins;
+x_label_visible = a.x_label.visible;
+y_label_visible = a.y_label.visible;
+z_label_visible = a.z_label.visible;
+// Now copy handle.
+copy(e);
+a = gca();
+// Check that axes properties did not change.
+if( or(a.axes_visible ~= axes_visible) ) then bugmes();quit;end
+if( a.box ~= box ) then bugmes();quit;end
+if( or(a.margins ~= margins) ) then bugmes();quit;end
+if( x_label_visible ~= a.x_label.visible ) then bugmes();quit;end
+if( y_label_visible ~= a.y_label.visible ) then bugmes();quit;end
+if( z_label_visible ~= a.z_label.visible ) then bugmes();quit;end
