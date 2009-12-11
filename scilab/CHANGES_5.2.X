@@ -62,6 +62,12 @@ Text editor:
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
 
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - It was not possible to choose EOL type
+
+* bug 5497 fixed - Selection drag was not available.
+
 * bug 5515 fixed - Encoding was not well managed.
                    Now:
                    - default encoding is the system default one
@@ -442,11 +448,6 @@ Bug fixes:
                    source did not exist and then aliasing had not been 
                    performed.
 
-* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
-
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
-
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
@@ -463,11 +464,12 @@ Bug fixes:
 * bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
                    stack to minimun size if it fails.
 
-* bug 5497 fixed - Editor: selection drag is now available.
-
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
                    version in the loader.sce even if the toolbox 100% 
                    written in Scilab code.
+
+* bug 5505 fixed - getdebuginfo() output in french was partially translated,
+                   with few errors
 
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
