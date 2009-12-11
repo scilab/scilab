@@ -1092,16 +1092,18 @@ public class XcosDiagram extends ScilabGraph {
 		    waitPathRelease = false;
 		    waitPathAddEdge = true;
 		    
-		    //adjust final point
-		    mxGeometry geoPort = drawLink.getSource().getGeometry();
-		    mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
-		    mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
-		    mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
-		    
-		    getModel().beginUpdate();
-		    drawLink.getGeometry().setTargetPoint(point);
-		    getModel().endUpdate();
-		    refresh();
+		    if(!e.isControlDown()) {
+			//adjust final point
+			mxGeometry geoPort = drawLink.getSource().getGeometry();
+			mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+			mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
+			mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+
+			getModel().beginUpdate();
+			drawLink.getGeometry().setTargetPoint(point);
+			getModel().endUpdate();
+			refresh();
+		    }
 		} else if(waitPathAddEdge){
 		    if(drawLink != null) {
 			getModel().beginUpdate();
@@ -1139,13 +1141,11 @@ public class XcosDiagram extends ScilabGraph {
 				setSelectionCell(drawLink);
 			    }
 			} else {
-			    mxPoint lastPoint = geo.getTargetPoint(); 
-			    
-			    //try to find the best, orthogonal or diagonal point to best visual effect
-			    
-			    //true -> positve offset
-			    //false -> negative offset
-			    geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+			    if(!e.isControlDown()) {
+				geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+			    } else {
+				geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+			    }
 			}
 			getModel().endUpdate();
 			refresh();
