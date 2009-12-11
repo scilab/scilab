@@ -339,7 +339,7 @@ public class SuperBlock extends BasicBlock {
     	return count;
     }
 
-    protected void updateAllBlocksColor(){
+    public void updateAllBlocksColor(){
     	updateBlocksColor(getAllExplicitInBlock());
     	updateBlocksColor(getAllImplicitInBlock());
     	updateBlocksColor(getAllEventInBlock());

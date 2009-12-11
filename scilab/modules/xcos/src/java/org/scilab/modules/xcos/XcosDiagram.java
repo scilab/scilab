@@ -1828,7 +1828,7 @@ public class XcosDiagram extends ScilabGraph {
 		return action;
 	}
 
-	    protected BasicBlock getChildById(String uid) {
+	    public BasicBlock getChildById(String uid) {
 		BasicBlock returnBlock = null;
 		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 		    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
