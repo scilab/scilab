@@ -135,10 +135,14 @@ public final class Xcos {
      * This method is called when the user exits from Scilab
      */
     public static void closeXcosFromScilab() {
+	
+	    SwingUtilities.invokeLater(new Runnable() {
+		public void run() {
 	// call close on all diagrams
 	while (XcosTab.getAllDiagrams().size() > 0) {
 	    XcosTab.getAllDiagrams().get(0).closeDiagram(true);
 	}
+	    }});
     }
 
     /**
@@ -168,10 +172,8 @@ public final class Xcos {
 		}
 	    });
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (InvocationTargetException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return 0;
@@ -209,10 +211,8 @@ public final class Xcos {
 		}
 	    });
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (InvocationTargetException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
@@ -232,10 +232,8 @@ public final class Xcos {
 		}
 	    });
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (InvocationTargetException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
