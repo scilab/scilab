@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos;
+package org.scilab.modules.xcos.graph;
 
 import java.io.File;
 

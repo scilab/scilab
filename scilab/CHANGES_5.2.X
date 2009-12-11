@@ -19,6 +19,11 @@ Text editor:
 - History
 - Help on the selected text
 
+* Performance enhancements for colorization (notable speed-up on opening large scripts Bug #4886)
+
+* Better Undo/Redo support (works across "Save"/ "Save as.." Bug #5465, undo / redo multiple edits on a region in one go )
+
+* Better multi-thread correctness wrt Event Dispatching Thread. (i.e. Bug #5173)
 
 Help browser:
 =============
@@ -345,7 +350,7 @@ Bug fixes:
                    source did not exist and then aliasing had not been 
                    performed.
 
-* bug 5484 fixed - LCC-Win32 did not work with attached example.
+* bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
                    when no empty line was provided
@@ -1549,4 +1554,6 @@ Bug fixes:
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
+
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 
