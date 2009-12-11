@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 
@@ -22,22 +22,19 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskCreateAction extends DefaultAction {
+public class SuperblockMaskRemoveAction extends DefaultAction {
 
-	private SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CREATE, scilabGraph);
+	private SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.REMOVE, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CREATE, null, new SuperblockMaskCreateAction(scilabGraph), null);
+		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
-	    /*
-	     * FIXME: this action doesn't handle variable settings
-	     */
-	    block.mask();
+	    block.unmask();
 	}
 }

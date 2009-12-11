@@ -10,21 +10,34 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.block.actions;
+
+import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskCustomizeAction extends DefaultAction {
+public class SuperblockMaskCreateAction extends DefaultAction {
 
-	private SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CUSTOMIZE, scilabGraph);
+	private SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.CREATE, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CUSTOMIZE, null, new SuperblockMaskCustomizeAction(scilabGraph), null);
+		return createMenu(XcosMessages.CREATE, null, new SuperblockMaskCreateAction(scilabGraph), null);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
+	    /*
+	     * FIXME: this action doesn't handle variable settings
+	     */
+	    block.mask();
 	}
 }
