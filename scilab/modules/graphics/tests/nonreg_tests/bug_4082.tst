@@ -6,7 +6,6 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-// <-- FRENCH IMPOSED -->
 
 // <-- Non-regression test for bug 4082 -->
 //
@@ -26,4 +25,4 @@ load(TMPDIR+'/foo.scg') //or xload
 
 f = gcf();
 
-if f.figure_name <> "Figure n°%d" then pause,end
+if f.figure_name <> _("Graphic window number %d") then pause,end

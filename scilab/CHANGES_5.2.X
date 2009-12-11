@@ -19,6 +19,14 @@ Text editor:
 - History
 - Help on the selected text
 
+* bug 4886 fixed - Performance enhancements for colorization
+  (notable speed-up on opening large scripts)
+
+* bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
+  Thread.
+
+* bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
+  undo / redo multiple edits on a region in one go )
 
 Help browser:
 =============
@@ -55,7 +63,7 @@ Graphic export:
 ===============
 
 Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
-through :
+through FOP/Batik:
 
 * Improved quality of the vectorial export
 
@@ -86,7 +94,7 @@ Compilation:
 
 * Rebuild some C++/Java wrappers with a newer version of SWIG
 
-* In some cases, under !Windows, the detection of libjogl.* was failling
+* In some cases, under !Windows, the detection of libjogl.* was failing
   because of a missing explicit link against libGL.*
 
 
@@ -137,6 +145,8 @@ Xcos:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
+* bug 5395 fixed - The xcos block AFFICH_m do not bother with the max
+                   number of digits.
 * bug 5403 fixed - A graphic windows wasn't created only when needed.
 
 * bug 5407 fixed - It was impossible to use the arrow keys to move a block
@@ -167,6 +177,8 @@ Xcos:
 * bug 5449 fixed - The palette tab position was modified even if invisible
 
 * bug 5464 fixed - Actions were not disabled on file loading
+
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
@@ -207,6 +219,8 @@ Bug fixes:
 ==========
 * bug 2588 fixed - Calling a function with no input argument contained in an 
                    mlist generates an error.
+
+* bug 3200 fixed - the add_help_chapter function returns a boolean.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
@@ -335,7 +349,7 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
-* bug 5413 fixed - An error was triggered when < or > where used in the comments
+* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
@@ -345,7 +359,7 @@ Bug fixes:
                    source did not exist and then aliasing had not been 
                    performed.
 
-* bug 5484 fixed - LCC-Win32 did not work with attached example.
+* bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
                    when no empty line was provided
@@ -473,14 +487,14 @@ xstring(6,1.4,'$\leftarrow f \left( x \right) = 1 + \sin \left( \frac{x \cdot 4 
 See demos => Graphics => LaTeX/MathML
 Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rendering (project JLaTeXMath)
 
-* New features
-  - Antialiasing on graphics
-    This new feature improves the quality of graphic rendering.
-    It can be activated with the following commands: 
-    df = gdf(); df.anti_aliasing = "8x"; plot3d();
-    The rationnal and performance tests are available in SEP #16 or can be
-    requested in Scilab bugtracker as bug #2984.
-  - Add transparency to markdrawing.
+* Antialiasing on graphics
+  This new feature improves the quality of graphic rendering.
+  It can be activated with the following commands: 
+  df = gdf(); df.anti_aliasing = "8x"; plot3d();
+  The rationnal and performance tests are available in SEP #16 or can be
+  seen in Scilab bugtracker as bug #2984.
+
+* Add transparency to markdrawing.
 
 * 'xbasc' is obsolete. See 'clf'
 
@@ -1047,6 +1061,9 @@ Bug fixes:
 
 * bug 3184 fixed - Ticks of colorbar have disappeared
 
+* bug 3200 fixed - add_help_chapter returns a boolean result which was
+                   not explained in the help page.
+
 * bug 3201 fixed - Help page for the function del_help_chapter added
 
 * bug 3264 fixed - More explicit message when too many files have been
@@ -1095,6 +1112,9 @@ Bug fixes:
 
 * bug 4181 fixed - AdCommunications help page removed
 
+* bug 4183 fixed - the function readmps has been moved to the
+                   optimization folder
+
 * bug 4184 fixed - Style of the examples corrected
 
 * bug 4217 fixed - gsort sorted complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
@@ -1138,6 +1158,8 @@ Bug fixes:
 * bug 4364 fixed - stacksize('max') + stacksize(required_mem) did not work
 
 * bug 4365 fixed - Completion failed on a wrong path
+
+* bug 4366 fixed - The test dsaupd.tst was not working
 
 * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
                    the second possible value was 'clipgrf' instead of 'cliprf'
@@ -1344,6 +1366,9 @@ Bug fixes:
 
 * bug 4630 fixed - Problem with the Xcos/Scicos block affich
 
+* bug 4634 fixed - The expression "old graphic" has been removed from
+                   the graphics help pages
+
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
 * bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version 
@@ -1405,6 +1430,8 @@ Bug fixes:
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives moved in "functions" modules
 
+* bug 4746 fixed - Some ID for constraint linkend were missing.
+
 * bug 4750 fixed - Error boolean catenation
 
 * bug 4752 fixed - ci2exp produced erroneous code when applied to boolean matrices (; are missing)
@@ -1438,6 +1465,8 @@ Bug fixes:
 * bug 4816 fixed - plot did not manage autoclear correctly
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in Scilab 5.x)
+
+* bug 4820 fixed - the help page for the function csgn has been added
 
 * bug 4826 fixed - The type of the 'dims' entry of an hypermat was not always the same
 
@@ -1478,6 +1507,9 @@ Bug fixes:
 * bug 4964 fixed - set or get 'format_n' property from an axis crashed Scilab
 
 * bug 4966 fixed - execstr([]) return []
+
+* bug 4970 fixed - Some link ID's were not correct in the doc of the
+                   current master
 
 * bug 4974 fixed - exec('') crashed Scilab
 
@@ -1538,11 +1570,16 @@ Bug fixes:
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 
+* bug 5349 fixed - the file predator.cos was not openable.
+
 * bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
+
+* bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
+                   number of digits.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
@@ -1550,5 +1587,11 @@ Bug fixes:
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
+
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
+
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
+
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 

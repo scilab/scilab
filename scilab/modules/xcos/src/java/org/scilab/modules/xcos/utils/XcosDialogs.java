@@ -14,7 +14,7 @@ package org.scilab.modules.xcos.utils;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Xcos standard dialogs
