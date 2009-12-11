@@ -3,7 +3,7 @@ package org.scilab.modules.xcos.utils;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import org.scilab.modules.xcos.PaletteDiagram;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
