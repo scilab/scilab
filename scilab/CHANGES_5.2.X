@@ -335,7 +335,7 @@ Bug fixes:
 
 * bug 5405 fixed - Update the whole diagram when a superblock is modified
 
-* bug 5413 fixed - An error was triggered when < or > where used in the comments
+* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
