@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 2165 -->
 //
 // <-- Bugzilla URL -->
@@ -15,4 +16,4 @@
 f = gcf();
 delete(f);
 if execstr("save(TMPDIR+""/bug_2165.tst"");", "errcatch")<>0 then bugmes();quit;end
-WARNING : save_graphichandle: handle no more valid ignored.
+WARNING: save_graphichandle: handle no more valid ignored.

@@ -41,9 +41,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
@@ -55,6 +53,9 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -167,36 +168,54 @@ public class BasicBlock extends XcosUIDObject {
     };
 
     public static BasicBlock createBlock(String label) {
-    	if(label.compareTo("TEXT_f") == 0) { return new TextBlock(label); }
-    	if(label.compareTo("SUPER_f") == 0) { return new SuperBlock(label); }
-    	if(label.compareTo("CONST_m") == 0
-    		|| label.compareTo("CONST") == 0
-    		|| label.compareTo("CONST_f") == 0) {
-    	    return new ConstBlock(label);
-    	}
-    	if(label.compareTo("AFFICH_m") == 0
-    		|| label.compareTo("AFFICH_f") == 0) {
-    	    return new AfficheBlock(label); 
-    	}
-    	if(label.compareTo("GAINBLK_f") == 0
-    		|| label.compareTo("GAINBLK") == 0
-    		|| label.compareTo("GAIN_f") == 0) {
-    	    return new GainBlock(label);
-    	}
-    	if(label.compareTo("IN_f") == 0) { return new ExplicitInBlock(label); }
-    	if(label.compareTo("OUT_f") == 0) { return new ExplicitOutBlock(label); }
-    	if(label.compareTo("INIMPL_f") == 0) { return new ImplicitInBlock(label); }
-    	if(label.compareTo("OUTIMPL_f") == 0) { return new ImplicitOutBlock(label); }
-    	if(label.compareTo("CLKINV_f") == 0) { return new EventInBlock(label); }
-    	if(label.compareTo("CLKOUTV_f") == 0) { return new EventOutBlock(label); }
-    	if(label.compareTo("SPLIT_f") == 0 || 
-    		label.compareTo("IMPSPLIT_f") == 0 ||
-    		label.compareTo("CLKSPLIT_f") == 0) {
-    	    return new SplitBlock(label);
-    	}
-    	else { 
-    		return new BasicBlock(label); 
-    	}
+	if (label.compareTo("TEXT_f") == 0) {
+	    return new TextBlock(label);
+	}
+	if (label.compareTo("SUPER_f") == 0) {
+	    return new SuperBlock(label);
+	}
+	if (label.compareTo("DSUPER") == 0) {
+	    return new SuperBlock(label, true);
+	}
+	if (label.compareTo("CONST_m") == 0 || label.compareTo("CONST") == 0
+		|| label.compareTo("CONST_f") == 0) {
+	    return new ConstBlock(label);
+	}
+	if (label.compareTo("AFFICH_m") == 0
+		|| label.compareTo("AFFICH_f") == 0) {
+	    return new AfficheBlock(label);
+	}
+	if (label.compareTo("GAINBLK_f") == 0
+		|| label.compareTo("GAINBLK") == 0
+		|| label.compareTo("GAIN_f") == 0) {
+	    return new GainBlock(label);
+	}
+	if (label.compareTo("IN_f") == 0) {
+	    return new ExplicitInBlock(label);
+	}
+	if (label.compareTo("OUT_f") == 0) {
+	    return new ExplicitOutBlock(label);
+	}
+	if (label.compareTo("INIMPL_f") == 0) {
+	    return new ImplicitInBlock(label);
+	}
+	if (label.compareTo("OUTIMPL_f") == 0) {
+	    return new ImplicitOutBlock(label);
+	}
+	if (label.compareTo("CLKINV_f") == 0) {
+	    return new EventInBlock(label);
+	}
+	if (label.compareTo("CLKOUTV_f") == 0
+		|| label.compareTo("CLKOUT_f") == 0) {
+	    return new EventOutBlock(label);
+	}
+	if (label.compareTo("SPLIT_f") == 0
+		|| label.compareTo("IMPSPLIT_f") == 0
+		|| label.compareTo("CLKSPLIT_f") == 0) {
+	    return new SplitBlock(label);
+	} else {
+	    return new BasicBlock(label);
+	}
     }
 
     public BasicBlock() {
@@ -379,11 +398,11 @@ public class BasicBlock extends XcosUIDObject {
 	this.equations = equations;
     }
 
-    public boolean isLocked() {
+    public synchronized boolean isLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public synchronized void setLocked(boolean locked) {
         this.locked = locked;
     }
 
@@ -786,7 +805,7 @@ public class BasicBlock extends XcosUIDObject {
 
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
-		Map<Class<? extends DefaultAction>, MenuItem> menuList = new HashMap<Class<? extends DefaultAction>, MenuItem>();
+		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
 		
 		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
@@ -844,6 +863,7 @@ public class BasicBlock extends XcosUIDObject {
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
 		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
@@ -880,7 +900,7 @@ public class BasicBlock extends XcosUIDObject {
      * Override this to customize contextual menu
      * @param menuList
      */
-    protected void customizeMenu(Map<Class<? extends DefaultAction>, MenuItem> menuList) {
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
 	// To be overridden by sub-classes
     }
     

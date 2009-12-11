@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos;
+package org.scilab.modules.xcos.graph;
 
 import java.awt.Color;
 import java.awt.MouseInfo;
@@ -56,6 +56,8 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
@@ -67,7 +69,6 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.block.SuperBlockDiagram;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -1135,14 +1136,6 @@ public class XcosDiagram extends ScilabGraph {
 			cancelDrawLinkAction();		    }
 		} else {
 		    dragSplitPos = null;
-//		    if(cell instanceof BasicPort || cell instanceof BasicLink) {
-//			//start draw link
-//			waitPathAddEdge = true;
-////			pathLink = (BasicLink) addEdge(null, getDefaultParent(), cell, null, null);
-////			pathLink.setGeometry(new mxGeometry(0, 0, 80, 80));
-////			pathLink.getGeometry().setTerminalPoint(new mxPoint(e.getX(), e.getY()), true);
-////			pathLink.getGeometry().setTerminalPoint(new mxPoint(e.getX(), e.getY()), false);
-//		    }
 		}
 	    }
 	}
@@ -1215,7 +1208,7 @@ public class XcosDiagram extends ScilabGraph {
     
     public boolean isCellConnectable(Object cell)
     {
-	//currently in drawLink action
+	//currently in draw link action
 	if(waitPathAddEdge) {
 	    if(drawLink != null) {
 		StringBuffer error = checkMultiplicities(drawLink, drawLink.getSource(), cell);
@@ -1995,11 +1988,11 @@ public class XcosDiagram extends ScilabGraph {
 	this.action = action;
     }
 
-    public SetContextAction getContextAction() {
+   public SetContextAction getContextAction() {
 	return action;
     }
 
-    protected BasicBlock getChildById(String uid) {
+    public BasicBlock getChildById(String uid) {
 	BasicBlock returnBlock = null;
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {

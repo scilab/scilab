@@ -159,6 +159,7 @@ public class ColorizationManager {
 	public class ColorUpdater implements Runnable {
 	    private ScilabStyleDocument scilabDocument;
 	    private Position startPosition, endPosition;
+	    int endOffset = -1; // javax.text API treats end of doc as a special case so we need to handle it as a special case :(
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
@@ -168,8 +169,18 @@ public class ColorizationManager {
 	    		this.startPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(event.getOffset()).getStartOffset());
 	    		// when inserting we must colorize until the end of the last line
 	    		// when removing edit length is not considered there is only one line in the end
-	    		this.endPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(event.getOffset()+
-	    				(( event.getType() ==  DocumentEvent.EventType.INSERT) ? event.getLength() : 0) ).getEndOffset());
+	    		int endOffset = scilabDocument.getParagraphElement(event.getOffset()+
+	    				(( event.getType() ==  DocumentEvent.EventType.INSERT) ? event.getLength() : 0) ).getEndOffset();
+	    		// unfortunately, when appending text, the java API considers that we are inserting before the virtual
+	    		// end-of-document position (getEndOffset() of the last Element is > getLength() !)
+	    		// so we need to special case this and use offset and not Position is this case.
+	    		if(endOffset > scilabDocument.getLength()){
+	    			this.endOffset = endOffset;
+	    			this.endPosition = null;
+	    		} else {
+	    			this.endOffset = -1;
+	    			this.endPosition = scilabDocument.createPosition(endOffset);
+	    		}
 	    		} catch (BadLocationException e) {
 	    			e.printStackTrace();
 	    			this.startPosition = this.endPosition = null;
@@ -194,9 +205,9 @@ public class ColorizationManager {
 	    }
 	    
 	    public void run() {
-			if (scilabDocument.getAutoColorize() && (startPosition != null) && (endPosition != null)) {
+			if (scilabDocument.getAutoColorize() && (startPosition != null) && (endPosition != null || this.endOffset != -1)) {
 				int startOffset = startPosition.getOffset();
-				int endOffset = endPosition.getOffset();
+				int endOffset = this.endOffset != -1 ? this.endOffset : endPosition.getOffset();
 				colorize(scilabDocument, startOffset, java.lang.Math.min(endOffset, scilabDocument.getLength()));				
 			}
 	    }

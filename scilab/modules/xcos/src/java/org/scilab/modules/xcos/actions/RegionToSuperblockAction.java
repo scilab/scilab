@@ -26,7 +26,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
@@ -38,7 +37,8 @@ import org.scilab.modules.xcos.block.ImplicitInBlock;
 import org.scilab.modules.xcos.block.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.block.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -273,29 +273,25 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    BasicPort target = null;
 
 	    if (link.getOutGoing()) {
-		target = (BasicPort) link.getLink().getTarget();
+	    	target = (BasicPort) link.getLink().getTarget();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    } else {
-		source = (BasicPort) link.getLink().getSource();
+	    	source = (BasicPort) link.getLink().getSource();
 
-		if (link.getLink() instanceof ExplicitLink) {
-		    target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof ImplicitLink) {
-		    target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else if (link.getLink() instanceof CommandControlLink) {
-		    target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
-		} else {
-		    System.err.println("Houston ...");
-		}
+	    	if (link.getLink() instanceof ExplicitLink) {
+	    		target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof ImplicitLink) {
+	    		target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	} else if (link.getLink() instanceof CommandControlLink) {
+	    		target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    	}
 	    }
 
 	    BasicLink newLink = BasicLink.createLinkFromPorts(source, target);

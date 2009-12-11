@@ -19,6 +19,11 @@ Text editor:
 - History
 - Help on the selected text
 
+* Performance enhancements for colorization (notable speed-up on opening large scripts Bug #4886)
+
+* Better Undo/Redo support (works across "Save"/ "Save as.." Bug #5465, undo / redo multiple edits on a region in one go )
+
+* Better multi-thread correctness wrt Event Dispatching Thread. (i.e. Bug #5173)
 
 Help browser:
 =============
@@ -49,6 +54,22 @@ See SEP #36 for more information
 
 * bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new 
                    "$...$" LaTeX feature.
+
+
+Graphic export:
+===============
+
+Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
+through :
+
+* Improved quality of the vectorial export
+
+* Improved size of the PDF (PS & EPS are however bigger but this should be 
+  fixed in Scilab > 5.2.0)
+
+* Handles export of graphics with LaTeX/MathML text
+
+* bug 4200 fixed - Export PDF what causing a "bad /BBox" with Acrobat
 
 
 Localization:
@@ -86,6 +107,9 @@ Xcos:
 * bug 5111 fixed - "Save As" default path wasn't the current file path
 
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
+
+* bug 5179 fixed - The accented letters used in text in Scicos diagram are not 
+                   visible with xcos at least under Linux
 
 * bug 5180 fixed - TEXT_f was not selectable on the palette.
 
@@ -159,6 +183,10 @@ Xcos:
 
 * bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
 
+* bug 5594 fixed - The links didn't move on arrow key typing.
+
+* bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
+
 
 Tree functions :
 ================
@@ -196,6 +224,8 @@ Bug fixes:
                    as default for next export file selection.
 
 * bug 4401 fixed - isnum returned wrong values.
+
+* bug 4435 fixed - bench_run is now documented.
 
 * bug 4565 fixed - getvalue macro is definied two times.
 
@@ -320,7 +350,7 @@ Bug fixes:
                    source did not exist and then aliasing had not been 
                    performed.
 
-* bug 5484 fixed - LCC-Win32 did not work with attached example.
+* bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
                    when no empty line was provided
@@ -646,9 +676,6 @@ Input/Output functions:
 =======================
 
 * Input arguments of fprintf are now checked 
-
-* save / load are now based on the HDF5 file format. The specification of the
-formats is going to be released in a near future. 
 
 * Rewrite:
     + getenv
@@ -1527,4 +1554,6 @@ Bug fixes:
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
+
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 

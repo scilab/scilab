@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Userdefinedfunctions_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Userdefinedfunctions_pal</refname>
+
+    <refpurpose>User defined functions palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/UserDefinedFunctions_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Userdefinedfunctions_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Userdefinedfunctions_pal">
+    <title>Description</title>
+
+    <para>The user defined function contains blocks that allow you to model
+    the component behaviour. The output is expressed as a function of the
+    input.</para>
+  </refsection>
+
+  <refsection id="Blocks_Userdefinedfunctions_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="c_block">c_block — C file function</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CBLOCK">CBLOCK — New C</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXPRESSION">EXPRESSION — Mathematical
+          expression</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="fortran_block">fortran_block — Fortran</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="generic_block3">generic_block3 — Generic block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PDE">PDE — 1D PDE block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="scifunc_block_m">scifunc_block_m — Scilab function
+          block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUPER_f">SUPER_f — Super block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f — Text</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

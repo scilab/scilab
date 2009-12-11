@@ -37,7 +37,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private String encoding = "UTF-8";
 	private boolean updater = true;
 	private boolean autoIndent;
-	private boolean autoColorize = true;
+	private boolean autoColorize ;
 	private volatile boolean shouldMergeEdits = false;
 	private boolean undoManagerEnabled;
 	
@@ -98,6 +98,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		setAsynchronousLoadPriority(2);
 		
 		autoIndent = ConfigXpadManager.getAutoIndent();
+		autoColorize = ConfigXpadManager.getAutoColorize();
 		encoding = ConfigXpadManager.getDefaultEncoding();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
@@ -202,12 +203,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		}
 	}
 
+
 	public boolean isContentModified() {
-		return contentModified;
+		return contentModified && ! undo.isAtReference();
 	}
+
 	
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
+		if (contentModified == false) {
+			undo.setReference();
+		}
 	}
 	/*
 	 * dump document on stderr with line positions 

@@ -18,7 +18,7 @@
 plot3d();
 h = gcf();
 
-tmp_file=pathconvert(TMPDIR+'/nonreg_test_bug4811.dat',%f)
+tmp_file=pathconvert(TMPDIR+'/nonreg_test_bug4811.dat',%f);
 
 save(tmp_file,h);
 // close the figure

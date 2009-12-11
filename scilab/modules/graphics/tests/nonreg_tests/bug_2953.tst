@@ -22,7 +22,7 @@ plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
 // with box = 2 we should have only the back thriedron drawn 
 // and no labels
 axes = gca();
-if (axes.box <> "hidden_axis") then pause; end
+if (axes.box <> "hidden_axes") then pause; end
 if (axes.x_label.visible <> "off") then pause; end
 if (axes.y_label.visible <> "off") then pause; end
 if (axes.z_label.visible <> "off") then pause; end

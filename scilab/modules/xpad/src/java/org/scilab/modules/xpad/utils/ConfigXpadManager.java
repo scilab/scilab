@@ -67,6 +67,7 @@ public final class ConfigXpadManager {
 	private static final String MAINWINPOSITION = "MainWindowPosition";
 	private static final String MAINWINSIZE = "MainWindowSize";
 	private static final String AUTOINDENT = "AutoIndent";
+	private static final String AUTOCOLORIZE = "AutoColorize";
 	private static final String DEFAULTENCONDING = "DefaultEncoding";
 	
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
@@ -477,6 +478,62 @@ public final class ConfigXpadManager {
 			return true;
 		} else {
 			return new Boolean(autoIndent.getAttribute(VALUE));
+		}
+	}
+	
+	
+	/**
+	 * Save Xpad autoColorize or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveAutoColorize(boolean activated) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+		    Element autoColorize = document.createElement(AUTOCOLORIZE);
+
+		    autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
+
+		    xpadProfile.appendChild((Node) autoColorize);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static boolean getAutoColorize() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
+		Element autoColorize = (Element) allSizeElements.item(0);
+		
+		if(autoColorize == null){
+			return true;
+		} else {
+			return new Boolean(autoColorize.getAttribute(VALUE));
 		}
 	}
 	

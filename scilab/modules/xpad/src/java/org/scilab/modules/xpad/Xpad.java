@@ -192,8 +192,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * Launch Xpad with an empty file
 	 */
 	public static void xpad() {
-		Xpad editorInstance = launchXpad();
-		editorInstance.addEmptyTab();
+		try  {
+			SwingUtilities.invokeAndWait( new Thread(){
+				public void run() {
+					Xpad editorInstance = launchXpad();
+					editorInstance.addEmptyTab();				
+				}
+			});
+		} catch(InterruptedException e) {
+			System.err.println("EDT interrupted "+e);
+		} catch(java.lang.reflect.InvocationTargetException e) {
+			System.err.println(" xpad() throw: "+e);
+		}
+		
 	}
 
 	/**
@@ -514,6 +525,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 			/*we test if the file has already a scilab extension*/
 			boolean hasNoExtension = true;
 
+			// if the file name is like this : any character , a dot , then 2,3or 4 characters, then
+			// we consider the file has already an extension
+			// we previously only check for .sci and .sce extension, but what if the user open a txt file
+			String fileName = f.getName();
+			if (fileName.lastIndexOf(".")!= -1 ){
+				if ( fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() >= 2
+					&& fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() <= 4){
+					hasNoExtension = false;
+				}
+				
+			}
+				/*
 			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
 				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
 					hasNoExtension = false;
@@ -521,6 +544,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 
 			}
+			*/
 			/*if no extension , we add it */
 			if (hasNoExtension) {
 
@@ -663,6 +687,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        DocumentEvent.EventType type = documentEvent.getType();
 		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
 		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
+		        	if(doc.getAutoColorize()) {
+		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
+		        	}
 		        	doc.setContentModified(true);
 		        	Xpad.this.updateTabTitle();
 		        } 
@@ -858,8 +885,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
-			//myReadThread.start();
-			SwingUtilities.invokeLater(myReadThread);
+			myReadThread.start();
 		}
 
 		// Get current file path for Execute file into Scilab
@@ -905,6 +931,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
 			System.err.println("Could not retrieve the current text tab."+e);
+			return null;
+		} catch( ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
+			//System.err.println("no tab (yet?)."+e); 
 			return null;
 		}
 	}
@@ -1086,8 +1115,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 						} catch (BadLocationException e) {
 							e.printStackTrace();
 						}
-						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.setUpdater(true);
 					}
@@ -1099,11 +1126,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 
-				if(colorStatus == false) {
-					getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
-				} else {
-					getInfoBar().setText("");
-				}
+				getInfoBar().setText("");
 
 				xpadGUI.updateEncodingMenu((ScilabStyleDocument)getTextPane().getStyledDocument());
 				

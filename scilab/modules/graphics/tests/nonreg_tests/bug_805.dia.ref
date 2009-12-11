@@ -16,5 +16,4 @@ f = gcf();
 f.auto_resize = "off";
 plot(1:10);
 f.axes_size = [10000, 10000];
-Wrong value for property 'axes_size': smaller values expected.
 // it should instead provide an error message

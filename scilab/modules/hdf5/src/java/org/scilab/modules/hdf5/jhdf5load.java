@@ -19,7 +19,7 @@ import ncsa.hdf.hdf5lib.H5;
  * See bug #5481
  *
  */
-public class jhdf5  {
+public class jhdf5load  {
 
 	public static void forceLoad(){
 		try {
