@@ -44,11 +44,34 @@ public class PortCheck extends mxMultiplicity {
 
     }
 
-    public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
-    {	
+    //Special case for drawLink 
+    //In this case, source are already connected.
+    public String checkDrawLink(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn) {
 	// maybe there is a better way to check this
-	if (!isPortNonConnected(source, target)) { if (errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;}
+	if(sourceOut > 1 || targetIn > 0) {
+	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
+	    }
+	    return null;
+	}
+
 	if (isTypeCompatible(source, target)) { return null; }
+	
+	return errorMessage;
+    }
+    
+    public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
+    {
+	// maybe there is a better way to check this
+	if(sourceOut > 0 || targetIn > 0) {
+	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
+	    }
+	    return null;
+	}
+
+	if (isTypeCompatible(source, target)) { return null; }
+	
 	return errorMessage;
     }
 
@@ -65,23 +88,6 @@ public class PortCheck extends mxMultiplicity {
 	}
 
 	// This rule is not applicable so we want it to be silent.
-	return true;
-    }
-    
-    protected boolean isPortNonConnected(Object firstPort, Object secondPort) {
-	    if (firstPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) firstPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-	
-	    if (secondPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) secondPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
 	return true;
     }
 }

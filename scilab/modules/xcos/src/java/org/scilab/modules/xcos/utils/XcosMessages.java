@@ -55,7 +55,7 @@ public final class XcosMessages {
     /** Palette menu in palette browser*/
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
-    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove user defined palette");
+    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -219,6 +219,8 @@ public final class XcosMessages {
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
     public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
+    public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
+    
     
     /** Debug level messages  */
     public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
