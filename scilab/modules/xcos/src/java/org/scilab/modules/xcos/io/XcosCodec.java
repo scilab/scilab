@@ -47,6 +47,7 @@ public class XcosCodec extends mxCodec {
     static {
 	// Add all xcos packages
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:08+0100\n"
 "PO-Revision-Date: 2009-11-23 11:08+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -36,7 +36,8 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Mauvaise taille pour l'argument d'entrée n° %d: Une fraction rationnelle "
 "est attendue.\n"

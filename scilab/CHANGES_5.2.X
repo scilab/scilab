@@ -42,8 +42,6 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
-* bug 3615 fixed - Missing right click in help to copy the selected text
-
 
 Text rendering:
 ===============
@@ -219,7 +217,6 @@ Tree functions :
 
 Bug fixes:
 ==========
-
 * bug 2588 fixed - Calling a function with no input argument contained in an 
                    mlist generates an error.
 
@@ -234,10 +231,6 @@ Bug fixes:
 
 * bug 3849 fixed - Path selected for graphics export is now memorized and used
                    as default for next export file selection.
-
-* bug 4149 fixed - common coshlt was defined two times (in C and fortran)
-
-* bug 4183 fixed - move the readmps function from sparse to optimization module
 
 * bug 4401 fixed - isnum returned wrong values.
 
