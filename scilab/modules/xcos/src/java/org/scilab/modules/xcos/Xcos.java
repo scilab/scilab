@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,7 +148,7 @@ public final class Xcos {
 	final String file = xcosFile;
 	final File temp = new File(h5File);
 	final boolean overwrite = forceOverwrite;
-	
+
 	if (temp.exists()) {
 	    if (overwrite == false) {
 		return 1;
@@ -155,49 +156,84 @@ public final class Xcos {
 		temp.delete();
 	    }
 	}
-	
-	SwingUtilities.invokeLater(new Runnable() {
-	    public void run() {
-	XcosDiagram diagram = createHiddenDiagram();
-	diagram.openDiagramFromFile(file);
-	diagram.dumpToHdf5File(temp.getAbsolutePath());
-	diagram.closeDiagram();
-	    }
-	});
+
+	try {
+	    SwingUtilities.invokeAndWait(new Runnable() {
+		public void run() {
+		    XcosDiagram diagram = createHiddenDiagram();
+		    diagram.openDiagramFromFile(file);
+		    diagram.dumpToHdf5File(temp.getAbsolutePath());
+		    diagram.closeDiagram();
+		}
+	    });
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (InvocationTargetException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	return 0;
     }
 
-    public static void xcosDiagramOpen(String UID, boolean show) {
-	BasicBlock block = null;
-	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-	for (XcosDiagram diagram : allDiagrams) {
-	    // exclude SuperBlock from parsing
-	    if (diagram instanceof SuperBlockDiagram) {
-		continue;
-	    }
+    public static void xcosDiagramOpen(String uid, boolean showed) {
+	final String UID = uid;
+	final boolean show = showed;
+	
+	try {
+	    SwingUtilities.invokeAndWait(new Runnable() {
+	    	public void run() {
+	    BasicBlock block = null;
+	    List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	    for (XcosDiagram diagram : allDiagrams) {
+	        // exclude SuperBlock from parsing
+	        if (diagram instanceof SuperBlockDiagram) {
+	    	continue;
+	        }
 
-	    block = diagram.getChildById(UID);
-	    if (block != null) {
-		SuperBlock newSP = (SuperBlock) BasicBlock
-			.createBlock("SUPER_f");
-		newSP.setRealParameters(block.getRealParameters());
-		newSP.setParentDiagram(block.getParentDiagram());
-		if (show == true) {
-		    newSP.openBlockSettings(null);
-		    newSP.getChild().setReadOnly(true);
-		}
-		openedSuperBlock.put(UID, newSP);
-		break;
+	        block = diagram.getChildById(UID);
+	        if (block != null) {
+	    	SuperBlock newSP = (SuperBlock) BasicBlock
+	    		.createBlock("SUPER_f");
+	    	newSP.setRealParameters(block.getRealParameters());
+	    	newSP.setParentDiagram(block.getParentDiagram());
+	    	if (show == true) {
+	    	    newSP.openBlockSettings(null);
+	    	    newSP.getChild().setReadOnly(true);
+	    	}
+	    	openedSuperBlock.put(UID, newSP);
+	    	break;
+	        }
 	    }
+	    	}});
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (InvocationTargetException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
     }
 
-    public static void xcosDiagramClose(String UID) {
+    public static void xcosDiagramClose(String uid) {
+	final String UID = uid;
+	
+	try {
+	    SwingUtilities.invokeAndWait(new Runnable() {
+	    	public void run() {
 	SuperBlock SP = openedSuperBlock.get(UID);
 	if (SP != null) {
 	    openedSuperBlock.remove(UID);
 	    SP.closeBlockSettings();
 	    SP = null;
+	}
+	    	}});
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (InvocationTargetException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
     }
 }
