@@ -55,7 +55,7 @@ Graphic export:
 ===============
 
 Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
-through :
+through FOP/Batik:
 
 * Improved quality of the vectorial export
 
