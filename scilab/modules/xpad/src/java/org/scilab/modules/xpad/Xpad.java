@@ -514,6 +514,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 			/*we test if the file has already a scilab extension*/
 			boolean hasNoExtension = true;
 
+			// if the file name is like this : any character , a dot , then 2,3or 4 characters, then
+			// we consider the file has already an extension
+			// we previously only check for .sci and .sce extension, but what if the user open a txt file
+			String fileName = f.getName();
+			if (fileName.lastIndexOf(".")!= -1 ){
+				if ( fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() >= 2
+					&& fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() <= 4){
+					hasNoExtension = false;
+				}
+				
+			}
+				/*
 			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
 				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
 					hasNoExtension = false;
@@ -521,6 +533,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 
 			}
+			*/
 			/*if no extension , we add it */
 			if (hasNoExtension) {
 
