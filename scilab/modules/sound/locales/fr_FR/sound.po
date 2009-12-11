@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2009-11-23 12:16+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -36,8 +36,7 @@ msgstr ""
 "supporté.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Une erreur est survenue: format de fichier invalide. Erreur pendant la "
 "lecture du morceau <%s>.\n"
@@ -56,8 +55,7 @@ msgstr "%s: Mauvais argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
+msgstr "%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -131,8 +129,7 @@ msgid "Cannot play file."
 msgstr "Ne peux pas jouer le fichier."
 
 msgid "Cannot read .wav file  with more than 16 bits per sample."
-msgstr ""
-"Ne peux pas lire le fichier .wav avec plus de 16 bits par échantillon."
+msgstr "Ne peux pas lire le fichier .wav avec plus de 16 bits par échantillon."
 
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "Le tableau de données doit avoir 1 ou 2 dimensions seulement."
@@ -165,8 +162,7 @@ msgstr "Limites d'échantillonnage invalide (utilisez l'ordre croissant)."
 msgid "Invalid wav format."
 msgstr "Format wav invalide."
 
-msgid ""
-"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr ""
 "Mu-law ne peut être utilisé qu'avec des données 8 bits. Utilisez "
 "method=''linear'' à la place."

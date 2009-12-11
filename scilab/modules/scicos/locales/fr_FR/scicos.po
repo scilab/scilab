@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
 "PO-Revision-Date: 2009-11-23 13:27+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -31,8 +31,7 @@ msgstr " %s.mo doit être recompilée\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr ""
-"%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
+msgstr "%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
 
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
@@ -61,8 +60,7 @@ msgstr "%s: Erreur: Un bloc scifunc n'a pas été défini."
 
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr ""
-"%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
+msgstr "%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
@@ -124,6 +122,11 @@ msgstr "&Outils"
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr "''scicos'' n'est plus accessible, veuillez utiliser ''xcos''.\n"
 
+#
+# File: macros/scicos_scicos/buildnewblock.sci, line: 68
+msgid "A compatible C compiler required."
+msgstr ""
+
 msgid "Only one block can be selected in current window for this operation."
 msgstr ""
 "Un seul bloc peut être sélectionné dans la fenêtre actuelle pour cette "
@@ -132,6 +135,11 @@ msgstr ""
 #, c-format
 msgid "Problem while building library %s\n"
 msgstr "Un problème est arrivé en construisant la bibliothèque %s\n"
+
+#
+# File: macros/scicos_scicos/buildnewblock.sci, line: 68
+msgid "Sorry compiling problem"
+msgstr ""
 
 msgid "The current icon depends on block parameter\n"
 msgstr "L'icône courant dépend des paramètres du bloc\n"

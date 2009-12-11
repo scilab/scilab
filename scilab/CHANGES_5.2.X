@@ -42,6 +42,8 @@ Help browser:
 * In the console and the text editor, in menu associated to a right button
 click, the item "Help on the selected text" has been added
 
+* bug 3615 fixed - Missing right click in help to copy the selected text
+
 
 Text rendering:
 ===============
@@ -145,6 +147,8 @@ Xcos:
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
+* bug 5395 fixed - The xcos block AFFICH_m do not bother with the max
+                   number of digits.
 * bug 5403 fixed - A graphic windows wasn't created only when needed.
 
 * bug 5407 fixed - It was impossible to use the arrow keys to move a block
@@ -175,6 +179,8 @@ Xcos:
 * bug 5449 fixed - The palette tab position was modified even if invisible
 
 * bug 5464 fixed - Actions were not disabled on file loading
+
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
@@ -213,8 +219,11 @@ Tree functions :
 
 Bug fixes:
 ==========
+
 * bug 2588 fixed - Calling a function with no input argument contained in an 
                    mlist generates an error.
+
+* bug 3200 fixed - the add_help_chapter function returns a boolean.
 
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist.
@@ -225,6 +234,10 @@ Bug fixes:
 
 * bug 3849 fixed - Path selected for graphics export is now memorized and used
                    as default for next export file selection.
+
+* bug 4149 fixed - common coshlt was defined two times (in C and fortran)
+
+* bug 4183 fixed - move the readmps function from sparse to optimization module
 
 * bug 4401 fixed - isnum returned wrong values.
 
@@ -1055,6 +1068,9 @@ Bug fixes:
 
 * bug 3184 fixed - Ticks of colorbar have disappeared
 
+* bug 3200 fixed - add_help_chapter returns a boolean result which was
+                   not explained in the help page.
+
 * bug 3201 fixed - Help page for the function del_help_chapter added
 
 * bug 3264 fixed - More explicit message when too many files have been
@@ -1102,6 +1118,9 @@ Bug fixes:
 * bug 4110 fixed - Demos order were different between Linux and Windows versions
 
 * bug 4181 fixed - AdCommunications help page removed
+
+* bug 4183 fixed - the function readmps has been moved to the
+                   optimization folder
 
 * bug 4184 fixed - Style of the examples corrected
 
@@ -1544,11 +1563,16 @@ Bug fixes:
 
 * bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
 
+* bug 5349 fixed - the file predator.cos was not openable.
+
 * bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
 
 * bug 5386 fixed - Wrong title for auto indent action in menu.
+
+* bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
+                   number of digits.
 
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
@@ -1556,7 +1580,11 @@ Bug fixes:
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
+* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
+
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
+
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
 * bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 

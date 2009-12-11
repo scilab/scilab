@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: \t2007-09-27 16:24+0200\n"
 "PO-Revision-Date: 2009-11-23 13:09+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -131,8 +131,7 @@ msgstr "%s: Le module ''%s'' n''est pas installé.\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr ""
-"%s: Ni Wget ni Curl n'ont été trouvé: Installer un ce des outils SVP\n"
+msgstr "%s: Ni Wget ni Curl n'ont été trouvé: Installer un ce des outils SVP\n"
 
 #, c-format
 msgid ""
@@ -203,8 +202,7 @@ msgstr "%s: L''extraction de l''archive ''%s'' a échoué.\n"
 
 #, c-format
 msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
-msgstr ""
-"%s: Le fichier %s n''existe pas ou n''est pas accessible en lecture.\n"
+msgstr "%s: Le fichier %s n''existe pas ou n''est pas accessible en lecture.\n"
 
 #, c-format
 msgid "%s: The file %s is not well formated at line %d\n"
@@ -578,16 +576,15 @@ msgstr ""
 "''I'' attendues.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: Doit être un nom de "
 "package Atoms.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
-".tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that end with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une simple chaîne de "
 "caractères terminant par .tar.gz, .tgz ou .zip attendue.\n"
@@ -605,16 +602,15 @@ msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: Mauvaise valeur pour l''argument d''entré n° %d: Ceci ("
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: Ce n''est pas une "
 "version valide.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: Ce n''est pas une "
 "version/dépendance valide.\n"
@@ -630,8 +626,8 @@ msgstr ""
 msgid ""
 "%s: You have not enought rights to remove any version of the package %s.\n"
 msgstr ""
-"%s: Vous n''avez pas assez de droits pour supprimer une version du package "
-"%s.\n"
+"%s: Vous n''avez pas assez de droits pour supprimer une version du package %"
+"s.\n"
 
 #, c-format
 msgid "%s: You have not enought rights to remove the package %s (%s).\n"
@@ -640,8 +636,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
-msgstr ""
-"%s: Vous n''avez pas les droits d''écriture dans ce répertoire : %s.\n"
+msgstr "%s: Vous n''avez pas les droits d''écriture dans ce répertoire : %s.\n"
 
 #, c-format
 msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
@@ -681,6 +676,11 @@ msgstr "Auteur(s)"
 msgid "Automaticaly Installed"
 msgstr "Installé Automatiquement"
 
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 271
+msgid "Bytes"
+msgstr ""
+
 msgid "Category(ies)"
 msgstr "Catégorie(s)"
 
@@ -708,39 +708,42 @@ msgstr "Installer"
 msgid "Install Directory"
 msgstr "Répertoire d'installation"
 
-msgid "Installation done !"
-msgstr "Installation effectuée !"
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 35
+msgid "Installation done! Please restart Scilab to take changes into account."
+msgstr ""
 
-msgid "Installation failed !"
+#, fuzzy
+msgid "Installation failed!"
 msgstr "L''installation a échoué !"
 
 msgid "Installing..."
 msgstr "Installation..."
 
-msgid "Ko"
-msgstr "Ko"
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 274
+msgid "KB"
+msgstr ""
 
 msgid "License"
 msgstr "Licence"
 
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 277
+msgid "MB"
+msgstr ""
+
 msgid "Maintainer(s)"
 msgstr "Mainteneur(s)"
-
-msgid "Mo"
-msgstr "Mo"
 
 msgid "Modules"
 msgstr "Modules"
 
 msgid "No Atoms module available. Check your Internet connection."
-msgstr ""
-"Pas de modules Atoms disponibles. Vérifiez votre connection Internet."
+msgstr "Pas de modules Atoms disponibles. Vérifiez votre connection Internet."
 
 msgid "No module selected"
 msgstr "Pas de module sélectionné"
-
-msgid "Octets"
-msgstr "Octets"
 
 msgid "Package"
 msgstr "Package"
@@ -748,10 +751,13 @@ msgstr "Package"
 msgid "Remove"
 msgstr "Supprimer"
 
-msgid "Remove done !"
-msgstr "Suppression effectuée !"
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 53
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
 
-msgid "Remove failed !"
+#, fuzzy
+msgid "Remove failed!"
 msgstr "La suppression a échoué !"
 
 msgid "Removing..."
@@ -772,10 +778,13 @@ msgstr "Titre"
 msgid "Update"
 msgstr "Mettre à jour"
 
-msgid "Update done !"
-msgstr "Mise à jour effectuée !"
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 71
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
 
-msgid "Update failed !"
+#, fuzzy
+msgid "Update failed!"
 msgstr "La mise à jour a échoué !"
 
 msgid "Updating..."
@@ -786,3 +795,21 @@ msgstr "Version"
 
 msgid "WebSite"
 msgstr "Site web"
+
+#~ msgid "Installation done !"
+#~ msgstr "Installation effectuée !"
+
+#~ msgid "Ko"
+#~ msgstr "Ko"
+
+#~ msgid "Mo"
+#~ msgstr "Mo"
+
+#~ msgid "Octets"
+#~ msgstr "Octets"
+
+#~ msgid "Remove done !"
+#~ msgstr "Suppression effectuée !"
+
+#~ msgid "Update done !"
+#~ msgstr "Mise à jour effectuée !"
