@@ -10,13 +10,14 @@
  *
  */
 
-package org.scilab.modules.xcos.io;
+package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
+import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
