@@ -268,6 +268,9 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5480 fixed - When creating a Superblock, input and output links were removed
+                   and input and output ports were not created.
+
 * bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
 
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
@@ -447,6 +450,11 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
+
+* bug 5469 fixed - Force origin presence on an axes with location property set 
+                   to 'origin'.
+
+* bug 5470 fixed - the addcolor function help page didn't contain example.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -1647,8 +1655,6 @@ Bug fixes:
 * bug 5404 fixed - Open & close Editor creates a java exception.
 
 * bug 5437 fixed - Show error message during xcos simulation initialization.
-
-* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
 
