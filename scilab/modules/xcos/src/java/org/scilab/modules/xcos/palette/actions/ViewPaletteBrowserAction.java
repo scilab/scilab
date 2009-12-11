@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.palette.actions;
 
 import java.util.ArrayList;
 
