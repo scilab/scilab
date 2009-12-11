@@ -1466,6 +1466,8 @@ Bug fixes:
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in Scilab 5.x)
 
+* bug 4820 fixed - the help page for the function csgn has been added
+
 * bug 4826 fixed - The type of the 'dims' entry of an hypermat was not always the same
 
 * bug 4828 fixed - Completion cleared the content of some completed path
@@ -1505,6 +1507,9 @@ Bug fixes:
 * bug 4964 fixed - set or get 'format_n' property from an axis crashed Scilab
 
 * bug 4966 fixed - execstr([]) return []
+
+* bug 4970 fixed - Some link ID's were not correct in the doc of the
+                   current master
 
 * bug 4974 fixed - exec('') crashed Scilab
 
