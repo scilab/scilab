@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 
 //
@@ -123,4 +124,25 @@ assert_equal ( myobj.nb , 3 );
 nbve = optimsimplex_getnbve ( s1 );
 assert_equal ( nbve , 3 );
 s1 = optimsimplex_destroy ( s1 );
+
+// Test with a unconsistent x0 and len
+cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2] , rosenbrock , [1 2 3] )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_axes: The len vector is not consistent with the x0 point. Current shape of x0 is 1 x 2 while current shape of len is 1 x 3.";
+assert_equal ( computed , expected );
+
+// Test with a unconsistent x0
+cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2;3 4] , rosenbrock )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_axes: The x0 vector is expected to be a row matrix, but current shape is 2 x 2.";
+assert_equal ( computed , expected );
+
+// Test with a unconsistent len
+cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2] , rosenbrock , ""foo"" )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "assert_typereal: Expected real variable for variable len at input #1, but got string instead.";
+assert_equal ( computed , expected );
 

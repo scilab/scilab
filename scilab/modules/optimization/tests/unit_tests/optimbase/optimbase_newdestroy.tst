@@ -270,7 +270,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but got string instead";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 //
 // Test wrong -tolfunmethod
@@ -278,7 +278,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but got string instead";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);

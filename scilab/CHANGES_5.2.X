@@ -1484,3 +1484,6 @@ Bug fixes:
 
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
+ 
+
