@@ -61,7 +61,6 @@ import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
-import org.scilab.modules.xcos.actions.ShowParentAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
@@ -70,6 +69,7 @@ import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -96,6 +96,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.layout.orthogonal.model.mxPointPair;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
@@ -1091,6 +1092,17 @@ public class XcosDiagram extends ScilabGraph {
 		    //Tips for ignore first mouse release after drag
 		    waitPathRelease = false;
 		    waitPathAddEdge = true;
+		    
+		    //adjust final point
+		    mxGeometry geoPort = drawLink.getSource().getGeometry();
+		    mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+		    mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
+		    mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+		    
+		    getModel().beginUpdate();
+		    drawLink.getGeometry().setTargetPoint(point);
+		    getModel().endUpdate();
+		    refresh();
 		} else if(waitPathAddEdge){
 		    if(drawLink != null) {
 			getModel().beginUpdate();
@@ -1128,12 +1140,19 @@ public class XcosDiagram extends ScilabGraph {
 				setSelectionCell(drawLink);
 			    }
 			} else {
-			    geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+			    mxPoint lastPoint = geo.getTargetPoint(); 
+			    
+			    //try to find the best, orthogonal or diagonal point to best visual effect
+			    
+			    //true -> positve offset
+			    //false -> negative offset
+			    geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
 			}
 			getModel().endUpdate();
 			refresh();
 		    } else {
-			cancelDrawLinkAction();		    }
+			cancelDrawLinkAction();
+		    }
 		} else {
 		    dragSplitPos = null;
 		}
@@ -1141,6 +1160,37 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    static mxPoint getPointPosition(mxPoint origin, mxPoint click) {
+	boolean signX = click.getX() > origin.getX();
+	boolean signY = click.getY() > origin.getY();
+	double diffX = Math.abs(click.getX() - origin.getX());
+	double diffY = Math.abs(click.getY() - origin.getY());
+
+	if(diffX > diffY) {
+	    if(diffY > (diffX / 2)) { //diagonal
+		diffY = diffX;
+	    } else { //orthogonal
+		diffY = 0;
+	    }
+	} else { // < or ==
+	    if(diffX > (diffY / 2)) { //diagonal
+		diffX = diffY;
+	    } else { //orthogonal
+		diffX = 0;
+	    }
+	}
+
+	//restore signs
+	if(signX == false) {
+	    diffX = -diffX;
+	}
+
+	if(signY == false) {
+	    diffY = - diffY;
+	}
+
+	return new mxPoint(origin.getX() + diffX, origin.getY() + diffY); 
+    }
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
      * and a (+) to expand them.

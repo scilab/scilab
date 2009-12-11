@@ -19,8 +19,21 @@ Text editor:
 - History
 - Help on the selected text
 
+* bug 4873 fixed - "undo" doesn't work if the last action affects several lines. 
+
+* bug 4883 fixed - "Menu->Document->Auto Indent" preference is not saved.
+
 * bug 4886 fixed - Performance enhancements for colorization
   (notable speed-up on opening large scripts)
+
+* bug 5013 fixed - Find/Replace dialog box: Buttons are resized after the search.
+
+* bug 5125 fixed - No more get an infinite loop when using the 
+                   Undo functionnality.
+
+* bug 5137 fixed - Drag & drop on editor was not enabled.
+
+* bug 5140 fixed - "Load into Scilab" was executed line by line.
 
 * bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
   Thread.
@@ -103,13 +116,30 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
+* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+
+* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
+
+* bug 5052 fixed - The context variables defined at a upper level are not known at a lower one.
+
+* bug 5053 fixed - Update the layout of in/out port of a block when modified
+
+* bug 5054 fixed - Remove ports on a block, remove the connected links.
+
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
+		   the frame "Scope" should be checked by default.
+
 * bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
 * bug 5104 fixed - The block view was not updated on undo/redo
 
 * bug 5111 fixed - "Save As" default path wasn't the current file path
 
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
+
+* bug 5167 fixed - xcos*.h5 and xcos*.h5 were not deleted
 
 * bug 5179 fixed - The accented letters used in text in Scicos diagram are not 
                    visible with xcos at least under Linux
@@ -165,9 +195,6 @@ Xcos:
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
-                   warning and return softly.
-
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
@@ -188,12 +215,12 @@ Xcos:
 
 * bug 5533 fixed - SetupAction didn't valid inputs
 
-* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab
+                   execution thread.
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
-
 
 Tree functions :
 ================
@@ -240,6 +267,8 @@ Bug fixes:
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
+* bug 4767 fixed - Typo in minreal were causing errors in some cases
+
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
@@ -248,7 +277,7 @@ Bug fixes:
 
 * bug 5037 fixed - The link style menu doesn't have mnemonics
 
-* bug 5053 fixed - Update the layout of in/out port of a block when modified
+* bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
 
 * bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for
                    Untitled files even if they are not modified.
@@ -257,12 +286,8 @@ Bug fixes:
 
 * bug 5107 fixed - mgetstr help page did not contain any example.
 
-* bug 5125 fixed - Editor: No more get an infinite loop when using the 
-                   Undo functionnality.
-
-* bug 5137 fixed - Editor: drag & drop on editor was not enabled.
-
-* bug 5140 fixed - "Load into Scilab" was executed line by line.
+* bug 5163 fixed - Incorrectly resized text after having performed
+  	  	   		 magnification+demagnification
 
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other 
                    tree functions.
@@ -351,6 +376,9 @@ Bug fixes:
 
 * bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
@@ -358,6 +386,11 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with
+                   editor.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -391,18 +424,19 @@ Bug fixes:
 * bug 5519 fixed - added a message asking the user if he wants to exit the 
                    editor when he clicks on the cross.
 
-* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
-
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
-
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
 * bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
                    ISO-8859-1 and not in UTF-8.
+ 
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
 * bug 5586 fixed - getscilabkeyworgs was broken.
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
+                   of x0 and len for "axes" simplex.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1517,34 +1551,23 @@ Bug fixes:
 
 * bug 4991 fixed - No check if there was modification when doing "Execute Into Scilab" in the editor
 
-* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
-
-* bug 5013 fixed - Text editor - Find/Replace dialog box : Buttons are resized after the search.
-
-* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
-
 * bug 5033 fixed - The Demo CACSD / Inverted pendulum was broken.
 
 * bug 5042 fixed - (1|[1,0,1;1,1,0]) returned a wrong result.
-
-* bug 5054 fixed - Remove ports on a block, remove the connected links.
 
 * bug 5074 fixed - French help star showed mis-encoded characters.
 
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
-* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
-		   the frame "Scope" should be checked by default.
-
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
+
+* bug 5121 fixed - Gui associated to PDE block has been localized
 
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
 
 * bug 5155 fixed - Scilab windows 32 bits version required CPU SSE 2 instructions.
-
-* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
@@ -1588,10 +1611,4 @@ Bug fixes:
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
-* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
-
-* bug 5585 fixed - sysdiag(): Both examples were duplicated.
-
-* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 

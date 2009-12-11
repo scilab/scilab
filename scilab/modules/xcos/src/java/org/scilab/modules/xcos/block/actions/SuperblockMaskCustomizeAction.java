@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.block.actions;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -18,13 +18,13 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskSaveBlockGUIAction extends DefaultAction {
+public class SuperblockMaskCustomizeAction extends DefaultAction {
 
-	private SuperblockMaskSaveBlockGUIAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SAVE_BLOCK_GUI, scilabGraph);
+	private SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.CUSTOMIZE, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SAVE_BLOCK_GUI, null, new SuperblockMaskSaveBlockGUIAction(scilabGraph), null);
+		return createMenu(XcosMessages.CUSTOMIZE, null, new SuperblockMaskCustomizeAction(scilabGraph), null);
 	}
 }
