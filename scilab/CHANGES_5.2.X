@@ -387,6 +387,11 @@ Bug fixes:
                    source did not exist and then aliasing had not been 
                    performed.
 
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with
+                   editor.
+
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
 * bug 5487 fixed - help_from_sci was taking the first line of code as author
@@ -419,15 +424,14 @@ Bug fixes:
 * bug 5519 fixed - added a message asking the user if he wants to exit the 
                    editor when he clicks on the cross.
 
-* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
-
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
-
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
 * bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
                    ISO-8859-1 and not in UTF-8.
+ 
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
 * bug 5586 fixed - getscilabkeyworgs was broken.
 
@@ -1605,9 +1609,4 @@ Bug fixes:
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
-* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
-
-* bug 5585 fixed - sysdiag(): Both examples were duplicated.
-
 
