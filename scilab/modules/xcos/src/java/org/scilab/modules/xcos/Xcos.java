@@ -35,8 +35,9 @@ public final class Xcos {
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
     /* Static class */
-    private Xcos() {}
-    
+    private Xcos() {
+    }
+
     /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
@@ -179,33 +180,34 @@ public final class Xcos {
     public static void xcosDiagramOpen(String uid, boolean showed) {
 	final String UID = uid;
 	final boolean show = showed;
-	
+
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
-	    	public void run() {
-	    BasicBlock block = null;
-	    List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-	    for (XcosDiagram diagram : allDiagrams) {
-	        // exclude SuperBlock from parsing
-	        if (diagram instanceof SuperBlockDiagram) {
-	    	continue;
-	        }
+		public void run() {
+		    BasicBlock block = null;
+		    List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+		    for (XcosDiagram diagram : allDiagrams) {
+			// exclude SuperBlock from parsing
+			if (diagram instanceof SuperBlockDiagram) {
+			    continue;
+			}
 
-	        block = diagram.getChildById(UID);
-	        if (block != null) {
-	    	SuperBlock newSP = (SuperBlock) BasicBlock
-	    		.createBlock("SUPER_f");
-	    	newSP.setRealParameters(block.getRealParameters());
-	    	newSP.setParentDiagram(block.getParentDiagram());
-	    	if (show == true) {
-	    	    newSP.openBlockSettings(null);
-	    	    newSP.getChild().setReadOnly(true);
-	    	}
-	    	openedSuperBlock.put(UID, newSP);
-	    	break;
-	        }
-	    }
-	    	}});
+			block = diagram.getChildById(UID);
+			if (block != null) {
+			    SuperBlock newSP = (SuperBlock) BasicBlock
+				    .createBlock("SUPER_f");
+			    newSP.setRealParameters(block.getRealParameters());
+			    newSP.setParentDiagram(block.getParentDiagram());
+			    if (show == true) {
+				newSP.openBlockSettings(null);
+				newSP.getChild().setReadOnly(true);
+			    }
+			    openedSuperBlock.put(UID, newSP);
+			    break;
+			}
+		    }
+		}
+	    });
 	} catch (InterruptedException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -217,17 +219,18 @@ public final class Xcos {
 
     public static void xcosDiagramClose(String uid) {
 	final String UID = uid;
-	
+
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
-	    	public void run() {
-	SuperBlock SP = openedSuperBlock.get(UID);
-	if (SP != null) {
-	    openedSuperBlock.remove(UID);
-	    SP.closeBlockSettings();
-	    SP = null;
-	}
-	    	}});
+		public void run() {
+		    SuperBlock SP = openedSuperBlock.get(UID);
+		    if (SP != null) {
+			openedSuperBlock.remove(UID);
+			SP.closeBlockSettings();
+			SP = null;
+		    }
+		}
+	    });
 	} catch (InterruptedException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
