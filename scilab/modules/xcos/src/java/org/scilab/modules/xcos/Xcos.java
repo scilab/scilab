@@ -135,14 +135,15 @@ public final class Xcos {
      * This method is called when the user exits from Scilab
      */
     public static void closeXcosFromScilab() {
-	
-	    SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-	// call close on all diagrams
-	while (XcosTab.getAllDiagrams().size() > 0) {
-	    XcosTab.getAllDiagrams().get(0).closeDiagram(true);
-	}
-	    }});
+
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
+		// call close on all diagrams
+		while (XcosTab.getAllDiagrams().size() > 0) {
+		    XcosTab.getAllDiagrams().get(0).closeDiagram(true);
+		}
+	    }
+	});
     }
 
     /**
