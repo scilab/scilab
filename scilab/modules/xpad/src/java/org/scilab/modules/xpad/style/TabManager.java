@@ -66,15 +66,15 @@ public class TabManager {
 		int res = 0, tabLength = tab.length();
 		try {
 			String nextChars = scilabDocument.getText(position, java.lang.Math.min(tabLength, scilabDocument.getLength()-position));
-			if(nextChars.equals(tab)){
-				scilabDocument.remove(position, tabLength);
-				res= tabLength;
+			// remove as much chararcters as possible if they are part of the tab string cf. #5225
+			while((res!= Math.min(nextChars.length(), tabLength)) && (nextChars.charAt(res)==tab.charAt(res))) {
+				scilabDocument.remove(position, 1);
+				++res;
 			}
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
-			res= 0;
 		}
 		
 		return res;

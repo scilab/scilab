@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discontinuous_pal"
+<refentry version="5.0-subset Scilab" xml:id="discontinuities_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -29,9 +29,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discontinuous_pal</refname>
+    <refname>discontinuities_pal</refname>
 
-    <refpurpose>Discontinuous palette</refpurpose>
+    <refpurpose>discontinuities palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,13 +40,13 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discontinuous_pal.jpg"
+                     fileref="../../../../images/palettes/discontinuities_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discontinuous_pal">
+  <refsection id="Module_discontinuities_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -56,14 +56,14 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discontinuous_pal">
+  <refsection id="Description_discontinuities_pal">
     <title>Description</title>
 
-    <para>Discontinuous palette includes blocks whose outputs are
-    discontinuous functions of their inputs.</para>
+    <para>discontinuities palette includes blocks whose outputs are
+    discontinuities functions of their inputs.</para>
   </refsection>
 
-  <refsection id="Blocks_Discontinuous_pal">
+  <refsection id="Blocks_discontinuities_pal">
     <title>Blocks</title>
 
     <itemizedlist>
