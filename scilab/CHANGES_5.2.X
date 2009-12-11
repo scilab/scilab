@@ -5,8 +5,6 @@
 Text editor:
 ============
 
-* Rename of the item menu "Indent" => "Reformat Selection" (Bug #5219)
-
 * Mnemonic added on View ("V") and Document ("D") in the menu bar
 
 * Refactoring of some large part of the source code
@@ -35,11 +33,38 @@ Text editor:
 
 * bug 5140 fixed - "Load into Scilab" was executed line by line.
 
+* bug 5171 fixed - Problem with the highlight in the undo manager 
+
 * bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
   Thread.
+  
+* bug 5341 fixed - "Save All" functionality was missing.
+
+* bug 5174 fixed - The undo does not work on tab
+
+* bug 5189 fixed - No more give an error when the user cancels file selection
+                   for saving.
+
+* bug 5219 fixed - Rename of the item menu "Indent" => "Reformat Selection"
+
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
+
+* bug 5224 fixed - Maj+Tab modify the text selection.
+
+* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
+
+* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+
+* bug 5308 fixed - editor did not check input argument type.
+
+* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
+
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
+
 
 Help browser:
 =============
@@ -71,6 +96,8 @@ See SEP #36 for more information
 * bug 5303 fixed - pol2tex() cannot be used straightforwardly with the new 
                    "$...$" LaTeX feature.
 
+* bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
+  	  	   		   feature.
 
 Graphic export:
 ===============
@@ -146,18 +173,38 @@ Xcos:
 
 * bug 5180 fixed - TEXT_f was not selectable on the palette.
 
+* bug 5182 fixed - In some cases, the main diagram dialog no more respond
+  	  	   		   neither to the "validate" nor "cancel" menu
+
 * bug 5183 fixed - Simulation menu wasn't disabled on a superblock diagram
 
 * bug 5184 fixed - Setup menu values weren't localized
+
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
 
 * bug 5196 fixed - Openning a SuperBlock modified some positions.
 
 * bug 5202 fixed - The description of a module is now scrollable.
 
+* bug 5209 fixed - Bad french translation of "Optimisation and Simulation"
+
 * bug 5218 fixed - Uicontrols of style 'text' are now scrollable.
+
+* bug 5221 fixed - libhdf5 is defined with the GLIBC_2.7 as mandatory
 
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
+
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
+
+* bug 5299 fixed - When saving an xcos diagram, when the selected file were
+  	  	   		   already existing and doesn't contain the .xcos extension
+				   (~/foo), the 'Remplace file' dialog appeared but did not
+				   overwrite the file.
+
+* bug 5301 fixed - When one created a superblock with the region to superblock,
+  	  	   		   not selected internal links were not included into the
+				   superblocks but were also not considered as IN_f OUT_F.
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
@@ -209,7 +256,11 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
+
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+
+* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as parameter
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
@@ -289,12 +340,6 @@ Bug fixes:
 * bug 5163 fixed - Incorrectly resized text after having performed
   	  	   		 magnification+demagnification
 
-* bug 5170 fixed - displaytree() name wasn't homogeneous with other 
-                   tree functions.
-
-* bug 5189 fixed - No more give an error when the user cancels file selection
-                   for saving.
-
 * bug 5190 fixed - context menus are now available under MacOS
 
 * bug 5195 fixed - "get" crashed with "Lycée" toolboxe.
@@ -306,6 +351,8 @@ Bug fixes:
 * bug 5213 fixed - ATOMS GUI: Module's author(s) was not displayed
 
 * bug 5214 fixed - ATOMS GUI: The download size was not displayed
+
+* bug 5233 fixed - Bug with the windows installer in some cases
 
 * bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
@@ -328,11 +375,17 @@ Bug fixes:
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some
                    settings in Visual Studio.
 
+* bug 5284 fixed - Function "legend" draws line segments in its box were in a reverse order
+
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
                    hangs.
 
 * bug 5292 fixed - There was a conflict between bool and scilab header mex.h
                    (with Visual Studio and mex files)
+
+* bug 5293 fixed - Undocumented features with function string(x)
+
+* bug 5294 fixed - In mex.h, we had a bad type declaration
 
 * bug 5295 fixed - configure: LibGL.so should be included at link time when
                    linking with libjogl.so.
@@ -341,10 +394,6 @@ Bug fixes:
 
 * bug 5307 fixed - In Neldermead, inconsistent shape for the input argument x
                    of the cost function.
-
-* bug 5308 fixed - editor did not check input argument type.
-
-* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
 
 * bug 5325 fixed - Wrong default path on FileChooser.
 
@@ -420,9 +469,6 @@ Bug fixes:
 
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
-
-* bug 5519 fixed - added a message asking the user if he wants to exit the 
-                   editor when he clicks on the cross.
 
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
 
@@ -1571,21 +1617,7 @@ Bug fixes:
 
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
-* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
-
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
-
-* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
-
-* bug 5224 fixed - Maj+Tab modify the text selection.
-
-* bug 5269 fixed - Missing feature in the Text Editor: Ctrl-F1 to open Scilab's help
-
-* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
-
-* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
-
-* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
 
 * bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
 
