@@ -97,11 +97,12 @@
         </para>
       </listitem>
 
-      <listitem>
+	  <listitem>
         <para>
-          <link linkend="REGISTER">REGISTER — Shift Register</link>
+          <link linkend="QUANT_f">QUANT_f - Quatization</link>
         </para>
       </listitem>
+      
 
       <listitem>
         <para>
