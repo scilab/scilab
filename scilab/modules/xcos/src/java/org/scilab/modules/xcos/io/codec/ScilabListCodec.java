@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io;
+package org.scilab.modules.xcos.io.codec;
 
 
 import java.util.Map;
@@ -18,6 +18,7 @@ import java.util.Map;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
+import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;

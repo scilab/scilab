@@ -16,6 +16,7 @@ Text editor:
 - Select all
 - History
 - Help on the selected text
+See bug #5387
 
 * bug 4873 fixed - "undo" doesn't work if the last action affects several lines. 
 
@@ -25,6 +26,9 @@ Text editor:
   (notable speed-up on opening large scripts)
 
 * bug 5013 fixed - Find/Replace dialog box: Buttons are resized after the search.
+
+* bug 5103 fixed - File=>Save now opens the "Save" dialog box for
+                   Untitled files even if they are not modified.
 
 * bug 5125 fixed - No more get an infinite loop when using the 
                    Undo functionnality.
@@ -47,20 +51,39 @@ Text editor:
 
 * bug 5219 fixed - Rename of the item menu "Indent" => "Reformat Selection"
 
-* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be 
+                   implemented as check box.
 
 * bug 5224 fixed - Maj+Tab modify the text selection.
 
-* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L) and assign it to "Load into Scilab" in order to match the old behavior.
+* bug 5270 fixed - In editor, change the shortcut for the line numbering (CTRL+L)
+                   and assign it to "Load into Scilab" in order to match the old
+                   behavior.
 
-* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order to have in argument files to open and lines to be highlighted for each files.
+* bug 5290 fixed - Remove function editorHighlightLine, and update editor in order
+                   to have in argument files to open and lines to be highlighted
+                   for each files.
 
 * bug 5308 fixed - editor did not check input argument type.
 
-* bug 5319 fixed - Editor: Default filename proposed in 'Save As' dialog.
+* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead
+                   of only its queue.
+
+* bug 5318 fixed - When a "if" line takes its "end" on the line, its indentation
+                   is one level too high 
+
+* bug 5319 fixed - Default filename proposed in 'Save As' dialog.
+
+* bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
-  undo / redo multiple edits on a region in one go )
+                   undo / redo multiple edits on a region in one go )
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - It was not possible to choose EOL type
+
+* bug 5497 fixed - Selection drag was not available.
 
 * bug 5515 fixed - Encoding was not well managed.
                    Now:
@@ -91,9 +114,9 @@ Text rendering:
 ===============
 
 * New function "prettyprint" added
-This function provides the capability to represent a Scilab variable to LaTeX,
-TeX and Mathml. 
-See SEP #36 for more information
+  This function provides the capability to represent a Scilab variable to LaTeX,
+  TeX and Mathml. 
+  See SEP #36 for more information
 
 * pol2tex is now obsolete. Please use prettyprint instead
 
@@ -103,7 +126,7 @@ See SEP #36 for more information
                    "$...$" LaTeX feature.
 
 * bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
-  	  	   		   feature.
+                   feature.
 
 Graphic export:
 ===============
@@ -149,18 +172,22 @@ Xcos:
 
 * Icon added in the main Scilab tool bar
 
-* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents when the users close Scilab.
+* bug 4997 fixed - Now Scilab editor and Xcos, ask to save unsaved documents
+                   when the users close Scilab.
 
-* bug 5026 fixed - now palette browser appears only with a new diagram or by the menu View->Palette browser.
+* bug 5026 fixed - now palette browser appears only with a new diagram or by the
+                   menu View->Palette browser.
 
-* bug 5052 fixed - The context variables defined at a upper level are not known at a lower one.
+* bug 5052 fixed - The context variables defined at a upper level are not known
+                   at a lower one.
 
 * bug 5053 fixed - Update the layout of in/out port of a block when modified
 
 * bug 5054 fixed - Remove ports on a block, remove the connected links.
 
-* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog box, the radiobox "Selected lines" in
-                   the frame "Scope" should be checked by default.
+* bug 5083 fixed - If lines are selected and user call the "Find/replace" dialog
+                   box, the radiobox "Selected lines" in the frame "Scope" should
+                   be checked by default.
 
 * bug 5099 fixed - Diagram was not visible after a "Fit diagram to view"
 
@@ -168,7 +195,8 @@ Xcos:
 
 * bug 5111 fixed - "Save As" default path wasn't the current file path
 
-* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside SuperBlock
+* bug 5158 fixed - Region to SuperBlock now keep links breaks inside and outside
+                   SuperBlock
 
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
 
@@ -186,7 +214,8 @@ Xcos:
 
 * bug 5184 fixed - Setup menu values weren't localized
 
-* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up menu of the diagram.
+* bug 5188 fixed - A function to reopen a parent diagram was added in the pop up
+                   menu of the diagram.
 
 * bug 5196 fixed - Openning a SuperBlock modified some positions.
 
@@ -201,7 +230,8 @@ Xcos:
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
-* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos start.
+* bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos
+                   start.
 
 * bug 5299 fixed - When saving an xcos diagram, when the selected file were
                    already existing and doesn't contain the .xcos extension
@@ -214,23 +244,50 @@ Xcos:
 
 * bug 5305 fixed - display of filenames used by xcos was wrong (on Windows)
 
+* bug 5310 fixed - Closing an Xcos diagram closes all of Xcos.
+
 * bug 5312 fixed - 'Compile' informations was not displayed
 
-* bug 5388 fixed - Editor dialogs wasn't centered on editor main window.
+* bug 5313 fixed - Clicking repeatedly and quickly on a block in a diagram
+                   were causing Scilab to quit.
+
+* bug 5327 fixed - When indenting a block, the selection area is shifted one 
+                   line down with respect to the previously selected one. 
 
 * bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
                    memory.
 
+* bug 5343 fixed - The DLSS_f block is transparent when dropped in the working area.
+
+* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+
 * bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
 * bug 5348 fixed - Openning a Superblock crashed Xcos.
+
+* bug 5351 fixed - Remove ports on a block, remove the connected links. 
+
+* bug 5353 fixed - Bad french localization on "set context"
+
+* bug 5383 fixed - FROMWSB From workspace block was not working. 
+
+* bug 5388 fixed - Editor dialogs wasn't centered on editor main window.
 
 * bug 5389 fixed - if there was no C compiler detected on Windows, xcos/scicos 
                    tried to call dynamic link functions.
 
 * bug 5395 fixed - The xcos block AFFICH_m do not bother with the max
                    number of digits.
+
+* bug 5397 fixed - If there is an unconnected block in a superblock, the 
+                   simulation did not start and the "Simulate/start" menu
+                   remained disabled.
+
 * bug 5403 fixed - A graphic windows wasn't created only when needed.
+
+* bug 5404 fixed - Open & close Editor creates a java exception.
+
+* bug 5405 fixed - Update the whole diagram when a superblock is modified
 
 * bug 5407 fixed - It was impossible to use the arrow keys to move a block
 
@@ -244,17 +301,38 @@ Xcos:
 
 * bug 5418 fixed - DEBUG_SCICOS block were not in the palette.
 
+* bug 5419 fixed - French translation issues
+
 * bug 5422 fixed - A file was not a unique diagram instance (openned twice)
+
+* bug 5423 fixed - French translation issues
+
+* bug 5424 fixed - French translation issues
+
+* bug 5426 fixed - The icon of modelica blocks Resistor Inductor, ... was not 
+                   rotated while the block was
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
+* bug 5437 fixed - Show error message during xcos simulation initialization.
+
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
+* bug 5441 fixed - xcos files (XML files) contained their own paths.
+
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
+
+* bug 5444 fixed - When the xcos compiler failed to find the size of the data
+                   on some links it ask user for it into a bad window.
 
 * bug 5445 fixed - The modified state was not updated on undo/redo
 
 * bug 5449 fixed - The palette tab position was modified even if invisible
+
+* bug 5450 fixed - The Signal Builder demos did not work
+                   (xcos/demos/Signal_Builder.xcos does not exist)
+
+* bug 5459 fixed - Editor "block" scilab with example
 
 * bug 5464 fixed - Actions were not disabled on file loading
 
@@ -262,11 +340,16 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5480 fixed - When creating a Superblock, input and output links were removed
+                   and input and output ports were not created.
+
 * bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
 
-* bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+* bug 5529 fixed - The parent diagram was not updated when performing undo/redo
+                   on a SuperBlockDiagram.
 
-* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as parameter
+* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as
+                   parameter
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
@@ -283,18 +366,18 @@ Tree functions :
 ================
 
 * Rename tree functions:
-- insertNode      => uiInsertNode
-- getParentNode   => uiGetParentNode
-- getNodePosition => uiGetNodePosition
-- getChildrenNode => uiGetChildrenNode
-- findNode        => uiFindNode
-- equalsTree      => uiEqualsTree
-- dumpTree        => uiDumpTree
-- deleteNode      => uiDeleteNode
-- createTree      => uiCreateTree
-- createNode      => uiCreateNode
-- concatTree      => uiConcatTree
-- displaytree     => uiDisplayTree
+  - insertNode      => uiInsertNode
+  - getParentNode   => uiGetParentNode
+  - getNodePosition => uiGetNodePosition
+  - getChildrenNode => uiGetChildrenNode
+  - findNode        => uiFindNode
+  - equalsTree      => uiEqualsTree
+  - dumpTree        => uiDumpTree
+  - deleteNode      => uiDeleteNode
+  - createTree      => uiCreateTree
+  - createNode      => uiCreateNode
+  - concatTree      => uiConcatTree
+  - displaytree     => uiDisplayTree
 
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other 
                    tree functions.
@@ -335,9 +418,6 @@ Bug fixes:
 * bug 5037 fixed - The link style menu doesn't have mnemonics
 
 * bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
-
-* bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for
-                   Untitled files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
@@ -381,7 +461,8 @@ Bug fixes:
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some
                    settings in Visual Studio.
 
-* bug 5284 fixed - Function "legend" draws line segments in its box were in a reverse order
+* bug 5284 fixed - Function "legend" draws line segments in its box were in a
+                   reverse order
 
 * bug 5286 fixed - calling the 'lib' function with the wrong path made scilab
                    hangs.
@@ -407,14 +488,24 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned a error.
 
+* bug 5331 fixed - There were no example in the help page of matfile_* 
+                   loadmatfile or savematfile
+
 * bug 5339 fixed - some macros had multiple definitions.
 
-* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+* bug 5340 fixed - There was no example in the help of arma 
+
+* bug 5349 fixed - the file predator.cos was not openable.
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
                    displayed at Scilab startup.
 
 * bug 5360 fixed - "sciargs" documentation help page updated.
+
+* bug 5367 fixed - Incorrect %nan multiplication with vectors on 64-bit Vista
+
+* bug 5368 fixed - input() behaves weird on carriage return response to prompt
+                   on 64-bit
 
 * bug 5373 fixed - isalphanum() did not support non ascii chars.
 
@@ -425,27 +516,38 @@ Bug fixes:
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
                    Windows.
 
+* bug 5391 fixed - Bad warning/error messages in ATOMS
+
 * bug 5402 fixed - Update status bar contents after saving canceled.
 
-* bug 5405 fixed - Update the whole diagram when a superblock is modified
-
-* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
+* bug 5413 fixed - help_from_sci: An error was triggered when < or > where used
+                   in the comments
 
 * bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
                    warning and return softly.
 
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
-* bug 5453 fixed - Sizes was displayed with French units.
+* bug 5452 fixed - legend reverses the order of curves plotted. 
+
+* bug 5453 fixed - ATOMS: Sizes was displayed with French units.
 
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
 
+* bug 5457 fixed - Cannot start Scilab with Korean Win XP
+
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
+* bug 5461 fixed - the savematfile doesn't work when I pass a format argument
+
+* bug 5462 fixed - savematfile() didn't save correctly sparse matrixes.
+                   
+* bug 5469 fixed - Force origin presence on an axes with location property set 
+                   to 'origin'.
+
+* bug 5470 fixed - the addcolor function help page didn't contain example.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -463,11 +565,12 @@ Bug fixes:
 * bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
                    stack to minimun size if it fails.
 
-* bug 5497 fixed - Editor: selection drag is now available.
-
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
                    version in the loader.sce even if the toolbox 100% 
                    written in Scilab code.
+
+* bug 5505 fixed - getdebuginfo() output in french was partially translated,
+                   with few errors
 
 * bug 5506 fixed - there were some memory leak with getMatrixOfWideString.
 
@@ -491,6 +594,8 @@ Bug fixes:
 
 * bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
                    of x0 and len for "axes" simplex.
+
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1627,26 +1732,7 @@ Bug fixes:
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
-* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
-
-* bug 5327 fixed - When indenting a block, the selection area is shifted one line down with respect to the previously selected one. 
-
-* bug 5349 fixed - the file predator.cos was not openable.
-
-* bug 5351 fixed - Remove ports on a block, remove the connected links. 
-
 * bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
-
-* bug 5386 fixed - Wrong title for auto indent action in menu.
 
 * bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
                    number of digits.
-
-* bug 5404 fixed - Open & close Editor creates a java exception.
-
-* bug 5437 fixed - Show error message during xcos simulation initialization.
-
-* bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
-
-* bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
