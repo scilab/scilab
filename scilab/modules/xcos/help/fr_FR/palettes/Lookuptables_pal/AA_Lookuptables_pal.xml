@@ -21,17 +21,17 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Lookuptables_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Lookuptables_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>Lookup tables palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,73 +40,50 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/LookupTables_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Lookuptables_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-         <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Lookuptables_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>The lookup tables palette includes blocks that compute output
+    approximations from inputs.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Lookuptables_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="INTRP2BLK_f">INTRP2BLK_f — 2D interpolation</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="INTRPLBLK_f">INTRPLBLK_f — Interpolation</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
-        </para>
-      </listitem>
-	  
-	  <listitem>
-        <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="LOOKUP_f">LOOKUP_f — Lookup table</link>
         </para>
       </listitem>
     </itemizedlist>

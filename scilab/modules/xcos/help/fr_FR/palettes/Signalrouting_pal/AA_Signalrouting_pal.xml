@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Signalrouting_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -29,9 +29,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Signalrouting_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>Signal routing palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,73 +40,119 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/SignalRouting_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Signalrouting_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-         <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Signalrouting_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>The Signal routing palette includes blocks that transport signals
+    from one point in a block diagram to another.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Signalrouting_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="ANDBLK">ANDBLK — Activation and</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="DEMUX">DEMUX — Demultiplexer</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
+          <link linkend="EXTRACTOR">EXTRACTOR — Extractor</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
+          <link linkend="FROM">FROM — FROM Receives data from a corresponding
+          GOTO</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+          <link linkend="GOTO">GOTO — GOTO Pass block input to From
+          block</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility — Define Scope
+          of GOTO tag visibility</link>
         </para>
       </listitem>
-	  
-	  <listitem>
+
+      <listitem>
         <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="ISELECT_m">ISELECT_m — Iselect</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="M_SWITCH">M_SWITCH — Multi-port switch</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MUX">MUX — Multiplexer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NRMSOM_f">NRMSOM_f — Merge data</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RELAY_f">RELAY_f — Relay</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SELECT_m">SELECT_m — Select</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH2_m">SWITCH2_m — Switch2</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH_f">SWITCH_f — Switch</link>
         </para>
       </listitem>
     </itemizedlist>

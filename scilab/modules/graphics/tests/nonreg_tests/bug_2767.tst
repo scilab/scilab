@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-
+// <-- INTERACTIVE TEST -->
 // <-- Non-regression test for bug 2767-->
 //
 // <-- Bugzilla URL -->
@@ -23,5 +23,6 @@ end;
 
 // check that all figure have different positions from the previous one
 for i=1:9,
+  disp(fig(i).figure_position == fig(i+1).figure_position);
   if (fig(i).figure_position == fig(i+1).figure_position) then pause; end
 end

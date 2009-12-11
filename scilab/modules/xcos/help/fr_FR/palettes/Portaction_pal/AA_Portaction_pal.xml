@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Portaction_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -29,9 +29,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Portaction_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>Port action palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,73 +40,72 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/PortAction_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Portaction_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-         <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Portaction_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>The port action palette includes blocks for creating
+    subsystems.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Portaction_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="EDGE_TRIGGER">EDGE_TRIGGER — EDGE_TRIGGER
+          block</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="ESELECT_f">ESELECT_f — Synchronous block
+          Event-Select</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
+          <link linkend="Extract_Activation">Extract_Activation —
+          Extract_Activation block</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
+          <link linkend="IFTHEL_f">IFTHEL_f — Synchronous block
+          If-Then-Else</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+          <link linkend="IN_f">IN_f - Input Port</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
-        </para>
-      </listitem>
-	  
-	  <listitem>
-        <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="OUT_f">OUT_f - Output Port</link>
         </para>
       </listitem>
     </itemizedlist>
