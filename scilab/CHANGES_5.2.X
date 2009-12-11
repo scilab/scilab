@@ -51,6 +51,22 @@ See SEP #36 for more information
                    "$...$" LaTeX feature.
 
 
+Graphic export:
+===============
+
+Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
+through :
+
+* Improved quality of the vectorial export
+
+* Improved size of the PDF (PS & EPS are however bigger but this should be 
+  fixed in Scilab > 5.2.0)
+
+* Handles export of graphics with LaTeX/MathML text
+
+* bug 4200 fixed - Export PDF what causing a "bad /BBox" with Acrobat
+
+
 Localization:
 =============
 
