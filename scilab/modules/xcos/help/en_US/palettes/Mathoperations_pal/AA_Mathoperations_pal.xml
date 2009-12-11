@@ -81,12 +81,7 @@
         </para>
       </listitem>
 
-      <listitem>
-        <para>
-          <link linkend="CONSTRAINT_f">CONSTRAINT_f — Constraint</link>
-        </para>
-      </listitem>
-
+      
       <listitem>
         <para>
           <link linkend="COSBLK_f">COSBLK_f — Cosinus Block</link>
@@ -117,12 +112,7 @@
         </para>
       </listitem>
 
-      <listitem>
-        <para>
-          <link linkend="MATDIV">MATDIV — Matrix division</link>
-        </para>
-      </listitem>
-
+      
       <listitem>
         <para>
           <link linkend="MATMAGPHI">MATMAGPHI — Complex to Magnitude and Angle
