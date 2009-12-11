@@ -192,7 +192,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	    for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
 		mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
 		mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
-		if (rect.contains(x, y)) { 
+		if (rect.contains(point.getX(), point.getY())) { 
 		    getGeometry().getPoints().remove(i);
 		    return;
 		}
