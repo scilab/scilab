@@ -1494,6 +1494,8 @@ Bug fixes:
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in Scilab 5.x)
 
+* bug 4820 fixed - the help page for the function csgn has been added
+
 * bug 4826 fixed - The type of the 'dims' entry of an hypermat was not always the same
 
 * bug 4828 fixed - Completion cleared the content of some completed path
@@ -1534,6 +1536,9 @@ Bug fixes:
 
 * bug 4966 fixed - execstr([]) return []
 
+* bug 4970 fixed - Some link ID's were not correct in the doc of the
+                   current master
+
 * bug 4974 fixed - exec('') crashed Scilab
 
 * bug 4983 fixed - When Scilab was started in nw mode, the addmenu examples were failing with a weird error message
@@ -1549,6 +1554,8 @@ Bug fixes:
 * bug 5081 fixed - demo "Signal Processing" --> "Spectral Estimation" failed (on Windows)
 
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
+
+* bug 5121 fixed - Gui associated to PDE block has been localized
 
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 

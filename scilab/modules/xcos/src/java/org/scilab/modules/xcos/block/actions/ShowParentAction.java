@@ -10,25 +10,19 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
-
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
+package org.scilab.modules.xcos.block.actions;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Open dialog to set block parameters
- * @author Vincent COUVERT
+ * Block flip handling
+ * @author Antoine ELIAS
  */
-public class BlockParametersAction extends DefaultAction {
+public class ShowParentAction extends DefaultAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,18 +30,17 @@ public class BlockParametersAction extends DefaultAction {
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
-	public BlockParametersAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.BLOCK_PARAMETERS, scilabGraph);
+	public ShowParentAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.SHOW_PARENT, scilabGraph);
 	}
 
 	/**
-	 * Menu for diagram menubar
+	 * Menu added to the menubar
 	 * @param scilabGraph associated diagram
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.BLOCK_PARAMETERS, null, new BlockParametersAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XcosMessages.SHOW_PARENT, null, new ShowParentAction(scilabGraph), null);
 	}
 
 	/**
@@ -55,10 +48,9 @@ public class BlockParametersAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
-		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
-		((BasicBlock)diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
+	    if(getGraph(null) instanceof SuperBlockDiagram) {
+		SuperBlockDiagram diagram =  (SuperBlockDiagram) getGraph(null);
+		diagram.getContainer().getParentDiagram().setVisible(true);
 	    }
 	}
-
 }

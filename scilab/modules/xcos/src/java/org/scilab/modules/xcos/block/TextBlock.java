@@ -18,8 +18,8 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-import org.scilab.modules.xcos.actions.BlockParametersAction;
-import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.block.actions.BlockParametersAction;
+import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 
 import com.mxgraph.util.mxConstants;
 

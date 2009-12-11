@@ -17,6 +17,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ConstBlock;
@@ -26,14 +28,17 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
@@ -46,18 +51,18 @@ public class XcosCodec extends mxCodec {
      */
     static {
 	// Add all xcos packages
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
-	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
+	mxCodecRegistry.addPackage(Xcos.class.getPackage().getName());
+	mxCodecRegistry.addPackage(XcosDiagram.class.getPackage().getName());
+	mxCodecRegistry.addPackage(BasicBlock.class.getPackage().getName());
+	mxCodecRegistry.addPackage(ExplicitLink.class.getPackage().getName());
+	mxCodecRegistry.addPackage(ImplicitLink.class.getPackage().getName());
+	mxCodecRegistry.addPackage(CommandControlLink.class.getPackage().getName());
+	mxCodecRegistry.addPackage(InputPort.class.getPackage().getName());
+	mxCodecRegistry.addPackage(OutputPort.class.getPackage().getName());
+	mxCodecRegistry.addPackage(CommandPort.class.getPackage().getName());
+	mxCodecRegistry.addPackage(ControlPort.class.getPackage().getName());
 	// Add some hdf5 packages to have all scilab types known
-	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
+	mxCodecRegistry.addPackage(ScilabType.class.getPackage().getName());
 	
 	String[] ignore = {//"exprs",
 		//"realParameters",
