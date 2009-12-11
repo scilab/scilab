@@ -51,6 +51,22 @@ See SEP #36 for more information
                    "$...$" LaTeX feature.
 
 
+Graphic export:
+===============
+
+Refactoring of the graphic export for vectorial files (PDF, EPS, PS & SVG)
+through :
+
+* Improved quality of the vectorial export
+
+* Improved size of the PDF (PS & EPS are however bigger but this should be 
+  fixed in Scilab > 5.2.0)
+
+* Handles export of graphics with LaTeX/MathML text
+
+* bug 4200 fixed - Export PDF what causing a "bad /BBox" with Acrobat
+
+
 Localization:
 =============
 
@@ -163,6 +179,8 @@ Xcos:
 * bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
+
+* bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
 
 
 Tree functions :
@@ -653,9 +671,6 @@ Input/Output functions:
 =======================
 
 * Input arguments of fprintf are now checked 
-
-* save / load are now based on the HDF5 file format. The specification of the
-formats is going to be released in a near future. 
 
 * Rewrite:
     + getenv
