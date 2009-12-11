@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
 "PO-Revision-Date: 2009-12-03 15:14+0000\n"
 "Last-Translator: Pierre MARECHAL <pierre.marechal@inria.fr>\n"
@@ -57,6 +57,11 @@ msgstr "À propos"
 msgid "All"
 msgstr "Tous"
 
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 167
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr ""
+
 msgid "Auto (Default)"
 msgstr "Auto (Défaut)"
 
@@ -71,6 +76,14 @@ msgstr "Ne peut pas charger \"xpadConfiguration.xml\""
 
 msgid "Case sensitive"
 msgstr "Tenir compte de la casse"
+
+#, fuzzy
+msgid "Change Color"
+msgstr "Définir les couleurs"
+
+#, fuzzy
+msgid "Change Colors"
+msgstr "Définir les couleurs"
 
 msgid "Close"
 msgstr "Fermer"

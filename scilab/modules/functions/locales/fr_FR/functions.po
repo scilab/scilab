@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
 "PO-Revision-Date: 2009-11-25 13:40+0000\n"
 "Last-Translator: Sylvestre Ledru <Unknown>\n"
@@ -104,12 +104,6 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un nom de fonction "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un scalaire "
@@ -131,8 +125,7 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un caractère attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire ou une chaîne "
 "de caractères attendu.\n"
@@ -188,8 +181,7 @@ msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Mauvaise valeur(s) pour le(s) argument(s) d'entrée.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s : Mauvaises valeurs pour l'argument d'entrée : Pas de données de profil "
 "dans la fonction\n"
@@ -262,8 +254,8 @@ msgstr "ATTENTION: Utilisez %s à la place.\n"
 #, c-format
 msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
 msgstr ""
-"ATTENTION: Cette fonction sera supprimée de façon permanente dans Scilab "
-"%s.\n"
+"ATTENTION: Cette fonction sera supprimée de façon permanente dans Scilab %"
+"s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
@@ -272,3 +264,8 @@ msgstr "ligne %s [%s appel, %s sec] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "ligne %s [%s appels, %s sec] :: "
+
+#~ msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un nom de fonction "
+#~ "attendu.\n"

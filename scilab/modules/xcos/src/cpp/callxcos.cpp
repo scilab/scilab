@@ -21,6 +21,7 @@ extern "C"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 }
+#include "GiwsException.hxx"
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
@@ -31,12 +32,23 @@ int callXcos(char **_filenames, int _nbfiles)
 		int i = 0;
 		for (i = 0; i < _nbfiles; i++)
 		{
+			try {
 			Xcos::xcos(getScilabJavaVM(), _filenames[i]);
+			} catch (const GiwsException::JniException& e) {
+
+				std::cerr << "Exception: " << e.what() << std::endl;
+			}
 		}
 	}
 	else
 	{
+		try {
+
 		Xcos::xcos(getScilabJavaVM());
+			} catch (const GiwsException::JniException& e) {
+
+				std::cerr << "Exception: " << e.what() << std::endl;
+			}
 	}
 	return 0;
 }
