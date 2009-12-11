@@ -240,6 +240,8 @@ Bug fixes:
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
+* bug 4767 fixed - Typo in minreal were causing errors in some cases
+
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what is the meaning of the output variable.
 
