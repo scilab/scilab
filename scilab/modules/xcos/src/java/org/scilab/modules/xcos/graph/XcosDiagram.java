@@ -1983,6 +1983,13 @@ public class XcosDiagram extends ScilabGraph {
 	 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
 	 * ((Xcos)getParentTab()).setEnabledRedo(false); }
 	 */
+	
+	if(waitPathAddEdge) {
+	    if(drawLink != null) {
+		getModel().remove(drawLink);
+	    }
+	    cancelDrawLinkAction();
+	}
     }
 
 
@@ -2174,5 +2181,6 @@ public class XcosDiagram extends ScilabGraph {
 	drawLink = null;
 	info(XcosMessages.EMPTY_INFO);
     }
+    
 }
 
