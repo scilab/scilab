@@ -96,7 +96,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.layout.orthogonal.model.mxPointPair;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
@@ -634,7 +633,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ModelTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    List changes = (List) evt.getArgAt(0);
+	    List<mxUndoableChange> changes = (List<mxUndoableChange>) evt.getArgAt(0);
 	    List<Object> objects = new ArrayList<Object>();
 	    getModel().beginUpdate();
 	    for (int i = 0; i < changes.size(); ++i) {
