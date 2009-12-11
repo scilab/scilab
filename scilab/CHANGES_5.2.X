@@ -473,14 +473,14 @@ xstring(6,1.4,'$\leftarrow f \left( x \right) = 1 + \sin \left( \frac{x \cdot 4 
 See demos => Graphics => LaTeX/MathML
 Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rendering (project JLaTeXMath)
 
-* New features
-  - Antialiasing on graphics
-    This new feature improves the quality of graphic rendering.
-    It can be activated with the following commands: 
-    df = gdf(); df.anti_aliasing = "8x"; plot3d();
-    The rationnal and performance tests are available in SEP #16 or can be
-    requested in Scilab bugtracker as bug #2984.
-  - Add transparency to markdrawing.
+* Antialiasing on graphics
+  This new feature improves the quality of graphic rendering.
+  It can be activated with the following commands: 
+  df = gdf(); df.anti_aliasing = "8x"; plot3d();
+  The rationnal and performance tests are available in SEP #16 or can be
+  seen in Scilab bugtracker as bug #2984.
+
+* Add transparency to markdrawing.
 
 * 'xbasc' is obsolete. See 'clf'
 
