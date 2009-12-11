@@ -27,6 +27,9 @@ See bug #5387
 
 * bug 5013 fixed - Find/Replace dialog box: Buttons are resized after the search.
 
+* bug 5103 fixed - File=>Save now opens the "Save" dialog box for
+                   Untitled files even if they are not modified.
+
 * bug 5125 fixed - No more get an infinite loop when using the 
                    Undo functionnality.
 
@@ -48,7 +51,8 @@ See bug #5387
 
 * bug 5219 fixed - Rename of the item menu "Indent" => "Reformat Selection"
 
-* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be implemented as check box.
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu should be 
+                   implemented as check box.
 
 * bug 5224 fixed - Maj+Tab modify the text selection.
 
@@ -62,7 +66,8 @@ See bug #5387
 
 * bug 5308 fixed - editor did not check input argument type.
 
-* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead of only its queue.
+* bug 5317 fixed - Inserting a tab inside a line tabifies the whole line instead
+                   of only its queue.
 
 * bug 5318 fixed - When a "if" line takes its "end" on the line, its indentation
                    is one level too high 
@@ -254,6 +259,8 @@ Xcos:
 
 * bug 5343 fixed - The DLSS_f block is transparent when dropped in the working area.
 
+* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
+
 * bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
 * bug 5348 fixed - Openning a Superblock crashed Xcos.
@@ -316,7 +323,7 @@ Xcos:
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
 
 * bug 5444 fixed - When the xcos compiler failed to find the size of the data
-  	  	   		   on some links it ask user for it into a bad window.
+                   on some links it ask user for it into a bad window.
 
 * bug 5445 fixed - The modified state was not updated on undo/redo
 
@@ -359,18 +366,18 @@ Tree functions :
 ================
 
 * Rename tree functions:
-- insertNode      => uiInsertNode
-- getParentNode   => uiGetParentNode
-- getNodePosition => uiGetNodePosition
-- getChildrenNode => uiGetChildrenNode
-- findNode        => uiFindNode
-- equalsTree      => uiEqualsTree
-- dumpTree        => uiDumpTree
-- deleteNode      => uiDeleteNode
-- createTree      => uiCreateTree
-- createNode      => uiCreateNode
-- concatTree      => uiConcatTree
-- displaytree     => uiDisplayTree
+  - insertNode      => uiInsertNode
+  - getParentNode   => uiGetParentNode
+  - getNodePosition => uiGetNodePosition
+  - getChildrenNode => uiGetChildrenNode
+  - findNode        => uiFindNode
+  - equalsTree      => uiEqualsTree
+  - dumpTree        => uiDumpTree
+  - deleteNode      => uiDeleteNode
+  - createTree      => uiCreateTree
+  - createNode      => uiCreateNode
+  - concatTree      => uiConcatTree
+  - displaytree     => uiDisplayTree
 
 * bug 5170 fixed - displaytree() name wasn't homogeneous with other 
                    tree functions.
@@ -411,9 +418,6 @@ Bug fixes:
 * bug 5037 fixed - The link style menu doesn't have mnemonics
 
 * bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
-
-* bug 5103 fixed - Editor: File=>Save now opens the "Save" dialog box for
-                   Untitled files even if they are not modified.
 
 * bug 5106 fixed - mopen help page did not contain any example.
 
@@ -490,8 +494,6 @@ Bug fixes:
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5340 fixed - There was no example in the help of arma 
-
-* bug 5344 fixed - Status of a modifier file doesn't change on 'Save As'
 
 * bug 5349 fixed - the file predator.cos was not openable.
 
@@ -592,6 +594,8 @@ Bug fixes:
 
 * bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
                    of x0 and len for "axes" simplex.
+
+
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
