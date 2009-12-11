@@ -21,17 +21,17 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Integer_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Integer_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>Integer palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,73 +40,101 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/Integer_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Integer_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-         <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Integer_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>That palette is dedicated to handle integer numbers. Various basic
+    operators for the management of bit fields and for logic are implemented
+    as well as common gates encountered in digital circuits.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Integer_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="BITSET">BITSET - BITSET Set a Bit</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
+          <link linkend="CONVERT">CONVERT - CONVERT Data Type
+          Conversion</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
+          <link linkend="DFLIPFLOP">DFLIPFLOP - D flip-flop</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+          <link linkend="DLATCH">DLATCH - D latch flip-flop</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+          <link linkend="EXTRACTBITS">EXTRACTBITS - EXTRACTBITS</link>
         </para>
       </listitem>
-	  
-	  <listitem>
+
+      <listitem>
         <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="INTMUL">INTMUL - INTMUL integer matrix
+          multiplication</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="LOGIC">LOGIC - Combinational Logic</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SHIFT">SHIFT - SHIFT Shift Bits</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop</link>
         </para>
       </listitem>
     </itemizedlist>

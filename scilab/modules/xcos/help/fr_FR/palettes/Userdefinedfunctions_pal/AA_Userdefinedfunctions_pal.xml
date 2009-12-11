@@ -21,17 +21,17 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Userdefinedfunctions_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Userdefinedfunctions_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>User defined functions palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,73 +40,95 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/UserDefinedFunctions_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Userdefinedfunctions_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-         <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Userdefinedfunctions_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>The user defined function contains blocks that allow you to model
+    the component behaviour. The output is expressed as a function of the
+    input.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Userdefinedfunctions_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="c_block">c_block — C file function</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="CBLOCK">CBLOCK — New C</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
+          <link linkend="EXPRESSION">EXPRESSION — Mathematical
+          expression</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
+          <link linkend="fortran_block">fortran_block — Fortran</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+          <link linkend="generic_block3">generic_block3 — Generic block</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+          <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
         </para>
       </listitem>
-	  
-	  <listitem>
+
+      <listitem>
         <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="PDE">PDE — 1D PDE block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="scifunc_block_m">scifunc_block_m — Scilab function
+          block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUPER_f">SUPER_f — Super block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f — Text</link>
         </para>
       </listitem>
     </itemizedlist>

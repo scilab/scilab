@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+<refentry version="5.0-subset Scilab" xml:id="Discontinuous_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -29,9 +29,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Discrete_pal</refname>
+    <refname>Discontinuous_pal</refname>
 
-    <refpurpose>Discrete time systems palette</refpurpose>
+    <refpurpose>Discontinuous palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,13 +40,13 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     fileref="../../../../images/palettes/Discontinuous_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Discrete_pal">
+  <refsection id="Module_Discontinuous_pal">
     <title>Module</title>
 
     <itemizedlist>
@@ -56,57 +56,56 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Discrete_pal">
+  <refsection id="Description_Discontinuous_pal">
     <title>Description</title>
 
-    <para>The Discrete time systems palette contains blocks for medeling discrete time
-    systems.</para>
+    <para>Discontinuous palette includes blocks whose outputs are
+    discontinuous functions of their inputs.</para>
   </refsection>
 
-  <refsection id="Blocks_Discrete_pal">
+  <refsection id="Blocks_Discontinuous_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+          <link linkend="BACKLASH">BACKLASH - Backlash</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+          <link linkend="DEADBAND">DEADBAND - Deadband</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLR">DLR — Discrete transfer function</link>
+          <link linkend="DELAYV_f">DELAYV_f — Variable time delay</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-          function</link>
+          <link linkend="HYSTHERESIS">HYSTHERESIS — Hystheresis</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+          <link linkend="RATELIMITER">RATELIMITER - Rate limiter</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+          <link linkend="REGISTER">REGISTER — Shift Register</link>
         </para>
       </listitem>
-	  
-	  <listitem>
+
+      <listitem>
         <para>
-          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+          <link linkend="SATURATION">SATURATION — Saturation</link>
         </para>
       </listitem>
     </itemizedlist>
