@@ -106,6 +106,12 @@
 	  
 	  <listitem>
         <para>
+          <link linkend="REGISTER">REGISTER — Shift Register</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
           <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
         </para>
       </listitem>
