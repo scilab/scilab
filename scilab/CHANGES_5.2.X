@@ -1538,6 +1538,8 @@ Bug fixes:
 
 * bug 5105 fixed - completion: cd "..\L<tab>  did not work.
 
+* bug 5121 fixed - Gui associated to PDE block has been localized
+
 * bug 5138 fixed - ilib_build: if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 
 * bug 5148 fixed - Setting {x,y,z}_ticks with empty value work.
