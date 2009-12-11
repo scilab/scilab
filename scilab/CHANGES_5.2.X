@@ -1550,3 +1550,5 @@ Bug fixes:
 
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
+
