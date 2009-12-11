@@ -221,12 +221,12 @@ function [ newobj , data ] = optimsimplex_coords ( coords , fun , data )
   if (~isdef('coords','local')) then
     coords = [];
   else
-    assert_typereal ( coords );
+    assert_typereal ( coords , "coords" , 1 );
   end
   if (~isdef('fun','local')) then
     fun = [];
   else
-    assert_typefunction ( fun );
+    assert_typefunction ( fun , "fun" , 2 );
   end
   newobj = tlist(["T_SIMPLEX",...
     "verbose","x","n","fv","nbve"]);
@@ -277,33 +277,38 @@ endfunction
 //
 function [ newobj , data ] = optimsimplex_axes ( x0 , fun , len , data )
   newobj = optimsimplex_coords ( )
-  if size(x0,1)<>1 then
-    errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_axes",size(x0,1),size(x0,2));
+  if ( size(x0,1)<>1 ) then
+    errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d."),"optimsimplex_axes",size(x0,1),size(x0,2));
     error(errmsg);
   end
   if (~isdef('fun','local')) then
     fun = [];
   else
-  assert_typefunction ( fun );
+  assert_typefunction ( fun , "fun" , 2 );
   end
   if (~isdef('len','local')) then
     len = 1.0;
   else
-    assert_typereal ( len );
-    xlen1 = size(len,1)
-    if size(x0,1)<>1 then
-      errmsg = msprintf(gettext("%s: The len vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_axes",size(len,1),size(len,2));
+    assert_typereal ( len , "len" , 1 );
+    if ( size(len,1)<>1 ) then
+      errmsg = msprintf(gettext("%s: The len vector is expected to be a row matrix, but current shape is %d x %d."),"optimsimplex_axes",size(len,1),size(len,2));
       error(errmsg);
     end
   end
-  assert_typereal ( x0 );
+  assert_typereal ( x0 , "x0" , 3 );
   n = length(x0);
   newobj.n = n;
   newobj.nbve = n + 1;
   nl=length(len)
-  if nl==1 then
+  if ( nl==1 ) then
     xlen = len * ones(1,n)
   else
+    // Use the length which has been given, but check that the shape of the matrix
+    // is consistent with x0
+    if ( size ( len , 2 ) <> size ( x0 , 2 ) ) then
+      errmsg = msprintf(gettext("%s: The len vector is not consistent with the x0 point. Current shape of x0 is %d x %d while current shape of len is %d x %d."),"optimsimplex_axes",size(x0,1),size(x0,2),size(len,1),size(len,2));
+      error(errmsg);
+    end
     xlen = len
   end
   newobj.x = zeros ( newobj.nbve , n )
@@ -343,18 +348,18 @@ function [ newobj , data ] = optimsimplex_spendley ( x0 , fun , len , data )
   if (~isdef('fun','local')) then
     fun = [];
   else
-    assert_typefunction ( fun );
+    assert_typefunction ( fun , "fun" , 2 );
   end
   if (~isdef('len','local')) then
    len = 1.0;
   else
-    assert_typereal ( len );
+    assert_typereal ( len , "len" , 3 );
     if ( size(len,1)<>1 | size(len,2)<>1 ) then
       errmsg = msprintf(gettext("%s: The len vector is expected to be a scalar, but current shape is %d x %d"),"optimsimplex_spendley",size(len,1),size(len,2));
       error(errmsg);
     end
   end
-  assert_typereal ( x0 );
+  assert_typereal ( x0 , "x0", 1 );
   n = length(x0);
   newobj.n = n;
   newobj.nbve = n + 1;
@@ -406,7 +411,7 @@ function [ newobj , data ] = optimsimplex_pfeffer ( x0 , fun , deltausual , delt
   if (~isdef('fun','local')) then
     fun = [];
   else
-    assert_typefunction ( fun );
+    assert_typefunction ( fun , "fun" , 2 );
   end
    if (~isdef('deltausual','local')) then
     deltausual = 0.05
@@ -414,9 +419,9 @@ function [ newobj , data ] = optimsimplex_pfeffer ( x0 , fun , deltausual , delt
    if (~isdef('deltazero','local')) then
     deltazero = 0.0075
   end
-  assert_typereal ( x0 );
-  assert_typereal ( deltausual );
-  assert_typereal ( deltazero );
+  assert_typereal ( x0 , "x0" , 1 );
+  assert_typereal ( deltausual , "deltausual", 3 );
+  assert_typereal ( deltazero , "deltazero" , 4 );
   if size(x0,1)<>1 then
     errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_pfeffer",size(x0,1),size(x0,2));
     error(errmsg);
@@ -478,15 +483,15 @@ function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , bo
     errmsg = msprintf(gettext("%s: The boundsmax vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(boundsmax,1),size(boundsmax,2));
     error(errmsg);
   end
-  assert_typereal ( x0 );
-  assert_typefunction ( fun );
-  assert_typereal ( boundsmin );
-  assert_typereal ( boundsmax );
+  assert_typereal ( x0 , "x0", 1 );
+  assert_typefunction ( fun , "fun" , 2 );
+  assert_typereal ( boundsmin , "boundsmin" , 3 );
+  assert_typereal ( boundsmax , "boundsmax" , 4 );
     n = length ( x0 )
     if (~isdef('nbve','local')) then
       nbve = n + 1;
     else
-      assert_typereal ( nbve );
+      assert_typereal ( nbve , "nbve" , 5 );
     end
     newobj.n = n;
     newobj.nbve = nbve;
@@ -529,7 +534,7 @@ function [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
   if (~isdef('fun','local')) then
     fun = [];
   else
-    assert_typefunction ( fun );
+    assert_typefunction ( fun , "fun" , 2 );
   end
   sgrad = optimsimplex_gradientfv ( simplex0 )
   ssize = optimsimplex_size ( simplex0 , "sigmaminus" )
@@ -564,32 +569,39 @@ function [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
   end
 endfunction
 // Generates an error if the given variable is not of type real
-function assert_typereal ( var )
+function assert_typereal ( var , varname , ivar )
   if ( type ( var ) <> 1 ) then
-    errmsg = msprintf(gettext("%s: Expected real variable but got %s instead"),"assert_typereal", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected real variable for variable %s at input #%d, but got %s instead."),"assert_typereal", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type string
-function assert_typestring ( var )
+function assert_typestring ( var , varname , ivar )
   if ( type ( var ) <> 10 ) then
-    errmsg = msprintf(gettext("%s: Expected string variable but got %s instead"),"assert_typestring", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected string variable for variable %s at input #%d, but got %s instead."),"assert_typestring", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type function (macro)
-function assert_typefunction ( var )
+function assert_typefunction ( var , varname , ivar )
   if ( type ( var ) <> 13 ) then
-    errmsg = msprintf(gettext("%s: Expected function but got %s instead"),"assert_typefunction", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected function but for variable %s at input #%d, got %s instead."),"assert_typefunction", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type boolean
-function assert_typeboolean ( var )
+function assert_typeboolean ( var , varname , ivar )
   if ( type ( var ) <> 4 ) then
-    errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected boolean but for variable %s at input #%d, got %s instead."),"assert_typeboolean", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
+
+// Generates an error if the value corresponding to an option is unknown.
+function unknownValueForOption ( value , optionname )
+      errmsg = msprintf(gettext("%s: Unknown value %s for %s option"),"unknownValueForOption",value , optionname );
+      error(errmsg);
+endfunction
+
 
 

@@ -20,8 +20,8 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**

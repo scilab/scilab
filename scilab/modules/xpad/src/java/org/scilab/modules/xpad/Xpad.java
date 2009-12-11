@@ -192,8 +192,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * Launch Xpad with an empty file
 	 */
 	public static void xpad() {
-		Xpad editorInstance = launchXpad();
-		editorInstance.addEmptyTab();
+		try  {
+			SwingUtilities.invokeAndWait( new Thread(){
+				public void run() {
+					Xpad editorInstance = launchXpad();
+					editorInstance.addEmptyTab();				
+				}
+			});
+		} catch(InterruptedException e) {
+			System.err.println("EDT interrupted "+e);
+		} catch(java.lang.reflect.InvocationTargetException e) {
+			System.err.println(" xpad() throw: "+e);
+		}
+		
 	}
 
 	/**
@@ -920,6 +931,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
 			System.err.println("Could not retrieve the current text tab."+e);
+			return null;
+		} catch( ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
+			//System.err.println("no tab (yet?)."+e); 
 			return null;
 		}
 	}
