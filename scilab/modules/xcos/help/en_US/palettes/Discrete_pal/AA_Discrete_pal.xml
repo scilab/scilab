@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>Discrete_pal</refname>
 
-    <refpurpose>Discrete palette</refpurpose>
+    <refpurpose>Discrete time systems palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -59,7 +59,7 @@
   <refsection id="Description_Discrete_pal">
     <title>Description</title>
 
-    <para>The discrete palette contains blocks for medeling discrete time
+    <para>The Discrete time systems palette contains blocks for medeling discrete time
     systems.</para>
   </refsection>
 
@@ -101,6 +101,18 @@
       <listitem>
         <para>
           <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="REGISTER">REGISTER — Shift Register</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
         </para>
       </listitem>
     </itemizedlist>

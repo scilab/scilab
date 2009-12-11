@@ -24,12 +24,13 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -339,7 +340,7 @@ public class SuperBlock extends BasicBlock {
     	return count;
     }
 
-    protected void updateAllBlocksColor(){
+    public void updateAllBlocksColor(){
     	updateBlocksColor(getAllExplicitInBlock());
     	updateBlocksColor(getAllImplicitInBlock());
     	updateBlocksColor(getAllEventInBlock());

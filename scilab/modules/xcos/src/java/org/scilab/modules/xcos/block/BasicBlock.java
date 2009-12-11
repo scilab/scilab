@@ -41,9 +41,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.AlignBlockAction;
 import org.scilab.modules.xcos.actions.BlockDocumentationAction;
@@ -55,6 +53,9 @@ import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -397,11 +398,11 @@ public class BasicBlock extends XcosUIDObject {
 	this.equations = equations;
     }
 
-    public boolean isLocked() {
+    public synchronized boolean isLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public synchronized void setLocked(boolean locked) {
         this.locked = locked;
     }
 

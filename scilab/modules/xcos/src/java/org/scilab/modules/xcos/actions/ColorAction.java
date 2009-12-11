@@ -19,7 +19,7 @@ import javax.swing.JColorChooser;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 import com.mxgraph.util.mxUtils;
 
