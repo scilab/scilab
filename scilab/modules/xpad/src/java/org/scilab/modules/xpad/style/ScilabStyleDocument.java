@@ -20,6 +20,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.Element;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -36,8 +37,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private String encoding = "UTF-8";
 	private boolean updater = true;
 	private boolean autoIndent;
-	private boolean autoColorize = true;
-	private volatile boolean shouldMergeEdits;
+	private boolean autoColorize ;
+	private volatile boolean shouldMergeEdits = false;
 	private boolean undoManagerEnabled;
 	
 	private String eolStyle = System.getProperty("line.separator");
@@ -97,6 +98,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		setAsynchronousLoadPriority(2);
 		
 		autoIndent = ConfigXpadManager.getAutoIndent();
+		autoColorize = ConfigXpadManager.getAutoColorize();
 		encoding = ConfigXpadManager.getDefaultEncoding();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
@@ -201,12 +203,43 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		}
 	}
 
+
 	public boolean isContentModified() {
-		return contentModified;
+		return contentModified && ! undo.isAtReference();
 	}
+
 	
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
+		if (contentModified == false) {
+			undo.setReference();
+		}
+	}
+	/*
+	 * dump document on stderr with line positions 
+	 */
+	public void dump( ){
+		readLock();
+		try{
+		Element root = getDefaultRootElement();
+		for(int i = 0; i!=root.getElementCount() ; ++i){
+			Element e= root.getElement(i);
+			int start = e.getStartOffset();
+			int end = e.getEndOffset();
+			System.err.println("line "+i+ " from: "+start +"to: "+end+ ":|"+getText(start, end-start)+"|");
+		}
+		} catch (BadLocationException e) {
+			System.err.println(e);
+		}
+		readUnlock();
+
 	}
 	
+	public void lock() {
+		super.writeLock();
+	}
+	public void unlock() {
+		super.writeUnlock();
+	}
+
 }

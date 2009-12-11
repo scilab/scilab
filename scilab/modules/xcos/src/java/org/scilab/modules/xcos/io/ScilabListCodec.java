@@ -32,7 +32,7 @@ public class ScilabListCodec  extends XcosObjectCodec {
     }
 
 
-    public ScilabListCodec(Object template, String[] exclude, String[] idrefs, Map mapping)
+    public ScilabListCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 

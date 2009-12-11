@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -45,7 +46,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 
 public class BlockReader {
 
@@ -215,7 +215,6 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isLabel(data, i)) {
-		    // TODO
 		    INFO("Reading Label " + i);
 		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
@@ -289,12 +288,15 @@ public class BlockReader {
 
 	    return convertMListToDiagram(data);
 	} catch (HDF5LibraryException e) {
-	    return null;
+	    System.err.println("An error occurred while working with the HDF5 library "+e.getLocalizedMessage());
 	} catch (WrongStructureException e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Wrong Structure: "+e.getLocalizedMessage());
+	} catch (HDF5JavaException e) {
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	} catch (HDF5Exception e) {
-	    return null;
+	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
 	}
+	return null;
     }
 
     private static int getStartBlockIndex(ScilabMList link)
@@ -441,7 +443,6 @@ public class BlockReader {
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
 	    newBlock = null;
@@ -1674,15 +1675,19 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(22));
     }
 
+    
     private static class BlockReaderException extends Exception {
     };
 
+    
     private static class WrongTypeException extends BlockReaderException {
     };
 
+    
     private static class WrongStructureException extends BlockReaderException {
     };
 
+    
     private static class VersionMismatchException extends BlockReaderException {
 	private String version;
 

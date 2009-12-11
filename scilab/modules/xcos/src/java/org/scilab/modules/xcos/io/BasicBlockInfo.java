@@ -45,7 +45,7 @@ public final class BasicBlockInfo {
      * @param ports : list of links
      * @return array of links id
      */
-    public static ScilabDouble getAllLinkId(List ports) {
+    public static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -63,7 +63,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data lines
      */
-    public static ScilabDouble getAllPortsDataLines(List ports) {
+    public static ScilabDouble getAllPortsDataLines(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -79,7 +79,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data columns
      */
-    public static ScilabDouble getAllPortsDataColumns(List ports) {
+    public static ScilabDouble getAllPortsDataColumns(List<? extends BasicPort> ports) {
 	boolean allZeros = true;
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -104,7 +104,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports data type
      */
-    public static ScilabType getAllPortsDataType(List ports) {
+    public static ScilabType getAllPortsDataType(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -120,7 +120,7 @@ public final class BasicBlockInfo {
      * @param ports
      * @return array of ports type
      */
-    public static ScilabType getAllPortsType(List ports) {
+    public static ScilabType getAllPortsType(List<? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -141,7 +141,10 @@ public final class BasicBlockInfo {
 		"id", "in_implicit", "out_implicit"};
 	ScilabMList graphics = new ScilabMList(graphicsFields);
 
-	double[][] orig = {{block.getGeometry().getX(), - block.getGeometry().getY()}};
+	// Adjust block cause Scilab(0,0) is bottom left
+	double y = block.getGeometry().getY() + block.getGeometry().getHeight();
+	
+	double[][] orig = {{block.getGeometry().getX(), - y}};
 	graphics.add(new ScilabDouble(orig)); // orig
 
 	double[][] sz = {{block.getGeometry().getWidth(), block.getGeometry().getHeight()}};

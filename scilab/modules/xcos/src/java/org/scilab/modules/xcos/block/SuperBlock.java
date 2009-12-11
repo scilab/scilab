@@ -17,15 +17,19 @@ import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.PaletteDiagram;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCustomizeAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -43,6 +47,7 @@ import com.mxgraph.util.mxEventObject;
 
 public class SuperBlock extends BasicBlock {
 
+    private static final long serialVersionUID = 3005281208417373333L;
     private SuperBlockDiagram child = null;
  
     public SuperBlock(){
@@ -64,6 +69,13 @@ public class SuperBlock extends BasicBlock {
 	setNmode(new ScilabDouble(0));
     }
     
+    public SuperBlock(String label, boolean masked) {
+	this(label);
+	if (masked) {
+	    mask();
+	}
+    }
+
     /**
      * openBlockSettings
      * this method is called when a double click occured on a super block
@@ -72,14 +84,21 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    return;
+	}
+
 	if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
 	    // This means we have a SuperBlock and we generated C code for it.
 	    this.setLocked(false);
 	    return;
 	}
 
+	if (isMasked()) {
+	    super.openBlockSettings(context);
+	} else {
 	if(createChildDiagram() == true) {
-	    getChild().setModified(false);
+	    getChild().setModifiedNonRecursively(false);
 	    XcosTab.createTabFromDiagram(getChild());
 	    XcosTab.showTabFromDiagram(getChild());
 	} else {
@@ -88,6 +107,7 @@ public class SuperBlock extends BasicBlock {
 	
 	
 	getChild().updateCellsContext();
+	}
     }
 
     public void closeBlockSettings() {
@@ -95,8 +115,8 @@ public class SuperBlock extends BasicBlock {
 	// Do not ask the user, the diagram is saved and closed
 	if (getChild().isModified()) {
 	    setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
-	    getParentDiagram().setModified(true);
-	    getChild().setModified(false);
+	    getChild().setModified(true);
+	    getChild().setModifiedNonRecursively(false);
 	}
 
 	if(getChild().canClose() == false) {
@@ -121,11 +141,32 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = createContextMenu(graph);
-	
-	menu.getAsSimpleContextMenu().addSeparator();
-	menu.add(CodeGenerationAction.createMenu(graph));
-	
+	ContextMenu menu = null;
+
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    menu = createPaletteContextMenu(graph);
+	} else { 
+	    menu = createContextMenu(graph);
+	    menu.getAsSimpleContextMenu().addSeparator();
+	    menu.add(CodeGenerationAction.createMenu(graph));
+	    
+	    /* FIXME: It is not possible to use Mask. So remove any possibility.
+	     * Mask removing only option is not applicable : if remove the mask
+	     * you have no way to edit the values anymore.
+	     */
+	    /*
+	    Menu maskMenu = ScilabMenu.createMenu();
+	    maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
+	    
+	    if (isMasked()) {
+		maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
+		menu.add(maskMenu);
+	    } else {
+		maskMenu.add(SuperblockMaskCreateAction.createMenu(graph));
+	    }
+	    maskMenu.add(SuperblockMaskCustomizeAction.createMenu(graph));
+	    */
+	}
 	menu.setVisible(true);
     }
     
@@ -340,8 +381,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void updateExportedPort(){
-    	if(child == null){
-    		System.err.println("child == null");
+    	if (child == null){
     		return;
     	}
 
@@ -461,5 +501,28 @@ public class SuperBlock extends BasicBlock {
     		removePort(ports.get(portCount - 1));
     		portCount--;
     	}
+    }
+    
+    /**
+     * Mask the SuperBlock
+     */
+    public void mask() {
+	setInterfaceFunctionName("DSUPER");
+	setSimulationFunctionName("csuper");
+    }
+    
+    /**
+     * Unmask the SuperBlock
+     */
+    public void unmask() {
+	setInterfaceFunctionName("SUPER_f");
+	setSimulationFunctionName("super");
+    }
+    
+    /**
+     * @return True is the SuperBlock is masked, false otherwise
+     */
+    public boolean isMasked() {
+	return getInterfaceFunctionName().compareTo("SUPER_f") != 0;
     }
 }

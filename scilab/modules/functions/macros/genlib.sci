@@ -65,7 +65,7 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
     files_filtered = [];
 
     for i=1:size(files,"*")
-      if( regexp(files(i),"/.sci$/") <> [] ) then
+      if( regexp(files(i),"/\.sci$/") <> [] ) then
         files_filtered = [files_filtered;files(i)];
       end
     end

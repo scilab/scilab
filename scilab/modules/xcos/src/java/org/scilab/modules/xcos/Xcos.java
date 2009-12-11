@@ -12,12 +12,12 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.tab.Tab;
@@ -25,14 +25,16 @@ import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.SuperBlockDiagram;
-
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
-public class Xcos {
+public final class Xcos {
 
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
+    /* Static class */
+    private Xcos() {}
+    
     /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
@@ -43,7 +45,7 @@ public class Xcos {
      * @param args
      */
     public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
+	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		xcos();
 	    }
@@ -51,17 +53,26 @@ public class Xcos {
     }
 
     public static void xcos() {
-	XcosPaletteManager.loadPalette();
-	createEmptyDiagram();
-	ViewPaletteBrowserAction.setPalettesVisible(true);
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
+		XcosPaletteManager.loadPalette();
+		createEmptyDiagram();
+		ViewPaletteBrowserAction.setPalettesVisible(true);
+	    }
+	});
     }
 
     public static void xcos(String fileName) {
-	ConfigXcosManager.saveToRecentOpenedFiles(fileName);
-	if (XcosTab.focusOnExistingFile(fileName) == false) {
-	    XcosDiagram diagram = createEmptyDiagram();
-	    diagram.openDiagramFromFile(fileName);
-	}
+	final String filename = fileName;
+	SwingUtilities.invokeLater(new Runnable() {
+	    public void run() {
+		ConfigXcosManager.saveToRecentOpenedFiles(filename);
+		if (XcosTab.focusOnExistingFile(filename) == false) {
+		    XcosDiagram diagram = createEmptyDiagram();
+		    diagram.openDiagramFromFile(filename);
+		}
+	    }
+	});
     }
 
     public static XcosDiagram createEmptyDiagram() {
@@ -69,7 +80,7 @@ public class Xcos {
 	XcosTab.showTabFromDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
-    
+
     public static XcosDiagram createANotShownDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
@@ -86,7 +97,7 @@ public class Xcos {
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
 
-	while(diagrams.size() > 0) {
+	while (diagrams.size() > 0) {
 	    diagrams.get(0).closeDiagram();
 	}
 	ViewPaletteBrowserAction.setPalettesVisible(false);
@@ -165,12 +176,7 @@ public class Xcos {
 		newSP.setParentDiagram(block.getParentDiagram());
 		if (show == true) {
 		    newSP.openBlockSettings(null);
-		    // lock cells and change background to gray to show
-		    // read-only
-		    newSP.getChild().setCellsLocked(true);
-		    newSP.getChild().getAsComponent().setBackground(
-			    new Color(204, 204, 204));
-		    // look to disable open setting dialog on double click too
+		    newSP.getChild().setReadOnly(true);
 		}
 		openedSuperBlock.put(UID, newSP);
 		break;

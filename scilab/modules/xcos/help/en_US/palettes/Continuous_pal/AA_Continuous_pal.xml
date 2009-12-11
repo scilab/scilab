@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>Continuous_pal</refname>
 
-    <refpurpose>Continuous palette</refpurpose>
+    <refpurpose>Continuous time systems palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -59,7 +59,7 @@
   <refsection id="Description_Continuous_pal">
     <title>Description</title>
 
-    <para>The Continuous palette includes basic linear blocks .</para>
+    <para>The Continuous time systems palette includes basic linear blocks .</para>
   </refsection>
 
   <refsection id="Blocks_Continuous_pal">

@@ -44,11 +44,14 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
 public abstract class BasicLink extends XcosUIDObject {
+
+    private static final long serialVersionUID = 8557979393361216098L;
 
 	public BasicLink(String style) {
 		super();
@@ -156,31 +159,51 @@ public abstract class BasicLink extends XcosUIDObject {
 	public void addPoint(double x, double y) {
 		mxPoint point = new mxPoint(x, y);
 		if (getGeometry().getPoints() == null) {
-			getGeometry().setPoints(new ArrayList());
+			getGeometry().setPoints(new ArrayList<mxPoint>());
 		}
 		getGeometry().getPoints().add(point);
 	}
 
 	public void insertPoint(double x, double y) {
-		mxPoint point = new mxPoint(x, y);
-		if (getGeometry().getPoints() == null) {
-			getGeometry().setPoints(new ArrayList());
-			getGeometry().getPoints().add(point);
-		} else {
-			//check to delete an old point before try to insert
-			for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
-				mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
-				mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
-				if (rect.contains(x, y)) { 
-					getGeometry().getPoints().remove(i);
-					return;
-				} else {
-				}
-			}			
+	    
+	    //if it is a loop link, change coordinate origin to block instead of diagram
+	    mxPoint point = new mxPoint(x, y);
+	    if(isLoopLink() == true) {
+		mxGeometry geo = getSource().getParent().getGeometry();
+		point.setX(x - geo.getX());
+		point.setY(y - geo.getY());
+	    }
 
-			int insertPos = findNearestSegment(point);
-			getGeometry().getPoints().add(insertPos, point);
+	    if(getGeometry() == null) {
+		setGeometry(new mxGeometry(0, 0, 80, 80));
+	    }
+	    
+	    if (getGeometry().getPoints() == null) {
+		getGeometry().setPoints(new ArrayList<mxPoint>());
+		getGeometry().getPoints().add(point);
+	    } else {
+		//check to delete an old point before try to insert
+		for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
+		    mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
+		    mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
+		    if (rect.contains(x, y)) { 
+			getGeometry().getPoints().remove(i);
+			return;
+		    }
+		}			
+
+		int insertPos = findNearestSegment(point);
+		getGeometry().getPoints().add(insertPos, point);
+	    }
+	}
+
+	private boolean isLoopLink() {
+	    if(getSource() != null && getTarget() != null) {
+		if(getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
+		    return true;
 		}
+	    }
+	    return false;
 	}
 
 	public ScilabMList getAsScilabObj() {
@@ -201,7 +224,7 @@ public abstract class BasicLink extends XcosUIDObject {
 		double[][] yy = new double[1][2 + getPointCount()];
 		yy[0][0] = -(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
 		for (int i = 0; i < getPointCount(); i++) { 
-			yy[0][i+1] = - ((mxPoint) getGeometry().getPoints().get(i)).getY() + getSource().getParent().getGeometry().getHeight();
+			yy[0][i+1] = - (((mxPoint) getGeometry().getPoints().get(i)).getY());
 		}
 		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
 		data.add(new ScilabDouble(yy));

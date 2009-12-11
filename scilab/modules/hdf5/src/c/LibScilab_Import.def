@@ -2,6 +2,9 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
+;--------------------------
+; core
+;--------------------------
 com_
 putlhsvar_
 intersci_
@@ -9,3 +12,4 @@ checklhs_
 freeArrayOfString
 callFunctionFromGateway
 checkrhs_
+getScilabMode

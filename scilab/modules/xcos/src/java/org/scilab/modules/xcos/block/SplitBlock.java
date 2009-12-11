@@ -28,7 +28,9 @@ import com.mxgraph.model.mxGeometry;
 
 
 
-public class SplitBlock extends BasicBlock {
+public final class SplitBlock extends BasicBlock {
+
+    private static final long serialVersionUID = 5817243367840540106L;
 
 	public SplitBlock() {
 		super();
@@ -133,14 +135,14 @@ public class SplitBlock extends BasicBlock {
 	public void unlinkAndClean() {
 	
 		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
+		getParentDiagram().getModel().beginUpdate();
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicLink){
 				BasicLink link = (BasicLink)objs[i];
-					getParentDiagram().getModel().beginUpdate();
 					getParentDiagram().getModel().remove(link);
-					getParentDiagram().getModel().endUpdate();
 			}
 		}
+		getParentDiagram().getModel().endUpdate();
 	}
 
 	public void setGeometry(mxGeometry geometry) {

@@ -36,7 +36,6 @@ public class ConfigXcosManager {
 
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
-    private static final String VALUE = "value";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
     private static final String XCOORD = "x";
@@ -44,8 +43,19 @@ public class ConfigXcosManager {
     private static final String MAINWINPOSITION = "MainWindowPosition";
     private static final String MAINWINSIZE = "MainWindowSize";
 
-    private static final String NAME = "name";
+    private static final String RECENT_FILES = "recentFiles";
+    private static final String DOCUMENT = "document";
+    private static final String PATH = "path";
+    
+    
+    private static final String PALETTES = "palettes";
+    private static final String PALETTE = "palette";
 
+    
+    private static final String NAME = "name";
+    private static final String XCOS = "xcos";
+    private static final String SETTING = "Setting";
+    
     private static final String PROFILE = "Profile";
     private static final String XCOS_CONFIG_FILE = System.getenv("SCI")
 	    + "/modules/xcos/etc/xcosConfiguration.xml";
@@ -71,7 +81,6 @@ public class ConfigXcosManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-	/* TODO */
 	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
 	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 	    /* Create a local copy of the configuration file */
@@ -91,7 +100,6 @@ public class ConfigXcosManager {
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
-	/* TODO */
 	return USER_XCOS_CONFIG_FILE;
     }
 
@@ -122,7 +130,6 @@ public class ConfigXcosManager {
 	}
 	fis.close();
 	fos.close();
-	/* TODO */
     }
 
     /**
@@ -158,8 +165,6 @@ public class ConfigXcosManager {
 	    }
 	}
 	return new Position(0, 0);
-
-	/* TODO */
     }
 
     /**
@@ -169,7 +174,6 @@ public class ConfigXcosManager {
      *            the position of XCOS main Window
      */
     public static void saveMainWindowPosition(Position position) {
-	/* TODO */
 	/* Load file */
 	readDocument();
 
@@ -200,7 +204,6 @@ public class ConfigXcosManager {
      *            the size of XCOS main Window
      */
     public static void saveMainWindowSize(Size size) {
-	/* TODO */
 	/* Load file */
 	readDocument();
 
@@ -266,24 +269,24 @@ public class ConfigXcosManager {
 
 	if (document != null) {
 	    Element root = (Element) document.getDocumentElement()
-		    .getElementsByTagName("recentFiles").item(0);
+		    .getElementsByTagName(RECENT_FILES).item(0);
 	    if (root != null) {
-		NodeList recentFiles = root.getElementsByTagName("document");
+		NodeList recentFiles = root.getElementsByTagName(DOCUMENT);
 
 		for (int i = 0; i < recentFiles.getLength(); ++i) {
 		    Element style = (Element) recentFiles.item(i);
 
-		    File temp = new File(style.getAttribute("path"));
+		    File temp = new File(style.getAttribute(PATH));
 
 		    if (temp.exists()) {
-			files.add(temp);
+			files.add(0, temp);
 		    } else {
 			root.removeChild((Node) style);
 		    }
 
-		    /* Save changes */
-		    writeDocument();
 		}
+		/* Save changes */
+		writeDocument();
 	    }
 	}
 	return files;
@@ -297,40 +300,42 @@ public class ConfigXcosManager {
      */
     public static void saveToRecentOpenedFiles(String filePath) {
 
-	readDocument();
-
-	if (document != null) {
-	    Element root = (Element) document.getDocumentElement()
-		    .getElementsByTagName("recentFiles").item(0);
-	    NodeList recentFiles = root.getElementsByTagName("document");
-	    int numberOfFiles = recentFiles.getLength();
-
-	    // we remove all the duplicate
-	    for (int i = 0; i < recentFiles.getLength(); ++i) {
-		Element style = (Element) recentFiles.item(i);
-
-		if (filePath.equals(style.getAttribute("path"))) {
-		    root.removeChild((Node) style);
-		    numberOfFiles--;
-		}
-
-	    }
-
-	    // if we have reached the maximun , we remove the oldest files
-	    while (recentFiles.getLength() >= MAX_RECENT_FILES) {
-		root.removeChild(root.getFirstChild());
-	    }
-
-	    Element newFile = document.createElement("document");
-
-	    newFile.setAttribute("path", filePath);
-
-	    root.appendChild((Node) newFile);
-
-	    /* Save changes */
-	    writeDocument();
+	Node root = getXcosRoot();
+	if(root == null) {
+	    return;
+	}
+	
+	Node recentFiles = getNodeChild(root, RECENT_FILES);
+	if(recentFiles == null) {
+	    recentFiles = document.createElement(RECENT_FILES);
+	    root.appendChild(recentFiles);
 	}
 
+	ArrayList<Node> recentFile = getNodeChildren(recentFiles, DOCUMENT);
+
+	//if file already in file no need to add it
+	for(Node item : recentFile) {
+	    if (filePath.compareTo(((Element)item).getAttribute(PATH)) == 0) {
+		return;
+	    }
+	}
+
+	//limit number of recent files
+	if(recentFile.size() >= MAX_RECENT_FILES) {
+	    int itemCount = recentFile.size() - (MAX_RECENT_FILES - 1);
+	    for(int i = 0 ; i < itemCount ; i++) {
+		recentFiles.removeChild(recentFiles.getFirstChild());
+	    }
+	}
+
+	Element newFile = document.createElement(DOCUMENT);
+
+	newFile.setAttribute(PATH, filePath);
+
+	recentFiles.appendChild((Node) newFile);
+
+	/* Save changes */
+	writeDocument();
     }
 
     /**
@@ -377,6 +382,7 @@ public class ConfigXcosManager {
 
 	StreamResult result = new StreamResult(new File(USER_XCOS_CONFIG_FILE));
 	DOMSource source = new DOMSource(document);
+	
 	try {
 	    transformer.transform(source, result);
 	} catch (TransformerException e) {
@@ -385,4 +391,152 @@ public class ConfigXcosManager {
 
     }
 
+    /**
+     * Add a file to recent Opened Files
+     * 
+     * @param filePath
+     *            the path of the files to add
+     */
+    public static void saveUserDefinedPalettes(String filePath) {
+
+	Node root = getXcosRoot();
+	if(root == null) {
+	    return;
+	}
+	
+	Node palettes = getNodeChild(root, PALETTES);
+	if(palettes == null) {
+	    palettes = document.createElement(PALETTES);
+	    root.appendChild(palettes);
+	}
+
+	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
+
+	//if path already in file no need to add it
+	for(Node item : palette) {
+	    if (filePath.compareTo(((Element)item).getAttribute(PATH)) == 0) {
+		return;
+	    }
+	}
+
+	Element newFile = document.createElement(PALETTE);
+
+	newFile.setAttribute(PATH, filePath);
+
+	palettes.appendChild((Node) newFile);
+
+	/* Save changes */
+	writeDocument();
+    }
+
+    public static void removeUserDefinedPalettes(String filePath) {
+
+	Node root = getXcosRoot();
+	if(root == null) {
+	    return;
+	}
+	
+	Node palettes = getNodeChild(root, PALETTES);
+	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
+
+	// remove node if exists
+	for(Node file : palette) {
+	    if (filePath.compareTo(((Element)file).getAttribute(PATH)) == 0) {
+		palettes.removeChild(file);
+		break;
+	    }
+
+	}
+	/* Save changes */
+	writeDocument();
+
+    }
+
+    public static ArrayList<String> getUserDefinedPalettes() {
+	ArrayList<String> files = new ArrayList<String>();
+
+	Node root = getXcosRoot();
+	if(root == null) {
+	    return files;
+	}
+
+	Node palettes = getNodeChild(root, PALETTES);
+	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
+	for(Node file : palette) {
+	    String path = ((Element)file).getAttribute(PATH);
+	    if(path != null && path.compareTo("") != 0) {
+		files.add(path);
+	    }
+	}
+	
+	return files;
+    }
+    
+    private static Node getNodeChild(Node parent, String nodeName) {
+	
+	if(parent == null) {
+	    if(document == null) {
+		readDocument();
+		if(document == null) {
+		    return null;
+		}
+	    }
+	    parent = document;
+	}
+
+	Node currentNode = parent.getFirstChild();
+	while(currentNode != null) {
+	    if(currentNode.getNodeName().compareTo(nodeName) == 0){
+		return currentNode;
+	    }
+	    currentNode = currentNode.getNextSibling();
+	}
+	return currentNode;
+    }
+    
+    private static ArrayList<Node> getNodeChildren(Node parent, String childName) {
+	ArrayList<Node> nodes = new ArrayList<Node>();
+	
+	if(parent == null) {
+	    if(document == null) {
+		readDocument();
+		if(document == null) {
+		    return nodes;
+		}
+	    }
+	    parent = document;
+	}
+	
+	Node currentNode = parent.getFirstChild();
+	while(currentNode != null) {
+	    if(currentNode.getNodeName().compareTo(childName) == 0){
+		nodes.add(currentNode);
+	    }
+	    currentNode = currentNode.getNextSibling();
+	}
+	return nodes;
+	
+    }
+    
+    private static Node getXcosRoot() {
+
+	if(document == null) {
+	    readDocument();
+	    if(document == null) {
+		return null;
+	    }
+	}
+
+	Node setting = getNodeChild(null, SETTING);
+	
+	if(setting != null) {
+	    ArrayList<Node> nodes = getNodeChildren(setting, PROFILE);
+	    for(Node node : nodes) {
+		if(((Element)node).getAttribute(NAME).compareTo(XCOS) == 0) {
+		    return node;
+		}
+	    }
+	}
+	return null;
+    }
 }

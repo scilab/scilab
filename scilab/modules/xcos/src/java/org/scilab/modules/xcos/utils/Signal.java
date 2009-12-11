@@ -27,7 +27,6 @@ public class Signal {
 	    try {
 		data.wait();
 	    } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
 	}

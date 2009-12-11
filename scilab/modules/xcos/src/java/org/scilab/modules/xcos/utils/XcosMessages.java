@@ -11,6 +11,10 @@
  */
 package org.scilab.modules.xcos.utils;
 
+import java.awt.event.MouseEvent;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.localization.Messages;
 
 
@@ -47,6 +51,11 @@ public final class XcosMessages {
     public static final String CLOSE = Messages.gettext("Close");
     public static final String QUIT = Messages.gettext("Quit Xcos");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
+
+    /** Palette menu in palette browser*/
+    public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
+    public static final String USER_DEFINED = Messages.gettext("User-Defined");
+    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove user defined palette");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -204,6 +213,7 @@ public final class XcosMessages {
     public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
     public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
     public static final String LOADING_PALETTES = Messages.gettext("Loading palettes" + DOTS);
+    public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes" + DOTS);
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
@@ -211,14 +221,24 @@ public final class XcosMessages {
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
     
     /** Debug level messages  */
-    public static final String DEBUGLEVEL_0 = "No trace nor debug printing";
-    public static final String DEBUGLEVEL_1 = "Light Simulation trace (Discrete and Continous part switches)";
-    public static final String DEBUGLEVEL_2 = "Per block execution trace and Debug block calls";
-    public static final String DEBUGLEVEL_3 = "Debug block calls without trace";
+    public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
+    public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     
     /** File description */
-    public static final String FILE_COSF = "Scicos file";
-    public static final String FILE_COS = "Scicos file";
-    public static final String FILE_XCOS = "Xcos file";
-    public static final String FILE_HDF5 = "Scilab file";
+    public static final String FILE_COSF = Messages.gettext("Scicos file");
+    public static final String FILE_COS = Messages.gettext("Scicos file");
+    public static final String FILE_XCOS = Messages.gettext("Xcos file");
+    public static final String FILE_HDF5 = Messages.gettext("Scilab file");
+
+
+    /**
+     * This function checks for the popup menu activation under MacOS with Java version 1.5
+     * Related to Scilab bug #5190
+     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+     */
+    public static boolean isMacOsPopupTrigger(MouseEvent e) {
+	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+    }
 }

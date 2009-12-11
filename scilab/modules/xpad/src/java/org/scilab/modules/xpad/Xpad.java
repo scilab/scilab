@@ -1,4 +1,4 @@
-/*
+/*9
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  *
@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -69,6 +70,7 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -267,7 +269,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	/**
 	 * Close Xpad instance including all tabs.
 	 */
-	public static void closeXpad() {		
+	public static void closeXpad() {
+		
 		FindAction.closeFindReplaceWindow();
 		GotoLineAction.closeGotoLineWindow();
 		SetColorsAction.closeSetColorsWindow();
@@ -286,10 +289,33 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Xpad editorInstance = new Xpad(mainWindow);
 
 		xpadGUI = new XpadGUI(mainWindow, editorInstance, XPAD);
-		editorInstance.setCallback(ExitAction.createMenu(editorInstance).getCallback());
+		editorInstance.setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
+			/**
+			 * serialVersionUID
+			 */
+			private static final long serialVersionUID = -4121140054209319523L;
+
+			/**
+			 * Action callback on Exit menu
+			 */
+			public void callBack() {
+				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXIT_CONFIRM, XpadMessages.EXIT, 
+		    			IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+						ExitAction.doExit(Xpad.getEditor());						
+				}
+			}
+			
+			/**
+			 * actionPerformed
+			 * @param e ActionEvent
+			 */
+			public void actionPerformed(ActionEvent e) {
+				callBack();
+			} 
+		});
+			
 		return editorInstance;
 	}
-
 
 	/**
 	 * Close a tab using its index.
@@ -488,6 +514,18 @@ public class Xpad extends SwingScilabTab implements Tab {
 			/*we test if the file has already a scilab extension*/
 			boolean hasNoExtension = true;
 
+			// if the file name is like this : any character , a dot , then 2,3or 4 characters, then
+			// we consider the file has already an extension
+			// we previously only check for .sci and .sce extension, but what if the user open a txt file
+			String fileName = f.getName();
+			if (fileName.lastIndexOf(".")!= -1 ){
+				if ( fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() >= 2
+					&& fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() <= 4){
+					hasNoExtension = false;
+				}
+				
+			}
+				/*
 			for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
 				if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
 					hasNoExtension = false;
@@ -495,6 +533,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 
 			}
+			*/
 			/*if no extension , we add it */
 			if (hasNoExtension) {
 
@@ -637,9 +676,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        DocumentEvent.EventType type = documentEvent.getType();
 		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
 		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
+		        	if(doc.getAutoColorize()) {
+		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
+		        	}
 		        	doc.setContentModified(true);
 		        	Xpad.this.updateTabTitle();
-		        	SwingUtilities.invokeLater( colorizationManager.new ColorUpdater(doc, documentEvent));
 		        } 
 		   }
 	});
@@ -743,16 +784,24 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}	
 	}
 	
-	class CaretUpdateListener implements DocumentListener {
+	class UpdateListener implements DocumentListener {
 		public void insertUpdate(final DocumentEvent e)
 		{
+			updateColor(e);
 			SwingUtilities.invokeLater(new CaretUpdater(getTextPane(), e));
 		}
 		public void removeUpdate(DocumentEvent e)
 		{
+			updateColor(e);
 			getTextPane().setCaretPosition(e.getOffset());
 		}
 		public void changedUpdate(DocumentEvent e) {}
+		
+		void updateColor(DocumentEvent e){
+			if( e.getType() != DocumentEvent.EventType.CHANGE) {
+				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
+			}
+		}
 	}
 
 	/**
@@ -763,7 +812,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager undo = doc.getUndoManager();
 			if (undo.canUndo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					undo.undo();
@@ -789,7 +838,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		synchronized (doc) {
 			CompoundUndoManager redo = doc.getUndoManager();
 			if (redo.canRedo()) {
-				CaretUpdateListener cl = new CaretUpdateListener();
+				UpdateListener cl = new UpdateListener();
 				try {
 					doc.addDocumentListener(cl);
 					redo.redo();
@@ -825,8 +874,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		if (!alreadyOpened) {
 			ReadFileThread myReadThread = new ReadFileThread(f);
-			//myReadThread.start();
-			SwingUtilities.invokeLater(myReadThread);
+			myReadThread.start();
 		}
 
 		// Get current file path for Execute file into Scilab
@@ -1053,8 +1101,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 						} catch (BadLocationException e) {
 							e.printStackTrace();
 						}
-						// TODO : make colorize threadsafe to be able to keep the colorizing updater running when loading
-						colorStatus = new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 						styleDocument.setAutoIndent(indentMode);
 						styleDocument.setUpdater(true);
 					}
@@ -1066,11 +1112,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
 				styleDocument.setContentModified(false);
 
-				if(colorStatus == false) {
-					getInfoBar().setText(XpadMessages.COLORIZATION_CANCELED);
-				} else {
-					getInfoBar().setText("");
-				}
+				getInfoBar().setText("");
 
 				xpadGUI.updateEncodingMenu((ScilabStyleDocument)getTextPane().getStyledDocument());
 				

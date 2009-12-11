@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:14+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
-# File: macros/pspect.sci, line: 75
 # File: macros/cspect.sci, line: 67
+# File: macros/pspect.sci, line: 75
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr ""
@@ -41,9 +41,9 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: macros/yulewalk.sci, line: 44
 # File: macros/remezb.sci, line: 45
 # File: macros/remezb.sci, line: 48
-# File: macros/yulewalk.sci, line: 44
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -60,10 +60,10 @@ msgstr ""
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr ""
 #
+# File: macros/yulewalk.sci, line: 36
+# File: macros/lattn.sci, line: 47
 # File: macros/levin.sci, line: 48
 # File: macros/srfaur.sci, line: 36
-# File: macros/lattn.sci, line: 47
-# File: macros/yulewalk.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -99,9 +99,9 @@ msgstr ""
 # File: macros/iir.sci, line: 43
 # File: macros/lattn.sci, line: 53
 # File: macros/lattn.sci, line: 62
-# File: macros/hilb.sci, line: 39
 # File: macros/trans.sci, line: 42
 # File: macros/trans.sci, line: 57
+# File: macros/hilb.sci, line: 39
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -115,8 +115,8 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: macros/levin.sci, line: 52
 # File: macros/lattn.sci, line: 73
+# File: macros/levin.sci, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
 msgstr ""
@@ -128,19 +128,19 @@ msgid ""
 "vector of floats expected.\n"
 msgstr ""
 #
-# File: macros/detrend.sci, line: 40
-# File: macros/detrend.sci, line: 43
-# File: macros/detrend.sci, line: 46
-# File: macros/hilbert.sci, line: 19
 # File: macros/bilt.sci, line: 25
 # File: macros/bilt.sci, line: 28
 # File: macros/bilt.sci, line: 31
 # File: macros/iir.sci, line: 40
 # File: macros/iir.sci, line: 56
 # File: macros/iir.sci, line: 59
+# File: macros/hilbert.sci, line: 19
 # File: macros/lattn.sci, line: 50
 # File: macros/lattn.sci, line: 59
 # File: macros/lattn.sci, line: 68
+# File: macros/detrend.sci, line: 40
+# File: macros/detrend.sci, line: 43
+# File: macros/detrend.sci, line: 46
 # File: macros/trans.sci, line: 36
 # File: macros/trans.sci, line: 39
 # File: macros/trans.sci, line: 53
@@ -156,26 +156,26 @@ msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 #
-# File: macros/remezb.sci, line: 40
 # File: macros/%asn.sci, line: 23
+# File: macros/remezb.sci, line: 40
 # File: macros/window.sci, line: 78
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 #
-# File: macros/pspect.sci, line: 41
-# File: macros/detrend.sci, line: 89
-# File: macros/sincd.sci, line: 40
-# File: macros/eqiir.sci, line: 43
-# File: macros/eqiir.sci, line: 56
-# File: macros/analpf.sci, line: 58
 # File: macros/iir.sci, line: 50
 # File: macros/iir.sci, line: 53
-# File: macros/hilb.sci, line: 42
+# File: macros/cspect.sci, line: 33
+# File: macros/analpf.sci, line: 58
+# File: macros/pspect.sci, line: 41
+# File: macros/eqiir.sci, line: 43
+# File: macros/eqiir.sci, line: 56
+# File: macros/sincd.sci, line: 40
+# File: macros/detrend.sci, line: 89
 # File: macros/window.sci, line: 154
 # File: macros/trans.sci, line: 50
-# File: macros/cspect.sci, line: 33
+# File: macros/hilb.sci, line: 42
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -203,9 +203,9 @@ msgid ""
 "s, %s].\n"
 msgstr ""
 #
-# File: macros/window.sci, line: 65
 # File: macros/cepstrum.sci, line: 29
 # File: macros/cepstrum.sci, line: 45
+# File: macros/window.sci, line: 65
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""

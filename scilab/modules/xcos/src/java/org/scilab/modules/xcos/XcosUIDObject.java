@@ -15,8 +15,6 @@ package org.scilab.modules.xcos;
 import java.rmi.server.UID;
 
 import com.mxgraph.model.mxCell;
-import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosUIDObject extends mxCell{
 

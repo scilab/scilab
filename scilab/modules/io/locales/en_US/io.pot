@@ -14,15 +14,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:13+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
+# File: sci_gateway/c/sci_setenv.c, line: 127
+# File: sci_gateway/c/sci_setenv.c, line: 145
 # File: sci_gateway/c/sci_getenv.c, line: 97
 # File: sci_gateway/c/sci_getenv.c, line: 150
 # File: sci_gateway/c/sci_file.c, line: 149
 # File: sci_gateway/c/sci_file.c, line: 177
 # File: sci_gateway/c/sci_file.c, line: 205
-# File: sci_gateway/c/sci_setenv.c, line: 127
-# File: sci_gateway/c/sci_setenv.c, line: 145
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
@@ -42,11 +42,11 @@ msgstr ""
 msgid "%s: The file does not exist.\n"
 msgstr ""
 #
-# File: macros/unix_g.sci, line: 82
-# File: macros/unix_g.sci, line: 84
+# File: macros/unix_s.sci, line: 52
 # File: macros/unix_w.sci, line: 55
 # File: macros/unix_x.sci, line: 61
-# File: macros/unix_s.sci, line: 52
+# File: macros/unix_g.sci, line: 82
+# File: macros/unix_g.sci, line: 84
 #, c-format
 msgid "%s: The system interpreter does not answer..."
 msgstr ""
@@ -56,10 +56,10 @@ msgstr ""
 msgid "%s: Undefined environment variable %s.\n"
 msgstr ""
 #
-# File: macros/unix_g.sci, line: 32
+# File: macros/unix_s.sci, line: 29
 # File: macros/unix_w.sci, line: 30
 # File: macros/unix_x.sci, line: 30
-# File: macros/unix_s.sci, line: 29
+# File: macros/unix_g.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -79,20 +79,21 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
-# File: macros/unix_g.sci, line: 40
-# File: macros/unix_w.sci, line: 38
-# File: macros/unix_x.sci, line: 38
-# File: macros/input.sci, line: 18
 # File: macros/halt.sci, line: 30
 # File: macros/unix_s.sci, line: 37
+# File: macros/input.sci, line: 19
+# File: macros/input.sci, line: 33
+# File: macros/unix_w.sci, line: 38
+# File: macros/unix_x.sci, line: 38
+# File: macros/unix_g.sci, line: 40
+# File: sci_gateway/c/sci_setenv.c, line: 97
+# File: sci_gateway/c/sci_setenv.c, line: 110
 # File: sci_gateway/c/sci_getenv.c, line: 81
 # File: sci_gateway/c/sci_getenv.c, line: 133
 # File: sci_gateway/c/sci_file.c, line: 107
 # File: sci_gateway/c/sci_file.c, line: 120
 # File: sci_gateway/c/sci_file.c, line: 133
 # File: sci_gateway/c/sci_host.c, line: 35
-# File: sci_gateway/c/sci_setenv.c, line: 97
-# File: sci_gateway/c/sci_setenv.c, line: 110
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -102,10 +103,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getenv.c, line: 68
-# File: sci_gateway/c/sci_getenv.c, line: 119
 # File: sci_gateway/c/sci_setenv.c, line: 71
 # File: sci_gateway/c/sci_setenv.c, line: 84
+# File: sci_gateway/c/sci_getenv.c, line: 68
+# File: sci_gateway/c/sci_getenv.c, line: 119
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -116,16 +117,22 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
 msgstr ""
 #
-# File: macros/unix_g.sci, line: 36
-# File: macros/unix_w.sci, line: 34
-# File: macros/unix_x.sci, line: 34
-# File: macros/input.sci, line: 14
 # File: macros/halt.sci, line: 26
 # File: macros/unix_s.sci, line: 33
+# File: macros/input.sci, line: 15
+# File: macros/input.sci, line: 29
+# File: macros/unix_w.sci, line: 34
+# File: macros/unix_x.sci, line: 34
+# File: macros/unix_g.sci, line: 36
 # File: sci_gateway/c/sci_diary.c, line: 82
 # File: sci_gateway/c/sci_host.c, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/input.sci, line: 37
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_diary.c, line: 96
@@ -133,10 +140,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 #
-# File: macros/unix_w.sci, line: 44
-# File: macros/unix_x.sci, line: 47
 # File: macros/unix_s.sci, line: 44
 # File: macros/unix_s.sci, line: 56
+# File: macros/unix_w.sci, line: 44
+# File: macros/unix_x.sci, line: 47
 #, c-format
 msgid "%s: error during %s execution"
 msgstr ""
