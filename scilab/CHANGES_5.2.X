@@ -19,11 +19,14 @@ Text editor:
 - History
 - Help on the selected text
 
-* Performance enhancements for colorization (notable speed-up on opening large scripts Bug #4886)
+* bug 4886 fixed - Performance enhancements for colorization
+  (notable speed-up on opening large scripts)
 
-* Better Undo/Redo support (works across "Save"/ "Save as.." Bug #5465, undo / redo multiple edits on a region in one go )
+* bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
+  Thread.
 
-* Better multi-thread correctness wrt Event Dispatching Thread. (i.e. Bug #5173)
+* bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
+  undo / redo multiple edits on a region in one go )
 
 Help browser:
 =============
