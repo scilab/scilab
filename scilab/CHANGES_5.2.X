@@ -164,6 +164,8 @@ Xcos:
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
+* bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
+
 
 Tree functions :
 ================
