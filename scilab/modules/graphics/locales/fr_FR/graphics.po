@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
 "PO-Revision-Date: 2009-11-23 12:38+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -167,13 +167,11 @@ msgstr "%s: La légende ne correspond pas au contexte courant. On passe\n"
 
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
-msgstr ""
-"%s : Argument optionnel mal placé : n°%d doit être à la position %d\n"
+msgstr "%s : Argument optionnel mal placé : n°%d doit être à la position %d\n"
 
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
-msgstr ""
-"%s : Argument optionnel mal placé : n°%d doit être à la position %d.\n"
+msgstr "%s : Argument optionnel mal placé : n°%d doit être à la position %d.\n"
 
 #, c-format
 msgid "%s: No more memory\n"
@@ -270,8 +268,7 @@ msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendus."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
+msgstr "%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -311,8 +308,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
 msgstr ""
-"%s : Mauvaise dimension pour les arguments n°%d et n°%d : Devrait être >= "
-"%d.\n"
+"%s : Mauvaise dimension pour les arguments n°%d et n°%d : Devrait être >= %"
+"d.\n"
 
 #, c-format
 msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
@@ -332,8 +329,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d elements expected.\n"
@@ -354,8 +350,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : %s attendu.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d : %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -394,8 +389,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
-"%d expected.\n"
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%"
+"d expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice de taille "
 "supérieure à %d-par-%d attendue.\n"
@@ -430,8 +425,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une liste de taille "
-"%d attendue.\n"
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une liste de taille %"
+"d attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
@@ -502,8 +497,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s : Mauvaise dimension pour les arguments d'entrée n°%d et n° %d : Longueur "
 "incompatible.\n"
@@ -564,8 +558,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Une table 2D de chaîne de "
 "caractères attendue.\n"
@@ -633,8 +626,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Un handle de type "
-"\"Figure\" ou \"Axes\" attendu.\n"
+"%s : Mauvais type pour l'argument d'entrée n°%d : Un handle de type \"Figure"
+"\" ou \"Axes\" attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -849,8 +842,7 @@ msgstr ""
 "ne sont pas correctes.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s : Mauvaise valeur pour les arguments d'entrée n°%d et n° %d : Longueur "
 "incompatible.\n"
@@ -868,8 +860,7 @@ msgstr "%s : Mauvaise valeur : Le vecteur n'est pas monotone.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' attendue.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' attendue.\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -993,8 +984,8 @@ msgstr ""
 #, c-format
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
 msgstr ""
-"Le nom de la figure ne doit pas contenir de caractères %%, à part un seul "
-"%%d.\n"
+"Le nom de la figure ne doit pas contenir de caractères %%, à part un seul %%"
+"d.\n"
 
 #, c-format
 msgid "Graphic window number %d"
@@ -1120,8 +1111,7 @@ msgid "Scilab Graphics module not installed.\n"
 msgstr "Le module Scilab Graphics n'est pas installé.\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr ""
-"Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"
+msgstr "Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"
 
 msgid "Spring"
 msgstr "Printemps"
@@ -1243,8 +1233,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
+"Warning: %s has been set by user ; you must first increase the size of the %"
+"s string vector before switching to the new %s mode.\n"
 msgstr ""
 "Attention : %s a été activé par l'utilisateur ; vous devez d'abord augmenter "
 "la taille du vecteur de chaîne de caractères %s avant de passer au nouveau "
@@ -1265,16 +1255,13 @@ msgstr ""
 "utilisez la propriété %s pour éditer la couleur des axes.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr ""
-"Attention : ne peut pas utiliser Log sur l'axe X, xmin est négatif.\n"
+msgstr "Attention : ne peut pas utiliser Log sur l'axe X, xmin est négatif.\n"
 
 msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr ""
-"Attention : ne peut pas utiliser Log sur l'axe Y, ymin est négatif.\n"
+msgstr "Attention : ne peut pas utiliser Log sur l'axe Y, ymin est négatif.\n"
 
 msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr ""
-"Attention : ne peut pas utiliser Log sur l'axe Z, zmin est négatif.\n"
+msgstr "Attention : ne peut pas utiliser Log sur l'axe Z, zmin est négatif.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling\n"
 msgstr "Attention : Nax ne fonctionne pas avec l'échelle logarithmique\n"
@@ -1338,8 +1325,7 @@ msgstr "Mauvaise dimension pour la propriété '%s': Doit avoir %d colonnes.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
-msgstr ""
-"Mauvaise dimension pour la propriété '%s': Un vecteur ligne attendu.\n"
+msgstr "Mauvaise dimension pour la propriété '%s': Un vecteur ligne attendu.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
@@ -1369,8 +1355,7 @@ msgstr "Mauvais type pour la propriété '%s': Un réel attendu.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr ""
-"Mauvaise valeur pour la propriété '%s': Une matrice réelle attendue.\n"
+msgstr "Mauvaise valeur pour la propriété '%s': Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
@@ -1398,8 +1383,8 @@ msgstr "Mauvais type pour l'argument d'entrée : Tlist attendu.\n"
 #, c-format
 msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
 msgstr ""
-"Mauvaise valeur pour la propriété %s : Doit être dans l'intervalle [%s, "
-"%s].\n"
+"Mauvaise valeur pour la propriété %s : Doit être dans l'intervalle [%s, %"
+"s].\n"
 
 #, c-format
 msgid "Wrong value for '%s' property.\n"
@@ -1410,8 +1395,7 @@ msgid "Wrong value for '%s' property: %s or %s expected.\n"
 msgstr "Mauvaise valeur pour la propriété '%s': %s ou %s attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "Mauvaise valeur pour la propriété '%s': Un entier entre %d et %d attendu.\n"
 
@@ -1438,8 +1422,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be a valid handle.\n"
-msgstr ""
-"Mauvaise valeur pour la propriété '%s': Doit être un handle valide.\n"
+msgstr "Mauvaise valeur pour la propriété '%s': Doit être un handle valide.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be between %d and %d.\n"

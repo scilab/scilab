@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 15:01+0100\n"
 "PO-Revision-Date: 2009-10-26 14:13+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -27,8 +27,7 @@ msgstr "%s n'est pas une toolbox ou un module installé"
 
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr ""
-"%s: Le test ''%s'' n'existe pas ou n'est pas accessible en lecture.\n"
+msgstr "%s: Le test ''%s'' n'existe pas ou n'est pas accessible en lecture.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."

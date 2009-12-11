@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
 "PO-Revision-Date: 2009-11-23 13:30+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -110,15 +110,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%"
+"s' and '%s'"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ERREUR: Ne peux pas créer la chaîne de "
 "caractères du nom de fichier à partir de '%s' et '%s'"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ERREUR: Ne peux pas ouvrir %s en écriture (%s)\n"
 
@@ -162,8 +161,8 @@ msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
 msgstr ""
-"%s:%d:OLE_load_FAT:ERREUR: Ne peux pas charger le block, secteur importé = "
-"0x%x, position fat = 0x%x"
+"%s:%d:OLE_load_FAT:ERREUR: Ne peux pas charger le block, secteur importé = 0x"
+"%x, position fat = 0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
@@ -207,8 +206,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:ERREUR: Ne peux pas ouvrir %s en écriture (%s)"
+msgstr "%s:%d:OLE_store_stream:ERREUR: Ne peux pas ouvrir %s en écriture (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"

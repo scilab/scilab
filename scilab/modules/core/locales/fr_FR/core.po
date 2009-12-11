@@ -150,6 +150,10 @@ msgstr ""
 "%s : Impossible d'allouer plus de mémoire.\n"
 "Essayez gstacksize('max').\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot allocate memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
 #, c-format
 msgid ""
 "%s: Cannot allocate more memory.\n"
@@ -281,8 +285,7 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s : Mauvaise valeur fromwhat %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 "%s : Mauvais argument d'entrée n°%d : Un chemin vers un script Scilab "
 "attendu.\n"
@@ -301,8 +304,7 @@ msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
+msgstr "%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
@@ -490,8 +492,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument %d : Matrice polynomiale attendue.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Matrice polynomiale attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -555,8 +556,7 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire ou une chaîne "
 "de caractères attendu.\n"
@@ -574,8 +574,7 @@ msgstr ""
 "est attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un chaîne de caractères ou "
 "un scalaire attendu.\n"
@@ -591,8 +590,7 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Variable nommée attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
 "attendu.\n"
@@ -667,14 +665,14 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s', '%s', '%s' ou "
-"'%s' attendue.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s', '%s', '%s' ou '%"
+"s' attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s', '%s', '%s' or "
-"'%s'.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s', '%s', '%s' or '%"
+"s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -694,8 +692,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
+msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
@@ -767,8 +764,8 @@ msgstr "%s : argument %d doit être une liste de taille au moins %d.\n"
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
-"%s : argument %d(%d) n'a pas la bonne dimension %s (%d), valeur attendue "
-"(%d).\n"
+"%s : argument %d(%d) n'a pas la bonne dimension %s (%d), valeur attendue (%"
+"d).\n"
 
 #, c-format
 msgid "%s: argument must be a string.\n"
@@ -940,8 +937,8 @@ msgstr ""
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
-"Erreur : Fichier module %s invalide (l'encodage n'est pas '%s') Encodage "
-"'%s' trouvé.\n"
+"Erreur : Fichier module %s invalide (l'encodage n'est pas '%s') Encodage '%"
+"s' trouvé.\n"
 
 #, c-format
 msgid "Error: Not a valid primitive ID %d.\n"
@@ -1288,12 +1285,13 @@ msgstr "tlist partiellement remplie.\n"
 #~ msgstr " est déjà compilé.\n"
 
 #
-# File: macros/powershell.sci, line: 7
-#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
-#~ msgstr ""
-#~ "Erreur(s) : voir help powershell'';''vérifiez votre script sans Scilab."
-
-#
 # File: src/c/scicurdir.c, line: 49
 #~ msgid "Can't get current directory.\n"
 #~ msgstr "Impossible d'obtenir le répertoire courant.\n"
+
+#
+# File: macros/powershell.sci, line: 7
+#~ msgid ""
+#~ "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr ""
+#~ "Erreur(s) : voir help powershell'';''vérifiez votre script sans Scilab."

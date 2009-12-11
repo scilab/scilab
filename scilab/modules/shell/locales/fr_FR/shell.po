@@ -25,8 +25,7 @@ msgstr "%s: Non implémenté dans ce mode\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-"%s: Cette fonctionnalité n'a pas encore été implémentée dans ce mode\n"
+msgstr "%s: Cette fonctionnalité n'a pas encore été implémentée dans ce mode\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
