@@ -195,9 +195,6 @@ Xcos:
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
-                   warning and return softly.
-
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
@@ -218,12 +215,12 @@ Xcos:
 
 * bug 5533 fixed - SetupAction didn't valid inputs
 
-* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab
+                   execution thread.
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
-
 
 Tree functions :
 ================
@@ -379,6 +376,9 @@ Bug fixes:
 
 * bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
@@ -431,6 +431,8 @@ Bug fixes:
 
 * bug 5586 fixed - getscilabkeyworgs was broken.
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
+                   of x0 and len for "axes" simplex.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1608,5 +1610,4 @@ Bug fixes:
 
 * bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
-* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 
