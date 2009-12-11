@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
 "PO-Revision-Date: 2009-11-23 13:26+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -204,35 +204,17 @@ msgstr ""
 "%s : trop de solutions trouvées.\n"
 "   le précédent ordre calculé est retourné.\n"
 
-#
-# File: macros/prettyprint.sci, line: 564
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Mauvais paramètres d'entrée.\n"
-
 #, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Mauvais paramètres d'entrée.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Mauvais nombre d'arguments d'entrée: au plus %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: au plus %d attendus.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: au plus %d attendus.\n"
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: Doit être > 0.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -270,10 +252,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un vecteur attendu.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s : Mauvais type pour l'argument %d : Matrice booléenne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -348,21 +326,9 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
-"est attendue.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Mauvaise valeur pour l'argument d'entrée #%d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%"
-"s'' or ''%s'' expected.\n"
-msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: 0 attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -381,7 +347,8 @@ msgstr ""
 "journal n'existe pas.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
 "fermer le journal %d.\n"
@@ -393,7 +360,8 @@ msgstr ""
 "fermer le journal.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
 "interrompre le journal %d.\n"
@@ -425,11 +393,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: both actual and predicted relative reductions in the criterion at most %"
-"s.\n"
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
 msgstr ""
-"%s: les réductions relatives actuelle et prédite du critère sont au plus %"
-"s.\n"
+"%s: les réductions relatives actuelle et prédite du critère sont au plus "
+"%s.\n"
 
 #, c-format
 msgid "%s: df0 must be positive !\n"
@@ -593,7 +561,8 @@ msgid "Division by zero...\n"
 msgstr "Division par zéro ...\n"
 
 msgid "Dot cannot be used as modifier for this operator.\n"
-msgstr "Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
+msgstr ""
+"Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
 
 #, c-format
 msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
@@ -782,7 +751,8 @@ msgstr "Comparaison de type inégalité avec une matrice vide.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Les arguments d'entrée doivent avoir le même nom de variable.\n"
 
-msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Partie gauche de l'instruction: en attente d'un point ou d'une parenthèse "
 "ouvrante.\n"
@@ -976,7 +946,8 @@ msgstr ""
 "L'argument de taille variable a*eye(), (arg %d) n'est pas autorisé ici.\n"
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+msgstr ""
+"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
 
 msgid ""
 "Stack problem detected within a loop.\n"
@@ -1275,7 +1246,8 @@ msgstr "Mauvais argument d'entrée %d.\n"
 msgid "Wrong number of input arguments:\n"
 msgstr "Mauvais nombre d'arguments d'entrée:\n"
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Mauvais nombre d'arguments d'entrée: Cette fonction n'a pas d'argument "
 "d'entrée.\n"
@@ -1408,7 +1380,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
-msgstr "Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
 
 #, c-format
 msgid ""
@@ -1426,7 +1399,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
-msgstr "Mauvaise valeur pour l'argument %d: le handle lu n'est plus valide.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: le handle lu n'est plus valide.\n"
 
 msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "Vous ne pouvez pas lier plus de fonctions, maxentry atteint.\n"
@@ -1488,7 +1462,8 @@ msgid "semi def fails.\n"
 msgstr "Echec de semi def.\n"
 
 #, c-format
-msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergence incomplète. Précision relative atteinte: 10**(%s).\n"
 
@@ -1508,6 +1483,3 @@ msgstr "le domaine temporel de l'argument %d n'est pas défini.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Le mot clef varargout ne peut pas être utilisé ici.\n"
-
-#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-#~ msgstr "%s: Mauvais nombre d'arguments d'entrée: Doit être > 0.\n"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
 "PO-Revision-Date: 2009-11-23 12:13+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -47,8 +47,8 @@ msgstr "              stacksize(3000000);                    "
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
 msgstr ""
-"           n'est pas atteinte après %d itérations (ai obtenu uniquement %"
-"e) \n"
+"           n'est pas atteinte après %d itérations (ai obtenu uniquement %e) "
+"\n"
 
 msgid "           then re enter scisptdemo()                "
 msgstr "           ensuite re-saisissez scisptdemo()                "
@@ -66,7 +66,8 @@ msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
 
 msgid " For this demo the current stack size is not enought "
-msgstr " Pour cette démo, la taille courante de la pile n'est pas suffisante "
+msgstr ""
+" Pour cette démo, la taille courante de la pile n'est pas suffisante "
 
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
@@ -143,7 +144,8 @@ msgstr "%s : Mauvais nombre d'argument(s) d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
+msgstr ""
+"%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -158,7 +160,8 @@ msgid "%s: Wrong size for input argument #%d: %s.\n"
 msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d: %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice creuse "
 "carrée attendue.\n"
@@ -177,7 +180,8 @@ msgstr ""
 "%s : Mauvaise taille pour les arguments d'entrée : Même taille attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice creuse carrée "
 "attendue.\n"

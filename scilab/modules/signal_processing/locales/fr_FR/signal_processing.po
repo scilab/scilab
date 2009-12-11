@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: \t2007-09-27 16:24+0200\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
 "PO-Revision-Date: 2009-11-23 12:50+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -19,7 +19,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
-msgstr "%s: Les arguments n° %d et n° %d doivent avoir les mêmes dimensions.\n"
+msgstr ""
+"%s: Les arguments n° %d et n° %d doivent avoir les mêmes dimensions.\n"
 
 #, c-format
 msgid ""
@@ -72,7 +73,8 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n°%d: Un tableau de %d "
 "éléments est attendu.\n"
@@ -156,8 +158,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in the interval [%"
-"s, %s].\n"
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n°%d: Les élements doivent être "
 "dans l'intervalle [%s, %s].\n"

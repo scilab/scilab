@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-06-02 10:00+0100\n"
 "PO-Revision-Date: 2009-10-26 14:32+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -40,17 +40,6 @@ msgstr "%s : itération %d / %d"
 #, c-format
 msgid "%s: iteration %d / %d\n"
 msgstr "%s : itération %d / %d\n"
-
-#
-# File: demos/NSGAdemo.sce, line: 85
-# File: demos/GAdemo.sce, line: 81
-# File: demos/GAdemo.sce, line: 125
-# File: demos/MOGAdemo.sce, line: 83
-# File: demos/GAIsing2ddemo.sce, line: 62
-# File: demos/NSGA2demo.sce, line: 81
-#, c-format
-msgid "%s: optimization starting, please wait ...\n"
-msgstr ""
 
 #, c-format
 msgid "%s: wrong direction"

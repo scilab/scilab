@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2009-11-23 10:26+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
@@ -249,7 +249,8 @@ msgstr ""
 "résultat est réglé sur []."
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Au moins une opérande de %s est une matrice vide, l'équivalent Scilab est []."
 
@@ -336,8 +337,8 @@ msgstr "Le fichier %s est vide ! Rien n'a été fait ..."
 
 msgid "File contains no instruction, no translation made..."
 msgstr ""
-"Le fichier ne contient pas d'instructions, aucune traduction n'est "
-"effectuée ..."
+"Le fichier ne contient pas d'instructions, aucune traduction n'est effectuée "
+"..."
 
 msgid "File name: "
 msgstr "Nom de fichier : "
@@ -552,8 +553,8 @@ msgid ""
 "Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is "
 "used."
 msgstr ""
-"Scilab et Matlab qr() ne donnent pas le même résultat pour ce cas : mtlb_qr"
-"() est utilisé."
+"Scilab et Matlab qr() ne donnent pas le même résultat pour ce cas : "
+"mtlb_qr() est utilisé."
 
 msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
 msgstr ""
@@ -596,7 +597,8 @@ msgstr ""
 "des informations sur les améliorations."
 
 msgid "Translation may be wrong (see the //!! comments)."
-msgstr "La traduction n'est peut être pas bonne (voir les //!! commentaires)."
+msgstr ""
+"La traduction n'est peut être pas bonne (voir les //!! commentaires)."
 
 #, c-format
 msgid ""
@@ -643,7 +645,8 @@ msgid "Verbose mode: "
 msgstr "Mode verbeux : "
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
-msgstr "Vérifiez que l'expression évaluée par execstr() est compatible Scilab."
+msgstr ""
+"Vérifiez que l'expression évaluée par execstr() est compatible Scilab."
 
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
@@ -741,7 +744,8 @@ msgstr "est un scalaire."
 msgid "is not a character string matrix."
 msgstr "n'est pas une matrice de chaînes de caractères."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal requière que les champs soient dans le même ordre pour que ces "
 "structures soient égales."
@@ -787,7 +791,8 @@ msgid "message_id ignored in following line."
 msgstr "message_id est ignoré dans la ligne suivante."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) peut être remplacé par %s() ou %s que %s soit un fichier M ou non."
 
@@ -803,8 +808,8 @@ msgstr "name doit être une chaîne de caractères au lieu de : %s."
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"pas assez de données, vous devriez au moins donner variable_name|dimensions|"
-"datatype."
+"pas assez de données, vous devriez au moins donner "
+"variable_name|dimensions|datatype."
 
 msgid "not matlab path"
 msgstr "pas un chemin vers Matlab"
@@ -830,15 +835,17 @@ msgid "recursive extraction from a variable %s of type %s."
 msgstr "extraction récursive à partir d'une variable %s de type %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "l'extraction récursive avec un index de type %s n'est pas encore implémentée."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
-"insertion récursive dans une variable qui n'est ni une cell ni une struct : %"
-"s."
+"insertion récursive dans une variable qui n'est ni une cell ni une struct : "
+"%s."
 
 msgid "resume"
 msgstr "reprendre"
