@@ -633,7 +633,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ModelTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    List changes = (List) evt.getArgAt(0);
+	    List<mxUndoableChange> changes = (List<mxUndoableChange>) evt.getArgAt(0);
 	    List<Object> objects = new ArrayList<Object>();
 	    getModel().beginUpdate();
 	    for (int i = 0; i < changes.size(); ++i) {
@@ -1091,6 +1091,17 @@ public class XcosDiagram extends ScilabGraph {
 		    //Tips for ignore first mouse release after drag
 		    waitPathRelease = false;
 		    waitPathAddEdge = true;
+		    
+		    //adjust final point
+		    mxGeometry geoPort = drawLink.getSource().getGeometry();
+		    mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+		    mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
+		    mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+		    
+		    getModel().beginUpdate();
+		    drawLink.getGeometry().setTargetPoint(point);
+		    getModel().endUpdate();
+		    refresh();
 		} else if(waitPathAddEdge){
 		    if(drawLink != null) {
 			getModel().beginUpdate();
@@ -1128,12 +1139,19 @@ public class XcosDiagram extends ScilabGraph {
 				setSelectionCell(drawLink);
 			    }
 			} else {
-			    geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+			    mxPoint lastPoint = geo.getTargetPoint(); 
+			    
+			    //try to find the best, orthogonal or diagonal point to best visual effect
+			    
+			    //true -> positve offset
+			    //false -> negative offset
+			    geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
 			}
 			getModel().endUpdate();
 			refresh();
 		    } else {
-			cancelDrawLinkAction();		    }
+			cancelDrawLinkAction();
+		    }
 		} else {
 		    dragSplitPos = null;
 		}
@@ -1141,6 +1159,37 @@ public class XcosDiagram extends ScilabGraph {
 	}
     }
 
+    static mxPoint getPointPosition(mxPoint origin, mxPoint click) {
+	boolean signX = click.getX() > origin.getX();
+	boolean signY = click.getY() > origin.getY();
+	double diffX = Math.abs(click.getX() - origin.getX());
+	double diffY = Math.abs(click.getY() - origin.getY());
+
+	if(diffX > diffY) {
+	    if(diffY > (diffX / 2)) { //diagonal
+		diffY = diffX;
+	    } else { //orthogonal
+		diffY = 0;
+	    }
+	} else { // < or ==
+	    if(diffX > (diffY / 2)) { //diagonal
+		diffX = diffY;
+	    } else { //orthogonal
+		diffX = 0;
+	    }
+	}
+
+	//restore signs
+	if(signX == false) {
+	    diffX = -diffX;
+	}
+
+	if(signY == false) {
+	    diffY = - diffY;
+	}
+
+	return new mxPoint(origin.getX() + diffX, origin.getY() + diffY); 
+    }
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
      * and a (+) to expand them.

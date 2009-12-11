@@ -37,9 +37,15 @@ Text editor:
 
 * bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
   Thread.
+  
+* bug 5341 fixed - "Save All" functionality was missing.
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
+
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
+
 
 Help browser:
 =============
@@ -195,9 +201,6 @@ Xcos:
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link wasn't allowed
 
-* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
-                   warning and return softly.
-
 * bug 5440 fixed - OUT* blocks were not in the sinks palette 
 
 * bug 5442 fixed - Undo a Mirror Action didn't work as expected
@@ -212,18 +215,22 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
+
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+
+* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as parameter
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
 * bug 5533 fixed - SetupAction didn't valid inputs
 
-* bug 5592 fixed - The xcos startup operations were performed on the Scilab execution thread.
+* bug 5592 fixed - The xcos startup operations were performed on the Scilab
+                   execution thread.
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
-
 
 Tree functions :
 ================
@@ -379,6 +386,9 @@ Bug fixes:
 
 * bug 5413 fixed - help_from_sci: An error was triggered when < or > where used in the comments
 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+                   warning and return softly.
+
 * bug 5433 fixed - LCC-Win32 did not work with scicos.
 
 * bug 5453 fixed - Sizes was displayed with French units.
@@ -386,6 +396,11 @@ Bug fixes:
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
                    performed.
+
+* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
+
+* bug 5482 fixed - added a menu to choose EOL type when you save a file with
+                   editor.
 
 * bug 5484 fixed - LCC-Win32 failed to generate makefile.lcc with this example.
 
@@ -416,21 +431,19 @@ Bug fixes:
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
 
-* bug 5519 fixed - added a message asking the user if he wants to exit the 
-                   editor when he clicks on the cross.
-
-* bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
-
-* bug 5482 fixed - added a menu to choose EOL type when you save a file with
-                   editor.
-
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
+
+* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
 * bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
                    ISO-8859-1 and not in UTF-8.
+ 
+* bug 5585 fixed - sysdiag(): Both examples were duplicated.
 
 * bug 5586 fixed - getscilabkeyworgs was broken.
 
+* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
+                   of x0 and len for "axes" simplex.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1603,10 +1616,4 @@ Bug fixes:
 * bug 5469 fixed - Force origin presence on an axes with location property set to 'origin'.
 
 * bug 5474 fixed - The demo Standard demos --> Scilab block was not working.
-
-* bug 5546 fixed - Initialization trouble of the variable "compilerpath"
-
-* bug 5585 fixed - sysdiag(): Both examples were duplicated.
-
-* bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency of x0 and len for "axes" simplex.
 
