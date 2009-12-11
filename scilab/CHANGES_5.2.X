@@ -37,9 +37,15 @@ Text editor:
 
 * bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
   Thread.
+  
+* bug 5341 fixed - "Save All" functionality was missing.
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
   undo / redo multiple edits on a region in one go )
+
+* bug 5519 fixed - added a message asking the user if he wants to exit the 
+                   editor when he clicks on the cross.
+
 
 Help browser:
 =============
@@ -209,7 +215,11 @@ Xcos:
 
 * bug 5475 fixed - drag & drop .xcos file on console did not open xcos diagram.
 
+* bug 5528 fixed - ENDBLK and ENC_c blocks (Sinks palette) didn't have icon.
+
 * bug 5529 fixed - The parent diagram was not updated when performing undo/redo on a SuperBlockDiagram.
+
+* bug 5530 fixed - IN_f, OUT_f and similars blocks didn't accept expression as parameter
 
 * bug 5531 fixed - Setup values were not strongly typed (use of spinner)
 
@@ -420,9 +430,6 @@ Bug fixes:
 
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job is done.
-
-* bug 5519 fixed - added a message asking the user if he wants to exit the 
-                   editor when he clicks on the cross.
 
 * bug 5532 fixed - added a menu "Save All" to save all modified file by editor.
 
