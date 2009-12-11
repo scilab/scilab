@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.palette.actions;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
