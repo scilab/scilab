@@ -87,6 +87,9 @@ Xcos:
 
 * bug 5159 fixed - The region to superblock action couldn't be undone/redone.
 
+* bug 5179 fixed - The accented letters used in text in Scicos diagram are not 
+                   visible with xcos at least under Linux
+
 * bug 5180 fixed - TEXT_f was not selectable on the palette.
 
 * bug 5183 fixed - Simulation menu wasn't disabled on a superblock diagram
@@ -161,6 +164,8 @@ Xcos:
 
 * bug 5594 fixed - The links didn't move on arrow key typing.
 
+* bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
+
 
 Tree functions :
 ================
@@ -198,6 +203,8 @@ Bug fixes:
                    as default for next export file selection.
 
 * bug 4401 fixed - isnum returned wrong values.
+
+* bug 4435 fixed - bench_run is now documented.
 
 * bug 4565 fixed - getvalue macro is definied two times.
 
