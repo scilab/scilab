@@ -18,7 +18,7 @@ Text editor:
 - Help on the selected text
 See bug #5387
 
-* bug 4873 fixed - "undo" doesn't work if the last action affects several lines. 
+* bug 4873 fixed - "undo" doesn't work if the last action affects several lines.
 
 * bug 4883 fixed - "Menu->Document->Auto Indent" preference is not saved.
 
@@ -446,6 +446,9 @@ Bug fixes:
 
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
                    The error is now catched.
+
+* bug 5249 fixed - Using the help or apropos functions, some words (stop word) 
+                   were not taking in account during the search.
 
 * bug 5251 fixed - getversion help page updated.
 

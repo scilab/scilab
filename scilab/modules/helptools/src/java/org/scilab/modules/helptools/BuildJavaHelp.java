@@ -151,7 +151,7 @@ public final class BuildJavaHelp {
 			File directory = new File(outputJavaHelp);
 			directory.mkdirs();
 
-			String[] args = new String[] {"."};
+			String[] args = new String[] {"-nostopwords","."};
 
 			indexer.compile(args);
 		} catch (Exception e) {
