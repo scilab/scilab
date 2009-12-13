@@ -227,6 +227,9 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 		if (wcreplacedString) {FREE(wcreplacedString);wcreplacedString = NULL;}
 	}
 
+	if (wcinput_string) {FREE(wcinput_string); wcinput_string = NULL;};
+	if (wcreplacement_string) {FREE(wcreplacement_string); wcreplacement_string = NULL;};
+
 	return replacedString;
 }
 /*-------------------------------------------------------------------------------------*/

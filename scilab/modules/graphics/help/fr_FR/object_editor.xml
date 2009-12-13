@@ -36,9 +36,9 @@
     de type Polylines, Rectangles, Arcs, Segs,... L'entités Axes peut
     également contenir une entité intermédiaire nommé Compound qui regroupe un
     ensemble d'entités filles.</para>
-    <para>Le principal intérêt du nouveau mode graphique réside dans sa capacité
+    <para>Le principal intérêt du mode graphique réside dans sa capacité
     à   changer à   volonté les propriétés des objets graphiques a
-    priori et surtout a posteriori. Ce nouveau mode graphique est fourni avec
+    priori et surtout a posteriori. Ce mode graphique est fourni avec
     une suite de commandes graphiques de haut niveau (voir <link linkend="set">set</link>,
     <link linkend="get">get</link>) utliisées pour positionner les proriéts des objets
     telles que les données, les coordonnées, échelles, couleur etc... sans
@@ -50,7 +50,7 @@
     les propriétés de l'entité considérée à   travers l'utilisation des
     commandes "set" et "get". Les handles sont aussi utiles pour manipuler des
     objets graphiques, les bouger, les copier ou encore les supprimer.</para>
-    <para>Pour compléter ce nouveau mode, un éditeur graphique a été développé
+    <para>Pour compléter ce mode, un éditeur graphique a été développé
     pour ces objets. Il s'agit d'un ensemble d'interfaces en Tcl/Tk
     disponibles pour chaque objet graphique (voir
     <link linkend="graphics_entities">graphics_entities</link> pour plus de détail). Pour lancer
@@ -77,10 +77,6 @@
         <listitem>
           <para>Efface le contenu de la figure. Son action correspond à   un
         appel à <literal>clf</literal>.</para>
-          <para/>
-          <para/>
-          <para>Les 8 derniers items sont dédiés exclusivement au nouveau mode
-        graphique :</para>
           <para/>
         </listitem>
       </varlistentry>

@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -65,6 +66,9 @@ public final class ConfigXpadManager {
 	private static final String YCOORD = "y";
 	private static final String MAINWINPOSITION = "MainWindowPosition";
 	private static final String MAINWINSIZE = "MainWindowSize";
+	private static final String AUTOINDENT = "AutoIndent";
+	private static final String AUTOCOLORIZE = "AutoColorize";
+	private static final String DEFAULTENCONDING = "DefaultEncoding";
 	
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -73,8 +77,11 @@ public final class ConfigXpadManager {
 	private static final String NAME = "name";
 	
 	private static final String PROFILE = "Profile";
+	
+	//private static final String XPAD_CONFIG_FILE = "/home/allan/scilab5-2/scilab/modules/xpad/etc/xpadConfiguration.xml";
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
 	
+	//private static final String USER_XPAD_CONFIG_FILE = "/home/allan/Bureau/xpadConfiguration.xml";
     private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
@@ -419,6 +426,174 @@ public final class ConfigXpadManager {
 		
 	}
 	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveAutoIndent(boolean activated) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+		    Element autoIndent = document.createElement(AUTOINDENT);
+
+		    autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
+
+		    xpadProfile.appendChild((Node) autoIndent);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static boolean getAutoIndent() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
+		Element autoIndent = (Element) allSizeElements.item(0);
+		
+		if(autoIndent == null){
+			return true;
+		} else {
+			return new Boolean(autoIndent.getAttribute(VALUE));
+		}
+	}
+	
+	
+	/**
+	 * Save Xpad autoColorize or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveAutoColorize(boolean activated) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+		    Element autoColorize = document.createElement(AUTOCOLORIZE);
+
+		    autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
+
+		    xpadProfile.appendChild((Node) autoColorize);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static boolean getAutoColorize() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
+		Element autoColorize = (Element) allSizeElements.item(0);
+		
+		if(autoColorize == null){
+			return true;
+		} else {
+			return new Boolean(autoColorize.getAttribute(VALUE));
+		}
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static void saveDefaultEncoding(String encoding) {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
+		Element xpadAutoIndent = (Element) allSizeElements.item(0);
+		if (xpadAutoIndent == null){
+		    Element defaultEncoding = document.createElement(DEFAULTENCONDING);
+
+		    defaultEncoding.setAttribute(VALUE, encoding);
+
+		    xpadProfile.appendChild((Node) defaultEncoding);
+		} else {
+		xpadAutoIndent.setAttribute(VALUE, encoding  );
+		}
+		/* Save changes */
+		writeDocument();	
+		
+	}
+	
+	
+	/**
+	 * Save Xpad autoIndent or not
+	 * @param boolean if autoIndent should be used or not
+	 */
+	public static String getDefaultEncoding() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element root = document.getDocumentElement();
+		
+		NodeList profiles = root.getElementsByTagName(PROFILE);
+		Element xpadProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
+		Element defaultEncoding = (Element) allSizeElements.item(0);
+
+		if (defaultEncoding == null || defaultEncoding.getAttribute(VALUE).equals("")) {
+			// If no default encoding read then used system default
+			saveDefaultEncoding(Charset.defaultCharset().name());
+			return Charset.defaultCharset().name();
+		} else {
+			return defaultEncoding.getAttribute(VALUE);
+		}
+	}
 	
 	/**
 	 * Get all the foreground Colors 

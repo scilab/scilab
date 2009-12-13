@@ -59,9 +59,6 @@ getd('SCI/modules/cacsd/macros')
         <link linkend="pwd">pwd</link>
       </member>
       <member>
-        <link linkend="pwd">pwd</link>
-      </member>
-      <member>
         <link linkend="chdir">chdir</link>
       </member>
     </simplelist>

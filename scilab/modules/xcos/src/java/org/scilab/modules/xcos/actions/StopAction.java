@@ -20,12 +20,14 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class StopAction extends DefaultAction {
 	
+    private static final long serialVersionUID = -4815506453604602272L;
+
 	public StopAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.STOP, scilabGraph);
 	}
@@ -41,6 +43,6 @@ public class StopAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		InterpreterManagement.requestScilabExec("haltscicos");
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		Xcos.setStartEnabled(true);
+		XcosTab.setStartEnabled(true);
 	}
 }

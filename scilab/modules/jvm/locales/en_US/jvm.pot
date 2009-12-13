@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-11-17 16:13+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: src/c/JVM.c, line: 118
 #, c-format
@@ -105,8 +105,8 @@ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 69
-# File: sci_gateway/c/sci_javaclasspath.c, line: 67
 # File: sci_gateway/c/sci_system_getproperty.c, line: 46
+# File: sci_gateway/c/sci_javaclasspath.c, line: 67
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -127,13 +127,13 @@ msgstr ""
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr ""
 #
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 53
 # File: src/c/JVM.c, line: 69
 # File: src/c/JVM.c, line: 84
 # File: src/c/JVM.c, line: 147
 # File: src/c/JVM.c, line: 181
 # File: src/c/JVM.c, line: 208
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 53
 msgid "Error"
 msgstr ""
 #
@@ -160,16 +160,16 @@ msgstr ""
 msgid "Error: Could not parse file %s.\n"
 msgstr ""
 #
-# File: src/c/getJvmOptions.c, line: 145
+# File: src/c/getJvmOptions.c, line: 146
 #, c-format
 msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
 #
-# File: src/c/loadClasspath.c, line: 89
-# File: src/c/loadOnUseClassPath.c, line: 63
 # File: src/c/loadLibrarypath.c, line: 61
+# File: src/c/loadOnUseClassPath.c, line: 63
+# File: src/c/loadClasspath.c, line: 89
 #, c-format
 msgid "Error: could not parse file %s\n"
 msgstr ""
@@ -223,15 +223,15 @@ msgstr ""
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr ""
 #
+# File: src/c/loadOnUseClassPath.c, line: 121
 # File: src/c/loadClasspath.c, line: 192
-# File: src/c/loadOnUseClassPath.c, line: 120
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"
 msgstr ""
 #
-# File: src/c/loadClasspath.c, line: 177
-# File: src/c/loadOnUseClassPath.c, line: 112
 # File: src/c/loadLibrarypath.c, line: 124
+# File: src/c/loadOnUseClassPath.c, line: 112
+# File: src/c/loadClasspath.c, line: 177
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr ""

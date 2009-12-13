@@ -180,8 +180,8 @@ public class SciTextRenderer {
 	 * @param blue blue channel
 	 */
 	public void setColor(double red, double green, double blue) {
-		/* Set also for the MathML / LaTeX rendering */
-		speRenderer.setColor((float) red, (float) green, (float) blue, 1.0f);
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
@@ -191,8 +191,8 @@ public class SciTextRenderer {
 	 * @param color array of size 3 containing the channels
 	 */
 	public void setColor(double[] color) {
-		/* Set also for the MathML / LaTeX rendering */
-		speRenderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
@@ -204,18 +204,21 @@ public class SciTextRenderer {
 	 */
 	public Rectangle2D getBounds(String str) {
 		Rectangle2D res; 
+		float tmpFactor;
 		
 		/* Set also for the MathML / LaTeX rendering */
 		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
 		    res = speRenderer.getBounds(str);
+		    tmpFactor = 1.0f;
 		} else {
 		    res = renderer.getBounds(str);
+		    tmpFactor = scaleFactor;
 		}
 		
 		// apply scale factor to the bounds
 		res.setRect(res.getX(), res.getY(),
-					res.getWidth() * scaleFactor,
-					res.getHeight() * scaleFactor);
+					res.getWidth() * tmpFactor,
+					res.getHeight() * tmpFactor);
 		return res;
 	}
 	

@@ -36,7 +36,6 @@ c
 
       rhs1=rhs
       top0=top
-
       fun=0
       if(rhs.gt.2) then
          fin=-fin
@@ -48,7 +47,6 @@ c
          return
       endif
       icount=0
-
 c     arg2(arg1)
 c     ==========
 
@@ -97,7 +95,6 @@ c     empty field found
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))
       il2i=il2ir
       if(istk(il2i).lt.0) il2i=iadr(istk(il2i+1))
-
       if(info.eq.2.or.info.eq.4) then
 c     .  syntax is arg2(...)(i,j,..)(...)
 c     .  matrix index (i,..) syntax
@@ -194,7 +191,12 @@ c     .              set the index
 c     .  end of arg1 list (index list) reached
 c     .  copy the designed sublist at the top of the stack
          top=top-1
-         call copyvar(il2ir,vol2)
+         if (rstk(pt-1).eq.314.and.
+     $        (istk(il2ir).eq.11.or.istk(il2ir).eq.13)) then
+            call createref(il2ir,0,vol2)
+         else
+            call copyvar(il2ir,vol2)
+         endif
          return
       elseif(info.eq.6) then
 c     .  index is out of bounds

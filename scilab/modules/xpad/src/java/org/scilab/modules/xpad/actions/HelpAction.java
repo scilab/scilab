@@ -21,12 +21,29 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class HelpAction extends DefaultAction {
+/**
+ * HelpAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class HelpAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -3024180292998640447L;
+
+	/**
+	 * Constructor 
+	 * @param editor Xpad
+	 */
 	private HelpAction(Xpad editor) {
 		super(XpadMessages.HELP, editor);
 	}
 
+	/**
+	 * doAction
+	 */
 	public void doAction() {
 		String selection = getEditor().getTextPane().getSelectedText();
 		if (selection == null || selection.equals("")) {
@@ -36,7 +53,13 @@ public class HelpAction extends DefaultAction {
 		}
 	}
 
+	/**
+	 * createMenu 
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+		return createMenu(XpadMessages.HELP, null, new HelpAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 	}
 }

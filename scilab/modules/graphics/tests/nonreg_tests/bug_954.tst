@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 954 -->
 //
 // <-- Bugzilla URL -->

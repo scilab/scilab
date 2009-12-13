@@ -15,7 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.awt.Color;
 import java.util.Map;
 
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -30,7 +30,7 @@ public class XcosDiagramCodec extends mxObjectCodec {
 	
 	
 	public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs,
-			Map mapping)
+			Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
 		

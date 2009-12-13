@@ -44,11 +44,14 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp \
-sci_gateway/cpp/sci_xcosNotify.cpp \
-sci_gateway/cpp/sci_warnBlockByUID.cpp \
-sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
-sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_Xcos.cpp \
+	sci_gateway/cpp/sci_xcosNotify.cpp \
+	sci_gateway/cpp/sci_warnBlockByUID.cpp \
+	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
+	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
+	sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -162,7 +165,7 @@ images/blocks/VoltageSensor.gif \
 images/icons/document-new.png \
 images/icons/document-open.png \
 images/icons/document-print.png \
-images/icons/document-save.png \
+images/icons/document-save-as.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
 images/icons/edit-delete.png \
@@ -171,6 +174,7 @@ images/icons/edit-redo.png \
 images/icons/edit-undo.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
+images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \
@@ -224,6 +228,7 @@ images/palettes/CurrentSensor.jpg \
 images/palettes/CURV_f.jpg \
 images/palettes/CVS.jpg \
 images/palettes/DEADBAND.jpg \
+images/palettes/DEBUG_SCICOS.jpg \
 images/palettes/DELAY_f.jpg \
 images/palettes/DELAYV_f.jpg \
 images/palettes/DEMUX.jpg \
@@ -236,6 +241,8 @@ images/palettes/DLRADAPT_f.jpg \
 images/palettes/DLSS.jpg \
 images/palettes/DOLLAR_f.jpg \
 images/palettes/EDGE_TRIGGER.jpg \
+images/palettes/ENDBLK.jpg \
+images/palettes/END_c.jpg \
 images/palettes/ESELECT_f.jpg \
 images/palettes/EVTDLY_c.jpg \
 images/palettes/EVTGEN_f.jpg \

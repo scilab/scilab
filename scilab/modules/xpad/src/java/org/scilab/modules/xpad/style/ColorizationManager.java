@@ -8,15 +8,13 @@ import java.util.regex.Pattern;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
+import javax.swing.text.Position;
 
 /**
  * This class manages the Colorization aspect
  */
 public class ColorizationManager {
 	private volatile boolean colorizeInprogress;
-	private String[] commands;
-	private String[] functions;
-	private String[] macros;
 	private boolean singleLine = false;
 	private int lineStartPosition;
 	private int lineEndPosition;
@@ -28,27 +26,42 @@ public class ColorizationManager {
 	private final int MACROS = 4;
 	private final int OPERATORS = 5;
 	private final int QUOTATIONS = 6;
+	
+	private long millis = 0;
+	
+	private Pattern quotationsPattern, commentsPattern, boolsPattern, commandsPattern, functionsPattern, macrosPattern, operatorsPattern;
 
+	private Pattern compilePattern( String[] words, boolean useWordBoundaries){
+		StringBuffer buffer= new StringBuffer();
+		// was findBoundaries macros:12875 findBoundaries functions:4229
+		if(useWordBoundaries){
+			buffer.append("\\b(");
+		}
+		for(int i=0; i!= words.length; ++i){
+			if(i!=0){
+				buffer.append('|');
+			}
+			buffer.append(words[i]);
+		}
+		if(useWordBoundaries){
+			buffer.append(")\\b");
+		}
+		return Pattern.compile(buffer.toString(), Pattern.DOTALL);
+	}
 	
 		public ColorizationManager() {
 			// Scilab keywords to be colored
 			KeywordManager keywordManager = new KeywordManager();
-			Hashtable<String, String[]> keywords = keywordManager.getScilabKeywords();    	
-			commands = (String[]) keywords.get("command");
-			functions = (String[]) keywords.get("function");
-			macros = (String[]) keywords.get("macro");
-
-			// Regexp for Scilab keywords  (for commands, functions & macros) 
-			for (int i = 0; i < commands.length; i++) {
-				commands[i] = "\\b" + commands[i] + "\\b"; 
-			}    	
-			for (int i = 0; i < functions.length; i++) {
-				functions[i] = "\\b" + functions[i] + "\\b"; 
-			}    	
-			for (int i = 0; i < macros.length; i++) {
-				macros[i] = "\\b" + macros[i] + "\\b"; 
-			}
-		
+			boolsPattern = compilePattern(KeywordManager.getBools(),false);
+			quotationsPattern= compilePattern(KeywordManager.getQuotations(),false);
+			commentsPattern= compilePattern(KeywordManager.getComments(),false);
+			operatorsPattern=compilePattern(KeywordManager.getOperators(),false);
+			
+			Hashtable<String, String[]> keywords = keywordManager.getScilabKeywords();
+			commandsPattern = compilePattern(keywords.get("command"), true);
+			functionsPattern = compilePattern(keywords.get("function"),true);
+			macrosPattern = compilePattern(keywords.get("macro"),true);
+			
 		}
 		
 
@@ -85,28 +98,24 @@ public class ColorizationManager {
 	
 	
 
-	public boolean colorize(ScilabStyleDocument scilabDocument, int lineStartPosition, int lineEndPosition) {
-	    //DEBUG("--> Calling colorize("+lineStartPosition+", "+lineEndPosition+")");	
+	public boolean colorize(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
+	    //System.err.println("--> Calling colorize("+startOffset+", "+endOffset+")");	
 	    //Timer timer = new Timer();
 		//DEBUG("Colorize [before parse] : " + timer.top());
 		singleLine = false;
-		
+		/*try {
+		System.err.println("colorizing:|"+scilabDocument.getText(startOffset, endOffset-startOffset)+"|");
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}*/
 		// We parse all words which are susceptible to be colored
 		ArrayList<ArrayList<Integer>> boundaries_list = 
-			this.parse(scilabDocument, KeywordManager.getBools(), 
-					commands,
-					KeywordManager.getComments(), 
-					functions, 
-					macros, 
-					KeywordManager.getOperators(), 
-					KeywordManager.getQuotations(), 
-					lineStartPosition, 
-					lineEndPosition);
+			this.parse(scilabDocument, startOffset, endOffset);
 		//DEBUG("Colorize [after parse] : " + timer.top());
 		if (!colorizeInprogress) {
 			//colorizeInprogress = true;
 			scilabDocument.disableUndoManager();
-			resetStyle(scilabDocument, lineStartPosition, lineEndPosition);
+			resetStyle(scilabDocument, startOffset, endOffset);
 			try {
 				if(applyStyle(scilabDocument, boundaries_list.get(VARIABLES), scilabDocument.getStyle("Variable")) == false){ return false;}
 				if(applyStyle(scilabDocument, boundaries_list.get(COMMANDS), scilabDocument.getStyle("Command")) == false){ return false;}
@@ -146,81 +155,101 @@ public class ColorizationManager {
 		return false;
 	}
 
+	
 	public class ColorUpdater implements Runnable {
-	    private DocumentEvent event;
 	    private ScilabStyleDocument scilabDocument;
-	    
+	    private Position startPosition, endPosition;
+	    int endOffset = -1; // javax.text API treats end of doc as a special case so we need to handle it as a special case :(
 	    public ColorUpdater(ScilabStyleDocument scilabDocument, DocumentEvent event) {
 	    	super();
 	    	this.scilabDocument = scilabDocument;
-	    	this.event = event;
+	    	if(event != null && event.getType() != DocumentEvent.EventType.CHANGE ){
+	    		try{
+	    	
+	    		this.startPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(event.getOffset()).getStartOffset());
+	    		// when inserting we must colorize until the end of the last line
+	    		// when removing edit length is not considered there is only one line in the end
+	    		int endOffset = scilabDocument.getParagraphElement(event.getOffset()+
+	    				(( event.getType() ==  DocumentEvent.EventType.INSERT) ? event.getLength() : 0) ).getEndOffset();
+	    		// unfortunately, when appending text, the java API considers that we are inserting before the virtual
+	    		// end-of-document position (getEndOffset() of the last Element is > getLength() !)
+	    		// so we need to special case this and use offset and not Position is this case.
+	    		if(endOffset > scilabDocument.getLength()){
+	    			this.endOffset = endOffset;
+	    			this.endPosition = null;
+	    		} else {
+	    			this.endOffset = -1;
+	    			this.endPosition = scilabDocument.createPosition(endOffset);
+	    		}
+	    		} catch (BadLocationException e) {
+	    			e.printStackTrace();
+	    			this.startPosition = this.endPosition = null;
+	    		} 
+	    	}else{	    	
+	    		this.startPosition = this.endPosition = null;
+	    	}
+	    }
+	    public ColorUpdater(DocumentEvent event) {
+	    	this((ScilabStyleDocument)event.getDocument(), event);
+	    }
+	    public ColorUpdater(ScilabStyleDocument scilabDocument, int startOffset, int endOffset) {
+	    	super();
+	    	this.scilabDocument = scilabDocument;
+	    	try{
+	    	this.startPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(startOffset).getStartOffset());
+	    	this.endPosition = scilabDocument.createPosition(scilabDocument.getParagraphElement(endOffset).getEndOffset()-1);
+	    } catch (BadLocationException e) {
+			e.printStackTrace();
+			this.startPosition = this.endPosition = null;
+		} 
 	    }
 	    
 	    public void run() {
-			//colorize();
-			//ColorizeAction.getXpadEditor();
-			/* @TODO CHECK THAT */
-				if (scilabDocument.getAutoColorize()) {
-					
-				if (event == null) { // Called from SetFontAction: apply change to the whole document
-					lineStartPosition =  0;
-					lineEndPosition = scilabDocument.getLength();
-				} else {
-					lineStartPosition =  scilabDocument.getParagraphElement(event.getOffset()).getStartOffset();
-					lineEndPosition = scilabDocument.getParagraphElement(event.getOffset() + event.getLength()).getEndOffset() - 1;
-				}
-			
-				if (lineStartPosition != lineEndPosition) {
-					colorize(scilabDocument, lineStartPosition, lineEndPosition);
-				}
-				}
+			if (scilabDocument.getAutoColorize() && (startPosition != null) && (endPosition != null || this.endOffset != -1)) {
+				int startOffset = startPosition.getOffset();
+				int endOffset = this.endOffset != -1 ? this.endOffset : endPosition.getOffset();
+				colorize(scilabDocument, startOffset, java.lang.Math.min(endOffset, scilabDocument.getLength()));				
+			}
 	    }
-				/*
-				// Get the current line (position of the caret) 
-				int  caretPosition = editor.getTextPane().getCaretPosition();
-				currentLine = editor.getTextPane().getStyledDocument().getDefaultRootElement().getElementIndex(caretPosition);
-
-				// Get current line's start & end offsets
-				lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getStartOffset();
-				lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(caretPosition).getEndOffset()-1;
-			
-				// If we add a line (by pressing return)
-				if (lineStartPosition == lineEndPosition) {
-					lineStartPosition = lineStartPosition + lineEndPosition;
-					lineEndPosition = lineEndPosition + lineEndPosition;
-				} 
-			
-				if (lineStartPosition != lineEndPosition) {
-				colorize(lineStartPosition, lineEndPosition);
-				}
-				 */
+	}
+	private void chrono(String str) {
+		System.err.println(str+":"+(System.currentTimeMillis()-millis));
+		millis= System.currentTimeMillis();
 	}
 	/*
 	 * Parse all Scilab keywords
 	 * This function is used for the syntactic colorization
 	 */
-	private ArrayList<ArrayList<Integer>> parse(ScilabStyleDocument scilabDocument, String[] bools, String[] commands, String[] comments, 
-			String[] functions, String[] macros, String[] operators, String[] quotations, int start, int end) {
-
+	private ArrayList<ArrayList<Integer>> parse(ScilabStyleDocument scilabDocument, int start, int end) {
+		//System.err.println("parse start"+start+" end:"+end);
 //	    	Timer timer = new Timer();
-	    	ArrayList<ArrayList<Integer>>  boundaries_list = null;
-	    	ArrayList<Integer> boolsBoundaries, commandsBoundaries, 
+		ArrayList<ArrayList<Integer>>  boundaries_list = null;
+	    ArrayList<Integer> boolsBoundaries, commandsBoundaries, 
 		commentsBoundaries, functionsBoundaries, 
 		macrosBoundaries, operatorsBoundaries, 
 		quotationsBoundaries;
 		try {
-		boolsBoundaries = findBoundaries(bools, start, scilabDocument.getText(start, end - start));
-		commandsBoundaries = findBoundaries(commands, start, scilabDocument.getText(start, end - start));
-		commentsBoundaries = findBoundaries(comments, start, scilabDocument.getText(start, end - start));
-		functionsBoundaries = findBoundaries(functions, start, scilabDocument.getText(start, end - start));
-		macrosBoundaries = findBoundaries(macros, start, scilabDocument.getText(start, end - start));
+			millis = System.currentTimeMillis();
+			String text= scilabDocument.getText(start, end - start);	
+		boolsBoundaries = findBoundaries(boolsPattern, start, text);
+		//chrono("findBoundaries bools:");
+		commandsBoundaries = findBoundaries(commandsPattern, start, text);
+		//chrono("findBoundaries commands:");
+		commentsBoundaries = findBoundaries(commentsPattern, start, text);
+		//chrono("findBoundaries comments:");	
+		functionsBoundaries = findBoundaries(functionsPattern, start, text);
+		//chrono("findBoundaries functions:");
+		macrosBoundaries = findBoundaries(macrosPattern, start, text);
+		//chrono("findBoundaries macros:");
 		//macrosBoundaries = new ArrayList<Integer>();
-		operatorsBoundaries = findBoundaries(operators, start, scilabDocument.getText(start, end - start));
-		quotationsBoundaries = findBoundaries(quotations, start, scilabDocument.getText(start, end - start));	
-
+		operatorsBoundaries = findBoundaries(operatorsPattern, start, text);
+		//chrono("findBoundaries operators:");
+		quotationsBoundaries = findBoundaries(quotationsPattern, start, text);	
+		//chrono("findBoundaries quotations:");
 		//DEBUG("parse -> findAllBoundaries "+timer.top());
 		boundaries_list = organizeBoundaries(boolsBoundaries, commandsBoundaries, commentsBoundaries, functionsBoundaries, 
 				macrosBoundaries, operatorsBoundaries, quotationsBoundaries);
+		//chrono("organizeBoundaires:");
 		//DEBUG("parse -> organizeBoundaries "+timer.top());
 		}
 		catch (Exception e) {
@@ -254,6 +283,23 @@ public class ColorizationManager {
 				bound.add(new Integer(matcher.end() + start));
 			    }
 		}
+		
+		//DEBUG("   findBoundaries end : " + timer.top());
+		return bound;
+	}
+
+	private ArrayList<Integer> findBoundaries(Pattern keywords, int start, String text) {
+	    //Timer timer = new Timer();
+	    //DEBUG("   findBoundaries start : " + timer.top());
+	    ArrayList<Integer> bound = new ArrayList<Integer>();
+	    //System.err.println("findBoundaries:"+keywords);
+	    Matcher matcher = keywords.matcher(text);
+			    while(matcher.find()){
+				//System.err.println("Match Found : "+(matcher.start())+","+(matcher.end()/*-matcher.start()*/));
+				bound.add(new Integer(matcher.start() + start));	
+				bound.add(new Integer(matcher.end() + start));
+			    }
+		
 		
 		//DEBUG("   findBoundaries end : " + timer.top());
 		return bound;

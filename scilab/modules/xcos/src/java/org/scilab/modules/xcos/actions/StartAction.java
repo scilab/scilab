@@ -22,13 +22,14 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class StartAction  extends DefaultAction {
 
+    private static final long serialVersionUID = -7548486977403506053L;
     private static String simulationEnd = "__simulationEnd__";
 
     public StartAction(ScilabGraph scilabGraph) {
@@ -45,29 +46,29 @@ public class StartAction  extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	File temp;
-	Xcos.setStartEnabled(false);
+	XcosTab.setStartEnabled(false);
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
 	((XcosDiagram) getGraph(null)).getParentTab().getInfoBar().draw();
 	try {
-	    temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
-	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+	    temp = File.createTempFile("xcos",".h5");
+	    temp.deleteOnExit();
+	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(simulationEnd);
 		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		    Xcos.setStartEnabled(true);
+		    XcosTab.setStartEnabled(true);
 		}
 	    };
 	    launchMe.start();
 	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 		    +"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
 		    +"xcos_simulate(scs_m);"
-		    +"xcosNotify(\"" + simulationEnd + "\");");
-	    temp.deleteOnExit();
+		    +"xcosNotify(\"" + simulationEnd + "\");"
+		    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
 	} catch (IOException e1) {
 	    e1.printStackTrace();
-	    Xcos.setStartEnabled(true);
+	    XcosTab.setStartEnabled(true);
 	}
     }
 }

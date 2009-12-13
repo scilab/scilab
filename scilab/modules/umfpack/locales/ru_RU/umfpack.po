@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
-"PO-Revision-Date: 2009-01-06 22:40+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2009-11-21 17:07+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -104,7 +104,7 @@ msgstr "%s: Произошла ошибка: %s: %s\n"
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
-"%s: Неправильный тип и (или) размер и (или) значение второго аргумента.\n"
+"%s: Неправильный тип и (или) размер и (или) значение второго параметра.\n"
 
 #, c-format
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
@@ -124,12 +124,12 @@ msgstr "%s: Не осталось доступной памяти.\n"
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
 msgstr ""
-"%s: Нет значений для этой матрицы (допустимы ненулевые структуры) : "
-"установите несколько 1."
+"%s: Нет значений для данной матрицы (допустимы только ненулевые структуры): "
+"добавьте несколько 1."
 
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: Фал содержит rhs (правую сторону?) но она не будет прочитана!"
+msgstr "%s: Фал содержит вектор rhs, но он не будет прочитан!"
 
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"
@@ -137,33 +137,33 @@ msgstr "%s: Матрица и LU-разложения имеют разные р
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Неверный аргумент #%d: Ожидался '%s' или '%s'.\n"
+msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Неверное количество аргументов.\n"
+msgstr "%s: Неверное количество входных параметров.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер аргумента #%d.\n"
+msgstr "%s: Неверный размер входного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s: Неверный размер аргумента #%d: %s.\n"
+msgstr "%s: Неверный размер входного параметра №%d: %s.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента #%d: Ожидалась квадратная разреженная "
+"%s: Неверный размер входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"
 
 #, c-format
@@ -171,65 +171,68 @@ msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Choleski "
 "factorisation.\n"
 msgstr ""
-"%s: Неверный размер аргумента #%d: несовместим с разложением Чолески.\n"
+"%s: Неверный размер входного параметра №%d: несовместим с разложением "
+"Холецкого.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Неверные размеры аргументов: Должны быть одинакового размера.\n"
+msgstr ""
+"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалась квадратная разреженная "
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: ожидалась разреженная матрица.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась разреженная матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
 msgstr ""
-"%s: Неверное значение аргумента #%d: Должна быть корректная ссылка на (umf) "
-"LU-разложение.\n"
+"%s: Неверное значение входного параметра №%d: должна быть действительная "
+"ссылка на (umf) LU-разложение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
 "Cholesky factorisation"
 msgstr ""
-"%s: Неверное значение аргумента #%d: Должна быть корректная ссылка на "
-"разложение Чолески"
+"%s: Неверное значение входного параметра №%d: Должна быть действительная "
+"ссылка на разложение Холецкого"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be symetric positive definite"
 msgstr ""
-"%s: Неверное значение аргумента #%d: Должен быть симметричный определённо-"
-"положительный"
+"%s: Неверное значение входного параметра №%d: должен быть симметричный "
+"положительно-определённый"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors"
 msgstr ""
-"%s: неверное значение аргумента #%d: некорректная ссылка на разложение "
-"Чолески"
+"%s: Неверное значение входного параметра №%d: недействительная ссылка на "
+"разложение Холецкого"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors.\n"
 msgstr ""
-"%s: Неверное значение аргумента #%d: некорректная ссылка на разложение "
-"Чолески.\n"
+"%s: Неверное значение входного параметра №%d: недействительная ссылка на "
+"разложение Холецкого.\n"
 
 #, c-format
 msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
@@ -245,16 +248,16 @@ msgid "Choose a sparse matrix"
 msgstr "Выберите разреженную матрицу"
 
 msgid "Click to choose a demo"
-msgstr "Кликните для закрытия демо-программы"
+msgstr "Дважды нажмите левую кнопку мыши для выбора примера"
 
 msgid "GENMMD ordering only works on symmetric matrices.\n"
 msgstr "GENMMD расстановка работает только над симметричными матрицами.\n"
 
 msgid "Matrix is not compatible with the given LU factors"
-msgstr "матрица несовместима с заданным LU-разложением"
+msgstr "Mатрица несовместима с заданным LU-разложением"
 
 msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Модуль Scilab UMFPACK не установлен.\n"
+msgstr "Модуль UMFPACK не установлен.\n"
 
 msgid "The (square) matrix appears to be singular."
 msgstr "Эта (квадратная) матрица выглядит вырожденной."
@@ -272,13 +275,13 @@ msgid "Warning"
 msgstr "Внимание"
 
 msgid "display a speed comparison test"
-msgstr "отобразить сравнение скорости"
+msgstr "Сравнение производительности"
 
 msgid "factorization"
 msgstr "разложение"
 
 msgid "how to use this stuff"
-msgstr "как всё это использовать"
+msgstr "Примеры использования"
 
 msgid "internal error"
 msgstr "внутренняя ошибка"
@@ -299,7 +302,7 @@ msgid "singular matrix"
 msgstr "вырожденная матрица"
 
 msgid "small tests for condestsp"
-msgstr "небольшие тесты condestsp"
+msgstr "Тестирование функции condestsp"
 
 msgid "symbolic factorization"
 msgstr "символьное разложение"

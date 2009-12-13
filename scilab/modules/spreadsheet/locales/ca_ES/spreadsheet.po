@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-14 15:21+0000\n"
+"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -58,15 +58,30 @@ msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: No hi ha cap flux de dades xls en el fitxer ole2 %s.\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és incorrecte: Ha de ser ''%s'' o ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
 "escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"

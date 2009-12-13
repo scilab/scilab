@@ -130,7 +130,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 				} else {
 					int nbOfDisplayedOnlyXChar=10;
 					if (keyword.length() > nbOfDisplayedOnlyXChar) {
-						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar);
+						keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
 					}
 					helpMenu.setText(Messages.gettext("Help about '") +keyword+"'");
 				}

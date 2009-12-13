@@ -44,7 +44,7 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
 	li = 1;
 	SciS = Scistring;
 	for ( i = 1 ; i<*nstring+1 ; i++) 
-    {
+        {
 		ni = ptrstrings[i] - li;
 		li = ptrstrings[i];
 		/* p is allocated here */

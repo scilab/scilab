@@ -14,14 +14,33 @@ if GUI
 USEANT=1
 endif
 
+
 HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \
 src/c/h5_readDataFromFile.c
+
+HDF5_CPP_SOURCES =  src/jni/jhdf5load.hxx \
+src/jni/jhdf5load.cpp \
+src/jni/GiwsException.hxx \
+src/jni/GiwsException.cpp
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp 
+
+
+# This is due to an ugly hack for bug #5481
+FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
+
+FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
+
+HDF5_JVMDISABLE_C_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES) $(FORCE_LOAD_SOURCES_DISABLE)
+libscihdf5_jvmdisable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+libscihdf5_jvmdisable_la_SOURCES = $(HDF5_JVMDISABLE_C_SOURCES)
+libscihdf5_jvmdisable_la_CXXFLAGS=$(libscihdf5_la_CXXFLAGS)
+libscihdf5_jvmdisable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
 else
 
@@ -31,14 +50,24 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 
 endif
 
+GIWS_WRAPPERS = src/jni/jhdf5load.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
 
 #### hdf5 : include files ####
 
 libscihdf5_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+                -I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
@@ -57,10 +86,11 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 
 pkglib_LTLIBRARIES = libscihdf5.la
+pkglib_LTLIBRARIES += libscihdf5-jvmdisable.la
 
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES) $(FORCE_LOAD_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -69,7 +99,9 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order 
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/modules/jvm/libscijvm.la	
+
 #### Target ######
 modulename=hdf5
 

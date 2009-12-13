@@ -21,6 +21,8 @@ public abstract class SpecialTextObjectGL {
     protected float width;
     protected int idTexture;
 
+    protected boolean isColored;
+
     public SpecialTextObjectGL() {
     }
 
@@ -28,8 +30,9 @@ public abstract class SpecialTextObjectGL {
      * Return a byte-buffer used to draw content
      */
     public Buffer getBuffer() {
-	        if (buffer != null)
+		if (buffer != null) {
 		    return buffer;
+		}
 		makeImage();
 		return buffer;
     }
@@ -38,7 +41,7 @@ public abstract class SpecialTextObjectGL {
      * Return the height of the content
      */
     public float getHeight() {
-	        return height;
+		return height;
     }
     
     /**
@@ -52,7 +55,7 @@ public abstract class SpecialTextObjectGL {
      * Return the texture's name associated to this label
      */
     public int getIdTexture() {
-	        return idTexture;
+		return idTexture;
     }
 
     /**
@@ -60,11 +63,25 @@ public abstract class SpecialTextObjectGL {
      * @param id of the texture got with GL
      */
     public void setIdTexture(int id) {
-	        idTexture = id;
-		
+		idTexture = id;
 		/* The buffer is set to null since GL put it into the buffer of the video card */
 		this.buffer = null;
     }	
+
+    /**
+     * Return the isColored property
+     */
+    public boolean getIsColored() {
+		return isColored;
+    }
+
+    /**
+     * Set the isColored property
+     * @param isColored the isColored property of the content
+     */
+    public void setIsColored(boolean isColored) {
+		this.isColored = isColored;
+    }
 
     /**
      * Set the color of the content
@@ -87,8 +104,8 @@ public abstract class SpecialTextObjectGL {
 
     /* Convert an ARGB pixmap into RGBA pixmap */
     protected static byte[] ARGBtoRGBA(int[] pix) {
-                byte[] bytes = new byte[pix.length * 4];
-                int p, r, g, b, a;
+		byte[] bytes = new byte[pix.length * 4];
+		int p, r, g, b, a;
 		int j = 0;
 		for (int i = 0; i < pix.length; i++) {
 		    p = pix[i];

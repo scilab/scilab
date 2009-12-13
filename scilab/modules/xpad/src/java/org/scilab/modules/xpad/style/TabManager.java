@@ -2,7 +2,6 @@ package org.scilab.modules.xpad.style;
 
 import javax.swing.text.BadLocationException;
 
-import org.scilab.modules.gui.dockable.ScilabDockable;
 
 public class TabManager {
 	private static String tabulation = "  ";
@@ -60,22 +59,22 @@ public class TabManager {
 	
 	/*
 	 * Delete a tab just after position if possible.
-	 * returns the nb of deleted characters.
+	 * @return the nb of deleted characters.
 	 */
 	public synchronized int deleteTab(ScilabStyleDocument scilabDocument, int position)	{
 		String tab = getTabulation(); 
 		int res = 0, tabLength = tab.length();
 		try {
 			String nextChars = scilabDocument.getText(position, java.lang.Math.min(tabLength, scilabDocument.getLength()-position));
-			if(nextChars.equals(tab)){
-				scilabDocument.remove(position, tabLength);
-				res= tabLength;
+			// remove as much chararcters as possible if they are part of the tab string cf. #5225
+			while((res!= Math.min(nextChars.length(), tabLength)) && (nextChars.charAt(res)==tab.charAt(res))) {
+				scilabDocument.remove(position, 1);
+				++res;
 			}
 		}
 		catch (BadLocationException e)
 		{
 			e.printStackTrace();
-			res= 0;
 		}
 		
 		return res;
@@ -140,11 +139,7 @@ public class TabManager {
             scilabDocument.setAutoIndent(indentMode);
             scilabDocument.setAutoColorize(colorizeMode);
             scilabDocument.setShouldMergeEdits(mergeEditsMode);
-/*
-			setAutoIndent(indentMode);
-			setColorize(colorizeMode);
-			setShouldMergeEdits(mergeEditsMode);
-			*/
+
 		}
 		return res;
 	}

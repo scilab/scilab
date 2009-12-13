@@ -23,6 +23,7 @@
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+static BOOL loadedDepVectorialExport = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = 
 {
@@ -47,6 +48,14 @@ int gw_graphic_export(void)
 			loadOnUseClassPath("graphics");
 			loadedDep=TRUE;
 		}
+		if (!loadedDepVectorialExport && (strcmp(Tab[Fin-1].name, "xs2eps")==0
+                           || strcmp(Tab[Fin-1].name, "xs2pdf")==0
+                           || strcmp(Tab[Fin-1].name, "xs2svg")==0
+                           || strcmp(Tab[Fin-1].name, "xs2ps")==0))
+          {
+            loadOnUseClassPath("pdf_ps_eps_graphic_export");
+            loadedDepVectorialExport = TRUE;
+          }
 
 		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}

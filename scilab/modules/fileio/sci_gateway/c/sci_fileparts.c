@@ -73,6 +73,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
+	// get value of lenStVarOne
 	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
@@ -97,6 +98,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 		return 0;
 	}
 
@@ -106,6 +108,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 
@@ -113,25 +116,30 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 
 		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 
+		// get value of lenStVarTwo
 		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 
@@ -139,6 +147,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if (pStVarTwo == NULL)
 		{
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
 		
@@ -146,6 +155,8 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
 			return 0;
 		}
 	}
@@ -210,6 +221,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
+			if (path_out) {FREE(path_out); path_out = NULL;}
 			return 0;
 		}
 
@@ -227,6 +245,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
+			if (path_out) {FREE(path_out); path_out = NULL;}
 			return 0;
 		}
 
@@ -236,6 +261,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
+			if (path_out) {FREE(path_out); path_out = NULL;}
 			return 0;
 		}
 
@@ -245,6 +277,13 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+			if (drv) {FREE(drv); drv = NULL;}
+			if (dir) {FREE(dir); dir = NULL;}
+			if (name) {FREE(name); name = NULL;}
+			if (ext) {FREE(ext); ext = NULL;}
+			if (path_out) {FREE(path_out); path_out = NULL;}
 			return 0;
 		}
 

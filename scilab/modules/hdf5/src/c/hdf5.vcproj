@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/arch:IA32"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -129,7 +129,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -216,7 +216,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -306,7 +306,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -380,6 +380,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\forceJHDF5load.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_hdf5.c"
 				>
 			</File>
@@ -393,6 +401,10 @@
 			</File>
 			<File
 				RelativePath=".\h5_writeDataToFile.c"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\jhdf5load.cpp"
 				>
 			</File>
 			<File
@@ -413,6 +425,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\forceJHDF5load.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_hdf5.h"
 				>
 			</File>
@@ -430,6 +450,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\h5_writeDataToFile.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\jhdf5load.hxx"
 				>
 			</File>
 			<File

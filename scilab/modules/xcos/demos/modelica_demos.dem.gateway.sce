@@ -7,6 +7,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+if with_modelica_compiler() then
+
 demopath = get_absolute_file_path("modelica_demos.dem.gateway.sce");
 
 subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
@@ -17,3 +19,5 @@ subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+
+end

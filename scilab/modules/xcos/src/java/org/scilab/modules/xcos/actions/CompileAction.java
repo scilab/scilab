@@ -19,7 +19,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -60,19 +60,17 @@ public class CompileAction extends DefaultAction {
 				public void run() {
 					File temp;
 					try {
-						temp = File.createTempFile("xcos", ".hdf5");
-						temp.delete();
+						temp = File.createTempFile("xcos", ".h5");
+						temp.deleteOnExit();
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						InterpreterManagement.requestScilabExec(
 								"import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
 								"xcos_compile(scs_m);" +
 								"xcosNotify(\""+compilationEnd+"\");"
 						);
-						temp.deleteOnExit();
 						Signal.wait(compilationEnd);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

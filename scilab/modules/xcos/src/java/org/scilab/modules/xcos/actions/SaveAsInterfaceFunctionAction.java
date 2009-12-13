@@ -18,6 +18,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+
 public class SaveAsInterfaceFunctionAction extends DefaultAction {
 
 	private SaveAsInterfaceFunctionAction(ScilabGraph scilabGraph) {

@@ -136,6 +136,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 				#undef HEADLESS
 			}
 
+			if (encoding) {FREE(encoding);encoding=NULL;}
 
 			*size_JavaVMOption = indice;
 			return jvm_options;

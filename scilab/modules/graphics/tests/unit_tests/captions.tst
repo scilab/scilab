@@ -20,7 +20,7 @@ if size(a.children,'*') <>2 then pause,end
 e1.foreground=5;e1.thickness=3;
 xpoly([0 1],0.2+[1 1]/2);
 e2=gce();e2.mark_mode='on';e2.line_mode='off';e2.mark_style=3;
-c=captions([e1,e2],['XXXX';'YYY']);
+c=captions([e2,e1],['XXXX';'YYY']);
 
 
 if or(c.text <> ["XXXX";"YYY"]) then pause,end
@@ -40,7 +40,7 @@ E=[];
 for y= 0:0.1:1
   xpoly([0 1],[1 1]*y);
   e=gce();e.foreground=10*y;
-  E=[E e];
+  E=[e E];
 end
 c=captions(E,string( 0:0.1:1));
 xpause(2d6)
@@ -83,15 +83,15 @@ x=[0:0.1:2*%pi]';
 xpoly(cos(x),sin(x))
 E=gce();
 xpoly(1+0.3*cos(x),1+0.3*sin(x))
-E=[E, gce()];
+E=[gce(), E];
 xpoly(1.5+0.1*cos(x),1.5+0.1*sin(x))
-E=[E, gce()];
+E=[gce(), E];
 for k=1:3
-  E(k).foreground=k;
-  E(k).background=k+1;
-  E(k).fill_mode='on';
-  E(k).closed='on';
+  E(4-k).foreground=k;
+  E(4-k).background=k+1;
+  E(4-k).fill_mode='on';
+  E(4-k).closed='on';
 end
-E(1).thickness=3;
+E(3).thickness=3;
 c=captions(E,['A' 'B' 'C']);
 c.legend_location='in_upper_right';

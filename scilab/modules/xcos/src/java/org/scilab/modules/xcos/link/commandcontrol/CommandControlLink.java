@@ -17,6 +17,8 @@ import org.scilab.modules.xcos.link.BasicLink;
 
 public class CommandControlLink extends BasicLink {
     
+    private static final long serialVersionUID = 5092221307994387276L;
+
     public CommandControlLink() {
 	super("CommandControlLink");
     }

@@ -796,7 +796,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 * @param parent
 	 */
 	public void setParentForLocation(Tab parent) {
-		parentWindow = (Component) parent.getAsSimpleTab();
+		if (parent != null) {
+			parentWindow = (Component) parent.getAsSimpleTab();
+		} else {
+			parentWindow = null;
+		}
 	}
 	
 

@@ -16,13 +16,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import javax.swing.event.UndoableEditEvent;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.undo.CompoundEdit;
-import javax.swing.undo.UndoManager;
-import javax.swing.undo.UndoableEdit;
+import javax.swing.text.Element;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -37,19 +35,37 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 	// Editor's default encoding is UTF-8
 	private String encoding = "UTF-8";
-	private boolean updater;
+	private boolean updater = true;
 	private boolean autoIndent;
-	private boolean autoColorize=true;
-	private volatile boolean shouldMergeEdits;
-	private CompoundEdit compoundEdit;
+	private boolean autoColorize ;
+	private volatile boolean shouldMergeEdits = false;
+	private boolean undoManagerEnabled;
+	
+	private String eolStyle = System.getProperty("line.separator");
 
-	public String getEncoding(){
+	public String getEncoding() {
 		return encoding;
 	}
-	public void setEncoding(String encoding){
+	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
 
+	/**
+	 * set end of line value
+	 * @param eol
+	 */
+	public void setEOL(String eol) {
+		this.eolStyle = eol;
+	}
+	
+	/**
+	 * get end of line
+	 * @return end of line
+	 */
+	public String getEOL() {
+		return this.eolStyle;
+	}
+	
 	public boolean getAutoColorize() {
 		return autoColorize;
 	}
@@ -75,18 +91,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	 }
 
 	 
-    private UndoManager undo = new UndoManager() {
-    	public void undoableEditHappened(UndoableEditEvent e) {
-				
-    			((UndoableEdit) (shouldMergeEdits ?  compoundEdit: this)).addEdit(e.getEdit());
-	
-	}
-    };
-    	
+    private CompoundUndoManager undo = new CompoundUndoManager();	
 
 	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
+		
+		autoIndent = ConfigXpadManager.getAutoIndent();
+		autoColorize = ConfigXpadManager.getAutoColorize();
+		encoding = ConfigXpadManager.getDefaultEncoding();
 		
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
@@ -95,6 +108,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		//xpadStyles = XpadStyles.getInstance();
 		//addDocumentListener(this); // TODO: check
 		addUndoableEditListener(undo);
+		undoManagerEnabled = true;
 		defaultStyle = this.addStyle("Default", null);
 		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
 		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName());
@@ -110,12 +124,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
 		
-		contentModified=false;
+		contentModified = false;
 
 	}
 	public Style getStyle(String styleString){
 		Style style = super.getStyle(styleString);
-		if(style == null) {
+		if (style == null) {
 			super.getStyle("Default");
 		}
 		return style;
@@ -126,36 +140,33 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	}
 
 	public String getText(){
-		String res ="";
-		try{
-			res = getText(0, getLength());
-		}catch(javax.swing.text.BadLocationException e){
-			res= "";
+		try {
+			return getText(0, getLength());
+		} catch (BadLocationException e) {
+			return "";
 		}
-		return res;
 	}
 	
 
 	public void setShouldMergeEdits(boolean b) {
 	
-		if(shouldMergeEdits){
-			if(!b) { // ending compound editing with a new CaretEdit
-				compoundEdit.end();
-				undo.addEdit(compoundEdit);
-				compoundEdit = null;
-				
+		if (shouldMergeEdits) {
+			if (!b) { // ending compound editing with a new CaretEdit
+				undo.endCompoundEdit();
 			}
 		} else {
-			if(b) { // starting compound editing
-				compoundEdit = new CompoundEdit();
+			if (b) { // starting compound editing
+				undo.startCompoundEdit();
 			}
 		}
 		shouldMergeEdits = b;
 		
 	}
+	
 	public boolean getShouldMergeEdits() {
 		return shouldMergeEdits;
 	}
+	
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -173,24 +184,62 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 
 
 
-	public UndoManager getUndoManager() {
+	public CompoundUndoManager getUndoManager() {
 		return undo;
 	}
 
-	public void disableUndoManager(){
-		this.removeUndoableEditListener(undo);
+	public void disableUndoManager() {
+		if (undoManagerEnabled) {
+			this.removeUndoableEditListener(undo);
+			undoManagerEnabled = false;
+		}
 	}
 	
-	public void enableUndoManager(){
-        this.addUndoableEditListener(undo);
+	public void enableUndoManager() {
+		if (!undoManagerEnabled) {
+			undoManagerEnabled = true;
+			this.addUndoableEditListener(undo);
+			undoManagerEnabled = true;
+		}
 	}
 
-	public boolean isContentModified(){
-		return contentModified;
+
+	public boolean isContentModified() {
+		return contentModified && ! undo.isAtReference();
 	}
+
 	
-	public void setContentModified(boolean contentModified){
+	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
+		if (contentModified == false) {
+			undo.setReference();
+		}
+	}
+	/*
+	 * dump document on stderr with line positions 
+	 */
+	public void dump( ){
+		readLock();
+		try{
+		Element root = getDefaultRootElement();
+		for(int i = 0; i!=root.getElementCount() ; ++i){
+			Element e= root.getElement(i);
+			int start = e.getStartOffset();
+			int end = e.getEndOffset();
+			System.err.println("line "+i+ " from: "+start +"to: "+end+ ":|"+getText(start, end-start)+"|");
+		}
+		} catch (BadLocationException e) {
+			System.err.println(e);
+		}
+		readUnlock();
+
 	}
 	
+	public void lock() {
+		super.writeLock();
+	}
+	public void unlock() {
+		super.writeUnlock();
+	}
+
 }

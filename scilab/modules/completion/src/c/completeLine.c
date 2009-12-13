@@ -99,6 +99,9 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 			strcpy(new_line, currentline);
 			strcat(new_line, stringToAddAtTheEnd);
 		}
+
+		if (stringToAddAtTheEnd) {FREE(stringToAddAtTheEnd); stringToAddAtTheEnd = NULL;}
+
 		return new_line;
 	}
 
@@ -150,6 +153,9 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 					strcpy(new_line, currentline);
 					strcat(new_line, stringToAddAtTheEnd);
 				}
+
+				if (stringToAddAtTheEnd) {FREE(stringToAddAtTheEnd); stringToAddAtTheEnd = NULL;}
+
 				return new_line;
 			}
 
@@ -206,6 +212,8 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 		strcat(new_line, stringToAdd);
 		strcat(new_line, stringToAddAtTheEnd);
 	}
+
+	if (stringToAddAtTheEnd) {FREE(stringToAddAtTheEnd); stringToAddAtTheEnd = NULL;}
 
 	return new_line;
 }

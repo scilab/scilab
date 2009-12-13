@@ -20,8 +20,9 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
 
 public class ViewDiagramBrowserAction extends DefaultAction {
 
@@ -35,12 +36,12 @@ public class ViewDiagramBrowserAction extends DefaultAction {
 	
 	   public void doAction() {
 		try {
-		    File temp = File.createTempFile("xcos",".hdf5");
-		    temp.delete();
+		    File temp = File.createTempFile("xcos",".h5");
+		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
-			    +"tree_show(scs_m);");
-		    temp.deleteOnExit();
+			    +"tree_show(scs_m);"
+			    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
 		} catch (IOException e1) {
 		    e1.printStackTrace();
 		}

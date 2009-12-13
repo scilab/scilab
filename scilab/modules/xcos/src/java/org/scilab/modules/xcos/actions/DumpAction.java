@@ -22,10 +22,12 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class DumpAction extends DefaultAction {
+
+    private static final long serialVersionUID = 3912361255175611532L;
 
     public DumpAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.DUMP, scilabGraph);
@@ -41,12 +43,11 @@ public class DumpAction extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	try {
-	    File temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
+	    File temp = File.createTempFile("xcos",".h5");
+	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");");
+	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");deletefile(\"" + temp.getAbsolutePath()+"\");");
 	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
     }

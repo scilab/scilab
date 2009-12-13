@@ -30,9 +30,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Installing..."));
     
         if execstr("atomsInstall(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Installation failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Installation failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Installation done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Installation done! Please restart Scilab to take changes into account."), gettext("Atoms"), "info");
         end
     
         updateAtomsGui();
@@ -48,9 +48,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Removing..."));
 
         if execstr("atomsRemove(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Remove failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Remove failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Remove done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Remove done! Please restart Scilab to take changes into account. "), gettext("Atoms"), "info");
         end
 
         updateAtomsGui();
@@ -66,9 +66,9 @@ function cbAtomsGui()
         set(findobj("Tag", "modulesDesc"), "String", gettext("Updating..."));
         
         if execstr("atomsRemove(getSelectedModuleName())", "errcatch")<>0 then
-            messagebox(gettext("Update failed !"), gettext("Atoms error"), "error");
+            messagebox(gettext("Update failed!"), gettext("Atoms error"), "error");
         else
-            messagebox(gettext("Update done !"), gettext("Atoms"), "info");
+            messagebox(gettext("Update done! Please restart Scilab to take changes into account."), gettext("Atoms"), "info");
         end
 
         updateAtomsGui();
@@ -225,14 +225,7 @@ function updateAtomsGui()
 
     set(descZone, "String", htmlcode);
 
-
-
-    descFrameHTML    = "<html>" + ..
-                        "<body>" + ..
-                        "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;font-size:105%;"">" + themodule(vers(3)).Title + "</div>" + ..
-                        "</body>" + ..
-                        "</html>";
-
+    descFrameHTML    = themodule(vers(3)).Title;
    
     descFramePos     = get(descFrameTitle, "Position");
     descFramePos(3)  = 300;
@@ -275,13 +268,13 @@ function human_str = atomsSize2human(size_str)
     size_int = strtod(size_str);
     
     if size_int < 1024 then
-        human_str = string(size_int) + " " + gettext("Octets");
+        human_str = string(size_int) + " " + gettext("Bytes");
 
     elseif size_int < 1024*1024 then
-        human_str = string(round(size_int/1024)) + " " + gettext("Ko");
+        human_str = string(round(size_int/1024)) + " " + gettext("KB");
     
     else
-        human_str = string( round((size_int*10)/(1024*1024)) / 10 ) + " " + gettext("Mo");
+        human_str = string( round((size_int*10)/(1024*1024)) / 10 ) + " " + gettext("MB");
     
     end
     

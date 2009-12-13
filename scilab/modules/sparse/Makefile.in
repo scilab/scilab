@@ -127,13 +127,13 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	dspos.lo dspasp.lo inpnv.lo spreshape.lo spsort.lo wperm.lo \
 	dij2sp.lo dspcsp.lo spcho2.lo lspos.lo wspe2.lo spif.lo \
 	lspasp.lo dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo \
-	dspmsp.lo intreadmps.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo \
-	dspcle.lo wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo \
-	spextr1.lo wcompa.lo lspxsp.lo spisp.lo rdmps1.lo dperm.lo \
-	spind.lo dspe2.lo wspasp.lo wij2sp.lo rdmpsz.lo wspcsp.lo \
-	lspops.lo spifp.lo isort1.lo dspis.lo wspxs.lo lspe2.lo \
-	wspisp.lo dsmsp.lo dspms.lo spord.lo dsosp.lo dspmat.lo \
-	wspmsp.lo lspis.lo dspmin.lo writebuf.lo
+	dspmsp.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo \
+	wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo \
+	wcompa.lo lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo \
+	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
+	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
+	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
+	writebuf.lo
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -145,9 +145,9 @@ am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_spget.lo libscisparse_la-sci_spclean.lo \
 	libscisparse_la-sci_spmin.lo libscisparse_la-sci_spchol.lo \
 	libscisparse_la-sci_spmax.lo libscisparse_la-sci_lusolve.lo \
-	libscisparse_la-sci_fadj2sp.lo libscisparse_la-sci_readmps.lo \
-	libscisparse_la-gw_sparse.lo libscisparse_la-sci_sfinit.lo \
-	libscisparse_la-sci_sparse.lo libscisparse_la-sci_mspget.lo
+	libscisparse_la-sci_fadj2sp.lo libscisparse_la-gw_sparse.lo \
+	libscisparse_la-sci_sfinit.lo libscisparse_la-sci_sparse.lo \
+	libscisparse_la-sci_mspget.lo
 am__objects_4 = sci_spcompa.lo sci_sparse.lo sci_full.lo \
 	sci_blkslvi.lo sci_inpnvi.lo sci_nnz.lo sci_ludel.lo \
 	sci_bfinit.lo spops.lo sci_spmatrix.lo sci_blkfc1i.lo \
@@ -486,7 +486,6 @@ src/fortran/lij2sp.f \
 src/fortran/lspcsp.f \
 src/fortran/wspis.f \
 src/fortran/dspmsp.f \
-src/fortran/intreadmps.f \
 src/fortran/dsposp.f \
 src/fortran/wsmsp.f \
 src/fortran/wspms.f \
@@ -501,13 +500,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -548,7 +545,6 @@ sci_gateway/c/sci_spchol.c \
 sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
-sci_gateway/c/sci_readmps.c \
 sci_gateway/c/gw_sparse.c \
 sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \
@@ -760,7 +756,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_mspget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_nnz.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_ordmmd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_readmps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sfinit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sparse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spchol.Plo@am__quote@
@@ -1009,13 +1004,6 @@ libscisparse_la-sci_fadj2sp.lo: sci_gateway/c/sci_fadj2sp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
 
-libscisparse_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_readmps.Tpo -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-sci_readmps.Tpo $(DEPDIR)/libscisparse_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readmps.c' object='libscisparse_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
-
 libscisparse_la-gw_sparse.lo: sci_gateway/c/gw_sparse.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-gw_sparse.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-gw_sparse.Tpo -c -o libscisparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-gw_sparse.Tpo $(DEPDIR)/libscisparse_la-gw_sparse.Plo
@@ -1215,9 +1203,6 @@ wspis.lo: src/fortran/wspis.f
 dspmsp.lo: src/fortran/dspmsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmsp.lo `test -f 'src/fortran/dspmsp.f' || echo '$(srcdir)/'`src/fortran/dspmsp.f
 
-intreadmps.lo: src/fortran/intreadmps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intreadmps.lo `test -f 'src/fortran/intreadmps.f' || echo '$(srcdir)/'`src/fortran/intreadmps.f
-
 dsposp.lo: src/fortran/dsposp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsposp.lo `test -f 'src/fortran/dsposp.f' || echo '$(srcdir)/'`src/fortran/dsposp.f
 
@@ -1260,9 +1245,6 @@ lspxsp.lo: src/fortran/lspxsp.f
 spisp.lo: src/fortran/spisp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spisp.lo `test -f 'src/fortran/spisp.f' || echo '$(srcdir)/'`src/fortran/spisp.f
 
-rdmps1.lo: src/fortran/rdmps1.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmps1.lo `test -f 'src/fortran/rdmps1.f' || echo '$(srcdir)/'`src/fortran/rdmps1.f
-
 dperm.lo: src/fortran/dperm.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dperm.lo `test -f 'src/fortran/dperm.f' || echo '$(srcdir)/'`src/fortran/dperm.f
 
@@ -1277,9 +1259,6 @@ wspasp.lo: src/fortran/wspasp.f
 
 wij2sp.lo: src/fortran/wij2sp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wij2sp.lo `test -f 'src/fortran/wij2sp.f' || echo '$(srcdir)/'`src/fortran/wij2sp.f
-
-rdmpsz.lo: src/fortran/rdmpsz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmpsz.lo `test -f 'src/fortran/rdmpsz.f' || echo '$(srcdir)/'`src/fortran/rdmpsz.f
 
 wspcsp.lo: src/fortran/wspcsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wspcsp.lo `test -f 'src/fortran/wspcsp.f' || echo '$(srcdir)/'`src/fortran/wspcsp.f

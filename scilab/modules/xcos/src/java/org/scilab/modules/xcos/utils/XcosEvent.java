@@ -15,9 +15,9 @@ package org.scilab.modules.xcos.utils;
 import com.mxgraph.util.mxEvent;
 
 public class XcosEvent extends mxEvent {
-    public static final String ADD_PORTS 					= "addPorts";
+    public static final String ADD_PORTS 			= "addPorts";
 
-    public static final String SUPER_BLOCK_UPDATED			= "superBlockUpdated";
+    public static final String SUPER_BLOCK_UPDATED		= "superBlockUpdated";
     
     public static final String IN_EXPLICIT_VALUE_UPDATED 	= "InExplicitValueUpdated";
     public static final String OUT_EXPLICIT_VALUE_UPDATED 	= "OutExplicitValueUpdated";
@@ -31,4 +31,5 @@ public class XcosEvent extends mxEvent {
     public static final String FORCE_CELL_RESHAPE 		= "ForceCellReshape";
 
     public static final String FORCE_CELL_VALUE_UPDATE 		= "ForceCellValueUpdate";
+    
 }

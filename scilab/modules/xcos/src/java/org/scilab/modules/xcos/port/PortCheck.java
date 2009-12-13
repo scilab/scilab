@@ -13,6 +13,9 @@
 package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
+import java.util.List;
+
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
@@ -20,56 +23,63 @@ import com.mxgraph.view.mxMultiplicity;
 
 public class PortCheck extends mxMultiplicity {
 
-    private mxCell sourceTemplate = null;
-    private mxCell[] targetTemplate = null;
+    private Class<? extends mxCell> sourceTemplate = null;
+    private List<Class<? extends mxCell>> targetTemplateList = null;
     private String errorMessage = null;
 
     public PortCheck(boolean source, String type, String attr, String value,
-	    int min, String max, Collection validNeighbors, String countError,
+	    int min, String max, Collection<String> validNeighbors, String countError,
 	    String typeError, boolean validNeighborsAllowed) {
 	super(source, type, attr, value, min, max, validNeighbors, countError,
 		typeError, validNeighborsAllowed); 
     }
-
-    public PortCheck(mxCell sourceTemplate, mxCell[] targetTemplate, String errorMessage) {
+    
+    public PortCheck(Class<? extends mxCell> sourceTemplate, List<Class<? extends mxCell>> targetTemplate, String errorMessage) {
 	// We complitely override mxMultiplicity
 	super(true, null, null, null, 0, null, null, null, null, false);
 	this.sourceTemplate = sourceTemplate;
-	this.targetTemplate = targetTemplate;
+	this.targetTemplateList = targetTemplate;
 	this.errorMessage = errorMessage;
 	this.max = "n";
 
     }
 
+    //Special case for drawLink 
+    //In this case, source are already connected.
+    public String checkDrawLink(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn) {
+	// maybe there is a better way to check this
+	if(sourceOut > 1 || targetIn > 0) {
+	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
+	    }
+	    return null;
+	}
+
+	if (isTypeCompatible(source, target)) { return null; }
+	
+	return errorMessage;
+    }
+    
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
     {
-	//System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
-	//System.err.println("Versus : "+sourceTemplate.getClass().getSimpleName()+" -> "+targetTemplate.getClass().getSimpleName());
-	if (isTypeCompatible(source, target)) { return null; }
+	// maybe there is a better way to check this
+	if(sourceOut > 0 || targetIn > 0) {
+	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
+	    }
+	    return null;
+	}
 
+	if (isTypeCompatible(source, target)) { return null; }
+	
 	return errorMessage;
     }
 
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
 
-	if (sourceTemplate.getClass().getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    if (firstPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) firstPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-
-	    if (secondPort instanceof BasicPort) {
-		BasicPort port = (BasicPort) secondPort;
-		if (port.getEdgeCount() > 0) {
-		    return false;
-		}
-	    }
-
-	    for (int i = 0; i < targetTemplate.length; ++i) {
-		if (targetTemplate[i].getClass().getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
-		    // We found something compatible !!
+	if (sourceTemplate.getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
+	    for (Class<? extends mxCell> iterable_element : targetTemplateList) {
+		if (iterable_element.getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
 		    return true;
 		}
 	    }
@@ -80,5 +90,4 @@ public class PortCheck extends mxMultiplicity {
 	// This rule is not applicable so we want it to be silent.
 	return true;
     }
-
 }

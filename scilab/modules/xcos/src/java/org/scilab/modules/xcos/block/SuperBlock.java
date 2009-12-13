@@ -22,9 +22,10 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -35,13 +36,13 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 public class SuperBlock extends BasicBlock {
 
+    private static final long serialVersionUID = 3005281208417373333L;
     private SuperBlockDiagram child = null;
  
     public SuperBlock(){
@@ -63,6 +64,13 @@ public class SuperBlock extends BasicBlock {
 	setNmode(new ScilabDouble(0));
     }
     
+    public SuperBlock(String label, boolean masked) {
+	this(label);
+	if (masked) {
+	    mask();
+	}
+    }
+
     /**
      * openBlockSettings
      * this method is called when a double click occured on a super block
@@ -71,17 +79,29 @@ public class SuperBlock extends BasicBlock {
      * 
      */
     public void openBlockSettings(String[] context) {
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    return;
+	}
+
 	if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
 	    // This means we have a SuperBlock and we generated C code for it.
 	    this.setLocked(false);
 	    return;
 	}
 
+	if (isMasked()) {
+	    super.openBlockSettings(context);
+	} else {
 	if(createChildDiagram() == true) {
-	    getChild().setModified(false);
-	    Xcos.showDiagram(getChild());
+	    getChild().setModifiedNonRecursively(false);
+	    XcosTab.createTabFromDiagram(getChild());
+	    XcosTab.showTabFromDiagram(getChild());
 	} else {
 	    getChild().setVisible(true);
+	}
+	
+	
+	getChild().updateCellsContext();
 	}
     }
 
@@ -90,8 +110,8 @@ public class SuperBlock extends BasicBlock {
 	// Do not ask the user, the diagram is saved and closed
 	if (getChild().isModified()) {
 	    setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
-	    getParentDiagram().setModified(true);
-	    getChild().setModified(false);
+	    getChild().setModified(true);
+	    getChild().setModifiedNonRecursively(false);
 	}
 
 	if(getChild().canClose() == false) {
@@ -104,7 +124,7 @@ public class SuperBlock extends BasicBlock {
 	    xcosWindow.removeTab(getChild().getParentTab());
 	    getChild().getViewPort().close();
 	    getChild().setOpened(false);
-	    Xcos.closeDiagram(getChild());
+	    XcosTab.closeDiagram(getChild());
 	    if(getParentDiagram().isOpened() && getParentDiagram().isVisible() == false) {
 		getParentDiagram().closeDiagram();
 	    }
@@ -116,27 +136,55 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = createContextMenu(graph);
-	
-	menu.getAsSimpleContextMenu().addSeparator();
-	menu.add(CodeGenerationAction.createMenu(graph));
-	
+	ContextMenu menu = null;
+
+	if(getParentDiagram() instanceof PaletteDiagram) {
+	    menu = createPaletteContextMenu(graph);
+	} else { 
+	    menu = createContextMenu(graph);
+	    menu.getAsSimpleContextMenu().addSeparator();
+	    menu.add(CodeGenerationAction.createMenu(graph));
+	    
+	    /* FIXME: It is not possible to use Mask. So remove any possibility.
+	     * Mask removing only option is not applicable : if remove the mask
+	     * you have no way to edit the values anymore.
+	     */
+	    /*
+	    Menu maskMenu = ScilabMenu.createMenu();
+	    maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
+	    
+	    if (isMasked()) {
+		maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
+		menu.add(maskMenu);
+	    } else {
+		maskMenu.add(SuperblockMaskCreateAction.createMenu(graph));
+	    }
+	    maskMenu.add(SuperblockMaskCustomizeAction.createMenu(graph));
+	    */
+	}
 	menu.setVisible(true);
     }
     
     public boolean createChildDiagram(){
+	return createChildDiagram(false);
+    }
+
+    public boolean createChildDiagram(boolean generatedUID){
     	if (child == null) {
     	    child = new SuperBlockDiagram(this);
-    	    child.info(XcosMessages.LOADING_DIAGRAM);
     	    child.installListeners();
-    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters()));
+    	    child.loadDiagram(BlockReader.convertMListToDiagram((ScilabMList) getRealParameters(), false));
     	    child.installSuperBlockListeners();
-    		child.setChildrenParentDiagram();
+    	    child.setChildrenParentDiagram();
     	    updateAllBlocksColor();
-    	    child.info(XcosMessages.EMPTY_INFO);
+    	    //only for loading and generate sub block UID
+    	    if(generatedUID) {
+    		child.generateUID();
+    	    }
     	} else {
     		return false;
     	}
+    	
     	return true;
     }
     
@@ -254,27 +302,6 @@ public class SuperBlock extends BasicBlock {
 	return list; 
     }
 
-    protected int getBlocksWithValueCount(List<mxCell> blocks, String checkValue){
-	int count = 0;
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		count++;
-	    }
-	}
-	return count;
-    }
-
-    protected List<mxCell> getBlocksWithValue(List<mxCell> blocks, String checkValue){
-	List<mxCell> list = new ArrayList<mxCell>();
-
-	for(int i = 0 ; i < blocks.size() ; i++){
-	    if(((String)((BasicBlock)blocks.get(i)).getValue()).compareTo(checkValue) == 0){
-		list.add((BasicBlock)blocks.get(i));
-	    }
-	}
-	return list;
-    }
-
     protected int getBlocksConsecutiveUniqueValueCount(List<mxCell> blocks){
     	if(blocks == null){
     		return 0;
@@ -290,7 +317,7 @@ public class SuperBlock extends BasicBlock {
     	
     	//populate
     	for(int i = 0 ; i < array.length; i++){
-    		int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    		int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     		if(index <= array.length){
     			array[index - 1] = 1;	
     		}
@@ -307,7 +334,7 @@ public class SuperBlock extends BasicBlock {
     	return count;
     }
 
-    protected void updateAllBlocksColor(){
+    public void updateAllBlocksColor(){
     	updateBlocksColor(getAllExplicitInBlock());
     	updateBlocksColor(getAllImplicitInBlock());
     	updateBlocksColor(getAllEventInBlock());
@@ -335,7 +362,7 @@ public class SuperBlock extends BasicBlock {
 
 
     		for(int i = 0 ; i < blocks.size() ; i++){
-    			int index = Integer.parseInt((String)((BasicBlock)blocks.get(i)).getValue());
+    			int index = (Integer)((BasicBlock)blocks.get(i)).getValue();
     			if(index > countUnique || isDone[index - 1] == true){
     				child.getAsComponent().setCellWarning(blocks.get(i), "Wrong port number");
     			}else{
@@ -349,8 +376,7 @@ public class SuperBlock extends BasicBlock {
     }
 
     public void updateExportedPort(){
-    	if(child == null){
-    		System.err.println("child == null");
+    	if (child == null){
     		return;
     	}
 
@@ -366,7 +392,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
-    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this);
+    	List<ExplicitInputPort> ports = BasicBlockInfo.getAllExplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -386,7 +412,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
-    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this);
+    	List<ImplicitInputPort> ports = BasicBlockInfo.getAllImplicitInputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -403,7 +429,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventInputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
-    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this);
+    	List<ControlPort> ports = BasicBlockInfo.getAllControlPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -420,7 +446,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedExplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
-    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this);
+    	List<ExplicitOutputPort> ports = BasicBlockInfo.getAllExplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -440,7 +466,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedImplicitOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
-    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this);
+    	List<ImplicitOutputPort> ports = BasicBlockInfo.getAllImplicitOutputPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -457,7 +483,7 @@ public class SuperBlock extends BasicBlock {
 
     private void updateExportedEventOutputPort(){
     	int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
-    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this);
+    	List<CommandPort> ports = BasicBlockInfo.getAllCommandPorts(this, false);
 
     	int portCount = ports.size();
 
@@ -470,5 +496,28 @@ public class SuperBlock extends BasicBlock {
     		removePort(ports.get(portCount - 1));
     		portCount--;
     	}
+    }
+    
+    /**
+     * Mask the SuperBlock
+     */
+    public void mask() {
+	setInterfaceFunctionName("DSUPER");
+	setSimulationFunctionName("csuper");
+    }
+    
+    /**
+     * Unmask the SuperBlock
+     */
+    public void unmask() {
+	setInterfaceFunctionName("SUPER_f");
+	setSimulationFunctionName("super");
+    }
+    
+    /**
+     * @return True is the SuperBlock is masked, false otherwise
+     */
+    public boolean isMasked() {
+	return getInterfaceFunctionName().compareTo("SUPER_f") != 0;
     }
 }

@@ -16,6 +16,7 @@ import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 /**
  * Colorization management
@@ -25,8 +26,8 @@ public final class ColorizeAction extends DefaultCheckAction {
 
 	private static final long serialVersionUID = -2486375196709197718L;
 
-	private static Xpad colorEditor;
-	private ColorizationManager colorizationManager= new ColorizationManager();
+
+	private ColorizationManager colorizationManager = new ColorizationManager();
 
 	/**
 	 * Constructor
@@ -34,7 +35,6 @@ public final class ColorizeAction extends DefaultCheckAction {
 	 */
 	private ColorizeAction(Xpad editor) {
 		super(XpadMessages.COLORIZE, editor);
-		colorEditor = editor;
 	}
 
 	/**
@@ -42,14 +42,15 @@ public final class ColorizeAction extends DefaultCheckAction {
 	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		ScilabStyleDocument scilabDocument = (ScilabStyleDocument)getEditor().getTextPane().getStyledDocument(); 
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument(); 
 
-		if (this.getState() == false) {
+		if (!this.getState()) {
 			colorizationManager.resetStyle(scilabDocument);
 		} else {
 			colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());
 		}
 		getEditor().setAutoColorize(this.getState());
+		ConfigXpadManager.saveAutoColorize(this.getState());
 	}
 
 	/**
@@ -59,7 +60,7 @@ public final class ColorizeAction extends DefaultCheckAction {
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
 		CheckBoxMenuItem colorize = createCheckBoxMenu(XpadMessages.COLORIZE, null, new ColorizeAction(editor), null);
-		colorize.setChecked(true);
+		colorize.setChecked(ConfigXpadManager.getAutoColorize());
     	return colorize;
 	}
 }

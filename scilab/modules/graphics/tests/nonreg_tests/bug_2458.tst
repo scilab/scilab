@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- INTERACTIVE TEST -->
 
 // <-- Non-regression test for bug 2458 -->
 //
@@ -15,10 +16,10 @@
 // <-- Short Description -->
 //Under linux Suse 10.2, with build4, official build of 4.1.1
 // and 4.1 there is a memory leak relative to show_pixmap()
+// memory result (ram dependency)
+nbComputation = 2000;
 
-nbComputation = 2000
-
-plot2d()
+plot2d();
 f=gcf();f.pixmap='on';
 show_pixmap(); // show it once for memory allocation
 

@@ -28,7 +28,9 @@ import com.mxgraph.model.mxGeometry;
 
 
 
-public class SplitBlock extends BasicBlock {
+public final class SplitBlock extends BasicBlock {
+
+    private static final long serialVersionUID = 5817243367840540106L;
 
 	public SplitBlock() {
 		super();
@@ -56,43 +58,28 @@ public class SplitBlock extends BasicBlock {
 
 		//source
 		if(source instanceof ExplicitOutputPort){
-			ExplicitInputPort tmp = new ExplicitInputPort();
-			addPort(tmp);
+			addPort(new ExplicitInputPort());
 		}else if(source instanceof ImplicitOutputPort || source instanceof ImplicitInputPort){
-			ImplicitInputPort tmp = new ImplicitInputPort();
-			addPort(tmp);
+			addPort(new ImplicitInputPort());
 		}else if(source instanceof CommandPort){
-			ControlPort tmp = new ControlPort();
-			addPort(tmp);
+			addPort(new ControlPort());
 		}
 
-		//target1
+		//target1 -> add 3 output ports
 		if(target1 instanceof ExplicitInputPort){
-			ExplicitOutputPort tmp = new ExplicitOutputPort();
-			addPort(tmp);
-		}else if(target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort){
-			ImplicitOutputPort tmp = new ImplicitOutputPort();
-			addPort(tmp);
-		}else if(target1 instanceof ControlPort){
-			CommandPort tmp = new CommandPort();
-			addPort(tmp);
-		}
-
-		//target2
-		if(target2 instanceof ExplicitInputPort){
-			ExplicitOutputPort tmp = new ExplicitOutputPort();
-			addPort(tmp);
 			addPort(new ExplicitOutputPort());
-		}else if(target2 instanceof ImplicitOutputPort || target2 instanceof ImplicitInputPort){
-			ImplicitOutputPort tmp = new ImplicitOutputPort();
-			addPort(tmp);
+			addPort(new ExplicitOutputPort());
+			addPort(new ExplicitOutputPort());
+		}else if(target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort){
 			addPort(new ImplicitOutputPort());
-		}else if(target2 instanceof ControlPort){
-			CommandPort tmp = new CommandPort();
-			addPort(tmp);
+			addPort(new ImplicitOutputPort());
+			addPort(new ImplicitOutputPort());
+		}else if(target1 instanceof ControlPort){
+			addPort(new CommandPort());
+			addPort(new CommandPort());
 			addPort(new CommandPort());
 		}
-
+		
 		getChildAt(0).setVisible(false);
 		getChildAt(1).setVisible(false);
 		getChildAt(2).setVisible(false);
@@ -133,14 +120,14 @@ public class SplitBlock extends BasicBlock {
 	public void unlinkAndClean() {
 	
 		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
+		getParentDiagram().getModel().beginUpdate();
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicLink){
 				BasicLink link = (BasicLink)objs[i];
-					getParentDiagram().getModel().beginUpdate();
 					getParentDiagram().getModel().remove(link);
-					getParentDiagram().getModel().endUpdate();
 			}
 		}
+		getParentDiagram().getModel().endUpdate();
 	}
 
 	public void setGeometry(mxGeometry geometry) {

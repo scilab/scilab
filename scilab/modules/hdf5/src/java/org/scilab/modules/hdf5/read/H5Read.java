@@ -38,7 +38,11 @@ public class H5Read {
     }
 
     public static String getRootType(int fileId) throws NullPointerException, HDF5LibraryException, HDF5Exception {
-	return readAttribute(getRootId(fileId), H5ScilabConstant.SCILAB_CLASS);
+	int root = getRootId(fileId);
+	String attrib = readAttribute(root, H5ScilabConstant.SCILAB_CLASS);
+	H5.H5Dclose(root);
+	return attrib;
+	
     }
 
     public static int getRootId(int fileId) throws HDF5LibraryException, NullPointerException {
@@ -52,20 +56,9 @@ public class H5Read {
 	H5.H5Gget_obj_info_all(fileId, groupName, allObjectsName, allObjectsType); 
 
 	for (int i = 0 ; i < nb_objs ; ++i) {
-	    //System.out.println("============================================");
-	    //System.out.println(" Object numer "+i);
-	    //System.out.println(" Name  = "+allObjectsName[i]);
 	    if (allObjectsType[i] == HDF5Constants.H5G_DATASET) {
-		//System.out.println(" Type  = DataSet");
-		//int dataSetId = H5.H5Dopen(fileId, groupName+"/"+allObjectsName[i]);
-		//readDataSet(indent, dataSetId);
 		return allObjectsName[i];
 	    }
-	    //	    if (allObjectsType[i] == HDF5Constants.H5G_GROUP) {
-	    //		System.out.println(" Type  = Group");
-	    //		//expandGroup(indent + 1, fileId, groupName+"/"+allObjectsName[i]);
-	    //	    }
-	    //	    System.out.println("============================================");
 	}
 	return null;
     }
@@ -81,7 +74,10 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static int getNbDims(int dataSetId) throws HDF5LibraryException {
-	return H5.H5Sget_simple_extent_ndims(H5.H5Dget_space(dataSetId));
+	int space = H5.H5Dget_space(dataSetId);
+	int dim = H5.H5Sget_simple_extent_ndims(space);
+	H5.H5Sclose(space);
+	return dim;
     }
 
     /**
@@ -160,12 +156,29 @@ public class H5Read {
     private static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
     	int attributeId = -1;
     	try {
+    		int attrCount = H5.H5Aget_num_attrs(dataSetId); 
     		// If there is no attribue do not try to open it
     		// There _must_ be at least one : SCILAB_CLASS
-    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    		if (attrCount <= 0) {
     			return "";
     		}
-    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+
+    		for(int i = 0 ; i < attrCount ; i++) {
+    			attributeId = H5.H5Aopen_idx(dataSetId, i);
+    			String[] buf = new String[1];
+    			H5.H5Aget_name(attributeId, 64, buf);
+    			if(buf[0].compareTo(attributeName) == 0) {
+    				break;
+    			}
+    			
+    			H5.H5Aclose(attributeId);
+    			attributeId = -1;
+    		}
+    		
+    		if(attributeId == -1) {
+    			//not found
+    			return "";
+    		}
     	}
     	catch (HDF5AttributeException e) {
     		return "";
@@ -176,6 +189,7 @@ public class H5Read {
     	byte[] data = new byte[stringLength];
     	H5.H5Aread(attributeId, tid, data);
     	String result = new String(data, 0, stringLength).trim();
+    	H5.H5Tclose(tid);
     	H5.H5Aclose(attributeId);
 
     	return result;
@@ -185,12 +199,29 @@ public class H5Read {
     	int attributeId = -1;
     	int data[] = new int[1];
     	try {
+    		int attrCount = H5.H5Aget_num_attrs(dataSetId); 
     		// If there is no attribue do not try to open it
     		// There _must_ be at least one : SCILAB_CLASS
-    		if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+    		if (attrCount <= 0) {
     			return 0;
     		}
-    		attributeId = H5.H5Aopen_name(dataSetId, attributeName);
+
+    		for(int i = 0 ; i < attrCount ; i++) {
+    			attributeId = H5.H5Aopen_idx(dataSetId, i);
+    			String[] buf = new String[1];
+    			H5.H5Aget_name(attributeId, 64, buf);
+    			if(buf[0].compareTo(attributeName) == 0) {
+    				break;
+    			}
+    			
+    			H5.H5Aclose(attributeId);
+    			attributeId = -1;
+    		}
+    		
+    		if(attributeId == -1) {
+    			//not found
+    			return 0;
+    		}
     	}
     	catch (HDF5AttributeException e) {
     		return 0;
@@ -209,8 +240,15 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static boolean isDouble(int dataSetId) throws HDF5LibraryException {
-	return (H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_FLOAT) &&
-	(H5.H5Tget_precision(H5.H5Dget_type(dataSetId)) == 64);
+	int type = H5.H5Dget_type(dataSetId);
+	
+	boolean result = false;
+	if( H5.H5Tget_class(type) == HDF5Constants.H5T_FLOAT && H5.H5Tget_precision(type) == 64) {
+	    result = true;
+	}
+	
+	H5.H5Tclose(type);
+	return result;
     }
 
     /**
@@ -221,8 +259,14 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static boolean isFloat(int dataSetId) throws HDF5LibraryException {
-	return (H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_FLOAT) &&
-	(H5.H5Tget_precision(H5.H5Dget_type(dataSetId)) == 32);
+	int type = H5.H5Dget_type(dataSetId);
+	
+	boolean result = false;
+	if(H5.H5Tget_class(type) == HDF5Constants.H5T_FLOAT && H5.H5Tget_precision(type) == 32) {
+	    result = true;
+	}
+	H5.H5Tclose(type);
+	return result;
     } 
 
     /**
@@ -233,7 +277,14 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static boolean isInt(int dataSetId) throws HDF5LibraryException {
-	return (H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_INTEGER);
+	int type = H5.H5Dget_type(dataSetId);
+	
+	boolean result = false;
+	if(H5.H5Tget_class(type) == HDF5Constants.H5T_INTEGER) {
+	    result = true;
+	}
+	H5.H5Tclose(type);
+	return result;
     } 
 
     /**
@@ -244,7 +295,14 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static boolean isString(int dataSetId) throws HDF5LibraryException {
-	return H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_STRING;
+	int type = H5.H5Dget_type(dataSetId);
+	
+	boolean result = false;
+	if(H5.H5Tget_class(type) == HDF5Constants.H5T_STRING) {
+	    result = true;
+	}
+	H5.H5Tclose(type);
+	return result;
     }
     /**
      * Check if the dataset is made of references.
@@ -254,7 +312,14 @@ public class H5Read {
      * @throws HDF5LibraryException
      */
     public static boolean isList(int dataSetId) throws HDF5LibraryException {
-	return (H5.H5Tget_class(H5.H5Dget_type(dataSetId)) ==  HDF5Constants.H5T_REFERENCE);
+	int type = H5.H5Dget_type(dataSetId);
+	
+	boolean result = false;
+	if(type == HDF5Constants.H5T_REFERENCE) {
+	    result = true;
+	}
+	H5.H5Tclose(type);
+	return result;
     } 
 
     public static void readDataFromFile(int fileId, ScilabDouble data) throws NullPointerException, HDF5Exception {

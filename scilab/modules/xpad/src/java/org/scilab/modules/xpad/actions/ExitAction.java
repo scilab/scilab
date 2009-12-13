@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET 
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,35 +25,66 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class ExitAction extends DefaultAction {
+/**
+ * ExitAction class
+ * @author Bruno JOFRET
+ *
+ */
+public final class ExitAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -6434487252794798547L;
+
+	/**
+	 * Constructor 
+	 * @param editor Xpad
+	 */
     private ExitAction(Xpad editor) {
 	super(XpadMessages.EXIT, editor);
     }
 
+    /**
+     * doAction
+     */
     public void doAction() {
-    	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
+    	doExit(getEditor());
+    }
+    
+    /**
+     * doExit
+     * @param editor Xpad
+     */
+    public static void doExit(Xpad editor) {
+    	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(editor.getParentWindowId());
 
-    	int numberOfTab = getEditor().getTabPane().getComponentCount();
+    	int numberOfTab = editor.getTabPane().getComponentCount();
 
     	boolean wantToClose = true;
     	int k = 0;
-    	for ( int i = 0 ; i < numberOfTab ; i++){
+    	for (int i = 0; i < numberOfTab; i++) {
     		//close and save all editors if they are modified
-    		boolean response = getEditor().closeTabAt(k); 
-    		if(response == false){
+    		boolean response = editor.closeTabAt(k); 
+    		if (!response) {
     			k++;
     		}
     		wantToClose &= response;  
     	}
 
-    	if(wantToClose == true){
-    		xpadWindow.getAsSimpleWindow().removeTab(getEditor());
+    	if (wantToClose) {
+    		xpadWindow.getAsSimpleWindow().removeTab(editor);
     		Xpad.closeXpad();
     	}
     }
     
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @return MenuItem
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), 
+			KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 }

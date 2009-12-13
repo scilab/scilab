@@ -7,6 +7,7 @@
 
 
 // <-- TEST WITH XPAD -->
+// <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 5404 -->
 //

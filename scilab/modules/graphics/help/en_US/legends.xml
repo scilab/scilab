@@ -30,6 +30,7 @@
         <term>strings</term>
         <listitem>
           <para>n vector of strings, strings(i) is the legend of the ith curve</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

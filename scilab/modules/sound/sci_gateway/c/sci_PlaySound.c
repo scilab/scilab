@@ -62,16 +62,16 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
+	if ( (m1 != n1) && (n1 != 1) ) 
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+		return 0;
+	}
+
 	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
-		return 0;
-	}
-
-	if ( (m1 != n1) && (n1 != 1) ) 
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 

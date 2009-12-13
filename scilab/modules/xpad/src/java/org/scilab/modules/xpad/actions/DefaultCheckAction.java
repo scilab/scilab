@@ -27,16 +27,30 @@ import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * DefaultCheckAction Class
+ * @author Bruno JOFRET
+ *
+ */
 public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem, ActionListener {
-	private Xpad editor;
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 5618123082228356437L;
+	private Xpad editorBackup;
 
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
+	@SuppressWarnings("serial")
 	public DefaultCheckAction(Xpad editor) {
 		super();
 		setText(XpadMessages.DEFAULT + XpadMessages.DOTS);
 		setState(true);
-		this.editor = editor;
-		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
+		editorBackup = editor;
 
+		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
 			public void callBack() {
 				doAction();
 			}
@@ -47,11 +61,17 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 		});
 	}
 
+	/**
+	 * 
+	 * @param label label (string)
+	 * @param editor Xpad
+	 */
+	@SuppressWarnings("serial")
 	protected DefaultCheckAction(String label, Xpad editor) {
 		super();
 		setText(label);
 		setState(true);
-		this.editor = editor;
+		editorBackup = editor;
 		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
 			public void callBack() {
 				doAction();
@@ -63,47 +83,66 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 		});
 	}
 
-
-
 	/**
-	 * Return the editor
-	 * @return the editor
+	 * get Editor
+	 * @return Xpad
 	 */
 	public Xpad getEditor() {
-		return editor;
+		return editorBackup;
 	}
 
 	/**
-	 * doAction is overloaded by son classes
-	 * If not, trigger a message saying that it has not yet been implemeted  
+	 * doAction
 	 */
 	public void doAction() {
-		JOptionPane.showMessageDialog(getEditor(), "Feature not yet implemented (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = " + getState() + ")", null, JOptionPane.ERROR_MESSAGE);
 	}
 
+	/**
+	 * actionPerformed
+	 * @param arg0 ActionEvent
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		doAction();
 	}
 
+	/**
+	 * createCheckBoxMenu
+	 * @param title String
+	 * @param icon  String
+	 * @param defaultCheckAction DefaultCheckAction
+	 * @param keyStroke KeyStroke
+	 * @return CheckBoxMenuItem
+	 */
 	protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
 		defaultCheckAction.setText(title);
 		defaultCheckAction.setChecked(false);
 		if (keyStroke != null) {
 			((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
 		}
-
 		return defaultCheckAction;
-
 	}
 
+	/**
+	 * getAsSimpleCheckBoxMenuItem
+	 * @return SimpleCheckBoxMenuItem
+	 */
 	public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
 		return this;
 	}
 
+	/**
+	 * getAsSimpleMenuItem
+	 * @return SimpleMenuItem
+	 */
 	public SimpleMenuItem getAsSimpleMenuItem() {
 		return null;
 	}
 
+	/**
+	 * getAsSimpleMenu
+	 * @return SimpleMenu
+	 */
 	public SimpleMenu getAsSimpleMenu() {
 		return null;
 	}

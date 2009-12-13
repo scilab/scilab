@@ -20,12 +20,11 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.Signal;
-import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -33,6 +32,8 @@ import com.mxgraph.util.mxUtils;
 
 
 public class CodeGenerationAction extends DefaultAction {
+
+    private static final long serialVersionUID = -7756467773530338202L;
 
     public CodeGenerationAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.CODE_GENERATION,scilabGraph);
@@ -57,10 +58,10 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile("xcos",".hdf5");;
-	    final File tempInput = File.createTempFile("xcos",".hdf5");;
-	    tempOutput.delete();
-	    tempInput.delete();
+	    final File tempOutput = File.createTempFile("xcos",".h5");;
+	    final File tempInput = File.createTempFile("xcos",".h5");;
+	    tempOutput.deleteOnExit();
+	    tempInput.deleteOnExit();
 	    // Write scs_m
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
@@ -82,8 +83,6 @@ public class CodeGenerationAction extends DefaultAction {
 			    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		    block.setValue(block.getSimulationFunctionName());
 		    block.setChild(null);
-		    //tempOutput.delete();
-		    //tempInput.delete();
 		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		}
 	    };
@@ -91,7 +90,6 @@ public class CodeGenerationAction extends DefaultAction {
 	}
 	
 	catch (Exception e) {
-	    // TODO: handle exception
 	    e.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}

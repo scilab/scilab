@@ -15,7 +15,9 @@ package org.scilab.modules.xcos.block;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
-public class ConstBlock extends BasicBlock {
+public final class ConstBlock extends BasicBlock {
+
+    private static final long serialVersionUID = 4234301593972228584L;
 
     public ConstBlock() {
 	super();

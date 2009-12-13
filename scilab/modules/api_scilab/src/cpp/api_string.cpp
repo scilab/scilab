@@ -231,6 +231,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 	int iType					= 0;
 	char **pstStrings = NULL;
 	int *piLenStrings = NULL;
+	int strSize = 0;
 
 	if(	_piAddress == NULL)
 	{
@@ -263,19 +264,21 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		return sciErr;
 	}
 
-	piLenStrings	= (int*)MALLOC(sizeof(int*) * (*_piRows * *_piCols));
+	strSize = (*_piRows * *_piCols);
+	piLenStrings	= (int*)MALLOC(sizeof(int) * strSize);
 
 	// get length UTF size
 	sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLenStrings, pstStrings);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
 		return sciErr;
 	}
 
-	pstStrings = (char**)MALLOC(sizeof(char*) * (*_piRows * *_piCols));
+	pstStrings = (char**)MALLOC(sizeof(char*) * strSize);
 
-	for(int i = 0; i < (*_piRows * *_piCols); i++)
+	for(int i = 0; i < strSize; i++)
 	{
 		pstStrings[i] = (char*)MALLOC(sizeof(char)*(piLenStrings[i] + 1));
 	}
@@ -285,6 +288,8 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+		freeArrayOfString(pstStrings,strSize);
 		return sciErr;
 	}
 
@@ -304,19 +309,50 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		}
 	}
 
-	if(_pwstStrings == NULL)
+	if ( (_pwstStrings == NULL) || (*_pwstStrings == NULL) )
 	{
+		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+		freeArrayOfString(pstStrings,strSize);
 		return sciErr;
 	}
 	
-	for(int i = 0; i < (*_piRows * *_piCols); i++)
+	for (int i = 0; i < (*_piRows * *_piCols); i++)
 	{
-		_pwstStrings[i] = to_wide_string(pstStrings[i]);
-		_piwLength[i] = (int)wcslen(_pwstStrings[i]);
+		if (pstStrings[i])
+		{
+			wchar_t *wcstring = to_wide_string(pstStrings[i]);
+			if (wcstring)
+			{
+				if (_pwstStrings[i])
+				{
+					wcscpy(_pwstStrings[i], wcstring);
+					_piwLength[i] = (int)wcslen(_pwstStrings[i]);
+				}
+				else
+				{
+					_pwstStrings[i] = NULL;
+					_piwLength[i] = 0;
+				}
+				FREE(wcstring);
+				wcstring = NULL;
+			}
+			else
+			{
+				// case to_wide_string fails
+				_pwstStrings[i] = NULL;
+				_piwLength[i] = 0;
+			}
+		}
+		else
+		{
+			// case to_wide_string fails
+			_pwstStrings[i] = NULL;
+			_piwLength[i] = 0;
+		}
 	}
 
-	freeArrayOfString(pstStrings, (*_piRows * *_piCols));
-	FREE(piLenStrings); piLenStrings = NULL;
+	freeArrayOfString(pstStrings, strSize);
+	if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
 
 	return sciErr;
 }
