@@ -129,8 +129,9 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la
-
+	$(top_builddir)/modules/xpad/libscixpad.la \
+	$(top_builddir)/modules/hdf5/libscihdf5-forceload.la
+# HDF5 is here because it needs the JVM (see bug TODO)
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
@@ -140,6 +141,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la
+	$(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
+# HDF5 is here because it needs the JVM (see bug TODO)
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
@@ -172,8 +175,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/hdf5/libscihdf5.la
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
+	$(top_builddir)/modules/functions/libscifunctions.la
 
 
 # These libraries are loaded dynamically from Scilab.
