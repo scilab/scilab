@@ -58,7 +58,6 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 
 
@@ -128,9 +127,9 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 */
 	Object[] cellArrays = getGraph(null).cloneCells(selectedCells.toArray());
 	Collection<Object> cells = Arrays.asList(cellArrays);
-	mxCell[] typedCells = new XcosUIDObject[cellArrays.length];
+	XcosUIDObject[] typedCells = new XcosUIDObject[cellArrays.length];
 	cells.toArray(typedCells);
-	List<mxCell> cellsCopy = Arrays.asList(typedCells);
+	List<XcosUIDObject> cellsCopy = Arrays.asList(typedCells);
 	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
 	    translationMatrix[i] = selectedCells.get(i);
@@ -212,9 +211,9 @@ public class RegionToSuperblockAction extends DefaultAction {
     /**
      * Get all the block in the cellsCopy.
      */
-    private List<BasicBlock> getBlocks(List<mxCell> cellsCopy) {
+    private List<BasicBlock> getBlocks(List<XcosUIDObject> cellsCopy) {
 	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
-	for (mxCell cell : cellsCopy) {
+	for (XcosUIDObject cell : cellsCopy) {
 	    if (cell instanceof BasicBlock) {
 		list.add((BasicBlock) cell);
 	    }
@@ -230,7 +229,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.getModel().beginUpdate();
 
 	for (int i = 0; i < graph.getSelectionCells().length; i++) {
-	    mxCell current = (mxCell) graph.getSelectionCells()[i];
+	    XcosUIDObject current = (XcosUIDObject) graph.getSelectionCells()[i];
 	    if (current instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock) current;
 		for (int j = 0; j < block.getChildCount(); j++) {
@@ -462,7 +461,7 @@ public class RegionToSuperblockAction extends DefaultAction {
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<mxCell> copiedCells) {
+    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<XcosUIDObject> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	int objs_length = objs.size();
