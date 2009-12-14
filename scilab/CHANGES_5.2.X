@@ -577,7 +577,7 @@ Bug fixes:
                    section was not correct.
 
 * bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
-                   stack to minimun size if it fails.
+                   stack to minimum size if it fails.
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
                    version in the loader.sce even if the toolbox 100% 
