@@ -415,7 +415,7 @@ Bug fixes:
 
 * bug 4435 fixed - bench_run is now documented.
 
-* bug 4565 fixed - getvalue macro is definied two times.
+* bug 4565 fixed - getvalue macro was defined twice.
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
@@ -427,7 +427,7 @@ Bug fixes:
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette
                    manager.
 
-* bug 5037 fixed - The link style menu doesn't have mnemonics
+* bug 5037 fixed - The link style menu did not had mnemonics
 
 * bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
 
@@ -554,9 +554,9 @@ Bug fixes:
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
-* bug 5461 fixed - the savematfile doesn't work when I pass a format argument
+* bug 5461 fixed - the savematfile did not work when I pass a format argument
 
-* bug 5462 fixed - savematfile() didn't save correctly sparse matrixes.
+* bug 5462 fixed - savematfile() did not save correctly sparse matrices.
                    
 * bug 5469 fixed - Force origin presence on an axes with location property set 
                    to 'origin'.
@@ -1458,7 +1458,7 @@ Bug fixes:
 * bug 4474 fixed - addinter help had no example.
 
 * bug 4479 fixed - A few minor bugs were causing the configure to fail under
-                   FreeBSD (Thanks to OtacÃ­lio de AraÃºjo Ramos Neto)
+                   FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
 * bug 4483 fixed - Handle FreeBSD Java detection
 
