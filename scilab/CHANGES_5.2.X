@@ -18,7 +18,7 @@ Text editor:
 - Help on the selected text
 See bug #5387
 
-* bug 4873 fixed - "undo" doesn't work if the last action affects several lines. 
+* bug 4873 fixed - "undo" doesn't work if the last action affects several lines.
 
 * bug 4883 fixed - "Menu->Document->Auto Indent" preference is not saved.
 
@@ -127,6 +127,14 @@ Text rendering:
 
 * bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
                    feature.
+
+ATOMS:
+======
+
+* An "offline" mode has been added. This mode permits the user to install modules
+  from a local repository or a local package even if the network is unreachable :
+  --> atomsSetConfig('offLine','True');
+  --> atomsInstall("/home/johnsmith/module_lycee_1.1.bin.i686.linux.tar.gz");
 
 Graphic export:
 ===============
@@ -447,6 +455,9 @@ Bug fixes:
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
                    The error is now catched.
 
+* bug 5249 fixed - Using the help or apropos functions, some words (stop word) 
+                   were not taking in account during the search.
+
 * bug 5251 fixed - getversion help page updated.
 
 * bug 5258 fixed - diary help page had some erroneous timestamp prefix formats.
@@ -594,6 +605,11 @@ Bug fixes:
 
 * bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
                    of x0 and len for "axes" simplex.
+
+* bug 5607 fixed - 'mtlb_mode' did not work on Windows.
+
+* bug 5615 fixed - xls_open failed if there was a trailing space after the 
+                   file extension.
 
 
 
@@ -1736,3 +1752,7 @@ Bug fixes:
 
 * bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
                    number of digits.
+
+* bug 5619 fixed - bitset() cannot set hypermatrix bits.
+
+* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
