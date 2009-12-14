@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -125,7 +126,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Clone cells and generate a translation matrix between old and new mxCells
 	 */
-	List<mxCell> cellsCopy = Arrays.asList((mxCell[])getGraph(null).cloneCells(selectedCells.toArray()));
+	Object[] cellArrays = getGraph(null).cloneCells(selectedCells.toArray());
+	Collection<Object> cells = Arrays.asList(cellArrays);
+	mxCell[] typedCells = new XcosUIDObject[cellArrays.length];
+	cells.toArray(typedCells);
+	List<mxCell> cellsCopy = Arrays.asList(typedCells);
 	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
 	    translationMatrix[i] = selectedCells.get(i);
@@ -268,7 +273,12 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	graph.getModel().endUpdate();
 	
-	return new ArrayList<XcosUIDObject>(Arrays.asList((XcosUIDObject[])graph.getSelectionCells()));
+	Object[] selectedCells = graph.getSelectionCells();
+	Collection<Object> cells = Arrays.asList(selectedCells);
+	XcosUIDObject[] typedCells = new XcosUIDObject[selectedCells.length];
+	cells.toArray(typedCells);
+	
+	return new ArrayList<XcosUIDObject>(Arrays.asList(typedCells));
     }
     
     /**
