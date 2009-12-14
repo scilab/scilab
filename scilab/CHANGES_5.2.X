@@ -235,6 +235,8 @@ Xcos:
 
 * bug 5221 fixed - libhdf5 is defined with the GLIBC_2.7 as mandatory
 
+* bug 5235 fixed - Error message added when launching Scicos
+
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
@@ -272,6 +274,8 @@ Xcos:
 * bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
 * bug 5348 fixed - Openning a Superblock crashed Xcos.
+
+* bug 5349 fixed - the file predator.cos was not openable.
 
 * bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
@@ -450,8 +454,6 @@ Bug fixes:
 
 * bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
-* bug 5235 fixed - Error message added when launching Scicos
-
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
                    The error is now catched.
 
@@ -506,7 +508,8 @@ Bug fixes:
 
 * bug 5340 fixed - There was no example in the help of arma 
 
-* bug 5349 fixed - the file predator.cos was not openable.
+* bug 5355 fixed - There is no automatic indentation in the editor when 
+                   commands such as "try" or "catch" are entered.
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
                    displayed at Scilab startup.
@@ -611,7 +614,9 @@ Bug fixes:
 * bug 5615 fixed - xls_open failed if there was a trailing space after the 
                    file extension.
 
+* bug 5619 fixed - bitset() cannot set hypermatrix bits.
 
+* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -790,7 +795,7 @@ consistent, documented and easy way to use API.
   to avoid memory duplication.
 
 * Under all operating systems but Windows, all headers are not installed in a single directory 
-  in order to simplify the use   of Scilab features in the dynamic link.
+  in order to simplify the use of Scilab features in the dynamic link.
   See SEP #32 for more information
 
 * From this version of Scilab, only a defined and documented number of headers
@@ -1747,12 +1752,3 @@ Bug fixes:
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
-
-* bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
-
-* bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
-                   number of digits.
-
-* bug 5619 fixed - bitset() cannot set hypermatrix bits.
-
-* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
