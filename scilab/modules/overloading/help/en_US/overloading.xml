@@ -70,6 +70,10 @@
     <para>extraction and insertion operators which are n-nary operators are
     described below.</para>
 
+    <para>Be careful, only the types registered by
+    the <literal>typename</literal> function can be used in an
+    overloading macros</para>
+
     <para><literal>&lt;operand_type&gt;</literal>,
     <literal>&lt;first_operand_type&gt;</literal>,
     <literal>&lt;second_operand_type&gt;</literal> are sequence of characters
@@ -514,6 +518,8 @@ sin('2*x')
       <member><link linkend="typeof">typeof</link></member>
 
       <member><link linkend="type">type</link></member>
+
+      <member><link linkend="typename">type</link></member>
     </simplelist>
   </refsection>
 </refentry>
