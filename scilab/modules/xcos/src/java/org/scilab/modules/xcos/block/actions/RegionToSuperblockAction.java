@@ -130,6 +130,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
 	}
 	
+	List<BasicBlock> blocksCopy = getBlocks(cellsCopy);
+	
 	/*
 	 * Getting selection rectangle
 	 */
@@ -138,13 +140,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (mxCell current  : cellsCopy) {
-	    if (current instanceof BasicBlock) {
+	for (BasicBlock current  : blocksCopy) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
 		maxX = Math.max(maxX, current.getGeometry().getX());
 		maxY = Math.max(maxY, current.getGeometry().getY());
-	    }
 	}
 
 	/*
@@ -201,6 +201,19 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.refresh();
 	diagram.refresh();
 	graph.info(XcosMessages.EMPTY_INFO);
+    }
+
+    /**
+     * Get all the block in the cellsCopy.
+     */
+    private List<BasicBlock> getBlocks(List<mxCell> cellsCopy) {
+	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
+	for (mxCell cell : cellsCopy) {
+	    if (cell instanceof BasicBlock) {
+		list.add((BasicBlock) cell);
+	    }
+	}
+	return list;
     }
 
     /**
