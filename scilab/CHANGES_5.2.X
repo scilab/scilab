@@ -508,6 +508,9 @@ Bug fixes:
 
 * bug 5340 fixed - There was no example in the help of arma 
 
+* bug 5355 fixed - There is no automatic indentation in the editor when 
+                   commands such as "try" or "catch" are entered.
+
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
                    displayed at Scilab startup.
 
@@ -611,7 +614,9 @@ Bug fixes:
 * bug 5615 fixed - xls_open failed if there was a trailing space after the 
                    file extension.
 
+* bug 5619 fixed - bitset() cannot set hypermatrix bits.
 
+* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
@@ -1747,12 +1752,3 @@ Bug fixes:
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
-
-* bug 5355 fixed - There is no automatic indentation in the editor when commands such as "try" or "catch" are entered.
-
-* bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
-                   number of digits.
-
-* bug 5619 fixed - bitset() cannot set hypermatrix bits.
-
-* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
