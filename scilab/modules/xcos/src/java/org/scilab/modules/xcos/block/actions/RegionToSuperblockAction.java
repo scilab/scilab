@@ -228,12 +228,16 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Update the view
 	 */
-	BlockPositioning.updateBlockView(superBlock);
 	superBlock.updateExportedPort();
 
 	// change source or target of old link
 	createLinks(graph, superBlock, breaks);
 	superBlock.closeBlockSettings();
+	
+	/*
+	 * Update the visible attributes
+	 */
+	BlockPositioning.updateBlockView(superBlock);
 	
 	graph.getModel().endUpdate();
 	graph.refresh();
