@@ -33,9 +33,8 @@ public class ColorizationManager {
 
 	private Pattern compilePattern( String[] words, boolean useWordBoundaries){
 		StringBuffer buffer= new StringBuffer();
-		// was findBoundaries macros:12875 findBoundaries functions:4229
 		if(useWordBoundaries){
-			buffer.append("\\b(");
+			buffer.append("(?=%|\\b)("); // '%' is not a 'word' character so \b would not match place before '%'
 		}
 		for(int i=0; i!= words.length; ++i){
 			if(i!=0){
@@ -52,7 +51,7 @@ public class ColorizationManager {
 		public ColorizationManager() {
 			// Scilab keywords to be colored
 			KeywordManager keywordManager = new KeywordManager();
-			boolsPattern = compilePattern(KeywordManager.getBools(),false);
+			boolsPattern = compilePattern(KeywordManager.getBools(),true);
 			quotationsPattern= compilePattern(KeywordManager.getQuotations(),false);
 			commentsPattern= compilePattern(KeywordManager.getComments(),false);
 			operatorsPattern=compilePattern(KeywordManager.getOperators(),false);

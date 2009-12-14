@@ -264,6 +264,8 @@ Xcos:
 * bug 5327 fixed - When indenting a block, the selection area is shifted one 
                    line down with respect to the previously selected one. 
 
+* bug 5328 fixed - The RegionToSuperblock action produced a not well rendered diagram.
+
 * bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
                    memory.
 
@@ -374,6 +376,8 @@ Xcos:
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
 
+* bug 5634 fixed - The export functionnality didn't work.
+
 Tree functions :
 ================
 
@@ -415,7 +419,7 @@ Bug fixes:
 
 * bug 4435 fixed - bench_run is now documented.
 
-* bug 4565 fixed - getvalue macro is definied two times.
+* bug 4565 fixed - getvalue macro was defined twice.
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab.
 
@@ -427,7 +431,7 @@ Bug fixes:
 * bug 5025 fixed - The Tabbed palette manager must become a Tree palette
                    manager.
 
-* bug 5037 fixed - The link style menu doesn't have mnemonics
+* bug 5037 fixed - The link style menu did not had mnemonics
 
 * bug 5077 fixed - demo neldermead/output Command fails on windows (Release)
 
@@ -554,9 +558,9 @@ Bug fixes:
 
 * bug 5460 fixed - added menus 'Close All' and Close all but this' in editor.
 
-* bug 5461 fixed - the savematfile doesn't work when I pass a format argument
+* bug 5461 fixed - the savematfile did not work when I pass a format argument
 
-* bug 5462 fixed - savematfile() didn't save correctly sparse matrixes.
+* bug 5462 fixed - savematfile() did not save correctly sparse matrices.
                    
 * bug 5469 fixed - Force origin presence on an axes with location property set 
                    to 'origin'.
@@ -577,7 +581,7 @@ Bug fixes:
                    section was not correct.
 
 * bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
-                   stack to minimun size if it fails.
+                   stack to minimum size if it fails.
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
                    version in the loader.sce even if the toolbox 100% 
@@ -634,7 +638,7 @@ This new version provides numerous new features:
 * Several diagrams can be edited at the same time
 * Scilab can be used during the diagram construction
 * Diagram edition is available even during simulation
-* Drap and drop from palettes to diagram and between diagrams
+* Drag and drop from palettes to diagram and between diagrams
 * History (Undo/Redo) with an unlimited number of actions memorized 
 * Viewport to have an overall view of your diagram
 * Palette window with new palettes organization
@@ -678,7 +682,7 @@ A new text editor is implemented in this version of Scilab. The editor now
 follows the look and feel of Scilab and is integrated into the docking system.
 
 The following features are available:
-* Syntaxic colorization
+* Syntax colorization
 * Automatic indentation
 * Line numbering
 * Execute into Scilab
@@ -705,7 +709,7 @@ Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rend
   This new feature improves the quality of graphic rendering.
   It can be activated with the following commands: 
   df = gdf(); df.anti_aliasing = "8x"; plot3d();
-  The rationnal and performance tests are available in SEP #16 or can be
+  The rational and performance tests are available in SEP #16 or can be
   seen in Scilab bugtracker as bug #2984.
 
 * Add transparency to markdrawing.
@@ -716,7 +720,7 @@ Introduction of new binaries:
 =============================
 
 The goal of these changes is to improve the capabilities to use Scilab
-in different environnements and use cases.
+in different environments and use cases.
 
 * Scilab 5.2 introduces new binaries in the distribution:
 
@@ -768,7 +772,7 @@ Extension capabilities of Scilab (API Scilab):
 
 In the previous versions of Scilab, there was no clear or easy way to extend
 Scilab or to use it as an embedded application. 
-Knowing these drawbacks, Scilab 5.2 tackles all those issues by prodiving a new
+Knowing these drawbacks, Scilab 5.2 tackles all those issues by providing a new
 consistent, documented and easy way to use API. 
 
 * A new API called api_scilab is available. This API provides functions to
@@ -812,7 +816,7 @@ call_scilab module:
 Call Scilab is the API which allows Scilab to be called as computing engine or
 embedded into a third-party application.
 From this version, Call Scilab is based on Scilab API and handles all Scilab
-data types (in previous versions, Double, Boolean, Complex Matrixes and String 
+data types (in previous versions, Double, Boolean, Complex Matrices and String 
 elements were managed).
 The Call Scilab function has the same profile as Scilab API with 'Named' into 
 the function name.
@@ -881,7 +885,7 @@ Mac OS X:
 
 * bug 4393 fixed - When launching Scilab from the puffin icon, it did not detect the locale and switched to English.
 
-* bug 4949 fixed - Using Xcos/Scicos in the source tree environnement, with
+* bug 4949 fixed - Using Xcos/Scicos in the source tree environment, with
                    schema using sundials library, the application had problems
                    to load the dynamic library.
 
@@ -1176,7 +1180,7 @@ Bugs:
 
 * bug 4915 fixed - The default font in some of the uicontrols applications in
                    Scilab were not handling correctly for the Japanese and
-                   others languages. This was happenning with m2sci and the
+                   others languages. This was happening with m2sci and the
                    demos browser.
 
 * bug 5071 fixed - isletter("é") returned [%F %F] instead of %F.
@@ -1256,7 +1260,7 @@ Bug fixes:
                     instruction.
 
 * bug 2446 fixed - "while" documentation help page improved to explain 
-                    that the keywords do or then can be ommitted.
+                    that the keywords do or then can be omitted.
 
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf could crash Scilab when
                    first argument was -1 (any number of lines)
@@ -1283,7 +1287,7 @@ Bug fixes:
 * bug 3264 fixed - More explicit message when too many files have been
                     opened added.
 
-* bug 3422 fixed - The keyword for history search was not updatable
+* bug 3422 fixed - The keyword for history search was not updatetable
 
 * bug 3488 fixed - Dynamic link functions can now handle Fortran 90 code.
 
@@ -1353,7 +1357,7 @@ Bug fixes:
 
 * bug 4304 fixed - Fail to build with ./configure --without-gui
 
-* bug 4307 fixed - Desactivate (in modules.xml) modules if their functionnalities
+* bug 4307 fixed - Desactivate (in modules.xml) modules if their functionalities
                    are not available.
                    
 * bug 4307 fixed - Help file for %io added                  
@@ -1458,7 +1462,7 @@ Bug fixes:
 * bug 4474 fixed - addinter help had no example.
 
 * bug 4479 fixed - A few minor bugs were causing the configure to fail under
-                   FreeBSD (Thanks to OtacÃ­lio de AraÃºjo Ramos Neto)
+                   FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
 * bug 4483 fixed - Handle FreeBSD Java detection
 
@@ -1508,7 +1512,7 @@ Bug fixes:
 
 * bug 4539 fixed - Some optional parameters were not set in hist3d
 
-* bug 4542 fixed - Unexpected interpretor warning 
+* bug 4542 fixed - Unexpected interpreter warning 
 
 * bug 4546 fixed - Error message added for linpro function (moved to an external function)
  
@@ -1572,7 +1576,7 @@ Bug fixes:
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
 
-* bug 4620 fixed - the setenv function made scilab hung.
+* bug 4620 fixed - the setenv function made Scilab hung.
 
 * bug 4626 fixed - When using the CLI version, completion made Scilab crashed
 
@@ -1587,7 +1591,7 @@ Bug fixes:
 
 * bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version 
 
-* bug 4638 fixed - This example with optim freezed Scilab
+* bug 4638 fixed - This example with optim froze Scilab
 
 * bug 4639 fixed - Some graphics demos did not contain the menu item "show code"
 

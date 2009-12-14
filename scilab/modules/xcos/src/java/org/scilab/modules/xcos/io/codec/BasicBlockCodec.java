@@ -73,6 +73,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	    // update style to replace direction by rotation and add the 
 	    // default style if absent
 	    ((BasicBlock) obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicBlock) obj));
+	    ((BasicBlock) obj).updateFieldsFromStyle();
 	    
 	    return super.afterDecode(dec, node, obj);
 	}

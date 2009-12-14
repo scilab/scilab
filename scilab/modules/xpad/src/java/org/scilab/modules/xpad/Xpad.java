@@ -699,7 +699,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
 		        	}
 		        	doc.setContentModified(true);
-		        	Xpad.this.updateTabTitle();
+		        	// tab title updating must be deferred after UndoManager processes the related UndoableEvent
+		        	// (and updates nbEdit accordingly)
+		        	SwingUtilities.invokeLater(new TabTitleUpdater(Xpad.this));
 		        } 
 		   }
 	});
@@ -1228,4 +1230,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    }
 	}
 
+}
+
+class TabTitleUpdater implements Runnable {
+	Xpad editor;
+	TabTitleUpdater( Xpad e ) {
+		editor = e;
+	}
+	 public void run() {
+		 editor.updateTabTitle();
+	}
 }

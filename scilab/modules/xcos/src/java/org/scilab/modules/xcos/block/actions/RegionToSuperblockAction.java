@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -141,7 +142,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	    translationMatrix[i] = selectedCells.get(i);
 	}
 	
-	List<BasicBlock> blocksCopy = getBlocks(cellsCopy);
+	List<BasicBlock> blocksCopyWithoutSplitBlocks = getBlocks(cellsCopy);
 	
 	/*
 	 * Getting selection rectangle
@@ -151,7 +152,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (BasicBlock current  : blocksCopy) {
+	for (BasicBlock current  : blocksCopyWithoutSplitBlocks) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
 		maxX = Math.max(maxX, current.getGeometry().getX());
@@ -165,6 +166,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	superBlock.setStyle("SUPER_f");
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
+
 
 
 	/*
@@ -194,7 +196,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 */
 	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	superBlock.createChildDiagram();
-
+	
 	/*
 	 * Update the parent
 	 */
@@ -202,12 +204,41 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.addCell(superBlock);
 	graph.setSelectionCell(superBlock);
 	graph.getModel().endUpdate();
+	
+	/*
+	 * Calculate angle/mirrored/flipped statistics
+	 */
+	int angle = 0;
+	int flipped = 0;
+	int mirrored = 0;
+	for (BasicBlock basicBlock : blocksCopyWithoutSplitBlocks) {
+	    angle += basicBlock.getAngle();
+	    flipped += basicBlock.getFlip()?1:0;
+	    mirrored += basicBlock.getMirror()?1:0;
+	}
+	
+	/*
+	 * Apply statistics to the superblock
+	 */
+	int midBlockIndex = blocksCopyWithoutSplitBlocks.size()/2;
+	superBlock.setAngle(BlockPositioning.roundAngle(angle/blocksCopyWithoutSplitBlocks.size()));
+	superBlock.setFlip((flipped > midBlockIndex)?true:false);
+	superBlock.setMirror((mirrored > midBlockIndex)?true:false);
+	
+	/*
+	 * Update the view
+	 */
 	superBlock.updateExportedPort();
 
 	// change source or target of old link
 	createLinks(graph, superBlock, breaks);
 	superBlock.closeBlockSettings();
-
+	
+	/*
+	 * Update the visible attributes
+	 */
+	BlockPositioning.updateBlockView(superBlock);
+	
 	graph.getModel().endUpdate();
 	graph.refresh();
 	diagram.refresh();
@@ -215,13 +246,15 @@ public class RegionToSuperblockAction extends DefaultAction {
     }
 
     /**
-     * Get all the block in the cellsCopy.
+     * Get all the non-SplitBlock blocks in the cellsCopy.
      */
     private List<BasicBlock> getBlocks(List<XcosUIDObject> cellsCopy) {
 	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
 	for (XcosUIDObject cell : cellsCopy) {
 	    if (cell instanceof BasicBlock) {
-		list.add((BasicBlock) cell);
+		if (!(cell instanceof SplitBlock)) {
+		    list.add((BasicBlock) cell);
+		}
 	    }
 	}
 	return list;
