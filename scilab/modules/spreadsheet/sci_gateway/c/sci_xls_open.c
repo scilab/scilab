@@ -30,6 +30,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 static char *xls_basename (char *name);
 /*--------------------------------------------------------------------------*/
@@ -69,6 +70,28 @@ int sci_xls_open(char *fname,unsigned long fname_len)
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 	filename_IN = expandPathVariable(cstk(l1));
+	if (filename_IN)
+	{
+		/* bug 5615 */
+		/* remove blank characters @ the end */
+		int len =(int)strlen(filename_IN);
+		int i = 0;
+
+		if (len >= 1)
+		{
+			for (i = len - 1; i >= 0  ; i--)
+			{
+				if (filename_IN[i] == ' ')  filename_IN[i] = '\0';
+				else break;
+			}
+		}
+
+		if (!FileExist(filename_IN))
+		{
+			Scierror(999,_("The file %s does not exist.\n"), filename_IN);
+			return 0;
+		}
+	}
 
 	TMPDIR = getTMPDIR();
 	strcpy(TMP, TMPDIR);
