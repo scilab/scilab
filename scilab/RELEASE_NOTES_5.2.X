@@ -1,5 +1,5 @@
-                      Scilab 5.2 Release_Notes
-                      ========================
+                      Scilab 5.2.0 Release_Notes
+                      ==========================
 
 Known incompatibilities:
 
@@ -25,6 +25,8 @@ Known incompatibilities:
   * For now, Tcl/Tk has been disabled. The technical reason is because
     both Swing and Tk need to be driven by the Core Foundation
    (CFRunLoopRun) and it is tricky to handle both at the sametime.
+	* As a consequence, TclSci (Scilab / Tcl interface) Scipad, GED
+	and the variable editor are not working.
 
 - Scipad has been removed from the Scilab distribution and replaced by an other
 Scilab text editor.
