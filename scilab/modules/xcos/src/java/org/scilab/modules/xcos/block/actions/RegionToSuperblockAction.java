@@ -17,6 +17,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +122,11 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 * Update selection and return it.
 	 */
 	List<XcosUIDObject> selectedCells = updateForNotSelectedLinks(graph);
+	
+	/*
+	 * Sort the selected cells to avoid misplacement
+	 */
+	Collections.sort(selectedCells);
 	
 	/*
 	 * Clone cells and generate a translation matrix between old and new mxCells
