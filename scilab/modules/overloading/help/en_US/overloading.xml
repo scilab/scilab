@@ -510,6 +510,10 @@ sin('2*x')
       <member><link linkend="disp">disp</link></member>
 
       <member><link linkend="symbols">symbols</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+
+      <member><link linkend="type">type</link></member>
     </simplelist>
   </refsection>
 </refentry>
