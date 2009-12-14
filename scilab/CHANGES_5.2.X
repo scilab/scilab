@@ -128,6 +128,14 @@ Text rendering:
 * bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
                    feature.
 
+ATOMS:
+======
+
+* An "offline" mode has been added. This mode permits the user to install modules
+  from a local repository or a local package even if the network is unreachable :
+  --> atomsSetConfig('offLine','True');
+  --> atomsInstall("/home/johnsmith/module_lycee_1.1.bin.i686.linux.tar.gz");
+
 Graphic export:
 ===============
 
