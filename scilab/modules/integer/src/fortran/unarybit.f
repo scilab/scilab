@@ -10,6 +10,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine unarybit(op)
 c     addition
       include 'stack.h'
+      
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
       common /mtlbc/ mmode
       integer op
       external memused
