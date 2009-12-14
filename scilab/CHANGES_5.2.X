@@ -597,6 +597,9 @@ Bug fixes:
 
 * bug 5604 fixed - Fminsearch: optimsimplex_new does not check for consistency 
                    of x0 and len for "axes" simplex.
+                   
+* bug 5615 fixed - xls_open failed if there was a trailing space after the 
+                   file extension.
 
 
 
