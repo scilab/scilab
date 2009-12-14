@@ -69,12 +69,7 @@
     <title>Blocks</title>
 
     <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="ANDBLK">ANDBLK — Activation and</link>
-        </para>
-      </listitem>
-
+      
       <listitem>
         <para>
           <link linkend="DEMUX">DEMUX — Demultiplexer</link>
@@ -93,10 +88,24 @@
           GOTO</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="FROMMO">FROMMO — Receives data from a corresponding
+          GOTOMO</link>
+        </para>
+      </listitem>
 
       <listitem>
         <para>
           <link linkend="GOTO">GOTO — GOTO Pass block input to From
+          block</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="GOTOMO">GOTOMO — Pass block input to FROMMO
           block</link>
         </para>
       </listitem>
@@ -107,22 +116,28 @@
           of GOTO tag visibility</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="GotoTagVisibilityMO">GotoTagVisibilityMO — Define
+          Scope of GOTOMO tag visibility</link>
+        </para>
+      </listitem>
 
       <listitem>
         <para>
           <link linkend="ISELECT_m">ISELECT_m — Iselect</link>
         </para>
       </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="M_SWITCH">M_SWITCH — Multi-port switch</link>
-        </para>
-      </listitem>
-
+	  
       <listitem>
         <para>
           <link linkend="MUX">MUX — Multiplexer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="M_SWITCH">M_SWITCH — Multi-port switch</link>
         </para>
       </listitem>
 
