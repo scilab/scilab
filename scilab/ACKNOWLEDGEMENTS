@@ -27,6 +27,8 @@ Scilab a better software.
 
 * Calixte Denizet 
 	- LaTeX and MathML rendering capabilities in the Scilab Graphic
+	- Improved graphic exports
+	- Many contributions
 
 * Markus Dittrich 
 	- Misc patches for Gentoo
@@ -43,6 +45,11 @@ Scilab a better software.
 * Aurélien Gérôme
 	- Misc patches for Debian & Ubuntu
 
+* Samuel Gougeon
+	- Advice
+	- Many feedbacks and bug reports
+	- Patches	
+
 * Paul Griffiths
 	- Misc patches for the Scilab Graphic exports
 
@@ -52,6 +59,13 @@ Scilab a better software.
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )	
 	- Scilab Console console ( Jrosetta )
 
+* Vincent Lejeune
+	- Patches
+	- Feedbacks & bug reports
+
+* Kirill Kirillov
+	- Russian localization
+	
 * Christoph Korn
 	- Misc patches for Debian & Ubuntu
 
