@@ -376,6 +376,8 @@ Xcos:
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock.
 
+* bug 5634 fixed - The export functionnality didn't work.
+
 Tree functions :
 ================
 
