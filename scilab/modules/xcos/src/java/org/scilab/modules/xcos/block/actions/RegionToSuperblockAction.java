@@ -124,8 +124,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Clone cells and generate a translation matrix between old and new mxCells
 	 */
-	Object[] cellsCopy = getGraph(null).cloneCells(getGraph(null).getSelectionCells());
-	Object[] translationMatrix = new Object[cellsCopy.length]; 
+	List<mxCell> cellsCopy = Arrays.asList((mxCell[])getGraph(null).cloneCells(getGraph(null).getSelectionCells()));
+	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
 	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
 	}
@@ -138,8 +138,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (int i = 0; i < cellsCopy.length; ++i) {
-	    mxCell current = (mxCell) cellsCopy[i];
+	for (mxCell current  : cellsCopy) {
 	    if (current instanceof BasicBlock) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
@@ -163,7 +162,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 
 	diagram.getModel().beginUpdate();
-	diagram.addCells(cellsCopy);
+	diagram.addCells(cellsCopy.toArray());
 	diagram.getModel().endUpdate();
 
 	/*
@@ -437,7 +436,7 @@ public class RegionToSuperblockAction extends DefaultAction {
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(Object[] objs, Object[] copiedCells) {
+    private List<BrokenLink> getBrokenLinks(Object[] objs, List<mxCell> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	for (int i = 0; i < objs.length; i++) {
@@ -452,13 +451,13 @@ public class RegionToSuperblockAction extends DefaultAction {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
 			    if (!isInSelection(objs, source)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
 			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
 			    if (!isInSelection(objs, target)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
 			    }
 			}
