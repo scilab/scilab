@@ -26,6 +26,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
@@ -117,17 +118,17 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.getModel().beginUpdate();
 
 	/*
-	 * Update selection
+	 * Update selection and return it.
 	 */
-	updateForNotSelectedLinks(graph);
+	List<XcosUIDObject> selectedCells = updateForNotSelectedLinks(graph);
 	
 	/*
 	 * Clone cells and generate a translation matrix between old and new mxCells
 	 */
-	List<mxCell> cellsCopy = Arrays.asList((mxCell[])getGraph(null).cloneCells(getGraph(null).getSelectionCells()));
+	List<mxCell> cellsCopy = Arrays.asList((mxCell[])getGraph(null).cloneCells(selectedCells.toArray()));
 	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
-	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
+	    translationMatrix[i] = selectedCells.get(i);
 	}
 	
 	List<BasicBlock> blocksCopy = getBlocks(cellsCopy);
@@ -169,8 +170,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 * Find broken links, to insert input/output blocks And update the child
 	 * graph
 	 */
-	List<BrokenLink> breaks = getBrokenLinks(graph.getSelectionCells(), cellsCopy);
-	List<Integer> maxValues = getMaxBlocksValues(graph.getSelectionCells());
+	List<BrokenLink> breaks = getBrokenLinks(selectedCells, cellsCopy);
+	List<Integer> maxValues = getMaxBlocksValues(selectedCells);
 	updateChildGraph(diagram, breaks, maxValues);
 
 	/*
@@ -219,7 +220,7 @@ public class RegionToSuperblockAction extends DefaultAction {
     /**
      * Check for missing links or selected ports, to add or exclude them.
      */
-    private void updateForNotSelectedLinks(XcosDiagram graph) {
+    private List<XcosUIDObject> updateForNotSelectedLinks(XcosDiagram graph) {
 
 	graph.getModel().beginUpdate();
 
@@ -266,6 +267,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	} // for selection
 
 	graph.getModel().endUpdate();
+	
+	return new ArrayList<XcosUIDObject>(Arrays.asList((XcosUIDObject[])graph.getSelectionCells()));
     }
     
     /**
@@ -449,12 +452,13 @@ public class RegionToSuperblockAction extends DefaultAction {
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(Object[] objs, List<mxCell> copiedCells) {
+    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<mxCell> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
-	for (int i = 0; i < objs.length; i++) {
-	    if (objs[i] instanceof BasicBlock) {
-		BasicBlock block = (BasicBlock) objs[i];
+	int objs_length = objs.size();
+	for (int i = 0; i < objs_length; i++) {
+	    if (objs.get(i) instanceof BasicBlock) {
+		BasicBlock block = (BasicBlock) objs.get(i);
 		for (int j = 0; j < block.getChildCount(); j++) {
 		    BasicPort port = (BasicPort) block.getChildAt(j);
 		    if (port.getEdgeCount() != 0) {
@@ -463,13 +467,13 @@ public class RegionToSuperblockAction extends DefaultAction {
 				|| block.getChildAt(j) instanceof ControlPort) {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
-			    if (!isInSelection(objs, source)) {
+			    if (!objs.contains(source)) {
 				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
 			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
-			    if (!isInSelection(objs, target)) {
+			    if (!objs.contains(target)) {
 				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
 			    }
@@ -501,43 +505,43 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
     }
 
-    private List<Integer> getMaxBlocksValues(Object[] blocks) {
+    private List<Integer> getMaxBlocksValues(List<XcosUIDObject> blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
-	for (int i = 0; i < blocks.length; i++) {
-	    if (blocks[i] instanceof ContextUpdate) {
-	    if (blocks[i] instanceof ExplicitOutBlock) {
+	for (XcosUIDObject cell : blocks) {
+	    if (cell instanceof ContextUpdate) {
+	    if (cell instanceof ExplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
 		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ExplicitInBlock) {
+		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ExplicitInBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
 		    items.put(IOBlocks.ExplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ImplicitOutBlock) {
+		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ImplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ImplicitOutBlock)) {
 		    items.put(IOBlocks.ImplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ImplicitInBlock) {
+		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ImplicitInBlock) {
 		if (!items.containsKey(IOBlocks.ImplicitInBlock)) {
 		    items.put(IOBlocks.ImplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof EventOutBlock) {
+		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof EventOutBlock) {
 		if (!items.containsKey(IOBlocks.EventOutBlock)) {
 		    items.put(IOBlocks.EventOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.EventOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof EventInBlock) {
+		items.get(IOBlocks.EventOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof EventInBlock) {
 		if (!items.containsKey(IOBlocks.EventInBlock)) {
 		    items.put(IOBlocks.EventInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.EventInBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventInBlock).add((BasicBlock) cell);
 	    }
 	    }
 	}
