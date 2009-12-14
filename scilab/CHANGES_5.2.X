@@ -227,6 +227,8 @@ Xcos:
 
 * bug 5221 fixed - libhdf5 is defined with the GLIBC_2.7 as mandatory
 
+* bug 5235 fixed - Error message added when launching Scicos
+
 * bug 5267 fixed - Scilab exited when closing Xcos setup window using the upper
                    right cross.
 
@@ -264,6 +266,8 @@ Xcos:
 * bug 5347 fixed - the 'Region to superblock' action crashed Xcos. 
 
 * bug 5348 fixed - Openning a Superblock crashed Xcos.
+
+* bug 5349 fixed - the file predator.cos was not openable.
 
 * bug 5351 fixed - Remove ports on a block, remove the connected links. 
 
@@ -442,8 +446,6 @@ Bug fixes:
 
 * bug 5266 fixed - Modelica demos made available in MacOS binary version.
 
-* bug 5235 fixed - Error message added when launching Scicos
-
 * bug 5237 fixed - ATOMS: If the load of an ATOMS toolbox produces an error.
                    The error is now catched.
 
@@ -497,8 +499,6 @@ Bug fixes:
 * bug 5339 fixed - some macros had multiple definitions.
 
 * bug 5340 fixed - There was no example in the help of arma 
-
-* bug 5349 fixed - the file predator.cos was not openable.
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
                    displayed at Scilab startup.
@@ -782,7 +782,7 @@ consistent, documented and easy way to use API.
   to avoid memory duplication.
 
 * Under all operating systems but Windows, all headers are not installed in a single directory 
-  in order to simplify the use   of Scilab features in the dynamic link.
+  in order to simplify the use of Scilab features in the dynamic link.
   See SEP #32 for more information
 
 * From this version of Scilab, only a defined and documented number of headers
