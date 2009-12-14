@@ -179,6 +179,13 @@ function result = atomsInstall(packages,section)
 			archives_directory));
 	end
 	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
+	
 	// "Archive" installation
 	// =========================================================================
 	
@@ -400,9 +407,9 @@ function result = atomsInstall(packages,section)
 		
 		if this_package_details("fromRepository")=="0" then
 			
-			DESCRIPTION_file = atoms_directory+"DESCRIPTION_archives";
+			DESCRIPTION_file = atoms_system_directory+"DESCRIPTION_archives";
 			
-			if isempty(fileinfo(atoms_directory+"DESCRIPTION_archives")) then
+			if isempty(fileinfo(atoms_system_directory+"DESCRIPTION_archives")) then
 				DESCRIPTION = struct();
 			else
 				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
