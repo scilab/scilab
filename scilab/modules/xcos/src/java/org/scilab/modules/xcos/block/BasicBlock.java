@@ -887,6 +887,7 @@ public class BasicBlock extends XcosUIDObject {
     }
     
     public void setFlip(boolean flip) {
+	isFlipped = flip;
 	if(getParentDiagram() != null) {
 	    if(flip == true) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
@@ -924,7 +925,6 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void toggleFlip() {
-	isFlipped = !isFlipped;
 	BlockPositioning.toggleFlip(this);
     }
 
