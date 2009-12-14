@@ -1742,3 +1742,7 @@ Bug fixes:
 
 * bug 5395 fixed - The xcos block AFFICH_m was not bother with the max
                    number of digits.
+
+* bug 5619 fixed - bitset() cannot set hypermatrix bits.
+
+* bug 5620 fixed - dec2bin() cannot convert hypermatrices.
