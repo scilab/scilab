@@ -39,6 +39,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Document;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
@@ -108,8 +109,8 @@ public final class ExportAction extends DefaultAction {
 
 		// Adds filter that accepts all supported image formats
 		//fc.addChoosableFileFilter(new DefaultFileFilter.ImageFileFilter(mxResources.get("allImages")));
-		
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask((String[])mask.toArray() , (String[])maskDesc.toArray());
+				
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask.toArray(new String[mask.size()]) , maskDesc.toArray(new String[maskDesc.size()]));
 		fc.setTitle(XcosMessages.EXPORT);
 		fc.displayAndWait();
 		
@@ -129,14 +130,17 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createSvgDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createVmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else if (extension.equalsIgnoreCase("html")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createHtmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else 	{
 				Color bg = null;
 
