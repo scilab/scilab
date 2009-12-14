@@ -15,8 +15,9 @@ package org.scilab.modules.xcos;
 import java.rmi.server.UID;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
 
-public class XcosUIDObject extends mxCell{
+public class XcosUIDObject extends mxCell implements Comparable<XcosUIDObject>{
 
     private static final long serialVersionUID = -2915277403393545917L;
 
@@ -31,5 +32,12 @@ public class XcosUIDObject extends mxCell{
 
     public void setId(String UID) {
 	super.setId(UID);
+    }
+
+    public int compareTo(XcosUIDObject o) {
+	mxGeometry source = getGeometry();
+	mxGeometry target = o.getGeometry();
+	
+	return (int)((source.getX() - target.getX()) + (Integer.MAX_VALUE/2) * (source.getY() - target.getY()));
     }
 }
