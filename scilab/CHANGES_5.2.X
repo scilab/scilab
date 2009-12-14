@@ -264,6 +264,8 @@ Xcos:
 * bug 5327 fixed - When indenting a block, the selection area is shifted one 
                    line down with respect to the previously selected one. 
 
+* bug 5328 fixed - The RegionToSuperblock action produced a not well rendered diagram.
+
 * bug 5336 fixed - xcos palette tabs now loaded much faster and uses less
                    memory.
 

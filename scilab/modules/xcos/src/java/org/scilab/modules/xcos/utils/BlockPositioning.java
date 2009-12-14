@@ -307,6 +307,22 @@ public final class BlockPositioning {
 	if (block.getAngle() == 270) { return 0; }
 	return 0;
     }
+    
+    /**
+     * Convert any angle value to a valid block value
+     * @param angle the non valid value
+     * @return the nearest graph valid value
+     */
+    public static int roundAngle(int angle) {
+	if (angle < 0 || angle > 360)
+	    angle = angle + 360 % 360;
+	
+	if (angle < (0 + 90)/2) { return 0; }
+	if (angle < (90 + 180)/2) { return 90; }
+	if (angle < (180 + 270)/2) { return 180; }
+	if (angle < (270 + 360)/2) { return 270; }
+	return 0;
+    }
    
     public static Rectangle rotateRectangle(Rectangle rect, int angle) {
 	Point tl = new Point(-rect.width / 2, -rect.height / 2); //top left
