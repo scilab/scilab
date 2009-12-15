@@ -17,6 +17,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
@@ -51,7 +52,8 @@ public class AboutXcosAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		String[] contents = {XcosMessages.VERSION,
+		String[] contents = {
+				Xcos.TRADENAME + " - " + Xcos.VERSION,
 				"",
 				XcosMessages.DIGITEO,
 				XcosMessages.COPYRIGHT_INRIA,
