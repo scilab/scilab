@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Bache">
+  <refnamediv>
+    <refname>Bache</refname>
+    <refpurpose>Bache thermohydraulique</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Bache_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_Bache">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Bache">Bache thermohydraulique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_Bache">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_Bache">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_Bache">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_Bache">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_Bache">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Bache">Modèle Modelica</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_Bache">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - Boîte à outils des composants thermohydrauliques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Bache">
+    <title>Description</title>
+    <para>
+Ce composant représente une bache thermo-hydraulique qui consiste en
+deux ports d'entrée et deux ports de sortie.  Conventionnellement, la
+direction positive pour la rentrée est quand le fluide <emphasis role="bold">entre</emphasis>
+dans le port d'entree (ports noirs) et la direction positive pour les
+ports de sortie est quand le fluide <emphasis role="bold">sort</emphasis> des port de sortie
+(ports blancs).  La surface de la bache, la température initiale et
+l'altitude initiale du fluide peuvent être definies par l'utilisateur.
+Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bold">Bouchon</emphasis>.
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_Bache">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Bache_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Pression dans le ciel de la bache : Patm (Pa)</emphasis>
+        </para>
+        <para> Pression dans le ciel de la bache</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Section de la bache : A (m2)</emphasis>
+        </para>
+        <para> Surface de la bache</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage d entrée 1: ze1 (m)</emphasis>
+        </para>
+        <para> Altitude du piquage d'entrée (ze1)</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage d entrée 2: ze2 (m)</emphasis>
+        </para>
+        <para> Altitude du piquage d'entrée (ze2)</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage de sortie 1: zs1 (m)</emphasis>
+        </para>
+        <para> Altitude du piquage de sortie (zs1)</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude du piquage de sortie 2: zs2 (m)</emphasis>
+        </para>
+        <para> Altitude du piquage de sortie (zs2)</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude initiale du fluide : z0 (m)</emphasis>
+        </para>
+        <para> Altitude initiale du fluide</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Température initiale du fluide : T0 (K)</emphasis>
+        </para>
+        <para> Température initiale du fluide</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Si 0, masse volumique imposée du fluide : p_rho (kg/m3)</emphasis>
+        </para>
+        <para> masse volumique imposée du fluide</para>
+        <para> Propriétés : Type 'vec' de taille -1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_Bache">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Entrées :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'Ce1'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'Ce2'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Sorties :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'Cs1'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'Cs2'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'yNiveau'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> explicite.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Paramètres :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Patm'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 101300
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'A'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'ze1'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 40
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'ze2'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'zs1'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 40
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'zs2'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'z0'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 30
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'T0'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 290
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'p_rho'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Nom du fichier model :</emphasis> Bache</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_Bache">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Bache.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="ModèleModelica_Bache">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Bache.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
