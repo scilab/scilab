@@ -1520,10 +1520,14 @@ public class XcosDiagram extends ScilabGraph {
 	    if (this.getSavedFile() != null) {
 		fc.setSelectedFile(new File(this.getSavedFile()));
 	    }
-	    XcosFileType defaultFileType = XcosFileType.getDefault();
-	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
+
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
 	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(allFilter);
 	    fc.setFileFilter(xcosFilter);
+
+	    fc.setAcceptAllFileFilterUsed(false);
 	    fc.displayAndWait();
 
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
