@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2009-12-15 10:15+0100\n"
 
 # File: macros/importScicosPal.sci, line: 27
 # File: macros/generateBlockImages.sci, line: 27
@@ -124,6 +124,10 @@ msgstr ""
 msgid "Center"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 222
+msgid "Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 51
 msgid "Close"
 msgstr ""
@@ -177,7 +181,7 @@ msgstr ""
 msgid "Cut"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 229
 msgid "Debug block calls without trace"
 msgstr ""
 #
@@ -363,7 +367,7 @@ msgstr ""
 msgid "Left"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 225
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
 msgid "Light Simulation trace (Discrete and Continous part switches)"
 msgstr ""
 #
@@ -427,7 +431,7 @@ msgstr ""
 msgid "No block selected"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 224
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
 msgid "No trace nor debug printing"
 msgstr ""
 #
@@ -455,7 +459,7 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 228
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 #
@@ -492,12 +496,9 @@ msgstr ""
 msgid "Region to superblock"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 58
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "Remove"
-msgstr ""
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 58
-msgid "Remove user defined palette"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 94
@@ -532,8 +533,8 @@ msgstr ""
 msgid "Saving diagram"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 230
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 231
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 232
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 233
 msgid "Scicos file"
 msgstr ""
 #
@@ -547,7 +548,7 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 233
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 235
 msgid "Scilab file"
 msgstr ""
 #
@@ -661,7 +662,7 @@ msgstr ""
 msgid "Unknow Diagram Version : "
 msgstr ""
 #
-# File: src/java/org/scilab/modules/graph/ScilabGraph.java, line: 44
+# File: src/java/org/scilab/modules/graph/ScilabGraph.java, line: 50
 msgid "Untitled"
 msgstr ""
 #
@@ -714,7 +715,7 @@ msgstr ""
 msgid "Xcos error"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 232
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 234
 msgid "Xcos file"
 msgstr ""
 #
