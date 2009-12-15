@@ -35,7 +35,7 @@ public final class XcosMessages {
 
     public static final String DOTS = "...";
 
-    public static final String UNTITLED = "Untitled";
+    public static final String UNTITLED = Messages.gettext("Untitled");
 
     /** File menu */
     public static final String FILE = Messages.gettext("File");
