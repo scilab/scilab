@@ -71,7 +71,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CUMSUM">CUMSUM - CUMSUM: Cumulative Sum</link>
+          <link linkend="CUMSUM_blk">CUMSUM - CUMSUM: Cumulative Sum</link>
         </para>
       </listitem>
 
@@ -210,7 +210,7 @@
 
       <listitem>
         <para>
-          <link linkend="RICC">RICC - RICC Equation de Riccati</link>
+          <link linkend="RICC_blk">RICC - RICC Equation de Riccati</link>
         </para>
       </listitem>
 
