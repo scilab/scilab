@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-11-12 18:57+0000\n"
+"PO-Revision-Date: 2009-12-10 00:28+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -139,6 +139,10 @@ msgid ""
 msgstr ""
 "%s: No se puede asignar más memoria.\n"
 "Pruebe gstacksize('max').\n"
+
+#, c-format
+msgid "%s: Cannot allocate memory.\n"
+msgstr "%s: No se puede asignar memoria.\n"
 
 #, c-format
 msgid ""

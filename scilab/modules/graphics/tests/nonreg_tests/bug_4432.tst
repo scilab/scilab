@@ -22,19 +22,20 @@ scf();
 
 subplot(411);
 m = 0;
-plot(m+s);
+ierr = execstr('plot(m+s);','errcatch');
+if ierr~=0 then pause; end;
 
 subplot(412);
 m = 1e6;
-plot(m+s);
+ierr = execstr('plot(m+s);','errcatch');
+if ierr~=0 then pause; end;
 
 subplot(413);
 m = 1e8;
-plot(m+s);
+ierr = execstr('plot(m+s);','errcatch');
+if ierr~=0 then pause; end;
 
 subplot(414);
 m = 1e9;
-plot(m+s);
-
-// should not hang
-
+ierr = execstr('plot(m+s);','errcatch');
+if ierr~=0 then pause; end;

@@ -92,13 +92,10 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">File:Save as Interface
-        function</emphasis></para>
+        <para><emphasis role="bold">File:Recent Files</emphasis></para>
 
-        <para>Select "the Save as Interf. Func." menu item to save the diagram
-        as a new xcos block. A Scilab function is generated and saved in a
-        file with ".sci" extension. File name and path are to be set in a
-        "File menu" dialog.</para>
+        <para>Via this menu, you have a quick access to the recent opened
+        files.</para>
       </listitem>
 
       <listitem>
@@ -139,8 +136,8 @@
       <listitem>
         <para><emphasis role="bold">Edit:Undo (Ctrl+z)</emphasis></para>
 
-        <para>Select the Undo menu item to undo the last edit operation.
-        </para>
+        <para>Select the Undo menu item to undo the last edit
+        operation.</para>
       </listitem>
 
       <listitem>
@@ -256,7 +253,9 @@
       <listitem>
         <para><emphasis role="bold">View:Diagram browser</emphasis></para>
 
-        <para>TODO</para>
+        <para>Displays a window which lists all the blocks of a diagram and
+        print some informations related to the scs_m structure of the
+        blocks.</para>
       </listitem>
 
       <listitem>
@@ -279,21 +278,11 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">View:Get infos</emphasis></para>
-
-        <para>TODO</para>
-      </listitem>
-
-      <listitem>
         <para><emphasis role="bold">View:Details</emphasis></para>
 
-        <para>TODO</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">View:Browser</emphasis></para>
-
-        <para>TODO</para>
+        <para>Displays a window which lists all the selected blocks of a
+        diagram and print some informations related to the scs_m structure of
+        these blocks.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -312,7 +301,7 @@
         <para><emphasis role="bold">Simulation:Setup</emphasis></para>
 
         <para>In the main Xcos window, clicking on the Setup menu item invokes
-        a dialog box that allows you to change integration parameters: </para>
+        a dialog box that allows you to change integration parameters:</para>
 
         <itemizedlist>
           <listitem>
@@ -349,6 +338,13 @@
       </listitem>
 
       <listitem>
+        <para><emphasis role="bold">Execution trace and
+        Debug</emphasis></para>
+
+        <para>Set Xcos in debug mode. Allows diagram debugging.</para>
+      </listitem>
+
+      <listitem>
         <para><emphasis role="bold">Simulation:Set Context</emphasis></para>
 
         <para>When you select this menu item you obtain a dialog to enter
@@ -377,7 +373,7 @@
 
         <para>Select the Run menu item to start the simulation. If the system
         has already been simulated, a dialog box appears where you can choose
-        to Continue, Restart or End the simulation. </para>
+        to Continue, Restart or End the simulation.</para>
       </listitem>
 
       <listitem>
@@ -436,15 +432,48 @@
         <mediaobject>
           <imageobject>
             <imagedata align="center"
-                       fileref="../images/xcos_menu_fromat_align_blocks.png" />
+                       fileref="../images/xcos_menu_format_align.png" />
           </imageobject>
         </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format: Border Color</emphasis></para>
+
+        <para>This menu allows to change the border color.</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">Format:Line Color</emphasis></para>
 
         <para>This menu allows to change the line color.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Link Style</emphasis></para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../images/xcos_menu_format_link_style.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>This menu allows to the the style of the link:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Horizontal</para>
+          </listitem>
+
+          <listitem>
+            <para>Straight</para>
+          </listitem>
+
+          <listitem>
+            <para>Vertical</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
 
       <listitem>

@@ -203,13 +203,15 @@ public final class Xcos {
 
 			block = diagram.getChildById(UID);
 			if (block != null) {
-			    SuperBlock newSP = (SuperBlock) BasicBlock
-				    .createBlock("SUPER_f");
+			    SuperBlock newSP = (SuperBlock) BasicBlock.createBlock("SUPER_f");
 			    newSP.setRealParameters(block.getRealParameters());
 			    newSP.setParentDiagram(block.getParentDiagram());
 			    if (show == true) {
-				newSP.openBlockSettings(null);
-				newSP.getChild().setReadOnly(true);
+				if(newSP.createChildDiagram() == true) {
+				    XcosTab.createTabFromDiagram(newSP.getChild());
+				    XcosTab.showTabFromDiagram(newSP.getChild());
+				    newSP.getChild().setReadOnly(true);
+				}
 			    }
 			    openedSuperBlock.put(UID, newSP);
 			    break;

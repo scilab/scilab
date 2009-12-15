@@ -90,8 +90,12 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 
 pkglib_LTLIBRARIES = libscihdf5.la
+
+if HDF5
+# When Scilab is built with HDF5, we need some libraries for a workaround
 pkglib_LTLIBRARIES += libscihdf5-forceload.la
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
+endif
 
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
@@ -104,8 +108,7 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order 
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/modules/jvm/libscijvm.la	
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename=hdf5

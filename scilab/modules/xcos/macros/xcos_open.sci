@@ -11,12 +11,13 @@
 //
 
 function xcos_open(blockId, show)
-    [lhs, rhs] = argn(0);
-    if rhs == 1 then
-        show = %t;
-    end    
 
-    if size(scs_m.objs(blockId).doc) > 0 then
-        xcosDiagramOpen(scs_m.objs(blockId).doc(1), show);
-    end
+	[lhs, rhs] = argn(0);
+	if rhs == 1 then
+		show = %t;
+	end    
+
+	if size(scs_m.objs(blockId).doc) > 0 then
+		xcosDiagramOpen(scs_m.objs(blockId).doc(1), show);
+	end
 endfunction
