@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Xcos",SCI+"/modules/xcos/help/fr_FR",%T);
+add_help_chapter("xcos",SCI+"/modules/xcos/help/en_US",%T);
 
