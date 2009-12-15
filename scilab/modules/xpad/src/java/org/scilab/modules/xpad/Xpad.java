@@ -495,10 +495,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
-		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 3);
-		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 0);
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
+		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -508,10 +508,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
 		
 		// order is also important here
-		fileChooser.addChoosableFileFilter(sceFilter);
-		fileChooser.addChoosableFileFilter(sciFilter);
-		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(allFilter);
+		fileChooser.addChoosableFileFilter(scxFilter);
+		fileChooser.addChoosableFileFilter(sciFilter);
+		fileChooser.addChoosableFileFilter(sceFilter);
 
 		int retval = fileChooser.showSaveDialog(this);
 
@@ -582,10 +582,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
-		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 3);
-		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 0);
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
+		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
 		
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
@@ -594,11 +594,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setInitialDirectory(initialDirectoryPath);
 		fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
+		
 		// order is also important here
-		fileChooser.addChoosableFileFilter(sceFilter);
-		fileChooser.addChoosableFileFilter(sciFilter);
-		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(allFilter);
+		fileChooser.addChoosableFileFilter(scxFilter);
+		fileChooser.addChoosableFileFilter(sciFilter);
+		fileChooser.addChoosableFileFilter(sceFilter);
+		
 		fileChooser.setTitle(XpadMessages.SAVE_AS); /* Bug 4869 */
 		
 		if (textPane.getName() != null) { /* Bug 5319 */
