@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="GOTO">
+  <refnamediv>
+    <refname>GOTO</refname>
+    <refpurpose>GOTO Transmetteur de données vers un bloc FROM</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/GOTO_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_GOTO">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="GOTO">GOTO Transmetteur de données vers un bloc FROM</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_GOTO">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_GOTO">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_GOTO">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_GOTO">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_GOTO">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Voiraussi_GOTO">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_GOTO">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_GOTO">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Branching_pal">Branching - Palette Branching</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_GOTO">
+    <title>Description</title>
+    <para>
+The main role of the GOTO/FROM blocks is to transport signals from a block to another block without connecting them physically. The GOTO block transports its input data to its corresponding FROM block. A simple GOTO block can send data to multiple FROM, although a FROM can receive data from only one GOTO.  
+</para>
+    <para>
+The GOTO and FROM blocks are connected by the tag parameter.  
+</para>
+    <para>
+The "Tag Visibility" parameter indicates if the location of the FROM block is limitted:  
+</para>
+    <para>- Local: means that the corresponding FROM of that GOTO must be in the same subsystem.  
+</para>
+    <para>- Scoped: means that the corresponding FROM of that GOTO must be in the same subsystem or in any subsystem below the GotoTagVisibility block in the model hierarchy.  
+</para>
+    <para>- Global: means that the corresponding FROM of that GOTO can be anywhere in the model.  
+</para>
+    <para>
+This block can support all the data types.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_GOTO">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/GOTO_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Tag</emphasis>
+        </para>
+        <para> Ce paramètre définit le label de ce bloc.</para>
+        <para> Propriétés : Type 'str' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Tag Visibility(1=Local 2=scoped 3= global)</emphasis>
+        </para>
+        <para> Ce paramètre définit la porté du label de ce bloc. Elle peut être locale(1), scoped(2) ou globale(3).</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_GOTO">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [-1,-2] / type -1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">goto</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_GOTO">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Branching/GOTO.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Voiraussi_GOTO">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="FROM">FROM - FROM Récepteur de données d'un bloc GOTO (Bloc Scicos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - Définit la portée des données d'un bloc GOTO (Bloc Scicos)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_GOTO">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
