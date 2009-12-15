@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -89,6 +89,10 @@ msgstr ""
 "\n"
 "マスタードキュメントの構築:\n"
 
+#, c-format
+msgid "%02d-%02d-%04d"
+msgstr ""
+
 #
 # File: macros/xmltoformat.sci, line: 499
 # File: macros/xmltoformat.sci, line: 580
@@ -104,6 +108,10 @@ msgstr "%s: %sファイルは、%sディレクトリーで動かせませんで�
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr "%s: %s は構築できませんでした。"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
@@ -138,6 +146,10 @@ msgstr "%s: ドキュメントをビルドしている間のエラー: %s\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Javaスタック %s の実行。\n"
 
+#, c-format
+msgid "%s: File skipped %s."
+msgstr ""
+
 #
 # File: macros/clean_help.sci, line: 44
 # File: macros/xmltoformat.sci, line: 60
@@ -146,12 +158,32 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
 
 #, c-format
+msgid "%s: Processing file: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Scilab 5.0 or more is required.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: 2 mlistは、共通のフィールドを持てません。\n"
 
 #, c-format
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされません\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #
 # File: macros/help.sci, line: 42
@@ -215,6 +247,10 @@ msgstr "%s: 入力引数で不正な値: %d から %d を想定します。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
 
 #
 # File: macros/help.sci, line: 24
@@ -324,15 +360,14 @@ msgstr "%s: hhc.exe が見つかりません。\n"
 msgid "%s: no file generate.\n"
 msgstr "%s: ファイル生成なし。\n"
 
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr ""
+
 #
 # File: macros/clean_help.sci, line: 112
 msgid "-- Deleting help files --\n"
 msgstr "-- ヘルプファイルを削除 --\n"
-
-#
-# File: macros/help_from_sci.sci, line: 160
-msgid "...demodir must be a directory."
-msgstr "...demodir ディレクトリでなくてはなりません。"
 
 #
 # File: macros/xmltoformat.sci, line: 439
@@ -355,11 +390,6 @@ msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' モジュールはインストールされていません。\n"
-
-#
-# File: macros/help_from_sci.sci, line: 107
-msgid "Scilab 5.0 or more is required."
-msgstr "Scilab 5.0 以上が必要です。"
 
 #
 # File: macros/xmlfiletohtml.sci, line: 99

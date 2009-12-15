@@ -60,9 +60,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+
+# When Scilab is built with HDF5, we need some libraries for a workaround
+@HDF5_TRUE@am__append_1 = libscihdf5-forceload.la \
+@HDF5_TRUE@	libscihdf5-forceload-disable.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/hdf5
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -122,6 +126,8 @@ libscihdf5_forceload_disable_la_LINK = $(LIBTOOL) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(libscihdf5_forceload_disable_la_CXXFLAGS) $(CXXFLAGS) \
 	$(libscihdf5_forceload_disable_la_LDFLAGS) $(LDFLAGS) -o $@
+@HDF5_TRUE@am_libscihdf5_forceload_disable_la_rpath = -rpath \
+@HDF5_TRUE@	$(pkglibdir)
 libscihdf5_forceload_la_LIBADD =
 am__libscihdf5_forceload_la_SOURCES_DIST = src/cpp/forceJHDF5load.cpp
 @HDF5_TRUE@am__objects_2 = libscihdf5_forceload_la-forceJHDF5load.lo
@@ -132,11 +138,11 @@ libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(libscihdf5_forceload_la_CXXFLAGS) $(CXXFLAGS) \
 	$(libscihdf5_forceload_la_LDFLAGS) $(LDFLAGS) -o $@
+@HDF5_TRUE@am_libscihdf5_forceload_la_rpath = -rpath $(pkglibdir)
 libscihdf5_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 	src/c/h5_writeDataToFile.c src/c/h5_readDataFromFile.c \
 	sci_gateway/cpp/sci_no_hdf5.cpp \
@@ -486,8 +492,7 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 #### hdf5 : gateway declaration ####
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
-pkglib_LTLIBRARIES = libscihdf5.la libscihdf5-forceload.la \
-	libscihdf5-forceload-disable.la
+pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1)
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES) $(FORCE_LOAD_SOURCES)
 
@@ -498,8 +503,7 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order 
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/modules/jvm/libscijvm.la	
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### Target ######
@@ -524,7 +528,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -642,9 +646,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihdf5-forceload-disable.la: $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_DEPENDENCIES) 
-	$(libscihdf5_forceload_disable_la_LINK) -rpath $(pkglibdir) $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_LIBADD) $(LIBS)
+	$(libscihdf5_forceload_disable_la_LINK) $(am_libscihdf5_forceload_disable_la_rpath) $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_LIBADD) $(LIBS)
 libscihdf5-forceload.la: $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_DEPENDENCIES) 
-	$(libscihdf5_forceload_la_LINK) -rpath $(pkglibdir) $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_LIBADD) $(LIBS)
+	$(libscihdf5_forceload_la_LINK) $(am_libscihdf5_forceload_la_rpath) $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_LIBADD) $(LIBS)
 libscihdf5.la: $(libscihdf5_la_OBJECTS) $(libscihdf5_la_DEPENDENCIES) 
 	$(libscihdf5_la_LINK) -rpath $(pkglibdir) $(libscihdf5_la_OBJECTS) $(libscihdf5_la_LIBADD) $(LIBS)
 
