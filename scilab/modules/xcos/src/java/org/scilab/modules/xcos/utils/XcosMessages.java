@@ -202,7 +202,6 @@ public final class XcosMessages {
     public static final String SETUP_TITLE =  Messages.gettext("Set Parameters");
     
     /* About box */
-    public static final String VERSION = Messages.gettext("Xcos 1.0");
     public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
     public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
     public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
