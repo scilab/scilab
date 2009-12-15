@@ -21,17 +21,17 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Modelica_pal"
+<refentry version="5.0-subset Scilab" xml:id="Commonlyusedblocks_pal"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>Modelica_pal</refname>
+    <refname>Implicit_pal</refname>
 
-    <refpurpose>Modelica palette</refpurpose>
+    <refpurpose>Implicit palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,66 +40,45 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/Modelica_pal.jpg"
+                     fileref="../../../../images/palettes/Implicit_pal.jpg"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
-  <refsection id="Module_Modelica_pal">
+  <refsection id="Module_Implicit_pal">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-        <para>
-          <link linkend="xcos">xcos</link>
-        </para>
+         <para><link linkend="xcos">xcos</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_Modelica_pal">
+  <refsection id="Description_Implicit_pal">
     <title>Description</title>
 
-    <para>The Modelica palette contains very basic modelica components.</para>
+    <para>In the Implicit palette, you can find blocks used to model implicit systems.</para>
   </refsection>
 
-  <refsection id="Blocks_Modelica_pal">
+  <refsection id="Blocks_Implicit_pal">
     <title>Blocks</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROMMO">FROMMO — Receives data from a corresponding
-          GOTOMO</link>
+          <link linkend="CONSTRAINT_f">CONSTRAINT_f - Constraint</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="GOTOMO">GOTOMO — Pass block input to FROMMO
-          block</link>
+          <link linkend="DIFF_f">DIFF_f - Sum</link>
         </para>
       </listitem>
 
-      <listitem>
-        <para>
-          <link linkend="GotoTagVisibilityMO">GotoTagVisibilityMO — Define
-          Scope of GOTOMO tag visibility</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
-        </para>
-      </listitem>
+      
     </itemizedlist>
   </refsection>
 </refentry>
