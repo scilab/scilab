@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SWITCH_f">
+  <refnamediv>
+    <refname>SWITCH_f</refname>
+    <refpurpose>Switch</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/SWITCH_f_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_SWITCH_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SWITCH_f">Switch</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_SWITCH_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_SWITCH_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_SWITCH_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_SWITCH_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_SWITCH_f">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondecalcul_SWITCH_f">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_SWITCH_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_SWITCH_f">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Branching_pal">Branching - Palette Branching</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_SWITCH_f">
+    <title>Description</title>
+    <para>
+Ce bloc est un 'interrupteur' manuel.
+Il sélectionne une de ses entrées pour la rédigirer vers sa sortie.
+Les entrées non sélectionnées ne sont donc pas propagées.
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_SWITCH_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/SWITCH_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">number of inputs</emphasis>
+        </para>
+        <para> Spécifie le nombre d'entrées de donnée du bloc.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">connected input</emphasis>
+        </para>
+        <para> un entier qui doit être compris entre 1 et le nombre d'entrées.</para>
+        <para> Propriétés : Type 'vec' de taille 1</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_SWITCH_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : taille [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sorties régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">switchn</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_SWITCH_f">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Branching/SWITCH_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondecalcul_SWITCH_f">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/switchn.c (Type 2)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_SWITCH_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
