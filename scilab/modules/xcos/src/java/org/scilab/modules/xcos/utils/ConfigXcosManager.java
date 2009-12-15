@@ -74,24 +74,23 @@ public class ConfigXcosManager {
      * Constructor
      */
     private ConfigXcosManager() {
-	throw new UnsupportedOperationException();
+    	throw new UnsupportedOperationException();
     }
 
     /**
      * Create a copy of Scilab configuration file in the user directory
      */
-    public static void createUserCopy() {
-	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
-	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
-	    /* Create a local copy of the configuration file */
-	    try {
-		copyFile(new File(XCOS_CONFIG_FILE), new File(
-			USER_XCOS_CONFIG_FILE));
-	    } catch (IOException e) {
-		System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
-	    }
+    private static void createUserCopy() {
+    	File fileConfig = new File(USER_XCOS_CONFIG_FILE);
+    	if (!fileConfig.exists() || (fileConfig.length() == 0)) {
+    		/* Create a local copy of the configuration file */
+    		try {
+    			copyFile(new File(XCOS_CONFIG_FILE), new File(USER_XCOS_CONFIG_FILE));
+    		} catch (IOException e) {
+    			System.err.println(ERROR_WRITE + USER_XCOS_CONFIG_FILE);
+    		}
 
-	}
+    	}
     }
 
     /**
@@ -351,6 +350,7 @@ public class ConfigXcosManager {
 		    .newInstance();
 	    docBuilder = factory.newDocumentBuilder();
 
+	    createUserCopy();
 	    // read content of a XML file with DOM
 	    xml = new File(USER_XCOS_CONFIG_FILE);
 	    document = docBuilder.parse(xml);

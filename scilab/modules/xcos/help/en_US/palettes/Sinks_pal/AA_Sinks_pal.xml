@@ -61,14 +61,12 @@
   <refsection id="Description_Sinks_pal">
     <title>Description</title>
 
-    <para>
       <para>In Sinks palette, you can find a variety of blocks used to display
       (Scope) and write data during simulation and also some output ports used
       in superblocks.</para>
 
       <para>The blocks of that palette doesn't have regular output
       ports.</para>
-    </para>
   </refsection>
 
   <refsection id="Blocks_Sinks_pal">
@@ -198,20 +196,13 @@
 
       <listitem>
         <para>
-          <link linkend="MUX">
-            <refname linkend="WRITEAU_f">WRITEAU_f — Write AU sound
-            file</refname>
-          </link>
+          <link linkend="WRITEAU_f">WRITEAU_f — Write AU sound file</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="NRMSOM_f">
-            <refname linkend="WRITEC_f">WRITEC_f</refname>
-
-            <refpurpose linkend="WRITEC_f">Write binary data</refpurpose>
-          </link>
+          <link linkend="WRITEC_f">Write binary data</link>
         </para>
       </listitem>
     </itemizedlist>
