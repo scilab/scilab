@@ -1,5 +1,5 @@
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
-               =======================================================
+               ==========================================================
 
 
 Text editor:
@@ -42,8 +42,6 @@ See bug #5387
 * bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
   Thread
   
-* bug 5341 fixed - "Save All" functionality was missing
-
 * bug 5174 fixed - The undo did not work on tab
 
 * bug 5189 fixed - No more error when a file selection
@@ -74,12 +72,14 @@ See bug #5387
 
 * bug 5319 fixed - Default filename proposed in 'Save As' dialog
 
+* bug 5341 fixed - "Save All" functionality was missing
+
 * bug 5386 fixed - Wrong title for auto indent action in menu
+
+* bug 5460 fixed - 'Close All' and 'Close all but this' added menus in editor
 
 * bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
                    undo / redo multiple edits on a region in one go)
-
-* bug 5460 fixed - 'Close All' and 'Close all but this' added menus in editor
 
 * bug 5482 fixed - It was not possible to choose EOL type
 
@@ -243,13 +243,13 @@ Xcos:
 * bug 5281 fixed - The menu "View->"Palette Browser" is correctly checked at Xcos
                    start
 
-* bug 5299 fixed - When saving a Xcos diagram, when the selected file were
+* bug 5299 fixed - When saving a Xcos diagram, when the selected file was
                    already existing and did not contain the .xcos extension
                    (~/foo), the 'Replace file' dialog appeared but did not
                    overwrite the file
 
 * bug 5301 fixed - When a superblock was created with the region to superblock,
-                   not selected internal links were not included into the
+                   selected internal links were not included into the
                    superblocks but were also not considered as IN_f OUT_F
 
 * bug 5305 fixed - Display of filenames used by Xcos was wrong (under Windows)
@@ -270,7 +270,7 @@ Xcos:
 * bug 5336 fixed - Xcos palette tabs now load much faster and use less
                    memory
 
-* bug 5343 fixed - The DLSS_f block is transparent when dropped in the working area
+* bug 5343 fixed - The DLSS_f block was transparent when dropped in the working area
 
 * bug 5344 fixed - Status of a modified file did not change on 'Save As'
 
@@ -298,7 +298,7 @@ Xcos:
                    simulation did not start and the "Simulate/start" menu
                    remained disabled
 
-* bug 5403 fixed - A graphic windows was not created only when needed
+* bug 5403 fixed - A graphic window is created only when needed
 
 * bug 5404 fixed - Open & close Editor created a java exception
 
@@ -315,7 +315,7 @@ Xcos:
 
 * bug 5417 fixed - AUTOMAT and PDE blocks were in demo blocks
 
-* bug 5418 fixed - DEBUG_SCICOS block were not in the palette
+* bug 5418 fixed - DEBUG_SCICOS block was not in the palette
 
 * bug 5419 fixed - French translation issues
 
@@ -325,8 +325,8 @@ Xcos:
 
 * bug 5424 fixed - French translation issues
 
-* bug 5426 fixed - The icon of modelica blocks Resistor Inductor, ... was not 
-                   rotated while the block was
+* bug 5426 fixed - The icon of modelica blocks Resistor Inductor was not 
+                   rotating while the block was
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link was not allowed
 
@@ -378,9 +378,7 @@ Xcos:
 
 * bug 5598 fixed - The CLKOUT_f block was not an EventOutBlock
 
-* bug 5634 fixed - The export functionnality didn't work.
-
-* bug 5639 fixed - The Xcos version was traducted
+* bug 5634 fixed - The export functionnality did not work.
 
 Tree functions :
 ================
@@ -412,9 +410,9 @@ Bug fixes:
 * bug 3478 fixed - file function returned a wrong error message when file did
                    not exist
 
-* bug 3675 fixed - Issues when saving/loading gui (uicontrols,figure...) fixed
-
 * bug 3593 fixed - Macros to read and write csv file format updated
+
+* bug 3675 fixed - Issues when saving/loading gui (uicontrols,figure...) fixed
 
 * bug 3849 fixed - Path selected for graphics export is now memorized and used
                    as default for next export file selection
@@ -427,7 +425,7 @@ Bug fixes:
 
 * bug 4670 fixed - ilib_build examples updated with api_scilab
 
-* bug 4767 fixed - Typo in minreal were causing errors in some cases
+* bug 4767 fixed - Typo in minreal was causing errors in some cases
 
 * bug 4844 fixed - The help page for the deletefile function did not specify 
                    what was the meaning of the output variable
@@ -460,8 +458,6 @@ Bug fixes:
 
 * bug 5233 fixed - The Windows installer bugged in some cases
 
-* bug 5266 fixed - Modelica demos made available in MacOS binary version
-
 * bug 5237 fixed - ATOMS: The load of an ATOMS module could produce an error.
                    The error is now catched.
 
@@ -477,16 +473,18 @@ Bug fixes:
 * bug 5263 fixed - diary returned incorrect path for automatically numbered
                    filenames
 
+* bug 5266 fixed - Modelica demos made available in MacOS binary version
+
 * bug 5271 fixed - ATOMS GUI: Frames title was not emphasized
 
 * bug 5283 fixed - Intel Fortran 11 compiler did not require to import some
                    settings in Visual Studio
 
-* bug 5284 fixed - Function "legend" drawed line segments in its box in a
+* bug 5284 fixed - Function "legend" drew line segments in its box in a
                    reverse order
 
 * bug 5286 fixed - Calling the 'lib' function with the wrong path made Scilab
-                   hangs
+                   hung
 
 * bug 5292 fixed - There was a conflict between bool and Scilab header mex.h
                    (with Visual Studio and mex files)
@@ -507,9 +505,9 @@ Bug fixes:
 
 * bug 5326 fixed - graphic_export module was not loaded dynamically
 
-* bug 5330 fixed - "help str1 str2" returned a error
+* bug 5330 fixed - "help str1 str2" returned an error
 
-* bug 5331 fixed - There were no example in the help page of matfile_* 
+* bug 5331 fixed - There was no example in the help page of matfile_* 
                    loadmatfile or savematfile
 
 * bug 5339 fixed - Some macros had multiple definitions
@@ -533,7 +531,7 @@ Bug fixes:
 
 * bug 5375 fixed - isdigit() did not support non ascii chars
 
-* bug 5376 fixed - tool_skeleton.iss was not updated
+* bug 5376 fixed - tool_skeleton.iss had not been updated
 
 * bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
                    Windows
@@ -552,7 +550,7 @@ Bug fixes:
 
 * bug 5452 fixed - legend reversed the order of plotted curves
 
-* bug 5453 fixed - ATOMS: Sizes was displayed with French units
+* bug 5453 fixed - ATOMS: Sizes were displayed with French units
 
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
                    source did not exist and then aliasing had not been 
@@ -560,7 +558,7 @@ Bug fixes:
 
 * bug 5457 fixed - Scilab could not start with Korean Win XP
 
-* bug 5460 fixed - Added menus 'Close All' and Close all but this' in editor
+* bug 5460 fixed - Added menus 'Close All' and 'Close all but this' in editor
 
 * bug 5461 fixed - The savematfile did not work when a format argument was given
 
@@ -578,7 +576,7 @@ Bug fixes:
 
 * bug 5488 fixed - When the documentation was extracted from a .sci file using
                    help_from_sci function, the docbook refsynopsisdiv section
-                   was incorrect
+                   was not correct
 
 * bug 5489 fixed - When the documentation was extracted from a .sci file using
                    help_from_sci function, the docbook Author refsection
@@ -588,7 +586,7 @@ Bug fixes:
                    stack to minimum size if it failed
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
-                   version in the loader.sce even if the toolbox 100% 
+                   version in the loader.sce even if the module has been 100% 
                    written in Scilab code
 
 * bug 5505 fixed - getdebuginfo() output in French was partially translated,
@@ -603,7 +601,7 @@ Bug fixes:
 * bug 5513 fixed - input("message") did not restore the original prompt after
                    the input job was done
 
-* bug 5532 fixed - added a "Save All" menu to save all modified file by editor
+* bug 5532 fixed - added a "Save All" menu to save all modified files by editor
 
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
