@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ENDBLK"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>ENDBLK</refname>
+
+    <refpurpose>END block</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/ENDBLK.jpg"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_ENDBLK">
+    <title>Contents</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="ENDBLK">END block</link></para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para><xref linkend="Palette_ENDBLK">Palette</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Description_ENDBLK">Description</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Dialogbox_ENDBLK">Dialog box</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Defaultproperties_ENDBLK">Default
+            properties</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Interfacingfunction_ENDBLK">Interfacing
+            function</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="ENDBLK">Compiled Super Block
+            content</link></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Seealso_ENDBLK">See also</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Authors_ENDBLK">Authors</xref></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_ENDBLK">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="Sinks_pal">Sinks - Sinks palette</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_ENDBLK">
+    <title>Description</title>
+
+    <para>That block can be used to set the final time of the simulation. When
+    that block is truely parametrized then the simulator will jump to the
+    'final integration time' defined in the Setup item of the simulate Menu
+    from the time defined by the parameter 'Final simulation time' of the
+    dialog box. That parameter can be a numerical value or a symbolic variable
+    defined in the scicos context.</para>
+  </refsection>
+
+  <refsection id="Dialogbox_ENDBLK">
+    <title>Dialog box</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../images/ENDBLK_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para></para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Final simulation time</emphasis></para>
+
+        <para>Set the final time of the simulation.</para>
+
+        <para>When simulator reaches that value then the current time will
+        jump to the final integration time.</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_ENDBLK">
+    <title>Default properties</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>
+        no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>
+        no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">name of computational function:</emphasis>
+        <emphasis role="italic">csuper</emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_ENDBLK">
+    <title>Interfacing function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Misc/ENDBLK.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="CompiledSuperBlockcontent_ENDBLK">
+    <title>Compiled Super Block content</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../images/ENDBLK_img3_eng.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Seealso_ENDBLK">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="END_c">END_c - END_c block (Scicos
+        Block)</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_ENDBLK">
+    <title>Authors</title>
+
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

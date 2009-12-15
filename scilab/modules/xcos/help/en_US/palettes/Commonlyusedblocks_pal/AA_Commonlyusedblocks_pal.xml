@@ -115,19 +115,20 @@
           <link linkend="DOLLAR_f">DOLLAR_f - Delay operator</link>
         </para>
       </listitem>
-
+	  
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
+        </para>
+      </listitem>
+	  
       <listitem>
         <para>
           <link linkend="IN_f">IN_f - Input Port</link>
         </para>
       </listitem>
 
-      <listitem>
-        <para>
-          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
-        </para>
-      </listitem>
-
+      
       <listitem>
         <para>
           <link linkend="LOGICAL_OP">LOGICAL_OP - Logical operation</link>

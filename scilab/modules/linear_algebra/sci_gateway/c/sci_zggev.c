@@ -552,7 +552,7 @@ static int intzggev_real(char *fname)
 		pdblWork, &iWorkSize, &INFO );
 	//     SUBROUTINE DGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHAR,
 	//     $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
-	FREE(pdblWork);
+	if (pdblWork) {FREE(pdblWork); pdblWork = NULL;}
 	if (INFO!=0)
 	{
 		if (INFO<=iColsA)
@@ -564,7 +564,6 @@ static int intzggev_real(char *fname)
 			SciError(24);
 			vFreeDoubleComplexFromPointer(pdblMatrixA);
 			vFreeDoubleComplexFromPointer(pdblMatrixB);
-			FREE(pdblWork);
 			return 0;
 		}
 	}
@@ -609,7 +608,6 @@ static int intzggev_real(char *fname)
 	{
 		FREE(pdblLeftvectors);
 	}
-	FREE(pdblWork);
 	vFreeDoubleComplexFromPointer(pdblMatrixA);
 	vFreeDoubleComplexFromPointer(pdblMatrixB);
 	return 0;
