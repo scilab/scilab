@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-10-22 15:42+0000\n"
+"PO-Revision-Date: 2009-12-12 17:27+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -134,13 +134,13 @@ msgstr ""
 "predeterminats"
 
 msgid "Lokta-Volterra vector field"
-msgstr ""
+msgstr "Camp de vector Lokta-Volterra"
 
 msgid "Lorentz differential equation"
-msgstr ""
+msgstr "Equació diferencial de Lorentz"
 
 msgid "Lorenz differential equation"
-msgstr ""
+msgstr "Equació diferencial de Lorentz"
 
 msgid "Meaning of itask and tcrit:"
 msgstr "Significat de itask i tcrit:"
@@ -152,7 +152,7 @@ msgid "Meaning of ml,mu:"
 msgstr "Significat de ml,mu:"
 
 msgid "ODE 1D vector field"
-msgstr ""
+msgstr "Camp de vector ODE 1D"
 
 msgid "Simulation"
 msgstr "Simulació"
@@ -164,7 +164,7 @@ msgid "Sphere"
 msgstr "Esfera"
 
 msgid "Van der Pol vector field"
-msgstr ""
+msgstr "Camp de vector Van der Pol"
 
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
 msgstr "una matriu J que és  ml+mu+1 x ny (on ny=dim de y a ydot=f(t,y))"
@@ -176,7 +176,7 @@ msgid "bike simulation, unstable trajectory"
 msgstr "simulació de la bicicleta, trajectòria inestable"
 
 msgid "chemical process (implicit)"
-msgstr ""
+msgstr "procés químic (implícit)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
 msgstr ""
@@ -190,7 +190,7 @@ msgid "of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1"
 msgstr "de la jacobiana banda: la banda és el i,j''s amb i-ml <= j <= ny-1"
 
 msgid "spherical pendulum simulation"
-msgstr ""
+msgstr "simulació esfèrica de pèndul"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "de manera que la columna 1 de J is made of mu zeros followed by"

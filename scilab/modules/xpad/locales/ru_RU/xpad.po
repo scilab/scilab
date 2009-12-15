@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-17 22:41+0000\n"
+"PO-Revision-Date: 2009-12-14 21:11+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -48,17 +48,17 @@ msgstr "%s: Неверный тип параметра %d: ожидалась м
 msgid "?"
 msgstr "Справка"
 
-msgid "ASCII Encoding"
-msgstr "ASCII"
-
 msgid "About"
 msgstr "О текстовом редакторе"
 
 msgid "All"
 msgstr "Весь документ"
 
-msgid "Auto Reformat Selection"
-msgstr "Автоматический отступ"
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr "Закрыть текстовый редактор?"
+
+msgid "Auto (Default)"
+msgstr "Автоматический (По умолчанию)"
 
 msgid "Backward"
 msgstr "Назад"
@@ -72,8 +72,20 @@ msgstr "Не удалось загрузить \"xpadConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Учитывать регистр"
 
+msgid "Change Color"
+msgstr "Изменить"
+
+msgid "Change Colors"
+msgstr "Настройка цветов"
+
 msgid "Close"
 msgstr "Закрыть"
+
+msgid "Close All"
+msgstr "Закрыть все"
+
+msgid "Close All But This"
+msgstr "Закрыть другие"
 
 msgid "Colorization canceled"
 msgstr "Подсветка синтаксиса отключена"
@@ -90,11 +102,17 @@ msgstr "Продолжить?"
 msgid "Copy"
 msgstr "Копировать"
 
-msgid "Copyright (c) 2009 (INRIA)"
-msgstr "Авторское право (c) 2009 (INRIA)"
+msgid "Copyright (c)"
+msgstr "Авторское право (c)"
 
 msgid "Correct Indentation"
 msgstr "Исправить отступы"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Не удалось найти командное окно или InterpreterManagement."
+
+msgid "Could not find the temporary file."
+msgstr "Не удалось найти временный файл."
 
 msgid "Cut"
 msgstr "Вырезать"
@@ -114,11 +132,17 @@ msgstr "Документ"
 msgid "Edit"
 msgstr "Правка"
 
-msgid "Editor 1.0"
-msgstr "Текстовый редактор 1.0"
+msgid "Edit selection in a new tab"
+msgstr "Править выделенное в новой вкладке"
+
+msgid "Editor"
+msgstr "Текстовый редактор"
 
 msgid "Editor error"
 msgstr "Ошибка текстового редактора"
+
+msgid "Enable Auto Reformat"
+msgstr "Автоматический отступ"
 
 msgid "Encoding"
 msgstr "Кодировка"
@@ -134,6 +158,9 @@ msgstr "Выполнение"
 
 msgid "Execute File Into Scilab"
 msgstr "Выполнить файл в Scilab"
+
+msgid "Execute selection into Scilab"
+msgstr "Вычислить выделенное в Scilab"
 
 msgid "Exit"
 msgstr "Выход"
@@ -159,11 +186,20 @@ msgstr "Вперёд"
 msgid "Goto line"
 msgstr "Перейти к строке"
 
+msgid "Help about '"
+msgstr "Справка по '"
+
+msgid "Help about a selected text"
+msgstr "Справка по выделенному тексту"
+
 msgid "Highlight current line"
 msgstr "Подсвечивать текущую строку"
 
 msgid "Invalid regular expression : %s"
 msgstr "Недопустимое регулярное выражение: %s"
+
+msgid "Line Endings"
+msgstr "Конец строки"
 
 msgid "Line Numbers"
 msgstr "Показывать номера строк"
@@ -171,14 +207,20 @@ msgstr "Показывать номера строк"
 msgid "Load Into Scilab"
 msgstr "Загрузить в Scilab"
 
-msgid "Loading..."
-msgstr "Загружается документ..."
+msgid "Loading"
+msgstr "Идёт загрузка"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classic (CR)"
 
 msgid "New"
 msgstr "Создать"
 
 msgid "Next tab"
 msgstr "Следующая вкладка"
+
+msgid "No text selected"
+msgstr "Нет выделенного текста"
 
 msgid "Ok"
 msgstr "ОК"
@@ -194,9 +236,6 @@ msgstr "Параметры  страницы"
 
 msgid "Paste"
 msgstr "Вставить"
-
-msgid "Plain Text"
-msgstr "Обычный текст"
 
 msgid "Previous tab"
 msgstr "Предыдущая вкладка"
@@ -236,6 +275,9 @@ msgstr "Установить шрифт по умолчанию"
 
 msgid "Save"
 msgstr "Сохранить"
+
+msgid "Save All"
+msgstr "Сохранить все"
 
 msgid "Save as"
 msgstr "Сохранить как"
@@ -290,9 +332,6 @@ msgstr "Фраза %s не найдена"
 msgid "Syntax Type"
 msgstr "Режим подсветки синтаксиса"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Консорциум Scilab (DIGITEO)"
-
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -319,14 +358,14 @@ msgstr "Этот файл"
 msgid "This file is a binary, saving it will result in a corrupt file."
 msgstr "Данный файл является бинарным, при сохранении он будет испорчен."
 
-msgid "UTF-8 Encoding"
-msgstr "UTF-8"
-
 msgid "Uncomment Selection"
 msgstr "Удалить комментарии"
 
 msgid "Undo"
 msgstr "Отменить"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
 
 msgid "Untitled "
 msgstr "Безымянный документ "
@@ -337,14 +376,14 @@ msgstr "Вид"
 msgid "Whole word"
 msgstr "Слово целиком"
 
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
 msgid "Word Wrap"
-msgstr "Автоматические переход на новую строку"
+msgstr "Автоматический переход на новую строку"
 
 msgid "Wrap search"
-msgstr "Автоматически переходить к началу документа"
-
-msgid "XML"
-msgstr "XML"
+msgstr "Автоматический переход к началу документа"
 
 msgid "You have passed the beginning of the document"
 msgstr "Пройдено начало документа"

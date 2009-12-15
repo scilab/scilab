@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2009-11-21 15:38+0000\n"
+"PO-Revision-Date: 2009-12-12 21:13+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -365,7 +365,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «%s» или "
-"действительный скаляр.\n"
+"вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -422,7 +422,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался действительный скаляр.\n"
+"%s: Неверный размер входного параметра №%d: ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
@@ -548,7 +548,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался дескриптор «%s» или "
-"действительный скаляр.\n"
+"вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
@@ -656,7 +656,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался действительный скаляр.\n"
+"%s: Неверный тип входного параметра №%d: ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
