@@ -90,8 +90,12 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 
 pkglib_LTLIBRARIES = libscihdf5.la
+
+if HDF5
+# When Scilab is built with HDF5, we need some libraries for a workaround
 pkglib_LTLIBRARIES += libscihdf5-forceload.la
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
+endif
 
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
