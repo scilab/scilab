@@ -50,6 +50,10 @@ public class SciFileFilter extends FileFilter {
 				description = Messages.gettext("All Scilab files") + "(*.sc*)";
 			} else if (fileMask.equals("*.xcos")) {
 				description = Messages.gettext("Xcos files") + "(*.xcos)";
+			} else if (fileMask.equals("*.cos*")) {
+				description = Messages.gettext("Scicos files") + "(*.cos*)";
+			} else if (fileMask.equals("*.*")) {
+				description = Messages.gettext("All files") +  "(*.*)";
 			} else {
 				description = String.format(Messages.gettext("All %s files"), fileMask);
 			}

@@ -261,8 +261,10 @@ public final class BlockPositioning {
 		&& block.getParentDiagram() != null 
 		&& block.getParentDiagram().getView() != null 
 		&& block.getParentDiagram().getView().getState(block) != null) {
+	    block.getParentDiagram().getModel().beginUpdate();
 	    updatePortsPosition(block);
 	    rotateAllPorts(block);
+	    block.getParentDiagram().getModel().endUpdate();
 	}
     }
 

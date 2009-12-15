@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>Portaction_pal</refname>
 
-    <refpurpose>Port action palette</refpurpose>
+    <refpurpose>Port &amp; Subsystem palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -61,7 +61,7 @@
   <refsection id="Description_Portaction_pal">
     <title>Description</title>
 
-    <para>The port action palette includes blocks for creating
+    <para>The Port &amp; Subsystem palette includes blocks for creating
     subsystems.</para>
   </refsection>
 
@@ -71,31 +71,17 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="EDGE_TRIGGER">EDGE_TRIGGER — EDGE_TRIGGER
-          block</link>
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="ESELECT_f">ESELECT_f — Synchronous block
+          <link linkend="CLKINV_f">CLKINV_f — Input activation port
           Event-Select</link>
         </para>
       </listitem>
-
-      <listitem>
+	  
+     <listitem>
         <para>
-          <link linkend="Extract_Activation">Extract_Activation —
-          Extract_Activation block</link>
+          <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port
+          Event-Select</link>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          <link linkend="IFTHEL_f">IFTHEL_f — Synchronous block
-          If-Then-Else</link>
-        </para>
-      </listitem>
+      </listitem>      
 
       <listitem>
         <para>
@@ -103,11 +89,30 @@
         </para>
       </listitem>
 
+	  <listitem>
+        <para>
+          <link linkend="INIMPL_f">INIMPL_f — Input implicit port</link>
+        </para>
+      </listitem> 
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
+        </para>
+      </listitem>
+	  
       <listitem>
         <para>
           <link linkend="OUT_f">OUT_f - Output Port</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="SUPER_f">SUPER_f — Super block</link>
+        </para>
+      </listitem>
+	  
     </itemizedlist>
   </refsection>
 </refentry>
