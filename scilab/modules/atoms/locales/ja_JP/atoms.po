@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -575,6 +575,9 @@ msgstr "作者(s)"
 msgid "Automaticaly Installed"
 msgstr "自動インストール"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Category(ies)"
 msgstr "種類"
 
@@ -602,26 +605,27 @@ msgstr "インストール"
 msgid "Install Directory"
 msgstr "インストール・ディレクトリ"
 
-msgid "Installation done !"
-msgstr "インストール完了!"
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
 
-msgid "Installation failed !"
-msgstr "インストール失敗!"
+msgid "Installation failed!"
+msgstr ""
 
 msgid "Installing..."
 msgstr "インストール..."
 
-msgid "Ko"
-msgstr "Ko"
+msgid "KB"
+msgstr ""
 
 msgid "License"
 msgstr "ライセンス"
 
+msgid "MB"
+msgstr ""
+
 msgid "Maintainer(s)"
 msgstr "維持者達"
-
-msgid "Mo"
-msgstr "Mo"
 
 msgid "Modules"
 msgstr "モジュール"
@@ -632,20 +636,17 @@ msgstr "Atom モジュールは無効です。インターネット接続を調�
 msgid "No module selected"
 msgstr "モジュール選択なし"
 
-msgid "Octets"
-msgstr "8進"
-
 msgid "Package"
 msgstr "パッケージ"
 
 msgid "Remove"
 msgstr "消去"
 
-msgid "Remove done !"
-msgstr "消去完了!"
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
 
-msgid "Remove failed !"
-msgstr "消去失敗!"
+msgid "Remove failed!"
+msgstr ""
 
 msgid "Removing..."
 msgstr "消去..."
@@ -665,11 +666,11 @@ msgstr "タイトル"
 msgid "Update"
 msgstr "修正"
 
-msgid "Update done !"
-msgstr "修正完了!"
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
 
-msgid "Update failed !"
-msgstr "修正失敗!"
+msgid "Update failed!"
+msgstr ""
 
 msgid "Updating..."
 msgstr "修正..."

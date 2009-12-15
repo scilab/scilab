@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 18:01+0100\n"
 
@@ -239,11 +239,23 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr "%s: 找到太多解.\n"
 
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 909
 #, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: 輸入參數錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 545
@@ -252,7 +264,11 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 輸入參數數目錯誤.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -291,6 +307,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
@@ -382,7 +402,17 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
 msgstr ""
 
 #, c-format

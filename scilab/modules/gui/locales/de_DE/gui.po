@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-18 10:54+0000\n"
+"PO-Revision-Date: 2009-12-09 17:27+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -739,6 +739,12 @@ msgstr "Danksagungen"
 msgid "Add color in listbox"
 msgstr "Füge eine Farbe in der Listbox hinzu"
 
+msgid "All %s files"
+msgstr "Alle %s Dateien"
+
+msgid "All Scilab files"
+msgstr "Alle Scilab Dateien"
+
 msgid "All files"
 msgstr "Alle Dateien"
 
@@ -1105,6 +1111,15 @@ msgstr "Scilab Nachricht"
 msgid "Scilab Multiple Values Request"
 msgstr "Mehrfachwert Anfragen von Scilab"
 
+msgid "Scilab SCE files"
+msgstr "Scilab SCE Dateien"
+
+msgid "Scilab SCI files"
+msgstr "Scilabe SCI Dateien"
+
+msgid "Scilab binary files"
+msgstr "Scilab Binär Dateien"
+
 msgid "Select All"
 msgstr "Alle auswählen"
 
@@ -1412,6 +1427,12 @@ msgid ""
 msgstr ""
 "Falsche Wert für Eigenschaft '%s': eine Zeichenkette oder ein 1 x %d reller "
 "Reihenvektor erwartet.\n"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos files"
+msgstr "Xcos Dateien"
 
 msgid "Yes"
 msgstr "Ja"
