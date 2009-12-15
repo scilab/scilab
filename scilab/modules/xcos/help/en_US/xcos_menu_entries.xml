@@ -253,7 +253,9 @@
       <listitem>
         <para><emphasis role="bold">View:Diagram browser</emphasis></para>
 
-        <para>TODO</para>
+        <para>Displays a window which lists all the blocks of a diagram and
+        print some informations related to the scs_m structure of the
+        blocks.</para>
       </listitem>
 
       <listitem>
@@ -278,7 +280,9 @@
       <listitem>
         <para><emphasis role="bold">View:Details</emphasis></para>
 
-        <para>TODO</para>
+        <para>Displays a window which lists all the selected blocks of a
+        diagram and print some informations related to the scs_m structure of
+        these blocks.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -455,7 +459,7 @@
           </imageobject>
         </mediaobject>
 
-        <para>This menu allows to the the style of the link: </para>
+        <para>This menu allows to the the style of the link:</para>
 
         <itemizedlist>
           <listitem>
