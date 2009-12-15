@@ -18,7 +18,10 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
@@ -36,6 +39,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Document;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
@@ -80,41 +84,33 @@ public final class ExportAction extends DefaultAction {
 
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 		
-		/* TODO: The read formats and writer formats can be different */
 		// Adds a filter for each supported image format
-		Object[] imageFormats = ImageIO.getReaderFormatNames();
+		Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFormatNames());
 
-		/* TODO: There is a better way to get a unique extension collection */
-		// Finds all distinct extensions
-		HashSet formats = new HashSet();
-
-		for (int i = 0; i < imageFormats.length; i++) {
-			String ext = imageFormats[i].toString().toLowerCase();
-			formats.add(ext);
-		}
-
-		imageFormats = formats.toArray();
+		// The mask and mask description ordered collection
+		Set<String> mask = new TreeSet<String>();
+		Set<String> maskDesc = new TreeSet<String>();
 
 		/* TODO: why hardcoded ? */
-		String[] mask = new String[imageFormats.length + 3];
-		mask[0] = ".svg";
-		mask[1] = ".html";
-		mask[2] = ".vml";
-		String[] maskDesc = new String[imageFormats.length + 3];
-		maskDesc[0] = "SVG";
-		maskDesc[1] = "HTML";
-		maskDesc[1] = "VML";
+		mask.add(".svg");
+		mask.add(".html");
+		mask.add(".vml");
+
+		maskDesc.add("SVG");
+		maskDesc.add("HTML");
+		maskDesc.add("VML");
 		
-		for (int i = 0; i < imageFormats.length; i++) {
-			String ext = imageFormats[i].toString();
-			mask[3 + i] = "." + ext;
-			maskDesc[3 + i] =  ext.toUpperCase();
+		// Add all distinct extensions
+		for (String string : imageFormats) {
+		    String ext = string.toLowerCase();
+		    mask.add("." + ext);
+		    maskDesc.add(ext.toUpperCase());
 		}
 
 		// Adds filter that accepts all supported image formats
 		//fc.addChoosableFileFilter(new DefaultFileFilter.ImageFileFilter(mxResources.get("allImages")));
-		
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
+				
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask.toArray(new String[mask.size()]) , maskDesc.toArray(new String[maskDesc.size()]));
 		fc.setTitle(XcosMessages.EXPORT);
 		fc.displayAndWait();
 		
@@ -134,14 +130,17 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createSvgDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createVmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else if (extension.equalsIgnoreCase("html")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createHtmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
+			    if (doc != null)
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			} else 	{
 				Color bg = null;
 

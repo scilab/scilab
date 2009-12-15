@@ -1,4 +1,4 @@
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;

@@ -43,16 +43,16 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.actions.AlignBlockAction;
-import org.scilab.modules.xcos.actions.BlockDocumentationAction;
-import org.scilab.modules.xcos.actions.BlockParametersAction;
-import org.scilab.modules.xcos.actions.ColorAction;
-import org.scilab.modules.xcos.actions.FlipAction;
-import org.scilab.modules.xcos.actions.MirrorAction;
-import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
-import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
-import org.scilab.modules.xcos.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.block.actions.AlignBlockAction;
+import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.block.actions.BlockParametersAction;
+import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.FlipAction;
+import org.scilab.modules.xcos.block.actions.MirrorAction;
+import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.block.actions.RotateAction;
+import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -888,6 +888,7 @@ public class BasicBlock extends XcosUIDObject {
     
     public void setFlip(boolean flip) {
 	if(getParentDiagram() != null) {
+	    isFlipped = flip;
 	    if(flip == true) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
 	    } else {
@@ -908,9 +909,10 @@ public class BasicBlock extends XcosUIDObject {
     public boolean getMirror(){
 	return isMirrored;
     }
+    
     public void setMirror(boolean mirror) {
-	isMirrored = mirror;
 	if(getParentDiagram() != null) {
+	    isMirrored = mirror;
 	    if(mirror == true) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
 	    } else {
@@ -924,7 +926,6 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     public void toggleFlip() {
-	isFlipped = !isFlipped;
 	BlockPositioning.toggleFlip(this);
     }
 

@@ -10,31 +10,21 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
-
-import java.awt.event.ActionEvent;
+package org.scilab.modules.xcos.palette.actions;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskRemoveAction extends DefaultAction {
+public class NewPaletteAction extends DefaultAction {
 
-	private SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.REMOVE, scilabGraph);
+	private NewPaletteAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.NEW_PALETTE, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
-	    block.unmask();
+		return createMenu(XcosMessages.NEW_PALETTE, null, new NewPaletteAction(scilabGraph), null);
 	}
 }

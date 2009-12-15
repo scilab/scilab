@@ -119,7 +119,7 @@ public final class SplitBlock extends BasicBlock {
 
 	public void unlinkAndClean() {
 	
-		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
+		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2)});
 		getParentDiagram().getModel().beginUpdate();
 		for(int i = 0 ; i < objs.length ; i++){
 			if(objs[i] instanceof BasicLink){

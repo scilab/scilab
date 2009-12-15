@@ -179,6 +179,13 @@ function result = atomsInstall(packages,section)
 			archives_directory));
 	end
 	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
+	
 	// "Archive" installation
 	// =========================================================================
 	
@@ -344,6 +351,24 @@ function result = atomsInstall(packages,section)
 				msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
 		end
 		
+		// Move the created directory
+		// → Only under windows
+		// → Only if it's a local package
+		// =====================================================================
+		
+		if MSDOS & (this_package_details("fromRepository") == "0") then
+			
+			move_cmd = "move """+atoms_tmp_directory+this_package_version+""" """+pathconvert(this_package_directory,%F)+"""";
+			
+			[rep,stat]=unix_g(move_cmd)
+			
+			if stat <> 0 then
+				atomsError("error", ..
+					msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+			end
+			
+		end
+		
 		// Register the successfully installed package
 		// =====================================================================
 		
@@ -400,9 +425,9 @@ function result = atomsInstall(packages,section)
 		
 		if this_package_details("fromRepository")=="0" then
 			
-			DESCRIPTION_file = atoms_directory+"DESCRIPTION_archives";
+			DESCRIPTION_file = atoms_system_directory+"DESCRIPTION_archives";
 			
-			if isempty(fileinfo(atoms_directory+"DESCRIPTION_archives")) then
+			if isempty(fileinfo(atoms_system_directory+"DESCRIPTION_archives")) then
 				DESCRIPTION = struct();
 			else
 				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
