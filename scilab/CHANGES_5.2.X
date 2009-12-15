@@ -1,4 +1,4 @@
-               Changes between version 5.2.0-beta1 and 5.2.0-xxx of Scilab
+               Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
 
