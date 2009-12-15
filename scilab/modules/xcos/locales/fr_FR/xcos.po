@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -94,6 +94,10 @@ msgstr "Annuler"
 
 msgid "Center"
 msgstr "Centrer"
+
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
 
 msgid "Close"
 msgstr "Fermer"
@@ -391,9 +395,6 @@ msgstr "Zone vers superbloc"
 
 msgid "Remove"
 msgstr "Supprimer"
-
-msgid "Remove user defined palette"
-msgstr "Enlever la palette personnalisée"
 
 msgid "Resize"
 msgstr "Redimensionner"

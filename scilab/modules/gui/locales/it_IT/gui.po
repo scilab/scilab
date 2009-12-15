@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-20 15:49+0000\n"
+"PO-Revision-Date: 2009-12-11 15:21+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -796,6 +796,12 @@ msgstr "Ringraziamenti"
 msgid "Add color in listbox"
 msgstr "Aggiungere un colore"
 
+msgid "All %s files"
+msgstr "Tutti i file %s"
+
+msgid "All Scilab files"
+msgstr "Tutti i file di Scilab"
+
 msgid "All files"
 msgstr "Tutti i file"
 
@@ -865,10 +871,10 @@ msgid "Clear C&onsole"
 msgstr "Pulisci la C&onsolle"
 
 msgid "Clear Console"
-msgstr "Cancella il terminale"
+msgstr "Pulisci il terminale"
 
 msgid "Clear History"
-msgstr "Cancella la cronologia"
+msgstr "Pulisci la cronologia"
 
 msgid "Close"
 msgstr "Chiudi"
@@ -979,7 +985,7 @@ msgid "Help about '"
 msgstr ""
 
 msgid "Help about a selected text"
-msgstr ""
+msgstr "Aiuto su un testo selezionato"
 
 msgid "Help on a selected keyword"
 msgstr "Aiuto sulla parola-chiave"
@@ -1164,6 +1170,15 @@ msgstr "Messaggio di Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Richiesta di valori multipli di Scilab"
 
+msgid "Scilab SCE files"
+msgstr "File SCE di Scilab"
+
+msgid "Scilab SCI files"
+msgstr "File SCI di Scilab"
+
+msgid "Scilab binary files"
+msgstr "File binari di Scilab"
+
 msgid "Select All"
 msgstr "Seleziona tutto"
 
@@ -1199,10 +1214,10 @@ msgid "Show/Hide &Toolbar"
 msgstr "Mostra/Nascondi &Toolbar"
 
 msgid "Slider demo"
-msgstr ""
+msgstr "DEmo della barra di controllo"
 
 msgid "Slider value: "
-msgstr ""
+msgstr "Valore della barra di controllo: "
 
 msgid ""
 "Some Scilab modules are released under the GPLv2 license.\n"
@@ -1224,7 +1239,7 @@ msgid "Sub-menu 2-2"
 msgstr "Sotto-menu 2-2"
 
 msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
+msgstr "Il Consorzio Scilab (DIGITEO)"
 
 msgid "Tree Overview"
 msgstr "Anteprima dell'albero"
@@ -1495,6 +1510,12 @@ msgstr ""
 "La proprietà \"%s\" ha un valore sbagliato: era attesa una stringa o un "
 "vettore riga reale 1 x %d.\n"
 
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos files"
+msgstr "File di Xcos"
+
 msgid "Yes"
 msgstr "Sì"
 
@@ -1523,18 +1544,28 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
+"mostra(\"ATTENZIONE: nonostante i precedenti avvisi,si è scelto di usare "
+"Scilab con capacità grafiche avanzate. Digitare \"\"help usecanvas\"\" per "
+"maggiori informazioni.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
 msgstr ""
+"mostra(\"ATTENZIONE: a causa delle limitazioni della attuale "
+"configurazione,Scilab è passato a una modalità dove non è possibile "
+"mischiare uicontrol e grafica.Digitare \"\"help usecanvas\"\" per maggiori "
+"informazioni.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
 "able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
 "update your driver.\")"
 msgstr ""
+"mostra(\"ATTENZIONE: a causa delle limitazioni del driver della scheda "
+"video,che non possono gestire OpenGl, Scilab non sarà in grado di disegnare "
+"nulla. Si consiglia di aggiornare i driver.\")"
 
 msgid "green"
 msgstr "verde"

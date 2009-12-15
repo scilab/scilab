@@ -100,7 +100,7 @@ function scs_m=delete_unconnected(scs_m);
 			end
 			
 			//errorDiagramPath(path, [path_out, path_in], msg, "", %t);
-			errorDiagramPath(path, k, msg, "", %t);
+			errorDiagramPath(path, k, msg, "", %f, %t);
 		end
 		//** restore original scs_m structure
 		scs_m = scs_save;

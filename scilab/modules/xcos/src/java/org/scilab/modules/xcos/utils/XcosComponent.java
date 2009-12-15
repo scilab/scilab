@@ -1,5 +1,6 @@
 package org.scilab.modules.xcos.utils;
 
+import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -49,5 +50,34 @@ public class XcosComponent extends mxGraphComponent{
 	} else {
 	    return super.toString();
 	}
+    }
+    
+    public void zoomAndCenterToCells() {
+	Dimension preference = getPreferredSize();
+	Dimension actual = viewport.getSize();
+
+	double newScale = 1.0;
+	double heightScale = actual.getHeight() / preference.getHeight();
+	double widthScale = actual.getWidth() / preference.getWidth();
+	
+	if (heightScale > 1.0) {
+	    if (widthScale > 1.0) {
+		// We need to zoom in (the max applicable zoom is the lowest)
+		newScale = Math.min(heightScale, widthScale);
+	    } else {
+		// we need to zoom out (only widthScale is < 1.0)
+		newScale = widthScale;
+	    }
+	} else {
+	    if (widthScale > 1.0) {
+		// we need to zoom out (only heightScale is < 1.0)
+		newScale = heightScale;
+	    } else {
+		// We need to zoom out (the max applicable zoom is the lowest)
+		newScale = Math.min(heightScale, widthScale);
+	    }
+	}
+
+	zoom(newScale);
     }
 }

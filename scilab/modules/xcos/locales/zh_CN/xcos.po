@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,6 +34,10 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
@@ -42,6 +46,9 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 msgid "?"
+msgstr ""
+
+msgid "A SuperBlock must be selected to generate code"
 msgstr ""
 
 msgid "About Xcos"
@@ -83,6 +90,10 @@ msgstr "取消"
 msgid "Center"
 msgstr "居中"
 
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+
 msgid "Close"
 msgstr "关闭"
 
@@ -102,8 +113,8 @@ msgstr ""
 msgid "Compile"
 msgstr "编译"
 
-msgid "Continuous"
-msgstr "连续信号"
+msgid "Continuous time systems"
+msgstr ""
 
 msgid "Copy"
 msgstr "复制"
@@ -122,6 +133,9 @@ msgstr "自定义"
 
 msgid "Cut"
 msgstr "剪切"
+
+msgid "Debug block calls without trace"
+msgstr ""
 
 msgid "Default"
 msgstr ""
@@ -142,14 +156,13 @@ msgid "Diagram browser"
 msgstr "图表浏览器"
 
 msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 msgid "Discontinuities"
 msgstr ""
 
-msgid "Discrete"
+msgid "Discrete time systems"
 msgstr ""
 
 msgid "Do you want a transparent background image?"
@@ -167,7 +180,10 @@ msgstr "编辑"
 msgid "Electrical"
 msgstr ""
 
-msgid "Events"
+msgid "Event handling"
+msgstr ""
+
+msgid "Execution trace and Debug"
 msgstr ""
 
 msgid ""
@@ -262,17 +278,29 @@ msgstr "反转选择"
 msgid "Left"
 msgstr "左对齐"
 
+msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgstr ""
+
 msgid "Link Style"
+msgstr ""
+
+msgid "Load as palette"
 msgstr ""
 
 msgid "Loading diagram"
 msgstr ""
 
+msgid "Loading palettes"
+msgstr ""
+
+msgid "Loading user defined palettes"
+msgstr ""
+
 msgid "Lookup Tables"
 msgstr ""
 
-msgid "Math Operations"
-msgstr "数学操作"
+msgid "Mathematical Operations"
+msgstr ""
 
 msgid "Matrix"
 msgstr ""
@@ -282,6 +310,9 @@ msgstr ""
 
 msgid "Middle"
 msgstr "垂直居中"
+
+msgid "Mirror"
+msgstr ""
 
 msgid "New"
 msgstr "新建"
@@ -293,6 +324,9 @@ msgid "New palette"
 msgstr "新组件盘"
 
 msgid "No block selected"
+msgstr ""
+
+msgid "No trace nor debug printing"
 msgstr ""
 
 msgid "Normal 100%"
@@ -313,14 +347,21 @@ msgstr "组件盘"
 msgid "Paste"
 msgstr "粘贴"
 
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
 msgid "Port & Subsystem"
+msgstr ""
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
 msgstr ""
 
 msgid "Print"
 msgstr "打印"
 
-msgid "Quit"
-msgstr "退出"
+msgid "Quit Xcos"
+msgstr ""
 
 msgid "Real time scaling"
 msgstr ""
@@ -361,6 +402,9 @@ msgstr ""
 msgid "Saving diagram"
 msgstr ""
 
+msgid "Scicos file"
+msgstr ""
+
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
@@ -369,19 +413,19 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
+msgid "Scilab file"
+msgstr ""
+
 msgid "Select all"
 msgstr "全选"
 
 msgid "Set Context"
 msgstr ""
 
-msgid "Set Debug Level"
-msgstr ""
-
 msgid "Set Parameters"
 msgstr ""
 
-msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 
 msgid "Setup"
@@ -439,9 +483,6 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr ""
 
-msgid "Threshold"
-msgstr "阈值"
-
 msgid "Tolerance on time"
 msgstr ""
 
@@ -462,6 +503,9 @@ msgstr ""
 
 msgid "Untitled"
 msgstr "无标题"
+
+msgid "User-Defined"
+msgstr ""
 
 msgid "User-Defined Functions"
 msgstr "自定义函数"
@@ -496,6 +540,9 @@ msgstr "Xcos帮助"
 msgid "Xcos error"
 msgstr "Xcos错误"
 
+msgid "Xcos file"
+msgstr ""
+
 msgid "Xcos version 1.0"
 msgstr "Xcos版本1.0"
 
@@ -504,6 +551,9 @@ msgid ""
 "block definitions using Scilab instructions.<br/>These instructions are "
 "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
 "diagram is loaded.)"
+msgstr ""
+
+msgid "Zero crossing detection"
 msgstr ""
 
 msgid "Zoom In"

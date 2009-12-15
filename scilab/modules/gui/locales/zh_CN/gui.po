@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -653,6 +653,12 @@ msgstr "致谢"
 msgid "Add color in listbox"
 msgstr ""
 
+msgid "All %s files"
+msgstr ""
+
+msgid "All Scilab files"
+msgstr ""
+
 msgid "All files"
 msgstr "全部文件"
 
@@ -1014,6 +1020,15 @@ msgstr "Scilab消息"
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab需要多个值"
 
+msgid "Scilab SCE files"
+msgstr ""
+
+msgid "Scilab SCI files"
+msgstr ""
+
+msgid "Scilab binary files"
+msgstr ""
+
 msgid "Select All"
 msgstr "全选"
 
@@ -1277,6 +1292,12 @@ msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr "属性'%s'的值错误：应该为一个字符串或者 1x%d 的实数行向量。\n"
+
+msgid "Xcos"
+msgstr ""
+
+msgid "Xcos files"
+msgstr ""
 
 msgid "Yes"
 msgstr ""

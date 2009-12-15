@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-20 17:56+0000\n"
+"PO-Revision-Date: 2009-12-10 00:27+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:18+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -685,6 +685,9 @@ msgstr "Autor(es)"
 msgid "Automaticaly Installed"
 msgstr "Instalado Automáticamente"
 
+msgid "Bytes"
+msgstr "Bytes"
+
 msgid "Category(ies)"
 msgstr "Categoría(s)"
 
@@ -712,26 +715,29 @@ msgstr "Instalar"
 msgid "Install Directory"
 msgstr "Directorio de Instalación"
 
-msgid "Installation done !"
-msgstr "¡Instalación finalizada!"
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"¡Instalación finalizada! Por favor reinicie Scilab para que se apliquen los "
+"cambios."
 
-msgid "Installation failed !"
+msgid "Installation failed!"
 msgstr "¡Falló la instalación!"
 
 msgid "Installing..."
 msgstr "Instalando..."
 
-msgid "Ko"
-msgstr "Ko"
+msgid "KB"
+msgstr "KB"
 
 msgid "License"
 msgstr "Licencia"
 
+msgid "MB"
+msgstr "MB"
+
 msgid "Maintainer(s)"
 msgstr "Mantenedor(es)"
-
-msgid "Mo"
-msgstr "Mo"
 
 msgid "Modules"
 msgstr "Módulos"
@@ -742,20 +748,19 @@ msgstr "No hay módulos de Atoms disponibles. Revise su conexión a Internet."
 msgid "No module selected"
 msgstr "No se seleccionó ningún módulo"
 
-msgid "Octets"
-msgstr "Octetos"
-
 msgid "Package"
 msgstr "Paquete"
 
 msgid "Remove"
 msgstr "Quitar"
 
-msgid "Remove done !"
-msgstr "¡Eliminación finalizada!"
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"¡Desinstalación finalizada! Por favor reinicie Scilab para que se apliquen "
+"los cambios. "
 
-msgid "Remove failed !"
-msgstr "¡Falló la eliminación!"
+msgid "Remove failed!"
+msgstr "¡Desinstalación finalizada!"
 
 msgid "Removing..."
 msgstr "Eliminando..."
@@ -775,10 +780,12 @@ msgstr "Título"
 msgid "Update"
 msgstr "Actualizar"
 
-msgid "Update done !"
-msgstr "¡Actualización finalizada!"
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"¡Actualización finalizada! Por favor reinicie Scilab para que se apliquen "
+"los cambios."
 
-msgid "Update failed !"
+msgid "Update failed!"
 msgstr "¡Falló la actualización!"
 
 msgid "Updating..."
