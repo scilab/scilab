@@ -1,13 +1,16 @@
 package org.scilab.modules.xcos.utils;
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxGraphView;
 
 public class XcosComponent extends mxGraphComponent{
 
@@ -52,8 +55,19 @@ public class XcosComponent extends mxGraphComponent{
 	}
     }
     
+    /**
+     * Zoom the whole graph and center the view on it.
+     */
     public void zoomAndCenterToCells() {
-	Dimension preference = getPreferredSize();
+	mxGraphView view = graph.getView();
+	Rectangle preference = (Rectangle) view.getBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle().clone();
+	
+	// Feeling values to keep the zoom smart 
+	preference.x -= 20;
+	preference.y += 20;
+	preference.width += 40;
+	preference.height += 40;
+	
 	Dimension actual = viewport.getSize();
 
 	double newScale = 1.0;
@@ -79,5 +93,10 @@ public class XcosComponent extends mxGraphComponent{
 	}
 
 	zoom(newScale);
+	
+	view.revalidate();
+	Rectangle orig = view.getBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle();
+	
+	getGraphControl().scrollRectToVisible(orig);
     }
 }
