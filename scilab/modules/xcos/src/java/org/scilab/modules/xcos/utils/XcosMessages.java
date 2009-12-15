@@ -109,7 +109,6 @@ public final class XcosMessages {
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
-    public static final String XCOS_VERSION = Messages.gettext("Xcos version 1.0");
 
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
