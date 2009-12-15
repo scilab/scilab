@@ -3,6 +3,7 @@ package org.scilab.modules.xcos.palette.actions;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -12,6 +13,7 @@ import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -52,14 +54,23 @@ public class LoadAsPalAction extends DefaultAction {
      * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
      */
     public void doAction() {
-	FileChooser fc = ScilabFileChooser.createFileChooser();
+	SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 	/* Standard files */
-	String[] mask = XcosFileType.getValidFileMask();
-	String[] desc = XcosFileType.getValidFileDescription();
-	((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , desc);
-
+	fc.setTitle(XcosMessages.OPEN);
+	fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
 	fc.setMultipleSelection(false);
+
+
+	SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
+	SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
+	fc.addChoosableFileFilter(xcosFilter);
+	fc.addChoosableFileFilter(cosFilter);
+	fc.addChoosableFileFilter(allFilter);
+	fc.setFileFilter(xcosFilter);
+
+	fc.setAcceptAllFileFilterUsed(false);
 	fc.displayAndWait();
 
 	if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
@@ -67,15 +78,5 @@ public class LoadAsPalAction extends DefaultAction {
 	}
 
 	XcosPaletteManager.loadUserPalette(fc.getSelection()[0]);
-	
-	//	ConfigXcosManager.saveToRecentOpenedFiles(fc.getSelection()[0]);
-//	if (getGraph(null) == null) { // Called from palettes
-//	    //save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
-//	    Xcos.xcos(fc.getSelection()[0]);
-//	}
-//	else {
-//	    ((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
-//	}
-//	XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
     }
 }

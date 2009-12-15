@@ -99,6 +99,12 @@
           <link linkend="CFSCOPE">CFSCOPE - Floating point scope</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="CLKOUTV_f">CLKOUTV_f - Output activation port</link>
+        </para>
+      </listitem>
 
       <listitem>
         <para>
@@ -133,6 +139,41 @@
       <listitem>
         <para>
           <link linkend="CSCOPXY3D">CSCOPXY3D - z=f(x,y) permanent
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="ENDBLK">ENDBLK - END block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="END_c">END_c - END_c block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="HALT_f">HALT_f - Halt block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUTIMPL_f">OUTIMPL_f - Output implicit port
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Output port
           viewer</link>
         </para>
       </listitem>
