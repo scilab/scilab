@@ -32,6 +32,9 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -94,6 +97,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
@@ -1520,10 +1524,14 @@ public class XcosDiagram extends ScilabGraph {
 	    if (this.getSavedFile() != null) {
 		fc.setSelectedFile(new File(this.getSavedFile()));
 	    }
-	    XcosFileType defaultFileType = XcosFileType.getDefault();
-	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
+
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
 	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(allFilter);
 	    fc.setFileFilter(xcosFilter);
+
+	    fc.setAcceptAllFileFilterUsed(false);
 	    fc.displayAndWait();
 
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
@@ -1748,10 +1756,10 @@ public class XcosDiagram extends ScilabGraph {
      * Load a file with different method depending on it extension 
      * @param theFile File to load
      */
-    protected void transformAndLoadFile(File theFile, boolean wait) {
+    protected boolean transformAndLoadFile(File theFile, boolean wait) {
 	final File fileToLoad = theFile;
 	final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
-
+	boolean result = false;
 
 	switch (filetype) {
 	case COSF:
@@ -1759,7 +1767,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if(wait) {
 		File newFile;
 		newFile = filetype.exportToHdf5(fileToLoad);
-		transformAndLoadFile(newFile, wait);
+		result = transformAndLoadFile(newFile, wait);
 	    } else {
 		Thread transformAction = new Thread() {
 		    public void run() {
@@ -1768,16 +1776,17 @@ public class XcosDiagram extends ScilabGraph {
 			transformAndLoadFile(newFile, false);
 		    }
 		};
-		transformAction.start();	
+		transformAction.start();
+		result = true;
 	    }
 	    break;
 
 	case XCOS:
-	    Document document = null;
-	    try {
-		document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
-	    } catch (IOException e1) {
-		e1.printStackTrace();
+	    
+	    Document document = loadXcosDocument(theFile.getAbsolutePath());
+	    if(document == null) {
+		XcosDialogs.couldNotLoadFile(this);
+		return false;
 	    }
 
 	    XcosCodec codec = new XcosCodec(document);
@@ -1800,20 +1809,39 @@ public class XcosDiagram extends ScilabGraph {
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
 	    }
+	    
+	    result = true;
 	    break;
 
 	case HDF5:
 	    openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
 	    generateUID();
 	    setModified(false);
+	    result = true;
 	    break;
 
 	default:
 	    XcosDialogs.couldNotLoadFile(this);
 	    break;
 	}
+	return result;
     }
 
+    static Document loadXcosDocument(String xcosFile) {
+	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder docBuilder;
+	try {
+	    docBuilder = docBuilderFactory.newDocumentBuilder();
+	    return docBuilder.parse(xcosFile);
+	} catch (ParserConfigurationException e) {
+	    return null;
+	} catch (SAXException e) {
+	    return null;
+	} catch (IOException e) {
+	    return null;
+	}
+    }
+    
     public void generateUID() {
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
