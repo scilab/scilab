@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CUMSUM">Cumulative Sum</link>
+          <link linkend="CUMSUM_blk">Cumulative Sum</link>
         </para>
       </listitem>
 
@@ -78,7 +78,7 @@
 
           <listitem>
             <para>
-              <link linkend="CUMSUM">Example</link>
+              <link linkend="Example_CUMSUM">Example</link>
             </para>
           </listitem>
 

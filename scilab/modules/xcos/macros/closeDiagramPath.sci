@@ -10,22 +10,39 @@
 //
 //
 
-function closeDiagramPath(path, highlighted_blocks)
+function closeDiagramPath(path, highlighted_blocks, close_opened)
 	//3rd : close path diagrams
 	//close opened diagram
-	for k=1:size(path,'*')
-	  xcos_close(path(k));
-	  scs_m=scs_m.objs(path(k)).model.rpar;
-	end
+	
+	if close_opened == %t then
+		for k=1:size(path,'*')
+			xcos_close(path(k));
+			scs_m=scs_m.objs(path(k)).model.rpar;
+		end
 
-	//reset scs_m again
-	scs_m=null()
-	//remove highlight on block
-	if path == [] then
+		//reset scs_m value from calling scope
+		clear scs_m;
+		
+		//remove highlight on block
+		if path == [] then
+			for i = 1 : size(highlighted_blocks,"*")
+				xcosClearBlockWarning(highlighted_blocks(i));
+			end
+		else
+			xcosClearBlockWarning(path(1))
+		end
+	else
+		//disable warnings in diagram path
+		for k=1:size(path,'*')
+			xcosClearBlockWarning(path(k))
+			scs_m=scs_m.objs(path(k)).model.rpar;
+		end
+		
+		//disable warning in the last diagram
 		for i = 1 : size(highlighted_blocks,"*")
 			xcosClearBlockWarning(highlighted_blocks(i));
 		end
-	else
-		xcosClearBlockWarning(path(1))
 	end
+	
+	
 endfunction
