@@ -380,6 +380,8 @@ Xcos:
 
 * bug 5634 fixed - The export functionnality didn't work.
 
+* bug 5639 fixed - The Xcos version was traducted
+
 Tree functions :
 ================
 

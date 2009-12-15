@@ -32,6 +32,12 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
 public final class Xcos {
 
+    /**
+     * The current Xcos version and name
+     */
+    public static final String VERSION = "1.0";
+    public static final String TRADENAME = "Xcos";
+    
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
     /* Static class */

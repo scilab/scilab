@@ -290,21 +290,23 @@ public class XcosDiagram extends ScilabGraph {
 
     	
     	if(source != null && target == null) {
-    	    drawLink = null;
-    	    if(source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof ControlPort || source instanceof CommandPort) {
-    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof BasicLink) {
-    		SplitBlock split = (SplitBlock) addSplitEdge((BasicLink)source, (BasicPort)target);
-    		drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
+    		drawLink = null;
+    		if(source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
+    			drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
+    			drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof ControlPort || source instanceof CommandPort) {
+    			drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof BasicLink) {
+    			SplitBlock split = (SplitBlock) addSplitEdge((BasicLink)source, (BasicPort)target);
+    			drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
     	    }
-    	    info(XcosMessages.DRAW_LINK);
-    	    if(drawLink != null) {
-    		waitPathRelease = true;
+
+    		if(drawLink != null) {
+    	    	waitPathRelease = true;
     	    }
+    	    
+    		info(XcosMessages.DRAW_LINK);
     	    return drawLink;
     	}
     	return null;
@@ -957,210 +959,211 @@ public class XcosDiagram extends ScilabGraph {
      * MouseListener inner class
      */
     private class XcosMouseListener implements MouseListener {
-	private XcosDiagram diagram = null;
+    	private XcosDiagram diagram = null;
 
-	public XcosMouseListener(XcosDiagram diagram) {
-	    this.diagram = diagram;
-	}
+    	public XcosMouseListener(XcosDiagram diagram) {
+    		this.diagram = diagram;
+    	}
 
-	public void mouseClicked(MouseEvent e) {
-	    Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    	public void mouseClicked(MouseEvent e) {
+    		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
 
-	    // Double Click within empty diagram Area
-	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
-		TextBlock textBlock = new TextBlock("Edit me !!!");
-		textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
-		textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
-		addCell(textBlock);
-		return;
-	    }
+    		// Double Click within empty diagram Area
+    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
+    			TextBlock textBlock = new TextBlock("Edit me !!!");
+    			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
+    			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
+    			addCell(textBlock);
+    			return;
+    		}
 
-	    // Double Click within some component
-	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
-	    {
-		getModel().beginUpdate();
-		if (cell instanceof BasicBlock) {
-		    BasicBlock block = (BasicBlock) cell;
-		    e.consume();
-		    block.openBlockSettings(buildEntireContext());
-		}
-		if (cell instanceof BasicLink) {
-		    ((BasicLink) cell).insertPoint(e.getX(), e.getY());
-		}
-		getModel().endUpdate();
-		refresh();
-	    }
+    		// Double Click within some component
+    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
+    		{
+    			getModel().beginUpdate();
+    			if (cell instanceof BasicBlock) {
+    				BasicBlock block = (BasicBlock) cell;
+    				e.consume();
+    				block.openBlockSettings(buildEntireContext());
+    			}
+    			if (cell instanceof BasicLink) {
+    				((BasicLink) cell).insertPoint(e.getX(), e.getY());
+    			}
+    			getModel().endUpdate();
+    			refresh();
+    		}
 
-	    // Ctrl + Shift + Right Middle Click : for debug !!
-	    if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
-	    		&& e.isShiftDown() && e.isControlDown())
-	    {
-	    	System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
-	    	if (cell == null) {
-	    	    System.err.println("[DEBUG] Click on diagram");
-	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
-	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-	    	    System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
-	    	} else {
-	    	    System.err.println("[DEBUG] Click on : " + cell);
-	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
-	    	    System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
-	    	    System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
-	    	    for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
-	    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
-	    	    }
-	    	    
-	    	    if(cell instanceof BasicLink) {
-	    		System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
-	    	    }
-	    	}
-	    	
-	    }
+    		// Ctrl + Shift + Right Middle Click : for debug !!
+    		if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
+    				&& e.isShiftDown() && e.isControlDown())
+    		{
+    			System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
+    			if (cell == null) {
+    				System.err.println("[DEBUG] Click on diagram");
+    				System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+    				System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
+    				System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
+    			} else {
+    				System.err.println("[DEBUG] Click on : " + cell);
+    				System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
+    				System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
+    				System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
+    				for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
+    					System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
+    				}
 
-	    // Context menu
-	    if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-	    		|| e.isPopupTrigger()
-	    		|| XcosMessages.isMacOsPopupTrigger(e)) {
+    				if(cell instanceof BasicLink) {
+    					System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
+    				}
+    			}
 
-		if (cell == null) {
-		    // Display diagram context menu
-		    ContextMenu menu = ScilabContextMenu.createContextMenu();
+    		}
 
-		    menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    
-		    if(diagram instanceof SuperBlockDiagram) {
-			/*---*/
-			menu.getAsSimpleContextMenu().addSeparator();
-			/*---*/
-			menu.add(ShowParentAction.createMenu(diagram));
-		    }
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    		// Context menu
+    		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+    				|| e.isPopupTrigger()
+    				|| XcosMessages.isMacOsPopupTrigger(e)) {
 
-		    ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-		    
-		    menu.setVisible(true);
+    			if (cell == null) {
+    				// Display diagram context menu
+    				ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-		} else {
-		    // Display object context menu
-		    if (cell instanceof BasicBlock) {
-			BasicBlock block = (BasicBlock) cell;
-			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-		    }
-		    if (cell instanceof BasicLink) {
-			BasicLink link = (BasicLink) cell;
-			link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-		    }
-		}
-	    }
-	}
+    				menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
-	public void mouseEntered(MouseEvent e) {
-	}
+    				if(diagram instanceof SuperBlockDiagram) {
+    					/*---*/
+    					menu.getAsSimpleContextMenu().addSeparator();
+    					/*---*/
+    					menu.add(ShowParentAction.createMenu(diagram));
+    				}
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
-	public void mouseExited(MouseEvent e) {
-	}
+    				((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 
-	public void mousePressed(MouseEvent e) {
-	}
+    				menu.setVisible(true);
 
-	public void mouseReleased(MouseEvent e) {
-	    Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    			} else {
+    				// Display object context menu
+    				if (cell instanceof BasicBlock) {
+    					BasicBlock block = (BasicBlock) cell;
+    					block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+    				}
+    				if (cell instanceof BasicLink) {
+    					BasicLink link = (BasicLink) cell;
+    					link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+    				}
+    			}
+    		}
+    	}
 
-	    if(e.getClickCount() == 1 && SwingUtilities.isLeftMouseButton(e)) {
-		if (waitSplitRelease) {
-		    dragSplitPos = new mxPoint(e.getX(), e.getY());
-		    waitSplitRelease = false;
-		    addSplitEdge(splitLink, splitPort);
-		} else if(waitPathRelease){
-		    //Tips for ignore first mouse release after drag
-		    waitPathRelease = false;
-		    waitPathAddEdge = true;
-		    
-		    if(!e.isControlDown()) {
-			//adjust final point
-			mxGeometry geoPort = drawLink.getSource().getGeometry();
-			mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
-			mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
-			mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+    	public void mouseEntered(MouseEvent e) {
+    	}
 
-			getModel().beginUpdate();
-			drawLink.getGeometry().setTargetPoint(point);
-			getModel().endUpdate();
-			refresh();
-		    }
-		} else if(waitPathAddEdge){
-		    if(drawLink != null) {
-			getModel().beginUpdate();
-			//move end of link and add point at old position
-			mxGeometry geo = drawLink.getGeometry();
-			drawLink.addPoint(geo.getTargetPoint().getX(), geo.getTargetPoint().getY());
-			setSelectionCell(drawLink);
+    	public void mouseExited(MouseEvent e) {
+    	}
 
-			if(cell != null) {
-			    mxICell source = drawLink.getSource();
+    	public void mousePressed(MouseEvent e) {
+    	}
 
-			    StringBuffer error = checkMultiplicities(drawLink, source, cell);
-			    if(error == null) {
-				if(cell instanceof BasicLink && cell != drawLink) { //no loop
-				    //draw link with a SplitBlock
-				    dragSplitPos = new mxPoint(e.getX(), e.getY());
-				    addSplitEdge((BasicLink)cell, drawLink);
-				} else {
-				    getModel().setTerminal(drawLink, cell, false);
-				}
+    	public void mouseReleased(MouseEvent e) {
+    		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
 
-				//invert source and target if needed
-				if(checkEdgeDirection(source, cell) == false) {
-				    getModel().beginUpdate();
-				    drawLink.invertDirection();
-				    getModel().endUpdate();
-				}
+    		if(SwingUtilities.isLeftMouseButton(e)) {
+    			if (waitSplitRelease) {
+    				dragSplitPos = new mxPoint(e.getX(), e.getY());
+    				waitSplitRelease = false;
+    				addSplitEdge(splitLink, splitPort);
+    			} else if(waitPathRelease){
+    				//Tips for ignore first mouse release after drag
+    				waitPathRelease = false;
+    				waitPathAddEdge = true;
 
-				//reset info, flags and object
-				cancelDrawLinkAction();
-			    } else {
-				if(cell != drawLink) {
-				    JOptionPane.showMessageDialog(getAsComponent(), error);
-				}
-				setSelectionCell(drawLink);
-			    }
-			} else {
-			    if(!e.isControlDown()) {
-				geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
-			    } else {
-				geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
-			    }
-			}
-			getModel().endUpdate();
-			refresh();
-		    } else {
-			cancelDrawLinkAction();
-		    }
-		} else {
-		    dragSplitPos = null;
-		}
-	    }
-	}
+    				if(!e.isControlDown()) {
+    					//adjust final point
+    					mxGeometry geoPort = drawLink.getSource().getGeometry();
+    					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+    					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
+    					mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+
+    					getModel().beginUpdate();
+    					drawLink.getGeometry().setTargetPoint(point);
+    					getModel().endUpdate();
+    					refresh();
+    				}
+    			} else if(waitPathAddEdge){
+    				System.err.println("mouseReleased : waitPathAddEdge");
+    				if(drawLink != null) {
+    					getModel().beginUpdate();
+    					//move end of link and add point at old position
+    					mxGeometry geo = drawLink.getGeometry();
+    					drawLink.addPoint(geo.getTargetPoint().getX(), geo.getTargetPoint().getY());
+    					setSelectionCell(drawLink);
+
+    					if(cell != null) {
+    						mxICell source = drawLink.getSource();
+
+    						StringBuffer error = checkMultiplicities(drawLink, source, cell);
+    						if(error == null) {
+    							if(cell instanceof BasicLink && cell != drawLink) { //no loop
+    								//draw link with a SplitBlock
+    								dragSplitPos = new mxPoint(e.getX(), e.getY());
+    								addSplitEdge((BasicLink)cell, drawLink);
+    							} else {
+    								getModel().setTerminal(drawLink, cell, false);
+    							}
+
+    							//invert source and target if needed
+    							if(checkEdgeDirection(source, cell) == false) {
+    								getModel().beginUpdate();
+    								drawLink.invertDirection();
+    								getModel().endUpdate();
+    							}
+
+    							//reset info, flags and object
+    							cancelDrawLinkAction();
+    						} else {
+    							if(cell != drawLink) {
+    								JOptionPane.showMessageDialog(getAsComponent(), error);
+    							}
+    							setSelectionCell(drawLink);
+    						}
+    					} else {
+    						if(!e.isControlDown()) {
+    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+    						} else {
+    							geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+    						}
+    					}
+    					getModel().endUpdate();
+    					refresh();
+    				} else {
+    					cancelDrawLinkAction();
+    				}
+    			} else {
+    				dragSplitPos = null;
+    			}
+    		}
+    	}
     }
 
     static mxPoint getPointPosition(mxPoint origin, mxPoint click) {
