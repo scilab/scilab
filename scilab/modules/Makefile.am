@@ -129,9 +129,12 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la \
-	$(top_builddir)/modules/hdf5/libscihdf5-forceload.la
-# HDF5 is here because it needs the JVM (see bug TODO)
+	$(top_builddir)/modules/xpad/libscixpad.la
+
+if HDF5
+GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
+# HDF5 is here because it needs the JVM (see bug #5481)
+endif
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
@@ -141,9 +144,11 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la
-	$(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
-# HDF5 is here because it needs the JVM (see bug TODO)
 
+if HDF5
+NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
+# HDF5 is here because it needs the JVM (see bug #5481)
+endif
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \

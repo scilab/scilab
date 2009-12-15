@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -147,12 +147,6 @@ msgstr "%s: 警告: ファイル %s でエラー : ファイル %s を無視し�
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
-
-#
-# File: macros/recompilefunction.sci, line: 19
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ:  関数名を想定します。\n"
 
 #
 # File: macros/head_comments.sci, line: 13

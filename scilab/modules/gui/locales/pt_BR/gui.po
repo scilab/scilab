@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -753,6 +753,12 @@ msgstr "Agradecimentos"
 msgid "Add color in listbox"
 msgstr ""
 
+msgid "All %s files"
+msgstr ""
+
+msgid "All Scilab files"
+msgstr ""
+
 msgid "All files"
 msgstr ""
 
@@ -1121,6 +1127,15 @@ msgstr "Mensagem do Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Solicitação de Múltiplos Valores do Scilab"
 
+msgid "Scilab SCE files"
+msgstr ""
+
+msgid "Scilab SCI files"
+msgstr ""
+
+msgid "Scilab binary files"
+msgstr ""
+
 msgid "Select All"
 msgstr ""
 
@@ -1443,6 +1458,12 @@ msgid ""
 msgstr ""
 "Valor errado para a propriedade '%s': Esperava-se um string ou um vetor "
 "linha de reais 1 x %d.\n"
+
+msgid "Xcos"
+msgstr ""
+
+msgid "Xcos files"
+msgstr ""
 
 msgid "Yes"
 msgstr ""

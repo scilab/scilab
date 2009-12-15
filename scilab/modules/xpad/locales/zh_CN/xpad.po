@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -45,16 +45,16 @@ msgstr ""
 msgid "?"
 msgstr ""
 
-msgid "ASCII Encoding"
-msgstr "ASCII编码"
-
 msgid "About"
 msgstr "关于"
 
 msgid "All"
 msgstr "全部"
 
-msgid "Auto Reformat Selection"
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr ""
+
+msgid "Auto (Default)"
 msgstr ""
 
 msgid "Backward"
@@ -69,8 +69,20 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "区分大小写"
 
+msgid "Change Color"
+msgstr ""
+
+msgid "Change Colors"
+msgstr ""
+
 msgid "Close"
 msgstr "关闭"
+
+msgid "Close All"
+msgstr ""
+
+msgid "Close All But This"
+msgstr ""
 
 msgid "Colorization canceled"
 msgstr ""
@@ -87,10 +99,16 @@ msgstr ""
 msgid "Copy"
 msgstr "复制"
 
-msgid "Copyright (c) 2009 (INRIA)"
+msgid "Copyright (c)"
 msgstr ""
 
 msgid "Correct Indentation"
+msgstr ""
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
+
+msgid "Could not find the temporary file."
 msgstr ""
 
 msgid "Cut"
@@ -111,10 +129,16 @@ msgstr "文档"
 msgid "Edit"
 msgstr "编辑"
 
-msgid "Editor 1.0"
+msgid "Edit selection in a new tab"
+msgstr ""
+
+msgid "Editor"
 msgstr ""
 
 msgid "Editor error"
+msgstr ""
+
+msgid "Enable Auto Reformat"
 msgstr ""
 
 msgid "Encoding"
@@ -130,6 +154,9 @@ msgid "Execute"
 msgstr "执行"
 
 msgid "Execute File Into Scilab"
+msgstr ""
+
+msgid "Execute selection into Scilab"
 msgstr ""
 
 msgid "Exit"
@@ -156,11 +183,20 @@ msgstr "向前"
 msgid "Goto line"
 msgstr "转到行"
 
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
 msgid "Highlight current line"
 msgstr "高亮显示当前行"
 
 msgid "Invalid regular expression : %s"
 msgstr "不正确的正则表达式：%s"
+
+msgid "Line Endings"
+msgstr ""
 
 msgid "Line Numbers"
 msgstr "行号"
@@ -168,7 +204,10 @@ msgstr "行号"
 msgid "Load Into Scilab"
 msgstr "载入Scilab"
 
-msgid "Loading..."
+msgid "Loading"
+msgstr ""
+
+msgid "Mac Classic (CR)"
 msgstr ""
 
 msgid "New"
@@ -176,6 +215,9 @@ msgstr "新建"
 
 msgid "Next tab"
 msgstr "下一个标签"
+
+msgid "No text selected"
+msgstr ""
 
 msgid "Ok"
 msgstr "确定"
@@ -191,9 +233,6 @@ msgstr "页面设置"
 
 msgid "Paste"
 msgstr "粘贴"
-
-msgid "Plain Text"
-msgstr "纯文本"
 
 msgid "Previous tab"
 msgstr "上一个标签"
@@ -233,6 +272,9 @@ msgstr "重置缺省字体"
 
 msgid "Save"
 msgstr "保存"
+
+msgid "Save All"
+msgstr ""
 
 msgid "Save as"
 msgstr "另存为"
@@ -287,9 +329,6 @@ msgstr "没有发现字符串 %s"
 msgid "Syntax Type"
 msgstr "语法类型"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
-
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -316,14 +355,14 @@ msgstr "文件"
 msgid "This file is a binary, saving it will result in a corrupt file."
 msgstr ""
 
-msgid "UTF-8 Encoding"
-msgstr "UTF－8编码"
-
 msgid "Uncomment Selection"
 msgstr "取消选区注释"
 
 msgid "Undo"
 msgstr "撤销"
+
+msgid "Unix (LF)"
+msgstr ""
 
 msgid "Untitled "
 msgstr "未命名 "
@@ -334,14 +373,14 @@ msgstr "查看"
 msgid "Whole word"
 msgstr "全词匹配"
 
+msgid "Windows/DOS (CR + LF)"
+msgstr ""
+
 msgid "Word Wrap"
 msgstr "文字换行"
 
 msgid "Wrap search"
 msgstr "回到文档开始处继续搜寻"
-
-msgid "XML"
-msgstr "XML"
 
 msgid "You have passed the beginning of the document"
 msgstr ""

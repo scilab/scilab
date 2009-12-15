@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-23 09:48+0000\n"
+"PO-Revision-Date: 2009-12-12 17:35+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -68,12 +68,20 @@ msgstr ""
 "S'està generant el document mestre:\n"
 
 #, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#, c-format
 msgid "%s: %s file hasn''t been moved in the %s directory."
 msgstr "%s: El fitxer %s no s'ha mogut al directori %s."
 
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr "%s: El %s no s'ha generat."
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -92,10 +100,30 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Pila d'execució en Java %s.\n"
 
 #, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: S'ha ignorat el fitxer %s."
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
 "mateixa mida.\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Processant el fitxer: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%s: Processant el fitxer: %s a %s\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: S'està llegint del directori %s\n"
+
+#, c-format
+msgid "%s: Scilab 5.0 or more is required.\n"
+msgstr "%s: És necessari tenir Scilab 5.0 o superior.\n"
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -104,6 +132,10 @@ msgstr "%s: Els 2 mlist no poden tenir cap camp en comú.\n"
 #, c-format
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s: El fitxer de CHAPTER té un format incorrecte a la línia %d\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: El fitxer %s no existeix.\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -154,6 +186,12 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -250,11 +288,12 @@ msgstr "%s: No s'ha trobat hhc.exe.\n"
 msgid "%s: no file generate.\n"
 msgstr "%s: No s'ha generat cap fitxer.\n"
 
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: S'ha processat %i fitxers.\n"
+
 msgid "-- Deleting help files --\n"
 msgstr "-- S'està eliminant els fitxers d'ajuda --\n"
-
-msgid "...demodir must be a directory."
-msgstr "...demodir ha de ser un directori."
 
 msgid "Building the scilab manual file ["
 msgstr "S'està generant el fitxer de manual de l'Scilab ["
@@ -265,13 +304,11 @@ msgstr "Capítol de l'ajuda"
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
+"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
-
-msgid "Scilab 5.0 or more is required."
-msgstr "Es necessita tenir la versió 5.0 o major del Scilab."
 
 #, c-format
 msgid "Warning %s does not follow the dtd"
