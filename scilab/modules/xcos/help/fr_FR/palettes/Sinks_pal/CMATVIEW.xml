@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CMATVIEW">
+  <refnamediv>
+    <refname>CMATVIEW</refname>
+    <refpurpose>Scope matriciel coloré</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/CMATVIEW_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_CMATVIEW">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CMATVIEW">Scope matriciel coloré</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_CMATVIEW">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_CMATVIEW">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_CMATVIEW">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_CMATVIEW">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_CMATVIEW">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondecalcul_CMATVIEW">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Voiraussi_CMATVIEW">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_CMATVIEW">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_CMATVIEW">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Sinks - Palette Affichage</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_CMATVIEW">
+    <title>Description</title>
+    <para>
+CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en couleur.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_CMATVIEW">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/CMATVIEW_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">ColorMap</emphasis>
+        </para>
+        <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
+        <para> Propriétés : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMATVIEW_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Minimum level range</emphasis>
+        </para>
+        <para> The minimum level range is the minimum value who comes in the regular input port. It would be linked to the 'cold value' of the colormap.</para>
+        <para> Propriétés : A scalar </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Maximum level range</emphasis>
+        </para>
+        <para> The maximum level range is the maximum value who comes in the regular input port. It would be linked to the 'hot value' of the colormap.</para>
+        <para> Propriétés : A scalar</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_CMATVIEW">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">cmatview</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_CMATVIEW">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Sinks/CMATVIEW.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondecalcul_CMATVIEW">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/cmatview.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Voiraussi_CMATVIEW">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CMAT3D">CMAT3D - Scope matriciel 3D (Bloc Scicos)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_CMATVIEW">
+    <title>Auteurs</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Benoit Bayol</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
