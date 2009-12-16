@@ -23,34 +23,12 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 public enum XcosFileType {
 	COSF("cosf", XcosMessages.FILE_COSF) {
 		public File exportToHdf5(File arg0) {
-			File tempOutput = null;
-			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "exec(\"" + arg0.getAbsolutePath() + "\", -1);";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			Signal.wait(tempOutput.getAbsolutePath());
-			return tempOutput;
+			return loadScicosDiagram(arg0);
 		}
 	},
 	COS("cos", XcosMessages.FILE_COS) {
 		public File exportToHdf5(File arg0) {
-			File tempOutput = null;
-			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "load(\"" + arg0.getAbsolutePath() + "\");";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			Signal.wait(tempOutput.getAbsolutePath());
-			return tempOutput;
+			return loadScicosDiagram(arg0);
 		}
 	},
 	HDF5("h5", XcosMessages.FILE_HDF5) {
@@ -174,5 +152,20 @@ public enum XcosFileType {
 	    }
 	    
 	    return result;
+	}
+	
+	public static File loadScicosDiagram(File filename) {
+	    File tempOutput = null;
+	    try {
+		tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
+		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
+		InterpreterManagement.requestScilabExec(cmd);
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	    Signal.wait(tempOutput.getAbsolutePath());
+	    return tempOutput;
 	}
 }
