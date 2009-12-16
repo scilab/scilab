@@ -1,3 +1,19 @@
+               Changes between version 5.2.0 and 5.2.1 of Scilab
+               =================================================
+
+
+Xcos:
+=====
+
+Bug fixes:
+==========
+
+* bug 5668 fixed - When using Scilab graphic with a LaTeX expression, the 
+                   message 
+                   "Jlatexmath: Could not access to createFont. Please update to
+                   java 6" was displayed
+
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
