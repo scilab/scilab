@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-11-20 15:45+0000\n"
+"PO-Revision-Date: 2009-12-11 15:24+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -53,17 +53,17 @@ msgstr ""
 msgid "?"
 msgstr "_?"
 
-msgid "ASCII Encoding"
-msgstr "Codifica ASCII"
-
 msgid "About"
 msgstr "I_nformazioni"
 
 msgid "All"
 msgstr "Tutto"
 
-msgid "Auto Reformat Selection"
-msgstr "_Riformatta automaticamente la selezione"
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr "Chiudere veramente l'Editor di testo?"
+
+msgid "Auto (Default)"
+msgstr ""
 
 msgid "Backward"
 msgstr "_Indietro"
@@ -77,8 +77,20 @@ msgstr "Non è possibile caricare \"xpadConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Distingui fra maiuscolo e minuscolo"
 
+msgid "Change Color"
+msgstr "Cambia il colore"
+
+msgid "Change Colors"
+msgstr "Cambia i colori"
+
 msgid "Close"
 msgstr "_Chiudi"
+
+msgid "Close All"
+msgstr "Chiudi tutte"
+
+msgid "Close All But This"
+msgstr "Chiudi tutte tranne questa"
 
 msgid "Colorization canceled"
 msgstr "Colorazione annullata"
@@ -95,11 +107,17 @@ msgstr "Continuare?"
 msgid "Copy"
 msgstr "_Copia"
 
-msgid "Copyright (c) 2009 (INRIA)"
-msgstr "Diritto d'autore (c) 2009 (INRIA)"
+msgid "Copyright (c)"
+msgstr "Diritto d'atutore (c)"
 
 msgid "Correct Indentation"
 msgstr "Correggi l'indentazione"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
+
+msgid "Could not find the temporary file."
+msgstr "Non è possibile trovare il file temporaneo"
 
 msgid "Cut"
 msgstr "_Taglia"
@@ -119,11 +137,17 @@ msgstr "_Documento"
 msgid "Edit"
 msgstr "_Modifica"
 
-msgid "Editor 1.0"
-msgstr "Editor 1.0"
+msgid "Edit selection in a new tab"
+msgstr "Modifica la selezione in una nuova scheda"
+
+msgid "Editor"
+msgstr "Editor"
 
 msgid "Editor error"
 msgstr "Errore dell'editor"
+
+msgid "Enable Auto Reformat"
+msgstr "Abilita la riformattazione automatica"
 
 msgid "Encoding"
 msgstr "_Codifica"
@@ -139,6 +163,9 @@ msgstr "_Esegui"
 
 msgid "Execute File Into Scilab"
 msgstr "Esegui un _file in Scilab"
+
+msgid "Execute selection into Scilab"
+msgstr "Esegui la selezione in Scilab"
 
 msgid "Exit"
 msgstr "_Esci"
@@ -164,11 +191,20 @@ msgstr "Avanti"
 msgid "Goto line"
 msgstr "_Vai alla linea"
 
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr "Aiuto su un testo selezionato"
+
 msgid "Highlight current line"
 msgstr "_Evidenzia la riga attuale"
 
 msgid "Invalid regular expression : %s"
 msgstr "Espressione regolare non valida : %s"
+
+msgid "Line Endings"
+msgstr "Fine riga"
 
 msgid "Line Numbers"
 msgstr "_Numeri di riga"
@@ -176,14 +212,20 @@ msgstr "_Numeri di riga"
 msgid "Load Into Scilab"
 msgstr "_Carica in Scilab"
 
-msgid "Loading..."
-msgstr "Caricamento in corso..."
+msgid "Loading"
+msgstr "Caricamento in corso"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classico (CR)"
 
 msgid "New"
 msgstr "_Nuovo"
 
 msgid "Next tab"
 msgstr "Scheda s_uccessiva"
+
+msgid "No text selected"
+msgstr "Nessun testo selezionato"
 
 msgid "Ok"
 msgstr "Ok"
@@ -199,9 +241,6 @@ msgstr "_Imposta pagina"
 
 msgid "Paste"
 msgstr "_Incolla"
-
-msgid "Plain Text"
-msgstr "Testo semplice"
 
 msgid "Previous tab"
 msgstr "Scheda pr_ecedente"
@@ -241,6 +280,9 @@ msgstr "_Reimposta il font predefinito"
 
 msgid "Save"
 msgstr "_Salva"
+
+msgid "Save All"
+msgstr "Salva tutto"
 
 msgid "Save as"
 msgstr "Sal_va come"
@@ -296,9 +338,6 @@ msgstr "La stringa %s non è stata trovata"
 msgid "Syntax Type"
 msgstr "Tipo di sintassi"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Il Consorzio Scilab (DIGITEO)"
-
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -327,14 +366,14 @@ msgstr ""
 "Questo file è di tipo binario, il suo salvataggio porterà ad un file "
 "corrotto."
 
-msgid "UTF-8 Encoding"
-msgstr "Codifica UTF-8"
-
 msgid "Uncomment Selection"
 msgstr "_Togli il commento alla selezione"
 
 msgid "Undo"
 msgstr "_Annulla"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
 
 msgid "Untitled "
 msgstr "Senza nome "
@@ -345,14 +384,14 @@ msgstr "_Visualizza"
 msgid "Whole word"
 msgstr "Parola intera"
 
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
 msgid "Word Wrap"
 msgstr "A capo automatico"
 
 msgid "Wrap search"
 msgstr "Ricerca ciclica"
-
-msgid "XML"
-msgstr "XML"
 
 msgid "You have passed the beginning of the document"
 msgstr "È stato passato l'inizio del documento"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-12 12:04+0000\n"
+"PO-Revision-Date: 2009-11-26 18:20+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -202,7 +202,7 @@ msgstr ""
 "essere nell'insieme {%s}.\n"
 
 msgid "Arma identifcation"
-msgstr ""
+msgstr "Identificazione dello ARMA"
 
 msgid "Signal Processing"
 msgstr "Elaborazione dei segnali"
@@ -214,7 +214,7 @@ msgid "Theoritical value"
 msgstr "Valore teorico"
 
 msgid "Using macro mese"
-msgstr ""
+msgstr "Usando la macro MESE"
 
 msgid "estimates xf"
 msgstr "stime xf"

@@ -261,8 +261,10 @@ public final class BlockPositioning {
 		&& block.getParentDiagram() != null 
 		&& block.getParentDiagram().getView() != null 
 		&& block.getParentDiagram().getView().getState(block) != null) {
+	    block.getParentDiagram().getModel().beginUpdate();
 	    updatePortsPosition(block);
 	    rotateAllPorts(block);
+	    block.getParentDiagram().getModel().endUpdate();
 	}
     }
 
@@ -305,6 +307,22 @@ public final class BlockPositioning {
 	if (block.getAngle() == 90) { return 180; }
 	if (block.getAngle() == 180) { return 270; }
 	if (block.getAngle() == 270) { return 0; }
+	return 0;
+    }
+    
+    /**
+     * Convert any angle value to a valid block value
+     * @param angle the non valid value
+     * @return the nearest graph valid value
+     */
+    public static int roundAngle(int angle) {
+	if (angle < 0 || angle > 360)
+	    angle = angle + 360 % 360;
+	
+	if (angle < (0 + 90)/2) { return 0; }
+	if (angle < (90 + 180)/2) { return 90; }
+	if (angle < (180 + 270)/2) { return 180; }
+	if (angle < (270 + 360)/2) { return 270; }
 	return 0;
     }
    

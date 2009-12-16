@@ -35,7 +35,7 @@ public final class XcosMessages {
 
     public static final String DOTS = "...";
 
-    public static final String UNTITLED = "Untitled";
+    public static final String UNTITLED = Messages.gettext("Untitled");
 
     /** File menu */
     public static final String FILE = Messages.gettext("File");
@@ -55,7 +55,7 @@ public final class XcosMessages {
     /** Palette menu in palette browser*/
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
-    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove user defined palette");
+    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -109,7 +109,6 @@ public final class XcosMessages {
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
-    public static final String XCOS_VERSION = Messages.gettext("Xcos version 1.0");
 
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -203,7 +202,6 @@ public final class XcosMessages {
     public static final String SETUP_TITLE =  Messages.gettext("Set Parameters");
     
     /* About box */
-    public static final String VERSION = Messages.gettext("Xcos 1.0");
     public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
     public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
     public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
@@ -219,6 +217,8 @@ public final class XcosMessages {
     public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
     public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
+    public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
+    
     
     /** Debug level messages  */
     public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-21 17:52+0000\n"
+"PO-Revision-Date: 2009-12-10 16:01+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -690,6 +690,9 @@ msgstr "Autore(i)"
 msgid "Automaticaly Installed"
 msgstr "Installato automaticamente"
 
+msgid "Bytes"
+msgstr "Byte"
+
 msgid "Category(ies)"
 msgstr "Categoria(e)"
 
@@ -717,26 +720,28 @@ msgstr "Installa"
 msgid "Install Directory"
 msgstr "Directory di installazione"
 
-msgid "Installation done !"
-msgstr "Installazione effettuata !"
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"Installazione effettuata! Riavviare Scilab per effettuare i cambiamenti."
 
-msgid "Installation failed !"
-msgstr "Installazione fallita !"
+msgid "Installation failed!"
+msgstr "Installazione fallita!"
 
 msgid "Installing..."
 msgstr "Installazione in corso..."
 
-msgid "Ko"
-msgstr "Kb"
+msgid "KB"
+msgstr "KB"
 
 msgid "License"
 msgstr "Licenza"
 
+msgid "MB"
+msgstr "MB"
+
 msgid "Maintainer(s)"
 msgstr "Curatore(i)"
-
-msgid "Mo"
-msgstr "Mb"
 
 msgid "Modules"
 msgstr "Moduli"
@@ -748,20 +753,18 @@ msgstr ""
 msgid "No module selected"
 msgstr "Nessun modulo selezionato"
 
-msgid "Octets"
-msgstr "Ottetti"
-
 msgid "Package"
 msgstr "Pacchetto"
 
 msgid "Remove"
 msgstr "Rimuovi"
 
-msgid "Remove done !"
-msgstr "Rimozione effettuata !"
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Rimozione effettuata! Riavviare Scilab per effettuare i cambiamenti. "
 
-msgid "Remove failed !"
-msgstr "Rimozione fallita !"
+msgid "Remove failed!"
+msgstr "Rimozione fallita!"
 
 msgid "Removing..."
 msgstr "Rimozione in corso..."
@@ -781,11 +784,12 @@ msgstr "Titolo"
 msgid "Update"
 msgstr "Aggiorna"
 
-msgid "Update done !"
-msgstr "Aggiornamento effettuato !"
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"Aggiornamento effettuato! Riavviare Scilab per effettuare i cambiamenti."
 
-msgid "Update failed !"
-msgstr "Aggiornamento fallito !"
+msgid "Update failed!"
+msgstr "Aggiornamento fallito!"
 
 msgid "Updating..."
 msgstr "Aggiornamento in corso..."

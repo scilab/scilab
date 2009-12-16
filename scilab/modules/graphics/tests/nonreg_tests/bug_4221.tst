@@ -16,13 +16,15 @@
 // graypolarplot uses to much memory.
 // 
 
-stacksize(200000000);
+stacksize('max');
 
 rho=1:256;
 theta=(1:360)./180.*%pi;
 z=30+round(theta'*(1+rho^2));
 f=gcf();
 f.color_map= hotcolormap(128);
-clf();graypolarplot(theta,rho,z);
+clf();
+graypolarplot(theta,rho,z);
+xdel(winsid());
 
 // It's just a 256x360 matrix, it should not complain about memory

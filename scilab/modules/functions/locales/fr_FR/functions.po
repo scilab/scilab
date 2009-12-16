@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -102,12 +102,6 @@ msgstr "%s : Attention : Erreur dans le fichier %s : %s. Fichier ignoré\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un nom de fonction "
-"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"

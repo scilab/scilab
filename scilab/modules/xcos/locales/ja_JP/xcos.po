@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -36,6 +36,10 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
@@ -45,6 +49,9 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 msgid "?"
 msgstr "?"
+
+msgid "A SuperBlock must be selected to generate code"
+msgstr ""
 
 msgid "About Xcos"
 msgstr "Xcos情報"
@@ -85,6 +92,10 @@ msgstr "キャンセル"
 msgid "Center"
 msgstr "中央"
 
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+
 msgid "Close"
 msgstr "閉じる"
 
@@ -104,8 +115,8 @@ msgstr "コンパイル進行中, 結果は 'scicos_cpr' 変数に保存され�
 msgid "Compile"
 msgstr "コンパイル"
 
-msgid "Continuous"
-msgstr "連続性"
+msgid "Continuous time systems"
+msgstr ""
 
 msgid "Copy"
 msgstr "コピー"
@@ -124,6 +135,9 @@ msgstr "カスタマイズ"
 
 msgid "Cut"
 msgstr "切り取り"
+
+msgid "Debug block calls without trace"
+msgstr ""
 
 msgid "Default"
 msgstr "初期値"
@@ -144,17 +158,14 @@ msgid "Diagram browser"
 msgstr "図形 ブラウザー"
 
 msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
-"図形は、最後の保存から修正されました\n"
-"保存しますか?"
 
 msgid "Discontinuities"
 msgstr "不連続性"
 
-msgid "Discrete"
-msgstr "分離"
+msgid "Discrete time systems"
+msgstr ""
 
 msgid "Do you want a transparent background image?"
 msgstr "透明な背景イメージが欲しいですか?"
@@ -171,8 +182,11 @@ msgstr "編集"
 msgid "Electrical"
 msgstr "電気工学"
 
-msgid "Events"
-msgstr "イベント"
+msgid "Event handling"
+msgstr ""
+
+msgid "Execution trace and Debug"
+msgstr ""
 
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
@@ -266,17 +280,29 @@ msgstr "反転選択"
 msgid "Left"
 msgstr "左"
 
+msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgstr ""
+
 msgid "Link Style"
 msgstr "リンク・スタイル"
+
+msgid "Load as palette"
+msgstr ""
 
 msgid "Loading diagram"
 msgstr "図形取り込み"
 
+msgid "Loading palettes"
+msgstr ""
+
+msgid "Loading user defined palettes"
+msgstr ""
+
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
-msgid "Math Operations"
-msgstr "数学操作"
+msgid "Mathematical Operations"
+msgstr ""
 
 msgid "Matrix"
 msgstr "行列"
@@ -286,6 +312,9 @@ msgstr "最大統合時間差"
 
 msgid "Middle"
 msgstr "中間"
+
+msgid "Mirror"
+msgstr ""
 
 msgid "New"
 msgstr "新しい"
@@ -298,6 +327,9 @@ msgstr "新しいパレット"
 
 msgid "No block selected"
 msgstr "ブロックなし選択"
+
+msgid "No trace nor debug printing"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "100% 標準"
@@ -317,14 +349,21 @@ msgstr "パレット"
 msgid "Paste"
 msgstr "貼り付け"
 
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
 msgid "Port & Subsystem"
 msgstr "ポートとサブシステム"
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
+msgstr ""
 
 msgid "Print"
 msgstr "印刷"
 
-msgid "Quit"
-msgstr "終了"
+msgid "Quit Xcos"
+msgstr ""
 
 msgid "Real time scaling"
 msgstr "実時間スケール"
@@ -365,6 +404,9 @@ msgstr "GUIブロックの保存"
 msgid "Saving diagram"
 msgstr "図形保存"
 
+msgid "Scicos file"
+msgstr ""
+
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
@@ -373,20 +415,20 @@ msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' モジュールはインストールされていません。\n"
 
+msgid "Scilab file"
+msgstr ""
+
 msgid "Select all"
 msgstr "全て選択"
 
 msgid "Set Context"
 msgstr "コンテキスト設定"
 
-msgid "Set Debug Level"
-msgstr "デバッグレベル設定"
-
 msgid "Set Parameters"
 msgstr "パラメーター設定"
 
-msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-msgstr "デバッグレベル設定 (0,1,2,3) </br>scicos_debug(n) を実行します"
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
+msgstr ""
 
 msgid "Setup"
 msgstr "セットアップ"
@@ -443,9 +485,6 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr "熱-水力学"
 
-msgid "Threshold"
-msgstr "閾値"
-
 msgid "Tolerance on time"
 msgstr "許容時間"
 
@@ -466,6 +505,9 @@ msgstr "未知の図形バージョン : "
 
 msgid "Untitled"
 msgstr "無題"
+
+msgid "User-Defined"
+msgstr ""
 
 msgid "User-Defined Functions"
 msgstr "ユーザ定義関数"
@@ -500,6 +542,9 @@ msgstr "Xcos ヘルプ"
 msgid "Xcos error"
 msgstr "Xcos エラー"
 
+msgid "Xcos file"
+msgstr ""
+
 msgid "Xcos version 1.0"
 msgstr "Xcos バージョン 1.0"
 
@@ -511,6 +556,9 @@ msgid ""
 msgstr ""
 "Scilab命令を利用したブロック定義で使われた象徴的なパラメーターを定義するために、ここにscilab指示を入れることができます。<br/>一旦確認され"
 "ると、これらの命令は評価されます。(すなわち、OKをクリックすると常に図形がロードされて評価されます)"
+
+msgid "Zero crossing detection"
+msgstr ""
 
 msgid "Zoom In"
 msgstr "ズーム・イン"

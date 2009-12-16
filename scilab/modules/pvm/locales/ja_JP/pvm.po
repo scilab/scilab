@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-09 16:27+0000\n"
+"PO-Revision-Date: 2009-11-27 18:11+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -32,7 +32,7 @@ msgstr "%s: エラーが起きました: %s\n"
 # File: src/c/pvm_proc_ctrl.c, line: 470
 #, c-format
 msgid "%s: Error while creating processes: %s.\n"
-msgstr "%s: 作り出そうとしている過程でエラー: %s\n"
+msgstr "%s: 作成中にエラー: %s\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 315
@@ -134,7 +134,7 @@ msgstr "エラー pvm_reduce: スカラー型ではありません\n"
 # File: src/c/pvm_grp.c, line: 138
 #, c-format
 msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "エラー pvm_reduce: 未知の削減操作 %s\n"
+msgstr "エラー pvm_reduce: 未知の約分操作 %s\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 230
@@ -266,9 +266,9 @@ msgid ""
 "in order to spawn scilab\n"
 msgstr ""
 "標準構成ファイル $SCI%s は使われます。\n"
-"SCI=%s で\n"
-"SCIがリモート・ホストに設定されている必要があります\n"
+"SCI=%sで\n"
 "Scilabを作成するために\n"
+"SCI はリモート・ホストに設定されている必要があります\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 329

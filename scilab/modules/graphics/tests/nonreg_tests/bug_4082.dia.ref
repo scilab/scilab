@@ -5,7 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
-// <-- FRENCH IMPOSED -->
 // <-- Non-regression test for bug 4082 -->
 //
 // <-- Bugzilla URL -->
@@ -21,4 +20,4 @@ save(TMPDIR+'/foo.scg',gcf()) //or xsave
 clf()
 load(TMPDIR+'/foo.scg') //or xload
 f = gcf();
-if f.figure_name <> "Figure n°%d" then bugmes();quit;end
+if f.figure_name <> _("Graphic window number %d") then bugmes();quit;end

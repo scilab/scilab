@@ -121,7 +121,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType2);
+			sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);

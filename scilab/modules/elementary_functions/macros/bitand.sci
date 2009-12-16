@@ -52,14 +52,14 @@ function z = bitand(x,y)
 		| (type(x)==8  & (inttype(x)<10) ) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand",1));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitand",1));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
 		| (type(y)==8  & (inttype(y)<10) ) ..
 		| (type(y)<>1  & type(y)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand",2));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitand",2));
 	end
 	
 	// Algorithm

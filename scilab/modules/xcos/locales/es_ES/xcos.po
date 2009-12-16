@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-20 17:58+0000\n"
-"Last-Translator: Federico Vera <Unknown>\n"
+"PO-Revision-Date: 2009-12-10 19:38+0000\n"
+"Last-Translator: Leandro Gómez <leogg@ubuntu.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,6 +34,12 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"booleano.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
@@ -45,6 +51,9 @@ msgstr ""
 
 msgid "?"
 msgstr "¿?"
+
+msgid "A SuperBlock must be selected to generate code"
+msgstr "Debe seleccionarse un SuperBloque para generar código"
 
 msgid "About Xcos"
 msgstr "Acerca de Xcos"
@@ -85,6 +94,10 @@ msgstr "Cancelar"
 msgid "Center"
 msgstr "Centrar"
 
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+
 msgid "Close"
 msgstr "Cerrar"
 
@@ -106,8 +119,8 @@ msgstr ""
 msgid "Compile"
 msgstr "Compilar"
 
-msgid "Continuous"
-msgstr "Continuo"
+msgid "Continuous time systems"
+msgstr "Sistemas de tiempo continuo"
 
 msgid "Copy"
 msgstr "Copiar"
@@ -126,6 +139,9 @@ msgstr "Personalizar"
 
 msgid "Cut"
 msgstr "Cortar"
+
+msgid "Debug block calls without trace"
+msgstr "Depurar llamadas de bloques sin traza"
 
 msgid "Default"
 msgstr "Predeterminado"
@@ -146,17 +162,15 @@ msgid "Diagram browser"
 msgstr "Explorador de diagramas"
 
 msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
-"El diagrama ha sido modificado desde la últimas vez\n"
-"¿desea guardarlo?"
+"El diagrama fue modificado desde la última vez.<br/> ¿Desea guardarlo?"
 
 msgid "Discontinuities"
 msgstr "Discontinuidades"
 
-msgid "Discrete"
-msgstr "Discreto"
+msgid "Discrete time systems"
+msgstr "Sistemas de tiempo discreto"
 
 msgid "Do you want a transparent background image?"
 msgstr "¿Desea una imagen de fondo transparente?"
@@ -173,8 +187,11 @@ msgstr "Editar"
 msgid "Electrical"
 msgstr "Eléctrica"
 
-msgid "Events"
-msgstr "Eventos"
+msgid "Event handling"
+msgstr "Gestión de eventos"
+
+msgid "Execution trace and Debug"
+msgstr "Ejecutar traza y depurar"
 
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
@@ -276,17 +293,29 @@ msgstr "Invertir selección"
 msgid "Left"
 msgstr "Izquierda"
 
+msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgstr "Traza de Simulación de Luz (cambios discretos y continuos)"
+
 msgid "Link Style"
 msgstr "Estilo del enlace"
+
+msgid "Load as palette"
+msgstr "Cargar como paleta"
 
 msgid "Loading diagram"
 msgstr "Cargando diagrama"
 
+msgid "Loading palettes"
+msgstr "Cargar paletas"
+
+msgid "Loading user defined palettes"
+msgstr "Cargando las paletas definidas por el usuario"
+
 msgid "Lookup Tables"
 msgstr "Buscar Tablas"
 
-msgid "Math Operations"
-msgstr "Operaciones Matemáticas"
+msgid "Mathematical Operations"
+msgstr "Operaciones matemáticas"
 
 msgid "Matrix"
 msgstr "Matriz"
@@ -296,6 +325,9 @@ msgstr "Intervalo de tiempo máximo para la integración"
 
 msgid "Middle"
 msgstr "Medio"
+
+msgid "Mirror"
+msgstr "Reflejar"
 
 msgid "New"
 msgstr "Nuevo"
@@ -308,6 +340,9 @@ msgstr "Nueva paleta"
 
 msgid "No block selected"
 msgstr "No hay ningún bloque seleccionado"
+
+msgid "No trace nor debug printing"
+msgstr "No mostrar ni la traza ni la depuración"
 
 msgid "Normal 100%"
 msgstr "Normal 100%"
@@ -327,14 +362,23 @@ msgstr "Paletas"
 msgid "Paste"
 msgstr "Pegar"
 
+msgid "Per block execution trace and Debug block calls"
+msgstr "Ejecución de traza y depuración por bloque"
+
 msgid "Port & Subsystem"
 msgstr "Puerto y Subsistema"
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
+msgstr ""
+"El puerto ya esta conectado, por favor seleccione un puerto sin conexión o "
+"un enlace válido."
 
 msgid "Print"
 msgstr "Imprimir"
 
-msgid "Quit"
-msgstr "Salir"
+msgid "Quit Xcos"
+msgstr "Salir de Xcos"
 
 msgid "Real time scaling"
 msgstr "Escalamiento en tiempo real"
@@ -375,6 +419,9 @@ msgstr "Guardar bloque de Interfaz Gráfica de Usuario"
 msgid "Saving diagram"
 msgstr "Guardando diagrama"
 
+msgid "Scicos file"
+msgstr "Archivo de Scicos"
+
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "El módulo «%s» de Scilab está deactivado en modo -nogui o -nwni.\n"
@@ -383,21 +430,21 @@ msgstr "El módulo «%s» de Scilab está deactivado en modo -nogui o -nwni.\n"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "El módulo '%s' de Scilab no está instalado.\n"
 
+msgid "Scilab file"
+msgstr "Archivo de Scilab"
+
 msgid "Select all"
 msgstr "Seleccionar todo"
 
 msgid "Set Context"
 msgstr "Asignar Contexto"
 
-msgid "Set Debug Level"
-msgstr "Configurar Nivel de Depuración"
-
 msgid "Set Parameters"
 msgstr "Configurar Parámetros"
 
-msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
-"Configurar Nivel de Depuración (0,1,2,3) </br> ejecuta scicos_debug(n)"
+"Seleccionar el nivel de depuración (0,1,2,3) <br/> ejecuta scicos_debug(n)"
 
 msgid "Setup"
 msgstr "Configuración"
@@ -454,9 +501,6 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr "Termo-Hidráulica"
 
-msgid "Threshold"
-msgstr "Umbral"
-
 msgid "Tolerance on time"
 msgstr "Tolerancia en el tiempo"
 
@@ -477,6 +521,9 @@ msgstr "Versión de Diagrama desconocida : "
 
 msgid "Untitled"
 msgstr "Sin título"
+
+msgid "User-Defined"
+msgstr "Definido por el usuario"
 
 msgid "User-Defined Functions"
 msgstr "Funciones Definidas por el Usuario"
@@ -511,6 +558,9 @@ msgstr "Ayuda de Xcos"
 msgid "Xcos error"
 msgstr "Error de Xcos"
 
+msgid "Xcos file"
+msgstr "Archivo de Xcos"
+
 msgid "Xcos version 1.0"
 msgstr "Xcos versión 1.0"
 
@@ -524,6 +574,9 @@ msgstr ""
 "simbólicos que serán usados en definiciones de bloque usando instrucciones "
 "de Scilab.<br/>Estas instrucciones son evaluadas una vez confirmadas.(i.e. "
 "hace click en OK, por Eval y cada vez se carga un diagrama.)"
+
+msgid "Zero crossing detection"
+msgstr "Detección de cruce por cero"
 
 msgid "Zoom In"
 msgstr "Acercar"

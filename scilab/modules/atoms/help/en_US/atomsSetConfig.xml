@@ -110,6 +110,32 @@
 	</refsection>
 	
 	<refsection>
+    <title>Network</title>
+		<para>
+			<informaltable border="1">
+				
+				<tr>
+					<th>Parameter</th>
+					<th>Description</th>
+					<th>Values</th>
+				</tr>
+				
+				<tr>
+					<td>offLine</td>
+					<td>
+						If set to "True", the system only works with local repositories.
+						The offline mode permits the user to install modules from a local
+						repository or a local package (hard disk, USB keys, ...) even if
+						the network is unreachable.
+					</td>
+					<td>True/<emphasis role="strong">False</emphasis></td>
+				</tr>
+				
+			</informaltable>
+		</para>
+	</refsection>
+	
+	<refsection>
     <title>Autoload System</title>
 		<para>
 			<informaltable border="1">
