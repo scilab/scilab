@@ -10,7 +10,7 @@
 //
 //
 
-function ret = errorDiagramPath(path, highlighted_blocks, msg, field, show_intermediate)
+function ret = errorDiagramPath(path, highlighted_blocks, msg, field, show_intermediate, close_opened)
 
 	[lhs, rhs] = argn(0);
 	if rhs < 3 then
@@ -23,6 +23,10 @@ function ret = errorDiagramPath(path, highlighted_blocks, msg, field, show_inter
 
 	if rhs < 5 then
 		show_intermediate = %t;
+	end
+
+	if rhs < 6 then
+		close_opened = %t;
 	end
 
 	ret = [];
@@ -42,5 +46,5 @@ function ret = errorDiagramPath(path, highlighted_blocks, msg, field, show_inter
 		end
 	end
 	
-	closeDiagramPath(path, highlighted_blocks);
+	closeDiagramPath(path, highlighted_blocks, close_opened);
 endfunction

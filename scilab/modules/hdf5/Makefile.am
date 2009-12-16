@@ -28,7 +28,7 @@ src/jni/GiwsException.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp 
+sci_gateway/cpp/sci_import_from_hdf5.cpp
 
 
 # This is due to an ugly hack for bug #5481
@@ -90,22 +90,25 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 
 pkglib_LTLIBRARIES = libscihdf5.la
+
+if HDF5
+# When Scilab is built with HDF5, we need some libraries for a workaround
 pkglib_LTLIBRARIES += libscihdf5-forceload.la
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
+endif
 
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES) $(FORCE_LOAD_SOURCES)
+libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
-# pb of order 
+# pb of order
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/modules/jvm/libscijvm.la	
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename=hdf5

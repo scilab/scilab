@@ -59,9 +59,11 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@GUI_TRUE@am__append_3 = $(GUI_LIBS)
-@GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
-@ENABLE_STATIC_TRUE@am__append_5 = $(ALL_LIBS)
+@HDF5_TRUE@am__append_3 = $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
+@HDF5_TRUE@am__append_4 = $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
+@GUI_TRUE@am__append_5 = $(GUI_LIBS)
+@GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
+@ENABLE_STATIC_TRUE@am__append_7 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -116,7 +118,7 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 am__DEPENDENCIES_1 =
 libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(EXTERNAL_LIBS) \
-	$(am__append_3) $(am__append_4) $(am__DEPENDENCIES_1)
+	$(am__append_5) $(am__append_6) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -460,10 +462,8 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la \
-	$(top_builddir)/modules/hdf5/libscihdf5-forceload.la
-
-# HDF5 is here because it needs the JVM (see bug TODO)
+	$(top_builddir)/modules/xpad/libscixpad.la $(am__append_3)
+# HDF5 is here because it needs the JVM (see bug #5481)
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -471,9 +471,9 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la
-
-# HDF5 is here because it needs the JVM (see bug TODO)
+	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(am__append_4)
+# HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
@@ -530,7 +530,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(am__append_3) $(am__append_4) $(am__append_5)
+	$(am__append_5) $(am__append_6) $(am__append_7)
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
@@ -929,7 +929,6 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	tags tags-recursive uninstall uninstall-am \
 	uninstall-pkglibLTLIBRARIES
 
-	$(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la

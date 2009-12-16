@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +13,12 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.Dimension;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -62,27 +62,11 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	public void doAction() {
     	// If diagram is empty (has one default child) : do nothing.
     	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 2) { return; }
-    
-    	Dimension viewportSize = ((XcosDiagram) getGraph(null)).getAsComponent().getViewport().getSize();
-		Dimension componentSize = ((XcosDiagram) getGraph(null)).getAsComponent().getPreferredSize();
 		
 		/* Save the configuration */
-		double newZoomFactor = 0;
 		double oldZoomFactor = ((XcosDiagram) getGraph(null)).getAsComponent().getZoomFactor();
 		
-		if (viewportSize.getHeight() / componentSize.getHeight() > 1.0 || viewportSize.getWidth() / componentSize.getWidth() > 1.0) {
-			// The viewport is too big
-			newZoomFactor = Math.min(viewportSize.getHeight() / componentSize.getHeight(), 
-					viewportSize.getWidth() / componentSize.getWidth());
-			((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(newZoomFactor);
-			((XcosDiagram) getGraph(null)).getAsComponent().zoomIn();
-		} else if (componentSize.getHeight() / viewportSize.getHeight() > 1.0 || componentSize.getWidth() / viewportSize.getWidth() > 1.0) {
-			// The component is too big
-			newZoomFactor = Math.max(componentSize.getHeight() / viewportSize.getHeight(),
-					componentSize.getWidth() / viewportSize.getWidth());
-			((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(newZoomFactor);
-			((XcosDiagram) getGraph(null)).getAsComponent().zoomOut();
-		}
+		((XcosComponent) getGraph(null).getAsComponent()).zoomAndCenterToCells();
 		
 		/* Restore previous configuration */
 		((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(oldZoomFactor);

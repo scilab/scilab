@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="CUMSUM"
+<refentry version="5.0-subset Scilab" xml:id="CUMSUM_blk"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CUMSUM">Cumulative Sum</link>
+          <link linkend="CUMSUM_blk">Cumulative Sum</link>
         </para>
       </listitem>
 
@@ -78,7 +78,7 @@
 
           <listitem>
             <para>
-              <link linkend="CUMSUM">Example</link>
+              <link linkend="Example_CUMSUM">Example</link>
             </para>
           </listitem>
 

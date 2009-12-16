@@ -26,7 +26,6 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
 #include "stack-def.h"
-#include "getScilabJavaVM.h"
 }
 #include "forceJHDF5load.hxx"
 

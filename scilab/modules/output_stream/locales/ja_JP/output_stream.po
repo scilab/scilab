@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -265,11 +265,23 @@ msgstr ""
 "%s: 多すぎる解決方法が見つかりました。\n"
 "  前の計算状態を解決策として返します。\n"
 
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 924
 #, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: 入力引数が不正です。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 559
@@ -277,11 +289,13 @@ msgstr "%s: 入力引数が不正です。\n"
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 入力引数で不正な数値です。\n"
 
-#
-# File: src/c/errmsg.c, line: 559
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-msgstr "%s: 入力引数で不正な数: > 0 でなくてはなりません。\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 559
@@ -330,6 +344,10 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1107
@@ -428,11 +446,21 @@ msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 843
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d で不正な値です。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1085

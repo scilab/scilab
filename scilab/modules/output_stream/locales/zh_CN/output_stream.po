@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -194,16 +194,32 @@ msgstr ""
 "   返回已经计算的阶数的结果。\n"
 
 #, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s：输入参数错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s：输入参数的数目错误。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-msgstr "%s：输入参数的数目错误：必须 > 0。\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -236,6 +252,10 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个向量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -300,8 +320,18 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
