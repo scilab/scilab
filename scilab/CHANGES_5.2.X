@@ -7,6 +7,8 @@ Xcos:
 
 * bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
 
+* bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
+
 Bug fixes:
 ==========
 
