@@ -5,6 +5,8 @@
 Xcos:
 =====
 
+* bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
+
 Bug fixes:
 ==========
 
