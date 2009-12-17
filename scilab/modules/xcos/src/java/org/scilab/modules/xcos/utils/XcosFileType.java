@@ -13,9 +13,7 @@
 package org.scilab.modules.xcos.utils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 
@@ -113,7 +111,6 @@ public enum XcosFileType {
 	public static XcosFileType findFileType(File theFile) {
 		int dotPos = theFile.getName().lastIndexOf('.');
 		String extension = "";
-		XcosFileType retValue = XcosFileType.UNKNOW;
 
 		if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
 			extension = theFile.getName().substring(dotPos + 1);
@@ -121,31 +118,11 @@ public enum XcosFileType {
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
 			if (extension.compareToIgnoreCase(currentFileType.extension) == 0) {
-				retValue = currentFileType;
-				break;
+				return currentFileType;
 			}
 		}
 		
-		/* Validate xml header */
-		if (retValue == XcosFileType.XCOS) {
-			byte[] xmlMagic = (new String("<?xml")).getBytes();
-			byte[] readMagic = new byte[xmlMagic.length];
-
-			FileInputStream stream;
-			try {
-				stream = new FileInputStream(theFile);
-				int length;
-				length = stream.read(readMagic);
-				if (length != xmlMagic.length
-						|| !Arrays.equals(xmlMagic, readMagic)) {
-					retValue = XcosFileType.UNKNOW;
-				}
-			} catch (Exception e) {
-				retValue = XcosFileType.UNKNOW;
-			}
-		}
-		
-		return retValue;
+		return XcosFileType.UNKNOW;
 	}
 	
 	/** 
