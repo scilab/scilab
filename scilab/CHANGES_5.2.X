@@ -14,6 +14,8 @@ Bug fixes:
                    java 6" was displayed
 
 
+* bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
@@ -1774,6 +1776,4 @@ Bug fixes:
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
-
-* bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
