@@ -1789,7 +1789,6 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case XCOS:
-	    System.err.println("Blim");
 	    Document document = loadXcosDocument(theFile.getAbsolutePath());
 	    if(document == null) {
 		XcosDialogs.couldNotLoadFile(this);
@@ -1798,7 +1797,6 @@ public class XcosDiagram extends ScilabGraph {
 
 	    XcosCodec codec = new XcosCodec(document);
 
-	    System.err.println("Blam");
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		codec.decode(document.getDocumentElement(), this);
 		setModified(false);
@@ -1806,7 +1804,6 @@ public class XcosDiagram extends ScilabGraph {
 		setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 		setChildrenParentDiagram();
 		generateUID();
-		System.err.println("Bloum");
 	    } else {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.info(XcosMessages.LOADING_DIAGRAM);
@@ -1814,7 +1811,6 @@ public class XcosDiagram extends ScilabGraph {
 		xcosDiagram.setModified(false);
 		xcosDiagram.setSavedFile(theFile.getAbsolutePath());
 		xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		System.err.println("Blim");
 		setChildrenParentDiagram(xcosDiagram);
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
