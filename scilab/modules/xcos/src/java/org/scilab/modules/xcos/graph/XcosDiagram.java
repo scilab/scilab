@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -1724,7 +1725,9 @@ public class XcosDiagram extends ScilabGraph {
 	if (XcosTab.focusOnExistingFile(diagramFileName) == false) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
-	    ((XcosTab) getParentTab()).setActionsEnabled(false);
+	    
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(false);
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile, false);
@@ -1749,7 +1752,8 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    info(XcosMessages.EMPTY_INFO);
-	    ((XcosTab) getParentTab()).setActionsEnabled(true);
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(true);
 	    this.resetUndoManager();
 	}
     }
@@ -1785,7 +1789,7 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case XCOS:
-	    
+	    System.err.println("Blim");
 	    Document document = loadXcosDocument(theFile.getAbsolutePath());
 	    if(document == null) {
 		XcosDialogs.couldNotLoadFile(this);
@@ -1794,6 +1798,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	    XcosCodec codec = new XcosCodec(document);
 
+	    System.err.println("Blam");
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		codec.decode(document.getDocumentElement(), this);
 		setModified(false);
@@ -1801,6 +1806,7 @@ public class XcosDiagram extends ScilabGraph {
 		setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
 		setChildrenParentDiagram();
 		generateUID();
+		System.err.println("Bloum");
 	    } else {
 		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
 		xcosDiagram.info(XcosMessages.LOADING_DIAGRAM);
@@ -1808,6 +1814,7 @@ public class XcosDiagram extends ScilabGraph {
 		xcosDiagram.setModified(false);
 		xcosDiagram.setSavedFile(theFile.getAbsolutePath());
 		xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
+		System.err.println("Blim");
 		setChildrenParentDiagram(xcosDiagram);
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
