@@ -17,6 +17,8 @@ Bug fixes:
 
 * bug 5659 fixed - emptystr changed the value of an input variable.
 
+* bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
+
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
 
