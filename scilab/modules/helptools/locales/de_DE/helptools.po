@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-10 09:12+0000\n"
+"PO-Revision-Date: 2009-12-09 17:35+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -68,12 +68,20 @@ msgstr ""
 "erzeuge Meister Dokumente:\n"
 
 #, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#, c-format
 msgid "%s: %s file hasn''t been moved in the %s directory."
 msgstr "%s: %s Datei wurde nicht in das %s Verzeichnis verschoben."
 
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr "%s: %s wurde nicht erzeugt."
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: kann Datei nicht öffnen %s.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -93,9 +101,29 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: führe Java Stapel aus %s.\n"
 
 #, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: Datei übersprungen %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: inkomatibles Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: verarbeite Datei: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%s: verarbeite Datei: %s zu %s\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: lese aus Verzeichnis %s\n"
+
+#, c-format
+msgid "%s: Scilab 5.0 or more is required.\n"
+msgstr "%s: Scilab 5.0 oder höhere Version benötigt.\n"
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -104,6 +132,10 @@ msgstr "%s: die 2 m Liste darf in keinem Feld gleich sein.\n"
 #, c-format
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s: die Kapiteldatei ist nicht gut formatiert in Zeile %d.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Die Datei %s existiert nicht.\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -147,6 +179,11 @@ msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -239,11 +276,12 @@ msgstr "%s: hhx.exe nicht gefunden.\n"
 msgid "%s: no file generate.\n"
 msgstr "%s: kein Feld zu erzeugen.\n"
 
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: verarbeite %i Dateien.\n"
+
 msgid "-- Deleting help files --\n"
 msgstr "- Lösche Hilfedateien -\n"
-
-msgid "...demodir must be a directory."
-msgstr "...Demodir muß ein Verzeichnis sein"
 
 msgid "Building the scilab manual file ["
 msgstr "Erzeuge die Scilab Handbuchdatei ["
@@ -258,9 +296,6 @@ msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
-
-msgid "Scilab 5.0 or more is required."
-msgstr "Scilab 5.0 oder höher wird benötigt"
 
 #, c-format
 msgid "Warning %s does not follow the dtd"

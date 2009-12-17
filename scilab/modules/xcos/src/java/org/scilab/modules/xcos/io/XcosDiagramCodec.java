@@ -15,7 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.awt.Color;
 import java.util.Map;
 
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 

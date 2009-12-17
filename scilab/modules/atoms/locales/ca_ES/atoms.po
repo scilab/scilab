@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-10-29 14:26+0000\n"
+"PO-Revision-Date: 2009-12-12 17:22+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:18+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -71,15 +71,15 @@ msgstr "%s: %s (%s) no està instal·lat.\n"
 
 #, c-format
 msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
-msgstr ""
+msgstr "%s: El ''%s - %s'' (secció ''%s'') no està instal·lat.\n"
 
 #, c-format
 msgid "%s: ''%s - %s'' is not installed.\n"
-msgstr ""
+msgstr "%s: El ''%s - %s'' no està instal·lat.\n"
 
 #, c-format
 msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
-msgstr ""
+msgstr "%s: El ''%s'' (''%s'' section) no està instal·lat.\n"
 
 #, c-format
 msgid "%s: ''%s'' isn''t installed.\n"
@@ -87,7 +87,7 @@ msgstr "%s: ''%s'' no està instal·lat.\n"
 
 #, c-format
 msgid "%s: An error accured while loading ''%s-%s''.\n"
-msgstr ""
+msgstr "%s: S'ha produït un error en carregar el ''%s-%s''.\n"
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -117,19 +117,20 @@ msgstr ""
 
 #, c-format
 msgid "%s: Module ''%s - %s'' is not installed.\n"
-msgstr ""
+msgstr "%s: El mòdul ''%s - %s'' no està instal·lat.\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
-msgstr ""
+msgstr "%s: El mòdul ''%s'' no està instal·lat (secció ''%s'').\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed.\n"
-msgstr ""
+msgstr "%s: El mòdul ''%s'' no està instal·lat.\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
+"%s: No s'ha trobat el Wget ni el Curl: Instal·leu-ne algun dels dos\n"
 
 #, c-format
 msgid ""
@@ -142,6 +143,7 @@ msgstr ""
 #, c-format
 msgid "%s: The config file (''%s'') is not well formated at line %d\n"
 msgstr ""
+"%s: El fitxer de configuració (''%s'') té un error de format a la línia %d\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -236,10 +238,12 @@ msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
 msgstr ""
+"%s: Aquest mòdul està instal·lat a la secció d'usuari, no el podeu afegir a "
+"la llista automàtica per a tots els usuaris:\n"
 
 #, c-format
 msgid "%s: The following module is not installed:\n"
-msgstr ""
+msgstr "%s: Aquest mòdul no està instal·lat:\n"
 
 #, c-format
 msgid "%s: The following modules are not installed:\n"
@@ -359,17 +363,23 @@ msgid ""
 "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx1, mx2 o mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx1, mx2 o mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx2 o mx3.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -380,6 +390,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx3.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
@@ -514,6 +526,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''user'', "
+"''allusers'' o ''all''.\n"
 
 #, c-format
 msgid ""
@@ -556,6 +570,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Cal identificar les "
+"versions de tots els mòduls.\n"
 
 #, c-format
 msgid ""
@@ -610,6 +626,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''error'' o "
+"''warning''.\n"
 
 #, c-format
 msgid ""
@@ -662,6 +680,9 @@ msgstr "Autor(s)"
 msgid "Automaticaly Installed"
 msgstr "Instal·lat automàticament"
 
+msgid "Bytes"
+msgstr "Bytes"
+
 msgid "Category(ies)"
 msgstr "Categoria(es)"
 
@@ -675,7 +696,7 @@ msgid "Description"
 msgstr "Descripció"
 
 msgid "Download size"
-msgstr ""
+msgstr "Mida de la descàrrega"
 
 msgid "Entity"
 msgstr "Entitat"
@@ -689,29 +710,32 @@ msgstr "Instal·la"
 msgid "Install Directory"
 msgstr "Directori d'instal·lació"
 
-msgid "Installation done !"
-msgstr "S'ha realitzat la instal·lació"
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"S'ha acabat la instal·lació. Reinicieu l'Scilab perquè els canvis tinguin "
+"efecte."
 
-msgid "Installation failed !"
-msgstr "Ha fallat la instal·lació"
+msgid "Installation failed!"
+msgstr "La instal·lació ha anat malament."
 
 msgid "Installing..."
 msgstr "S'està instal·lant..."
 
-msgid "Ko"
-msgstr ""
+msgid "KB"
+msgstr "KB"
 
 msgid "License"
 msgstr "Llicència"
 
+msgid "MB"
+msgstr "MB"
+
 msgid "Maintainer(s)"
 msgstr "Mantenidor(s)"
 
-msgid "Mo"
-msgstr ""
-
 msgid "Modules"
-msgstr ""
+msgstr "Mòduls"
 
 msgid "No Atoms module available. Check your Internet connection."
 msgstr ""
@@ -720,20 +744,17 @@ msgstr ""
 msgid "No module selected"
 msgstr "No heu seleccionat cap mòdul"
 
-msgid "Octets"
-msgstr ""
-
 msgid "Package"
 msgstr "Paquet"
 
 msgid "Remove"
 msgstr "Elimina"
 
-msgid "Remove done !"
-msgstr "S'ha realitzat l'eliminació"
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "S'ha eliminat. Reinicieu l'Scilab perquè els canvis tinguin efecte. "
 
-msgid "Remove failed !"
-msgstr "Ha fallat l'eliminació"
+msgid "Remove failed!"
+msgstr "L'eliminació ha anat malament."
 
 msgid "Removing..."
 msgstr "S'està eliminant..."
@@ -753,11 +774,13 @@ msgstr "Títol"
 msgid "Update"
 msgstr "Actualitza"
 
-msgid "Update done !"
-msgstr "S'ha realitzat l'actualització"
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"S'ha realitzat l'actualització. Reinicieu l'Scilab perquè els canvis tinguin "
+"efecte."
 
-msgid "Update failed !"
-msgstr "Ha fallat l'actualització"
+msgid "Update failed!"
+msgstr "L'actualització ha anat malament."
 
 msgid "Updating..."
 msgstr "S'està actualitzant..."

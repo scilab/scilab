@@ -17,8 +17,9 @@ subdemolist = ["Basic controller"                     , "basic_controller.dem.sc
                "Cont.Plant-Hybrid Observer"           , "cont_sys_disc_cont.dem.sce" ; ..
                "Temperature Controller"               , "temp_controller.dem.sce"    ; ..
                "Inverted Pendulum"                    , "inverted_pendulum.dem.sce"  ; ..
-               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
                "Lorentz butterfly"                    , "lorentz.dem.sce"            ; .. 
               ];
+
+//               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

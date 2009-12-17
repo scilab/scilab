@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2009-10-28 04:32+0000\n"
+"PO-Revision-Date: 2009-12-10 00:39+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -202,16 +202,35 @@ msgstr ""
 "   se devolvió la solución previa.\n"
 
 #, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Tipo %s no soportado : Defina la función %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Formato de exportación incorrecto: %s"
+
+#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Parámetros de entrada incorrectos.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d."
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Número incorrecto de argumentos de entrada.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Debe ser > 0.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: se esperaban al menos %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -249,6 +268,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -327,8 +351,21 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'', "
+"''%s'', ''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"

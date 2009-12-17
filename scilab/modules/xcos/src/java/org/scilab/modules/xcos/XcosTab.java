@@ -56,13 +56,9 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
-import org.scilab.modules.xcos.actions.AlignBlockAction;
-import org.scilab.modules.xcos.actions.BlockDocumentationAction;
-import org.scilab.modules.xcos.actions.BlockParametersAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
-import org.scilab.modules.xcos.actions.ColorAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -70,18 +66,14 @@ import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
-import org.scilab.modules.xcos.actions.FlipAction;
 import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
-import org.scilab.modules.xcos.actions.MirrorAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.actions.PrintAction;
 import org.scilab.modules.xcos.actions.QuitAction;
 import org.scilab.modules.xcos.actions.RecentFileAction;
-import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
-import org.scilab.modules.xcos.actions.RotateAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
@@ -89,23 +81,31 @@ import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
-import org.scilab.modules.xcos.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
-import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SuperBlockDiagram;
+import org.scilab.modules.xcos.block.actions.AlignBlockAction;
+import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.block.actions.BlockParametersAction;
+import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.FlipAction;
+import org.scilab.modules.xcos.block.actions.MirrorAction;
+import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.block.actions.RotateAction;
+import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.util.mxConstants;
@@ -444,7 +444,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     public MenuBar createMenuBar(ScilabGraph scilabGraph) {
-	ConfigXcosManager.createUserCopy();
 	ArrayList<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
 

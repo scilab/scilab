@@ -42,7 +42,7 @@
         <term>x</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>y</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>z</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
     </variablelist>

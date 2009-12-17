@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -66,12 +66,20 @@ msgstr ""
 "创建主文档：\n"
 
 #, c-format
+msgid "%02d-%02d-%04d"
+msgstr ""
+
+#, c-format
 msgid "%s: %s file hasn''t been moved in the %s directory."
 msgstr "%s：文件%s没有移动到目录%s。"
 
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr "%s：未生成%s"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -90,8 +98,28 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr "%s：执行Java stack %s。\n"
 
 #, c-format
+msgid "%s: File skipped %s."
+msgstr ""
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和#%d不兼容：应该为同样大小。\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Scilab 5.0 or more is required.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -100,6 +128,10 @@ msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
 #, c-format
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -140,6 +172,10 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -214,11 +250,12 @@ msgstr "%s：没有找到hhc.exe。\n"
 msgid "%s: no file generate.\n"
 msgstr "%s：没有生成文件。\n"
 
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr ""
+
 msgid "-- Deleting help files --\n"
 msgstr "-- 删除帮助文件 --\n"
-
-msgid "...demodir must be a directory."
-msgstr "...demodir必须为一个目录。"
 
 msgid "Building the scilab manual file ["
 msgstr "创建Scilab手册文件 ["
@@ -233,9 +270,6 @@ msgstr ""
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
-
-msgid "Scilab 5.0 or more is required."
-msgstr "需要Scilab 5.0或者更高版本。"
 
 #, c-format
 msgid "Warning %s does not follow the dtd"
