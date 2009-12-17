@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 
 //
@@ -109,4 +110,24 @@ expected = [
 ]
 assert_equal ( mydude.nb , 5 );
 s1 = optimsimplex_destroy ( s1 );
+
+// Test unconsistent size of boundsmin
+x0 = [1 2];
+boundsmin = [-5 -5 -5];
+boundsmax = [5 5];
+cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_randbounds: The boundsmin vector is expected to have 2 columns, but current shape is 1 x 3";
+assert_equal ( computed , expected );
+
+// Test unconsistent size of boundsmax
+x0 = [1 2];
+boundsmin = [-5 -5];
+boundsmax = [5 5 5];
+cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_randbounds: The boundsmax vector is expected to have 2 columns, but current shape is 1 x 3";
+assert_equal ( computed , expected );
 
