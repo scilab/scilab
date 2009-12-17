@@ -15,8 +15,10 @@ Bug fixes:
                    "Jlatexmath: Could not access to createFont. Please update to
                    java 6" was displayed
 
+* bug 5659 fixed - emptystr changed the value of an input variable.
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
