@@ -310,10 +310,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 			 * Action callback on Exit menu
 			 */
 			public void callBack() {
+			    if(getEditor().getTabPane().getTabCount() != 1) {
 				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXIT_CONFIRM, XpadMessages.EXIT, 
-		    			IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
-						ExitAction.doExit(Xpad.getEditor());						
+					IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+					ExitAction.doExit(Xpad.getEditor());						
 				}
+			    } else {
+				ExitAction.doExit(Xpad.getEditor());						
+			    }
 			}
 			
 			/**

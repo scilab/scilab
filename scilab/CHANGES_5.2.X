@@ -5,6 +5,8 @@
 Xcos:
 =====
 
+* bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
+
 Bug fixes:
 ==========
 
@@ -12,6 +14,12 @@ Bug fixes:
                    message 
                    "Jlatexmath: Could not access to createFont. Please update to
                    java 6" was displayed
+
+* bug 5659 fixed - emptystr changed the value of an input variable.
+
+* bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
+
+* bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -1774,3 +1782,4 @@ Bug fixes:
 * bug 5160 fixed - When a graphic has exported by the 'File -> export' menu, and did not specify any 'filter', scilab crashed.
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
+

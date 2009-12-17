@@ -117,22 +117,39 @@ public final class FindAction extends DefaultAction {
 	 * doAction
 	 */
 	public void doAction() {
-		if (!FindAction.windowAlreadyExist) {
-			findReplaceBox();
+	    
+	    if (!FindAction.windowAlreadyExist) {
+		findReplaceBox();
+	    } else {
+		frame.setVisible(true);
+		buttonFind.requestFocus();
+	    }
+	    
+	    try {
+		// If some text is selected, it is used in find.
+		//if more than one line is selected set radio button "selected lines" at true
+		// else find and replace action is applied to the entire document
+		int startPos = getEditor().getTextPane().getSelectionStart();
+		int endPos = getEditor().getTextPane().getSelectionEnd();
+		int startLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(startPos);
+		int endLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(endPos);
 
-			// If some text is selected, set radio button "selected lines" at true
-			// else find and replace action is applied tor the entire document
-			if (getEditor().getTextPane().getSelectionStart() != getEditor().getTextPane().getSelectionEnd()) {
-				buttonSelection.setSelected(true);
-			} else {
-				buttonAll.setSelected(true);
-			}
-
-			FindAction.windowAlreadyExist = true;
+		if(startPos != endPos) {
+		    if(startLine != endLine) {
+			buttonSelection.setSelected(true);
+			textfieldFind.setText("");
+		    } else {
+			buttonAll.setSelected(true);
+			textfieldFind.setText(getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos));
+		    }
 		} else {
-			frame.setVisible(true);
-			buttonFind.requestFocus();
+		    buttonAll.setSelected(true);
 		}
+		FindAction.windowAlreadyExist = true;
+	    } catch (BadLocationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	}
 
 	/**
@@ -183,18 +200,18 @@ public final class FindAction extends DefaultAction {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;		
-		gbc.insets = new Insets(5,2,5,2);
+		gbc.insets = new Insets(1,1,1,1);
 
 		//Find & Replace label, text field
 		JLabel labelFind = new JLabel(XpadMessages.FIND);
 		JLabel labelReplace = new JLabel(XpadMessages.REPLACE_WITH);
 		textfieldFind = new JTextField();
-		textfieldFind.setPreferredSize(new Dimension(150, 25));
-		textfieldFind.setMinimumSize(new Dimension(100, 25));
+		textfieldFind.setPreferredSize(new Dimension(150, 22));
+		textfieldFind.setMinimumSize(new Dimension(100, 22));
 
 		textfieldReplace = new JTextField();
-		textfieldReplace.setPreferredSize(new Dimension(150, 25));
-		textfieldReplace.setMinimumSize(new Dimension(100, 25));
+		textfieldReplace.setPreferredSize(new Dimension(150, 22));
+		textfieldReplace.setMinimumSize(new Dimension(100, 22));
 
 		Font font = new Font("Times", Font.PLAIN, 12);
 
@@ -315,16 +332,19 @@ public final class FindAction extends DefaultAction {
 		/* behaviour of textfieldFind */
 		textfieldFind.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			    	if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					findText();
 				}
 			}
 
 			public void keyReleased(KeyEvent e) {
+			    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				FindAction.windowAlreadyExist = false;
+				frame.dispose();
+			    }
 			}
-
-			public void keyTyped(KeyEvent e) {
-			}
+			
+			public void keyTyped(KeyEvent e) {}
 
 		});
 
@@ -337,10 +357,13 @@ public final class FindAction extends DefaultAction {
 			}
 
 			public void keyReleased(KeyEvent e) {
+			    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				FindAction.windowAlreadyExist = false;
+				frame.dispose();
+			    }
 			}
 
-			public void keyTyped(KeyEvent e) {
-			}
+			public void keyTyped(KeyEvent e) {}
 
 		});
 
@@ -368,7 +391,7 @@ public final class FindAction extends DefaultAction {
 				getEditor().getTextPane().addFocusListener(new FocusListener() {
 
 
-					public void focusGained(FocusEvent arg0) {
+					public void focusGained(FocusEvent e) {
 						if (buttonSelection.isSelected()) {
 
 							Highlighter highlight = getEditor().getTextPane().getHighlighter();
@@ -382,9 +405,7 @@ public final class FindAction extends DefaultAction {
 					}
 
 
-					public void focusLost(FocusEvent arg0) {
-						// TODO Auto -generated method stub
-
+					public void focusLost(FocusEvent e) {
 					}
 				});
 
@@ -568,36 +589,20 @@ public final class FindAction extends DefaultAction {
 		});
 
 		frame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto -generated method stub
-
-			}
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto -generated method stub
-
-			}
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto -generated method stub
-
-			}
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosed(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			
+			public void windowClosing(WindowEvent e) {
 				FindAction.windowAlreadyExist = false;
 				frame.dispose();
 
 			}
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto -generated method stub
-
-			}
-			public void windowIconified(WindowEvent arg0) {
-
-			}
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto -generated method stub
-
-			}
+			
+			public void windowDeactivated(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowOpened(WindowEvent e) {}
 		});
-
 	}
 	
 	/**
