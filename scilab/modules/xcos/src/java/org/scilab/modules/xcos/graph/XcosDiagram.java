@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -1609,7 +1610,21 @@ public class XcosDiagram extends ScilabGraph {
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    Object obj = getModel().getChildAt(getDefaultParent(), i);
 	    if ( obj instanceof ContextUpdate) {
-		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    	String[] context = buildEntireContext();
+	    	
+	    	/* Determine if the context is not empty */
+	    	int nbOfDetectedChar = 0;
+	    	for (int j = 0; j < context.length; j++) {
+	    		context[j] = context[j].replaceFirst("\\s", "");
+	    		nbOfDetectedChar += context[j].length();
+	    		if (nbOfDetectedChar != 0)
+	    			break;
+			}
+	    	
+	    	if (nbOfDetectedChar != 0) {
+	    		((ContextUpdate)obj).onContextChange(context);
+	    	}
+
 	    } else if (obj instanceof SuperBlock) {
 		SuperBlock superBlock = (SuperBlock)obj;
 		if(superBlock.getChild() != null) {
@@ -1724,7 +1739,9 @@ public class XcosDiagram extends ScilabGraph {
 	if (XcosTab.focusOnExistingFile(diagramFileName) == false) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
-	    ((XcosTab) getParentTab()).setActionsEnabled(false);
+	    
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(false);
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile, false);
@@ -1749,7 +1766,8 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    info(XcosMessages.EMPTY_INFO);
-	    ((XcosTab) getParentTab()).setActionsEnabled(true);
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(true);
 	    this.resetUndoManager();
 	}
     }
@@ -1785,7 +1803,6 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case XCOS:
-	    
 	    Document document = loadXcosDocument(theFile.getAbsolutePath());
 	    if(document == null) {
 		XcosDialogs.couldNotLoadFile(this);

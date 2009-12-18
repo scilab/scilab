@@ -114,53 +114,55 @@ static int sci_emptystr_one_rhs(char *fname)
 static int sci_emptystr_two_rhs(char *fname)
 {
 	/*value_param_pos_1 is the number of row ; value_param_pos_2 is the number of col*/
-	int value_param_pos_1 = 0;
-	int value_param_pos_2 = 0;
-	int matrixdimension = 0;
 	
-	int Type_One = VarType(1);
-	int Type_Two = VarType(2);
-	
-	/*With two int arguments returns a m*n zero length character strings matrix */
-	if (Type_One == sci_matrix) 
+	int Type_One = GetType(1);
+	int Type_Two = GetType(2);
+
+	if ((Type_One == sci_matrix) && (Type_Two == sci_matrix))
 	{
+		double value_param_pos_1 = 0;
+		double value_param_pos_2 = 0;
+		int matrixdimension = 0;
+
 		int m1 = 0, n1 = 0, l1 = 0;
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		value_param_pos_1 = *istk(l1);
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,1);
-		return 0;
-	}
-	
-	if (Type_Two == sci_matrix) 
-	{
 		int m2 = 0, n2 = 0, l2 = 0;
-		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-		value_param_pos_2 = *istk(l2);
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+
+		value_param_pos_1 = *stk(l1);
+		value_param_pos_2 = *stk(l2);
+
+		matrixdimension = (int)(value_param_pos_1 * value_param_pos_2);
+
+		if (matrixdimension > 0)
+		{
+			int m = (int)value_param_pos_1;
+			int n = (int)value_param_pos_2;
+			CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE, &m, &n, NULL);
+		}
+		else
+		{
+			/* returns [] */
+			int l = 0;
+			int m = 0;
+			int n = 0;
+			CreateVar(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&m, &n,&l);
+		}
+		LhsVar(1) = Rhs + 1;
+
+		C2F(putlhsvar)();
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
-		return 0;
+		if (Type_One != sci_matrix)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,1);
+		}
+		else /* Type_Two */
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
+		}
 	}
-	
-	matrixdimension = value_param_pos_1 * value_param_pos_2;
-	
-	if (matrixdimension > 0)
-	{
-		CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&value_param_pos_1, &value_param_pos_2, NULL);
-	}
-	else
-	{
-		int l = 0;
-		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&value_param_pos_1,&value_param_pos_2,&l);
-	}
-	
-	LhsVar(1) = Rhs + 1;
-	C2F(putlhsvar)();
-	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
