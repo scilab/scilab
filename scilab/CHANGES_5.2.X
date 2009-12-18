@@ -1,5 +1,13 @@
                Changes between version 5.2.0 and 5.2.1 of Scilab
                =================================================
+Text editor:
+============
+
+Bug fixes:
+==========
+
+* bug 5649 fixed - The Editor did not undo properly after a find/replace.
+
 
 
 Xcos:
@@ -8,8 +16,8 @@ Xcos:
 Bug fixes:
 ==========
 
-* bug 5668 fixed - When using Scilab graphic with a LaTeX expression, the 
-                   message 
+* bug 5668 fixed - When using Scilab graphic with a LaTeX expression, the
+                   message
                    "Jlatexmath: Could not access to createFont. Please update to
                    java 6" was displayed
 
@@ -48,18 +56,18 @@ See bug #5387
 * bug 5103 fixed - File=>Save now opens the "Save" dialog box for
                    Untitled files even if they are not modified
 
-* bug 5125 fixed - An infinite loop is no more got when using the 
+* bug 5125 fixed - An infinite loop is no more got when using the
                    Undo functionnality
 
 * bug 5137 fixed - Drag & drop on editor was not enabled
 
 * bug 5140 fixed - "Load into Scilab" was executed line by line
 
-* bug 5171 fixed - Problem with the highlight in the undo manager 
+* bug 5171 fixed - Problem with the highlight in the undo manager
 
-* bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching 
+* bug 5173 fixed - Better multi-thread correctness wrt Event Dispatching
   Thread
-  
+
 * bug 5174 fixed - The undo did not work on tab
 
 * bug 5189 fixed - No more error when a file selection
@@ -67,7 +75,7 @@ See bug #5387
 
 * bug 5219 fixed - Rename of the item menu "Indent" => "Reformat Selection"
 
-* bug 5220 fixed - In editor, "Colorize" action in "Document" menu is now 
+* bug 5220 fixed - In editor, "Colorize" action in "Document" menu is now
                    implemented as check box
 
 * bug 5224 fixed - Maj+Tab modified the text selection
@@ -86,7 +94,7 @@ See bug #5387
                    of only its queue
 
 * bug 5318 fixed - When a "if" line took its "end" on the line, its indentation
-                   was one level too high 
+                   was one level too high
 
 * bug 5319 fixed - Default filename proposed in 'Save As' dialog
 
@@ -96,7 +104,7 @@ See bug #5387
 
 * bug 5460 fixed - 'Close All' and 'Close all but this' added menus in editor
 
-* bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..", 
+* bug 5465 fixed - Better Undo/Redo support (works across "Save"/ "Save as..",
                    undo / redo multiple edits on a region in one go)
 
 * bug 5482 fixed - It was not possible to choose EOL type
@@ -108,7 +116,7 @@ See bug #5387
                    - default encoding is the system default one
                    - user defined encoding save in Editor configuration file
 
-* bug 5519 fixed - Message asking the user if he wants to exit the 
+* bug 5519 fixed - Message asking the user if he wants to exit the
                    editor when he clicks on the cross added
 
 
@@ -133,14 +141,14 @@ Text Rendering:
 
 * New function "prettyprint" added
   This function provides the capability to represent a Scilab variable to LaTeX,
-  TeX and Mathml. 
+  TeX and Mathml.
   See SEP #36 for more information
 
 * pol2tex is now obsolete. Please use prettyprint instead
 
 * texprint is now obsolete. Please use prettyprint instead
 
-* bug 5303 fixed - pol2tex() could not be used straightforwardly with the new 
+* bug 5303 fixed - pol2tex() could not be used straightforwardly with the new
                    "$...$" LaTeX feature.
 
 * bug 5304 fixed - texprint() could not be used with the new "$...$" LaTeX
@@ -162,7 +170,7 @@ through FOP/Batik:
 
 * Improved quality of the vectorial export
 
-* Improved size of the PDF (PS & EPS are however bigger but this should be 
+* Improved size of the PDF (PS & EPS are however bigger but this should be
   fixed in Scilab > 5.2.0)
 
 * Handles export of graphics with LaTeX/MathML text
@@ -228,7 +236,7 @@ Xcos:
 
 * bug 5167 fixed - xcos*.h5 and xcos*.h5 were not deleted
 
-* bug 5179 fixed - The accented letters used in text in Scicos diagram were not 
+* bug 5179 fixed - The accented letters used in text in Scicos diagram were not
                    visible with Xcos at least under Linux
 
 * bug 5180 fixed - TEXT_f was not selectable on the palette
@@ -279,10 +287,10 @@ Xcos:
 * bug 5313 fixed - Clicking repeatedly and quickly on a block in a diagram
                    made Scilab quit
 
-* bug 5327 fixed - When indenting a block, the selection area was shifted one 
+* bug 5327 fixed - When indenting a block, the selection area was shifted one
                    line down with respect to the previously selected one
 
-* bug 5328 fixed - The RegionToSuperblock action produced a poorly rendered 
+* bug 5328 fixed - The RegionToSuperblock action produced a poorly rendered
                    diagram
 
 * bug 5336 fixed - Xcos palette tabs now load much faster and use less
@@ -292,27 +300,27 @@ Xcos:
 
 * bug 5344 fixed - Status of a modified file did not change on 'Save As'
 
-* bug 5347 fixed - The 'Region to superblock' action crashed Xcos 
+* bug 5347 fixed - The 'Region to superblock' action crashed Xcos
 
 * bug 5348 fixed - Opening a Superblock crashed Xcos
 
 * bug 5349 fixed - The file predator.cos could not be opened
 
-* bug 5351 fixed - Remove ports on a block remove the connected links 
+* bug 5351 fixed - Remove ports on a block remove the connected links
 
 * bug 5353 fixed - Bad French localization for "set context"
 
-* bug 5383 fixed - FROMWSB from workspace block was not working 
+* bug 5383 fixed - FROMWSB from workspace block was not working
 
 * bug 5388 fixed - Editor dialogs was not centered on editor main window
 
-* bug 5389 fixed - If there was no C compiler detected on Windows, Xcos 
+* bug 5389 fixed - If there was no C compiler detected on Windows, Xcos
                    tried to call dynamic link functions
 
 * bug 5395 fixed - The Xcos block AFFICH_m did not bother with the max
                    number of digits
 
-* bug 5397 fixed - If there was a unconnected block in a superblock, the 
+* bug 5397 fixed - If there was a unconnected block in a superblock, the
                    simulation did not start and the "Simulate/start" menu
                    remained disabled
 
@@ -320,7 +328,7 @@ Xcos:
 
 * bug 5404 fixed - Open & close Editor created a java exception
 
-* bug 5405 fixed - The whole diagram is now updated when a superblock 
+* bug 5405 fixed - The whole diagram is now updated when a superblock
                    is modified
 
 * bug 5407 fixed - It was impossible to use the arrow keys to move a block
@@ -343,14 +351,14 @@ Xcos:
 
 * bug 5424 fixed - French translation issues
 
-* bug 5426 fixed - The icon of modelica blocks Resistor Inductor was not 
+* bug 5426 fixed - The icon of modelica blocks Resistor Inductor was not
                    rotating while the block was
 
 * bug 5428 fixed - Connecting Implicit I/O port to Link was not allowed
 
 * bug 5437 fixed - Show error message during Xcos simulation initialization
 
-* bug 5440 fixed - OUT* blocks were not in the sinks palette 
+* bug 5440 fixed - OUT* blocks were not in the sinks palette
 
 * bug 5441 fixed - Xcos files (XML files) contained their own paths
 
@@ -415,12 +423,12 @@ Tree functions :
   - concatTree      => uiConcatTree
   - displaytree     => uiDisplayTree
 
-* bug 5170 fixed - displaytree() name was not homogeneous with other 
+* bug 5170 fixed - displaytree() name was not homogeneous with other
                    tree functions.
 
 Bug fixes:
 ==========
-* bug 2588 fixed - Calling a function with no input argument contained in an 
+* bug 2588 fixed - Calling a function with no input argument contained in an
                    mlist generated an error
 
 * bug 3200 fixed - The add_help_chapter function returned a boolean
@@ -445,7 +453,7 @@ Bug fixes:
 
 * bug 4767 fixed - Typo in minreal was causing errors in some cases
 
-* bug 4844 fixed - The help page for the deletefile function did not specify 
+* bug 4844 fixed - The help page for the deletefile function did not specify
                    what was the meaning of the output variable
 
 * bug 5025 fixed - The Tabbed palette manager became a Tree palette
@@ -479,7 +487,7 @@ Bug fixes:
 * bug 5237 fixed - ATOMS: The load of an ATOMS module could produce an error.
                    The error is now catched.
 
-* bug 5249 fixed - Using the help or apropos functions, some words (stop word) 
+* bug 5249 fixed - Using the help or apropos functions, some words (stop word)
                    were not taken into account during the search
 
 * bug 5251 fixed - getversion help page updated
@@ -525,14 +533,14 @@ Bug fixes:
 
 * bug 5330 fixed - "help str1 str2" returned an error
 
-* bug 5331 fixed - There was no example in the help page of matfile_* 
+* bug 5331 fixed - There was no example in the help page of matfile_*
                    loadmatfile or savematfile
 
 * bug 5339 fixed - Some macros had multiple definitions
 
-* bug 5340 fixed - There was no example in the help of arma 
+* bug 5340 fixed - There was no example in the help of arma
 
-* bug 5355 fixed - There was no automatic indentation in the editor when 
+* bug 5355 fixed - There was no automatic indentation in the editor when
                    commands such as "try" or "catch" were entered
 
 * bug 5359 fixed - ATOMS: Path of the non-existing loader file was not well
@@ -551,7 +559,7 @@ Bug fixes:
 
 * bug 5376 fixed - tool_skeleton.iss had not been updated
 
-* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on 
+* bug 5384 fixed - get_absolute_file_path was case sensitive with filename on
                    Windows
 
 * bug 5391 fixed - Bad warning/error messages in ATOMS
@@ -561,7 +569,7 @@ Bug fixes:
 * bug 5413 fixed - help_from_sci: An error was triggered when < or > where used
                    in the comments
 
-* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit 
+* bug 5431 fixed - When network is unreachable, ATOMS now displays an explicit
                    warning and return softly
 
 * bug 5433 fixed - LCC-Win32 did not work with Scicos
@@ -571,7 +579,7 @@ Bug fixes:
 * bug 5453 fixed - ATOMS: Sizes were displayed with French units
 
 * bug 5456 fixed - TCL_UpVar(source,alias) returns %T even if the TCL variable
-                   source did not exist and then aliasing had not been 
+                   source did not exist and then aliasing had not been
                    performed
 
 * bug 5457 fixed - Scilab could not start with Korean Win XP
@@ -581,8 +589,8 @@ Bug fixes:
 * bug 5461 fixed - The savematfile did not work when a format argument was given
 
 * bug 5462 fixed - savematfile() did not save correctly sparse matrices
-                   
-* bug 5469 fixed - Force origin presence on axes with location property set 
+
+* bug 5469 fixed - Force origin presence on axes with location property set
                    to 'origin'
 
 * bug 5470 fixed - The addcolor function help page did not contain example
@@ -600,11 +608,11 @@ Bug fixes:
                    help_from_sci function, the docbook Author refsection
                    section was not correct
 
-* bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set 
+* bug 5494 fixed - On Windows 2000, stacksize with the argument 'max' set
                    stack to minimum size if it failed
 
 * bug 5499 fixed - tbx_build_loader() automatically added a test about
-                   version in the loader.sce even if the module has been 100% 
+                   version in the loader.sce even if the module has been 100%
                    written in Scilab code
 
 * bug 5505 fixed - getdebuginfo() output in French was partially translated,
@@ -623,19 +631,19 @@ Bug fixes:
 
 * bug 5546 fixed - Initialization trouble of the variable "compilerpath"
 
-* bug 5577 fixed - help_skeleton macros encoded the generated xml file in 
+* bug 5577 fixed - help_skeleton macros encoded the generated xml file in
                    ISO-8859-1 and not in UTF-8
- 
+
 * bug 5585 fixed - sysdiag(): Both examples were duplicated
 
 * bug 5586 fixed - getscilabkeyworgs was broken
 
-* bug 5604 fixed - Fminsearch: optimsimplex_new did not check for consistency 
+* bug 5604 fixed - Fminsearch: optimsimplex_new did not check for consistency
                    of x0 and len for "axes" simplex
 
 * bug 5607 fixed - 'mtlb_mode' did not work on Windows
 
-* bug 5615 fixed - xls_open failed if there was a trailing space after the 
+* bug 5615 fixed - xls_open failed if there was a trailing space after the
                    file extension
 
 * bug 5619 fixed - bitset() could not set hypermatrix bits
@@ -650,7 +658,7 @@ Xcos:
 =====
 
 Xcos is developed simultaneously and together with Scilab, and replaces Scicos
-in Scilab distributions. With a new ergonomic and efficient block diagrams 
+in Scilab distributions. With a new ergonomic and efficient block diagrams
 editor, Xcos provides functionalities for modeling mechanical systems and control
 systems, and is particularly suitable for industrial and academic needs.
 
@@ -659,7 +667,7 @@ This new version provides numerous new features:
 * Scilab can be used during the diagram construction
 * Diagram edition is available even during simulation
 * Drag and drop from palettes to diagram and between diagrams
-* History (Undo/Redo) with an unlimited number of actions memorized 
+* History (Undo/Redo) with an unlimited number of actions memorized
 * Viewport to have an overall view of your diagram
 * Palette window with new palettes organization
 * Improved stability
@@ -674,7 +682,7 @@ ATOMS:
 
 ATOMS is the packaging system for Scilab's modules. Thanks to ATOMS, any user
 running Scilab on a supported operating system is able to
-install any modules from Scilab or third-party repositories with only three 
+install any modules from Scilab or third-party repositories with only three
 clicks or with just one Scilab command.
 
 For example, the following command will install plotlib:
@@ -689,7 +697,7 @@ Many packages are already available and more are going to be offered
 on Scilab's repositories.
 
 This system is fully open to contributors. Anyone can manage his own toolbox
-on Scilab ATOMS website (http://atoms.scilab.org) or run his own 
+on Scilab ATOMS website (http://atoms.scilab.org) or run his own
 repository.
 
 Note that ATOMS website replaces the current toolboxes/modules web interface.
@@ -714,10 +722,10 @@ Graphics:
 
 * Text rendering with LaTeX / MathML
 
-The annotation of Scilab's graphics in MathML or LaTeX is now possible. 
-It enables the integration of mathematical equations, greek variables, matrix 
-displays... 
-This is available in any cases where text can be set in the graphic (label, 
+The annotation of Scilab's graphics in MathML or LaTeX is now possible.
+It enables the integration of mathematical equations, greek variables, matrix
+displays...
+This is available in any cases where text can be set in the graphic (label,
 tick, title, xstring...).
 For example:
 x = 1:0.25:10;y1 = 1 + sin(4*%pi*x / 10);plot(x,y1,'k-');
@@ -727,7 +735,7 @@ Thanks to Calixte Denizet for this feature and the underlying API for LaTeX rend
 
 * Antialiasing on graphics
   This new feature improves the quality of graphic rendering.
-  It can be activated with the following commands: 
+  It can be activated with the following commands:
   df = gdf(); df.anti_aliasing = "8x"; plot3d();
   The rational and performance tests are available in SEP #16 or can be
   seen in Scilab bugtracker as bug #2984.
@@ -749,7 +757,7 @@ in different environments and use cases.
     are still available
     Name: scilab
 
-  - Advanced Command-Line Interpreter (ACLI) - Interpreter in command line with the graphic capabilities available 
+  - Advanced Command-Line Interpreter (ACLI) - Interpreter in command line with the graphic capabilities available
     (equivalent to Scilab NW Mode)
     Name: scilab-adv-cli
 
@@ -791,9 +799,9 @@ Extension capabilities of Scilab (API Scilab):
 ==============================================
 
 In the previous versions of Scilab, there was no clear or easy way to extend
-Scilab or to use it as an embedded application. 
+Scilab or to use it as an embedded application.
 Knowing these drawbacks, Scilab 5.2 tackles all those issues by providing a new
-consistent, documented and easy way to use API. 
+consistent, documented and easy way to use API.
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
@@ -811,22 +819,22 @@ consistent, documented and easy way to use API.
   Do not hesitate to submit a bug report if you would like to see new features
   and functions in Scilab API.
 
-* In the enum sci_types which lists all Scilab data types, the type 
+* In the enum sci_types which lists all Scilab data types, the type
   "sci_lufact_pointer" has been renamed "sci_pointer".
   A define of "sci_lufact_pointer" on "sci_pointer" has been added to backward
   compatibilities.
   The rationale is to improve the use in special case of the pointer data type
   to avoid memory duplication.
 
-* Under all operating systems but Windows, all headers are not installed in a single directory 
+* Under all operating systems but Windows, all headers are not installed in a single directory
   in order to simplify the use of Scilab features in the dynamic link.
   See SEP #32 for more information
 
 * From this version of Scilab, only a defined and documented number of headers
-  are installed. 
+  are installed.
   Thanks to this change, a module/toolbox developer knows exactly what are the
   available functions provided by Scilab.
-  See SEP #35. 
+  See SEP #35.
   Do not hesitate to contact us if you have been using a Scilab header which has been removed from Scilab 5.2.
 
 
@@ -836,12 +844,12 @@ call_scilab module:
 Call Scilab is the API which allows Scilab to be called as computing engine or
 embedded into a third-party application.
 From this version, Call Scilab is based on Scilab API and handles all Scilab
-data types (in previous versions, Double, Boolean, Complex Matrices and String 
+data types (in previous versions, Double, Boolean, Complex Matrices and String
 elements were managed).
-The Call Scilab function has the same profile as Scilab API with 'Named' into 
+The Call Scilab function has the same profile as Scilab API with 'Named' into
 the function name.
- 
-* CallScilab.h renamed call_scilab.h (See SEP #34). CallScilab.h is still 
+
+* CallScilab.h renamed call_scilab.h (See SEP #34). CallScilab.h is still
   available and points to call_scilab.h
 
 * Documentation and examples about call_scilab added (BooleanManagement call_scilab
@@ -922,7 +930,7 @@ use cases.
 Input/Output functions:
 =======================
 
-* Input arguments of fprintf are now checked 
+* Input arguments of fprintf are now checked
 
 * Rewrite:
     + getenv
@@ -937,7 +945,7 @@ Core functions:
    + type
    + typename
    + whereis
-     
+
 * 'sethomedirectory' is obsolete. See 'home'.
 
 * 'getf' is obsolete. See 'exec'.
@@ -947,17 +955,17 @@ Core functions:
 fileio functions:
 =================
 
-* Input arguments of functions are now checked 
+* Input arguments of functions are now checked
     (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
-    
+
 * fileinfo manages column vector of strings (SEP #25)
-  
+
 * basename uses fileparts
-  
+
 * pathconvert: If the flagtrail argument is set to FALSE and the trailing separator
                 of the path is removed (if present of course). See Bug 4468.
-                  
-* 'getcwd' is obsolete. See 'pwd'. 
+
+* 'getcwd' is obsolete. See 'pwd'.
 
 * isfile: checks if filename is an existing file.
 
@@ -970,28 +978,28 @@ fileio functions:
    + basename (primitive)
    + pathconvert (primitive)
    + cd, chdir (primitive)
-  
+
 Dynamic link:
 =============
 
 * Windows: temporary files (objects) are generated in an intermediate subdirectory (Release or Debug)
    ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
-  
+
 * ilib_for_link and ilib_gen_Make with lcc-win32 use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC)
 
 * ilib_verbose (SEP #17) Set level of display returned by dynamic link functions.
- 
+
 * add an example to call a Scilab macro from a C interface
    (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
-   
+
 * a 'cleaner.sce' file is generated by 'ilib_for_link' and 'ilib_build'.
- 
-* addinter: each interface added can manage 999 functions (see bug 4675). 
+
+* addinter: each interface added can manage 999 functions (see bug 4675).
 
 * ilib_gen_gateway can generate gateway without PutLhsVar (Managed by user, in this case)
-  see help of 'ilib_gen_gateway' about this modification and 
+  see help of 'ilib_gen_gateway' about this modification and
   SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
 
 * ilib_gen_loader now generates loaders which can be executed outside the loader's directory
@@ -1015,20 +1023,20 @@ Online Help:
 
 * add_help_chapter now accepts to add help chapters with the same title.
 
-* In the documentation, the font size of the equations has been increased 
+* In the documentation, the font size of the equations has been increased
   for a better readability.
 
 * Javasci FAQ page added
 
 * Online help XML files have been converted into UTF-8
- 
+
 
 Source reorganization:
 ======================
 
 * Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
   SCI/modules/src/scripts
-  
+
 * newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
 
 * bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
@@ -1041,13 +1049,13 @@ Source reorganization:
 
 * oldsave, oldload functions (only used with macros of Scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
-  
+
 * bug 3669 fixed - integrate, intc and intl moved in Differential equations
   interp1, interp2d and splin2d  moved in the Interpolation module.
 
-* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
-bits archs). Note that if Scilab is built on a 64 bits and triggers a 
-seg fault on startup, uncomment the related line in 
+* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64
+bits archs). Note that if Scilab is built on a 64 bits and triggers a
+seg fault on startup, uncomment the related line in
 libs/MALLOC/Makefile.am and launch autoreconf.
 
 
@@ -1082,40 +1090,40 @@ Compilation:
   -Xcheck:jni) in order to provide more feedbacks on debug
   Note that this should not be used into a binary since it is expensive
 
-* C++ => Java connector updated (using GIWS - 
+* C++ => Java connector updated (using GIWS -
   http://www.scilab.org/giws/ version 1.0.5)
   There was a bug in GIWS:
   The use of a static method returning an int was not calling the right
   method.
-  It did not seem to trigger any errors in the past but the latest 
+  It did not seem to trigger any errors in the past but the latest
   version of the JDK is now complaining.
 
 
-* Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill. They fix 
+* Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill. They fix
   some compile time problems under NetBSD which also improve all operating systems but Windows.
-    - adds some missing $host to the 64 bit list.  
+    - adds some missing $host to the 64 bit list.
     - adds a needed compiler flag for alpha-*-netbsd
     - adds autoconf check for term.h header
     - adds autoconf checks for gettext
-    - adds autoconf check for dlopen in -ldl 
-      (on some systems, we do not need -ldl because dlopen is in libc).  
+    - adds autoconf check for dlopen in -ldl
+      (on some systems, we do not need -ldl because dlopen is in libc).
       Do not hardcode linking with -ldl but rely on this new check.
     - adds correct getrlimit() argument for NetBSD and DragonFly
     - avoids pulling in an OSF1 specific header on NetBSD/alpha
     - adds missing newline at the end of a file
     - adds missing XML LIBS and CFLAGS
     - adds LTLIBINTL to the list of common objects needed for linking the top level binary.
-    - adds checks for term.h and termcap.h headers.  
+    - adds checks for term.h and termcap.h headers.
     - adds check for -lpthread
-    - reworks the checks for curses a little bit to search for 
-      curses.h and -lcurses first followed by ncurses.h and -lncurses.   
-    - uses configure results to protect the inclusion of curses.h, 
+    - reworks the checks for curses a little bit to search for
+      curses.h and -lcurses first followed by ncurses.h and -lncurses.
+    - uses configure results to protect the inclusion of curses.h,
       ncurses.h, term.h, and termcap.h.
     - adds __DragonFly__ to a few conditional lines.
     - removes the static declaration of BC to match what was found
       in a header file.
     - adds missing enable_keypad_mode()
-    - uses configure results to protect the inclusion of curses.h, 
+    - uses configure results to protect the inclusion of curses.h,
       ncurses.h, term.h, and termcap.h.
     - Large amounts of cleanup of the PVM configure code (Closes: #4151)
 
@@ -1189,7 +1197,7 @@ Bugs:
 * bug 4277 fixed - strsubst,regexp, strindex, grep returned strange results if accented
                    characters and character class were associated in the pattern to match.
 
-* bug 4617 fixed - Some items (Console pull down menu and help browser item) 
+* bug 4617 fixed - Some items (Console pull down menu and help browser item)
                  were not translatable
 
 * bug 4660 fixed - Error in the French localization (Edit instead of Edition)
@@ -1220,7 +1228,7 @@ Java/Scilab API:
 
  - uses api_scilab functions to write & read data (internal for javasci)
 
- - SciInteger class added  
+ - SciInteger class added
 
 Functions removed:
 ==================
@@ -1252,7 +1260,7 @@ Bug fixes:
 * bug 415 fixed - Order in the roots of a polynomial fixed
 
 
-* bug 667  fixed - scilab.start-file caused an initialization error when you 
+* bug 667  fixed - scilab.start-file caused an initialization error when you
                     used predef('all') in a user startup file.
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z caused Scilab to hang
@@ -1276,10 +1284,10 @@ Bug fixes:
 
 * bug 2275 fixed - isvector help page added
 
-* bug 2347 fixed - "fun2string" indentation problem with select/case 
+* bug 2347 fixed - "fun2string" indentation problem with select/case
                     instruction.
 
-* bug 2446 fixed - "while" documentation help page improved to explain 
+* bug 2446 fixed - "while" documentation help page improved to explain
                     that the keywords do or then can be omitted.
 
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf could crash Scilab when
@@ -1294,7 +1302,7 @@ Bug fixes:
 * bug 2649 fixed - diary() function could not be nested.
 
 * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
-                   Debian Etch, Centos 4.X and some other old operating 
+                   Debian Etch, Centos 4.X and some other old operating
                    systems)
 
 * bug 3184 fixed - Ticks of colorbar have disappeared
@@ -1313,7 +1321,7 @@ Bug fixes:
 
 * bug 3533 fixed - lib(dir_path) did not work if the final slash was missing in dir_path.
 
-* bug 3537 fixed - Problem with examples in French help page for metanet functions. 
+* bug 3537 fixed - Problem with examples in French help page for metanet functions.
                     The old graph data structure was used.
 
 * bug 3543 fixed - Wrong parenthesize in struct indices (code generated by tree2code).
@@ -1343,7 +1351,7 @@ Bug fixes:
 
 * bug 4090 fixed - Draw did not work any more while inside drawlater/drawnow scope.
 
-* bug 4101 fixed - -ns option was not clearly explaining that it is 
+* bug 4101 fixed - -ns option was not clearly explaining that it is
                     disabling many Scilab features
 
 * bug 4110 fixed - Demos order were different between Linux and Windows versions
@@ -1366,9 +1374,9 @@ Bug fixes:
 
 * bug 4263 fixed - Completion cleaned current input line.
 
-* bug 4267 fixed - A non-initialization of a lock under Netbsd was 
+* bug 4267 fixed - A non-initialization of a lock under Netbsd was
                    causing an error on startup
-                   
+
 * bug 4277 fixed - Force UTF8 management in pcre processing.
 
 * bug 4278 fixed - typename() called with a wrong number of input arguments returned incoherent errors.
@@ -1379,12 +1387,12 @@ Bug fixes:
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if their functionalities
                    are not available.
-                   
-* bug 4307 fixed - Help file for %io added                  
+
+* bug 4307 fixed - Help file for %io added
 
 * bug 4330 fixed - stacksize('max') + stacksize(required_mem) did not work
 
-* bug 4347 fixed - messagebox(): buttons were displayed in reverse order with 
+* bug 4347 fixed - messagebox(): buttons were displayed in reverse order with
                    respect to their order in the vector specifying them (Windows).
 
 * bug 4351 fixed - Test about 'exit' did not work on Linux.
@@ -1532,10 +1540,10 @@ Bug fixes:
 
 * bug 4539 fixed - Some optional parameters were not set in hist3d
 
-* bug 4542 fixed - Unexpected interpreter warning 
+* bug 4542 fixed - Unexpected interpreter warning
 
 * bug 4546 fixed - Error message added for linpro function (moved to an external function)
- 
+
 * bug 4547 fixed - Examples of javasci with graphics were no more interactive
 
 * bug 4548 fixed - With Intel Fortran, file unit opened in a external dll were not shared
@@ -1585,13 +1593,13 @@ Bug fixes:
                    extension
 
 * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
-                    led to a crash 
+                    led to a crash
 
-* bug 4615 fixed - xs2jpg(0, '/tmp/myplop.jpeg'); was creating a file 
-                   called /tmp/myplop.jpeg.jpg (Thanks to Guilherme 
+* bug 4615 fixed - xs2jpg(0, '/tmp/myplop.jpeg'); was creating a file
+                   called /tmp/myplop.jpeg.jpg (Thanks to Guilherme
                    Kunigami for the fix)
 
-* bug 4616 fixed - Text strings in SVG output were not rotated. Thanks 
+* bug 4616 fixed - Text strings in SVG output were not rotated. Thanks
                    to Paul Griffiths for the patch!
 
 * bug 4618 fixed - buttmag produced a warning because of redefining symbol sample
@@ -1609,7 +1617,7 @@ Bug fixes:
 
 * bug 4635 fixed - Bad title in the French help of the graphic module
 
-* bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version 
+* bug 4636 fixed - Metanet on-line help: an accent was missing on the "e" in the French version
 
 * bug 4638 fixed - This example with optim froze Scilab
 
@@ -1712,7 +1720,7 @@ Bug fixes:
 
 * bug 4832 fixed - wavread returned a non explicit error if RIFF had some 'smpl' chunck
 
-* bug 4838 fixed - Completion returned wrong value with '..' 
+* bug 4838 fixed - Completion returned wrong value with '..'
 
 * bug 4846 fixed - mopen("","") crashed on Windows
 
