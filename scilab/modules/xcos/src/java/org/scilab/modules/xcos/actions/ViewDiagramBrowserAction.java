@@ -16,11 +16,11 @@ package org.scilab.modules.xcos.actions;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
@@ -39,7 +39,7 @@ public class ViewDiagramBrowserAction extends DefaultAction {
 		    File temp = File.createTempFile("xcos",".h5");
 		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
-		    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
+		    XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 			    +"tree_show(scs_m);"
 			    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
 		} catch (IOException e1) {

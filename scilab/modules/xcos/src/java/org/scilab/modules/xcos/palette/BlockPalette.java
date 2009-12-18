@@ -27,7 +27,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -42,6 +41,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.util.mxGraphTransferable;
@@ -152,7 +152,7 @@ public class BlockPalette extends JLabel {
 						private static final long serialVersionUID = -8720228686621887887L;
 
 						public void callBack() {
-							InterpreterManagement.requestScilabExec("help " + BlockPalette.this.getText());
+							XcosInterpreterManagement.requestScilabExec("help " + BlockPalette.this.getText());
 						}
 					});
 					menu.add(help);

@@ -15,13 +15,13 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class StopAction extends DefaultAction {
@@ -41,7 +41,7 @@ public class StopAction extends DefaultAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		InterpreterManagement.requestScilabExec("haltscicos");
+		XcosInterpreterManagement.requestScilabExec("haltscicos");
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		XcosTab.setStartEnabled(true);
 	}
