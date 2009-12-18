@@ -86,7 +86,7 @@ src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
-GATEWAY_C_SOURCES = \ 
+GATEWAY_C_SOURCES = \
 				sci_gateway/c/gw_integer.c \
 				sci_gateway/c/sci_int.c
 
