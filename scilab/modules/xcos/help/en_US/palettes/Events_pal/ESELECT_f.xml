@@ -96,8 +96,10 @@
 Special block similar to If-Then-Else. Input and output are synchronized.
 The incoming event is directed to one of the output event ports depending
 on the value of the regular input.
-
-</para>
+    </para>
+    <para>
+For example, when the input value is between 0 and 1, the control input is redirected to the first command output; when the input value is between 1 and 2, the control input is redirected to the second command output; et cætera...
+    </para>
   </refsection>
   <refsection id="Dialogbox_ESELECT_f">
     <title>Dialog box</title>

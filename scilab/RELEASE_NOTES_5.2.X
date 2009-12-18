@@ -28,6 +28,16 @@ Known incompatibilities:
 	* As a consequence, TclSci (Scilab / Tcl interface) Scipad, GED
 	and the variable editor are not working.
 
+  * Due to internal constraints, during the load of Scilab, it is normal
+    to see the icon changing for a second.
+
+  * On a non-up-to-date Mac OS X, an error saying that the Dock Icon
+    cannot be set can occur. Please update your Mac OS X Java.
+
+  * Scilab starts in the background (ie behind other applications).
+ 
+  * Under Mac OS X 10.5, bugs #4100 and #4096 have not been fixed.
+
 - Scipad has been removed from the Scilab distribution and replaced by an other
 Scilab text editor.
 This was due to the Tcl/Tk problem under Mac OS X and UI consistency.
@@ -45,5 +55,5 @@ atomsLoad("metanet");
   this works with the Sun proprietary JVM.
   See bug 4578.
 
-- While PDF export are 10 time slower, PS and EPS exports are 4 time bigger
+- While PDF export are 10 time smaller, PS and EPS exports are 4 time bigger
 (with a better quality). This would be fixed in a next version of Scilab.
