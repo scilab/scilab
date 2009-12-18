@@ -1613,13 +1613,15 @@ public class XcosDiagram extends ScilabGraph {
 	    	String[] context = buildEntireContext();
 	    	
 	    	/* Determine if the context is not empty */
-	    	int nbOfChar = 0;
+	    	int nbOfDetectedChar = 0;
 	    	for (int j = 0; j < context.length; j++) {
 	    		context[j] = context[j].replaceFirst("\\s", "");
-	    		nbOfChar += context[j].length();
+	    		nbOfDetectedChar += context[j].length();
+	    		if (nbOfDetectedChar != 0)
+	    			break;
 			}
 	    	
-	    	if (nbOfChar != 0) {
+	    	if (nbOfDetectedChar != 0) {
 	    		((ContextUpdate)obj).onContextChange(context);
 	    	}
 
