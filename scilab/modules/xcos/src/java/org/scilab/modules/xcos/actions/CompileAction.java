@@ -66,8 +66,7 @@ public class CompileAction extends DefaultAction {
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						
 						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
-										 "xcos_compile(scs_m);" +
-										 "xcosNotify(\""+compilationEnd+"\");";
+										 "xcos_compile(scs_m);";
 						XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	

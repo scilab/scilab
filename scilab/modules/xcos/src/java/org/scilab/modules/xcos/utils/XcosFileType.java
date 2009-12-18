@@ -181,7 +181,6 @@ public enum XcosFileType {
 		tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
 		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
 		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-		cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
 		XcosInterpreterManagement.SynchronousScilabExec(cmd);
 	    } catch (IOException e) {
 		e.printStackTrace();

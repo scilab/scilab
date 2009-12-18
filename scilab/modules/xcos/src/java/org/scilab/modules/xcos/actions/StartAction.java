@@ -46,9 +46,9 @@ public class StartAction  extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	File temp;
-	XcosTab.setStartEnabled(false);
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
-	((XcosDiagram) getGraph(null)).getParentTab().getInfoBar().draw();
+	XcosTab.setStartEnabled(false);
+	
 	try {
 	    temp = File.createTempFile("xcos",".h5");
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
@@ -56,7 +56,6 @@ public class StartAction  extends DefaultAction {
 	    String command = "import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 	    				+"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
 	    				+"xcos_simulate(scs_m);"
-	    				+"xcosNotify(\"" + simulationEnd + "\");"
 	    				+"deletefile(\"" + temp.getAbsolutePath()+"\");";
 	    XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
