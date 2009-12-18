@@ -403,16 +403,26 @@ public final class FindAction extends DefaultAction {
 
 		buttonReplace .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				JTextPane xpadTextPane =  getEditor().getTextPane();
+				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+				boolean mergeMode = doc.getShouldMergeEdits();
+				doc.setShouldMergeEdits(true);
 				replaceOnlyText();
+				doc.setShouldMergeEdits(mergeMode);
 			}	
 
 		});
 
 		buttonReplaceFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JTextPane xpadTextPane =  getEditor().getTextPane();
+				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+				boolean mergeMode = doc.getShouldMergeEdits();
+				doc.setShouldMergeEdits(true);
 				replaceText();
 				findText();
+				doc.setShouldMergeEdits(mergeMode);
+
 
 			}
 		});
