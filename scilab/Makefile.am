@@ -99,7 +99,8 @@ scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/output_stream/includes/ \
 						-I$(top_srcdir)/modules/console/includes/
 
-
+# Workaround. Was causing some undefined symbols on gfortran
+scilab6_bin_LDFLAGS =  $(FLIBS)
 
 scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
