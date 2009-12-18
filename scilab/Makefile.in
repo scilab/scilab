@@ -54,6 +54,9 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 
 #-static
 @ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
+
+#  The user wants to compile the localization files
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
 check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 	call_scilab_c_getlastjob$(EXEEXT) \
 	call_scilab_c_DisableInteractiveMode$(EXEEXT) \
@@ -636,7 +639,7 @@ $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros
+TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -678,25 +681,6 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 # Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
 @IS_MACOSX_TRUE@MACOSX = 1
-#	@echo "-- Build localization (.mo from .po) --"; \
-#	MASK="modules/*/locales/"; \
-#	LC="LC_MESSAGES"; \
-#	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-#	FILENAME="*.po*"; \
-#	rm modules/*/locales/*/*~ 2> /dev/null; \
-#	for LOCALE in $(ALL_LINGUAS); do \
-#		echo "        -- Building for $$LOCALE --"; \
-#		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
-#		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
-#		if test ! -d $$PATHTO; then \
-#			echo "        Creating $$PATHTO"; \
-#			mkdir -p $$PATHTO; \
-#		fi; \
-#		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-#		$(MSGCAT) -o $$POFILE $$FILES; \
-#		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
-#		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-#	done;
 
 # Misc variable for the documentation installation
 
@@ -1742,9 +1726,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 # The binary itself needs this dep
 @IS_SOLARIS_TRUE@	scilab_bin_LDADD += $(BLAS_LIBS)
 
-#  The user wants to compile the localization files
-#TARGETS_ALL+=localization
-
 all-local: $(TARGETS_ALL)
 
 macros:
@@ -1841,6 +1822,25 @@ distclean-generated:
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
+@GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	LC="LC_MESSAGES"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	FILENAME="*.po*"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	rm modules/*/locales/*/*~ 2> /dev/null; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	for LOCALE in $(ALL_LINGUAS); do \
+@GENERATE_LOCALIZATION_FILES_TRUE@		echo "        -- Building for $$LOCALE --"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test ! -d $$PATHTO; then \
+@GENERATE_LOCALIZATION_FILES_TRUE@			echo "        Creating $$PATHTO"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			mkdir -p $$PATHTO; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

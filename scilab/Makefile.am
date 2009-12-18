@@ -120,7 +120,7 @@ TARGETS_ALL=macros
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
-#TARGETS_ALL+=localization
+TARGETS_ALL+=localization
 endif
 
 all-local: $(TARGETS_ALL)
@@ -267,25 +267,25 @@ endif
 # Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
 localization:
-#	@echo "-- Build localization (.mo from .po) --"; \
-#	MASK="modules/*/locales/"; \
-#	LC="LC_MESSAGES"; \
-#	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-#	FILENAME="*.po*"; \
-#	rm modules/*/locales/*/*~ 2> /dev/null; \
-#	for LOCALE in $(ALL_LINGUAS); do \
-#		echo "        -- Building for $$LOCALE --"; \
-#		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
-#		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
-#		if test ! -d $$PATHTO; then \
-#			echo "        Creating $$PATHTO"; \
-#			mkdir -p $$PATHTO; \
-#		fi; \
-#		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-#		$(MSGCAT) -o $$POFILE $$FILES; \
-#		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
-#		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-#	done;
+	@echo "-- Build localization (.mo from .po) --"; \
+	MASK="modules/*/locales/"; \
+	LC="LC_MESSAGES"; \
+	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
+	FILENAME="*.po*"; \
+	rm modules/*/locales/*/*~ 2> /dev/null; \
+	for LOCALE in $(ALL_LINGUAS); do \
+		echo "        -- Building for $$LOCALE --"; \
+		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
+		if test ! -d $$PATHTO; then \
+			echo "        Creating $$PATHTO"; \
+			mkdir -p $$PATHTO; \
+		fi; \
+		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
+		$(MSGCAT) -o $$POFILE $$FILES; \
+		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+	done;
 endif
 
 # Misc variable for the documentation installation
