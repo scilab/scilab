@@ -8,7 +8,6 @@ import java.awt.event.ComponentListener;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
 

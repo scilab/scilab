@@ -14,17 +14,17 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class StartAction  extends DefaultAction {
@@ -46,26 +46,23 @@ public class StartAction  extends DefaultAction {
 
     public void actionPerformed(ActionEvent e) {
 	File temp;
-	XcosTab.setStartEnabled(false);
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
-	((XcosDiagram) getGraph(null)).getParentTab().getInfoBar().draw();
+	XcosTab.setStartEnabled(false);
+	
 	try {
 	    temp = File.createTempFile("xcos",".h5");
-	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
-	    Thread launchMe = new Thread() {
-		public void run() {
-		    Signal.wait(simulationEnd);
-		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		    XcosTab.setStartEnabled(true);
-		}
-	    };
-	    launchMe.start();
-	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
-		    +"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
-		    +"xcos_simulate(scs_m);"
-		    +"xcosNotify(\"" + simulationEnd + "\");"
-		    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
+
+	    String command = "import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
+	    				+"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
+	    				+"xcos_simulate(scs_m);"
+	    				+"deletefile(\"" + temp.getAbsolutePath()+"\");";
+	    XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+			    XcosTab.setStartEnabled(true);
+			}
+		});
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	    XcosTab.setStartEnabled(true);

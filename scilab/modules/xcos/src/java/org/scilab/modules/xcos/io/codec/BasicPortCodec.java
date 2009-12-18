@@ -16,14 +16,12 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.model.mxICell;
 
 public class BasicPortCodec extends XcosObjectCodec {
 

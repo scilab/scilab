@@ -33,11 +33,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class DebugLevelAction extends DefaultAction {
@@ -150,7 +150,7 @@ public class DebugLevelAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 				int value = ((DebugLevel)debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
-				InterpreterManagement.requestScilabExec("scicos_debug("+value+");");
+				XcosInterpreterManagement.SynchronousScilabExec("scicos_debug("+value+");");
 		
 				mainFrame.dispose();
 			}

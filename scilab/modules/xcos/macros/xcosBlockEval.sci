@@ -42,5 +42,4 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
   [new_scs_m, y, typ] = interfaceAlias('set', scs_m, []);
 
 	export_to_hdf5(hdf5FileToSave, "new_scs_m");
-	xcosNotify(hdf5FileToSave);
 endfunction

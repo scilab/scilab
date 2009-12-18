@@ -12,9 +12,10 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -24,7 +25,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.utils.Signal;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -67,26 +68,26 @@ public class CodeGenerationAction extends DefaultAction {
 	    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
 	    H5Write.closeFile(file_id);
 	    
-	    InterpreterManagement.requestScilabExec("xcosCodeGeneration(\""+tempOutput.getAbsolutePath()+"\""+
-		    ", \""+tempInput.getAbsolutePath()+"\");");
-	    Thread launchMe = new Thread() {
-		public void run() {
-		    Signal.wait(tempInput.getAbsolutePath());
-		    // Now read new Block
-		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-		    block.updateBlockSettings(modifiedBlock);
-		    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-		    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-		    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-		    block.setStyle("blockWithLabel");
-		    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-			    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-		    block.setValue(block.getSimulationFunctionName());
-		    block.setChild(null);
-		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		}
-	    };
-	    launchMe.start();
+			String command = "xcosCodeGeneration(\""
+					+ tempOutput.getAbsolutePath() + "\"" + ", \""
+					+ tempInput.getAbsolutePath() + "\");";
+	    
+			XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					// Now read new Block
+				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+				    block.updateBlockSettings(modifiedBlock);
+				    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+				    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+				    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+				    block.setStyle("blockWithLabel");
+				    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
+					    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+				    block.setValue(block.getSimulationFunctionName());
+				    block.setChild(null);
+				    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+				}
+			});
 	}
 	
 	catch (Exception e) {
