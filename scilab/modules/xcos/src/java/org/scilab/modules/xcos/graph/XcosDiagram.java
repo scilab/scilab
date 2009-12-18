@@ -1610,7 +1610,19 @@ public class XcosDiagram extends ScilabGraph {
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    Object obj = getModel().getChildAt(getDefaultParent(), i);
 	    if ( obj instanceof ContextUpdate) {
-		((ContextUpdate)obj).onContextChange(buildEntireContext());
+	    	String[] context = buildEntireContext();
+	    	
+	    	/* Determine if the context is not empty */
+	    	int nbOfChar = 0;
+	    	for (int j = 0; j < context.length; j++) {
+	    		context[j] = context[j].replaceFirst("\\s", "");
+	    		nbOfChar += context[j].length();
+			}
+	    	
+	    	if (nbOfChar != 0) {
+	    		((ContextUpdate)obj).onContextChange(context);
+	    	}
+
 	    } else if (obj instanceof SuperBlock) {
 		SuperBlock superBlock = (SuperBlock)obj;
 		if(superBlock.getChild() != null) {
