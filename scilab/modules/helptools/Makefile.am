@@ -108,7 +108,6 @@ libscihelptools_la_schema_DATA = schema/scilab.rnc
 libscihelptools_la_docdir = $(mydatadir)/doc
 libscihelptools_la_doc_DATA = \
 doc/addonprefs.png \
-doc/addonprefs.png \
 doc/doc.pdf \
 doc/doc.xml
 
