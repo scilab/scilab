@@ -559,6 +559,7 @@ public final class FindAction extends DefaultAction {
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();
+				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 				String text = null;
 
 				boolean wholeWordSelected  = checkWhole.isSelected() &&  checkWhole.isEnabled();
@@ -571,7 +572,7 @@ public final class FindAction extends DefaultAction {
 					ScilabStyleDocument scilabDocument = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
 				} else {
-					text = xpadTextPane.getText();
+					text = doc.getText();
 				}
 
 				Pattern pattern = null;
@@ -599,9 +600,8 @@ public final class FindAction extends DefaultAction {
 
 				Matcher matcher = pattern.matcher(text);
 				String replacedText = matcher.replaceAll(newWord);
-				if (!replacedText.equals(text)) {
+				if (replacedText.compareTo(text) != 0) {
 					// only touch document if any replacement took place
-					ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 					try {
 						boolean mergeMode = doc.getShouldMergeEdits();
 						doc.setShouldMergeEdits(true);
@@ -1067,7 +1067,6 @@ public final class FindAction extends DefaultAction {
 	public static void closeFindReplaceWindow() {
 		if (FindAction.windowAlreadyExist) {
 			Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
-			System.err.println("highlight : " + highlight.getHighlights().length);
 			highlight.removeAllHighlights();
 			frame.dispose();
 			FindAction.windowAlreadyExist = false;
