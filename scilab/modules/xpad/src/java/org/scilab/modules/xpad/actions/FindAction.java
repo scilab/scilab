@@ -157,12 +157,12 @@ public final class FindAction extends DefaultAction {
 					comboFind.setSelectedIndex(-1);
 					comboReplace.setSelectedIndex(-1);
 				} else {
-					buttonReplaceAll.setSelected(true);
+					radioAll.setSelected(true);
 					comboFind.getEditor().setItem(getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos));
 					comboFind.getEditor().selectAll();
 				}
 			} else {
-				buttonReplaceAll.setSelected(true);
+				radioAll.setSelected(true);
 				comboFind.setSelectedIndex(-1);
 				comboReplace.setSelectedIndex(-1);
 			}
@@ -478,7 +478,6 @@ public final class FindAction extends DefaultAction {
 		updateRecentSearch();
 		updateRecentReplace();
 		
-		
 		/*behaviour of buttons*/
 		radioSelection.addActionListener(new ActionListener() {
 
@@ -629,21 +628,20 @@ public final class FindAction extends DefaultAction {
 				
 		/*comboReplace*/
 		comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {
 				closeComboPopUp();
 			}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseClicked(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {}
 		});
 		
 		comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					FindAction.windowAlreadyExist = false;
-					frame.dispose();
+					closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -697,8 +695,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					FindAction.windowAlreadyExist = false;
-					frame.dispose();
+					closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -779,6 +776,9 @@ public final class FindAction extends DefaultAction {
 			}
 		} else {
 			buttonFind.setEnabled(false);
+			buttonReplace.setEnabled(false);
+			buttonReplaceAll.setEnabled(false);
+			buttonReplaceFind.setEnabled(false);
 		}
 
 
@@ -816,7 +816,7 @@ public final class FindAction extends DefaultAction {
 
 		}
 
-		if (buttonReplace.isEnabled() && oldWord.compareTo(textFind) != 0) {
+		if (buttonReplace.isEnabled() && oldWord != null && oldWord.compareTo(textFind) != 0) {
 			buttonReplace.setEnabled(false);
 			buttonReplaceFind.setEnabled(false);
 		}
@@ -1066,7 +1066,9 @@ public final class FindAction extends DefaultAction {
 	 */
 	public static void closeFindReplaceWindow() {
 		if (FindAction.windowAlreadyExist) {
-			Xpad.getEditor().getTextPane().getHighlighter().removeAllHighlights();
+			Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
+			System.err.println("highlight : " + highlight.getHighlights().length);
+			highlight.removeAllHighlights();
 			frame.dispose();
 			FindAction.windowAlreadyExist = false;
 
