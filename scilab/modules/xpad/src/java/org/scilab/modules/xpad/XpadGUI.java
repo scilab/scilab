@@ -57,6 +57,8 @@ import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
 import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
+import org.scilab.modules.xpad.actions.FindNextAction;
+import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
 import org.scilab.modules.xpad.actions.HelpAction;
 import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
@@ -117,6 +119,8 @@ public class XpadGUI {
 		searchMenu.setText(XpadMessages.SEARCH);
 		searchMenu.setMnemonic('S');
 		searchMenu.add(FindAction.createMenu(editorInstance));
+		searchMenu.add(FindNextAction.createMenu(editorInstance));
+		searchMenu.add(FindPreviousAction.createMenu(editorInstance));
 		searchMenu.add(GotoLineAction.createMenu(editorInstance));
 		menuBar.add(searchMenu);
 

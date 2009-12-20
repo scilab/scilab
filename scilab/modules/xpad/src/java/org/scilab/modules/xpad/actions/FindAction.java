@@ -107,6 +107,8 @@ public final class FindAction extends DefaultAction {
 	private JRadioButton radioForward;
 	private JRadioButton radioSelection;
 
+	private static String previousSearch;
+
 	private String oldWord;
 	private String newWord;
 	private String wordToFind;
@@ -585,7 +587,7 @@ public final class FindAction extends DefaultAction {
 
 				oldWord = (String) comboFind.getEditor().getItem();
 				newWord = (String) comboReplace.getEditor().getItem();
-
+				setPreviousSearch(oldWord);
 
 				if (regexpSelected) {
 					oldWord = "(?m)" + oldWord;
@@ -867,6 +869,7 @@ public final class FindAction extends DefaultAction {
 			return;
 		}
 		wordToFind = exp;
+		setPreviousSearch(wordToFind);
 		saveFindReplaceConfiguration();
 		updateRecentSearch();
 
@@ -1053,6 +1056,7 @@ public final class FindAction extends DefaultAction {
 		saveFindReplaceConfiguration();
 		updateRecentSearch();
 		updateRecentReplace();
+		setPreviousSearch(oldWord);
 		JTextPane xpadTextPane =  getEditor().getTextPane();
 		int currentPosStart = startFindSelection;
 		int currentPosEnd = endFindSelection;
@@ -1094,5 +1098,13 @@ public final class FindAction extends DefaultAction {
 			FindAction.windowAlreadyExist = false;
 
 		}
+	}
+
+	public static String getPreviousSearch() {
+		return previousSearch;
+	}
+
+	public static void setPreviousSearch(String previousSearch) {
+		FindAction.previousSearch = previousSearch;
 	}
 }
