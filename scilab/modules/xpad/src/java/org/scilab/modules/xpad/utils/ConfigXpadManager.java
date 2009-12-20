@@ -951,8 +951,9 @@ public final class ConfigXpadManager {
 
 		ArrayList<Node> search = getNodeChildren(recents, SEARCH);
 
-		if(search.size() == MAX_RECENT_SEARCH) {
+		while(search.size() >= MAX_RECENT_SEARCH) {
 			removeRecentSearch(((Element)search.get(0)).getAttribute(EXPRESSION));
+			search = getNodeChildren(recents, SEARCH);
 		}
 		//if path already in file no need to add it
 		for(Node item : search) {
@@ -1029,6 +1030,10 @@ public final class ConfigXpadManager {
 
 		ArrayList<Node> replace = getNodeChildren(recent, REPLACE);
 
+		while(replace.size() >= MAX_RECENT_REPLACE) {
+			removeRecentReplace(((Element)replace.get(0)).getAttribute(EXPRESSION));
+			replace = getNodeChildren(recent, REPLACE);
+		}
 		//if path already in file no need to add it
 		for(Node item : replace) {
 			if (exp.compareTo(((Element)item).getAttribute(EXPRESSION)) == 0) {
