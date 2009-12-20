@@ -83,6 +83,12 @@ public final class ConfigXpadManager {
 	private static String RECENT_REPLACE = "recentReplace";
 	private static String REPLACE = "replace";
 	private static String EXPRESSION = "exp"; 
+	private static String REGULAR_EXPRESION = "regularExp"; 
+	private static String WORD_WARP = "wordWarp"; 
+	private static String WHOLE_WORD = "wholeWord"; 
+	private static String CASE_SENSITIVE = "caseSensitive"; 
+	private static String STATE_FLAG = "state"; 
+	
 	private static String SETTING = "Setting";
 	private static String XPAD = "xpad";
 
@@ -933,7 +939,7 @@ public final class ConfigXpadManager {
 	public static void saveRecentSearch(String exp) {
 
 		Node root = getXcosRoot();
-		if(root == null) {
+		if(root == null || exp == null || exp.compareTo("") == 0) {
 			return;
 		}
 
@@ -1008,10 +1014,10 @@ public final class ConfigXpadManager {
 		return files;
 	}
 
-	public static void saveRecentReplace(String filePath) {
+	public static void saveRecentReplace(String exp) {
 
 		Node root = getXcosRoot();
-		if(root == null) {
+		if(root == null || exp == null || exp.compareTo("") == 0) {
 			return;
 		}
 
@@ -1025,14 +1031,14 @@ public final class ConfigXpadManager {
 
 		//if path already in file no need to add it
 		for(Node item : replace) {
-			if (filePath.compareTo(((Element)item).getAttribute(EXPRESSION)) == 0) {
+			if (exp.compareTo(((Element)item).getAttribute(EXPRESSION)) == 0) {
 				return;
 			}
 		}
 
 		Element newReplace = document.createElement(REPLACE);
 
-		newReplace.setAttribute(EXPRESSION, filePath);
+		newReplace.setAttribute(EXPRESSION, exp);
 
 		recent.appendChild((Node) newReplace);
 
@@ -1083,6 +1089,77 @@ public final class ConfigXpadManager {
 		return exps;
 	}
 
+	public static boolean getRegularExpression() {
+		return getBooleanAttribute(REGULAR_EXPRESION, STATE_FLAG, false);
+	}
+	
+	public static void saveRegularExpression(boolean regualExp) {
+		saveBooleanAttribute(REGULAR_EXPRESION, STATE_FLAG, regualExp);
+	}
+	
+	public static boolean getWholeWord() {
+		return getBooleanAttribute(WHOLE_WORD, STATE_FLAG, false);
+	}
+	
+	public static void saveWholeWord(boolean wholeWord) {
+		saveBooleanAttribute(WHOLE_WORD, STATE_FLAG, wholeWord);
+	}
+	
+	public static boolean getWordWarp() {
+		return getBooleanAttribute(WORD_WARP, STATE_FLAG, true);
+	}
+	
+	public static void saveWordWarp(boolean wordWarp) {
+		saveBooleanAttribute(WORD_WARP, STATE_FLAG, wordWarp);
+	}
+	
+	public static boolean getCaseSensitive() {
+		return getBooleanAttribute(CASE_SENSITIVE, STATE_FLAG, false);
+	}
+	
+	public static void saveCaseSensitive(boolean caseSensitive) {
+		saveBooleanAttribute(CASE_SENSITIVE, STATE_FLAG, caseSensitive);
+	}
+	
+	private static boolean getBooleanAttribute(String node, String attrib, boolean defaultValue) {
+		boolean flag = false;
+		Node root = getXcosRoot();
+		if(root == null) {
+			return flag;
+		}
+		Node recent = getNodeChild(root, node);
+		if(recent != null) {
+			String exp = ((Element)recent).getAttribute(attrib);
+			if(exp.compareTo("true") == 0) {
+				flag = true;
+			}
+		} else {
+			return defaultValue;
+		}
+		return flag;
+	}
+
+	private static void saveBooleanAttribute(String node, String attrib, boolean state) {
+		Node root = getXcosRoot();
+		if(root == null) {
+			return;
+		}
+
+		Node recent = getNodeChild(root, node);
+		if(recent == null) {
+			recent = document.createElement(node);
+			root.appendChild(recent);
+		}
+
+
+		((Element)recent).setAttribute(attrib, new Boolean(state).toString());
+		
+		root.appendChild((Node) recent);
+
+		/* Save changes */
+		writeDocument();
+	}
+	
 	private static Node getNodeChild(Node parent, String nodeName) {
 
 		if(parent == null) {

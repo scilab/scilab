@@ -478,6 +478,8 @@ public final class FindAction extends DefaultAction {
 		updateRecentSearch();
 		updateRecentReplace();
 		
+		restoreConfiguration();
+		
 		/*behaviour of buttons*/
 		radioSelection.addActionListener(new ActionListener() {
 
@@ -528,12 +530,14 @@ public final class FindAction extends DefaultAction {
 		buttonFind.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				saveFindReplaceConfiguration();
 				findText();
 			}
 		});
 
 		buttonReplace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				saveFindReplaceConfiguration();
 				JTextPane xpadTextPane =  getEditor().getTextPane();
 				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 				boolean mergeMode = doc.getShouldMergeEdits();
@@ -546,6 +550,7 @@ public final class FindAction extends DefaultAction {
 
 		buttonReplaceFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				saveFindReplaceConfiguration();
 				JTextPane xpadTextPane =  getEditor().getTextPane();
 				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 				boolean mergeMode = doc.getShouldMergeEdits();
@@ -558,6 +563,7 @@ public final class FindAction extends DefaultAction {
 
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				saveFindReplaceConfiguration();
 				JTextPane xpadTextPane =  getEditor().getTextPane();
 				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
 				String text = null;
@@ -620,7 +626,7 @@ public final class FindAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 				FindAction.windowAlreadyExist = false;
-
+				saveFindReplaceConfiguration();
 				frame.dispose();
 			}
 		});
@@ -760,6 +766,23 @@ public final class FindAction extends DefaultAction {
 		comboReplace.getEditor().setItem(old);
 	}
 
+	private void saveFindReplaceConfiguration() {
+	
+		ConfigXpadManager.saveRecentSearch((String)comboFind.getEditor().getItem());
+		ConfigXpadManager.saveRecentReplace((String)comboReplace.getEditor().getItem());
+		ConfigXpadManager.saveRegularExpression(checkRegular.isSelected());
+		ConfigXpadManager.saveWordWarp(checkWarp.isSelected());
+		ConfigXpadManager.saveWholeWord(checkWhole.isSelected());
+		ConfigXpadManager.saveCaseSensitive(checkCase.isSelected());
+	}
+	
+	private void restoreConfiguration() {
+		checkRegular.setSelected(ConfigXpadManager.getRegularExpression());
+		checkWarp.setSelected(ConfigXpadManager.getWordWarp());
+		checkWhole.setSelected(ConfigXpadManager.getWholeWord());
+		checkCase.setSelected(ConfigXpadManager.getCaseSensitive());
+	}
+
 	protected void updateFindReplaceButtonStatus() {
 		String textFind = (String) comboFind.getEditor().getItem();
 		String textReplace = (String) comboReplace.getEditor().getItem();
@@ -844,7 +867,7 @@ public final class FindAction extends DefaultAction {
 			return;
 		}
 		wordToFind = exp;
-		ConfigXpadManager.saveRecentSearch(wordToFind);
+		saveFindReplaceConfiguration();
 		updateRecentSearch();
 
 
@@ -1027,8 +1050,7 @@ public final class FindAction extends DefaultAction {
 		oldWord = (String) find;
 		newWord = (String) replace;
 
-		ConfigXpadManager.saveRecentSearch(find);
-		ConfigXpadManager.saveRecentReplace(replace);
+		saveFindReplaceConfiguration();
 		updateRecentSearch();
 		updateRecentReplace();
 		JTextPane xpadTextPane =  getEditor().getTextPane();
