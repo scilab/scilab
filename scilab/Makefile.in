@@ -579,7 +579,7 @@ SUBDIRS = libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
-bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
+bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli bin/scilab6
 scilab_bin_LDFLAGS = $(am__append_1)
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
