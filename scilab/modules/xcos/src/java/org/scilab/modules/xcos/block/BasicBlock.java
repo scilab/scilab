@@ -69,6 +69,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
@@ -610,15 +611,19 @@ public class BasicBlock extends XcosUIDObject {
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 	    
 	    final BasicBlock currentBlock = this;
-	    XcosInterpreterManagement.AsynchronousScilabExec(cmd, new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Now read new Block
-			    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-			    updateBlockSettings(modifiedBlock);
-			    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
-			    setLocked(false);
-			}
-		});
+	    try {
+			XcosInterpreterManagement.AsynchronousScilabExec(cmd, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					// Now read new Block
+				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+				    updateBlockSettings(modifiedBlock);
+				    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
+				    setLocked(false);
+				}
+			});
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
 	    setLocked(true);
 
 	} catch (IOException e) {

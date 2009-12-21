@@ -24,6 +24,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 public class ViewInScicosAction  extends DefaultAction {
 
@@ -45,7 +46,11 @@ public class ViewInScicosAction  extends DefaultAction {
 			temp = File.createTempFile("xcos",".h5");
 			temp.deleteOnExit();
 			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos(scs_m);deletefile(\"" + temp.getAbsolutePath()+"\");");
+			try {
+				XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos(scs_m);deletefile(\"" + temp.getAbsolutePath()+"\");");
+			} catch (InterpreterException e1) {
+				e1.printStackTrace();
+			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 public abstract class ContextUpdate extends BasicBlock{
 
@@ -70,7 +71,11 @@ public abstract class ContextUpdate extends BasicBlock{
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 
 	    synchronized (_mutex_) {
-		XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		try {
+			XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
 		BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		updateBlockSettings(modifiedBlock);
 	    }

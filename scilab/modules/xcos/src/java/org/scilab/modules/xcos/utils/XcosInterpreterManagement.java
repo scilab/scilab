@@ -14,7 +14,11 @@ package org.scilab.modules.xcos.utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Executor;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.SwingUtilities;
@@ -26,10 +30,17 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  */
 public class XcosInterpreterManagement extends InterpreterManagement {
 
-	private static Executor executor = Executors.newSingleThreadExecutor();
+	private static ExecutorService executor = Executors.newSingleThreadExecutor();
+	private static final Set<String> runningTasks = Collections.synchronizedSet(new HashSet<String>());
 
 	private XcosInterpreterManagement() {
 		// full static class so private constructor
+	}
+	
+	public static class InterpreterException extends Exception {
+		public InterpreterException(String string) {
+			super(string);
+		}
 	}
 
 	/**
@@ -38,14 +49,23 @@ public class XcosInterpreterManagement extends InterpreterManagement {
 	 * @param command
 	 *            The scilab command
 	 * @return Status of the execution
+	 * @throws InterpreterException when the command cannot be executed on the interpreter.
 	 */
-	public static int SynchronousScilabExec(String command) {
+	public static void SynchronousScilabExec(String command) throws InterpreterException {
 		final String uid = Integer.toString(command.hashCode());
+		
+		if (runningTasks.contains(uid)) {
+			throw new InterpreterException("Same command executed again");
+		}
 		
 		command += ";xcosNotify(\"" + uid + "\");";
 		int ret = InterpreterManagement.requestScilabExec(command);
+		if (ret != 0) {
+			throw new InterpreterException("Unable to communicate with the interpreter");
+		}
+		runningTasks.add(uid);
 		Signal.wait(uid);
-		return ret;
+		runningTasks.remove(uid);
 	}
 
 	/**
@@ -67,25 +87,36 @@ public class XcosInterpreterManagement extends InterpreterManagement {
 	 *            The command to execute
 	 * @param callback
 	 *            The callback which is called at the end of the execution.
+	 * @throws InterpreterException when the command cannot be executed on the interpreter.
 	 */
 	public static void AsynchronousScilabExec(final String command,
-			final ActionListener callback) {
+			final ActionListener callback) throws InterpreterException {
 		final int uid = command.hashCode();
 		final String uidDesc = Integer.toString(uid);
 		final String fullCommand = command + ";xcosNotify(\"" + uidDesc + "\");";
 		final ActionEvent event = new ActionEvent(
 				XcosInterpreterManagement.class, uid, command);
 
-		executor.execute(new Runnable() {
-			public void run() {
-				InterpreterManagement.putCommandInScilabQueue(fullCommand);
-				Signal.wait(Integer.toString(uid));
+		if (runningTasks.contains(uidDesc)) {
+			throw new InterpreterException("Same command executed again");
+		}
+		
+		executor.submit(new Callable<Void>() {
+			public Void call() throws Exception {
+				int ret = InterpreterManagement.putCommandInScilabQueue(fullCommand);
+				if (ret != 0) {
+					throw new InterpreterException("Unable to communicate with the interpreter");
+				}
+				runningTasks.add(uidDesc);
+				Signal.wait(uidDesc);
+				runningTasks.remove(uidDesc);
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						callback.actionPerformed(event);
 					}
 				});
+				return null;
 			}
 		});
-	}
+	}	
 }
