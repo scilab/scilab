@@ -120,6 +120,8 @@ public class BasicBlock extends XcosUIDObject {
     private boolean locked = false;
 
     public enum SimulationFunctionType {
+    ESELECT,
+    IFTHENELSE,	
 	DEFAULT,
 	TYPE_1,
 	TYPE_2,
@@ -130,6 +132,10 @@ public class BasicBlock extends XcosUIDObject {
 
 	public static SimulationFunctionType convertScilabValue(int scilabValue) {
 	    switch (scilabValue) {
+	    case -2:
+	    return ESELECT;
+	    case -1:
+	    return IFTHENELSE;
 	    case 0:
 		return DEFAULT;
 	    case 1:
@@ -149,6 +155,10 @@ public class BasicBlock extends XcosUIDObject {
 
 	public double getAsDouble() {
 	    switch (this) {
+	    case ESELECT:
+	    return -2.0;
+	    case IFTHENELSE:
+	    return -1.0;
 	    case DEFAULT:
 		return 0.0;
 	    case TYPE_1:
@@ -162,7 +172,7 @@ public class BasicBlock extends XcosUIDObject {
 	    case SCILAB:
 		return 5.0;
 	    default:
-		return -1;
+		return Double.NaN;
 	    }
 	}
     };
