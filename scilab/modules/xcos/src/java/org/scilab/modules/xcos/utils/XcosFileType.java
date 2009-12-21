@@ -15,7 +15,7 @@ package org.scilab.modules.xcos.utils;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * All the filetype recognized by Xcos.
@@ -174,5 +174,22 @@ public enum XcosFileType {
 	    }
 	    
 	    return result;
+	}
+	
+	public static File loadScicosDiagram(File filename) {
+	    File tempOutput = null;
+	    try {
+		tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
+		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		try {
+			XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	    return tempOutput;
 	}
 }
