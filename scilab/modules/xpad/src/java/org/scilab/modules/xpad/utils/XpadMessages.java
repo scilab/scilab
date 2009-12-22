@@ -57,6 +57,8 @@ public class XpadMessages {
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");
+    public static final String FIND_NEXT = Messages.gettext("Find Next");
+    public static final String FIND_PREVIOUS = Messages.gettext("Find Previous");
     public static final String GOTO_LINE = Messages .gettext("Goto line");
     
     /** VIEW MENU */

@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.block;
 
 
 import java.awt.MouseInfo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,7 +24,6 @@ import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
@@ -64,10 +65,11 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.Signal;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
@@ -592,7 +594,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos",".h5");
+	    tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -608,19 +610,20 @@ public class BasicBlock extends XcosUIDObject {
 	    cmd += ", \"set\"";
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 	    
-	    InterpreterManagement.putCommandInScilabQueue(cmd);
 	    final BasicBlock currentBlock = this;
-	    Thread launchMe = new Thread() {
-		public void run() {
-		    Signal.wait(tempInput.getAbsolutePath());
-		    // Now read new Block
-		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-		    updateBlockSettings(modifiedBlock);
-		    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
-		    setLocked(false);
+	    try {
+			XcosInterpreterManagement.AsynchronousScilabExec(cmd, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					// Now read new Block
+				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+				    updateBlockSettings(modifiedBlock);
+				    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
+				    setLocked(false);
+				}
+			});
+		} catch (InterpreterException e) {
+			e.printStackTrace();
 		}
-	    };
-	    launchMe.start();
 	    setLocked(true);
 
 	} catch (IOException e) {
@@ -633,7 +636,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos",".h5");
+	    tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
 	    tempOutput.deleteOnExit();
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -800,7 +803,7 @@ public class BasicBlock extends XcosUIDObject {
 	    private static final long serialVersionUID = -1480947262397441951L;
 
 	    public void callBack() {
-		InterpreterManagement.requestScilabExec("help " + getInterfaceFunctionName());
+		XcosInterpreterManagement.requestScilabExec("help " + getInterfaceFunctionName());
 	    }
 	});
 	menu.add(help);

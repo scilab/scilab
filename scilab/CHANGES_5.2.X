@@ -15,6 +15,8 @@ Xcos:
 
 * bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
 
+* bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored into /tmp/ instead of TMPDIR
+
 * bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
 
 Bug fixes:
@@ -30,6 +32,9 @@ Bug fixes:
 * bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
+
+* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
+                   you use scilab in a terminal service session on Windows.
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
