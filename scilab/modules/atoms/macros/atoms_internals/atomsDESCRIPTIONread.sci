@@ -13,6 +13,35 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
+// DESCRIPTION
+// |
+// |-- packages                              [1x1 struct]
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories                            [1x1 struct]
+// |   |-- Optimization                      [1x1 struct]
+// |   |   |-- Linear
+// |   |   `-- General
+// |   `-- ..
+// |
+// |-- categories_flat                       [1x1 struct]
+//     |-- Optimization - Linear
+//     |   `-- [ "Optimization" ; "Linear" ]
+//     |-- Optimization - General
+//     `-- Optimization - General
+
 function description_out = atomsDESCRIPTIONread(file_in)
 	
 	// Check input parameters
@@ -31,10 +60,17 @@ function description_out = atomsDESCRIPTIONread(file_in)
 	// Init the output argument
 	// =========================================================================
 	
-	description_out = struct();
+	packages         = struct();
+	categories_flat  = struct();
+	categories       = struct();
+	description_out  = struct();
+	
+	description_out("packages")        = packages;
+	description_out("categories")      = categories;
+	description_out("categories_flat") = categories_flat;
 	
 	// Start Read the file
-	// =========================================================================	
+	// =========================================================================
 	
 	lines_in         = mgetl(file_in);
 	current_toolbox  = struct();
@@ -51,12 +87,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			
 			if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 				
-				if  ~ isfield(description_out,current_toolbox("Toolbox")) then
+				if  ~ isfield(packages,current_toolbox("Toolbox")) then
 					// Il s'agit de la première version de la toolbox trouvée
 					this_toolbox = struct();
 				else
 					// On récupère la liste des versions de cette toolbox
-					this_toolbox = description_out(current_toolbox("Toolbox"));
+					this_toolbox = packages(current_toolbox("Toolbox"));
 				end
 				
 				if isfield(current_toolbox,"ScilabVersion") then
@@ -70,7 +106,7 @@ function description_out = atomsDESCRIPTIONread(file_in)
 						current_toolbox("Version")));
 				end
 				
-				description_out(current_toolbox("Toolbox")) = this_toolbox;
+				packages(current_toolbox("Toolbox")) = this_toolbox;
 			end
 			
 			break;
@@ -84,12 +120,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 				
 				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 					
-					if  ~ isfield(description_out,current_toolbox("Toolbox")) then
+					if  ~ isfield(packages,current_toolbox("Toolbox")) then
 						// Il s'agit de la première version de la toolbox trouvée
 						this_toolbox = struct();
 					else
 						// On récupère la liste des versions de cette toolbox
-						this_toolbox = description_out(current_toolbox("Toolbox"));
+						this_toolbox = packages(current_toolbox("Toolbox"));
 					end
 					
 					if isfield(current_toolbox,"ScilabVersion") then
@@ -103,7 +139,7 @@ function description_out = atomsDESCRIPTIONread(file_in)
 							current_toolbox("Version")));
 					end
 					
-					description_out(current_toolbox("Toolbox")) = this_toolbox;
+					packages(current_toolbox("Toolbox")) = this_toolbox;
 				end
 				
 				// Reset the current_toolbox struct
@@ -115,6 +151,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
 			current_toolbox(current_field) = current_value;
+			
+			// Category management
+			if (current_field == "Category") & (~ isfield(categories_flat,current_value))  then
+				atomsAddCategory(current_value);
+			end
+			
 			continue;
 		end
 		
@@ -122,6 +164,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		if regexp(lines_in(i),"/^\s/","o") == 1 then
 			current_value = part(lines_in(i),2:length(lines_in(i)));
 			current_toolbox(current_field) = [ current_toolbox(current_field) ; current_value ];
+			
+			// Category management
+			if (current_field == "Category") & (~ isfield(categories_flat,current_value)) then
+				atomsAddCategory(current_value);
+			end
+			
 			continue;
 		end
 		
@@ -138,6 +186,46 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		// Else Error
 		error(msprintf(gettext("%s: The file ""%s"" is not well formated at line %d\n"),"atomsDESCRIPTIONread",filein,i));
 		
+	end
+	
+	description_out("packages")        = packages;
+	description_out("categories")      = categories;
+	description_out("categories_flat") = categories_flat;
+	
+endfunction
+
+// =============================================================================
+// atomsAddCategory
+// =============================================================================
+
+function atomsAddCategory(category_id)
+	
+	category_main = "";
+	category_sub  = "";
+	
+	pattern_index = regexp(category_id,"/\s-\s/","o");
+	
+	if pattern_index <> [] then
+		category_main                = part(category_id,1:pattern_index-1);
+		category_sub                 = part(category_id,pattern_index+3:length(category_id) );
+		categories_flat(category_id) = [ category_main ; category_sub ];
+	else
+		category_main = category_id;
+		categories_flat(category_id) = [ category_main ];
+	end
+	
+	if isfield(categories,category_main) then
+		if category_sub <> "" then
+			subcategories             = categories(category_main);
+			subcategories             = [ subcategories ; category_sub ];
+			categories(category_main) = subcategories;
+		end
+	else
+		if category_sub == "" then
+			categories(category_main) = [];
+		else
+			categories(category_main) = category_sub;
+		end
 	end
 	
 endfunction

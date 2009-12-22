@@ -46,6 +46,7 @@ function details = atomsToolboxDetails(package,field)
 	
 	// Get the full list of packages
 	// =========================================================================
+	
 	repositorypackages = atomsGetTOOLBOXES();
 	
 	name    = package(1);
@@ -59,7 +60,8 @@ function details = atomsToolboxDetails(package,field)
 		else
 			// The module has been removed from the repository but it's still 
 			// installed
-			repositorypackages = atomsDESCRIPTIONread(atomsGetInstalledPath(package)+filesep()+"DESCRIPTION");
+			this_package_description = atomsDESCRIPTIONread(atomsGetInstalledPath(package)+filesep()+"DESCRIPTION");
+			repositorypackages       = this_package_description("packages");
 		end
 	end
 	
