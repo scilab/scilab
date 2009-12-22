@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -24,6 +26,9 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
+import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
+import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -36,6 +41,7 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
@@ -154,16 +160,18 @@ public class SuperBlock extends BasicBlock {
 			 * Mask removing only option is not applicable : if remove the mask
 			 * you have no way to edit the values anymore.
 			 */
-			/*
-			 * Menu maskMenu = ScilabMenu.createMenu();
-			 * maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
-			 * 
-			 * if (isMasked()) {
-			 * maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
-			 * menu.add(maskMenu); } else {
-			 * maskMenu.add(SuperblockMaskCreateAction.createMenu(graph)); }
-			 * maskMenu.add(SuperblockMaskCustomizeAction.createMenu(graph));
-			 */
+			Menu maskMenu = ScilabMenu.createMenu();
+			maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
+
+			if (isMasked()) {
+				maskMenu.add(SuperblockMaskRemoveAction.createMenu(graph));
+				menu.add(maskMenu);
+			} else {
+				maskMenu.add(SuperblockMaskCreateAction.createMenu(graph));
+			}
+			maskMenu.add(SuperblockMaskCustomizeAction.createMenu(graph));
+			menu.add(maskMenu);
+			 
 		}
 		menu.setVisible(true);
 	}
