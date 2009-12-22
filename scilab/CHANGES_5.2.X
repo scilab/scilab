@@ -1,4 +1,4 @@
-               Changes between version 5.2.0 and 5.2.1 of Scilab
+                Changes between version 5.2.0 and 5.2.1 of Scilab
                =================================================
 
 
@@ -27,6 +27,12 @@ Bug fixes:
 
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.
+
+* bug 5688 fixed - The xrpoly macro's rotation direction was inconsistent with
+                   that of xarc and related functions.
+
+* bug 5691 fixed - PDF/EPS exports with LaTeX/MathML failed.
+
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
