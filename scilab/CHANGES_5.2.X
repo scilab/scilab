@@ -11,6 +11,10 @@ Xcos:
 
 * bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
 
+* bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions were not available.
+
+* bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
+
 Bug fixes:
 ==========
 
