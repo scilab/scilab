@@ -93,19 +93,19 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			/* We have one content that is not a variable : Window Title*/
 			final int nbOfVar = valuesModel.size()-1;
 			
-			final String[] values = new String[nbOfVar];
-			final String[] varNames = new String[nbOfVar];
-			final String[] varDesc = new String[nbOfVar+1];
+			final String[][] values = new String[nbOfVar][1];
+			final String[][] varNames = new String[nbOfVar][1];
+			final String[][] varDesc = new String[nbOfVar+1][1];
 			final ScilabList polFields = new ScilabList();
 			
 			/* Title */
-			varDesc[0] = (String) ((Vector) valuesModel.get(0)).get(1);
+			varDesc[0][0] = (String) ((Vector) valuesModel.get(0)).get(1);
 			
 			/* Other fields */
 			for (int i = 0; i < nbOfVar; i++) {
-				values[i] = (String) ((Vector) valuesModel.get(i+1)).get(1);
-				varNames[i] = (String) ((Vector) customModel.get(i+1)).get(1);
-				varDesc[i+1] = (String) ((Vector) customModel.get(i+1)).get(2);
+				values[i][0] = (String) ((Vector) valuesModel.get(i+1)).get(1);
+				varNames[i][0] = (String) ((Vector) customModel.get(i+1)).get(1);
+				varDesc[i+1][0] = (String) ((Vector) customModel.get(i+1)).get(2);
 				
 				/* reconstruct pol fields
 				 * TODO: what are these fields ?  
@@ -407,6 +407,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			public final ActionListener okActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					exportToModel();
+					dispose();
 				}
 			};
 
