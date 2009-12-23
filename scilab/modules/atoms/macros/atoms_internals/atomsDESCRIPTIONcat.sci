@@ -104,7 +104,7 @@ function tree_out = atomsDESCRIPTIONcat( tree_in_1 , tree_in_2 )
 	
 	categories_out         = tree_out("categories");
 	categories_in_2        = tree_in_2("categories");
-	categories_out         = atomsPackagesCat(categories_out,categories_in_2);
+	categories_out         = atomsCategoriesCat(categories_out,categories_in_2);
 	tree_out("categories") = categories_out;
 	
 	
