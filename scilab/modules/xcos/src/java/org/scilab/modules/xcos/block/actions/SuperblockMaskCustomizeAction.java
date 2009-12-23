@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
@@ -68,6 +69,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			initComponents();
 		}
 
+		/**
+		 * Register the block used to get/set the scicos values
+		 * @param block the registered block
+		 */
 		public void setModel(SuperBlock block) {
 			model = block;
 		}
@@ -76,10 +81,16 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			return model;
 		}
 
+		/**
+		 * Export the table models to the block exprs.
+		 */
 		private void exportToModel() {
 
 		}
 
+		/**
+		 * Import the model exprs to the table models.
+		 */
 		private void importFromModel() {
 			ScilabType rawExprs = getModel().getExprs();
 			DefaultTableModel customModel = (DefaultTableModel) varCustomizeTable.getModel();
@@ -96,6 +107,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 				ScilabString varNames = (ScilabString) ((ScilabList) exprs.get(1)).get(0);
 				ScilabString varDesc = (ScilabString) ((ScilabList) exprs.get(1)).get(1);
 				
+				/*
+				 * Check if the file is stored as columns or as row.
+				 */
 				if (varDesc.getHeight() >= varDesc.getWidth()) {
 
 					/* Title */
@@ -123,6 +137,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			}
 		}
 
+		/**
+		 * Construct the UI and install the listeners.
+		 */
 		private void initComponents() {
 
 	        mainPanel = new javax.swing.JPanel();
@@ -463,6 +480,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		private javax.swing.JPanel varSettings;
 	}
 
+	/**
+	 * Ease the development of the UI (debug). 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
