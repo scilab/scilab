@@ -1,4 +1,4 @@
-               Changes between version 5.2.0 and 5.2.1 of Scilab
+                Changes between version 5.2.0 and 5.2.1 of Scilab
                =================================================
 
 
@@ -24,6 +24,15 @@ Bug fixes:
 * bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
+
+* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
+                   you use scilab in a terminal service session on Windows.
+
+* bug 5688 fixed - The xrpoly macro's rotation direction was inconsistent with
+                   that of xarc and related functions.
+
+* bug 5691 fixed - PDF/EPS exports with LaTeX/MathML failed.
+
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -1787,3 +1796,4 @@ Bug fixes:
 
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
+* bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
