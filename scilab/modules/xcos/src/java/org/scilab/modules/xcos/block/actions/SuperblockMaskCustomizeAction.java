@@ -406,6 +406,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			public final ActionListener okActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					/* TODO: handle ok click when editing a cell. */
 					exportToModel();
 					dispose();
 				}
@@ -415,16 +416,16 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 				public void stateChanged(ChangeEvent e) {
 					int rowCount = varCustomizeTable.getRowCount();
 					int value = (Integer) rowSpinner.getModel().getValue();
-					DefaultTableModel model = (DefaultTableModel) varCustomizeTable.getModel();
+					DefaultTableModel tableModel = model.customizeTableModel;
 					
 					for (; rowCount < value; rowCount++) {
-						model.addRow(
+						tableModel.addRow(
 								new Object[] {rowCount+1, "", true}
 						);
 					}
 					
 					for (; rowCount > value; rowCount--) {
-						model.removeRow(rowCount-1);
+						tableModel.removeRow(rowCount-1);
 					}
 				}
 			};
@@ -432,15 +433,15 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			public final ActionListener moveDownActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = varCustomizeTable.getSelectedRow();
-					Vector<Vector> model = ((DefaultTableModel) varCustomizeTable.getModel()).getDataVector();
+					Vector<Vector> tableModel = model.customizeTableModel.getDataVector();
 					
 					if (selectedRow > 0 && selectedRow < varCustomizeTable.getRowCount()-1) {
-						Vector current = (Vector) model.get(selectedRow);
-						Vector next = (Vector) model.get(selectedRow +1);
+						Vector current = (Vector) tableModel.get(selectedRow);
+						Vector next = (Vector) tableModel.get(selectedRow +1);
 						
 						/* Inverting data*/
-						model.set(selectedRow +1, current);
-						model.set(selectedRow, next);
+						tableModel.set(selectedRow +1, current);
+						tableModel.set(selectedRow, next);
 						
 						/* Update the index field */
 						current.set(0, ((Integer) current.get(0)) +1);
@@ -507,7 +508,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			public final ActionListener insertActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					((DefaultTableModel) varCustomizeTable.getModel()).addRow(
-							new Object[] {varCustomizeTable.getRowCount()+1, "", true}
+							new Object[] {varCustomizeTable.getRowCount()+1, "", "", true}
 					);
 					varCustomizeTable.changeSelection(varCustomizeTable.getRowCount()-1, 1, false, false);
 				}
