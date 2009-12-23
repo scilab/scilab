@@ -214,7 +214,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        varSettings.setLayout(new javax.swing.BoxLayout(varSettings, javax.swing.BoxLayout.PAGE_AXIS));
 
-	        varCustomizeTable.setModel(CustomizeFrameModel.customizeTableModel);
+	        varCustomizeTable.setModel(listener.getModel().customizeTableModel);
 	        customizeScrollPane.setViewportView(varCustomizeTable);
 	        varCustomizeTable.setAutoCreateRowSorter(true);
 	        
@@ -271,7 +271,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        tabbedPane.addTab("Variable settings", varSettings);
 
-	        defaultValueTable.setModel(CustomizeFrameModel.valuesTableModel);
+	        defaultValueTable.setModel(listener.getModel().valuesTableModel);
 	        defaultValuesScrollPane.setViewportView(defaultValueTable);
 
 	        defaultValueTable.setAutoCreateRowSorter(false);
@@ -325,12 +325,12 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		/**
 		 * Implements the models used on the frame.
 		 */
-		private static class CustomizeFrameModel {
+		private class CustomizeFrameModel {
 			
 			/**
 			 * Model used on the customize table.
 			 */
-			public static final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
+			public final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
 			            	new Object[] {1, "WinTitle", "Window title", false}
 			            },
@@ -359,7 +359,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		    /**
 		     * Model used for the values table
 		     */
-			public static final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
+			public final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
 		            		new Object[] {"Window title", ""}
 		            },
@@ -388,7 +388,16 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		 * Implement the action listener for the frame
 		 */
 		private class CustomizeFrameListener {
-
+			private CustomizeFrameModel model;
+			
+			public CustomizeFrameListener() {
+				model = new CustomizeFrameModel();
+			}
+			
+			public CustomizeFrameModel getModel() {
+				return model;
+			}
+			
 			public final ActionListener cancelActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();					
@@ -532,7 +541,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					/* We cannot delete anymore */
 					boolean canDelete = false;
 					
-					int rowCount = CustomizeFrameModel.customizeTableModel.getRowCount();
+					int rowCount = model.customizeTableModel.getRowCount();
 					
 					canDelete = rowCount > 1;
 					
@@ -546,8 +555,8 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			 */
 			public final TableModelListener updateValuesTable = new TableModelListener() {
 				public void tableChanged(TableModelEvent e) {
-					DefaultTableModel valuesModel = CustomizeFrameModel.valuesTableModel;
-					DefaultTableModel customModel = CustomizeFrameModel.customizeTableModel;
+					DefaultTableModel valuesModel = model.valuesTableModel;
+					DefaultTableModel customModel = model.customizeTableModel;
 					int row = e.getFirstRow();
 					int column = e.getColumn();
 					
@@ -571,7 +580,6 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					}
 				}
 			};
-			
 		}
 	}
 	
